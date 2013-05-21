@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET", "GW2.NET\GW2.NET.csproj", "{46C3A3D8-6627-4098-82BA-608F158A8CA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET Tests", "GW2.NET Tests\GW2.NET Tests.csproj", "{D138871F-94ED-4BB0-999A-2ACD3732DF30}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = GW2.NET\u0020Tests\\GW2.NET\u0020Tests.csproj
+		SccProjectName1 = GW2.NET\u0020Tests
+		SccLocalPath1 = GW2.NET\u0020Tests
+		SccProjectUniqueName2 = GW2.NET\\GW2.NET.csproj
+		SccProjectName2 = GW2.NET
+		SccLocalPath2 = GW2.NET
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46C3A3D8-6627-4098-82BA-608F158A8CA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{46C3A3D8-6627-4098-82BA-608F158A8CA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{46C3A3D8-6627-4098-82BA-608F158A8CA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{46C3A3D8-6627-4098-82BA-608F158A8CA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D138871F-94ED-4BB0-999A-2ACD3732DF30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D138871F-94ED-4BB0-999A-2ACD3732DF30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D138871F-94ED-4BB0-999A-2ACD3732DF30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D138871F-94ED-4BB0-999A-2ACD3732DF30}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
