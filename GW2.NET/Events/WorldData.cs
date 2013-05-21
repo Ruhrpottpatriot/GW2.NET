@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 
@@ -12,18 +13,49 @@ namespace GW2DotNET.Events
     {
         public IEnumerable<World> GetWorlds(string language = "en")
         {
-            var jsonString = new WebClient().DownloadString("https://api.guildwars2.com/v1/world_names.json?lang=" + language);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.guildwars2.com/v1/world_names.json?lang=" + language);
 
-            var worlds = (JArray)JObject.Parse(jsonString)[""];
+            request.Method = WebRequestMethods.Http.Get;
+            request.Credentials = CredentialCache.DefaultCredentials;
+            request.Accept = "application/json";
+
+            string jsonString;
+
+            using (var response = request.GetResponse())
+            {
+                using (var sr = new StreamReader(response.GetResponseStream()))
+                {
+                    jsonString = sr.ReadToEnd().Insert(0, "{\"worlds\":");
+
+                    jsonString = jsonString.Insert(jsonString.Length, "}");
+                }
+            }
+
+            var worlds = (JArray)JObject.Parse(jsonString)["worlds"];
 
             return worlds.Select(world => new World(int.Parse((string)world["id"]), (string)world["name"]));
         }
 
         public IEnumerable<World> GetMaps(string language = "en")
         {
-            var jsonString = new WebClient().DownloadString("https://api.guildwars2.com/v1/map_names.json?lang=" + language);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.guildwars2.com/v1/world_names.json?lang=" + language);
 
-            var maps = (JArray)JObject.Parse(jsonString)[""];
+            request.Method = WebRequestMethods.Http.Get;
+            request.Credentials = CredentialCache.DefaultCredentials;
+            request.Accept = "application/json";
+
+            string jsonString;
+
+            using (var response = request.GetResponse())
+            {
+                using (var sr = new StreamReader(response.GetResponseStream()))
+                {
+                    jsonString = sr.ReadToEnd().Insert(0, "{\"maps\":");
+
+                    jsonString = jsonString.Insert(jsonString.Length, "}");
+                }
+            }
+            var maps = (JArray)JObject.Parse(jsonString)["maps"];
 
             return maps.Select(map => new World(int.Parse((string)map["id"]), (string)map["name"]));
         }

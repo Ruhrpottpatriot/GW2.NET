@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="EventTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WorldDataTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GW2.NET\GW2.NET.csproj">
