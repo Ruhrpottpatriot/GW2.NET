@@ -19,12 +19,16 @@ namespace GW2.NET_Tests
         public void GetWorlds()
         {
             var worlds = data.GetWorlds();
+
+            Assert.IsFalse(worlds == null);
         }
 
         [Test]
         public void GetMaps()
         {
             var maps = data.GetMaps();
+
+            Assert.IsFalse(maps == null);
         }
     }
 }
