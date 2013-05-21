@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventState.cs" company="GW2.Net Coding Team">
+// <copyright file="GwEventState.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.Models
+namespace GW2DotNET.Events.Models
 {
     /// <summary>
     /// Enumerates all possible states an event can be.
     /// </summary>
-    public enum GWEventState
+    public enum GwEventState
     {
         /// <summary>
         ///  The event is running now.
