@@ -8,10 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 
+using GW2DotNET.Infrastructure;
 using GW2DotNET.Models;
 
 using Newtonsoft.Json.Linq;
@@ -30,21 +29,12 @@ namespace GW2DotNET.Events
         /// <returns>An <see cref="IEnumerable"/> which contains all worlds in the specified language.</returns>
         public IEnumerable<World> GetWorlds(string language = "en")
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.guildwars2.com/v1/world_names.json?lang=" + language);
-
-            request.Method = WebRequestMethods.Http.Get;
-            request.Credentials = CredentialCache.DefaultCredentials;
-            request.Accept = "application/json";
-
-            string jsonString;
-
-            using (var response = request.GetResponse())
+            var arguments = new List<KeyValuePair<string, object>>
             {
-                using (var sr = new StreamReader(response.GetResponseStream()))
-                {
-                    jsonString = sr.ReadToEnd();
-                }
-            }
+                new KeyValuePair<string, object>("lang", language)
+            };
+
+            string jsonString = ApiCall.CallApi("world_names.json", arguments);
 
             var worlds = JArray.Parse(jsonString);
 
@@ -58,21 +48,12 @@ namespace GW2DotNET.Events
         /// <returns>An <see cref="IEnumerable"/> which contains all maps in the specified language.</returns>
         public IEnumerable<World> GetMaps(string language = "en")
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.guildwars2.com/v1/world_names.json?lang=" + language);
-
-            request.Method = WebRequestMethods.Http.Get;
-            request.Credentials = CredentialCache.DefaultCredentials;
-            request.Accept = "application/json";
-
-            string jsonString;
-
-            using (var response = request.GetResponse())
+            var arguments = new List<KeyValuePair<string, object>>
             {
-                using (var sr = new StreamReader(response.GetResponseStream()))
-                {
-                    jsonString = sr.ReadToEnd();
-                }
-            }
+                new KeyValuePair<string, object>("lang", language)
+            };
+
+            string jsonString = ApiCall.CallApi("map_names.json", arguments);
 
             var maps = JArray.Parse(jsonString);
 

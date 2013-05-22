@@ -8,12 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 
 using GW2DotNET.Events.Models;
-using GW2DotNET.Models;
+using GW2DotNET.Infrastructure;
 
 using Newtonsoft.Json.Linq;
 
@@ -31,9 +29,14 @@ namespace GW2DotNET.Events
         /// <returns>An <see cref="IEnumerable"/> with all the events on the specified world.</returns>
         public IEnumerable<GwEvent> GetEvents(int worldId)
         {
-            var jsonString1 = this.GetJsonString("events.json", new[] { "world_id=1001" });
+            var arguments = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("world_id", worldId)
+            };
 
-            var jsonString2 = this.GetJsonString("event_names.json", null);
+            var jsonString1 = ApiCall.CallApi("events.json", arguments);
+
+            var jsonString2 = ApiCall.CallApi("event_names.json", null);
 
             var events = (JArray)JObject.Parse(jsonString1)["events"];
 
@@ -53,7 +56,13 @@ namespace GW2DotNET.Events
         /// <returns>The <see cref="GwEvent"/>.</returns>
         public GwEvent GetEvet(int worldId, string eventId)
         {
-            var jsonString = this.GetJsonString("events.json", new[] { "world_id=" + worldId, "event_id=" + eventId });
+            var arguments = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("world_id", worldId),
+                new KeyValuePair<string, object>("event_id", eventId)
+            };
+
+            var jsonString = ApiCall.CallApi("events.json", arguments);
 
             var events = (JArray)JObject.Parse(jsonString)["events"];
 
@@ -68,44 +77,17 @@ namespace GW2DotNET.Events
         /// <returns>An <see cref="IEnumerable"/> with all events on the specified map.</returns>
         public IEnumerable<GwEvent> GetEventsByMap(int worldId, int mapId)
         {
-            var jsonString = this.GetJsonString("events.json", new[] { "world_id=" + worldId, "map_id=" + mapId });
-            
+            var arguments = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("world_id", worldId),
+                new KeyValuePair<string, object>("map_id", mapId)
+            };
+
+            var jsonString = ApiCall.CallApi("events.json", arguments);
+
             var events = (JArray)JObject.Parse(jsonString)["events"];
 
             return events.Select(gwEvent => new GwEvent(int.Parse((string)gwEvent["world_id"]), int.Parse((string)gwEvent["map_id"]), (string)gwEvent["event_id"], (string)gwEvent["state"], string.Empty));
-        }
-
-        /// <summary>
-        /// The get the complete json string from the api.
-        /// </summary>
-        /// <param name="apiMethod">The api method to call.</param>
-        /// <param name="arguments">The arguments that go with the method.</param>
-        /// <returns>The <see cref="string"/>.</returns>
-        protected string GetJsonString(string apiMethod, string[] arguments)
-        {
-            const string BaseUrl = "https://api.guildwars2.com/v1";
-
-            string argumentString = arguments != null ? string.Format("?{0}", string.Join("?", arguments)) : string.Empty;
-
-            string completeUrl = string.Format(@"{0}/{1}{2}", BaseUrl, apiMethod, argumentString);
-
-            var generalRequest = (HttpWebRequest)WebRequest.Create(completeUrl);
-
-            generalRequest.Method = WebRequestMethods.Http.Get;
-            generalRequest.Credentials = CredentialCache.DefaultCredentials;
-            generalRequest.Accept = "application/json";
-
-            string jsonString;
-
-            using (var response = generalRequest.GetResponse())
-            {
-                using (var sr = new StreamReader(response.GetResponseStream()))
-                {
-                    jsonString = sr.ReadToEnd();
-                }
-            }
-
-            return jsonString;
         }
     }
 }
