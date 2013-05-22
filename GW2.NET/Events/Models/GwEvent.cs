@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.Infrastructure;
+using System;
 namespace GW2DotNET.Events.Models
 {
     /// <summary>
@@ -17,7 +19,7 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// The event id. This field is readonly.
         /// </summary>
-        private readonly string eventId;
+        private readonly Guid eventId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
@@ -27,7 +29,7 @@ namespace GW2DotNET.Events.Models
         /// <param name="eventId">The event id.</param>
         /// <param name="state">The state.</param>
         /// <param name="name">The name.</param>
-        public GwEvent(int worldId, int mapId, string eventId, string state, string name)
+        public GwEvent(int worldId, int mapId, Guid eventId, string state, string name)
             : this()
         {
             this.WorldId = worldId;
@@ -37,13 +39,17 @@ namespace GW2DotNET.Events.Models
             this.Name = name;
         }
 
+        internal GwEvent(APIEvent apiEvent) : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state.ToString(), "")
+        {
+        }
+
         /// <summary>
         /// Gets the name of the event.
         /// </summary>
         public string Name
         {
             get;
-            private set;
+            set;
         }
 
         /// <summary>
@@ -67,7 +73,7 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// Gets the event id.
         /// </summary>
-        public string EventId
+        public Guid EventId
         {
             get
             {

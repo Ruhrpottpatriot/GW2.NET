@@ -5,6 +5,7 @@ using GW2DotNET.Events;
 using GW2DotNET.Infrastructure;
 
 using NUnit.Framework;
+using System;
 
 namespace GW2.NET_Tests
 {
@@ -31,7 +32,7 @@ namespace GW2.NET_Tests
         [Test]
         public void GetEvent()
         {
-            var result = data.GetEvent(1001, "E0D7E88D-4FF6-42FA-AFFC-0DF4111C2CCD");
+            var result = data.GetEvent(1001, new Guid("E0D7E88D-4FF6-42FA-AFFC-0DF4111C2CCD"));
 
             // Assert.IsFalse(result == null);
 

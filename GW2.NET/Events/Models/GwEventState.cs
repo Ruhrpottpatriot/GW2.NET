@@ -25,6 +25,11 @@ namespace GW2DotNET.Events.Models
         Success,
 
         /// <summary>
+        /// The event has failed.
+        /// </summary>
+        Fail,
+
+        /// <summary>
         /// The event is inactive, 
         /// and will only become active once certain criteria are met.
         /// </summary>

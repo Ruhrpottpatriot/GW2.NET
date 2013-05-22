@@ -13,7 +13,8 @@ using System.Linq;
 using GW2DotNET.Events.Models;
 using GW2DotNET.Infrastructure;
 
-using Newtonsoft.Json.Linq;
+using RestSharp;
+using System;
 
 namespace GW2DotNET.Events
 {
@@ -23,29 +24,37 @@ namespace GW2DotNET.Events
     public class EventData
     {
         /// <summary>
+        /// We cache the event_names response here
+        /// </summary>
+        private List<APIEventName> eventNames = null;
+
+        /// <summary>
+        /// We also cache the event_names here as a dictionary
+        /// </summary>
+        private Dictionary<Guid, string> eventNamesDictionary = null;
+
+        /// <summary>
+        /// The RestSharp client used for all API requests
+        /// </summary>
+        private RestClient restClient = new RestClient("https://api.guildwars2.com/v1/");
+
+        /// <summary>
         /// Gets all the events on the specified world.
         /// </summary>
         /// <param name="worldId">The id of the world. </param>
         /// <returns>An <see cref="IEnumerable"/> with all the events on the specified world.</returns>
         public IEnumerable<GwEvent> GetEvents(int worldId)
         {
-            var arguments = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("world_id", worldId)
-            };
+            RestRequest eventsRequest = new RestRequest("events.json", Method.GET);
+            eventsRequest.AddParameter("world_id", worldId.ToString());
+            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = restClient.Execute<Dictionary<string, List<APIEvent>>>(eventsRequest);
+ 
+            // Turn the API events into events with names
+            List<GwEvent> eventsToReturn = new List<GwEvent>();
+            foreach (var apiEvent in eventsResponse.Data["events"])
+                eventsToReturn.Add(new GwEvent(apiEvent) { Name = this.EventNamesDictionary[apiEvent.event_id] });
 
-            var jsonString1 = ApiCall.CallApi("events.json", arguments);
-
-            var jsonString2 = ApiCall.CallApi("event_names.json", null);
-
-            var events = (JArray)JObject.Parse(jsonString1)["events"];
-
-            var eventNames = JArray.Parse(jsonString2);
-
-            return (from gwEvent in events
-                    from eventName in eventNames
-                    where (string)eventName["id"] == (string)gwEvent["event_id"]
-                    select new GwEvent(int.Parse((string)gwEvent["world_id"]), int.Parse((string)gwEvent["map_id"]), (string)gwEvent["event_id"], (string)gwEvent["state"], (string)eventName["name"])).ToList();
+            return eventsToReturn;
         }
 
         /// <summary>
@@ -54,19 +63,20 @@ namespace GW2DotNET.Events
         /// <param name="worldId">The world id.</param>
         /// <param name="eventId">The event id.</param>
         /// <returns>The <see cref="GwEvent"/>.</returns>
-        public GwEvent GetEvent(int worldId, string eventId)
+        public GwEvent GetEvent(int worldId, Guid eventId)
         {
-            var arguments = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("world_id", worldId),
-                new KeyValuePair<string, object>("event_id", eventId)
-            };
+            RestRequest eventsRequest = new RestRequest("events.json", Method.GET);
+            eventsRequest.AddParameter("world_id", worldId.ToString());
+            eventsRequest.AddParameter("event_id", eventId.ToString());
+            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = restClient.Execute<Dictionary<string, List<APIEvent>>>(eventsRequest);
 
-            var jsonString = ApiCall.CallApi("events.json", arguments);
+            // Turn the API events into events with names
+            List<GwEvent> eventsToReturn = new List<GwEvent>();
+            foreach (var apiEvent in eventsResponse.Data["events"])
+                eventsToReturn.Add(new GwEvent(apiEvent) { Name = this.EventNamesDictionary[apiEvent.event_id] });
 
-            var events = (JArray)JObject.Parse(jsonString)["events"];
-
-            return events.Select(e => new GwEvent(int.Parse((string)e["world_id"]), int.Parse((string)e["map_id"]), (string)e["event_id"], (string)e["state"], string.Empty)).ToList().Single();
+            // There should only be one, so just return the first element.
+            return eventsToReturn[0];
         }
 
         /// <summary>
@@ -77,17 +87,47 @@ namespace GW2DotNET.Events
         /// <returns>An <see cref="IEnumerable"/> with all events on the specified map.</returns>
         public IEnumerable<GwEvent> GetEventsByMap(int worldId, int mapId)
         {
-            var arguments = new List<KeyValuePair<string, object>>
+            RestRequest eventsRequest = new RestRequest("events.json", Method.GET);
+            eventsRequest.AddParameter("world_id", worldId.ToString());
+            eventsRequest.AddParameter("map_id", mapId.ToString());
+            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = restClient.Execute<Dictionary<string, List<APIEvent>>>(eventsRequest);
+
+            // Turn the API events into events with names
+            List<GwEvent> eventsToReturn = new List<GwEvent>();
+            foreach (var apiEvent in eventsResponse.Data["events"])
+                eventsToReturn.Add(new GwEvent(apiEvent) { Name = this.EventNamesDictionary[apiEvent.event_id] });
+
+            return eventsToReturn;
+        }
+
+        private List<APIEventName> EventNames
+        {
+            get
             {
-                new KeyValuePair<string, object>("world_id", worldId),
-                new KeyValuePair<string, object>("map_id", mapId)
-            };
+                if (this.eventNames == null)
+                {
+                    RestRequest eventNamesRequest = new RestRequest("event_names.json", Method.GET);
+                    IRestResponse<List<APIEventName>> eventNamesResponse = restClient.Execute<List<APIEventName>>(eventNamesRequest);
+                    this.eventNames = eventNamesResponse.Data;
+                }
 
-            var jsonString = ApiCall.CallApi("events.json", arguments);
+                return this.eventNames;
+            }
+        }
 
-            var events = (JArray)JObject.Parse(jsonString)["events"];
+        private Dictionary<Guid, string> EventNamesDictionary
+        {
+            get
+            {
+                if (this.eventNamesDictionary == null)
+                {
+                    this.eventNamesDictionary = new Dictionary<Guid, string>();
+                    foreach (var eventName in this.EventNames)
+                        this.eventNamesDictionary.Add(eventName.id, eventName.name);
+                }
 
-            return events.Select(gwEvent => new GwEvent(int.Parse((string)gwEvent["world_id"]), int.Parse((string)gwEvent["map_id"]), (string)gwEvent["event_id"], (string)gwEvent["state"], string.Empty));
+                return this.eventNamesDictionary;
+            }
         }
     }
 }
