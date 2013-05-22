@@ -79,16 +79,12 @@ namespace GW2DotNET.Events
         public IEnumerable<GwEvent> GetEvents(int worldId)
         {
             RestRequest eventsRequest = new RestRequest("events.json", Method.GET);
-
             eventsRequest.AddParameter("world_id", worldId.ToString());
- 
-            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = this.restClient.Execute<Dictionary<string, List<APIEvent>>>(eventsRequest);
+            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = restClient.Execute<Dictionary<string, List<APIEvent>>>(eventsRequest);
 
             // Turn the API events into events with names
-            return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent)
-            {
-                Name = this.EventNamesDictionary[apiEvent.event_id]
-            }).ToList();
+
+            return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.event_id])).ToList();
         }
 
         /// <summary>
@@ -101,17 +97,14 @@ namespace GW2DotNET.Events
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
-                new KeyValuePair<string, object>("world_id", worldId), 
+                new KeyValuePair<string, object>("world_id", worldId),
                 new KeyValuePair<string, object>("event_id", eventId)
             };
 
-            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = ApiCall.CallApi<Dictionary<string, List<APIEvent>>>("events.json", arguments);     
+            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = ApiCall.CallApi<Dictionary<string, List<APIEvent>>>("events.json", arguments);
 
             // Turn the API events into events with names
-            List<GwEvent> eventsToReturn = eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent)
-            {
-                Name = this.EventNamesDictionary[apiEvent.event_id]
-            }).ToList();
+            List<GwEvent> eventsToReturn = eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.event_id])).ToList();
 
             // There should only be one, so just return the first element.
             return eventsToReturn.Single();
@@ -136,8 +129,8 @@ namespace GW2DotNET.Events
             // Turn the API events into events with names
             return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent)
                 {
-                Name = this.EventNamesDictionary[apiEvent.event_id]
-            }).ToList();
+                    Name = this.EventNamesDictionary[apiEvent.event_id]
+                }).ToList();
         }
     }
 }
