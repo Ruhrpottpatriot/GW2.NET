@@ -54,7 +54,7 @@ namespace GW2DotNET.Events
         /// <param name="worldId">The world id.</param>
         /// <param name="eventId">The event id.</param>
         /// <returns>The <see cref="GwEvent"/>.</returns>
-        public GwEvent GetEvet(int worldId, string eventId)
+        public GwEvent GetEvent(int worldId, string eventId)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {

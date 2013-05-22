@@ -10,8 +10,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
+using GW2DotNET.Events.Models;
 using GW2DotNET.Infrastructure;
-using GW2DotNET.Models;
 
 using Newtonsoft.Json.Linq;
 

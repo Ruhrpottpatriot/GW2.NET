@@ -15,6 +15,11 @@ namespace GW2DotNET.Events.Models
     public struct GwEvent
     {
         /// <summary>
+        /// The event id. This field is readonly.
+        /// </summary>
+        private readonly string eventId;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
         /// </summary>
         /// <param name="worldId">The world id.</param>
@@ -22,11 +27,12 @@ namespace GW2DotNET.Events.Models
         /// <param name="eventId">The event id.</param>
         /// <param name="state">The state.</param>
         /// <param name="name">The name.</param>
-        public GwEvent(int worldId, int mapId, string eventId, string state, string name) : this()
+        public GwEvent(int worldId, int mapId, string eventId, string state, string name)
+            : this()
         {
             this.WorldId = worldId;
             this.MapId = mapId;
-            this.EventId = eventId;
+            this.eventId = eventId;
             this.State = state;
             this.Name = name;
         }
@@ -34,26 +40,99 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// Gets the name of the event.
         /// </summary>
-        public string Name { get; private set; }
+        public string Name
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the world id.
         /// </summary>
-        public int WorldId { get; private set; }
+        public int WorldId
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the map id.
         /// </summary>
-        public int MapId { get; private set; }
+        public int MapId
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the event id.
         /// </summary>
-        public string EventId { get; private set; }
+        public string EventId
+        {
+            get
+            {
+                return this.eventId;
+            }
+        }
 
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public string State { get; private set; }
+        public string State
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Determines whether two specified instances of <see crdef="Map"/> are equal.
+        /// </summary>
+        /// <param name="mapA">The first object to compare.</param>param>
+        /// <param name="mapB">The second object to compare. </param>
+        /// <returns>true if mapA and mapB represent the same map; otherwise, false.</returns>
+        public static bool operator ==(GwEvent mapA, GwEvent mapB)
+        {
+            return mapA.eventId == mapB.eventId;
+        }
+
+        /// <summary>
+        /// Determines whether two specified instances of <see crdef="Map"/> are not equal.
+        /// </summary>
+        /// <param name="mapA">The first object to compare.</param>param>
+        /// <param name="mapB">The second object to compare. </param>
+        /// <returns>true if mapA and mapB do not represent the same map; otherwise, false.</returns>
+        public static bool operator !=(GwEvent mapA, GwEvent mapB)
+        {
+            return mapA.eventId != mapB.eventId;
+        }
+
+        /// <summary>
+        /// Indicates whether this instance and a specified object are equal.
+        /// </summary>
+        /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
+        /// <param name="obj">Another object to compare to.</param>
+        public override bool Equals(object obj)
+        {
+            return obj is GwEvent && this == (GwEvent)obj;
+        }
+
+        /// <summary>
+        /// Indicates whether this instance and a specified <see cref="Map"/> are equal.
+        /// </summary>
+        /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
+        /// <param name="obj">Another object to compare to. </param>
+        public bool Equals(GwEvent obj)
+        {
+            return this.eventId == obj.eventId;
+        }
+
+        /// <summary>
+        /// Returns the hash code for this instance.
+        /// </summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
+        public override int GetHashCode()
+        {
+            return this.eventId.GetHashCode();
+        }
     }
 }
