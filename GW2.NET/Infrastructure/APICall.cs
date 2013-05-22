@@ -28,11 +28,12 @@ namespace GW2DotNET.Infrastructure
         /// <returns>A json encoded <see cref="string"/> containing the api response.</returns>
         public static string CallApi(string apiMethod, List<KeyValuePair<string, object>> arguments)
         {
-            RestClient client = new RestClient("https://api.guildwars2.com/v1");
+            var client = new RestClient("https://api.guildwars2.com/v1/");
 
-            RestRequest restRequest = new RestRequest(apiMethod, Method.GET);
-
-            restRequest.RequestFormat = DataFormat.Json;
+            var restRequest = new RestRequest(apiMethod, Method.GET)
+            {
+                RequestFormat = DataFormat.Json
+            };
 
             if (arguments != null)
             {
@@ -47,6 +48,26 @@ namespace GW2DotNET.Infrastructure
             return response.Content;
         }
 
+        public static IRestResponse<T> CallApi<T>(string apiMethod, List<KeyValuePair<string, object>> arguments) where T : new()
+        {
+            var client = new RestClient("https://api.guildwars2.com/v1/");
+
+            var restRequest = new RestRequest(apiMethod, Method.GET)
+            {
+                RequestFormat = DataFormat.Json
+            };
+
+            if (arguments != null)
+            {
+                foreach (var keyValuePair in arguments)
+                {
+                    restRequest.AddParameter(keyValuePair.Key, keyValuePair.Value);
+                }
+            }
+
+            return client.Execute<T>(restRequest);
+        }
+
         /// <summary>
         /// Calls the world-vs-world api with the specified method and parameters.
         /// </summary>
@@ -57,9 +78,10 @@ namespace GW2DotNET.Infrastructure
         {
             RestClient client = new RestClient("https://api.guildwars2.com/v1/wvw");
 
-            RestRequest restRequest = new RestRequest(apiMethod, Method.GET);
-
-            restRequest.RequestFormat = DataFormat.Json;
+            RestRequest restRequest = new RestRequest(apiMethod, Method.GET)
+            {
+                RequestFormat = DataFormat.Json
+            };
 
             if (arguments != null)
             {
