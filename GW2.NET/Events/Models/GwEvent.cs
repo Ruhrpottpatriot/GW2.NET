@@ -39,7 +39,7 @@ namespace GW2DotNET.Events.Models
             this.Name = name;
         }
 
-        internal GwEvent(APIEvent apiEvent) : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state.ToString(), "")
+        internal GwEvent(APIEvent apiEvent, string name) : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state.ToString(), name)
         {
         }
 
@@ -49,7 +49,7 @@ namespace GW2DotNET.Events.Models
         public string Name
         {
             get;
-            set;
+            private set;
         }
 
         /// <summary>

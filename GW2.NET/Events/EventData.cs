@@ -52,7 +52,7 @@ namespace GW2DotNET.Events
             // Turn the API events into events with names
             List<GwEvent> eventsToReturn = new List<GwEvent>();
             foreach (var apiEvent in eventsResponse.Data["events"])
-                eventsToReturn.Add(new GwEvent(apiEvent) { Name = this.EventNamesDictionary[apiEvent.event_id] });
+                eventsToReturn.Add(new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.event_id]));
 
             return eventsToReturn;
         }
@@ -73,7 +73,7 @@ namespace GW2DotNET.Events
             // Turn the API events into events with names
             List<GwEvent> eventsToReturn = new List<GwEvent>();
             foreach (var apiEvent in eventsResponse.Data["events"])
-                eventsToReturn.Add(new GwEvent(apiEvent) { Name = this.EventNamesDictionary[apiEvent.event_id] });
+                eventsToReturn.Add(new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.event_id]));
 
             // There should only be one, so just return the first element.
             return eventsToReturn[0];
@@ -95,7 +95,7 @@ namespace GW2DotNET.Events
             // Turn the API events into events with names
             List<GwEvent> eventsToReturn = new List<GwEvent>();
             foreach (var apiEvent in eventsResponse.Data["events"])
-                eventsToReturn.Add(new GwEvent(apiEvent) { Name = this.EventNamesDictionary[apiEvent.event_id] });
+                eventsToReturn.Add(new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.event_id]));
 
             return eventsToReturn;
         }
