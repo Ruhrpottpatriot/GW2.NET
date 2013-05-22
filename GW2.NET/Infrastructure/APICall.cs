@@ -15,6 +15,9 @@ using RestSharp;
 
 namespace GW2DotNET.Infrastructure
 {
+    /// <summary>
+    /// Contains static methods to call the guild wars 2 api.
+    /// </summary>
     public static class ApiCall
     {
         /// <summary>
@@ -26,6 +29,33 @@ namespace GW2DotNET.Infrastructure
         public static string CallApi(string apiMethod, List<KeyValuePair<string, object>> arguments)
         {
             RestClient client = new RestClient("https://api.guildwars2.com/v1");
+
+            RestRequest restRequest = new RestRequest(apiMethod, Method.GET);
+
+            restRequest.RequestFormat = DataFormat.Json;
+
+            if (arguments != null)
+            {
+                foreach (var keyValuePair in arguments)
+                {
+                    restRequest.AddParameter(keyValuePair.Key, keyValuePair.Value);
+                }
+            }
+
+            IRestResponse response = client.Execute(restRequest);
+
+            return response.Content;
+        }
+
+        /// <summary>
+        /// Calls the world-vs-world api with the specified method and parameters.
+        /// </summary>
+        /// <param name="apiMethod">The method to execute on the api.</param>
+        /// <param name="arguments"> The arguments to add to the method.</param>
+        /// <returns>A json encoded <see cref="string"/> containing the api response.</returns>
+        public static string CallWvWApi(string apiMethod, List<KeyValuePair<string, object>> arguments)
+        {
+            RestClient client = new RestClient("https://api.guildwars2.com/v1/wvw");
 
             RestRequest restRequest = new RestRequest(apiMethod, Method.GET);
 

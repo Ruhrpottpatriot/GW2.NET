@@ -58,6 +58,8 @@
     <Compile Include="Infrastructure\APICall.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Events\EventData.cs" />
+    <Compile Include="WvW\MatchData.cs" />
+    <Compile Include="WvW\Models\Match.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

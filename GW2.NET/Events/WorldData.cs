@@ -42,6 +42,17 @@ namespace GW2DotNET.Events
         }
 
         /// <summary>
+        /// Gets a single world from the api.
+        /// </summary>
+        /// <param name="worldId">The world id.</param>
+        /// <param name="language">The language.</param>
+        /// <returns> The <see cref="World"/>.</returns>
+        public World GetWorld(int worldId, string language = "en")
+        {
+            return this.GetWorlds(language).Single(w => w.Id == worldId);
+        }
+
+        /// <summary>
         /// Gets all the available maps on a world.
         /// </summary>
         /// <param name="language">The language of the map names. This parameter is optional.</param>
