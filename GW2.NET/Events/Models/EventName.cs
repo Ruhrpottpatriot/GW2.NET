@@ -9,21 +9,29 @@
 
 using System;
 
-namespace GW2DotNET.Infrastructure
+namespace GW2DotNET.Events.Models
 {
     /// <summary>
     /// An item returned by a call to event_names.JSON
     /// </summary>
-    public class ApiEventName
+    public struct EventName
     {
         /// <summary>
         /// Gets or sets the event ID
         /// </summary>
-        public Guid Id { get; set; }
+        public Guid Id
+        {
+            get;
+            set;
+        }
 
         /// <summary>
         /// Gets or sets the event name
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get;
+            set;
+        }
     }
 }

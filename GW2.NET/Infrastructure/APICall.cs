@@ -69,27 +69,7 @@ namespace GW2DotNET.Infrastructure
         /// <returns>
         /// A deserialized object as an <see cref="IRestResponse"/>.
         /// </returns>
-        public static IRestResponse<T> CallApi<T>(string apiMethod, List<KeyValuePair<string, object>> arguments) where T : new()
-        {
-            var client = new RestClient("https://api.guildwars2.com/v1/");
-
-            var restRequest = new RestRequest(apiMethod, Method.GET)
-            {
-                RequestFormat = DataFormat.Json
-            };
-
-            if (arguments != null)
-            {
-                foreach (var keyValuePair in arguments)
-                {
-                    restRequest.AddParameter(keyValuePair.Key, keyValuePair.Value);
-                }
-            }
-
-            return client.Execute<T>(restRequest);
-        }
-
-        public static T CallApiNew<T>(string apiMethod, List<KeyValuePair<string, object>> arguments) where T : new()
+        public static T CallApi<T>(string apiMethod, List<KeyValuePair<string, object>> arguments) where T : new()
         {
             var client = new RestClient("https://api.guildwars2.com/v1/");
 

@@ -15,32 +15,38 @@ namespace GW2.NET_Tests
         [SetUp]
         public void Init()
         {
-            data = EventData.Instance;
+            this.data = EventData.Instance;
         }
 
         [Test]
         public void GetAllEventsTest()
         {
-            var result = data.GetEvents(1001);
+            var result = this.data.GetEvents(1001);
 
             Assert.IsFalse(result == null);
+
             Debug.Write(result);
         }
 
         [Test]
         public void GetEvent()
         {
-            var result = data.GetEvent(1001, new Guid("E0D7E88D-4FF6-42FA-AFFC-0DF4111C2CCD"));
+            var result = this.data.GetEvent(1001, new Guid("E0D7E88D-4FF6-42FA-AFFC-0DF4111C2CCD"));
 
-            // Assert.IsFalse(result == null);
+            Assert.IsFalse(result == null);
 
-            Debug.Write(result);
+            Debug.Write(result.Name);
         }
 
         [Test]
         public void GetEventsByMap()
         {
-            var result = data.GetEventsByMap(1001, 28);
+            var result = this.data.GetEventsByMap(1001, 28);
+
+            foreach (var gwEvent in result)
+            {
+                Debug.WriteLine(gwEvent.Name);
+            }
         }
     }
 }

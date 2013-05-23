@@ -31,7 +31,7 @@ namespace GW2DotNET.Events
         /// <summary>
         /// We cache the event_names response here
         /// </summary>
-        private List<ApiEventName> eventNames;
+        private List<EventName> eventNames;
 
         /// <summary>
         /// We also cache the event_names here as a dictionary
@@ -61,17 +61,11 @@ namespace GW2DotNET.Events
         /// <summary>
         /// Gets the event names.
         /// </summary>
-        public List<ApiEventName> EventNames
+        public List<EventName> EventNames
         {
             get
             {
-                if (this.eventNames == null)
-                {
-                    IRestResponse<List<ApiEventName>> eventNamesResponse = ApiCall.CallApi<List<ApiEventName>>("event_names.json", new List<KeyValuePair<string, object>>());
-                    this.eventNames = eventNamesResponse.Data;
-                }
-
-                return this.eventNames;
+                return this.eventNames ?? (this.eventNames = ApiCall.CallApi<List<EventName>>("event_names.json", null));
             }
         }
 
@@ -103,17 +97,19 @@ namespace GW2DotNET.Events
         /// ReSharper disable CSharpWarnings::CS1584
         /// <returns>An <see cref="IEnumerable"/> with all the events on the specified world.</returns>
         /// ReSharper restore CSharpWarnings::CS1584
-        public IEnumerable<GwEvent> GetEvents(int worldId)
+        public IList<GwEvent> GetEvents(int worldId)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("world_id", worldId)
             };
 
-            IRestResponse<Dictionary<string, List<ApiEvent>>> eventsResponse = ApiCall.CallApi<Dictionary<string, List<ApiEvent>>>("events.json", arguments);
+            var eventsResponse = ApiCall.CallApi<Dictionary<string, List<GwEvent>>>("events.json", arguments);
 
-            // Turn the API events into events with names
-            return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.EventId])).ToList();
+            // Turn the API events into events with names and return them
+            return (from variable in eventsResponse.Values
+                    from apiEvent in variable
+                    select new GwEvent(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, this.EventNamesDictionary[apiEvent.EventId])).ToList();
         }
 
         /// <summary>
@@ -130,13 +126,16 @@ namespace GW2DotNET.Events
                 new KeyValuePair<string, object>("event_id", eventId)
             };
 
-            IRestResponse<Dictionary<string, List<ApiEvent>>> eventsResponse = ApiCall.CallApi<Dictionary<string, List<ApiEvent>>>("events.json", arguments);
+            var eventsResponse = ApiCall.CallApi<Dictionary<string, List<GwEvent>>>("events.json", arguments);
 
-            // Turn the API events into events with names
-            List<GwEvent> eventsToReturn = eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.EventId])).ToList();
+            GwEvent eventToReturn = new GwEvent();
 
-            // There should only be one, so just return the first element.
-            return eventsToReturn.Single();
+            foreach (var singleEvent in eventsResponse.Values.SelectMany(variable => variable))
+            {
+                eventToReturn = new GwEvent(singleEvent.WorldId, singleEvent.MapId, singleEvent.EventId, singleEvent.State, this.EventNamesDictionary[singleEvent.EventId]);
+            }
+
+            return eventToReturn;
         }
 
         /// <summary>
@@ -147,7 +146,7 @@ namespace GW2DotNET.Events
         /// ReSharper disable CSharpWarnings::CS1584
         /// <returns>An <see cref="IEnumerable"/> with all events on the specified map.</returns>
         /// ReSharper restore CSharpWarnings::CS1584
-        public IEnumerable<GwEvent> GetEventsByMap(int worldId, int mapId)
+        public IList<GwEvent> GetEventsByMap(int worldId, int mapId)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
@@ -155,13 +154,12 @@ namespace GW2DotNET.Events
                 new KeyValuePair<string, object>("map_id", mapId)
             };
 
-            IRestResponse<Dictionary<string, List<ApiEvent>>> eventsResponse = ApiCall.CallApi<Dictionary<string, List<ApiEvent>>>("events.json", arguments);
+            var eventsResponse = ApiCall.CallApi<Dictionary<string, List<GwEvent>>>("events.json", arguments);
 
-            // Turn the API events into events with names
-            return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent)
-                {
-                    Name = this.EventNamesDictionary[apiEvent.EventId]
-                }).ToList();
+            // Turn the API events into events with names and return them
+            return (from variable in eventsResponse.Values
+                    from apiEvent in variable
+                    select new GwEvent(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, this.EventNamesDictionary[apiEvent.EventId])).ToList();
         }
     }
 }

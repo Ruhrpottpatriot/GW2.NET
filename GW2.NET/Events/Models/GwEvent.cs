@@ -9,7 +9,7 @@
 
 using System;
 
-using GW2DotNET.Infrastructure;
+using Newtonsoft.Json;
 
 namespace GW2DotNET.Events.Models
 {
@@ -21,7 +21,7 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// The event id. This field is readonly.
         /// </summary>
-        private readonly Guid eventId;
+        private Guid eventId;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
@@ -42,42 +42,19 @@ namespace GW2DotNET.Events.Models
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GwEvent"/> struct.
+        /// Gets the name of the event.
         /// </summary>
-        /// <param name="apiEvent">
-        /// The API event.
-        /// </param>
-        internal GwEvent(ApiEvent apiEvent)
-            : this(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, string.Empty)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GwEvent"/> struct.
-        /// </summary>
-        /// <param name="apiEvent">
-        /// The API event.
-        /// </param>
-        /// <param name="name">
-        /// The name of the event.
-        /// </param>
-        internal GwEvent(ApiEvent apiEvent, string name)
-            : this(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, name)
-        {
-        }
-
-        /// <summary>
-        /// Gets or sets the name of the event.
-        /// </summary>
+        [JsonProperty("name")]
         public string Name
         {
             get;
-            set;
+            private set;
         }
 
         /// <summary>
         /// Gets the world id.
         /// </summary>
+        [JsonProperty("world_id")]
         public int WorldId
         {
             get;
@@ -87,6 +64,7 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// Gets the map id.
         /// </summary>
+        [JsonProperty("map_id")]
         public int MapId
         {
             get;
@@ -96,17 +74,24 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// Gets the event id.
         /// </summary>
+        [JsonProperty("event_id")]
         public Guid EventId
         {
             get
             {
                 return this.eventId;
             }
+
+            private set
+            {
+                this.eventId = value;
+            }
         }
 
         /// <summary>
         /// Gets the state.
         /// </summary>
+        [JsonProperty("state")]
         public GwEventState State
         {
             get;
