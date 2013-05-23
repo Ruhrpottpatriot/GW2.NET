@@ -39,15 +39,6 @@ namespace GW2DotNET.Infrastructure
         public int world_id { get; set; }
         public int map_id { get; set; }
         public Guid event_id { get; set; }
-        public APIEventState state { get; set; }
-    }
-
-    public enum APIEventState
-    {
-        Active,
-        Success,
-        Fail,
-        Warmup,
-        Preparation
+        public Events.Models.GwEventState state { get; set; }
     }
 }

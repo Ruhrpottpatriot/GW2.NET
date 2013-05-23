@@ -31,7 +31,7 @@ namespace GW2DotNET.Events.Models
         /// <param name="eventId">The event id.</param>
         /// <param name="state">The state.</param>
         /// <param name="name">The name.</param>
-        public GwEvent(int worldId, int mapId, Guid eventId, string state, string name)
+        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name)
             : this()
         {
             this.WorldId = worldId;
@@ -48,7 +48,7 @@ namespace GW2DotNET.Events.Models
         /// The api event.
         /// </param>
         internal GwEvent(APIEvent apiEvent)
-            : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state.ToString(), string.Empty)
+            : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state, string.Empty)
         {
         }
 
@@ -62,7 +62,7 @@ namespace GW2DotNET.Events.Models
         /// The name of the event.
         /// </param>
         internal GwEvent(APIEvent apiEvent, string name)
-            : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state.ToString(), name)
+            : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state, name)
         {
         }
 
@@ -107,7 +107,7 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// Gets the state.
         /// </summary>
-        public string State
+        public GwEventState State
         {
             get;
             private set;
