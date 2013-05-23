@@ -7,14 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using GW2DotNET.Events.Models;
 using GW2DotNET.Infrastructure;
 
 using RestSharp;
-using System;
 
 namespace GW2DotNET.Events
 {
@@ -26,30 +27,49 @@ namespace GW2DotNET.Events
         /// <summary>
         /// Keep a single instance of the class here.
         /// </summary>
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1311:StaticReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed. Upper case letter would conflict with a property defined below.")]
+        // ReSharper disable InconsistentNaming
         private static readonly EventData instance = new EventData();
-
-        /// <summary>
-        /// Callers cannot directly instantiate this class. They
-        /// must request an instance. This ensures that the cached
-        /// data is used efficiently.
-        /// </summary>
-        private EventData() { }
-
-        /// <summary>
-        /// We cache the event_names response here
-        /// </summary>
-        private List<APIEventName> eventNames = null;
-
-        /// <summary>
-        /// We also cache the event_names here as a dictionary
-        /// </summary>
-        private Dictionary<Guid, string> eventNamesDictionary = null;
+        // ReSharper restore InconsistentNaming
 
         /// <summary>
         /// The RestSharp client used for all API requests
         /// </summary>
-        private RestClient restClient = new RestClient("https://api.guildwars2.com/v1/");
+        private readonly RestClient restClient = new RestClient("https://api.guildwars2.com/v1/");
 
+        /// <summary>
+        /// We cache the event_names response here
+        /// </summary>
+        private List<APIEventName> eventNames;
+
+        /// <summary>
+        /// We also cache the event_names here as a dictionary
+        /// </summary>
+        private Dictionary<Guid, string> eventNamesDictionary;
+
+        /// <summary>
+        /// Prevents a default instance of the <see cref="EventData"/> class from being created. 
+        /// Callers cannot directly instantiate this class. They must request an instance. 
+        /// This ensures that the cached data is used efficiently.
+        /// </summary>
+        private EventData()
+        {
+        }
+
+        /// <summary>
+        /// Gets an EventData instance
+        /// </summary>
+        public static EventData Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        /// <summary>
+        /// Gets the event names.
+        /// </summary>
         public List<APIEventName> EventNames
         {
             get
@@ -66,7 +86,7 @@ namespace GW2DotNET.Events
         }
 
         /// <summary>
-        /// Maps event IDs to event names.
+        /// Gets the event IDs mapped to their respective names.
         /// </summary>
         public Dictionary<Guid, string> EventNamesDictionary
         {
@@ -90,15 +110,19 @@ namespace GW2DotNET.Events
         /// Gets all the events on the specified world.
         /// </summary>
         /// <param name="worldId">The id of the world. </param>
+        /// ReSharper disable CSharpWarnings::CS1584
         /// <returns>An <see cref="IEnumerable"/> with all the events on the specified world.</returns>
+        /// ReSharper restore CSharpWarnings::CS1584
         public IEnumerable<GwEvent> GetEvents(int worldId)
         {
-            RestRequest eventsRequest = new RestRequest("events.json", Method.GET);
-            eventsRequest.AddParameter("world_id", worldId.ToString());
-            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = restClient.Execute<Dictionary<string, List<APIEvent>>>(eventsRequest);
+            var arguments = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("world_id", worldId)
+            };
+
+            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = ApiCall.CallApi<Dictionary<string, List<APIEvent>>>("events.json", arguments);
 
             // Turn the API events into events with names
-
             return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.event_id])).ToList();
         }
 
@@ -130,30 +154,24 @@ namespace GW2DotNET.Events
         /// </summary>
         /// <param name="worldId">The world id.</param>
         /// <param name="mapId">The map id.</param>
+        /// ReSharper disable CSharpWarnings::CS1584
         /// <returns>An <see cref="IEnumerable"/> with all events on the specified map.</returns>
+        /// ReSharper restore CSharpWarnings::CS1584
         public IEnumerable<GwEvent> GetEventsByMap(int worldId, int mapId)
         {
-            RestRequest eventsRequest = new RestRequest("events.json", Method.GET);
+            var arguments = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("world_id", worldId), 
+                new KeyValuePair<string, object>("map_id", mapId)
+            };
 
-            eventsRequest.AddParameter("world_id", worldId.ToString());
-
-            eventsRequest.AddParameter("map_id", mapId.ToString());
-
-            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = restClient.Execute<Dictionary<string, List<APIEvent>>>(eventsRequest);
+            IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = ApiCall.CallApi<Dictionary<string, List<APIEvent>>>("events.json", arguments);
 
             // Turn the API events into events with names
             return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent)
                 {
                     Name = this.EventNamesDictionary[apiEvent.event_id]
                 }).ToList();
-        }
-
-        /// <summary>
-        /// Obtain an EventData instance
-        /// </summary>
-        public static EventData Instance
-        {
-            get { return EventData.instance; }
         }
     }
 }

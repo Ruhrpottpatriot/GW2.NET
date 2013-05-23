@@ -7,8 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.Infrastructure;
 using System;
+
+using GW2DotNET.Infrastructure;
+
 namespace GW2DotNET.Events.Models
 {
     /// <summary>
@@ -39,18 +41,33 @@ namespace GW2DotNET.Events.Models
             this.Name = name;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GwEvent"/> struct.
+        /// </summary>
+        /// <param name="apiEvent">
+        /// The api event.
+        /// </param>
         internal GwEvent(APIEvent apiEvent)
-            : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state.ToString(), "")
+            : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state.ToString(), string.Empty)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GwEvent"/> struct.
+        /// </summary>
+        /// <param name="apiEvent">
+        /// The api event.
+        /// </param>
+        /// <param name="name">
+        /// The name of the event.
+        /// </param>
         internal GwEvent(APIEvent apiEvent, string name)
             : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state.ToString(), name)
         {
         }
 
         /// <summary>
-        /// Gets the name of the event.
+        /// Gets or sets the name of the event.
         /// </summary>
         public string Name
         {

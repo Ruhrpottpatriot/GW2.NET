@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 using GW2DotNET.Events.Models;
@@ -25,34 +26,30 @@ namespace GW2DotNET.Events
         /// <summary>
         /// Keep a single instance of the class here.
         /// </summary>
+        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1311:StaticReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed. Upper case letter would conflict with a property defined below.")]
+        // ReSharper disable InconsistentNaming
         private static readonly WorldData instance = new WorldData();
-
-        /// <summary>
-        /// Callers cannot directly instantiate this class. They
-        /// must request an instance. This ensures that the cached
-        /// data is used efficiently.
-        /// </summary>
-        private WorldData() { }
+        // ReSharper restore InconsistentNaming
 
         /// <summary>
         /// Cache the list of worlds here.
         /// </summary>
-        private List<World> worldList = null;
+        private List<World> worldList;
 
         /// <summary>
         /// Cache a dictionary for resolving world IDs to names.
         /// </summary>
-        private Dictionary<int, string> worldDictionary = null;
+        private Dictionary<int, string> worldDictionary;
 
         /// <summary>
         /// Cache the list of maps here.
         /// </summary>
-        private List<Map> mapList = null;
+        private List<Map> mapList;
 
         /// <summary>
         /// Cache a dictionary for resolving map IDs to names.
         /// </summary>
-        private Dictionary<int, string> mapDictionary = null;
+        private Dictionary<int, string> mapDictionary;
 
         /// <summary>
         /// Language is "en" by default.
@@ -60,12 +57,35 @@ namespace GW2DotNET.Events
         private string language = "en";
 
         /// <summary>
-        /// Get or set the language.
+        /// Prevents a default instance of the <see cref="WorldData"/> class from being created. 
+        /// They must request an instance. This ensures that the cached data is used efficiently.
+        /// </summary>
+        private WorldData()
+        {
+        }
+
+        /// <summary>
+        /// Gets a WorldData instance.
+        /// </summary>
+        public static WorldData Instance
+        {
+            get
+            {
+                return WorldData.instance;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the language.
         /// Note that changing the language clears the cached world data.
         /// </summary>
         public string Language
         {
-            get { return this.language; }
+            get
+            {
+                return this.language;
+            }
+
             set
             {
                 this.language = value;
@@ -80,7 +100,7 @@ namespace GW2DotNET.Events
         }
 
         /// <summary>
-        /// All available worlds.
+        /// Gets all available worlds.
         /// </summary>
         public List<World> Worlds
         {
@@ -105,7 +125,7 @@ namespace GW2DotNET.Events
         }
 
         /// <summary>
-        /// Look up a world name from a world ID.
+        /// Gets a world name from a world ID.
         /// </summary>
         public Dictionary<int, string> WorldDictionary
         {
@@ -135,7 +155,7 @@ namespace GW2DotNET.Events
                 {
                     var arguments = new List<KeyValuePair<string, object>>
                     {
-                        new KeyValuePair<string, object>("lang", language)
+                        new KeyValuePair<string, object>("lang", this.language)
                     };
 
                     string jsonString = ApiCall.CallApi("map_names.json", arguments);
@@ -150,7 +170,7 @@ namespace GW2DotNET.Events
         }
 
         /// <summary>
-        /// Look up a map name from a map ID.
+        /// Gets a map name from a map ID.
         /// </summary>
         public Dictionary<int, string> MapDictionary
         {
@@ -162,17 +182,12 @@ namespace GW2DotNET.Events
 
                     foreach (var map in this.Maps)
                     {
-                        mapDictionary.Add(map.Id, map.Name);
+                        this.mapDictionary.Add(map.Id, map.Name);
                     }
                 }
 
                 return this.mapDictionary;
             }
-        }
-
-        public static WorldData Instance
-        {
-            get { return WorldData.instance; }
         }
     }
 }

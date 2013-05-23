@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 using GW2DotNET.Events;
-using GW2DotNET.Infrastructure;
 
 using NUnit.Framework;
 using System;
@@ -37,6 +35,12 @@ namespace GW2.NET_Tests
             // Assert.IsFalse(result == null);
 
             Debug.Write(result);
+        }
+
+        [Test]
+        public void GetEventsByMap()
+        {
+            var result = data.GetEventsByMap(1001, 28);
         }
     }
 }
