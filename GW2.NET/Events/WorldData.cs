@@ -74,6 +74,8 @@ namespace GW2DotNET.Events
                 // language change.
                 this.worldList = null;
                 this.worldDictionary = null;
+                this.mapList = null;
+                this.mapDictionary = null;
             }
         }
 

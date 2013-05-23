@@ -12,7 +12,7 @@ namespace GW2.NET_Tests
         private MatchData matchData;
 
         [SetUp]
-        private void Init()
+        public void Init()
         {
             matchData = new MatchData();
         }
