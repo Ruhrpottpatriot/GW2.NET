@@ -45,10 +45,10 @@ namespace GW2DotNET.Events.Models
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
         /// </summary>
         /// <param name="apiEvent">
-        /// The api event.
+        /// The API event.
         /// </param>
         internal GwEvent(APIEvent apiEvent)
-            : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state, string.Empty)
+            : this(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, string.Empty)
         {
         }
 
@@ -56,13 +56,13 @@ namespace GW2DotNET.Events.Models
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
         /// </summary>
         /// <param name="apiEvent">
-        /// The api event.
+        /// The API event.
         /// </param>
         /// <param name="name">
         /// The name of the event.
         /// </param>
         internal GwEvent(APIEvent apiEvent, string name)
-            : this(apiEvent.world_id, apiEvent.map_id, apiEvent.event_id, apiEvent.state, name)
+            : this(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, name)
         {
         }
 

@@ -27,10 +27,7 @@ namespace GW2DotNET.Events
         /// <summary>
         /// Keep a single instance of the class here.
         /// </summary>
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1311:StaticReadonlyFieldsMustBeginWithUpperCaseLetter", Justification = "Reviewed. Upper case letter would conflict with a property defined below.")]
-        // ReSharper disable InconsistentNaming
-        private static readonly EventData instance = new EventData();
-        // ReSharper restore InconsistentNaming
+        private static readonly EventData OneInstance = new EventData();
 
         /// <summary>
         /// The RestSharp client used for all API requests
@@ -63,7 +60,7 @@ namespace GW2DotNET.Events
         {
             get
             {
-                return instance;
+                return OneInstance;
             }
         }
 
@@ -98,7 +95,7 @@ namespace GW2DotNET.Events
 
                     foreach (var eventName in this.EventNames)
                     {
-                        this.eventNamesDictionary.Add(eventName.id, eventName.name);
+                        this.eventNamesDictionary.Add(eventName.Id, eventName.Name);
                     }
                 }
 
@@ -123,11 +120,11 @@ namespace GW2DotNET.Events
             IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = ApiCall.CallApi<Dictionary<string, List<APIEvent>>>("events.json", arguments);
 
             // Turn the API events into events with names
-            return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.event_id])).ToList();
+            return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.EventId])).ToList();
         }
 
         /// <summary>
-        /// Gets a single event from the api.
+        /// Gets a single event from the API.
         /// </summary>
         /// <param name="worldId">The world id.</param>
         /// <param name="eventId">The event id.</param>
@@ -143,7 +140,7 @@ namespace GW2DotNET.Events
             IRestResponse<Dictionary<string, List<APIEvent>>> eventsResponse = ApiCall.CallApi<Dictionary<string, List<APIEvent>>>("events.json", arguments);
 
             // Turn the API events into events with names
-            List<GwEvent> eventsToReturn = eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.event_id])).ToList();
+            List<GwEvent> eventsToReturn = eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent, this.EventNamesDictionary[apiEvent.EventId])).ToList();
 
             // There should only be one, so just return the first element.
             return eventsToReturn.Single();
@@ -170,7 +167,7 @@ namespace GW2DotNET.Events
             // Turn the API events into events with names
             return eventsResponse.Data["events"].Select(apiEvent => new GwEvent(apiEvent)
                 {
-                    Name = this.EventNamesDictionary[apiEvent.event_id]
+                    Name = this.EventNamesDictionary[apiEvent.EventId]
                 }).ToList();
         }
     }

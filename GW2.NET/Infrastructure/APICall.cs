@@ -13,20 +13,20 @@ using RestSharp;
 
 namespace GW2DotNET.Infrastructure
 {
-    /// <summary>Contains static methods to call the guild wars 2 api.</summary>
+    /// <summary>Contains static methods to call the guild wars 2 API.</summary>
     public static class ApiCall
     {
         /// <summary>
-        /// Calls the api with the specified method and parameters.
+        /// Calls the API with the specified method and parameters.
         /// </summary>
         /// <param name="apiMethod">
-        /// The method to execute on the api.
+        /// The method to execute on the API.
         /// </param>
         /// <param name="arguments">
         /// The arguments to add to the method.
         /// </param>
         /// <returns>
-        /// A json encoded <see cref="string"/> containing the api response.
+        /// A JSON encoded <see cref="string"/> containing the API response.
         /// </returns>
         public static string CallApi(string apiMethod, List<KeyValuePair<string, object>> arguments)
         {
@@ -51,10 +51,10 @@ namespace GW2DotNET.Infrastructure
         }
 
         /// <summary>
-        /// Calls the api with the specified method and parameters and deserializes the response with the type passed to the method.
+        /// Calls the API with the specified method and parameters and deserializes the response with the type passed to the method.
         /// </summary>
         /// <param name="apiMethod">
-        /// The api method to call.
+        /// The API method to call.
         /// </param>
         /// <param name="arguments">
         /// The arguments that are passed as additional parameters to the method.
@@ -86,16 +86,16 @@ namespace GW2DotNET.Infrastructure
         }
 
         /// <summary>
-        /// Calls the world-vs-world api with the specified method and parameters.
+        /// Calls the world-vs-world API with the specified method and parameters.
         /// </summary>
         /// <param name="apiMethod">
-        /// The method to execute on the api.
+        /// The method to execute on the API.
         /// </param>
         /// <param name="arguments">
         /// The arguments to add to the method.
         /// </param>
         /// <returns>
-        /// A json encoded <see cref="string"/> containing the api response.
+        /// A JSON encoded <see cref="string"/> containing the API response.
         /// </returns>
         public static string CallWvWApi(string apiMethod, List<KeyValuePair<string, object>> arguments)
         {

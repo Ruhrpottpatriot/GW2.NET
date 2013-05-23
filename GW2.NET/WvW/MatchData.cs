@@ -19,12 +19,12 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.WvW
 {
     /// <summary>
-    /// Provides methods to get match data from the api.
+    /// Provides methods to get match data from the API.
     /// </summary>
     public class MatchData
     {
         /// <summary>
-        /// Gets a list of matches from the api With their corresponding world.
+        /// Gets a list of matches from the API With their corresponding world.
         /// </summary>
         /// <returns>An <see cref="IEnumerable"/> with all the matches currently running.</returns>
         public IEnumerable<Match> GetMatches()

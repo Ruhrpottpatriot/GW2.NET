@@ -14,31 +14,60 @@ using System.Text;
 namespace GW2DotNET.Infrastructure
 {
     /// <summary>
-    /// An item returned by a call to event_names.json
+    /// An item returned by a call to event_names.JSON
     /// </summary>
     public class APIEventName
     {
-        public Guid id { get; set; }
-        public string name { get; set; }
+        /// <summary>
+        /// Gets or sets the event ID
+        /// </summary>
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the event name
+        /// </summary>
+        public string Name { get; set; }
     }
 
     /// <summary>
-    /// An item returned by a call to world_names.json
+    /// An item returned by a call to world_names.JSON
     /// </summary>
     public class APIWorldName
     {
-        public int id { get; set; }
-        public string name { get; set; }
+        /// <summary>
+        /// Gets or sets the world ID
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the world name
+        /// </summary>
+        public string Name { get; set; }
     }
 
     /// <summary>
-    /// An item returned by a call to events.json
+    /// An item returned by a call to events.JSON
     /// </summary>
     public class APIEvent
     {
-        public int world_id { get; set; }
-        public int map_id { get; set; }
-        public Guid event_id { get; set; }
-        public Events.Models.GwEventState state { get; set; }
+        /// <summary>
+        /// Gets or sets the world ID
+        /// </summary>
+        public int WorldId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the map ID
+        /// </summary>
+        public int MapId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the event ID
+        /// </summary>
+        public Guid EventId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the event state
+        /// </summary>
+        public Events.Models.GwEventState State { get; set; }
     }
 }

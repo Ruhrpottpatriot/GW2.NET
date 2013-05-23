@@ -38,7 +38,7 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// The criteria for the event to start have been met, 
         /// but certain activities (such as an NPC dialogue) have not completed yet. 
-        /// After the activites have been completed, the event will become Active.
+        /// After the activities have been completed, the event will become Active.
         /// </summary>
         Preparation
     }
