@@ -9,6 +9,10 @@
 
 using System.Collections.Generic;
 
+using GW2DotNET.Events.Models;
+
+using Newtonsoft.Json;
+
 using RestSharp;
 
 namespace GW2DotNET.Infrastructure
@@ -84,6 +88,29 @@ namespace GW2DotNET.Infrastructure
 
             return client.Execute<T>(restRequest);
         }
+
+        public static T CallApiNew<T>(string apiMethod, List<KeyValuePair<string, object>> arguments) where T : new()
+        {
+            var client = new RestClient("https://api.guildwars2.com/v1/");
+
+            var restRequest = new RestRequest(apiMethod, Method.GET)
+            {
+                RequestFormat = DataFormat.Json
+            };
+
+            if (arguments != null)
+            {
+                foreach (var keyValuePair in arguments)
+                {
+                    restRequest.AddParameter(keyValuePair.Key, keyValuePair.Value);
+                }
+            }
+
+            var requestResponse = client.Execute(restRequest).Content;
+
+            return JsonConvert.DeserializeObject<T>(requestResponse);
+        }
+
 
         /// <summary>
         /// Calls the world-vs-world API with the specified method and parameters.

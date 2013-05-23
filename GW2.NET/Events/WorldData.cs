@@ -113,11 +113,9 @@ namespace GW2DotNET.Events
                         new KeyValuePair<string, object>("lang", this.language)
                     };
 
-                    string jsonString = ApiCall.CallApi("world_names.json", arguments);
+                    var jsonString = ApiCall.CallApiNew<List<World>>("world_names.json", arguments);
 
-                    var worlds = JArray.Parse(jsonString);
-
-                    this.worldList = new List<World>(worlds.Select(world => new World(int.Parse((string)world["id"]), (string)world["name"])));
+                    return jsonString;
                 }
 
                 return this.worldList;

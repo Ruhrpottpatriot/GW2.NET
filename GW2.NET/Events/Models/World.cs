@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
+
 namespace GW2DotNET.Events.Models
 {
     /// <summary>
@@ -17,7 +19,7 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// The id of the world. This field is readonly.
         /// </summary>
-        private readonly int id;
+        private int id;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="World"/> struct.
@@ -34,17 +36,24 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// Gets the id of the world.
         /// </summary>
+        [JsonProperty("id")]
         public int Id
         {
             get
             {
                 return this.id;
             }
+
+            private set
+            {
+                this.id = value;
+            }
         }
 
         /// <summary>
         /// Gets the name of the world.
         /// </summary>
+        [JsonProperty("name")]
         public string Name { get; private set; }
 
         /// <summary>
