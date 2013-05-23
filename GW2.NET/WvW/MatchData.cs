@@ -37,31 +37,13 @@ namespace GW2DotNET.WvW
 
             foreach (var match in matches)
             {
-                var worlds = new WorldData().GetWorlds();
-
                 int redWorldId = int.Parse((string)match["red_world_id"]);
                 int blueWorldId = int.Parse((string)match["blue_world_id"]);
                 int greenWorldId = int.Parse((string)match["green_world_id"]);
 
-                World redWorld = new World();
-                World blueWorld = new World();
-                World greenWorld = new World();
-
-                foreach (var world1 in worlds)
-                {
-                    if (world1.Id == redWorldId)
-                    {
-                        redWorld = world1;
-                    }
-                    else if (world1.Id == blueWorldId)
-                    {
-                        blueWorld = world1;
-                    }
-                    else if (world1.Id == greenWorldId)
-                    {
-                        greenWorld = world1;
-                    }
-                }
+                World redWorld = new World(redWorldId, WorldData.Instance.WorldDictionary[redWorldId]);
+                World blueWorld = new World(blueWorldId, WorldData.Instance.WorldDictionary[blueWorldId]);
+                World greenWorld = new World(greenWorldId, WorldData.Instance.WorldDictionary[greenWorldId]);
 
                 matchList.Add(new Match((string)match["wvw_match_id"], redWorld, blueWorld, greenWorld));
             }

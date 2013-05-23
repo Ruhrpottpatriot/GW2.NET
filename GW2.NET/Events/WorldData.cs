@@ -23,52 +23,154 @@ namespace GW2DotNET.Events
     public class WorldData
     {
         /// <summary>
-        /// Gets all the available worlds.
+        /// Keep a single instance of the class here.
         /// </summary>
-        /// <param name="language">The language of the world names. This parameter is optional.</param>
-        /// <returns>An <see cref="IEnumerable"/> which contains all worlds in the specified language.</returns>
-        public IEnumerable<World> GetWorlds(string language = "en")
+        private static readonly WorldData instance = new WorldData();
+
+        /// <summary>
+        /// Callers cannot directly instantiate this class. They
+        /// must request an instance. This ensures that the cached
+        /// data is used efficiently.
+        /// </summary>
+        private WorldData() { }
+
+        /// <summary>
+        /// Cache the list of worlds here.
+        /// </summary>
+        private List<World> worldList = null;
+
+        /// <summary>
+        /// Cache a dictionary for resolving world IDs to names.
+        /// </summary>
+        private Dictionary<int, string> worldDictionary = null;
+
+        /// <summary>
+        /// Cache the list of maps here.
+        /// </summary>
+        private List<Map> mapList = null;
+
+        /// <summary>
+        /// Cache a dictionary for resolving map IDs to names.
+        /// </summary>
+        private Dictionary<int, string> mapDictionary = null;
+
+        /// <summary>
+        /// Language is "en" by default.
+        /// </summary>
+        private string language = "en";
+
+        /// <summary>
+        /// Get or set the language.
+        /// Note that changing the language clears the cached world data.
+        /// </summary>
+        public string Language
         {
-            var arguments = new List<KeyValuePair<string, object>>
+            get { return this.language; }
+            set
             {
-                new KeyValuePair<string, object>("lang", language)
-            };
+                this.language = value;
 
-            string jsonString = ApiCall.CallApi("world_names.json", arguments);
-
-            var worlds = JArray.Parse(jsonString);
-
-            return worlds.Select(world => new World(int.Parse((string)world["id"]), (string)world["name"]));
+                // Whatever we had cached is no longer valid due to the
+                // language change.
+                this.worldList = null;
+                this.worldDictionary = null;
+            }
         }
 
         /// <summary>
-        /// Gets a single world from the api.
+        /// All available worlds.
         /// </summary>
-        /// <param name="worldId">The world id.</param>
-        /// <param name="language">The language.</param>
-        /// <returns> The <see cref="World"/>.</returns>
-        public World GetWorld(int worldId, string language = "en")
+        public List<World> Worlds
         {
-            return this.GetWorlds(language).Single(w => w.Id == worldId);
+            get
+            {
+                if (this.worldList == null)
+                {
+                    var arguments = new List<KeyValuePair<string, object>>
+                    {
+                        new KeyValuePair<string, object>("lang", this.language)
+                    };
+
+                    string jsonString = ApiCall.CallApi("world_names.json", arguments);
+
+                    var worlds = JArray.Parse(jsonString);
+
+                    this.worldList = new List<World>(worlds.Select(world => new World(int.Parse((string)world["id"]), (string)world["name"])));
+                }
+
+                return this.worldList;
+            }
         }
 
         /// <summary>
-        /// Gets all the available maps on a world.
+        /// Look up a world name from a world ID.
         /// </summary>
-        /// <param name="language">The language of the map names. This parameter is optional.</param>
-        /// <returns>An <see cref="IEnumerable"/> which contains all maps in the specified language.</returns>
-        public IEnumerable<World> GetMaps(string language = "en")
+        public Dictionary<int, string> WorldDictionary
         {
-            var arguments = new List<KeyValuePair<string, object>>
+            get
             {
-                new KeyValuePair<string, object>("lang", language)
-            };
+                if (this.worldDictionary == null)
+                {
+                    this.worldDictionary = new Dictionary<int, string>();
+                    foreach (var world in this.Worlds)
+                    {
+                        this.worldDictionary.Add(world.Id, world.Name);
+                    }
+                }
 
-            string jsonString = ApiCall.CallApi("map_names.json", arguments);
+                return this.worldDictionary;
+            }
+        }
 
-            var maps = JArray.Parse(jsonString);
+        /// <summary>
+        /// Gets all the available maps.
+        /// </summary>
+        public List<Map> Maps
+        {
+            get
+            {
+                if (this.mapList == null)
+                {
+                    var arguments = new List<KeyValuePair<string, object>>
+                    {
+                        new KeyValuePair<string, object>("lang", language)
+                    };
 
-            return maps.Select(map => new World(int.Parse((string)map["id"]), (string)map["name"]));
+                    string jsonString = ApiCall.CallApi("map_names.json", arguments);
+
+                    var maps = JArray.Parse(jsonString);
+
+                    this.mapList = new List<Map>(maps.Select(map => new Map(int.Parse((string)map["id"]), (string)map["name"])));
+                }
+
+                return this.mapList;
+            }
+        }
+
+        /// <summary>
+        /// Look up a map name from a map ID.
+        /// </summary>
+        public Dictionary<int, string> MapDictionary
+        {
+            get
+            {
+                if (this.mapDictionary == null)
+                {
+                    this.mapDictionary = new Dictionary<int, string>();
+
+                    foreach (var map in this.Maps)
+                    {
+                        mapDictionary.Add(map.Id, map.Name);
+                    }
+                }
+
+                return this.mapDictionary;
+            }
+        }
+
+        public static WorldData Instance
+        {
+            get { return WorldData.instance; }
         }
     }
 }

@@ -12,13 +12,13 @@ namespace GW2.NET_Tests
         [SetUp]
         public void Init()
         {
-            data = new WorldData();
+            data = WorldData.Instance;
         }
 
         [Test]
         public void GetWorlds()
         {
-            var worlds = data.GetWorlds();
+            var worlds = data.Worlds;
 
             Assert.IsFalse(worlds == null);
         }
@@ -26,7 +26,7 @@ namespace GW2.NET_Tests
         [Test]
         public void GetMaps()
         {
-            var maps = data.GetMaps();
+            var maps = data.Maps;
 
             Assert.IsFalse(maps == null);
         }

@@ -17,7 +17,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void Init()
         {
-            data = new EventData();
+            data = EventData.Instance;
         }
 
         [Test]

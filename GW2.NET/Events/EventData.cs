@@ -24,6 +24,18 @@ namespace GW2DotNET.Events
     public class EventData
     {
         /// <summary>
+        /// Keep a single instance of the class here.
+        /// </summary>
+        private static readonly EventData instance = new EventData();
+
+        /// <summary>
+        /// Callers cannot directly instantiate this class. They
+        /// must request an instance. This ensures that the cached
+        /// data is used efficiently.
+        /// </summary>
+        private EventData() { }
+
+        /// <summary>
         /// We cache the event_names response here
         /// </summary>
         private List<APIEventName> eventNames = null;
@@ -38,7 +50,7 @@ namespace GW2DotNET.Events
         /// </summary>
         private RestClient restClient = new RestClient("https://api.guildwars2.com/v1/");
 
-        private List<APIEventName> EventNames
+        public List<APIEventName> EventNames
         {
             get
             {
@@ -53,7 +65,10 @@ namespace GW2DotNET.Events
             }
         }
 
-        private Dictionary<Guid, string> EventNamesDictionary
+        /// <summary>
+        /// Maps event IDs to event names.
+        /// </summary>
+        public Dictionary<Guid, string> EventNamesDictionary
         {
             get
             {
@@ -131,6 +146,14 @@ namespace GW2DotNET.Events
                 {
                     Name = this.EventNamesDictionary[apiEvent.event_id]
                 }).ToList();
+        }
+
+        /// <summary>
+        /// Obtain an EventData instance
+        /// </summary>
+        public static EventData Instance
+        {
+            get { return EventData.instance; }
         }
     }
 }
