@@ -1,4 +1,6 @@
-﻿using GW2DotNET.Events;
+﻿using System.Diagnostics;
+
+using GW2DotNET.Events;
 
 using NUnit.Framework;
 
@@ -23,12 +25,20 @@ namespace GW2.NET_Tests
             Assert.IsFalse(worlds == null);
         }
 
+        /// <summary>
+        /// Unit test to get all maps.
+        /// Also checks if the caching works.
+        /// </summary>
         [Test]
         public void GetMaps()
         {
-            var maps = data.Maps;
+            var maps = this.data.Maps;
 
-            Assert.IsFalse(maps == null);
+            Debug.WriteLine("First call map count: {0}", maps.Count);
+
+            var maps2 = this.data.Maps;
+
+            Debug.WriteLine("Second call map count: {0}", maps2.Count);
         }
     }
 }

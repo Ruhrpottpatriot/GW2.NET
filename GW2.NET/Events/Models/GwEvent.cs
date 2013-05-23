@@ -47,7 +47,7 @@ namespace GW2DotNET.Events.Models
         /// <param name="apiEvent">
         /// The API event.
         /// </param>
-        internal GwEvent(APIEvent apiEvent)
+        internal GwEvent(ApiEvent apiEvent)
             : this(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, string.Empty)
         {
         }
@@ -61,7 +61,7 @@ namespace GW2DotNET.Events.Models
         /// <param name="name">
         /// The name of the event.
         /// </param>
-        internal GwEvent(APIEvent apiEvent, string name)
+        internal GwEvent(ApiEvent apiEvent, string name)
             : this(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, name)
         {
         }

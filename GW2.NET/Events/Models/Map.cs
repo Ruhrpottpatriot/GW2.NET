@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
+
 namespace GW2DotNET.Events.Models
 {
     /// <summary>
@@ -17,7 +19,7 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// The id of the map. This field is readonly.
         /// </summary>
-        private readonly int id;
+        private int id;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Map"/> struct.
@@ -34,17 +36,24 @@ namespace GW2DotNET.Events.Models
         /// <summary>
         /// Gets the map id.
         /// </summary>
+        [JsonProperty("id")]
         public int Id
         {
             get
             {
                 return this.id;
             }
+
+            private set
+            {
+                this.id = value;
+            }
         }
 
         /// <summary>
         /// Gets the map name.
         /// </summary>
+        [JsonProperty("name")]
         public string Name
         {
             get;

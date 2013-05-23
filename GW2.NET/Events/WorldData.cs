@@ -9,12 +9,9 @@
 
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
 using GW2DotNET.Events.Models;
 using GW2DotNET.Infrastructure;
-
-using Newtonsoft.Json.Linq;
 
 namespace GW2DotNET.Events
 {
@@ -156,11 +153,7 @@ namespace GW2DotNET.Events
                         new KeyValuePair<string, object>("lang", this.language)
                     };
 
-                    string jsonString = ApiCall.CallApi("map_names.json", arguments);
-
-                    var maps = JArray.Parse(jsonString);
-
-                    this.mapList = new List<Map>(maps.Select(map => new Map(int.Parse((string)map["id"]), (string)map["name"])));
+                    this.mapList = ApiCall.CallApiNew<List<Map>>("map_names.json", arguments);
                 }
 
                 return this.mapList;
