@@ -30,11 +30,6 @@ namespace GW2DotNET.Events
         private static readonly EventData OneInstance = new EventData();
 
         /// <summary>
-        /// The RestSharp client used for all API requests
-        /// </summary>
-        private readonly RestClient restClient = new RestClient("https://api.guildwars2.com/v1/");
-
-        /// <summary>
         /// We cache the event_names response here
         /// </summary>
         private List<APIEventName> eventNames;
@@ -73,8 +68,7 @@ namespace GW2DotNET.Events
             {
                 if (this.eventNames == null)
                 {
-                    RestRequest eventNamesRequest = new RestRequest("event_names.json", Method.GET);
-                    IRestResponse<List<APIEventName>> eventNamesResponse = this.restClient.Execute<List<APIEventName>>(eventNamesRequest);
+                    IRestResponse<List<APIEventName>> eventNamesResponse = ApiCall.CallApi<List<APIEventName>>("event_names.json", new List<KeyValuePair<string,object>>());
                     this.eventNames = eventNamesResponse.Data;
                 }
 
