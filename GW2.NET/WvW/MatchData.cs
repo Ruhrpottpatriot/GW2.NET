@@ -24,6 +24,42 @@ namespace GW2DotNET.WvW
     public class MatchData
     {
         /// <summary>
+        /// Available languages
+        /// </summary>
+        public enum Language
+        {
+            en,
+            fr,
+            de,
+            es
+        }
+
+        /// <summary>
+        /// We store the language string here to pass to the API
+        /// </summary>
+        private string languageString;
+
+        /// <summary>
+        /// Cache the world list here.
+        /// </summary>
+        private List<World> worldList;
+
+        /// <summary>
+        /// Cache the world dictionary here.
+        /// </summary>
+        private Dictionary<int, string> worldDictionary;
+
+        /// <summary>
+        /// Creates a MatchData object, which contains methods for interacting with
+        /// WvW matches.
+        /// </summary>
+        /// <param name="language">Determines the language that world names are returned in</param>
+        public MatchData(Language language)
+        {
+            languageString = language.ToString();
+        }
+
+        /// <summary>
         /// Gets a list of matches from the API With their corresponding world.
         /// </summary>
         /// <returns>An <see cref="IEnumerable"/> with all the matches currently running.</returns>
@@ -65,6 +101,53 @@ namespace GW2DotNET.WvW
 
             MatchDetails details = ApiCall.CallApi<MatchDetails>("wvw/match_details.json", arguments);
             return details;
+        }
+
+        /// <summary>
+        /// Gets all available worlds.
+        /// This is purposely not exposed to callers. We only
+        /// use this for resolving world IDs in the MatchDetails
+        /// response.
+        /// </summary>
+        private List<World> Worlds
+        {
+            get
+            {
+                if (this.worldList == null)
+                {
+                    var arguments = new List<KeyValuePair<string, object>>
+                    {
+                        new KeyValuePair<string, object>("lang", this.languageString)
+                    };
+
+                    this.worldList = ApiCall.CallApi<List<World>>("world_names.json", arguments);
+                }
+
+                return this.worldList;
+            }
+        }
+
+        /// <summary>
+        /// Gets a world name from a world ID.
+        /// This is purposely not exposed to callers. We only
+        /// use this for resolving world IDs in the MatchDetails
+        /// response.
+        /// </summary>
+        private Dictionary<int, string> WorldDictionary
+        {
+            get
+            {
+                if (this.worldDictionary == null)
+                {
+                    this.worldDictionary = new Dictionary<int, string>();
+                    foreach (var world in this.Worlds)
+                    {
+                        this.worldDictionary.Add(world.Id, world.Name);
+                    }
+                }
+
+                return this.worldDictionary;
+            }
         }
     }
 }
