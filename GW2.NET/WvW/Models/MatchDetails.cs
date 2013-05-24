@@ -13,7 +13,7 @@ namespace GW2DotNET.WvW.Models
     /// up, but I wanted to get the basic deserialization structure
     /// in place.
     /// </summary>
-    public class MatchDetails
+    public struct MatchDetails
     {
         /// <summary>
         /// Map types
