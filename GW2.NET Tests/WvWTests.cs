@@ -14,7 +14,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void Init()
         {
-            matchData = new MatchData();
+            matchData = new MatchData(MatchData.Language.en);
         }
 
         [Test]
