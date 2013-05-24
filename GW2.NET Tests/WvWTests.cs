@@ -24,5 +24,13 @@ namespace GW2.NET_Tests
 
             Assert.IsFalse(matchList == null);
         }
+
+        [Test]
+        public void GetOneMatch(string MatchID)
+        {
+            var matchDetails = matchData.GetMatchDetails(MatchID);
+
+            Assert.IsFalse(matchDetails == null);
+        }
     }
 }

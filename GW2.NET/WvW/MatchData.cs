@@ -50,5 +50,21 @@ namespace GW2DotNET.WvW
 
             return matchList;
         }
+
+        /// <summary>
+        /// Gets the details of the specified WvW match.
+        /// </summary>
+        /// <param name="MatchID"></param>
+        /// <returns></returns>
+        public MatchDetails GetMatchDetails(string MatchID)
+        {
+            var arguments = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("match_id", MatchID)
+            };
+
+            MatchDetails details = ApiCall.CallApi<MatchDetails>("wvw/match_details.json", arguments);
+            return details;
+        }
     }
 }
