@@ -24,7 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -59,6 +59,16 @@
     <Compile Include="Events\Models\EventName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Events\EventData.cs" />
+    <Compile Include="V1\Infrastructure\APICall.cs" />
+    <Compile Include="V1\Infrastructure\Language.cs" />
+    <Compile Include="V1\World\EventData.cs" />
+    <Compile Include="V1\World\MapData.cs" />
+    <Compile Include="V1\World\Models\GwEvent.cs" />
+    <Compile Include="V1\World\Models\GwEventState.cs" />
+    <Compile Include="V1\World\Models\GwMap.cs" />
+    <Compile Include="V1\World\Models\GwWorld.cs" />
+    <Compile Include="V1\World\WorldData.cs" />
+    <Compile Include="V1\World\WorldManager.cs" />
     <Compile Include="WvW\MatchData.cs" />
     <Compile Include="WvW\Models\Match.cs" />
     <Compile Include="WvW\Models\MatchDetails.cs" />
@@ -66,7 +76,10 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="V1\Items\" />
+    <Folder Include="V1\WvW\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

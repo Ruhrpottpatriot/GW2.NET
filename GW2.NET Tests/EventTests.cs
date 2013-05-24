@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 
 using GW2DotNET.Events;
+using GW2DotNET.V1.World;
+using GW2DotNET.V1.World.Models;
 
 using NUnit.Framework;
 using System;
@@ -12,10 +14,25 @@ namespace GW2.NET_Tests
     {
         private EventData data;
 
+        private WorldManager manager;
+
         [SetUp]
         public void Init()
         {
             this.data = EventData.Instance;
+
+            this.manager = new WorldManager();
+        }
+
+        [Test]
+        public void GetAll()
+        {
+            this.manager.World = new GwWorld(1001, string.Empty);
+
+            var events = this.manager.Events;
+
+            var events2 = this.manager.Events;
+
         }
 
         [Test]
