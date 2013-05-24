@@ -61,6 +61,7 @@
     <Compile Include="Events\EventData.cs" />
     <Compile Include="WvW\MatchData.cs" />
     <Compile Include="WvW\Models\Match.cs" />
+    <Compile Include="WvW\Models\MatchDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
