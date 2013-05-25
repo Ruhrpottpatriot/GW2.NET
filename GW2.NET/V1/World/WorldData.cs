@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.World
     /// <summary>
     /// Contains methods to get and modify the world data.
     /// </summary>
-    public class WorldData : IList<GwWorld>
+    public class WorldData : IEnumerable<GwWorld>
     {
         /// <summary>
         /// Cache the world_names list here
@@ -64,36 +64,21 @@ namespace GW2DotNET.V1.World
             }
         }
 
-        public int IndexOf(GwWorld item)
-        {
-            return this.Worlds.IndexOf(item);
-        }
-
-        public void Insert(int index, GwWorld item)
-        {
-            this.Worlds.Insert(index, item);
-        }
-
-        public void RemoveAt(int index)
-        {
-            this.Worlds.RemoveAt(index);
-        }
-
-        public GwWorld this[int index]
+        /// <summary>
+        /// Gets a world by world ID
+        /// </summary>
+        /// <param name="worldID">The ID of the world</param>
+        /// <returns></returns>
+        public GwWorld this[int worldID]
         {
             get
             {
-                return this.Worlds[index];
-            }
-
-            set
-            {
-                this.Worlds[index] = value;
+                return (from n in this.Worlds where n.Id == worldID select n).Single();
             }
         }
 
         /// <summary>
-        /// Retrieve a world by name
+        /// Gets a world by name
         /// </summary>
         /// <param name="name">The name of the world</param>
         /// <returns></returns>
@@ -103,41 +88,6 @@ namespace GW2DotNET.V1.World
             {
                 return (from n in this.Worlds where n.Name == name select n).Single();
             }
-        }
-
-        public void Add(GwWorld item)
-        {
-            this.Worlds.Add(item);
-        }
-
-        public void Clear()
-        {
-            this.Worlds.Clear();
-        }
-
-        public bool Contains(GwWorld item)
-        {
-            return this.Worlds.Contains(item);
-        }
-
-        public void CopyTo(GwWorld[] array, int arrayIndex)
-        {
-            this.Worlds.CopyTo(array, arrayIndex);
-        }
-
-        public int Count
-        {
-            get { return this.Worlds.Count; }
-        }
-
-        public bool IsReadOnly
-        {
-            get { return this.Worlds.IsReadOnly; }
-        }
-
-        public bool Remove(GwWorld item)
-        {
-            return this.Worlds.Remove(item);
         }
 
         public IEnumerator<GwWorld> GetEnumerator()

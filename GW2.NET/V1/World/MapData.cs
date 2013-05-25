@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.World
     /// <summary>
     /// Contains methods to get or modify the map data.
     /// </summary>
-    public class MapData : IList<GwMap>
+    public class MapData : IEnumerable<GwMap>
     {
         /// <summary>
         /// Cache the map_names data here
@@ -37,22 +37,6 @@ namespace GW2DotNET.V1.World
         internal MapData(Language language)
         {
             this.language = language;
-        }
-
-        /// <summary>
-        /// Gets the number of items in the collection
-        /// </summary>
-        public int Count
-        {
-            get { return this.Maps.Count; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether the map collection is read only
-        /// </summary>
-        public bool IsReadOnly
-        {
-            get { return this.Maps.IsReadOnly; }
         }
 
         /// <summary>
@@ -81,20 +65,15 @@ namespace GW2DotNET.V1.World
         }
 
         /// <summary>
-        /// Gets or sets a map by index.
+        /// Gets a map by ID
         /// </summary>
-        /// <param name="index">The index</param>
+        /// <param name="mapID">The ID</param>
         /// <returns>A map</returns>
-        public GwMap this[int index]
+        public GwMap this[int mapID]
         {
             get
             {
-                return this.Maps[index];
-            }
-
-            set
-            {
-                this.Maps[index] = value;
+                return (from n in this.Maps where n.Id == mapID select n).Single();
             }
         }
 
@@ -104,82 +83,6 @@ namespace GW2DotNET.V1.World
             {
                 return (from n in this.Maps where n.Name == name select n).Single();
             }
-        }
-
-        /// <summary>
-        /// Gets the index of  map.
-        /// </summary>
-        /// <param name="item">The map</param>
-        /// <returns>The index of the map</returns>
-        public int IndexOf(GwMap item)
-        {
-            return this.Maps.IndexOf(item);
-        }
-
-        /// <summary>
-        /// Insert a map into the list.
-        /// </summary>
-        /// <param name="index">The specified index</param>
-        /// <param name="item">The map to insert</param>
-        public void Insert(int index, GwMap item)
-        {
-            this.Maps.Insert(index, item);
-        }
-
-        /// <summary>
-        /// Removes a map at the specified index.
-        /// </summary>
-        /// <param name="index">The index</param>
-        public void RemoveAt(int index)
-        {
-            this.Maps.RemoveAt(index);
-        }
-
-        /// <summary>
-        /// Adds a map to the collection
-        /// </summary>
-        /// <param name="item">The map to add</param>
-        public void Add(GwMap item)
-        {
-            this.Maps.Add(item);
-        }
-
-        /// <summary>
-        /// Clears the collection of maps
-        /// </summary>
-        public void Clear()
-        {
-            this.Maps.Clear();
-        }
-
-        /// <summary>
-        /// Determines if the collection contains a particular map
-        /// </summary>
-        /// <param name="item">The map to look for</param>
-        /// <returns>True if the collection contains the map</returns>
-        public bool Contains(GwMap item)
-        {
-            return this.Maps.Contains(item);
-        }
-
-        /// <summary>
-        /// Copies the collection to an array
-        /// </summary>
-        /// <param name="array">The array to copy to</param>
-        /// <param name="arrayIndex">The index to start the copy</param>
-        public void CopyTo(GwMap[] array, int arrayIndex)
-        {
-            this.Maps.CopyTo(array, arrayIndex);
-        }
-
-        /// <summary>
-        /// Removes a map from the collection
-        /// </summary>
-        /// <param name="item">The map to remove</param>
-        /// <returns>A value indicating whether the item was removed</returns>
-        public bool Remove(GwMap item)
-        {
-            return this.Maps.Remove(item);
         }
 
         /// <summary>
