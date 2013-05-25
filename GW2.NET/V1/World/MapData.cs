@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-
+using System.Linq;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.World.Models;
 
@@ -95,6 +95,14 @@ namespace GW2DotNET.V1.World
             set
             {
                 this.Maps[index] = value;
+            }
+        }
+
+        public GwMap this[string name]
+        {
+            get
+            {
+                return (from n in this.Maps where n.Name == name select n).Single();
             }
         }
 

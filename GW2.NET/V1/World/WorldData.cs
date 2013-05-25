@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-
+using System.Linq;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.World.Models;
 
@@ -89,6 +89,19 @@ namespace GW2DotNET.V1.World
             set
             {
                 this.Worlds[index] = value;
+            }
+        }
+
+        /// <summary>
+        /// Retrieve a world by name
+        /// </summary>
+        /// <param name="name">The name of the world</param>
+        /// <returns></returns>
+        public GwWorld this[string name]
+        {
+            get
+            {
+                return (from n in this.Worlds where n.Name == name select n).Single();
             }
         }
 
