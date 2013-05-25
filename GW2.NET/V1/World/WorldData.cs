@@ -30,17 +30,17 @@ namespace GW2DotNET.V1.World
         private Language language;
 
         /// <summary>
-        /// Instantiates a WorldData object. This should only be
-        /// called by WorldManager.
+        /// Initializes a new instance of the <see cref="WorldData"/> class.
+        /// This should only be called by WorldManager.
         /// </summary>
-        /// <param name="language"></param>
+        /// <param name="language">The language in which to return world names</param>
         internal WorldData(Language language)
         {
             this.language = language;
         }
 
         /// <summary>
-        /// Gets all <see cref="GwWorld"/> from the api.
+        /// Gets all <see cref="GwWorld"/> from the API.
         /// </summary>
         /// ReSharper disable CSharpWarnings::CS1584
         /// <returns>A <see cref="IList"/> containing all world objects.
@@ -85,6 +85,7 @@ namespace GW2DotNET.V1.World
             {
                 return this.Worlds[index];
             }
+
             set
             {
                 this.Worlds[index] = value;

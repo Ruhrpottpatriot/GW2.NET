@@ -19,12 +19,13 @@ namespace GW2DotNET.V1.World
     /// <summary>
     /// A class for retrieving information about the
     /// state of world events.
-    /// <para></para>
+    /// </summary>
+    /// <remarks>
     /// Note that unlike MapData and WorldData, this class does NOT
     /// implement IList. This is intentional, because we do not expose
     /// the event names list to the caller. We only return events objects
     /// that have status information, not just name-id mappings.
-    /// </summary>
+    /// </remarks>
     public class EventData
     {
         /// <summary>
@@ -103,8 +104,8 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Gets all events for a particular world.
         /// </summary>
-        /// <param name="world"></param>
-        /// <returns>A list of GwEvent items</returns>
+        /// <param name="world">The world for which to retrieve events</param>
+        /// <returns>A list of events</returns>
         public IList<GwEvent> GetEvents(GwWorld world)
         {
             var arguments = new List<KeyValuePair<string, object>>

@@ -40,10 +40,51 @@ namespace GW2DotNET.V1.World
         }
 
         /// <summary>
+        /// Gets the number of items in the collection
+        /// </summary>
+        public int Count
+        {
+            get { return this.Maps.Count; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the map collection is read only
+        /// </summary>
+        public bool IsReadOnly
+        {
+            get { return this.Maps.IsReadOnly; }
+        }
+
+        /// <summary>
+        /// Gets the maps from the API.
+        /// This field is private and is not directly exposed.
+        /// Instead, we implement IList on the parent class and
+        /// pass the calls through to this object.
+        /// </summary>
+        /// <returns>The <see cref="IList"/> of maps.</returns>
+        private IList<GwMap> Maps
+        {
+            get
+            {
+                if (this.gwMapCache == null)
+                {
+                    var arguments = new List<KeyValuePair<string, object>>
+                    {
+                        new KeyValuePair<string, object>("lang", this.language.ToString())
+                    };
+
+                    this.gwMapCache = ApiCall.GetContent<List<GwMap>>("map_names.json", arguments, ApiCall.Categories.World);
+                }
+
+                return this.gwMapCache;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a map by index.
         /// </summary>
         /// <param name="index">The index</param>
-        /// <returns>A GwMap</returns>
+        /// <returns>A map</returns>
         public GwMap this[int index]
         {
             get
@@ -124,26 +165,10 @@ namespace GW2DotNET.V1.World
         }
 
         /// <summary>
-        /// Gets the number of items in the collection
-        /// </summary>
-        public int Count
-        {
-            get { return this.Maps.Count; }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether the map collection is read only
-        /// </summary>
-        public bool IsReadOnly
-        {
-            get { return this.Maps.IsReadOnly; }
-        }
-
-        /// <summary>
         /// Removes a map from the collection
         /// </summary>
         /// <param name="item">The map to remove</param>
-        /// <returns></returns>
+        /// <returns>A value indicating whether the item was removed</returns>
         public bool Remove(GwMap item)
         {
             return this.Maps.Remove(item);
@@ -152,7 +177,7 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Gets an enumerator for the collection
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An enumerator</returns>
         public IEnumerator<GwMap> GetEnumerator()
         {
             return this.Maps.GetEnumerator();
@@ -161,35 +186,10 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Gets an enumerator for the collection
         /// </summary>
-        /// <returns></returns>
+        /// <returns>An enumerator</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.Maps.GetEnumerator();
-        }
-
-        /// <summary>
-        /// Gets the maps from the API.
-        /// This field is private and is not directly exposed.
-        /// Instead, we implement IList on the parent class and
-        /// pass the calls through to this object.
-        /// </summary>
-        /// <returns>The <see cref="IList"/> of maps.</returns>
-        private IList<GwMap> Maps
-        {
-            get
-            {
-                if (this.gwMapCache == null)
-                {
-                    var arguments = new List<KeyValuePair<string, object>>
-                    {
-                        new KeyValuePair<string, object>("lang", this.language.ToString())
-                    };
-
-                    this.gwMapCache = ApiCall.GetContent<List<GwMap>>("map_names.json", arguments, ApiCall.Categories.World);
-                }
-
-                return this.gwMapCache;
-            }
         }
     }
 }

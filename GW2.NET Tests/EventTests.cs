@@ -24,7 +24,6 @@ namespace GW2.NET_Tests
             this.manager = new WorldManager();
         }
 
-
         [Test]
         public void GetAllEventsTest()
         {
