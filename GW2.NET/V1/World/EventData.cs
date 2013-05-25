@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.World
             {
                 if (this.eventNamesCache == null)
                 {
-                    var namesResponse = ApiCall.GetContent<List<Dictionary<Guid, string>>>("event_names.json", null, ApiCall.Categories.World);
+                    var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", null, ApiCall.Categories.World);
 
                     // Create a new Dictionary to hold the names,
                     // whereas the key is the event id and the valus the event name.
@@ -44,7 +44,7 @@ namespace GW2DotNET.V1.World
 
                         foreach (var variable in eventName)
                         {
-                            if ("foo" == "id")
+                            if (variable.Key == "id")
                             {
                                 id = new Guid(variable.Value);
                             }

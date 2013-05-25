@@ -22,27 +22,17 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// The world data class.
         /// </summary>
-        private readonly WorldData worldData;
+        private WorldData worldData;
 
         /// <summary>
         /// The map data class.
         /// </summary>
-        private readonly MapData mapData;
+        private MapData mapData;
 
         /// <summary>
         /// The event data class.
         /// </summary>
-        private readonly EventData eventData;
-
-        /// <summary>
-        /// The list of worlds.
-        /// </summary>
-        private IList<GwWorld> worlds;
-
-        /// <summary>
-        /// The list of maps.
-        /// </summary>
-        private IList<GwMap> maps;
+        private EventData eventData;
 
         /// <summary>
         /// The chosen language
@@ -54,49 +44,38 @@ namespace GW2DotNET.V1.World
         /// </summary>
         public WorldManager()
         {
-            this.eventData = new EventData();
-            this.mapData = new MapData();
-            this.worldData = new WorldData();
             this.language = Infrastructure.Language.En;
         }
 
         /// <summary>
         /// Gets the maps.
         /// </summary>
-        public IList<GwMap> Maps
+        public MapData Maps
         {
             get
             {
-                if (this.maps == null)
+                if (this.mapData == null)
                 {
-                    var apiResponse = this.mapData.GetMaps(this.Language);
-
-                    this.maps = apiResponse;
-
-                    return this.maps;
+                    this.mapData = new MapData(this.Language);
                 }
 
-                return this.maps;
+                return this.mapData;
             }
         }
 
         /// <summary>
         /// Gets the worlds.
         /// </summary>
-        public IList<GwWorld> Worlds
+        public WorldData Worlds
         {
             get
             {
-                if (this.worlds == null)
+                if (this.worldData == null)
                 {
-                    var apiResponse = this.worldData.GetWorlds(this.Language);
-
-                    this.worlds = apiResponse;
-
-                    return this.worlds;
+                    this.worldData = new WorldData(this.Language);
                 }
 
-                return this.worlds;
+                return this.worldData;
             }
         }
 
@@ -113,8 +92,8 @@ namespace GW2DotNET.V1.World
             // ToDo: Clear cache if language changed.
             set
             {
-                this.worlds = null;
-                this.maps = null;
+                this.worldData = null;
+                this.mapData = null;
                 this.eventData.EventNames = null;
             }
         }
