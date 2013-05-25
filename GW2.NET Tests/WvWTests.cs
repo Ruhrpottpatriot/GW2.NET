@@ -29,8 +29,6 @@ namespace GW2.NET_Tests
         public void GetOneMatch(string MatchID)
         {
             var matchDetails = matchData.GetMatchDetails(MatchID);
-
-            Assert.IsFalse(matchDetails == null);
         }
     }
 }

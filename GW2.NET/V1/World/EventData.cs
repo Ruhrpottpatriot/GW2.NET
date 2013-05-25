@@ -18,6 +18,55 @@ namespace GW2DotNET.V1.World
 {
     internal class EventData
     {
+        /// <summary>
+        /// Cache the event names here
+        /// </summary>
+        private Dictionary<Guid, string> eventNamesCache = null;
+
+        internal Dictionary<Guid, string> EventNames
+        {
+            get
+            {
+                if (this.eventNamesCache == null)
+                {
+                    var namesResponse = ApiCall.GetContent<List<Dictionary<Guid, string>>>("event_names.json", null, ApiCall.Categories.World);
+
+                    // Create a new Dictionary to hold the names,
+                    // whereas the key is the event id and the valus the event name.
+                    var eventNames = new Dictionary<Guid, string>();
+
+                    // Iterate through the namesResponse,
+                    // so we can throw away that damn List<Dictionary<string,string>>! *blargh*
+                    foreach (var eventName in namesResponse)
+                    {
+                        Guid id = new Guid();
+                        string name = string.Empty;
+
+                        foreach (var variable in eventName)
+                        {
+                            if ("foo" == "id")
+                            {
+                                id = new Guid(variable.Value);
+                            }
+                            else
+                            {
+                                name = variable.Value;
+                            }
+                        }
+
+                        eventNames.Add(id, name);
+                    }
+                }
+
+                return this.eventNamesCache;
+            }
+
+            set
+            {
+                this.eventNamesCache = value;
+            }
+        }
+
         internal IList<GwEvent> GetEvents(int worldId)
         {
             var arguments = new List<KeyValuePair<string, object>>
@@ -27,40 +76,11 @@ namespace GW2DotNET.V1.World
 
             var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
 
-            var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", null, ApiCall.Categories.World);
-
-            // Create a new Dictionary tol hold the names,
-            // whereas the key is the event id and the valus the event name.
-            var eventNames = new Dictionary<Guid, string>();
-
-            // Iterate through the namesResponse,
-            // so we can throw away that damn List<Dictionary<string,string>>! *blargh*
-            foreach (var eventName in namesResponse)
-            {
-                Guid id = new Guid();
-                string name = string.Empty;
-
-                foreach (var variable in eventName)
-                {
-                    if (variable.Key == "id")
-                    {
-                        id = new Guid(variable.Value);
-                    }
-                    else
-                    {
-                        name = variable.Value;
-                    }
-                }
-
-                eventNames.Add(id, name);
-            }
-
-
             // Use Linq to match the event ids from the response with the nameResponse 
             // and put them in a list then return them.
             return (from eventsList in response.Values
                     from events in eventsList
-                    from eventName in eventNames
+                    from eventName in this.EventNames
                     where events.EventId == eventName.Key
                     select new GwEvent(events.WorldId, events.MapId, events.EventId, events.State, eventName.Value)).ToList();
         }

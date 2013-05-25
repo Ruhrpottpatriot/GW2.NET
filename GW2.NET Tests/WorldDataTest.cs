@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace GW2.NET_Tests
 {
     [TestFixture]
-    class WorldDataTest
+    public class WorldDataTest
     {
         private WorldData data;
 

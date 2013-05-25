@@ -45,9 +45,9 @@ namespace GW2DotNET.V1.World
         private IList<GwMap> maps;
 
         /// <summary>
-        /// The list of events.
+        /// The chosen language
         /// </summary>
-        private IList<GwEvent> events;
+        private Language language;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldManager"/> class.
@@ -57,27 +57,7 @@ namespace GW2DotNET.V1.World
             this.eventData = new EventData();
             this.mapData = new MapData();
             this.worldData = new WorldData();
-        }
-
-        /// <summary>
-        /// Gets the events.
-        /// </summary>
-        public IList<GwEvent> Events
-        {
-            get
-            {
-                if (this.events == null)
-                {
-                    var apiResponse = this.eventData.GetEvents(this.World);
-
-                    this.events = apiResponse;
-
-
-                    return this.events;
-                }
-
-                return this.events;
-            }
+            this.language = Infrastructure.Language.En;
         }
 
         /// <summary>
@@ -125,21 +105,18 @@ namespace GW2DotNET.V1.World
         /// </summary>
         public Language Language
         {
-            get;
+            get
+            {
+                return this.language;
+            }
 
             // ToDo: Clear cache if language changed.
-            set;
-        }
-
-        /// <summary>
-        /// Gets or sets the world.
-        /// </summary>
-        public GwWorld World
-        {
-            get;
-
-            // ToDo: Clear cache if world changed.
-            set;
+            set
+            {
+                this.worlds = null;
+                this.maps = null;
+                this.eventData.EventNames = null;
+            }
         }
     }
 }

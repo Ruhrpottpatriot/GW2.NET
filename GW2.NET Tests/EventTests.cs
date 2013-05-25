@@ -24,16 +24,6 @@ namespace GW2.NET_Tests
             this.manager = new WorldManager();
         }
 
-        [Test]
-        public void GetAll()
-        {
-            this.manager.World = new GwWorld(1001, string.Empty);
-
-            var events = this.manager.Events;
-
-            var events2 = this.manager.Events;
-
-        }
 
         [Test]
         public void GetAllEventsTest()
