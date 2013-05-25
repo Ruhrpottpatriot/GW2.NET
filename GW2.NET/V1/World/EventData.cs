@@ -122,5 +122,55 @@ namespace GW2DotNET.V1.World
                     where events.EventId == eventName.Key
                     select new GwEvent(events.WorldId, events.MapId, events.EventId, events.State, eventName.Value)).ToList();
         }
+
+        /// <summary>
+        /// Gets a single event from the API.
+        /// </summary>
+        /// <param name="worldId">The world id.</param>
+        /// <param name="eventId">The event id.</param>
+        /// <returns>The <see cref="GwEvent"/>.</returns>
+        public GwEvent GetEvent(int worldId, Guid eventId)
+        {
+            var arguments = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("world_id", worldId),
+                new KeyValuePair<string, object>("event_id", eventId)
+            };
+
+            var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
+
+            GwEvent eventToReturn = new GwEvent();
+
+            foreach (var singleEvent in eventsResponse.Values.SelectMany(variable => variable))
+            {
+                eventToReturn = new GwEvent(singleEvent.WorldId, singleEvent.MapId, singleEvent.EventId, singleEvent.State, this.EventNames[singleEvent.EventId]);
+            }
+
+            return eventToReturn;
+        }
+
+        /// <summary>
+        /// Gets all events on a specific map.
+        /// </summary>
+        /// <param name="worldId">The world id.</param>
+        /// <param name="mapId">The map id.</param>
+        /// ReSharper disable CSharpWarnings::CS1584
+        /// <returns>An <see cref="IEnumerable"/> with all events on the specified map.</returns>
+        /// ReSharper restore CSharpWarnings::CS1584
+        public IList<GwEvent> GetEventsByMap(int worldId, int mapId)
+        {
+            var arguments = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("world_id", worldId), 
+                new KeyValuePair<string, object>("map_id", mapId)
+            };
+
+            var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
+
+            // Turn the API events into events with names and return them
+            return (from variable in eventsResponse.Values
+                    from apiEvent in variable
+                    select new GwEvent(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, this.EventNames[apiEvent.EventId])).ToList();
+        }
     }
 }
