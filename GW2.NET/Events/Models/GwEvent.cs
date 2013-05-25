@@ -19,11 +19,6 @@ namespace GW2DotNET.Events.Models
     public struct GwEvent
     {
         /// <summary>
-        /// The event id. This field is readonly.
-        /// </summary>
-        private Guid eventId;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
         /// </summary>
         /// <param name="worldId">The world id.</param>
@@ -36,7 +31,7 @@ namespace GW2DotNET.Events.Models
         {
             this.WorldId = worldId;
             this.MapId = mapId;
-            this.eventId = eventId;
+            this.EventId = eventId;
             this.State = state;
             this.Name = name;
         }
@@ -77,15 +72,8 @@ namespace GW2DotNET.Events.Models
         [JsonProperty("event_id")]
         public Guid EventId
         {
-            get
-            {
-                return this.eventId;
-            }
-
-            private set
-            {
-                this.eventId = value;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -99,25 +87,25 @@ namespace GW2DotNET.Events.Models
         }
 
         /// <summary>
-        /// Determines whether two specified instances of <see crdef="Map"/> are equal.
+        /// Determines whether two specified instances of <see crdef="GwEvent"/> are equal.
         /// </summary>
         /// <param name="mapA">The first object to compare.</param>param>
-        /// <param name="mapB">The second object to compare. </param>
+        /// <param name="b">The second object to compare. </param>
         /// <returns>true if mapA and mapB represent the same map; otherwise, false.</returns>
-        public static bool operator ==(GwEvent mapA, GwEvent mapB)
+        public static bool operator ==(GwEvent a, GwEvent b)
         {
-            return mapA.eventId == mapB.eventId;
+            return a.EventId == b.EventId;
         }
 
         /// <summary>
-        /// Determines whether two specified instances of <see crdef="Map"/> are not equal.
+        /// Determines whether two specified instances of <see crdef="GwEvent"/> are not equal.
         /// </summary>
-        /// <param name="mapA">The first object to compare.</param>param>
-        /// <param name="mapB">The second object to compare. </param>
+        /// <param name="a">The first object to compare.</param>param>
+        /// <param name="b">The second object to compare. </param>
         /// <returns>true if mapA and mapB do not represent the same map; otherwise, false.</returns>
-        public static bool operator !=(GwEvent mapA, GwEvent mapB)
+        public static bool operator !=(GwEvent a, GwEvent b)
         {
-            return mapA.eventId != mapB.eventId;
+            return a.EventId != b.EventId;
         }
 
         /// <summary>
@@ -131,13 +119,13 @@ namespace GW2DotNET.Events.Models
         }
 
         /// <summary>
-        /// Indicates whether this instance and a specified <see cref="Map"/> are equal.
+        /// Indicates whether this instance and a specified <see cref="GwEvent"/> are equal.
         /// </summary>
         /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
         /// <param name="obj">Another object to compare to. </param>
         public bool Equals(GwEvent obj)
         {
-            return this.eventId == obj.eventId;
+            return this.EventId == obj.EventId;
         }
 
         /// <summary>
@@ -146,7 +134,7 @@ namespace GW2DotNET.Events.Models
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode()
         {
-            return this.eventId.GetHashCode();
+            return this.EventId.GetHashCode();
         }
     }
 }
