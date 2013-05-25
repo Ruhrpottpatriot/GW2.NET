@@ -19,10 +19,21 @@ namespace GW2DotNET.V1.World
     /// </summary>
     public class WorldData : IList<GwWorld>
     {
+        /// <summary>
+        /// Cache the world_names list here
+        /// </summary>
         private List<GwWorld> gwWorldCache = null;
 
+        /// <summary>
+        /// The world names will be retrieved in this language
+        /// </summary>
         private Language language;
 
+        /// <summary>
+        /// Instantiates a WorldData object. This should only be
+        /// called by WorldManager.
+        /// </summary>
+        /// <param name="language"></param>
         internal WorldData(Language language)
         {
             this.language = language;

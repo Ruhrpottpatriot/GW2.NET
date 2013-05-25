@@ -80,6 +80,22 @@ namespace GW2DotNET.V1.World
         }
 
         /// <summary>
+        /// Gets the EventData object.
+        /// </summary>
+        public EventData Events
+        {
+            get
+            {
+                if (this.eventData == null)
+                {
+                    this.eventData = new EventData(this.Language);
+                }
+
+                return this.eventData;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the language of the content.
         /// </summary>
         public Language Language
@@ -94,7 +110,7 @@ namespace GW2DotNET.V1.World
             {
                 this.worldData = null;
                 this.mapData = null;
-                this.eventData.EventNames = null;
+                this.eventData = null;
             }
         }
     }

@@ -19,17 +19,159 @@ namespace GW2DotNET.V1.World
     /// </summary>
     public class MapData : IList<GwMap>
     {
+        /// <summary>
+        /// Cache the map_names data here
+        /// </summary>
         private List<GwMap> gwMapCache = null;
 
+        /// <summary>
+        /// Retrieve the maps in this language
+        /// </summary>
         private Language language;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapData"/> class.
+        /// This should only be called by WorldManager.
+        /// </summary>
+        /// <param name="language">The language in which to return names</param>
         internal MapData(Language language)
         {
             this.language = language;
         }
 
         /// <summary>
-        /// Gets the maps from the api.
+        /// Gets or sets a map by index.
+        /// </summary>
+        /// <param name="index">The index</param>
+        /// <returns>A GwMap</returns>
+        public GwMap this[int index]
+        {
+            get
+            {
+                return this.Maps[index];
+            }
+
+            set
+            {
+                this.Maps[index] = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the index of  map.
+        /// </summary>
+        /// <param name="item">The map</param>
+        /// <returns>The index of the map</returns>
+        public int IndexOf(GwMap item)
+        {
+            return this.Maps.IndexOf(item);
+        }
+
+        /// <summary>
+        /// Insert a map into the list.
+        /// </summary>
+        /// <param name="index">The specified index</param>
+        /// <param name="item">The map to insert</param>
+        public void Insert(int index, GwMap item)
+        {
+            this.Maps.Insert(index, item);
+        }
+
+        /// <summary>
+        /// Removes a map at the specified index.
+        /// </summary>
+        /// <param name="index">The index</param>
+        public void RemoveAt(int index)
+        {
+            this.Maps.RemoveAt(index);
+        }
+
+        /// <summary>
+        /// Adds a map to the collection
+        /// </summary>
+        /// <param name="item">The map to add</param>
+        public void Add(GwMap item)
+        {
+            this.Maps.Add(item);
+        }
+
+        /// <summary>
+        /// Clears the collection of maps
+        /// </summary>
+        public void Clear()
+        {
+            this.Maps.Clear();
+        }
+
+        /// <summary>
+        /// Determines if the collection contains a particular map
+        /// </summary>
+        /// <param name="item">The map to look for</param>
+        /// <returns>True if the collection contains the map</returns>
+        public bool Contains(GwMap item)
+        {
+            return this.Maps.Contains(item);
+        }
+
+        /// <summary>
+        /// Copies the collection to an array
+        /// </summary>
+        /// <param name="array">The array to copy to</param>
+        /// <param name="arrayIndex">The index to start the copy</param>
+        public void CopyTo(GwMap[] array, int arrayIndex)
+        {
+            this.Maps.CopyTo(array, arrayIndex);
+        }
+
+        /// <summary>
+        /// Gets the number of items in the collection
+        /// </summary>
+        public int Count
+        {
+            get { return this.Maps.Count; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether the map collection is read only
+        /// </summary>
+        public bool IsReadOnly
+        {
+            get { return this.Maps.IsReadOnly; }
+        }
+
+        /// <summary>
+        /// Removes a map from the collection
+        /// </summary>
+        /// <param name="item">The map to remove</param>
+        /// <returns></returns>
+        public bool Remove(GwMap item)
+        {
+            return this.Maps.Remove(item);
+        }
+
+        /// <summary>
+        /// Gets an enumerator for the collection
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator<GwMap> GetEnumerator()
+        {
+            return this.Maps.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Gets an enumerator for the collection
+        /// </summary>
+        /// <returns></returns>
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return this.Maps.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Gets the maps from the API.
+        /// This field is private and is not directly exposed.
+        /// Instead, we implement IList on the parent class and
+        /// pass the calls through to this object.
         /// </summary>
         /// <returns>The <see cref="IList"/> of maps.</returns>
         private IList<GwMap> Maps
@@ -48,78 +190,6 @@ namespace GW2DotNET.V1.World
 
                 return this.gwMapCache;
             }
-        }
-
-        public int IndexOf(GwMap item)
-        {
-            return this.Maps.IndexOf(item);
-        }
-
-        public void Insert(int index, GwMap item)
-        {
-            this.Maps.Insert(index, item);
-        }
-
-        public void RemoveAt(int index)
-        {
-            this.Maps.RemoveAt(index);
-        }
-
-        public GwMap this[int index]
-        {
-            get
-            {
-                return this.Maps[index];
-            }
-            set
-            {
-                this.Maps[index] = value;
-            }
-        }
-
-        public void Add(GwMap item)
-        {
-            this.Maps.Add(item);
-        }
-
-        public void Clear()
-        {
-            this.Maps.Clear();
-        }
-
-        public bool Contains(GwMap item)
-        {
-            return this.Maps.Contains(item);
-        }
-
-        public void CopyTo(GwMap[] array, int arrayIndex)
-        {
-            this.Maps.CopyTo(array, arrayIndex);
-        }
-
-        public int Count
-        {
-            get { return this.Maps.Count; }
-        }
-
-        public bool IsReadOnly
-        {
-            get { return this.Maps.IsReadOnly; }
-        }
-
-        public bool Remove(GwMap item)
-        {
-            return this.Maps.Remove(item);
-        }
-
-        public IEnumerator<GwMap> GetEnumerator()
-        {
-            return this.Maps.GetEnumerator();
-        }
-
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return this.Maps.GetEnumerator();
         }
     }
 }

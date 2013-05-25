@@ -91,9 +91,8 @@ namespace GW2DotNET.Infrastructure
             return JsonConvert.DeserializeObject<T>(requestResponse);
         }
 
-
         /// <summary>
-        /// Calls the world-vs-world API with the specified method and parameters.
+        /// Calls the WVW API with the specified method and parameters.
         /// </summary>
         /// <param name="apiMethod">
         /// The method to execute on the API.

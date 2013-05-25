@@ -16,14 +16,47 @@ using GW2DotNET.V1.World.Models;
 
 namespace GW2DotNET.V1.World
 {
-    internal class EventData
+    /// <summary>
+    /// A class for retrieving information about the
+    /// state of world events.
+    /// <para></para>
+    /// Note that unlike MapData and WorldData, this class does NOT
+    /// implement IList. This is intentional, because we do not expose
+    /// the event names list to the caller. We only return events objects
+    /// that have status information, not just name-id mappings.
+    /// </summary>
+    public class EventData
     {
         /// <summary>
         /// Cache the event names here
         /// </summary>
         private Dictionary<Guid, string> eventNamesCache = null;
 
-        internal Dictionary<Guid, string> EventNames
+        /// <summary>
+        /// The events names will be retrieved in this language
+        /// </summary>
+        private Language language;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventData"/> class.
+        /// This should only be called by WorldManager.
+        /// </summary>
+        /// <param name="language">The language in which to return names</param>
+        internal EventData(Language language)
+        {
+            this.language = language;
+        }
+
+        /// <summary>
+        /// Gets or sets the EventNames dictionary.
+        /// The event name list should not be accessed outside of
+        /// this class, but we must cache it. We need it
+        /// every time event states are retrieved in order to
+        /// resolve the IDs to names. Accessing it via this
+        /// private property will make sure it's there when
+        /// we need it.
+        /// </summary>
+        private Dictionary<Guid, string> EventNames
         {
             get
             {
@@ -67,11 +100,16 @@ namespace GW2DotNET.V1.World
             }
         }
 
-        internal IList<GwEvent> GetEvents(int worldId)
+        /// <summary>
+        /// Gets all events for a particular world.
+        /// </summary>
+        /// <param name="world"></param>
+        /// <returns>A list of GwEvent items</returns>
+        public IList<GwEvent> GetEvents(GwWorld world)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
-                new KeyValuePair<string, object>("world_id", worldId)
+                new KeyValuePair<string, object>("world_id", world.Id)
             };
 
             var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
@@ -83,11 +121,6 @@ namespace GW2DotNET.V1.World
                     from eventName in this.EventNames
                     where events.EventId == eventName.Key
                     select new GwEvent(events.WorldId, events.MapId, events.EventId, events.State, eventName.Value)).ToList();
-        }
-
-        internal IList<GwEvent> GetEvents(GwWorld world)
-        {
-            return this.GetEvents(world.Id);
         }
     }
 }

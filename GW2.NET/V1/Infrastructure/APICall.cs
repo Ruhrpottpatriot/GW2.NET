@@ -29,29 +29,29 @@ namespace GW2DotNET.V1.Infrastructure
         public enum Categories
         {
             /// <summary>
-            /// The world part of the api.
+            /// The world part of the API.
             /// Includes world names, map names and events
             /// </summary>
             World,
 
             /// <summary>
-            /// The world versus world part of the api.
+            /// The world versus world part of the API.
             /// </summary>
             WvW,
 
             /// <summary>
-            /// The items part of the Api
+            /// The items part of the API
             /// </summary>
             Items
         }
         
         /// <summary>
-        /// Calls the api and returns a CLI object of the specified type.
+        /// Calls the API and returns a CLI object of the specified type.
         /// </summary>
-        /// <param name="apiMethod">The api method to call.</param>
+        /// <param name="apiMethod">The API method to call.</param>
         /// <param name="arguments">The arguments to supply to the method.</param>
         /// <param name="category">The category the method is in.</param>
-        /// <typeparam name="T">The type to convert the raw api result into.</typeparam>
+        /// <typeparam name="T">The type to convert the raw API result into.</typeparam>
         /// <returns>An object converted to <see cref="T"/>.</returns>
         public static T GetContent<T>(string apiMethod, List<KeyValuePair<string, object>> arguments, Categories category)
         {
@@ -61,12 +61,12 @@ namespace GW2DotNET.V1.Infrastructure
         }
 
         /// <summary>
-        /// Gets the json string from the api.
+        /// Gets the JSON string from the API.
         /// </summary>
-        /// <param name="apiMethod">The api method to call.</param>
+        /// <param name="apiMethod">The API method to call.</param>
         /// <param name="arguments">The arguments to supply to the method.</param>
         /// <param name="category">The category the method is in.</param>
-        /// <returns>The json encoded <see cref="string"/>.</returns>
+        /// <returns>The JSON encoded <see cref="string"/>.</returns>
         private static string GetJson(string apiMethod, IEnumerable<KeyValuePair<string, object>> arguments, Categories category)
         {
             // Do a switch based on the place where the caller wants to go. 

@@ -12,14 +12,14 @@ namespace GW2.NET_Tests
     [TestFixture]
     public class EventTests
     {
-        private EventData data;
+        private GW2DotNET.Events.EventData data;
 
         private WorldManager manager;
 
         [SetUp]
         public void Init()
         {
-            this.data = EventData.Instance;
+            this.data = GW2DotNET.Events.EventData.Instance;
 
             this.manager = new WorldManager();
         }
