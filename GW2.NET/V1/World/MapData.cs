@@ -77,6 +77,11 @@ namespace GW2DotNET.V1.World
             }
         }
 
+        /// <summary>
+        /// Gets a map by name
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public GwMap this[string name]
         {
             get

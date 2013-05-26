@@ -26,7 +26,7 @@ namespace GW2DotNET.V1.World.Models
         /// <param name="eventId">The event id.</param>
         /// <param name="state">The state.</param>
         /// <param name="name">The name.</param>
-        [JsonConstructor()]
+        [JsonConstructor]
         public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name)
         {
             this.WorldId = worldId;
@@ -41,13 +41,13 @@ namespace GW2DotNET.V1.World.Models
         /// This is the construction that should be used when we've
         /// resolved the IDs.
         /// </summary>
-        /// <param name="worldId"></param>
-        /// <param name="mapId"></param>
-        /// <param name="eventId"></param>
-        /// <param name="state"></param>
-        /// <param name="name"></param>
-        /// <param name="world"></param>
-        /// <param name="map"></param>
+        /// <param name="worldId">The world id.</param>
+        /// <param name="mapId">The map id.</param>
+        /// <param name="eventId">The event id.</param>
+        /// <param name="state">The state.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="world">The GwWorld object.</param>
+        /// <param name="map">The GwMap object.</param>
         public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name, GwWorld world, GwMap map) :
             this(worldId, mapId, eventId, state, name)
         {
@@ -66,29 +66,9 @@ namespace GW2DotNET.V1.World.Models
         }
 
         /// <summary>
-        /// Gets the world id.
-        /// </summary>
-        [JsonProperty("world_id")]
-        internal int WorldId
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
         /// Gets the world
         /// </summary>
         public GwWorld World
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// Gets the map id.
-        /// </summary>
-        [JsonProperty("map_id")]
-        internal int MapId
         {
             get;
             private set;
@@ -118,6 +98,26 @@ namespace GW2DotNET.V1.World.Models
         /// </summary>
         [JsonProperty("state")]
         public GwEventState State
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets the world id.
+        /// </summary>
+        [JsonProperty("world_id")]
+        internal int WorldId
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets the map id.
+        /// </summary>
+        [JsonProperty("map_id")]
+        internal int MapId
         {
             get;
             private set;

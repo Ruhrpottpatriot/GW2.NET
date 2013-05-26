@@ -48,6 +48,7 @@ namespace GW2DotNET.V1.World
         /// This should only be called by WorldManager.
         /// </summary>
         /// <param name="language">The language in which to return names</param>
+        /// <param name="wm">An instance of WorldManager to use for ID resolution</param>
         internal EventData(Language language, WorldManager wm)
         {
             this.language = language;
@@ -104,25 +105,6 @@ namespace GW2DotNET.V1.World
         }
 
         /// <summary>
-        /// Returns a GwEvent that has all ID properties resolved
-        /// and has the event name set.
-        /// </summary>
-        /// <param name="unresolvedEvent"></param>
-        /// <returns></returns>
-        private GwEvent GetResolvedEvent(GwEvent unresolvedEvent)
-        {
-            return new GwEvent(
-                    unresolvedEvent.WorldId,
-                    unresolvedEvent.MapId,
-                    unresolvedEvent.EventId,
-                    unresolvedEvent.State,
-                    this.wm.Events.EventNames[unresolvedEvent.EventId],
-                    this.wm.Worlds[unresolvedEvent.WorldId],
-                    this.wm.Maps[unresolvedEvent.MapId]
-                    );
-        }
-
-        /// <summary>
         /// Gets all events for a particular world.
         /// </summary>
         /// <param name="world">The world for which to retrieve events</param>
@@ -142,7 +124,7 @@ namespace GW2DotNET.V1.World
                     from events in eventsList
                     from eventName in this.EventNames
                     where events.EventId == eventName.Key
-                    select GetResolvedEvent(events)).ToList();
+                    select this.GetResolvedEvent(events)).ToList();
         }
 
         /// <summary>
@@ -165,7 +147,7 @@ namespace GW2DotNET.V1.World
 
             foreach (var singleEvent in eventsResponse.Values.SelectMany(variable => variable))
             {
-                eventToReturn = GetResolvedEvent(singleEvent);
+                eventToReturn = this.GetResolvedEvent(singleEvent);
             }
 
             return eventToReturn;
@@ -192,7 +174,25 @@ namespace GW2DotNET.V1.World
             // Turn the API events into events with names and return them
             return (from variable in eventsResponse.Values
                     from apiEvent in variable
-                    select GetResolvedEvent(apiEvent)).ToList();
+                    select this.GetResolvedEvent(apiEvent)).ToList();
+        }
+
+        /// <summary>
+        /// Returns a GwEvent that has all ID properties resolved
+        /// and has the event name set.
+        /// </summary>
+        /// <param name="unresolvedEvent">A GwEvent object</param>
+        /// <returns>A GwEvent with IDs resolved</returns>
+        private GwEvent GetResolvedEvent(GwEvent unresolvedEvent)
+        {
+            return new GwEvent(
+                    unresolvedEvent.WorldId,
+                    unresolvedEvent.MapId,
+                    unresolvedEvent.EventId,
+                    unresolvedEvent.State,
+                    this.wm.Events.EventNames[unresolvedEvent.EventId],
+                    this.wm.Worlds[unresolvedEvent.WorldId],
+                    this.wm.Maps[unresolvedEvent.MapId]);
         }
     }
 }

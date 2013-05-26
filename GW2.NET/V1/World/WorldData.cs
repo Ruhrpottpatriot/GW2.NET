@@ -68,7 +68,7 @@ namespace GW2DotNET.V1.World
         /// Gets a world by world ID
         /// </summary>
         /// <param name="worldID">The ID of the world</param>
-        /// <returns></returns>
+        /// <returns>A GwWorld</returns>
         public GwWorld this[int worldID]
         {
             get
@@ -81,7 +81,7 @@ namespace GW2DotNET.V1.World
         /// Gets a world by name
         /// </summary>
         /// <param name="name">The name of the world</param>
-        /// <returns></returns>
+        /// <returns>A GwWorld</returns>
         public GwWorld this[string name]
         {
             get
@@ -90,11 +90,19 @@ namespace GW2DotNET.V1.World
             }
         }
 
+        /// <summary>
+        /// IEnumerable<> implementation
+        /// </summary>
+        /// <returns>An enumerator</returns>
         public IEnumerator<GwWorld> GetEnumerator()
         {
             return this.Worlds.GetEnumerator();
         }
 
+        /// <summary>
+        /// IEnumerable implementation
+        /// </summary>
+        /// <returns>An enumerator</returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.Worlds.GetEnumerator();

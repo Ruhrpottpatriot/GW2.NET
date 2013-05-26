@@ -15,7 +15,7 @@ using GW2DotNET.V1.World.Models;
 namespace GW2DotNET.V1.World
 {
     /// <summary>
-    /// Contains methods and properties to get and modify the world content of the api.
+    /// Contains methods and properties to get and modify the world content of the API.
     /// </summary>
     public class WorldManager
     {
