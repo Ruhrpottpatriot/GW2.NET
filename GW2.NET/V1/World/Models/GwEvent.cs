@@ -18,12 +18,39 @@ namespace GW2DotNET.V1.World.Models
     /// </summary>
     public struct GwEvent
     {
+        /// <summary>
+        /// The world id backing field
+        /// </summary>
         private int worldId;
+
+        /// <summary>
+        /// The map id backing field
+        /// </summary>
         private int mapId;
+
+        /// <summary>
+        /// The event id backing field
+        /// </summary>
         private Guid eventId;
+
+        /// <summary>
+        /// The event state backing field
+        /// </summary>
         private GwEventState state;
+
+        /// <summary>
+        /// The event name backing field
+        /// </summary>
         private string name;
+
+        /// <summary>
+        /// The world backing field
+        /// </summary>
         private GwWorld world;
+
+        /// <summary>
+        /// The map backing field
+        /// </summary>
         private GwMap map;
 
         /// <summary>
@@ -133,7 +160,7 @@ namespace GW2DotNET.V1.World.Models
         internal int MapId
         {
             get { return this.mapId; }
-            set { this.mapId = value; }
+            private set { this.mapId = value; }
         }
 
         /// <summary>
