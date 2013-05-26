@@ -29,6 +29,11 @@ namespace GW2DotNET.V1.World
     public class EventData
     {
         /// <summary>
+        /// Keep a pointer to our WorldManager here for ID resolution.
+        /// </summary>
+        private WorldManager wm;
+
+        /// <summary>
         /// Cache the event names here
         /// </summary>
         private Dictionary<Guid, string> eventNamesCache = null;
@@ -43,19 +48,16 @@ namespace GW2DotNET.V1.World
         /// This should only be called by WorldManager.
         /// </summary>
         /// <param name="language">The language in which to return names</param>
-        internal EventData(Language language)
+        internal EventData(Language language, WorldManager wm)
         {
             this.language = language;
+            this.wm = wm;
         }
 
         /// <summary>
         /// Gets or sets the EventNames dictionary.
-        /// The event name list should not be accessed outside of
-        /// this class, but we must cache it. We need it
-        /// every time event states are retrieved in order to
-        /// resolve the IDs to names. Accessing it via this
-        /// private property will make sure it's there when
-        /// we need it.
+        /// This is not exposed to callers. It is for internal
+        /// usage only.
         /// </summary>
         private Dictionary<Guid, string> EventNames
         {
@@ -67,7 +69,7 @@ namespace GW2DotNET.V1.World
 
                     // Create a new Dictionary to hold the names,
                     // whereas the key is the event id and the valus the event name.
-                    var eventNames = new Dictionary<Guid, string>();
+                    this.eventNamesCache = new Dictionary<Guid, string>();
 
                     // Iterate through the namesResponse,
                     // so we can throw away that damn List<Dictionary<string,string>>! *blargh*
@@ -88,7 +90,7 @@ namespace GW2DotNET.V1.World
                             }
                         }
 
-                        eventNames.Add(id, name);
+                        this.eventNamesCache.Add(id, name);
                     }
                 }
 
@@ -99,6 +101,25 @@ namespace GW2DotNET.V1.World
             {
                 this.eventNamesCache = value;
             }
+        }
+
+        /// <summary>
+        /// Returns a GwEvent that has all ID properties resolved
+        /// and has the event name set.
+        /// </summary>
+        /// <param name="unresolvedEvent"></param>
+        /// <returns></returns>
+        private GwEvent GetResolvedEvent(GwEvent unresolvedEvent)
+        {
+            return new GwEvent(
+                    unresolvedEvent.WorldId,
+                    unresolvedEvent.MapId,
+                    unresolvedEvent.EventId,
+                    unresolvedEvent.State,
+                    this.wm.Events.EventNames[unresolvedEvent.EventId],
+                    this.wm.Worlds[unresolvedEvent.WorldId],
+                    this.wm.Maps[unresolvedEvent.MapId]
+                    );
         }
 
         /// <summary>
@@ -115,13 +136,13 @@ namespace GW2DotNET.V1.World
 
             var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
 
-            // Use Linq to match the event ids from the response with the nameResponse 
-            // and put them in a list then return them.
+            var eventsToReturn = new List<GwEvent>();
+
             return (from eventsList in response.Values
                     from events in eventsList
                     from eventName in this.EventNames
                     where events.EventId == eventName.Key
-                    select new GwEvent(events.WorldId, events.MapId, events.EventId, events.State, eventName.Value)).ToList();
+                    select GetResolvedEvent(events)).ToList();
         }
 
         /// <summary>
@@ -140,11 +161,11 @@ namespace GW2DotNET.V1.World
 
             var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
 
-            GwEvent eventToReturn = new GwEvent();
+            GwEvent eventToReturn = null;
 
             foreach (var singleEvent in eventsResponse.Values.SelectMany(variable => variable))
             {
-                eventToReturn = new GwEvent(singleEvent.WorldId, singleEvent.MapId, singleEvent.EventId, singleEvent.State, this.EventNames[singleEvent.EventId]);
+                eventToReturn = GetResolvedEvent(singleEvent);
             }
 
             return eventToReturn;
@@ -171,7 +192,7 @@ namespace GW2DotNET.V1.World
             // Turn the API events into events with names and return them
             return (from variable in eventsResponse.Values
                     from apiEvent in variable
-                    select new GwEvent(apiEvent.WorldId, apiEvent.MapId, apiEvent.EventId, apiEvent.State, this.EventNames[apiEvent.EventId])).ToList();
+                    select GetResolvedEvent(apiEvent)).ToList();
         }
     }
 }

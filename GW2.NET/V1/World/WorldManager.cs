@@ -88,7 +88,7 @@ namespace GW2DotNET.V1.World
             {
                 if (this.eventData == null)
                 {
-                    this.eventData = new EventData(this.Language);
+                    this.eventData = new EventData(this.Language, this);
                 }
 
                 return this.eventData;
