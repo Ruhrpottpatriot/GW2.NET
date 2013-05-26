@@ -16,8 +16,16 @@ namespace GW2DotNET.V1.World.Models
     /// <summary>
     /// Represents an event in the game.
     /// </summary>
-    public class GwEvent
+    public struct GwEvent
     {
+        private int worldId;
+        private int mapId;
+        private Guid eventId;
+        private GwEventState state;
+        private string name;
+        private GwWorld world;
+        private GwMap map;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
         /// </summary>
@@ -29,12 +37,17 @@ namespace GW2DotNET.V1.World.Models
         [JsonConstructor]
         public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name)
         {
-            this.WorldId = worldId;
-            this.MapId = mapId;
-            this.EventId = eventId;
-            this.State = state;
-            this.Name = name;
+            this.worldId = worldId;
+            this.mapId = mapId;
+            this.eventId = eventId;
+            this.state = state;
+            this.name = name;
+
+            // Because this is a struct, we have to assign dummy values
+            this.world = new GwWorld();
+            this.map = new GwMap();
         }
+        
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
@@ -48,11 +61,15 @@ namespace GW2DotNET.V1.World.Models
         /// <param name="name">The name.</param>
         /// <param name="world">The GwWorld object.</param>
         /// <param name="map">The GwMap object.</param>
-        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name, GwWorld world, GwMap map) :
-            this(worldId, mapId, eventId, state, name)
+        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name, GwWorld world, GwMap map)
         {
-            this.World = world;
-            this.Map = map;
+            this.worldId = worldId;
+            this.mapId = mapId;
+            this.eventId = eventId;
+            this.state = state;
+            this.name = name;
+            this.world = world;
+            this.map = map;
         }
 
         /// <summary>
@@ -61,8 +78,7 @@ namespace GW2DotNET.V1.World.Models
         [JsonProperty("name")]
         public string Name
         {
-            get;
-            private set;
+            get { return this.name; }
         }
 
         /// <summary>
@@ -70,8 +86,7 @@ namespace GW2DotNET.V1.World.Models
         /// </summary>
         public GwWorld World
         {
-            get;
-            private set;
+            get { return this.world; }
         }
 
         /// <summary>
@@ -79,8 +94,7 @@ namespace GW2DotNET.V1.World.Models
         /// </summary>
         public GwMap Map
         {
-            get;
-            private set;
+            get { return this.map; }
         }
 
         /// <summary>
@@ -89,8 +103,7 @@ namespace GW2DotNET.V1.World.Models
         [JsonProperty("event_id")]
         public Guid EventId
         {
-            get;
-            private set;
+            get { return this.eventId; }
         }
 
         /// <summary>
@@ -99,8 +112,8 @@ namespace GW2DotNET.V1.World.Models
         [JsonProperty("state")]
         public GwEventState State
         {
-            get;
-            private set;
+            get { return this.state; }
+            private set { this.state = value; }
         }
 
         /// <summary>
@@ -109,8 +122,8 @@ namespace GW2DotNET.V1.World.Models
         [JsonProperty("world_id")]
         internal int WorldId
         {
-            get;
-            private set;
+            get { return this.worldId; }
+            private set { this.worldId = value; }
         }
 
         /// <summary>
@@ -119,8 +132,8 @@ namespace GW2DotNET.V1.World.Models
         [JsonProperty("map_id")]
         internal int MapId
         {
-            get;
-            private set;
+            get { return this.mapId; }
+            set { this.mapId = value; }
         }
 
         /// <summary>

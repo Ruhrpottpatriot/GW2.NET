@@ -143,7 +143,7 @@ namespace GW2DotNET.V1.World
 
             var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
 
-            GwEvent eventToReturn = null;
+            GwEvent eventToReturn = new GwEvent();
 
             foreach (var singleEvent in eventsResponse.Values.SelectMany(variable => variable))
             {
@@ -170,6 +170,16 @@ namespace GW2DotNET.V1.World
             };
 
             var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
+
+            // Turn the API events into events with names and return them
+            return (from variable in eventsResponse.Values
+                    from apiEvent in variable
+                    select this.GetResolvedEvent(apiEvent)).ToList();
+        }
+
+        public IList<GwEvent> GetAllEvents()
+        {
+            var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string,object>>(), ApiCall.Categories.World);
 
             // Turn the API events into events with names and return them
             return (from variable in eventsResponse.Values
