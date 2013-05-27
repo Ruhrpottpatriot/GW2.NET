@@ -133,11 +133,11 @@ namespace GW2DotNET.V1.World
         /// <param name="worldId">The world id.</param>
         /// <param name="eventId">The event id.</param>
         /// <returns>The <see cref="GwEvent"/>.</returns>
-        public GwEvent GetEvent(int worldId, Guid eventId)
+        public GwEvent GetEvent(GwWorld world, Guid eventId)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
-                new KeyValuePair<string, object>("world_id", worldId),
+                new KeyValuePair<string, object>("world_id", world.Id),
                 new KeyValuePair<string, object>("event_id", eventId)
             };
 
@@ -156,17 +156,17 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Gets all events on a specific map.
         /// </summary>
-        /// <param name="worldId">The world id.</param>
-        /// <param name="mapId">The map id.</param>
+        /// <param name="worldId">The world</param>
+        /// <param name="mapId">The map</param>
         /// ReSharper disable CSharpWarnings::CS1584
         /// <returns>An <see cref="IEnumerable"/> with all events on the specified map.</returns>
         /// ReSharper restore CSharpWarnings::CS1584
-        public IList<GwEvent> GetEventsByMap(int worldId, int mapId)
+        public IEnumerable<GwEvent> GetEventsByMap(GwWorld world, GwMap map)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
-                new KeyValuePair<string, object>("world_id", worldId), 
-                new KeyValuePair<string, object>("map_id", mapId)
+                new KeyValuePair<string, object>("world_id", world.Id), 
+                new KeyValuePair<string, object>("map_id", map.Id)
             };
 
             var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
@@ -177,7 +177,11 @@ namespace GW2DotNET.V1.World
                     select this.GetResolvedEvent(apiEvent)).ToList();
         }
 
-        public IList<GwEvent> GetAllEvents()
+        /// <summary>
+        /// Gets all events for all maps on all worlds.
+        /// </summary>
+        /// <returns>An <see cref="IEnumerable"/></returns>
+        public IEnumerable<GwEvent> GetAllEvents()
         {
             var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string,object>>(), ApiCall.Categories.World);
 
