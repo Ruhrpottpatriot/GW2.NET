@@ -16,6 +16,7 @@ namespace GW2DotNET.Events.Models
     /// <summary>
     /// Represents an event in the game.
     /// </summary>
+    [Obsolete("This class is obsolete. Use the WorldManager class in the GW2DotNET.V1.World namespace instead.")]
     public struct GwEvent
     {
         /// <summary>

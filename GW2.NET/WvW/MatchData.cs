@@ -18,6 +18,8 @@ using Newtonsoft.Json.Linq;
 
 namespace GW2DotNET.WvW
 {
+    using System;
+
     /// <summary>
     /// Provides methods to get match data from the API.
     /// </summary>

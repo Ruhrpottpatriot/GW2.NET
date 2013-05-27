@@ -17,7 +17,10 @@ using RestSharp;
 
 namespace GW2DotNET.Infrastructure
 {
+    using System;
+
     /// <summary>Contains static methods to call the guild wars 2 API.</summary>
+    [Obsolete("This class is obsolete. Use the WorldManager class in the GW2DotNET.V1.World namespace instead.")]
     public static class ApiCall
     {
         /// <summary>

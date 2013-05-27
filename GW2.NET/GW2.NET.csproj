@@ -61,6 +61,10 @@
     <Compile Include="Events\EventData.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
+    <Compile Include="V1\Items\ItemsManager.cs" />
+    <Compile Include="V1\Items\Models\Item.cs" />
+    <Compile Include="V1\Items\Models\ItemRarity.cs" />
+    <Compile Include="V1\Items\Models\ItemTypes.cs" />
     <Compile Include="V1\World\EventData.cs" />
     <Compile Include="V1\World\MapData.cs" />
     <Compile Include="V1\World\Models\GwEvent.cs" />
@@ -77,7 +81,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="V1\Items\" />
+    <Folder Include="V1\Items\Data\" />
     <Folder Include="V1\WvW\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -15,9 +15,12 @@ using GW2DotNET.Infrastructure;
 
 namespace GW2DotNET.Events
 {
+    using System;
+
     /// <summary>
     /// Provides methods to get basic world data.
     /// </summary>
+    [Obsolete("This class is obsolete. Use the WorldManager class in the GW2DotNET.V1.World namespace instead.")]
     public class WorldData
     {
         /// <summary>

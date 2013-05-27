@@ -11,9 +11,12 @@ using Newtonsoft.Json;
 
 namespace GW2DotNET.Events.Models
 {
+    using System;
+
     /// <summary>
     /// Represents a map/region in the game.
     /// </summary>
+    [Obsolete("This class is obsolete. Use the WorldManager class in the GW2DotNET.V1.World namespace instead.")]
     public struct Map
     {
         /// <summary>

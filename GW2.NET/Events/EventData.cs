@@ -21,6 +21,7 @@ namespace GW2DotNET.Events
     /// <summary>
     /// Contains methods to get the data of the already discovered events in the game.
     /// </summary>
+    [Obsolete("This class is obsolete. Use the WorldManager class in the GW2DotNET.V1.World namespace instead.")]
     public class EventData
     {
         /// <summary>

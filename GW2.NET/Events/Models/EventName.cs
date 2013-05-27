@@ -14,6 +14,7 @@ namespace GW2DotNET.Events.Models
     /// <summary>
     /// An item returned by a call to event_names.JSON
     /// </summary>
+    [Obsolete("This class is obsolete. Use the WorldManager class in the GW2DotNET.V1.World namespace instead.")]
     public struct EventName
     {
         /// <summary>
