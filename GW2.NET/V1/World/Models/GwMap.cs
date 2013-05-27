@@ -19,13 +19,14 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// The id of the map. This field is readonly.
         /// </summary>
-        private int id;
+        private readonly int id;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GwMap"/> struct.
         /// </summary>
         /// <param name="id">The map id.</param>
         /// <param name="name">The map name.</param>
+        [JsonConstructor]
         public GwMap(int id, string name)
             : this()
         {
@@ -42,13 +43,6 @@ namespace GW2DotNET.V1.World.Models
             get
             {
                 return this.id;
-            }
-
-            // ReSharper disable UnusedMember.Local
-            private set
-            // ReSharper restore UnusedMember.Local
-            {
-                this.id = value;
             }
         }
 
@@ -110,9 +104,7 @@ namespace GW2DotNET.V1.World.Models
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode()
         {
-            // ReSharper disable NonReadonlyFieldInGetHashCode
             return this.id.GetHashCode();
-            // ReSharper restore NonReadonlyFieldInGetHashCode
         }
     }
 }

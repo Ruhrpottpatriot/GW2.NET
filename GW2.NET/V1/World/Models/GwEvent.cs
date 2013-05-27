@@ -160,7 +160,6 @@ namespace GW2DotNET.V1.World.Models
         internal int MapId
         {
             get { return this.mapId; }
-            private set { this.mapId = value; }
         }
 
         /// <summary>
