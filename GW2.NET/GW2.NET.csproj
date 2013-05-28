@@ -50,15 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Events\WorldData.cs" />
-    <Compile Include="Events\Models\GwEvent.cs" />
-    <Compile Include="Events\Models\GwEventState.cs" />
-    <Compile Include="Events\Models\Map.cs" />
-    <Compile Include="Events\Models\World.cs" />
-    <Compile Include="Infrastructure\APICall.cs" />
-    <Compile Include="Events\Models\EventName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Events\EventData.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
     <Compile Include="V1\World\DataProvider\EventData.cs" />
@@ -70,9 +62,6 @@
     <Compile Include="V1\World\DataProvider\WorldData.cs" />
     <Compile Include="V1\World\WorldManager.cs" />
     <Compile Include="V1\WvW\WvWManager.cs" />
-    <Compile Include="WvW\MatchData.cs" />
-    <Compile Include="WvW\Models\Match.cs" />
-    <Compile Include="WvW\Models\MatchDetails.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
