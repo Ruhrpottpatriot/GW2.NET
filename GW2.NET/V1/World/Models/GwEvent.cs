@@ -74,7 +74,7 @@ namespace GW2DotNET.V1.World.Models
             this.world = new GwWorld();
             this.map = new GwMap();
         }
-        
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
@@ -105,7 +105,15 @@ namespace GW2DotNET.V1.World.Models
         [JsonProperty("name")]
         public string Name
         {
-            get { return this.name; }
+            get
+            {
+                return this.name;
+            }
+
+            private set
+            {
+                this.name = value;
+            }
         }
 
         /// <summary>
@@ -113,7 +121,15 @@ namespace GW2DotNET.V1.World.Models
         /// </summary>
         public GwWorld World
         {
-            get { return this.world; }
+            get
+            {
+                return this.world;
+            }
+
+            private set
+            {
+                this.world = value;
+            }
         }
 
         /// <summary>
@@ -121,7 +137,15 @@ namespace GW2DotNET.V1.World.Models
         /// </summary>
         public GwMap Map
         {
-            get { return this.map; }
+            get
+            {
+                return this.map;
+            }
+
+            private set
+            {
+                this.map = value;
+            }
         }
 
         /// <summary>
@@ -160,6 +184,22 @@ namespace GW2DotNET.V1.World.Models
         internal int MapId
         {
             get { return this.mapId; }
+        }
+
+        /// <summary>
+        /// Resolves the name of an event.
+        /// </summary>
+        /// <param name="worldManager">The world manager.</param>
+        /// <returns>The <see cref="GwEvent"/> with the resolved names.</returns>
+        public GwEvent ResolveName(WorldManager worldManager)
+        {
+            GwEvent newEvent = this;
+
+            newEvent.Map = worldManager.Maps[this.MapId];
+            newEvent.World = worldManager.Worlds[this.WorldId];
+            newEvent.Name = worldManager.Events.EventNames[this.EventId];
+
+            return newEvent;
         }
 
         /// <summary>

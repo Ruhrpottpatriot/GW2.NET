@@ -62,40 +62,13 @@ namespace GW2DotNET.V1.World.DataProvider
             this.wm = wm;
         }
 
-        /// <summary>
-        /// Gets or sets the world.
-        /// </summary>
-        public GwWorld World { get; set; }
-
-        /// <summary>
-        /// Gets the events.
-        /// </summary>
-        public IEnumerable<GwEvent> Events
-        {
-            get
-            {
-                if (this.eventCache == null)
-                {
-                    if (this.World.Id == 0)
-                    {
-                        this.eventCache = this.GetAllEvents();
-
-                        return this.eventCache;
-                    }
-
-                    this.eventCache = this.GetEvents(this.World);
-                }
-
-                return this.eventCache;
-            }
-        }
 
         /// <summary>
         /// Gets the EventNames dictionary.
         /// This is not exposed to callers. It is for internal
         /// usage only.
         /// </summary>
-        private Dictionary<Guid, string> EventNames
+        internal Dictionary<Guid, string> EventNames
         {
             get
             {
@@ -141,6 +114,30 @@ namespace GW2DotNET.V1.World.DataProvider
         }
 
         /// <summary>
+        /// Gets the events.
+        /// </summary>
+        private IEnumerable<GwEvent> Events
+        {
+            get
+            {
+                return this.eventCache ?? (this.eventCache = this.GetAllEvents());
+            }
+        }
+
+        /// <summary>
+        /// Gets a collection of <see cref="GwEvent"/>s pre-sorted with a <see cref="GwWorld"/>.
+        /// </summary>
+        /// <param name="world">The world to pre-sort the events.</param>
+        /// <returns>The collection of events.</returns>
+        public IEnumerable<GwEvent> this[GwWorld world]
+        {
+            get
+            {
+                return this.eventCache ?? (this.eventCache = this.GetEvents(world));
+            }
+        }
+
+        /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>
@@ -150,7 +147,7 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             return this.Events.GetEnumerator();
         }
-        
+
         /// <summary>
         /// Returns an enumerator that iterates through a collection.
         /// </summary>
@@ -174,61 +171,10 @@ namespace GW2DotNET.V1.World.DataProvider
                                         new KeyValuePair<string, object>(
                                             "world_id", world.Id)
             };
+
             var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
 
-            return (from eventsList in response.Values
-                    from events in eventsList
-                    from eventName in this.EventNames
-                    where events.EventId == eventName.Key
-                    select this.GetResolvedEvent(events)).ToList();
-        }
-
-        /// <summary>
-        /// Gets a single event from the API.
-        /// </summary>
-        /// <param name="world">The world id.</param>
-        /// <param name="eventId">The event id.</param>
-        /// <returns>The <see cref="GwEvent"/>.</returns>
-        private GwEvent GetEvent(GwWorld world, Guid eventId)
-        {
-            var arguments = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("world_id", world.Id),
-                new KeyValuePair<string, object>("event_id", eventId)
-            };
-
-            var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
-
-            GwEvent eventToReturn = new GwEvent();
-
-            foreach (var singleEvent in eventsResponse.Values.SelectMany(variable => variable))
-            {
-                eventToReturn = this.GetResolvedEvent(singleEvent);
-            }
-
-            return eventToReturn;
-        }
-
-        /// <summary>
-        /// Gets all events on a specific map.
-        /// </summary>
-        /// <param name="world">The world</param>
-        /// <param name="map">The map</param>
-        /// <returns>An <see cref="T:System.Collections.IEnumerable"/> with all events on the specified map.</returns>
-        private IEnumerable<GwEvent> GetEventsByMap(GwWorld world, GwMap map)
-        {
-            var arguments = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("world_id", world.Id), 
-                new KeyValuePair<string, object>("map_id", map.Id)
-            };
-
-            var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
-
-            // Turn the API events into events with names and return them
-            return (from variable in eventsResponse.Values
-                    from apiEvent in variable
-                    select this.GetResolvedEvent(apiEvent)).ToList();
+            return response["events"].Select(gwEvent => gwEvent.ResolveName(this.wm)).ToList();
         }
 
         /// <summary>
@@ -237,30 +183,10 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <returns>An <see cref="T:System.Collections.IEnumerable"/></returns>
         private IEnumerable<GwEvent> GetAllEvents()
         {
-            var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World);
+            var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World);
 
             // Turn the API events into events with names and return them
-            return (from variable in eventsResponse.Values
-                    from apiEvent in variable
-                    select this.GetResolvedEvent(apiEvent)).ToList();
-        }
-
-        /// <summary>
-        /// Returns a GwEvent that has all ID properties resolved
-        /// and has the event name set.
-        /// </summary>
-        /// <param name="unresolvedEvent">A GwEvent object</param>
-        /// <returns>A GwEvent with IDs resolved</returns>
-        private GwEvent GetResolvedEvent(GwEvent unresolvedEvent)
-        {
-            return new GwEvent(
-                    unresolvedEvent.WorldId,
-                    unresolvedEvent.MapId,
-                    unresolvedEvent.EventId,
-                    unresolvedEvent.State,
-                    this.wm.Events.EventNames[unresolvedEvent.EventId],
-                    this.wm.Worlds[unresolvedEvent.WorldId],
-                    this.wm.Maps[unresolvedEvent.MapId]);
+            return response["events"].Select(gwEvent => gwEvent.ResolveName(this.wm)).ToList();
         }
     }
 }
