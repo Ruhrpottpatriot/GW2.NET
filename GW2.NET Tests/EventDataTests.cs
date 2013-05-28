@@ -29,11 +29,9 @@ namespace GW2.NET_Tests
 
             var events = this.manager.Events.ToList();
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.Elapsed.Seconds);
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
 
             Debug.WriteLine("Total Number of Events: {0}", events.Count);
-
-            Debug.WriteLine("Last Event in List: {0}", events.Last().Name);
         }
 
         [Test]
@@ -45,11 +43,9 @@ namespace GW2.NET_Tests
             
             stopwatch.Stop();
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.Elapsed.Seconds);
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
 
             Debug.WriteLine("Total Number of Events: {0}", events.Count);
-
-            Debug.WriteLine("Last Event in List: {0}", events.Last().Name);
         }
 
         [SetUp]
