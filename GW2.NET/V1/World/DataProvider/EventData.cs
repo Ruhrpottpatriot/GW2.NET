@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.World.Models;
+    using GW2DotNET.V1.Infrastructure;
+    using GW2DotNET.V1.World.Models;
 
-namespace GW2DotNET.V1.World
+namespace GW2DotNET.V1.World.DataProvider
 {
     /// <summary>
     /// A class for retrieving information about the
@@ -22,7 +22,7 @@ namespace GW2DotNET.V1.World
     /// </summary>
     /// <remarks>
     /// Note that unlike MapData and WorldData, this class does NOT
-    /// implement IList. This is intentional, because we do not expose
+    /// implement IEnumerable. This is intentional, because we do not expose
     /// the event names list to the caller. We only return events objects
     /// that have status information, not just name-id mappings.
     /// </remarks>
@@ -31,18 +31,18 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.
         /// </summary>
-        private WorldManager wm;
+        private readonly WorldManager wm;
+        
+        /// <summary>
+        /// The events names will be retrieved in this language
+        /// </summary>
+        private readonly Language language;
 
         /// <summary>
         /// Cache the event names here
         /// </summary>
-        private Dictionary<Guid, string> eventNamesCache = null;
-
-        /// <summary>
-        /// The events names will be retrieved in this language
-        /// </summary>
-        private Language language;
-
+        private Dictionary<Guid, string> eventNamesCache;
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="EventData"/> class.
         /// This should only be called by WorldManager.
@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.World
         }
 
         /// <summary>
-        /// Gets or sets the EventNames dictionary.
+        /// Gets the EventNames dictionary.
         /// This is not exposed to callers. It is for internal
         /// usage only.
         /// </summary>
@@ -66,7 +66,13 @@ namespace GW2DotNET.V1.World
             {
                 if (this.eventNamesCache == null)
                 {
-                    var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", null, ApiCall.Categories.World);
+                    var arguments = new List<KeyValuePair<string, object>>
+                                        {
+                                            new KeyValuePair<string, object>(
+                                                "lang", this.language)
+                                        };
+
+                    var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", arguments, ApiCall.Categories.World);
 
                     // Create a new Dictionary to hold the names,
                     // whereas the key is the event id and the valus the event name.
@@ -97,11 +103,6 @@ namespace GW2DotNET.V1.World
 
                 return this.eventNamesCache;
             }
-
-            set
-            {
-                this.eventNamesCache = value;
-            }
         }
 
         /// <summary>
@@ -109,16 +110,13 @@ namespace GW2DotNET.V1.World
         /// </summary>
         /// <param name="world">The world for which to retrieve events</param>
         /// <returns>A list of events</returns>
-        public IList<GwEvent> GetEvents(GwWorld world)
+        public IEnumerable<GwEvent> GetEvents(GwWorld world)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("world_id", world.Id)
             };
-
             var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
-
-            var eventsToReturn = new List<GwEvent>();
 
             return (from eventsList in response.Values
                     from events in eventsList
@@ -130,7 +128,7 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Gets a single event from the API.
         /// </summary>
-        /// <param name="worldId">The world id.</param>
+        /// <param name="world">The world id.</param>
         /// <param name="eventId">The event id.</param>
         /// <returns>The <see cref="GwEvent"/>.</returns>
         public GwEvent GetEvent(GwWorld world, Guid eventId)
@@ -156,8 +154,8 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Gets all events on a specific map.
         /// </summary>
-        /// <param name="worldId">The world</param>
-        /// <param name="mapId">The map</param>
+        /// <param name="world">The world</param>
+        /// <param name="map">The map</param>
         /// ReSharper disable CSharpWarnings::CS1584
         /// <returns>An <see cref="IEnumerable"/> with all events on the specified map.</returns>
         /// ReSharper restore CSharpWarnings::CS1584
@@ -183,7 +181,7 @@ namespace GW2DotNET.V1.World
         /// <returns>An <see cref="IEnumerable"/></returns>
         public IEnumerable<GwEvent> GetAllEvents()
         {
-            var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string,object>>(), ApiCall.Categories.World);
+            var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World);
 
             // Turn the API events into events with names and return them
             return (from variable in eventsResponse.Values

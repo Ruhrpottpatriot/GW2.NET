@@ -159,7 +159,7 @@ namespace GW2DotNET.WvW
         /// Gets a list of matches from the API With their corresponding world.
         /// </summary>
         /// <returns>An <see cref="IEnumerable"/> with all the matches currently running.</returns>
-        public IList<Match> GetMatches()
+        public IEnumerable<Match> GetMatches()
         {
             var jsonString = ApiCall.CallWvWApi("matches.json", null);
 

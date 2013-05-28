@@ -9,10 +9,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.World.Models;
 
-namespace GW2DotNET.V1.World
+namespace GW2DotNET.V1.World.DataProvider
 {
     /// <summary>
     /// Contains methods to get and modify the world data.
@@ -20,14 +21,14 @@ namespace GW2DotNET.V1.World
     public class WorldData : IEnumerable<GwWorld>
     {
         /// <summary>
-        /// Cache the world_names list here
-        /// </summary>
-        private List<GwWorld> gwWorldCache = null;
-
-        /// <summary>
         /// The world names will be retrieved in this language
         /// </summary>
-        private Language language;
+        private readonly Language language;
+
+        /// <summary>
+        /// Cache the world_names list here
+        /// </summary>
+        private List<GwWorld> gwWorldCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldData"/> class.
@@ -43,10 +44,10 @@ namespace GW2DotNET.V1.World
         /// Gets all <see cref="GwWorld"/> from the API.
         /// </summary>
         /// ReSharper disable CSharpWarnings::CS1584
-        /// <returns>A <see cref="IList"/> containing all world objects.
+        /// <returns>A <see cref="IEnumerable"/> containing all world objects.
         /// ReSharper restore CSharpWarnings::CS1584
         /// </returns>
-        private IList<GwWorld> Worlds
+        private IEnumerable<GwWorld> Worlds
         {
             get
             {
@@ -67,13 +68,13 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Gets a world by world ID
         /// </summary>
-        /// <param name="worldID">The ID of the world</param>
+        /// <param name="worldId">The ID of the world</param>
         /// <returns>A GwWorld</returns>
-        public GwWorld this[int worldID]
+        public GwWorld this[int worldId]
         {
             get
             {
-                return (from n in this.Worlds where n.Id == worldID select n).Single();
+                return (from n in this.Worlds where n.Id == worldId select n).Single();
             }
         }
 
@@ -91,18 +92,24 @@ namespace GW2DotNET.V1.World
         }
 
         /// <summary>
-        /// IEnumerable<> implementation
+        /// Returns an enumerator that iterates through the collection.
         /// </summary>
-        /// <returns>An enumerator</returns>
+        /// <returns>
+        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>1</filterpriority>
         public IEnumerator<GwWorld> GetEnumerator()
         {
             return this.Worlds.GetEnumerator();
         }
 
         /// <summary>
-        /// IEnumerable implementation
+        /// Returns an enumerator that iterates through a collection.
         /// </summary>
-        /// <returns>An enumerator</returns>
+        /// <returns>
+        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return this.Worlds.GetEnumerator();

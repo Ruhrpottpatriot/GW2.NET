@@ -9,10 +9,11 @@
 
 using System.Collections.Generic;
 using System.Linq;
+
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.World.Models;
 
-namespace GW2DotNET.V1.World
+namespace GW2DotNET.V1.World.DataProvider
 {
     /// <summary>
     /// Contains methods to get or modify the map data.
@@ -20,14 +21,14 @@ namespace GW2DotNET.V1.World
     public class MapData : IEnumerable<GwMap>
     {
         /// <summary>
-        /// Cache the map_names data here
-        /// </summary>
-        private List<GwMap> gwMapCache = null;
-
-        /// <summary>
         /// Retrieve the maps in this language
         /// </summary>
-        private Language language;
+        private readonly Language language;
+
+        /// <summary>
+        /// Cache the map_names data here
+        /// </summary>
+        private List<GwMap> gwMapCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MapData"/> class.
@@ -42,11 +43,11 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Gets the maps from the API.
         /// This field is private and is not directly exposed.
-        /// Instead, we implement IList on the parent class and
+        /// Instead, we implement IEnumerable on the parent class and
         /// pass the calls through to this object.
         /// </summary>
-        /// <returns>The <see cref="IList"/> of maps.</returns>
-        private IList<GwMap> Maps
+        /// <returns>The <see cref="IEnumerable"/> of maps.</returns>
+        private IEnumerable<GwMap> Maps
         {
             get
             {
@@ -67,21 +68,21 @@ namespace GW2DotNET.V1.World
         /// <summary>
         /// Gets a map by ID
         /// </summary>
-        /// <param name="mapID">The ID</param>
-        /// <returns>A map</returns>
-        public GwMap this[int mapID]
+        /// <param name="mapId">The id of the map.</param>
+        /// <returns>A single <see cref="GwMap"/> with the specified id.</returns>
+        public GwMap this[int mapId]
         {
             get
             {
-                return (from n in this.Maps where n.Id == mapID select n).Single();
+                return (from n in this.Maps where n.Id == mapId select n).Single();
             }
         }
 
         /// <summary>
         /// Gets a map by name
         /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
+        /// <param name="name">The name of the map.</param>
+        /// <returns>A single <see cref="GwMap"/> with the specified name.</returns>
         public GwMap this[string name]
         {
             get

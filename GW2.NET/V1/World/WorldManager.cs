@@ -7,10 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.World.Models;
+using GW2DotNET.V1.World.DataProvider;
 
 namespace GW2DotNET.V1.World
 {
