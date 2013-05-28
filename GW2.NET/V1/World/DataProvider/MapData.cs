@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// Instead, we implement IEnumerable on the parent class and
         /// pass the calls through to this object.
         /// </summary>
-        /// <returns>The <see cref="IEnumerable"/> of maps.</returns>
+        /// <returns>The <see cref="T:System.Collections.IEnumerable"/> of maps.</returns>
         private IEnumerable<GwMap> Maps
         {
             get

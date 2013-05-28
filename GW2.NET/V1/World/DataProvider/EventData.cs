@@ -7,15 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-    using GW2DotNET.V1.Infrastructure;
-    using GW2DotNET.V1.World.Models;
+using GW2DotNET.V1.Infrastructure;
+using GW2DotNET.V1.World.Models;
 
 namespace GW2DotNET.V1.World.DataProvider
 {
+    using System.Collections;
+
     /// <summary>
     /// A class for retrieving information about the
     /// state of world events.
@@ -26,13 +28,13 @@ namespace GW2DotNET.V1.World.DataProvider
     /// the event names list to the caller. We only return events objects
     /// that have status information, not just name-id mappings.
     /// </remarks>
-    public class EventData
+    public class EventData : IEnumerable<GwEvent>
     {
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.
         /// </summary>
         private readonly WorldManager wm;
-        
+
         /// <summary>
         /// The events names will be retrieved in this language
         /// </summary>
@@ -42,7 +44,12 @@ namespace GW2DotNET.V1.World.DataProvider
         /// Cache the event names here
         /// </summary>
         private Dictionary<Guid, string> eventNamesCache;
-        
+
+        /// <summary>
+        /// The event cache.
+        /// </summary>
+        private IEnumerable<GwEvent> eventCache;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="EventData"/> class.
         /// This should only be called by WorldManager.
@@ -53,6 +60,34 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             this.language = language;
             this.wm = wm;
+        }
+
+        /// <summary>
+        /// Gets or sets the world.
+        /// </summary>
+        public GwWorld World { get; set; }
+
+        /// <summary>
+        /// Gets the events.
+        /// </summary>
+        public IEnumerable<GwEvent> Events
+        {
+            get
+            {
+                if (this.eventCache == null)
+                {
+                    if (this.World.Id == 0)
+                    {
+                        this.eventCache = this.GetAllEvents();
+
+                        return this.eventCache;
+                    }
+
+                    this.eventCache = this.GetEvents(this.World);
+                }
+
+                return this.eventCache;
+            }
         }
 
         /// <summary>
@@ -106,15 +141,38 @@ namespace GW2DotNET.V1.World.DataProvider
         }
 
         /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+        /// </returns>
+        public IEnumerator<GwEvent> GetEnumerator()
+        {
+            return this.Events.GetEnumerator();
+        }
+        
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+        /// </returns>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.Events.GetEnumerator();
+        }
+
+        /// <summary>
         /// Gets all events for a particular world.
         /// </summary>
         /// <param name="world">The world for which to retrieve events</param>
         /// <returns>A list of events</returns>
-        public IEnumerable<GwEvent> GetEvents(GwWorld world)
+        private IEnumerable<GwEvent> GetEvents(GwWorld world)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
-                new KeyValuePair<string, object>("world_id", world.Id)
+                                        new KeyValuePair<string, object>(
+                                            "world_id", world.Id)
             };
             var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
 
@@ -131,7 +189,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <param name="world">The world id.</param>
         /// <param name="eventId">The event id.</param>
         /// <returns>The <see cref="GwEvent"/>.</returns>
-        public GwEvent GetEvent(GwWorld world, Guid eventId)
+        private GwEvent GetEvent(GwWorld world, Guid eventId)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
@@ -156,10 +214,8 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </summary>
         /// <param name="world">The world</param>
         /// <param name="map">The map</param>
-        /// ReSharper disable CSharpWarnings::CS1584
-        /// <returns>An <see cref="IEnumerable"/> with all events on the specified map.</returns>
-        /// ReSharper restore CSharpWarnings::CS1584
-        public IEnumerable<GwEvent> GetEventsByMap(GwWorld world, GwMap map)
+        /// <returns>An <see cref="T:System.Collections.IEnumerable"/> with all events on the specified map.</returns>
+        private IEnumerable<GwEvent> GetEventsByMap(GwWorld world, GwMap map)
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
@@ -178,8 +234,8 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Gets all events for all maps on all worlds.
         /// </summary>
-        /// <returns>An <see cref="IEnumerable"/></returns>
-        public IEnumerable<GwEvent> GetAllEvents()
+        /// <returns>An <see cref="T:System.Collections.IEnumerable"/></returns>
+        private IEnumerable<GwEvent> GetAllEvents()
         {
             var eventsResponse = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World);
 

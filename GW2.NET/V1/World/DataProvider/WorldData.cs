@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Cache the world_names list here
         /// </summary>
-        private List<GwWorld> gwWorldCache;
+        private IEnumerable<GwWorld> gwWorldCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldData"/> class.
@@ -43,9 +43,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Gets all <see cref="GwWorld"/> from the API.
         /// </summary>
-        /// ReSharper disable CSharpWarnings::CS1584
-        /// <returns>A <see cref="IEnumerable"/> containing all world objects.
-        /// ReSharper restore CSharpWarnings::CS1584
+        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerable"/> containing all world objects.
         /// </returns>
         private IEnumerable<GwWorld> Worlds
         {
