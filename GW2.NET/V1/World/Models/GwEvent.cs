@@ -19,24 +19,24 @@ namespace GW2DotNET.V1.World.Models
     public struct GwEvent
     {
         /// <summary>
-        /// The world id backing field
-        /// </summary>
-        private int worldId;
-
-        /// <summary>
         /// The map id backing field
         /// </summary>
-        private int mapId;
+        private readonly int mapId;
 
         /// <summary>
         /// The event id backing field
         /// </summary>
-        private Guid eventId;
+        private readonly Guid eventId;
 
+        /// <summary>
+        /// The world id backing field
+        /// </summary>
+        private readonly int worldId;
+        
         /// <summary>
         /// The event state backing field
         /// </summary>
-        private GwEventState state;
+        private readonly GwEventState state;
 
         /// <summary>
         /// The event name backing field
@@ -74,8 +74,7 @@ namespace GW2DotNET.V1.World.Models
             this.world = new GwWorld();
             this.map = new GwMap();
         }
-
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
         /// This is the construction that should be used when we've
@@ -164,7 +163,6 @@ namespace GW2DotNET.V1.World.Models
         public GwEventState State
         {
             get { return this.state; }
-            private set { this.state = value; }
         }
 
         /// <summary>
@@ -174,7 +172,6 @@ namespace GW2DotNET.V1.World.Models
         internal int WorldId
         {
             get { return this.worldId; }
-            private set { this.worldId = value; }
         }
 
         /// <summary>
@@ -185,23 +182,7 @@ namespace GW2DotNET.V1.World.Models
         {
             get { return this.mapId; }
         }
-
-        /// <summary>
-        /// Resolves the name of an event.
-        /// </summary>
-        /// <param name="worldManager">The world manager.</param>
-        /// <returns>The <see cref="GwEvent"/> with the resolved names.</returns>
-        public GwEvent ResolveName(WorldManager worldManager)
-        {
-            GwEvent newEvent = this;
-
-            newEvent.Map = worldManager.Maps[this.MapId];
-            newEvent.World = worldManager.Worlds[this.WorldId];
-            newEvent.Name = worldManager.Events.EventNames[this.EventId];
-
-            return newEvent;
-        }
-
+        
         /// <summary>
         /// Determines whether two specified instances of <see crdef="Map"/> are equal.
         /// </summary>
@@ -222,6 +203,22 @@ namespace GW2DotNET.V1.World.Models
         public static bool operator !=(GwEvent a, GwEvent b)
         {
             return a.EventId != b.EventId;
+        }
+        
+        /// <summary>
+        /// Resolves the name of an event.
+        /// </summary>
+        /// <param name="worldManager">The world manager.</param>
+        /// <returns>The <see cref="GwEvent"/> with the resolved names.</returns>
+        public GwEvent ResolveName(WorldManager worldManager)
+        {
+            GwEvent newEvent = this;
+
+            newEvent.Map = worldManager.Maps[this.MapId];
+            newEvent.World = worldManager.Worlds[this.WorldId];
+            newEvent.Name = worldManager.Events.EventNames[this.EventId];
+
+            return newEvent;
         }
 
         /// <summary>

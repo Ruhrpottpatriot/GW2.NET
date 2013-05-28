@@ -43,7 +43,9 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Gets all <see cref="GwWorld"/> from the API.
         /// </summary>
+        /// ReSharper disable CSharpWarnings::CS1584
         /// <returns>A <see cref="T:System.Collections.Generic.IEnumerable"/> containing all world objects.
+        /// ReSharper restore CSharpWarnings::CS1584
         /// </returns>
         private IEnumerable<GwWorld> Worlds
         {
@@ -67,12 +69,14 @@ namespace GW2DotNET.V1.World.DataProvider
         /// Gets a world by world ID
         /// </summary>
         /// <param name="worldId">The ID of the world</param>
-        /// <returns>A GwWorld</returns>
+        /// <returns>A single <see cref="GwWorld"/>.</returns>
         public GwWorld this[int worldId]
         {
             get
             {
-                return (from n in this.Worlds where n.Id == worldId select n).Single();
+                return (from n in this.Worlds
+                        where n.Id == worldId
+                        select n).Single();
             }
         }
 
@@ -80,12 +84,14 @@ namespace GW2DotNET.V1.World.DataProvider
         /// Gets a world by name
         /// </summary>
         /// <param name="name">The name of the world</param>
-        /// <returns>A GwWorld</returns>
+        /// <returns>A single <see cref="GwWorld"/>.</returns>
         public GwWorld this[string name]
         {
             get
             {
-                return (from n in this.Worlds where n.Name == name select n).Single();
+                return (from n in this.Worlds
+                        where n.Name == name
+                        select n).Single();
             }
         }
 

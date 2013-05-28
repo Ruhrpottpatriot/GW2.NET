@@ -61,8 +61,7 @@ namespace GW2DotNET.V1.World.DataProvider
             this.language = language;
             this.wm = wm;
         }
-
-
+        
         /// <summary>
         /// Gets the EventNames dictionary.
         /// This is not exposed to callers. It is for internal
@@ -90,7 +89,8 @@ namespace GW2DotNET.V1.World.DataProvider
                     // so we can throw away that damn List<Dictionary<string,string>>! *blargh*
                     foreach (var eventName in namesResponse)
                     {
-                        Guid id = new Guid();
+                        var id = new Guid();
+                        
                         string name = string.Empty;
 
                         foreach (var variable in eventName)

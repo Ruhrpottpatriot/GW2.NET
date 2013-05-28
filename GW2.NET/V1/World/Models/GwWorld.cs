@@ -89,7 +89,7 @@ namespace GW2DotNET.V1.World.Models
         }
 
         /// <summary>
-        /// Indicates whether this instance and a specified <see cref="Events.Models.Map"/> are equal.
+        /// Indicates whether this instance and a specified <see cref="V1.World.Models.GwWorld"/> are equal.
         /// </summary>
         /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
         /// <param name="obj">Another object to compare to. </param>

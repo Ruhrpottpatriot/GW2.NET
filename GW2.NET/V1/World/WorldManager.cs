@@ -42,7 +42,7 @@ namespace GW2DotNET.V1.World
         /// </summary>
         public WorldManager()
         {
-            this.language = Infrastructure.Language.En;
+            this.language = Language.En;
         }
 
         /// <summary>
@@ -52,12 +52,7 @@ namespace GW2DotNET.V1.World
         {
             get
             {
-                if (this.mapData == null)
-                {
-                    this.mapData = new MapData(this.Language);
-                }
-
-                return this.mapData;
+                return this.mapData ?? (this.mapData = new MapData(this.Language));
             }
         }
 
@@ -68,12 +63,7 @@ namespace GW2DotNET.V1.World
         {
             get
             {
-                if (this.worldData == null)
-                {
-                    this.worldData = new WorldData(this.Language);
-                }
-
-                return this.worldData;
+                return this.worldData ?? (this.worldData = new WorldData(this.Language));
             }
         }
 
@@ -84,12 +74,7 @@ namespace GW2DotNET.V1.World
         {
             get
             {
-                if (this.eventData == null)
-                {
-                    this.eventData = new EventData(this.Language, this);
-                }
-
-                return this.eventData;
+                return this.eventData ?? (this.eventData = new EventData(this.Language, this));
             }
         }
 
@@ -103,12 +88,15 @@ namespace GW2DotNET.V1.World
                 return this.language;
             }
 
-            // ToDo: Clear cache if language changed.
             set
             {
                 this.worldData = null;
+
                 this.mapData = null;
+
                 this.eventData = null;
+
+                this.language = value;
             }
         }
     }
