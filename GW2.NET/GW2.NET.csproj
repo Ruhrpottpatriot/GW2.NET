@@ -61,7 +61,7 @@
     <Compile Include="V1\World\Models\GwMap.cs" />
     <Compile Include="V1\World\Models\GwWorld.cs" />
     <Compile Include="V1\World\WorldManager.cs" />
-    <Compile Include="V1\WvW\DataProviders\MatchDataProvider.cs" />
+    <Compile Include="V1\WvW\DataProviders\MatchData.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />
     <Compile Include="V1\WvW\Models\WvWMatchDetails.cs" />
     <Compile Include="V1\WvW\WvWManager.cs" />

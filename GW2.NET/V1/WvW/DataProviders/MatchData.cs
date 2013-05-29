@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.WvW.DataProviders
     using GW2DotNET.V1.Infrastructure;
     using GW2DotNET.V1.WvW.Models;
 
-    public class MatchDataProvider
+    public class MatchData
     {
         private IEnumerable<WvWMatch> matches;
 
