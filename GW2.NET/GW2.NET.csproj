@@ -63,7 +63,6 @@
     <Compile Include="V1\World\WorldManager.cs" />
     <Compile Include="V1\WvW\DataProviders\MatchData.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />
-    <Compile Include="V1\WvW\Models\WvWMatchDetails.cs" />
     <Compile Include="V1\WvW\WvWManager.cs" />
   </ItemGroup>
   <ItemGroup>
