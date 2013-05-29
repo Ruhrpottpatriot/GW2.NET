@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.WvW.DataProviders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,5 +17,14 @@ namespace GW2DotNET.V1.WvW
 {
     public class WvWManager
     {
+        private MatchData matchData;
+
+        public MatchData Matches
+        {
+            get
+            {
+                return this.matchData ?? (this.matchData = new MatchData());
+            }
+        }
     }
 }
