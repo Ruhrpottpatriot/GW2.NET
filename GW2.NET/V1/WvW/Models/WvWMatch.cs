@@ -19,7 +19,8 @@ namespace GW2DotNET.V1.WvW.Models
     {
         private readonly string matchId;
 
-        public WvWMatch(string matchId, GwWorld redWorld, GwWorld blueWorld, GwWorld greenWorld, IEnumerable<int> scores, IEnumerable<WvWMap> maps)
+        [JsonConstructor]
+        public WvWMatch(string matchId, string redWorld, string blueWorld, string greenWorld, IEnumerable<int> scores, IEnumerable<WvWMap> maps)
             : this()
         {
             this.RedWorld = redWorld;
@@ -30,7 +31,7 @@ namespace GW2DotNET.V1.WvW.Models
             this.matchId = matchId;
         }
 
-        [JsonProperty("match_id")]
+        [JsonProperty("wvw_match_id")]
         public string MatchId
         {
             get
@@ -39,14 +40,14 @@ namespace GW2DotNET.V1.WvW.Models
             }
         }
 
-        [JsonProperty("red_world")]
-        public GwWorld RedWorld { get; private set; }
+        [JsonProperty("red_world_id")]
+        public string RedWorld { get; private set; }
 
-        [JsonProperty("blue_world")]
-        public GwWorld BlueWorld { get; private set; }
+        [JsonProperty("blue_world_id")]
+        public string BlueWorld { get; private set; }
 
-        [JsonProperty("green_world")]
-        public GwWorld GreenWorld { get; private set; }
+        [JsonProperty("green_world_id")]
+        public string GreenWorld { get; private set; }
 
         [JsonProperty("scores")]
         public IEnumerable<int> Scores { get; private set; }

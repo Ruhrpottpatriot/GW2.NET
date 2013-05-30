@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections;
+
 namespace GW2DotNET.V1.WvW.DataProviders
 {
     using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace GW2DotNET.V1.WvW.DataProviders
     using GW2DotNET.V1.Infrastructure;
     using GW2DotNET.V1.WvW.Models;
 
-    public class MatchData
+    public class MatchData : IEnumerable<WvWMatch>
     {
         private IEnumerable<WvWMatch> matches;
 
@@ -50,20 +52,37 @@ namespace GW2DotNET.V1.WvW.DataProviders
 
         public IEnumerable<WvWMatch> GetMatches()
         {
-            IList<WvWMatch> matchesReturn = new List<WvWMatch>();
+            return (from wvWMatch in this.MatchDictionary
+                    let arguments = new List<KeyValuePair<string, object>>
+                    {
+                        new KeyValuePair<string, object>("match_id", wvWMatch.MatchId)
+                    }
+                    let returnMatch = ApiCall.GetContent<WvWMatch>("match_details.json", arguments, ApiCall.Categories.WvW)
+                    select new WvWMatch(wvWMatch.MatchId, wvWMatch.RedWorld, wvWMatch.BlueWorld, wvWMatch.GreenWorld, returnMatch.Scores, returnMatch.Maps)).ToList();
+        }
 
+        /// <summary>
+        /// Returns an enumerator that iterates through the collection.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>1</filterpriority>
+        public IEnumerator<WvWMatch> GetEnumerator()
+        {
+            return this.Matches.GetEnumerator();
+        }
 
-            foreach (var wvWMatch in MatchDictionary)
-            {
-                var arguments = new List<KeyValuePair<string, object>>
-                                    {
-                                        new KeyValuePair<string, object>(
-                                            "match_id", wvWMatch.MatchId)
-                                    };
-                matchesReturn.Add(ApiCall.GetContent<WvWMatch>("match_details.json", arguments, ApiCall.Categories.WvW));
-            }
-
-            return matchesReturn;
+        /// <summary>
+        /// Returns an enumerator that iterates through a collection.
+        /// </summary>
+        /// <returns>
+        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.Matches.GetEnumerator();
         }
     }
 }
