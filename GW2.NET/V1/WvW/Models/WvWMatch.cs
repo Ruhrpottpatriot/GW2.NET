@@ -9,16 +9,41 @@
 
 using System.Collections.Generic;
 
-using GW2DotNET.V1.World.Models;
-
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.WvW.Models
 {
-    public struct WvWMatch
+    /// <summary>
+    /// Represents a world vs world match.
+    /// </summary>
+    public partial struct WvWMatch
     {
+        /// <summary>
+        /// The match id.
+        /// </summary>
         private readonly string matchId;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WvWMatch"/> struct.
+        /// </summary>
+        /// <param name="matchId">
+        /// The match id.
+        /// </param>
+        /// <param name="redWorld">
+        /// The red world id.
+        /// </param>
+        /// <param name="blueWorld">
+        /// The blue world id.
+        /// </param>
+        /// <param name="greenWorld">
+        /// The green world id.
+        /// </param>
+        /// <param name="scores">
+        /// The scores.
+        /// </param>
+        /// <param name="maps">
+        /// The maps.
+        /// </param>
         [JsonConstructor]
         public WvWMatch(string matchId, string redWorld, string blueWorld, string greenWorld, IEnumerable<int> scores, IEnumerable<WvWMap> maps)
             : this()
@@ -31,6 +56,9 @@ namespace GW2DotNET.V1.WvW.Models
             this.matchId = matchId;
         }
 
+        /// <summary>
+        /// Gets the match id.
+        /// </summary>
         [JsonProperty("wvw_match_id")]
         public string MatchId
         {
@@ -40,68 +68,34 @@ namespace GW2DotNET.V1.WvW.Models
             }
         }
 
+        /// <summary>
+        /// Gets the red world id.
+        /// </summary>
         [JsonProperty("red_world_id")]
         public string RedWorld { get; private set; }
 
+        /// <summary>
+        /// Gets the blue world id.
+        /// </summary>
         [JsonProperty("blue_world_id")]
         public string BlueWorld { get; private set; }
 
+        /// <summary>
+        /// Gets the green world id.
+        /// </summary>
         [JsonProperty("green_world_id")]
         public string GreenWorld { get; private set; }
 
+        /// <summary>
+        /// Gets the scores.
+        /// </summary>
         [JsonProperty("scores")]
         public IEnumerable<int> Scores { get; private set; }
 
+        /// <summary>
+        /// Gets the maps.
+        /// </summary>
         [JsonProperty("maps")]
         public IEnumerable<WvWMap> Maps { get; private set; }
-
-        public struct WvWMap
-        {
-            public WvWMap(Type mapType, IEnumerable<int> scores, IEnumerable<Objective> objectives)
-                : this()
-            {
-                this.MapType = mapType;
-                this.Scores = scores;
-                this.Objectives = objectives;
-            }
-
-            [JsonProperty("type")]
-            public Type MapType { get; private set; }
-
-            [JsonProperty("scores")]
-            public IEnumerable<int> Scores { get; private set; }
-
-            [JsonProperty("objectives")]
-            public IEnumerable<Objective> Objectives { get; private set; }
-
-            public struct Objective
-            {
-                [JsonConstructor]
-                public Objective(int id, string owner, string ownerGuild)
-                    : this()
-                {
-                    this.Id = id;
-                    this.Owner = owner;
-                    this.OwnerGuild = ownerGuild;
-                }
-
-                [JsonProperty("id")]
-                public int Id { get; private set; }
-
-                [JsonProperty("owner")]
-                public string Owner { get; private set; }
-
-                [JsonProperty("owner_guild")]
-                public string OwnerGuild { get; private set; }
-            }
-
-            public enum Type
-            {
-                RedHome,
-                BlueHome,
-                GreenHome,
-                Center
-            }
-        }
     }
 }
