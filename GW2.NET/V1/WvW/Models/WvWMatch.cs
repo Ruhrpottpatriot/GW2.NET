@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Match.cs" company="GW2.Net Coding Team">
+// <copyright file="WvWMatch.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 
 using Newtonsoft.Json;
@@ -38,6 +39,12 @@ namespace GW2DotNET.V1.WvW.Models
         /// <param name="greenWorld">
         /// The green world id.
         /// </param>
+        /// <param name="startTime">
+        /// The start time of the match.
+        /// </param>
+        /// <param name="endTime">
+        /// The end time of the match.
+        /// </param>
         /// <param name="scores">
         /// The scores.
         /// </param>
@@ -45,12 +52,14 @@ namespace GW2DotNET.V1.WvW.Models
         /// The maps.
         /// </param>
         [JsonConstructor]
-        public WvWMatch(string matchId, string redWorld, string blueWorld, string greenWorld, IEnumerable<int> scores, IEnumerable<WvWMap> maps)
+        public WvWMatch(string matchId, string redWorld, string blueWorld, string greenWorld, DateTime startTime, DateTime endTime, IEnumerable<int> scores, IEnumerable<WvWMap> maps)
             : this()
         {
             this.RedWorld = redWorld;
             this.BlueWorld = blueWorld;
             this.GreenWorld = greenWorld;
+            this.StartTime = startTime;
+            this.EndTime = endTime;
             this.Scores = scores;
             this.Maps = maps;
             this.matchId = matchId;
@@ -72,30 +81,70 @@ namespace GW2DotNET.V1.WvW.Models
         /// Gets the red world id.
         /// </summary>
         [JsonProperty("red_world_id")]
-        public string RedWorld { get; private set; }
+        public string RedWorld
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the blue world id.
         /// </summary>
         [JsonProperty("blue_world_id")]
-        public string BlueWorld { get; private set; }
+        public string BlueWorld
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the green world id.
         /// </summary>
         [JsonProperty("green_world_id")]
-        public string GreenWorld { get; private set; }
+        public string GreenWorld
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets the start time of the match.
+        /// </summary>
+        [JsonProperty("start_time")]
+        public DateTime StartTime
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// Gets the end time of the match.
+        /// </summary>
+        [JsonProperty("end_time")]
+        public DateTime EndTime
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the scores.
         /// </summary>
         [JsonProperty("scores")]
-        public IEnumerable<int> Scores { get; private set; }
+        public IEnumerable<int> Scores
+        {
+            get;
+            private set;
+        }
 
         /// <summary>
         /// Gets the maps.
         /// </summary>
         [JsonProperty("maps")]
-        public IEnumerable<WvWMap> Maps { get; private set; }
+        public IEnumerable<WvWMap> Maps
+        {
+            get;
+            private set;
+        }
     }
 }
