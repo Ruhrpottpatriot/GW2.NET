@@ -19,11 +19,6 @@ namespace GW2DotNET.V1.Infrastructure
     public static class ApiCall
     {
         /// <summary>
-        /// The RestSharp client.
-        /// </summary>
-        private static RestClient client;
-
-        /// <summary>
         /// Enumerates the possible categories a request can be.
         /// </summary>
         public enum Categories
@@ -42,9 +37,19 @@ namespace GW2DotNET.V1.Infrastructure
             /// <summary>
             /// The items part of the API
             /// </summary>
-            Items
+            Items,
+
+            /// <summary>
+            /// The guild part of the api.
+            /// </summary>
+            Guild,
+
+            /// <summary>
+            /// The miscellaneous part of the api.
+            /// </summary>
+            Miscellaneous
         }
-        
+
         /// <summary>
         /// Calls the API and returns a CLI object of the specified type.
         /// </summary>
@@ -69,20 +74,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// <returns>The JSON encoded <see cref="string"/>.</returns>
         private static string GetJson(string apiMethod, IEnumerable<KeyValuePair<string, object>> arguments, Categories category)
         {
-            // Do a switch based on the place where the caller wants to go. 
-            // Simple solution to keep the call in one method and not two.
-            switch (category)
-            {
-                case Categories.Items:
-                    client = new RestClient("https://api.guildwars2.com/v1/");
-                    break;
-                case Categories.World:
-                    client = new RestClient("https://api.guildwars2.com/v1/");
-                    break;
-                case Categories.WvW:
-                    client = new RestClient("https://api.guildwars2.com/v1/wvw/");
-                    break;
-            }
+            var client = SwitchApiLocation(category);
 
             var restRequest = new RestRequest(apiMethod, Method.GET)
             {
@@ -98,6 +90,42 @@ namespace GW2DotNET.V1.Infrastructure
             }
 
             return client.Execute(restRequest).Content;
+        }
+
+        /// <summary>
+        /// Do a switch based on the place where the caller wants to go. 
+        /// Simple solution to keep the call in one method and not two.
+        /// </summary>
+        /// <param name="category">
+        /// The category of the api.
+        /// </param>
+        /// <returns>
+        /// The <see cref="RestClient"/>.
+        /// </returns>
+        private static RestClient SwitchApiLocation(Categories category)
+        {
+            var client = new RestClient();
+
+            switch (category)
+            {
+                case Categories.Items:
+                    client = new RestClient("https://api.guildwars2.com/v1/");
+                    break;
+                case Categories.World:
+                    client = new RestClient("https://api.guildwars2.com/v1/");
+                    break;
+                case Categories.WvW:
+                    client = new RestClient("https://api.guildwars2.com/v1/wvw/");
+                    break;
+                case Categories.Guild:
+                    client = new RestClient("https://api.guildwars2.com/v1/");
+                    break;
+                case Categories.Miscellaneous:
+                    client = new RestClient("https://api.guildwars2.com/v1/");
+                    break;
+            }
+
+            return client;
         }
     }
 }
