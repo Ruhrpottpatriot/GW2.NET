@@ -133,7 +133,7 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                return this.eventCache ?? (this.eventCache = this.GetEvents(world));
+                return this.Events.Where(e => e.World == world);
             }
         }
 
@@ -157,24 +157,6 @@ namespace GW2DotNET.V1.World.DataProvider
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.Events.GetEnumerator();
-        }
-
-        /// <summary>
-        /// Gets all events for a particular world.
-        /// </summary>
-        /// <param name="world">The world for which to retrieve events</param>
-        /// <returns>A list of events</returns>
-        private IEnumerable<GwEvent> GetEvents(GwWorld world)
-        {
-            var arguments = new List<KeyValuePair<string, object>>
-            {
-                                        new KeyValuePair<string, object>(
-                                            "world_id", world.Id)
-            };
-
-            var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", arguments, ApiCall.Categories.World);
-
-            return response["events"].Select(gwEvent => gwEvent.ResolveName(this.wm)).ToList();
         }
 
         /// <summary>
