@@ -53,9 +53,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
-    <Compile Include="V1\Items\DataProvider\ColorData.cs" />
-    <Compile Include="V1\Items\ItemsManager.cs" />
-    <Compile Include="V1\Items\Models\GwColor.cs" />
+    <Compile Include="V1\Infrastructure\Miscellaneous.cs" />
+    <Compile Include="V1\Items\DataProvider\ItemData.cs" />
+    <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
+    <Compile Include="V1\Items\ItemManager.cs" />
+    <Compile Include="V1\Items\Models\GameType.cs" />
+    <Compile Include="V1\Items\Models\Item.cs" />
+    <Compile Include="V1\Items\Models\ItemFlags.cs" />
+    <Compile Include="V1\Items\Models\Recipe.cs" />
+    <Compile Include="V1\Items\Models\RecipeType.cs" />
+    <Compile Include="V1\Items\Models\Restriction.cs" />
+    <Compile Include="V1\Items\Models\WeaponRarity.cs" />
+    <Compile Include="V1\Items\Models\ItemType.cs" />
     <Compile Include="V1\World\DataProvider\EventData.cs" />
     <Compile Include="V1\World\DataProvider\MapData.cs" />
     <Compile Include="V1\World\DataProvider\WorldData.cs" />
@@ -66,10 +75,13 @@
     <Compile Include="V1\World\WorldManager.cs" />
     <Compile Include="V1\WvW\DataProviders\MatchData.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />
+    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.WvWObjective.cs" />
     <Compile Include="V1\WvW\WvWManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.cs" />
+    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.Type.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
