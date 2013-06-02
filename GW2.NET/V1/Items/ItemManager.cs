@@ -20,6 +20,11 @@ namespace GW2DotNET.V1.Items
     public class ItemManager
     {
         /// <summary>
+        /// The color data provider.
+        /// </summary>
+        private ColourData colourData;
+
+        /// <summary>
         /// The recipe data provider.
         /// </summary>
         private RecipeData recipeData;
@@ -40,6 +45,17 @@ namespace GW2DotNET.V1.Items
         public ItemManager()
         {
             this.language = Language.En;
+        }
+
+        /// <summary>
+        /// Gets the colours.
+        /// </summary>
+        public ColourData Colours
+        {
+            get
+            {
+                return this.colourData ?? (this.colourData = new ColourData());
+            }
         }
 
         /// <summary>
@@ -79,6 +95,8 @@ namespace GW2DotNET.V1.Items
 
             set
             {
+                this.colourData = null;
+
                 this.recipeData = null;
 
                 this.itemData = null;

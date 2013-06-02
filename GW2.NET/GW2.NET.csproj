@@ -54,10 +54,13 @@
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
     <Compile Include="V1\Infrastructure\Miscellaneous.cs" />
+    <Compile Include="V1\Items\DataProvider\ColourData.cs" />
+    <Compile Include="V1\Items\Models\GwColour.ColourDetails.cs" />
     <Compile Include="V1\Items\DataProvider\ItemData.cs" />
     <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
     <Compile Include="V1\Items\ItemManager.cs" />
     <Compile Include="V1\Items\Models\GameType.cs" />
+    <Compile Include="V1\Items\Models\GwColour.cs" />
     <Compile Include="V1\Items\Models\Item.cs" />
     <Compile Include="V1\Items\Models\ItemFlags.cs" />
     <Compile Include="V1\Items\Models\Recipe.cs" />
