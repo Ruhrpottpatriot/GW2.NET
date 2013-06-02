@@ -60,13 +60,53 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var events = this.manager.Events[new GwWorld(1001, string.Empty)].ToList();
+            var events = this.manager.Events.ToList();
 
             stopwatch.Stop();
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Debug.WriteLine("Time passed until all events are returned: {0}", stopwatch.ElapsedMilliseconds);
 
-            Debug.WriteLine("Total Number of Events: {0}", events.Count);
+            Debug.WriteLine("Restarting stopwatch.");
+
+            stopwatch.Restart();
+
+            var eventsByWorld1001 = this.manager.Events[new GwWorld(1001, string.Empty)].ToList();
+
+            var eventsByWorld1023 = this.manager.Events[new GwWorld(1023, string.Empty)].ToList();
+
+            var eventsByWorld2207 = this.manager.Events[new GwWorld(2101, string.Empty)].ToList();
+
+            stopwatch.Stop();
+
+            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
+
+            stopwatch.Stop();
+            
+            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
+
+            stopwatch.Restart();
+
+            Debug.WriteLine("Total number of events on world 1001: {0}", eventsByWorld1001.Count);
+
+            stopwatch.Stop();
+
+            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
+
+            stopwatch.Restart();
+            
+            Debug.WriteLine("Total number of events on world 1023: {0}", eventsByWorld1023.Count);
+
+            stopwatch.Stop();
+
+            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
+
+            stopwatch.Restart();
+        
+            Debug.WriteLine("Total number of events on world 2207: {0}", eventsByWorld2207.Count);
+
+            stopwatch.Stop();
+
+            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
         }
     }
 }
