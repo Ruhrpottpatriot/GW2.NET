@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -58,55 +59,49 @@ namespace GW2.NET_Tests
         [Test]
         public void GetEventsByWorld()
         {
-            var stopwatch = Stopwatch.StartNew();
+            Debug.WriteLine("Gets the events from multiple worlds to test the new caching on the event data provider.");
 
-            var events = this.manager.Events.ToList();
+            Debug.WriteLine(string.Empty);
 
-            stopwatch.Stop();
+            var worldList = new List<GwWorld>
+            {
+                new GwWorld(1001, "Anvil Rock"), 
+                new GwWorld(1023, "Devona's Rest"), 
+                new GwWorld(2207, "Dzagonur [DE]")
+            };
 
-            Debug.WriteLine("Time passed until all events are returned: {0}", stopwatch.ElapsedMilliseconds);
+            Debug.WriteLine("Worlds to get the events from:");
+            Debug.Indent();
 
-            Debug.WriteLine("Restarting stopwatch.");
+            foreach (var gwWorld in worldList)
+            {
+                Debug.WriteLine(gwWorld.Name);
+            }
 
-            stopwatch.Restart();
-
-            var eventsByWorld1001 = this.manager.Events[new GwWorld(1001, string.Empty)].ToList();
-
-            var eventsByWorld1023 = this.manager.Events[new GwWorld(1023, string.Empty)].ToList();
-
-            var eventsByWorld2207 = this.manager.Events[new GwWorld(2101, string.Empty)].ToList();
-
-            stopwatch.Stop();
-
-            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
-
-            stopwatch.Stop();
+            Debug.Unindent();
+            Debug.WriteLine(string.Empty);
             
-            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
+            var stopwatch = new Stopwatch();
 
-            stopwatch.Restart();
+            foreach (var gwWorld in worldList)
+            {
+                Debug.WriteLine("{0} (Id: {1})", gwWorld.Name, gwWorld.Id);
 
-            Debug.WriteLine("Total number of events on world 1001: {0}", eventsByWorld1001.Count);
+                Debug.Indent();
+                Debug.WriteLine("Starting stopwatch");
+                stopwatch.Start();
 
-            stopwatch.Stop();
+                var eventsByWorld = this.manager.Events[gwWorld];
 
-            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
+                stopwatch.Stop();
 
-            stopwatch.Restart();
-            
-            Debug.WriteLine("Total number of events on world 1023: {0}", eventsByWorld1023.Count);
+                Debug.WriteLine("Elapsed time: {0} ms", stopwatch.ElapsedMilliseconds);
+                Debug.WriteLine("Total number of events on {0}: {1}", gwWorld.Name, eventsByWorld.Count());
 
-            stopwatch.Stop();
-
-            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
-
-            stopwatch.Restart();
-        
-            Debug.WriteLine("Total number of events on world 2207: {0}", eventsByWorld2207.Count);
-
-            stopwatch.Stop();
-
-            Debug.WriteLine("Elapsed time since stopwatch restart: {0}", stopwatch.ElapsedMilliseconds);
+                stopwatch.Restart();
+                Debug.WriteLine(string.Empty);
+                Debug.Unindent();
+            }
         }
     }
 }
