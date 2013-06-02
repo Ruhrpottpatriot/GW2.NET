@@ -65,6 +65,23 @@ namespace GW2DotNET.V1.WvW.DataProviders
         }
 
         /// <summary>
+        /// Gets a single match from the server.
+        /// </summary>
+        /// <param name="id">
+        /// The match id.
+        /// </param>
+        /// <returns>
+        /// The <see cref="WvWMatch"/>.
+        /// </returns>
+        public WvWMatch this[string id]
+        {
+            get
+            {
+                return this.Matches.Single(m => m.MatchId == id);
+            }
+        }
+
+        /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>
@@ -96,20 +113,13 @@ namespace GW2DotNET.V1.WvW.DataProviders
         /// </returns>
         internal IEnumerable<WvWMatch> GetMatches()
         {
-            List<WvWMatch> list = new List<WvWMatch>();
-
-            foreach (WvWMatch wvWMatch in this.MatchDictionary)
-            {
-                List<KeyValuePair<string, object>> arguments = new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("match_id", wvWMatch.MatchId)
-                };
-
-                WvWMatch returnMatch = ApiCall.GetContent<WvWMatch>("match_details.json", arguments, ApiCall.Categories.WvW);
-                list.Add(new WvWMatch(wvWMatch.MatchId, wvWMatch.RedWorld, wvWMatch.BlueWorld, wvWMatch.GreenWorld, wvWMatch.StartTime, wvWMatch.EndTime, returnMatch.Scores, returnMatch.Maps));
-            }
-
-            return list;
+            return (from wvWMatch in this.MatchDictionary
+                    let arguments = new List<KeyValuePair<string, object>>
+                    {
+                        new KeyValuePair<string, object>("match_id", wvWMatch.MatchId)
+                    }
+                    let returnMatch = ApiCall.GetContent<WvWMatch>("match_details.json", arguments, ApiCall.Categories.WvW)
+                    select new WvWMatch(wvWMatch.MatchId, wvWMatch.RedWorld, wvWMatch.BlueWorld, wvWMatch.GreenWorld, wvWMatch.StartTime, wvWMatch.EndTime, returnMatch.Scores, returnMatch.Maps)).ToList();
         }
     }
 }

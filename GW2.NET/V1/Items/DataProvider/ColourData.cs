@@ -57,12 +57,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                if (this.coloursCache == null)
-                {
-                    this.coloursCache = this.GetColours();
-                }
-
-                return this.coloursCache.Single(c => c.Id == id);
+                return this.Colours.Single(c => c.Id == id);
             }
         }
 

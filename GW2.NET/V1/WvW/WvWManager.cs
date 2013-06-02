@@ -11,10 +11,19 @@ using GW2DotNET.V1.WvW.DataProviders;
 
 namespace GW2DotNET.V1.WvW
 {
+    /// <summary>
+    /// Contains methods and properties to get and modify the world vs world content of the API.
+    /// </summary>
     public class WvWManager
     {
+        /// <summary>
+        /// The match data.
+        /// </summary>
         private MatchData matchData;
 
+        /// <summary>
+        /// Gets the matches.
+        /// </summary>
         public MatchData Matches
         {
             get
