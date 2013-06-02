@@ -1,32 +1,31 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventDataTests.cs" company="GW2.Net Coding Team">
+// <copyright file="ColoursTests.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Defines the EventDataTests type.
+//   The colours tests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
 using System.Linq;
 
-using GW2DotNET.V1.World;
-using GW2DotNET.V1.World.Models;
+using GW2DotNET.V1.Items;
 
 using NUnit.Framework;
 
 namespace GW2.NET_Tests
 {
     /// <summary>
-    /// The event data tests.
+    /// The colours tests.
     /// </summary>
     [TestFixture]
-    public class EventDataTests
+    public class ColoursTests
     {
         /// <summary>
-        /// The world manager.
+        /// The item manager.
         /// </summary>
-        private WorldManager manager;
+        private ItemManager manager;
 
         /// <summary>
         /// Runs before each test run.
@@ -34,39 +33,41 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new WorldManager();
+            this.manager = new ItemManager();
         }
 
         /// <summary>
-        ///  Gets all events from the server.
+        /// Gets all colours from the api.
         /// </summary>
         [Test]
-        public void GetAllEvents()
+        public void GetColours()
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var events = this.manager.Events.ToList();
-
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
-
-            Debug.WriteLine("Total Number of Events: {0}", events.Count);
-        }
-
-        /// <summary>
-        /// Gets an event by world id.
-        /// </summary>
-        [Test]
-        public void GetEventsByWorld()
-        {
-            var stopwatch = Stopwatch.StartNew();
-
-            var events = this.manager.Events[new GwWorld(1001, string.Empty)].ToList();
+            var colours = this.manager.Colours.ToList();
 
             stopwatch.Stop();
 
             Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
 
-            Debug.WriteLine("Total Number of Events: {0}", events.Count);
+            Debug.WriteLine("Total colours: {0}", colours.Count);
+        }
+
+        /// <summary>
+        /// Gets a single single colour.
+        /// </summary>
+        [Test]
+        public void GetSingleColour()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var colour = this.manager.Colours[1231];
+
+            stopwatch.Stop();
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+
+            Debug.WriteLine("Single colour name: {0}", colour.Name);
         }
     }
 }
