@@ -55,6 +55,11 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             Food,
 
             /// <summary>
+            /// An alcoholic beverage.
+            /// </summary>
+            Booze,
+
+            /// <summary>
             /// A generic consumable.
             /// </summary>
             Generic,
