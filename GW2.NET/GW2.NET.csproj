@@ -59,7 +59,6 @@
     <Compile Include="V1\Items\DataProvider\ItemData.cs" />
     <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
     <Compile Include="V1\Items\ItemManager.cs" />
-    <Compile Include="V1\Items\Models\Items\ItemDetail.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Armour.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Back.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Bag.cs" />
@@ -76,7 +75,7 @@
     <Compile Include="V1\Items\Models\Items\SubType\Tool.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Trinket.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Trophy.cs" />
-    <Compile Include="V1\Items\Models\Items\UpgradeFlags.cs" />
+    <Compile Include="V1\Items\Models\Items\UpgradeFlag.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Weapon.cs" />
     <Compile Include="V1\Items\Models\Recipe.cs" />
     <Compile Include="V1\Items\Models\RecipeType.cs" />

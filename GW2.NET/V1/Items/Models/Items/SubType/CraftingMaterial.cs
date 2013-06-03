@@ -9,6 +9,9 @@
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
+    /// <summary>
+    /// The crafting material.
+    /// </summary>
     public struct CraftingMaterial
     {
     }

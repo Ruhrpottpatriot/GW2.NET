@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
 
@@ -73,8 +71,6 @@ namespace GW2DotNET.V1.Items
         /// <summary>
         /// Gets the items from the server..
         /// </summary>
-        /// <exception cref="NotImplementedException">This method is not yet implemented.
-        /// </exception>
         public ItemData Items
         {
             get

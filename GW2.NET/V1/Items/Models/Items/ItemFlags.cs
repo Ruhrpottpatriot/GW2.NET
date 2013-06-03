@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V1.Items.Models
+namespace GW2DotNET.V1.Items.Models.Items
 {
     /// <summary>
     /// Enumerates the possible item flags.

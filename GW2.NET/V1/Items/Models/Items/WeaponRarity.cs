@@ -7,20 +7,51 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V1.Items.Models
+namespace GW2DotNET.V1.Items.Models.Items
 {
     /// <summary>
-    /// TEnumerates the wqeapon rarity.
+    /// Enumerates the weapon rarity.
     /// </summary>
     public enum WeaponRarity
     {
+        /// <summary>
+        /// The item is junk.
+        /// </summary>
         Junk,
+
+        /// <summary>
+        /// The item is of basic quality.
+        /// </summary>
         Basic,
+
+        /// <summary>
+        /// The item is of fine quality.
+        /// </summary>
         Fine,
+
+        /// <summary>
+        /// The item is a masterwork.
+        /// </summary>
         Masterwork,
+
+        /// <summary>
+        /// The item is of rare quality.
+        /// </summary>
         Rare,
+
+        /// <summary>
+        /// The item is of exotic quality.
+        /// </summary>
         Exotic,
+
+        /// <summary>
+        /// The item is an ascended item.
+        /// </summary>
         Ascended,
+
+        /// <summary>
+        /// The item is a legendary.
+        /// </summary>
         Legendary
     }
 }

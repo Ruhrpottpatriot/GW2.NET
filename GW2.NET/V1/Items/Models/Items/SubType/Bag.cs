@@ -7,10 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Newtonsoft.Json;
+
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
+    /// <summary>
+    /// A bag.
+    /// </summary>
     public struct Bag
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Bag"/> struct.
+        /// </summary>
+        /// <param name="size">
+        /// The size.
+        /// </param>
+        /// <param name="noSellOrSort">
+        /// The no sell or sort.
+        /// </param>
+        [JsonConstructor]
         public Bag(int size, bool noSellOrSort)
             : this()
         {
@@ -18,12 +33,20 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             this.Size = size;
         }
 
+        /// <summary>
+        /// Gets the bag size.
+        /// </summary>
+        [JsonProperty("size")]
         public int Size
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// Gets a value indicating whether the bag can be sold or sorted.
+        /// </summary>
+        [JsonProperty("no_sell_or_sort")]
         public bool NoSellOrSort
         {
             get;
