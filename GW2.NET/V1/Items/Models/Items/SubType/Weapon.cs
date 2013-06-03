@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// The damage type.
         /// </param>
         [JsonConstructor]
-        public Weapon(WeaponType type, IEnumerable<InfusionSlot> infusionSlots, int maxPower, int minPower, int suffixId, InfixUpgrade infixUpgrade, int defense, WeaponDamageType damageType)
+        public Weapon(WeaponType type, IEnumerable<InfusionSlot> infusionSlots, int maxPower, int minPower, int? suffixId, InfixUpgrade infixUpgrade, int defense, WeaponDamageType damageType)
             : this()
         {
             this.DamageType = damageType;
@@ -210,7 +210,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// Gets the suffix id.
         /// </summary>
         [JsonProperty("suffix_item_id")]
-        public int SuffixId
+        public int? SuffixId
         {
             get;
             private set;

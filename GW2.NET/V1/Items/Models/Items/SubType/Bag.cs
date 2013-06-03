@@ -7,6 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
+using GW2DotNET.V1.Infrastructure;
+
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
@@ -47,6 +51,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// Gets a value indicating whether the bag can be sold or sorted.
         /// </summary>
         [JsonProperty("no_sell_or_sort")]
+        [JsonConverter(typeof(BooleanConverter))]
         public bool NoSellOrSort
         {
             get;

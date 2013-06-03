@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// The defense.
         /// </param>
         [JsonConstructor]
-        public Armour(ArmourClass armourClass, ArmourType type, int suffixId, IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int defense)
+        public Armour(ArmourClass armourClass, ArmourType type, int? suffixId, IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int defense)
             : this()
         {
             this.Defense = defense;
@@ -142,7 +142,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// Gets the suffix id.
         /// </summary>
         [JsonProperty("suffix_item_id")]
-        public int SuffixId
+        public int? SuffixId
         {
             get;
             private set;

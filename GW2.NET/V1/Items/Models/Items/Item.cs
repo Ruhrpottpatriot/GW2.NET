@@ -98,7 +98,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// The armour details.
         /// </param>
         [JsonConstructor]
-        public Item(IEnumerable<Restriction> restrictions, IEnumerable<ItemFlags> flags, IEnumerable<GameType> gameTypes, int vendorValue, WeaponRarity rarity, int level, ItemType type, string description, string name, int id, Weapon? weaponDetails, UpgradeComponent? upgradeComponentDetails, Trophy? trophyDetails, Trinket? trinketDetails, Tool? toolDetails, Gizmo? gizmoDetails, Tool? gatheringDetails, CraftingMaterial? craftingMaterialDetails, Container? containerDetails, Consumable? consumableDetails, Bag? bagDetails, Back? backDetails, Armour? armourDetails)
+        public Item(IEnumerable<Restriction> restrictions, IEnumerable<ItemFlags> flags, IEnumerable<GameType> gameTypes, int vendorValue, WeaponRarity rarity, int level, ItemType type, string description, string name, int id, Weapon? weaponDetails, UpgradeComponent upgradeComponentDetails, Trophy? trophyDetails, Trinket? trinketDetails, Tool? toolDetails, Gizmo? gizmoDetails, Tool? gatheringDetails, CraftingMaterial? craftingMaterialDetails, Container? containerDetails, Consumable? consumableDetails, Bag? bagDetails, Back? backDetails, Armour? armourDetails)
             : this()
         {
             this.Name = name;
@@ -238,7 +238,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// Gets the upgrade component details.
         /// </summary>
         [JsonProperty("upgrade_component")]
-        public UpgradeComponent? UpgradeComponentDetails { get; private set; }
+        public UpgradeComponent UpgradeComponentDetails { get; private set; }
 
         /// <summary>
         /// Gets the trophy details.

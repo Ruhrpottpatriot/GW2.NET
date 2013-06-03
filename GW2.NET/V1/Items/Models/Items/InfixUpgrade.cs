@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// The buff.
         /// </param>
         [JsonConstructor]
-        public InfixUpgrade(IEnumerable<ItemAttribute> attributes, Dictionary<int, string> buff)
+        public InfixUpgrade(IEnumerable<ItemAttribute> attributes, Dictionary<string, string> buff)
             : this()
         {
             this.Attributes = attributes;
@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// Gets the buff.
         /// </summary>
         [JsonProperty("buff")]
-        public Dictionary<int, string> Buff
+        public Dictionary<string, string> Buff
         {
             get;
             private set;

@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// The infix upgrade.
         /// </param>
         [JsonConstructor]
-        public Back(int suffixId, IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade)
+        public Back(int? suffixId, IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade)
             : this()
         {
             this.InfixUpgrade = infixUpgrade;
@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// Gets the suffix id.
         /// </summary>
         [JsonProperty("suffix_item_id")]
-        public int SuffixId
+        public int? SuffixId
         {
             get;
             private set;

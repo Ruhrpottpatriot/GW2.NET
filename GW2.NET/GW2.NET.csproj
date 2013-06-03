@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
+    <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
     <Compile Include="V1\Infrastructure\Miscellaneous.cs" />
     <Compile Include="V1\Items\DataProvider\ColourData.cs" />

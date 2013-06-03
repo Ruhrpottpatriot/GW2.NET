@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// The flags.
         /// </param>
         [JsonConstructor]
-        public UpgradeComponent(InfixUpgrade infixUpgrade, UpgradeType type, string suffix, IEnumerable<UpgradeFlag> infusionUpgradeType, UpgradeComponentFlags flags)
+        public UpgradeComponent(InfixUpgrade infixUpgrade, UpgradeType type, string suffix, IEnumerable<UpgradeFlag> infusionUpgradeType, IEnumerable<UpgradeComponentFlags> flags)
             : this()
         {
             this.Flags = flags;
@@ -207,7 +207,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// <summary>
         /// Gets the suffix.
         /// </summary>
-        [JsonProperty("suffix_item_id")]
+        [JsonProperty("suffix")]
         public string Suffix
         {
             get;
@@ -237,8 +237,8 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// <summary>
         /// Gets the flags.
         /// </summary>
-        [JsonProperty("upgrade_component")]
-        public UpgradeComponentFlags Flags
+        [JsonProperty("flags")]
+        public IEnumerable<UpgradeComponentFlags> Flags
         {
             get;
             private set;
