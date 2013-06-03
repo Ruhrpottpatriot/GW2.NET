@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using GW2DotNET.V1.Infrastructure;
 
 using Newtonsoft.Json;
