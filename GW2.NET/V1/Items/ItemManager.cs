@@ -79,7 +79,7 @@ namespace GW2DotNET.V1.Items
         {
             get
             {
-                throw new NotImplementedException();
+                return this.itemData ?? (this.itemData = new ItemData());
             }
         }
 

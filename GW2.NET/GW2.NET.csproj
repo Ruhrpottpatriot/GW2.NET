@@ -59,15 +59,31 @@
     <Compile Include="V1\Items\DataProvider\ItemData.cs" />
     <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
     <Compile Include="V1\Items\ItemManager.cs" />
-    <Compile Include="V1\Items\Models\GameType.cs" />
+    <Compile Include="V1\Items\Models\Items\ItemDetail.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Armour.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Back.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Bag.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Consumable.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Container.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\CraftingMaterial.cs" />
+    <Compile Include="V1\Items\Models\Items\GameType.cs" />
     <Compile Include="V1\Items\Models\GwColour.cs" />
-    <Compile Include="V1\Items\Models\Item.cs" />
-    <Compile Include="V1\Items\Models\ItemFlags.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Gizmo.cs" />
+    <Compile Include="V1\Items\Models\Items\InfixUpgrade.cs" />
+    <Compile Include="V1\Items\Models\Items\InfusionSlot.cs" />
+    <Compile Include="V1\Items\Models\Items\Item.cs" />
+    <Compile Include="V1\Items\Models\Items\ItemFlags.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Tool.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Trinket.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Trophy.cs" />
+    <Compile Include="V1\Items\Models\Items\UpgradeFlags.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\Weapon.cs" />
     <Compile Include="V1\Items\Models\Recipe.cs" />
     <Compile Include="V1\Items\Models\RecipeType.cs" />
-    <Compile Include="V1\Items\Models\Restriction.cs" />
-    <Compile Include="V1\Items\Models\WeaponRarity.cs" />
-    <Compile Include="V1\Items\Models\ItemType.cs" />
+    <Compile Include="V1\Items\Models\Items\Restriction.cs" />
+    <Compile Include="V1\Items\Models\Items\SubType\UpgradeComponent.cs" />
+    <Compile Include="V1\Items\Models\Items\WeaponRarity.cs" />
+    <Compile Include="V1\Items\Models\Items\ItemType.cs" />
     <Compile Include="V1\World\DataProvider\EventData.cs" />
     <Compile Include="V1\World\DataProvider\MapData.cs" />
     <Compile Include="V1\World\DataProvider\WorldData.cs" />
@@ -78,13 +94,13 @@
     <Compile Include="V1\World\WorldManager.cs" />
     <Compile Include="V1\WvW\DataProviders\MatchData.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />
+    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.cs" />
+    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.Type.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.WvWObjective.cs" />
     <Compile Include="V1\WvW\WvWManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.cs" />
-    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.Type.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
