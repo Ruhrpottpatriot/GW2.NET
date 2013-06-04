@@ -34,6 +34,24 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         private IEnumerable<Guild> guildCache;
 
         /// <summary>
+        /// The wvw manager.
+        /// </summary>
+        private WvWManager wvWManager;
+
+        /// <summary>
+        /// Sets the wvw manager.
+        /// </summary>
+        /// <remarks>If the user already has an instance of a <see cref="V1.WvW.WvWManager"/> created it can be set here.
+        /// This ensures that already cached data is used and no second call to the api is made.</remarks>
+        public WvWManager WvWManager
+        {
+            set
+            {
+                this.wvWManager = value;
+            }
+        }
+
+        /// <summary>
         /// Gets the guild id cache.
         /// </summary>
         private IEnumerable<Guid> GuildIdCache
@@ -42,7 +60,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
             {
                 if (this.guildIdCache == null)
                 {
-                    var manager = new WvWManager();
+                    var manager = this.wvWManager ?? new WvWManager();
 
                     var matches = manager.Matches.ToList();
 
