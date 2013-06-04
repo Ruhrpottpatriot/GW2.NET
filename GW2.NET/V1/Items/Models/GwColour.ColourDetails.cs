@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models
@@ -39,9 +41,14 @@ namespace GW2DotNET.V1.Items.Models
             /// <param name="lightness">
             /// The lightness.
             /// </param>
+            /// <param name="rgbValues">
+            /// The rgb Values.
+            /// </param>
             [JsonConstructor]
-            public ColourDetails(double brightness, double contrast, double hue, double saturation, double lightness) : this()
+            public ColourDetails(double brightness, double contrast, double hue, double saturation, double lightness, IList<int> rgbValues)
+                : this()
             {
+                this.RgbValues = new RgbColour(rgbValues);
                 this.Lightness = lightness;
                 this.Saturation = saturation;
                 this.Hue = hue;
@@ -97,6 +104,50 @@ namespace GW2DotNET.V1.Items.Models
             {
                 get;
                 private set;
+            }
+
+            /// <summary>
+            /// Gets the rgb values.
+            /// </summary>
+            public RgbColour RgbValues
+            {
+                get;
+                private set;
+            }
+
+            /// <summary>
+            /// The rgb colour.
+            /// </summary>
+            public struct RgbColour
+            {
+                /// <summary>
+                /// Initializes a new instance of the <see cref="RgbColour"/> struct.
+                /// </summary>
+                /// <param name="colourValues">
+                /// The colour values.
+                /// </param>
+                public RgbColour(IList<int> colourValues)
+                    : this()
+                {
+                    this.Red = colourValues[0];
+                    this.Green = colourValues[1];
+                    this.Blue = colourValues[2];
+                }
+
+                /// <summary>
+                /// Gets the red colour.
+                /// </summary>
+                public int Red { get; private set; }
+
+                /// <summary>
+                /// Gets the green colour.
+                /// </summary>
+                public int Green { get; private set; }
+
+                /// <summary>
+                /// Gets the blue colour.
+                /// </summary>
+                public int Blue { get; private set; }
             }
         }
     }

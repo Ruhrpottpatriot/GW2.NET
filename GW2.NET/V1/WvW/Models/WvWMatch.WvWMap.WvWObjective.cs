@@ -26,6 +26,8 @@ namespace GW2DotNET.V1.WvW.Models
             /// </summary>
             public struct Objective
             {
+                private int id;
+
                 /// <summary>
                 /// Initializes a new instance of the <see cref="Objective"/> struct.
                 /// </summary>
@@ -39,10 +41,11 @@ namespace GW2DotNET.V1.WvW.Models
                 /// The owner guild.
                 /// </param>
                 [JsonConstructor]
-                public Objective(int id, string owner, string ownerGuild)
+                public Objective(int id, string owner, string ownerGuild, string name)
                     : this()
                 {
-                    this.Id = id;
+                    this.id = id;
+                    this.Name = name;
                     this.Owner = owner;
                     this.OwnerGuild = ownerGuild;
                 }
@@ -53,9 +56,17 @@ namespace GW2DotNET.V1.WvW.Models
                 [JsonProperty("id")]
                 public int Id
                 {
-                    get;
-                    private set;
+                    get
+                    {
+                        return this.id;
+                    }
                 }
+
+                /// <summary>
+                /// Gets the name.
+                /// </summary>
+                [JsonProperty("name")]
+                public string Name { get; private set; }
 
                 /// <summary>
                 /// Gets the owner.
@@ -76,7 +87,7 @@ namespace GW2DotNET.V1.WvW.Models
                     get;
                     private set;
                 }
-            } 
+            }
         }
     }
 }
