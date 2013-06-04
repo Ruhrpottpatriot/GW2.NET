@@ -39,6 +39,13 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         private WvWManager wvWManager;
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="GuildData"/> class.
+        /// </summary>
+        internal GuildData()
+        {
+        }
+
+        /// <summary>
         /// Sets the wvw manager.
         /// </summary>
         /// <remarks>If the user already has an instance of a <see cref="V1.WvW.WvWManager"/> created it can be set here.
@@ -62,15 +69,13 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                 {
                     var manager = this.wvWManager ?? new WvWManager();
 
-                    var matches = manager.Matches.ToList();
+                    var matches = manager.Matches;
 
-                    var guildIds = (from match in matches
-                                    from map in match.Maps
-                                    from objective in map.Objectives
-                                    where !string.IsNullOrEmpty(objective.OwnerGuild)
-                                    select new Guid(objective.OwnerGuild)).ToList();
-
-                    this.guildIdCache = guildIds;
+                    this.guildIdCache = from match in matches
+                                        from map in match.Maps
+                                        from objective in map.Objectives
+                                        where !string.IsNullOrEmpty(objective.OwnerGuild)
+                                        select new Guid(objective.OwnerGuild);
                 }
 
                 return this.guildIdCache;
@@ -84,16 +89,10 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             get
             {
-                if (this.guildCache == null)
+                return this.guildCache ?? (this.guildCache = this.GuildIdCache.Select(guid => new List<KeyValuePair<string, object>>
                 {
-                    var guildsToReturn = this.GuildIdCache.Select(guid => new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("guild_id", guid) })
-                        .Select(arguments => ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild))
-                        .ToList();
-
-                    this.guildCache = guildsToReturn;
-                }
-
-                return this.guildCache;
+                    new KeyValuePair<string, object>("guild_id", guid)
+                }).Select(arguments => ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild)));
             }
         }
 

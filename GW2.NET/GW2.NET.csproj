@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
+    <DocumentationFile>bin\Debug\GW2.NET.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -56,6 +57,7 @@
     <Compile Include="V1\Guilds\Models\Guild.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />
+    <Compile Include="V1\Infrastructure\ApiCall.Categories.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />

@@ -47,7 +47,7 @@ namespace GW2DotNET.V1.WvW.DataProviders
                 return this.matchDictionary
                        ?? (this.matchDictionary =
                            ApiCall.GetContent<Dictionary<string, IEnumerable<WvWMatch>>>(
-                               "matches.json", null, ApiCall.Categories.WvW).Values.ToList()[0]);
+                               "matches.json", null, ApiCall.Categories.WvW).Values.First());
             }
         }
 
@@ -125,18 +125,13 @@ namespace GW2DotNET.V1.WvW.DataProviders
         /// </returns>
         internal IEnumerable<WvWMatch> GetMatches()
         {
-            List<WvWMatch> list = new List<WvWMatch>();
-
-            foreach (WvWMatch wvWMatch in this.MatchDictionary)
-            {
-                List<KeyValuePair<string, object>> arguments = new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("match_id", wvWMatch.MatchId) };
-
-                WvWMatch returnMatch = ApiCall.GetContent<WvWMatch>("match_details.json", arguments, ApiCall.Categories.WvW);
-
-                list.Add(new WvWMatch(wvWMatch.MatchId, wvWMatch.RedWorld, wvWMatch.BlueWorld, wvWMatch.GreenWorld, wvWMatch.StartTime, wvWMatch.EndTime, returnMatch.Scores, returnMatch.Maps));
-            }
-
-            return list;
+            return from wvWMatch in this.MatchDictionary
+                    let arguments = new List<KeyValuePair<string, object>>
+                    {
+                        new KeyValuePair<string, object>("match_id", wvWMatch.MatchId)
+                    }
+                    let returnMatch = ApiCall.GetContent<WvWMatch>("match_details.json", arguments, ApiCall.Categories.WvW)
+                    select new WvWMatch(wvWMatch.MatchId, wvWMatch.RedWorld, wvWMatch.BlueWorld, wvWMatch.GreenWorld, wvWMatch.StartTime, wvWMatch.EndTime, returnMatch.Scores, returnMatch.Maps);
         }
     }
 }

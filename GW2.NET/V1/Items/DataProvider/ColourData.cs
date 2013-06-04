@@ -57,7 +57,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                return this.Colours.Single(c => c.Id == id);
+                return this.Colours.Single(colour => colour.Id == id);
             }
         }
 
@@ -93,10 +93,8 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// </returns>
         private IEnumerable<GwColour> GetColours()
         {
-            var response = ApiCall.GetContent<Dictionary<string, Dictionary<int, GwColour>>>(
-                "colors.json", null, ApiCall.Categories.Miscellaneous)["colors"];
-
-            return response.Select(keyvaluepair => new GwColour(keyvaluepair.Key, keyvaluepair.Value.Name, keyvaluepair.Value.Default, keyvaluepair.Value.Cloth, keyvaluepair.Value.Leather, keyvaluepair.Value.Metal)).ToList();
+            return ApiCall.GetContent<Dictionary<string, Dictionary<int, GwColour>>>(
+                "colors.json", null, ApiCall.Categories.Miscellaneous)["colors"].Values;
         }
     }
 }

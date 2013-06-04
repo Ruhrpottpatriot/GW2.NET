@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         NoSell,
 
         /// <summary>
-        /// Soulbinds on acquire.
+        /// Item is soulbound on acquire.
         /// </summary>
         SoulbindOnAcquire,
 

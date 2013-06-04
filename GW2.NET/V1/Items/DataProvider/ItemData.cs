@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                return this.itemIdCache ?? (this.itemIdCache = ApiCall.GetContent<Dictionary<string, IEnumerable<int>>>("items.json", null, ApiCall.Categories.Items).Values.ToList()[0]);
+                return this.itemIdCache ?? (this.itemIdCache = ApiCall.GetContent<Dictionary<string, IEnumerable<int>>>("items.json", null, ApiCall.Categories.Items).Values.First());
             }
         }
 

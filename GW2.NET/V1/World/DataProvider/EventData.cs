@@ -168,7 +168,7 @@ namespace GW2DotNET.V1.World.DataProvider
             var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World);
 
             // Turn the API events into events with names and return them
-            return response["events"].Select(gwEvent => gwEvent.ResolveName(this.wm)).ToList();
+            return response["events"].Select(gwEvent => gwEvent.ResolveName(this.wm));
         }
     }
 }

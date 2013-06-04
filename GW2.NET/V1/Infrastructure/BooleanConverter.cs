@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Infrastructure
     /// <summary>
     /// The boolean converter.
     /// </summary>
-    public class BooleanConverter : JsonConverter
+    internal class BooleanConverter : JsonConverter
     {
         /// <summary>
         /// The write json.

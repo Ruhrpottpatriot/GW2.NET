@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// The recipes.
         /// </summary>
-        private IList<Recipe> recipes;
+        private IEnumerable<Recipe> recipes;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeData"/> class.
@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                return this.recipeIdCache ?? (this.recipeIdCache = ApiCall.GetContent<Dictionary<string, IEnumerable<int>>>("recipes.json", null, ApiCall.Categories.Items).Values.ToList()[0]);
+                return this.recipeIdCache ?? (this.recipeIdCache = ApiCall.GetContent<Dictionary<string, IEnumerable<int>>>("recipes.json", null, ApiCall.Categories.Items).Values.First());
             }
         }
 
@@ -58,12 +58,10 @@ namespace GW2DotNET.V1.Items.DataProvider
             {
                 if (this.recipes == null)
                 {
-                    var recipesToReturn = this.RecipeIdCache.Select(singleRecipeId => new List<KeyValuePair<string, object>>
+                    this.recipes = this.RecipeIdCache.Select(singleRecipeId => new List<KeyValuePair<string, object>>
                     {
                         new KeyValuePair<string, object>("recipe_id", singleRecipeId)
-                    }).Select(arguments => ApiCall.GetContent<Recipe>("recipe_details.json", arguments, ApiCall.Categories.Items)).ToList();
-
-                    this.recipes = recipesToReturn;
+                    }).Select(arguments => ApiCall.GetContent<Recipe>("recipe_details.json", arguments, ApiCall.Categories.Items));
                 }
 
                 return this.recipes;

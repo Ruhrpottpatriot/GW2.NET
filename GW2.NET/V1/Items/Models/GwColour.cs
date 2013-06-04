@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models
@@ -42,13 +44,15 @@ namespace GW2DotNET.V1.Items.Models
         /// <param name="metalDetail">
         /// The colour modifying attributes on metal.
         /// </param>
+        /// <param name="baseRgb">
+        /// The base rgb values.
+        /// </param>
         [JsonConstructor]
-        public GwColour(int id, string name, ColourDetails defaultDetail, ColourDetails clothDetail, ColourDetails leatherDetail, ColourDetails metalDetail)
+        public GwColour(int id, string name, ColourDetails clothDetail, ColourDetails leatherDetail, ColourDetails metalDetail)
             : this()
         {
             this.id = id;
             this.Name = name;
-            this.Default = defaultDetail;
             this.Cloth = clothDetail;
             this.Leather = leatherDetail;
             this.Metal = metalDetail;
@@ -76,10 +80,9 @@ namespace GW2DotNET.V1.Items.Models
         }
 
         /// <summary>
-        /// Gets the default colour modifying attributes.
+        /// Gets the base rgb.
         /// </summary>
-        [JsonProperty("default")]
-        public ColourDetails Default
+        public ColourDetails.RgbColour BaseRgb
         {
             get;
             private set;

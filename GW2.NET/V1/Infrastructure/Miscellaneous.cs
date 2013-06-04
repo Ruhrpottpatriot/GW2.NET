@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Infrastructure
             {
                 if (build == 0)
                 {
-                    build = ApiCall.GetContent<Dictionary<string, int>>("build.json", null, ApiCall.Categories.Miscellaneous).Values.ToList().First();
+                    build = ApiCall.GetContent<Dictionary<string, int>>("build.json", null, ApiCall.Categories.Miscellaneous).Values.Single();
                 }
 
                 return build;

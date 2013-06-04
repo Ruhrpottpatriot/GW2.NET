@@ -26,7 +26,10 @@ namespace GW2DotNET.V1.WvW.Models
             /// </summary>
             public struct Objective
             {
-                private int id;
+                /// <summary>
+                /// The id.
+                /// </summary>
+                private readonly int id;
 
                 /// <summary>
                 /// Initializes a new instance of the <see cref="Objective"/> struct.
@@ -39,6 +42,9 @@ namespace GW2DotNET.V1.WvW.Models
                 /// </param>
                 /// <param name="ownerGuild">
                 /// The owner guild.
+                /// </param>
+                /// <param name="name">
+                /// The name of the guild.
                 /// </param>
                 [JsonConstructor]
                 public Objective(int id, string owner, string ownerGuild, string name)

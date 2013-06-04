@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             Unlock,
 
             /// <summary>
-            /// A consumable to change the apperance
+            /// A consumable to change the appearance.
             /// </summary>
             AppearanceChange,
 

@@ -41,14 +41,11 @@ namespace GW2DotNET.V1.Items.Models
             /// <param name="lightness">
             /// The lightness.
             /// </param>
-            /// <param name="rgbValues">
-            /// The rgb Values.
-            /// </param>
             [JsonConstructor]
-            public ColourDetails(double brightness, double contrast, double hue, double saturation, double lightness, IList<int> rgbValues)
+            public ColourDetails(double brightness, double contrast, double hue, double saturation, double lightness)
                 : this()
             {
-                this.RgbValues = new RgbColour(rgbValues);
+                // this.RgbValues = new RgbColour(rgb);
                 this.Lightness = lightness;
                 this.Saturation = saturation;
                 this.Hue = hue;
@@ -137,17 +134,29 @@ namespace GW2DotNET.V1.Items.Models
                 /// <summary>
                 /// Gets the red colour.
                 /// </summary>
-                public int Red { get; private set; }
+                public int Red
+                {
+                    get;
+                    private set;
+                }
 
                 /// <summary>
                 /// Gets the green colour.
                 /// </summary>
-                public int Green { get; private set; }
+                public int Green
+                {
+                    get;
+                    private set;
+                }
 
                 /// <summary>
                 /// Gets the blue colour.
                 /// </summary>
-                public int Blue { get; private set; }
+                public int Blue
+                {
+                    get;
+                    private set;
+                }
             }
         }
     }
