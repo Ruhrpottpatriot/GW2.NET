@@ -74,7 +74,7 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                return (from n in this.Maps where n.Id == mapId select n).Single();
+                return this.Maps.Single(n => n.Id == mapId);
             }
         }
 

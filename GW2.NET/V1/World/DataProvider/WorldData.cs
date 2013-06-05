@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -74,9 +75,7 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                return (from n in this.Worlds
-                        where n.Id == worldId
-                        select n).Single();
+                return this.Worlds.Single(n => n.Id == worldId);
             }
         }
 
@@ -89,9 +88,7 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                return (from n in this.Worlds
-                        where n.Name == name
-                        select n).Single();
+                return this.Worlds.Single(n => n.Name == name);
             }
         }
 
@@ -114,7 +111,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
         /// </returns>
         /// <filterpriority>2</filterpriority>
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
             return this.Worlds.GetEnumerator();
         }

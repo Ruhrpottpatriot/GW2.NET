@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// <returns>An object converted to <see cref="T"/>.</returns>
         public static T GetContent<T>(string apiMethod, List<KeyValuePair<string, object>> arguments, Categories category)
         {
-            string jsonResponse = GetJson(apiMethod, arguments, category);
+            var jsonResponse = GetJson(apiMethod, arguments, category);
 
             return JsonConvert.DeserializeObject<T>(jsonResponse);
         }

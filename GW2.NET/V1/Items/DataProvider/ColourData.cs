@@ -22,6 +22,11 @@ namespace GW2DotNET.V1.Items.DataProvider
     public class ColourData : IEnumerable<GwColour>
     {
         /// <summary>
+        /// The language.
+        /// </summary>
+        private readonly Language language;
+
+        /// <summary>
         /// The colours cache.
         /// </summary>
         private IEnumerable<GwColour> coloursCache;
@@ -29,8 +34,10 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// Initializes a new instance of the <see cref="ColourData"/> class.
         /// </summary>
-        internal ColourData()
+        /// <param name="language">The language the content is retrieved in.</param>
+        internal ColourData(Language language)
         {
+            this.language = language;
         }
 
         /// <summary>
@@ -93,8 +100,15 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// </returns>
         private IEnumerable<GwColour> GetColours()
         {
-            return ApiCall.GetContent<Dictionary<string, Dictionary<int, GwColour>>>(
-                "colors.json", null, ApiCall.Categories.Miscellaneous)["colors"].Values;
+            var arguments = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("lang", this.language)
+            };
+
+            var returnColours = ApiCall.GetContent<Dictionary<string, Dictionary<int, GwColour>>>(
+                "colors.json", arguments, ApiCall.Categories.Miscellaneous)["colors"].Select(returnColour => new GwColour(returnColour.Key, returnColour.Value.Name, returnColour.Value.BaseRgb, returnColour.Value.Cloth, returnColour.Value.Leather, returnColour.Value.Metal)).ToList();
+
+            return returnColours;
         }
     }
 }

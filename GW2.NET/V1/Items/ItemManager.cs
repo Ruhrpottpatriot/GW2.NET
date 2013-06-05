@@ -52,7 +52,7 @@ namespace GW2DotNET.V1.Items
         {
             get
             {
-                return this.colourData ?? (this.colourData = new ColourData());
+                return this.colourData ?? (this.colourData = new ColourData(this.language));
             }
         }
 
@@ -75,7 +75,7 @@ namespace GW2DotNET.V1.Items
         {
             get
             {
-                return this.itemData ?? (this.itemData = new ItemData());
+                return this.itemData ?? (this.itemData = new ItemData(this.Language));
             }
         }
 

@@ -41,11 +41,14 @@ namespace GW2DotNET.V1.Items.Models
             /// <param name="lightness">
             /// The lightness.
             /// </param>
+            /// <param name="rgb">
+            /// Pre calculated rgb values for some convenience.
+            /// </param>
             [JsonConstructor]
-            public ColourDetails(double brightness, double contrast, double hue, double saturation, double lightness)
+            public ColourDetails(double brightness, double contrast, double hue, double saturation, double lightness, int[] rgb)
                 : this()
             {
-                // this.RgbValues = new RgbColour(rgb);
+                this.RgbValues = new RgbColour(rgb);
                 this.Lightness = lightness;
                 this.Saturation = saturation;
                 this.Hue = hue;

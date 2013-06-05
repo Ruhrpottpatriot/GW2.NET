@@ -32,9 +32,6 @@ namespace GW2DotNET.V1.Items.Models
         /// <param name="name">
         /// The name of the colour
         /// </param>
-        /// <param name="defaultDetail">
-        /// The default colour modifying attributes.
-        /// </param>
         /// <param name="clothDetail">
         /// The colour modifying attributes on cloth.
         /// </param>
@@ -44,15 +41,13 @@ namespace GW2DotNET.V1.Items.Models
         /// <param name="metalDetail">
         /// The colour modifying attributes on metal.
         /// </param>
-        /// <param name="baseRgb">
-        /// The base rgb values.
-        /// </param>
         [JsonConstructor]
-        public GwColour(int id, string name, ColourDetails clothDetail, ColourDetails leatherDetail, ColourDetails metalDetail)
+        public GwColour(int id, string name, int[] baseRgb, ColourDetails clothDetail, ColourDetails leatherDetail, ColourDetails metalDetail)
             : this()
         {
             this.id = id;
             this.Name = name;
+            this.BaseRgb = baseRgb;
             this.Cloth = clothDetail;
             this.Leather = leatherDetail;
             this.Metal = metalDetail;
@@ -82,11 +77,8 @@ namespace GW2DotNET.V1.Items.Models
         /// <summary>
         /// Gets the base rgb.
         /// </summary>
-        public ColourDetails.RgbColour BaseRgb
-        {
-            get;
-            private set;
-        }
+        [JsonProperty("base_rgb")]
+        public int[] BaseRgb { get; private set; }
 
         /// <summary>
         /// Gets the colour modifying attributes on cloth.

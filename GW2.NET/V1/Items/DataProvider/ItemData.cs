@@ -22,6 +22,11 @@ namespace GW2DotNET.V1.Items.DataProvider
     public class ItemData : IEnumerable<Item>
     {
         /// <summary>
+        /// The language.
+        /// </summary>
+        private readonly Language language;
+
+        /// <summary>
         /// The item id cache.
         /// </summary>
         private IEnumerable<int> itemIdCache;
@@ -34,8 +39,10 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemData"/> class.
         /// </summary>
-        internal ItemData()
+        /// <param name="language">THe language of the retrieved content.</param>
+        internal ItemData(Language language)
         {
+            this.language = language;
         }
 
         /// <summary>
@@ -58,21 +65,7 @@ namespace GW2DotNET.V1.Items.DataProvider
             {
                 if (this.ItemIdCache != null)
                 {
-                    IList<Item> itemsToReturn = new List<Item>();
-
-                    foreach (var itemId in this.itemIdCache)
-                    {
-                        var arguments = new List<KeyValuePair<string, object>>
-                        {
-                            new KeyValuePair<string, object>("item_id", itemId)
-                        };
-
-                        var itemReturn = ApiCall.GetContent<Item>("item_details.json", arguments, ApiCall.Categories.Items);
-
-                        itemsToReturn.Add(itemReturn);
-                    }
-
-                    this.items = itemsToReturn;
+                    this.items = this.itemIdCache.Select(itemId => new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("item_id", itemId), new KeyValuePair<string, object>("lang", this.language) }).Select(arguments => ApiCall.GetContent<Item>("item_details.json", arguments, ApiCall.Categories.Items));
                 }
 
                 return this.items;
@@ -97,7 +90,8 @@ namespace GW2DotNET.V1.Items.DataProvider
                     var arguments = new List<KeyValuePair<string, object>>
                                         {
                                             new KeyValuePair<string, object>(
-                                                "item_id", itemId)
+                                                "item_id", itemId),
+                                                new KeyValuePair<string, object>("lang", this.language)
                                         };
 
                     return ApiCall.GetContent<Item>("item_details.json", arguments, ApiCall.Categories.Items);

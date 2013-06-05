@@ -71,11 +71,17 @@ namespace GW2DotNET.V1.Guilds.DataProvider
 
                     var matches = manager.Matches;
 
-                    this.guildIdCache = from match in matches
-                                        from map in match.Maps
-                                        from objective in map.Objectives
-                                        where !string.IsNullOrEmpty(objective.OwnerGuild)
-                                        select new Guid(objective.OwnerGuild);
+                    this.guildIdCache = matches.SelectMany(match => match.Maps)
+                        .SelectMany(map => map.Objectives)
+                        .Where(obj => !string.IsNullOrEmpty(obj.OwnerGuild))
+                        .Select(obj => new Guid(obj.OwnerGuild));
+
+
+                    //this.guildIdCache =
+                    //    matches.SelectMany(match => match.Maps, (match, map) => new { match, map })
+                    //           .SelectMany(@t => @t.map.Objectives, (@t, objective) => new { @t, objective })
+                    //           .Where(@t => !string.IsNullOrEmpty(@t.objective.OwnerGuild))
+                    //           .Select(@t => new Guid(@t.objective.OwnerGuild));
                 }
 
                 return this.guildIdCache;

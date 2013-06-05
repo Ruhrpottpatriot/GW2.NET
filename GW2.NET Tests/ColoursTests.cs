@@ -8,8 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 
+using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items;
 
 using NUnit.Framework;
@@ -33,7 +35,10 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new ItemManager();
+            this.manager = new ItemManager
+                               {
+                                   Language = Language.De
+                               };
         }
 
         /// <summary>

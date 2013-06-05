@@ -91,7 +91,7 @@ namespace GW2DotNET.V1.World.DataProvider
                     {
                         var id = new Guid();
                         
-                        string name = string.Empty;
+                        var name = string.Empty;
 
                         foreach (var variable in eventName)
                         {
@@ -133,7 +133,7 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                return this.Events.Where(e => e.World == world);
+                return this.Events.Where(evnt => evnt.World == world);
             }
         }
 
@@ -165,10 +165,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <returns>An <see cref="T:System.Collections.IEnumerable"/></returns>
         private IEnumerable<GwEvent> GetAllEvents()
         {
-            var response = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World);
-
-            // Turn the API events into events with names and return them
-            return response["events"].Select(gwEvent => gwEvent.ResolveName(this.wm));
+            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveName(this.wm));
         }
     }
 }
