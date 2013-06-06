@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Linq;
 
 using Newtonsoft.Json;
 
@@ -18,6 +19,27 @@ namespace GW2DotNET.V1.Infrastructure
     /// <summary>Contains static methods to call the guild wars 2 API.</summary>
     public static partial class ApiCall
     {
+        /// <summary>
+        /// The build number of the game.
+        /// </summary>
+        private static int build;
+
+        /// <summary>
+        /// Gets the build number of the game.
+        /// </summary>
+        public static int Build
+        {
+            get
+            {
+                if (build == 0)
+                {
+                    build = ApiCall.GetContent<Dictionary<string, int>>("build.json", null, ApiCall.Categories.Miscellaneous).Values.Single();
+                }
+
+                return build;
+            }
+        }
+
         /// <summary>
         /// Calls the API and returns a CLI object of the specified type.
         /// </summary>

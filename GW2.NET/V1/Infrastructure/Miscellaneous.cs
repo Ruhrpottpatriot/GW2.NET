@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,6 +26,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// <summary>
         /// Gets the build number of the game.
         /// </summary>
+        [Obsolete("This property is obsolete. Use the Build number query in the ApiCall class instead.", true)]
         public static int Build
         {
             get
