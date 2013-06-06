@@ -46,11 +46,6 @@ namespace GW2DotNET.V1.World.DataProvider
         private Dictionary<Guid, string> eventNamesCache;
 
         /// <summary>
-        /// The event cache.
-        /// </summary>
-        private IEnumerable<GwEvent> eventCache;
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="EventData"/> class.
         /// This should only be called by WorldManager.
         /// </summary>
@@ -120,7 +115,7 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                return this.eventCache ?? (this.eventCache = this.GetAllEvents());
+                return this.GetEvents();
             }
         }
 
@@ -133,7 +128,33 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                return this.Events.Where(evnt => evnt.World == world);
+                return this.GetEvents(world.Id);
+            }
+        }
+
+        /// <summary>
+        /// Gets all events for a particular map on all worlds.
+        /// </summary>
+        /// <param name="map"></param>
+        /// <returns></returns>
+        public IEnumerable<GwEvent> this[GwMap map]
+        {
+            get
+            {
+                return this.GetEvents(null, map.Id);
+            }
+        }
+
+        /// <summary>
+        /// Gets one event for all worlds.
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <returns></returns>
+        public IEnumerable<GwEvent> this[Guid eventId]
+        {
+            get
+            {
+                return this.GetEvents(null, null, eventId);
             }
         }
 
@@ -163,9 +184,17 @@ namespace GW2DotNET.V1.World.DataProvider
         /// Gets all events for all maps on all worlds.
         /// </summary>
         /// <returns>An <see cref="T:System.Collections.IEnumerable"/></returns>
-        private IEnumerable<GwEvent> GetAllEvents()
+        private IEnumerable<GwEvent> GetEvents(int? WorldID = null, int? MapID = null, Guid? EventID = null)
         {
-            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveIDs(this.gw2ApiManager));
+            List<KeyValuePair<string, object>> parameters = new List<KeyValuePair<string, object>>();
+            if (WorldID != null)
+                parameters.Add(new KeyValuePair<string, object>("world_id", WorldID));
+            if (MapID != null)
+                parameters.Add(new KeyValuePair<string, object>("map_id", MapID));
+            if (EventID != null)
+                parameters.Add(new KeyValuePair<string, object>("event_id", EventID));
+
+            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveIDs(this.gw2ApiManager));
         }
     }
 }

@@ -69,6 +69,19 @@ namespace GW2DotNET.V1.Items.DataProvider
         }
 
         /// <summary>
+        /// Gets a single colour by name from the colours cache.
+        /// </summary>
+        /// <param name="name">The name of the colour.</param>
+        /// <returns>The <see cref="GwColour"/></returns>
+        public GwColour this[string name]
+        {
+            get
+            {
+                return this.Colours.Single(colour => colour.Name == name);
+            }
+        }
+
+        /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>
