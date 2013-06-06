@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// <summary>
     /// The item data provider.
     /// </summary>
-    public class ItemData : IEnumerable<Item>
+    public class ItemData
     {
         /// <summary>
         /// The language.
@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// The items cache.
         /// </summary>
-        private IEnumerable<Item> items;
+        private List<Item> itemsCache = new List<Item>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemData"/> class.
@@ -57,23 +57,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         }
 
         /// <summary>
-        /// Gets all items from the server.
-        /// </summary>
-        private IEnumerable<Item> Items
-        {
-            get
-            {
-                if (this.ItemIdCache != null)
-                {
-                    this.items = this.itemIdCache.Select(itemId => new List<KeyValuePair<string, object>> { new KeyValuePair<string, object>("item_id", itemId), new KeyValuePair<string, object>("lang", this.language) }).Select(arguments => ApiCall.GetContent<Item>("item_details.json", arguments, ApiCall.Categories.Items));
-                }
-
-                return this.items;
-            }
-        }
-
-        /// <summary>
-        /// Gets a single item from the cache or the server if the cache is empty.
+        /// Gets a single item from the cache if present or the API if not.
         /// </summary>
         /// <param name="itemId">
         /// The item id.
@@ -85,7 +69,9 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                if (this.items == null)
+                var itemToReturn = this.itemsCache.SingleOrDefault(item => item.Id == itemId);
+
+                if (itemToReturn.Id == 0)
                 {
                     var arguments = new List<KeyValuePair<string, object>>
                                         {
@@ -94,35 +80,13 @@ namespace GW2DotNET.V1.Items.DataProvider
                                                 new KeyValuePair<string, object>("lang", this.language)
                                         };
 
-                    return ApiCall.GetContent<Item>("item_details.json", arguments, ApiCall.Categories.Items);
+                    itemToReturn = ApiCall.GetContent<Item>("item_details.json", arguments, ApiCall.Categories.Items);
+
+                    this.itemsCache.Add(itemToReturn);
                 }
 
-                return this.items.Single(item => item.Id == itemId);
+                return itemToReturn;
             }
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>1</filterpriority>
-        public IEnumerator<Item> GetEnumerator()
-        {
-            return this.Items.GetEnumerator();
-        }
-
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection.
-        /// </summary>
-        /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
-        /// </returns>
-        /// <filterpriority>2</filterpriority>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.Items.GetEnumerator();
         }
     }
 }
