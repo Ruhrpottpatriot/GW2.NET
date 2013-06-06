@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.
         /// </summary>
-        private readonly WorldManager wm;
+        private readonly GW2ApiManager gw2ApiManager;
 
         /// <summary>
         /// The events names will be retrieved in this language
@@ -55,11 +55,11 @@ namespace GW2DotNET.V1.World.DataProvider
         /// This should only be called by WorldManager.
         /// </summary>
         /// <param name="language">The language in which to return names</param>
-        /// <param name="wm">An instance of WorldManager to use for ID resolution</param>
-        internal EventData(Language language, WorldManager wm)
+        /// <param name="gw2ApiManager">An instance of GW2ApiManager to use for ID resolution</param>
+        internal EventData(Language language, GW2ApiManager gw2ApiManager)
         {
             this.language = language;
-            this.wm = wm;
+            this.gw2ApiManager = gw2ApiManager;
         }
         
         /// <summary>
@@ -165,7 +165,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <returns>An <see cref="T:System.Collections.IEnumerable"/></returns>
         private IEnumerable<GwEvent> GetAllEvents()
         {
-            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveName(this.wm));
+            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveIDs(this.gw2ApiManager));
         }
     }
 }

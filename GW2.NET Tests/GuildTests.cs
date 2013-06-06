@@ -14,6 +14,7 @@ using System.Linq;
 using GW2DotNET.V1.Guilds;
 
 using NUnit.Framework;
+using GW2DotNET.V1;
 
 namespace GW2.NET_Tests
 {
@@ -26,7 +27,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The guild manager.
         /// </summary>
-        private GuildManager manager;
+        private GW2ApiManager manager;
 
         /// <summary>
         /// Runs before each test run.
@@ -34,7 +35,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new GuildManager();
+            this.manager = new GW2ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
         }
 
         /// <summary>
@@ -45,7 +46,7 @@ namespace GW2.NET_Tests
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var guild = this.manager.GuildData[new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8")];
+            var guild = this.manager.Guilds[new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8")];
 
             watch.Stop();
 
@@ -61,7 +62,7 @@ namespace GW2.NET_Tests
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var guilds = this.manager.GuildData.ToList();
+            var guilds = this.manager.Guilds.ToList();
 
             watch.Stop();
             

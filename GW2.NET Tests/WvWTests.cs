@@ -13,6 +13,7 @@ using System.Linq;
 using GW2DotNET.V1.WvW;
 
 using NUnit.Framework;
+using GW2DotNET.V1;
 
 namespace GW2.NET_Tests
 {
@@ -25,7 +26,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The wvw manager.
         /// </summary>
-        private WvWManager manager;
+        private GW2ApiManager manager;
 
         /// <summary>
         /// Runs before each test run
@@ -33,7 +34,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new WvWManager();
+            this.manager = new GW2ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
         }
 
         /// <summary>
@@ -42,7 +43,7 @@ namespace GW2.NET_Tests
         [Test]
         public void GetMatches()
         {
-            var matches = this.manager.Matches.ToList();
+            var matches = this.manager.WvWMatches.ToList();
 
             Debug.WriteLine("Total number of matches: {0}", matches.Count);
         }
@@ -53,7 +54,7 @@ namespace GW2.NET_Tests
         [Test]
         public void GetMatch()
         {
-            var match = this.manager.Matches["1-1"];
+            var match = this.manager.WvWMatches["1-1"];
 
             Debug.WriteLine("Start Time: {0}, End Time: {1}", match.StartTime, match.EndTime);
         }

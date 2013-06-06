@@ -15,6 +15,7 @@ using GW2DotNET.V1.World;
 using GW2DotNET.V1.World.Models;
 
 using NUnit.Framework;
+using GW2DotNET.V1;
 
 namespace GW2.NET_Tests
 {
@@ -27,7 +28,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The world manager.
         /// </summary>
-        private WorldManager manager;
+        private GW2ApiManager manager;
 
         /// <summary>
         /// Runs before each test run.
@@ -35,7 +36,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new WorldManager();
+            this.manager = new GW2ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
         }
 
         /// <summary>

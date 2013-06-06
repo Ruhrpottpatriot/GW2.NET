@@ -208,15 +208,15 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// Resolves the name of an event.
         /// </summary>
-        /// <param name="worldManager">The world manager.</param>
+        /// <param name="gw2ApiManager">The GW2ApiManager</param>
         /// <returns>The <see cref="GwEvent"/> with the resolved names.</returns>
-        public GwEvent ResolveName(WorldManager worldManager)
+        internal GwEvent ResolveIDs(GW2ApiManager gw2ApiManager)
         {
             GwEvent newEvent = this;
 
-            newEvent.Map = worldManager.Maps[this.MapId];
-            newEvent.World = worldManager.Worlds[this.WorldId];
-            newEvent.Name = worldManager.Events.EventNames[this.EventId];
+            newEvent.Map = gw2ApiManager.Maps[this.MapId];
+            newEvent.World = gw2ApiManager.Worlds[this.WorldId];
+            newEvent.Name = gw2ApiManager.Events.EventNames[this.EventId];
 
             return newEvent;
         }

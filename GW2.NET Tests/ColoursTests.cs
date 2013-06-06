@@ -15,6 +15,7 @@ using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items;
 
 using NUnit.Framework;
+using GW2DotNET.V1;
 
 namespace GW2.NET_Tests
 {
@@ -27,7 +28,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The item manager.
         /// </summary>
-        private ItemManager manager;
+        private GW2ApiManager manager;
 
         /// <summary>
         /// Runs before each test run.
@@ -35,10 +36,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new ItemManager
-                               {
-                                   Language = Language.De
-                               };
+            this.manager = new GW2ApiManager(Language.En);
         }
 
         /// <summary>

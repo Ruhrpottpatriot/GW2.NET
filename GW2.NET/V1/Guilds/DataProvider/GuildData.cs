@@ -34,28 +34,16 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         private IEnumerable<Guild> guildCache;
 
         /// <summary>
-        /// The wvw manager.
+        /// Stores the GW2ApiManager that instantiated this object
         /// </summary>
-        private WvWManager wvWManager;
+        private GW2ApiManager gw2ApiManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GuildData"/> class.
         /// </summary>
-        internal GuildData()
+        internal GuildData(GW2ApiManager gw2ApiManager)
         {
-        }
-
-        /// <summary>
-        /// Sets the wvw manager.
-        /// </summary>
-        /// <remarks>If the user already has an instance of a <see cref="V1.WvW.WvWManager"/> created it can be set here.
-        /// This ensures that already cached data is used and no second call to the api is made.</remarks>
-        public WvWManager WvWManager
-        {
-            set
-            {
-                this.wvWManager = value;
-            }
+            this.gw2ApiManager = gw2ApiManager;
         }
 
         /// <summary>
@@ -67,17 +55,16 @@ namespace GW2DotNET.V1.Guilds.DataProvider
             {
                 if (this.guildIdCache == null)
                 {
-                    var manager = this.wvWManager ?? new WvWManager();
+                    var manager = this.gw2ApiManager;
 
-                    var matches = manager.Matches;
+                    var matches = manager.WvWMatches;
 
                     this.guildIdCache = matches.SelectMany(match => match.Maps)
                         .SelectMany(map => map.Objectives)
                         .Where(obj => !string.IsNullOrEmpty(obj.OwnerGuild))
                         .Select(obj => new Guid(obj.OwnerGuild));
 
-
-                    //this.guildIdCache =
+                    // this.guildIdCache =
                     //    matches.SelectMany(match => match.Maps, (match, map) => new { match, map })
                     //           .SelectMany(@t => @t.map.Objectives, (@t, objective) => new { @t, objective })
                     //           .Where(@t => !string.IsNullOrEmpty(@t.objective.OwnerGuild))

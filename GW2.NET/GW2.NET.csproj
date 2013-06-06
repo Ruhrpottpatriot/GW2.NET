@@ -55,10 +55,10 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="V1\Guilds\DataProvider\GuildData.cs" />
-    <Compile Include="V1\Guilds\GuildManager.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />
+    <Compile Include="V1\GW2ApiManager.cs" />
     <Compile Include="V1\Infrastructure\ApiCall.Categories.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
@@ -68,7 +68,6 @@
     <Compile Include="V1\Items\Models\GwColour.ColourDetails.cs" />
     <Compile Include="V1\Items\DataProvider\ItemData.cs" />
     <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
-    <Compile Include="V1\Items\ItemManager.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Armour.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Back.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Bag.cs" />
@@ -100,13 +99,11 @@
     <Compile Include="V1\World\Models\GwEventState.cs" />
     <Compile Include="V1\World\Models\GwMap.cs" />
     <Compile Include="V1\World\Models\GwWorld.cs" />
-    <Compile Include="V1\World\WorldManager.cs" />
     <Compile Include="V1\WvW\DataProviders\MatchData.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.Type.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.WvWObjective.cs" />
-    <Compile Include="V1\WvW\WvWManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
