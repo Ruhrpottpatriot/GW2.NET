@@ -81,7 +81,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                return this.Colours.Single(colour => colour.Id == id);
+                return this.Colours.Single(colour => colour.Name == name);
             }
         }
 
