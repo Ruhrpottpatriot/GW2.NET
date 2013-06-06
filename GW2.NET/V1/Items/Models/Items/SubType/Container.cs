@@ -8,12 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Newtonsoft.Json;
+using System;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
     /// <summary>
     /// The container.
     /// </summary>
+    [Serializable]
     public struct Container
     {
         /// <summary>

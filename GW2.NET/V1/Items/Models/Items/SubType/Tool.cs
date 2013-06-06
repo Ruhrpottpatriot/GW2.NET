@@ -8,12 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Newtonsoft.Json;
+using System;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
     /// <summary>
     /// A tool, includes salvage tools.
     /// </summary>
+    [Serializable]
     public struct Tool
     {
         /// <summary>

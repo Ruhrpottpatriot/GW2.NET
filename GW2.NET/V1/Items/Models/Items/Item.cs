@@ -12,12 +12,15 @@ using System.Collections.Generic;
 using GW2DotNET.V1.Items.Models.Items.SubType;
 
 using Newtonsoft.Json;
+using System.Runtime.Serialization;
+using System;
 
 namespace GW2DotNET.V1.Items.Models.Items
 {
     /// <summary>
     /// The item.
     /// </summary>
+    [Serializable]
     public struct Item
     {
         /// <summary>

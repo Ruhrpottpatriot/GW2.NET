@@ -10,12 +10,14 @@
 using GW2DotNET.V1.Infrastructure;
 
 using Newtonsoft.Json;
+using System;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
     /// <summary>
     /// A bag.
     /// </summary>
+    [Serializable]
     public struct Bag
     {
         /// <summary>

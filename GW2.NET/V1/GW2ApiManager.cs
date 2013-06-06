@@ -72,6 +72,17 @@ namespace GW2DotNET.V1
         }
 
         /// <summary>
+        /// Gets the current Guild Wars 2 build number from the API
+        /// </summary>
+        public int BuildNumber
+        {
+            get
+            {
+                return ApiCall.GetContent<Dictionary<string, int>>("build.json", new List<KeyValuePair<string, object>>(), ApiCall.Categories.Miscellaneous)["build_id"];
+            }
+        }
+
+        /// <summary>
         /// Gets the ColourData object.
         /// </summary>
         public ColourData Colours
@@ -111,7 +122,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.itemData ?? (this.itemData = new ItemData(this.language));
+                return this.itemData ?? (this.itemData = new ItemData(this.language, this));
             }
         }
 

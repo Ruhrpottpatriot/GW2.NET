@@ -10,12 +10,14 @@
 using System.Collections.Generic;
 
 using Newtonsoft.Json;
+using System;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
     /// <summary>
     /// The upgrade component.
     /// </summary>
+    [Serializable]
     public struct UpgradeComponent
     {
         /// <summary>

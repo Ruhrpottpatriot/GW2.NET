@@ -8,12 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using Newtonsoft.Json;
+using System;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
     /// <summary>
     /// The gizmo.
     /// </summary>
+    [Serializable]
     public struct Gizmo
     {
         /// <summary>

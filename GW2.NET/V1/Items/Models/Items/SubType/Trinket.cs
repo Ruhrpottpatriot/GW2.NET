@@ -12,10 +12,12 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
     using Newtonsoft.Json;
+    using System;
 
     /// <summary>
     /// The trinket.
     /// </summary>
+    [Serializable]
     public struct Trinket
     {
         /// <summary>
