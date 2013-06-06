@@ -21,17 +21,12 @@ namespace GW2DotNET.V1.Guilds.DataProvider
     /// <summary>
     /// The guild data provider.
     /// </summary>
-    public class GuildData : IEnumerable<Guild>
+    public class GuildData
     {
-        /// <summary>
-        /// The guild id cache.
-        /// </summary>
-        private IEnumerable<Guid> guildIdCache;
-
         /// <summary>
         /// The guild cache.
         /// </summary>
-        private IEnumerable<Guild> guildCache;
+        private List<Guild> guildCache = new List<Guild>();
 
         /// <summary>
         /// Stores the GW2ApiManager that instantiated this object
@@ -47,50 +42,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         }
 
         /// <summary>
-        /// Gets the guild id cache.
-        /// </summary>
-        private IEnumerable<Guid> GuildIdCache
-        {
-            get
-            {
-                if (this.guildIdCache == null)
-                {
-                    var manager = this.gw2ApiManager;
-
-                    var matches = manager.WvWMatches;
-
-                    this.guildIdCache = matches.SelectMany(match => match.Maps)
-                        .SelectMany(map => map.Objectives)
-                        .Where(obj => !string.IsNullOrEmpty(obj.OwnerGuild))
-                        .Select(obj => new Guid(obj.OwnerGuild));
-
-                    // this.guildIdCache =
-                    //    matches.SelectMany(match => match.Maps, (match, map) => new { match, map })
-                    //           .SelectMany(@t => @t.map.Objectives, (@t, objective) => new { @t, objective })
-                    //           .Where(@t => !string.IsNullOrEmpty(@t.objective.OwnerGuild))
-                    //           .Select(@t => new Guid(@t.objective.OwnerGuild));
-                }
-
-                return this.guildIdCache;
-            }
-        }
-
-        /// <summary>
-        /// Gets the all guilds.
-        /// </summary>
-        private IEnumerable<Guild> AllGuilds
-        {
-            get
-            {
-                return this.guildCache ?? (this.guildCache = this.GuildIdCache.Select(guid => new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("guild_id", guid)
-                }).Select(arguments => ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild)));
-            }
-        }
-
-        /// <summary>
-        /// Gets a single guilds from the cache or the server if the cache is empty.
+        /// Gets a single guild by ID from the cache if present, or from the API if not.
         /// </summary>
         /// <param name="guildId">
         /// The guild id.
@@ -102,40 +54,49 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             get
             {
-                if (this.guildCache == null)
+                Guild guildToReturn = this.guildCache.SingleOrDefault(g => g.Id == guildId);
+
+                if (guildToReturn.Id == Guid.Empty)
                 {
                     var arguments = new List<KeyValuePair<string, object>>
                         {
                             new KeyValuePair<string, object>("guild_id", guildId)
                         };
 
-                    return ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
+                    guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
                 }
 
-                return this.guildCache.Single(g => g.Id == guildId);
+                this.guildCache.Add(guildToReturn);
+
+                return guildToReturn;
             }
         }
 
         /// <summary>
-        /// Returns an enumerator that iterates through the collection.
+        /// Gets a single guild by name from the cache if present, or from the API if not.
         /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        public IEnumerator<Guild> GetEnumerator()
+        /// <param name="guildName">The name of the guild</param>
+        /// <returns>The <see cref="Guild"/></returns>
+        public Guild this[string guildName]
         {
-            return this.AllGuilds.GetEnumerator();
-        }
+            get
+            {
+                Guild guildToReturn = this.guildCache.SingleOrDefault(g => g.Name == guildName);
 
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection.
-        /// </summary>
-        /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
-        /// </returns>
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.AllGuilds.GetEnumerator();
+                if (guildToReturn.Id == Guid.Empty)
+                {
+                    var arguments = new List<KeyValuePair<string, object>>
+                        {
+                            new KeyValuePair<string, object>("guild_name", guildName)
+                        };
+
+                    guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
+                }
+
+                this.guildCache.Add(guildToReturn);
+
+                return guildToReturn;
+            }
         }
     }
 }
