@@ -59,11 +59,10 @@
     <Compile Include="V1\Guilds\Models\Guild.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />
-    <Compile Include="V1\Infrastructure\Adapters\ItemsToXml.cs" />
     <Compile Include="V1\Infrastructure\ApiCall.Categories.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
-    <Compile Include="V1\Infrastructure\Adapters\DataToFileBase.cs" />
+    <Compile Include="V1\Infrastructure\ChatLinks.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
     <Compile Include="V1\Infrastructure\Miscellaneous.cs" />
     <Compile Include="V1\Items\DataProvider\ColourData.cs" />
@@ -113,7 +112,9 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
