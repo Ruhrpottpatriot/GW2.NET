@@ -35,7 +35,7 @@ namespace GW2.NET_Tests
         [Test]
         public void GetBuildNumber()
         {
-            var buildNumber = Miscellaneous.Build;
+            var buildNumber = ApiCall.Build;
 
             Debug.WriteLine("Build: {0}", buildNumber);
         }
