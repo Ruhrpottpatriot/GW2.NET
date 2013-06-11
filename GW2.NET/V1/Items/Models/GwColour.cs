@@ -23,24 +23,13 @@ namespace GW2DotNET.V1.Items.Models
         /// </summary>
         private readonly int id;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GwColour"/> struct.
-        /// </summary>
-        /// <param name="id">
-        /// The colour id.
-        /// </param>
-        /// <param name="name">
-        /// The name of the colour
-        /// </param>
-        /// <param name="clothDetail">
-        /// The colour modifying attributes on cloth.
-        /// </param>
-        /// <param name="leatherDetail">
-        /// The  colour modifying attributes on leather.
-        /// </param>
-        /// <param name="metalDetail">
-        /// The colour modifying attributes on metal.
-        /// </param>
+        /// <summary>Initializes a new instance of the <see cref="GwColour"/> struct.</summary>
+        /// <param name="id">The colour id.</param>
+        /// <param name="name">The name of the colour</param>
+        /// <param name="baseRgb">The base Rgb.</param>
+        /// <param name="clothDetail">The colour modifying attributes on cloth.</param>
+        /// <param name="leatherDetail">The  colour modifying attributes on leather.</param>
+        /// <param name="metalDetail">The colour modifying attributes on metal.</param>
         [JsonConstructor]
         public GwColour(int id, string name, int[] baseRgb, ColourDetails clothDetail, ColourDetails leatherDetail, ColourDetails metalDetail)
             : this()

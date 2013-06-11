@@ -108,7 +108,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             return this.Colours.GetEnumerator();
         }
-
+        
         /// <summary>
         /// Gets all colours from the api server.
         /// </summary>

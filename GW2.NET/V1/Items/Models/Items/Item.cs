@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 
 using GW2DotNET.V1.Items.Models.Items.SubType;
@@ -18,6 +19,7 @@ namespace GW2DotNET.V1.Items.Models.Items
     /// <summary>
     /// The item.
     /// </summary>
+    [Serializable]
     public struct Item
     {
         /// <summary>

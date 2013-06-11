@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
@@ -14,6 +16,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// <summary>
     /// The consumable.
     /// </summary>
+    [Serializable]
     public struct Consumable
     {
         /// <summary>

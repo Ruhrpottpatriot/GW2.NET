@@ -87,7 +87,7 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                return (from n in this.Maps where n.Name == name select n).Single();
+                return this.Maps.Single(n => n.Name == name);
             }
         }
 

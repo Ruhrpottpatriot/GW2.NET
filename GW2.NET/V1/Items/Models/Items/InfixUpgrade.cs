@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 
 using Newtonsoft.Json;
@@ -16,6 +17,7 @@ namespace GW2DotNET.V1.Items.Models.Items
     /// <summary>
     /// The infix upgrade.
     /// </summary>
+    [Serializable]
     public struct InfixUpgrade
     {
         /// <summary>
@@ -58,6 +60,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// <summary>
         /// The item attribute.
         /// </summary>
+        [Serializable]
         public struct ItemAttribute
         {
             /// <summary>

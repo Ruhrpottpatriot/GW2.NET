@@ -7,15 +7,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
+
+using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
-    using Newtonsoft.Json;
-
     /// <summary>
     /// The trinket.
     /// </summary>
+    [Serializable]
     public struct Trinket
     {
         /// <summary>

@@ -46,6 +46,11 @@ namespace GW2DotNET.V1.World.Models
         /// The event is invalid. 
         /// For now no further information were released by Arena Net
         /// </summary>
-        Invalid
+        Invalid,
+
+        /// <summary>
+        /// The event is not running now.
+        /// </summary>
+        Inactive
     }
 }

@@ -31,13 +31,24 @@ namespace GW2DotNET.V1.Infrastructure
         {
             get
             {
-                if (build == 0)
+                if (build < 0)
                 {
-                    build = GetContent<Dictionary<string, int>>("build.json", null, ApiCall.Categories.Miscellaneous).Values.Single();
+                    build = GetContent<Dictionary<string, int>>("build.json", null, Categories.Miscellaneous).Values.Single();
                 }
 
                 return build;
             }
+        }
+
+        /// <summary>Gets the latest build from the server.</summary>
+        /// <returns>The latest build.</returns>
+        public static int GetLatestBuild()
+        {
+            int latestBuild = GetContent<Dictionary<string, int>>("build.json", null, Categories.Miscellaneous).Values.Single();
+
+            build = latestBuild;
+
+            return latestBuild;
         }
 
         /// <summary>

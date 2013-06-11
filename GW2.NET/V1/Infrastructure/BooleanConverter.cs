@@ -19,16 +19,16 @@ namespace GW2DotNET.V1.Infrastructure
     internal class BooleanConverter : JsonConverter
     {
         /// <summary>
-        /// The write json.
+        /// Writes the json.
         /// </summary>
         /// <param name="writer">
-        /// The writer.
+        /// The json writer to use.
         /// </param>
         /// <param name="value">
-        /// The value.
+        /// The value to convert to a boolean value.
         /// </param>
         /// <param name="serializer">
-        /// The serializer.
+        /// The serializer to use.
         /// </param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
@@ -59,13 +59,13 @@ namespace GW2DotNET.V1.Infrastructure
         }
 
         /// <summary>
-        /// The can convert.
+        /// Checks if the type can be converted to a boolean value
         /// </summary>
         /// <param name="objectType">
         /// The object type.
         /// </param>
         /// <returns>
-        /// The <see cref="bool"/>.
+        /// True if the type can be converted to a boolean value, otherwise false.
         /// </returns>
         public override bool CanConvert(Type objectType)
         {

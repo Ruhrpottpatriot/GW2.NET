@@ -206,22 +206,6 @@ namespace GW2DotNET.V1.World.Models
         }
         
         /// <summary>
-        /// Resolves the name of an event.
-        /// </summary>
-        /// <param name="worldManager">The world manager.</param>
-        /// <returns>The <see cref="GwEvent"/> with the resolved names.</returns>
-        public GwEvent ResolveName(WorldManager worldManager)
-        {
-            GwEvent newEvent = this;
-
-            newEvent.Map = worldManager.Maps[this.MapId];
-            newEvent.World = worldManager.Worlds[this.WorldId];
-            newEvent.Name = worldManager.Events.EventNames[this.EventId];
-
-            return newEvent;
-        }
-
-        /// <summary>
         /// Indicates whether this instance and a specified object are equal.
         /// </summary>
         /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
@@ -248,6 +232,22 @@ namespace GW2DotNET.V1.World.Models
         public override int GetHashCode()
         {
             return this.EventId.GetHashCode();
+        }
+
+        /// <summary>
+        /// Resolves the name of an event.
+        /// </summary>
+        /// <param name="gw2ApiManager">The GW2ApiManager</param>
+        /// <returns>The <see cref="GwEvent"/> with the resolved names.</returns>
+        internal GwEvent ResolveIDs(Gw2ApiManager gw2ApiManager)
+        {
+            GwEvent newEvent = this;
+
+            newEvent.Map = gw2ApiManager.Maps[this.MapId];
+            newEvent.World = gw2ApiManager.Worlds[this.WorldId];
+            newEvent.Name = gw2ApiManager.Events.EventNames[this.EventId];
+
+            return newEvent;
         }
     }
 }

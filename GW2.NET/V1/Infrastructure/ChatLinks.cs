@@ -9,8 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GW2DotNET.V1.Infrastructure
 {
@@ -185,7 +183,6 @@ namespace GW2DotNET.V1.Infrastructure
 
             return string.Format("[&{0}]", base64String);
         }
-
 
         /* static public string DecodeFrom64(string encodedData)
         {
