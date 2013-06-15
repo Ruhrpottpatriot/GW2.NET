@@ -76,12 +76,17 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                var arguments = new List<KeyValuePair<string, object>>
+                if (this.recipes == null)
                 {
-                    new KeyValuePair<string, object>("recipe_id", recipeId)
-                };
+                    var arguments = new List<KeyValuePair<string, object>>
+                    {
+                        new KeyValuePair<string, object>("recipe_id", recipeId)
+                    };
 
-                return ApiCall.GetContent<Recipe>("recipe_details.json", arguments, ApiCall.Categories.Items);
+                    return ApiCall.GetContent<Recipe>("recipe_details.json", arguments, ApiCall.Categories.Items);
+                }
+
+                return this.recipes.Single(recipe => recipe.Id == recipeId);
             }
         }
 

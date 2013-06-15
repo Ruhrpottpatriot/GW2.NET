@@ -79,17 +79,27 @@ namespace GW2DotNET.V1.WvW.DataProviders
         /// <summary>
         /// Gets a single match from the server.
         /// </summary>
-        /// <param name="id">
+        /// <param name="matchId">
         /// The match id.
         /// </param>
         /// <returns>
         /// The <see cref="WvWMatch"/>.
         /// </returns>
-        public WvWMatch this[string id]
+        public WvWMatch this[string matchId]
         {
             get
             {
-                return this.Matches.Single(m => m.MatchId == id);
+                if (this.matches == null)
+                {
+                    var arguments = new List<KeyValuePair<string, object>>
+                    {
+                        new KeyValuePair<string, object>("match_id", matchId)
+                    };
+
+                    return ApiCall.GetContent<WvWMatch>("match_details.json", arguments, ApiCall.Categories.WvW);
+                }
+
+                return this.Matches.Single(m => m.MatchId == matchId);
             }
         }
 

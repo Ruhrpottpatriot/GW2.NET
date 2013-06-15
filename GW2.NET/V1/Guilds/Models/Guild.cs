@@ -104,7 +104,7 @@ namespace GW2DotNET.V1.Guilds.Models
         /// </returns>
         public static bool operator ==(Guild guildA, Guild guildB)
         {
-            return (guildA.Id == guildB.Id) && (guildA.Emblem == guildB.Emblem);
+            return guildA.Id == guildB.Id;
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace GW2DotNET.V1.Guilds.Models
         /// </returns>
         public static bool operator !=(Guild guildA, Guild guildB)
         {
-            return (guildA.Id == guildB.Id) && (guildA.Emblem == guildB.Emblem);
+            return guildA.Id == guildB.Id;
         }
 
         /// <summary>

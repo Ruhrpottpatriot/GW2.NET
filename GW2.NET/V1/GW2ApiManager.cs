@@ -9,6 +9,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
+
 using GW2DotNET.V1.Guilds.DataProvider;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
@@ -69,6 +72,9 @@ namespace GW2DotNET.V1
         /// </summary>
         private Language language;
 
+        /// <summary>The build.</summary>
+        private int build = -1;
+
         /// <summary>Initializes a new instance of the <see cref="Gw2ApiManager"/> class.</summary>
         public Gw2ApiManager()
         {
@@ -82,6 +88,20 @@ namespace GW2DotNET.V1
         public Gw2ApiManager(Language language)
         {
             this.language = language;
+        }
+
+        /// <summary>Gets the build.</summary>
+        public int Build
+        {
+            get
+            {
+                if (this.build < 0)
+                {
+                    this.build = this.GetLatestBuild();
+                }
+
+                return this.build;
+            }
         }
 
         /// <summary>Gets or sets the language.</summary>
@@ -196,6 +216,17 @@ namespace GW2DotNET.V1
             {
                 return this.worldData ?? (this.worldData = new WorldData(this.language));
             }
+        }
+
+        /// <summary>Gets the latest build from the server and storey it in the cache.</summary>
+        /// <returns>The latest build.</returns>
+        public int GetLatestBuild()
+        {
+            int latestBuild = ApiCall.GetContent<Dictionary<string, int>>("build.json", null, ApiCall.Categories.Miscellaneous).Values.Single();
+
+            this.build = latestBuild;
+
+            return latestBuild;
         }
 
         /// <summary>Clears the cache.
