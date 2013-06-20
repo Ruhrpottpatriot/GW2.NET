@@ -54,6 +54,8 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <param name="apiManager">The api Manager.</param>
         internal ItemData(Language language, Gw2ApiManager apiManager)
         {
+            this.apiManager = new Gw2ApiManager();
+
             this.language = language;
             this.apiManager = apiManager;
 
@@ -68,6 +70,8 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <param name="apiManager">The api Manager.</param>
         internal ItemData(Language language, string savePath, Gw2ApiManager apiManager)
         {
+            this.apiManager = new Gw2ApiManager();
+
             this.language = language;
             this.apiManager = apiManager;
 
@@ -147,7 +151,7 @@ namespace GW2DotNET.V1.Items.DataProvider
                 }
 
                 // Check if the data is stale.
-                if (diskData.Build >= this.apiManager.Build)
+                if (diskData.Build >= apiManager.GetLatestBuild())
                 {
                     this.itemsCache = diskData.ItemsList;
 

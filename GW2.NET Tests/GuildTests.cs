@@ -9,12 +9,10 @@
 
 using System;
 using System.Diagnostics;
-using System.Linq;
 
-using GW2DotNET.V1.Guilds;
+using GW2DotNET.V1;
 
 using NUnit.Framework;
-using GW2DotNET.V1;
 
 namespace GW2.NET_Tests
 {
@@ -57,7 +55,6 @@ namespace GW2.NET_Tests
         /// <summary>
         /// Gets all guilds from the api.
         /// </summary>
-        [Test]
         public void GetGuilds()
         {
             Stopwatch watch = Stopwatch.StartNew();

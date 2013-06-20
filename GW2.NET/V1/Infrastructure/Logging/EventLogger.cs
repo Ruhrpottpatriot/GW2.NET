@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Logger.cs" company="GW2.Net Coding Team">
+// <copyright file="EventLogger.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -15,11 +15,11 @@ namespace GW2DotNET.V1.Infrastructure.Logging
     using System.IO;
 
     /// <summary>The logging framework.</summary>
-    public class Logger
+    public class EventLogger
     {
         /// <summary>The trace source.</summary>
         private readonly TraceSource traceSource;
-        
+
         /// <summary>The complete listener.</summary>
         private readonly TextWriterTraceListener completeListener;
 
@@ -32,8 +32,8 @@ namespace GW2DotNET.V1.Infrastructure.Logging
         /// <summary>The complete log path.</summary>
         private string completeLog;
 
-        /// <summary>Initializes a new instance of the <see cref="Logger"/> class.</summary>
-        public Logger()
+        /// <summary>Initializes a new instance of the <see cref="EventLogger"/> class.</summary>
+        public EventLogger()
         {
             this.SetLogFilePaths();
 
@@ -45,15 +45,12 @@ namespace GW2DotNET.V1.Infrastructure.Logging
 
             // Create a new Text writer
             // ToDo: Create a way for users to specify the output type of the logs.
-             var warningsListener = new TextWriterTraceListener(this.warningsLog);
+            var warningsListener = new TextWriterTraceListener(this.warningsLog);
 
             this.completeListener = new TextWriterTraceListener(this.completeLog);
 
             // Create a SourceSwitch and set the initial level of error logging.
-            this.traceSource.Switch = new SourceSwitch("mySwitch", "my switch")
-                                          {
-                                              Level = SourceLevels.All
-                                          };
+            this.traceSource.Switch = new SourceSwitch("mySwitch", "All");
 
             // Set additional TraceOutput options
             warningsListener.TraceOutputOptions = TraceOptions.DateTime | TraceOptions.Timestamp;
@@ -69,8 +66,8 @@ namespace GW2DotNET.V1.Infrastructure.Logging
             Trace.AutoFlush = true;
 
             // Create the filters for the log files.
-            warningsListener.Filter = new EventTypeFilter(SourceLevels.Error);
-            this.completeListener.Filter = new EventTypeFilter(SourceLevels.Information);
+            warningsListener.Filter = new EventTypeFilter(SourceLevels.Warning);
+            this.completeListener.Filter = new EventTypeFilter(SourceLevels.All);
         }
 
         /// <summary>Gets the complete log file path.</summary>
@@ -100,25 +97,12 @@ namespace GW2DotNET.V1.Infrastructure.Logging
             }
         }
 
-         /// <summary>The change logging level.</summary>
+        /// <summary>The change logging level.</summary>
         /// <param name="loggingLevel">The new logging level.</param>
-        /// <remarks>This method changes the logging level. 
-        /// However it will not allow the <see cref="SourceLevels.ActivityTracing"/> level through and instead will disable the logging.
-        /// If the <see cref="SourceLevels.All"/> is chosen this method will set the logging level to <see cref="SourceLevels.Verbose"/> level. </remarks>
         public void ChangeLoggingLevel(SourceLevels loggingLevel)
-         {
-             switch (loggingLevel)
-             {
-                 case SourceLevels.ActivityTracing:
-                     loggingLevel = SourceLevels.Off;
-                     break;
-                 case SourceLevels.All:
-                     loggingLevel = SourceLevels.Verbose;
-                     break;
-             }
-
-             this.completeListener.Filter = new EventTypeFilter(loggingLevel);
-         }
+        {
+            this.completeListener.Filter = new EventTypeFilter(loggingLevel);
+        }
 
         /// <summary>The write to log.</summary>
         /// <param name="message">The message.</param>

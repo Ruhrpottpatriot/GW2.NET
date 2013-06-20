@@ -16,6 +16,9 @@ using GW2DotNET.V1.Infrastructure;
 
 namespace GW2DotNET.V1.Guilds.DataProvider
 {
+    using System.Diagnostics;
+    using System.Runtime.Remoting;
+
     /// <summary>
     /// The guild data provider.
     /// </summary>
@@ -29,9 +32,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         /// <summary>
         /// Stores the GW2ApiManager that instantiated this object
         /// </summary>
-        // ReSharper disable NotAccessedField.Local
-        private Gw2ApiManager gw2ApiManager;
-        // ReSharper restore NotAccessedField.Local
+        private readonly Gw2ApiManager gw2ApiManager;
 
         /// <summary>Initializes a new instance of the <see cref="GuildData"/> class.</summary>
         /// <param name="gw2ApiManager">The api Manager.</param>
@@ -55,7 +56,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             get
             {
-                Guild guildToReturn = this.guildCache.SingleOrDefault(g => g.Id == guildId);
+                var guildToReturn = this.guildCache.SingleOrDefault(g => g.Id == guildId);
 
                 if (guildToReturn.Id == Guid.Empty)
                 {
@@ -64,7 +65,18 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                             new KeyValuePair<string, object>("guild_id", guildId)
                         };
 
-                    guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
+                    try
+                    {
+                        this.gw2ApiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
+
+                        guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
+                        
+                        this.gw2ApiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.gw2ApiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
+                    }
                 }
 
                 this.guildCache.Add(guildToReturn);
@@ -82,7 +94,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             get
             {
-                Guild guildToReturn = this.guildCache.SingleOrDefault(g => g.Name == guildName);
+                var guildToReturn = this.guildCache.SingleOrDefault(g => g.Name == guildName);
 
                 if (guildToReturn.Id == Guid.Empty)
                 {
@@ -91,7 +103,18 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                             new KeyValuePair<string, object>("guild_name", guildName)
                         };
 
-                    guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
+                    try
+                    {
+                        this.gw2ApiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
+
+                        guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
+
+                        this.gw2ApiManager.Logger.WriteToLog("Finished request.", TraceEventType.Stop);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.gw2ApiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
+                    }
                 }
 
                 this.guildCache.Add(guildToReturn);
