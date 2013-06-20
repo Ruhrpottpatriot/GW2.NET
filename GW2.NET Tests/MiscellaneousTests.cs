@@ -15,6 +15,10 @@ using NUnit.Framework;
 
 namespace GW2.NET_Tests
 {
+    using System;
+
+    using GW2DotNET.V1.Infrastructure.Logging;
+
     /// <summary>
     /// The miscellaneous tests.
     /// </summary>
@@ -27,6 +31,25 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
+        }
+
+        /// <summary>The logging test.</summary>
+        [Test]
+        public void LoggingTest()
+        {
+            var loggingFramework = new Logger();
+
+            loggingFramework.WriteToLog(new NotImplementedException("This function was not implemented yet!", new NotImplementedException()), TraceEventType.Critical);
+            
+            loggingFramework.WriteToLog("Some Information", TraceEventType.Information);
+
+            loggingFramework.ChangeLoggingLevel(SourceLevels.Critical);
+
+            loggingFramework.WriteToLog(new NotImplementedException("This function was not implemented yet!", new NotImplementedException()), TraceEventType.Critical);
+
+            loggingFramework.WriteToLog("Some Information", TraceEventType.Information);
+
+            Debug.WriteLine(loggingFramework.CompleteLogFilePath);
         }
 
         /// <summary>

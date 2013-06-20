@@ -64,6 +64,7 @@
     <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
     <Compile Include="V1\Infrastructure\ChatLinks.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
+    <Compile Include="V1\Infrastructure\Logging\Logger.cs" />
     <Compile Include="V1\Items\DataProvider\ColourData.cs" />
     <Compile Include="V1\Items\DataProvider\ItemDataCache.cs" />
     <Compile Include="V1\Items\Models\GwColour.ColourDetails.cs" />
