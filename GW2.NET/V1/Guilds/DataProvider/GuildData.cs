@@ -205,7 +205,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
             }
         }
 
-        private void GetGuildCompletionMethod(Guid guildID, Exception exception, bool canceled, AsyncOperation asyncOp)
+        private void GetGuildCompletionMethod(Guid guildID, Guild guild, Exception exception, bool canceled, AsyncOperation asyncOp)
         {
             if (!canceled)
             {
@@ -215,7 +215,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                 }
             }
 
-            GetGuildCompletedEventArgs e = new GetGuildCompletedEventArgs(guildID, exception, canceled, asyncOp.UserSuppliedState);
+            GetGuildCompletedEventArgs e = new GetGuildCompletedEventArgs(guildID, guild, exception, canceled, asyncOp.UserSuppliedState);
 
             asyncOp.PostOperationCompleted(onCompletedDelegate, e);
         }
@@ -236,12 +236,13 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             Exception e = null;
             ProgressChangedEventArgs pe = null;
+            Guild guildToReturn = new Guild();
 
             if (!TaskCanceled(asyncOp.UserSuppliedState))
             {
                 try
                 {
-                    var guild = this[guildID];
+                    guildToReturn = this[guildID];
                     pe = new ProgressChangedEventArgs(100, asyncOp.UserSuppliedState);
                     asyncOp.Post(this.onProgressReportDelegate, pe);
                 }
@@ -251,7 +252,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                 }
             }
 
-            this.GetGuildCompletionMethod(guildID, e, TaskCanceled(asyncOp.UserSuppliedState), asyncOp);
+            this.GetGuildCompletionMethod(guildID, guildToReturn, e, TaskCanceled(asyncOp.UserSuppliedState), asyncOp);
         }
 
         /// <summary>
@@ -291,13 +292,15 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         /// 
         /// </summary>
         /// <param name="guildID"></param>
+        /// <param name="guild"></param>
         /// <param name="e"></param>
         /// <param name="canceled"></param>
         /// <param name="state"></param>
-        public GetGuildCompletedEventArgs(Guid guildID, Exception e, bool canceled, object state)
+        public GetGuildCompletedEventArgs(Guid guildID, Guild guild, Exception e, bool canceled, object state)
             : base(e, canceled, state)
         {
             this.guildID = guildID;
+            this.guild = guild;
         }
 
         /// <summary>
