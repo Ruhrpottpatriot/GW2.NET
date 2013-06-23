@@ -37,6 +37,13 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         private readonly List<Guild> guildCache;
 
         /// <summary>
+        /// This object will be used to synchronize access to the guild cache.
+        /// You MUST lock this object any time you access the guild cache in
+        /// order to maintain thread safety.
+        /// </summary>
+        private object guildCacheSyncObject = new object();
+
+        /// <summary>
         /// Stores the GW2ApiManager that instantiated this object
         /// </summary>
         // ReSharper disable NotAccessedField.Local
@@ -85,7 +92,12 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             get
             {
-                Guild guildToReturn = this.guildCache.SingleOrDefault(g => g.Id == guildId);
+                Guild guildToReturn;
+
+                lock (this.guildCacheSyncObject)
+                {
+                    guildToReturn = this.guildCache.SingleOrDefault(g => g.Id == guildId);
+                }
 
                 if (guildToReturn.Id == Guid.Empty)
                 {
@@ -95,9 +107,16 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                         };
 
                     guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
-                }
 
-                this.guildCache.Add(guildToReturn);
+                    lock (this.guildCacheSyncObject)
+                    {
+                        // A different thread could have added this guild to the cache already, so check first
+                        if (this.guildCache.SingleOrDefault(g => g.Id == guildId).Id == Guid.Empty)
+                        {
+                            this.guildCache.Add(guildToReturn);
+                        }
+                    }
+                }
 
                 return guildToReturn;
             }
@@ -112,7 +131,12 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             get
             {
-                Guild guildToReturn = this.guildCache.SingleOrDefault(g => g.Name == guildName);
+                Guild guildToReturn;
+
+                lock (this.guildCacheSyncObject)
+                {
+                    guildToReturn = this.guildCache.SingleOrDefault(g => g.Name == guildName);
+                }
 
                 if (guildToReturn.Id == Guid.Empty)
                 {
@@ -122,9 +146,16 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                         };
 
                     guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
-                }
 
-                this.guildCache.Add(guildToReturn);
+                    lock (this.guildCacheSyncObject)
+                    {
+                        // A different thread could have added this guild to the cache already, so check first
+                        if (this.guildCache.SingleOrDefault(g => g.Name == guildName).Id == Guid.Empty)
+                        {
+                            this.guildCache.Add(guildToReturn);
+                        }
+                    }
+                }
 
                 return guildToReturn;
             }
