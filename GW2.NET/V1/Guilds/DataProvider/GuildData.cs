@@ -72,14 +72,14 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                         guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
                         
                         this.gw2ApiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
+
+                        this.guildCache.Add(guildToReturn);
                     }
                     catch (Exception ex)
                     {
                         this.gw2ApiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
                     }
                 }
-
-                this.guildCache.Add(guildToReturn);
 
                 return guildToReturn;
             }
