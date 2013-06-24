@@ -93,10 +93,23 @@
     <Compile Include="V1\Infrastructure\ChatLinks.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
     <Compile Include="V1\Infrastructure\Logging\EventLogger.cs" />
-    <Compile Include="V1\Items\DataProvider\ColourData.cs" />
+    <Compile Include="V1\Items\DataProvider\ColourData.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V1\Items\DataProvider\ColourData.GetAllColoursAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V1\Items\DataProvider\ColourData.GetColourFromIdAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V1\Items\DataProvider\ColourData.GetColourFromNameAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="V1\Items\DataProvider\ItemDataCache.cs" />
     <Compile Include="V1\Items\Models\GwColour.ColourDetails.cs" />
-    <Compile Include="V1\Items\DataProvider\ItemData.cs" />
+    <Compile Include="V1\Items\DataProvider\ItemData.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Armour.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Back.cs" />

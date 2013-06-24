@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// <summary>
     /// The item data provider.
     /// </summary>
-    public class ItemData : IEnumerable<Item>
+    public class ItemData : System.ComponentModel.Component, IEnumerable<Item>
     {
         /// <summary>
         /// The language.
@@ -48,6 +48,12 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// The items cache.
         /// </summary>
         private IEnumerable<Item> itemsCache;
+
+        /// <summary>
+        /// Used to synchronize access to the itemsCache. Use this one
+        /// object for both itemIdCache and itemsCache.
+        /// </summary>
+        private object itemCacheSyncObject = new object();
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
         /// <param name="language">The language of the retrieved content.</param>
@@ -90,9 +96,12 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                if (this.itemsCache == null)
+                lock (itemCacheSyncObject)
                 {
-                    this.GetAllItems();
+                    if (this.itemsCache == null)
+                    {
+                        this.GetAllItems();
+                    }
                 }
 
                 return this.itemsCache;
@@ -135,35 +144,38 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// </summary>
         private void LoadCache()
         {
-            // Check if there is a cache file present.
-            if (File.Exists(this.cacheFileName))
+            lock (itemCacheSyncObject)
             {
-                ItemDataCache diskData;
-
-                // Deserialize the binary file.
-                using (var fileStream = new FileStream(this.cacheFileName, FileMode.Open))
+                // Check if there is a cache file present.
+                if (File.Exists(this.cacheFileName))
                 {
-                    var binarySerializer = new BinaryFormatter();
+                    ItemDataCache diskData;
 
-                    diskData = (ItemDataCache)binarySerializer.Deserialize(fileStream);
+                    // Deserialize the binary file.
+                    using (var fileStream = new FileStream(this.cacheFileName, FileMode.Open))
+                    {
+                        var binarySerializer = new BinaryFormatter();
 
-                    fileStream.Close();
+                        diskData = (ItemDataCache) binarySerializer.Deserialize(fileStream);
+
+                        fileStream.Close();
+                    }
+
+                    // Check if the data is stale.
+                    if (diskData.Build >= apiManager.GetLatestBuild())
+                    {
+                        this.itemsCache = diskData.ItemsList;
+
+                        this.itemIdCache = diskData.ItemIds;
+                    }
+
+                    /* If we had no data on disk or it was stale, the cache will
+                     * be empty when this method returns. We do not proactively
+                     * retrieve the item data for the new build. This will be done
+                     * the next time the caller attempts to retrieve the details
+                     * of an item.
+                     */
                 }
-
-                // Check if the data is stale.
-                if (diskData.Build >= apiManager.GetLatestBuild())
-                {
-                    this.itemsCache = diskData.ItemsList;
-
-                    this.itemIdCache = diskData.ItemIds;
-                }
-
-                /* If we had no data on disk or it was stale, the cache will
-                 * be empty when this method returns. We do not proactively
-                 * retrieve the item data for the new build. This will be done
-                 * the next time the caller attempts to retrieve the details
-                 * of an item.
-                 */
             }
         }
 
@@ -192,13 +204,13 @@ namespace GW2DotNET.V1.Items.DataProvider
             }
 
             // Serialize the data and write the file
-            using (var flieStream = new FileStream(this.cacheFileName, FileMode.Create))
+            using (var fileStream = new FileStream(this.cacheFileName, FileMode.Create))
             {
                 var binarySerializer = new BinaryFormatter();
 
-                binarySerializer.Serialize(flieStream, dataToSave);
+                binarySerializer.Serialize(fileStream, dataToSave);
 
-                flieStream.Close();
+                fileStream.Close();
             }
         }
 
@@ -209,16 +221,24 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// </remarks>
         private void GetAllItems()
         {
-            this.itemIdCache = ApiCall.GetContent<Dictionary<string, List<int>>>("items.json", null, ApiCall.Categories.Items).Values.First();
+            // Because this method is ONLY called by the private AllItems property
+            // accessor, and that accessor has already locked the sync object, we
+            // don't have to lock it here.
+            this.itemIdCache =
+                ApiCall.GetContent<Dictionary<string, List<int>>>("items.json", null, ApiCall.Categories.Items)
+                       .Values.First();
 
             this.itemsCache = this.itemIdCache
-                .Select(itemId =>
-                    new List<KeyValuePair<string, object>>
-                        {
-                            new KeyValuePair<string, object>("item_id", itemId),
-                            new KeyValuePair<string, object>("lang", this.language)
-                        })
-                        .Select(arguments => ApiCall.GetContent<Item>("item_details.json", arguments, ApiCall.Categories.Items)).ToList();
+                                  .Select(itemId =>
+                                          new List<KeyValuePair<string, object>>
+                                              {
+                                                  new KeyValuePair<string, object>("item_id", itemId),
+                                                  new KeyValuePair<string, object>("lang", this.language)
+                                              })
+                                  .Select(
+                                      arguments =>
+                                      ApiCall.GetContent<Item>("item_details.json", arguments,
+                                                               ApiCall.Categories.Items)).ToList();
 
             this.SaveCache();
         }

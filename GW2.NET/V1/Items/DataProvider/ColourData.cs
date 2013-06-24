@@ -9,6 +9,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 
 using GW2DotNET.V1.Infrastructure;
@@ -19,7 +20,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// <summary>
     /// The colour data provider.
     /// </summary>
-    public class ColourData : IEnumerable<GwColour>
+    public partial class ColourData : System.ComponentModel.Component, IEnumerable<GwColour>
     {
         /// <summary>
         /// The language.
@@ -32,12 +33,49 @@ namespace GW2DotNET.V1.Items.DataProvider
         private IEnumerable<GwColour> coloursCache;
 
         /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private coloursCache object.
+        /// </summary>
+        private readonly object coloursCacheSyncObject = new object();
+
+        /// <summary>
+        ///     Tracks the state of any async tasks.
+        /// </summary>
+        private readonly HybridDictionary userStateToLifetime = new HybridDictionary();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ColourData"/> class.
         /// </summary>
         /// <param name="language">The language the content is retrieved in.</param>
         internal ColourData(Language language)
         {
             this.language = language;
+
+            InitializeDelegates();
+        }
+
+        /// <summary>
+        ///     Initialize the delegates. This is called by the constructor.
+        /// </summary>
+        protected virtual void InitializeDelegates()
+        {
+            onGetColourFromIdCompletedDelegate = GetColourFromIdCompletedCallback;
+
+            onGetColourFromIdProgressReportDelegate = GetColourFromIdReportProgressCallback;
+
+            onGetColourFromNameCompletedDelegate = GetColourFromNameCompletedCallback;
+
+            onGetColourFromNameProgressReportDelegate = GetColourFromNameReportProgressCallback;
+
+            onGetAllColoursCompletedDelegate = GetAllColoursCompletedCallback;
+
+            onGetAllColoursProgressReportDelegate = GetAllColoursReportProgressCallback;
+        }
+
+        // Utility method for determining if a task has been canceled.
+        private bool TaskCanceled(object taskId)
+        {
+            return (userStateToLifetime[taskId] == null);
         }
 
         /// <summary>
@@ -47,7 +85,10 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                return this.coloursCache ?? (this.coloursCache = this.GetColours());
+                lock (coloursCacheSyncObject)
+                {
+                    return this.coloursCache ?? (this.coloursCache = this.GetColours());
+                }
             }
         }
 
