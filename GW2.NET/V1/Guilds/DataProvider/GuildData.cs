@@ -152,6 +152,10 @@ namespace GW2DotNET.V1.Guilds.DataProvider
             onGetGuildFromIdProgressReportDelegate = GetGuildFromIdReportProgress;
 
             onGetGuildFromIdCompletedDelegate = GetGuildFromIdCompletedCallback;
+
+            onGetGuildFromNameProgressReportDelegate = GetGuildFromNameReportProgress;
+
+            onGetGuildFromNameCompletedDelegate = GetGuildFromNameCompletedCallback;
         }
 
         // Utility method for determining if a task has been canceled.
