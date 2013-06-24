@@ -15,18 +15,43 @@ using NUnit.Framework;
 
 namespace GW2.NET_Tests
 {
+    using System;
+
+    using GW2DotNET.V1;
+    using GW2DotNET.V1.Infrastructure.Logging;
+
     /// <summary>
     /// The miscellaneous tests.
     /// </summary>
     [TestFixture]
     public class MiscellaneousTests
     {
+        private Gw2ApiManager apiManager;
+
         /// <summary>
         /// Runs before each test run.
         /// </summary>
         [SetUp]
         public void SetUp()
         {
+            apiManager = new Gw2ApiManager();
+        }
+
+        /// <summary>The logging test.</summary>
+        [Test]
+        public void LoggingTest()
+        {
+            this.apiManager.Logger.WriteToLog(new NotImplementedException("This function was not implemented yet!", new NotImplementedException()), TraceEventType.Critical);
+
+            this.apiManager.Logger.WriteToLog("Some Information", TraceEventType.Information);
+
+            this.apiManager.Logger.ChangeLoggingLevel(SourceLevels.Critical);
+
+            this.apiManager.Logger.WriteToLog(new NotImplementedException("This function was not implemented yet!", new NotImplementedException()), TraceEventType.Critical);
+
+            this.apiManager.Logger.WriteToLog("Some Information", TraceEventType.Information);
+
+            Debug.WriteLine(this.apiManager.Logger.CompleteLogFilePath);
         }
 
         /// <summary>
@@ -35,9 +60,9 @@ namespace GW2.NET_Tests
         [Test]
         public void GetBuildNumber()
         {
-            var buildNumber = ApiCall.Build;
+            Debug.WriteLine("Build: {0}", this.apiManager.Build);
 
-            Debug.WriteLine("Build: {0}", buildNumber);
+            Debug.WriteLine("New Build: {0}", this.apiManager.GetLatestBuild());
         }
     }
 }

@@ -9,6 +9,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Linq;
+
 using GW2DotNET.V1.Guilds.DataProvider;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
@@ -17,6 +20,11 @@ using GW2DotNET.V1.WvW.DataProviders;
 
 namespace GW2DotNET.V1
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using GW2DotNET.V1.Infrastructure.Logging;
+
     /// <summary>
     /// This is the one and only class that is directly instantiated
     /// by the caller. All functionality is accessed through the
@@ -24,6 +32,9 @@ namespace GW2DotNET.V1
     /// </summary>
     public class Gw2ApiManager
     {
+        /// <summary>The build.</summary>
+        private int build = -1;
+
         /// <summary>
         /// Backing field for Colours property
         /// </summary>
@@ -69,10 +80,14 @@ namespace GW2DotNET.V1
         /// </summary>
         private Language language;
 
+        /// <summary>The event logger.</summary>
+        private readonly EventLogger logger;
+
         /// <summary>Initializes a new instance of the <see cref="Gw2ApiManager"/> class.</summary>
         public Gw2ApiManager()
         {
             this.language = Language.En;
+            this.logger = new EventLogger();
         }
 
         /// <summary>
@@ -82,6 +97,21 @@ namespace GW2DotNET.V1
         public Gw2ApiManager(Language language)
         {
             this.language = language;
+            this.logger = new EventLogger();
+        }
+
+        /// <summary>Gets the build.</summary>
+        public int Build
+        {
+            get
+            {
+                if (this.build <= 0)
+                {
+                    this.GetLatestBuild();
+                }
+
+                return this.build;
+            }
         }
 
         /// <summary>Gets or sets the language.</summary>
@@ -107,6 +137,14 @@ namespace GW2DotNET.V1
                 this.worldData = null;
 
                 this.language = value;
+            }
+        }
+
+        public EventLogger Logger
+        {
+            get
+            {
+                return this.logger;
             }
         }
 
@@ -150,7 +188,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.itemData ?? (this.itemData = new ItemData(this.language));
+                return this.itemData ?? (this.itemData = new ItemData(this.language, this));
             }
         }
 
@@ -210,6 +248,15 @@ namespace GW2DotNET.V1
             this.matchData = null;
             this.recipeData = null;
             this.worldData = null;
+        }
+
+        /// <summary>Gets the latest build from the server.</summary>
+        /// <returns>The latest build.</returns>
+        public int GetLatestBuild()
+        {
+            this.build = ApiCall.GetContent<Dictionary<string, int>>("build.json", null, ApiCall.Categories.Miscellaneous).Values.Single();
+
+            return this.build;
         }
     }
 }

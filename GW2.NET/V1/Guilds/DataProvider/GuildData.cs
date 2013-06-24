@@ -17,6 +17,9 @@ using GW2DotNET.V1.Infrastructure;
 
 namespace GW2DotNET.V1.Guilds.DataProvider
 {
+    using System.Diagnostics;
+    using System.Runtime.Remoting;
+
     /// <summary>
     ///     The guild data provider.
     /// </summary>
@@ -43,7 +46,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         ///     Stores the GW2ApiManager that instantiated this object
         /// </summary>
         // ReSharper disable NotAccessedField.Local
-        private Gw2ApiManager gw2ApiManager;
+        private readonly Gw2ApiManager gw2ApiManager;
 
         // ReSharper restore NotAccessedField.Local
 
@@ -87,15 +90,29 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                             new KeyValuePair<string, object>("guild_id", guildId)
                         };
 
-                    guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
-
-                    lock (guildCacheSyncObject)
+                    try
                     {
-                        // A different thread could have added this guild to the cache already, so check first
-                        if (guildCache.SingleOrDefault(g => g.Id == guildId).Id == Guid.Empty)
+                        this.gw2ApiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
+
+                        guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments,
+                                                                  ApiCall.Categories.Guild);
+
+                        lock (guildCacheSyncObject)
                         {
-                            guildCache.Add(guildToReturn);
+                            // A different thread could have added this guild to the cache already, so check first
+                            if (guildCache.SingleOrDefault(g => g.Id == guildId).Id == Guid.Empty)
+                            {
+                                guildCache.Add(guildToReturn);
+                            }
                         }
+
+                        this.gw2ApiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
+
+                        this.guildCache.Add(guildToReturn);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.gw2ApiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
                     }
                 }
 
@@ -128,15 +145,27 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                             new KeyValuePair<string, object>("guild_name", guildName)
                         };
 
-                    guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
-
-                    lock (guildCacheSyncObject)
+                    try
                     {
-                        // A different thread could have added this guild to the cache already, so check first
-                        if (guildCache.SingleOrDefault(g => g.Name == guildName).Id == Guid.Empty)
+                        this.gw2ApiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
+
+                        guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments,
+                                                                  ApiCall.Categories.Guild);
+
+                        lock (guildCacheSyncObject)
                         {
-                            guildCache.Add(guildToReturn);
+                            // A different thread could have added this guild to the cache already, so check first
+                            if (guildCache.SingleOrDefault(g => g.Name == guildName).Id == Guid.Empty)
+                            {
+                                guildCache.Add(guildToReturn);
+                            }
                         }
+
+                        this.gw2ApiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.gw2ApiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
                     }
                 }
 
