@@ -9,10 +9,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
 using GW2DotNET.V1.Guilds.DataProvider;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
@@ -138,6 +134,8 @@ namespace GW2DotNET.V1
                 this.guildData = null;
                 this.itemData = null;
                 this.mapData = null;
+                this.continentData = null;
+                this.floorData = null;
                 this.matchData = null;
                 this.recipeData = null;
                 this.worldData = null;
@@ -268,6 +266,8 @@ namespace GW2DotNET.V1
             this.guildData = null;
             this.itemData = null;
             this.mapData = null;
+            this.continentData = null;
+            this.floorData = null;
             this.matchData = null;
             this.recipeData = null;
             this.worldData = null;
