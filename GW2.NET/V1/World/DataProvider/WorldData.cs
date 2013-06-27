@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// The world names will be retrieved in this language
         /// </summary>
-        private readonly Language language;
+        private readonly Gw2ApiManager apiManager;
 
         /// <summary>
         /// Cache the world_names list here
@@ -35,10 +35,10 @@ namespace GW2DotNET.V1.World.DataProvider
         /// Initializes a new instance of the <see cref="WorldData"/> class.
         /// This should only be called by WorldManager.
         /// </summary>
-        /// <param name="language">The language in which to return world names</param>
-        internal WorldData(Language language)
+        /// <param name="apiManager">The language in which to return world names</param>
+        internal WorldData(Gw2ApiManager apiManager)
         {
-            this.language = language;
+            this.apiManager = apiManager;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.World.DataProvider
                 {
                     var arguments = new List<KeyValuePair<string, object>>
                     {
-                        new KeyValuePair<string, object>("lang", this.language.ToString())
+                        new KeyValuePair<string, object>("lang", this.apiManager.ToString())
                     };
 
                     this.gwWorldCache = ApiCall.GetContent<List<GwWorld>>("world_names.json", arguments, ApiCall.Categories.World);

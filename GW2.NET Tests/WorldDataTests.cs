@@ -11,11 +11,11 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-using GW2DotNET.V1.World;
+using GW2DotNET.V1;
+using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.World.Models;
 
 using NUnit.Framework;
-using GW2DotNET.V1;
 
 namespace GW2.NET_Tests
 {
@@ -23,7 +23,7 @@ namespace GW2.NET_Tests
     /// The event data tests.
     /// </summary>
     [TestFixture]
-    public class EventDataTests
+    public class WorldDataTests
     {
         /// <summary>
         /// The world manager.
@@ -36,7 +36,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new Gw2ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
+            this.manager = new Gw2ApiManager(Language.En);
         }
 
         /// <summary>
@@ -103,6 +103,53 @@ namespace GW2.NET_Tests
                 Debug.WriteLine(string.Empty);
                 Debug.Unindent();
             }
+        }
+
+        /// <summary>Gets all continents</summary>
+        [Test]
+        public void GetAllContinents()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var continents = this.manager.Continents.ToList();
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+
+            Debug.WriteLine("Total Number of Events: {0}", continents.Count);
+        }
+
+        /// <summary>Gets all maps.</summary>
+        [Test]
+        public void GetAllMaps()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var maps = this.manager.Maps.ToList();
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+
+            Debug.WriteLine("Total Number of Events: {0}", maps.Count);
+        }
+
+        /// <summary>Gets a map by its id.</summary>
+        [Test]
+        public void GetMapById()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var map1 = this.manager.Maps[80];
+
+            var map2 = this.manager.Maps[80];
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+
+            Debug.WriteLine("The two maps are equal: {0}", map1 == map2);
+        }
+
+        [Test]
+        public void GetMapFloor()
+        {
+            var floor = manager.FloorData[1, 1];
         }
     }
 }

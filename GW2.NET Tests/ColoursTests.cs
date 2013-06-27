@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 
 using GW2DotNET.V1;

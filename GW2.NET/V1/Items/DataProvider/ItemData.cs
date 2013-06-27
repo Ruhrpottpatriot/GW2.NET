@@ -26,11 +26,6 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// </summary>
     public class ItemData : IEnumerable<Item>
     {
-        /// <summary>
-        /// The language.
-        /// </summary>
-        private readonly Language language;
-
         /// <summary>The api manager.</summary>
         private readonly Gw2ApiManager apiManager;
 
@@ -50,16 +45,12 @@ namespace GW2DotNET.V1.Items.DataProvider
         private IEnumerable<Item> itemsCache;
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
-        /// <param name="language">The language of the retrieved content.</param>
         /// <param name="apiManager">The api Manager.</param>
-        internal ItemData(Language language, Gw2ApiManager apiManager)
+        internal ItemData(Gw2ApiManager apiManager)
         {
-            this.apiManager = new Gw2ApiManager();
-
-            this.language = language;
             this.apiManager = apiManager;
 
-            this.cacheFileName = string.Format("{0}\\GW2.NET\\ItemDataCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), language);
+            this.cacheFileName = string.Format("{0}\\GW2.NET\\ItemDataCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
 
             this.LoadCache();
         }
@@ -70,9 +61,6 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <param name="apiManager">The api Manager.</param>
         internal ItemData(Language language, string savePath, Gw2ApiManager apiManager)
         {
-            this.apiManager = new Gw2ApiManager();
-
-            this.language = language;
             this.apiManager = apiManager;
 
             this.cacheFileName = string.Format("{0}\\ItemDataCache{1}.binary", savePath, language);
@@ -151,7 +139,7 @@ namespace GW2DotNET.V1.Items.DataProvider
                 }
 
                 // Check if the data is stale.
-                if (diskData.Build >= apiManager.GetLatestBuild())
+                if (diskData.Build >= this.apiManager.GetLatestBuild())
                 {
                     this.itemsCache = diskData.ItemsList;
 
@@ -216,7 +204,7 @@ namespace GW2DotNET.V1.Items.DataProvider
                     new List<KeyValuePair<string, object>>
                         {
                             new KeyValuePair<string, object>("item_id", itemId),
-                            new KeyValuePair<string, object>("lang", this.language)
+                            new KeyValuePair<string, object>("lang", this.apiManager.Language)
                         })
                         .Select(arguments => ApiCall.GetContent<Item>("item_details.json", arguments, ApiCall.Categories.Items)).ToList();
 

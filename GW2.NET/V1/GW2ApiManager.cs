@@ -9,12 +9,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
 using GW2DotNET.V1.Guilds.DataProvider;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
+using GW2DotNET.V1.Maps.DataProvider;
 using GW2DotNET.V1.World.DataProvider;
 using GW2DotNET.V1.WvW.DataProviders;
 
@@ -32,8 +34,17 @@ namespace GW2DotNET.V1
     /// </summary>
     public class Gw2ApiManager
     {
+        /// <summary>Backing field for the event logger.</summary>
+        private readonly EventLogger logger;
+
         /// <summary>The build.</summary>
         private int build = -1;
+
+        /// <summary>Backing field for the continent data.</summary>
+        private ContinentData continentData;
+
+        /// <summary>Backing field for the map data.</summary>
+        private MapsData mapData;
 
         /// <summary>
         /// Backing field for Colours property
@@ -45,6 +56,9 @@ namespace GW2DotNET.V1
         /// </summary>
         private EventData eventData;
 
+        /// <summary>The floor data.</summary>
+        private MapFloorData floorData;
+
         /// <summary>
         /// Backing field for Guilds property
         /// </summary>
@@ -54,11 +68,6 @@ namespace GW2DotNET.V1
         /// Backing field for Items property
         /// </summary>
         private ItemData itemData;
-
-        /// <summary>
-        /// Backing field for Maps property
-        /// </summary>
-        private MapData mapData;
 
         /// <summary>
         /// Backing field for wvwMatches property
@@ -79,9 +88,6 @@ namespace GW2DotNET.V1
         /// Stores the language set by the constructor
         /// </summary>
         private Language language;
-
-        /// <summary>The event logger.</summary>
-        private readonly EventLogger logger;
 
         /// <summary>Initializes a new instance of the <see cref="Gw2ApiManager"/> class.</summary>
         public Gw2ApiManager()
@@ -140,11 +146,39 @@ namespace GW2DotNET.V1
             }
         }
 
+        /// <summary>Gets the logger.</summary>
         public EventLogger Logger
         {
             get
             {
                 return this.logger;
+            }
+        }
+
+        /// <summary>Gets the continent data.</summary>
+        public ContinentData Continents
+        {
+            get
+            {
+                return this.continentData ?? (this.continentData = new ContinentData(this));
+            }
+        }
+
+        /// <summary>Gets the floor data.</summary>
+        public MapFloorData FloorData
+        {
+            get
+            {
+                return this.floorData ?? (this.floorData = new MapFloorData(this));
+            }
+        }
+
+        /// <summary>Gets the maps data.</summary>
+        public MapsData Maps
+        {
+            get
+            {
+                return this.mapData ?? (this.mapData = new MapsData(this));
             }
         }
 
@@ -155,7 +189,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.colourData ?? (this.colourData = new ColourData(this.language));
+                return this.colourData ?? (this.colourData = new ColourData(this));
             }
         }
 
@@ -166,7 +200,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.eventData ?? (this.eventData = new EventData(this.language, this));
+                return this.eventData ?? (this.eventData = new EventData(this));
             }
         }
 
@@ -188,18 +222,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.itemData ?? (this.itemData = new ItemData(this.language, this));
-            }
-        }
-
-        /// <summary>
-        /// Gets the MapData object.
-        /// </summary>
-        public MapData Maps
-        {
-            get
-            {
-                return this.mapData ?? (this.mapData = new MapData(this.language));
+                return this.itemData ?? (this.itemData = new ItemData(this));
             }
         }
 
@@ -232,7 +255,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.worldData ?? (this.worldData = new WorldData(this.language));
+                return this.worldData ?? (this.worldData = new WorldData(this));
             }
         }
 

@@ -1,0 +1,38 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Map.SkillChallenge.cs" company="GW2.Net Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// <summary>
+//   Defines the Map type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using Newtonsoft.Json;
+
+namespace GW2DotNET.V1.Maps.Models
+{
+    /// <summary>Represents a map.</summary>
+    public partial struct Map
+    {
+        /// <summary>Represents a skill challenge.</summary>
+        public struct SkillChallenge
+        {
+            /// <summary>Initializes a new instance of the <see cref="SkillChallenge"/> struct.</summary>
+            /// <param name="coordinates">The coordinates.</param>
+            [JsonConstructor]
+            public SkillChallenge(float[] coordinates)
+                : this()
+            {
+                this.Coordinates = coordinates;
+            }
+
+            /// <summary>Gets the coordinates.</summary>
+            [JsonProperty("coord")]
+            public float[] Coordinates
+            {
+                get;
+                private set;
+            }
+        }
+    }
+}
