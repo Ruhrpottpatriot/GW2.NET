@@ -115,7 +115,7 @@ namespace GW2.NET_Tests
 
             Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
 
-            Debug.WriteLine("Total Number of Events: {0}", continents.Count);
+            Debug.WriteLine("Total Number of continents: {0}", continents.Count);
         }
 
         /// <summary>Gets all maps.</summary>
@@ -128,7 +128,7 @@ namespace GW2.NET_Tests
 
             Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
 
-            Debug.WriteLine("Total Number of Events: {0}", maps.Count);
+            Debug.WriteLine("Total Number of maps: {0}", maps.Count);
         }
 
         /// <summary>Gets a map by its id.</summary>
@@ -146,10 +146,15 @@ namespace GW2.NET_Tests
             Debug.WriteLine("The two maps are equal: {0}", map1 == map2);
         }
 
+        /// <summary>Gets a complete map floor.</summary>
         [Test]
         public void GetMapFloor()
         {
-            var floor = manager.FloorData[1, 1];
+            var stopwatch = Stopwatch.StartNew();
+
+            var floor = this.manager.FloorData[1, 1];
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
         }
     }
 }
