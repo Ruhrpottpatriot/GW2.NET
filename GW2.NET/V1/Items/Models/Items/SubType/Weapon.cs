@@ -170,6 +170,11 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             /// A two handed toy.
             /// </summary>
             TwoHandedToy,
+
+            /// <summary>
+            /// A large bundle (duh!)
+            /// </summary>
+            LargeBundle
         }
 
         /// <summary>
