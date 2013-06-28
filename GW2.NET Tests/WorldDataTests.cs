@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventDataTests.cs" company="GW2.Net Coding Team">
+// <copyright file="WorldDataTests.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -28,7 +28,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The world manager.
         /// </summary>
-        private Gw2ApiManager manager;
+        private ApiManager manager;
 
         /// <summary>
         /// Runs before each test run.
@@ -36,7 +36,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new Gw2ApiManager(Language.En);
+            this.manager = new ApiManager(Language.En);
         }
 
         /// <summary>

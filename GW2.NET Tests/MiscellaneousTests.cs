@@ -28,7 +28,8 @@ namespace GW2.NET_Tests
     [TestFixture]
     public class MiscellaneousTests
     {
-        private Gw2ApiManager apiManager;
+        /// <summary>The api manager.</summary>
+        private ApiManager apiManager;
 
         /// <summary>
         /// Runs before each test run.
@@ -36,7 +37,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.apiManager = new Gw2ApiManager();
+            this.apiManager = new ApiManager();
         }
 
         /// <summary>The logging test.</summary>

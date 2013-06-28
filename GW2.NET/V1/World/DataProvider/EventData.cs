@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.
         /// </summary>
-        private readonly Gw2ApiManager gw2ApiManager;
+        private readonly ApiManager apiManager;
 
         /// <summary>
         /// Cache the event names here
@@ -48,10 +48,10 @@ namespace GW2DotNET.V1.World.DataProvider
         /// Initializes a new instance of the <see cref="EventData"/> class.
         /// This should only be called by WorldManager.
         /// </summary>
-        /// <param name="gw2ApiManager">An instance of GW2ApiManager to use for ID resolution</param>
-        internal EventData(Gw2ApiManager gw2ApiManager)
+        /// <param name="apiManager">An instance of GW2ApiManager to use for ID resolution</param>
+        internal EventData(ApiManager apiManager)
         {
-            this.gw2ApiManager = gw2ApiManager;
+            this.apiManager = apiManager;
             this.BypassCaching = false;
         }
 
@@ -76,7 +76,7 @@ namespace GW2DotNET.V1.World.DataProvider
                     var arguments = new List<KeyValuePair<string, object>>
                                         {
                                             new KeyValuePair<string, object>(
-                                                "lang", this.gw2ApiManager.Language)
+                                                "lang", this.apiManager.Language)
                                         };
 
                     var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", arguments, ApiCall.Categories.World);
@@ -244,7 +244,7 @@ namespace GW2DotNET.V1.World.DataProvider
                 parameters.Add(new KeyValuePair<string, object>("event_id", eventId));
             }
 
-            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveIDs(this.gw2ApiManager));
+            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveIDs(this.apiManager));
         }
     }
 }

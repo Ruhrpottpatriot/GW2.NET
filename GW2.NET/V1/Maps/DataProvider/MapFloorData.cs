@@ -18,14 +18,14 @@ namespace GW2DotNET.V1.Maps.DataProvider
     public class MapFloorData
     {
         /// <summary>The manager.</summary>
-        private readonly Gw2ApiManager manager;
+        private readonly ApiManager manager;
 
         /// <summary>The map floors.</summary>
         private IList<MapFloor> mapFloors;
 
         /// <summary>Initializes a new instance of the <see cref="MapFloorData"/> class.</summary>
         /// <param name="manager">The manager.</param>
-        public MapFloorData(Gw2ApiManager manager)
+        public MapFloorData(ApiManager manager)
         {
             this.manager = manager;
         }

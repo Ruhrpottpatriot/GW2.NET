@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// The world names will be retrieved in this language
         /// </summary>
-        private readonly Gw2ApiManager apiManager;
+        private readonly ApiManager apiManager;
 
         /// <summary>
         /// Cache the world_names list here
@@ -36,7 +36,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// This should only be called by WorldManager.
         /// </summary>
         /// <param name="apiManager">The language in which to return world names</param>
-        internal WorldData(Gw2ApiManager apiManager)
+        internal WorldData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
         }

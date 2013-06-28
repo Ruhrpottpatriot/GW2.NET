@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GW2ApiManager.cs" company="GW2.Net Coding Team">
+// <copyright file="ApiManager.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -28,7 +28,7 @@ namespace GW2DotNET.V1
     /// by the caller. All functionality is accessed through the
     /// properties of this object.
     /// </summary>
-    public class Gw2ApiManager
+    public class ApiManager
     {
         /// <summary>Backing field for the event logger.</summary>
         private readonly EventLogger logger;
@@ -85,18 +85,18 @@ namespace GW2DotNET.V1
         /// </summary>
         private Language language;
 
-        /// <summary>Initializes a new instance of the <see cref="Gw2ApiManager"/> class.</summary>
-        public Gw2ApiManager()
+        /// <summary>Initializes a new instance of the <see cref="ApiManager"/> class.</summary>
+        public ApiManager()
         {
             this.language = Language.En;
             this.logger = new EventLogger();
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Gw2ApiManager"/> class.
+        /// Initializes a new instance of the <see cref="ApiManager"/> class.
         /// </summary>
         /// <param name="language">The language for things such as World names</param>
-        public Gw2ApiManager(Language language)
+        public ApiManager(Language language)
         {
             this.language = language;
             this.logger = new EventLogger();
@@ -129,16 +129,7 @@ namespace GW2DotNET.V1
 
             set
             {
-                this.colourData = null;
-                this.eventData = null;
-                this.guildData = null;
-                this.itemData = null;
-                this.mapData = null;
-                this.continentData = null;
-                this.floorData = null;
-                this.matchData = null;
-                this.recipeData = null;
-                this.worldData = null;
+                this.ClearCache();
 
                 this.language = value;
             }

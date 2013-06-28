@@ -23,6 +23,7 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// The map id backing field
         /// </summary>
+        [JsonProperty("map_id")]
         private readonly int mapId;
 
         /// <summary>
@@ -33,6 +34,7 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// The world id backing field
         /// </summary>
+        [JsonProperty("world_id")]
         private readonly int worldId;
         
         /// <summary>
@@ -166,24 +168,6 @@ namespace GW2DotNET.V1.World.Models
         {
             get { return this.state; }
         }
-
-        /// <summary>
-        /// Gets the world id.
-        /// </summary>
-        [JsonProperty("world_id")]
-        internal int WorldId
-        {
-            get { return this.worldId; }
-        }
-
-        /// <summary>
-        /// Gets the map id.
-        /// </summary>
-        [JsonProperty("map_id")]
-        internal int MapId
-        {
-            get { return this.mapId; }
-        }
         
         /// <summary>
         /// Determines whether two specified instances of <see crdef="Map"/> are equal.
@@ -239,13 +223,13 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// Resolves the name of an event.
         /// </summary>
-        /// <param name="gw2ApiManager">The GW2ApiManager</param>
+        /// <param name="apiManager">The GW2ApiManager</param>
         /// <returns>The <see cref="GwEvent"/> with the resolved names.</returns>
-        internal GwEvent ResolveIDs(Gw2ApiManager gw2ApiManager)
+        internal GwEvent ResolveIDs(ApiManager apiManager)
         {
-            this.Map = gw2ApiManager.Maps[this.MapId];
-            this.World = gw2ApiManager.Worlds[this.WorldId];
-            this.Name = gw2ApiManager.Events.EventNames[this.EventId];
+            this.Map = apiManager.Maps[this.mapId];
+            this.World = apiManager.Worlds[this.worldId];
+            this.Name = apiManager.Events.EventNames[this.EventId];
 
             return this;
         }

@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// The language.
         /// </summary>
-        private readonly Gw2ApiManager apiManager;
+        private readonly ApiManager apiManager;
 
         /// <summary>
         /// The colours cache.
@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Items.DataProvider
 
         /// <summary>Initializes a new instance of the <see cref="ColourData"/> class.</summary>
         /// <param name="apiManager">The api Manager.</param>
-        internal ColourData(Gw2ApiManager apiManager)
+        internal ColourData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
         }

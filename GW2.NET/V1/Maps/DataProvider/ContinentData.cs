@@ -20,14 +20,14 @@ namespace GW2DotNET.V1.Maps.DataProvider
     public class ContinentData : IEnumerable<Continent>
     {
         /// <summary>The api manager.</summary>
-        private readonly Gw2ApiManager manager;
+        private readonly ApiManager manager;
 
         /// <summary>The continents.</summary>
         private IEnumerable<Continent> continents;
 
         /// <summary>Initializes a new instance of the <see cref="ContinentData"/> class.</summary>
         /// <param name="manager">The manager.</param>
-        internal ContinentData(Gw2ApiManager manager)
+        internal ContinentData(ApiManager manager)
         {
             this.manager = manager;
         }
@@ -72,7 +72,6 @@ namespace GW2DotNET.V1.Maps.DataProvider
                 return this.Continents.Single(continent => continent.Id == id);
             }
         }
-
 
         /// <summary>
         /// Returns an enumerator that iterates through the collection.

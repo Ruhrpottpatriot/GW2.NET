@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     public class ItemData : IEnumerable<Item>
     {
         /// <summary>The api manager.</summary>
-        private readonly Gw2ApiManager apiManager;
+        private readonly ApiManager apiManager;
 
         /// <summary>
         /// The name of the file on disk where we will cache the item data.
@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.Items.DataProvider
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
         /// <param name="apiManager">The api Manager.</param>
-        internal ItemData(Gw2ApiManager apiManager)
+        internal ItemData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
 
@@ -59,7 +59,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <param name="language">The language of the retrieved content.</param>
         /// <param name="savePath">The path to the file (without file name and trailing slash).</param>
         /// <param name="apiManager">The api Manager.</param>
-        internal ItemData(Language language, string savePath, Gw2ApiManager apiManager)
+        internal ItemData(Language language, string savePath, ApiManager apiManager)
         {
             this.apiManager = apiManager;
 

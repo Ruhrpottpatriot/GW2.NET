@@ -20,14 +20,14 @@ namespace GW2DotNET.V1.Maps.DataProvider
     public class MapsData : IEnumerable<Map>
     {
         /// <summary>The manager.</summary>
-        private readonly Gw2ApiManager manager;
+        private readonly ApiManager manager;
 
         /// <summary>The maps.</summary>
         private IEnumerable<Map> maps;
 
         /// <summary>Initializes a new instance of the <see cref="MapsData"/> class.</summary>
         /// <param name="manager">The manager.</param>
-        internal MapsData(Gw2ApiManager manager)
+        internal MapsData(ApiManager manager)
         {
             this.manager = manager;
         }

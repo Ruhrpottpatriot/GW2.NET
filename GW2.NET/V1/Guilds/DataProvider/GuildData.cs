@@ -32,13 +32,13 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         /// <summary>
         /// Stores the GW2ApiManager that instantiated this object
         /// </summary>
-        private readonly Gw2ApiManager gw2ApiManager;
+        private readonly ApiManager apiManager;
 
         /// <summary>Initializes a new instance of the <see cref="GuildData"/> class.</summary>
-        /// <param name="gw2ApiManager">The api Manager.</param>
-        internal GuildData(Gw2ApiManager gw2ApiManager)
+        /// <param name="apiManager">The api Manager.</param>
+        internal GuildData(ApiManager apiManager)
         {
-            this.gw2ApiManager = gw2ApiManager;
+            this.apiManager = apiManager;
 
             this.guildCache = new List<Guild>();
         }
@@ -67,17 +67,17 @@ namespace GW2DotNET.V1.Guilds.DataProvider
 
                     try
                     {
-                        this.gw2ApiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
+                        this.apiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
 
                         guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
                         
-                        this.gw2ApiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
+                        this.apiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
 
                         this.guildCache.Add(guildToReturn);
                     }
                     catch (Exception ex)
                     {
-                        this.gw2ApiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
+                        this.apiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
                     }
                 }
 
@@ -105,17 +105,17 @@ namespace GW2DotNET.V1.Guilds.DataProvider
 
                     try
                     {
-                        this.gw2ApiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
+                        this.apiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
 
                         guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
 
-                        this.gw2ApiManager.Logger.WriteToLog("Finished request.", TraceEventType.Stop);
+                        this.apiManager.Logger.WriteToLog("Finished request.", TraceEventType.Stop);
 
                         this.guildCache.Add(guildToReturn);
                     }
                     catch (Exception ex)
                     {
-                        this.gw2ApiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
+                        this.apiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
                     }
                 }
 

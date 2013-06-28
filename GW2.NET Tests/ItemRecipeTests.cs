@@ -10,10 +10,9 @@
 using System.Diagnostics;
 using System.Linq;
 
-using GW2DotNET.V1.Items;
+using GW2DotNET.V1;
 
 using NUnit.Framework;
-using GW2DotNET.V1;
 
 namespace GW2.NET_Tests
 {
@@ -26,7 +25,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The item manager.
         /// </summary>
-        private Gw2ApiManager manager;
+        private ApiManager manager;
 
         /// <summary>
         /// Runs before each test run.
@@ -34,7 +33,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new Gw2ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
+            this.manager = new ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
         }
 
         /// <summary>
