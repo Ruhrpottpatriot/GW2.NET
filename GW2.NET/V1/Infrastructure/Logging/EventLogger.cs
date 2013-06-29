@@ -117,7 +117,8 @@ namespace GW2DotNET.V1.Infrastructure.Logging
         /// <param name="eventType">The event type.</param>
         public void WriteToLog(Exception exception, TraceEventType eventType)
         {
-            var message = string.Format("{0}, Additional Details: {1}, Stack Trace: {2}",
+            var message = string.Format(
+                "{0}, Additional Details: {1}, Stack Trace: {2}",
                 exception.Message,
                 exception.InnerException,
                 exception.StackTrace);

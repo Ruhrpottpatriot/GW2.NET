@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using GW2DotNET.V1.Infrastructure;
+using GW2DotNET.V1.Maps.Models;
 using GW2DotNET.V1.World.Models;
 
 namespace GW2DotNET.V1.World.DataProvider
@@ -33,12 +34,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.
         /// </summary>
-        private readonly Gw2ApiManager gw2ApiManager;
-
-        /// <summary>
-        /// The events names will be retrieved in this language
-        /// </summary>
-        private readonly Language language;
+        private readonly ApiManager apiManager;
 
         /// <summary>
         /// Cache the event names here
@@ -52,12 +48,10 @@ namespace GW2DotNET.V1.World.DataProvider
         /// Initializes a new instance of the <see cref="EventData"/> class.
         /// This should only be called by WorldManager.
         /// </summary>
-        /// <param name="language">The language in which to return names</param>
-        /// <param name="gw2ApiManager">An instance of GW2ApiManager to use for ID resolution</param>
-        internal EventData(Language language, Gw2ApiManager gw2ApiManager)
+        /// <param name="apiManager">An instance of GW2ApiManager to use for ID resolution</param>
+        internal EventData(ApiManager apiManager)
         {
-            this.language = language;
-            this.gw2ApiManager = gw2ApiManager;
+            this.apiManager = apiManager;
             this.BypassCaching = false;
         }
 
@@ -82,7 +76,7 @@ namespace GW2DotNET.V1.World.DataProvider
                     var arguments = new List<KeyValuePair<string, object>>
                                         {
                                             new KeyValuePair<string, object>(
-                                                "lang", this.language)
+                                                "lang", this.apiManager.Language)
                                         };
 
                     var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", arguments, ApiCall.Categories.World);
@@ -163,7 +157,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </summary>
         /// <param name="map">The map to get all events from.</param>
         /// <returns>A collection of events on the specified map.</returns>
-        public IEnumerable<GwEvent> this[GwMap map]
+        public IEnumerable<GwEvent> this[Map map]
         {
             get
             {
@@ -250,7 +244,7 @@ namespace GW2DotNET.V1.World.DataProvider
                 parameters.Add(new KeyValuePair<string, object>("event_id", eventId));
             }
 
-            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveIDs(this.gw2ApiManager));
+            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveIDs(this.apiManager));
         }
     }
 }

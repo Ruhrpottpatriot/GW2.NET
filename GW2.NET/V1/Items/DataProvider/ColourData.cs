@@ -25,7 +25,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// The language.
         /// </summary>
-        private readonly Language language;
+        private readonly ApiManager apiManager;
 
         /// <summary>
         /// The colours cache.
@@ -46,10 +46,10 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// Initializes a new instance of the <see cref="ColourData"/> class.
         /// </summary>
-        /// <param name="language">The language the content is retrieved in.</param>
-        internal ColourData(Language language)
+        /// <param name="apiManager">The API manager.</param>
+        internal ColourData(ApiManager apiManager)
         {
-            this.language = language;
+            this.apiManager = apiManager;
 
             InitializeDelegates();
         }
@@ -87,9 +87,9 @@ namespace GW2DotNET.V1.Items.DataProvider
             {
                 lock (coloursCacheSyncObject)
                 {
-                    return this.coloursCache ?? (this.coloursCache = this.GetColours());
-                }
+                return this.coloursCache ?? (this.coloursCache = this.GetColours());
             }
+        }
         }
 
         /// <summary>
@@ -160,7 +160,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             var arguments = new List<KeyValuePair<string, object>>
             {
-                new KeyValuePair<string, object>("lang", this.language)
+                new KeyValuePair<string, object>("lang", this.apiManager.Language)
             };
 
             var returnColours = ApiCall.GetContent<Dictionary<string, Dictionary<int, GwColour>>>(

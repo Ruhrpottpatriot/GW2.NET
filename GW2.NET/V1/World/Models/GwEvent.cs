@@ -9,6 +9,8 @@
 
 using System;
 
+using GW2DotNET.V1.Maps.Models;
+
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.World.Models
@@ -21,6 +23,7 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// The map id backing field
         /// </summary>
+        [JsonProperty("map_id")]
         private readonly int mapId;
 
         /// <summary>
@@ -31,6 +34,7 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// The world id backing field
         /// </summary>
+        [JsonProperty("world_id")]
         private readonly int worldId;
         
         /// <summary>
@@ -46,12 +50,12 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// The world backing field
         /// </summary>
-        private GwWorld world;
+        private GwWorld? world;
 
         /// <summary>
         /// The map backing field
         /// </summary>
-        private GwMap map;
+        private Map? map;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
@@ -71,8 +75,8 @@ namespace GW2DotNET.V1.World.Models
             this.name = name;
 
             // Because this is a struct, we have to assign dummy values
-            this.world = new GwWorld();
-            this.map = new GwMap();
+            this.world = null;
+            this.map = null;
         }
         
         /// <summary>
@@ -87,7 +91,7 @@ namespace GW2DotNET.V1.World.Models
         /// <param name="name">The name.</param>
         /// <param name="world">The GwWorld object.</param>
         /// <param name="map">The GwMap object.</param>
-        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name, GwWorld world, GwMap map)
+        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name, GwWorld world, Map map)
         {
             this.worldId = worldId;
             this.mapId = mapId;
@@ -118,7 +122,7 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// Gets the world
         /// </summary>
-        public GwWorld World
+        public GwWorld? World
         {
             get
             {
@@ -134,7 +138,7 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// Gets the map
         /// </summary>
-        public GwMap Map
+        public Map? Map
         {
             get
             {
@@ -163,24 +167,6 @@ namespace GW2DotNET.V1.World.Models
         public GwEventState State
         {
             get { return this.state; }
-        }
-
-        /// <summary>
-        /// Gets the world id.
-        /// </summary>
-        [JsonProperty("world_id")]
-        internal int WorldId
-        {
-            get { return this.worldId; }
-        }
-
-        /// <summary>
-        /// Gets the map id.
-        /// </summary>
-        [JsonProperty("map_id")]
-        internal int MapId
-        {
-            get { return this.mapId; }
         }
         
         /// <summary>
@@ -237,17 +223,15 @@ namespace GW2DotNET.V1.World.Models
         /// <summary>
         /// Resolves the name of an event.
         /// </summary>
-        /// <param name="gw2ApiManager">The GW2ApiManager</param>
+        /// <param name="apiManager">The GW2ApiManager</param>
         /// <returns>The <see cref="GwEvent"/> with the resolved names.</returns>
-        internal GwEvent ResolveIDs(Gw2ApiManager gw2ApiManager)
+        internal GwEvent ResolveIDs(ApiManager apiManager)
         {
-            GwEvent newEvent = this;
+            this.Map = apiManager.Maps[this.mapId];
+            this.World = apiManager.Worlds[this.worldId];
+            this.Name = apiManager.Events.EventNames[this.EventId];
 
-            newEvent.Map = gw2ApiManager.Maps[this.MapId];
-            newEvent.World = gw2ApiManager.Worlds[this.WorldId];
-            newEvent.Name = gw2ApiManager.Events.EventNames[this.EventId];
-
-            return newEvent;
+            return this;
         }
     }
 }

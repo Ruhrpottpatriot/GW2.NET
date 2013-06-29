@@ -46,17 +46,13 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         ///     Stores the GW2ApiManager that instantiated this object
         /// </summary>
         // ReSharper disable NotAccessedField.Local
-        private readonly Gw2ApiManager gw2ApiManager;
+        private readonly ApiManager apiManager;
 
-        // ReSharper restore NotAccessedField.Local
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="GuildData" /> class.
-        /// </summary>
-        /// <param name="gw2ApiManager">The api Manager.</param>
-        internal GuildData(Gw2ApiManager gw2ApiManager)
+        /// <summary>Initializes a new instance of the <see cref="GuildData"/> class.</summary>
+        /// <param name="apiManager">The api Manager.</param>
+        internal GuildData(ApiManager apiManager)
         {
-            this.gw2ApiManager = gw2ApiManager;
+            this.apiManager = apiManager;
 
             guildCache = new List<Guild>();
 
@@ -64,13 +60,13 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         }
 
         /// <summary>
-        ///     Gets a single guild by ID from the cache if present, or from the API if not.
+        /// Gets a single guild by ID from the cache if present, or from the API if not.
         /// </summary>
         /// <param name="guildId">
-        ///     The guild id.
+        /// The guild id.
         /// </param>
         /// <returns>
-        ///     The <see cref="Guild" />.
+        /// The <see cref="Guild"/>.
         /// </returns>
         public Guild this[Guid guildId]
         {
@@ -92,7 +88,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
 
                     try
                     {
-                        this.gw2ApiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
+                        this.apiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
 
                         guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments,
                                                                   ApiCall.Categories.Guild);
@@ -105,14 +101,14 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                                 guildCache.Add(guildToReturn);
                             }
                         }
-
-                        this.gw2ApiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
+                        
+                        this.apiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
 
                         this.guildCache.Add(guildToReturn);
                     }
                     catch (Exception ex)
                     {
-                        this.gw2ApiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
+                        this.apiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
                     }
                 }
 
@@ -147,7 +143,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
 
                     try
                     {
-                        this.gw2ApiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
+                        this.apiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
 
                         guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments,
                                                                   ApiCall.Categories.Guild);
@@ -161,11 +157,11 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                             }
                         }
 
-                        this.gw2ApiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
+                        this.apiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
                     }
                     catch (Exception ex)
                     {
-                        this.gw2ApiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
+                        this.apiManager.Logger.WriteToLog(ex, TraceEventType.Warning);
                     }
                 }
 

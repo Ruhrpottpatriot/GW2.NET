@@ -16,9 +16,11 @@ using NUnit.Framework;
 namespace GW2.NET_Tests
 {
     using System;
+    using System.Linq;
 
     using GW2DotNET.V1;
     using GW2DotNET.V1.Infrastructure.Logging;
+    using GW2DotNET.V1.Maps.DataProvider;
 
     /// <summary>
     /// The miscellaneous tests.
@@ -26,7 +28,8 @@ namespace GW2.NET_Tests
     [TestFixture]
     public class MiscellaneousTests
     {
-        private Gw2ApiManager apiManager;
+        /// <summary>The api manager.</summary>
+        private ApiManager apiManager;
 
         /// <summary>
         /// Runs before each test run.
@@ -34,7 +37,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            apiManager = new Gw2ApiManager();
+            this.apiManager = new ApiManager();
         }
 
         /// <summary>The logging test.</summary>

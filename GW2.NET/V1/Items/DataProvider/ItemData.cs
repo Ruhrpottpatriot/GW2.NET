@@ -26,13 +26,8 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// </summary>
     public class ItemData : System.ComponentModel.Component, IEnumerable<Item>
     {
-        /// <summary>
-        /// The language.
-        /// </summary>
-        private readonly Language language;
-
         /// <summary>The api manager.</summary>
-        private readonly Gw2ApiManager apiManager;
+        private readonly ApiManager apiManager;
 
         /// <summary>
         /// The name of the file on disk where we will cache the item data.
@@ -56,16 +51,12 @@ namespace GW2DotNET.V1.Items.DataProvider
         private object itemCacheSyncObject = new object();
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
-        /// <param name="language">The language of the retrieved content.</param>
         /// <param name="apiManager">The api Manager.</param>
-        internal ItemData(Language language, Gw2ApiManager apiManager)
+        internal ItemData(ApiManager apiManager)
         {
-            this.apiManager = new Gw2ApiManager();
-
-            this.language = language;
             this.apiManager = apiManager;
 
-            this.cacheFileName = string.Format("{0}\\GW2.NET\\ItemDataCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), language);
+            this.cacheFileName = string.Format("{0}\\GW2.NET\\ItemDataCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
 
             this.LoadCache();
         }
@@ -74,11 +65,8 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <param name="language">The language of the retrieved content.</param>
         /// <param name="savePath">The path to the file (without file name and trailing slash).</param>
         /// <param name="apiManager">The api Manager.</param>
-        internal ItemData(Language language, string savePath, Gw2ApiManager apiManager)
+        internal ItemData(Language language, string savePath, ApiManager apiManager)
         {
-            this.apiManager = new Gw2ApiManager();
-
-            this.language = language;
             this.apiManager = apiManager;
 
             this.cacheFileName = string.Format("{0}\\ItemDataCache{1}.binary", savePath, language);
@@ -98,10 +86,10 @@ namespace GW2DotNET.V1.Items.DataProvider
             {
                 lock (itemCacheSyncObject)
                 {
-                    if (this.itemsCache == null)
-                    {
-                        this.GetAllItems();
-                    }
+                if (this.itemsCache == null)
+                {
+                    this.GetAllItems();
+                }
                 }
 
                 return this.itemsCache;
@@ -146,37 +134,35 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             lock (itemCacheSyncObject)
             {
-                // Check if there is a cache file present.
-                if (File.Exists(this.cacheFileName))
-                {
-                    ItemDataCache diskData;
+            // Check if there is a cache file present.
+            if (File.Exists(this.cacheFileName))
+            {
+                ItemDataCache diskData;
 
-                    // Deserialize the binary file.
-                    using (var fileStream = new FileStream(this.cacheFileName, FileMode.Open))
-                    {
-                        var binarySerializer = new BinaryFormatter();
+                // Deserialize the binary file.
+                using (var fileStream = new FileStream(this.cacheFileName, FileMode.Open))
+                {
+                    var binarySerializer = new BinaryFormatter();
 
                         diskData = (ItemDataCache) binarySerializer.Deserialize(fileStream);
-
-                        fileStream.Close();
-                    }
-
-                    // Check if the data is stale.
-                    if (diskData.Build >= apiManager.GetLatestBuild())
-                    {
-                        this.itemsCache = diskData.ItemsList;
-
-                        this.itemIdCache = diskData.ItemIds;
-                    }
-
-                    /* If we had no data on disk or it was stale, the cache will
-                     * be empty when this method returns. We do not proactively
-                     * retrieve the item data for the new build. This will be done
-                     * the next time the caller attempts to retrieve the details
-                     * of an item.
-                     */
                 }
+
+                // Check if the data is stale.
+                if (diskData.Build >= this.apiManager.GetLatestBuild())
+                {
+                    this.itemsCache = diskData.ItemsList;
+
+                    this.itemIdCache = diskData.ItemIds;
+                }
+
+                /* If we had no data on disk or it was stale, the cache will
+                 * be empty when this method returns. We do not proactively
+                 * retrieve the item data for the new build. This will be done
+                 * the next time the caller attempts to retrieve the details
+                 * of an item.
+                 */
             }
+        }
         }
 
         /// <summary>
@@ -209,8 +195,6 @@ namespace GW2DotNET.V1.Items.DataProvider
                 var binarySerializer = new BinaryFormatter();
 
                 binarySerializer.Serialize(fileStream, dataToSave);
-
-                fileStream.Close();
             }
         }
 
@@ -229,12 +213,12 @@ namespace GW2DotNET.V1.Items.DataProvider
                        .Values.First();
 
             this.itemsCache = this.itemIdCache
-                                  .Select(itemId =>
-                                          new List<KeyValuePair<string, object>>
-                                              {
-                                                  new KeyValuePair<string, object>("item_id", itemId),
-                                                  new KeyValuePair<string, object>("lang", this.language)
-                                              })
+                .Select(itemId =>
+                    new List<KeyValuePair<string, object>>
+                        {
+                            new KeyValuePair<string, object>("item_id", itemId),
+                            new KeyValuePair<string, object>("lang", this.apiManager.Language)
+                        })
                                   .Select(
                                       arguments =>
                                       ApiCall.GetContent<Item>("item_details.json", arguments,

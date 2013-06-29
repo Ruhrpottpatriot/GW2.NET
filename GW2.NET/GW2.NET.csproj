@@ -86,7 +86,7 @@
     <Compile Include="V1\Guilds\Models\Guild.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />
-    <Compile Include="V1\GW2ApiManager.cs" />
+    <Compile Include="V1\ApiManager.cs" />
     <Compile Include="V1\Infrastructure\ApiCall.Categories.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
@@ -135,12 +135,22 @@
     <Compile Include="V1\Items\Models\Items\SubType\UpgradeComponent.cs" />
     <Compile Include="V1\Items\Models\Items\WeaponRarity.cs" />
     <Compile Include="V1\Items\Models\Items\ItemType.cs" />
+    <Compile Include="V1\Maps\DataProvider\ContinentData.cs" />
+    <Compile Include="V1\Maps\DataProvider\MapFloorData.cs" />
+    <Compile Include="V1\Maps\DataProvider\MapsData.cs" />
+    <Compile Include="V1\Maps\Models\Continent.cs" />
+    <Compile Include="V1\Maps\Models\Map.cs" />
+    <Compile Include="V1\Maps\Models\Map.PointOfInterest.cs" />
+    <Compile Include="V1\Maps\Models\Map.PointOfInterest.PoiType.cs" />
+    <Compile Include="V1\Maps\Models\Map.Sector.cs" />
+    <Compile Include="V1\Maps\Models\Map.SkillChallenge.cs" />
+    <Compile Include="V1\Maps\Models\Map.Task.cs" />
+    <Compile Include="V1\Maps\Models\MapFloor.cs" />
+    <Compile Include="V1\Maps\Models\MapFloor.Region.cs" />
     <Compile Include="V1\World\DataProvider\EventData.cs" />
-    <Compile Include="V1\World\DataProvider\MapData.cs" />
     <Compile Include="V1\World\DataProvider\WorldData.cs" />
     <Compile Include="V1\World\Models\GwEvent.cs" />
     <Compile Include="V1\World\Models\GwEventState.cs" />
-    <Compile Include="V1\World\Models\GwMap.cs" />
     <Compile Include="V1\World\Models\GwWorld.cs" />
     <Compile Include="V1\WvW\DataProviders\MatchData.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />
@@ -151,9 +161,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

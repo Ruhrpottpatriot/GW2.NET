@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
 
 using GW2DotNET.V1;
@@ -27,7 +26,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The item manager.
         /// </summary>
-        private Gw2ApiManager manager;
+        private ApiManager manager;
 
         /// <summary>
         /// Runs before each test run.
@@ -35,7 +34,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new Gw2ApiManager(Language.En);
+            this.manager = new ApiManager(Language.En);
         }
 
         /// <summary>

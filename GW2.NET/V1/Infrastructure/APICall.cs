@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using Newtonsoft.Json;
@@ -77,18 +78,12 @@ namespace GW2DotNET.V1.Infrastructure
 
             switch (category)
             {
-                case Categories.Items:
-                    client = new RestClient("https://api.guildwars2.com/v1/");
-                    break;
-                case Categories.World:
-                    client = new RestClient("https://api.guildwars2.com/v1/");
-                    break;
                 case Categories.WvW:
                     client = new RestClient("https://api.guildwars2.com/v1/wvw/");
                     break;
+                case Categories.Items:
+                case Categories.World:
                 case Categories.Guild:
-                    client = new RestClient("https://api.guildwars2.com/v1/");
-                    break;
                 case Categories.Miscellaneous:
                     client = new RestClient("https://api.guildwars2.com/v1/");
                     break;

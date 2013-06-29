@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GW2ApiManager.cs" company="GW2.Net Coding Team">
+// <copyright file="ApiManager.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -9,12 +9,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
-
 using GW2DotNET.V1.Guilds.DataProvider;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
+using GW2DotNET.V1.Maps.DataProvider;
 using GW2DotNET.V1.World.DataProvider;
 using GW2DotNET.V1.WvW.DataProviders;
 
@@ -30,10 +28,19 @@ namespace GW2DotNET.V1
     /// by the caller. All functionality is accessed through the
     /// properties of this object.
     /// </summary>
-    public class Gw2ApiManager
+    public class ApiManager
     {
+        /// <summary>Backing field for the event logger.</summary>
+        private readonly EventLogger logger;
+
         /// <summary>The build.</summary>
         private int build = -1;
+
+        /// <summary>Backing field for the continent data.</summary>
+        private ContinentData continentData;
+
+        /// <summary>Backing field for the map data.</summary>
+        private MapsData mapData;
 
         /// <summary>
         /// Backing field for Colours property
@@ -45,6 +52,9 @@ namespace GW2DotNET.V1
         /// </summary>
         private EventData eventData;
 
+        /// <summary>The floor data.</summary>
+        private MapFloorData floorData;
+
         /// <summary>
         /// Backing field for Guilds property
         /// </summary>
@@ -54,11 +64,6 @@ namespace GW2DotNET.V1
         /// Backing field for Items property
         /// </summary>
         private ItemData itemData;
-
-        /// <summary>
-        /// Backing field for Maps property
-        /// </summary>
-        private MapData mapData;
 
         /// <summary>
         /// Backing field for wvwMatches property
@@ -80,21 +85,18 @@ namespace GW2DotNET.V1
         /// </summary>
         private Language language;
 
-        /// <summary>The event logger.</summary>
-        private readonly EventLogger logger;
-
-        /// <summary>Initializes a new instance of the <see cref="Gw2ApiManager"/> class.</summary>
-        public Gw2ApiManager()
+        /// <summary>Initializes a new instance of the <see cref="ApiManager"/> class.</summary>
+        public ApiManager()
         {
             this.language = Language.En;
             this.logger = new EventLogger();
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Gw2ApiManager"/> class.
+        /// Initializes a new instance of the <see cref="ApiManager"/> class.
         /// </summary>
         /// <param name="language">The language for things such as World names</param>
-        public Gw2ApiManager(Language language)
+        public ApiManager(Language language)
         {
             this.language = language;
             this.logger = new EventLogger();
@@ -127,24 +129,45 @@ namespace GW2DotNET.V1
 
             set
             {
-                this.colourData = null;
-                this.eventData = null;
-                this.guildData = null;
-                this.itemData = null;
-                this.mapData = null;
-                this.matchData = null;
-                this.recipeData = null;
-                this.worldData = null;
+                this.ClearCache();
 
                 this.language = value;
             }
         }
 
+        /// <summary>Gets the logger.</summary>
         public EventLogger Logger
         {
             get
             {
                 return this.logger;
+            }
+        }
+
+        /// <summary>Gets the continent data.</summary>
+        public ContinentData Continents
+        {
+            get
+            {
+                return this.continentData ?? (this.continentData = new ContinentData(this));
+            }
+        }
+
+        /// <summary>Gets the floor data.</summary>
+        public MapFloorData FloorData
+        {
+            get
+            {
+                return this.floorData ?? (this.floorData = new MapFloorData(this));
+            }
+        }
+
+        /// <summary>Gets the maps data.</summary>
+        public MapsData Maps
+        {
+            get
+            {
+                return this.mapData ?? (this.mapData = new MapsData(this));
             }
         }
 
@@ -155,7 +178,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.colourData ?? (this.colourData = new ColourData(this.language));
+                return this.colourData ?? (this.colourData = new ColourData(this));
             }
         }
 
@@ -166,7 +189,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.eventData ?? (this.eventData = new EventData(this.language, this));
+                return this.eventData ?? (this.eventData = new EventData(this));
             }
         }
 
@@ -188,18 +211,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.itemData ?? (this.itemData = new ItemData(this.language, this));
-            }
-        }
-
-        /// <summary>
-        /// Gets the MapData object.
-        /// </summary>
-        public MapData Maps
-        {
-            get
-            {
-                return this.mapData ?? (this.mapData = new MapData(this.language));
+                return this.itemData ?? (this.itemData = new ItemData(this));
             }
         }
 
@@ -232,7 +244,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.worldData ?? (this.worldData = new WorldData(this.language));
+                return this.worldData ?? (this.worldData = new WorldData(this));
             }
         }
 
@@ -245,6 +257,8 @@ namespace GW2DotNET.V1
             this.guildData = null;
             this.itemData = null;
             this.mapData = null;
+            this.continentData = null;
+            this.floorData = null;
             this.matchData = null;
             this.recipeData = null;
             this.worldData = null;
