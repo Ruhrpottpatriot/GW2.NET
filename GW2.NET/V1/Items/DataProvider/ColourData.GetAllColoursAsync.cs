@@ -85,7 +85,6 @@ namespace GW2DotNET.V1.Items.DataProvider
         ///     Performs the actual GetColourAsync request. This method
         ///     is exectued on the worker thread.
         /// </summary>
-        /// <param name="colourId"></param>
         /// <param name="asyncOp"></param>
         private void GetAllColoursWorker(AsyncOperation asyncOp)
         {

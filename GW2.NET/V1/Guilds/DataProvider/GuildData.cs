@@ -10,7 +10,6 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Linq;
 using GW2DotNET.V1.Guilds.Models;
 using GW2DotNET.V1.Infrastructure;
@@ -23,7 +22,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
     /// <summary>
     ///     The guild data provider.
     /// </summary>
-    public partial class GuildData : Component
+    public partial class GuildData : DataProviderBase
     {
         /// <summary>
         ///     The guild cache.
@@ -36,11 +35,6 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         ///     order to maintain thread safety.
         /// </summary>
         private readonly object guildCacheSyncObject = new object();
-
-        /// <summary>
-        ///     Tracks the state of any async tasks.
-        /// </summary>
-        private readonly HybridDictionary userStateToLifetime = new HybridDictionary();
 
         /// <summary>
         ///     Stores the GW2ApiManager that instantiated this object
@@ -181,12 +175,6 @@ namespace GW2DotNET.V1.Guilds.DataProvider
             onGetGuildFromNameProgressReportDelegate = GetGuildFromNameReportProgress;
 
             onGetGuildFromNameCompletedDelegate = GetGuildFromNameCompletedCallback;
-        }
-
-        // Utility method for determining if a task has been canceled.
-        private bool TaskCanceled(object taskId)
-        {
-            return (userStateToLifetime[taskId] == null);
         }
     }
 }

@@ -9,6 +9,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 
 using GW2DotNET.V1.Infrastructure;
@@ -19,7 +20,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// <summary>
     /// The recipe data provider.
     /// </summary>
-    public class RecipeData : IEnumerable<Recipe>
+    public partial class RecipeData : DataProviderBase, IEnumerable<Recipe>
     {
         /// <summary>
         /// The recipe id cache.
@@ -36,6 +37,21 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// </summary>
         internal RecipeData()
         {
+            this.InitializeDelegates();
+        }
+
+        /// <summary>
+        /// Initialize the delegates. This is called by the constructor.
+        /// </summary>
+        protected virtual void InitializeDelegates()
+        {
+            onGetRecipeFromIdCompletedDelegate = GetRecipeFromIdCompletedCallback;
+
+            onGetRecipeFromIdProgressReportDelegate = GetRecipeFromIdReportProgressCallback;
+
+            onGetAllRecipesCompletedDelegate = GetAllRecipesCompletedCallback;
+
+            onGetAllRecipesProgressReportDelegate = GetAllRecipesReportProgressCallback;
         }
 
         /// <summary>

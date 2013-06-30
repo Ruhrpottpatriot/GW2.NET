@@ -9,6 +9,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 
 using GW2DotNET.V1.Infrastructure;
@@ -17,19 +18,41 @@ using GW2DotNET.V1.Maps.Models;
 namespace GW2DotNET.V1.Maps.DataProvider
 {
     /// <summary>Provides the ApiManager with the map api data.</summary>
-    public class ContinentData : IEnumerable<Continent>
+    public partial class ContinentData : DataProviderBase, IEnumerable<Continent>
     {
         /// <summary>The api manager.</summary>
         private readonly ApiManager manager;
 
         /// <summary>The continents.</summary>
-        private IEnumerable<Continent> continents;
+        private IEnumerable<Continent> continentsCache;
+
+        /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private continentsCache object.
+        /// </summary>
+        private readonly object continentsCacheSyncObject = new object();
 
         /// <summary>Initializes a new instance of the <see cref="ContinentData"/> class.</summary>
         /// <param name="manager">The manager.</param>
         internal ContinentData(ApiManager manager)
         {
             this.manager = manager;
+
+            this.InitializeDelegates();
+        }
+
+        /// <summary>
+        /// Initialize the delegates. This is called by the constructor.
+        /// </summary>
+        protected virtual void InitializeDelegates()
+        {
+            onGetContinentFromIdCompletedDelegate = GetContinentFromIdCompletedCallback;
+
+            onGetContinentFromIdProgressReportDelegate = GetContinentFromIdReportProgressCallback;
+
+            onGetAllContinentsCompletedDelegate = GetAllContinentsCompletedCallback;
+
+            onGetAllContinentsProgressReportDelegate = GetAllContinentsReportProgressCallback;
         }
 
         /// <summary>Gets all continents from the api.</summary>
@@ -37,22 +60,25 @@ namespace GW2DotNET.V1.Maps.DataProvider
         {
             get
             {
-                if (this.continents == null)
+                lock (continentsCacheSyncObject)
                 {
-                    var args = new List<KeyValuePair<string, object>>
-                                   {
-                                       new KeyValuePair<string, object>(
-                                           "lang", this.manager.Language)
-                                   };
+                    if (this.continentsCache == null)
+                    {
+                        var args = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>(
+                                    "lang", this.manager.Language)
+                            };
 
-                    this.continents =
-                        ApiCall.GetContent<Dictionary<string, Dictionary<int, Continent>>>(
-                            "continents.json", args, ApiCall.Categories.World)
-                               .Values.First()
-                               .Select(con => con.Value.ResolveId(con.Key));
+                        this.continentsCache =
+                            ApiCall.GetContent<Dictionary<string, Dictionary<int, Continent>>>(
+                                "continents.json", args, ApiCall.Categories.World)
+                                   .Values.First()
+                                   .Select(con => con.Value.ResolveId(con.Key));
+                    }
                 }
 
-                return this.continents;
+                return this.continentsCache;
             }
         }
 

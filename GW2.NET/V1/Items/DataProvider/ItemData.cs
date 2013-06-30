@@ -20,11 +20,12 @@ using GW2DotNET.V1.Items.Models.Items;
 namespace GW2DotNET.V1.Items.DataProvider
 {
     using System.IO;
+    using System.Collections.Specialized;
 
     /// <summary>
     /// The item data provider.
     /// </summary>
-    public class ItemData : System.ComponentModel.Component, IEnumerable<Item>
+    public partial class ItemData : DataProviderBase, IEnumerable<Item>
     {
         /// <summary>The api manager.</summary>
         private readonly ApiManager apiManager;
@@ -48,7 +49,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// Used to synchronize access to the itemsCache. Use this one
         /// object for both itemIdCache and itemsCache.
         /// </summary>
-        private object itemCacheSyncObject = new object();
+        private readonly object itemCacheSyncObject = new object();
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
         /// <param name="apiManager">The api Manager.</param>
@@ -57,8 +58,6 @@ namespace GW2DotNET.V1.Items.DataProvider
             this.apiManager = apiManager;
 
             this.cacheFileName = string.Format("{0}\\GW2.NET\\ItemDataCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
-
-            this.LoadCache();
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
@@ -72,6 +71,22 @@ namespace GW2DotNET.V1.Items.DataProvider
             this.cacheFileName = string.Format("{0}\\ItemDataCache{1}.binary", savePath, language);
 
             this.LoadCache();
+
+            this.InitializeDelegates();
+        }
+
+        /// <summary>
+        ///     Initialize the delegates. This is called by the constructor.
+        /// </summary>
+        protected virtual void InitializeDelegates()
+        {
+            onGetItemFromIdCompletedDelegate = GetItemFromIdCompletedCallback;
+
+            onGetItemFromIdProgressReportDelegate = GetItemFromIdReportProgressCallback;
+
+            onGetAllItemsCompletedDelegate = GetAllItemsCompletedCallback;
+
+            onGetAllItemsProgressReportDelegate = GetAllItemsReportProgressCallback;
         }
 
         /// <summary>
@@ -86,10 +101,17 @@ namespace GW2DotNET.V1.Items.DataProvider
             {
                 lock (itemCacheSyncObject)
                 {
-                if (this.itemsCache == null)
-                {
-                    this.GetAllItems();
-                }
+                    // Try to load the cache from disk
+                    if (this.itemsCache == null)
+                    {
+                        this.LoadCache();
+                    }
+
+                    // If there was nothing on disk, or it was stale, use the API
+                    if (this.itemsCache == null)
+                    {
+                        this.GetAllItems();
+                    }
                 }
 
                 return this.itemsCache;
@@ -132,8 +154,10 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// </summary>
         private void LoadCache()
         {
-            lock (itemCacheSyncObject)
-            {
+            // Because this method is only called by the AllItems property
+            // accessor, and that accessor locks the cache sync object, we
+            // don't need to lock it here.
+
             // Check if there is a cache file present.
             if (File.Exists(this.cacheFileName))
             {
@@ -144,7 +168,7 @@ namespace GW2DotNET.V1.Items.DataProvider
                 {
                     var binarySerializer = new BinaryFormatter();
 
-                        diskData = (ItemDataCache) binarySerializer.Deserialize(fileStream);
+                    diskData = (ItemDataCache) binarySerializer.Deserialize(fileStream);
                 }
 
                 // Check if the data is stale.
@@ -156,13 +180,9 @@ namespace GW2DotNET.V1.Items.DataProvider
                 }
 
                 /* If we had no data on disk or it was stale, the cache will
-                 * be empty when this method returns. We do not proactively
-                 * retrieve the item data for the new build. This will be done
-                 * the next time the caller attempts to retrieve the details
-                 * of an item.
+                 * be empty when this method returns.
                  */
             }
-        }
         }
 
         /// <summary>

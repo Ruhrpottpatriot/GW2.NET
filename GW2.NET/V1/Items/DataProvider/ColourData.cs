@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// <summary>
     /// The colour data provider.
     /// </summary>
-    public partial class ColourData : System.ComponentModel.Component, IEnumerable<GwColour>
+    public partial class ColourData : DataProviderBase, IEnumerable<GwColour>
     {
         /// <summary>
         /// The language.
@@ -37,11 +37,6 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// object before touching the private coloursCache object.
         /// </summary>
         private readonly object coloursCacheSyncObject = new object();
-
-        /// <summary>
-        ///     Tracks the state of any async tasks.
-        /// </summary>
-        private readonly HybridDictionary userStateToLifetime = new HybridDictionary();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ColourData"/> class.
@@ -70,12 +65,6 @@ namespace GW2DotNET.V1.Items.DataProvider
             onGetAllColoursCompletedDelegate = GetAllColoursCompletedCallback;
 
             onGetAllColoursProgressReportDelegate = GetAllColoursReportProgressCallback;
-        }
-
-        // Utility method for determining if a task has been canceled.
-        private bool TaskCanceled(object taskId)
-        {
-            return (userStateToLifetime[taskId] == null);
         }
 
         /// <summary>

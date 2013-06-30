@@ -17,19 +17,41 @@ using GW2DotNET.V1.Maps.Models;
 namespace GW2DotNET.V1.Maps.DataProvider
 {
     /// <summary>Provides the api manager with the maps data.</summary>
-    public class MapsData : IEnumerable<Map>
+    public partial class MapsData : DataProviderBase, IEnumerable<Map>
     {
         /// <summary>The manager.</summary>
         private readonly ApiManager manager;
 
         /// <summary>The maps.</summary>
-        private IEnumerable<Map> maps;
+        private IEnumerable<Map> mapsCache;
+
+        /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private continentsCache object.
+        /// </summary>
+        private readonly object mapsCacheSyncObject = new object();
 
         /// <summary>Initializes a new instance of the <see cref="MapsData"/> class.</summary>
         /// <param name="manager">The manager.</param>
         internal MapsData(ApiManager manager)
         {
             this.manager = manager;
+
+            this.InitializeDelegates();
+        }
+
+        /// <summary>
+        /// Initialize the delegates. This is called by the constructor.
+        /// </summary>
+        protected virtual void InitializeDelegates()
+        {
+            onGetMapFromIdCompletedDelegate = GetMapFromIdCompletedCallback;
+
+            onGetMapFromIdProgressReportDelegate = GetMapFromIdReportProgressCallback;
+
+            onGetAllMapsCompletedDelegate = GetAllMapsCompletedCallback;
+
+            onGetAllMapsProgressReportDelegate = GetAllMapsReportProgressCallback;
         }
 
         /// <summary>Gets all maps from the api.</summary>
@@ -37,21 +59,28 @@ namespace GW2DotNET.V1.Maps.DataProvider
         {
             get
             {
-                if (this.maps == null)
+                lock (mapsCacheSyncObject)
                 {
-                    var args = new List<KeyValuePair<string, object>>
+                    if (this.mapsCache == null)
                     {
-                        new KeyValuePair<string, object>("lang", this.manager.Language)
-                    };
-                    
-                    this.maps =
-                        ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>(
-                            "maps.json", args, ApiCall.Categories.World)
-                               .Values.First()
-                               .Select(map => map.Value.ResolveId(map.Key).ResolveContinent(this.manager.Continents.Single(cont => cont.Id == map.Value.ContinentId)));
+                        var args = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>("lang", this.manager.Language)
+                            };
+
+                        this.mapsCache =
+                            ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>(
+                                "maps.json", args, ApiCall.Categories.World)
+                                   .Values.First()
+                                   .Select(
+                                       map =>
+                                       map.Value.ResolveId(map.Key)
+                                          .ResolveContinent(
+                                              this.manager.Continents.Single(cont => cont.Id == map.Value.ContinentId)));
+                    }
                 }
 
-                return this.maps;
+                return this.mapsCache;
             }
         }
 

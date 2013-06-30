@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.World.DataProvider
     /// the event names list to the caller. We only return events objects
     /// that have status information, not just name-id mappings.
     /// </remarks>
-    public class EventData : IEnumerable<GwEvent>
+    public partial class EventData : DataProviderBase, IEnumerable<GwEvent>
     {
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.
@@ -41,8 +41,20 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </summary>
         private Dictionary<Guid, string> eventNamesCache;
 
+        /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private eventNamesCache object.
+        /// </summary>
+        private readonly object eventNamesCacheSyncObject = new object();
+
         /// <summary>The events cache.</summary>
         private IEnumerable<GwEvent> eventsCache;
+
+        /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private eventsCache object.
+        /// </summary>
+        private readonly object eventsCacheSyncObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventData"/> class.
@@ -71,41 +83,47 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                if (this.eventNamesCache == null)
+                lock (eventNamesCacheSyncObject)
                 {
-                    var arguments = new List<KeyValuePair<string, object>>
-                                        {
-                                            new KeyValuePair<string, object>(
-                                                "lang", this.apiManager.Language)
-                                        };
-
-                    var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", arguments, ApiCall.Categories.World);
-
-                    // Create a new Dictionary to hold the names,
-                    // whereas the key is the event id and the valus the event name.
-                    this.eventNamesCache = new Dictionary<Guid, string>();
-
-                    // Iterate through the namesResponse,
-                    // so we can throw away that damn List<Dictionary<string,string>>! *blargh*
-                    foreach (var eventName in namesResponse)
+                    if (this.eventNamesCache == null)
                     {
-                        var id = new Guid();
+                        var arguments = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>(
+                                    "lang", this.apiManager.Language)
+                            };
 
-                        var name = string.Empty;
+                        var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json",
+                                                                                                 arguments,
+                                                                                                 ApiCall.Categories
+                                                                                                        .World);
 
-                        foreach (var variable in eventName)
+                        // Create a new Dictionary to hold the names,
+                        // whereas the key is the event id and the valus the event name.
+                        this.eventNamesCache = new Dictionary<Guid, string>();
+
+                        // Iterate through the namesResponse,
+                        // so we can throw away that damn List<Dictionary<string,string>>! *blargh*
+                        foreach (var eventName in namesResponse)
                         {
-                            if (variable.Key == "id")
-                            {
-                                id = new Guid(variable.Value);
-                            }
-                            else
-                            {
-                                name = variable.Value;
-                            }
-                        }
+                            var id = new Guid();
 
-                        this.eventNamesCache.Add(id, name);
+                            var name = string.Empty;
+
+                            foreach (var variable in eventName)
+                            {
+                                if (variable.Key == "id")
+                                {
+                                    id = new Guid(variable.Value);
+                                }
+                                else
+                                {
+                                    name = variable.Value;
+                                }
+                            }
+
+                            this.eventNamesCache.Add(id, name);
+                        }
                     }
                 }
 
@@ -125,7 +143,10 @@ namespace GW2DotNET.V1.World.DataProvider
                     return this.GetEvents();
                 }
 
-                return this.eventsCache ?? (this.eventsCache = this.GetEvents());
+                lock (eventsCacheSyncObject)
+                {
+                    return this.eventsCache ?? (this.eventsCache = this.GetEvents());
+                }
             }
         }
 
@@ -143,9 +164,12 @@ namespace GW2DotNET.V1.World.DataProvider
                     return this.GetEvents(world.Id);
                 }
 
-                if (this.eventsCache == null)
+                lock (eventsCacheSyncObject)
                 {
-                    this.eventsCache = this.GetEvents();
+                    if (this.eventsCache == null)
+                    {
+                        this.eventsCache = this.GetEvents();
+                    }
                 }
 
                 return this.eventsCache.Where(w => w.World == world);
@@ -166,9 +190,12 @@ namespace GW2DotNET.V1.World.DataProvider
                     return this.GetEvents(mapId: map.Id);
                 }
 
-                if (this.eventsCache == null)
+                lock (eventsCacheSyncObject)
                 {
-                   this.eventsCache = this.GetEvents();
+                    if (this.eventsCache == null)
+                    {
+                        this.eventsCache = this.GetEvents();
+                    }
                 }
 
                 return this.eventsCache.Where(e => e.Map == map);
@@ -189,9 +216,12 @@ namespace GW2DotNET.V1.World.DataProvider
                     return this.GetEvents(eventId: eventId);
                 }
 
-                if (this.eventsCache == null)
+                lock (eventsCacheSyncObject)
                 {
-                    this.eventsCache = this.GetEvents();
+                    if (this.eventsCache == null)
+                    {
+                        this.eventsCache = this.GetEvents();
+                    }
                 }
 
                 return this.eventsCache.Where(e => e.EventId == eventId);

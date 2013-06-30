@@ -8,14 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-
+using System.Collections.Specialized;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Maps.Models;
 
 namespace GW2DotNET.V1.Maps.DataProvider
 {
     /// <summary>The map floor data.</summary>
-    public class MapFloorData
+    public partial class MapFloorData : DataProviderBase
     {
         /// <summary>The manager.</summary>
         private readonly ApiManager manager;
@@ -28,6 +28,16 @@ namespace GW2DotNET.V1.Maps.DataProvider
         public MapFloorData(ApiManager manager)
         {
             this.manager = manager;
+        }
+
+        /// <summary>
+        /// Initialize the delegates. This is called by the constructor.
+        /// </summary>
+        protected virtual void InitializeDelegates()
+        {
+            onGetMapFloorFromIdCompletedDelegate = GetMapFloorFromIdCompletedCallback;
+
+            onGetMapFloorFromIdProgressReportDelegate = GetMapFloorFromIdReportProgressCallback;
         }
 
         /// <summary>Gets a map floor by it's continent and floor id.</summary>
