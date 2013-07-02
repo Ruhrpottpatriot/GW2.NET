@@ -8,11 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
 using Newtonsoft.Json;
-
 using RestSharp;
 
 namespace GW2DotNET.V1.Infrastructure

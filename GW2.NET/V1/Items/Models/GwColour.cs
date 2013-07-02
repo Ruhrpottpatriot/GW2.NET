@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models

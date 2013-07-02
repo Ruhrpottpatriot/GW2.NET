@@ -12,7 +12,6 @@ using System.Linq;
 using System.Threading;
 using GW2DotNET.V1;
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.Items.DataProvider;
 using NUnit.Framework;
 
 namespace GW2.NET_Tests

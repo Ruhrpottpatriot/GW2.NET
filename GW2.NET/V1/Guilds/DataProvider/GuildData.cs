@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,7 +18,6 @@ using GW2DotNET.V1.Infrastructure;
 namespace GW2DotNET.V1.Guilds.DataProvider
 {
     using System.Diagnostics;
-    using System.Runtime.Remoting;
 
     /// <summary>
     ///     The guild data provider.
