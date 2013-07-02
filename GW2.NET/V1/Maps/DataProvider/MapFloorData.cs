@@ -7,15 +7,18 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Maps.Models;
 
 namespace GW2DotNET.V1.Maps.DataProvider
 {
     /// <summary>The map floor data.</summary>
-    public partial class MapFloorData : DataProviderBase
+    public partial class MapFloorData
     {
         /// <summary>The manager.</summary>
         private readonly ApiManager manager;
@@ -28,16 +31,6 @@ namespace GW2DotNET.V1.Maps.DataProvider
         public MapFloorData(ApiManager manager)
         {
             this.manager = manager;
-        }
-
-        /// <summary>
-        /// Initialize the delegates. This is called by the constructor.
-        /// </summary>
-        protected virtual void InitializeDelegates()
-        {
-            onGetMapFloorFromIdCompletedDelegate = GetMapFloorFromIdCompletedCallback;
-
-            onGetMapFloorFromIdProgressReportDelegate = GetMapFloorFromIdReportProgressCallback;
         }
 
         /// <summary>Gets a map floor by it's continent and floor id.</summary>
@@ -66,6 +59,13 @@ namespace GW2DotNET.V1.Maps.DataProvider
 
                 return floorToReturn;
             }
+        }
+
+        public Task<MapFloor> GetMapFloorAsync(int continentId, int floor, CancellationToken cancellationToken)
+        {
+            Func<MapFloor> methodCall = () => this[continentId, floor];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
     }
 }

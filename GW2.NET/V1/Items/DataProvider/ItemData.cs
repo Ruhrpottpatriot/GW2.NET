@@ -84,21 +84,18 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                if (this.itemsCache == null)
+                lock (itemCacheSyncObject)
                 {
-                    lock (itemCacheSyncObject)
+                    // Try to load the cache from disk
+                    if (this.itemsCache == null)
                     {
-                        // Try to load the cache from disk
-                        if (this.itemsCache == null)
-                        {
-                            this.LoadCache();
-                        }
+                        this.LoadCache();
+                    }
 
-                        // If there was nothing on disk, or it was stale, use the API
-                        if (this.itemsCache == null)
-                        {
-                            this.GetAllItems();
-                        }
+                    // If there was nothing on disk, or it was stale, use the API
+                    if (this.itemsCache == null)
+                    {
+                        this.GetAllItems();
                     }
                 }
 

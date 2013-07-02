@@ -56,15 +56,10 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                if (this.coloursCache == null)
+                lock (coloursCacheSyncObject)
                 {
-                    lock (coloursCacheSyncObject)
-                    {
-                        return this.coloursCache ?? (this.coloursCache = this.GetColours());
-                    }
+                    return this.coloursCache ?? (this.coloursCache = this.GetColours());
                 }
-
-                return this.coloursCache;
             }
         }
 

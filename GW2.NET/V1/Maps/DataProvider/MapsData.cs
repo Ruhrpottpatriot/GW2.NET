@@ -7,17 +7,19 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Maps.Models;
 
 namespace GW2DotNET.V1.Maps.DataProvider
 {
     /// <summary>Provides the api manager with the maps data.</summary>
-    public partial class MapsData : DataProviderBase, IEnumerable<Map>
+    public partial class MapsData : IEnumerable<Map>
     {
         /// <summary>The manager.</summary>
         private readonly ApiManager manager;
@@ -36,26 +38,10 @@ namespace GW2DotNET.V1.Maps.DataProvider
         internal MapsData(ApiManager manager)
         {
             this.manager = manager;
-
-            this.InitializeDelegates();
-        }
-
-        /// <summary>
-        /// Initialize the delegates. This is called by the constructor.
-        /// </summary>
-        protected virtual void InitializeDelegates()
-        {
-            onGetMapFromIdCompletedDelegate = GetMapFromIdCompletedCallback;
-
-            onGetMapFromIdProgressReportDelegate = GetMapFromIdReportProgressCallback;
-
-            onGetAllMapsCompletedDelegate = GetAllMapsCompletedCallback;
-
-            onGetAllMapsProgressReportDelegate = GetAllMapsReportProgressCallback;
         }
 
         /// <summary>Gets all maps from the api.</summary>
-        public IEnumerable<Map> Maps
+        private IEnumerable<Map> Maps
         {
             get
             {
@@ -76,12 +62,25 @@ namespace GW2DotNET.V1.Maps.DataProvider
                                        map =>
                                        map.Value.ResolveId(map.Key)
                                           .ResolveContinent(
-                                              this.manager.Continents.Single(cont => cont.Id == map.Value.ContinentId)));
+                                              this.manager.Continents.Single(
+                                                  cont => cont.Id == map.Value.ContinentId)));
                     }
                 }
 
                 return this.mapsCache;
             }
+        }
+
+        /// <summary>
+        /// Gets all maps asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<Map>> GetAllMapsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<Map>> methodCall = () => this.Maps;
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>Returns a map by its id</summary>

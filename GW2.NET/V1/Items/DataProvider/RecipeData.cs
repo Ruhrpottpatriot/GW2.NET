@@ -58,19 +58,14 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                if (this.recipeIdCache == null)
+                lock (recipeIdCacheSyncObject)
                 {
-                    lock (recipeIdCacheSyncObject)
-                    {
-                        return this.recipeIdCache ??
-                               (this.recipeIdCache =
-                                ApiCall.GetContent<Dictionary<string, IEnumerable<int>>>("recipes.json", null,
-                                                                                         ApiCall.Categories.Items)
-                                       .Values.First());
-                    }
+                    return this.recipeIdCache ??
+                           (this.recipeIdCache =
+                            ApiCall.GetContent<Dictionary<string, IEnumerable<int>>>("recipes.json", null,
+                                                                                     ApiCall.Categories.Items)
+                                   .Values.First());
                 }
-
-                return this.recipeIdCache;
             }
         }
 

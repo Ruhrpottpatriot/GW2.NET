@@ -117,30 +117,9 @@
     <Compile Include="V1\Items\Models\Items\SubType\UpgradeComponent.cs" />
     <Compile Include="V1\Items\Models\Items\WeaponRarity.cs" />
     <Compile Include="V1\Items\Models\Items\ItemType.cs" />
-    <Compile Include="V1\Maps\DataProvider\ContinentData.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Maps\DataProvider\ContinentData.GetAllContinentsAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Maps\DataProvider\ContinentData.GetContinentFromIdAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Maps\DataProvider\MapFloorData.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Maps\DataProvider\MapFloorData.GetMapFloorFromIdAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Maps\DataProvider\MapsData.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Maps\DataProvider\MapsData.GetAllMapsAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Maps\DataProvider\MapsData.GetMapFromIdAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="V1\Maps\DataProvider\ContinentData.cs" />
+    <Compile Include="V1\Maps\DataProvider\MapFloorData.cs" />
+    <Compile Include="V1\Maps\DataProvider\MapsData.cs" />
     <Compile Include="V1\Maps\Models\Continent.cs" />
     <Compile Include="V1\Maps\Models\Map.cs" />
     <Compile Include="V1\Maps\Models\Map.PointOfInterest.cs" />

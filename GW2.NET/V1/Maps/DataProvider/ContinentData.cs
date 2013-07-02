@@ -7,18 +7,20 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Maps.Models;
 
 namespace GW2DotNET.V1.Maps.DataProvider
 {
     /// <summary>Provides the ApiManager with the map api data.</summary>
-    public partial class ContinentData : DataProviderBase, IEnumerable<Continent>
+    public partial class ContinentData : IEnumerable<Continent>
     {
         /// <summary>The api manager.</summary>
         private readonly ApiManager manager;
@@ -37,22 +39,6 @@ namespace GW2DotNET.V1.Maps.DataProvider
         internal ContinentData(ApiManager manager)
         {
             this.manager = manager;
-
-            this.InitializeDelegates();
-        }
-
-        /// <summary>
-        /// Initialize the delegates. This is called by the constructor.
-        /// </summary>
-        protected virtual void InitializeDelegates()
-        {
-            onGetContinentFromIdCompletedDelegate = GetContinentFromIdCompletedCallback;
-
-            onGetContinentFromIdProgressReportDelegate = GetContinentFromIdReportProgressCallback;
-
-            onGetAllContinentsCompletedDelegate = GetAllContinentsCompletedCallback;
-
-            onGetAllContinentsProgressReportDelegate = GetAllContinentsReportProgressCallback;
         }
 
         /// <summary>Gets all continents from the api.</summary>
@@ -82,6 +68,18 @@ namespace GW2DotNET.V1.Maps.DataProvider
             }
         }
 
+        /// <summary>
+        /// Gets all continents asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<Continent>> GetAllContinentsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<Continent>> methodCall = () => this.Continents;
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
         /// <summary>Gets a continent by it's id.</summary>
         /// <param name="id">The id of the continent.</param>
         /// <returns>The <see cref="Continent"/>.</returns>
@@ -97,6 +95,19 @@ namespace GW2DotNET.V1.Maps.DataProvider
             {
                 return this.Continents.Single(continent => continent.Id == id);
             }
+        }
+
+        /// <summary>
+        /// Get a continent by ID asynchronously.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Continent> GetContinentFromIdAsync(int id, CancellationToken cancellationToken)
+        {
+            Func<Continent> methodCall = () => this[id];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
