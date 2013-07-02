@@ -286,8 +286,6 @@ namespace GW2.NET_Tests
 
             stopwatch.Stop();
 
-            Assert.Equals(map1, map2);
-
             Assert.IsNotNullOrEmpty(map1.Name);
 
             Assert.IsNotNullOrEmpty(map2.Name);
