@@ -22,7 +22,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// <summary>
     /// The recipe data provider.
     /// </summary>
-    public partial class RecipeData : IEnumerable<Recipe>
+    public class RecipeData : IEnumerable<Recipe>
     {
         /// <summary>
         /// The recipe id cache.

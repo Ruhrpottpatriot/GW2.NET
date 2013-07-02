@@ -20,7 +20,7 @@ using GW2DotNET.V1.Maps.Models;
 namespace GW2DotNET.V1.Maps.DataProvider
 {
     /// <summary>Provides the ApiManager with the map api data.</summary>
-    public partial class ContinentData : IEnumerable<Continent>
+    public class ContinentData : IEnumerable<Continent>
     {
         /// <summary>The api manager.</summary>
         private readonly ApiManager manager;

@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.World.DataProvider
     /// <summary>
     /// Contains methods to get and modify the world data.
     /// </summary>
-    public partial class WorldData : IEnumerable<GwWorld>
+    public class WorldData : IEnumerable<GwWorld>
     {
         /// <summary>
         /// The world names will be retrieved in this language

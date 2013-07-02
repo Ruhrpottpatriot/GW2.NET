@@ -18,7 +18,7 @@ using GW2DotNET.V1.Maps.Models;
 namespace GW2DotNET.V1.Maps.DataProvider
 {
     /// <summary>The map floor data.</summary>
-    public partial class MapFloorData
+    public class MapFloorData
     {
         /// <summary>The manager.</summary>
         private readonly ApiManager manager;

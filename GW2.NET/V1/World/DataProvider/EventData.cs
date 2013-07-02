@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.World.DataProvider
     /// the event names list to the caller. We only return events objects
     /// that have status information, not just name-id mappings.
     /// </remarks>
-    public partial class EventData : IEnumerable<GwEvent>
+    public class EventData : IEnumerable<GwEvent>
     {
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.

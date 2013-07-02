@@ -19,7 +19,7 @@ using GW2DotNET.V1.Maps.Models;
 namespace GW2DotNET.V1.Maps.DataProvider
 {
     /// <summary>Provides the api manager with the maps data.</summary>
-    public partial class MapsData : IEnumerable<Map>
+    public class MapsData : IEnumerable<Map>
     {
         /// <summary>The manager.</summary>
         private readonly ApiManager manager;
