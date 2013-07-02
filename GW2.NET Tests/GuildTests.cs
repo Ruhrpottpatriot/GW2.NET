@@ -9,7 +9,7 @@
 
 using System;
 using System.Diagnostics;
-
+using System.Threading;
 using GW2DotNET.V1;
 
 using NUnit.Framework;
@@ -48,23 +48,52 @@ namespace GW2.NET_Tests
 
             watch.Stop();
 
+            Assert.IsNotNullOrEmpty(guild.Name);
+
             Debug.WriteLine("Elapsed time: {0}", watch.ElapsedMilliseconds);
             Debug.WriteLine("Guild Name: {0}", guild.Name);
         }
 
         /// <summary>
-        /// Gets all guilds from the api.
+        /// Gets a single guild from the api.
         /// </summary>
-        public void GetGuilds()
+        [Test]
+        public void GetSingleGuildFromIdAsync()
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var guilds = this.manager.Guilds;
+            var task = this.manager.Guilds.GetGuildFromIdAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8"), CancellationToken.None);
+            task.Wait();
+
+            var guild = task.Result;
 
             watch.Stop();
-            
+
+            Assert.IsNotNullOrEmpty(guild.Name);
+
             Debug.WriteLine("Elapsed time: {0}", watch.ElapsedMilliseconds);
-            Debug.WriteLine("Number of guilds: {0}", guilds);
+            Debug.WriteLine("Guild Name: {0}", guild.Name);
+        }
+
+        /// <summary>
+        /// Gets a single guild from the api.
+        /// </summary>
+        [Test]
+        public void GetSingleGuildFromNameAsync()
+        {
+            Stopwatch watch = Stopwatch.StartNew();
+
+            var task = this.manager.Guilds.GetGuildFromNameAsync("Wayward Blade", CancellationToken.None);
+            task.Wait();
+
+            var guild = task.Result;
+
+            watch.Stop();
+
+            Assert.AreNotEqual(guild.Id, Guid.Empty);
+
+            Debug.WriteLine("Elapsed time: {0}", watch.ElapsedMilliseconds);
+            Debug.WriteLine("Guild Name: {0}", guild.Id);
         }
     }
 }
