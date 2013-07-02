@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.WvW.DataProviders
     /// <summary>
     /// The match data provider.
     /// </summary>
-    public class MatchData : IEnumerable<WvWMatch>
+    public partial class MatchData : DataProviderBase, IEnumerable<WvWMatch>
     {
         /// <summary>
         /// The matches.
@@ -28,14 +28,32 @@ namespace GW2DotNET.V1.WvW.DataProviders
         private IEnumerable<WvWMatch> matches;
 
         /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private matches object.
+        /// </summary>
+        private readonly object matchesSyncObject = new object();
+
+        /// <summary>
         /// The match dictionary.
         /// </summary>
         private IEnumerable<WvWMatch> matchDictionary;
 
         /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private coloursCache object.
+        /// </summary>
+        private readonly object matchDictionarySyncObject = new object();
+
+        /// <summary>
         /// The objective dictionary.
         /// </summary>
-        private IEnumerable<WvWMatch.WvWMap.Objective> objectiveDictionary; 
+        private IEnumerable<WvWMatch.WvWMap.Objective> objectiveDictionary;
+
+        /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private coloursCache object.
+        /// </summary>
+        private readonly object objectiveDictionarySyncObject = new object();
 
         /// <summary>
         /// Gets the match dictionary.

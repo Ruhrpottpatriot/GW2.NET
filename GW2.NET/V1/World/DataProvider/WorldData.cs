@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.World.DataProvider
     /// <summary>
     /// Contains methods to get and modify the world data.
     /// </summary>
-    public class WorldData : IEnumerable<GwWorld>
+    public partial class WorldData : DataProviderBase, IEnumerable<GwWorld>
     {
         /// <summary>
         /// The world names will be retrieved in this language
@@ -29,7 +29,13 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Cache the world_names list here
         /// </summary>
-        private IEnumerable<GwWorld> gwWorldCache;
+        private IEnumerable<GwWorld> worldCache;
+
+        /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private worldCache object.
+        /// </summary>
+        private readonly object worldCacheSyncObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldData"/> class.
@@ -39,6 +45,24 @@ namespace GW2DotNET.V1.World.DataProvider
         internal WorldData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
+        }
+
+        /// <summary>
+        ///     Initialize the delegates. This is called by the constructor.
+        /// </summary>
+        protected virtual void InitializeDelegates()
+        {
+            onGetWorldFromIdCompletedDelegate = GetWorldFromIdCompletedCallback;
+
+            onGetWorldFromIdProgressReportDelegate = GetWorldFromIdReportProgressCallback;
+
+            onGetWorldFromNameCompletedDelegate = GetWorldFromNameCompletedCallback;
+
+            onGetWorldFromNameProgressReportDelegate = GetWorldFromNameReportProgressCallback;
+
+            onGetAllWorldsCompletedDelegate = GetAllWorldsCompletedCallback;
+
+            onGetAllWorldsProgressReportDelegate = GetAllWorldsReportProgressCallback;
         }
 
         /// <summary>
@@ -52,17 +76,21 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                if (this.gwWorldCache == null)
+                lock (worldCacheSyncObject)
                 {
-                    var arguments = new List<KeyValuePair<string, object>>
+                    if (this.worldCache == null)
                     {
-                        new KeyValuePair<string, object>("lang", this.apiManager.ToString())
-                    };
+                        var arguments = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>("lang", this.apiManager.ToString())
+                            };
 
-                    this.gwWorldCache = ApiCall.GetContent<List<GwWorld>>("world_names.json", arguments, ApiCall.Categories.World);
+                        this.worldCache = ApiCall.GetContent<List<GwWorld>>("world_names.json", arguments,
+                                                                            ApiCall.Categories.World);
+                    }
                 }
 
-                return this.gwWorldCache;
+                return this.worldCache;
             }
         }
 

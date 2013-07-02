@@ -200,11 +200,24 @@
     <Compile Include="V1\World\DataProvider\EventData.GetEventsFromWorldAsync.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="V1\World\DataProvider\WorldData.cs" />
+    <Compile Include="V1\World\DataProvider\WorldData.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V1\World\DataProvider\WorldData.GetAllWorldsAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V1\World\DataProvider\WorldData.GetWorldFromIdAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V1\World\DataProvider\WorldData.GetWorldFromNameAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="V1\World\Models\GwEvent.cs" />
     <Compile Include="V1\World\Models\GwEventState.cs" />
     <Compile Include="V1\World\Models\GwWorld.cs" />
-    <Compile Include="V1\WvW\DataProviders\MatchData.cs" />
+    <Compile Include="V1\WvW\DataProviders\MatchData.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.Type.cs" />
