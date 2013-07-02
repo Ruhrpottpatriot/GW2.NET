@@ -10,7 +10,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Maps.Models;
 using GW2DotNET.V1.World.Models;
@@ -29,7 +30,7 @@ namespace GW2DotNET.V1.World.DataProvider
     /// the event names list to the caller. We only return events objects
     /// that have status information, not just name-id mappings.
     /// </remarks>
-    public partial class EventData : DataProviderBase, IEnumerable<GwEvent>
+    public partial class EventData : IEnumerable<GwEvent>
     {
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.
@@ -65,28 +66,6 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             this.apiManager = apiManager;
             this.BypassCaching = false;
-        }
-
-        /// <summary>
-        /// Initialize the delegates. This is called by the constructor.
-        /// </summary>
-        protected virtual void InitializeDelegates()
-        {
-            onGetEventsFromIdCompletedDelegate = GetEventsFromIdCompletedCallback;
-
-            onGetEventsFromIdProgressReportDelegate = GetEventsFromIdReportProgressCallback;
-
-            onGetEventsFromMapCompletedDelegate = GetEventsFromMapCompletedCallback;
-
-            onGetEventsFromMapProgressReportDelegate = GetEventsFromMapReportProgressCallback;
-
-            onGetEventsFromWorldCompletedDelegate = GetEventsFromWorldCompletedCallback;
-
-            onGetEventsFromWorldProgressReportDelegate = GetEventsFromWorldReportProgressCallback;
-
-            onGetAllEventsCompletedDelegate = GetAllEventsCompletedCallback;
-
-            onGetAllEventsProgressReportDelegate = GetAllEventsReportProgressCallback;
         }
 
         /// <summary>Gets or sets a value indicating whether to bypass caching.</summary>
@@ -173,6 +152,18 @@ namespace GW2DotNET.V1.World.DataProvider
         }
 
         /// <summary>
+        /// Gets all events asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwEvent>> GetAllEventsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwEvent>> methodCall = () => this.AllEvents;
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
         /// Gets a collection of <see cref="GwEvent"/>s pre-sorted with a <see cref="GwWorld"/>.
         /// </summary>
         /// <param name="world">The world to pre-sort the events.</param>
@@ -196,6 +187,19 @@ namespace GW2DotNET.V1.World.DataProvider
 
                 return this.eventsCache.Where(w => w.World == world);
             }
+        }
+
+        /// <summary>
+        /// Gets all events for a given world asynchronously.
+        /// </summary>
+        /// <param name="world"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwEvent>> GetEventsFromWorldAsync(GwWorld world, CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwEvent>> methodCall = () => this[world];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
@@ -225,6 +229,19 @@ namespace GW2DotNET.V1.World.DataProvider
         }
 
         /// <summary>
+        /// Gets all events for a given map on all worlds asynchronously.
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwEvent>> GetEventsFromMapAsync(Map map, CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwEvent>> methodCall = () => this[map];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
         /// Gets one event for all worlds.
         /// </summary>
         /// <param name="eventId">The id of the event to retrieve.</param>
@@ -248,6 +265,19 @@ namespace GW2DotNET.V1.World.DataProvider
 
                 return this.eventsCache.Where(e => e.EventId == eventId);
             }
+        }
+
+        /// <summary>
+        /// Gets one event from all worlds asynchronously.
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwEvent>> GetEventsFromIdAsync(Guid eventId, CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwEvent>> methodCall = () => this[eventId];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>

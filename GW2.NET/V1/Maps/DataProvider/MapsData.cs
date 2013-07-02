@@ -101,6 +101,19 @@ namespace GW2DotNET.V1.Maps.DataProvider
         }
 
         /// <summary>
+        /// Gets a map from an ID asynchronously.
+        /// </summary>
+        /// <param name="mapId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Map> GetMapFromIdAsync(int mapId, CancellationToken cancellationToken)
+        {
+            Func<Map> methodCall = () => this[mapId];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>

@@ -7,10 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.World.Models;
 
@@ -19,7 +21,7 @@ namespace GW2DotNET.V1.World.DataProvider
     /// <summary>
     /// Contains methods to get and modify the world data.
     /// </summary>
-    public partial class WorldData : DataProviderBase, IEnumerable<GwWorld>
+    public partial class WorldData : IEnumerable<GwWorld>
     {
         /// <summary>
         /// The world names will be retrieved in this language
@@ -45,24 +47,6 @@ namespace GW2DotNET.V1.World.DataProvider
         internal WorldData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
-        }
-
-        /// <summary>
-        ///     Initialize the delegates. This is called by the constructor.
-        /// </summary>
-        protected virtual void InitializeDelegates()
-        {
-            onGetWorldFromIdCompletedDelegate = GetWorldFromIdCompletedCallback;
-
-            onGetWorldFromIdProgressReportDelegate = GetWorldFromIdReportProgressCallback;
-
-            onGetWorldFromNameCompletedDelegate = GetWorldFromNameCompletedCallback;
-
-            onGetWorldFromNameProgressReportDelegate = GetWorldFromNameReportProgressCallback;
-
-            onGetAllWorldsCompletedDelegate = GetAllWorldsCompletedCallback;
-
-            onGetAllWorldsProgressReportDelegate = GetAllWorldsReportProgressCallback;
         }
 
         /// <summary>
@@ -95,6 +79,18 @@ namespace GW2DotNET.V1.World.DataProvider
         }
 
         /// <summary>
+        /// Gets all worlds asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwWorld>> GetAllWorldsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwWorld>> methodCall = () => this.Worlds;
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
         /// Gets a world by world ID
         /// </summary>
         /// <param name="worldId">The ID of the world</param>
@@ -108,6 +104,19 @@ namespace GW2DotNET.V1.World.DataProvider
         }
 
         /// <summary>
+        /// Gets a world by ID asynchronously.
+        /// </summary>
+        /// <param name="worldId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<GwWorld> GetWorldFromIdAsync(int worldId, CancellationToken cancellationToken)
+        {
+            Func<GwWorld> methodCall = () => this[worldId];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
         /// Gets a world by name
         /// </summary>
         /// <param name="name">The name of the world</param>
@@ -118,6 +127,19 @@ namespace GW2DotNET.V1.World.DataProvider
             {
                 return this.Worlds.Single(n => n.Name == name);
             }
+        }
+
+        /// <summary>
+        /// Gets a world by name asynchronously.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<GwWorld> GetWorldFromNameAsync(string name, CancellationToken cancellationToken)
+        {
+            Func<GwWorld> methodCall = () => this[name];
+
+            return Task.Factory.StartNew(methodCall);
         }
 
         /// <summary>

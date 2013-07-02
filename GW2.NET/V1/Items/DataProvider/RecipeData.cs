@@ -76,24 +76,19 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                if (this.recipes == null)
+                lock (recipesCacheSyncObject)
                 {
-                    lock (recipesCacheSyncObject)
-                    {
-                        return this.recipes ??
-                               (this.recipes =
-                                this.RecipeIdCache.Select(singleRecipeId => new List<KeyValuePair<string, object>>
-                                    {
-                                        new KeyValuePair<string, object>("recipe_id", singleRecipeId)
-                                    })
-                                    .Select(
-                                        arguments =>
-                                        ApiCall.GetContent<Recipe>("recipe_details.json", arguments,
-                                                                   ApiCall.Categories.Items)));
-                    }
+                    return this.recipes ??
+                           (this.recipes =
+                            this.RecipeIdCache.Select(singleRecipeId => new List<KeyValuePair<string, object>>
+                                {
+                                    new KeyValuePair<string, object>("recipe_id", singleRecipeId)
+                                })
+                                .Select(
+                                    arguments =>
+                                    ApiCall.GetContent<Recipe>("recipe_details.json", arguments,
+                                                               ApiCall.Categories.Items)));
                 }
-
-                return this.recipes;
             }
         }
 

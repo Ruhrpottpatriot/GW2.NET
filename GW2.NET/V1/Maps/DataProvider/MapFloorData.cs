@@ -26,6 +26,12 @@ namespace GW2DotNET.V1.Maps.DataProvider
         /// <summary>The map floors.</summary>
         private IList<MapFloor> mapFloors;
 
+        /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private continentsCache object.
+        /// </summary>
+        private readonly object mapFloorsSyncObject = new object();
+
         /// <summary>Initializes a new instance of the <see cref="MapFloorData"/> class.</summary>
         /// <param name="manager">The manager.</param>
         public MapFloorData(ApiManager manager)
@@ -41,26 +47,36 @@ namespace GW2DotNET.V1.Maps.DataProvider
         {
             get
             {
-                if (this.mapFloors == null)
+                lock (mapFloorsSyncObject)
                 {
-                    this.mapFloors = new List<MapFloor>();
+                    if (this.mapFloors == null)
+                    {
+                        this.mapFloors = new List<MapFloor>();
+                    }
+
+                    var args = new List<KeyValuePair<string, object>>
+                        {
+                            new KeyValuePair<string, object>("continent_id", continentId),
+                            new KeyValuePair<string, object>("floor", floor),
+                            new KeyValuePair<string, object>("lang", this.manager.Language)
+                        };
+
+                    var floorToReturn = ApiCall.GetContent<MapFloor>("map_floor.json", args, ApiCall.Categories.World);
+
+                    this.mapFloors.Add(floorToReturn);
+
+                    return floorToReturn;
                 }
-
-                var args = new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("continent_id", continentId), 
-                    new KeyValuePair<string, object>("floor", floor),
-                    new KeyValuePair<string, object>("lang", this.manager.Language)
-                };
-
-                var floorToReturn = ApiCall.GetContent<MapFloor>("map_floor.json", args, ApiCall.Categories.World);
-
-                this.mapFloors.Add(floorToReturn);
-
-                return floorToReturn;
             }
         }
 
+        /// <summary>
+        /// Gets a map floor asynchronously.
+        /// </summary>
+        /// <param name="continentId"></param>
+        /// <param name="floor"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public Task<MapFloor> GetMapFloorAsync(int continentId, int floor, CancellationToken cancellationToken)
         {
             Func<MapFloor> methodCall = () => this[continentId, floor];

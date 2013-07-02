@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.WvW.DataProviders
     /// <summary>
     /// The match data provider.
     /// </summary>
-    public partial class MatchData : DataProviderBase, IEnumerable<WvWMatch>
+    public partial class MatchData : IEnumerable<WvWMatch>
     {
         /// <summary>
         /// The matches.

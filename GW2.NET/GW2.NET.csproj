@@ -83,9 +83,6 @@
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
     <Compile Include="V1\Infrastructure\ChatLinks.cs" />
-    <Compile Include="V1\Infrastructure\DataProviderBase.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="V1\Infrastructure\Language.cs" />
     <Compile Include="V1\Infrastructure\Logging\EventLogger.cs" />
     <Compile Include="V1\Items\DataProvider\ColourData.cs" />
@@ -129,39 +126,12 @@
     <Compile Include="V1\Maps\Models\Map.Task.cs" />
     <Compile Include="V1\Maps\Models\MapFloor.cs" />
     <Compile Include="V1\Maps\Models\MapFloor.Region.cs" />
-    <Compile Include="V1\World\DataProvider\EventData.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\World\DataProvider\EventData.GetAllEventsAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\World\DataProvider\EventData.GetEventsFromIdAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\World\DataProvider\EventData.GetEventsFromMapAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\World\DataProvider\EventData.GetEventsFromWorldAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\World\DataProvider\WorldData.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\World\DataProvider\WorldData.GetAllWorldsAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\World\DataProvider\WorldData.GetWorldFromIdAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\World\DataProvider\WorldData.GetWorldFromNameAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="V1\World\DataProvider\EventData.cs" />
+    <Compile Include="V1\World\DataProvider\WorldData.cs" />
     <Compile Include="V1\World\Models\GwEvent.cs" />
     <Compile Include="V1\World\Models\GwEventState.cs" />
     <Compile Include="V1\World\Models\GwWorld.cs" />
-    <Compile Include="V1\WvW\DataProviders\MatchData.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="V1\WvW\DataProviders\MatchData.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.Type.cs" />
