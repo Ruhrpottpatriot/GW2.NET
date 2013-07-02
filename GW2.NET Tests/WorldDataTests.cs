@@ -49,9 +49,9 @@ namespace GW2.NET_Tests
 
             var events = this.manager.Events.ToList();
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Total Number of Events: {0}", events.Count);
+            Trace.WriteLine(string.Format("Total Number of Events: {0}", events.Count));
         }
 
         /// <summary>

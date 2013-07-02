@@ -244,7 +244,11 @@ namespace GW2DotNET.V1.World.DataProvider
                 parameters.Add(new KeyValuePair<string, object>("event_id", eventId));
             }
 
-            return ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"].Select(evnt => evnt.ResolveIDs(this.apiManager));
+            var result = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"];
+            foreach (var gwevent in result)
+                gwevent.apiManager = this.apiManager;
+
+            return result;
         }
     }
 }
