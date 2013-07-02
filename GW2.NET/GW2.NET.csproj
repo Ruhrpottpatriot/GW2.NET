@@ -188,6 +188,18 @@
     <Compile Include="V1\World\DataProvider\EventData.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="V1\World\DataProvider\EventData.GetAllEventsAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V1\World\DataProvider\EventData.GetEventsFromIdAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V1\World\DataProvider\EventData.GetEventsFromMapAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="V1\World\DataProvider\EventData.GetEventsFromWorldAsync.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="V1\World\DataProvider\WorldData.cs" />
     <Compile Include="V1\World\Models\GwEvent.cs" />
     <Compile Include="V1\World\Models\GwEventState.cs" />

@@ -67,6 +67,28 @@ namespace GW2DotNET.V1.World.DataProvider
             this.BypassCaching = false;
         }
 
+        /// <summary>
+        /// Initialize the delegates. This is called by the constructor.
+        /// </summary>
+        protected virtual void InitializeDelegates()
+        {
+            onGetEventsFromIdCompletedDelegate = GetEventsFromIdCompletedCallback;
+
+            onGetEventsFromIdProgressReportDelegate = GetEventsFromIdReportProgressCallback;
+
+            onGetEventsFromMapCompletedDelegate = GetEventsFromMapCompletedCallback;
+
+            onGetEventsFromMapProgressReportDelegate = GetEventsFromMapReportProgressCallback;
+
+            onGetEventsFromWorldCompletedDelegate = GetEventsFromWorldCompletedCallback;
+
+            onGetEventsFromWorldProgressReportDelegate = GetEventsFromWorldReportProgressCallback;
+
+            onGetAllEventsCompletedDelegate = GetAllEventsCompletedCallback;
+
+            onGetAllEventsProgressReportDelegate = GetAllEventsReportProgressCallback;
+        }
+
         /// <summary>Gets or sets a value indicating whether to bypass caching.</summary>
         public bool BypassCaching
         {
@@ -134,7 +156,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Gets the events.
         /// </summary>
-        private IEnumerable<GwEvent> Events
+        private IEnumerable<GwEvent> AllEvents
         {
             get
             {
@@ -236,7 +258,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </returns>
         public IEnumerator<GwEvent> GetEnumerator()
         {
-            return this.Events.GetEnumerator();
+            return this.AllEvents.GetEnumerator();
         }
 
         /// <summary>
@@ -247,7 +269,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.Events.GetEnumerator();
+            return this.AllEvents.GetEnumerator();
         }
 
         /// <summary>Gets all events for all maps on all worlds.</summary>
