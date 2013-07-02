@@ -74,15 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V1\Guilds\DataProvider\GuildData.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Guilds\DataProvider\GuildData.GetGuildFromIdAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Guilds\DataProvider\GuildData.GetGuildFromNameAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="V1\Guilds\DataProvider\GuildData.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />
@@ -96,38 +88,11 @@
     </Compile>
     <Compile Include="V1\Infrastructure\Language.cs" />
     <Compile Include="V1\Infrastructure\Logging\EventLogger.cs" />
-    <Compile Include="V1\Items\DataProvider\ColourData.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Items\DataProvider\ColourData.GetAllColoursAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Items\DataProvider\ColourData.GetColourFromIdAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Items\DataProvider\ColourData.GetColourFromNameAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Items\DataProvider\ItemData.GetAllItemsAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Items\DataProvider\ItemData.GetItemFromIdAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="V1\Items\DataProvider\ColourData.cs" />
     <Compile Include="V1\Items\DataProvider\ItemDataCache.cs" />
-    <Compile Include="V1\Items\DataProvider\RecipeData.GetAllRecipesAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Items\DataProvider\RecipeData.GetRecipeFromIdAsync.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="V1\Items\Models\GwColour.ColourDetails.cs" />
-    <Compile Include="V1\Items\DataProvider\ItemData.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="V1\Items\DataProvider\RecipeData.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="V1\Items\DataProvider\ItemData.cs" />
+    <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Armour.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Back.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Bag.cs" />

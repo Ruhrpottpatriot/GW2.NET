@@ -7,11 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models;
 
@@ -20,7 +22,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// <summary>
     /// The recipe data provider.
     /// </summary>
-    public partial class RecipeData : DataProviderBase, IEnumerable<Recipe>
+    public partial class RecipeData : IEnumerable<Recipe>
     {
         /// <summary>
         /// The recipe id cache.
@@ -28,30 +30,25 @@ namespace GW2DotNET.V1.Items.DataProvider
         private IEnumerable<int> recipeIdCache;
 
         /// <summary>
+        /// Used to synchronize access to the recipeIdCache.
+        /// </summary>
+        private readonly object recipeIdCacheSyncObject = new object();
+
+        /// <summary>
         /// The recipes.
         /// </summary>
         private IEnumerable<Recipe> recipes;
+
+        /// <summary>
+        /// Used to synchronize access to the recipes cache.
+        /// </summary>
+        private readonly object recipesCacheSyncObject = new object();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeData"/> class.
         /// </summary>
         internal RecipeData()
         {
-            this.InitializeDelegates();
-        }
-
-        /// <summary>
-        /// Initialize the delegates. This is called by the constructor.
-        /// </summary>
-        protected virtual void InitializeDelegates()
-        {
-            onGetRecipeFromIdCompletedDelegate = GetRecipeFromIdCompletedCallback;
-
-            onGetRecipeFromIdProgressReportDelegate = GetRecipeFromIdReportProgressCallback;
-
-            onGetAllRecipesCompletedDelegate = GetAllRecipesCompletedCallback;
-
-            onGetAllRecipesProgressReportDelegate = GetAllRecipesReportProgressCallback;
         }
 
         /// <summary>
@@ -61,7 +58,19 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                return this.recipeIdCache ?? (this.recipeIdCache = ApiCall.GetContent<Dictionary<string, IEnumerable<int>>>("recipes.json", null, ApiCall.Categories.Items).Values.First());
+                if (this.recipeIdCache == null)
+                {
+                    lock (recipeIdCacheSyncObject)
+                    {
+                        return this.recipeIdCache ??
+                               (this.recipeIdCache =
+                                ApiCall.GetContent<Dictionary<string, IEnumerable<int>>>("recipes.json", null,
+                                                                                         ApiCall.Categories.Items)
+                                       .Values.First());
+                    }
+                }
+
+                return this.recipeIdCache;
             }
         }
 
@@ -72,11 +81,37 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                return this.recipes ?? (this.recipes = this.RecipeIdCache.Select(singleRecipeId => new List<KeyValuePair<string, object>>
+                if (this.recipes == null)
                 {
-                    new KeyValuePair<string, object>("recipe_id", singleRecipeId)
-                }).Select(arguments => ApiCall.GetContent<Recipe>("recipe_details.json", arguments, ApiCall.Categories.Items)));
+                    lock (recipesCacheSyncObject)
+                    {
+                        return this.recipes ??
+                               (this.recipes =
+                                this.RecipeIdCache.Select(singleRecipeId => new List<KeyValuePair<string, object>>
+                                    {
+                                        new KeyValuePair<string, object>("recipe_id", singleRecipeId)
+                                    })
+                                    .Select(
+                                        arguments =>
+                                        ApiCall.GetContent<Recipe>("recipe_details.json", arguments,
+                                                                   ApiCall.Categories.Items)));
+                    }
+                }
+
+                return this.recipes;
             }
+        }
+
+        /// <summary>
+        /// Gets all recipes asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<Recipe>> GetAllRecipesAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<Recipe>> methodCall = () => this.Recipes;
+
+            return Task.Factory.StartNew(methodCall);
         }
 
         /// <summary>
@@ -104,6 +139,19 @@ namespace GW2DotNET.V1.Items.DataProvider
 
                 return this.recipes.Single(recipe => recipe.Id == recipeId);
             }
+        }
+
+        /// <summary>
+        /// Gets one recipe from ID asynchronously.
+        /// </summary>
+        /// <param name="recipeId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Recipe> GetRecipeFromIdAsync(int recipeId, CancellationToken cancellationToken)
+        {
+            Func<Recipe> methodCall = () => this[recipeId];
+
+            return Task.Factory.StartNew(methodCall);
         }
 
         /// <summary>

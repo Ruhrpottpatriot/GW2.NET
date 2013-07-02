@@ -7,11 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models;
 
@@ -20,7 +22,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// <summary>
     /// The colour data provider.
     /// </summary>
-    public partial class ColourData : DataProviderBase, IEnumerable<GwColour>
+    public class ColourData : IEnumerable<GwColour>
     {
         /// <summary>
         /// The language.
@@ -45,26 +47,6 @@ namespace GW2DotNET.V1.Items.DataProvider
         internal ColourData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
-
-            InitializeDelegates();
-        }
-
-        /// <summary>
-        ///     Initialize the delegates. This is called by the constructor.
-        /// </summary>
-        protected virtual void InitializeDelegates()
-        {
-            onGetColourFromIdCompletedDelegate = GetColourFromIdCompletedCallback;
-
-            onGetColourFromIdProgressReportDelegate = GetColourFromIdReportProgressCallback;
-
-            onGetColourFromNameCompletedDelegate = GetColourFromNameCompletedCallback;
-
-            onGetColourFromNameProgressReportDelegate = GetColourFromNameReportProgressCallback;
-
-            onGetAllColoursCompletedDelegate = GetAllColoursCompletedCallback;
-
-            onGetAllColoursProgressReportDelegate = GetAllColoursReportProgressCallback;
         }
 
         /// <summary>
@@ -74,11 +56,28 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                lock (coloursCacheSyncObject)
+                if (this.coloursCache == null)
                 {
-                return this.coloursCache ?? (this.coloursCache = this.GetColours());
+                    lock (coloursCacheSyncObject)
+                    {
+                        return this.coloursCache ?? (this.coloursCache = this.GetColours());
+                    }
+                }
+
+                return this.coloursCache;
             }
         }
+
+        /// <summary>
+        /// Get all colors asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwColour>> GetAllColoursAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwColour>> methodCall = () => this.Colours;
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
@@ -99,7 +98,20 @@ namespace GW2DotNET.V1.Items.DataProvider
         }
 
         /// <summary>
-        ///  Gets a single colour from the colours cache.
+        /// Gets a single colour from id asynchronously.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<GwColour> GetColourFromIdAsync(int id, CancellationToken cancellationToken)
+        {
+            Func<GwColour> methodCall = () => this[id];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets a single colour from the colours cache.
         /// </summary>
         /// <param name="name">
         /// The name of the colour.
@@ -113,6 +125,19 @@ namespace GW2DotNET.V1.Items.DataProvider
             {
                 return this.Colours.Single(colour => colour.Name == name);
             }
+        }
+
+        /// <summary>
+        /// Gets a single colour from name asynchronously.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<GwColour> GetColourFromNameAsync(string name, CancellationToken cancellationToken)
+        {
+            Func<GwColour> methodCall = () => this[name];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>

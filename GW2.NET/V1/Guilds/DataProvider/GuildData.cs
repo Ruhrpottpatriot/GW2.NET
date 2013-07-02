@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Guilds.Models;
 using GW2DotNET.V1.Infrastructure;
 
@@ -22,7 +24,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
     /// <summary>
     ///     The guild data provider.
     /// </summary>
-    public partial class GuildData : DataProviderBase
+    public class GuildData
     {
         /// <summary>
         ///     The guild cache.
@@ -31,7 +33,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
 
         /// <summary>
         ///     This object will be used to synchronize access to the guild cache.
-        ///     You MUST lock this object any time you access the guild cache in
+        ///     You MUST lock this object any time you modify the guild cache in
         ///     order to maintain thread safety.
         /// </summary>
         private readonly object guildCacheSyncObject = new object();
@@ -49,8 +51,6 @@ namespace GW2DotNET.V1.Guilds.DataProvider
             this.apiManager = apiManager;
 
             guildCache = new List<Guild>();
-
-            InitializeDelegates();
         }
 
         /// <summary>
@@ -66,12 +66,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             get
             {
-                Guild guildToReturn;
-
-                lock (guildCacheSyncObject)
-                {
-                    guildToReturn = guildCache.SingleOrDefault(g => g.Id == guildId);
-                }
+                Guild guildToReturn = guildCache.SingleOrDefault(g => g.Id == guildId);
 
                 if (guildToReturn.Id == Guid.Empty)
                 {
@@ -111,6 +106,19 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         }
 
         /// <summary>
+        /// Gets a single guild by ID asynchronously.
+        /// </summary>
+        /// <param name="guildId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Guild> GetGuildFromIdAsync(Guid guildId, CancellationToken cancellationToken)
+        {
+            Func<Guild> methodCall = () => this[guildId];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
         ///     Gets a single guild by name from the cache if present, or from the API if not.
         /// </summary>
         /// <param name="guildName">The name of the guild</param>
@@ -121,12 +129,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             get
             {
-                Guild guildToReturn;
-
-                lock (guildCacheSyncObject)
-                {
-                    guildToReturn = guildCache.SingleOrDefault(g => g.Name == guildName);
-                }
+                Guild guildToReturn = guildCache.SingleOrDefault(g => g.Name == guildName);
 
                 if (guildToReturn.Id == Guid.Empty)
                 {
@@ -164,17 +167,16 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         }
 
         /// <summary>
-        ///     Initialize the delegates. This is called by the constructor.
+        /// Gets a single guild by name asynchronously.
         /// </summary>
-        protected virtual void InitializeDelegates()
+        /// <param name="guildName"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Guild> GetGuildFromNameAsync(string guildName, CancellationToken cancellationToken)
         {
-            onGetGuildFromIdProgressReportDelegate = GetGuildFromIdReportProgress;
+            Func<Guild> methodCall = () => this[guildName];
 
-            onGetGuildFromIdCompletedDelegate = GetGuildFromIdCompletedCallback;
-
-            onGetGuildFromNameProgressReportDelegate = GetGuildFromNameReportProgress;
-
-            onGetGuildFromNameCompletedDelegate = GetGuildFromNameCompletedCallback;
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
     }
 }

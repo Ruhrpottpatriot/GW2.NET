@@ -13,7 +13,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models.Items;
 
@@ -25,7 +26,7 @@ namespace GW2DotNET.V1.Items.DataProvider
     /// <summary>
     /// The item data provider.
     /// </summary>
-    public partial class ItemData : DataProviderBase, IEnumerable<Item>
+    public class ItemData : IEnumerable<Item>
     {
         /// <summary>The api manager.</summary>
         private readonly ApiManager apiManager;
@@ -71,22 +72,6 @@ namespace GW2DotNET.V1.Items.DataProvider
             this.cacheFileName = string.Format("{0}\\ItemDataCache{1}.binary", savePath, language);
 
             this.LoadCache();
-
-            this.InitializeDelegates();
-        }
-
-        /// <summary>
-        ///     Initialize the delegates. This is called by the constructor.
-        /// </summary>
-        protected virtual void InitializeDelegates()
-        {
-            onGetItemFromIdCompletedDelegate = GetItemFromIdCompletedCallback;
-
-            onGetItemFromIdProgressReportDelegate = GetItemFromIdReportProgressCallback;
-
-            onGetAllItemsCompletedDelegate = GetAllItemsCompletedCallback;
-
-            onGetAllItemsProgressReportDelegate = GetAllItemsReportProgressCallback;
         }
 
         /// <summary>
@@ -99,23 +84,38 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                lock (itemCacheSyncObject)
+                if (this.itemsCache == null)
                 {
-                    // Try to load the cache from disk
-                    if (this.itemsCache == null)
+                    lock (itemCacheSyncObject)
                     {
-                        this.LoadCache();
-                    }
+                        // Try to load the cache from disk
+                        if (this.itemsCache == null)
+                        {
+                            this.LoadCache();
+                        }
 
-                    // If there was nothing on disk, or it was stale, use the API
-                    if (this.itemsCache == null)
-                    {
-                        this.GetAllItems();
+                        // If there was nothing on disk, or it was stale, use the API
+                        if (this.itemsCache == null)
+                        {
+                            this.GetAllItems();
+                        }
                     }
                 }
 
                 return this.itemsCache;
             }
+        }
+
+        /// <summary>
+        /// Gets all items asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<Item>> GetAllItemsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<Item>> methodCall = () => this.AllItems;
+
+            return Task.Factory.StartNew(methodCall);
         }
 
         /// <summary>
@@ -129,6 +129,19 @@ namespace GW2DotNET.V1.Items.DataProvider
             {
                 return this.AllItems.Single(item => item.Id == itemId);
             }
+        }
+
+        /// <summary>
+        /// Gets one item from ID asynchronously.
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Item> GetItemFromIdAsync(int itemId, CancellationToken cancellationToken)
+        {
+            Func<Item> methodCall = () => this[itemId];
+
+            return Task.Factory.StartNew(methodCall);
         }
 
         /// <summary>

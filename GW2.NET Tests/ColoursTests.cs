@@ -9,10 +9,10 @@
 
 using System.Diagnostics;
 using System.Linq;
-
+using System.Threading;
 using GW2DotNET.V1;
 using GW2DotNET.V1.Infrastructure;
-
+using GW2DotNET.V1.Items.DataProvider;
 using NUnit.Framework;
 
 namespace GW2.NET_Tests
@@ -49,16 +49,38 @@ namespace GW2.NET_Tests
 
             stopwatch.Stop();
 
+            Assert.IsNotEmpty(colours);
+
             Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
 
             Debug.WriteLine("Total colours: {0}", colours.Count);
         }
 
         /// <summary>
-        /// Gets a single single colour.
+        /// Gets all colours asynchronously from the api.
         /// </summary>
         [Test]
-        public void GetSingleColour()
+        public void GetAllColoursAsync()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var task = this.manager.Colours.GetAllColoursAsync(CancellationToken.None);
+            task.Wait();
+
+            stopwatch.Stop();
+
+            Assert.IsNotEmpty(task.Result);
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+
+            Debug.WriteLine("Total colours: {0}", task.Result.Count());
+        }
+
+        /// <summary>
+        /// Gets a single single colour by ID.
+        /// </summary>
+        [Test]
+        public void GetSingleColourFromId()
         {
             var stopwatch = Stopwatch.StartNew();
 
@@ -66,9 +88,64 @@ namespace GW2.NET_Tests
 
             stopwatch.Stop();
 
+            Assert.IsNotNullOrEmpty(colour.Name);
+
             Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
 
             Debug.WriteLine("Single colour name: {0}", colour.Name);
+        }
+
+        [Test]
+        public void GetColourFromIdAsync()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var task = this.manager.Colours.GetColourFromIdAsync(1231, CancellationToken.None);
+            task.Wait();
+
+            stopwatch.Stop();
+
+            Assert.IsNotNullOrEmpty(task.Result.Name);
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+
+            Debug.WriteLine("Single colour name: {0}", task.Result.Name);
+        }
+
+        /// <summary>
+        /// Gets a single colour by name.
+        /// </summary>
+        [Test]
+        public void GetSingleColourFromName()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var colour = this.manager.Colours["Abyss"];
+
+            stopwatch.Stop();
+
+            Assert.Greater(colour.Id, 0);
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+
+            Debug.WriteLine("Single colour name: {0}", colour.Name);
+        }
+
+        [Test]
+        public void GetColourFromNameAsync()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var task = this.manager.Colours.GetColourFromNameAsync("Abyss", CancellationToken.None);
+            task.Wait();
+
+            stopwatch.Stop();
+
+            Assert.Greater(task.Result.Id, 0);
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+
+            Debug.WriteLine("Single colour ID: {0}", task.Result.Id);
         }
     }
 }
