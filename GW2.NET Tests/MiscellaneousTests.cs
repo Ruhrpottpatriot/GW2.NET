@@ -47,7 +47,7 @@ namespace GW2.NET_Tests
 
             this.apiManager.Logger.WriteToLog("Some Information", TraceEventType.Information);
 
-            Debug.WriteLine(this.apiManager.Logger.CompleteLogFilePath);
+            Trace.WriteLine(this.apiManager.Logger.CompleteLogFilePath);
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace GW2.NET_Tests
         [Test]
         public void GetBuildNumber()
         {
-            Debug.WriteLine("Build: {0}", this.apiManager.Build);
+            Trace.WriteLine(string.Format("Build: {0}", this.apiManager.Build));
 
-            Debug.WriteLine("New Build: {0}", this.apiManager.GetLatestBuild());
+            Trace.WriteLine(string.Format("New Build: {0}", this.apiManager.GetLatestBuild()));
         }
     }
 }

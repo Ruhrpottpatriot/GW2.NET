@@ -42,22 +42,22 @@ namespace GW2.NET_Tests
         [Test]
         public void GetRecipe()
         {
-            Debug.WriteLine("Geting a single recipe from the server.");
-            Debug.WriteLine(string.Empty);
+            Trace.WriteLine("Getting a single recipe from the server.");
+            Trace.WriteLine(string.Empty);
 
-            Debug.WriteLine("Starting stopwatch");
+            Trace.WriteLine("Starting stopwatch");
             var stopwatch = Stopwatch.StartNew();
 
             var recipe = this.manager.Recipes[805];
 
-            Debug.WriteLine("Stopping stopwatch");
+            Trace.WriteLine("Stopping stopwatch");
             stopwatch.Stop();
 
             Assert.Greater(recipe.OutputItemId, 0);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Recipe Details: {0} (Crafts: {1})", recipe.Id, recipe.OutputItemId);
+            Trace.WriteLine(string.Format("Recipe Details: {0} (Crafts: {1})", recipe.Id, recipe.OutputItemId));
         }
 
         /// <summary>
@@ -66,10 +66,10 @@ namespace GW2.NET_Tests
         [Test]
         public void GetRecipeAsync()
         {
-            Debug.WriteLine("Geting a single recipe from the server asynchronously.");
-            Debug.WriteLine(string.Empty);
+            Trace.WriteLine("Getting a single recipe from the server asynchronously.");
+            Trace.WriteLine(string.Empty);
 
-            Debug.WriteLine("Starting stopwatch");
+            Trace.WriteLine("Starting stopwatch");
             var stopwatch = Stopwatch.StartNew();
 
             var task = this.manager.Recipes.GetRecipeFromIdAsync(805, CancellationToken.None);
@@ -77,14 +77,14 @@ namespace GW2.NET_Tests
 
             var recipe = task.Result;
 
-            Debug.WriteLine("Stopping stopwatch");
+            Trace.WriteLine("Stopping stopwatch");
             stopwatch.Stop();
 
             Assert.Greater(recipe.OutputItemId, 0);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Recipe Details: {0} (Crafts: {1})", recipe.Id, recipe.OutputItemId);
+            Trace.WriteLine(string.Format("Recipe Details: {0} (Crafts: {1})", recipe.Id, recipe.OutputItemId));
         }
 
         /// <summary>
@@ -95,22 +95,22 @@ namespace GW2.NET_Tests
         [Test]
         public void GetRecipes()
         {
-            Debug.WriteLine("Geting all recipes from the server.");
-            Debug.WriteLine(string.Empty);
+            Trace.WriteLine("Geting all recipes from the server.");
+            Trace.WriteLine(string.Empty);
 
-            Debug.WriteLine("Starting stopwatch");
+            Trace.WriteLine("Starting stopwatch");
             var stopwatch = Stopwatch.StartNew();
 
             var recipes = this.manager.Recipes.ToList();
 
-            Debug.WriteLine("Stopping stopwatch");
+            Trace.WriteLine("Stopping stopwatch");
             stopwatch.Stop();
 
             Assert.IsNotEmpty(recipes);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Total number of recipes: {0}", recipes.Count);
+            Trace.WriteLine(string.Format("Total number of recipes: {0}", recipes.Count));
         }
 
         /// <summary>
@@ -121,10 +121,10 @@ namespace GW2.NET_Tests
         [Test]
         public void GetRecipesAsync()
         {
-            Debug.WriteLine("Geting all recipes from the server asynchronously.");
-            Debug.WriteLine(string.Empty);
+            Trace.WriteLine("Geting all recipes from the server asynchronously.");
+            Trace.WriteLine(string.Empty);
 
-            Debug.WriteLine("Starting stopwatch");
+            Trace.WriteLine("Starting stopwatch");
             var stopwatch = Stopwatch.StartNew();
 
             var task = this.manager.Recipes.GetAllRecipesAsync(CancellationToken.None);
@@ -132,14 +132,14 @@ namespace GW2.NET_Tests
 
             var recipes = task.Result.ToList();
 
-            Debug.WriteLine("Stopping stopwatch");
+            Trace.WriteLine("Stopping stopwatch");
             stopwatch.Stop();
 
             Assert.IsNotEmpty(recipes);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Total number of recipes: {0}", recipes.Count);
+            Trace.WriteLine(string.Format("Total number of recipes: {0}", recipes.Count));
         }
 
         /// <summary>
@@ -158,9 +158,9 @@ namespace GW2.NET_Tests
 
             Assert.IsNotEmpty(items);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Recipe Details: {0}", items.Count);
+            Trace.WriteLine(string.Format("Recipe Details: {0}", items.Count));
         }
 
         /// <summary>
@@ -182,9 +182,9 @@ namespace GW2.NET_Tests
 
             Assert.IsNotEmpty(items);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Recipe Details: {0}", items.Count);
+            Trace.WriteLine(string.Format("Recipe Details: {0}", items.Count));
         }
 
         /// <summary>
@@ -199,9 +199,9 @@ namespace GW2.NET_Tests
 
             stopwatch.Stop();
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Recipe Details: {0}", item.Id);
+            Trace.WriteLine(string.Format("Recipe Details: {0}", item.Id));
         }
 
         /// <summary>
@@ -221,9 +221,9 @@ namespace GW2.NET_Tests
 
             Assert.IsNotNullOrEmpty(item.Name);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Recipe Details: {0}", item.Id);
+            Trace.WriteLine(string.Format("Recipe Details: {0}", item.Id));
         }
     }
 }

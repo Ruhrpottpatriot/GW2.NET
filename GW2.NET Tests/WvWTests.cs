@@ -44,7 +44,7 @@ namespace GW2.NET_Tests
         {
             var matches = this.manager.WvWMatches.ToList();
 
-            Debug.WriteLine("Total number of matches: {0}", matches.Count);
+            Trace.WriteLine(string.Format("Total number of matches: {0}", matches.Count));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace GW2.NET_Tests
         {
             var match = this.manager.WvWMatches["1-1"];
 
-            Debug.WriteLine("Start Time: {0}, End Time: {1}", match.StartTime, match.EndTime);
+            Trace.WriteLine(string.Format("Start Time: {0}, End Time: {1}", match.StartTime, match.EndTime));
         }
     }
 }

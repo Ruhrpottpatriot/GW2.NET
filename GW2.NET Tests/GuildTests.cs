@@ -50,8 +50,8 @@ namespace GW2.NET_Tests
 
             Assert.IsNotNullOrEmpty(guild.Name);
 
-            Debug.WriteLine("Elapsed time: {0}", watch.ElapsedMilliseconds);
-            Debug.WriteLine("Guild Name: {0}", guild.Name);
+            Trace.WriteLine(string.Format("Elapsed time: {0}", watch.ElapsedMilliseconds));
+            Trace.WriteLine(string.Format("Guild Name: {0}", guild.Name));
         }
 
         /// <summary>
@@ -71,8 +71,8 @@ namespace GW2.NET_Tests
 
             Assert.IsNotNullOrEmpty(guild.Name);
 
-            Debug.WriteLine("Elapsed time: {0}", watch.ElapsedMilliseconds);
-            Debug.WriteLine("Guild Name: {0}", guild.Name);
+            Trace.WriteLine(string.Format("Elapsed time: {0}", watch.ElapsedMilliseconds));
+            Trace.WriteLine(string.Format("Guild Name: {0}", guild.Name));
         }
 
         /// <summary>
@@ -92,8 +92,8 @@ namespace GW2.NET_Tests
 
             Assert.AreNotEqual(guild.Id, Guid.Empty);
 
-            Debug.WriteLine("Elapsed time: {0}", watch.ElapsedMilliseconds);
-            Debug.WriteLine("Guild Name: {0}", guild.Id);
+            Trace.WriteLine(string.Format("Elapsed time: {0}", watch.ElapsedMilliseconds));
+            Trace.WriteLine(string.Format("Guild Name: {0}", guild.Id));
         }
     }
 }

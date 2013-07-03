@@ -50,9 +50,9 @@ namespace GW2.NET_Tests
 
             Assert.IsNotEmpty(colours);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Total colours: {0}", colours.Count);
+            Trace.WriteLine(string.Format("Total colours: {0}", colours.Count));
         }
 
         /// <summary>
@@ -70,9 +70,9 @@ namespace GW2.NET_Tests
 
             Assert.IsNotEmpty(task.Result);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Total colours: {0}", task.Result.Count());
+            Trace.WriteLine(string.Format("Total colours: {0}", task.Result.Count()));
         }
 
         /// <summary>
@@ -89,9 +89,9 @@ namespace GW2.NET_Tests
 
             Assert.IsNotNullOrEmpty(colour.Name);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Single colour name: {0}", colour.Name);
+            Trace.WriteLine(string.Format("Single colour name: {0}", colour.Name));
         }
 
         [Test]
@@ -106,9 +106,9 @@ namespace GW2.NET_Tests
 
             Assert.IsNotNullOrEmpty(task.Result.Name);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Single colour name: {0}", task.Result.Name);
+            Trace.WriteLine(string.Format("Single colour name: {0}", task.Result.Name));
         }
 
         /// <summary>
@@ -125,9 +125,9 @@ namespace GW2.NET_Tests
 
             Assert.Greater(colour.Id, 0);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Single colour name: {0}", colour.Name);
+            Trace.WriteLine(string.Format("Single colour name: {0}", colour.Name));
         }
 
         [Test]
@@ -142,9 +142,9 @@ namespace GW2.NET_Tests
 
             Assert.Greater(task.Result.Id, 0);
 
-            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Debug.WriteLine("Single colour ID: {0}", task.Result.Id);
+            Trace.WriteLine(string.Format("Single colour ID: {0}", task.Result.Id));
         }
     }
 }
