@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.World.Models
     /// <summary>
     /// Represents an event in the game.
     /// </summary>
-    public struct GwEvent
+    public class GwEvent
     {
         /// <summary>
         /// The map id backing field
@@ -42,20 +42,7 @@ namespace GW2DotNET.V1.World.Models
         /// </summary>
         private readonly GwEventState state;
 
-        /// <summary>
-        /// The event name backing field
-        /// </summary>
-        private string name;
-
-        /// <summary>
-        /// The world backing field
-        /// </summary>
-        private GwWorld? world;
-
-        /// <summary>
-        /// The map backing field
-        /// </summary>
-        private Map? map;
+        internal ApiManager apiManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GwEvent"/> struct.
@@ -66,17 +53,13 @@ namespace GW2DotNET.V1.World.Models
         /// <param name="state">The state.</param>
         /// <param name="name">The name.</param>
         [JsonConstructor]
-        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name)
+        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name, ApiManager apiManager)
         {
             this.worldId = worldId;
             this.mapId = mapId;
             this.eventId = eventId;
             this.state = state;
-            this.name = name;
-
-            // Because this is a struct, we have to assign dummy values
-            this.world = null;
-            this.map = null;
+            this.apiManager = apiManager;
         }
         
         /// <summary>
@@ -97,9 +80,6 @@ namespace GW2DotNET.V1.World.Models
             this.mapId = mapId;
             this.eventId = eventId;
             this.state = state;
-            this.name = name;
-            this.world = world;
-            this.map = map;
         }
 
         /// <summary>
@@ -110,44 +90,29 @@ namespace GW2DotNET.V1.World.Models
         {
             get
             {
-                return this.name;
-            }
-
-            private set
-            {
-                this.name = value;
+                return apiManager.Events.EventNames[this.EventId];
             }
         }
 
         /// <summary>
         /// Gets the world
         /// </summary>
-        public GwWorld? World
+        public GwWorld World
         {
             get
             {
-                return this.world;
-            }
-
-            private set
-            {
-                this.world = value;
+                return apiManager.Worlds[this.worldId];
             }
         }
 
         /// <summary>
         /// Gets the map
         /// </summary>
-        public Map? Map
+        public Map Map
         {
             get
             {
-                return this.map;
-            }
-
-            private set
-            {
-                this.map = value;
+                return apiManager.Maps[this.mapId];
             }
         }
 
@@ -218,20 +183,6 @@ namespace GW2DotNET.V1.World.Models
         public override int GetHashCode()
         {
             return this.EventId.GetHashCode();
-        }
-
-        /// <summary>
-        /// Resolves the name of an event.
-        /// </summary>
-        /// <param name="apiManager">The GW2ApiManager</param>
-        /// <returns>The <see cref="GwEvent"/> with the resolved names.</returns>
-        internal GwEvent ResolveIDs(ApiManager apiManager)
-        {
-            this.Map = apiManager.Maps[this.mapId];
-            this.World = apiManager.Worlds[this.worldId];
-            this.Name = apiManager.Events.EventNames[this.EventId];
-
-            return this;
         }
     }
 }

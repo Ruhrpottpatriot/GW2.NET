@@ -31,13 +31,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// The colours cache.
         /// </summary>
-        private IEnumerable<GwColour> coloursCache;
-
-        /// <summary>
-        /// Sync object for thread safety. You MUST lock this
-        /// object before touching the private coloursCache object.
-        /// </summary>
-        private readonly object coloursCacheSyncObject = new object();
+        private readonly Lazy<IEnumerable<GwColour>> coloursCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ColourData"/> class.
@@ -46,6 +40,8 @@ namespace GW2DotNET.V1.Items.DataProvider
         internal ColourData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
+
+            this.coloursCache = new Lazy<IEnumerable<GwColour>>(GetColours);
         }
 
         /// <summary>
@@ -53,13 +49,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// </summary>
         private IEnumerable<GwColour> Colours
         {
-            get
-            {
-                lock (coloursCacheSyncObject)
-                {
-                    return this.coloursCache ?? (this.coloursCache = this.GetColours());
-                }
-            }
+            get { return this.coloursCache.Value; }
         }
 
         /// <summary>

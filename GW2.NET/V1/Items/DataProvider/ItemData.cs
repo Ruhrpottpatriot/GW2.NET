@@ -33,23 +33,19 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// The name of the file on disk where we will cache the item data.
         /// </summary>
-        private readonly string cacheFileName;
+        private readonly string itemIdCacheFileName;
+
+        private readonly string itemCacheFileName;
 
         /// <summary>
         /// The item id cache.
         /// </summary>
-        private IEnumerable<int> itemIdCache;
+        private Lazy<IEnumerable<int>> itemIdCache;
 
         /// <summary>
         /// The items cache.
         /// </summary>
-        private IEnumerable<Item> itemsCache;
-
-        /// <summary>
-        /// Used to synchronize access to the itemsCache. Use this one
-        /// object for both itemIdCache and itemsCache.
-        /// </summary>
-        private readonly object itemCacheSyncObject = new object();
+        private Lazy<IEnumerable<Item>> itemsCache;
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
         /// <param name="apiManager">The api Manager.</param>
@@ -57,7 +53,9 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             this.apiManager = apiManager;
 
-            this.cacheFileName = string.Format("{0}\\GW2.NET\\ItemDataCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
+            this.itemIdCacheFileName = string.Format("{0}\\GW2.NET\\ItemIdCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
+
+            this.itemCacheFileName = string.Format("{0}\\GW2.NET\\ItemCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
@@ -68,9 +66,86 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             this.apiManager = apiManager;
 
-            this.cacheFileName = string.Format("{0}\\ItemDataCache{1}.binary", savePath, language);
+            this.itemIdCacheFileName = string.Format("{0}\\ItemIdCache{1}.binary", savePath, language);
 
-            this.LoadCache();
+            this.itemCacheFileName = string.Format("{0}\\ItemIdCache{1}.binary", savePath, language);
+
+            this.itemIdCache = new Lazy<IEnumerable<int>>(InitializeItemIdCache);
+
+            this.itemsCache = new Lazy<IEnumerable<Item>>(InitializeItemCache);
+        }
+
+        private IEnumerable<int> InitializeItemIdCache()
+        {
+            if (File.Exists(this.itemIdCacheFileName))
+            {
+                ItemIdCacheData diskData;
+
+                using (var fileStream = new FileStream(this.itemIdCacheFileName, FileMode.Open))
+                {
+                    var binarySerializer = new BinaryFormatter();
+
+                    diskData = (ItemIdCacheData)binarySerializer.Deserialize(fileStream);
+                }
+
+                if (diskData.Build >= apiManager.Build)
+                    return diskData.ItemIds;
+            }
+
+            // Cache was stale or not found
+            var itemIdData = ApiCall.GetContent<Dictionary<string, List<int>>>("items.json", null, ApiCall.Categories.Items)
+                       .Values.First();
+
+            var dataToSave = new ItemIdCacheData()
+                {
+                    Build = apiManager.Build,
+                    ItemIds = itemIdData
+                };
+
+            this.SaveCacheFile(this.itemIdCacheFileName, dataToSave);
+
+            return itemIdData;
+        }
+
+        private IEnumerable<Item> InitializeItemCache()
+        {
+            if (File.Exists(this.itemCacheFileName))
+            {
+                ItemCacheData diskData;
+
+                using (var fileStream = new FileStream(this.itemCacheFileName, FileMode.Open))
+                {
+                    var binarySerializer = new BinaryFormatter();
+
+                    diskData = (ItemCacheData)binarySerializer.Deserialize(fileStream);
+                }
+
+                if (diskData.Build >= apiManager.Build)
+                    return diskData.Items;
+            }
+
+            // Cache was stale or not found
+            var itemData = this.itemIdCache.Value
+                .Select(itemId =>
+                    new List<KeyValuePair<string, object>>
+                        {
+                            new KeyValuePair<string, object>("item_id", itemId),
+                            new KeyValuePair<string, object>("lang", this.apiManager.Language)
+                        })
+                                  .Select(
+                                      arguments =>
+                                      ApiCall.GetContent<Item>("item_details.json", arguments,
+                                                               ApiCall.Categories.Items)).ToList();
+
+            var dataToSave = new ItemCacheData()
+                {
+                    Build = apiManager.Build,
+                    Items = itemData
+                };
+
+            this.SaveCacheFile(this.itemCacheFileName, dataToSave);
+
+            return itemData;
         }
 
         /// <summary>
@@ -83,22 +158,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                lock (itemCacheSyncObject)
-                {
-                    // Try to load the cache from disk
-                    if (this.itemsCache == null)
-                    {
-                        this.LoadCache();
-                    }
-
-                    // If there was nothing on disk, or it was stale, use the API
-                    if (this.itemsCache == null)
-                    {
-                        this.GetAllItems();
-                    }
-                }
-
-                return this.itemsCache;
+                return this.itemsCache.Value;
             }
         }
 
@@ -159,54 +219,11 @@ namespace GW2DotNET.V1.Items.DataProvider
         }
 
         /// <summary>
-        /// Loads the cache from the file system to the internal cache.
-        /// </summary>
-        private void LoadCache()
-        {
-            // Because this method is only called by the AllItems property
-            // accessor, and that accessor locks the cache sync object, we
-            // don't need to lock it here.
-
-            // Check if there is a cache file present.
-            if (File.Exists(this.cacheFileName))
-            {
-                ItemDataCache diskData;
-
-                // Deserialize the binary file.
-                using (var fileStream = new FileStream(this.cacheFileName, FileMode.Open))
-                {
-                    var binarySerializer = new BinaryFormatter();
-
-                    diskData = (ItemDataCache) binarySerializer.Deserialize(fileStream);
-                }
-
-                // Check if the data is stale.
-                if (diskData.Build >= this.apiManager.GetLatestBuild())
-                {
-                    this.itemsCache = diskData.ItemsList;
-
-                    this.itemIdCache = diskData.ItemIds;
-                }
-
-                /* If we had no data on disk or it was stale, the cache will
-                 * be empty when this method returns.
-                 */
-            }
-        }
-
-        /// <summary>
         /// Saves the contents of the cache to the file system.
         /// </summary>
-        private void SaveCache()
+        private void SaveCacheFile(string cacheFileName, CacheDataBase dataToSave)
         {
-            var dataToSave = new ItemDataCache
-            {
-                Build = this.apiManager.Build,
-                ItemIds = this.itemIdCache,
-                ItemsList = this.itemsCache
-            };
-
-            string directoryPath = Path.GetDirectoryName(this.cacheFileName);
+            string directoryPath = Path.GetDirectoryName(cacheFileName);
 
             // Make sure the directory exists first
             if (!string.IsNullOrEmpty(directoryPath) && !Directory.Exists(directoryPath))
@@ -219,41 +236,12 @@ namespace GW2DotNET.V1.Items.DataProvider
             }
 
             // Serialize the data and write the file
-            using (var fileStream = new FileStream(this.cacheFileName, FileMode.Create))
+            using (var fileStream = new FileStream(cacheFileName, FileMode.Create))
             {
                 var binarySerializer = new BinaryFormatter();
 
                 binarySerializer.Serialize(fileStream, dataToSave);
             }
-        }
-
-        /// <summary>Fill the items cache with data and save it to disk.</summary>
-        /// <remarks>This causes upwards of 25,000 API calls, 
-        /// so we only want to do it when the build number of Guild Wars 2 changes.
-        /// Otherwise, the item data should not have changed (according to ArenaNet).
-        /// </remarks>
-        private void GetAllItems()
-        {
-            // Because this method is ONLY called by the private AllItems property
-            // accessor, and that accessor has already locked the sync object, we
-            // don't have to lock it here.
-            this.itemIdCache =
-                ApiCall.GetContent<Dictionary<string, List<int>>>("items.json", null, ApiCall.Categories.Items)
-                       .Values.First();
-
-            this.itemsCache = this.itemIdCache
-                .Select(itemId =>
-                    new List<KeyValuePair<string, object>>
-                        {
-                            new KeyValuePair<string, object>("item_id", itemId),
-                            new KeyValuePair<string, object>("lang", this.apiManager.Language)
-                        })
-                                  .Select(
-                                      arguments =>
-                                      ApiCall.GetContent<Item>("item_details.json", arguments,
-                                                               ApiCall.Categories.Items)).ToList();
-
-            this.SaveCache();
         }
     }
 }

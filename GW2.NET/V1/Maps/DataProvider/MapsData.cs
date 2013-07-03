@@ -25,7 +25,7 @@ namespace GW2DotNET.V1.Maps.DataProvider
         private readonly ApiManager manager;
 
         /// <summary>The maps.</summary>
-        private IEnumerable<Map> mapsCache;
+        private Lazy<IEnumerable<Map>> mapsCache;
 
         /// <summary>
         /// Sync object for thread safety. You MUST lock this
@@ -38,37 +38,33 @@ namespace GW2DotNET.V1.Maps.DataProvider
         internal MapsData(ApiManager manager)
         {
             this.manager = manager;
+
+            this.mapsCache = new Lazy<IEnumerable<Map>>(InitializeMapCache);
+        }
+
+        private IEnumerable<Map> InitializeMapCache()
+        {
+            var args = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>("lang", this.manager.Language)
+                            };
+
+            return
+                ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>(
+                    "maps.json", args, ApiCall.Categories.World)
+                       .Values.First()
+                       .Select(
+                           map =>
+                           map.Value.ResolveId(map.Key)
+                              .ResolveContinent(
+                                  this.manager.Continents.Single(
+                                      cont => cont.Id == map.Value.ContinentId)));
         }
 
         /// <summary>Gets all maps from the api.</summary>
         private IEnumerable<Map> Maps
         {
-            get
-            {
-                lock (mapsCacheSyncObject)
-                {
-                    if (this.mapsCache == null)
-                    {
-                        var args = new List<KeyValuePair<string, object>>
-                            {
-                                new KeyValuePair<string, object>("lang", this.manager.Language)
-                            };
-
-                        this.mapsCache =
-                            ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>(
-                                "maps.json", args, ApiCall.Categories.World)
-                                   .Values.First()
-                                   .Select(
-                                       map =>
-                                       map.Value.ResolveId(map.Key)
-                                          .ResolveContinent(
-                                              this.manager.Continents.Single(
-                                                  cont => cont.Id == map.Value.ContinentId)));
-                    }
-                }
-
-                return this.mapsCache;
-            }
+            get { return this.mapsCache.Value; }
         }
 
         /// <summary>

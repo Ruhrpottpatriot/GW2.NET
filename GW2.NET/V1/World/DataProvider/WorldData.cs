@@ -31,13 +31,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Cache the world_names list here
         /// </summary>
-        private IEnumerable<GwWorld> worldCache;
-
-        /// <summary>
-        /// Sync object for thread safety. You MUST lock this
-        /// object before touching the private worldCache object.
-        /// </summary>
-        private readonly object worldCacheSyncObject = new object();
+        private Lazy<IEnumerable<GwWorld>> worldCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldData"/> class.
@@ -47,6 +41,19 @@ namespace GW2DotNET.V1.World.DataProvider
         internal WorldData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
+
+            this.worldCache = new Lazy<IEnumerable<GwWorld>>(InitializeWorldCache);
+        }
+
+        private IEnumerable<GwWorld> InitializeWorldCache()
+        {
+            var arguments = new List<KeyValuePair<string, object>>
+                {
+                    new KeyValuePair<string, object>("lang", this.apiManager.ToString())
+                };
+
+            return ApiCall.GetContent<List<GwWorld>>("world_names.json", arguments,
+                                                     ApiCall.Categories.World);
         }
 
         /// <summary>
@@ -58,24 +65,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </returns>
         private IEnumerable<GwWorld> Worlds
         {
-            get
-            {
-                lock (worldCacheSyncObject)
-                {
-                    if (this.worldCache == null)
-                    {
-                        var arguments = new List<KeyValuePair<string, object>>
-                            {
-                                new KeyValuePair<string, object>("lang", this.apiManager.ToString())
-                            };
-
-                        this.worldCache = ApiCall.GetContent<List<GwWorld>>("world_names.json", arguments,
-                                                                            ApiCall.Categories.World);
-                    }
-                }
-
-                return this.worldCache;
-            }
+            get { return this.worldCache.Value; }
         }
 
         /// <summary>

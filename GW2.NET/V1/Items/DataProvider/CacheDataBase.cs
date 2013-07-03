@@ -8,23 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-
-using GW2DotNET.V1.Items.Models.Items;
 
 namespace GW2DotNET.V1.Items.DataProvider
 {
     /// <summary>The item data cache.</summary>
     [Serializable]
-    public class ItemDataCache
+    public class CacheDataBase
     {
         /// <summary>Gets or sets the build.</summary>
         public int Build { get; set; }
-
-        /// <summary>Gets or sets the item ids.</summary>
-        public IEnumerable<int> ItemIds { get; set; }
-
-        /// <summary>Gets or sets the items list.</summary>
-        public IEnumerable<Item> ItemsList { get; set; }
     }
 }
