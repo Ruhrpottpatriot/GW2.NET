@@ -49,30 +49,22 @@ namespace GW2DotNET.V1.Items.DataProvider
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
         /// <param name="apiManager">The api Manager.</param>
-        internal ItemData(ApiManager apiManager)
+        internal ItemData(ApiManager apiManager) :
+            this(string.Format("{0}\\GW2.NET", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)), 
+            apiManager)
         {
-            this.apiManager = apiManager;
-
-            this.itemIdCacheFileName = string.Format("{0}\\GW2.NET\\ItemIdCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
-
-            this.itemCacheFileName = string.Format("{0}\\GW2.NET\\ItemCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
-
-            this.itemIdCache = new Lazy<IEnumerable<int>>(InitializeItemIdCache);
-
-            this.itemsCache = new Lazy<IEnumerable<Item>>(InitializeItemCache);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
-        /// <param name="language">The language of the retrieved content.</param>
         /// <param name="savePath">The path to the file (without file name and trailing slash).</param>
         /// <param name="apiManager">The api Manager.</param>
-        internal ItemData(Language language, string savePath, ApiManager apiManager)
+        internal ItemData(string savePath, ApiManager apiManager)
         {
             this.apiManager = apiManager;
 
-            this.itemIdCacheFileName = string.Format("{0}\\ItemIdCache{1}.binary", savePath, language);
+            this.itemIdCacheFileName = string.Format("{0}\\ItemIdCache{1}.binary", savePath, apiManager.Language);
 
-            this.itemCacheFileName = string.Format("{0}\\ItemIdCache{1}.binary", savePath, language);
+            this.itemCacheFileName = string.Format("{0}\\ItemCache{1}.binary", savePath, apiManager.Language);
 
             this.itemIdCache = new Lazy<IEnumerable<int>>(InitializeItemIdCache);
 
