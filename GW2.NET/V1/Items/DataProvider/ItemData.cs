@@ -56,6 +56,10 @@ namespace GW2DotNET.V1.Items.DataProvider
             this.itemIdCacheFileName = string.Format("{0}\\GW2.NET\\ItemIdCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
 
             this.itemCacheFileName = string.Format("{0}\\GW2.NET\\ItemCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
+
+            this.itemIdCache = new Lazy<IEnumerable<int>>(InitializeItemIdCache);
+
+            this.itemsCache = new Lazy<IEnumerable<Item>>(InitializeItemCache);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
