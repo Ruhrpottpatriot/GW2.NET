@@ -18,10 +18,10 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// The upgrade component.
     /// </summary>
     [Serializable]
-    public struct UpgradeComponent
+    public class UpgradeComponent
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpgradeComponent"/> struct.
+        /// Initializes a new instance of the <see cref="UpgradeComponent"/> class.
         /// </summary>
         /// <param name="infixUpgrade">
         /// The infix upgrade.
@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// </param>
         [JsonConstructor]
         public UpgradeComponent(InfixUpgrade infixUpgrade, UpgradeType type, string suffix, IEnumerable<UpgradeFlag> infusionUpgradeType, IEnumerable<UpgradeComponentFlags> flags)
-            : this()
+
         {
             this.Flags = flags;
             this.InfusionUpgradeType = infusionUpgradeType;

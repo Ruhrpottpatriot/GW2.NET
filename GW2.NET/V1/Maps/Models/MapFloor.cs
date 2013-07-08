@@ -15,14 +15,14 @@ namespace GW2DotNET.V1.Maps.Models
     using Newtonsoft.Json;
 
     /// <summary>Represents a map floor.</summary>
-    public partial struct MapFloor
+    public partial class MapFloor
     {
-        /// <summary>Initializes a new instance of the <see cref="MapFloor"/> struct.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MapFloor"/> class.</summary>
         /// <param name="textureDims">The texture dims.</param>
         /// <param name="regions">The regions.</param>
         [JsonConstructor]
         public MapFloor(int[] textureDims, Dictionary<int, Region> regions)
-            : this()
+
         {
             this.Regions = regions.Values.Zip(regions.Keys, (value, key) => value.ResolveId(key));
             this.TextureDims = textureDims;

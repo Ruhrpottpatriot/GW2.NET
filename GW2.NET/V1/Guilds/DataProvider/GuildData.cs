@@ -58,7 +58,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
             {
                 var guildToReturn = this.guildCache.SingleOrDefault(g => g.Id == guildId);
 
-                if (guildToReturn.Id == Guid.Empty)
+                if (guildToReturn == null)
                 {
                     var arguments = new List<KeyValuePair<string, object>>
                         {
@@ -70,7 +70,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                         this.apiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
 
                         guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
-                        
+
                         this.apiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
 
                         this.guildCache.Add(guildToReturn);

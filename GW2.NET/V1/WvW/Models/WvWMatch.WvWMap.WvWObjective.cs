@@ -14,17 +14,17 @@ namespace GW2DotNET.V1.WvW.Models
     /// <summary>
     /// Represents a world vs world match.
     /// </summary>
-    public partial struct WvWMatch
+    public partial class WvWMatch
     {
         /// <summary>
         /// Represents a world vs world map.
         /// </summary>
-        public partial struct WvWMap
+        public partial class WvWMap
         {
             /// <summary>
             /// Represents a map objective.
             /// </summary>
-            public struct Objective
+            public class Objective
             {
                 /// <summary>
                 /// The id.
@@ -32,7 +32,7 @@ namespace GW2DotNET.V1.WvW.Models
                 private readonly int id;
 
                 /// <summary>
-                /// Initializes a new instance of the <see cref="Objective"/> struct.
+                /// Initializes a new instance of the <see cref="Objective"/> class.
                 /// </summary>
                 /// <param name="id">
                 /// The id.
@@ -48,7 +48,7 @@ namespace GW2DotNET.V1.WvW.Models
                 /// </param>
                 [JsonConstructor]
                 public Objective(int id, string owner, string ownerGuild, string name)
-                    : this()
+        
                 {
                     this.id = id;
                     this.Name = name;

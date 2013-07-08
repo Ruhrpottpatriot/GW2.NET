@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.World.Models
     /// <summary>
     /// Represents an event in the game.
     /// </summary>
-    public class GwEvent
+    public class GwEvent : IEquatable<GwEvent>
     {
         /// <summary>
         /// The map id backing field
@@ -42,44 +42,20 @@ namespace GW2DotNET.V1.World.Models
         /// </summary>
         private readonly GwEventState state;
 
-        internal ApiManager apiManager;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GwEvent"/> struct.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="GwEvent"/> class.</summary>
         /// <param name="worldId">The world id.</param>
         /// <param name="mapId">The map id.</param>
         /// <param name="eventId">The event id.</param>
         /// <param name="state">The state.</param>
-        /// <param name="name">The name.</param>
+        /// <param name="apiManager">The api Manager.</param>
         [JsonConstructor]
-        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name, ApiManager apiManager)
+        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, ApiManager apiManager)
         {
             this.worldId = worldId;
             this.mapId = mapId;
             this.eventId = eventId;
             this.state = state;
-            this.apiManager = apiManager;
-        }
-        
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GwEvent"/> struct.
-        /// This is the construction that should be used when we've
-        /// resolved the IDs.
-        /// </summary>
-        /// <param name="worldId">The world id.</param>
-        /// <param name="mapId">The map id.</param>
-        /// <param name="eventId">The event id.</param>
-        /// <param name="state">The state.</param>
-        /// <param name="name">The name.</param>
-        /// <param name="world">The GwWorld object.</param>
-        /// <param name="map">The GwMap object.</param>
-        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, string name, GwWorld world, Map map)
-        {
-            this.worldId = worldId;
-            this.mapId = mapId;
-            this.eventId = eventId;
-            this.state = state;
+            this.ApiManager = apiManager;
         }
 
         /// <summary>
@@ -90,7 +66,7 @@ namespace GW2DotNET.V1.World.Models
         {
             get
             {
-                return apiManager.Events.EventNames[this.EventId];
+                return this.ApiManager.Events.EventNames[this.EventId];
             }
         }
 
@@ -101,7 +77,7 @@ namespace GW2DotNET.V1.World.Models
         {
             get
             {
-                return apiManager.Worlds[this.worldId];
+                return this.ApiManager.Worlds[this.worldId];
             }
         }
 
@@ -112,7 +88,7 @@ namespace GW2DotNET.V1.World.Models
         {
             get
             {
-                return apiManager.Maps[this.mapId];
+                return this.ApiManager.Maps[this.mapId];
             }
         }
 
@@ -133,16 +109,34 @@ namespace GW2DotNET.V1.World.Models
         {
             get { return this.state; }
         }
+
+        /// <summary>Gets or sets the api manager.</summary>
+        /// ToDo: Remove
+        internal ApiManager ApiManager
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// Determines whether two specified instances of <see crdef="Map"/> are equal.
         /// </summary>
-        /// <param name="a">The first object to compare.</param>param>
-        /// <param name="b">The second object to compare. </param>
+        /// <param name="eventA">The first object to compare.</param>param>
+        /// <param name="eventB">The second object to compare. </param>
         /// <returns>true if mapA and mapB represent the same map; otherwise, false.</returns>
-        public static bool operator ==(GwEvent a, GwEvent b)
+        public static bool operator ==(GwEvent eventA, GwEvent eventB)
         {
-            return a.EventId == b.EventId;
+            if (ReferenceEquals(eventA, eventB))
+            {
+                return true;
+            }
+
+            if (((object)eventA == null) || ((object)eventB == null))
+            {
+                return false;
+            }
+
+            return eventA.EventId == eventB.EventId;
         }
 
         /// <summary>
@@ -153,7 +147,7 @@ namespace GW2DotNET.V1.World.Models
         /// <returns>true if mapA and mapB do not represent the same map; otherwise, false.</returns>
         public static bool operator !=(GwEvent a, GwEvent b)
         {
-            return a.EventId != b.EventId;
+            return !(a == b);
         }
         
         /// <summary>
@@ -163,17 +157,36 @@ namespace GW2DotNET.V1.World.Models
         /// <param name="obj">Another object to compare to.</param>
         public override bool Equals(object obj)
         {
-            return obj is GwEvent && this == (GwEvent)obj;
+            // If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+
+            // If parameter cannot be cast to Point return false.
+            var gwEvent = obj as GwEvent;
+
+            if ((object)gwEvent == null)
+            {
+                return false;
+            }
+
+            return gwEvent.EventId == this.EventId;
         }
 
         /// <summary>
         /// Indicates whether this instance and a specified <see cref="Map"/> are equal.
         /// </summary>
-        /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
-        /// <param name="obj">Another object to compare to. </param>
-        public bool Equals(GwEvent obj)
+        /// <returns>true if <paramref name="other"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
+        /// <param name="other">Another object to compare to. </param>
+        public bool Equals(GwEvent other)
         {
-            return this.EventId == obj.EventId;
+            if ((object)other == null)
+            {
+                return false;
+            }
+
+            return this.EventId == other.EventId;
         }
 
         /// <summary>

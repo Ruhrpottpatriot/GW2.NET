@@ -16,31 +16,20 @@ namespace GW2DotNET.V1.Guilds.Models
     /// <summary>
     /// Represents a guild in the game.
     /// </summary>
-    public partial struct Guild : IEquatable<Guild>
+    public partial class Guild : IEquatable<Guild>
     {
         /// <summary>
         /// The id of the guild.
         /// </summary>
         private readonly Guid id;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Guild"/> struct.
-        /// </summary>
-        /// <param name="id">
-        /// The id of the guild.
-        /// </param>
-        /// <param name="name">
-        /// The name of the guild.
-        /// </param>
-        /// <param name="tag">
-        /// The guild tag.
-        /// </param>
-        /// <param name="emblem">
-        /// The guild emblem.
-        /// </param>
+        /// <summary>Initializes a new instance of the <see cref="Guild"/> class.</summary>
+        /// <param name="id">The id of the guild.</param>
+        /// <param name="name">The name of the guild.</param>
+        /// <param name="tag">The guild tag.</param>
+        /// <param name="emblem">The guild emblem.</param>
         [JsonConstructor]
         public Guild(Guid id, string name, string tag, GuildEmblem emblem)
-            : this()
         {
             this.id = id;
             this.Emblem = emblem;
@@ -94,16 +83,26 @@ namespace GW2DotNET.V1.Guilds.Models
         /// Checks if two instances of <see cref="Guild"/> are equal.
         /// </summary>
         /// <param name="guildA">
-        /// The first emblem.
+        /// The first guild.
         /// </param>
         /// <param name="guildB">
-        /// The second emblem.
+        /// The second guild.
         /// </param>
         /// <returns>
-        /// true if both instances are the the same, otherwise false.
+        /// true if both instances are the same, otherwise false.
         /// </returns>
         public static bool operator ==(Guild guildA, Guild guildB)
         {
+            if (ReferenceEquals(guildA, guildB))
+            {
+                return true;
+            }
+
+            if (((object)guildA == null) || ((object)guildB == null))
+            {
+                return false;
+            }
+
             return guildA.Id == guildB.Id;
         }
 
@@ -117,11 +116,11 @@ namespace GW2DotNET.V1.Guilds.Models
         /// The second emblem.
         /// </param>
         /// <returns>
-        /// true if both instances are the not the same, otherwise false.
+        /// true if both instances are not the same, otherwise false.
         /// </returns>
         public static bool operator !=(Guild guildA, Guild guildB)
         {
-            return guildA.Id == guildB.Id;
+            return !(guildA == guildB);
         }
 
         /// <summary>
@@ -133,7 +132,12 @@ namespace GW2DotNET.V1.Guilds.Models
         /// <param name="other">An object to compare with this object.</param>
         public bool Equals(Guild other)
         {
-            return other == this;
+            if ((object)other == null)
+            {
+                return false;
+            }
+
+            return other.Id == this.Id;
         }
 
         /// <summary>
@@ -145,9 +149,21 @@ namespace GW2DotNET.V1.Guilds.Models
         /// <param name="obj">Another object to compare to. </param>
         public override bool Equals(object obj)
         {
-            // ReSharper disable PossibleInvalidCastException
-            return obj is Guid && (Guild)obj == this;
-            // ReSharper restore PossibleInvalidCastException
+            // If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+
+            // If parameter cannot be cast to Point return false.
+            var guild = obj as Guild;
+
+            if ((object)guild == null)
+            {
+                return false;
+            }
+
+            return guild.Id == this.Id;
         }
 
         /// <summary>

@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Items.Models.Items
     /// The item.
     /// </summary>
     [Serializable]
-    public struct Item
+    public class Item : IEquatable<Item>
     {
         /// <summary>
         /// The id.
@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         private readonly int id;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> struct.
+        /// Initializes a new instance of the <see cref="Item"/> class.
         /// </summary>
         /// <param name="restrictions">
         /// The restrictions.
@@ -100,8 +100,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// The armour details.
         /// </param>
         [JsonConstructor]
-        public Item(IEnumerable<Restriction> restrictions, IEnumerable<ItemFlags> flags, IEnumerable<GameType> gameTypes, int vendorValue, WeaponRarity rarity, int level, ItemType type, string description, string name, int id, Weapon? weaponDetails, UpgradeComponent upgradeComponentDetails, Trophy? trophyDetails, Trinket? trinketDetails, Tool? toolDetails, Gizmo? gizmoDetails, Tool? gatheringDetails, CraftingMaterial? craftingMaterialDetails, Container? containerDetails, Consumable? consumableDetails, Bag? bagDetails, Back? backDetails, Armour? armourDetails)
-            : this()
+        public Item(IEnumerable<Restriction> restrictions, IEnumerable<ItemFlags> flags, IEnumerable<GameType> gameTypes, int vendorValue, WeaponRarity rarity, int level, ItemType type, string description, string name, int id, Weapon weaponDetails, UpgradeComponent upgradeComponentDetails, Trophy trophyDetails, Trinket trinketDetails, Tool toolDetails, Gizmo gizmoDetails, Tool gatheringDetails, CraftingMaterial craftingMaterialDetails, Container containerDetails, Consumable consumableDetails, Bag bagDetails, Back backDetails, Armour armourDetails)
         {
             this.Name = name;
             this.id = id;
@@ -234,7 +233,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// Gets the weapon details.
         /// </summary>
         [JsonProperty("weapon")]
-        public Weapon? WeaponDetails { get; private set; }
+        public Weapon WeaponDetails { get; private set; }
 
         /// <summary>
         /// Gets the upgrade component details.
@@ -246,67 +245,67 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// Gets the trophy details.
         /// </summary>
         [JsonProperty("trophy")]
-        public Trophy? TrophyDetails { get; private set; }
+        public Trophy TrophyDetails { get; private set; }
 
         /// <summary>
         /// Gets the trinket details.
         /// </summary>
         [JsonProperty("trinket")]
-        public Trinket? TrinketDetails { get; private set; }
+        public Trinket TrinketDetails { get; private set; }
 
         /// <summary>
         /// Gets the tool details.
         /// </summary>
         [JsonProperty("tool")]
-        public Tool? ToolDetails { get; private set; }
+        public Tool ToolDetails { get; private set; }
 
         /// <summary>
         /// Gets the gizmo details.
         /// </summary>
         [JsonProperty("gizmo")]
-        public Gizmo? GizmoDetails { get; private set; }
+        public Gizmo GizmoDetails { get; private set; }
 
         /// <summary>
         /// Gets the gathering details.
         /// </summary>
         [JsonProperty("gathering")]
-        public Tool? GatheringDetails { get; private set; }
+        public Tool GatheringDetails { get; private set; }
 
         /// <summary>
         /// Gets the crafting material details.
         /// </summary>
         [JsonProperty("crafting_material")]
-        public CraftingMaterial? CraftingMaterialDetails { get; private set; }
+        public CraftingMaterial CraftingMaterialDetails { get; private set; }
 
         /// <summary>
         /// Gets the container details.
         /// </summary>
         [JsonProperty("container")]
-        public Container? ContainerDetails { get; private set; }
+        public Container ContainerDetails { get; private set; }
 
         /// <summary>
         /// Gets the consumable details.
         /// </summary>
         [JsonProperty("consumable")]
-        public Consumable? ConsumableDetails { get; private set; }
+        public Consumable ConsumableDetails { get; private set; }
 
         /// <summary>
         /// Gets the bag details.
         /// </summary>
         [JsonProperty("bag")]
-        public Bag? BagDetails { get; private set; }
+        public Bag BagDetails { get; private set; }
 
         /// <summary>
         /// Gets the back details.
         /// </summary>
         [JsonProperty("back")]
-        public Back? BackDetails { get; private set; }
+        public Back BackDetails { get; private set; }
 
         /// <summary>
         /// Gets the armour details.
         /// </summary>
         [JsonProperty("armor")]
-        public Armour? ArmourDetails { get; private set; }
+        public Armour ArmourDetails { get; private set; }
 
         /// <summary>
         /// Determines if two instances of the specified <see cref="Item"/> are equal.
@@ -322,6 +321,16 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// </returns>
         public static bool operator ==(Item itemA, Item itemB)
         {
+            if (ReferenceEquals(itemA, itemB))
+            {
+                return true;
+            }
+
+            if (((object)itemA == null) || ((object)itemB == null))
+            {
+                return false;
+            }
+
             return itemA.Id == itemB.Id;
         }
 
@@ -339,7 +348,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// </returns>
         public static bool operator !=(Item itemA, Item itemB)
         {
-            return itemA.Id != itemB.Id;
+            return !(itemA == itemB);
         }
 
         /// <summary>
@@ -351,19 +360,38 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// <param name="obj">Another object to compare to. </param>
         public override bool Equals(object obj)
         {
-            return obj is Item && this == (Item)obj;
+            // If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+
+            // If parameter cannot be cast to Point return false.
+            var item = obj as Item;
+
+            if ((object)item == null)
+            {
+                return false;
+            }
+
+            return item.Id == this.Id;
         }
 
         /// <summary>
         /// Indicates whether this instance and a specified <see cref="Item"/> are equal.
         /// </summary>
         /// <returns>
-        /// true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
+        /// true if <paramref name="other"/> and this instance are the same type and represent the same value; otherwise, false.
         /// </returns>
-        /// <param name="obj">Another <see cref="Item"/> to compare to. </param>
-        public bool Equals(Item obj)
+        /// <param name="other">Another <see cref="Item"/> to compare to. </param>
+        public bool Equals(Item other)
         {
-            return this == obj;
+            if ((object)other == null)
+            {
+                return false;
+            }
+
+            return other.Id == this.Id;
         }
 
         /// <summary>

@@ -246,7 +246,9 @@ namespace GW2DotNET.V1.World.DataProvider
 
             var result = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"];
             foreach (var gwevent in result)
-                gwevent.apiManager = this.apiManager;
+            {
+                gwevent.ApiManager = this.apiManager;
+            }
 
             return result;
         }

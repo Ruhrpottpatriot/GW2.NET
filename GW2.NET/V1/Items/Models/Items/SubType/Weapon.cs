@@ -18,10 +18,10 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// The weapon.
     /// </summary>
     [Serializable]
-    public struct Weapon
+    public class Weapon
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Weapon"/> struct.
+        /// Initializes a new instance of the <see cref="Weapon"/> class.
         /// </summary>
         /// <param name="type">
         /// The weapon type.
@@ -48,8 +48,8 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// The damage type.
         /// </param>
         [JsonConstructor]
-        public Weapon(WeaponType type, IEnumerable<InfusionSlot> infusionSlots, int maxPower, int minPower, int? suffixId, InfixUpgrade infixUpgrade, int defense, WeaponDamageType damageType)
-            : this()
+        public Weapon(WeaponType type, IEnumerable<InfusionSlot> infusionSlots, int maxPower, int minPower, int suffixId, InfixUpgrade infixUpgrade, int defense, WeaponDamageType damageType)
+
         {
             this.DamageType = damageType;
             this.Defense = defense;
@@ -217,7 +217,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// Gets the suffix id.
         /// </summary>
         [JsonProperty("suffix_item_id")]
-        public int? SuffixId
+        public int SuffixId
         {
             get;
             private set;

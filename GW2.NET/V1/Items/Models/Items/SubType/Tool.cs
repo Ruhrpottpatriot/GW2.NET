@@ -17,10 +17,10 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// A tool, includes salvage tools.
     /// </summary>
     [Serializable]
-    public struct Tool
+    public class Tool
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tool"/> struct.
+        /// Initializes a new instance of the <see cref="Tool"/> class.
         /// </summary>
         /// <param name="type">
         /// The type.
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// </param>
         [JsonConstructor]
         public Tool(ToolType type, int charges)
-            : this()
+
         {
             this.Charges = charges;
             this.Type = type;

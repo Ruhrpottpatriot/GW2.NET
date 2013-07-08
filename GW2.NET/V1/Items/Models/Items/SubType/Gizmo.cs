@@ -17,17 +17,16 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// The gizmo.
     /// </summary>
     [Serializable]
-    public struct Gizmo
+    public class Gizmo
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Gizmo"/> struct.
+        /// Initializes a new instance of the <see cref="Gizmo"/> class.
         /// </summary>
         /// <param name="type">
         /// The type.
         /// </param>
         [JsonConstructor]
         public Gizmo(GizmoType type)
-            : this()
         {
             this.Type = type;
         }

@@ -19,10 +19,10 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// A bag.
     /// </summary>
     [Serializable]
-    public struct Bag
+    public class Bag
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Bag"/> struct.
+        /// Initializes a new instance of the <see cref="Bag"/> class.
         /// </summary>
         /// <param name="size">
         /// The size.
@@ -32,7 +32,6 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// </param>
         [JsonConstructor]
         public Bag(int size, bool noSellOrSort)
-            : this()
         {
             this.NoSellOrSort = noSellOrSort;
             this.Size = size;

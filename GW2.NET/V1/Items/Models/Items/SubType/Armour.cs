@@ -18,32 +18,17 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// The armour.
     /// </summary>
     [Serializable]
-    public struct Armour
+    public class Armour
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Armour"/> struct.
-        /// </summary>
-        /// <param name="armourClass">
-        /// The armour class.
-        /// </param>
-        /// <param name="type">
-        /// The type.
-        /// </param>
-        /// <param name="suffixId">
-        /// The suffix id.
-        /// </param>
-        /// <param name="infusionSlots">
-        /// The infusion slots.
-        /// </param>
-        /// <param name="infixUpgrade">
-        /// The infix upgrade.
-        /// </param>
-        /// <param name="defense">
-        /// The defense.
-        /// </param>
+        /// <summary>Initializes a new instance of the <see cref="Armour"/> class.</summary>
+        /// <param name="armourClass">The armour class.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="suffixId">The suffix id.</param>
+        /// <param name="infusionSlots">The infusion slots.</param>
+        /// <param name="infixUpgrade">The infix upgrade.</param>
+        /// <param name="defense">The defense.</param>
         [JsonConstructor]
-        public Armour(ArmourClass armourClass, ArmourType type, int? suffixId, IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int defense)
-            : this()
+        public Armour(ArmourClass armourClass, ArmourType type, int suffixId, IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int defense)
         {
             this.Defense = defense;
             this.InfixUpgrade = infixUpgrade;
@@ -144,7 +129,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// Gets the suffix id.
         /// </summary>
         [JsonProperty("suffix_item_id")]
-        public int? SuffixId
+        public int SuffixId
         {
             get;
             private set;

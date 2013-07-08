@@ -90,6 +90,7 @@
     <Compile Include="V1\Items\Models\GwColour.ColourDetails.cs" />
     <Compile Include="V1\Items\DataProvider\ItemData.cs" />
     <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
+    <Compile Include="V1\Items\Models\GwColour.RgbColour.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Armour.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Back.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Bag.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="V1\Items\Models\Items\UpgradeFlag.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Weapon.cs" />
     <Compile Include="V1\Items\Models\Recipe.cs" />
+    <Compile Include="V1\Items\Models\Recipe.Ingredient.cs" />
     <Compile Include="V1\Items\Models\RecipeType.cs" />
     <Compile Include="V1\Items\Models\Items\Restriction.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\UpgradeComponent.cs" />

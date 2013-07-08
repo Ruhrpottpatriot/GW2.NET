@@ -15,18 +15,18 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Maps.Models
 {
     /// <summary>Represents a map floor.</summary>
-    public partial struct MapFloor
+    public partial class MapFloor
     {
         /// <summary>Represents a region.</summary>
-        public struct Region
+        public class Region
         {
-            /// <summary>Initializes a new instance of the <see cref="Region"/> struct.</summary>
+            /// <summary>Initializes a new instance of the <see cref="Region"/> class.</summary>
             /// <param name="name">The name.</param>
             /// <param name="labelCoordinates">The label coordinates.</param>
             /// <param name="maps">The maps.</param>
             [JsonConstructor]
             public Region(string name, int[] labelCoordinates, Dictionary<int, Map> maps)
-                : this()
+    
             {
                 this.Maps = maps.Values.Zip(maps.Keys, (value, key) => value.ResolveId(key)).ToList();
                 this.LabelCoordinates = labelCoordinates;

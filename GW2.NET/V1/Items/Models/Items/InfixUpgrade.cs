@@ -18,10 +18,10 @@ namespace GW2DotNET.V1.Items.Models.Items
     /// The infix upgrade.
     /// </summary>
     [Serializable]
-    public struct InfixUpgrade
+    public class InfixUpgrade
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InfixUpgrade"/> struct.
+        /// Initializes a new instance of the <see cref="InfixUpgrade"/> class.
         /// </summary>
         /// <param name="attributes">
         /// The attributes.
@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// </param>
         [JsonConstructor]
         public InfixUpgrade(IEnumerable<ItemAttribute> attributes, Dictionary<string, string> buff)
-            : this()
+
         {
             this.Attributes = attributes;
             this.Buff = buff;
@@ -61,10 +61,10 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// The item attribute.
         /// </summary>
         [Serializable]
-        public struct ItemAttribute
+        public class ItemAttribute
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="ItemAttribute"/> struct.
+            /// Initializes a new instance of the <see cref="ItemAttribute"/> class.
             /// </summary>
             /// <param name="targetAttribute">
             /// The target attribute.
@@ -74,7 +74,7 @@ namespace GW2DotNET.V1.Items.Models.Items
             /// </param>
             [JsonConstructor]
             public ItemAttribute(TargetAttribute targetAttribute, int modifier)
-                : this()
+    
             {
                 this.Attribute = targetAttribute;
                 this.Modifier = modifier;

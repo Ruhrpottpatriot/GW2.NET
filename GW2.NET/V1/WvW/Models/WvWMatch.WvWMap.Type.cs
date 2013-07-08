@@ -12,12 +12,12 @@ namespace GW2DotNET.V1.WvW.Models
     /// <summary>
     /// Represents a world vs world match.
     /// </summary>
-    public partial struct WvWMatch
+    public partial class WvWMatch
     {
         /// <summary>
         /// Represents a world vs world map.
         /// </summary>
-        public partial struct WvWMap
+        public partial class WvWMap
         {
             /// <summary>
             /// Enumerates the objective type.

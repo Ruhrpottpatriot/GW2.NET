@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.World.Models
@@ -14,7 +16,7 @@ namespace GW2DotNET.V1.World.Models
     /// <summary>
     /// Represents a Guild Wars 2 world.
     /// </summary>
-    public struct GwWorld
+    public class GwWorld : IEquatable<GwWorld>
     {
         /// <summary>
         /// The id of the world. This field is readonly.
@@ -22,13 +24,12 @@ namespace GW2DotNET.V1.World.Models
         private readonly int id;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GwWorld"/> struct.
+        /// Initializes a new instance of the <see cref="GwWorld"/> class.
         /// </summary>
         /// <param name="id">The id of the world.</param>
         /// <param name="name">The name of the world.</param>
         [JsonConstructor]
         public GwWorld(int id, string name)
-            : this()
         {
             this.id = id;
             this.Name = name;
@@ -64,6 +65,16 @@ namespace GW2DotNET.V1.World.Models
         /// <returns>true if worldA and worldB represent the same map; otherwise, false.</returns>
         public static bool operator ==(GwWorld worldA, GwWorld worldB)
         {
+            if (ReferenceEquals(worldA, worldB))
+            {
+                return true;
+            }
+
+            if (((object)worldA == null) || ((object)worldB == null))
+            {
+                return false;
+            }
+
             return worldA.Id == worldB.Id;
         }
 
@@ -85,17 +96,36 @@ namespace GW2DotNET.V1.World.Models
         /// <param name="obj">Another object to compare to.</param>
         public override bool Equals(object obj)
         {
-            return obj is GwWorld && this == (GwWorld)obj;
+            // If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+
+            // If parameter cannot be cast to Point return false.
+            var world = obj as GwWorld;
+
+            if ((object)world == null)
+            {
+                return false;
+            }
+
+            return world.Id == this.Id;
         }
 
         /// <summary>
         /// Indicates whether this instance and a specified <see cref="V1.World.Models.GwWorld"/> are equal.
         /// </summary>
-        /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
-        /// <param name="obj">Another object to compare to. </param>
-        public bool Equals(GwWorld obj)
+        /// <returns>true if <paramref name="other"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
+        /// <param name="other">Another object to compare to. </param>
+        public bool Equals(GwWorld other)
         {
-            return this.id == obj.id;
+            if ((object)other == null)
+            {
+                return false;
+            }
+
+            return other.id == this.id;
         }
 
         /// <summary>
