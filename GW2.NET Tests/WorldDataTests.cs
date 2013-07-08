@@ -146,6 +146,21 @@ namespace GW2.NET_Tests
             Debug.WriteLine("The two maps are equal: {0}", map1 == map2);
         }
 
+        /// <summary>Gets a map by its name.</summary>
+        [Test]
+        public void GetMapByName()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var map1 = this.manager.Maps["A Society Function"];
+
+            var map2 = this.manager.Maps["A Society Function"];
+
+            Debug.WriteLine("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds);
+
+            Debug.WriteLine("The two maps are equal: {0}", map1 == map2);
+        }
+
         /// <summary>Gets a complete map floor.</summary>
         [Test]
         public void GetMapFloor()
