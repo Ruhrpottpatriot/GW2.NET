@@ -48,7 +48,6 @@ namespace GW2DotNET.V1.WvW.Models
                 /// </param>
                 [JsonConstructor]
                 public Objective(int id, string owner, string ownerGuild, string name)
-        
                 {
                     this.id = id;
                     this.Name = name;
@@ -72,7 +71,11 @@ namespace GW2DotNET.V1.WvW.Models
                 /// Gets the name.
                 /// </summary>
                 [JsonProperty("name")]
-                public string Name { get; private set; }
+                public string Name
+                {
+                    get;
+                    private set;
+                }
 
                 /// <summary>
                 /// Gets the owner.
@@ -92,6 +95,19 @@ namespace GW2DotNET.V1.WvW.Models
                 {
                     get;
                     private set;
+                }
+
+                /// <summary>Resolves the name of an objective.</summary>
+                /// <param name="objective">The objective which supplies the name.</param>
+                /// <returns>The <see cref="Objective"/> with it's name resolved.</returns>
+                internal Objective ResolveObjectiveNames(Objective objective)
+                {
+                    if (this.Id == objective.Id)
+                    {
+                        this.Name = objective.Name;
+                    }
+
+                    return this;
                 }
             }
         }

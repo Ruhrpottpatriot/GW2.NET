@@ -14,7 +14,6 @@ using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
 using GW2DotNET.V1.Maps.DataProvider;
 using GW2DotNET.V1.World.DataProvider;
-using GW2DotNET.V1.WvW.DataProviders;
 
 namespace GW2DotNET.V1
 {
@@ -68,7 +67,7 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Backing field for wvwMatches property
         /// </summary>
-        private MatchData matchData;
+        private WvW.DataProvider matchData;
 
         /// <summary>
         /// Backing field for Recipes property
@@ -95,7 +94,9 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiManager"/> class.
         /// </summary>
-        /// <param name="language">The language for things such as World names</param>
+        /// <param name="language">
+        /// The language for things such as world names.
+        /// </param>
         public ApiManager(Language language)
         {
             this.language = language;
@@ -229,11 +230,11 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Gets the MatchData object.
         /// </summary>
-        public MatchData WvWMatches
+        public WvW.DataProvider WvWMatches
         {
             get
             {
-                return this.matchData ?? (this.matchData = new MatchData());
+                return this.matchData ?? (this.matchData = new WvW.DataProvider());
             }
         }
 
@@ -252,16 +253,19 @@ namespace GW2DotNET.V1
         /// WARNING! there is  no undo!</summary>
         public void ClearCache()
         {
+            // Old way to clear the cache.
             this.colourData = null;
             this.eventData = null;
             this.guildData = null;
             this.itemData = null;
-            this.mapData = null;
             this.continentData = null;
             this.floorData = null;
             this.matchData = null;
             this.recipeData = null;
             this.worldData = null;
+
+            // New way
+            this.WvWMatches.ClearCache();
         }
 
         /// <summary>Gets the latest build from the server.</summary>

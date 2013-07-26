@@ -30,13 +30,13 @@ namespace GW2DotNET.V1.WvW.Models
         /// <param name="matchId">
         /// The match id.
         /// </param>
-        /// <param name="redWorld">
+        /// <param name="redWorldId">
         /// The red world id.
         /// </param>
-        /// <param name="blueWorld">
+        /// <param name="blueWorldId">
         /// The blue world id.
         /// </param>
-        /// <param name="greenWorld">
+        /// <param name="greenWorldId">
         /// The green world id.
         /// </param>
         /// <param name="startTime">
@@ -52,11 +52,11 @@ namespace GW2DotNET.V1.WvW.Models
         /// The maps.
         /// </param>
         [JsonConstructor]
-        public WvWMatch(string matchId, string redWorld, string blueWorld, string greenWorld, DateTime startTime, DateTime endTime, IEnumerable<int> scores, IEnumerable<WvWMap> maps)
+        public WvWMatch(string matchId, int redWorldId, int blueWorldId, int greenWorldId, DateTime startTime, DateTime endTime, IEnumerable<int> scores, IEnumerable<WvWMap> maps)
         {
-            this.RedWorld = redWorld;
-            this.BlueWorld = blueWorld;
-            this.GreenWorld = greenWorld;
+            this.RedWorldId = redWorldId;
+            this.BlueWorldId = blueWorldId;
+            this.GreenWorldId = greenWorldId;
             this.StartTime = startTime;
             this.EndTime = endTime;
             this.Scores = scores;
@@ -67,7 +67,7 @@ namespace GW2DotNET.V1.WvW.Models
         /// <summary>
         /// Gets the match id.
         /// </summary>
-        [JsonProperty("wvw_match_id")]
+        [JsonProperty("match_id")]
         public string MatchId
         {
             get
@@ -80,7 +80,7 @@ namespace GW2DotNET.V1.WvW.Models
         /// Gets the red world id.
         /// </summary>
         [JsonProperty("red_world_id")]
-        public string RedWorld
+        public int RedWorldId
         {
             get;
             private set;
@@ -90,7 +90,7 @@ namespace GW2DotNET.V1.WvW.Models
         /// Gets the blue world id.
         /// </summary>
         [JsonProperty("blue_world_id")]
-        public string BlueWorld
+        public int BlueWorldId
         {
             get;
             private set;
@@ -100,7 +100,7 @@ namespace GW2DotNET.V1.WvW.Models
         /// Gets the green world id.
         /// </summary>
         [JsonProperty("green_world_id")]
-        public string GreenWorld
+        public int GreenWorldId
         {
             get;
             private set;
@@ -227,6 +227,20 @@ namespace GW2DotNET.V1.WvW.Models
         public override int GetHashCode()
         {
             return this.MatchId.GetHashCode();
+        }
+
+        /// <summary>Resolves the missing info's only obtainable through the map list api.</summary>
+        /// <param name="matchListEntry">The match list entry.</param>
+        /// <returns>The <see cref="WvWMatch"/> with all its info's resolved.</returns>
+        internal WvWMatch ResolveInfos(MatchListEntry matchListEntry)
+        {
+            this.RedWorldId = matchListEntry.RedWorldId;
+            this.BlueWorldId = matchListEntry.BlueWorldId;
+            this.GreenWorldId = matchListEntry.GreenWorldId;
+            this.StartTime = matchListEntry.StartTime;
+            this.EndTime = matchListEntry.EndTime;
+
+            return this;
         }
     }
 }
