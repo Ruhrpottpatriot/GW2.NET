@@ -9,7 +9,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Guilds.DataProvider;
+using System;
+
+using GW2DotNET.V1.Guilds.DataProviders;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
 using GW2DotNET.V1.Maps.DataProvider;
@@ -57,7 +59,7 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Backing field for Guilds property
         /// </summary>
-        private GuildData guildData;
+        private GuildData guildDataOld;
 
         /// <summary>
         /// Backing field for Items property
@@ -83,6 +85,9 @@ namespace GW2DotNET.V1
         /// Stores the language set by the constructor
         /// </summary>
         private Language language;
+
+        /// <summary>Stores the instance of the guild data provider.</summary>
+        private Guilds.DataProvider guildData;
 
         /// <summary>Initializes a new instance of the <see cref="ApiManager"/> class.</summary>
         public ApiManager()
@@ -194,14 +199,29 @@ namespace GW2DotNET.V1
             }
         }
 
+        /// <summary>Gets the instance of the guild data provider.</summary>
+        /// <remarks>This property is the entry point to the guild api.
+        /// From here the user can access all the information the guild api has to offer.</remarks>
+        /// <seealso cref="V1.Guilds.DataProvider"/>
+        public Guilds.DataProvider GuildData
+        {
+            get
+            {
+                return this.guildData ?? (this.guildData = new Guilds.DataProvider());
+            }
+
+        }
+
+
         /// <summary>
         /// Gets the GuildData object.
         /// </summary>
+        [Obsolete("This implementation of the guild api is obsolete. Please use the new GuildData property.")]
         public GuildData Guilds
         {
             get
             {
-                return this.guildData ?? (this.guildData = new GuildData(this));
+                return this.guildDataOld ?? (this.guildDataOld = new GuildData(this));
             }
         }
 
@@ -227,10 +247,11 @@ namespace GW2DotNET.V1
             }
         }
 
-        /// <summary>
-        /// Gets the MatchData object.
-        /// </summary>
-        public WvW.DataProvider WvWMatches
+        /// <summary>Gets the instance of the world versus world data provider.</summary>
+        /// /// <remarks>This property is the entry point to the world versus world api.
+        /// From here the user can access all the information the world versus world api has to offer.</remarks>
+        /// <seealso cref="V1.WvW.DataProvider"/>
+        public WvW.DataProvider WvWMatchData
         {
             get
             {
@@ -249,27 +270,36 @@ namespace GW2DotNET.V1
             }
         }
 
-        /// <summary>Clears the cache.
-        /// WARNING! there is  no undo!</summary>
+        /// <summary>
+        /// Clears the cache for all data providers.
+        /// WARNING! there is  no undo!
+        /// </summary>
         public void ClearCache()
         {
             // Old way to clear the cache.
             this.colourData = null;
             this.eventData = null;
-            this.guildData = null;
             this.itemData = null;
             this.continentData = null;
             this.floorData = null;
-            this.matchData = null;
+            this.mapData = null;
             this.recipeData = null;
             this.worldData = null;
 
             // New way
-            this.WvWMatches.ClearCache();
+            this.WvWMatchData.ClearCache();
+            this.GuildData.ClearCache();
         }
 
         /// <summary>Gets the latest build from the server.</summary>
-        /// <returns>The latest build.</returns>
+        /// <remarks>
+        /// This function will query the server for the current build. 
+        /// After a query this method will return the current build to the user.
+        /// It will also store the new build in the <see cref="Build"/> property and therefore cache it.
+        /// </remarks>
+        /// <returns>
+        /// The latest build.
+        /// </returns>
         public int GetLatestBuild()
         {
             this.build = ApiCall.GetContent<Dictionary<string, int>>("build.json", null, ApiCall.Categories.Miscellaneous).Values.Single();

@@ -44,7 +44,7 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var matches = this.manager.WvWMatches.All;
+            var matches = this.manager.WvWMatchData.All;
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -59,7 +59,7 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var singleMatch = this.manager.WvWMatches.GetSingleMatch("1-1");
+            var singleMatch = this.manager.WvWMatchData.GetSingleMatch("1-1");
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 

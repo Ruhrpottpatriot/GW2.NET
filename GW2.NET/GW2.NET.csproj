@@ -74,7 +74,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V1\Guilds\DataProvider\GuildData.cs" />
+    <Compile Include="V1\Guilds\DataProvider.cs" />
+    <Compile Include="V1\Guilds\DataProviders\GuildData.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />

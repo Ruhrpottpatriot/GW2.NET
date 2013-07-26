@@ -76,8 +76,6 @@ namespace GW2DotNET.V1.WvW
             return newMatch;
         }
 
-
-
         /// <summary>
         /// Clears the map list cache and forces a re download of the map list.
         /// </summary>

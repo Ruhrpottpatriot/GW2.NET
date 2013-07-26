@@ -14,7 +14,7 @@ using System.Linq;
 using GW2DotNET.V1.Guilds.Models;
 using GW2DotNET.V1.Infrastructure;
 
-namespace GW2DotNET.V1.Guilds.DataProvider
+namespace GW2DotNET.V1.Guilds.DataProviders
 {
     using System.Diagnostics;
     using System.Runtime.Remoting;
@@ -22,6 +22,7 @@ namespace GW2DotNET.V1.Guilds.DataProvider
     /// <summary>
     /// The guild data provider.
     /// </summary>
+    [Obsolete]
     public class GuildData
     {
         /// <summary>
