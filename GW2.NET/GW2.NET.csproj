@@ -81,7 +81,6 @@
     <Compile Include="V1\ApiManager.cs" />
     <Compile Include="V1\Infrastructure\ApiCall.Categories.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
-    <Compile Include="V1\Infrastructure\ApiMethods.cs" />
     <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
     <Compile Include="V1\Infrastructure\ChatLinks.cs" />
     <Compile Include="V1\Infrastructure\Exceptions\CacheEmptyException.cs" />
