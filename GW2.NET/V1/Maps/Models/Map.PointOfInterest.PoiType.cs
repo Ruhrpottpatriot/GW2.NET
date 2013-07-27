@@ -10,10 +10,10 @@
 namespace GW2DotNET.V1.Maps.Models
 {
     /// <summary>Represents a map.</summary>
-    public partial struct Map
+    public partial class Map
     {
         /// <summary>Represents a point of interest.</summary>
-        public partial struct PointOfInterest
+        public partial class PointOfInterest
         {
             /// <summary>Enumerates the poi type.</summary>
             public enum PoiType

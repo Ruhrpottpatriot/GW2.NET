@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// The trophy.
     /// </summary>
     [Serializable]
-    public struct Trophy
+    public class Trophy
     {
     }
 }

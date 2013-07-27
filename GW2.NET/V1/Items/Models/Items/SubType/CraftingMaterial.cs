@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// The crafting material.
     /// </summary>
     [Serializable]
-    public struct CraftingMaterial
+    public class CraftingMaterial
     {
     }
 }

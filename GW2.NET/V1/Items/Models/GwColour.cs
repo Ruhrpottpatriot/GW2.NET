@@ -7,6 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+
+using GW2DotNET.V1.Guilds.Models;
+
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models
@@ -14,14 +19,14 @@ namespace GW2DotNET.V1.Items.Models
     /// <summary>
     /// Represents a colour in the game.
     /// </summary>
-    public partial struct GwColour
+    public partial class GwColour : IEquatable<GwColour>
     {
         /// <summary>
         /// The colour id.
         /// </summary>
         private readonly int id;
 
-        /// <summary>Initializes a new instance of the <see cref="GwColour"/> struct.</summary>
+        /// <summary>Initializes a new instance of the <see cref="GwColour"/> class.</summary>
         /// <param name="id">The colour id.</param>
         /// <param name="name">The name of the colour</param>
         /// <param name="baseRgb">The base Rgb.</param>
@@ -30,7 +35,6 @@ namespace GW2DotNET.V1.Items.Models
         /// <param name="metalDetail">The colour modifying attributes on metal.</param>
         [JsonConstructor]
         public GwColour(int id, string name, int[] baseRgb, ColourDetails clothDetail, ColourDetails leatherDetail, ColourDetails metalDetail)
-            : this()
         {
             this.id = id;
             this.Name = name;
@@ -95,6 +99,105 @@ namespace GW2DotNET.V1.Items.Models
         {
             get;
             private set;
+        }
+
+        /// <summary>
+        /// Checks if two instances of <see cref="GwColour"/> are equal.
+        /// </summary>
+        /// <param name="colourA">
+        /// The first colour.
+        /// </param>
+        /// <param name="colourB">
+        /// The second colour.
+        /// </param>
+        /// <returns>
+        /// true if both instances are the same, otherwise false.
+        /// </returns>
+        public static bool operator ==(GwColour colourA, GwColour colourB)
+        {
+            if (ReferenceEquals(colourA, colourB))
+            {
+                return true;
+            }
+
+            if (((object)colourA == null) || ((object)colourB == null))
+            {
+                return false;
+            }
+
+            return colourA.Id == colourB.Id;
+        }
+
+        /// <summary>
+        /// Checks if two instances of <see cref="GwColour"/> are not equal.
+        /// </summary>
+        /// <param name="colourA">
+        /// The first colour.
+        /// </param>
+        /// <param name="colourB">
+        /// The second colour.
+        /// </param>
+        /// <returns>
+        /// true if both instances are not the same, otherwise false.
+        /// </returns>
+        public static bool operator !=(GwColour colourA, GwColour colourB)
+        {
+            return !(colourA == colourB);
+        }
+
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <returns>
+        /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+        /// </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(GwColour other)
+        {
+            if ((object)other == null)
+            {
+                return false;
+            }
+            return other.Id == this.Id;
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
+        /// </summary>
+        /// <returns>
+        /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
+        /// </returns>
+        /// <param name="obj">The object to compare with the current object. </param><filterpriority>2</filterpriority>
+        public override bool Equals(object obj)
+        {
+            // If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+
+            // If parameter cannot be cast to Point return false.
+            var colour = obj as GwColour;
+
+            if ((object)colour == null)
+            {
+                return false;
+            }
+
+            return colour.Id == this.Id;
+        }
+
+
+        /// <summary>
+        /// Serves as a hash function for a particular type. 
+        /// </summary>
+        /// <returns>
+        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// </returns>
+        /// <filterpriority>2</filterpriority>
+        public override int GetHashCode()
+        {
+            return this.id.GetHashCode();
         }
     }
 }

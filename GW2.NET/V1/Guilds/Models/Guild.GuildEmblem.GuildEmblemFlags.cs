@@ -12,12 +12,12 @@ namespace GW2DotNET.V1.Guilds.Models
     /// <summary>
     /// Represents a guild in the game.
     /// </summary>
-    public partial struct Guild
+    public partial class Guild
     {
         /// <summary>
         /// Represents a guild emblem.
         /// </summary>
-        public partial struct GuildEmblem
+        public partial class GuildEmblem
         {
             /// <summary>
             /// Enumerates all possible guild emblem flags.

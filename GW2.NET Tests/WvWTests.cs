@@ -40,22 +40,30 @@ namespace GW2.NET_Tests
         /// Gets all matches from the api.
         /// </summary>
         [Test]
-        public void GetMatches()
+        public void GetMatchList()
         {
-            var matches = this.manager.WvWMatches.ToList();
+            var stopwatch = Stopwatch.StartNew();
 
-            Trace.WriteLine(string.Format("Total number of matches: {0}", matches.Count));
+            var matches = this.manager.WvWMatchData.All;
+
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
+
+            Trace.WriteLine(string.Format("Total Number of Matches: {0}", matches.Count));
         }
 
         /// <summary>
         /// Gets a single match from the api.
         /// </summary>
         [Test]
-        public void GetMatch()
+        public void GetSingleMatch()
         {
-            var match = this.manager.WvWMatches["1-1"];
+            var stopwatch = Stopwatch.StartNew();
 
-            Trace.WriteLine(string.Format("Start Time: {0}, End Time: {1}", match.StartTime, match.EndTime));
+            var singleMatch = this.manager.WvWMatchData.GetSingleMatch("1-1");
+
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
+
+            Trace.WriteLine(string.Format("Match Id: {0}", singleMatch.MatchId));
         }
     }
 }

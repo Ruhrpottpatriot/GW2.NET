@@ -14,13 +14,13 @@ namespace GW2DotNET.V1.Maps.Models
     using Newtonsoft.Json;
 
     /// <summary>Represents a map.</summary>
-    public partial struct Map
+    public partial class Map
     {
         /// <summary>Gets the continent id.</summary>
         [JsonProperty("continent_id")]
         internal int ContinentId;
 
-        /// <summary>Initializes a new instance of the <see cref="Map"/> struct.</summary>
+        /// <summary>Initializes a new instance of the <see cref="Map"/> class.</summary>
         /// <param name="mapId">The id.</param>
         /// <param name="name">The name.</param>
         /// <param name="minimumLevel">The minimum level.</param>
@@ -38,7 +38,7 @@ namespace GW2DotNET.V1.Maps.Models
         /// <param name="skillChallenges">The skill Challenges.</param>
         [JsonConstructor]
         public Map(int mapId, string name, int minimumLevel, int maximumLevel, int defaultFloor, int[] floors, int regionId, string regionName, int continentId, float[,] mapRectangle, float[,] continentRectangle, IEnumerable<PointOfInterest> pointsOfInterest, IEnumerable<Task> tasks, IEnumerable<Sector> sectors, IEnumerable<SkillChallenge> skillChallenges)
-            : this()
+
         {
             this.MaximumLevel = maximumLevel;
             this.MinimumLevel = minimumLevel;

@@ -15,17 +15,18 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Guilds.Models;
 using GW2DotNET.V1.Infrastructure;
 
-namespace GW2DotNET.V1.Guilds.DataProvider
+namespace GW2DotNET.V1.Guilds.DataProviders
 {
     using System.Diagnostics;
 
     /// <summary>
-    ///     The guild data provider.
+    /// The guild data provider.
     /// </summary>
+    [Obsolete]
     public class GuildData
     {
         /// <summary>
-        ///     The guild cache.
+        /// The guild cache.
         /// </summary>
         private readonly List<Guild> guildCache;
 
@@ -64,9 +65,9 @@ namespace GW2DotNET.V1.Guilds.DataProvider
         {
             get
             {
-                Guild guildToReturn = guildCache.SingleOrDefault(g => g.Id == guildId);
+                var guildToReturn = this.guildCache.SingleOrDefault(g => g.Id == guildId);
 
-                if (guildToReturn.Id == Guid.Empty)
+                if (guildToReturn == null)
                 {
                     var arguments = new List<KeyValuePair<string, object>>
                         {
@@ -90,8 +91,6 @@ namespace GW2DotNET.V1.Guilds.DataProvider
                         }
                         
                         this.apiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
-
-                        this.guildCache.Add(guildToReturn);
                     }
                     catch (Exception ex)
                     {

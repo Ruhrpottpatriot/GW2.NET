@@ -16,15 +16,15 @@ namespace GW2DotNET.V1.WvW.Models
     /// <summary>
     /// Represents a world vs world match.
     /// </summary>
-    public partial struct WvWMatch
+    public partial class WvWMatch
     {
         /// <summary>
         /// Represents a world vs world map.
         /// </summary>
-        public partial struct WvWMap
+        public partial class WvWMap
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="WvWMap"/> struct.
+            /// Initializes a new instance of the <see cref="WvWMap"/> class.
             /// </summary>
             /// <param name="mapType">
             /// The map type.
@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.WvW.Models
             /// </param>
             [JsonConstructor]
             public WvWMap(Type mapType, IEnumerable<int> scores, IEnumerable<Objective> objectives)
-                : this()
+    
             {
                 this.MapType = mapType;
                 this.Scores = scores;

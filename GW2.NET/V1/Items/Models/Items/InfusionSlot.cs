@@ -18,10 +18,10 @@ namespace GW2DotNET.V1.Items.Models.Items
     /// The infusion slot.
     /// </summary>
     [Serializable]
-    public struct InfusionSlot
+    public class InfusionSlot
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InfusionSlot"/> struct.
+        /// Initializes a new instance of the <see cref="InfusionSlot"/> class.
         /// </summary>
         /// <param name="item">
         /// The item.
@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// </param>
         [JsonConstructor]
         public InfusionSlot(string item, IEnumerable<UpgradeFlag> flags)
-            : this()
+
         {
             this.Flags = flags;
             this.Item = item;

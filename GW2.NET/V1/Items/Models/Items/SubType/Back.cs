@@ -18,10 +18,10 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// The item in the back slot.
     /// </summary>
     [Serializable]
-    public struct Back
+    public class Back
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Back"/> struct.
+        /// Initializes a new instance of the <see cref="Back"/> class.
         /// </summary>
         /// <param name="suffixId">
         /// The suffix id.
@@ -33,8 +33,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// The infix upgrade.
         /// </param>
         [JsonConstructor]
-        public Back(int? suffixId, IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade)
-            : this()
+        public Back(int suffixId, IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade)
         {
             this.InfixUpgrade = infixUpgrade;
             this.InfusionSlots = infusionSlots;
@@ -45,7 +44,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// Gets the suffix id.
         /// </summary>
         [JsonProperty("suffix_item_id")]
-        public int? SuffixId
+        public int SuffixId
         {
             get;
             private set;

@@ -12,19 +12,19 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Maps.Models
 {
     /// <summary>Represents map.</summary>
-    public partial struct Map
+    public partial class Map
     {
         /// <summary>The task.</summary>
-        public struct Task
+        public class Task
         {
-            /// <summary>Initializes a new instance of the <see cref="Task"/> struct.</summary>
+            /// <summary>Initializes a new instance of the <see cref="Task"/> class.</summary>
             /// <param name="taskId">The task id.</param>
             /// <param name="objective">The objective.</param>
             /// <param name="level">The level.</param>
             /// <param name="coordinates">The coordinates.</param>
             [JsonConstructor]
             public Task(int taskId, string objective, int level, float[] coordinates)
-                : this()
+    
             {
                 this.Id = taskId;
                 this.Coordinates = coordinates;

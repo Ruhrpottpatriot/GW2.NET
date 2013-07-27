@@ -17,16 +17,13 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// The container.
     /// </summary>
     [Serializable]
-    public struct Container
+    public class Container
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Container"/> struct.
-        /// </summary>
-        /// <param name="type">
-        /// The type.
-        /// </param>
+        /// <summary>Initializes a new instance of the <see cref="Container"/> class. 
+        /// Initializes a new instance of the <see cref="Container"/> class.</summary>
+        /// <param name="type">The type.</param>
         [JsonConstructor]
-        public Container(ContainerType type) : this()
+        public Container(ContainerType type)
         {
             this.Type = type;
         }

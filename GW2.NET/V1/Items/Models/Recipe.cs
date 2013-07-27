@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 
 using Newtonsoft.Json;
@@ -16,7 +17,7 @@ namespace GW2DotNET.V1.Items.Models
     /// <summary>
     /// The recipe model.
     /// </summary>
-    public struct Recipe
+    public partial class Recipe : IEquatable<Recipe>
     {
         /// <summary>
         /// The id of the recipe.
@@ -24,7 +25,7 @@ namespace GW2DotNET.V1.Items.Models
         private readonly int id;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Recipe"/> struct.
+        /// Initializes a new instance of the <see cref="Recipe"/> class.
         /// </summary>
         /// <param name="id">
         /// The id of the recipe.
@@ -49,7 +50,6 @@ namespace GW2DotNET.V1.Items.Models
         /// </param>
         [JsonConstructor]
         public Recipe(int id, RecipeType type, int outputItemId, int outputItemCount, int minRating, int timeToCraft, IEnumerable<Ingredient> ingredients)
-            : this()
         {
             this.id = id;
             this.Type = type;
@@ -133,110 +133,19 @@ namespace GW2DotNET.V1.Items.Models
         }
 
         /// <summary>
-        /// The ingredients of a recipe.
+        /// Indicates whether the current object is equal to another object of the same type.
         /// </summary>
-        public struct Ingredient
+        /// <returns>
+        /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+        /// </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(Recipe other)
         {
-            /// <summary>
-            /// The id of the ingredient.
-            /// </summary>
-            private readonly int id;
-
-            /// <summary>
-            /// Initializes a new instance of the <see cref="Ingredient"/> struct.
-            /// </summary>
-            /// <param name="id">
-            /// The id of the ingredient.
-            /// </param>
-            /// <param name="count">
-            /// The ingredient count.
-            /// </param>
-            [JsonConstructor]
-            public Ingredient(int id, int count)
-                : this()
+            if ((object)other == null)
             {
-                this.id = id;
-                this.Count = count;
+                return false;
             }
-
-            /// <summary>
-            /// Gets the id of the ingredient.
-            /// </summary>
-            [JsonProperty("item_id")]
-            public int Id
-            {
-                get
-                {
-                    return this.id;
-                }
-            }
-
-            /// <summary>
-            /// Gets the ingredient count.
-            /// </summary>
-            [JsonProperty("count")]
-            public int Count
-            {
-                get;
-                private set;
-            }
-
-            /// <summary>
-            /// Determines whether two specified instances of <see crdef="Ingredient"/> are equal.
-            /// </summary>
-            /// <param name="ingredientA">The first object to compare.</param>param>
-            /// <param name="ingredientB">The second object to compare. </param>
-            /// <returns>true if ingredientA and ingredientB represent the same ingredient; otherwise, false.</returns>
-            public static bool operator ==(Ingredient ingredientA, Ingredient ingredientB)
-            {
-                return ingredientA.Id == ingredientB.Id;
-            }
-
-            /// <summary>
-            /// Determines whether two specified instances of <see crdef="Ingredient"/> are not equal.
-            /// </summary>
-            /// <param name="ingredientA">The first object to compare.</param>param>
-            /// <param name="ingredientB">The second object to compare. </param>
-            /// <returns>true if ingredientA and ingredientB do not represent the same ingredient; otherwise, false.</returns>
-            public static bool operator !=(Ingredient ingredientA, Ingredient ingredientB)
-            {
-                return ingredientA.Id != ingredientB.Id;
-            }
-
-            /// <summary>
-            /// Indicates whether this instance and a specified object are equal.
-            /// </summary>
-            /// <returns>
-            /// true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.
-            /// </returns>
-            /// <param name="obj">Another object to compare to. </param><filterpriority>2</filterpriority>
-            public override bool Equals(object obj)
-            {
-                return obj is Ingredient && this == (Ingredient)obj;
-            }
-
-            /// <summary>
-            /// Indicates whether this instance and the specified <see cref="Ingredient"/> are equal.
-            /// </summary>
-            /// <returns>
-            /// true if <paramref name="ingredient"/> and this instance are the same type and represent the same value; otherwise, false.
-            /// </returns>
-            /// <param name="ingredient">Another object to compare to. </param>
-            public bool Equals(Ingredient ingredient)
-            {
-                return this.Id == ingredient.Id;
-            }
-
-            /// <summary>
-            /// Returns the hash code for this instance.
-            /// </summary>
-            /// <returns>
-            /// A 32-bit signed integer that is the hash code for this instance.
-            /// </returns>
-            public override int GetHashCode()
-            {
-                return this.id.GetHashCode();
-            }
+            return other.Id == this.Id;
         }
     }
 }

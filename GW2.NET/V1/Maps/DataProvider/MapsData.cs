@@ -79,6 +79,18 @@ namespace GW2DotNET.V1.Maps.DataProvider
             return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
+        /// <summary>Returns a map by its name</summary>
+        /// <param name="mapName">The map name.</param>
+        /// <returns>The <see cref="Map"/>.</returns>
+        public Map this[string mapName]
+        {
+            get
+            {
+                return this.Maps.Single(map => map.Name == mapName);
+            }
+        }
+
+
         /// <summary>Returns a map by its id</summary>
         /// <param name="mapId">The map id.</param>
         /// <returns>The <see cref="Map"/>.</returns>

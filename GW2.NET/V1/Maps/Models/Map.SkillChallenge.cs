@@ -12,16 +12,16 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Maps.Models
 {
     /// <summary>Represents a map.</summary>
-    public partial struct Map
+    public partial class Map
     {
         /// <summary>Represents a skill challenge.</summary>
-        public struct SkillChallenge
+        public class SkillChallenge
         {
-            /// <summary>Initializes a new instance of the <see cref="SkillChallenge"/> struct.</summary>
+            /// <summary>Initializes a new instance of the <see cref="SkillChallenge"/> class.</summary>
             /// <param name="coordinates">The coordinates.</param>
             [JsonConstructor]
             public SkillChallenge(float[] coordinates)
-                : this()
+    
             {
                 this.Coordinates = coordinates;
             }

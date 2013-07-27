@@ -17,37 +17,23 @@ namespace GW2DotNET.V1.Guilds.Models
     /// <summary>
     /// Represents a guild in the game.
     /// </summary>
-    public partial struct Guild
+    public partial class Guild
     {
         /// <summary>
         /// Represents a guild emblem.
         /// </summary>
-        public partial struct GuildEmblem : IEquatable<GuildEmblem>
+        public partial class GuildEmblem : IEquatable<GuildEmblem>
         {
-            /// <summary>
-            /// Initializes a new instance of the <see cref="GuildEmblem"/> struct.
-            /// </summary>
-            /// <param name="background">
-            /// The id of the background image.
-            /// </param>
-            /// <param name="foreground">
-            /// The id of the foreground image.
-            /// </param>
-            /// <param name="flags">
-            /// The emblem flags.
-            /// </param>
-            /// <param name="backgroundColour">
-            /// The background colour.
-            /// </param>
-            /// <param name="foregroundPrimaryColour">
-            /// The primary colour of the foreground.
-            /// </param>
-            /// <param name="foregroundsecondaryColour">
-            /// The secondary colour of the foreground.
-            /// </param>
+            /// <summary>Initializes a new instance of the <see cref="GuildEmblem"/> class. 
+            /// Initializes a new instance of the <see cref="GuildEmblem"/> class.</summary>
+            /// <param name="background">The id of the background image.</param>
+            /// <param name="foreground">The id of the foreground image.</param>
+            /// <param name="flags">The emblem flags.</param>
+            /// <param name="backgroundColour">The background colour.</param>
+            /// <param name="foregroundPrimaryColour">The primary colour of the foreground.</param>
+            /// <param name="foregroundsecondaryColour">The secondary colour of the foreground.</param>
             [JsonConstructor]
             public GuildEmblem(int background, int foreground, IEnumerable<GuildEmblemFlags> flags, int backgroundColour, int foregroundPrimaryColour, int foregroundsecondaryColour)
-                : this()
             {
                 this.ForegroundSecondaryColour = foregroundsecondaryColour;
                 this.ForegroundPrimaryColour = foregroundPrimaryColour;

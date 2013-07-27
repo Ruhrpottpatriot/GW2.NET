@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 
 using Newtonsoft.Json;
@@ -16,15 +17,15 @@ namespace GW2DotNET.V1.Items.Models
     /// <summary>
     /// Represents a colour in the game.
     /// </summary>
-    public partial struct GwColour
+    public partial class GwColour
     {
         /// <summary>
         /// The colour modifying attributes.
         /// </summary>
-        public struct ColourDetails
+        public class ColourDetails : IEquatable<ColourDetails>
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="ColourDetails"/> struct.
+            /// Initializes a new instance of the <see cref="ColourDetails"/> class.
             /// </summary>
             /// <param name="brightness">
             /// The brightness.
@@ -45,8 +46,7 @@ namespace GW2DotNET.V1.Items.Models
             /// Pre calculated rgb values for some convenience.
             /// </param>
             [JsonConstructor]
-            public ColourDetails(double brightness, double contrast, double hue, double saturation, double lightness, int[] rgb)
-                : this()
+            public ColourDetails(double brightness, double contrast, double hue, double saturation, double lightness, IList<int> rgb)
             {
                 this.RgbValues = new RgbColour(rgb);
                 this.Lightness = lightness;
@@ -116,50 +116,86 @@ namespace GW2DotNET.V1.Items.Models
             }
 
             /// <summary>
-            /// The rgb colour.
+            /// Indicates whether the current object is equal to another object of the same type.
             /// </summary>
-            public struct RgbColour
+            /// <returns>
+            /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+            /// </returns>
+            /// <param name="other">An object to compare with this object.</param>
+            public bool Equals(ColourDetails other)
             {
-                /// <summary>
-                /// Initializes a new instance of the <see cref="RgbColour"/> struct.
-                /// </summary>
-                /// <param name="colourValues">
-                /// The colour values.
-                /// </param>
-                public RgbColour(IList<int> colourValues)
-                    : this()
+                if ((object)other == null)
                 {
-                    this.Red = colourValues[0];
-                    this.Green = colourValues[1];
-                    this.Blue = colourValues[2];
+                    return false;
                 }
 
-                /// <summary>
-                /// Gets the red colour.
-                /// </summary>
-                public int Red
+                return other.RgbValues == this.RgbValues;
+            }
+
+            /// <summary>
+            /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
+            /// </summary>
+            /// <returns>
+            /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
+            /// </returns>
+            /// <param name="obj">The object to compare with the current object. </param><filterpriority>2</filterpriority>
+            public override bool Equals(object obj)
+            {
+                // If parameter is null return false.
+                if (obj == null)
                 {
-                    get;
-                    private set;
+                    return false;
                 }
 
-                /// <summary>
-                /// Gets the green colour.
-                /// </summary>
-                public int Green
+                // If parameter cannot be cast to Point return false.
+                var colour = obj as ColourDetails;
+
+                if ((object)colour == null)
                 {
-                    get;
-                    private set;
+                    return false;
                 }
 
-                /// <summary>
-                /// Gets the blue colour.
-                /// </summary>
-                public int Blue
+                return colour.RgbValues == this.RgbValues;
+            }
+
+            /// <summary>
+            /// Serves as a hash function for a particular type. 
+            /// </summary>
+            /// <returns>
+            /// A hash code for the current <see cref="T:System.Object"/>.
+            /// </returns>
+            /// <filterpriority>2</filterpriority>
+            public override int GetHashCode()
+            {
+                return this.RgbValues.GetHashCode();
+            }
+
+            /// <summary>The ==.</summary>
+            /// <param name="detailsA">The details a.</param>
+            /// <param name="detailsB">The details b.</param>
+            /// <returns></returns>
+            public static bool operator ==(ColourDetails detailsA, ColourDetails detailsB)
+            {
+                if (ReferenceEquals(detailsA, detailsB))
                 {
-                    get;
-                    private set;
+                    return true;
                 }
+
+                if (((object)detailsA == null) || ((object)detailsB == null))
+                {
+                    return false;
+                }
+
+                return detailsA.RgbValues == detailsB.RgbValues;
+            }
+
+            /// <summary>The !=.</summary>
+            /// <param name="detailsA">The details a.</param>
+            /// <param name="detailsB">The details b.</param>
+            /// <returns></returns>
+            public static bool operator !=(ColourDetails detailsA, ColourDetails detailsB)
+            {
+                return !(detailsA == detailsB);
             }
         }
     }

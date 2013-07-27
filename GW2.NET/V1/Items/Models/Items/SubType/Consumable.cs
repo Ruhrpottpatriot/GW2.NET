@@ -17,17 +17,16 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
     /// The consumable.
     /// </summary>
     [Serializable]
-    public struct Consumable
+    public class Consumable
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Consumable"/> struct.
+        /// Initializes a new instance of the <see cref="Consumable"/> class.
         /// </summary>
         /// <param name="type">
         /// The type.
         /// </param>
         [JsonConstructor]
         public Consumable(ConsumableType type)
-            : this()
         {
             this.Type = type;
         }

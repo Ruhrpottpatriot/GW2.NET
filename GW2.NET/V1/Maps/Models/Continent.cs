@@ -12,9 +12,9 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Maps.Models
 {
     /// <summary>Represents a continent.</summary>
-    public struct Continent
+    public class Continent
     {
-        /// <summary>Initializes a new instance of the <see cref="Continent"/> struct.</summary>
+        /// <summary>Initializes a new instance of the <see cref="Continent"/> class.</summary>
         /// <param name="name">The name.</param>
         /// <param name="continentDims">The continent dims.</param>
         /// <param name="minimumZoom">The minimum zoom.</param>
@@ -22,7 +22,6 @@ namespace GW2DotNET.V1.Maps.Models
         /// <param name="floors">The floors.</param>
         [JsonConstructor]
         public Continent(string name, int[] continentDims, int minimumZoom, int maximumZoom, int[] floors)
-            : this()
         {
             this.Floors = floors;
             this.MaximumZoom = maximumZoom;

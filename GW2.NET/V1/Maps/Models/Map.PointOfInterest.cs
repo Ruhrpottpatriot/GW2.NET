@@ -12,12 +12,12 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Maps.Models
 {
     /// <summary>Represents a map.</summary>
-    public partial struct Map
+    public partial class Map
     {
         /// <summary>Represents a point of interest.</summary>
-        public partial struct PointOfInterest
+        public partial class PointOfInterest
         {
-            /// <summary>Initializes a new instance of the <see cref="PointOfInterest"/> struct.</summary>
+            /// <summary>Initializes a new instance of the <see cref="PointOfInterest"/> class.</summary>
             /// <param name="poiId">The poi id.</param>
             /// <param name="name">The name.</param>
             /// <param name="type">The type.</param>
@@ -25,7 +25,7 @@ namespace GW2DotNET.V1.Maps.Models
             /// <param name="coordinates">The coordinates.</param>
             [JsonConstructor]
             public PointOfInterest(int poiId, string name, PoiType type, int floor, float[] coordinates)
-                : this()
+    
             {
                 this.Id = poiId;
                 this.Coordinates = coordinates;
