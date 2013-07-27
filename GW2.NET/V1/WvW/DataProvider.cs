@@ -13,6 +13,7 @@ using System.Linq;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Infrastructure.Exceptions;
 using GW2DotNET.V1.WvW.Models;
+using System;
 
 namespace GW2DotNET.V1.WvW
 {
@@ -31,17 +32,24 @@ namespace GW2DotNET.V1.WvW
     public class DataProvider
     {
         /// <summary>A internal list </summary>
-        private MatchList matchList;
+        private Lazy<MatchList> matchList;
 
         /// <summary>The internal list of objective names.</summary>
-        private IEnumerable<WvWMatch.WvWMap.Objective> objectiveNames;
+        private Lazy<IEnumerable<WvWMatch.WvWMap.Objective>> objectiveNames;
+
+        internal DataProvider()
+        {
+            this.matchList = new Lazy<MatchList>(() => this.GetMachtList());
+
+            this.objectiveNames = new Lazy<IEnumerable<WvWMatch.WvWMap.Objective>>(() => this.GetObjectiveNames());
+        }
 
         /// <summary>Gets a collection of all matches.</summary>
         public MatchList All
         {
             get
             {
-                return this.matchList ?? (this.matchList = this.GetMachtList());
+                return this.matchList.Value;
             }
         }
 
@@ -50,7 +58,7 @@ namespace GW2DotNET.V1.WvW
         {
             get
             {
-                return this.objectiveNames ?? (this.objectiveNames = this.GetObjectiveNames());
+                return this.objectiveNames.Value;
             }
         }
 
@@ -79,17 +87,9 @@ namespace GW2DotNET.V1.WvW
         /// <summary>
         /// Clears the map list cache and forces a re download of the map list.
         /// </summary>
-        /// <exception cref="CacheEmptyException">
-        /// Thrown when the cache could not be cleared as it was already empty.
-        /// </exception>
         public void ClearCache()
         {
-            if (this.matchList == null)
-            {
-                throw new CacheEmptyException("Could not clear cache as it was empty.");
-            }
-
-            this.matchList = null;
+            this.matchList = new Lazy<MatchList>(() => this.GetMachtList());
         }
 
         /// <summary>Gets the list of all matches from the api server.</summary>
