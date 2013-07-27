@@ -10,7 +10,6 @@
 using System.Collections.Generic;
 
 using Newtonsoft.Json;
-
 using RestSharp;
 
 namespace GW2DotNET.V1.Infrastructure

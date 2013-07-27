@@ -7,10 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Maps.Models;
 
@@ -23,36 +25,58 @@ namespace GW2DotNET.V1.Maps.DataProvider
         private readonly ApiManager manager;
 
         /// <summary>The maps.</summary>
-        private IEnumerable<Map> maps;
+        private Lazy<IEnumerable<Map>> mapsCache;
+
+        /// <summary>
+        /// Sync object for thread safety. You MUST lock this
+        /// object before touching the private continentsCache object.
+        /// </summary>
+        private readonly object mapsCacheSyncObject = new object();
 
         /// <summary>Initializes a new instance of the <see cref="MapsData"/> class.</summary>
         /// <param name="manager">The manager.</param>
         internal MapsData(ApiManager manager)
         {
             this.manager = manager;
+
+            this.mapsCache = new Lazy<IEnumerable<Map>>(InitializeMapCache);
+        }
+
+        private IEnumerable<Map> InitializeMapCache()
+        {
+            var args = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>("lang", this.manager.Language)
+                            };
+
+            return
+                ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>(
+                    "maps.json", args, ApiCall.Categories.World)
+                       .Values.First()
+                       .Select(
+                           map =>
+                           map.Value.ResolveId(map.Key)
+                              .ResolveContinent(
+                                  this.manager.Continents.Single(
+                                      cont => cont.Id == map.Value.ContinentId)));
         }
 
         /// <summary>Gets all maps from the api.</summary>
-        public IEnumerable<Map> Maps
+        private IEnumerable<Map> Maps
         {
-            get
-            {
-                if (this.maps == null)
-                {
-                    var args = new List<KeyValuePair<string, object>>
-                    {
-                        new KeyValuePair<string, object>("lang", this.manager.Language)
-                    };
-                    
-                    this.maps =
-                        ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>(
-                            "maps.json", args, ApiCall.Categories.World)
-                               .Values.First()
-                               .Select(map => map.Value.ResolveId(map.Key).ResolveContinent(this.manager.Continents.Single(cont => cont.Id == map.Value.ContinentId)));
-                }
+            get { return this.mapsCache.Value; }
+        }
 
-                return this.maps;
-            }
+        /// <summary>
+        /// Gets all maps asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<Map>> GetAllMapsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<Map>> methodCall = () => this.Maps;
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>Returns a map by its name</summary>
@@ -82,6 +106,19 @@ namespace GW2DotNET.V1.Maps.DataProvider
             {
                 return this.Maps.Single(map => map.Id == mapId);
             }
+        }
+
+        /// <summary>
+        /// Gets a map from an ID asynchronously.
+        /// </summary>
+        /// <param name="mapId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Map> GetMapFromIdAsync(int mapId, CancellationToken cancellationToken)
+        {
+            Func<Map> methodCall = () => this[mapId];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>

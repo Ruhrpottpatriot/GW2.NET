@@ -69,11 +69,7 @@ namespace GW2DotNET.V1.Items.Models
         /// Gets the base rgb.
         /// </summary>
         [JsonProperty("base_rgb")]
-        public int[] BaseRgb
-        {
-            get;
-            private set;
-        }
+        public int[] BaseRgb { get; private set; }
 
         /// <summary>
         /// Gets the colour modifying attributes on cloth.

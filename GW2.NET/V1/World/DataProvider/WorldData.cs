@@ -7,10 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.World.Models;
 
@@ -29,7 +31,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Cache the world_names list here
         /// </summary>
-        private IEnumerable<GwWorld> gwWorldCache;
+        private Lazy<IEnumerable<GwWorld>> worldCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldData"/> class.
@@ -39,6 +41,19 @@ namespace GW2DotNET.V1.World.DataProvider
         internal WorldData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
+
+            this.worldCache = new Lazy<IEnumerable<GwWorld>>(InitializeWorldCache);
+        }
+
+        private IEnumerable<GwWorld> InitializeWorldCache()
+        {
+            var arguments = new List<KeyValuePair<string, object>>
+                {
+                    new KeyValuePair<string, object>("lang", this.apiManager.ToString())
+                };
+
+            return ApiCall.GetContent<List<GwWorld>>("world_names.json", arguments,
+                                                     ApiCall.Categories.World);
         }
 
         /// <summary>
@@ -50,20 +65,19 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </returns>
         private IEnumerable<GwWorld> Worlds
         {
-            get
-            {
-                if (this.gwWorldCache == null)
-                {
-                    var arguments = new List<KeyValuePair<string, object>>
-                    {
-                        new KeyValuePair<string, object>("lang", this.apiManager.ToString())
-                    };
+            get { return this.worldCache.Value; }
+        }
 
-                    this.gwWorldCache = ApiCall.GetContent<List<GwWorld>>("world_names.json", arguments, ApiCall.Categories.World);
-                }
+        /// <summary>
+        /// Gets all worlds asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwWorld>> GetAllWorldsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwWorld>> methodCall = () => this.Worlds;
 
-                return this.gwWorldCache;
-            }
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
@@ -80,6 +94,19 @@ namespace GW2DotNET.V1.World.DataProvider
         }
 
         /// <summary>
+        /// Gets a world by ID asynchronously.
+        /// </summary>
+        /// <param name="worldId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<GwWorld> GetWorldFromIdAsync(int worldId, CancellationToken cancellationToken)
+        {
+            Func<GwWorld> methodCall = () => this[worldId];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
         /// Gets a world by name
         /// </summary>
         /// <param name="name">The name of the world</param>
@@ -90,6 +117,19 @@ namespace GW2DotNET.V1.World.DataProvider
             {
                 return this.Worlds.Single(n => n.Name == name);
             }
+        }
+
+        /// <summary>
+        /// Gets a world by name asynchronously.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<GwWorld> GetWorldFromNameAsync(string name, CancellationToken cancellationToken)
+        {
+            Func<GwWorld> methodCall = () => this[name];
+
+            return Task.Factory.StartNew(methodCall);
         }
 
         /// <summary>

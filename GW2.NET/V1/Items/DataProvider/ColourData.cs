@@ -7,10 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models;
 
@@ -29,13 +31,17 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// The colours cache.
         /// </summary>
-        private IEnumerable<GwColour> coloursCache;
+        private readonly Lazy<IEnumerable<GwColour>> coloursCache;
 
-        /// <summary>Initializes a new instance of the <see cref="ColourData"/> class.</summary>
-        /// <param name="apiManager">The api Manager.</param>
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ColourData"/> class.
+        /// </summary>
+        /// <param name="apiManager">The API manager.</param>
         internal ColourData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
+
+            this.coloursCache = new Lazy<IEnumerable<GwColour>>(GetColours);
         }
 
         /// <summary>
@@ -43,10 +49,19 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// </summary>
         private IEnumerable<GwColour> Colours
         {
-            get
-            {
-                return this.coloursCache ?? (this.coloursCache = this.GetColours());
-            }
+            get { return this.coloursCache.Value; }
+        }
+
+        /// <summary>
+        /// Get all colors asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwColour>> GetAllColoursAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwColour>> methodCall = () => this.Colours;
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
@@ -67,7 +82,20 @@ namespace GW2DotNET.V1.Items.DataProvider
         }
 
         /// <summary>
-        ///  Gets a single colour from the colours cache.
+        /// Gets a single colour from id asynchronously.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<GwColour> GetColourFromIdAsync(int id, CancellationToken cancellationToken)
+        {
+            Func<GwColour> methodCall = () => this[id];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
+        /// Gets a single colour from the colours cache.
         /// </summary>
         /// <param name="name">
         /// The name of the colour.
@@ -81,6 +109,19 @@ namespace GW2DotNET.V1.Items.DataProvider
             {
                 return this.Colours.Single(colour => colour.Name == name);
             }
+        }
+
+        /// <summary>
+        /// Gets a single colour from name asynchronously.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<GwColour> GetColourFromNameAsync(string name, CancellationToken cancellationToken)
+        {
+            Func<GwColour> methodCall = () => this[name];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>

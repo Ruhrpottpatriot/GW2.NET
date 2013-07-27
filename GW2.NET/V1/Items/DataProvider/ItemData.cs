@@ -13,7 +13,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models.Items;
 
@@ -32,40 +33,115 @@ namespace GW2DotNET.V1.Items.DataProvider
         /// <summary>
         /// The name of the file on disk where we will cache the item data.
         /// </summary>
-        private readonly string cacheFileName;
+        private readonly string itemIdCacheFileName;
+
+        private readonly string itemCacheFileName;
 
         /// <summary>
         /// The item id cache.
         /// </summary>
-        private IEnumerable<int> itemIdCache;
+        private Lazy<IEnumerable<int>> itemIdCache;
 
         /// <summary>
         /// The items cache.
         /// </summary>
-        private IEnumerable<Item> itemsCache;
+        private Lazy<IEnumerable<Item>> itemsCache;
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
         /// <param name="apiManager">The api Manager.</param>
-        internal ItemData(ApiManager apiManager)
+        internal ItemData(ApiManager apiManager) :
+            this(string.Format("{0}\\GW2.NET", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)), 
+            apiManager)
         {
-            this.apiManager = apiManager;
-
-            this.cacheFileName = string.Format("{0}\\GW2.NET\\ItemDataCache{1}.binary", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), this.apiManager.Language);
-
-            this.LoadCache();
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
-        /// <param name="language">The language of the retrieved content.</param>
         /// <param name="savePath">The path to the file (without file name and trailing slash).</param>
         /// <param name="apiManager">The api Manager.</param>
-        internal ItemData(Language language, string savePath, ApiManager apiManager)
+        internal ItemData(string savePath, ApiManager apiManager)
         {
             this.apiManager = apiManager;
 
-            this.cacheFileName = string.Format("{0}\\ItemDataCache{1}.binary", savePath, language);
+            this.itemIdCacheFileName = string.Format("{0}\\ItemIdCache{1}.binary", savePath, apiManager.Language);
 
-            this.LoadCache();
+            this.itemCacheFileName = string.Format("{0}\\ItemCache{1}.binary", savePath, apiManager.Language);
+
+            this.itemIdCache = new Lazy<IEnumerable<int>>(InitializeItemIdCache);
+
+            this.itemsCache = new Lazy<IEnumerable<Item>>(InitializeItemCache);
+        }
+
+        private IEnumerable<int> InitializeItemIdCache()
+        {
+            if (File.Exists(this.itemIdCacheFileName))
+            {
+                ItemIdCacheData diskData;
+
+                using (var fileStream = new FileStream(this.itemIdCacheFileName, FileMode.Open))
+                {
+                    var binarySerializer = new BinaryFormatter();
+
+                    diskData = (ItemIdCacheData)binarySerializer.Deserialize(fileStream);
+                }
+
+                if (diskData.Build >= apiManager.Build)
+                    return diskData.ItemIds;
+            }
+
+            // Cache was stale or not found
+            var itemIdData = ApiCall.GetContent<Dictionary<string, List<int>>>("items.json", null, ApiCall.Categories.Items)
+                       .Values.First();
+
+            var dataToSave = new ItemIdCacheData()
+                {
+                    Build = apiManager.Build,
+                    ItemIds = itemIdData
+                };
+
+            this.SaveCacheFile(this.itemIdCacheFileName, dataToSave);
+
+            return itemIdData;
+        }
+
+        private IEnumerable<Item> InitializeItemCache()
+        {
+            if (File.Exists(this.itemCacheFileName))
+            {
+                ItemCacheData diskData;
+
+                using (var fileStream = new FileStream(this.itemCacheFileName, FileMode.Open))
+                {
+                    var binarySerializer = new BinaryFormatter();
+
+                    diskData = (ItemCacheData)binarySerializer.Deserialize(fileStream);
+                }
+
+                if (diskData.Build >= apiManager.Build)
+                    return diskData.Items;
+            }
+
+            // Cache was stale or not found
+            var itemData = this.itemIdCache.Value
+                .Select(itemId =>
+                    new List<KeyValuePair<string, object>>
+                        {
+                            new KeyValuePair<string, object>("item_id", itemId),
+                            new KeyValuePair<string, object>("lang", this.apiManager.Language)
+                        })
+                                  .Select(
+                                      arguments =>
+                                      ApiCall.GetContent<Item>("item_details.json", arguments,
+                                                               ApiCall.Categories.Items)).ToList();
+
+            var dataToSave = new ItemCacheData()
+                {
+                    Build = apiManager.Build,
+                    Items = itemData
+                };
+
+            this.SaveCacheFile(this.itemCacheFileName, dataToSave);
+
+            return itemData;
         }
 
         /// <summary>
@@ -78,13 +154,20 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             get
             {
-                if (this.itemsCache == null)
-                {
-                    this.GetAllItems();
-                }
-
-                return this.itemsCache;
+                return this.itemsCache.Value;
             }
+        }
+
+        /// <summary>
+        /// Gets all items asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<Item>> GetAllItemsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<Item>> methodCall = () => this.AllItems;
+
+            return Task.Factory.StartNew(methodCall);
         }
 
         /// <summary>
@@ -98,6 +181,19 @@ namespace GW2DotNET.V1.Items.DataProvider
             {
                 return this.AllItems.Single(item => item.Id == itemId);
             }
+        }
+
+        /// <summary>
+        /// Gets one item from ID asynchronously.
+        /// </summary>
+        /// <param name="itemId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Item> GetItemFromIdAsync(int itemId, CancellationToken cancellationToken)
+        {
+            Func<Item> methodCall = () => this[itemId];
+
+            return Task.Factory.StartNew(methodCall);
         }
 
         /// <summary>
@@ -119,55 +215,11 @@ namespace GW2DotNET.V1.Items.DataProvider
         }
 
         /// <summary>
-        /// Loads the cache from the file system to the internal cache.
-        /// </summary>
-        private void LoadCache()
-        {
-            // Check if there is a cache file present.
-            if (File.Exists(this.cacheFileName))
-            {
-                ItemDataCache diskData;
-
-                // Deserialize the binary file.
-                using (var fileStream = new FileStream(this.cacheFileName, FileMode.Open))
-                {
-                    var binarySerializer = new BinaryFormatter();
-
-                    diskData = (ItemDataCache)binarySerializer.Deserialize(fileStream);
-
-                    fileStream.Close();
-                }
-
-                // Check if the data is stale.
-                if (diskData.Build >= this.apiManager.GetLatestBuild())
-                {
-                    this.itemsCache = diskData.ItemsList;
-
-                    this.itemIdCache = diskData.ItemIds;
-                }
-
-                /* If we had no data on disk or it was stale, the cache will
-                 * be empty when this method returns. We do not proactively
-                 * retrieve the item data for the new build. This will be done
-                 * the next time the caller attempts to retrieve the details
-                 * of an item.
-                 */
-            }
-        }
-
-        /// <summary>
         /// Saves the contents of the cache to the file system.
         /// </summary>
-        private void SaveCache()
+        private void SaveCacheFile(string cacheFileName, CacheDataBase dataToSave)
         {
-            var dataToSave = new ItemDataCache
-            {
-                Build = this.apiManager.Build,
-                ItemIds = this.itemIdCache,
-                ItemsList = this.itemsCache
-            };
-
-            string directoryPath = Path.GetDirectoryName(this.cacheFileName);
+            string directoryPath = Path.GetDirectoryName(cacheFileName);
 
             // Make sure the directory exists first
             if (!string.IsNullOrEmpty(directoryPath) && !Directory.Exists(directoryPath))
@@ -180,35 +232,12 @@ namespace GW2DotNET.V1.Items.DataProvider
             }
 
             // Serialize the data and write the file
-            using (var flieStream = new FileStream(this.cacheFileName, FileMode.Create))
+            using (var fileStream = new FileStream(cacheFileName, FileMode.Create))
             {
                 var binarySerializer = new BinaryFormatter();
 
-                binarySerializer.Serialize(flieStream, dataToSave);
-
-                flieStream.Close();
+                binarySerializer.Serialize(fileStream, dataToSave);
             }
-        }
-
-        /// <summary>Fill the items cache with data and save it to disk.</summary>
-        /// <remarks>This causes upwards of 25,000 API calls, 
-        /// so we only want to do it when the build number of Guild Wars 2 changes.
-        /// Otherwise, the item data should not have changed (according to ArenaNet).
-        /// </remarks>
-        private void GetAllItems()
-        {
-            this.itemIdCache = ApiCall.GetContent<Dictionary<string, List<int>>>("items.json", null, ApiCall.Categories.Items).Values.First();
-
-            this.itemsCache = this.itemIdCache
-                .Select(itemId =>
-                    new List<KeyValuePair<string, object>>
-                        {
-                            new KeyValuePair<string, object>("item_id", itemId),
-                            new KeyValuePair<string, object>("lang", this.apiManager.Language)
-                        })
-                        .Select(arguments => ApiCall.GetContent<Item>("item_details.json", arguments, ApiCall.Categories.Items)).ToList();
-
-            this.SaveCache();
         }
     }
 }

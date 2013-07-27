@@ -10,7 +10,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Maps.Models;
 using GW2DotNET.V1.World.Models;
@@ -39,10 +40,10 @@ namespace GW2DotNET.V1.World.DataProvider
         /// <summary>
         /// Cache the event names here
         /// </summary>
-        private Dictionary<Guid, string> eventNamesCache;
+        private Lazy<Dictionary<Guid, string>> eventNamesCache;
 
         /// <summary>The events cache.</summary>
-        private IEnumerable<GwEvent> eventsCache;
+        private Lazy<IEnumerable<GwEvent>> eventsCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventData"/> class.
@@ -52,7 +53,55 @@ namespace GW2DotNET.V1.World.DataProvider
         internal EventData(ApiManager apiManager)
         {
             this.apiManager = apiManager;
+
             this.BypassCaching = false;
+
+            this.eventNamesCache = new Lazy<Dictionary<Guid, string>>(InitializeEventNamesCache);
+
+            this.eventsCache = new Lazy<IEnumerable<GwEvent>>(() => GetEvents());
+        }
+
+        private Dictionary<Guid, string> InitializeEventNamesCache()
+        {
+            var arguments = new List<KeyValuePair<string, object>>
+                {
+                    new KeyValuePair<string, object>(
+                        "lang", this.apiManager.Language)
+                };
+
+            var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json",
+                                                                                     arguments,
+                                                                                     ApiCall.Categories
+                                                                                            .World);
+
+            // Create a new Dictionary to hold the names,
+            // whereas the key is the event id and the valus the event name.
+            var cacheData = new Dictionary<Guid, string>();
+
+            // Iterate through the namesResponse,
+            // so we can throw away that damn List<Dictionary<string,string>>! *blargh*
+            foreach (var eventName in namesResponse)
+            {
+                var id = new Guid();
+
+                var name = string.Empty;
+
+                foreach (var variable in eventName)
+                {
+                    if (variable.Key == "id")
+                    {
+                        id = new Guid(variable.Value);
+                    }
+                    else
+                    {
+                        name = variable.Value;
+                    }
+                }
+
+                cacheData.Add(id, name);
+            }
+
+            return cacheData;
         }
 
         /// <summary>Gets or sets a value indicating whether to bypass caching.</summary>
@@ -69,64 +118,30 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </summary>
         internal Dictionary<Guid, string> EventNames
         {
-            get
-            {
-                if (this.eventNamesCache == null)
-                {
-                    var arguments = new List<KeyValuePair<string, object>>
-                                        {
-                                            new KeyValuePair<string, object>(
-                                                "lang", this.apiManager.Language)
-                                        };
-
-                    var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", arguments, ApiCall.Categories.World);
-
-                    // Create a new Dictionary to hold the names,
-                    // whereas the key is the event id and the valus the event name.
-                    this.eventNamesCache = new Dictionary<Guid, string>();
-
-                    // Iterate through the namesResponse,
-                    // so we can throw away that damn List<Dictionary<string,string>>! *blargh*
-                    foreach (var eventName in namesResponse)
-                    {
-                        var id = new Guid();
-
-                        var name = string.Empty;
-
-                        foreach (var variable in eventName)
-                        {
-                            if (variable.Key == "id")
-                            {
-                                id = new Guid(variable.Value);
-                            }
-                            else
-                            {
-                                name = variable.Value;
-                            }
-                        }
-
-                        this.eventNamesCache.Add(id, name);
-                    }
-                }
-
-                return this.eventNamesCache;
-            }
+            get { return this.eventNamesCache.Value; }
         }
 
         /// <summary>
         /// Gets the events.
         /// </summary>
-        private IEnumerable<GwEvent> Events
+        private IEnumerable<GwEvent> AllEvents
         {
             get
             {
-                if (this.BypassCaching)
-                {
-                    return this.GetEvents();
-                }
-
-                return this.eventsCache ?? (this.eventsCache = this.GetEvents());
+                return this.BypassCaching ? this.GetEvents() : this.eventsCache.Value;
             }
+        }
+
+        /// <summary>
+        /// Gets all events asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwEvent>> GetAllEventsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwEvent>> methodCall = () => this.AllEvents;
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
@@ -138,18 +153,21 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                if (this.BypassCaching)
-                {
-                    return this.GetEvents(world.Id);
-                }
-
-                if (this.eventsCache == null)
-                {
-                    this.eventsCache = this.GetEvents();
-                }
-
-                return this.eventsCache.Where(w => w.World == world);
+                return this.BypassCaching ? this.GetEvents(world.Id) : this.eventsCache.Value.Where(w => w.World == world);
             }
+        }
+
+        /// <summary>
+        /// Gets all events for a given world asynchronously.
+        /// </summary>
+        /// <param name="world"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwEvent>> GetEventsFromWorldAsync(GwWorld world, CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwEvent>> methodCall = () => this[world];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
@@ -161,18 +179,21 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                if (this.BypassCaching)
-                {
-                    return this.GetEvents(mapId: map.Id);
-                }
-
-                if (this.eventsCache == null)
-                {
-                   this.eventsCache = this.GetEvents();
-                }
-
-                return this.eventsCache.Where(e => e.Map == map);
+                return this.BypassCaching ? this.GetEvents(mapId: map.Id) : this.eventsCache.Value.Where(e => e.Map == map);
             }
+        }
+
+        /// <summary>
+        /// Gets all events for a given map on all worlds asynchronously.
+        /// </summary>
+        /// <param name="map"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwEvent>> GetEventsFromMapAsync(Map map, CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwEvent>> methodCall = () => this[map];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
@@ -184,18 +205,21 @@ namespace GW2DotNET.V1.World.DataProvider
         {
             get
             {
-                if (this.BypassCaching)
-                {
-                    return this.GetEvents(eventId: eventId);
-                }
-
-                if (this.eventsCache == null)
-                {
-                    this.eventsCache = this.GetEvents();
-                }
-
-                return this.eventsCache.Where(e => e.EventId == eventId);
+                return this.BypassCaching ? this.GetEvents(eventId: eventId) : this.eventsCache.Value.Where(e => e.EventId == eventId);
             }
+        }
+
+        /// <summary>
+        /// Gets one event from all worlds asynchronously.
+        /// </summary>
+        /// <param name="eventId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<GwEvent>> GetEventsFromIdAsync(Guid eventId, CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<GwEvent>> methodCall = () => this[eventId];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
@@ -206,7 +230,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </returns>
         public IEnumerator<GwEvent> GetEnumerator()
         {
-            return this.Events.GetEnumerator();
+            return this.AllEvents.GetEnumerator();
         }
 
         /// <summary>
@@ -217,7 +241,7 @@ namespace GW2DotNET.V1.World.DataProvider
         /// </returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.Events.GetEnumerator();
+            return this.AllEvents.GetEnumerator();
         }
 
         /// <summary>Gets all events for all maps on all worlds.</summary>

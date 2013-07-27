@@ -7,10 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Maps.Models;
 
@@ -23,37 +25,48 @@ namespace GW2DotNET.V1.Maps.DataProvider
         private readonly ApiManager manager;
 
         /// <summary>The continents.</summary>
-        private IEnumerable<Continent> continents;
+        private readonly Lazy<IEnumerable<Continent>> continentsCache;
 
         /// <summary>Initializes a new instance of the <see cref="ContinentData"/> class.</summary>
         /// <param name="manager">The manager.</param>
         internal ContinentData(ApiManager manager)
         {
             this.manager = manager;
+
+            this.continentsCache = new Lazy<IEnumerable<Continent>>(InitializeContinentCache);
+        }
+
+        private IEnumerable<Continent> InitializeContinentCache()
+        {
+            var args = new List<KeyValuePair<string, object>>
+                {
+                    new KeyValuePair<string, object>(
+                        "lang", this.manager.Language)
+                };
+
+            return
+                ApiCall.GetContent<Dictionary<string, Dictionary<int, Continent>>>(
+                    "continents.json", args, ApiCall.Categories.World)
+                       .Values.First()
+                       .Select(con => con.Value.ResolveId(con.Key));
         }
 
         /// <summary>Gets all continents from the api.</summary>
         private IEnumerable<Continent> Continents
         {
-            get
-            {
-                if (this.continents == null)
-                {
-                    var args = new List<KeyValuePair<string, object>>
-                                   {
-                                       new KeyValuePair<string, object>(
-                                           "lang", this.manager.Language)
-                                   };
+            get { return this.continentsCache.Value; }
+        }
 
-                    this.continents =
-                        ApiCall.GetContent<Dictionary<string, Dictionary<int, Continent>>>(
-                            "continents.json", args, ApiCall.Categories.World)
-                               .Values.First()
-                               .Select(con => con.Value.ResolveId(con.Key));
-                }
+        /// <summary>
+        /// Gets all continents asynchronously.
+        /// </summary>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<Continent>> GetAllContinentsAsync(CancellationToken cancellationToken)
+        {
+            Func<IEnumerable<Continent>> methodCall = () => this.Continents;
 
-                return this.continents;
-            }
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>Gets a continent by it's id.</summary>
@@ -71,6 +84,19 @@ namespace GW2DotNET.V1.Maps.DataProvider
             {
                 return this.Continents.Single(continent => continent.Id == id);
             }
+        }
+
+        /// <summary>
+        /// Get a continent by ID asynchronously.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Continent> GetContinentFromIdAsync(int id, CancellationToken cancellationToken)
+        {
+            Func<Continent> methodCall = () => this[id];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>

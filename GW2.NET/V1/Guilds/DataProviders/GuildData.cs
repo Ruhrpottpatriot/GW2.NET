@@ -10,14 +10,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading;
+using System.Threading.Tasks;
 using GW2DotNET.V1.Guilds.Models;
 using GW2DotNET.V1.Infrastructure;
 
 namespace GW2DotNET.V1.Guilds.DataProviders
 {
     using System.Diagnostics;
-    using System.Runtime.Remoting;
 
     /// <summary>
     /// The guild data provider.
@@ -31,8 +31,16 @@ namespace GW2DotNET.V1.Guilds.DataProviders
         private readonly List<Guild> guildCache;
 
         /// <summary>
-        /// Stores the GW2ApiManager that instantiated this object
+        ///     This object will be used to synchronize access to the guild cache.
+        ///     You MUST lock this object any time you modify the guild cache in
+        ///     order to maintain thread safety.
         /// </summary>
+        private readonly object guildCacheSyncObject = new object();
+
+        /// <summary>
+        ///     Stores the GW2ApiManager that instantiated this object
+        /// </summary>
+        // ReSharper disable NotAccessedField.Local
         private readonly ApiManager apiManager;
 
         /// <summary>Initializes a new instance of the <see cref="GuildData"/> class.</summary>
@@ -41,7 +49,7 @@ namespace GW2DotNET.V1.Guilds.DataProviders
         {
             this.apiManager = apiManager;
 
-            this.guildCache = new List<Guild>();
+            guildCache = new List<Guild>();
         }
 
         /// <summary>
@@ -70,11 +78,19 @@ namespace GW2DotNET.V1.Guilds.DataProviders
                     {
                         this.apiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
 
-                        guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
+                        guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments,
+                                                                  ApiCall.Categories.Guild);
 
+                        lock (guildCacheSyncObject)
+                        {
+                            // A different thread could have added this guild to the cache already, so check first
+                            if (guildCache.SingleOrDefault(g => g.Id == guildId).Id == Guid.Empty)
+                            {
+                                guildCache.Add(guildToReturn);
+                            }
+                        }
+                        
                         this.apiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
-
-                        this.guildCache.Add(guildToReturn);
                     }
                     catch (Exception ex)
                     {
@@ -87,15 +103,30 @@ namespace GW2DotNET.V1.Guilds.DataProviders
         }
 
         /// <summary>
-        /// Gets a single guild by name from the cache if present, or from the API if not.
+        /// Gets a single guild by ID asynchronously.
+        /// </summary>
+        /// <param name="guildId"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Guild> GetGuildFromIdAsync(Guid guildId, CancellationToken cancellationToken)
+        {
+            Func<Guild> methodCall = () => this[guildId];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
+        ///     Gets a single guild by name from the cache if present, or from the API if not.
         /// </summary>
         /// <param name="guildName">The name of the guild</param>
-        /// <returns>The <see cref="Guild"/></returns>
+        /// <returns>
+        ///     The <see cref="Guild" />
+        /// </returns>
         public Guild this[string guildName]
         {
             get
             {
-                var guildToReturn = this.guildCache.SingleOrDefault(g => g.Name == guildName);
+                Guild guildToReturn = guildCache.SingleOrDefault(g => g.Name == guildName);
 
                 if (guildToReturn.Id == Guid.Empty)
                 {
@@ -108,11 +139,19 @@ namespace GW2DotNET.V1.Guilds.DataProviders
                     {
                         this.apiManager.Logger.WriteToLog("Starting request for guild by id.", TraceEventType.Start);
 
-                        guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments, ApiCall.Categories.Guild);
+                        guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", arguments,
+                                                                  ApiCall.Categories.Guild);
 
-                        this.apiManager.Logger.WriteToLog("Finished request.", TraceEventType.Stop);
+                        lock (guildCacheSyncObject)
+                        {
+                            // A different thread could have added this guild to the cache already, so check first
+                            if (guildCache.SingleOrDefault(g => g.Name == guildName).Id == Guid.Empty)
+                            {
+                                guildCache.Add(guildToReturn);
+                            }
+                        }
 
-                        this.guildCache.Add(guildToReturn);
+                        this.apiManager.Logger.WriteToLog("Finished getting guild", TraceEventType.Stop);
                     }
                     catch (Exception ex)
                     {
@@ -122,6 +161,19 @@ namespace GW2DotNET.V1.Guilds.DataProviders
 
                 return guildToReturn;
             }
+        }
+
+        /// <summary>
+        /// Gets a single guild by name asynchronously.
+        /// </summary>
+        /// <param name="guildName"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<Guild> GetGuildFromNameAsync(string guildName, CancellationToken cancellationToken)
+        {
+            Func<Guild> methodCall = () => this[guildName];
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
         }
     }
 }

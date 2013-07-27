@@ -88,7 +88,9 @@
     <Compile Include="V1\Infrastructure\Language.cs" />
     <Compile Include="V1\Infrastructure\Logging\EventLogger.cs" />
     <Compile Include="V1\Items\DataProvider\ColourData.cs" />
-    <Compile Include="V1\Items\DataProvider\ItemDataCache.cs" />
+    <Compile Include="V1\Items\DataProvider\CacheDataBase.cs" />
+    <Compile Include="V1\Items\DataProvider\ItemCacheData.cs" />
+    <Compile Include="V1\Items\DataProvider\ItemIdCacheData.cs" />
     <Compile Include="V1\Items\Models\GwColour.ColourDetails.cs" />
     <Compile Include="V1\Items\DataProvider\ItemData.cs" />
     <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
