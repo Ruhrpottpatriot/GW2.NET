@@ -14,6 +14,8 @@ using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Infrastructure.Exceptions;
 using GW2DotNET.V1.WvW.Models;
 using System;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace GW2DotNET.V1.WvW
 {
@@ -39,7 +41,7 @@ namespace GW2DotNET.V1.WvW
 
         internal DataProvider()
         {
-            this.matchList = new Lazy<MatchList>(() => this.GetMachtList());
+            this.matchList = new Lazy<MatchList>(() => this.GetMatchList());
 
             this.objectiveNames = new Lazy<IEnumerable<WvWMatch.WvWMap.Objective>>(() => this.GetObjectiveNames());
         }
@@ -85,16 +87,29 @@ namespace GW2DotNET.V1.WvW
         }
 
         /// <summary>
+        /// Gets a single match from the api server asynchronously.
+        /// </summary>
+        /// <param name="matchId">The match id.</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        public Task<WvWMatch> GetSingleMatchAsync(string matchId, CancellationToken cancellationToken)
+        {
+            Func<WvWMatch> methodCall = () => GetSingleMatch(matchId);
+
+            return Task.Factory.StartNew(methodCall, cancellationToken);
+        }
+
+        /// <summary>
         /// Clears the map list cache and forces a re download of the map list.
         /// </summary>
         public void ClearCache()
         {
-            this.matchList = new Lazy<MatchList>(() => this.GetMachtList());
+            this.matchList = new Lazy<MatchList>(() => this.GetMatchList());
         }
 
         /// <summary>Gets the list of all matches from the api server.</summary>
         /// <returns>A <see cref="IEnumerable{T}"/> containing all matches.</returns>
-        private MatchList GetMachtList()
+        private MatchList GetMatchList()
         {
            return ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
         }
