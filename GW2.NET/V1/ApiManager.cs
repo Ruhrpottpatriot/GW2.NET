@@ -15,7 +15,7 @@ using GW2DotNET.V1.Guilds.DataProviders;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
 using GW2DotNET.V1.Maps.DataProvider;
-using GW2DotNET.V1.World.DataProvider;
+using GW2DotNET.V1.World.DataProviders;
 
 namespace GW2DotNET.V1
 {
@@ -29,7 +29,7 @@ namespace GW2DotNET.V1
     /// by the caller. All functionality is accessed through the
     /// properties of this object.
     /// </summary>
-    public class ApiManager
+    public class ApiManager : IApiManager
     {
         /// <summary>Backing field for the event logger.</summary>
         private readonly EventLogger logger;
@@ -38,23 +38,23 @@ namespace GW2DotNET.V1
         private int build = -1;
 
         /// <summary>Backing field for the continent data.</summary>
-        private ContinentData continentData;
+        private ContinentData continentDataOld;
 
         /// <summary>Backing field for the map data.</summary>
-        private MapsData mapData;
+        private MapsData mapDataOld;
 
         /// <summary>
         /// Backing field for Colours property
         /// </summary>
-        private ColourData colourData;
+        private ColourData colourDataOld;
 
         /// <summary>
         /// Backing field for Events property
         /// </summary>
-        private EventData eventData;
+        private EventData eventDataOld;
 
         /// <summary>The floor data.</summary>
-        private MapFloorData floorData;
+        private MapFloorData floorDataOld;
 
         /// <summary>
         /// Backing field for Guilds property
@@ -64,7 +64,7 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Backing field for Items property
         /// </summary>
-        private ItemData itemData;
+        private ItemData itemDataOld;
 
         /// <summary>
         /// Backing field for wvwMatches property
@@ -74,12 +74,12 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Backing field for Recipes property
         /// </summary>
-        private RecipeData recipeData;
+        private RecipeData recipeDataOld;
 
         /// <summary>
         /// Backing field for Worlds property
         /// </summary>
-        private WorldData worldData;
+        private WorldData worldDataOld;
 
         /// <summary>
         /// Stores the language set by the constructor
@@ -155,16 +155,18 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.continentData ?? (this.continentData = new ContinentData(this));
+                return this.continentDataOld ?? (this.continentDataOld = new ContinentData(this));
             }
         }
+
+
 
         /// <summary>Gets the floor data.</summary>
         public MapFloorData FloorData
         {
             get
             {
-                return this.floorData ?? (this.floorData = new MapFloorData(this));
+                return this.floorDataOld ?? (this.floorDataOld = new MapFloorData(this));
             }
         }
 
@@ -173,7 +175,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.mapData ?? (this.mapData = new MapsData(this));
+                return this.mapDataOld ?? (this.mapDataOld = new MapsData(this));
             }
         }
 
@@ -184,7 +186,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.colourData ?? (this.colourData = new ColourData(this));
+                return this.colourDataOld ?? (this.colourDataOld = new ColourData(this));
             }
         }
 
@@ -195,7 +197,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.eventData ?? (this.eventData = new EventData(this));
+                return this.eventDataOld ?? (this.eventDataOld = new EventData(this));
             }
         }
 
@@ -207,11 +209,9 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.guildData ?? (this.guildData = new Guilds.DataProvider());
+                return this.guildData ?? (this.guildData = new Guilds.DataProvider(this));
             }
-
         }
-
 
         /// <summary>
         /// Gets the GuildData object.
@@ -228,11 +228,12 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Gets the ItemData object.
         /// </summary>
+        [Obsolete("This implementation is currently broken and will be fixed in a future release.", true)]
         public ItemData Items
         {
             get
             {
-                return this.itemData ?? (this.itemData = new ItemData(this));
+                return this.itemDataOld ?? (this.itemDataOld = new ItemData(this));
             }
         }
 
@@ -243,7 +244,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.recipeData ?? (this.recipeData = new RecipeData());
+                return this.recipeDataOld ?? (this.recipeDataOld = new RecipeData());
             }
         }
 
@@ -266,7 +267,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.worldData ?? (this.worldData = new WorldData(this));
+                return this.worldDataOld ?? (this.worldDataOld = new WorldData(this));
             }
         }
 
@@ -277,14 +278,14 @@ namespace GW2DotNET.V1
         public void ClearCache()
         {
             // Old way to clear the cache.
-            this.colourData = null;
-            this.eventData = null;
-            this.itemData = null;
-            this.continentData = null;
-            this.floorData = null;
-            this.mapData = null;
-            this.recipeData = null;
-            this.worldData = null;
+            this.colourDataOld = null;
+            this.eventDataOld = null;
+            this.itemDataOld = null;
+            this.continentDataOld = null;
+            this.floorDataOld = null;
+            this.mapDataOld = null;
+            this.recipeDataOld = null;
+            this.worldDataOld = null;
 
             // New way
             this.WvWMatchData.ClearCache();
