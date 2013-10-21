@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Items.Models.Items
     /// <summary>
     /// Enumerates all possible item restrictions.
     /// </summary>
-    public enum Restriction
+    public enum ItemRestrictions
     {
         /// <summary>
         /// The item is for asura only.

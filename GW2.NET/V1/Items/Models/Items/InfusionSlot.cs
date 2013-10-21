@@ -31,7 +31,6 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// </param>
         [JsonConstructor]
         public InfusionSlot(string item, IEnumerable<UpgradeFlag> flags)
-
         {
             this.Flags = flags;
             this.Item = item;

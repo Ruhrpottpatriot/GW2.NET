@@ -136,7 +136,7 @@
     <Compile Include="V1\Items\Models\RecipeType.cs" />
     <Compile Include="V1\Items\Models\Items\Restriction.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\UpgradeComponent.cs" />
-    <Compile Include="V1\Items\Models\Items\WeaponRarity.cs" />
+    <Compile Include="V1\Items\Models\Items\ItemRarity.cs" />
     <Compile Include="V1\Items\Models\Items\ItemType.cs" />
     <Compile Include="V1\Maps\DataProvider\ContinentData.cs" />
     <Compile Include="V1\Maps\DataProvider\MapFloorData.cs" />

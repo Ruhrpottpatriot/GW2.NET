@@ -228,7 +228,7 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Gets the ItemData object.
         /// </summary>
-        [Obsolete("This implementation is currently broken and will be fixed in a future release.", true)]
+        // [Obsolete("This implementation is currently broken and will be fixed in a future release.", true)]
         public ItemData Items
         {
             get

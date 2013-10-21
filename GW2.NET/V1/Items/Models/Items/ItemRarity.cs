@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WeaponRarity.cs" company="GW2.Net Coding Team">
+// <copyright file="ItemRarity.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -10,9 +10,9 @@
 namespace GW2DotNET.V1.Items.Models.Items
 {
     /// <summary>
-    /// Enumerates the weapon rarity.
+    /// Enumerates the item rarity.
     /// </summary>
-    public enum WeaponRarity
+    public enum ItemRarity
     {
         /// <summary>
         /// The item is junk.
