@@ -84,7 +84,12 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             /// <summary>
             /// An utility consumable.
             /// </summary>
-            Utility
+            Utility,
+
+            /// <summary>
+            /// An unknown consumable.
+            /// </summary>
+            Unknown
         }
 
         /// <summary>
