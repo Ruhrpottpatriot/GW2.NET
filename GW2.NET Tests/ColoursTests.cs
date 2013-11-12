@@ -94,6 +94,7 @@ namespace GW2.NET_Tests
             Trace.WriteLine(string.Format("Single colour name: {0}", colour.Name));
         }
 
+        /// <summary>The get colour from id asynchronously.</summary>
         [Test]
         public void GetColourFromIdAsync()
         {
@@ -130,6 +131,7 @@ namespace GW2.NET_Tests
             Trace.WriteLine(string.Format("Single colour name: {0}", colour.Name));
         }
 
+        /// <summary>The get colour from name asynchronously.</summary>
         [Test]
         public void GetColourFromNameAsync()
         {

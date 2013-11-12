@@ -7,14 +7,15 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Diagnostics;
+
+using GW2DotNET.V1;
+
 using NUnit.Framework;
 
 namespace GW2.NET_Tests
 {
-    using System;
-    using GW2DotNET.V1;
-
     /// <summary>
     /// The miscellaneous tests.
     /// </summary>
@@ -47,7 +48,7 @@ namespace GW2.NET_Tests
 
             this.apiManager.Logger.WriteToLog("Some Information", TraceEventType.Information);
 
-            Trace.WriteLine(this.apiManager.Logger.CompleteLogFilePath);
+            Trace.WriteLine(this.apiManager.Logger.LogFileDirectory);
         }
 
         /// <summary>

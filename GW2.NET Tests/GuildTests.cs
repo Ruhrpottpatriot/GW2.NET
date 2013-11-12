@@ -16,6 +16,8 @@ using NUnit.Framework;
 
 namespace GW2.NET_Tests
 {
+    using System.Threading.Tasks;
+
     /// <summary>
     /// The guild tests.
     /// </summary>
@@ -44,7 +46,7 @@ namespace GW2.NET_Tests
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var guild = this.manager.Guilds[new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8")];
+            var guild = this.manager.GuildData.GetSingleGuildAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8")).Result;
 
             watch.Stop();
 
@@ -58,14 +60,11 @@ namespace GW2.NET_Tests
         /// Gets a single guild from the api.
         /// </summary>
         [Test]
-        public void GetSingleGuildFromIdAsync()
+        public async Task GetSingleGuildFromIdAsync()
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var task = this.manager.Guilds.GetGuildFromIdAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8"), CancellationToken.None);
-            task.Wait();
-
-            var guild = task.Result;
+            var guild = await this.manager.GuildData.GetSingleGuildAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8"));
 
             watch.Stop();
 
@@ -79,14 +78,11 @@ namespace GW2.NET_Tests
         /// Gets a single guild from the api.
         /// </summary>
         [Test]
-        public void GetSingleGuildFromNameAsync()
+        public async Task GetSingleGuildFromNameAsync()
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var task = this.manager.Guilds.GetGuildFromNameAsync("Wayward Blade", CancellationToken.None);
-            task.Wait();
-
-            var guild = task.Result;
+            var guild = await this.manager.GuildData.GetSingleGuildAsync("Wayward Blade");
 
             watch.Stop();
 

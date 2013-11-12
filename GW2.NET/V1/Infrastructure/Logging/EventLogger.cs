@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Infrastructure.Logging
     using System.IO;
 
     /// <summary>The logging framework.</summary>
-    public class EventLogger
+    public class EventLogger : IEventLogger
     {
         /// <summary>The trace source.</summary>
         private readonly TraceSource traceSource;
@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Infrastructure.Logging
         /// <summary>The warnings log path.</summary>
         private string warningsLog;
 
-        /// <summary>The complete log path.</summary>
+        /// <summary>The complete log-file path.</summary>
         private string completeLog;
 
         /// <summary>Initializes a new instance of the <see cref="EventLogger"/> class.</summary>
@@ -70,7 +70,7 @@ namespace GW2DotNET.V1.Infrastructure.Logging
             this.completeListener.Filter = new EventTypeFilter(SourceLevels.All);
         }
 
-        /// <summary>Gets the complete log file path.</summary>
+        /// <summary>Gets the path of the complete log-file.</summary>
         public string CompleteLogFilePath
         {
             get
@@ -79,7 +79,7 @@ namespace GW2DotNET.V1.Infrastructure.Logging
             }
         }
 
-        /// <summary>Gets the error log file path.</summary>
+        /// <summary>Gets the path of the error log.</summary>
         public string ErrorLogFilePath
         {
             get

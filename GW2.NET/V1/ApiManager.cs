@@ -9,9 +9,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
-using GW2DotNET.V1.Guilds.DataProviders;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
 using GW2DotNET.V1.Maps.DataProvider;
@@ -23,6 +20,7 @@ namespace GW2DotNET.V1
     using System.Linq;
 
     using GW2DotNET.V1.Infrastructure.Logging;
+    using System;
 
     /// <summary>
     /// This is the one and only class that is directly instantiated
@@ -31,9 +29,15 @@ namespace GW2DotNET.V1
     /// </summary>
     public class ApiManager : IApiManager
     {
-        /// <summary>Backing field for the event logger.</summary>
-        private readonly EventLogger logger;
+        // --------------------------------------------------------------------------------------------------------------------
+        // Fields
+        // --------------------------------------------------------------------------------------------------------------------
 
+        /// <summary>Backing field for the event logger.</summary>
+        private readonly IEventLogger logger;
+
+        private Lazy<WvW.PvPData> pvpData;
+        
         /// <summary>The build.</summary>
         private int build = -1;
 
@@ -55,11 +59,6 @@ namespace GW2DotNET.V1
 
         /// <summary>The floor data.</summary>
         private MapFloorData floorDataOld;
-
-        /// <summary>
-        /// Backing field for Guilds property
-        /// </summary>
-        private GuildData guildDataOld;
 
         /// <summary>
         /// Backing field for Items property
@@ -87,13 +86,12 @@ namespace GW2DotNET.V1
         private Language language;
 
         /// <summary>Stores the instance of the guild data provider.</summary>
-        private Guilds.DataProvider guildData;
+        private Lazy<Guilds.DataProvider> guildData;
 
         /// <summary>Initializes a new instance of the <see cref="ApiManager"/> class.</summary>
         public ApiManager()
+            : this(Language.En)
         {
-            this.language = Language.En;
-            this.logger = new EventLogger();
         }
 
         /// <summary>
@@ -105,7 +103,19 @@ namespace GW2DotNET.V1
         public ApiManager(Language language)
         {
             this.language = language;
-            this.logger = new EventLogger();
+
+            if (this.logger == null)
+            {
+                this.logger = new EventLogger();
+            }
+
+            this.Initialize();
+        }
+
+        private void Initialize()
+        {
+            this.pvpData = new Lazy<WvW.PvPData>(() => new WvW.PvPData(this));
+            this.guildData = new Lazy<Guilds.DataProvider>(() => new Guilds.DataProvider(this));
         }
 
         /// <summary>Gets the build.</summary>
@@ -142,7 +152,7 @@ namespace GW2DotNET.V1
         }
 
         /// <summary>Gets the logger.</summary>
-        public EventLogger Logger
+        public IEventLogger Logger
         {
             get
             {
@@ -158,8 +168,6 @@ namespace GW2DotNET.V1
                 return this.continentDataOld ?? (this.continentDataOld = new ContinentData(this));
             }
         }
-
-
 
         /// <summary>Gets the floor data.</summary>
         public MapFloorData FloorData
@@ -209,26 +217,13 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.guildData ?? (this.guildData = new Guilds.DataProvider(this));
-            }
-        }
-
-        /// <summary>
-        /// Gets the GuildData object.
-        /// </summary>
-        [Obsolete("This implementation of the guild api is obsolete. Please use the new GuildData property.")]
-        public GuildData Guilds
-        {
-            get
-            {
-                return this.guildDataOld ?? (this.guildDataOld = new GuildData(this));
+                return this.guildData.Value;
             }
         }
 
         /// <summary>
         /// Gets the ItemData object.
         /// </summary>
-        // [Obsolete("This implementation is currently broken and will be fixed in a future release.", true)]
         public ItemData Items
         {
             get
@@ -248,10 +243,19 @@ namespace GW2DotNET.V1
             }
         }
 
+        public WvW.PvPData PvpData
+        {
+            get
+            {
+                return this.pvpData.Value;
+            }
+        }
+
         /// <summary>Gets the instance of the world versus world data provider.</summary>
         /// /// <remarks>This property is the entry point to the world versus world api.
         /// From here the user can access all the information the world versus world api has to offer.</remarks>
         /// <seealso cref="V1.WvW.DataProvider"/>
+        [Obsolete]
         public WvW.DataProvider WvWMatchData
         {
             get
@@ -277,7 +281,8 @@ namespace GW2DotNET.V1
         /// </summary>
         public void ClearCache()
         {
-            // Old way to clear the cache.
+            // Old way to clear the cache. Still there for legacy purposes.
+            // Remove when the implementation is removed.
             this.colourDataOld = null;
             this.eventDataOld = null;
             this.itemDataOld = null;
@@ -288,8 +293,8 @@ namespace GW2DotNET.V1
             this.worldDataOld = null;
 
             // New way
-            this.WvWMatchData.ClearCache();
             this.GuildData.ClearCache();
+            this.pvpData.Value.ClearCache();
         }
 
         /// <summary>Gets the latest build from the server.</summary>

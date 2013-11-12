@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CacheEmptyException.cs" company="GW2.Net Coding Team">
+// <copyright file="NoDataDownloadedException.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The cache empty exception.
+//   Defines the NoDataDownloadedException type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -14,31 +14,37 @@ namespace GW2DotNET.V1.Infrastructure.Exceptions
 {
     /// <summary>
     /// Represents an error that occurs,
-    /// if the accessed cache is empty.
+    /// if the user tries to access data that is not yet downloaded.
     /// </summary>
+    /// <remarks>
+    /// This exception is used to signalize the user,
+    /// that he tries to access a property that has no data in it
+    /// and he should call the data fetching method first.
+    /// This is done to keep the property access time as small as possible.
+    /// </remarks>
     [Serializable]
-    public class CacheEmptyException : Exception
+    public class NoDataDownloadedException : Exception
     {
-        /// <summary>Initializes a new instance of the <see cref="CacheEmptyException"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="NoDataDownloadedException"/> class.</summary>
         /// <param name="message">The message that describes the error.</param>
-        public CacheEmptyException(string message)
+        public NoDataDownloadedException(string message)
             : base(message)
         {
         }
 
-        /// <summary>Initializes a new instance of the <see cref="CacheEmptyException"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="NoDataDownloadedException"/> class.</summary>
         /// <param name="message">The message that describes the error.</param>
         /// <param name="inner">The Exception that is the cause of the current exception, 
         /// or a null reference if no inner exception is specified.</param>
-        public CacheEmptyException(string message, Exception inner)
+        public NoDataDownloadedException(string message, Exception inner)
             : base(message, inner)
         {
         }
 
-        /// <summary>Initializes a new instance of the <see cref="CacheEmptyException"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="NoDataDownloadedException"/> class.</summary>
         /// <param name="info">The info.</param>
         /// <param name="ctxt">The context.</param>
-        protected CacheEmptyException(SerializationInfo info, StreamingContext ctxt)
+        protected NoDataDownloadedException(SerializationInfo info, StreamingContext ctxt)
             : base(info, ctxt)
         {
         }

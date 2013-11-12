@@ -8,15 +8,18 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
-using System.Linq;
+using System.Threading;
 
 using GW2DotNET.V1;
 
 using NUnit.Framework;
-using System.Threading;
 
 namespace GW2.NET_Tests
 {
+    using System.Threading.Tasks;
+
+    using GW2DotNET.V1.Maps.Models;
+
     /// <summary>
     /// The wvw tests.
     /// </summary>
@@ -45,11 +48,23 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var matches = this.manager.WvWMatchData.All;
+            var matchList = this.manager.PvpData.GetMatchList();
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Trace.WriteLine(string.Format("Total Number of Matches: {0}", matches.Count));
+            Trace.WriteLine(string.Format("Total Number of Matches: {0}", matchList.Count));
+        }
+
+        [Test]
+        public async Task GetMatchListAsync()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var matchList = await this.manager.PvpData.GetMatchListAsync();
+
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
+
+            Trace.WriteLine(string.Format("Total Number of Matches: {0}", matchList.Count));
         }
 
         /// <summary>
@@ -60,7 +75,7 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var singleMatch = this.manager.WvWMatchData.GetSingleMatch("1-1");
+            var singleMatch = this.manager.PvpData.GetSingleMatch("1-1");
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -71,16 +86,11 @@ namespace GW2.NET_Tests
         /// Gets a single match from the api asynchronously.
         /// </summary>
         [Test]
-        public void GetSingleMatchAsync()
+        public async Task GetSingleMatchAsync()
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var task = this.manager.WvWMatchData.GetSingleMatchAsync("1-1", CancellationToken.None);
-            task.Wait();
-
-            stopwatch.Stop();
-
-            var singleMatch = task.Result;
+            var singleMatch = await this.manager.PvpData.GetSingleMatchAsync("1-1");
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 

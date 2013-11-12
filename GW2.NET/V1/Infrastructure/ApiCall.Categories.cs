@@ -12,6 +12,10 @@ namespace GW2DotNET.V1.Infrastructure
     /// <summary>Contains static methods to call the guild wars 2 API.</summary>
     public static partial class ApiCall
     {
+        // --------------------------------------------------------------------------------------------------------------------
+        // Enumerations
+        // --------------------------------------------------------------------------------------------------------------------
+
         /// <summary>
         /// Enumerates the possible categories a request can be.
         /// </summary>

@@ -77,7 +77,7 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             Immediate,
 
             /// <summary>
-            /// A consumable to transmutate items.
+            /// A consumable to transmute items.
             /// </summary>
             Transmutation,
 

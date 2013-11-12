@@ -96,19 +96,22 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="V1\Guilds\DataProvider.cs" />
-    <Compile Include="V1\Guilds\DataProviders\GuildData.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />
     <Compile Include="V1\ApiManager.cs" />
     <Compile Include="V1\IApiManager.cs" />
+    <Compile Include="V1\Infrastructure\ANetApiRequest.cs" />
     <Compile Include="V1\Infrastructure\ApiCall.Categories.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
     <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
     <Compile Include="V1\Infrastructure\ChatLinks.cs" />
     <Compile Include="V1\Infrastructure\Exceptions\CacheEmptyException.cs" />
+    <Compile Include="V1\Infrastructure\Exceptions\NoDataDownloadedException.cs" />
+    <Compile Include="V1\Infrastructure\Extensions\IEnumerableExtensions.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
     <Compile Include="V1\Infrastructure\Logging\EventLogger.cs" />
+    <Compile Include="V1\Infrastructure\Logging\IEventLogger.cs" />
     <Compile Include="V1\Items\DataProvider\ColourData.cs" />
     <Compile Include="V1\Items\DataProvider\CacheDataBase.cs" />
     <Compile Include="V1\Items\DataProvider\ItemCacheData.cs" />
@@ -169,6 +172,7 @@
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.Type.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.WvWObjective.cs" />
+    <Compile Include="V1\WvW\PvPData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

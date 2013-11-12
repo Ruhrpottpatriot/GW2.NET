@@ -1,6 +1,12 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IApiManager.cs" company="GW2.Net Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// <summary>
+//   The ApiManager interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Guilds.DataProviders;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Infrastructure.Logging;
 using GW2DotNET.V1.Items.DataProvider;
@@ -22,7 +28,7 @@ namespace GW2DotNET.V1
         Language Language { get; set; }
 
         /// <summary>Gets the logger.</summary>
-        EventLogger Logger { get; }
+        IEventLogger Logger { get; }
 
         /// <summary>Gets the continent data.</summary>
         ContinentData Continents { get; }
@@ -48,12 +54,6 @@ namespace GW2DotNET.V1
         /// From here the user can access all the information the guild api has to offer.</remarks>
         /// <seealso cref="V1.Guilds.DataProvider"/>
         Guilds.DataProvider GuildData { get; }
-
-        /// <summary>
-        /// Gets the GuildData object.
-        /// </summary>
-        [Obsolete("This implementation of the guild api is obsolete. Please use the new GuildData property.")]
-        GuildData Guilds { get; }
 
         /// <summary>
         /// Gets the ItemData object.
