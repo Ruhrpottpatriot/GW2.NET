@@ -36,6 +36,7 @@ namespace GW2DotNET.V1
         /// <summary>Backing field for the event logger.</summary>
         private readonly IEventLogger logger;
 
+        /// <summary>The pvp data.</summary>
         private Lazy<WvW.PvPData> pvpData;
         
         /// <summary>The build.</summary>
