@@ -31,7 +31,6 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// </param>
         [JsonConstructor]
         public InfixUpgrade(IEnumerable<ItemAttribute> attributes, Dictionary<string, string> buff)
-
         {
             this.Attributes = attributes;
             this.Buff = buff;
@@ -74,7 +73,6 @@ namespace GW2DotNET.V1.Items.Models.Items
             /// </param>
             [JsonConstructor]
             public ItemAttribute(TargetAttribute targetAttribute, int modifier)
-    
             {
                 this.Attribute = targetAttribute;
                 this.Modifier = modifier;

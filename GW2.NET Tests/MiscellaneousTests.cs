@@ -22,7 +22,7 @@ namespace GW2.NET_Tests
     public class MiscellaneousTests
     {
         /// <summary>The api manager.</summary>
-        private ApiManager apiManager;
+        private IApiManager apiManager;
 
         /// <summary>
         /// Runs before each test run.

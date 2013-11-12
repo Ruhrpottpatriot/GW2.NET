@@ -37,11 +37,14 @@ namespace GW2DotNET.V1.Guilds
         /// </summary>
         private List<Guild> guildCache;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DataProvider"/> class.
-        /// </summary>
-        internal DataProvider()
+        /// <summary>The api manager.</summary>
+        private ApiManager apiManager;
+
+        /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
+        /// <param name="apiManager">The api Manager.</param>
+        internal DataProvider(ApiManager apiManager)
         {
+            this.apiManager = apiManager;
             this.guildCache = new List<Guild>();
         }
 

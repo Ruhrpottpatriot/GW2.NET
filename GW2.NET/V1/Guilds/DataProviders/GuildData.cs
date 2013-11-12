@@ -128,7 +128,7 @@ namespace GW2DotNET.V1.Guilds.DataProviders
             {
                 Guild guildToReturn = guildCache.SingleOrDefault(g => g.Name == guildName);
 
-                if (guildToReturn.Id == Guid.Empty)
+                if (guildToReturn == null)
                 {
                     var arguments = new List<KeyValuePair<string, object>>
                         {

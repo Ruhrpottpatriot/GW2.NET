@@ -100,7 +100,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// The armour details.
         /// </param>
         [JsonConstructor]
-        public Item(IEnumerable<Restriction> restrictions, IEnumerable<ItemFlags> flags, IEnumerable<GameType> gameTypes, int vendorValue, WeaponRarity rarity, int level, ItemType type, string description, string name, int id, Weapon weaponDetails, UpgradeComponent upgradeComponentDetails, Trophy trophyDetails, Trinket trinketDetails, Tool toolDetails, Gizmo gizmoDetails, Tool gatheringDetails, CraftingMaterial craftingMaterialDetails, Container containerDetails, Consumable consumableDetails, Bag bagDetails, Back backDetails, Armour armourDetails)
+        public Item(IEnumerable<ItemRestrictions> restrictions, IEnumerable<ItemFlags> flags, IEnumerable<GameType> gameTypes, int vendorValue, ItemRarity rarity, int level, ItemType type, string description, string name, int id, Weapon weaponDetails, UpgradeComponent upgradeComponentDetails, Trophy trophyDetails, Trinket trinketDetails, Tool toolDetails, Gizmo gizmoDetails, Tool gatheringDetails, CraftingMaterial craftingMaterialDetails, Container containerDetails, Consumable consumableDetails, Bag bagDetails, Back backDetails, Armour armourDetails)
         {
             this.Name = name;
             this.id = id;
@@ -183,7 +183,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// Gets the rarity.
         /// </summary>
         [JsonProperty("rarity")]
-        public WeaponRarity Rarity
+        public ItemRarity Rarity
         {
             get;
             private set;
@@ -223,7 +223,7 @@ namespace GW2DotNET.V1.Items.Models.Items
         /// Gets the restrictions.
         /// </summary>
         [JsonProperty("restrictions")]
-        public IEnumerable<Restriction> Restrictions
+        public IEnumerable<ItemRestrictions> Restrictions
         {
             get;
             private set;

@@ -13,6 +13,7 @@ using System.Linq;
 using GW2DotNET.V1;
 
 using NUnit.Framework;
+using System.Threading;
 
 namespace GW2.NET_Tests
 {
@@ -60,6 +61,26 @@ namespace GW2.NET_Tests
             var stopwatch = Stopwatch.StartNew();
 
             var singleMatch = this.manager.WvWMatchData.GetSingleMatch("1-1");
+
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
+
+            Trace.WriteLine(string.Format("Match Id: {0}", singleMatch.MatchId));
+        }
+
+        /// <summary>
+        /// Gets a single match from the api asynchronously.
+        /// </summary>
+        [Test]
+        public void GetSingleMatchAsync()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var task = this.manager.WvWMatchData.GetSingleMatchAsync("1-1", CancellationToken.None);
+            task.Wait();
+
+            stopwatch.Stop();
+
+            var singleMatch = task.Result;
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 

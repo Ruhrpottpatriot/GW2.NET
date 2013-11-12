@@ -7,15 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.Infrastructure.Exceptions;
 using GW2DotNET.V1.WvW.Models;
-using System;
-using System.Threading.Tasks;
-using System.Threading;
 
 namespace GW2DotNET.V1.WvW
 {
@@ -39,11 +38,12 @@ namespace GW2DotNET.V1.WvW
         /// <summary>The internal list of objective names.</summary>
         private Lazy<IEnumerable<WvWMatch.WvWMap.Objective>> objectiveNames;
 
+        /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
         internal DataProvider()
         {
-            this.matchList = new Lazy<MatchList>(() => this.GetMatchList());
+            this.matchList = new Lazy<MatchList>(this.GetMatchList);
 
-            this.objectiveNames = new Lazy<IEnumerable<WvWMatch.WvWMap.Objective>>(() => this.GetObjectiveNames());
+            this.objectiveNames = new Lazy<IEnumerable<WvWMatch.WvWMap.Objective>>(this.GetObjectiveNames);
         }
 
         /// <summary>Gets a collection of all matches.</summary>
@@ -81,7 +81,7 @@ namespace GW2DotNET.V1.WvW
                 objective.ResolveObjectiveNames(this.ObjectiveNames.Single(o => o.Id == objective.Id));
             }
 
-           var newMatch = singleMatch.ResolveInfos(this.All.Single(match => match.MatchId == matchId));
+            var newMatch = singleMatch.ResolveInfos(this.All.Single(match => match.MatchId == matchId));
 
             return newMatch;
         }
@@ -90,28 +90,32 @@ namespace GW2DotNET.V1.WvW
         /// Gets a single match from the api server asynchronously.
         /// </summary>
         /// <param name="matchId">The match id.</param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <param name="cancellationToken">Propagates notification that the operation should be cancelled.</param>
+        /// <returns>The <see cref="WvWMatch"/>.</returns>
         public Task<WvWMatch> GetSingleMatchAsync(string matchId, CancellationToken cancellationToken)
         {
-            Func<WvWMatch> methodCall = () => GetSingleMatch(matchId);
+            Func<WvWMatch> methodCall = () => this.GetSingleMatch(matchId);
 
             return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
-        /// Clears the map list cache and forces a re download of the map list.
+        /// Clears the map list cache. 
         /// </summary>
+        /// <remarks>
+        /// This method will clear the cache and force a re-download of the match list
+        /// the next time the user requests it via the <see cref="All"/> property.
+        /// </remarks>
         public void ClearCache()
         {
-            this.matchList = new Lazy<MatchList>(() => this.GetMatchList());
+            this.matchList = new Lazy<MatchList>();
         }
 
         /// <summary>Gets the list of all matches from the api server.</summary>
         /// <returns>A <see cref="IEnumerable{T}"/> containing all matches.</returns>
         private MatchList GetMatchList()
         {
-           return ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
+            return ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
         }
 
         /// <summary>The get objective names.</summary>
