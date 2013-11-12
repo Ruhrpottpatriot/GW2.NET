@@ -9,6 +9,7 @@ using GW2DotNET.V1.World.DataProviders;
 
 namespace GW2DotNET.V1
 {
+    /// <summary>The ApiManager interface.</summary>
     public interface IApiManager
     {
         /// <summary>Gets the build.</summary>
