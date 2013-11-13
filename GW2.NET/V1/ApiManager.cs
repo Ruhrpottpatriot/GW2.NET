@@ -67,11 +67,6 @@ namespace GW2DotNET.V1
         private ItemData itemDataOld;
 
         /// <summary>
-        /// Backing field for wvwMatches property
-        /// </summary>
-        private WvW.DataProvider matchData;
-
-        /// <summary>
         /// Backing field for Recipes property
         /// </summary>
         private RecipeData recipeDataOld;
@@ -249,19 +244,6 @@ namespace GW2DotNET.V1
             get
             {
                 return this.pvpData.Value;
-            }
-        }
-
-        /// <summary>Gets the instance of the world versus world data provider.</summary>
-        /// /// <remarks>This property is the entry point to the world versus world api.
-        /// From here the user can access all the information the world versus world api has to offer.</remarks>
-        /// <seealso cref="V1.WvW.DataProvider"/>
-        [Obsolete]
-        public WvW.DataProvider WvWMatchData
-        {
-            get
-            {
-                return this.matchData ?? (this.matchData = new WvW.DataProvider());
             }
         }
 

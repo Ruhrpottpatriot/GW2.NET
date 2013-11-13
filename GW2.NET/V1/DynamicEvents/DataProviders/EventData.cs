@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.World.DataProviders
     /// the event names list to the caller. We only return events objects
     /// that have status information, not just name-id mappings.
     /// </remarks>
-    public class EventData : IEnumerable<GwEvent>
+    public class EventData : IEnumerable<GameEvent>
     {
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.
@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.World.DataProviders
         private Lazy<Dictionary<Guid, string>> eventNamesCache;
 
         /// <summary>The events cache.</summary>
-        private Lazy<IEnumerable<GwEvent>> eventsCache;
+        private Lazy<IEnumerable<GameEvent>> eventsCache;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventData"/> class.
@@ -58,7 +58,7 @@ namespace GW2DotNET.V1.World.DataProviders
 
             this.eventNamesCache = new Lazy<Dictionary<Guid, string>>(InitializeEventNamesCache);
 
-            this.eventsCache = new Lazy<IEnumerable<GwEvent>>(() => GetEvents());
+            this.eventsCache = new Lazy<IEnumerable<GameEvent>>(() => GetEvents());
         }
         
         /// <summary>Gets or sets a value indicating whether to bypass caching.</summary>
@@ -84,7 +84,7 @@ namespace GW2DotNET.V1.World.DataProviders
         /// <summary>
         /// Gets the events.
         /// </summary>
-        private IEnumerable<GwEvent> AllEvents
+        private IEnumerable<GameEvent> AllEvents
         {
             get
             {
@@ -139,19 +139,19 @@ namespace GW2DotNET.V1.World.DataProviders
         /// </summary>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<IEnumerable<GwEvent>> GetAllEventsAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<GameEvent>> GetAllEventsAsync(CancellationToken cancellationToken)
         {
-            Func<IEnumerable<GwEvent>> methodCall = () => this.AllEvents;
+            Func<IEnumerable<GameEvent>> methodCall = () => this.AllEvents;
 
             return Task.Factory.StartNew(methodCall, cancellationToken);
         }
 
         /// <summary>
-        /// Gets a collection of <see cref="GwEvent"/>s pre-sorted with a <see cref="GwWorld"/>.
+        /// Gets a collection of <see cref="GameEvent"/>s pre-sorted with a <see cref="GwWorld"/>.
         /// </summary>
         /// <param name="world">The world to pre-sort the events.</param>
         /// <returns>The collection of events.</returns>
-        public IEnumerable<GwEvent> this[GwWorld world]
+        public IEnumerable<GameEvent> this[GwWorld world]
         {
             get
             {
@@ -165,9 +165,9 @@ namespace GW2DotNET.V1.World.DataProviders
         /// <param name="world"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<IEnumerable<GwEvent>> GetEventsFromWorldAsync(GwWorld world, CancellationToken cancellationToken)
+        public Task<IEnumerable<GameEvent>> GetEventsFromWorldAsync(GwWorld world, CancellationToken cancellationToken)
         {
-            Func<IEnumerable<GwEvent>> methodCall = () => this[world];
+            Func<IEnumerable<GameEvent>> methodCall = () => this[world];
 
             return Task.Factory.StartNew(methodCall, cancellationToken);
         }
@@ -177,7 +177,7 @@ namespace GW2DotNET.V1.World.DataProviders
         /// </summary>
         /// <param name="map">The map to get all events from.</param>
         /// <returns>A collection of events on the specified map.</returns>
-        public IEnumerable<GwEvent> this[Map map]
+        public IEnumerable<GameEvent> this[Map map]
         {
             get
             {
@@ -191,9 +191,9 @@ namespace GW2DotNET.V1.World.DataProviders
         /// <param name="map"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<IEnumerable<GwEvent>> GetEventsFromMapAsync(Map map, CancellationToken cancellationToken)
+        public Task<IEnumerable<GameEvent>> GetEventsFromMapAsync(Map map, CancellationToken cancellationToken)
         {
-            Func<IEnumerable<GwEvent>> methodCall = () => this[map];
+            Func<IEnumerable<GameEvent>> methodCall = () => this[map];
 
             return Task.Factory.StartNew(methodCall, cancellationToken);
         }
@@ -203,7 +203,7 @@ namespace GW2DotNET.V1.World.DataProviders
         /// </summary>
         /// <param name="eventId">The id of the event to retrieve.</param>
         /// <returns>A collection of events with the specified event id.</returns>
-        public IEnumerable<GwEvent> this[Guid eventId]
+        public IEnumerable<GameEvent> this[Guid eventId]
         {
             get
             {
@@ -217,9 +217,9 @@ namespace GW2DotNET.V1.World.DataProviders
         /// <param name="eventId"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        public Task<IEnumerable<GwEvent>> GetEventsFromIdAsync(Guid eventId, CancellationToken cancellationToken)
+        public Task<IEnumerable<GameEvent>> GetEventsFromIdAsync(Guid eventId, CancellationToken cancellationToken)
         {
-            Func<IEnumerable<GwEvent>> methodCall = () => this[eventId];
+            Func<IEnumerable<GameEvent>> methodCall = () => this[eventId];
 
             return Task.Factory.StartNew(methodCall, cancellationToken);
         }
@@ -230,7 +230,7 @@ namespace GW2DotNET.V1.World.DataProviders
         /// <returns>
         /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
         /// </returns>
-        public IEnumerator<GwEvent> GetEnumerator()
+        public IEnumerator<GameEvent> GetEnumerator()
         {
             return this.AllEvents.GetEnumerator();
         }
@@ -251,7 +251,7 @@ namespace GW2DotNET.V1.World.DataProviders
         /// <param name="mapId">The map Id.</param>
         /// <param name="eventId">The event Id.</param>
         /// <returns>An <see cref="T:System.Collections.IEnumerable"/></returns>
-        private IEnumerable<GwEvent> GetEvents(int? worldId = null, int? mapId = null, Guid? eventId = null)
+        private IEnumerable<GameEvent> GetEvents(int? worldId = null, int? mapId = null, Guid? eventId = null)
         {
             var parameters = new List<KeyValuePair<string, object>>();
 
@@ -270,7 +270,7 @@ namespace GW2DotNET.V1.World.DataProviders
                 parameters.Add(new KeyValuePair<string, object>("event_id", eventId));
             }
 
-            var result = ApiCall.GetContent<Dictionary<string, List<GwEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"];
+            var result = ApiCall.GetContent<Dictionary<string, List<GameEvent>>>("events.json", parameters, ApiCall.Categories.World)["events"];
             foreach (var gwevent in result)
             {
                 gwevent.ApiManager = this.apiManager;

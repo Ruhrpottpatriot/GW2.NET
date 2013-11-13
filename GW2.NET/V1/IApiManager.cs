@@ -64,13 +64,7 @@ namespace GW2DotNET.V1
         /// Gets the RecipeData object.
         /// </summary>
         RecipeData Recipes { get; }
-
-        /// <summary>Gets the instance of the world versus world data provider.</summary>
-        /// /// <remarks>This property is the entry point to the world versus world api.
-        /// From here the user can access all the information the world versus world api has to offer.</remarks>
-        /// <seealso cref="V1.WvW.DataProvider"/>
-        WvW.DataProvider WvWMatchData { get; }
-
+        
         /// <summary>
         /// Gets the WorldData object.
         /// </summary>

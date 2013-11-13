@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GwEvent.cs" company="GW2.Net Coding Team">
+// <copyright file="GameEvent.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Defines the GwEvent type.
+//   Defines the GameEvent type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.World.Models
     /// <summary>
     /// Represents an event in the game.
     /// </summary>
-    public class GwEvent : IEquatable<GwEvent>
+    public class GameEvent : IEquatable<GameEvent>
     {
         /// <summary>
         /// The map id backing field
@@ -42,14 +42,14 @@ namespace GW2DotNET.V1.World.Models
         /// </summary>
         private readonly GwEventState state;
 
-        /// <summary>Initializes a new instance of the <see cref="GwEvent"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="GameEvent"/> class.</summary>
         /// <param name="worldId">The world id.</param>
         /// <param name="mapId">The map id.</param>
         /// <param name="eventId">The event id.</param>
         /// <param name="state">The state.</param>
         /// <param name="apiManager">The api Manager.</param>
         [JsonConstructor]
-        public GwEvent(int worldId, int mapId, Guid eventId, GwEventState state, ApiManager apiManager)
+        public GameEvent(int worldId, int mapId, Guid eventId, GwEventState state, ApiManager apiManager)
         {
             this.worldId = worldId;
             this.mapId = mapId;
@@ -124,7 +124,7 @@ namespace GW2DotNET.V1.World.Models
         /// <param name="eventA">The first object to compare.</param>param>
         /// <param name="eventB">The second object to compare. </param>
         /// <returns>true if mapA and mapB represent the same map; otherwise, false.</returns>
-        public static bool operator ==(GwEvent eventA, GwEvent eventB)
+        public static bool operator ==(GameEvent eventA, GameEvent eventB)
         {
             if (ReferenceEquals(eventA, eventB))
             {
@@ -145,7 +145,7 @@ namespace GW2DotNET.V1.World.Models
         /// <param name="a">The first object to compare.</param>param>
         /// <param name="b">The second object to compare. </param>
         /// <returns>true if mapA and mapB do not represent the same map; otherwise, false.</returns>
-        public static bool operator !=(GwEvent a, GwEvent b)
+        public static bool operator !=(GameEvent a, GameEvent b)
         {
             return !(a == b);
         }
@@ -164,7 +164,7 @@ namespace GW2DotNET.V1.World.Models
             }
 
             // If parameter cannot be cast to Point return false.
-            var gwEvent = obj as GwEvent;
+            var gwEvent = obj as GameEvent;
 
             if ((object)gwEvent == null)
             {
@@ -179,7 +179,7 @@ namespace GW2DotNET.V1.World.Models
         /// </summary>
         /// <returns>true if <paramref name="other"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
         /// <param name="other">Another object to compare to. </param>
-        public bool Equals(GwEvent other)
+        public bool Equals(GameEvent other)
         {
             if ((object)other == null)
             {
