@@ -93,7 +93,7 @@ namespace GW2DotNET.V1.World.DataProviders
         }
 
         /// <summary>The initialize event names cache.</summary>
-        /// <returns>The <see cref="Dictionary"/>.</returns>
+        /// <returns>The <see cref="Dictionary{Guid, String}"/>.</returns>
         private Dictionary<Guid, string> InitializeEventNamesCache()
         {
             var arguments = new List<KeyValuePair<string, object>>
@@ -105,7 +105,7 @@ namespace GW2DotNET.V1.World.DataProviders
             var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", arguments, ApiCall.Categories.World);
 
             // Create a new Dictionary to hold the names,
-            // whereas the key is the event id and the valus the event name.
+            // whereas the key is the event id and the values the event name.
             var cacheData = new Dictionary<Guid, string>();
 
             // Iterate through the namesResponse,

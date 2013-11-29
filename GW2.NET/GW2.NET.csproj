@@ -138,7 +138,7 @@
     <Compile Include="V1\Items\Models\Recipe.cs" />
     <Compile Include="V1\Items\Models\Recipe.Ingredient.cs" />
     <Compile Include="V1\Items\Models\RecipeType.cs" />
-    <Compile Include="V1\Items\Models\Items\Restriction.cs" />
+    <Compile Include="V1\Items\Models\Items\ItemRestrictions.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\UpgradeComponent.cs" />
     <Compile Include="V1\Items\Models\Items\ItemRarity.cs" />
     <Compile Include="V1\Items\Models\Items\ItemType.cs" />

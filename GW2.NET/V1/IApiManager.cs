@@ -1,4 +1,13 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="IApiManager.cs" company="GW2.Net Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// <summary>
+//   The ApiManager interface.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 
 using GW2DotNET.V1.Guilds.DataProviders;
 using GW2DotNET.V1.Infrastructure;

@@ -6,9 +6,11 @@ using GW2DotNET.V1.Items.Models.Items;
 
 namespace GW2DotNET.V1.Items.DataProvider
 {
+    /// <summary>The item cache data.</summary>
     [Serializable]
-    class ItemCacheData : CacheDataBase
+    public class ItemCacheData : CacheDataBase
     {
-        public IEnumerable<Item> Items;
+ /// <summary>The items.</summary>
+               public IEnumerable<Item> Items;
     }
 }

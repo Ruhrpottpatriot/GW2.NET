@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// <param name="arguments">The arguments to supply to the method.</param>
         /// <param name="category">The category the method is in.</param>
         /// <typeparam name="T">The type to convert the raw API result into.</typeparam>
-        /// <returns>An object converted to <see cref="T"/>.</returns>
+        /// <returns>The object of the specified type.</returns>
         public static T GetContent<T>(string apiMethod, List<KeyValuePair<string, object>> arguments, Categories category)
         {
             var jsonResponse = GetJson(apiMethod, arguments, category);

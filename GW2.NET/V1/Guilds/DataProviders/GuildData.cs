@@ -168,7 +168,7 @@ namespace GW2DotNET.V1.Guilds.DataProviders
         /// </summary>
         /// <param name="guildName"></param>
         /// <param name="cancellationToken"></param>
-        /// <returns></returns>
+        /// <returns>A guild from the server</returns>
         public Task<Guild> GetGuildFromNameAsync(string guildName, CancellationToken cancellationToken)
         {
             Func<Guild> methodCall = () => this[guildName];
