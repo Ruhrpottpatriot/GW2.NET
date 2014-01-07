@@ -31,7 +31,7 @@ namespace RestSharp.GW2DotNET.V1
             InnerClient = new RestClient(baseUrl.ToString());
         }
 
-        public static ApiClient Create(Version apiVersion)
+        public static IApiClient Create(Version apiVersion)
         {
             if (apiVersion == null)
             {
@@ -49,7 +49,7 @@ namespace RestSharp.GW2DotNET.V1
             return Send<TResponse>(request as ApiRequest);
         }
 
-        public ApiResponse<TResponse> Send<TResponse>(ApiRequest request)
+        private IApiResponse<TResponse> Send<TResponse>(ApiRequest request)
         {
             if (request == null)
             { /* The specified request is of an incompatible type */
@@ -58,22 +58,31 @@ namespace RestSharp.GW2DotNET.V1
             return SendImplementation<TResponse>(request.InnerRequest);
         }
 
-        private ApiResponse<TResponse> SendImplementation<TResponse>(IRestRequest request)
+        private IApiResponse<TResponse> SendImplementation<TResponse>(IRestRequest request)
         {
             IRestResponse response = InnerClient.Execute(request);
             return new ApiResponse<TResponse>(response);
         }
 
-        public Task<ApiResponse<TResponse>> SendAsync<TResponse>(ApiRequest request)
+        public Task<IApiResponse<TResponse>> SendAsync<TResponse>(IApiRequest request)
         {
             if (request == null)
             {
                 throw new ArgumentNullException("request");
             }
+            return SendAsync<TResponse>(request as ApiRequest);
+        }
+
+        private Task<IApiResponse<TResponse>> SendAsync<TResponse>(ApiRequest request)
+        {
+            if (request == null)
+            { /* The specified request is of an incompatible type */
+                throw new NotSupportedException("Incompatible request type");
+            }
             return SendAsyncImplementation<TResponse>(request.InnerRequest);
         }
 
-        private Task<ApiResponse<TResponse>> SendAsyncImplementation<TResponse>(IRestRequest request)
+        private Task<IApiResponse<TResponse>> SendAsyncImplementation<TResponse>(IRestRequest request)
         {
             var tcs = new TaskCompletionSource<IRestResponse>();
             InnerClient.ExecuteAsync(request, (response) =>
@@ -87,15 +96,11 @@ namespace RestSharp.GW2DotNET.V1
                         tcs.SetResult(response);
                     }
                 });
-            return tcs.Task.ContinueWith<ApiResponse<TResponse>>((response) =>
+            return tcs.Task.ContinueWith<IApiResponse<TResponse>>((response) =>
                 {
                     return new ApiResponse<TResponse>(response.Result);
                 });
         }
 
-        public Task<IApiResponse<TResponse>> SendAsync<TResponse>(IApiRequest request)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
