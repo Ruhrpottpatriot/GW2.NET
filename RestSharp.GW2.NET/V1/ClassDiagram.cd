@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Access">
+  <Class Name="RestSharp.GW2DotNET.V1.ApiResponse&lt;TContent&gt;">
+    <Position X="11" Y="5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAQAAQAAACAAAAAAAAAAAACAAAAAE=</HashCode>
+      <FileName>V1\ApiResponse.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="InnerResponse" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RestSharp.GW2DotNET.V1.ApiRequest">
+    <Position X="3.25" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAABAAAAAgA=</HashCode>
+      <FileName>V1\ApiRequest.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="InnerRequest" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RestSharp.GW2DotNET.V1.GuildRequest">
+    <Position X="3.25" Y="3.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>V1\GuildRequest.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RestSharp.GW2DotNET.V1.ApiClient">
+    <Position X="10.5" Y="0.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AgBAAAAAABAAAAAAAEAAAAAAAAAAAEAAAAEAAAAAAAA=</HashCode>
+      <FileName>V1\ApiClient.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="InnerClient" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="RestSharp.IRestRequest" Collapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="RestSharp.IRestResponse" Collapsed="true">
+    <Position X="8.25" Y="6" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="RestSharp.IRestClient" Collapsed="true">
+    <Position X="7.75" Y="2" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
