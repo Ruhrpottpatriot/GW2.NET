@@ -10,7 +10,7 @@ namespace RestSharp.GW2DotNET.V1
 
         protected readonly IRestResponse InnerResponse;
 
-        public ApiResponse(IRestResponse innerResponse)
+        internal ApiResponse(IRestResponse innerResponse)
         {
             this.InnerResponse = innerResponse;
         }
@@ -23,7 +23,7 @@ namespace RestSharp.GW2DotNET.V1
             }
         }
 
-        public ApiResponse<TContent> EnsureSuccessStatusCode()
+        public IApiResponse<TContent> EnsureSuccessStatusCode()
         {
             if (IsSuccessStatusCode)
             {
@@ -70,11 +70,5 @@ namespace RestSharp.GW2DotNET.V1
             );
         }
 
-
-
-        IApiResponse<TContent> IApiResponse<TContent>.EnsureSuccessStatusCode()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
