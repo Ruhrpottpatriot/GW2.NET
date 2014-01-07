@@ -7,9 +7,9 @@ namespace RestSharp.GW2DotNET.V1
     public class ApiClient : IApiClient
     {
 
-        protected readonly RestClient InnerClient;
+        protected readonly IRestClient InnerClient;
 
-        internal ApiClient(RestClient innerClient)
+        internal ApiClient(IRestClient innerClient)
         {
             if (innerClient == null)
             {
