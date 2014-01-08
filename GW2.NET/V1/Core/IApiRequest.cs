@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <typeparam name="TResponse">The type of the response content.</typeparam>
         /// <param name="handler">The HTTP client that sends the request over a network and returns a response.</param>
-        /// <returns>Returns the response content as an object instance of the specified type.</returns>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
         IApiResponse<TResponse> GetResponse<TResponse>(IApiClient handler);
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <typeparam name="TResponse">The type of the response content.</typeparam>
         /// <param name="handler">The HTTP client that sends the request over a network and returns a response.</param>
-        /// <returns>Returns the response content as an object instance of the specified type.</returns>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
         Task<IApiResponse<TResponse>> GetResponseAsync<TResponse>(IApiClient handler);
     }
 }

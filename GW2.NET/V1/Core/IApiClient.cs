@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <typeparam name="TResponse">The type of the response content.</typeparam>
         /// <param name="request">The service request that targets a specific API endpoint.</param>
-        /// <returns>Returns the response content as an object instance of the specified type.</returns>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
         IApiResponse<TResponse> Send<TResponse>(IApiRequest request);
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <typeparam name="TResponse">The type of the response content.</typeparam>
         /// <param name="request">The service request that targets a specific API endpoint.</param>
-        /// <returns>Returns the response content as an object instance of the specified type.</returns>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
         Task<IApiResponse<TResponse>> SendAsync<TResponse>(IApiRequest request);
     }
 }
