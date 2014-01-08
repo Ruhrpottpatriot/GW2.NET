@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Core
         bool IsSuccessStatusCode { get; }
 
         /// <summary>
-        /// Gets the error result if the request was not unsuccessful.
+        /// Gets the error result if the request was unsuccessful.
         /// </summary>
         /// <returns>Return an instance of <see cref="ApiException"/> that represents the request error.</returns>
         ApiException DeserializeError();
