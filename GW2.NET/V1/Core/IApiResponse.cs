@@ -33,8 +33,8 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Throws an exception if the request did not return a success status code.
         /// </summary>
-        /// <returns>The current instance ('This').</returns>
-        /// <remarks>'This' is returned to allow chaining method calls.</remarks>
+        /// <returns>The current instance ('this').</returns>
+        /// <remarks>'this' is returned to allow chaining method calls.</remarks>
         /// <example>
         /// <code>
         /// var responseContent = request.GetResponse<![CDATA[<]]>ObjectType<![CDATA[>]]>.EnsureSuccessStatusCode().DeserializeObject();
