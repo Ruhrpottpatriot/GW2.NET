@@ -12,7 +12,9 @@ namespace GW2DotNET.V1.Core
     /// <summary>
     /// Represents a request for information regarding a specific guild.
     /// </summary>
-    /// See http://wiki.guildwars2.com/wiki/API:1/guild_details.
+    /// <remarks>
+    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details"/> for more information.
+    /// </remarks>
     public class GuildRequest : ApiRequest
     {
         /// <summary>
@@ -20,7 +22,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="guildId">The guild id to query for.</param>
         public GuildRequest(Guid guildId)
-            : base(new Uri("guild_details.json?guild_id={guild_id}", UriKind.Relative))
+            : base(new Uri(Resources.GuildDetails + "?guild_id={guild_id}", UriKind.Relative))
         {
             if (guildId == Guid.Empty)
             {
@@ -35,7 +37,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="guildName">The guild name to query for.</param>
         public GuildRequest(string guildName)
-            : base(new Uri("guild_details.json?guild_name={guild_name}", UriKind.Relative))
+            : base(new Uri(Resources.GuildDetails + "?guild_name={guild_name}", UriKind.Relative))
         {
             if (string.IsNullOrWhiteSpace(guildName))
             {
