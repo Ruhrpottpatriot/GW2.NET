@@ -71,10 +71,10 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
-        /// <typeparam name="TResponse">The type of the response content.</typeparam>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public IApiResponse<TResponse> Send<TResponse>(IApiRequest request)
+        public IApiResponse<TContent> Send<TContent>(IApiRequest request)
         {
             if (request == null)
             {
@@ -86,16 +86,16 @@ namespace GW2DotNET.V1.Core
                 throw new NotSupportedException("Incompatible request type");
             }
 
-            return this.SendImplementation<TResponse>(request as ApiRequest);
+            return this.SendImplementation<TContent>(request as ApiRequest);
         }
 
         /// <summary>
         /// Asynchronously sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
-        /// <typeparam name="TResponse">The type of the response content.</typeparam>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public Task<IApiResponse<TResponse>> SendAsync<TResponse>(IApiRequest request)
+        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request)
         {
             if (request == null)
             {
@@ -107,28 +107,28 @@ namespace GW2DotNET.V1.Core
                 throw new NotSupportedException("Incompatible request type");
             }
 
-            return this.SendAsyncImplementation<TResponse>(request as ApiRequest);
+            return this.SendAsyncImplementation<TContent>(request as ApiRequest);
         }
 
         /// <summary>
         /// Infrastructure. Implementation details for 'Send'.
         /// </summary>
-        /// <typeparam name="TResponse">The type of the response content.</typeparam>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private IApiResponse<TResponse> SendImplementation<TResponse>(ApiRequest request)
+        private IApiResponse<TContent> SendImplementation<TContent>(ApiRequest request)
         {
             IRestResponse response = this.InnerClient.Execute(request.InnerRequest);
-            return new ApiResponse<TResponse>(response);
+            return new ApiResponse<TContent>(response);
         }
 
         /// <summary>
         /// Infrastructure. Implementation details for 'SendAsync'.
         /// </summary>
-        /// <typeparam name="TResponse">The type of the response content.</typeparam>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private Task<IApiResponse<TResponse>> SendAsyncImplementation<TResponse>(ApiRequest request)
+        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(ApiRequest request)
         {
             var tcs = new TaskCompletionSource<IRestResponse>();
             this.InnerClient.ExecuteAsync(
@@ -144,9 +144,9 @@ namespace GW2DotNET.V1.Core
                         tcs.SetException(exception);
                     }
                 });
-            return tcs.Task.ContinueWith<IApiResponse<TResponse>>(response =>
+            return tcs.Task.ContinueWith<IApiResponse<TContent>>(response =>
             {
-                return new ApiResponse<TResponse>(response.Result);
+                return new ApiResponse<TContent>(response.Result);
             });
         }
     }

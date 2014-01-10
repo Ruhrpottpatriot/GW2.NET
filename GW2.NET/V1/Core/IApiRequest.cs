@@ -16,17 +16,17 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Sends this request to the specified API client and retrieves a response whose content can be mapped to the specified type.
         /// </summary>
-        /// <typeparam name="TResponse">The type of the response content.</typeparam>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="handler">The HTTP client that sends the request over a network and returns a response.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        IApiResponse<TResponse> GetResponse<TResponse>(IApiClient handler);
+        IApiResponse<TContent> GetResponse<TContent>(IApiClient handler);
 
         /// <summary>
         /// Asynchronously sends this request to the specified API client and retrieves a response whose content can be mapped to the specified type.
         /// </summary>
-        /// <typeparam name="TResponse">The type of the response content.</typeparam>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="handler">The HTTP client that sends the request over a network and returns a response.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        Task<IApiResponse<TResponse>> GetResponseAsync<TResponse>(IApiClient handler);
+        Task<IApiResponse<TContent>> GetResponseAsync<TContent>(IApiClient handler);
     }
 }

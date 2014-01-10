@@ -57,23 +57,23 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content can be mapped to the specified type.
         /// </summary>
-        /// <typeparam name="TResponse">The type of the response content.</typeparam>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an <see cref="ApiResponse{TContent}"/>.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public virtual IApiResponse<TResponse> GetResponse<TResponse>(IApiClient handler)
+        public virtual IApiResponse<TContent> GetResponse<TContent>(IApiClient handler)
         {
-            return handler.Send<TResponse>(this);
+            return handler.Send<TContent>(this);
         }
 
         /// <summary>
         /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content can be mapped to the specified type.
         /// </summary>
-        /// <typeparam name="TResponse">The type of the response content.</typeparam>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an <see cref="ApiResponse{TContent}"/>.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public virtual Task<IApiResponse<TResponse>> GetResponseAsync<TResponse>(IApiClient handler)
+        public virtual Task<IApiResponse<TContent>> GetResponseAsync<TContent>(IApiClient handler)
         {
-            return handler.SendAsync<TResponse>(this);
+            return handler.SendAsync<TContent>(this);
         }
     }
 }
