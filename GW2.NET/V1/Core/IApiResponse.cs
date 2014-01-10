@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Net.Mime;
 
 namespace GW2DotNET.V1.Core
 {
@@ -17,6 +18,11 @@ namespace GW2DotNET.V1.Core
         /// Gets a value indicating whether the request returned a success status code.
         /// </summary>
         bool IsSuccessStatusCode { get; }
+
+        /// <summary>
+        /// Gets a value indicating the Internet media type of the message content.
+        /// </summary>
+        ContentType ContentType { get; }
 
         /// <summary>
         /// Gets the error result if the request was unsuccessful.
