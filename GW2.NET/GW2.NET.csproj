@@ -95,7 +95,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="V1\Core\ApiClient.cs" />
     <Compile Include="V1\Core\ApiException.cs" />
+    <Compile Include="V1\Core\ApiRequest.cs" />
+    <Compile Include="V1\Core\ApiResponse.cs" />
+    <Compile Include="V1\Core\GuildRequest.cs" />
     <Compile Include="V1\Core\IApiClient.cs" />
     <Compile Include="V1\Core\IApiRequest.cs" />
     <Compile Include="V1\Core\IApiResponse.cs" />
@@ -181,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="V1\Core\ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="V1\Core\Resources.resx">
