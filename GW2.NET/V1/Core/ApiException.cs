@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Core
     /// Represents errors resulting from incorrect input parameters.
     /// </summary>
     /// <remarks>
-    /// See http://wiki.guildwars2.com/wiki/API:1.
+    /// See <a href="http://wiki.guildwars2.com/wiki/API:1"/> for more information regarding API errors.
     /// </remarks>
     public class ApiException : Exception
     {

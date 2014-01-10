@@ -11,7 +11,7 @@ using RestSharp;
 namespace GW2DotNET.V1.Core
 {
     /// <summary>
-    /// Provides a RestSharp-specific implementation of the IApiClient interface.
+    /// Provides a RestSharp-specific implementation of the <see cref="IApiClient"/> interface.
     /// </summary>
     public class ApiClient : IApiClient
     {
