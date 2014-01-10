@@ -7,6 +7,7 @@ using System;
 using System.Net;
 using GW2DotNET.V1.Core;
 using Newtonsoft.Json;
+using RestSharp;
 
 namespace GW2DotNET.V1.Core
 {

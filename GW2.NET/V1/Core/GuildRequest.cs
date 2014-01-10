@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Threading.Tasks;
-using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Guilds.Models;
 
 namespace GW2DotNET.V1.Core
@@ -13,7 +12,7 @@ namespace GW2DotNET.V1.Core
     /// <summary>
     /// Represents a request for information regarding a specific guild.
     /// </summary>
-    /// <see cref="http://wiki.guildwars2.com/wiki/API:1/guild_details"/>
+    /// See http://wiki.guildwars2.com/wiki/API:1/guild_details.
     public class GuildRequest : ApiRequest
     {
         /// <summary>
@@ -49,7 +48,7 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Guild"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an <see cref="ApiResponse"/>.</param>
+        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an <see cref="ApiResponse{TContent}"/>.</param>
         /// <returns>Returns a <see cref="Guild"/>.</returns>
         public IApiResponse<Guild> GetResponse(IApiClient handler)
         {
@@ -59,7 +58,7 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Guild"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an <see cref="ApiResponse"/>.</param>
+        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an <see cref="ApiResponse{TContent}"/>.</param>
         /// <returns>Returns a <see cref="Guild"/>.</returns>
         public Task<IApiResponse<Guild>> GetResponseAsync(IApiClient handler)
         {

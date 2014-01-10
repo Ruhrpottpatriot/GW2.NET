@@ -6,6 +6,7 @@
 using System;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
+using RestSharp;
 
 namespace GW2DotNET.V1.Core
 {
@@ -68,7 +69,7 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse"/> whose content can be mapped to the specified type.
+        /// Sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
         /// <typeparam name="TResponse">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
@@ -89,7 +90,7 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Asynchronously sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse"/> whose content can be mapped to the specified type.
+        /// Asynchronously sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
         /// <typeparam name="TResponse">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
