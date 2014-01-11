@@ -106,6 +106,11 @@ namespace GW2DotNET.V1.Core
         /// <returns>Returns an instance of the specified type that represents the response.</returns>
         public TContent DeserializeObject()
         {
+            if (!this.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("The service returned an error response.");
+            }
+
             return JsonConvert.DeserializeObject<TContent>(this.InnerResponse.Content);
         }
 
