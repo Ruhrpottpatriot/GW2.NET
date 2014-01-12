@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.GuildDetails
@@ -16,6 +17,13 @@ namespace GW2DotNET.V1.Core.GuildDetails
     /// </remarks>
     public partial class GuildDetailsResponse
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GuildDetailsResponse"/> class.
+        /// </summary>
+        public GuildDetailsResponse()
+        {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="GuildDetailsResponse"/> class.
         /// </summary>
@@ -36,6 +44,7 @@ namespace GW2DotNET.V1.Core.GuildDetails
         /// Gets the guild's ID.
         /// </summary>
         [JsonProperty("guild_id")]
+        [JsonConverter(typeof(GuidConverter))]
         public Guid GuildId { get; private set; }
 
         /// <summary>
