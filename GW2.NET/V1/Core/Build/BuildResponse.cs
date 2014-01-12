@@ -19,6 +19,13 @@ namespace GW2DotNET.V1.Core.Build
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildResponse"/> class.
         /// </summary>
+        public BuildResponse()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BuildResponse"/> class.
+        /// </summary>
         /// <param name="buildId">The build ID.</param>
         [JsonConstructor]
         public BuildResponse(int buildId)

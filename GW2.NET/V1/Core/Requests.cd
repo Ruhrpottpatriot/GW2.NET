@@ -27,5 +27,18 @@
       <FileName>V1\Core\Items\ItemsRequest.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="GW2DotNET.V1.Core.ApiResponse&lt;TContent&gt;">
+    <Position X="8.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAQAAAAAAAAAAAAAEAQGAAAAAE=</HashCode>
+      <FileName>V1\Core\ApiResponse.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="RestSharp.RestResponse&lt;T&gt;" Collapsed="true">
+    <Position X="8.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

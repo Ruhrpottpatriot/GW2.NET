@@ -103,6 +103,10 @@
     <Compile Include="V1\Core\ApiException.cs" />
     <Compile Include="V1\Core\ApiRequest.cs" />
     <Compile Include="V1\Core\ApiResponse.cs" />
+    <Compile Include="V1\Core\Build\BuildRequest.cs" />
+    <Compile Include="V1\Core\Build\BuildResponse.cs" />
+    <Compile Include="V1\Core\Converters\GuidConverter.cs" />
+    <Compile Include="V1\Core\Converters\JsonDeserializer.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsRequest.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.cs" />

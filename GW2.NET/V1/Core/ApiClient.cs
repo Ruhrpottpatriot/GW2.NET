@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core.Converters;
 using RestSharp;
 
 namespace GW2DotNET.V1.Core
@@ -25,6 +26,8 @@ namespace GW2DotNET.V1.Core
             {
                 throw new ArgumentException("'baseUrl' cannot be a relative URI.");
             }
+
+            this.AddHandler("application/json", new JsonDeserializer());
         }
 
         /// <summary>
@@ -45,7 +48,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public IApiResponse<TContent> Send<TContent>(IApiRequest request)
+        public IApiResponse<TContent> Send<TContent>(IApiRequest request) where TContent : new()
         {
             Preconditions.EnsureNotNull(paramName: "request", value: request);
             if (!(request is IRestRequest))
@@ -62,7 +65,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request)
+        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request) where TContent : new()
         {
             Preconditions.EnsureNotNull(paramName: "request", value: request);
             if (!(request is ApiRequest))
@@ -79,9 +82,9 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private IApiResponse<TContent> SendImplementation<TContent>(IRestRequest request)
+        private IApiResponse<TContent> SendImplementation<TContent>(IRestRequest request) where TContent : new()
         {
-            IRestResponse response = this.Execute(request);
+            IRestResponse<TContent> response = this.Execute<TContent>(request);
             return new ApiResponse<TContent>(response);
         }
 
@@ -91,12 +94,12 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request)
+        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request) where TContent : new()
         {
-            var tcs = new TaskCompletionSource<IRestResponse>();
+            var tcs = new TaskCompletionSource<IRestResponse<TContent>>();
             try
             {
-                this.ExecuteAsync(request, tcs.SetResult);
+                this.ExecuteAsync<TContent>(request, tcs.SetResult);
             }
             catch (Exception exception)
             {

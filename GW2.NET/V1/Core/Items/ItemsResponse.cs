@@ -20,6 +20,13 @@ namespace GW2DotNET.V1.Core.Items
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemsResponse"/> class.
         /// </summary>
+        public ItemsResponse()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemsResponse"/> class.
+        /// </summary>
         /// <param name="items">The list of all discovered item IDs.</param>
         public ItemsResponse(List<int> items)
         {

@@ -4,9 +4,9 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Mime;
-using GW2DotNET.V1.Core;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -16,27 +16,32 @@ namespace GW2DotNET.V1.Core
     /// Provides a RestSharp-specific implementation of the <see cref="IApiResponse{TContent}"/> interface.
     /// </summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>
-    public class ApiResponse<TContent> : IApiResponse<TContent>
+    public class ApiResponse<TContent> : RestResponse<TContent>, IApiResponse<TContent>
     {
         /// <summary>
-        /// Infrastructure. Stores the inner <see cref="IRestResponse"/>.
+        /// Initializes a new instance of the <see cref="ApiResponse{TContent}"/> class using the specified <see cref="IRestResponse{TContent}"/>.
         /// </summary>
-        protected readonly IRestResponse InnerResponse;
-
-        /// <summary>
-        /// Backing field for the content type.
-        /// </summary>
-        /// <remarks>This field exists because RestSharp stores the Content-Type header as a plain string.</remarks>
-        private readonly ContentType contentType;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse{TContent}"/> class using the specified <see cref="IRestResponse"/>.
-        /// </summary>
-        /// <param name="innerResponse">The inner response object.</param>
-        internal ApiResponse(IRestResponse innerResponse)
+        /// <param name="source">The source response object.</param>
+        /// <remarks>Copy constructor.</remarks>
+        [SuppressMessage("CSharp.Readability", "SA1100:DoNotPrefixCallsWithBaseUnlessLocalImplementationExists", Justification = "We want to set the properties on 'base', because 'this' might shadow their implementation.")]
+        internal ApiResponse(IRestResponse<TContent> source)
         {
-            this.InnerResponse = innerResponse;
-            this.contentType = new ContentType(innerResponse.ContentType);
+            this.Content = source.Content;
+            this.ContentEncoding = source.ContentEncoding;
+            this.ContentLength = source.ContentLength;
+            base.ContentType = source.ContentType;
+            this.ErrorException = source.ErrorException;
+            this.ErrorMessage = source.ErrorMessage;
+            this.RawBytes = source.RawBytes;
+            this.ResponseStatus = source.ResponseStatus;
+            this.ResponseUri = source.ResponseUri;
+            this.Server = source.Server;
+            this.StatusCode = source.StatusCode;
+            this.StatusDescription = source.StatusDescription;
+            this.Request = source.Request;
+            this.Headers = source.Headers;
+            this.Cookies = source.Cookies;
+            this.Data = source.Data;
         }
 
         /// <summary>
@@ -46,7 +51,7 @@ namespace GW2DotNET.V1.Core
         {
             get
             {
-                return this.InnerResponse.StatusCode == HttpStatusCode.OK;
+                return this.StatusCode == HttpStatusCode.OK;
             }
         }
 
@@ -64,11 +69,11 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Gets a value indicating the Internet media type of the message content.
         /// </summary>
-        public ContentType ContentType
+        public new ContentType ContentType
         {
             get
             {
-                return this.contentType;
+                return new ContentType(base.ContentType);
             }
         }
 
@@ -90,7 +95,7 @@ namespace GW2DotNET.V1.Core
             }
 
             var apiException = this.DeserializeError();
-            if (this.InnerResponse.StatusCode == HttpStatusCode.InternalServerError)
+            if (this.StatusCode == HttpStatusCode.InternalServerError)
             { /* HTTP status 500 (typically) indicates missing or invalid arguments */
                 throw new ArgumentException(apiException.Message, apiException);
             }
@@ -111,7 +116,7 @@ namespace GW2DotNET.V1.Core
                 throw new InvalidOperationException("The service returned an error response.");
             }
 
-            return JsonConvert.DeserializeObject<TContent>(this.InnerResponse.Content);
+            return this.Data;
         }
 
         /// <summary>
@@ -127,7 +132,7 @@ namespace GW2DotNET.V1.Core
 
             /* Use an anonymous object to hold the error details. */
             var errorDetails = JsonConvert.DeserializeAnonymousType(
-                value: this.InnerResponse.Content,
+                value: this.Content,
                 anonymousTypeObject: new /* object */
                 {
                     /*int*/ error = 0,
@@ -144,7 +149,7 @@ namespace GW2DotNET.V1.Core
                 module: errorDetails.module,
                 line: errorDetails.line,
                 text: errorDetails.text,
-                innerException: this.InnerResponse.ErrorException);
+                innerException: this.ErrorException);
         }
 
         /// <summary>
@@ -158,7 +163,7 @@ namespace GW2DotNET.V1.Core
                 return string.Empty;
             }
 
-            return this.InnerResponse.Content;
+            return this.Content;
         }
     }
 }
