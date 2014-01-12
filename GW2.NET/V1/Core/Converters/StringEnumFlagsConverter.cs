@@ -73,7 +73,12 @@ namespace GW2DotNET.V1.Core.Converters
                 while (reader.Read() && reader.TokenType != JsonToken.EndArray);
 
                 string validFlags = string.Join(", ", individualFlags);
-                return Enum.Parse(objectType, validFlags, true);
+                if (validFlags.Any())
+                {
+                    return Enum.Parse(objectType, validFlags, true);
+                }
+
+                return existingValue;
             }
             catch (Exception exception)
             {
@@ -89,7 +94,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            if (value == null)
+            if (((TEnum)value).ToInt32(null) == 0)
             {
                 writer.WriteStartArray();
                 writer.WriteEndArray();
