@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts an array of <see cref="Enum"/> flags to and from its name string value.
+    /// Converts a bit flag <see cref="Enum"/> to and from a string array of flag names.
     /// </summary>
     /// <typeparam name="TEnum">Type of the <see cref="Enum"/>.</typeparam>
     public class StringEnumFlagsConverter<TEnum> : JsonConverter where TEnum : struct, IConvertible
