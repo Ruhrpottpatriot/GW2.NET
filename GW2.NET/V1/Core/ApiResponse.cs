@@ -13,7 +13,7 @@ using RestSharp;
 namespace GW2DotNET.V1.Core
 {
     /// <summary>
-    /// Provides a RestSharp-specific implementation of the <see cref="IApiResponse"/> interface.
+    /// Provides a RestSharp-specific implementation of the <see cref="IApiResponse{TContent}"/> interface.
     /// </summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>
     public class ApiResponse<TContent> : IApiResponse<TContent>
@@ -104,7 +104,7 @@ namespace GW2DotNET.V1.Core
         /// Gets the response content as an object of the specified type.
         /// </summary>
         /// <returns>Returns an instance of the specified type that represents the response.</returns>
-        public TContent DeserializeObject()
+        public TContent DeserializeResponse()
         {
             if (!this.IsSuccessStatusCode)
             {

@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Core
         /// Gets the response content as an object of the specified type.
         /// </summary>
         /// <returns>Returns an instance of the specified type that represents the response.</returns>
-        TContent DeserializeObject();
+        TContent DeserializeResponse();
 
         /// <summary>
         /// Throws an exception if the request did not return a success status code.

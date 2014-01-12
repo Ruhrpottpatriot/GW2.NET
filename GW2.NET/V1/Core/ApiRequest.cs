@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Threading.Tasks;
-using GW2DotNET.V1.Core;
 using RestSharp;
 
 namespace GW2DotNET.V1.Core
@@ -13,29 +12,15 @@ namespace GW2DotNET.V1.Core
     /// <summary>
     /// Provides a RestSharp-specific implementation of the <see cref="IApiRequest"/> interface.
     /// </summary>
-    public abstract class ApiRequest : IApiRequest
+    public abstract class ApiRequest : RestRequest, IApiRequest
     {
-        /// <summary>
-        /// Infrastructure. Stores the inner <see cref="IRestRequest"/>.
-        /// </summary>
-        internal readonly IRestRequest InnerRequest;
-
         #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiRequest"/> class using the specified <see cref="IRestRequest"/>.
-        /// </summary>
-        /// <param name="innerRequest">The inner request object.</param>
-        internal ApiRequest(IRestRequest innerRequest)
-        {
-            this.InnerRequest = innerRequest;
-        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiRequest"/> class.
         /// </summary>
         protected ApiRequest()
-            : this(new RestRequest())
+            : base()
         {
         }
 
@@ -44,7 +29,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="resource">A relative URI that indicates the target endpoint.</param>
         protected ApiRequest(Uri resource)
-            : this(new RestRequest(resource))
+            : base(Preconditions.EnsureNotNull(paramName: "resource", value: resource))
         {
             if (resource.IsAbsoluteUri)
             {

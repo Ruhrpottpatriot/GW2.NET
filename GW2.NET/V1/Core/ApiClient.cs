@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Threading.Tasks;
-using GW2DotNET.V1.Core;
 using RestSharp;
 
 namespace GW2DotNET.V1.Core
@@ -13,44 +12,19 @@ namespace GW2DotNET.V1.Core
     /// <summary>
     /// Provides a RestSharp-specific implementation of the <see cref="IApiClient"/> interface.
     /// </summary>
-    public class ApiClient : IApiClient
+    public class ApiClient : RestClient, IApiClient
     {
-        /// <summary>
-        /// Infrastructure. Stores the inner <see cref="IRestClient"/>.
-        /// </summary>
-        protected readonly IRestClient InnerClient;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient"/> class using the specified base URL.
         /// </summary>
         /// <param name="baseUrl">An absolute URI that represents the base URL for all API endpoints.</param>
         public ApiClient(Uri baseUrl)
+            : base(Preconditions.EnsureNotNull(paramName: "baseUrl", value: baseUrl).ToString())
         {
-            if (baseUrl == null)
-            {
-                throw new ArgumentNullException("baseUrl");
-            }
-
             if (!baseUrl.IsAbsoluteUri)
             {
                 throw new ArgumentException("'baseUrl' cannot be a relative URI.");
             }
-
-            this.InnerClient = new RestClient(baseUrl.ToString());
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiClient"/> class using the specified <see cref="IRestClient"/>.
-        /// </summary>
-        /// <param name="innerClient">The inner client object.</param>
-        internal ApiClient(IRestClient innerClient)
-        {
-            if (innerClient == null)
-            {
-                throw new ArgumentNullException("innerClient");
-            }
-
-            this.InnerClient = innerClient;
         }
 
         /// <summary>
@@ -60,10 +34,7 @@ namespace GW2DotNET.V1.Core
         /// <returns>Returns an instance of <see cref="ApiClient"/>.</returns>
         public static IApiClient Create(Version apiVersion)
         {
-            if (apiVersion == null)
-            {
-                throw new ArgumentNullException("apiVersion");
-            }
+            Preconditions.EnsureNotNull(paramName: "apiVersion", value: apiVersion);
 
             return new ApiClient(new Uri(string.Format("https://api.guildwars2.com/v{0}/", apiVersion.Major)));
         }
@@ -76,17 +47,13 @@ namespace GW2DotNET.V1.Core
         /// <returns>Returns the response content as an instance of the specified type.</returns>
         public IApiResponse<TContent> Send<TContent>(IApiRequest request)
         {
-            if (request == null)
-            {
-                throw new ArgumentNullException("request");
-            }
-
-            if (!(request is ApiRequest))
+            Preconditions.EnsureNotNull(paramName: "request", value: request);
+            if (!(request is IRestRequest))
             { /* The specified request is of an incompatible type */
                 throw new NotSupportedException("Incompatible request type");
             }
 
-            return this.SendImplementation<TContent>(request as ApiRequest);
+            return this.SendImplementation<TContent>(request as IRestRequest);
         }
 
         /// <summary>
@@ -97,11 +64,7 @@ namespace GW2DotNET.V1.Core
         /// <returns>Returns the response content as an instance of the specified type.</returns>
         public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request)
         {
-            if (request == null)
-            {
-                throw new ArgumentNullException("request");
-            }
-
+            Preconditions.EnsureNotNull(paramName: "request", value: request);
             if (!(request is ApiRequest))
             { /* The specified request is of an incompatible type */
                 throw new NotSupportedException("Incompatible request type");
@@ -116,9 +79,9 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private IApiResponse<TContent> SendImplementation<TContent>(ApiRequest request)
+        private IApiResponse<TContent> SendImplementation<TContent>(IRestRequest request)
         {
-            IRestResponse response = this.InnerClient.Execute(request.InnerRequest);
+            IRestResponse response = this.Execute(request);
             return new ApiResponse<TContent>(response);
         }
 
@@ -128,26 +91,24 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(ApiRequest request)
+        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request)
         {
             var tcs = new TaskCompletionSource<IRestResponse>();
-            this.InnerClient.ExecuteAsync(
-                request.InnerRequest,
-                response =>
-                {
-                    try
-                    {
-                        tcs.SetResult(response);
-                    }
-                    catch (Exception exception)
-                    {
-                        tcs.SetException(exception);
-                    }
-                });
-            return tcs.Task.ContinueWith<IApiResponse<TContent>>(response =>
+            try
+            {
+                this.ExecuteAsync(request, tcs.SetResult);
+            }
+            catch (Exception exception)
+            {
+                tcs.SetException(exception);
+            }
+
+            var apiResponse = tcs.Task.ContinueWith<IApiResponse<TContent>>(response =>
             {
                 return new ApiResponse<TContent>(response.Result);
             });
+
+            return apiResponse;
         }
     }
 }
