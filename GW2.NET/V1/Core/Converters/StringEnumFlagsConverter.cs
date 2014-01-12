@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType is TEnum;
+            return objectType == typeof(TEnum);
         }
 
         /// <summary>
