@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core.Converters;
 using RestSharp;
@@ -73,7 +74,216 @@ namespace GW2DotNET.V1.Core
                 throw new NotSupportedException("Incompatible request type");
             }
 
-            return this.SendAsyncImplementation<TContent>(request as ApiRequest);
+            return this.SendAsyncImplementation<TContent>(request as IRestRequest);
+        }
+
+        /// <summary>
+        /// Executes the specified request and deserializes the response content.
+        /// </summary>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        public override IRestResponse<T> Execute<T>(IRestRequest request)
+        {
+            return new ApiResponse<T>(base.Execute<T>(request));
+        }
+
+        /// <summary>
+        /// Executes the specified request asynchronously.
+        /// </summary>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <returns>Returns the response.</returns>
+        public override Task<IRestResponse> ExecuteTaskAsync(IRestRequest request)
+        {
+            return base.ExecuteTaskAsync(request)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                });
+        }
+
+        /// <summary>
+        /// Executes the specified request asynchronously.
+        /// </summary>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>Returns the response.</returns>
+        public override Task<IRestResponse> ExecuteTaskAsync(IRestRequest request, CancellationToken token)
+        {
+            return base.ExecuteTaskAsync(request, token)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                },
+                token);
+        }
+
+        /// <summary>
+        /// Executes the specified request asynchronously and deserializes the response content.
+        /// </summary>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        public override Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request)
+        {
+            return base.ExecuteTaskAsync<T>(request)
+                .ContinueWith<IRestResponse<T>>(
+                x =>
+                {
+                    return new ApiResponse<T>(x.Result);
+                });
+        }
+
+        /// <summary>
+        /// Executes the specified request asynchronously and deserializes the response content.
+        /// </summary>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        public override Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request, CancellationToken token)
+        {
+            return base.ExecuteTaskAsync<T>(request, token)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                },
+                token);
+        }
+
+        /// <summary>
+        /// Executes the specified GET-style request asynchronously.
+        /// </summary>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        public override Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request)
+        {
+            return base.ExecuteGetTaskAsync(request)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                });
+        }
+
+        /// <summary>
+        /// Executes the specified GET-style request asynchronously.
+        /// </summary>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>Returns the response.</returns>
+        public override Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request, CancellationToken token)
+        {
+            return base.ExecuteGetTaskAsync(request, token)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                },
+                token);
+        }
+
+        /// <summary>
+        /// Executes the specified GET-style request asynchronously and deserializes the response content.
+        /// </summary>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        public override Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request)
+        {
+            return base.ExecuteGetTaskAsync<T>(request)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                });
+        }
+
+        /// <summary>
+        /// Executes the specified GET-style request asynchronously and deserializes the response content.
+        /// </summary>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        public override Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request, CancellationToken token)
+        {
+            return base.ExecuteGetTaskAsync<T>(request, token)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                },
+                token);
+        }
+
+        /// <summary>
+        /// Executes the specified POST-style request asynchronously.
+        /// </summary>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <returns>Returns the response.</returns>
+        public override Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request)
+        {
+            return base.ExecutePostTaskAsync(request)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                });
+        }
+
+        /// <summary>
+        /// Executes the specified POST-style request asynchronously.
+        /// </summary>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>Returns the response.</returns>
+        public override Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request, CancellationToken token)
+        {
+            return base.ExecutePostTaskAsync(request, token)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                },
+                token);
+        }
+
+        /// <summary>
+        /// Executes the specified POST-style request asynchronously and deserializes the response content.
+        /// </summary>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        public override Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request)
+        {
+            return base.ExecutePostTaskAsync<T>(request)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                });
+        }
+
+        /// <summary>
+        /// Executes the specified POST-style request asynchronously and deserializes the response content.
+        /// </summary>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <param name="request">The <see cref="IRestRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        public override Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request, CancellationToken token)
+        {
+            return base.ExecutePostTaskAsync<T>(request, token)
+                .ContinueWith(
+                x =>
+                {
+                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                },
+                token);
         }
 
         /// <summary>
@@ -84,8 +294,7 @@ namespace GW2DotNET.V1.Core
         /// <returns>Returns the response content as an instance of the specified type.</returns>
         private IApiResponse<TContent> SendImplementation<TContent>(IRestRequest request) where TContent : new()
         {
-            IRestResponse<TContent> response = this.Execute<TContent>(request);
-            return new ApiResponse<TContent>(response);
+            return this.Execute<TContent>(request) as IApiResponse<TContent>;
         }
 
         /// <summary>
@@ -96,22 +305,21 @@ namespace GW2DotNET.V1.Core
         /// <returns>Returns the response content as an instance of the specified type.</returns>
         private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request) where TContent : new()
         {
-            var tcs = new TaskCompletionSource<IRestResponse<TContent>>();
-            try
-            {
-                this.ExecuteAsync<TContent>(request, tcs.SetResult);
-            }
-            catch (Exception exception)
-            {
-                tcs.SetException(exception);
-            }
+            return this.ExecuteTaskAsync<TContent>(request)
+                .ContinueWith(x => x as IApiResponse<TContent>);
+        }
 
-            var apiResponse = tcs.Task.ContinueWith<IApiResponse<TContent>>(response =>
-            {
-                return new ApiResponse<TContent>(response.Result);
-            });
-
-            return apiResponse;
+        /// <summary>
+        /// Infrastructure. Implementation details for 'SendAsync'.
+        /// </summary>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
+        /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request, CancellationToken token) where TContent : new()
+        {
+            return this.ExecuteTaskAsync<TContent>(request, token)
+                .ContinueWith(x => x as IApiResponse<TContent>);
         }
     }
 }
