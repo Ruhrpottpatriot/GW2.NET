@@ -145,6 +145,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\SupportedLanguages.cs" />
+    <Compile Include="V1\Core\WvW\Matches\MatchesRequest.cs" />
+    <Compile Include="V1\Core\WvW\Matches\MatchesResponse.cs" />
     <Compile Include="V1\Guilds\DataProvider.cs" />
     <Compile Include="V1\Guilds\DataProviders\GuildData.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
@@ -238,7 +240,6 @@
     <Folder Include="V1\Core\Events\" />
     <Folder Include="V1\Core\WorldNames\" />
     <Folder Include="V1\Core\WvW\MatchDetails\" />
-    <Folder Include="V1\Core\WvW\Matches\" />
     <Folder Include="V1\Core\WvW\ObjectiveNames\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
