@@ -74,6 +74,15 @@ namespace GW2DotNET.V1.Core.GuildDetails
             /// </summary>
             [JsonProperty("foreground_secondary_color_id")]
             public int ForegroundSecondaryColorId { get; private set; }
+
+            /// <summary>
+            /// Gets the JSON representation of this instance.
+            /// </summary>
+            /// <returns>Returns a JSON <see cref="String"/>.</returns>
+            public override string ToString()
+            {
+                return JsonConvert.SerializeObject(this);
+            }
         }
     }
 }
