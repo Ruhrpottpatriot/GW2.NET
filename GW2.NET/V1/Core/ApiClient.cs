@@ -17,18 +17,29 @@ namespace GW2DotNET.V1.Core
     public class ApiClient : RestClient, IApiClient
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiClient"/> class using the specified base URL.
+        /// Initializes a new instance of the <see cref="ApiClient"/> class using the specified base URL and JSON de-serializer.
         /// </summary>
         /// <param name="baseUrl">An absolute URI that represents the base URL for all API endpoints.</param>
-        public ApiClient(Uri baseUrl)
+        /// <param name="jsonDeserializer">The JSON de-serializer.</param>
+        public ApiClient(Uri baseUrl, JsonDeserializer jsonDeserializer)
             : base(Preconditions.EnsureNotNull(paramName: "baseUrl", value: baseUrl).ToString())
         {
+            Preconditions.EnsureNotNull(jsonDeserializer, "jsonDeserializer");
             if (!baseUrl.IsAbsoluteUri)
             {
                 throw new ArgumentException("'baseUrl' cannot be a relative URI.");
             }
 
-            this.AddHandler("application/json", new JsonDeserializer());
+            this.AddHandler("application/json", jsonDeserializer);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiClient"/> class using the specified base URL.
+        /// </summary>
+        /// <param name="baseUrl">An absolute URI that represents the base URL for all API endpoints.</param>
+        public ApiClient(Uri baseUrl)
+            : this(baseUrl, new JsonDeserializer())
+        {
         }
 
         /// <summary>
