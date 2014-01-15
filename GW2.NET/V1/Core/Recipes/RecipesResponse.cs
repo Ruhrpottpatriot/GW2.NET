@@ -13,6 +13,9 @@ namespace GW2DotNET.V1.Core.Recipes
     /// <summary>
     /// Represents a response that is the result of a <see cref="RecipesRequest"/>.
     /// </summary>
+    /// <remarks>
+    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes"/> for more information.
+    /// </remarks>
     public class RecipesResponse
     {
         /// <summary>
