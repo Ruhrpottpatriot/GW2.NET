@@ -114,6 +114,8 @@
     <Compile Include="V1\Core\Converters\GuidConverter.cs" />
     <Compile Include="V1\Core\Converters\JsonDeserializer.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
+    <Compile Include="V1\Core\Events\EventsRequest.cs" />
+    <Compile Include="V1\Core\Events\EventsResponse.cs" />
     <Compile Include="V1\Core\Files\Asset.cs" />
     <Compile Include="V1\Core\Files\Assets.cs" />
     <Compile Include="V1\Core\Files\FilesRequest.cs" />
@@ -243,7 +245,6 @@
   <ItemGroup>
     <Folder Include="V1\Core\EventDetails\" />
     <Folder Include="V1\Core\EventNames\" />
-    <Folder Include="V1\Core\Events\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
