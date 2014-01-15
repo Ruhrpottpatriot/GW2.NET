@@ -145,6 +145,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\SupportedLanguages.cs" />
+    <Compile Include="V1\Core\WorldNames\WorldNamesRequest.cs" />
+    <Compile Include="V1\Core\WorldNames\WorldNamesResponse.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\MatchDetailsRequest.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\MatchDetailsResponse.cs" />
     <Compile Include="V1\Core\WvW\Matches\MatchesRequest.cs" />
@@ -242,7 +244,6 @@
     <Folder Include="V1\Core\EventDetails\" />
     <Folder Include="V1\Core\EventNames\" />
     <Folder Include="V1\Core\Events\" />
-    <Folder Include="V1\Core\WorldNames\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
