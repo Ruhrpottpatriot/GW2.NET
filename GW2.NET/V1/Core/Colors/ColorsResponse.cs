@@ -4,9 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Colors
 {
@@ -24,6 +22,15 @@ namespace GW2DotNET.V1.Core.Colors
         public ColorsResponse()
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets the JSON representation of this instance.
+        /// </summary>
+        /// <returns>Returns a JSON <see cref="String"/>.</returns>
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

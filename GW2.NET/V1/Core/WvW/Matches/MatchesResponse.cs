@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.WvW.Matches
 {
@@ -21,6 +22,15 @@ namespace GW2DotNET.V1.Core.WvW.Matches
         public MatchesResponse()
         {
             throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Gets the JSON representation of this instance.
+        /// </summary>
+        /// <returns>Returns a JSON <see cref="String"/>.</returns>
+        public override string ToString()
+        {
+            return JsonConvert.SerializeObject(this);
         }
     }
 }
