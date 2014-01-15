@@ -99,17 +99,28 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V1\Core\ApiClient.cs" />
+    <Compile Include="V1\Core\ApiClient.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="V1\Core\ApiException.cs" />
     <Compile Include="V1\Core\ApiRequest.cs" />
     <Compile Include="V1\Core\ApiResponse.cs" />
     <Compile Include="V1\Core\Build\BuildRequest.cs" />
     <Compile Include="V1\Core\Build\BuildResponse.cs" />
+    <Compile Include="V1\Core\Colors\ColorsRequest.cs" />
+    <Compile Include="V1\Core\Colors\ColorsResponse.cs" />
     <Compile Include="V1\Core\Converters\GuidConverter.cs" />
     <Compile Include="V1\Core\Converters\JsonDeserializer.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
+    <Compile Include="V1\Core\Files\Asset.cs" />
+    <Compile Include="V1\Core\Files\Assets.cs" />
+    <Compile Include="V1\Core\Files\FilesRequest.cs" />
+    <Compile Include="V1\Core\Files\FilesResponse.cs" />
+    <Compile Include="V1\Core\Files\FilesResponseConverter.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsRequest.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.cs" />
+    <Compile Include="V1\Core\ItemDetails\ItemDetailsRequest.cs" />
+    <Compile Include="V1\Core\ItemDetails\ItemDetailsResponse.cs" />
     <Compile Include="V1\Core\Items\ItemsResponse.cs" />
     <Compile Include="V1\Core\IApiClient.cs" />
     <Compile Include="V1\Core\IApiRequest.cs" />
@@ -121,6 +132,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="V1\Core\SupportedLanguages.cs" />
     <Compile Include="V1\Guilds\DataProvider.cs" />
     <Compile Include="V1\Guilds\DataProviders\GuildData.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
@@ -207,6 +219,21 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="V1\Core\Continents\" />
+    <Folder Include="V1\Core\EventDetails\" />
+    <Folder Include="V1\Core\EventNames\" />
+    <Folder Include="V1\Core\Events\" />
+    <Folder Include="V1\Core\MapFloor\" />
+    <Folder Include="V1\Core\MapNames\" />
+    <Folder Include="V1\Core\Maps\" />
+    <Folder Include="V1\Core\RecipeDetails\" />
+    <Folder Include="V1\Core\Recipes\" />
+    <Folder Include="V1\Core\WorldNames\" />
+    <Folder Include="V1\Core\WvW\MatchDetails\" />
+    <Folder Include="V1\Core\WvW\Matches\" />
+    <Folder Include="V1\Core\WvW\ObjectiveNames\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
