@@ -114,6 +114,8 @@
     <Compile Include="V1\Core\Converters\GuidConverter.cs" />
     <Compile Include="V1\Core\Converters\JsonDeserializer.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
+    <Compile Include="V1\Core\EventDetails\EventDetailsRequest.cs" />
+    <Compile Include="V1\Core\EventDetails\EventDetailsResponse.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesRequest.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesResponse.cs" />
     <Compile Include="V1\Core\Events\EventsRequest.cs" />
@@ -244,9 +246,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="V1\Core\EventDetails\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
