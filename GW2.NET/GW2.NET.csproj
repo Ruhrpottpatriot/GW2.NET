@@ -127,6 +127,8 @@
     <Compile Include="V1\Core\IApiResponse.cs" />
     <Compile Include="V1\Core\Items\ItemsRequest.cs" />
     <Compile Include="V1\Core\Preconditions.cs" />
+    <Compile Include="V1\Core\RecipeDetails\RecipeDetailsRequest.cs" />
+    <Compile Include="V1\Core\RecipeDetails\RecipeDetailsResponse.cs" />
     <Compile Include="V1\Core\Recipes\RecipesRequest.cs" />
     <Compile Include="V1\Core\Recipes\RecipesResponse.cs" />
     <Compile Include="V1\Core\Resources.Designer.cs">
@@ -230,7 +232,6 @@
     <Folder Include="V1\Core\MapFloor\" />
     <Folder Include="V1\Core\MapNames\" />
     <Folder Include="V1\Core\Maps\" />
-    <Folder Include="V1\Core\RecipeDetails\" />
     <Folder Include="V1\Core\WorldNames\" />
     <Folder Include="V1\Core\WvW\MatchDetails\" />
     <Folder Include="V1\Core\WvW\Matches\" />
