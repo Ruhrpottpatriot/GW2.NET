@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.Core.Colors
         /// Initializes a new instance of the <see cref="ColorsResponse"/> class using the specified collection of dyes.
         /// </summary>
         /// <param name="colors">The collection of dyes.</param>
-        public ColorsResponse(IEnumerable<KeyValuePair<int, Dye>> colors)
+        public ColorsResponse(IDictionary<int, Dye> colors)
         {
             this.Colors = colors;
         }
@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Core.Colors
         /// Gets or sets a collection of all dyes in the game.
         /// </summary>
         [JsonProperty("colors")]
-        public IEnumerable<KeyValuePair<int, Dye>> Colors { get; set; }
+        public IDictionary<int, Dye> Colors { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
