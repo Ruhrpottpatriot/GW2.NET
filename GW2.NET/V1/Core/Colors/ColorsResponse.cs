@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Colors
@@ -21,8 +22,22 @@ namespace GW2DotNET.V1.Core.Colors
         /// </summary>
         public ColorsResponse()
         {
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ColorsResponse"/> class using the specified collection of dyes.
+        /// </summary>
+        /// <param name="colors">The collection of dyes.</param>
+        public ColorsResponse(IEnumerable<KeyValuePair<int, Dye>> colors)
+        {
+            this.Colors = colors;
+        }
+
+        /// <summary>
+        /// Gets or sets a collection of all dyes in the game.
+        /// </summary>
+        [JsonProperty("colors")]
+        public IEnumerable<KeyValuePair<int, Dye>> Colors { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
