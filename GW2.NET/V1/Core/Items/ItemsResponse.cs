@@ -34,10 +34,10 @@ namespace GW2DotNET.V1.Core.Items
         }
 
         /// <summary>
-        /// Gets a list of all discovered item IDs.
+        /// Gets or sets a list of all discovered item IDs.
         /// </summary>
         [JsonProperty("items")]
-        public List<int> Items { get; private set; }
+        public List<int> Items { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

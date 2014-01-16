@@ -29,7 +29,6 @@ namespace GW2DotNET.V1.Core.Files
         /// </summary>
         /// <param name="fileId">The file ID.</param>
         /// <param name="signature">The file signature.</param>
-        [JsonConstructor]
         public Asset(string fileId, string signature)
         {
             this.FileId = fileId;
@@ -37,16 +36,16 @@ namespace GW2DotNET.V1.Core.Files
         }
 
         /// <summary>
-        /// Gets the file ID to be used with the render service.
+        /// Gets or sets the file ID to be used with the render service.
         /// </summary>
         [JsonProperty("file_id")]
-        public string FileId { get; private set; }
+        public string FileId { get; set; }
 
         /// <summary>
-        /// Gets file signature to be used with the render service.
+        /// Gets or sets file signature to be used with the render service.
         /// </summary>
         [JsonProperty("signature")]
-        public string Signature { get; private set; }
+        public string Signature { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

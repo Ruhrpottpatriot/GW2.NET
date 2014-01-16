@@ -24,6 +24,13 @@ namespace GW2DotNET.V1.Core.GuildDetails
             /// <summary>
             /// Initializes a new instance of the <see cref="Emblem"/> class.
             /// </summary>
+            public Emblem()
+            {
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="Emblem"/> class.
+            /// </summary>
             /// <param name="backgroundId">The background image ID.</param>
             /// <param name="foregroundId">The foreground image ID.</param>
             /// <param name="flags">The image transformation flags.</param>
@@ -41,40 +48,40 @@ namespace GW2DotNET.V1.Core.GuildDetails
             }
 
             /// <summary>
-            /// Gets the background image ID.
+            /// Gets or sets the background image ID.
             /// </summary>
             [JsonProperty("background_id")]
-            public int BackgroundId { get; private set; }
+            public int BackgroundId { get; set; }
 
             /// <summary>
-            /// Gets the foreground image ID.
+            /// Gets or sets the foreground image ID.
             /// </summary>
             [JsonProperty("foreground_id")]
-            public int ForegroundId { get; private set; }
+            public int ForegroundId { get; set; }
 
             /// <summary>
-            /// Gets the image transformations, if any.
+            /// Gets or sets the image transformations, if any.
             /// </summary>
             [JsonProperty("flags")]
-            public Transformations Flags { get; private set; }
+            public Transformations Flags { get; set; }
 
             /// <summary>
-            /// Gets the background color ID.
+            /// Gets or sets the background color ID.
             /// </summary>
             [JsonProperty("background_color_id")]
-            public int BackgroundColorId { get; private set; }
+            public int BackgroundColorId { get; set; }
 
             /// <summary>
-            /// Gets the primary foreground color ID.
+            /// Gets or sets the primary foreground color ID.
             /// </summary>
             [JsonProperty("foreground_primary_color_id")]
-            public int ForegroundPrimaryColorId { get; private set; }
+            public int ForegroundPrimaryColorId { get; set; }
 
             /// <summary>
-            /// Gets the secondary foreground color ID.
+            /// Gets or sets the secondary foreground color ID.
             /// </summary>
             [JsonProperty("foreground_secondary_color_id")]
-            public int ForegroundSecondaryColorId { get; private set; }
+            public int ForegroundSecondaryColorId { get; set; }
 
             /// <summary>
             /// Gets the JSON representation of this instance.

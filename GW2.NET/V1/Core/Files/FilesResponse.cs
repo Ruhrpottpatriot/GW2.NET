@@ -34,9 +34,9 @@ namespace GW2DotNET.V1.Core.Files
         }
 
         /// <summary>
-        /// Gets the collection of files.
+        /// Gets or sets the collection of files.
         /// </summary>
-        public Assets Files { get; private set; }
+        public Assets Files { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

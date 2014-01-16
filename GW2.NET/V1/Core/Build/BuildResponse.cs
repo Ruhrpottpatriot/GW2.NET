@@ -27,17 +27,16 @@ namespace GW2DotNET.V1.Core.Build
         /// Initializes a new instance of the <see cref="BuildResponse"/> class.
         /// </summary>
         /// <param name="buildId">The build ID.</param>
-        [JsonConstructor]
         public BuildResponse(int buildId)
         {
             this.BuildId = buildId;
         }
 
         /// <summary>
-        /// Gets the current build ID of the game.
+        /// Gets or sets the current build ID of the game.
         /// </summary>
         [JsonProperty("build_id")]
-        public int BuildId { get; private set; }
+        public int BuildId { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

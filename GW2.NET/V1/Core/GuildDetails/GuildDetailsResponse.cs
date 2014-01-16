@@ -31,7 +31,6 @@ namespace GW2DotNET.V1.Core.GuildDetails
         /// <param name="guildName">The guild's name.</param>
         /// <param name="guildTag">The guild's tag.</param>
         /// <param name="guildEmblem">The guild's emblem.</param>
-        [JsonConstructor]
         public GuildDetailsResponse(Guid guildId, string guildName, string guildTag, Emblem guildEmblem)
         {
             this.GuildId = guildId;
@@ -41,29 +40,29 @@ namespace GW2DotNET.V1.Core.GuildDetails
         }
 
         /// <summary>
-        /// Gets the guild's ID.
+        /// Gets or sets the guild's ID.
         /// </summary>
         [JsonProperty("guild_id")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid GuildId { get; private set; }
+        public Guid GuildId { get; set; }
 
         /// <summary>
-        /// Gets the guild's name.
+        /// Gets or sets the guild's name.
         /// </summary>
         [JsonProperty("guild_name")]
-        public string GuildName { get; private set; }
+        public string GuildName { get; set; }
 
         /// <summary>
-        /// Gets the guild's tag.
+        /// Gets or sets the guild's tag.
         /// </summary>
         [JsonProperty("tag")]
-        public string GuildTag { get; private set; }
+        public string GuildTag { get; set; }
 
         /// <summary>
-        /// Gets detailed information about the guild's emblem, if any. 
+        /// Gets or sets detailed information about the guild's emblem, if any. 
         /// </summary>
         [JsonProperty("emblem")]
-        public Emblem GuildEmblem { get; private set; }
+        public Emblem GuildEmblem { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
