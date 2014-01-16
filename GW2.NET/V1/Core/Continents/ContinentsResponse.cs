@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Continents
@@ -21,8 +23,22 @@ namespace GW2DotNET.V1.Core.Continents
         /// </summary>
         public ContinentsResponse()
         {
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ContinentsResponse"/> class using the specified values.
+        /// </summary>
+        /// <param name="continents">The collection of continents.</param>
+        public ContinentsResponse(IDictionary<int, Continent> continents)
+        {
+            this.Continents = continents;
+        }
+
+        /// <summary>
+        /// Gets or sets the collection of continents.
+        /// </summary>
+        [JsonProperty("continents")]
+        public IDictionary<int, Continent> Continents { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
