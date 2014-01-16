@@ -23,7 +23,6 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="source">The source response object.</param>
         /// <remarks>Copy constructor.</remarks>
-        [SuppressMessage("CSharp.Readability", "SA1100:DoNotPrefixCallsWithBaseUnlessLocalImplementationExists", Justification = "We want to set the properties on 'base', because 'this' might shadow their implementation.")]
         internal ApiResponse(IRestResponse<TContent> source)
         {
             this.Content = source.Content;
@@ -130,25 +129,14 @@ namespace GW2DotNET.V1.Core
                 throw new InvalidOperationException("The service did not return an error response.");
             }
 
-            /* Use an anonymous object to hold the error details. */
-            var errorDetails = JsonConvert.DeserializeAnonymousType(
-                value: this.Content,
-                anonymousTypeObject: new /* object */
-                {
-                    /*int*/ error = 0,
-                    /*int*/ product = 0,
-                    /*int*/ module = 0,
-                    /*int*/ line = 0,
-                    /*string*/ text = string.Empty
-                });
+            var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(this.Content);
 
-            /* Create a new exception using the values from the anonymous object. */
             return new ApiException(
-                error: errorDetails.error,
-                product: errorDetails.product,
-                module: errorDetails.module,
-                line: errorDetails.line,
-                text: errorDetails.text,
+                error: errorResponse.Error,
+                product: errorResponse.Product,
+                module: errorResponse.Module,
+                line: errorResponse.Line,
+                text: errorResponse.Text,
                 innerException: this.ErrorException);
         }
 
