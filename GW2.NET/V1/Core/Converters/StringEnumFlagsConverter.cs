@@ -7,26 +7,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
     /// Converts a bit flag <see cref="Enum"/> to and from a string array of flag names.
     /// </summary>
-    /// <typeparam name="TEnum">Type of the <see cref="Enum"/>.</typeparam>
-    public class StringEnumFlagsConverter<TEnum> : JsonConverter where TEnum : struct, IConvertible
+    public class StringEnumFlagsConverter : StringEnumConverter
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="StringEnumFlagsConverter{TEnum}"/> class.
-        /// </summary>
-        public StringEnumFlagsConverter()
-        {
-            if (!typeof(TEnum).IsEnum)
-            {
-                throw new ArgumentOutOfRangeException("TEnum", "Type parameter 'TEnum' must be an enumeration.");
-            }
-        }
-
         /// <summary>
         /// Determines whether this instance can convert the specified object type.
         /// </summary>
@@ -34,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(TEnum);
+            return objectType.IsEnum;
         }
 
         /// <summary>
@@ -47,43 +37,32 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            string[] enumNames = Enum.GetNames(objectType);
-            Type underlyingType = Enum.GetUnderlyingType(objectType);
-            try
+            if (reader.TokenType != JsonToken.StartArray)
             {
-                Stack<string> individualFlags = new Stack<string>();
-                do
-                {
-                    if (reader.TokenType == JsonToken.Null)
-                    {
-                        return existingValue;
-                    }
-
-                    if (reader.TokenType == JsonToken.String)
-                    {
-                        string enumText = reader.Value.ToString();
-                        if (!enumNames.Contains(enumText, StringComparer.OrdinalIgnoreCase))
-                        {
-                            throw new JsonSerializationException(string.Format("Parameter '{0}' is not a valid flag", enumText));
-                        }
-
-                        individualFlags.Push(enumText);
-                    }
-                }
-                while (reader.Read() && reader.TokenType != JsonToken.EndArray);
-
-                string validFlags = string.Join(", ", individualFlags);
-                if (validFlags.Any())
-                {
-                    return Enum.Parse(objectType, validFlags, true);
-                }
-
-                return existingValue;
+                return base.ReadJson(reader, objectType, existingValue, serializer);
             }
-            catch (Exception exception)
+
+            Stack<string> individualFlags = new Stack<string>();
+            do
             {
-                throw new JsonSerializationException(exception.Message, exception);
+                if (reader.TokenType == JsonToken.String)
+                {
+                    individualFlags.Push(reader.Value.ToString());
+                }
             }
+            while (reader.Read() && reader.TokenType != JsonToken.EndArray);
+            if (individualFlags.Any())
+            {
+                string flags = string.Join(",", individualFlags);
+                JValue jsonFlags = JValue.CreateString(flags);
+                JsonReader valueReader = jsonFlags.CreateReader();
+                if (valueReader.Read())
+                {
+                    return base.ReadJson(valueReader, objectType, existingValue, serializer);
+                }
+            }
+
+            return existingValue;
         }
 
         /// <summary>
@@ -94,22 +73,32 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            if (((TEnum)value).ToInt32(null) == 0)
+            if (value == null || (int)value == 0)
             {
-                writer.WriteStartArray();
-                writer.WriteEndArray();
+                this.WriteEmptyArray(writer);
                 return;
             }
 
-            var flags = value.ToString().Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            Type enumType = value.GetType();
+            var values = value.ToString().Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             writer.WriteStartArray();
 
-            foreach (var flag in flags)
+            foreach (var item in values)
             {
-                writer.WriteValue(flag);
+                base.WriteJson(writer, Enum.Parse(enumType, item, true), serializer);
             }
 
+            writer.WriteEndArray();
+        }
+
+        /// <summary>
+        /// Writes an opening and closing bracket.
+        /// </summary>
+        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+        private void WriteEmptyArray(JsonWriter writer)
+        {
+            writer.WriteStartArray();
             writer.WriteEndArray();
         }
     }

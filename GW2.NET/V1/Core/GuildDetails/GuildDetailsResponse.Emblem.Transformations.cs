@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Runtime.Serialization;
 using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 
@@ -26,27 +27,31 @@ namespace GW2DotNET.V1.Core.GuildDetails
             /// Enumerates the possible transformations for a guild emblem image.
             /// </summary>
             [Flags]
-            [JsonConverter(typeof(StringEnumFlagsConverter<Transformations>))]
+            [JsonConverter(typeof(StringEnumFlagsConverter))]
             public enum Transformations
             {
                 /// <summary>
                 /// Flip the background image horizontally.
                 /// </summary>
+                [DataMember(Name = "FlipBackgroundHorizontal")]
                 FlipBackgroundHorizontal = 1,
 
                 /// <summary>
                 /// Flip the background image vertically.
                 /// </summary>
+                [DataMember(Name = "FlipBackgroundVertical")]
                 FlipBackgroundVertical = 1 << 1,
 
                 /// <summary>
                 /// Flip the foreground image horizontally.
                 /// </summary>
+                [DataMember(Name = "FlipForegroundHorizontal")]
                 FlipForegroundHorizontal = 1 << 2,
 
                 /// <summary>
                 /// Flip the foreground image vertically.
                 /// </summary>
+                [DataMember(Name = "FlipForegroundVertical")]
                 FlipForegroundVertical = 1 << 3
             }
         }
