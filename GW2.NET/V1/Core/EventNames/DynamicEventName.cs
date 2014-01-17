@@ -1,43 +1,51 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventNamesResponse.cs" company="GW2.Net Coding Team">
+// <copyright file="DynamicEventName.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
+using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace GW2DotNET.V1.Core.EventNames
 {
     /// <summary>
-    /// Represents a response that is the result of an <see cref="EventNamesRequest"/>.
+    /// Represents the localized name for a specific event.
     /// </summary>
-    /// <remarks>
-    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names"/> for more information.
-    /// </remarks>
-    [JsonConverter(typeof(EventNamesResponseConverter))]
-    public class EventNamesResponse
+    public class DynamicEventName
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventNamesResponse"/> class.
+        /// Initializes a new instance of the <see cref="DynamicEventName"/> class.
         /// </summary>
-        public EventNamesResponse()
+        public DynamicEventName()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventNamesResponse"/> class.
+        /// Initializes a new instance of the <see cref="DynamicEventName"/> class using the specified values.
         /// </summary>
-        /// <param name="eventNames">The list of localized event names.</param>
-        public EventNamesResponse(IEnumerable<DynamicEventName> eventNames)
+        /// <param name="id">The event ID.</param>
+        /// <param name="name">The localized event name.</param>
+        public DynamicEventName(Guid id, string name)
         {
-            this.EventNames = eventNames;
+            this.Id = id;
+            this.Name = name;
         }
 
         /// <summary>
-        /// Gets or sets a list of localized event names.
+        /// Gets or sets the event ID.
         /// </summary>
-        public IEnumerable<DynamicEventName> EventNames { get; set; }
+        [JsonProperty("id")]
+        [JsonConverter(typeof(GuidConverter))]
+        public Guid Id { get; set; }
+
+        /// <summary>
+        /// Gets or sets the localized event name.
+        /// </summary>
+        [JsonProperty("name")]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
