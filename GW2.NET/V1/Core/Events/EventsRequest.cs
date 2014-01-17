@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.Events
         /// <param name="worldId">The world ID.</param>
         /// <param name="mapId">The map ID.</param>
         /// <param name="eventId">The event ID.</param>
-        public EventsRequest(int? worldId, int? mapId, int? eventId)
+        public EventsRequest(int? worldId, int? mapId, Guid? eventId)
             : base(new Uri(Resources.Events + "?world_id={world_id}&map_id={map_id}&event_id={event_id}", UriKind.Relative))
         {
             this.AddUrlSegment("world_id", worldId.ToString());

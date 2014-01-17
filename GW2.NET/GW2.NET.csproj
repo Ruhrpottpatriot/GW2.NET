@@ -125,6 +125,8 @@
     <Compile Include="V1\Core\EventDetails\EventDetailsResponse.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesRequest.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesResponse.cs" />
+    <Compile Include="V1\Core\Events\DynamicEvent.cs" />
+    <Compile Include="V1\Core\Events\DynamicEvent.EventState.cs" />
     <Compile Include="V1\Core\Events\EventsRequest.cs" />
     <Compile Include="V1\Core\Events\EventsResponse.cs" />
     <Compile Include="V1\Core\Files\Asset.cs" />

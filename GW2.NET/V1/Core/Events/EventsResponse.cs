@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Events
@@ -21,8 +22,22 @@ namespace GW2DotNET.V1.Core.Events
         /// </summary>
         public EventsResponse()
         {
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventsResponse"/> class using the specified list of events.
+        /// </summary>
+        /// <param name="events">The list of events.</param>
+        public EventsResponse(IEnumerable<DynamicEvent> events)
+        {
+            this.Events = events;
+        }
+
+        /// <summary>
+        /// Gets or sets a list of event details.
+        /// </summary>
+        [JsonProperty("events")]
+        public IEnumerable<DynamicEvent> Events { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
