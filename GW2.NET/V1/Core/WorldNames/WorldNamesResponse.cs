@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.WorldNames
@@ -14,6 +15,7 @@ namespace GW2DotNET.V1.Core.WorldNames
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names"/> for more information.
     /// </remarks>
+    [JsonConverter(typeof(WorldNamesResponseConverter))]
     public class WorldNamesResponse
     {
         /// <summary>
@@ -21,8 +23,21 @@ namespace GW2DotNET.V1.Core.WorldNames
         /// </summary>
         public WorldNamesResponse()
         {
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorldNamesResponse"/> class using the specified list of worlds.
+        /// </summary>
+        /// <param name="worlds">The list of worlds.</param>
+        public WorldNamesResponse(IEnumerable<World> worlds)
+        {
+            this.Worlds = worlds;
+        }
+
+        /// <summary>
+        /// Gets or sets the list of worlds.
+        /// </summary>
+        public IEnumerable<World> Worlds { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

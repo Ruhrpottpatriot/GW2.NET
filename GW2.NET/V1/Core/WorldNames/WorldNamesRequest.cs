@@ -32,6 +32,7 @@ namespace GW2DotNET.V1.Core.WorldNames
         public WorldNamesRequest(CultureInfo language)
             : base(new Uri(Resources.ObjectiveNames + "?lang={language}", UriKind.Relative))
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
 
