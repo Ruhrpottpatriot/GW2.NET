@@ -4,10 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace GW2DotNET.V1.Core.EventNames
 {
@@ -37,14 +35,14 @@ namespace GW2DotNET.V1.Core.EventNames
         /// <summary>
         /// Gets or sets the event ID.
         /// </summary>
-        [JsonProperty("id")]
+        [JsonProperty("id", Order = 0)]
         [JsonConverter(typeof(GuidConverter))]
         public Guid Id { get; set; }
 
         /// <summary>
         /// Gets or sets the localized event name.
         /// </summary>
-        [JsonProperty("name")]
+        [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
 
         /// <summary>

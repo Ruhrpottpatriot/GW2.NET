@@ -25,7 +25,7 @@ namespace GW2DotNET.V1.Core.EventNames
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(EventNamesResponse) == objectType;
+            return typeof(EventNamesResponse).IsAssignableFrom(objectType);
         }
 
         /// <summary>
