@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PointFConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="DecimalWholeNumberConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -10,9 +10,11 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a <see cref="PointF"/> to and from its <see cref="String"/> representation.
+    /// Converts a numeric value to its <see cref="String"/> representation,
+    /// discarding the decimal point if it's a whole number.
     /// </summary>
-    public class PointFConverter : JsonConverter
+    /// <typeparam name="TNumeric">The numeric type.</typeparam>
+    public class DecimalWholeNumberConverter<TNumeric> : JsonConverter where TNumeric : struct, IComparable
     {
         /// <summary>
         /// Determines whether this instance can convert the specified object type.
@@ -21,7 +23,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(PointF);
+            return typeof(TNumeric).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -34,8 +36,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var points = serializer.Deserialize<float[]>(reader);
-            return new PointF(points[0], points[1]);
+            return serializer.Deserialize(reader, objectType);
         }
 
         /// <summary>
@@ -46,30 +47,15 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteStartArray();
-            if (value is PointF)
+            dynamic val = (TNumeric)value;
+            if ((val % 1) == 0)
             {
-                var point = (PointF)value;
-                if ((point.X % 1F) == 0F)
-                {
-                    serializer.Serialize(writer, (int)point.X);
-                }
-                else
-                {
-                    serializer.Serialize(writer, point.X);
-                }
-
-                if ((point.Y % 1F) == 0F)
-                {
-                    serializer.Serialize(writer, (int)point.Y);
-                }
-                else
-                {
-                    serializer.Serialize(writer, point.Y);
-                }
+                serializer.Serialize(writer, (int)val);
             }
-
-            writer.WriteEndArray();
+            else
+            {
+                serializer.Serialize(writer, val);
+            }
         }
     }
 }

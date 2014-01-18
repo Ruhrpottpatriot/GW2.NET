@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.Drawing;
 using Newtonsoft.Json;
 
@@ -41,18 +42,21 @@ namespace GW2DotNET.V1.Core.EventDetails
         /// Gets or sets the location's height.
         /// </summary>
         [JsonProperty("height", Order = 3)]
+        [JsonConverter(typeof(DecimalWholeNumberConverter<double>))]
         public double Height { get; set; }
 
         /// <summary>
         /// Gets or sets the location's radius.
         /// </summary>
         [JsonProperty("radius", Order = 4)]
+        [JsonConverter(typeof(DecimalWholeNumberConverter<double>))]
         public double Radius { get; set; }
 
         /// <summary>
         /// Gets or sets the location's rotation.
         /// </summary>
         [JsonProperty("rotation", Order = 5)]
+        [JsonConverter(typeof(DecimalWholeNumberConverter<double>))]
         public double Rotation { get; set; }
     }
 }

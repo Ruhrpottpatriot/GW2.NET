@@ -50,9 +50,32 @@ namespace GW2DotNET.V1.Core.Converters
             if (value is Point3D)
             {
                 var point3D = (Point3D)value;
-                writer.WriteValue(point3D.X);
-                writer.WriteValue(point3D.Y);
-                writer.WriteValue(point3D.Z);
+                if ((point3D.X % 1D) == 0D)
+                {
+                    serializer.Serialize(writer, (int)point3D.X);
+                }
+                else
+                {
+                    serializer.Serialize(writer, point3D.X);
+                }
+
+                if ((point3D.Y % 1D) == 0D)
+                {
+                    serializer.Serialize(writer, (int)point3D.Y);
+                }
+                else
+                {
+                    serializer.Serialize(writer, point3D.Y);
+                }
+
+                if ((point3D.Z % 1D) == 0D)
+                {
+                    serializer.Serialize(writer, (int)point3D.Z);
+                }
+                else
+                {
+                    serializer.Serialize(writer, point3D.Z);
+                }
             }
 
             writer.WriteEndArray();
