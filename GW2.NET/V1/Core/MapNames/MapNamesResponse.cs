@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.MapNames
@@ -15,6 +16,7 @@ namespace GW2DotNET.V1.Core.MapNames
     /// The returned data only contains static content. Dynamic content, such as vendors, is not currently available.
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names"/> for more information.
     /// </remarks>
+    [JsonConverter(typeof(MapNamesResponseConverter))]
     public class MapNamesResponse
     {
         /// <summary>
@@ -22,8 +24,21 @@ namespace GW2DotNET.V1.Core.MapNames
         /// </summary>
         public MapNamesResponse()
         {
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapNamesResponse"/> class using the specified list of maps.
+        /// </summary>
+        /// <param name="maps">The list of maps.</param>
+        public MapNamesResponse(IEnumerable<Map> maps)
+        {
+            this.Maps = maps;
+        }
+
+        /// <summary>
+        /// Gets or sets the list of maps.
+        /// </summary>
+        public IEnumerable<Map> Maps { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

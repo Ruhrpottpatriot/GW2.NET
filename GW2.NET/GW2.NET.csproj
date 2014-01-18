@@ -161,6 +161,8 @@
     <Compile Include="V1\Core\MapFloor\MapFloorResponse.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesRequest.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesResponse.cs" />
+    <Compile Include="V1\Core\MapNames\Map.cs" />
+    <Compile Include="V1\Core\MapNames\MapNamesResponseConverter.cs" />
     <Compile Include="V1\Core\Maps\MapsRequest.cs" />
     <Compile Include="V1\Core\Maps\MapsResponse.cs" />
     <Compile Include="V1\Core\Preconditions.cs" />
