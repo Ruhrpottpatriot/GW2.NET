@@ -53,7 +53,7 @@ namespace GW2DotNET.V1.Core.EventDetails
         /// <returns>Returns a JSON <see cref="String"/>.</returns>
         public override string ToString()
         {
-            return JsonConvert.SerializeObject(this, new GuidConverter());
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

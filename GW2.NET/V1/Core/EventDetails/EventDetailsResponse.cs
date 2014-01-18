@@ -38,6 +38,7 @@ namespace GW2DotNET.V1.Core.EventDetails
         /// Gets or sets a list of details about dynamic events.
         /// </summary>
         [JsonProperty("events")]
+        [JsonConverter(typeof(GuidDictionaryConverter<DynamicEventDetails>))]
         public Dictionary<Guid, DynamicEventDetails> EventDetails { get; set; }
 
         /// <summary>
@@ -46,7 +47,7 @@ namespace GW2DotNET.V1.Core.EventDetails
         /// <returns>Returns a JSON <see cref="String"/>.</returns>
         public override string ToString()
         {
-            return JsonConvert.SerializeObject(this, new GuidConverter());
+            return JsonConvert.SerializeObject(this);
         }
     }
 }

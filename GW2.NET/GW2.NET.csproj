@@ -115,6 +115,7 @@
     <Compile Include="V1\Core\Continents\Continent.cs" />
     <Compile Include="V1\Core\Continents\ContinentsRequest.cs" />
     <Compile Include="V1\Core\Continents\ContinentsResponse.cs" />
+    <Compile Include="V1\Core\Converters\GuidDictionaryConverter.cs" />
     <Compile Include="V1\Core\Converters\PointFConverter.cs" />
     <Compile Include="V1\Core\Converters\PointConverter.cs" />
     <Compile Include="V1\Core\Converters\Point3DConverter.cs" />
