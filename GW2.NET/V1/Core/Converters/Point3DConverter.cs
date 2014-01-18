@@ -1,12 +1,11 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ColorConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="Point3DConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
-using System.Drawing;
-using Newtonsoft.Json;
 using GW2DotNET.V1.Core.Drawing;
+using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
 {
