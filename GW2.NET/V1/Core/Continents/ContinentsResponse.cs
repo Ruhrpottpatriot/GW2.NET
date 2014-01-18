@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Continents
@@ -37,7 +36,7 @@ namespace GW2DotNET.V1.Core.Continents
         /// <summary>
         /// Gets or sets the collection of continents.
         /// </summary>
-        [JsonProperty("continents")]
+        [JsonProperty("continents", Order = 0)]
         public IDictionary<int, Continent> Continents { get; set; }
 
         /// <summary>

@@ -17,35 +17,35 @@ namespace GW2DotNET.V1.Core.Continents
     public class Continent
     {
         /// <summary>
-        /// Gets or sets the name of the continent.
-        /// </summary>
-        [JsonProperty("name")]
-        public string ContinentName { get; set; }
-
-        /// <summary>
         /// Gets or sets the dimensions of the continent.
         /// </summary>
-        [JsonProperty("continent_dims")]
+        [JsonProperty("continent_dims", Order = 1)]
         [JsonConverter(typeof(JsonSizeConverter))]
         public Size ContinentDimensions { get; set; }
 
         /// <summary>
-        /// Gets or sets the minimum zoom level for use with the map tile service.
+        /// Gets or sets the name of the continent.
         /// </summary>
-        [JsonProperty("min_zoom")]
-        public int MinimumZoom { get; set; }
-
-        /// <summary>
-        /// Gets or sets the maximum zoom level for use with the map tile service.
-        /// </summary>
-        [JsonProperty("max_zoom")]
-        public int MaximumZoom { get; set; }
+        [JsonProperty("name", Order = 0)]
+        public string ContinentName { get; set; }
 
         /// <summary>
         /// Gets or sets a list of floors available for this continent.
         /// </summary>
-        [JsonProperty("floors")]
+        [JsonProperty("floors", Order = 4)]
         public IEnumerable<int> Floors { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum zoom level for use with the map tile service.
+        /// </summary>
+        [JsonProperty("max_zoom", Order = 3)]
+        public int MaximumZoom { get; set; }
+
+        /// <summary>
+        /// Gets or sets the minimum zoom level for use with the map tile service.
+        /// </summary>
+        [JsonProperty("min_zoom", Order = 2)]
+        public int MinimumZoom { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
