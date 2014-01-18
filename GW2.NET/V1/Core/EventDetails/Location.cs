@@ -1,44 +1,51 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventDetailsResponse.cs" company="GW2.Net Coding Team">
+// <copyright file="Location.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
+using GW2DotNET.V1.Core.Drawing;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.EventDetails
 {
     /// <summary>
-    /// Represents a response that is the result of an <see cref="EventDetailsRequest"/>.
+    /// Represents the location of an event on the map.
     /// </summary>
-    /// <remarks>
-    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details"/> for more information.
-    /// </remarks>
-    public class EventDetailsResponse
+    [JsonConverter(typeof(LocationConverter))]
+    public abstract partial class Location
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventDetailsResponse"/> class.
+        /// Initializes a new instance of the <see cref="Location"/> class.
         /// </summary>
-        public EventDetailsResponse()
+        protected Location()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventDetailsResponse"/> class.
+        /// Initializes a new instance of the <see cref="Location"/> class using the specified values.
         /// </summary>
-        /// <param name="eventDetails">The list of event details.</param>
-        public EventDetailsResponse(Dictionary<Guid, DynamicEventDetails> eventDetails)
+        /// <param name="type">The location's shape.</param>
+        /// <param name="center">The location's center.</param>
+        protected Location(Shape type, Point3D center)
         {
-            this.EventDetails = eventDetails;
+            this.LocationType = type;
+            this.Center = center;
         }
 
         /// <summary>
-        /// Gets or sets a list of details about dynamic events.
+        /// Gets or sets the center coordinates.
         /// </summary>
-        [JsonProperty("events")]
-        public Dictionary<Guid, DynamicEventDetails> EventDetails { get; set; }
+        [JsonProperty("center", Order = 1)]
+        [JsonConverter(typeof(Point3DConverter))]
+        public Point3D Center { get; set; }
+
+        /// <summary>
+        /// Gets or sets the shape of the location.
+        /// </summary>
+        [JsonProperty("type", Order = 0)]
+        public Shape LocationType { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

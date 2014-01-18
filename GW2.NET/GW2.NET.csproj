@@ -115,14 +115,24 @@
     <Compile Include="V1\Core\Continents\Continent.cs" />
     <Compile Include="V1\Core\Continents\ContinentsRequest.cs" />
     <Compile Include="V1\Core\Continents\ContinentsResponse.cs" />
+    <Compile Include="V1\Core\Converters\PointFConverter.cs" />
+    <Compile Include="V1\Core\Converters\PointConverter.cs" />
+    <Compile Include="V1\Core\Converters\Point3DConverter.cs" />
     <Compile Include="V1\Core\Converters\SizeConverter.cs" />
     <Compile Include="V1\Core\Converters\ColorConverter.cs" />
     <Compile Include="V1\Core\Converters\GuidConverter.cs" />
     <Compile Include="V1\Core\Converters\JsonDeserializer.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
+    <Compile Include="V1\Core\Drawing\Point3D.cs" />
     <Compile Include="V1\Core\ErrorResponse.cs" />
+    <Compile Include="V1\Core\EventDetails\CylinderLocation.cs" />
+    <Compile Include="V1\Core\EventDetails\DynamicEventDetails.cs" />
+    <Compile Include="V1\Core\EventDetails\Location.cs" />
     <Compile Include="V1\Core\EventDetails\EventDetailsRequest.cs" />
     <Compile Include="V1\Core\EventDetails\EventDetailsResponse.cs" />
+    <Compile Include="V1\Core\EventDetails\LocationConverter.cs" />
+    <Compile Include="V1\Core\EventDetails\PolygonLocation.cs" />
+    <Compile Include="V1\Core\EventDetails\SphereLocation.cs" />
     <Compile Include="V1\Core\EventNames\DynamicEventName.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesRequest.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesResponse.cs" />
@@ -247,6 +257,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Compile Include="V1\Core\EventDetails\DynamicEventDetails.DynamicEventStyles.cs" />
+    <Compile Include="V1\Core\EventDetails\Location.Shape.cs" />
     <None Include="V1\Core\Requests.cd" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.Emblem.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.Emblem.Transformations.cs" />

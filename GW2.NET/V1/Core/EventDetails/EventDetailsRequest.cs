@@ -32,7 +32,7 @@ namespace GW2DotNET.V1.Core.EventDetails
         public EventDetailsRequest(CultureInfo language)
             : base(new Uri(Resources.EventDetails + "?lang={language}", UriKind.Relative))
         {
-            Preconditions.EnsureNotNull(language);
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
 
@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Core.EventDetails
         /// Initializes a new instance of the <see cref="EventDetailsRequest"/> class using the specified event ID.
         /// </summary>
         /// <param name="eventId">The event ID.</param>
-        public EventDetailsRequest(int eventId)
+        public EventDetailsRequest(Guid eventId)
             : base(new Uri(Resources.EventDetails + "?event_id={event_id}", UriKind.Relative))
         {
             this.AddUrlSegment("event_id", eventId.ToString());
@@ -51,10 +51,10 @@ namespace GW2DotNET.V1.Core.EventDetails
         /// </summary>
         /// <param name="eventId">The event ID.</param>
         /// <param name="language">The output language. Supported values are enumerated in <see cref="SupportedLanguages"/>.</param>
-        public EventDetailsRequest(int eventId, CultureInfo language)
+        public EventDetailsRequest(Guid eventId, CultureInfo language)
             : base(new Uri(Resources.EventDetails + "?event_id={event_id}&lang={language}", UriKind.Relative))
         {
-            Preconditions.EnsureNotNull(language);
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("event_id", eventId.ToString());
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
