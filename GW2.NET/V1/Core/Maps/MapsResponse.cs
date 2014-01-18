@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Maps
@@ -21,8 +22,22 @@ namespace GW2DotNET.V1.Core.Maps
         /// </summary>
         public MapsResponse()
         {
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapsResponse"/> class using the specified collection of maps.
+        /// </summary>
+        /// <param name="maps">The collection of maps.</param>
+        public MapsResponse(IDictionary<int, Map> maps)
+        {
+            this.Maps = maps;
+        }
+
+        /// <summary>
+        /// Gets or sets the collection of maps.
+        /// </summary>
+        [JsonProperty("maps", Order = 0)]
+        public IDictionary<int, Map> Maps { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

@@ -117,6 +117,7 @@
     <Compile Include="V1\Core\Continents\ContinentsResponse.cs" />
     <Compile Include="V1\Core\Converters\DecimalWholeNumberConverter.cs" />
     <Compile Include="V1\Core\Converters\GuidDictionaryConverter.cs" />
+    <Compile Include="V1\Core\Converters\RectangleConverter.cs" />
     <Compile Include="V1\Core\Converters\PointFConverter.cs" />
     <Compile Include="V1\Core\Converters\PointConverter.cs" />
     <Compile Include="V1\Core\Converters\Point3DConverter.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="V1\Core\MapNames\MapNamesResponse.cs" />
     <Compile Include="V1\Core\MapNames\Map.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesResponseConverter.cs" />
+    <Compile Include="V1\Core\Maps\Map.cs" />
     <Compile Include="V1\Core\Maps\MapsRequest.cs" />
     <Compile Include="V1\Core\Maps\MapsResponse.cs" />
     <Compile Include="V1\Core\Preconditions.cs" />

@@ -32,6 +32,7 @@ namespace GW2DotNET.V1.Core.Maps
         public MapsRequest(CultureInfo language)
             : base(new Uri(Resources.Maps + "?lang={language}", UriKind.Relative))
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
 
@@ -53,6 +54,7 @@ namespace GW2DotNET.V1.Core.Maps
         public MapsRequest(int mapId, CultureInfo language)
             : base(new Uri(Resources.Maps + "?map_id={map_id}&lang={language}", UriKind.Relative))
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("map_id", mapId.ToString());
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
