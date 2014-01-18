@@ -44,39 +44,39 @@ namespace GW2DotNET.V1.Core.Colors
         /// <summary>
         /// Gets or sets the brightness.
         /// </summary>
-        [JsonProperty("brightness")]
+        [JsonProperty("brightness", Order = 0)]
         public int Brightness { get; set; }
 
         /// <summary>
         /// Gets or sets the contrast.
         /// </summary>
-        [JsonProperty("contrast")]
+        [JsonProperty("contrast", Order = 1)]
         public double Contrast { get; set; }
 
         /// <summary>
         /// Gets or sets the hue in the HSL color space.
         /// </summary>
-        [JsonProperty("hue")]
+        [JsonProperty("hue", Order = 2)]
         public int Hue { get; set; }
-
-        /// <summary>
-        /// Gets or sets the saturation in the HSL color space.
-        /// </summary>
-        [JsonProperty("saturation")]
-        public double Saturation { get; set; }
 
         /// <summary>
         /// Gets or sets the lightness in the HSL color space.
         /// </summary>
-        [JsonProperty("lightness")]
+        [JsonProperty("lightness", Order = 4)]
         public double Lightness { get; set; }
 
         /// <summary>
         /// Gets or sets the color.
         /// </summary>
-        [JsonProperty("rgb")]
+        [JsonProperty("rgb", Order = 5)]
         [JsonConverter(typeof(JsonColorConverter))]
         public Color RGB { get; set; }
+
+        /// <summary>
+        /// Gets or sets the saturation in the HSL color space.
+        /// </summary>
+        [JsonProperty("saturation", Order = 3)]
+        public double Saturation { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

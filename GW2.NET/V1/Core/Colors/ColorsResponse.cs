@@ -36,7 +36,7 @@ namespace GW2DotNET.V1.Core.Colors
         /// <summary>
         /// Gets or sets a collection of all dyes in the game.
         /// </summary>
-        [JsonProperty("colors")]
+        [JsonProperty("colors", Order = 0)]
         public IDictionary<int, Dye> Colors { get; set; }
 
         /// <summary>

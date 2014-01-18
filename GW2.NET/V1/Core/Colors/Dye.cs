@@ -40,35 +40,35 @@ namespace GW2DotNET.V1.Core.Colors
         }
 
         /// <summary>
-        /// Gets or sets the name of the dye.
-        /// </summary>
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        /// <summary>
         /// Gets or sets the base RGB values.
         /// </summary>
-        [JsonProperty("base_rgb")]
+        [JsonProperty("base_rgb", Order = 1)]
         [JsonConverter(typeof(JsonColorConverter))]
         public Color BaseRGB { get; set; }
 
         /// <summary>
         /// Gets or sets detailed information on the appearance when applied on cloth armor.
         /// </summary>
-        [JsonProperty("cloth")]
+        [JsonProperty("cloth", Order = 2)]
         public Material Cloth { get; set; }
 
         /// <summary>
         /// Gets or sets detailed information on the appearance when applied on leather armor.
         /// </summary>
-        [JsonProperty("leather")]
+        [JsonProperty("leather", Order = 3)]
         public Material Leather { get; set; }
 
         /// <summary>
         /// Gets or sets detailed information on the appearance when applied on metal armor.
         /// </summary>
-        [JsonProperty("metal")]
+        [JsonProperty("metal", Order = 4)]
         public Material Metal { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the dye.
+        /// </summary>
+        [JsonProperty("name", Order = 0)]
+        public string Name { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
