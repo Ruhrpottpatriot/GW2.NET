@@ -4,10 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Files
@@ -38,13 +34,13 @@ namespace GW2DotNET.V1.Core.Files
         /// <summary>
         /// Gets or sets the file ID to be used with the render service.
         /// </summary>
-        [JsonProperty("file_id")]
+        [JsonProperty("file_id", Order = 0)]
         public string FileId { get; set; }
 
         /// <summary>
         /// Gets or sets file signature to be used with the render service.
         /// </summary>
-        [JsonProperty("signature")]
+        [JsonProperty("signature", Order = 1)]
         public string Signature { get; set; }
 
         /// <summary>
