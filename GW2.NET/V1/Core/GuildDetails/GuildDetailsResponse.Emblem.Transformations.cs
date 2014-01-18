@@ -33,25 +33,25 @@ namespace GW2DotNET.V1.Core.GuildDetails
                 /// <summary>
                 /// Flip the background image horizontally.
                 /// </summary>
-                [DataMember(Name = "FlipBackgroundHorizontal")]
-                FlipBackgroundHorizontal = 1,
+                [EnumMember(Value = "FlipBackgroundHorizontal")]
+                FlipBackgroundHorizontal = 1 << 0,
 
                 /// <summary>
                 /// Flip the background image vertically.
                 /// </summary>
-                [DataMember(Name = "FlipBackgroundVertical")]
+                [EnumMember(Value = "FlipBackgroundVertical")]
                 FlipBackgroundVertical = 1 << 1,
 
                 /// <summary>
                 /// Flip the foreground image horizontally.
                 /// </summary>
-                [DataMember(Name = "FlipForegroundHorizontal")]
+                [EnumMember(Value = "FlipForegroundHorizontal")]
                 FlipForegroundHorizontal = 1 << 2,
 
                 /// <summary>
                 /// Flip the foreground image vertically.
                 /// </summary>
-                [DataMember(Name = "FlipForegroundVertical")]
+                [EnumMember(Value = "FlipForegroundVertical")]
                 FlipForegroundVertical = 1 << 3
             }
         }

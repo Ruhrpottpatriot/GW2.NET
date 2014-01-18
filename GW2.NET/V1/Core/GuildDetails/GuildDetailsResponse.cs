@@ -40,29 +40,29 @@ namespace GW2DotNET.V1.Core.GuildDetails
         }
 
         /// <summary>
+        /// Gets or sets detailed information about the guild's emblem, if any.
+        /// </summary>
+        [JsonProperty("emblem", Order = 3)]
+        public Emblem GuildEmblem { get; set; }
+
+        /// <summary>
         /// Gets or sets the guild's ID.
         /// </summary>
-        [JsonProperty("guild_id")]
+        [JsonProperty("guild_id", Order = 0)]
         [JsonConverter(typeof(GuidConverter))]
         public Guid GuildId { get; set; }
 
         /// <summary>
         /// Gets or sets the guild's name.
         /// </summary>
-        [JsonProperty("guild_name")]
+        [JsonProperty("guild_name", Order = 1)]
         public string GuildName { get; set; }
 
         /// <summary>
         /// Gets or sets the guild's tag.
         /// </summary>
-        [JsonProperty("tag")]
+        [JsonProperty("tag", Order = 2)]
         public string GuildTag { get; set; }
-
-        /// <summary>
-        /// Gets or sets detailed information about the guild's emblem, if any. 
-        /// </summary>
-        [JsonProperty("emblem")]
-        public Emblem GuildEmblem { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
