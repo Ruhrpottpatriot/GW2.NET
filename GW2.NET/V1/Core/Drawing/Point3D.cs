@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.Core.Drawing
         /// <summary>
         /// Gets the text representation of this instance.
         /// </summary>
-        /// <returns>Returns a <see cref="String"/>.</returns>
+        /// <returns>Returns a <see cref="System.String"/>.</returns>
         public override string ToString()
         {
             return string.Format("[{0}, {1}, {2}]", this.X, this.Y, this.Z);

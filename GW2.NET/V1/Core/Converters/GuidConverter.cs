@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a <see cref="Guid"/> to and from its <see cref="String"/> representation.
+    /// Converts a <see cref="Guid"/> to and from its <see cref="System.String"/> representation.
     /// </summary>
     public class GuidConverter : JsonConverter
     {

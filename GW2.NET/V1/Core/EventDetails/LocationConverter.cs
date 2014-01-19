@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.V1.Core.EventDetails
 {
     /// <summary>
-    /// Converts a <see cref="Location"/> to and from its <see cref="String"/> representation.
+    /// Converts a <see cref="Location"/> to and from its <see cref="System.String"/> representation.
     /// </summary>
     public class LocationConverter : CustomCreationConverter<Location>
     {

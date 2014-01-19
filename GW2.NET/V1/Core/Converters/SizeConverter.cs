@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a <see cref="Size"/> to and from its <see cref="String"/> representation.
+    /// Converts a <see cref="Size"/> to and from its <see cref="System.String"/> representation.
     /// </summary>
     public class SizeConverter : JsonConverter
     {

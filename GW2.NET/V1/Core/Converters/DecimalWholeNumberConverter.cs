@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a numeric value to its <see cref="String"/> representation,
+    /// Converts a numeric value to its <see cref="System.String"/> representation,
     /// discarding the decimal point if it's a whole number.
     /// </summary>
     /// <typeparam name="TNumeric">The numeric type.</typeparam>

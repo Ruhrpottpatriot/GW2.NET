@@ -11,7 +11,7 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a <see cref="Dictionary{Guid, TValue}"/> to and from its <see cref="String"/> representation.
+    /// Converts a <see cref="Dictionary{Guid, TValue}"/> to and from its <see cref="System.String"/> representation.
     /// </summary>
     /// <typeparam name="TValue">The type of the values.</typeparam>
     public class GuidDictionaryConverter<TValue> : JsonConverter
