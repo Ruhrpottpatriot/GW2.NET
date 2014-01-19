@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Recipes
@@ -21,9 +21,22 @@ namespace GW2DotNET.V1.Core.Recipes
         /// </summary>
         public RecipesResponse()
         {
-            // TODO: implement recipes.json
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RecipesResponse"/> class using the specified values.
+        /// </summary>
+        /// <param name="recipes">The list of discovered recipes.</param>
+        public RecipesResponse(IEnumerable<int> recipes)
+        {
+            this.Recipes = recipes;
+        }
+
+        /// <summary>
+        /// Gets or sets the list of discovered recipes.
+        /// </summary>
+        [JsonProperty("recipes", Order = 0)]
+        public IEnumerable<int> Recipes { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
