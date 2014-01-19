@@ -3,10 +3,6 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace GW2DotNET.V1.Core.Drawing
 {
@@ -14,7 +10,7 @@ namespace GW2DotNET.V1.Core.Drawing
     /// Represents an x-, y-, and z-coordinate point in 3-D space.
     /// </summary>
     /// <remarks>
-    /// This struct exists because it would be silly to add a WPF reference for
+    /// This struct exists because it would be silly to add a WPF reference for its Point3D struct.
     /// </remarks>
     public struct Point3D
     {
