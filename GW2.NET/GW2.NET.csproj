@@ -158,8 +158,14 @@
     <Compile Include="V1\Core\IApiRequest.cs" />
     <Compile Include="V1\Core\IApiResponse.cs" />
     <Compile Include="V1\Core\Items\ItemsRequest.cs" />
+    <Compile Include="V1\Core\MapFloor\Map.cs" />
     <Compile Include="V1\Core\MapFloor\MapFloorRequest.cs" />
     <Compile Include="V1\Core\MapFloor\MapFloorResponse.cs" />
+    <Compile Include="V1\Core\MapFloor\Region.cs" />
+    <Compile Include="V1\Core\MapFloor\Sector.cs" />
+    <Compile Include="V1\Core\MapFloor\PointOfInterest.cs" />
+    <Compile Include="V1\Core\MapFloor\Task.cs" />
+    <Compile Include="V1\Core\MapFloor\SkillChallenge.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesRequest.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesResponse.cs" />
     <Compile Include="V1\Core\MapNames\Map.cs" />
@@ -267,6 +273,7 @@
     <None Include="packages.config" />
     <Compile Include="V1\Core\EventDetails\DynamicEventDetails.DynamicEventStyles.cs" />
     <Compile Include="V1\Core\EventDetails\Location.Shape.cs" />
+    <Compile Include="V1\Core\MapFloor\PointOfInterest.Category.cs" />
     <None Include="V1\Core\Requests.cd" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.Emblem.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.Emblem.Transformations.cs" />

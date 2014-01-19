@@ -38,6 +38,7 @@ namespace GW2DotNET.V1.Core.MapFloor
         public MapFloorRequest(int continentId, int floor, CultureInfo language)
             : base(new Uri(Resources.MapFloor + "?continent_id={continent_id}&floor={floor}&lang={language}", UriKind.Relative))
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("continent_id", continentId.ToString());
             this.AddUrlSegment("floor", floor.ToString());
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);

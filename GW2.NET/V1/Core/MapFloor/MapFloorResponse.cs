@@ -4,7 +4,11 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 using System;
+using System.Collections.Generic;
+using System.Drawing;
 using Newtonsoft.Json;
+using JsonPointConverter = GW2DotNET.V1.Core.Converters.PointConverter;
+using JsonRectangleConverter = GW2DotNET.V1.Core.Converters.RectangleConverter;
 
 namespace GW2DotNET.V1.Core.MapFloor
 {
@@ -22,8 +26,40 @@ namespace GW2DotNET.V1.Core.MapFloor
         /// </summary>
         public MapFloorResponse()
         {
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapFloorResponse"/> class using the specified values.
+        /// </summary>
+        /// <param name="textureDimensions">The texture's dimensions.</param>
+        /// <param name="clampedView">The rectangle of downloadable textures.</param>
+        /// <param name="regions">The collection of regions.</param>
+        public MapFloorResponse(Point textureDimensions, Rectangle? clampedView, IDictionary<int, Region> regions)
+        {
+            this.TextureDimensions = textureDimensions;
+            this.ClampedView = clampedView;
+            this.Regions = regions;
+        }
+
+        /// <summary>
+        /// Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available on the tile server.
+        /// </summary>
+        [JsonProperty("clamped_view", Order = 1)]
+        [JsonConverter(typeof(JsonRectangleConverter))]
+        public Rectangle? ClampedView { get; set; }
+
+        /// <summary>
+        /// Gets or sets the collection of regions.
+        /// </summary>
+        [JsonProperty("regions", Order = 2)]
+        public IDictionary<int, Region> Regions { get; set; }
+
+        /// <summary>
+        /// Gets or sets the texture's dimensions.
+        /// </summary>
+        [JsonProperty("texture_dims", Order = 0)]
+        [JsonConverter(typeof(JsonPointConverter))]
+        public Point TextureDimensions { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
