@@ -38,7 +38,7 @@ namespace GW2DotNET.V1.Core
         /// <param name="text">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
         public ApiException(int error, int product, int module, int line, string text, Exception innerException)
-            : base(text, innerException)
+            : base(text ?? "Unknown API error", innerException)
         {
             this.Error = error;
             this.Product = product;
