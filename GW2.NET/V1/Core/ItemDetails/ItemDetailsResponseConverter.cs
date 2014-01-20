@@ -27,12 +27,8 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.V1.Core.ItemDetails
 {
     /// <summary>
-    /// Converts a JSON array of named events to and from an <see cref="ItemDetailsResponse"/>.
+    /// Converts a JSON object that describes an item's details to and from an <see cref="ItemDetailsResponse"/>.
     /// </summary>
-    /// <remarks>
-    /// This converter exists because it is not normally possible to map a JSON array to a single .NET property.
-    /// For bonus points: figure out a way to make this converter generic so that it will work for any .NET type that requires this behavior.
-    /// </remarks>
     public class ItemDetailsResponseConverter : JsonConverter
     {
         /// <summary>
