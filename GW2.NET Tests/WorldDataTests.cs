@@ -12,8 +12,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using GW2DotNET.V1;
+using GW2DotNET.V1.Events.Models;
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.World.Models;
 
 using NUnit.Framework;
 

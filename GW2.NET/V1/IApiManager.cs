@@ -7,11 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Events.DataProviders;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Infrastructure.Logging;
 using GW2DotNET.V1.Items.DataProvider;
-using GW2DotNET.V1.Maps.DataProvider;
-using GW2DotNET.V1.World.DataProviders;
+using GW2DotNET.V1.MapInformation.DataProvider;
 
 namespace GW2DotNET.V1
 {

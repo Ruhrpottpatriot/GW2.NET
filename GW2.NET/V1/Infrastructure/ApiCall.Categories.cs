@@ -45,7 +45,13 @@ namespace GW2DotNET.V1.Infrastructure
             /// <summary>
             /// The miscellaneous part of the api.
             /// </summary>
-            Miscellaneous
+            Miscellaneous,
+
+            /// <summary>
+            /// The world part of the API.
+            /// Includes world names, map names and events
+            /// </summary>
+            DynamicEvents
         }
     }
 }

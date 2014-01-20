@@ -18,7 +18,6 @@ namespace GW2DotNET.V1.Infrastructure
     using System.Threading.Tasks;
 
     /// <summary>Contains static methods to call the guild wars 2 API.</summary>
-    [Obsolete("This method is obsolete use the 'ANetApiRequest' class instead", false)]
     public static partial class ApiCall
     {
         /// <summary>
@@ -31,7 +30,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// <returns>An object converted to <see cref="T"/>.</returns>
         public static T GetContent<T>(string apiMethod, List<KeyValuePair<string, object>> arguments, Categories category)
         {
-            var jsonResponse = GetJson(apiMethod, arguments, category);
+            string jsonResponse = GetJson(apiMethod, arguments, category);
 
             return JsonConvert.DeserializeObject<T>(jsonResponse);
         }
@@ -101,7 +100,7 @@ namespace GW2DotNET.V1.Infrastructure
 
             return await TaskEx.Run(() => client.Execute(restRequest).Content);
         }
-        
+
         /// <summary>
         /// Do a switch based on the place where the caller wants to go. 
         /// Simple solution to keep the call in one method and not two.
@@ -124,6 +123,7 @@ namespace GW2DotNET.V1.Infrastructure
                 case Categories.Items:
                 case Categories.World:
                 case Categories.Guild:
+                case Categories.DynamicEvents:
                 case Categories.Miscellaneous:
                     client = new RestClient("https://api.guildwars2.com/v1/");
                     break;

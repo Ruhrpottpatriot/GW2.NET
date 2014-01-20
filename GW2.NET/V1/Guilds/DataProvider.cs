@@ -38,9 +38,6 @@ namespace GW2DotNET.V1.Guilds
         // Fields
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>The api request.</summary>
-        private readonly ANetApiRequest apiRequest;
-
         /// <summary>The api manager.</summary>
         private readonly ApiManager apiManager;
 
@@ -69,7 +66,6 @@ namespace GW2DotNET.V1.Guilds
             this.apiManager = apiManager;
             this.BypassCache = bypassCache;
             this.guildCache = new List<Guild>();
-            this.apiRequest = new ANetApiRequest();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -179,9 +175,13 @@ namespace GW2DotNET.V1.Guilds
         /// <returns>The <see cref="Task"/> containing the <see cref="Guild"/> with the specified name.</returns>
         private async Task<Guild> FetchGuildByNameAsync(string guildName)
         {
-            this.apiRequest.AddParameter("guild_name", guildName);
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("guild_name", guildName)
+            };
 
-            return await this.apiRequest.GetContentAsync<Guild>("guild_details.json", ANetApiRequest.Categories.Guild);
+
+            return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
         }
 
         /// <summary>Asynchronously fetches a guild by it's id from the server.</summary>
@@ -189,9 +189,12 @@ namespace GW2DotNET.V1.Guilds
         /// <returns>The <see cref="Task"/> containing the <see cref="Guild"/> with the specified id.</returns>
         private async Task<Guild> FetchGuildByIdAsync(Guid id)
         {
-            this.apiRequest.AddParameter("guild_id", id);
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("guild_id", id)
+            };
 
-            return await this.apiRequest.GetContentAsync<Guild>("guild_details.json", ANetApiRequest.Categories.Guild);
+            return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
         }
     }
 }

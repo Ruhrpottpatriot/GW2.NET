@@ -52,6 +52,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.16\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="nunit.core">
       <HintPath>..\packages\NUnitTestAdapter.1.0\lib\nunit.core.dll</HintPath>
       <Private>False</Private>
@@ -98,6 +99,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ColoursTests.cs" />
+    <Compile Include="DynamicEventsTests.cs" />
     <Compile Include="WorldDataTests.cs" />
     <Compile Include="GuildTests.cs" />
     <Compile Include="MiscellaneousTests.cs" />

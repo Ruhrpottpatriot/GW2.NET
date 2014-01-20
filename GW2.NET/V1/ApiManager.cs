@@ -9,17 +9,17 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Events.DataProviders;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProvider;
-using GW2DotNET.V1.Maps.DataProvider;
-using GW2DotNET.V1.World.DataProviders;
+using GW2DotNET.V1.MapInformation.DataProvider;
 
 namespace GW2DotNET.V1
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using GW2DotNET.V1.Infrastructure.Logging;
+    using Infrastructure.Logging;
     using System;
 
     /// <summary>
@@ -37,11 +37,11 @@ namespace GW2DotNET.V1
         private readonly IEventLogger logger;
 
         /// <summary>The pvp data.</summary>
-        private Lazy<WvW.PvPData> pvpData;
+        private Lazy<WvW.DataProvider> pvpData;
         
         /// <summary>The build.</summary>
         private int build = -1;
-
+        
         /// <summary>Backing field for the continent data.</summary>
         private ContinentData continentDataOld;
 
@@ -110,7 +110,7 @@ namespace GW2DotNET.V1
 
         private void Initialize()
         {
-            this.pvpData = new Lazy<WvW.PvPData>(() => new WvW.PvPData(this));
+            this.pvpData = new Lazy<WvW.DataProvider>(() => new WvW.DataProvider(this));
             this.guildData = new Lazy<Guilds.DataProvider>(() => new Guilds.DataProvider(this));
         }
 
@@ -239,7 +239,7 @@ namespace GW2DotNET.V1
             }
         }
 
-        public WvW.PvPData PvpData
+        public WvW.DataProvider PvpDataProvider
         {
             get
             {

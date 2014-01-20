@@ -9,8 +9,10 @@
 
 using System;
 using System.Diagnostics;
-
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using GW2DotNET.V1;
+using GW2DotNET.V1.Events;
 
 using NUnit.Framework;
 

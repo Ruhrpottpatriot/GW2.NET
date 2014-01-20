@@ -18,8 +18,6 @@ namespace GW2.NET_Tests
 {
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Maps.Models;
-
     /// <summary>
     /// The wvw tests.
     /// </summary>
@@ -48,7 +46,7 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var matchList = this.manager.PvpData.GetMatchList();
+            var matchList = this.manager.PvpDataProvider.GetMatchList();
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -60,7 +58,7 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var matchList = await this.manager.PvpData.GetMatchListAsync();
+            var matchList = await this.manager.PvpDataProvider.GetMatchListAsync();
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -75,7 +73,7 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var singleMatch = this.manager.PvpData.GetSingleMatch("1-1");
+            var singleMatch = this.manager.PvpDataProvider.GetSingleMatch("1-1");
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -90,7 +88,7 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var singleMatch = await this.manager.PvpData.GetSingleMatchAsync("1-1");
+            var singleMatch = await this.manager.PvpDataProvider.GetSingleMatchAsync("1-1");
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 

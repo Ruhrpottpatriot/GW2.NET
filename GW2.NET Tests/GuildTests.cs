@@ -42,11 +42,11 @@ namespace GW2.NET_Tests
         /// Gets a single guild from the api.
         /// </summary>
         [Test]
-        public void GetSingleGuild()
+        public async void GetSingleGuild()
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var guild = this.manager.GuildData.GetSingleGuildAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8")).Result;
+            var guild = await this.manager.GuildData.GetSingleGuildAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8"));
 
             watch.Stop();
 
