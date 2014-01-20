@@ -1,43 +1,47 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ItemDetailsResponse.cs" company="GW2.Net Coding Team">
+// <copyright file="ItemAttribute.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Core.ItemDetails.Common;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.ItemDetails
+namespace GW2DotNET.V1.Core.ItemDetails.Common
 {
     /// <summary>
-    /// Represents a response that is the result of an <see cref="ItemDetailsRequest"/>.
+    /// Represents one of an item's attributes.
     /// </summary>
-    /// <remarks>
-    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details"/> for more information.
-    /// </remarks>
-    [JsonConverter(typeof(ItemDetailsResponseConverter))]
-    public class ItemDetailsResponse
+    public class ItemAttribute
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemDetailsResponse"/> class.
+        /// Initializes a new instance of the <see cref="ItemAttribute"/> class.
         /// </summary>
-        public ItemDetailsResponse()
+        public ItemAttribute()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemDetailsResponse"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="ItemAttribute"/> class using the specified values.
         /// </summary>
-        /// <param name="itemDetails">The item details.</param>
-        public ItemDetailsResponse(Item itemDetails)
+        /// <param name="type">The attribute's type.</param>
+        /// <param name="modifier">The attribute's modifier.</param>
+        public ItemAttribute(ItemAttributeType type, string modifier)
         {
-            this.ItemDetails = itemDetails;
+            this.Type = type;
+            this.Modifier = modifier;
         }
 
         /// <summary>
-        /// Gets or sets the item details.
+        /// Gets or sets the attribute's modifier.
         /// </summary>
-        public Item ItemDetails { get; set; }
+        [JsonProperty("modifier", Order = 1)]
+        public string Modifier { get; set; }
+
+        /// <summary>
+        /// Gets or sets the attribute's type.
+        /// </summary>
+        [JsonProperty("attribute", Order = 0)]
+        public ItemAttributeType Type { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

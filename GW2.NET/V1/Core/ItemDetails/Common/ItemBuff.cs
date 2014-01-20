@@ -1,43 +1,33 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ItemDetailsResponse.cs" company="GW2.Net Coding Team">
+// <copyright file="ItemBuff.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Core.ItemDetails.Common;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.ItemDetails
+namespace GW2DotNET.V1.Core.ItemDetails.Common
 {
     /// <summary>
-    /// Represents a response that is the result of an <see cref="ItemDetailsRequest"/>.
+    /// Represents an item buff.
     /// </summary>
-    /// <remarks>
-    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details"/> for more information.
-    /// </remarks>
-    [JsonConverter(typeof(ItemDetailsResponseConverter))]
-    public class ItemDetailsResponse
+    public class ItemBuff
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemDetailsResponse"/> class.
+        /// Gets or sets the buff's skill ID.
         /// </summary>
-        public ItemDetailsResponse()
-        {
-        }
+        [JsonProperty("skill_id", Order = 0)]
+        public string SkillId { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemDetailsResponse"/> class using the specified values.
+        /// Gets or sets the buff's description.
         /// </summary>
-        /// <param name="itemDetails">The item details.</param>
-        public ItemDetailsResponse(Item itemDetails)
-        {
-            this.ItemDetails = itemDetails;
-        }
-
-        /// <summary>
-        /// Gets or sets the item details.
-        /// </summary>
-        public Item ItemDetails { get; set; }
+        [JsonProperty("description", Order = 1)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

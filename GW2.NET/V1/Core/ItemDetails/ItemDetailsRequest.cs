@@ -35,6 +35,7 @@ namespace GW2DotNET.V1.Core.ItemDetails
         public ItemDetailsRequest(int itemId, CultureInfo language)
             : base(new Uri(Resources.ItemDetails + "?item_id={item_id}&lang={language}", UriKind.Relative))
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("item_id", itemId.ToString());
             this.AddUrlSegment("lang", language.TwoLetterISOLanguageName);
         }
