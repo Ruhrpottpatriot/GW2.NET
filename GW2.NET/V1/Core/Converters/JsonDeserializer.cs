@@ -59,6 +59,11 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns an instance of the specified type.</returns>
         public T Deserialize<T>(IRestResponse response)
         {
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+                return default(T);
+            }
+
             return JsonConvert.DeserializeObject<T>(response.Content, this.Settings);
         }
     }
