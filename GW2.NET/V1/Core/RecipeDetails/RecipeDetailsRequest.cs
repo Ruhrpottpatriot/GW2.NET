@@ -36,6 +36,7 @@ namespace GW2DotNET.V1.Core.RecipeDetails
         public RecipeDetailsRequest(int recipeId, CultureInfo language)
             : base(new Uri(Resources.RecipeDetails + "?recipe_id={recipe_id}&lang={language}", UriKind.Relative))
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("recipe_id", recipeId.ToString());
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }

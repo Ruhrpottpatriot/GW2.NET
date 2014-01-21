@@ -115,6 +115,7 @@
     <Compile Include="V1\Core\Continents\Models\Continent.cs" />
     <Compile Include="V1\Core\Continents\ContinentsRequest.cs" />
     <Compile Include="V1\Core\Continents\ContinentsResponse.cs" />
+    <Compile Include="V1\Core\Converters\MillisecondsTimespanConverter.cs" />
     <Compile Include="V1\Core\Converters\NumericBooleanConverter.cs" />
     <Compile Include="V1\Core\Converters\DecimalWholeNumberConverter.cs" />
     <Compile Include="V1\Core\Converters\GuidDictionaryConverter.cs">
@@ -238,6 +239,10 @@
     <Compile Include="V1\Core\Maps\MapsRequest.cs" />
     <Compile Include="V1\Core\Maps\MapsResponse.cs" />
     <Compile Include="V1\Core\Preconditions.cs" />
+    <Compile Include="V1\Core\RecipeDetails\Models\RecipeType.cs" />
+    <Compile Include="V1\Core\RecipeDetails\Models\UnlockTypes.cs" />
+    <Compile Include="V1\Core\RecipeDetails\Models\Disciplines.cs" />
+    <Compile Include="V1\Core\RecipeDetails\Models\Ingredient.cs" />
     <Compile Include="V1\Core\RecipeDetails\RecipeDetailsRequest.cs" />
     <Compile Include="V1\Core\RecipeDetails\RecipeDetailsResponse.cs" />
     <Compile Include="V1\Core\Recipes\RecipesRequest.cs" />
@@ -348,7 +353,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="V1\Core\RecipeDetails\Models\" />
     <Folder Include="V1\Core\WvW\MatchDetails\Models\" />
     <Folder Include="V1\Core\WvW\Matches\Models\" />
     <Folder Include="V1\Core\WvW\ObjectiveNames\Models\" />
