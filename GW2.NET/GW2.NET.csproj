@@ -110,105 +110,111 @@
     <Compile Include="V1\Core\Build\BuildResponse.cs" />
     <Compile Include="V1\Core\Colors\ColorsRequest.cs" />
     <Compile Include="V1\Core\Colors\ColorsResponse.cs" />
-    <Compile Include="V1\Core\Colors\Dye.cs" />
-    <Compile Include="V1\Core\Colors\Material.cs" />
-    <Compile Include="V1\Core\Continents\Continent.cs" />
+    <Compile Include="V1\Core\Colors\Models\Dye.cs" />
+    <Compile Include="V1\Core\Colors\Models\Material.cs" />
+    <Compile Include="V1\Core\Continents\Models\Continent.cs" />
     <Compile Include="V1\Core\Continents\ContinentsRequest.cs" />
     <Compile Include="V1\Core\Continents\ContinentsResponse.cs" />
     <Compile Include="V1\Core\Converters\NumericBooleanConverter.cs" />
     <Compile Include="V1\Core\Converters\DecimalWholeNumberConverter.cs" />
-    <Compile Include="V1\Core\Converters\GuidDictionaryConverter.cs" />
+    <Compile Include="V1\Core\Converters\GuidDictionaryConverter.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="V1\Core\Converters\RectangleConverter.cs" />
-    <Compile Include="V1\Core\Converters\PointFConverter.cs" />
+    <Compile Include="V1\Core\Converters\PointFConverter.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="V1\Core\Converters\PointConverter.cs" />
     <Compile Include="V1\Core\Converters\Point3DConverter.cs" />
-    <Compile Include="V1\Core\Converters\SizeConverter.cs" />
+    <Compile Include="V1\Core\Converters\SizeConverter.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="V1\Core\Converters\ColorConverter.cs" />
     <Compile Include="V1\Core\Converters\GuidConverter.cs" />
     <Compile Include="V1\Core\Converters\JsonDeserializer.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
     <Compile Include="V1\Core\Drawing\Point3D.cs" />
     <Compile Include="V1\Core\ErrorResponse.cs" />
-    <Compile Include="V1\Core\EventDetails\CylinderLocation.cs" />
-    <Compile Include="V1\Core\EventDetails\DynamicEventDetails.cs" />
-    <Compile Include="V1\Core\EventDetails\Location.cs" />
+    <Compile Include="V1\Core\EventDetails\Models\CylinderLocation.cs" />
+    <Compile Include="V1\Core\EventDetails\Models\DynamicEventDetails.cs" />
+    <Compile Include="V1\Core\EventDetails\Models\Location.cs" />
     <Compile Include="V1\Core\EventDetails\EventDetailsRequest.cs" />
     <Compile Include="V1\Core\EventDetails\EventDetailsResponse.cs" />
     <Compile Include="V1\Core\EventDetails\LocationConverter.cs" />
-    <Compile Include="V1\Core\EventDetails\PolygonLocation.cs" />
-    <Compile Include="V1\Core\EventDetails\SphereLocation.cs" />
-    <Compile Include="V1\Core\EventNames\DynamicEventName.cs" />
+    <Compile Include="V1\Core\EventDetails\Models\PolygonLocation.cs" />
+    <Compile Include="V1\Core\EventDetails\Models\SphereLocation.cs" />
+    <Compile Include="V1\Core\EventNames\Models\DynamicEventName.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesRequest.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesResponse.cs" />
-    <Compile Include="V1\Core\Events\DynamicEvent.cs" />
-    <Compile Include="V1\Core\Events\DynamicEvent.EventState.cs" />
+    <Compile Include="V1\Core\Events\Models\DynamicEvent.cs" />
+    <Compile Include="V1\Core\Events\Models\DynamicEvent.EventState.cs" />
     <Compile Include="V1\Core\Events\EventsRequest.cs" />
     <Compile Include="V1\Core\Events\EventsResponse.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesResponseConverter.cs" />
-    <Compile Include="V1\Core\Files\Asset.cs" />
-    <Compile Include="V1\Core\Files\Assets.cs" />
+    <Compile Include="V1\Core\Files\Models\Asset.cs" />
+    <Compile Include="V1\Core\Files\Models\Assets.cs" />
     <Compile Include="V1\Core\Files\FilesRequest.cs" />
     <Compile Include="V1\Core\Files\FilesResponse.cs" />
     <Compile Include="V1\Core\Files\FilesResponseConverter.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsRequest.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.cs" />
-    <Compile Include="V1\Core\ItemDetails\BackPieces\Back.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\InfusionSlot.cs" />
-    <Compile Include="V1\Core\ItemDetails\Containers\Container.cs" />
-    <Compile Include="V1\Core\ItemDetails\Containers\ContainerDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\Bags\Bag.cs" />
-    <Compile Include="V1\Core\ItemDetails\Bags\BagDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\EquipmentDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\Details.cs" />
-    <Compile Include="V1\Core\ItemDetails\BackPieces\BackDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\Consumables\Consumable.cs" />
-    <Compile Include="V1\Core\ItemDetails\Containers\ContainerType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Consumables\UnlockType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Consumables\ConsumableType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Consumables\ConsumableDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\CraftingMaterials\CraftingMaterial.cs" />
-    <Compile Include="V1\Core\ItemDetails\GatheringEquipment\Gathering.cs" />
-    <Compile Include="V1\Core\ItemDetails\GatheringEquipment\GatheringDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\GatheringEquipment\GatheringType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Gizmos\Gizmo.cs" />
-    <Compile Include="V1\Core\ItemDetails\Gizmos\GizmoDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\Gizmos\GizmoType.cs" />
-    <Compile Include="V1\Core\ItemDetails\MiniPets\MiniPet.cs" />
-    <Compile Include="V1\Core\ItemDetails\Tools\Tool.cs" />
-    <Compile Include="V1\Core\ItemDetails\Tools\ToolDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\Tools\ToolType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Trinkets\Trinket.cs">
+    <Compile Include="V1\Core\ItemDetails\Models\BackPieces\Back.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\InfusionSlot.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Containers\Container.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Containers\ContainerDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Bags\Bag.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Bags\BagDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\EquipmentDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\Details.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\BackPieces\BackDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Consumables\Consumable.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Containers\ContainerType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Consumables\UnlockType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Consumables\ConsumableType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Consumables\ConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\CraftingMaterials\CraftingMaterial.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\GatheringEquipment\Gathering.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\GatheringEquipment\GatheringDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\GatheringEquipment\GatheringType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Gizmos\Gizmo.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Gizmos\GizmoDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Gizmos\GizmoType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\MiniPets\MiniPet.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Tools\Tool.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Tools\ToolDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Tools\ToolType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Trinkets\Trinket.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="V1\Core\ItemDetails\Trinkets\TrinketDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\Trinkets\TrinketType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Trophies\Trophy.cs" />
-    <Compile Include="V1\Core\ItemDetails\UpgradeComponents\UpgradeComponent.cs" />
-    <Compile Include="V1\Core\ItemDetails\UpgradeComponents\UpgradeComponentDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\UpgradeComponents\UpgradeComponentFlags.cs" />
-    <Compile Include="V1\Core\ItemDetails\UpgradeComponents\UpgradeComponentType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Weapons\WeaponDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\Weapons\Weapon.cs" />
-    <Compile Include="V1\Core\ItemDetails\ArmorPieces\ArmorDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\ArmorPieces\Armor.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\ItemAttribute.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\ItemAttributeType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\ItemBuff.cs" />
-    <Compile Include="V1\Core\ItemDetails\ArmorPieces\WeightClass.cs" />
-    <Compile Include="V1\Core\ItemDetails\ArmorPieces\ArmorType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Trinkets\TrinketDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Trinkets\TrinketType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Trophies\Trophy.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\UpgradeComponents\UpgradeComponent.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\UpgradeComponents\UpgradeComponentDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\UpgradeComponents\UpgradeComponentFlags.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\UpgradeComponents\UpgradeComponentType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Weapons\WeaponDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Weapons\Weapon.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\ArmorPieces\ArmorDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\ArmorPieces\Armor.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\ItemAttribute.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\ItemAttributeType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\ItemBuff.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\ArmorPieces\WeightClass.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\ArmorPieces\ArmorType.cs" />
     <Compile Include="V1\Core\ItemDetails\ItemDetailsResponseConverter.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\ItemRestrictions.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\ItemFlags.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\GameTypes.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\ItemRarity.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\ItemType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\InfixUpgrade.cs">
+    <Compile Include="V1\Core\ItemDetails\Models\Common\ItemRestrictions.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\ItemFlags.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\GameTypes.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\ItemRarity.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\ItemType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\InfixUpgrade.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="V1\Core\ItemDetails\Common\Item.cs" />
-    <Compile Include="V1\Core\ItemDetails\Weapons\WeaponType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Weapons\DamageType.cs" />
-    <Compile Include="V1\Core\ItemDetails\Common\InfusionSlotTypes.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\Item.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Weapons\WeaponType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Weapons\DamageType.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\InfusionSlotTypes.cs" />
     <Compile Include="V1\Core\ItemDetails\ItemDetailsRequest.cs" />
     <Compile Include="V1\Core\ItemDetails\ItemDetailsResponse.cs" />
     <Compile Include="V1\Core\Items\ItemsResponse.cs" />
@@ -216,19 +222,19 @@
     <Compile Include="V1\Core\IApiRequest.cs" />
     <Compile Include="V1\Core\IApiResponse.cs" />
     <Compile Include="V1\Core\Items\ItemsRequest.cs" />
-    <Compile Include="V1\Core\MapFloor\Map.cs" />
+    <Compile Include="V1\Core\MapFloor\Models\Map.cs" />
     <Compile Include="V1\Core\MapFloor\MapFloorRequest.cs" />
     <Compile Include="V1\Core\MapFloor\MapFloorResponse.cs" />
-    <Compile Include="V1\Core\MapFloor\Region.cs" />
-    <Compile Include="V1\Core\MapFloor\Sector.cs" />
-    <Compile Include="V1\Core\MapFloor\PointOfInterest.cs" />
-    <Compile Include="V1\Core\MapFloor\Task.cs" />
-    <Compile Include="V1\Core\MapFloor\SkillChallenge.cs" />
+    <Compile Include="V1\Core\MapFloor\Models\Region.cs" />
+    <Compile Include="V1\Core\MapFloor\Models\Sector.cs" />
+    <Compile Include="V1\Core\MapFloor\Models\PointOfInterest.cs" />
+    <Compile Include="V1\Core\MapFloor\Models\Task.cs" />
+    <Compile Include="V1\Core\MapFloor\Models\SkillChallenge.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesRequest.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesResponse.cs" />
-    <Compile Include="V1\Core\MapNames\Map.cs" />
+    <Compile Include="V1\Core\MapNames\Models\Map.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesResponseConverter.cs" />
-    <Compile Include="V1\Core\Maps\Map.cs" />
+    <Compile Include="V1\Core\Maps\Models\Map.cs" />
     <Compile Include="V1\Core\Maps\MapsRequest.cs" />
     <Compile Include="V1\Core\Maps\MapsResponse.cs" />
     <Compile Include="V1\Core\Preconditions.cs" />
@@ -243,7 +249,7 @@
     </Compile>
     <Compile Include="V1\Core\SupportedLanguages.cs" />
     <Compile Include="V1\Core\WorldNames\WorldNamesResponseConverter.cs" />
-    <Compile Include="V1\Core\WorldNames\World.cs" />
+    <Compile Include="V1\Core\WorldNames\Models\World.cs" />
     <Compile Include="V1\Core\WorldNames\WorldNamesRequest.cs" />
     <Compile Include="V1\Core\WorldNames\WorldNamesResponse.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\MatchDetailsRequest.cs" />
@@ -329,12 +335,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Compile Include="V1\Core\EventDetails\DynamicEventDetails.DynamicEventStyles.cs" />
-    <Compile Include="V1\Core\EventDetails\Location.Shape.cs" />
-    <Compile Include="V1\Core\MapFloor\PointOfInterest.Category.cs" />
-    <None Include="V1\Core\Requests.cd" />
-    <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.Emblem.cs" />
-    <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.Emblem.Transformations.cs" />
+    <Compile Include="V1\Core\EventDetails\Models\DynamicEventDetails.DynamicEventStyles.cs" />
+    <Compile Include="V1\Core\EventDetails\Models\Location.Shape.cs" />
+    <Compile Include="V1\Core\MapFloor\Models\PointOfInterest.Category.cs" />
+    <Compile Include="V1\Core\GuildDetails\Models\Emblem.cs" />
+    <Compile Include="V1\Core\GuildDetails\Models\Emblem.Transformations.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="V1\Core\Resources.resx">
@@ -342,7 +347,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="V1\Core\RecipeDetails\Models\" />
+    <Folder Include="V1\Core\WvW\MatchDetails\Models\" />
+    <Folder Include="V1\Core\WvW\Matches\Models\" />
+    <Folder Include="V1\Core\WvW\ObjectiveNames\Models\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
