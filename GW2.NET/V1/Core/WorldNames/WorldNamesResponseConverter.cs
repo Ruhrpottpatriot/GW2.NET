@@ -3,6 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
@@ -38,7 +39,7 @@ namespace GW2DotNET.V1.Core.WorldNames
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return new WorldNamesResponse(serializer.Deserialize<IEnumerable<World>>(reader));
+            return new WorldNamesResponse(serializer.Deserialize<IEnumerable<Models.World>>(reader));
         }
 
         /// <summary>

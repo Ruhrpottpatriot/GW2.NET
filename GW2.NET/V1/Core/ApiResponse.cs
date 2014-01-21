@@ -3,8 +3,8 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Net;
 using System.Net.Mime;
 using Newtonsoft.Json;
@@ -44,13 +44,13 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Gets a value indicating whether the service returned a success status code.
+        /// Gets a value indicating the Internet media type of the message content.
         /// </summary>
-        public bool IsSuccessStatusCode
+        public new ContentType ContentType
         {
             get
             {
-                return this.StatusCode == HttpStatusCode.OK;
+                return new ContentType(base.ContentType);
             }
         }
 
@@ -66,14 +66,50 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Gets a value indicating the Internet media type of the message content.
+        /// Gets a value indicating whether the service returned a success status code.
         /// </summary>
-        public new ContentType ContentType
+        public bool IsSuccessStatusCode
         {
             get
             {
-                return new ContentType(base.ContentType);
+                return this.StatusCode == HttpStatusCode.OK;
             }
+        }
+
+        /// <summary>
+        /// Gets the error result if the request was unsuccessful.
+        /// </summary>
+        /// <returns>Return an instance of <see cref="ApiException"/> that represents the request error.</returns>
+        public ApiException DeserializeError()
+        {
+            if (this.IsSuccessStatusCode || !this.IsJsonResponse)
+            { /* This method only makes sense when the response content is a JSON-formatted API error. */
+                throw new InvalidOperationException("The service did not return an error response.");
+            }
+
+            var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(this.Content);
+
+            return new ApiException(
+                error: errorResponse.Error,
+                product: errorResponse.Product,
+                module: errorResponse.Module,
+                line: errorResponse.Line,
+                text: errorResponse.Text,
+                innerException: this.ErrorException);
+        }
+
+        /// <summary>
+        /// Gets the response content as an object of the specified type.
+        /// </summary>
+        /// <returns>Returns an instance of the specified type that represents the response.</returns>
+        public TContent DeserializeResponse()
+        {
+            if (!this.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("The service returned an error response.");
+            }
+
+            return this.Data;
         }
 
         /// <summary>
@@ -102,42 +138,6 @@ namespace GW2DotNET.V1.Core
             { /* Unknown error */
                 throw apiException;
             }
-        }
-
-        /// <summary>
-        /// Gets the response content as an object of the specified type.
-        /// </summary>
-        /// <returns>Returns an instance of the specified type that represents the response.</returns>
-        public TContent DeserializeResponse()
-        {
-            if (!this.IsSuccessStatusCode)
-            {
-                throw new InvalidOperationException("The service returned an error response.");
-            }
-
-            return this.Data;
-        }
-
-        /// <summary>
-        /// Gets the error result if the request was unsuccessful.
-        /// </summary>
-        /// <returns>Return an instance of <see cref="ApiException"/> that represents the request error.</returns>
-        public ApiException DeserializeError()
-        {
-            if (this.IsSuccessStatusCode || !this.IsJsonResponse)
-            { /* This method only makes sense when the response content is a JSON-formatted API error. */
-                throw new InvalidOperationException("The service did not return an error response.");
-            }
-
-            var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(this.Content);
-
-            return new ApiException(
-                error: errorResponse.Error,
-                product: errorResponse.Product,
-                module: errorResponse.Module,
-                line: errorResponse.Line,
-                text: errorResponse.Text,
-                innerException: this.ErrorException);
         }
 
         /// <summary>

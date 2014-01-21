@@ -3,6 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+
 using System;
 using System.Threading.Tasks;
 using RestSharp;
@@ -37,7 +38,7 @@ namespace GW2DotNET.V1.Core
             }
         }
 
-        #endregion
+        #endregion Constructors
 
         /// <summary>
         /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content can be mapped to the specified type.

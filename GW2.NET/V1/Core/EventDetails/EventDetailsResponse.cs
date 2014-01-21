@@ -3,9 +3,11 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
+using GW2DotNET.V1.Core.EventDetails.Models;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.EventDetails

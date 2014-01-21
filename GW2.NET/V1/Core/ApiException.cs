@@ -3,6 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
+
 using System;
 
 namespace GW2DotNET.V1.Core
@@ -52,9 +53,9 @@ namespace GW2DotNET.V1.Core
         public int Error { get; private set; }
 
         /// <summary>
-        /// Gets a number that represents the product in which the error occurred.
+        /// Gets the line number on which the error occurred.
         /// </summary>
-        public int Product { get; private set; }
+        public int Line { get; private set; }
 
         /// <summary>
         /// Gets a number that represents the module in which the error occurred.
@@ -62,8 +63,8 @@ namespace GW2DotNET.V1.Core
         public int Module { get; private set; }
 
         /// <summary>
-        /// Gets the line number on which the error occurred.
+        /// Gets a number that represents the product in which the error occurred.
         /// </summary>
-        public int Line { get; private set; }
+        public int Product { get; private set; }
     }
 }

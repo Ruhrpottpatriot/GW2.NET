@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
+
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Core.WorldNames
         /// Initializes a new instance of the <see cref="WorldNamesResponse"/> class using the specified list of worlds.
         /// </summary>
         /// <param name="worlds">The list of worlds.</param>
-        public WorldNamesResponse(IEnumerable<World> worlds)
+        public WorldNamesResponse(IEnumerable<Models.World> worlds)
         {
             this.Worlds = worlds;
         }
@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Core.WorldNames
         /// <summary>
         /// Gets or sets the list of worlds.
         /// </summary>
-        public IEnumerable<World> Worlds { get; set; }
+        public IEnumerable<Models.World> Worlds { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

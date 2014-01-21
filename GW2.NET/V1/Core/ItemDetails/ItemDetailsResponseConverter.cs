@@ -6,21 +6,21 @@
 
 using System;
 using System.Collections.Generic;
-using GW2DotNET.V1.Core.ItemDetails.ArmorPieces;
-using GW2DotNET.V1.Core.ItemDetails.BackPieces;
-using GW2DotNET.V1.Core.ItemDetails.Bags;
-using GW2DotNET.V1.Core.ItemDetails.Common;
-using GW2DotNET.V1.Core.ItemDetails.Consumables;
-using GW2DotNET.V1.Core.ItemDetails.Containers;
-using GW2DotNET.V1.Core.ItemDetails.CraftingMaterials;
-using GW2DotNET.V1.Core.ItemDetails.GatheringEquipment;
-using GW2DotNET.V1.Core.ItemDetails.Gizmos;
-using GW2DotNET.V1.Core.ItemDetails.MiniPets;
-using GW2DotNET.V1.Core.ItemDetails.Tools;
-using GW2DotNET.V1.Core.ItemDetails.Trinkets;
-using GW2DotNET.V1.Core.ItemDetails.Trophies;
-using GW2DotNET.V1.Core.ItemDetails.UpgradeComponents;
-using GW2DotNET.V1.Core.ItemDetails.Weapons;
+using GW2DotNET.V1.Core.ItemDetails.Models.ArmorPieces;
+using GW2DotNET.V1.Core.ItemDetails.Models.BackPieces;
+using GW2DotNET.V1.Core.ItemDetails.Models.Bags;
+using GW2DotNET.V1.Core.ItemDetails.Models.Common;
+using GW2DotNET.V1.Core.ItemDetails.Models.Consumables;
+using GW2DotNET.V1.Core.ItemDetails.Models.Containers;
+using GW2DotNET.V1.Core.ItemDetails.Models.CraftingMaterials;
+using GW2DotNET.V1.Core.ItemDetails.Models.GatheringEquipment;
+using GW2DotNET.V1.Core.ItemDetails.Models.Gizmos;
+using GW2DotNET.V1.Core.ItemDetails.Models.MiniPets;
+using GW2DotNET.V1.Core.ItemDetails.Models.Tools;
+using GW2DotNET.V1.Core.ItemDetails.Models.Trinkets;
+using GW2DotNET.V1.Core.ItemDetails.Models.Trophies;
+using GW2DotNET.V1.Core.ItemDetails.Models.UpgradeComponents;
+using GW2DotNET.V1.Core.ItemDetails.Models.Weapons;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 

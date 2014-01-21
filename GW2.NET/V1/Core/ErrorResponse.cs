@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
+
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core
@@ -47,10 +47,10 @@ namespace GW2DotNET.V1.Core
         public int Error { get; set; }
 
         /// <summary>
-        /// Gets or sets a number that represents the product in which the error occurred.
+        /// Gets or sets the line number on which the error occurred.
         /// </summary>
-        [JsonProperty("product")]
-        public int Product { get; set; }
+        [JsonProperty("line")]
+        public int Line { get; set; }
 
         /// <summary>
         /// Gets or sets a number that represents the module in which the error occurred.
@@ -59,10 +59,10 @@ namespace GW2DotNET.V1.Core
         public int Module { get; set; }
 
         /// <summary>
-        /// Gets or sets the line number on which the error occurred.
+        /// Gets or sets a number that represents the product in which the error occurred.
         /// </summary>
-        [JsonProperty("line")]
-        public int Line { get; set; }
+        [JsonProperty("product")]
+        public int Product { get; set; }
 
         /// <summary>
         /// Gets or sets the error message.

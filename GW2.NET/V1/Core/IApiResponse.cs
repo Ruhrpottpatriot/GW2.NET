@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
+
 using System.Net.Mime;
 
 namespace GW2DotNET.V1.Core
@@ -15,14 +15,14 @@ namespace GW2DotNET.V1.Core
     public interface IApiResponse<TContent>
     {
         /// <summary>
-        /// Gets a value indicating whether the request returned a success status code.
-        /// </summary>
-        bool IsSuccessStatusCode { get; }
-
-        /// <summary>
         /// Gets a value indicating the Internet media type of the message content.
         /// </summary>
         ContentType ContentType { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the request returned a success status code.
+        /// </summary>
+        bool IsSuccessStatusCode { get; }
 
         /// <summary>
         /// Gets the error result if the request was unsuccessful.
