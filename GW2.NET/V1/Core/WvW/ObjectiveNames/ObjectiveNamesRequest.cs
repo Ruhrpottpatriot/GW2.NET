@@ -33,6 +33,7 @@ namespace GW2DotNET.V1.Core.WvW.ObjectiveNames
         public ObjectiveNamesRequest(CultureInfo language)
             : base(new Uri(Resources.ObjectiveNames + "?lang={language}", UriKind.Relative))
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
 

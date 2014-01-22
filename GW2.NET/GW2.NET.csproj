@@ -260,8 +260,10 @@
     <Compile Include="V1\Core\WvW\MatchDetails\MatchDetailsResponse.cs" />
     <Compile Include="V1\Core\WvW\Matches\MatchesRequest.cs" />
     <Compile Include="V1\Core\WvW\Matches\MatchesResponse.cs" />
+    <Compile Include="V1\Core\WvW\ObjectiveNames\Models\Objective.cs" />
     <Compile Include="V1\Core\WvW\ObjectiveNames\ObjectiveNamesRequest.cs" />
     <Compile Include="V1\Core\WvW\ObjectiveNames\ObjectiveNamesResponse.cs" />
+    <Compile Include="V1\Core\WvW\ObjectiveNames\ObjectiveNamesResponseConverter.cs" />
     <Compile Include="V1\Guilds\DataProvider.cs" />
     <Compile Include="V1\Guilds\DataProviders\GuildData.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
@@ -354,7 +356,6 @@
   <ItemGroup>
     <Folder Include="V1\Core\WvW\MatchDetails\Models\" />
     <Folder Include="V1\Core\WvW\Matches\Models\" />
-    <Folder Include="V1\Core\WvW\ObjectiveNames\Models\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
