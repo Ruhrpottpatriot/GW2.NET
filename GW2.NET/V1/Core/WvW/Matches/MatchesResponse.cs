@@ -4,7 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
+using System.Collections.Generic;
+using GW2DotNET.V1.Core.WvW.Matches.Models;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.WvW.Matches
@@ -22,9 +23,22 @@ namespace GW2DotNET.V1.Core.WvW.Matches
         /// </summary>
         public MatchesResponse()
         {
-            // TODO: implement wvw/matches.json
-            throw new NotImplementedException();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MatchesResponse"/> class using the specified values.
+        /// </summary>
+        /// <param name="matches">The list of matches.</param>
+        public MatchesResponse(IEnumerable<Match> matches)
+        {
+            this.Matches = matches;
+        }
+
+        /// <summary>
+        /// Gets or sets the list of matches.
+        /// </summary>
+        [JsonProperty("wvw_matches", Order = 0)]
+        public IEnumerable<Match> Matches { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
