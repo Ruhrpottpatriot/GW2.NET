@@ -44,6 +44,7 @@ namespace GW2DotNET.V1.Core.Converters
             }
 
             Stack<string> individualFlags = new Stack<string>();
+
             do
             {
                 if (reader.TokenType == JsonToken.String)
@@ -52,11 +53,15 @@ namespace GW2DotNET.V1.Core.Converters
                 }
             }
             while (reader.Read() && reader.TokenType != JsonToken.EndArray);
+
             if (individualFlags.Any())
             {
                 string flags = string.Join(",", individualFlags);
+
                 JValue jsonFlags = JValue.CreateString(flags);
+
                 JsonReader valueReader = jsonFlags.CreateReader();
+
                 if (valueReader.Read())
                 {
                     return base.ReadJson(valueReader, objectType, existingValue, serializer);
@@ -77,10 +82,12 @@ namespace GW2DotNET.V1.Core.Converters
             if (value == null || (int)value == 0)
             {
                 this.WriteEmptyArray(writer);
+
                 return;
             }
 
             Type enumType = value.GetType();
+
             var values = value.ToString().Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             writer.WriteStartArray();
@@ -100,6 +107,7 @@ namespace GW2DotNET.V1.Core.Converters
         private void WriteEmptyArray(JsonWriter writer)
         {
             writer.WriteStartArray();
+
             writer.WriteEndArray();
         }
     }

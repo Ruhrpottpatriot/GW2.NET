@@ -34,7 +34,9 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return Convert.ToBoolean(serializer.Deserialize<int>(reader));
+            int numericBoolean = serializer.Deserialize<int>(reader);
+
+            return Convert.ToBoolean(numericBoolean);
         }
 
         /// <summary>
@@ -45,7 +47,9 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, Convert.ToInt32((bool)value).ToString());
+            int numericBoolean = Convert.ToInt32((bool)value);
+
+            serializer.Serialize(writer, numericBoolean);
         }
     }
 }

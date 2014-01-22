@@ -34,7 +34,9 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return TimeSpan.FromMilliseconds(serializer.Deserialize<int>(reader));
+            double milliseconds = serializer.Deserialize<double>(reader);
+
+            return TimeSpan.FromMilliseconds(milliseconds);
         }
 
         /// <summary>
@@ -46,6 +48,7 @@ namespace GW2DotNET.V1.Core.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             TimeSpan timeSpan = (TimeSpan)value;
+
             serializer.Serialize(writer, timeSpan.TotalMilliseconds);
         }
     }

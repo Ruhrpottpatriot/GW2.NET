@@ -34,18 +34,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (reader.TokenType == JsonToken.Null)
-            {
-                return Guid.Empty;
-            }
-
-            Guid result;
-            if (!Guid.TryParse(reader.Value.ToString(), out result))
-            {
-                throw new JsonSerializationException();
-            }
-
-            return result;
+            return serializer.Deserialize<Guid>(reader);
         }
 
         /// <summary>
@@ -56,14 +45,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            Guid guid = (Guid)value;
-            if (guid == Guid.Empty)
-            {
-                writer.WriteNull();
-                return;
-            }
-
-            writer.WriteValue(guid.ToString().ToUpperInvariant());
+            serializer.Serialize(writer, value.ToString().ToUpperInvariant());
         }
     }
 }

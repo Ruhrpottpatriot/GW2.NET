@@ -35,8 +35,9 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var dimensions = serializer.Deserialize<int[]>(reader);
-            return new Size(dimensions[0], dimensions[1]);
+            int[] dimensions = serializer.Deserialize<int[]>(reader);
+
+            return new Size(width: dimensions[0], height: dimensions[1]);
         }
 
         /// <summary>
@@ -47,11 +48,13 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
+            Size size = (Size)value;
+
             writer.WriteStartArray();
-            if (value is Size)
+
             {
-                var size = (Size)value;
                 writer.WriteValue(size.Width);
+
                 writer.WriteValue(size.Height);
             }
 

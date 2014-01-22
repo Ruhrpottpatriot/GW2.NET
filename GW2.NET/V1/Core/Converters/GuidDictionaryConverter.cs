@@ -48,10 +48,13 @@ namespace GW2DotNET.V1.Core.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var dictionary = (Dictionary<Guid, TValue>)value;
+
             writer.WriteStartObject();
+
             foreach (var item in dictionary)
             {
                 writer.WritePropertyName(item.Key.ToString().ToUpperInvariant());
+
                 serializer.Serialize(writer, item.Value);
             }
 

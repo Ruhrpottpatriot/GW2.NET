@@ -117,7 +117,6 @@
     <Compile Include="V1\Core\Continents\ContinentsResponse.cs" />
     <Compile Include="V1\Core\Converters\MillisecondsTimespanConverter.cs" />
     <Compile Include="V1\Core\Converters\NumericBooleanConverter.cs" />
-    <Compile Include="V1\Core\Converters\DecimalWholeNumberConverter.cs" />
     <Compile Include="V1\Core\Converters\GuidDictionaryConverter.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>

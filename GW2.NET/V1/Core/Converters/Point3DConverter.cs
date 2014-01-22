@@ -35,8 +35,9 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var points = serializer.Deserialize<double[]>(reader);
-            return new Point3D(points[0], points[1], points[2]);
+            double[] points = serializer.Deserialize<double[]>(reader);
+
+            return new Point3D(x: points[0], y: points[1], z: points[2]);
         }
 
         /// <summary>
@@ -47,36 +48,16 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
+            var point3D = (Point3D)value;
+
             writer.WriteStartArray();
-            if (value is Point3D)
+
             {
-                var point3D = (Point3D)value;
-                if ((point3D.X % 1D) == 0D)
-                {
-                    serializer.Serialize(writer, (int)point3D.X);
-                }
-                else
-                {
-                    serializer.Serialize(writer, point3D.X);
-                }
+                serializer.Serialize(writer, point3D.X);
 
-                if ((point3D.Y % 1D) == 0D)
-                {
-                    serializer.Serialize(writer, (int)point3D.Y);
-                }
-                else
-                {
-                    serializer.Serialize(writer, point3D.Y);
-                }
+                serializer.Serialize(writer, point3D.Y);
 
-                if ((point3D.Z % 1D) == 0D)
-                {
-                    serializer.Serialize(writer, (int)point3D.Z);
-                }
-                else
-                {
-                    serializer.Serialize(writer, point3D.Z);
-                }
+                serializer.Serialize(writer, point3D.Z);
             }
 
             writer.WriteEndArray();

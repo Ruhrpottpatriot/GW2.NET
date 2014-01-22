@@ -35,8 +35,9 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var points = serializer.Deserialize<float[]>(reader);
-            return new PointF(points[0], points[1]);
+            float[] points = serializer.Deserialize<float[]>(reader);
+
+            return new PointF(x: points[0], y: points[1]);
         }
 
         /// <summary>
@@ -47,27 +48,14 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteStartArray();
-            if (value is PointF)
-            {
-                var point = (PointF)value;
-                if ((point.X % 1F) == 0F)
-                {
-                    serializer.Serialize(writer, (int)point.X);
-                }
-                else
-                {
-                    serializer.Serialize(writer, point.X);
-                }
+            var point = (PointF)value;
 
-                if ((point.Y % 1F) == 0F)
-                {
-                    serializer.Serialize(writer, (int)point.Y);
-                }
-                else
-                {
-                    serializer.Serialize(writer, point.Y);
-                }
+            writer.WriteStartArray();
+
+            {
+                serializer.Serialize(writer, point.X);
+
+                serializer.Serialize(writer, point.Y);
             }
 
             writer.WriteEndArray();
