@@ -1,60 +1,64 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MatchDetailsResponse.cs" company="GW2.Net Coding Team">
+// <copyright file="Map.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
-using GW2DotNET.V1.Core.WvW.MatchDetails.Models;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.WvW.MatchDetails
+namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
 {
     /// <summary>
-    /// Represents a response that is the result of a <see cref="MatchDetailsRequest"/>.
+    /// Represents a World versus World map.
     /// </summary>
-    /// <remarks>
-    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details"/> for more information.
-    /// </remarks>
-    public class MatchDetailsResponse
+    public class Map
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MatchDetailsResponse"/> class.
+        /// Initializes a new instance of the <see cref="Map"/> class.
         /// </summary>
-        public MatchDetailsResponse()
+        public Map()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MatchDetailsResponse"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="Map"/> class using the specified values.
         /// </summary>
-        /// <param name="matchId">The match's ID.</param>
-        /// <param name="scores">The total scores.</param>
-        /// <param name="maps">The list of maps.</param>
-        public MatchDetailsResponse(string matchId, Scoreboard scores, IEnumerable<Map> maps)
+        /// <param name="type">The map's type.</param>
+        /// <param name="scores">The map's scoreboard.</param>
+        /// <param name="objectives">The map's objectives.</param>
+        /// <param name="bonuses">The map's bonuses.</param>
+        public Map(MapType type, Scoreboard scores, IEnumerable<Objective> objectives, IEnumerable<Bonus> bonuses)
         {
-            this.MatchId = matchId;
+            this.Type = type;
             this.Scores = scores;
-            this.Maps = maps;
+            this.Objectives = objectives;
+            this.Bonuses = bonuses;
         }
 
         /// <summary>
-        /// Gets or sets the list of maps.
+        /// Gets or sets the map's bonuses.
         /// </summary>
-        [JsonProperty("maps", Order = 2)]
-        public IEnumerable<Map> Maps { get; set; }
+        [JsonProperty("bonuses", Order = 3)]
+        public IEnumerable<Bonus> Bonuses { get; set; }
 
         /// <summary>
-        /// Gets or sets the match's ID.
+        /// Gets or sets the map's objectives.
         /// </summary>
-        [JsonProperty("match_id", Order = 0)]
-        public string MatchId { get; set; }
+        [JsonProperty("objectives", Order = 2)]
+        public IEnumerable<Objective> Objectives { get; set; }
 
         /// <summary>
-        /// Gets or sets the total scores.
+        /// Gets or sets the map's scoreboard.
         /// </summary>
         [JsonProperty("scores", Order = 1)]
         public Scoreboard Scores { get; set; }
+
+        /// <summary>
+        /// Gets or sets the map's type.
+        /// </summary>
+        [JsonProperty("type", Order = 0)]
+        public MapType Type { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

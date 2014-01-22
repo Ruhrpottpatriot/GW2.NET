@@ -1,60 +1,53 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MatchDetailsResponse.cs" company="GW2.Net Coding Team">
+// <copyright file="Scoreboard.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using GW2DotNET.V1.Core.WvW.MatchDetails.Models;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.WvW.MatchDetails
+namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
 {
     /// <summary>
-    /// Represents a response that is the result of a <see cref="MatchDetailsRequest"/>.
+    /// Represents a World versus World scoreboard.
     /// </summary>
-    /// <remarks>
-    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details"/> for more information.
-    /// </remarks>
-    public class MatchDetailsResponse
+    [JsonConverter(typeof(ScoreboardConverter))]
+    public class Scoreboard
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MatchDetailsResponse"/> class.
+        /// Initializes a new instance of the <see cref="Scoreboard"/> class.
         /// </summary>
-        public MatchDetailsResponse()
+        public Scoreboard()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MatchDetailsResponse"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="Scoreboard"/> class using the specified values.
         /// </summary>
-        /// <param name="matchId">The match's ID.</param>
-        /// <param name="scores">The total scores.</param>
-        /// <param name="maps">The list of maps.</param>
-        public MatchDetailsResponse(string matchId, Scoreboard scores, IEnumerable<Map> maps)
+        /// <param name="red">The red team's score.</param>
+        /// <param name="blue">The blue team's score.</param>
+        /// <param name="green">The green team's score.</param>
+        public Scoreboard(int red, int blue, int green)
         {
-            this.MatchId = matchId;
-            this.Scores = scores;
-            this.Maps = maps;
+            this.Red = red;
+            this.Blue = blue;
+            this.Green = green;
         }
 
         /// <summary>
-        /// Gets or sets the list of maps.
+        /// Gets or sets the blue team's score.
         /// </summary>
-        [JsonProperty("maps", Order = 2)]
-        public IEnumerable<Map> Maps { get; set; }
+        public int Blue { get; set; }
 
         /// <summary>
-        /// Gets or sets the match's ID.
+        /// Gets or sets the green team's score.
         /// </summary>
-        [JsonProperty("match_id", Order = 0)]
-        public string MatchId { get; set; }
+        public int Green { get; set; }
 
         /// <summary>
-        /// Gets or sets the total scores.
+        /// Gets or sets the red team's score.
         /// </summary>
-        [JsonProperty("scores", Order = 1)]
-        public Scoreboard Scores { get; set; }
+        public int Red { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

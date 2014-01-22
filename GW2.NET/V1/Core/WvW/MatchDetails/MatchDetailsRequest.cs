@@ -21,10 +21,10 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails
         /// Initializes a new instance of the <see cref="MatchDetailsRequest"/> class.
         /// </summary>
         /// <param name="matchId">The match ID.</param>
-        public MatchDetailsRequest(int matchId)
+        public MatchDetailsRequest(string matchId)
             : base(new Uri(Resources.MatchDetails + "?match_id={match_id}", UriKind.Relative))
         {
-            this.AddUrlSegment("match_id", matchId.ToString());
+            this.AddUrlSegment("match_id", matchId);
         }
 
         /// <summary>
