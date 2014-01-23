@@ -74,10 +74,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request)
         {
             return base.ExecuteGetTaskAsync(request)
-                .ContinueWith(
+                .ContinueWith<IRestResponse>(
                 x =>
                 {
-                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result);
                 });
         }
 
@@ -90,10 +90,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse> ExecuteGetTaskAsync(IRestRequest request, CancellationToken token)
         {
             return base.ExecuteGetTaskAsync(request, token)
-                .ContinueWith(
+                .ContinueWith<IRestResponse>(
                 x =>
                 {
-                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result);
                 },
                 token);
         }
@@ -107,10 +107,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request)
         {
             return base.ExecuteGetTaskAsync<T>(request)
-                .ContinueWith(
+                .ContinueWith<IRestResponse<T>>(
                 x =>
                 {
-                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                    return new ApiResponse<T>(x.Result);
                 });
         }
 
@@ -124,10 +124,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse<T>> ExecuteGetTaskAsync<T>(IRestRequest request, CancellationToken token)
         {
             return base.ExecuteGetTaskAsync<T>(request, token)
-                .ContinueWith(
+                .ContinueWith<IRestResponse<T>>(
                 x =>
                 {
-                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                    return new ApiResponse<T>(x.Result);
                 },
                 token);
         }
@@ -140,10 +140,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request)
         {
             return base.ExecutePostTaskAsync(request)
-                .ContinueWith(
+                .ContinueWith<IRestResponse>(
                 x =>
                 {
-                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result);
                 });
         }
 
@@ -156,10 +156,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse> ExecutePostTaskAsync(IRestRequest request, CancellationToken token)
         {
             return base.ExecutePostTaskAsync(request, token)
-                .ContinueWith(
+                .ContinueWith<IRestResponse>(
                 x =>
                 {
-                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result);
                 },
                 token);
         }
@@ -173,10 +173,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request)
         {
             return base.ExecutePostTaskAsync<T>(request)
-                .ContinueWith(
+                .ContinueWith<IRestResponse<T>>(
                 x =>
                 {
-                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                    return new ApiResponse<T>(x.Result);
                 });
         }
 
@@ -190,10 +190,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse<T>> ExecutePostTaskAsync<T>(IRestRequest request, CancellationToken token)
         {
             return base.ExecutePostTaskAsync<T>(request, token)
-                .ContinueWith(
+                .ContinueWith<IRestResponse<T>>(
                 x =>
                 {
-                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                    return new ApiResponse<T>(x.Result);
                 },
                 token);
         }
@@ -206,10 +206,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse> ExecuteTaskAsync(IRestRequest request)
         {
             return base.ExecuteTaskAsync(request)
-                .ContinueWith(
+                .ContinueWith<IRestResponse>(
                 x =>
                 {
-                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result);
                 });
         }
 
@@ -222,10 +222,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse> ExecuteTaskAsync(IRestRequest request, CancellationToken token)
         {
             return base.ExecuteTaskAsync(request, token)
-                .ContinueWith(
+                .ContinueWith<IRestResponse>(
                 x =>
                 {
-                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result) as IRestResponse;
+                    return new ApiResponse<dynamic>((IRestResponse<dynamic>)x.Result);
                 },
                 token);
         }
@@ -256,10 +256,10 @@ namespace GW2DotNET.V1.Core
         public override Task<IRestResponse<T>> ExecuteTaskAsync<T>(IRestRequest request, CancellationToken token)
         {
             return base.ExecuteTaskAsync<T>(request, token)
-                .ContinueWith(
+                .ContinueWith<IRestResponse<T>>(
                 x =>
                 {
-                    return new ApiResponse<T>(x.Result) as IRestResponse<T>;
+                    return new ApiResponse<T>(x.Result);
                 },
                 token);
         }
@@ -307,7 +307,7 @@ namespace GW2DotNET.V1.Core
         private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request) where TContent : new()
         {
             return this.ExecuteTaskAsync<TContent>(request)
-                .ContinueWith(x => x as IApiResponse<TContent>);
+                .ContinueWith<IApiResponse<TContent>>(x => (IApiResponse<TContent>)x.Result);
         }
 
         /// <summary>
@@ -320,7 +320,7 @@ namespace GW2DotNET.V1.Core
         private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request, CancellationToken token) where TContent : new()
         {
             return this.ExecuteTaskAsync<TContent>(request, token)
-                .ContinueWith(x => x as IApiResponse<TContent>);
+                .ContinueWith<IApiResponse<TContent>>(x => (ApiResponse<TContent>)x.Result);
         }
 
         /// <summary>
@@ -331,7 +331,7 @@ namespace GW2DotNET.V1.Core
         /// <returns>Returns the response content as an instance of the specified type.</returns>
         private IApiResponse<TContent> SendImplementation<TContent>(IRestRequest request) where TContent : new()
         {
-            return this.Execute<TContent>(request) as IApiResponse<TContent>;
+            return (IApiResponse<TContent>)this.Execute<TContent>(request);
         }
     }
 }
