@@ -299,6 +299,24 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
+        /// Asynchronously sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse{TContent}"/> whose content can be mapped to the specified type.
+        /// </summary>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
+        /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>Returns the response content as an instance of the specified type.</returns>
+        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request, CancellationToken token) where TContent : new()
+        {
+            Preconditions.EnsureNotNull(paramName: "request", value: request);
+            if (!(request is ApiRequest))
+            { /* The specified request is of an incompatible type */
+                throw new NotSupportedException("Incompatible request type");
+            }
+
+            return this.SendAsyncImplementation<TContent>(request as IRestRequest, token);
+        }
+
+        /// <summary>
         /// Infrastructure. Implementation details for 'SendAsync'.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
