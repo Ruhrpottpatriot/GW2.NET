@@ -18,19 +18,19 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         /// Initializes a new instance of the <see cref="CylinderLocation"/> class.
         /// </summary>
         public CylinderLocation()
+            : base(LocationShape.Cylinder)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CylinderLocation"/> class using the specified values.
         /// </summary>
-        /// <param name="type">The location's shape.</param>
         /// <param name="center">The location's center.</param>
         /// <param name="height">The location's height.</param>
         /// <param name="radius">The location's radius.</param>
         /// <param name="rotation">The location's rotation.</param>
-        public CylinderLocation(Shape type, Point3D center, double height, double radius, double rotation)
-            : base(type, center)
+        public CylinderLocation(Point3D center, double height, double radius, double rotation)
+            : base(LocationShape.Cylinder, center)
         {
             this.Height = height;
             this.Radius = radius;

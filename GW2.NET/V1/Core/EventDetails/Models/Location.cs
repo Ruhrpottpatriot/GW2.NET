@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
     /// Represents the location of an event on the map.
     /// </summary>
     [JsonConverter(typeof(LocationConverter))]
-    public abstract partial class Location
+    public abstract class Location
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
@@ -27,8 +27,17 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         /// Initializes a new instance of the <see cref="Location"/> class using the specified values.
         /// </summary>
         /// <param name="type">The location's shape.</param>
+        protected Location(LocationShape type)
+        {
+            this.LocationType = type;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Location"/> class using the specified values.
+        /// </summary>
+        /// <param name="type">The location's shape.</param>
         /// <param name="center">The location's center.</param>
-        protected Location(Shape type, Point3D center)
+        protected Location(LocationShape type, Point3D center)
         {
             this.LocationType = type;
             this.Center = center;
@@ -45,7 +54,7 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         /// Gets or sets the shape of the location.
         /// </summary>
         [JsonProperty("type", Order = 0)]
-        public Shape LocationType { get; set; }
+        public LocationShape LocationType { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.

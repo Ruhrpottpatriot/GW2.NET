@@ -18,18 +18,18 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         /// Initializes a new instance of the <see cref="SphereLocation"/> class.
         /// </summary>
         public SphereLocation()
+            : base(LocationShape.Sphere)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SphereLocation"/> class using the specified values.
         /// </summary>
-        /// <param name="type">The location's shape.</param>
         /// <param name="center">The location's center.</param>
         /// <param name="radius">The location's radius.</param>
         /// <param name="rotation">The location's rotation.</param>
-        public SphereLocation(Shape type, Point3D center, double radius, double rotation)
-            : base(type, center)
+        public SphereLocation(Point3D center, double radius, double rotation)
+            : base(LocationShape.Sphere, center)
         {
             this.Radius = radius;
             this.Rotation = rotation;

@@ -22,18 +22,18 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         /// Initializes a new instance of the <see cref="PolygonLocation"/> class.
         /// </summary>
         public PolygonLocation()
+            : base(LocationShape.Polygon)
         {
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PolygonLocation"/> class using the specified values.
         /// </summary>
-        /// <param name="type">The location's shape.</param>
         /// <param name="center">The location's center.</param>
         /// <param name="zRange">The location's range on the z-axis.</param>
         /// <param name="points">The series of points in the polygon.</param>
-        public PolygonLocation(Shape type, Point3D center, Point zRange, IEnumerable<PointF> points)
-            : base(type, center)
+        public PolygonLocation(Point3D center, Point zRange, IEnumerable<PointF> points)
+            : base(LocationShape.Polygon, center)
         {
             this.ZRange = zRange;
             this.Points = points;
