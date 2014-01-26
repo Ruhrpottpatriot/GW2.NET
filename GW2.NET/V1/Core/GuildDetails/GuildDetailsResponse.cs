@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Core.GuildDetails
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details"/> for more information.
     /// </remarks>
-    public partial class GuildDetailsResponse
+    public class GuildDetailsResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GuildDetailsResponse"/> class.

@@ -88,7 +88,7 @@ namespace GW2DotNET.V1.Core.Converters
 
             Type enumType = value.GetType();
 
-            var values = value.ToString().Split(new char[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var values = value.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             writer.WriteStartArray();
 

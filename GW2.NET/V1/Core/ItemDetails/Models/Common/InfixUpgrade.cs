@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     /// <summary>
     /// Represents item stats that are inherent to a specific item.
     /// </summary>
-    public partial class InfixUpgrade
+    public class InfixUpgrade
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InfixUpgrade"/> class.

@@ -21,22 +21,13 @@ namespace GW2DotNET.V1.Core.MapNames
     public class MapNamesRequest : ApiRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapNamesRequest"/> class.
-        /// </summary>
-        /// <param name="continentId">The continent ID.</param>
-        /// <param name="floor">The map floor.</param>
-        public MapNamesRequest(int continentId, int floor)
-            : base(new Uri(Resources.MapNames, UriKind.Relative))
-        {
-        }
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="MapNamesRequest"/> class using the specified language.
         /// </summary>
         /// <param name="language">The output language. Supported values are enumerated in <see cref="SupportedLanguages"/>.</param>
         public MapNamesRequest(CultureInfo language)
             : base(new Uri(Resources.MapNames + "?lang={language}", UriKind.Relative))
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
 
