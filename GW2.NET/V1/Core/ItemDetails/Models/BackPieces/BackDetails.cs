@@ -6,7 +6,6 @@
 
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.ItemDetails.Models.Common;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.BackPieces
 {

@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Bags
         /// Initializes a new instance of the <see cref="Bag"/> class.
         /// </summary>
         public Bag()
+            : base(ItemType.Bag)
         {
         }
 

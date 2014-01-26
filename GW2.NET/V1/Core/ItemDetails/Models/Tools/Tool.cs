@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Tools
         /// Initializes a new instance of the <see cref="Tool"/> class.
         /// </summary>
         public Tool()
+            : base(ItemType.Tool)
         {
         }
 

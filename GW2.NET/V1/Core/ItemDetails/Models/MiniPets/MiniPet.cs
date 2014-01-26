@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.MiniPets
         /// Initializes a new instance of the <see cref="MiniPet"/> class.
         /// </summary>
         public MiniPet()
+            : base(ItemType.MiniPet)
         {
         }
 

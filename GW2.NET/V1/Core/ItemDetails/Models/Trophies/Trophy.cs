@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Trophies
         /// Initializes a new instance of the <see cref="Trophy"/> class.
         /// </summary>
         public Trophy()
+            : base(ItemType.Trophy)
         {
         }
 

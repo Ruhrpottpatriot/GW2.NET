@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Containers
         /// Initializes a new instance of the <see cref="Container"/> class.
         /// </summary>
         public Container()
+            : base(ItemType.Container)
         {
         }
 

@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.GatheringEquipment
         /// Initializes a new instance of the <see cref="Gathering"/> class.
         /// </summary>
         public Gathering()
+            : base(ItemType.Gathering)
         {
         }
 

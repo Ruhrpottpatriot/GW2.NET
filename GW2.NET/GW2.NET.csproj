@@ -159,6 +159,7 @@
     <Compile Include="V1\Core\Files\FilesResponseConverter.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsRequest.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.cs" />
+    <Compile Include="V1\Core\ItemDetails\ItemConverter.cs" />
     <Compile Include="V1\Core\ItemDetails\Models\BackPieces\Back.cs" />
     <Compile Include="V1\Core\ItemDetails\Models\Common\InfusionSlot.cs" />
     <Compile Include="V1\Core\ItemDetails\Models\Containers\Container.cs" />

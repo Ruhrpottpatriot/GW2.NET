@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.BackPieces
         /// Initializes a new instance of the <see cref="Back"/> class.
         /// </summary>
         public Back()
+            : base(ItemType.Back)
         {
         }
 

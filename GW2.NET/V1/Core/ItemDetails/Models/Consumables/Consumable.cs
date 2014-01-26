@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
         /// Initializes a new instance of the <see cref="Consumable"/> class.
         /// </summary>
         public Consumable()
+            : base(ItemType.Consumable)
         {
         }
 

@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.UpgradeComponents
         /// Initializes a new instance of the <see cref="UpgradeComponent"/> class.
         /// </summary>
         public UpgradeComponent()
+            : base(ItemType.UpgradeComponent)
         {
         }
 

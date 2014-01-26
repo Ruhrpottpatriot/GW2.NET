@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Gizmos
         /// Initializes a new instance of the <see cref="Gizmo"/> class.
         /// </summary>
         public Gizmo()
+            : base(ItemType.Gizmo)
         {
         }
 

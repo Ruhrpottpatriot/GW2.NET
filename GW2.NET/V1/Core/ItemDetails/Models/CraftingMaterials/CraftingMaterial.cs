@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.CraftingMaterials
         /// Initializes a new instance of the <see cref="CraftingMaterial"/> class.
         /// </summary>
         public CraftingMaterial()
+            : base(ItemType.CraftingMaterial)
         {
         }
 

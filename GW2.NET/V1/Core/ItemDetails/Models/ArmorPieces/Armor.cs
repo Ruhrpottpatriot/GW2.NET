@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.ArmorPieces
         /// Initializes a new instance of the <see cref="Armor"/> class.
         /// </summary>
         public Armor()
+            : base(ItemType.Armor)
         {
         }
 

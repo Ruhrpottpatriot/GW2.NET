@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Weapons
         /// Initializes a new instance of the <see cref="Weapon"/> class.
         /// </summary>
         public Weapon()
+            : base(ItemType.Weapon)
         {
         }
 

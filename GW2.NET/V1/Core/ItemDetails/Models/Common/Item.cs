@@ -4,8 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Core.Files;
-using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
@@ -13,13 +11,16 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     /// <summary>
     /// Represents detailed information about an in-game item.
     /// </summary>
+    [JsonConverter(typeof(ItemConverter))]
     public class Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class.
+        /// Initializes a new instance of the <see cref="Item"/> class using the specified values.
         /// </summary>
-        protected Item()
+        /// <param name="type">The item's type.</param>
+        protected Item(ItemType type)
         {
+            this.Type = type;
         }
 
         /// <summary>

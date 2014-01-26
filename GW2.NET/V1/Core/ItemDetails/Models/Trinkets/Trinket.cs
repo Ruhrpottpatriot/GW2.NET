@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Trinkets
         /// Initializes a new instance of the <see cref="Trinket"/> class.
         /// </summary>
         public Trinket()
+            : base(ItemType.Trinket)
         {
         }
 
