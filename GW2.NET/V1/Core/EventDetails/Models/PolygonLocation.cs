@@ -16,6 +16,7 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
     /// <summary>
     /// Represents a polygonal location of an event on the map.
     /// </summary>
+    [JsonConverter(typeof(DefaultConverter))]
     public class PolygonLocation : Location
     {
         /// <summary>

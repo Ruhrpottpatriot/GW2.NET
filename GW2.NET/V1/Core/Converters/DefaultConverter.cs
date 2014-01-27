@@ -1,39 +1,44 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContentBasedTypeCreationConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="DefaultConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Deserializes an instance of a specific type based on the content.
-    /// This is useful for complex types with an inheritance tree,
-    /// where the exact type of the JSON content is not known at compile time.
+    /// Default converter.
     /// </summary>
-    /// <typeparam name="T">The target base type.</typeparam>
-    public abstract class ContentBasedTypeCreationConverter<T> : JsonConverter where T : class
+    public class DefaultConverter : JsonConverter
     {
         /// <summary>
-        /// Gets a value indicating whether this <see cref="JsonConverter"/> can write JSON.
+        /// Gets a value indicating whether this converter can read JSON.
         /// </summary>
-        /// <value><c>true</c> if this <see cref="JsonConverter"/> can write JSON; otherwise, <c>false</c>.</value>
+        public override bool CanRead
+        {
+            get { return false; }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this converter can write JSON.
+        /// </summary>
         public override bool CanWrite
         {
             get { return false; }
         }
 
         /// <summary>
-        /// Gets the object type that will be used by the serializer.
+        /// Determines whether this instance can convert the specified object type.
         /// </summary>
-        /// <param name="objectType">The type of the object.</param>
-        /// <param name="content">The JSON content.</param>
-        /// <returns>Returns the target type.</returns>
-        public abstract Type GetTargetType(Type objectType, JObject content);
+        /// <param name="objectType">Type of the object.</param>
+        /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
+        }
 
         /// <summary>
         /// Reads the JSON representation of the object.
@@ -42,19 +47,10 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
-        /// <returns>Returns the object value.</returns>
+        /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            if (reader.TokenType == JsonToken.Null)
-            {
-                return null;
-            }
-
-            JObject jsonObject = JObject.Load(reader);
-
-            Type targetType = this.GetTargetType(objectType, jsonObject);
-
-            return serializer.Deserialize(jsonObject.CreateReader(), targetType);
+            throw new InvalidOperationException();
         }
 
         /// <summary>
@@ -65,8 +61,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotSupportedException();
-
+            throw new InvalidOperationException();
         }
     }
 }

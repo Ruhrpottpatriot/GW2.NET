@@ -4,13 +4,16 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.ItemDetails.Models.Common;
+using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.MiniPets
 {
     /// <summary>
     /// Represents a mini pet.
     /// </summary>
+    [JsonConverter(typeof(DefaultConverter))]
     public class MiniPet : Item
     {
         /// <summary>

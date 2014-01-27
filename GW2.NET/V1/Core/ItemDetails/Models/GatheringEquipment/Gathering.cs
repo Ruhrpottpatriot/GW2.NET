@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
@@ -12,6 +13,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.GatheringEquipment
     /// <summary>
     /// Represents a piece of gathering equipment.
     /// </summary>
+    [JsonConverter(typeof(DefaultConverter))]
     public class Gathering : Item
     {
         /// <summary>

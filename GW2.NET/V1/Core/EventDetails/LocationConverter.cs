@@ -44,12 +44,12 @@ namespace GW2DotNET.V1.Core.EventDetails
         }
 
         /// <summary>
-        /// Creates the object that will be used by the serializer.
+        /// Gets the object type that will be used by the serializer.
         /// </summary>
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>
-        /// <returns>Returns the target object type.</returns>
-        public override Location Create(Type objectType, JObject content)
+        /// <returns>Returns the target type.</returns>
+        public override Type GetTargetType(Type objectType, JObject content)
         {
             var typeReader = content["type"].CreateReader();
 
@@ -62,7 +62,7 @@ namespace GW2DotNET.V1.Core.EventDetails
                 throw new JsonSerializationException("Unknown location type: " + locationShape);
             }
 
-            return (Location)Activator.CreateInstance(locationType);
+            return locationType;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace GW2DotNET.V1.Core.ItemDetails
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             this.AddUrlSegment("item_id", itemId.ToString());
-            this.AddUrlSegment("lang", language.TwoLetterISOLanguageName);
+            this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
 
         /// <summary>

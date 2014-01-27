@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.Drawing;
 using Newtonsoft.Json;
 
@@ -12,6 +13,7 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
     /// <summary>
     /// Represents a spherical location of an event on the map.
     /// </summary>
+    [JsonConverter(typeof(DefaultConverter))]
     public class SphereLocation : Location
     {
         /// <summary>

@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
@@ -12,6 +13,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Containers
     /// <summary>
     /// Represents a container.
     /// </summary>
+    [JsonConverter(typeof(DefaultConverter))]
     public class Container : Item
     {
         /// <summary>

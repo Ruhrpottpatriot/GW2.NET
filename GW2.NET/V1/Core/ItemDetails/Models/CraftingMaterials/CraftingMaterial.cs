@@ -4,13 +4,16 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.ItemDetails.Models.Common;
+using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.CraftingMaterials
 {
     /// <summary>
     /// Represents a crafting material.
     /// </summary>
+    [JsonConverter(typeof(DefaultConverter))]
     public class CraftingMaterial : Item
     {
         /// <summary>

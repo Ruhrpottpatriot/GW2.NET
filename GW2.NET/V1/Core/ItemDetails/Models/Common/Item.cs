@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.ItemDetails.Converters;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Common

@@ -25,7 +25,7 @@ using GW2DotNET.V1.Core.ItemDetails.Models.Weapons;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace GW2DotNET.V1.Core.ItemDetails
+namespace GW2DotNET.V1.Core.ItemDetails.Converters
 {
     /// <summary>
     /// Converts an <see cref="Item"/> to and from its <see cref="System.String"/> representation.
@@ -69,12 +69,12 @@ namespace GW2DotNET.V1.Core.ItemDetails
         }
 
         /// <summary>
-        /// Creates the object that will be used by the serializer.
+        /// Gets the object type that will be used by the serializer.
         /// </summary>
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>
-        /// <returns>Returns the target object type.</returns>
-        public override Item Create(Type objectType, JObject content)
+        /// <returns>Returns the target type.</returns>
+        public override Type GetTargetType(Type objectType, JObject content)
         {
             var typeReader = content["type"].CreateReader();
 
@@ -87,7 +87,7 @@ namespace GW2DotNET.V1.Core.ItemDetails
                 throw new JsonSerializationException("Unknown item type: " + jsonValue);
             }
 
-            return (Item)Activator.CreateInstance(itemType);
+            return itemType;
         }
     }
 }

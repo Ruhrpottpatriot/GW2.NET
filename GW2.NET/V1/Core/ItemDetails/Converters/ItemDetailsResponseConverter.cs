@@ -8,7 +8,7 @@ using System;
 using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.ItemDetails
+namespace GW2DotNET.V1.Core.ItemDetails.Converters
 {
     /// <summary>
     /// Converts a JSON object that describes an item's details to and from an <see cref="ItemDetailsResponse"/>.
