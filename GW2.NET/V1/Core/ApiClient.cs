@@ -25,7 +25,8 @@ namespace GW2DotNET.V1.Core
         public ApiClient(Uri baseUrl, JsonDeserializer jsonDeserializer)
             : base(Preconditions.EnsureNotNull(paramName: "baseUrl", value: baseUrl).ToString())
         {
-            Preconditions.EnsureNotNull(jsonDeserializer, "jsonDeserializer");
+            Preconditions.EnsureNotNull(paramName: "jsonDeserializer", value: jsonDeserializer);
+
             if (!baseUrl.IsAbsoluteUri)
             {
                 throw new ArgumentException("'baseUrl' cannot be a relative URI.");
@@ -44,6 +45,15 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
+        /// Factory method. Creates a new instance of the <see cref="ApiClient"/> class.
+        /// </summary>
+        /// <returns>Returns an instance of <see cref="ApiClient"/>.</returns>
+        public static IApiClient Create()
+        {
+            return new ApiClient(new Uri(string.Format(Resources.BaseUrl, 1)));
+        }
+
+        /// <summary>
         /// Factory method. Creates a new instance of the <see cref="ApiClient"/> class that targets the specified API version.
         /// </summary>
         /// <param name="apiVersion">The target API version.</param>
@@ -52,7 +62,7 @@ namespace GW2DotNET.V1.Core
         {
             Preconditions.EnsureNotNull(paramName: "apiVersion", value: apiVersion);
 
-            return new ApiClient(new Uri(string.Format("https://api.guildwars2.com/v{0}/", apiVersion.Major)));
+            return new ApiClient(new Uri(string.Format(Resources.BaseUrl, apiVersion.Major)));
         }
 
         /// <summary>

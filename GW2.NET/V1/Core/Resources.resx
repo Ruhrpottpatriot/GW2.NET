@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BaseUrl" xml:space="preserve">
-    <value>https://api.guildwars2.com/v1/</value>
+    <value>https://api.guildwars2.com/v{0}/</value>
     <comment>The base URL for all endpoints.</comment>
   </data>
   <data name="Build" xml:space="preserve">
