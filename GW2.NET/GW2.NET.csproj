@@ -133,7 +133,6 @@
     </Compile>
     <Compile Include="V1\Core\Converters\ColorConverter.cs" />
     <Compile Include="V1\Core\Converters\GuidConverter.cs" />
-    <Compile Include="V1\Core\Converters\JsonDeserializer.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
     <Compile Include="V1\Core\Drawing\Point3D.cs" />
     <Compile Include="V1\Core\ErrorResponse.cs" />

@@ -16,14 +16,14 @@ namespace GW2DotNET.V1.Core
     /// Provides a RestSharp-specific implementation of the <see cref="IApiResponse{TContent}"/> interface.
     /// </summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>
-    public class ApiResponse<TContent> : RestResponse<TContent>, IApiResponse<TContent>
+    public class ApiResponse<TContent> : RestResponse, IApiResponse<TContent>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse{TContent}"/> class using the specified <see cref="IRestResponse{TContent}"/>.
+        /// Initializes a new instance of the <see cref="ApiResponse{TContent}"/> class using the specified <see cref="IRestResponse"/>.
         /// </summary>
         /// <param name="source">The source response object.</param>
         /// <remarks>Copy constructor.</remarks>
-        internal ApiResponse(IRestResponse<TContent> source)
+        internal ApiResponse(IRestResponse source)
         {
             this.Content = source.Content;
             this.ContentEncoding = source.ContentEncoding;
@@ -40,7 +40,6 @@ namespace GW2DotNET.V1.Core
             this.Request = source.Request;
             this.Headers = source.Headers;
             this.Cookies = source.Cookies;
-            this.Data = source.Data;
         }
 
         /// <summary>
@@ -109,7 +108,7 @@ namespace GW2DotNET.V1.Core
                 throw new InvalidOperationException("The service returned an error response.");
             }
 
-            return this.Data;
+            return JsonConvert.DeserializeObject<TContent>(this.Content);
         }
 
         /// <summary>
