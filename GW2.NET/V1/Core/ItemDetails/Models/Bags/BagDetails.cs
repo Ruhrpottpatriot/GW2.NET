@@ -23,6 +23,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Bags
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="BagDetails"/> class using the specified values.
+        /// </summary>
+        /// <param name="noSellOrSort">Indicates whether this is an invisible bag.</param>
+        /// <param name="size">The bag's capacity.</param>
+        public BagDetails(bool noSellOrSort, int size)
+        {
+            this.NoSellOrSort = noSellOrSort;
+            this.Size = size;
+        }
+
+        /// <summary>
         /// Gets or sets a value indicating whether this is an invisible bag.
         /// </summary>
         [JsonProperty("no_sell_or_sort", Order = 0)]
