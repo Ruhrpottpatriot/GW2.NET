@@ -20,9 +20,14 @@ namespace GW2DotNET.V1.Core
         ContentType ContentType { get; }
 
         /// <summary>
-        /// Gets a value indicating whether the request returned a success status code.
+        /// Gets a value indicating whether the service returned a success status code.
         /// </summary>
         bool IsSuccessStatusCode { get; }
+
+        /// <summary>
+        /// Gets a value indicating whether the service returned a JSON response.
+        /// </summary>
+        bool IsJsonResponse { get; }
 
         /// <summary>
         /// Gets the error result if the request was unsuccessful.
@@ -41,11 +46,6 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <returns>Returns the current instance.</returns>
         /// <remarks>The current instance is returned to allow chaining method calls.</remarks>
-        /// <example>
-        /// <code>
-        /// <![CDATA[var responseContent = request.GetResponse<ObjectType>.EnsureSuccessStatusCode().DeserializeObject();]]>
-        /// </code>
-        /// </example>
         IApiResponse<TContent> EnsureSuccessStatusCode();
     }
 }
