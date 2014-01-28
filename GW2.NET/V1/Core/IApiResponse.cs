@@ -32,13 +32,13 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Gets the error result if the request was unsuccessful.
         /// </summary>
-        /// <returns>Return an instance of <see cref="ApiException"/> that represents the request error.</returns>
+        /// <returns>Return the error response as an instance of the <see cref="ApiException"/> class.</returns>
         ApiException DeserializeError();
 
         /// <summary>
         /// Gets the response content as an object of the specified type.
         /// </summary>
-        /// <returns>Returns an instance of the specified type that represents the response.</returns>
+        /// <returns>Returns the response as an instance of the specified type.</returns>
         TContent DeserializeResponse();
 
         /// <summary>

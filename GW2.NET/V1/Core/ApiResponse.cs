@@ -76,9 +76,9 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Gets the error result if the request was unsuccessful.
+        /// Gets the error response if the service returned an error status code.
         /// </summary>
-        /// <returns>Return an instance of <see cref="ApiException"/> that represents the request error.</returns>
+        /// <returns>Return the error response as an instance of the <see cref="ApiException"/> class.</returns>
         public ApiException DeserializeError()
         {
             if (this.IsSuccessStatusCode || !this.IsJsonResponse)
@@ -100,7 +100,7 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Gets the response content as an object of the specified type.
         /// </summary>
-        /// <returns>Returns an instance of the specified type that represents the response.</returns>
+        /// <returns>Returns the response as an instance of the specified type.</returns>
         public TContent DeserializeResponse()
         {
             if (!this.IsSuccessStatusCode)
@@ -109,6 +109,36 @@ namespace GW2DotNET.V1.Core
             }
 
             return JsonConvert.DeserializeObject<TContent>(this.Content);
+        }
+
+        /// <summary>
+        /// Gets the response content as an object of the specified type using the specified <see cref="Newtonsoft.Json.JsonSerializerSettings"/>.
+        /// </summary>
+        /// <param name="jsonSerializerSettings">The <see cref="Newtonsoft.Json.JsonSerializerSettings"/> used to de-serialize the object.  If this is null, default serialization settings will be is used.</param>
+        /// <returns>Returns the response as an instance of the specified type.</returns>
+        public TContent DeserializeResponse(JsonSerializerSettings jsonSerializerSettings)
+        {
+            if (!this.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("The service returned an error response.");
+            }
+
+            return JsonConvert.DeserializeObject<TContent>(this.Content, jsonSerializerSettings);
+        }
+
+        /// <summary>
+        /// Gets the response content as an object of the specified type using a collection of <see cref="Newtonsoft.Json.JsonConverter"/>.
+        /// </summary>
+        /// <param name="converters">The converters to use while de-serializing.</param>
+        /// <returns>Returns the response as an instance of the specified type.</returns>
+        public TContent DeserializeResponse(params JsonConverter[] converters)
+        {
+            if (!this.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("The service returned an error response.");
+            }
+
+            return JsonConvert.DeserializeObject<TContent>(this.Content, converters);
         }
 
         /// <summary>
