@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core
     /// Provides the base interface for HTTP responses originating from the Guild Wars 2 API.
     /// </summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>
-    public interface IApiResponse<TContent>
+    public interface IApiResponse<out TContent>
     {
         /// <summary>
         /// Gets a value indicating the Internet media type of the message content.
