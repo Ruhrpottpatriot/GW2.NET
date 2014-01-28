@@ -14,9 +14,9 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.V1.Core.ItemDetails.Converters
 {
     /// <summary>
-    /// Converts a JSON object that describes a consumable item's details to the <see cref="ConsumableDetails"/> class.
+    /// Converts a JSON object that describes a consumable item's details to the <see cref="ConsumableItemDetails"/> class.
     /// </summary>
-    public class UnlockDetailsConverter : ContentBasedTypeCreationConverter<UnlockConsumableDetails>
+    public class UnlockDetailsConverter : ContentBasedTypeCreationConverter<UnlockConsumableItemDetails>
     {
         /// <summary>
         /// Backing field. Holds a dictionary of in-game unlock item types and their corresponding .NET class.
@@ -28,11 +28,11 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         /// </summary>
         static UnlockDetailsConverter()
         {
-            UnlockTypes.Add(UnlockType.Unknown, typeof(UnknownUnlockConsumableDetails));
-            UnlockTypes.Add(UnlockType.BagSlot, typeof(BagSlotUnlockConsumableDetails));
-            UnlockTypes.Add(UnlockType.BankTab, typeof(BankTabUnlockConsumableDetails));
-            UnlockTypes.Add(UnlockType.CraftingRecipe, typeof(CraftingRecipeUnlockConsumableDetails));
-            UnlockTypes.Add(UnlockType.Dye, typeof(DyeUnlockConsumableDetails));
+            UnlockTypes.Add(UnlockType.Unknown, typeof(UnknownUnlockConsumableItemDetails));
+            UnlockTypes.Add(UnlockType.BagSlot, typeof(BagSlotUnlockConsumableItemDetails));
+            UnlockTypes.Add(UnlockType.BankTab, typeof(BankTabUnlockConsumableItemDetails));
+            UnlockTypes.Add(UnlockType.CraftingRecipe, typeof(CraftingRecipeUnlockConsumableItemDetails));
+            UnlockTypes.Add(UnlockType.Dye, typeof(DyeUnlockConsumableItemDetails));
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
 
             if (!UnlockTypes.TryGetValue(jsonValue, out itemType))
             {
-                itemType = typeof(UnknownUnlockConsumableDetails);
+                itemType = typeof(UnknownUnlockConsumableItemDetails);
             }
 
             return itemType;

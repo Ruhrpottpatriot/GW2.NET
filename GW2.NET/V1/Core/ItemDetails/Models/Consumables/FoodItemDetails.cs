@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FoodDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="FoodItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -14,22 +14,22 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
     /// Represents detailed information about an edible item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class FoodDetails : ConsumableDetails
+    public class FoodItemDetails : ConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FoodDetails"/> class.
+        /// Initializes a new instance of the <see cref="FoodItemDetails"/> class.
         /// </summary>
-        public FoodDetails()
+        public FoodItemDetails()
             : base(ConsumableType.Food)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FoodDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="FoodItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="description">The food's effect description.</param>
         /// <param name="duration">The food's effect duration.</param>
-        public FoodDetails(string description, TimeSpan duration)
+        public FoodItemDetails(string description, TimeSpan duration)
         {
             this.Description = description;
             this.Duration = duration;

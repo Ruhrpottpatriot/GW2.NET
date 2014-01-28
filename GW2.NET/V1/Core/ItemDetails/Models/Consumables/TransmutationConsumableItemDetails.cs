@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BoozeDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="TransmutationConsumableItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -10,16 +10,16 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
 {
     /// <summary>
-    /// Represents detailed information about a drink.
+    /// Represents detailed information about a transmutation consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class BoozeDetails : ConsumableDetails
+    public class TransmutationConsumableItemDetails : ConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BoozeDetails"/> class.
+        /// Initializes a new instance of the <see cref="TransmutationConsumableItemDetails"/> class.
         /// </summary>
-        public BoozeDetails()
-            : base(ConsumableType.Booze)
+        public TransmutationConsumableItemDetails()
+            : base(ConsumableType.Transmutation)
         {
         }
     }

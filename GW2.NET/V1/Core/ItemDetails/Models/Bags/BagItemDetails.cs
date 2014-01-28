@@ -1,11 +1,10 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BagDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="BagItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Bags
@@ -13,21 +12,21 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Bags
     /// <summary>
     /// Represents detailed information about a bag.
     /// </summary>
-    public class BagDetails : Details
+    public class BagItemDetails : Common.ItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BagDetails"/> class.
+        /// Initializes a new instance of the <see cref="BagItemDetails"/> class.
         /// </summary>
-        public BagDetails()
+        public BagItemDetails()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="BagDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="BagItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="noSellOrSort">Indicates whether this is an invisible bag.</param>
         /// <param name="size">The bag's capacity.</param>
-        public BagDetails(bool noSellOrSort, int size)
+        public BagItemDetails(bool noSellOrSort, int size)
         {
             this.NoSellOrSort = noSellOrSort;
             this.Size = size;

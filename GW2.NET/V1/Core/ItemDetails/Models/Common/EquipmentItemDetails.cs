@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EquipmentDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="EquipmentItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -12,22 +12,22 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     /// <summary>
     /// Represents detailed information about an armor piece.
     /// </summary>
-    public abstract class EquipmentDetails : Details
+    public abstract class EquipmentItemDetails : ItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EquipmentDetails"/> class.
+        /// Initializes a new instance of the <see cref="EquipmentItemDetails"/> class.
         /// </summary>
-        protected EquipmentDetails()
+        protected EquipmentItemDetails()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EquipmentDetails"/> class.
+        /// Initializes a new instance of the <see cref="EquipmentItemDetails"/> class.
         /// </summary>
         /// <param name="infusionSlots">The item's infusion slots.</param>
         /// <param name="infixUpgrade">The item's infix upgrade.</param>
         /// <param name="suffixItemId">The item's suffix item ID.</param>
-        protected EquipmentDetails(IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int? suffixItemId)
+        protected EquipmentItemDetails(IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int? suffixItemId)
         {
             this.InfusionSlots = infusionSlots;
             this.InfixUpgrade = infixUpgrade;

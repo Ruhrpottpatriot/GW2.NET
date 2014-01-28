@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="HalloweenConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="UnknownUnlockConsumableItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -10,16 +10,16 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
 {
     /// <summary>
-    /// Represents detailed information about a halloween consumable item.
+    /// Represents detailed information about an unknown unlock item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class HalloweenConsumableDetails : ConsumableDetails
+    public class UnknownUnlockConsumableItemDetails : UnlockConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HalloweenConsumableDetails"/> class.
+        /// Initializes a new instance of the <see cref="UnknownUnlockConsumableItemDetails"/> class.
         /// </summary>
-        public HalloweenConsumableDetails()
-            : base(ConsumableType.Halloween)
+        public UnknownUnlockConsumableItemDetails()
+            : base(UnlockType.Unknown)
         {
         }
     }

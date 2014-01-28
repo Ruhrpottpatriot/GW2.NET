@@ -39,17 +39,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.GatheringEquipment
         /// <param name="gameTypes">The gathering equipment's game types.</param>
         /// <param name="flags">The gathering equipment's additional flags.</param>
         /// <param name="restrictions">The gathering equipment's restrictions.</param>
-        /// <param name="gatheringDetails">The gathering equipment's details.</param>
-        public Gathering(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, GatheringDetails gatheringDetails)
+        /// <param name="gatheringItemDetails">The gathering equipment's details.</param>
+        public Gathering(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, GatheringItemDetails gatheringItemDetails)
             : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
         {
-            this.GatheringDetails = gatheringDetails;
+            this.GatheringItemDetails = gatheringItemDetails;
         }
 
         /// <summary>
         /// Gets or sets the gathering equipment's details.
         /// </summary>
         [JsonProperty("gathering", Order = 100)]
-        public GatheringDetails GatheringDetails { get; set; }
+        public GatheringItemDetails GatheringItemDetails { get; set; }
     }
 }

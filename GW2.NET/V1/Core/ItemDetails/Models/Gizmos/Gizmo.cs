@@ -39,17 +39,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Gizmos
         /// <param name="gameTypes">The gizmo's game types.</param>
         /// <param name="flags">The gizmo's additional flags.</param>
         /// <param name="restrictions">The gizmo's restrictions.</param>
-        /// <param name="gizmoDetails">The gizmo's details.</param>
-        public Gizmo(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, GizmoDetails gizmoDetails)
+        /// <param name="gizmoItemDetails">The gizmo's details.</param>
+        public Gizmo(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, GizmoItemDetails gizmoItemDetails)
             : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
         {
-            this.GizmoDetails = gizmoDetails;
+            this.GizmoItemDetails = gizmoItemDetails;
         }
 
         /// <summary>
         /// Gets or sets the gizmo's details.
         /// </summary>
         [JsonProperty("gizmo", Order = 100)]
-        public GizmoDetails GizmoDetails { get; set; }
+        public GizmoItemDetails GizmoItemDetails { get; set; }
     }
 }

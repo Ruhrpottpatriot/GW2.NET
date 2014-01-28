@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="ConsumableItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -14,20 +14,20 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
     /// Represents detailed information about a consumable item.
     /// </summary>
     [JsonConverter(typeof(ConsumableDetailsConverter))]
-    public class ConsumableDetails : Details
+    public class ConsumableItemDetails : Common.ItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConsumableDetails"/> class.
+        /// Initializes a new instance of the <see cref="ConsumableItemDetails"/> class.
         /// </summary>
-        public ConsumableDetails()
+        public ConsumableItemDetails()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ConsumableDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="ConsumableItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="type">The consumable's type.</param>
-        public ConsumableDetails(ConsumableType type)
+        public ConsumableItemDetails(ConsumableType type)
         {
             this.Type = type;
         }

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ArmorDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="ArmorItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,17 +13,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.ArmorPieces
     /// <summary>
     /// Represents detailed information about an armor piece.
     /// </summary>
-    public class ArmorDetails : EquipmentDetails
+    public class ArmorItemDetails : EquipmentItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArmorDetails"/> class.
+        /// Initializes a new instance of the <see cref="ArmorItemDetails"/> class.
         /// </summary>
-        public ArmorDetails()
+        public ArmorItemDetails()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArmorDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="ArmorItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="infusionSlots">The armor piece's infusion slots.</param>
         /// <param name="infixUpgrade">The armor piece's infix upgrade.</param>
@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.ArmorPieces
         /// <param name="type">The armor piece's type.</param>
         /// <param name="weightClass">The armor piece's weight class.</param>
         /// <param name="defense">The armor piece's defense stat.</param>
-        public ArmorDetails(IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int? suffixItemId, ArmorType type, WeightClass weightClass, int defense)
+        public ArmorItemDetails(IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int? suffixItemId, ArmorType type, WeightClass weightClass, int defense)
             : base(infusionSlots, infixUpgrade, suffixItemId)
         {
             this.Type = type;

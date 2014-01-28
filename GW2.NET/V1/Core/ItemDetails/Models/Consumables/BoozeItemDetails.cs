@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BagSlotUnlockConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="BoozeItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -10,16 +10,16 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
 {
     /// <summary>
-    /// Represents detailed information about a bag slot unlock item.
+    /// Represents detailed information about a drink.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class BagSlotUnlockConsumableDetails : UnlockConsumableDetails
+    public class BoozeItemDetails : ConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BagSlotUnlockConsumableDetails"/> class.
+        /// Initializes a new instance of the <see cref="BoozeItemDetails"/> class.
         /// </summary>
-        public BagSlotUnlockConsumableDetails()
-            : base(UnlockType.BagSlot)
+        public BoozeItemDetails()
+            : base(ConsumableType.Booze)
         {
         }
     }

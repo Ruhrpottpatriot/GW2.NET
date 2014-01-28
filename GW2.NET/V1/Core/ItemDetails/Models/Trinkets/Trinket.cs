@@ -39,17 +39,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Trinkets
         /// <param name="gameTypes">The trinket's game types.</param>
         /// <param name="flags">The trinket's additional flags.</param>
         /// <param name="restrictions">The trinket's restrictions.</param>
-        /// <param name="trinketDetails">The trinket's details.</param>
-        public Trinket(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, TrinketDetails trinketDetails)
+        /// <param name="trinketItemDetails">The trinket's details.</param>
+        public Trinket(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, TrinketItemDetails trinketItemDetails)
             : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
         {
-            this.TrinketDetails = trinketDetails;
+            this.TrinketItemDetails = trinketItemDetails;
         }
 
         /// <summary>
         /// Gets or sets the trinket's details.
         /// </summary>
         [JsonProperty("trinket", Order = 100)]
-        public TrinketDetails TrinketDetails { get; set; }
+        public TrinketItemDetails TrinketItemDetails { get; set; }
     }
 }

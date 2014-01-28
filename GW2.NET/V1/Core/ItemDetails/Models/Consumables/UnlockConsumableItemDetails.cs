@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UnlockConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="UnlockConsumableItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,21 +13,21 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
     /// Represents detailed information about an unlock item.
     /// </summary>
     [JsonConverter(typeof(UnlockDetailsConverter))]
-    public class UnlockConsumableDetails : ConsumableDetails
+    public class UnlockConsumableItemDetails : ConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnlockConsumableDetails"/> class.
+        /// Initializes a new instance of the <see cref="UnlockConsumableItemDetails"/> class.
         /// </summary>
-        public UnlockConsumableDetails()
+        public UnlockConsumableItemDetails()
             : base(ConsumableType.Unlock)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnlockConsumableDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="UnlockConsumableItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="type">The unlock item's unlock type.</param>
-        public UnlockConsumableDetails(UnlockType type)
+        public UnlockConsumableItemDetails(UnlockType type)
             : base(ConsumableType.Unlock)
         {
             this.UnlockType = type;

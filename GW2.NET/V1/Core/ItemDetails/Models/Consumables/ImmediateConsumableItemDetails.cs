@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ImmediateConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="ImmediateConsumableItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,12 +13,12 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
     /// Represents detailed information about an immediate consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class ImmediateConsumableDetails : ConsumableDetails
+    public class ImmediateConsumableItemDetails : ConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ImmediateConsumableDetails"/> class.
+        /// Initializes a new instance of the <see cref="ImmediateConsumableItemDetails"/> class.
         /// </summary>
-        public ImmediateConsumableDetails()
+        public ImmediateConsumableItemDetails()
             : base(ConsumableType.Immediate)
         {
         }

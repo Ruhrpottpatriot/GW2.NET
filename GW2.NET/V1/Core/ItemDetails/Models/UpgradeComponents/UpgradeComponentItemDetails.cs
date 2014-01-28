@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UpgradeComponentDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="UpgradeComponentItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,17 +13,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.UpgradeComponents
     /// <summary>
     /// Represents detailed information about an upgrade component.
     /// </summary>
-    public class UpgradeComponentDetails : Details
+    public class UpgradeComponentItemDetails : Common.ItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpgradeComponentDetails"/> class.
+        /// Initializes a new instance of the <see cref="UpgradeComponentItemDetails"/> class.
         /// </summary>
-        public UpgradeComponentDetails()
+        public UpgradeComponentItemDetails()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpgradeComponentDetails"/> class.
+        /// Initializes a new instance of the <see cref="UpgradeComponentItemDetails"/> class.
         /// </summary>
         /// <param name="type">The upgrade component's type.</param>
         /// <param name="flags">The upgrade component's flags.</param>
@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.UpgradeComponents
         /// <param name="bonuses">The upgrade component's bonuses.</param>
         /// <param name="infixUpgrade">The upgrade component's infix upgrade.</param>
         /// <param name="suffix">The upgrade component's suffix.</param>
-        public UpgradeComponentDetails(UpgradeComponentType type, UpgradeComponentFlags flags, InfusionSlotTypes infusionUpgradeFlags, IEnumerable<string> bonuses, InfixUpgrade infixUpgrade, string suffix)
+        public UpgradeComponentItemDetails(UpgradeComponentType type, UpgradeComponentFlags flags, InfusionSlotTypes infusionUpgradeFlags, IEnumerable<string> bonuses, InfixUpgrade infixUpgrade, string suffix)
         {
             this.Type = type;
             this.Flags = flags;

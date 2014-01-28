@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DyeUnlockConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="DyeUnlockConsumableItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,21 +13,21 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
     /// Represents detailed information about a dye.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class DyeUnlockConsumableDetails : UnlockConsumableDetails
+    public class DyeUnlockConsumableItemDetails : UnlockConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyeUnlockConsumableDetails"/> class.
+        /// Initializes a new instance of the <see cref="DyeUnlockConsumableItemDetails"/> class.
         /// </summary>
-        public DyeUnlockConsumableDetails()
+        public DyeUnlockConsumableItemDetails()
             : base(UnlockType.Dye)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyeUnlockConsumableDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="DyeUnlockConsumableItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="colorId">The dye's color ID.</param>
-        public DyeUnlockConsumableDetails(int colorId)
+        public DyeUnlockConsumableItemDetails(int colorId)
             : base(UnlockType.Dye)
         {
             this.ColorId = colorId;

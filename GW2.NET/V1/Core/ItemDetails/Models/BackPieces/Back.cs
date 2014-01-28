@@ -39,17 +39,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.BackPieces
         /// <param name="gameTypes">The back piece's game types.</param>
         /// <param name="flags">The back piece's additional flags.</param>
         /// <param name="restrictions">The back piece's restrictions.</param>
-        /// <param name="backDetails">The back piece's details.</param>
-        public Back(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, BackDetails backDetails)
+        /// <param name="backItemDetails">The back piece's details.</param>
+        public Back(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, BackItemDetails backItemDetails)
             : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
         {
-            this.BackDetails = backDetails;
+            this.BackItemDetails = backItemDetails;
         }
 
         /// <summary>
         /// Gets or sets the back piece's details.
         /// </summary>
         [JsonProperty("back", Order = 100)]
-        public BackDetails BackDetails { get; set; }
+        public BackItemDetails BackItemDetails { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GenericConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="AppearanceChangeConsumableItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -10,16 +10,16 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
 {
     /// <summary>
-    /// Represents detailed information about a generic consumable item.
+    /// Represents detailed information about an appearance changing consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class GenericConsumableDetails : ConsumableDetails
+    public class AppearanceChangeConsumableItemDetails : ConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenericConsumableDetails"/> class.
+        /// Initializes a new instance of the <see cref="AppearanceChangeConsumableItemDetails"/> class.
         /// </summary>
-        public GenericConsumableDetails()
-            : base(ConsumableType.Generic)
+        public AppearanceChangeConsumableItemDetails()
+            : base(ConsumableType.AppearanceChange)
         {
         }
     }

@@ -1,10 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContainerDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="ContainerItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Containers
@@ -12,20 +11,20 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Containers
     /// <summary>
     /// Represents detailed information about a container.
     /// </summary>
-    public class ContainerDetails : Details
+    public class ContainerItemDetails : Common.ItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContainerDetails"/> class.
+        /// Initializes a new instance of the <see cref="ContainerItemDetails"/> class.
         /// </summary>
-        public ContainerDetails()
+        public ContainerItemDetails()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContainerDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="ContainerItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="type">The container's type.</param>
-        public ContainerDetails(ContainerType type)
+        public ContainerItemDetails(ContainerType type)
         {
             this.Type = type;
         }

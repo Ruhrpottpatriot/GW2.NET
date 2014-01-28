@@ -39,17 +39,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.UpgradeComponents
         /// <param name="gameTypes">The upgrade component's game types.</param>
         /// <param name="flags">The upgrade component's additional flags.</param>
         /// <param name="restrictions">The upgrade component's restrictions.</param>
-        /// <param name="upgradeComponentDetails">The upgrade component's details.</param>
-        public UpgradeComponent(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, UpgradeComponentDetails upgradeComponentDetails)
+        /// <param name="upgradeComponentItemDetails">The upgrade component's details.</param>
+        public UpgradeComponent(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, UpgradeComponentItemDetails upgradeComponentItemDetails)
             : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
         {
-            this.UpgradeComponentDetails = upgradeComponentDetails;
+            this.UpgradeComponentItemDetails = upgradeComponentItemDetails;
         }
 
         /// <summary>
         /// Gets or sets the upgrade component's details.
         /// </summary>
         [JsonProperty("upgrade_component", Order = 100)]
-        public UpgradeComponentDetails UpgradeComponentDetails { get; set; }
+        public UpgradeComponentItemDetails UpgradeComponentItemDetails { get; set; }
     }
 }

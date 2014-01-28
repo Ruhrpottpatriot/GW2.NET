@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WeaponDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="WeaponItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,17 +13,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Weapons
     /// <summary>
     /// Represents detailed information about a weapon.
     /// </summary>
-    public class WeaponDetails : EquipmentDetails
+    public class WeaponItemDetails : EquipmentItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WeaponDetails"/> class.
+        /// Initializes a new instance of the <see cref="WeaponItemDetails"/> class.
         /// </summary>
-        public WeaponDetails()
+        public WeaponItemDetails()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WeaponDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="WeaponItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="infusionSlots">The weapon's infusion slots.</param>
         /// <param name="infixUpgrade">The weapon's infix upgrade.</param>
@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Weapons
         /// <param name="minimumPower">The weapon's minimum power stat.</param>
         /// <param name="maximumPower">The weapon's maximum power stat.</param>
         /// <param name="defense">The weapon's defense stat.</param>
-        public WeaponDetails(IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int? suffixItemId, WeaponType type, DamageType damageType, string minimumPower, string maximumPower, string defense)
+        public WeaponItemDetails(IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int? suffixItemId, WeaponType type, DamageType damageType, string minimumPower, string maximumPower, string defense)
             : base(infusionSlots, infixUpgrade, suffixItemId)
         {
             this.Type = type;

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ToolDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="ToolItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -12,20 +12,20 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Tools
     /// <summary>
     /// Represents detailed information about a tool.
     /// </summary>
-    public class ToolDetails : Details
+    public class ToolItemDetails : Common.ItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolDetails"/> class.
+        /// Initializes a new instance of the <see cref="ToolItemDetails"/> class.
         /// </summary>
-        public ToolDetails()
+        public ToolItemDetails()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="ToolItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="type">The tool's type.</param>
-        public ToolDetails(ToolType type)
+        public ToolItemDetails(ToolType type)
         {
             this.Type = type;
         }

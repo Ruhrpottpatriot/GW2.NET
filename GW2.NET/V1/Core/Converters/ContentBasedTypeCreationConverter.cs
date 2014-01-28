@@ -66,7 +66,6 @@ namespace GW2DotNET.V1.Core.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             throw new NotSupportedException();
-
         }
     }
 }

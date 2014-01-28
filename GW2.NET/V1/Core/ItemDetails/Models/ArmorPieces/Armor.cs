@@ -39,17 +39,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.ArmorPieces
         /// <param name="gameTypes">The armor piece's game types.</param>
         /// <param name="flags">The armor piece's additional flags.</param>
         /// <param name="restrictions">The armor piece's restrictions.</param>
-        /// <param name="armorDetails">The armor piece's details.</param>
-        public Armor(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, ArmorDetails armorDetails)
+        /// <param name="armorItemDetails">The armor piece's details.</param>
+        public Armor(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, ArmorItemDetails armorItemDetails)
             : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
         {
-            this.ArmorDetails = armorDetails;
+            this.ArmorItemDetails = armorItemDetails;
         }
 
         /// <summary>
         /// Gets or sets the armor piece's details.
         /// </summary>
         [JsonProperty("armor", Order = 100)]
-        public ArmorDetails ArmorDetails { get; set; }
+        public ArmorItemDetails ArmorItemDetails { get; set; }
     }
 }

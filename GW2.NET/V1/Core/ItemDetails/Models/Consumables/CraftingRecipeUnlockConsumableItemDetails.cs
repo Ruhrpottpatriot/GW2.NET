@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CraftingRecipeUnlockConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="CraftingRecipeUnlockConsumableItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,21 +13,21 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
     /// Represents detailed information about a crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class CraftingRecipeUnlockConsumableDetails : UnlockConsumableDetails
+    public class CraftingRecipeUnlockConsumableItemDetails : UnlockConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableDetails"/> class.
+        /// Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableItemDetails"/> class.
         /// </summary>
-        public CraftingRecipeUnlockConsumableDetails()
+        public CraftingRecipeUnlockConsumableItemDetails()
             : base(UnlockType.CraftingRecipe)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableDetails"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableItemDetails"/> class using the specified values.
         /// </summary>
         /// <param name="recipeId">The crafting recipe's ID.</param>
-        public CraftingRecipeUnlockConsumableDetails(int recipeId)
+        public CraftingRecipeUnlockConsumableItemDetails(int recipeId)
             : base(UnlockType.CraftingRecipe)
         {
             this.RecipeId = recipeId;

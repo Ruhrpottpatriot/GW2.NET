@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TransmutationConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="UtilityConsumableItemDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -10,16 +10,16 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
 {
     /// <summary>
-    /// Represents detailed information about a transmutation consumable item.
+    /// Represents detailed information about a utility consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class TransmutationConsumableDetails : ConsumableDetails
+    public class UtilityConsumableItemDetails : ConsumableItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransmutationConsumableDetails"/> class.
+        /// Initializes a new instance of the <see cref="UtilityConsumableItemDetails"/> class.
         /// </summary>
-        public TransmutationConsumableDetails()
-            : base(ConsumableType.Transmutation)
+        public UtilityConsumableItemDetails()
+            : base(ConsumableType.Utility)
         {
         }
     }

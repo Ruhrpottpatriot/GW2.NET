@@ -39,17 +39,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Weapons
         /// <param name="gameTypes">The weapon's game types.</param>
         /// <param name="flags">The weapon's additional flags.</param>
         /// <param name="restrictions">The weapon's restrictions.</param>
-        /// <param name="weaponDetails">The weapon's details</param>
-        public Weapon(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, WeaponDetails weaponDetails)
+        /// <param name="weaponItemDetails">The weapon's details</param>
+        public Weapon(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, WeaponItemDetails weaponItemDetails)
             : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
         {
-            this.WeaponDetails = weaponDetails;
+            this.WeaponItemDetails = weaponItemDetails;
         }
 
         /// <summary>
         /// Gets or sets the weapon's details.
         /// </summary>
         [JsonProperty("weapon", Order = 100)]
-        public WeaponDetails WeaponDetails { get; set; }
+        public WeaponItemDetails WeaponItemDetails { get; set; }
     }
 }

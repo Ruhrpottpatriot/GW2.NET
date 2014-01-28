@@ -14,9 +14,9 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.V1.Core.ItemDetails.Converters
 {
     /// <summary>
-    /// Converts a JSON object that describes a consumable item's details to the <see cref="ConsumableDetails"/> class.
+    /// Converts a JSON object that describes a consumable item's details to the <see cref="ConsumableItemDetails"/> class.
     /// </summary>
-    public class ConsumableDetailsConverter : ContentBasedTypeCreationConverter<ConsumableDetails>
+    public class ConsumableDetailsConverter : ContentBasedTypeCreationConverter<ConsumableItemDetails>
     {
         /// <summary>
         /// Backing field. Holds a dictionary of in-game consumable item types and their corresponding .NET class.
@@ -28,17 +28,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         /// </summary>
         static ConsumableDetailsConverter()
         {
-            ConsumableTypes.Add(ConsumableType.Unknown, typeof(UnknownConsumableDetails));
-            ConsumableTypes.Add(ConsumableType.AppearanceChange, typeof(AppearanceChangeConsumableDetails));
-            ConsumableTypes.Add(ConsumableType.Booze, typeof(BoozeDetails));
-            ConsumableTypes.Add(ConsumableType.ContractNPC, typeof(ContractNPCConsumableDetails));
-            ConsumableTypes.Add(ConsumableType.Food, typeof(FoodDetails));
-            ConsumableTypes.Add(ConsumableType.Generic, typeof(GenericConsumableDetails));
-            ConsumableTypes.Add(ConsumableType.Halloween, typeof(HalloweenConsumableDetails));
-            ConsumableTypes.Add(ConsumableType.Immediate, typeof(ImmediateConsumableDetails));
-            ConsumableTypes.Add(ConsumableType.Transmutation, typeof(TransmutationConsumableDetails));
-            ConsumableTypes.Add(ConsumableType.Unlock, typeof(UnlockConsumableDetails));
-            ConsumableTypes.Add(ConsumableType.Utility, typeof(UtilityConsumableDetails));
+            ConsumableTypes.Add(ConsumableType.Unknown, typeof(UnknownConsumableItemDetails));
+            ConsumableTypes.Add(ConsumableType.AppearanceChange, typeof(AppearanceChangeConsumableItemDetails));
+            ConsumableTypes.Add(ConsumableType.Booze, typeof(BoozeItemDetails));
+            ConsumableTypes.Add(ConsumableType.ContractNPC, typeof(ContractNPCConsumableItemDetails));
+            ConsumableTypes.Add(ConsumableType.Food, typeof(FoodItemDetails));
+            ConsumableTypes.Add(ConsumableType.Generic, typeof(GenericConsumableItemDetails));
+            ConsumableTypes.Add(ConsumableType.Halloween, typeof(HalloweenConsumableItemDetails));
+            ConsumableTypes.Add(ConsumableType.Immediate, typeof(ImmediateConsumableItemDetails));
+            ConsumableTypes.Add(ConsumableType.Transmutation, typeof(TransmutationConsumableItemDetails));
+            ConsumableTypes.Add(ConsumableType.Unlock, typeof(UnlockConsumableItemDetails));
+            ConsumableTypes.Add(ConsumableType.Utility, typeof(UtilityConsumableItemDetails));
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
 
             if (!ConsumableTypes.TryGetValue(jsonValue, out itemType))
             {
-                itemType = typeof(UnknownConsumableDetails);
+                itemType = typeof(UnknownConsumableItemDetails);
             }
 
             return itemType;

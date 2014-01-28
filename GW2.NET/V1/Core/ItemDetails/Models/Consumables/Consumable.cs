@@ -39,17 +39,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
         /// <param name="gameTypes">The consumable item's game types.</param>
         /// <param name="flags">The consumable item's additional flags.</param>
         /// <param name="restrictions">The consumable item's restrictions.</param>
-        /// <param name="consumableDetails">The consumable item's details.</param>
-        public Consumable(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, ConsumableDetails consumableDetails)
+        /// <param name="consumableItemDetails">The consumable item's details.</param>
+        public Consumable(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, ConsumableItemDetails consumableItemDetails)
             : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
         {
-            this.ConsumableDetails = consumableDetails;
+            this.ConsumableItemDetails = consumableItemDetails;
         }
 
         /// <summary>
         /// Gets or sets the consumable item's details.
         /// </summary>
         [JsonProperty("consumable", Order = 100)]
-        public ConsumableDetails ConsumableDetails { get; set; }
+        public ConsumableItemDetails ConsumableItemDetails { get; set; }
     }
 }
