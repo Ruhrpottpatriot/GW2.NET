@@ -1,23 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FilesResponseConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="EventNamesResponseConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using GW2DotNET.V1.Core.Files.Models;
+using System.Collections.Generic;
+using GW2DotNET.V1.Core.EventNames.Models;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.Files
+namespace GW2DotNET.V1.Core.EventNames.Converters
 {
     /// <summary>
-    /// Converts a JSON dictionary of named files to and from a <see cref="FilesResponse"/>.
+    /// Converts a JSON array of named events to and from an <see cref="EventNamesResponse"/>.
     /// </summary>
     /// <remarks>
-    /// This converter exists because it is not normally possible to map a JSON dictionary to a single .NET property.
+    /// This converter exists because it is not normally possible to map a JSON array to a single .NET property.
     /// For bonus points: figure out a way to make this converter generic so that it will work for any .NET type that requires this behavior.
     /// </remarks>
-    public class FilesResponseConverter : JsonConverter
+    public class EventNamesResponseConverter : JsonConverter
     {
         /// <summary>
         /// Determines whether this instance can convert the specified object type.
@@ -26,7 +27,7 @@ namespace GW2DotNET.V1.Core.Files
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(FilesResponse) == objectType;
+            return typeof(EventNamesResponse).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -39,7 +40,7 @@ namespace GW2DotNET.V1.Core.Files
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return new FilesResponse(serializer.Deserialize<Assets>(reader));
+            return new EventNamesResponse(serializer.Deserialize<IEnumerable<DynamicEventName>>(reader));
         }
 
         /// <summary>
@@ -50,7 +51,7 @@ namespace GW2DotNET.V1.Core.Files
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((FilesResponse)value).Files);
+            serializer.Serialize(writer, ((EventNamesResponse)value).EventNames);
         }
     }
 }

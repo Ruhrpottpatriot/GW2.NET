@@ -6,6 +6,7 @@
 
 using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.Drawing;
+using GW2DotNET.V1.Core.EventDetails.Converters;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.EventDetails.Models

@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using GW2DotNET.V1.Core.WvW.ObjectiveNames.Converters;
 using GW2DotNET.V1.Core.WvW.ObjectiveNames.Models;
 using Newtonsoft.Json;
 

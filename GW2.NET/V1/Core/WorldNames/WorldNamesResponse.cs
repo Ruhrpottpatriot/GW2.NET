@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using GW2DotNET.V1.Core.WorldNames.Converters;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.WorldNames

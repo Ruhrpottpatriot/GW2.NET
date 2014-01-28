@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.Files.Converters;
 using GW2DotNET.V1.Core.Files.Models;
 using Newtonsoft.Json;
 

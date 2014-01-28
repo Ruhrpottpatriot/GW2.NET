@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.WvW.MatchDetails.Converters;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models

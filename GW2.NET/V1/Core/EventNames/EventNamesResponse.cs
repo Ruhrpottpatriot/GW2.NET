@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using GW2DotNET.V1.Core.EventNames.Converters;
 using GW2DotNET.V1.Core.EventNames.Models;
 using Newtonsoft.Json;
 

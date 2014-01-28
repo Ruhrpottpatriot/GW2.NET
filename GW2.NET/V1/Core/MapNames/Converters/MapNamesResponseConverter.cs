@@ -1,24 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventNamesResponseConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="MapNamesResponseConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
-using GW2DotNET.V1.Core.EventNames.Models;
+using GW2DotNET.V1.Core.MapNames.Models;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.EventNames
+namespace GW2DotNET.V1.Core.MapNames.Converters
 {
     /// <summary>
-    /// Converts a JSON array of named events to and from an <see cref="EventNamesResponse"/>.
+    /// Converts a JSON array of maps to and from a <see cref="MapNamesResponseConverter"/>.
     /// </summary>
     /// <remarks>
     /// This converter exists because it is not normally possible to map a JSON array to a single .NET property.
     /// For bonus points: figure out a way to make this converter generic so that it will work for any .NET type that requires this behavior.
     /// </remarks>
-    public class EventNamesResponseConverter : JsonConverter
+    public class MapNamesResponseConverter : JsonConverter
     {
         /// <summary>
         /// Determines whether this instance can convert the specified object type.
@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.EventNames
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(EventNamesResponse).IsAssignableFrom(objectType);
+            return typeof(MapNamesResponseConverter).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Core.EventNames
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return new EventNamesResponse(serializer.Deserialize<IEnumerable<DynamicEventName>>(reader));
+            return new MapNamesResponse(serializer.Deserialize<IEnumerable<Map>>(reader));
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.Core.EventNames
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.Serialize(writer, ((EventNamesResponse)value).EventNames);
+            serializer.Serialize(writer, ((MapNamesResponse)value).Maps);
         }
     }
 }

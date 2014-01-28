@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using GW2DotNET.V1.Core.MapNames.Converters;
 using GW2DotNET.V1.Core.MapNames.Models;
 using Newtonsoft.Json;
 

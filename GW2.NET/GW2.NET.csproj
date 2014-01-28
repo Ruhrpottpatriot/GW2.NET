@@ -141,10 +141,10 @@
     <Compile Include="V1\Core\EventDetails\Models\Location.cs" />
     <Compile Include="V1\Core\EventDetails\EventDetailsRequest.cs" />
     <Compile Include="V1\Core\EventDetails\EventDetailsResponse.cs" />
-    <Compile Include="V1\Core\EventDetails\LocationConverter.cs" />
+    <Compile Include="V1\Core\EventDetails\Converters\LocationConverter.cs" />
     <Compile Include="V1\Core\EventDetails\Models\PolygonLocation.cs" />
     <Compile Include="V1\Core\EventDetails\Models\SphereLocation.cs" />
-    <Compile Include="V1\Core\EventNames\EventNamesResponseConverter.cs" />
+    <Compile Include="V1\Core\EventNames\Converters\EventNamesResponseConverter.cs" />
     <Compile Include="V1\Core\EventNames\Models\DynamicEventName.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesRequest.cs" />
     <Compile Include="V1\Core\EventNames\EventNamesResponse.cs" />
@@ -152,11 +152,11 @@
     <Compile Include="V1\Core\Events\Models\DynamicEvent.EventState.cs" />
     <Compile Include="V1\Core\Events\EventsRequest.cs" />
     <Compile Include="V1\Core\Events\EventsResponse.cs" />
+    <Compile Include="V1\Core\Files\Converters\FilesResponseConverter.cs" />
     <Compile Include="V1\Core\Files\Models\Asset.cs" />
     <Compile Include="V1\Core\Files\Models\Assets.cs" />
     <Compile Include="V1\Core\Files\FilesRequest.cs" />
     <Compile Include="V1\Core\Files\FilesResponse.cs" />
-    <Compile Include="V1\Core\Files\FilesResponseConverter.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsRequest.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.cs" />
     <Compile Include="V1\Core\ItemDetails\Converters\ConsumableDetailsConverter.cs" />
@@ -250,10 +250,10 @@
     <Compile Include="V1\Core\MapFloor\Models\PointOfInterest.cs" />
     <Compile Include="V1\Core\MapFloor\Models\Task.cs" />
     <Compile Include="V1\Core\MapFloor\Models\SkillChallenge.cs" />
+    <Compile Include="V1\Core\MapNames\Converters\MapNamesResponseConverter.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesRequest.cs" />
     <Compile Include="V1\Core\MapNames\MapNamesResponse.cs" />
     <Compile Include="V1\Core\MapNames\Models\Map.cs" />
-    <Compile Include="V1\Core\MapNames\MapNamesResponseConverter.cs" />
     <Compile Include="V1\Core\Maps\Models\Map.cs" />
     <Compile Include="V1\Core\Maps\MapsRequest.cs" />
     <Compile Include="V1\Core\Maps\MapsResponse.cs" />
@@ -272,10 +272,11 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\SupportedLanguages.cs" />
-    <Compile Include="V1\Core\WorldNames\WorldNamesResponseConverter.cs" />
+    <Compile Include="V1\Core\WorldNames\Converters\WorldNamesResponseConverter.cs" />
     <Compile Include="V1\Core\WorldNames\Models\World.cs" />
     <Compile Include="V1\Core\WorldNames\WorldNamesRequest.cs" />
     <Compile Include="V1\Core\WorldNames\WorldNamesResponse.cs" />
+    <Compile Include="V1\Core\WvW\MatchDetails\Converters\ScoreboardConverter.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\MatchDetailsRequest.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\MatchDetailsResponse.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\Models\Bonus.cs" />
@@ -285,14 +286,13 @@
     <Compile Include="V1\Core\WvW\MatchDetails\Models\Scoreboard.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\Models\TeamColor.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\Models\BonusType.cs" />
-    <Compile Include="V1\Core\WvW\MatchDetails\ScoreboardConverter.cs" />
     <Compile Include="V1\Core\WvW\Matches\MatchesRequest.cs" />
     <Compile Include="V1\Core\WvW\Matches\MatchesResponse.cs" />
     <Compile Include="V1\Core\WvW\Matches\Models\Match.cs" />
+    <Compile Include="V1\Core\WvW\ObjectiveNames\Converters\ObjectiveNamesResponseConverter.cs" />
     <Compile Include="V1\Core\WvW\ObjectiveNames\Models\Objective.cs" />
     <Compile Include="V1\Core\WvW\ObjectiveNames\ObjectiveNamesRequest.cs" />
     <Compile Include="V1\Core\WvW\ObjectiveNames\ObjectiveNamesResponse.cs" />
-    <Compile Include="V1\Core\WvW\ObjectiveNames\ObjectiveNamesResponseConverter.cs" />
     <Compile Include="V1\Guilds\DataProvider.cs" />
     <Compile Include="V1\Guilds\DataProviders\GuildData.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
