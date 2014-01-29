@@ -21,6 +21,7 @@ using GW2DotNET.V1.Items.Models.Items;
 namespace GW2DotNET.V1.Items.DataProvider
 {
     using System.IO;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// The item data provider.
@@ -62,9 +63,9 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             this.apiManager = apiManager;
 
-            this.itemIdCacheFileName = string.Format("{0}\\ItemIdCache{1}.binary", savePath, apiManager.Language);
+            this.itemIdCacheFileName = string.Format("{0}\\ItemIdCache{1}.json", savePath, apiManager.Language);
 
-            this.itemCacheFileName = string.Format("{0}\\ItemCache{1}.binary", savePath, apiManager.Language);
+            this.itemCacheFileName = string.Format("{0}\\ItemCache{1}.json", savePath, apiManager.Language);
 
             this.itemIdCache = new Lazy<IEnumerable<int>>(InitializeItemIdCache);
 
@@ -75,14 +76,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             if (File.Exists(this.itemIdCacheFileName))
             {
-                ItemIdCacheData diskData;
-
-                using (var fileStream = new FileStream(this.itemIdCacheFileName, FileMode.Open))
-                {
-                    var binarySerializer = new BinaryFormatter();
-
-                    diskData = (ItemIdCacheData)binarySerializer.Deserialize(fileStream);
-                }
+                ItemIdCacheData diskData = JsonConvert.DeserializeObject<ItemIdCacheData>(this.itemIdCacheFileName);
 
                 if (diskData.Build >= apiManager.Build)
                     return diskData.ItemIds;
@@ -107,14 +101,7 @@ namespace GW2DotNET.V1.Items.DataProvider
         {
             if (File.Exists(this.itemCacheFileName))
             {
-                ItemCacheData diskData;
-
-                using (var fileStream = new FileStream(this.itemCacheFileName, FileMode.Open))
-                {
-                    var binarySerializer = new BinaryFormatter();
-
-                    diskData = (ItemCacheData)binarySerializer.Deserialize(fileStream);
-                }
+                ItemCacheData diskData = JsonConvert.DeserializeObject<ItemCacheData>(System.IO.File.ReadAllText(this.itemCacheFileName));
 
                 if (diskData.Build >= apiManager.Build)
                     return diskData.Items;
@@ -231,13 +218,14 @@ namespace GW2DotNET.V1.Items.DataProvider
                 throw new NoNullAllowedException("The path to the directory must not be null or an empty string!");
             }
 
+            System.IO.File.WriteAllText(cacheFileName, JsonConvert.SerializeObject(dataToSave));
             // Serialize the data and write the file
-            using (var fileStream = new FileStream(cacheFileName, FileMode.Create))
-            {
-                var binarySerializer = new BinaryFormatter();
+            //using (var fileStream = new FileStream(cacheFileName, FileMode.Create))
+            //{
+            //    var binarySerializer = new BinaryFormatter();
 
-                binarySerializer.Serialize(fileStream, dataToSave);
-            }
+            //    binarySerializer.Serialize(fileStream, dataToSave);
+            //}
         }
     }
 }
