@@ -25,7 +25,7 @@ namespace GW2DotNET.V1.WvW
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>The api manger.</summary>
-        private readonly ApiManager apiManger;
+        private readonly IDataManager dataManager;
 
         /// <summary>The matches.</summary>
         private readonly List<WvWMatch> matches;
@@ -41,35 +41,21 @@ namespace GW2DotNET.V1.WvW
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
-        /// <param name="apiManger">The api manger which stores some references for later use.</param>
+        /// <param name="dataManger">The api manger which stores some references for later use.</param>
         /// <remarks>When calling this method the cache is bypassed by default.</remarks>
-        internal DataProvider(ApiManager apiManger)
-            : this(apiManger, true)
+        internal DataProvider(IDataManager dataManger)
+            : this(dataManger, true)
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
-        /// <param name="apiManager">The api manger which stores some references for later use.</param>
+        /// <param name="dataManager">The api manger which stores some references for later use.</param>
         /// <param name="bypassCache">Set this to true if you want to bypass the cache and always query the server.</param>
-        internal DataProvider(ApiManager apiManager, bool bypassCache)
+        internal DataProvider(IDataManager dataManager, bool bypassCache)
         {
-            this.apiManger = apiManager;
+            this.dataManager = dataManager;
             this.BypassCache = bypassCache;
             this.matches = new List<WvWMatch>();
-        }
-
-        /// <summary>Gets a collection of all matches.</summary>
-        public IEnumerable<WvWMatch> All
-        {
-            get
-            {
-                if (this.matches.IsNullOrEmpty())
-                {
-                    throw new NoDataDownloadedException("Call the appropriate data fetching method first.");
-                }
-
-                return this.matches;
-            }
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -80,16 +66,10 @@ namespace GW2DotNET.V1.WvW
         public bool BypassCache { get; set; }
 
         /// <summary>Gets the matches.</summary>
-        /// <exception cref="NoDataDownloadedException">Thrown when the user tries to access the property before calling the data fetching method.</exception>
         public MatchList MatchList
         {
             get
             {
-                if (this.matchList.IsNullOrEmpty())
-                {
-                    throw new NoDataDownloadedException("Call the appropriate data fetching method first.");
-                }
-
                 return this.matchList;
             }
         }
@@ -98,24 +78,10 @@ namespace GW2DotNET.V1.WvW
         // Methods
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>Clears the map list cache.</summary>
-        /// <remarks>This method will clear the cache of all matches. The next time the user will have to download the match list again via the appropriate methods.</remarks>
-        /// <seealso cref="GetMatchList" />
-        /// <seealso cref="GetMatchListAsync" />
-        /// <seealso cref="GetSingleMatch" />
-        /// <seealso cref="GetSingleMatchAsync" />
-        public void ClearCache()
-        {
-            this.apiManger.Logger.WriteToLog("Clearing match list cache.", TraceEventType.Information);
-            this.matchList = new MatchList(null);
-        }
-
         /// <summary>Gets all currently running world versus world matches.</summary>
         /// <returns>The <see cref="Models.MatchList" />.</returns>
         public MatchList GetMatchList()
         {
-            this.apiManger.Logger.WriteToLog("Calling GW2 API to get the list of matches.", TraceEventType.Information);
-
             if (this.BypassCache)
             {
                 return ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
@@ -134,23 +100,14 @@ namespace GW2DotNET.V1.WvW
         /// ReSharper restore CSharpWarnings::CS1574
         public async Task<MatchList> GetMatchListAsync()
         {
-
-            this.apiManger.Logger.WriteToLog("Beginning call to the GW2 API to get the list of matches.", TraceEventType.Start);
-
             if (this.BypassCache)
             {
                 MatchList returnList = await ApiCall.GetContentAsync<MatchList>("matches.json", null, ApiCall.Categories.WvW);
-
-                this.apiManger.Logger.WriteToLog("Finishing call to the GW2 API to get the list of matches.", TraceEventType.Stop);
-
                 return returnList;
             }
 
             MatchList returnContent = await ApiCall.GetContentAsync<MatchList>("matches.json", null, ApiCall.Categories.WvW);
-
             this.matchList = returnContent;
-
-            this.apiManger.Logger.WriteToLog("Finishing call to the GW2 API to get the list of matches.", TraceEventType.Stop);
 
             return returnContent;
         }
@@ -207,7 +164,7 @@ namespace GW2DotNET.V1.WvW
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
         /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
-        public Task WriteCacheToDiskAsync()
+        public async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented");
         }
@@ -217,8 +174,6 @@ namespace GW2DotNET.V1.WvW
         /// <returns>The <see cref="WvWMatch"/>.</returns>
         private WvWMatch GetMatch(string matchId)
         {
-            this.apiManger.Logger.WriteToLog("Calling GW2 API to get a single match.", TraceEventType.Information);
-
             List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("match_id", matchId)
@@ -250,8 +205,6 @@ namespace GW2DotNET.V1.WvW
         /// <returns>The <see cref="Task"/> containing the <see cref="WvWMatch"/>.</returns>
         private async Task<WvWMatch> GetMatchAsync(string matchId)
         {
-            this.apiManger.Logger.WriteToLog("Beginning Call to the GW2 API to get a single match.", TraceEventType.Start);
-
             List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("match_id", matchId)
@@ -273,24 +226,15 @@ namespace GW2DotNET.V1.WvW
 
             returnMatch = returnMatch.ResolveInfos(this.matchList.Single(m => m.MatchId == matchId));
 
-            this.apiManger.Logger.WriteToLog(
-                "Finishing Call to the GW2 API to get a single match.",
-                TraceEventType.Stop);
-
             return returnMatch;
         }
 
         /// <summary>Gets a collection with all objective names from the server.</summary>
         private void GetObjectiveNames()
         {
-            this.apiManger.Logger.WriteToLog(
-                "Calling the GW2 API to fetch the objective names.",
-                TraceEventType.Information);
-
             if (this.objectiveNames.IsNullOrEmpty())
             {
-                this.objectiveNames =
-                    ApiCall.GetContent<IEnumerable<WvWMatch.WvWMap.Objective>>("objective_names.json", null, ApiCall.Categories.WvW);
+                this.objectiveNames = ApiCall.GetContent<IEnumerable<WvWMatch.WvWMap.Objective>>("objective_names.json", null, ApiCall.Categories.WvW);
             }
         }
 
@@ -300,17 +244,7 @@ namespace GW2DotNET.V1.WvW
         {
             if (this.objectiveNames.IsNullOrEmpty())
             {
-                this.apiManger.Logger.WriteToLog(
-                    "Beginning Call to the GW2 API to fetch the objective names.",
-                    TraceEventType.Information);
-
-                this.objectiveNames =
-                    await
-                    ApiCall.GetContentAsync<IEnumerable<WvWMatch.WvWMap.Objective>>("objective_names.json", null, ApiCall.Categories.WvW);
-
-                this.apiManger.Logger.WriteToLog(
-                    "Finishing Call to the GW2 API to get a single match.",
-                    TraceEventType.Start);
+                this.objectiveNames = await ApiCall.GetContentAsync<IEnumerable<WvWMatch.WvWMap.Objective>>("objective_names.json", null, ApiCall.Categories.WvW);
             }
         }
     }

@@ -17,8 +17,6 @@ using GW2DotNET.V1.Infrastructure.Exceptions;
 
 namespace GW2DotNET.V1.Guilds
 {
-    using GW2DotNET.V1.Infrastructure.Extensions;
-
     /// <summary>The data provider for the guild api</summary>
     /// <remarks>
     /// This data provider will supply the user with a list of guilds. 
@@ -38,34 +36,34 @@ namespace GW2DotNET.V1.Guilds
         // Fields
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>The api manager.</summary>
-        private readonly ApiManager apiManager;
+        /// <summary>The data manager.</summary>
+        private readonly IDataManager dataManager;
 
         /// <summary>
         /// The guild cache.
         /// </summary>
-        private ICollection<Guild> guildCache;
+        private ICollection<Guild> guildList;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
-        /// <param name="apiManager">The api Manager.</param>
+        /// <param name="dataManager">The api Manager.</param>
         /// <remarks>When calling this method the cache is not bypassed by default.</remarks>
-        internal DataProvider(ApiManager apiManager)
-            : this(apiManager, false)
+        internal DataProvider(IDataManager dataManager)
+            : this(dataManager, false)
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
-        /// <param name="apiManager">The api manager.</param>
+        /// <param name="dataManager">The api manager.</param>
         /// <param name="bypassCache">The bypass cache.</param>
-        internal DataProvider(ApiManager apiManager, bool bypassCache)
+        internal DataProvider(IDataManager dataManager, bool bypassCache)
         {
-            this.apiManager = apiManager;
+            this.dataManager = dataManager;
             this.BypassCache = bypassCache;
-            this.guildCache = new List<Guild>();
+            this.guildList = new List<Guild>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -75,16 +73,11 @@ namespace GW2DotNET.V1.Guilds
         /// <summary>
         /// Gets a collection of <see cref="Guild">Guilds</see> currently in the cache.
         /// </summary>
-        public IEnumerable<Guild> All
+        public IEnumerable<Guild> GuildList
         {
             get
             {
-                if (this.guildCache.IsNullOrEmpty())
-                {
-                    throw new NoDataDownloadedException("Call the appropriate data fetching method first.");
-                }
-
-                return this.guildCache;
+                return this.guildList;
             }
         }
 
@@ -93,7 +86,7 @@ namespace GW2DotNET.V1.Guilds
         public bool BypassCache { get; set; }
 
         // --------------------------------------------------------------------------------------------------------------------
-        // Methods
+        // Public Methods
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Asynchronously gets a single guild from the api.</summary>
@@ -107,13 +100,16 @@ namespace GW2DotNET.V1.Guilds
             }
 
             // Check if the guild is present in the cache, if not download it.
-            var guildToReturn = this.guildCache.SingleOrDefault(g => g.Name == guildName);
+            var guildToReturn = this.guildList.SingleOrDefault(g => g.Name == guildName);
 
             if (guildToReturn == null)
             {
                 guildToReturn = await this.FetchGuildByNameAsync(guildName);
 
-                this.guildCache.Add(guildToReturn);
+                if (!this.BypassCache)
+                {
+                    this.guildList.Add(guildToReturn);
+                }
             }
 
             return guildToReturn;
@@ -129,13 +125,16 @@ namespace GW2DotNET.V1.Guilds
                 return await this.FetchGuildByIdAsync(guildId);
             }
 
-            var guildToReturn = this.guildCache.SingleOrDefault(g => g.Id == guildId);
+            var guildToReturn = this.guildList.SingleOrDefault(g => g.Id == guildId);
 
             if (guildToReturn == null)
             {
                 guildToReturn = await this.FetchGuildByIdAsync(guildId);
 
-                this.guildCache.Add(guildToReturn);
+                if (!this.BypassCache)
+                {
+                    this.guildList.Add(guildToReturn);
+                }
             }
 
             return guildToReturn;
@@ -153,7 +152,7 @@ namespace GW2DotNET.V1.Guilds
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
         /// <returns>The <see cref="System.Threading.Tasks.Task"/>.</returns>
         /// ReSharper restore CSharpWarnings::CS1574
-        public Task WriteCacheToDiskAsync()
+        public async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented");
         }
@@ -162,13 +161,17 @@ namespace GW2DotNET.V1.Guilds
         /// <exception cref="CacheEmptyException">Thrown when the cache could not be cleared as it was already empty.</exception>
         public void ClearCache()
         {
-            if (this.guildCache == null)
+            if (this.guildList == null)
             {
                 throw new CacheEmptyException("Could not clear cache as it was empty.");
             }
 
-            this.guildCache = new List<Guild>();
+            this.guildList = new List<Guild>();
         }
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Private Methods
+        // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Asynchronously fetches a guild by its name from the server .</summary>
         /// <param name="guildName">The guild name.</param>
@@ -179,8 +182,7 @@ namespace GW2DotNET.V1.Guilds
             {
                 new KeyValuePair<string, object>("guild_name", guildName)
             };
-
-
+            
             return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
         }
 

@@ -8,10 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1.Infrastructure;
@@ -20,106 +18,143 @@ using GW2DotNET.V1.MapInformation.Models;
 namespace GW2DotNET.V1.MapInformation.DataProvider
 {
     /// <summary>Provides the ApiManager with the map api data.</summary>
-    public class ContinentData : IEnumerable<Continent>
+    public class ContinentData
     {
-        /// <summary>The api manager.</summary>
-        private readonly ApiManager manager;
+        // --------------------------------------------------------------------------------------------------------------------
+        // Fields
+        // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>The continents.</summary>
-        private readonly Lazy<IEnumerable<Continent>> continentsCache;
+        /// <summary>The data manager.</summary>
+        private readonly IDataManager manager;
+
+        /// <summary>Backing field for the continent list property.</summary>
+        private List<Continent> continentList;
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Constructors & Destructors
+        // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Initializes a new instance of the <see cref="ContinentData"/> class.</summary>
-        /// <param name="manager">The manager.</param>
-        internal ContinentData(ApiManager manager)
+        /// <param name="dataManager">The data manager.</param>
+        public ContinentData(IDataManager dataManager)
+            : this(dataManager, false)
+        {
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="ContinentData"/> class.</summary>
+        /// <param name="manager">The data manager.</param>
+        /// <param name="bypassCaching">The bypass Cache.</param>
+        public ContinentData(IDataManager manager, bool bypassCaching)
         {
             this.manager = manager;
-
-            this.continentsCache = new Lazy<IEnumerable<Continent>>(this.InitializeContinentCache);
+            this.BypassCaching = bypassCaching;
         }
 
-        private IEnumerable<Continent> InitializeContinentCache()
-        {
-            var args = new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>(
-                        "lang", this.manager.Language)
-                };
+        // --------------------------------------------------------------------------------------------------------------------
+        // Properties
+        // --------------------------------------------------------------------------------------------------------------------
 
-            return
-                ApiCall.GetContent<Dictionary<string, Dictionary<int, Continent>>>(
-                    "continents.json", args, ApiCall.Categories.World)
-                       .Values.First()
-                       .Select(con => con.Value.ResolveId(con.Key));
-        }
+        /// <summary>Gets or sets a value indicating whether to bypass the cache.</summary>
+        public bool BypassCaching { get; set; }
 
-        /// <summary>Gets all continents from the api.</summary>
-        private IEnumerable<Continent> Continents
-        {
-            get { return this.continentsCache.Value; }
-        }
-
-        /// <summary>
-        /// Gets all continents asynchronously.
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public Task<IEnumerable<Continent>> GetAllContinentsAsync(CancellationToken cancellationToken)
-        {
-            Func<IEnumerable<Continent>> methodCall = () => this.Continents;
-
-            return Task.Factory.StartNew(methodCall, cancellationToken);
-        }
-
-        /// <summary>Gets a continent by it's id.</summary>
-        /// <param name="id">The id of the continent.</param>
-        /// <returns>The <see cref="Continent"/>.</returns>
-        /// <remarks>This method will get a single continent from the api. 
-        /// However since the api returns a complete list of continents as an array 
-        /// this property will call the <see cref="Continents"/> property and
-        /// then filter the result further with LINQ. This also ensures that
-        /// further calls are more rapid. 
-        /// </remarks>
-        public Continent this[int id]
+        /// <summary>Gets the continent list.</summary>
+        public IEnumerable<Continent> ContinentList
         {
             get
             {
-                return this.Continents.Single(continent => continent.Id == id);
+                return this.continentList;
             }
         }
 
-        /// <summary>
-        /// Get a continent by ID asynchronously.
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public Task<Continent> GetContinentFromIdAsync(int id, CancellationToken cancellationToken)
+        // --------------------------------------------------------------------------------------------------------------------
+        // Public Methods
+        // --------------------------------------------------------------------------------------------------------------------
+        
+        /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
+        public void WriteCacheToDisk()
         {
-            Func<Continent> methodCall = () => this[id];
-
-            return Task.Factory.StartNew(methodCall, cancellationToken);
+            throw new NotImplementedException("This function has not yet been implemented");
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        public IEnumerator<Continent> GetEnumerator()
+        /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
+        public async Task WriteCacheToDiskAsync()
         {
-            return this.Continents.GetEnumerator();
+            throw new NotImplementedException("This function has not yet been implemented");
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection.
-        /// </summary>
-        /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
-        /// </returns>
-        IEnumerator IEnumerable.GetEnumerator()
+        /// <summary>Calls the GW2 api to get all continents asynchronously.</summary>
+        /// <returns>A <see cref="IEnumerable{T}"/> of continents.</returns>
+        public async Task<IEnumerable<Continent>> GetAllContinentsAsync()
         {
-            return this.Continents.GetEnumerator();
+            var args = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("lang", this.manager.Language)
+            };
+
+            Dictionary<string, Dictionary<int, Continent>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<int, Continent>>>(
+                "continents.json",
+                args,
+                ApiCall.Categories.World);
+
+            Dictionary<int, Continent> continentDictionary = returnContent.Values.First();
+
+            List<Continent> continents = this.ResolveId(continentDictionary);
+
+            if (!this.BypassCaching)
+            {
+                this.continentList = continents;
+            }
+
+            return continents;
+        }
+
+        /// <summary>Calls the GW2 api to get all continents synchronously.</summary>
+        /// <returns>A <see cref="IEnumerable{T}"/> of continents.</returns>
+        public IEnumerable<Continent> GetAllContinents()
+        {
+            var args = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("lang", this.manager.Language)
+            };
+
+            Dictionary<string, Dictionary<int, Continent>> returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Continent>>>(
+                "continents.json",
+                args,
+                ApiCall.Categories.World);
+
+            Dictionary<int, Continent> continentDictionary = returnContent.Values.First();
+
+            List<Continent> continents = this.ResolveId(continentDictionary);
+
+            if (!this.BypassCaching)
+            {
+                this.continentList = continents;
+            }
+
+            return continents;
+        }
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Private Methods
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>Resolves the ids of the continent dictionary.</summary>
+        /// <param name="continentsToResolve">The <see cref="Dictionary{TKey, TValue}"/> containing 
+        /// the continent ids as Key and the continents itself as value.</param>
+        /// <returns>A <see cref="List{T}"/> containing all continents with their ids resolved..</returns>
+        private List<Continent> ResolveId(Dictionary<int, Continent> continentsToResolve)
+        {
+            List<Continent> continents = new List<Continent>();
+
+            foreach (KeyValuePair<int, Continent> keyValuePair in continentsToResolve)
+            {
+                keyValuePair.Value.Id = keyValuePair.Key;
+
+                continents.Add(keyValuePair.Value);
+            }
+
+            return continents;
         }
     }
 }

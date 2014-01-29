@@ -8,10 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1.Infrastructure;
@@ -20,128 +18,189 @@ using GW2DotNET.V1.MapInformation.Models;
 namespace GW2DotNET.V1.MapInformation.DataProvider
 {
     /// <summary>Provides the api manager with the maps data.</summary>
-    public class MapsData : IEnumerable<Map>
+    public class MapsData
     {
+        // --------------------------------------------------------------------------------------------------------------------
+        // Fields
+        // --------------------------------------------------------------------------------------------------------------------
+
         /// <summary>The manager.</summary>
-        private readonly ApiManager manager;
+        private readonly IDataManager dataManger;
 
         /// <summary>The maps.</summary>
-        private Lazy<IEnumerable<Map>> mapsCache;
+        private readonly Lazy<List<Map>> mapsCache;
 
-        /// <summary>
-        /// Sync object for thread safety. You MUST lock this
-        /// object before touching the private continentsCache object.
-        /// </summary>
-        private readonly object mapsCacheSyncObject = new object();
+        // --------------------------------------------------------------------------------------------------------------------
+        // Constructors & Destructors
+        // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Initializes a new instance of the <see cref="MapsData"/> class.</summary>
-        /// <param name="manager">The manager.</param>
-        internal MapsData(ApiManager manager)
+        /// <param name="dataManager">The data manager.</param>
+        public MapsData(IDataManager dataManager)
+            : this(dataManager, false)
         {
-            this.manager = manager;
-
-            this.mapsCache = new Lazy<IEnumerable<Map>>(this.InitializeMapCache);
         }
 
-        private IEnumerable<Map> InitializeMapCache()
+        /// <summary>Initializes a new instance of the <see cref="MapsData"/> class.</summary>
+        /// <param name="dataManger">The data manger.</param>
+        /// <param name="bypassCaching">A value indicating whether to bypass caching.</param>
+        internal MapsData(IDataManager dataManger, bool bypassCaching)
         {
-            var args = new List<KeyValuePair<string, object>>
+            this.dataManger = dataManger;
+            this.BypassCache = bypassCaching;
+            this.mapsCache = new Lazy<List<Map>>();
+        }
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Properties
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>Gets or sets a value indicating whether to bypass the cache.</summary>
+        public bool BypassCache { get; set; }
+
+        /// <summary>Gets the map list.</summary>
+        public IEnumerable<Map> MapList
+        {
+            get
+            {
+                return this.mapsCache.Value;
+            }
+        }
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Public Methods
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
+        public void WriteCacheToDisk()
+        {
+            throw new NotImplementedException("This function has not yet been implemented");
+        }
+
+        /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
+        public async Task WriteCacheToDiskAsync()
+        {
+            throw new NotImplementedException("This function has not yet been implemented");
+        }
+
+        /// <summary>Calls the GW2 api to get a list of maps asynchronously.</summary>
+        /// <returns>A <see cref="IEnumerable{T}"/>containing all maps.</returns>
+        public async Task<IEnumerable<Map>> GetMapListAsync()
+        {
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
                             {
-                                new KeyValuePair<string, object>("lang", this.manager.Language)
+                                new KeyValuePair<string, object>("lang", this.dataManger.Language)
                             };
 
-            return
-                ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>(
-                    "maps.json", args, ApiCall.Categories.World)
-                       .Values.First()
-                       .Select(
-                           map =>
-                           map.Value.ResolveId(map.Key)
-                              .ResolveContinent(
-                                  this.manager.Continents.Single(
-                                      cont => cont.Id == map.Value.ContinentId)));
-        }
+            Dictionary<string, Dictionary<int, Map>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
 
-        /// <summary>Gets all maps from the api.</summary>
-        private IEnumerable<Map> Maps
-        {
-            get { return this.mapsCache.Value; }
-        }
+            Dictionary<int, Map> mapsDictionary = returnContent.Values.First();
 
-        /// <summary>
-        /// Gets all maps asynchronously.
-        /// </summary>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public Task<IEnumerable<Map>> GetAllMapsAsync(CancellationToken cancellationToken)
-        {
-            Func<IEnumerable<Map>> methodCall = () => this.Maps;
+            List<Map> maps = this.ResolveId(mapsDictionary);
 
-            return Task.Factory.StartNew(methodCall, cancellationToken);
-        }
-
-        /// <summary>Returns a map by its name</summary>
-        /// <param name="mapName">The map name.</param>
-        /// <returns>The <see cref="Map"/>.</returns>
-        public Map this[string mapName]
-        {
-            get
+            if (!this.BypassCache)
             {
-                return this.Maps.Single(map => map.Name == mapName);
+                this.mapsCache.Value.AddRange(maps);
             }
+
+            return maps;
         }
 
-
-        /// <summary>Returns a map by its id</summary>
-        /// <param name="mapId">The map id.</param>
-        /// <returns>The <see cref="Map"/>.</returns>
-        /// <remarks>This method will get a single map from the api. 
-        /// However since the api returns a complete list of maps as an array 
-        /// this property will call the <see cref="Maps"/> property and
-        /// then filter the result further with LINQ. This also ensures that
-        /// further calls are more rapid. 
-        /// </remarks>
-        public Map this[int mapId]
+        /// <summary>Calls the GW2 api to get a list of maps synchronously.</summary>
+        /// <returns>A <see cref="IEnumerable{T}"/>containing all maps.</returns>
+        public IEnumerable<Map> GetMapList()
         {
-            get
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>("lang", this.dataManger.Language)
+                            };
+
+            Dictionary<string, Dictionary<int, Map>> returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
+
+            Dictionary<int, Map> mapsDictionary = returnContent.Values.First();
+
+            List<Map> maps = this.ResolveId(mapsDictionary);
+
+            if (!this.BypassCache)
             {
-                return this.Maps.Single(map => map.Id == mapId);
+                this.mapsCache.Value.AddRange(maps);
             }
+
+            return maps;
         }
 
-        /// <summary>
-        /// Gets a map from an ID asynchronously.
-        /// </summary>
-        /// <param name="mapId"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public Task<Map> GetMapFromIdAsync(int mapId, CancellationToken cancellationToken)
+        /// <summary>Calls the GW2 api to get a single map asynchronously</summary>
+        /// <param name="mapId">The id of the map to get.</param>
+        /// <returns>The <see cref="Map"/> with the specified id.</returns>
+        public async Task<Map> GetMapAsync(int mapId)
         {
-            Func<Map> methodCall = () => this[mapId];
+            if (!this.BypassCache)
+            {
+                return this.mapsCache.Value.SingleOrDefault(map => map.Id == mapId);
+            }
 
-            return Task.Factory.StartNew(methodCall, cancellationToken);
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>("lang", this.dataManger.Language),
+                                new KeyValuePair<string, object>("map_id", mapId)
+                            };
+
+            Dictionary<string, Dictionary<int, Map>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
+
+            Dictionary<int, Map> mapsDictionary = returnContent.Values.First();
+
+            List<Map> maps = this.ResolveId(mapsDictionary);
+
+            if (!this.BypassCache)
+            {
+                this.mapsCache.Value.AddRange(maps);
+            }
+
+            return maps.SingleOrDefault();
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
-        public IEnumerator<Map> GetEnumerator()
+        /// <summary>Calls the GW2 api to get a single map synchronously</summary>
+        /// <param name="mapId">The id of the map to get.</param>
+        /// <returns>The <see cref="Map"/> with the specified id.</returns>
+        public Map GetMap(int mapId)
         {
-            return this.Maps.GetEnumerator();
+            if (!this.BypassCache)
+            {
+                return this.mapsCache.Value.SingleOrDefault(map => map.Id == mapId);
+            }
+
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>("lang", this.dataManger.Language),
+                                new KeyValuePair<string, object>("map_id", mapId)
+                            };
+
+            Dictionary<string, Dictionary<int, Map>> returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
+
+            Dictionary<int, Map> mapsDictionary = returnContent.Values.First();
+
+            List<Map> maps = this.ResolveId(mapsDictionary);
+
+            if (!this.BypassCache)
+            {
+                this.mapsCache.Value.AddRange(maps);
+            }
+
+            return maps.SingleOrDefault();
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection.
-        /// </summary>
-        /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
-        /// </returns>
-        IEnumerator IEnumerable.GetEnumerator()
+        // --------------------------------------------------------------------------------------------------------------------
+        // Private Methods
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>Resolves the ids of the maps returned by the api.</summary>
+        /// <param name="mapsToResolve">The <see cref="Dictionary{TKey, TValue}"/> containing 
+        /// the map ids as Key and the maps itself as value.</param>
+        /// <returns>A <see cref="List{T}"/> with maps that have their Ids resolved.</returns>
+        private List<Map> ResolveId(Dictionary<int, Map> mapsToResolve)
         {
-            return this.Maps.GetEnumerator();
+            return mapsToResolve.Select(keyValuePair => keyValuePair.Value.ResolveId(keyValuePair.Key)).ToList();
         }
     }
 }

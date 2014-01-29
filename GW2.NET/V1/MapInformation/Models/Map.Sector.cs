@@ -24,7 +24,6 @@ namespace GW2DotNET.V1.MapInformation.Models
             /// <param name="coordinates">The coordinates.</param>
             [JsonConstructor]
             public Sector(int sectorId, string name, int level, float[] coordinates)
-    
             {
                 this.Id = sectorId;
                 this.Coordinates = coordinates;

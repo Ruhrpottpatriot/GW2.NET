@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.MapInformation.Models
         public int Id
         {
             get;
-            private set;
+            set;
         }
 
         /// <summary>Gets the name.</summary>
@@ -75,18 +75,6 @@ namespace GW2DotNET.V1.MapInformation.Models
         {
             get;
             private set;
-        }
-
-        /// <summary>Resolves the id for the continent.</summary>
-        /// <param name="idToResolve">The id to resolve.</param>
-        /// <returns>The <see cref="Continent"/> with a resolved id.</returns>
-        internal Continent ResolveId(int idToResolve)
-        {
-            var newContinent = this;
-
-            newContinent.Id = idToResolve;
-
-            return newContinent;
         }
     }
 }

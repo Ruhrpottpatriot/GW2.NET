@@ -22,7 +22,6 @@ namespace GW2DotNET.V1.MapInformation.Models
         /// <param name="regions">The regions.</param>
         [JsonConstructor]
         public MapFloor(int[] textureDims, Dictionary<int, Region> regions)
-
         {
             this.Regions = regions.Values.Zip(regions.Keys, (value, key) => value.ResolveId(key));
             this.TextureDims = textureDims;

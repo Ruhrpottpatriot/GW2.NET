@@ -81,6 +81,19 @@ namespace GW2DotNET.V1.DynamicEvents
         // Public Methods
         // --------------------------------------------------------------------------------------------------------------------
 
+        /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
+        public void WriteCacheToDisk()
+        {
+            throw new NotImplementedException("This function has not yet been implemented");
+        }
+
+        /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
+        public async Task WriteCacheToDiskAsync()
+        {
+            throw new NotImplementedException("This function has not yet been implemented");
+        }
+
         /// <summary>Gets a list of all events from the server.</summary>
         /// <param name="worldId">The id of the world where the events are on.</param>
         /// <param name="mapId">The id of the map where all events are from.</param>

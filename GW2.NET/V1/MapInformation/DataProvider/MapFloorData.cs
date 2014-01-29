@@ -9,7 +9,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1.Infrastructure;
@@ -20,68 +19,114 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
     /// <summary>The map floor data.</summary>
     public class MapFloorData
     {
-        /// <summary>The manager.</summary>
-        private readonly ApiManager manager;
+        // --------------------------------------------------------------------------------------------------------------------
+        // Fields
+        // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>The map floors.</summary>
-        private IList<MapFloor> mapFloors;
+        /// <summary>Backing field for the data manager.</summary>
+        private readonly IDataManager dataManager;
 
-        /// <summary>
-        /// Sync object for thread safety. You MUST lock this
-        /// object before touching the private continentsCache object.
-        /// </summary>
-        private readonly object mapFloorsSyncObject = new object();
+        /// <summary>Backing field for the map floor list property.</summary>
+        private readonly Lazy<List<MapFloor>> mapFloorList;
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Constructors & Destructors
+        // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Initializes a new instance of the <see cref="MapFloorData"/> class.</summary>
-        /// <param name="manager">The manager.</param>
-        public MapFloorData(ApiManager manager)
+        /// <param name="dataManager">The data manager.</param>
+        public MapFloorData(IDataManager dataManager)
+            : this(dataManager, false)
         {
-            this.manager = manager;
         }
 
-        /// <summary>Gets a map floor by it's continent and floor id.</summary>
-        /// <param name="continentId">The continent id.</param>
-        /// <param name="floor">The floor.</param>
-        /// <returns>The <see cref="MapFloor"/>.</returns>
-        public MapFloor this[int continentId, int floor]
+        /// <summary>Initializes a new instance of the <see cref="MapFloorData"/> class.</summary>
+        /// <param name="dataManager">The data manager.</param>
+        /// <param name="bypassCaching">A value indicating whether to bypass caching.</param>
+        public MapFloorData(IDataManager dataManager, bool bypassCaching)
+        {
+            this.dataManager = dataManager;
+            this.BypassCache = bypassCaching;
+            this.mapFloorList = new Lazy<List<MapFloor>>();
+        }
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Properties
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>Gets or sets a value indicating whether bypass the cache.</summary>
+        public bool BypassCache { get; set; }
+
+        /// <summary>Gets the map floor list.</summary>
+        public IEnumerable<MapFloor> MapFloorList
         {
             get
             {
-                lock (this.mapFloorsSyncObject)
-                {
-                    if (this.mapFloors == null)
-                    {
-                        this.mapFloors = new List<MapFloor>();
-                    }
-
-                    var args = new List<KeyValuePair<string, object>>
-                        {
-                            new KeyValuePair<string, object>("continent_id", continentId),
-                            new KeyValuePair<string, object>("floor", floor),
-                            new KeyValuePair<string, object>("lang", this.manager.Language)
-                        };
-
-                    var floorToReturn = ApiCall.GetContent<MapFloor>("map_floor.json", args, ApiCall.Categories.World);
-
-                    this.mapFloors.Add(floorToReturn);
-
-                    return floorToReturn;
-                }
+                return this.mapFloorList.Value;
             }
         }
 
-        /// <summary>
-        /// Gets a map floor asynchronously.
-        /// </summary>
-        /// <param name="continentId"></param>
-        /// <param name="floor"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
-        public Task<MapFloor> GetMapFloorAsync(int continentId, int floor, CancellationToken cancellationToken)
-        {
-            Func<MapFloor> methodCall = () => this[continentId, floor];
+        // --------------------------------------------------------------------------------------------------------------------
+        // Public Methods
+        // --------------------------------------------------------------------------------------------------------------------
 
-            return Task.Factory.StartNew(methodCall, cancellationToken);
+        /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
+        public void WriteCacheToDisk()
+        {
+            throw new NotImplementedException("This function has not yet been implemented");
+        }
+
+        /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
+        public async Task WriteCacheToDiskAsync()
+        {
+            throw new NotImplementedException("This function has not yet been implemented");
+        }
+
+        /// <summary>Calls the GW2 api to get a map floor on the specified map and continent synchronously.</summary>
+        /// <param name="continentId">The id of the continent the map floor resides on.</param>
+        /// <param name="floor">The id of the floor the map floor resides on.</param>
+        /// <returns>The requested <see cref="MapFloor"/>.</returns>
+        public MapFloor GetMapFloor(int continentId, int floor)
+        {
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+                        {
+                            new KeyValuePair<string, object>("continent_id", continentId),
+                            new KeyValuePair<string, object>("floor", floor),
+                            new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                        };
+
+            MapFloor floorToReturn = ApiCall.GetContent<MapFloor>("map_floor.json", args, ApiCall.Categories.World);
+
+            if (!this.BypassCache)
+            {
+                this.mapFloorList.Value.Add(floorToReturn);
+            }
+
+            return floorToReturn;
+        }
+
+        /// <summary>Calls the GW2 api to get a map floor on the specified map and continent asynchronously.</summary>
+        /// <param name="continentId">The id of the continent the map floor resides on.</param>
+        /// <param name="floor">The id of the floor the map floor resides on.</param>
+        /// <returns>The requested <see cref="MapFloor"/>.</returns>
+        public async Task<MapFloor> GetMapFloorAsync(int continentId, int floor)
+        {
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+                        {
+                            new KeyValuePair<string, object>("continent_id", continentId),
+                            new KeyValuePair<string, object>("floor", floor),
+                            new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                        };
+
+            MapFloor floorToReturn = await ApiCall.GetContentAsync<MapFloor>("map_floor.json", args, ApiCall.Categories.World);
+
+            if (!this.BypassCache)
+            {
+                this.mapFloorList.Value.Add(floorToReturn);
+            }
+
+            return floorToReturn;
         }
     }
 }

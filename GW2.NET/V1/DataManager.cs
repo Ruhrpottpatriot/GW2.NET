@@ -34,6 +34,8 @@ namespace GW2DotNET.V1
 
         private Language language;
 
+        private Lazy<Items.DataProviders.ColourData> colourData;
+
         /// <summary>Initializes a new instance of the <see cref="DataManager"/> class, with the default language set to english.</summary>
         public DataManager()
             : this(Language.En)
@@ -46,6 +48,7 @@ namespace GW2DotNET.V1
         {
             this.Language = language;
             this.InitializeLazy();
+            this.StoragePath = string.Format("{0}\\GW2.NET", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
         }
 
         /// <summary>Gets or sets the language.</summary>
@@ -77,12 +80,25 @@ namespace GW2DotNET.V1
             }
         }
 
+        /// <summary>
+        /// Gets the path to the cache.
+        /// </summary>
+        public string StoragePath { get; private set; }
+
         /// <summary>Gets the dynamic events data. This property is lazy-initialized.</summary>
         public DynamicEvents.DataProvider DynamicEventsData
         {
             get
             {
                 return this.dynamicEventsData.Value;
+            }
+        }
+
+        public Items.DataProviders.ColourData ColourData
+        {
+            get
+            {
+                return this.colourData.Value;
             }
         }
 
@@ -108,6 +124,7 @@ namespace GW2DotNET.V1
         {
             // ToDo: Init Lazy fields
             this.dynamicEventsData = new Lazy<DynamicEvents.DataProvider>(() => new DynamicEvents.DataProvider(this));
+            this.colourData = new Lazy<Items.DataProviders.ColourData>(() => new Items.DataProviders.ColourData(this));
             //this.guildsData = new Lazy<Guilds.DataProvider>(() => new Guilds.DataProvider(this));
             //this.worldVersusWorldData = new Lazy<WvW.DataProvider>(() => new WvW.DataProvider(this));
         }

@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using Newtonsoft.Json;
 
@@ -17,6 +18,7 @@ namespace GW2DotNET.V1.MapInformation.Models
     public partial class Map
     {
         /// <summary>Gets the continent id.</summary>
+        [SuppressMessage("StyleCop.CSharp.MaintainabilityRules", "SA1401:FieldsMustBePrivate", Justification = "Reviewed. Suppression is OK here.")]
         [JsonProperty("continent_id")]
         internal int ContinentId;
 
@@ -38,7 +40,6 @@ namespace GW2DotNET.V1.MapInformation.Models
         /// <param name="skillChallenges">The skill Challenges.</param>
         [JsonConstructor]
         public Map(int mapId, string name, int minimumLevel, int maximumLevel, int defaultFloor, int[] floors, int regionId, string regionName, int continentId, float[,] mapRectangle, float[,] continentRectangle, IEnumerable<PointOfInterest> pointsOfInterest, IEnumerable<Task> tasks, IEnumerable<Sector> sectors, IEnumerable<SkillChallenge> skillChallenges)
-
         {
             this.MaximumLevel = maximumLevel;
             this.MinimumLevel = minimumLevel;
@@ -183,7 +184,12 @@ namespace GW2DotNET.V1.MapInformation.Models
         /// <returns>true if mapA and mapB represent the same map; otherwise, false.</returns>
         public static bool operator ==(Map mapA, Map mapB)
         {
-            return mapA.Id == mapB.Id;
+            if (mapA != null && mapB != null)
+            {
+                return mapA.Id == mapB.Id;
+            }
+
+            return false;
         }
 
         /// <summary>

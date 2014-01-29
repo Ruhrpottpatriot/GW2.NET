@@ -25,7 +25,6 @@ namespace GW2DotNET.V1.MapInformation.Models
             /// <param name="coordinates">The coordinates.</param>
             [JsonConstructor]
             public PointOfInterest(int poiId, string name, PoiType type, int floor, float[] coordinates)
-    
             {
                 this.Id = poiId;
                 this.Coordinates = coordinates;

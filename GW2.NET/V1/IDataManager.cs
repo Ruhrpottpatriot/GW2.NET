@@ -27,8 +27,15 @@ namespace GW2DotNET.V1
         /// </summary>
         int Build { get; }
 
+        /// <summary>
+        /// Gets the path to the cache.
+        /// </summary>
+        string StoragePath { get; }
+
         /// <summary>Gets the dynamic events data. This property is lazy-initialized.</summary>
         DynamicEvents.DataProvider DynamicEventsData { get; }
+
+        Items.DataProviders.ColourData ColourData { get; }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Methods

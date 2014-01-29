@@ -35,7 +35,7 @@ namespace GW2DotNET.V1.Events.DataProviders
         /// <summary>
         /// Keep a pointer to our WorldManager here for ID resolution.
         /// </summary>
-        private readonly ApiManager apiManager;
+        private readonly IApiManager apiManager;
 
         /// <summary>
         /// Cache the event names here
@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.Events.DataProviders
         /// This should only be called by WorldManager.
         /// </summary>
         /// <param name="apiManager">An instance of GW2ApiManager to use for ID resolution</param>
-        internal EventData(ApiManager apiManager)
+        internal EventData(IApiManager apiManager)
         {
             this.apiManager = apiManager;
 

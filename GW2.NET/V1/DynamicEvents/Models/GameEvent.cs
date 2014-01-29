@@ -11,7 +11,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
-using System.Threading;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
@@ -29,14 +28,16 @@ namespace GW2DotNET.V1.DynamicEvents.Models
                                                                                                                   + "JSON.NET will not deserialize th JSON if there is not at least a field present."
                                                                                                                   + "Aa we don't want the user to see the map id outside the nested class this has to be done."),
         JsonProperty("world_id")]
-        private int worldId;
+        // ReSharper disable PrivateFieldCanBeConvertedToLocalVariable
+        private readonly int worldId;
 
         /// <summary>The map id.</summary>
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Reviewed. Suppression is OK here."
                                                                                                                   + "JSON.NET will not deserialize the JSON if there is not at least a field present."
                                                                                                                   + "Aa we don't want the user to see the map id outside the nested class this has to be done."),
         JsonProperty("map_id")]
-        private int mapId;
+        private readonly int mapId;
+        // ReSharper restore PrivateFieldCanBeConvertedToLocalVariable
 
         /// <summary>Initializes a new instance of the <see cref="GameEvent"/> class.</summary>
         /// <param name="worldId">The world.</param>

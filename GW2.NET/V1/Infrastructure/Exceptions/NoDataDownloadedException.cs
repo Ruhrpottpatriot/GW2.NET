@@ -23,6 +23,7 @@ namespace GW2DotNET.V1.Infrastructure.Exceptions
     /// This is done to keep the property access time as small as possible.
     /// </remarks>
     [Serializable]
+    [Obsolete]
     public class NoDataDownloadedException : Exception
     {
         /// <summary>Initializes a new instance of the <see cref="NoDataDownloadedException"/> class.</summary>

@@ -19,14 +19,13 @@ using GW2DotNET.V1.Infrastructure.Extensions;
 namespace GW2DotNET.V1.Events
 {
     /// <summary>The data provider for the event api.</summary>
-    [Obsolete("This class is obsolete, use the DynamicEvents namespace for events and the MapInformation for maps instead.", false)]
     public class DataProvider
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
         // --------------------------------------------------------------------------------------------------------------------
 
-        private readonly ApiManager apiManager;
+        private readonly IApiManager apiManager;
 
         private IEnumerable<GwEvent> events;
 
@@ -36,7 +35,7 @@ namespace GW2DotNET.V1.Events
         // Constructors and Destructors
         // --------------------------------------------------------------------------------------------------------------------
 
-        public DataProvider(ApiManager apiManager, bool bypassCache = false)
+        public DataProvider(IApiManager apiManager, bool bypassCache = false)
         {
             this.BypassCache = bypassCache;
             this.apiManager = apiManager;
