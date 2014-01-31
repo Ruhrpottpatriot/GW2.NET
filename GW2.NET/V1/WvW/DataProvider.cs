@@ -1,17 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PvPData.cs" company="GW2.Net Coding Team">
+// <copyright file="DataProvider.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.Infrastructure.Exceptions;
 using GW2DotNET.V1.Infrastructure.Extensions;
 using GW2DotNET.V1.WvW.Models;
 

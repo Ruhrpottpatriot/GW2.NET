@@ -24,7 +24,6 @@ namespace GW2DotNET.V1.MapInformation.Models
             /// <param name="coordinates">The coordinates.</param>
             [JsonConstructor]
             public Task(int taskId, string objective, int level, float[] coordinates)
-    
             {
                 this.Id = taskId;
                 this.Coordinates = coordinates;

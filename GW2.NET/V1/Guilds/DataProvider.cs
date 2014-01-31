@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Guilds
     /// The users also has the possibility to get a complete collection of all guilds
     /// currently in the cache.
     /// </remarks>
-    public class DataProvider
+    public class DataProvider : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
@@ -39,10 +39,13 @@ namespace GW2DotNET.V1.Guilds
         /// <summary>The data manager.</summary>
         private readonly IDataManager dataManager;
 
+        /// <summary>The guild list cache file name.</summary>
+        private readonly string guildListCacheFileName;
+
         /// <summary>
         /// The guild cache.
         /// </summary>
-        private ICollection<Guild> guildList;
+        private Lazy<List<Guild>> guildList;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors
@@ -63,7 +66,9 @@ namespace GW2DotNET.V1.Guilds
         {
             this.dataManager = dataManager;
             this.BypassCache = bypassCache;
-            this.guildList = new List<Guild>();
+            this.guildListCacheFileName = string.Format("{0}\\Cache\\GuildCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+
+            this.guildList = !this.BypassCache ? new Lazy<List<Guild>>(() => this.ReadCacheFromDisk<GameCache<List<Guild>>>(this.guildListCacheFileName).CacheData) : new Lazy<List<Guild>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -77,13 +82,9 @@ namespace GW2DotNET.V1.Guilds
         {
             get
             {
-                return this.guildList;
+                return this.guildList.Value;
             }
         }
-
-        /// <summary>Gets or sets a value indicating whether the user is bypassing the cache
-        /// and querying the server directly.</summary>
-        public bool BypassCache { get; set; }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Public Methods
@@ -100,7 +101,7 @@ namespace GW2DotNET.V1.Guilds
             }
 
             // Check if the guild is present in the cache, if not download it.
-            var guildToReturn = this.guildList.SingleOrDefault(g => g.Name == guildName);
+            var guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Name == guildName);
 
             if (guildToReturn == null)
             {
@@ -108,7 +109,7 @@ namespace GW2DotNET.V1.Guilds
 
                 if (!this.BypassCache)
                 {
-                    this.guildList.Add(guildToReturn);
+                    this.guildList.Value.Add(guildToReturn);
                 }
             }
 
@@ -125,7 +126,7 @@ namespace GW2DotNET.V1.Guilds
                 return await this.FetchGuildByIdAsync(guildId);
             }
 
-            var guildToReturn = this.guildList.SingleOrDefault(g => g.Id == guildId);
+            var guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Id == guildId);
 
             if (guildToReturn == null)
             {
@@ -133,7 +134,7 @@ namespace GW2DotNET.V1.Guilds
 
                 if (!this.BypassCache)
                 {
-                    this.guildList.Add(guildToReturn);
+                    this.guildList.Value.Add(guildToReturn);
                 }
             }
 
@@ -143,18 +144,21 @@ namespace GW2DotNET.V1.Guilds
         /// <summary>
         /// Writes the complete cache to the disk using the specified serializer.
         /// </summary>
-        public void WriteCacheToDisk()
+        public override void WriteCacheToDisk()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            GameCache<List<Guild>> guildCache = new GameCache<List<Guild>>
+            {
+                Build = this.dataManager.Build,
+                CacheData = this.guildList.Value
+            };
+            this.WriteDataToDisk(this.guildListCacheFileName, guildCache);
         }
 
-        /// ReSharper disable CSharpWarnings::CS1574
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
         /// <returns>The <see cref="System.Threading.Tasks.Task"/>.</returns>
-        /// ReSharper restore CSharpWarnings::CS1574
-        public async Task WriteCacheToDiskAsync()
+        public override async Task WriteCacheToDiskAsync()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
         }
 
         /// <summary> Clears the guild cache for all already downloaded guilds.</summary>
@@ -166,7 +170,7 @@ namespace GW2DotNET.V1.Guilds
                 throw new CacheEmptyException("Could not clear cache as it was empty.");
             }
 
-            this.guildList = new List<Guild>();
+            this.guildList = new Lazy<List<Guild>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -182,7 +186,7 @@ namespace GW2DotNET.V1.Guilds
             {
                 new KeyValuePair<string, object>("guild_name", guildName)
             };
-            
+
             return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
         }
 

@@ -7,7 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Diagnostics.CodeAnalysis;
+
 using GW2DotNET.V1.Infrastructure;
+using GW2DotNET.V1.MapInformation.Models;
 
 namespace GW2DotNET.V1
 {
@@ -18,7 +21,7 @@ namespace GW2DotNET.V1
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
-        
+
         /// <summary>Gets or sets the language.</summary>
         Language Language { get; set; }
 
@@ -30,12 +33,35 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Gets the path to the cache.
         /// </summary>
-        string StoragePath { get; }
+        string SavePath { get; }
 
         /// <summary>Gets the dynamic events data. This property is lazy-initialized.</summary>
         DynamicEvents.DataProvider DynamicEventsData { get; }
 
+        /// <summary>Gets the guilds data.</summary>
+        Guilds.DataProvider GuildsData { get; }
+
+        /// <summary>Gets the colour data.</summary>
         Items.DataProviders.ColourData ColourData { get; }
+
+        /// <summary>Gets the item dara data.</summary>
+        Items.DataProviders.ItemData ItemData { get; }
+
+        /// <summary>Gets the recipe data.</summary>
+        Items.DataProviders.RecipeData RecipeData { get; }
+
+        /// <summary>Gets the continent data.</summary>
+        MapInformation.DataProvider.ContinentData ContinentData { get; }
+
+        /// <summary>Gets the map floor data.</summary>
+        MapInformation.DataProvider.MapFloorData MapFloorData { get; }
+
+        /// <summary>Gets the maps data.</summary>
+        MapInformation.DataProvider.MapsData MapsData { get; }
+
+        /// <summary>Gets the wv w data.</summary>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "Reviewed. Suppression is OK here.")]
+        WvW.DataProvider WvWData { get; }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Methods

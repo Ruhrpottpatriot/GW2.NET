@@ -9,18 +9,18 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 using GW2DotNET.V1.Events.DataProviders;
 using GW2DotNET.V1.Infrastructure;
+using GW2DotNET.V1.Infrastructure.Logging;
 using GW2DotNET.V1.Items.DataProviders;
 using GW2DotNET.V1.MapInformation.DataProvider;
 
 namespace GW2DotNET.V1
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using Infrastructure.Logging;
-    using System;
 
     /// <summary>
     /// This is the one and only class that is directly instantiated
@@ -52,12 +52,12 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Backing field for Colours property
         /// </summary>
-        // private ColourData colourDataOld;
+        private ColourData colourDataOld;
 
         /// <summary>
         /// Backing field for Events property
         /// </summary>
-        // private EventData eventDataOld;
+        private EventData eventDataOld;
 
         /// <summary>The floor data.</summary>
         private MapFloorData floorDataOld;
@@ -65,17 +65,17 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Backing field for Items property
         /// </summary>
-        // private ItemData itemDataOld;
+        private ItemData itemDataOld;
 
         /// <summary>
         /// Backing field for Recipes property
         /// </summary>
-        // private RecipeData recipeDataOld;
+        private RecipeData recipeDataOld;
 
         /// <summary>
         /// Backing field for Worlds property
         /// </summary>
-        // private WorldData worldDataOld;
+        private WorldData worldDataOld;
 
         /// <summary>
         /// Stores the language set by the constructor

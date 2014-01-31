@@ -15,12 +15,14 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models;
 
+using Microsoft.Win32;
+
 namespace GW2DotNET.V1.Items.DataProviders
 {
     /// <summary>
     /// The recipe data provider.
     /// </summary>
-    public class RecipeData
+    public class RecipeData : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
@@ -32,12 +34,18 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>
         /// Backing field for the recipe id cache, lazy initialized.
         /// </summary>
-        private readonly Lazy<List<int>> recipeIdCache;
+        private readonly Lazy<List<int>> recipeIdListCache;
 
         /// <summary>
         /// Backing field for the recipe cache, lazy initialized.
         /// </summary>
-        private readonly Lazy<List<Recipe>> recipeCache;
+        private readonly Lazy<List<Recipe>> recipeListCache;
+
+        /// <summary>The recipe list cache file name.</summary>
+        private readonly string recipeListCacheFileName;
+
+        /// <summary>The recipe id list cache file name.</summary>
+        private readonly string recipeIdListCacheFileName;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -57,23 +65,24 @@ namespace GW2DotNET.V1.Items.DataProviders
         {
             this.dataManager = dataManager;
             this.BypassCache = bypassCaching;
-            this.recipeIdCache = new Lazy<List<int>>();
-            this.recipeCache = new Lazy<List<Recipe>>();
+
+            this.recipeListCacheFileName = string.Format("{0}\\RecipeListCache{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+            this.recipeIdListCacheFileName = string.Format("{0}\\RecipeIdListCache{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+
+            this.recipeIdListCache = !this.BypassCache ? new Lazy<List<int>>(() => this.ReadCacheFromDisk<GameCache<List<int>>>(this.recipeIdListCacheFileName).CacheData) : new Lazy<List<int>>();
+            this.recipeListCache = !this.BypassCache ? new Lazy<List<Recipe>>(() => this.ReadCacheFromDisk<GameCache<List<Recipe>>>(this.recipeListCacheFileName).CacheData) : new Lazy<List<Recipe>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>Gets or sets a value indicating whether to bypass cache.</summary>
-        public bool BypassCache { get; set; }
-
         /// <summary>Gets the recipe list.</summary>
         public IEnumerable<Recipe> RecipeList
         {
             get
             {
-                return this.recipeCache.Value;
+                return this.recipeListCache.Value;
             }
         }
 
@@ -82,7 +91,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         {
             get
             {
-                return this.recipeIdCache.Value;
+                return this.recipeIdListCache.Value;
             }
         }
 
@@ -91,16 +100,30 @@ namespace GW2DotNET.V1.Items.DataProviders
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
-        public void WriteCacheToDisk()
+        public override void WriteCacheToDisk()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            GameCache<List<int>> idCacheData = new GameCache<List<int>>
+            {
+                Build = this.dataManager.Build,
+                CacheData = this.recipeIdListCache.Value
+            };
+
+            this.WriteDataToDisk(this.recipeIdListCacheFileName, idCacheData);
+
+            GameCache<List<Recipe>> recipeCacheData = new GameCache<List<Recipe>>
+            {
+                Build = this.dataManager.Build,
+                CacheData = this.recipeListCache.Value
+            };
+
+            this.WriteDataToDisk(this.recipeListCacheFileName, recipeCacheData);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
         /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
-        public async Task WriteCacheToDiskAsync()
+        public override async Task WriteCacheToDiskAsync()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
         }
 
         /// <summary>Calls the GW2 api to get a list of all discovered recipe ids synchronously.</summary>
@@ -111,7 +134,7 @@ namespace GW2DotNET.V1.Items.DataProviders
 
             if (!this.BypassCache)
             {
-                this.recipeIdCache.Value.AddRange(returnContent);
+                this.recipeIdListCache.Value.AddRange(returnContent);
             }
 
             return returnContent;
@@ -127,7 +150,7 @@ namespace GW2DotNET.V1.Items.DataProviders
 
             if (!this.BypassCache)
             {
-                this.recipeIdCache.Value.AddRange(recipeIdDictionary);
+                this.recipeIdListCache.Value.AddRange(recipeIdDictionary);
             }
 
             return recipeIdDictionary;
@@ -139,7 +162,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         {
             List<Recipe> recipes = new List<Recipe>();
 
-            foreach (int recipeId in this.recipeIdCache.Value)
+            foreach (int recipeId in this.recipeIdListCache.Value)
             {
                 List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
                 {
@@ -154,7 +177,7 @@ namespace GW2DotNET.V1.Items.DataProviders
 
             if (!this.BypassCache)
             {
-                this.recipeCache.Value.AddRange(recipes);
+                this.recipeListCache.Value.AddRange(recipes);
             }
 
             return recipes;
@@ -175,7 +198,7 @@ namespace GW2DotNET.V1.Items.DataProviders
 
             if (!this.BypassCache)
             {
-                this.recipeCache.Value.Add(returnContent);
+                this.recipeListCache.Value.Add(returnContent);
             }
 
             return returnContent;
@@ -195,7 +218,7 @@ namespace GW2DotNET.V1.Items.DataProviders
 
             if (!this.BypassCache)
             {
-                this.recipeCache.Value.Add(returnContent);
+                this.recipeListCache.Value.Add(returnContent);
             }
 
             return returnContent;

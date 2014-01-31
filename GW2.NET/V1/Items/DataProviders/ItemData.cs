@@ -8,25 +8,18 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models.Items;
 
 namespace GW2DotNET.V1.Items.DataProviders
 {
-    using System.IO;
-    using Newtonsoft.Json;
-
     /// <summary>
     /// The item data provider.
     /// </summary>
-    public class ItemData
+    public class ItemData : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
@@ -45,29 +38,43 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// </summary>
         private readonly Lazy<List<Item>> itemListCache;
 
+        /// <summary>The item cache file name.</summary>
+        private readonly string itemListCacheFileName;
+
+        /// <summary>The item id cache file name.</summary>
+        private readonly string itemIdListCacheFileName;
+
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
         // --------------------------------------------------------------------------------------------------------------------
 
+        /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
+        /// <param name="dataManager">The data manager.</param>
         public ItemData(IDataManager dataManager)
             : this(dataManager, false)
         {
         }
 
+        /// <summary>Initializes a new instance of the <see cref="ItemData"/> class.</summary>
+        /// <param name="dataManager">The data manager.</param>
+        /// <param name="bypassCaching">A value indicating whether to bypass caching.</param>
         public ItemData(IDataManager dataManager, bool bypassCaching)
         {
-            this.itemIdCache = new Lazy<List<int>>();
-            this.itemListCache = new Lazy<List<Item>>();
             this.dataManager = dataManager;
             this.BypassCache = bypassCaching;
+
+            this.itemListCacheFileName = string.Format("{0}\\ItemListCache{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+            this.itemIdListCacheFileName = string.Format("{0}\\ItemIdListCache{1}.json", dataManager.SavePath, dataManager.Language);
+
+            this.itemIdCache = !this.BypassCache ? new Lazy<List<int>>(() => this.ReadCacheFromDisk<GameCache<List<int>>>(this.itemIdListCacheFileName).CacheData) : new Lazy<List<int>>();
+            this.itemListCache = !this.BypassCache ? new Lazy<List<Item>>(() => this.ReadCacheFromDisk<GameCache<List<Item>>>(this.itemListCacheFileName).CacheData) : new Lazy<List<Item>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
 
-        public bool BypassCache { get; set; }
-
+        /// <summary>Gets the item list.</summary>
         public IEnumerable<Item> ItemList
         {
             get
@@ -76,6 +83,7 @@ namespace GW2DotNET.V1.Items.DataProviders
             }
         }
 
+        /// <summary>Gets the item id list.</summary>
         public IEnumerable<int> ItemIdList
         {
             get
@@ -88,12 +96,13 @@ namespace GW2DotNET.V1.Items.DataProviders
         // Public Methods
         // --------------------------------------------------------------------------------------------------------------------
 
+        /// <summary>Asynchronously gets the item id list.</summary>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing all item ids.</returns>
         public async Task<IEnumerable<int>> GetItemIdListAsync()
         {
             Dictionary<string, List<int>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, List<int>>>("items.json", null, ApiCall.Categories.Items);
 
             List<int> itemIdList = returnContent.Values.First();
-
 
             if (!this.BypassCache)
             {
@@ -103,11 +112,15 @@ namespace GW2DotNET.V1.Items.DataProviders
             return itemIdList;
         }
 
+        /// <summary>Synchronously gets the item id list.</summary>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing all item ids.</returns>
         public IEnumerable<int> GetItemIdList()
         {
             return this.GetItemIdListAsync().Result;
         }
 
+        /// <summary>Asynchronously gets the item detail list.</summary>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing all item details.</returns>
         public async Task<IEnumerable<Item>> GetItemDetailListAsync()
         {
             List<Item> itemList = new List<Item>();
@@ -133,11 +146,16 @@ namespace GW2DotNET.V1.Items.DataProviders
             return itemList;
         }
 
+        /// <summary>Synchronously gets the item detail list.</summary>
+        /// <returns>A <see cref="IEnumerable{T}"/> containing all item details.</returns>
         public IEnumerable<Item> GetItemDetailList()
         {
             return this.GetItemDetailListAsync().Result;
         }
 
+        /// <summary>Asynchronously gets the details of an item with the specified id.</summary>
+        /// <param name="itemId">The id of the item to get the details for.</param>
+        /// <returns>An <see cref="Item"/> with all its details.</returns>
         public async Task<Item> GetItemDetailAsync(int itemId)
         {
             // Check if the item is in the cache
@@ -167,68 +185,39 @@ namespace GW2DotNET.V1.Items.DataProviders
             return itemToReturn;
         }
 
+        /// <summary>Synchronously gets the details of an item with the specified id.</summary>
+        /// <param name="itemId">The id of the item to get the details for.</param>
+        /// <returns>An <see cref="Item"/> with all its details.</returns>
         public Item GetItemDetail(int itemId)
         {
-           return this.GetItemDetailAsync(itemId).Result;
+            return this.GetItemDetailAsync(itemId).Result;
         }
 
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
-        public void WriteCacheToDisk()
+        public override void WriteCacheToDisk()
         {
-            string itemCacheFileName = string.Format("{0}\\ItemCache{1}.json", this.dataManager.StoragePath, this.dataManager.Language);
-
-            Dictionary<KeyValuePair<string, int>, List<Item>> itemListDictionary = new Dictionary<KeyValuePair<string, int>, List<Item>>
+            GameCache<List<Item>> itemCache = new GameCache<List<Item>>
             {
-                {
-                    new KeyValuePair<string, int>("build", this.dataManager.Build),
-                    this.itemListCache.Value
-                }
+                Build = this.dataManager.Build,
+                CacheData = this.itemListCache.Value
             };
 
-            this.SaveCacheFile(itemCacheFileName, itemListDictionary);
+            this.WriteDataToDisk(this.itemListCacheFileName, itemCache);
 
-            string itemIdCacheFileName = string.Format("{0}\\ItemIdCache{1}.json", dataManager.StoragePath, dataManager.Language);
-
-            Dictionary<KeyValuePair<string, int>, List<int>> itemIdDictionary = new Dictionary<KeyValuePair<string, int>, List<int>>
+            GameCache<List<int>> idCache = new GameCache<List<int>>
             {
-                {
-                    new KeyValuePair<string, int>("build", this.dataManager.Build),
-                    this.itemIdCache.Value
-                }
+                Build = this.dataManager.Build,
+                CacheData = this.itemIdCache.Value
             };
 
-            this.SaveCacheFile(itemIdCacheFileName, itemIdDictionary);
+            this.WriteDataToDisk(this.itemIdListCacheFileName, idCache);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
         /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
-        public async Task WriteCacheToDiskAsync()
+        public override async Task WriteCacheToDiskAsync()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
-        }
-
-        // --------------------------------------------------------------------------------------------------------------------
-        // Private Methods
-        // --------------------------------------------------------------------------------------------------------------------
-
-        /// <summary>Saves the contents of the cache to the file system.</summary>
-        /// <param name="cacheFileName">The cache File Name.</param>
-        /// <param name="dataToSave">The data To Save.</param>
-        private void SaveCacheFile(string cacheFileName, object dataToSave)
-        {
-            string directoryPath = Path.GetDirectoryName(cacheFileName);
-
-            // Make sure the directory exists first
-            if (!string.IsNullOrEmpty(directoryPath) && !Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
-            else if (string.IsNullOrEmpty(directoryPath))
-            {
-                throw new NoNullAllowedException("The path to the directory must not be null or an empty string!");
-            }
-
-            File.WriteAllText(cacheFileName, JsonConvert.SerializeObject(dataToSave));
+            throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
         }
     }
 }

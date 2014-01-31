@@ -29,9 +29,18 @@ namespace GW2DotNET.V1.Items.Models
             /// </param>
             public RgbColour(IList<int> colourValues)
             {
-                this.Red = colourValues[0];
-                this.Green = colourValues[1];
-                this.Blue = colourValues[2];
+                if (colourValues != null)
+                {
+                    this.Red = colourValues[0];
+                    this.Green = colourValues[1];
+                    this.Blue = colourValues[2];
+                }
+                else
+                {
+                    this.Red = 0;
+                    this.Green = 0;
+                    this.Blue = 0;
+                }
             }
 
             /// <summary>

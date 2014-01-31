@@ -9,8 +9,10 @@
 
 using System;
 
+using GW2DotNET.V1.Events.DataProviders;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Infrastructure.Logging;
+using GW2DotNET.V1.Items.DataProviders;
 using GW2DotNET.V1.MapInformation.DataProvider;
 
 namespace GW2DotNET.V1
@@ -43,12 +45,12 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Gets the ColourData object.
         /// </summary>
-        // ColourData Colours { get; }
+        ColourData Colours { get; }
 
         /// <summary>
         /// Gets the EventData object.
         /// </summary>
-        // EventData Events { get; }
+        EventData Events { get; }
 
         /// <summary>Gets the instance of the guild data provider.</summary>
         /// <remarks>This property is the entry point to the guild api.
@@ -59,17 +61,17 @@ namespace GW2DotNET.V1
         /// <summary>
         /// Gets the ItemData object.
         /// </summary>
-        // ItemData Items { get; }
+        ItemData Items { get; }
 
         /// <summary>
         /// Gets the RecipeData object.
         /// </summary>
-        // RecipeData Recipes { get; }
+        RecipeData Recipes { get; }
         
         /// <summary>
         /// Gets the WorldData object.
         /// </summary>
-       //  WorldData Worlds { get; }
+        WorldData Worlds { get; }
 
         /// <summary>
         /// Clears the cache for all data providers.

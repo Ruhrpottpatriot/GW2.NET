@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.MapInformation.Models
             this.Name = name;
         }
 
-        /// <summary>Gets the id.</summary>
+        /// <summary>Gets or sets the id.</summary>
         public int Id
         {
             get;

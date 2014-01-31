@@ -9,22 +9,18 @@
 
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models;
 
-using Newtonsoft.Json;
-
 namespace GW2DotNET.V1.Items.DataProviders
 {
     /// <summary>
     /// The colour data provider.
     /// </summary>
-    public class ColourData
+    public class ColourData : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
@@ -39,6 +35,9 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// The colours cache.
         /// </summary>
         private readonly Lazy<List<GwColour>> coloursCache;
+
+        /// <summary>The colour data cache file name.</summary>
+        private readonly string colourDataCacheFileName;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -58,15 +57,14 @@ namespace GW2DotNET.V1.Items.DataProviders
         {
             this.dataManager = dataManager;
             this.BypassCache = bypassCaching;
-            this.coloursCache = new Lazy<List<GwColour>>();
+            this.colourDataCacheFileName = string.Format("{0}\\Cache\\ColourCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+
+            this.coloursCache = !this.BypassCache ? new Lazy<List<GwColour>>(() => this.ReadCacheFromDisk<GameCache<List<GwColour>>>(this.colourDataCacheFileName).CacheData) : new Lazy<List<GwColour>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
-
-        /// <summary>Gets or sets a value indicating whether to bypass cache.</summary>
-        public bool BypassCache { get; set; }
 
         /// <summary>
         /// Gets the colour list.
@@ -84,24 +82,20 @@ namespace GW2DotNET.V1.Items.DataProviders
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
-        public void WriteCacheToDisk()
+        public override void WriteCacheToDisk()
         {
-            string colourDataCacheFileName = string.Format("{0}\\Cache\\ColourCache-{1}.json", this.dataManager.StoragePath, this.dataManager.Language);
-
-            Dictionary<KeyValuePair<string, int>, List<GwColour>> colourDataDictionary = new Dictionary<KeyValuePair<string, int>, List<GwColour>>
+            GameCache<List<GwColour>> cache = new GameCache<List<GwColour>>
             {
-                {
-                    new KeyValuePair<string, int>("build", this.dataManager.Build),
-                    this.coloursCache.Value
-                }
+                Build = this.dataManager.Build,
+                CacheData = this.coloursCache.Value
             };
 
-            this.WriteDataToDisk(colourDataCacheFileName, colourDataDictionary);
+            this.WriteDataToDisk(this.colourDataCacheFileName, cache);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer.</summary>
         /// <returns>The <see cref="Task"/>.</returns>
-        public async Task WriteCacheToDiskAsync()
+        public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
         }
@@ -181,11 +175,11 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <returns>The <see cref="GwColour"/> with the specified id.</returns>
         public GwColour GetSingleColour(int colourId)
         {
-            if (this.coloursCache.Value.Any(colour => colour.Id == colourId))
+            if (this.coloursCache.Value != null && this.coloursCache.Value.Any(colour => colour.Id == colourId))
             {
                 return this.coloursCache.Value.SingleOrDefault(colour => colour.Id == colourId);
             }
-            
+
             GwColour colourToReturn = this.GetColourList().SingleOrDefault(colour => colour.Id == colourId);
 
             if (!this.BypassCache)
@@ -207,26 +201,6 @@ namespace GW2DotNET.V1.Items.DataProviders
         private List<GwColour> ResolveColourId(Dictionary<int, GwColour> coloursToResolve)
         {
             return coloursToResolve.Select(keyValuePair => new GwColour(keyValuePair.Key, keyValuePair.Value.Name, keyValuePair.Value.BaseRgb, keyValuePair.Value.Cloth, keyValuePair.Value.Leather, keyValuePair.Value.Metal)).ToList();
-        }
-
-        /// <summary>Saves the contents of the cache to the file system.</summary>
-        /// <param name="cacheFileName">The complete file name of the file to save the data to.</param>
-        /// <param name="dataToSave">The data to save.</param>
-        private void WriteDataToDisk(string cacheFileName, object dataToSave)
-        {
-            string directoryPath = Path.GetDirectoryName(cacheFileName);
-
-            // Make sure the directory exists first
-            if (!string.IsNullOrEmpty(directoryPath) && !Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
-            else if (string.IsNullOrEmpty(directoryPath))
-            {
-                throw new NoNullAllowedException("The path to the directory must not be null or an empty string!");
-            }
-
-            File.WriteAllText(cacheFileName, JsonConvert.SerializeObject(dataToSave, Formatting.Indented));
         }
     }
 }

@@ -7,22 +7,20 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 
+using GW2DotNET.V1;
+using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.DataProviders;
+using GW2DotNET.V1.Items.Models;
 
-namespace GW2.NET_Tests
+using NUnit.Framework;
+
+namespace GW2DotNET_Tests
 {
-    using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.Linq;
-
-    using GW2DotNET.V1;
-    using GW2DotNET.V1.Infrastructure;
-    using GW2DotNET.V1.Items.Models;
-
-    using NUnit.Framework;
-
     /// <summary>
     /// The colours tests.
     /// </summary>
@@ -43,6 +41,18 @@ namespace GW2.NET_Tests
             this.manager = new DataManager(Language.En);
         }
 
+        [Test]
+        public void CheckCache()
+        {
+            ColourData colourData = this.manager.ColourData;
+
+            List<GwColour> list = colourData.ColourList.ToList();
+
+            Assert.IsNotEmpty(list);
+
+            Trace.WriteLine(list.Count);
+        }
+
         /// <summary>
         /// Gets all colours from the api.
         /// </summary>
@@ -57,7 +67,9 @@ namespace GW2.NET_Tests
 
             stopwatch.Stop();
 
-            Assert.IsNotEmpty(colourData.ColourList);
+            colourData.WriteCacheToDisk();
+
+            Assert.IsNotEmpty(colours);
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -95,7 +107,8 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var colour = this.manager.ColourData.GetSingleColour(1231);
+            this.manager.ColourData.BypassCache = true;
+            GwColour colour = this.manager.ColourData.GetSingleColour(677);
 
             stopwatch.Stop();
 
@@ -115,9 +128,11 @@ namespace GW2.NET_Tests
             var task = this.manager.ColourData.GetSingleColourAsync(1231);
             task.Wait();
 
+            var result = await task;
+
             stopwatch.Stop();
 
-            Assert.IsNotNullOrEmpty(task.Result.Name);
+            Assert.IsNotNullOrEmpty(result.Name);
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 

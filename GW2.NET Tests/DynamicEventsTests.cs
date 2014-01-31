@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UnitTest1.cs" company="">
-//   
+// <copyright file="DynamicEventsTests.cs" company="GW2.Net Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Defines the UnitTest1 type.
+//   Tests for the dynamic events part of the api.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -14,22 +14,21 @@ using System.Linq;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1;
-using GW2DotNET.V1.DynamicEvents;
 using GW2DotNET.V1.DynamicEvents.Models;
-using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.MapInformation.Models;
 
 using NUnit.Framework;
 
-namespace GW2.NET_Tests
+namespace GW2DotNET_Tests
 {
     /// <summary>Tests for the dynamic events part of the api.</summary>
     [TestFixture]
     public class DynamicEventsTests
     {
-        private DataManager manager;
-
+        /// <summary>The server id to query.</summary>
         private const int ServerIdToQuery = 1001;
+
+        /// <summary>The manager.</summary>
+        private IDataManager manager;
 
         /// <summary>Runs before the test run.</summary>
         [SetUp]
@@ -38,6 +37,7 @@ namespace GW2.NET_Tests
             this.manager = new DataManager();
         }
 
+        /// <summary>Test for the GetEventList method.</summary>
         [Test]
         public void GetEventList()
         {
@@ -54,12 +54,14 @@ namespace GW2.NET_Tests
             Trace.WriteLine(string.Format("Total events running on server {1}: {0}", events.Count, ServerIdToQuery));
         }
 
+        /// <summary>Test for the GetEventListAsync method.</summary>
+        /// <returns>The <see cref="Task"/>.</returns>
         [Test]
         public async Task GetEventListAsync()
         {
             var stopwatch = Stopwatch.StartNew();
 
-            List<GameEvent> events = await this.manager.DynamicEventsData.GetEventListAsync(ServerIdToQuery) as List<GameEvent>;
+            List<GameEvent> events = (await this.manager.DynamicEventsData.GetEventListAsync(ServerIdToQuery)).ToList();
 
             stopwatch.Stop();
 
@@ -70,6 +72,7 @@ namespace GW2.NET_Tests
             Trace.WriteLine(string.Format("Total events running on server {1}: {0}", events.Count, ServerIdToQuery));
         }
 
+        /// <summary>Test for the GetEventDetails method.</summary>
         [Test]
         public void GetEventDetails()
         {
@@ -81,17 +84,19 @@ namespace GW2.NET_Tests
 
             // Not called since apparently no such event exists and I know no event which is cylindric.
             // GameEvent cylinderEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("3A2B85C5-DE73-4402-BD84-8F53AA394A52")));
-
             GameEvent polyEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("CEA84FBF-2368-467C-92EA-7FA60D527C7B")));
 
             stopwatch.Stop();
 
             Assert.IsNotNull(sphereEvent);
+
             // Assert.IsNotNull(cylinderEvent);
             Assert.IsNotNull(polyEvent);
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
         }
 
+        /// <summary>Test for the GetEventDetailsAsync method.</summary>
+        /// <returns>The <see cref="Task"/>.</returns>
         [Test]
         public async Task GetEventDetailsAsync()
         {
@@ -103,12 +108,12 @@ namespace GW2.NET_Tests
 
             // Not called since apparently no such event exists and I know no event which is cylindric.
             // GameEvent cylinderEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("3A2B85C5-DE73-4402-BD84-8F53AA394A52")));
-
             GameEvent polyEvent = await this.manager.DynamicEventsData.GetEventDetailsAsync(events.Single(evnt => evnt.EventId == new Guid("CEA84FBF-2368-467C-92EA-7FA60D527C7B")));
 
             stopwatch.Stop();
 
             Assert.IsNotNull(sphereEvent);
+
             // Assert.IsNotNull(cylinderEvent);
             Assert.IsNotNull(polyEvent);
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));

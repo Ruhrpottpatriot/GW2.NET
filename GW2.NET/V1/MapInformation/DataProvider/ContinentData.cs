@@ -18,17 +18,20 @@ using GW2DotNET.V1.MapInformation.Models;
 namespace GW2DotNET.V1.MapInformation.DataProvider
 {
     /// <summary>Provides the ApiManager with the map api data.</summary>
-    public class ContinentData
+    public class ContinentData : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>The data manager.</summary>
-        private readonly IDataManager manager;
+        private readonly IDataManager dataManager;
 
         /// <summary>Backing field for the continent list property.</summary>
-        private List<Continent> continentList;
+        private readonly Lazy<List<Continent>> continentList;
+
+        /// <summary>The continent cache file name.</summary>
+        private readonly string continentCacheFileName;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -42,12 +45,16 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         }
 
         /// <summary>Initializes a new instance of the <see cref="ContinentData"/> class.</summary>
-        /// <param name="manager">The data manager.</param>
+        /// <param name="dataManager">The data manager.</param>
         /// <param name="bypassCaching">The bypass Cache.</param>
-        public ContinentData(IDataManager manager, bool bypassCaching)
+        public ContinentData(IDataManager dataManager, bool bypassCaching)
         {
-            this.manager = manager;
+            this.dataManager = dataManager;
+            this.continentCacheFileName = string.Format("{0}\\Cache\\ContinentCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+
             this.BypassCaching = bypassCaching;
+
+            this.continentList = !this.BypassCache ? new Lazy<List<Continent>>(() => this.ReadCacheFromDisk<GameCache<List<Continent>>>(this.continentCacheFileName).CacheData) : new Lazy<List<Continent>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -62,25 +69,31 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         {
             get
             {
-                return this.continentList;
+                return this.continentList.Value;
             }
         }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Public Methods
         // --------------------------------------------------------------------------------------------------------------------
-        
+
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
-        public void WriteCacheToDisk()
+        public override void WriteCacheToDisk()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            GameCache<List<Continent>> continentCache = new GameCache<List<Continent>>
+            {
+                Build = this.dataManager.Build,
+                CacheData = this.continentList.Value
+            };
+
+            this.WriteDataToDisk(this.continentCacheFileName, continentCache);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
         /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
-        public async Task WriteCacheToDiskAsync()
+        public override async Task WriteCacheToDiskAsync()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
         }
 
         /// <summary>Calls the GW2 api to get all continents asynchronously.</summary>
@@ -89,7 +102,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         {
             var args = new List<KeyValuePair<string, object>>
             {
-                new KeyValuePair<string, object>("lang", this.manager.Language)
+                new KeyValuePair<string, object>("lang", this.dataManager.Language)
             };
 
             Dictionary<string, Dictionary<int, Continent>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<int, Continent>>>(
@@ -103,7 +116,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
             if (!this.BypassCaching)
             {
-                this.continentList = continents;
+                this.continentList.Value.AddRange(continents);
             }
 
             return continents;
@@ -115,7 +128,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         {
             var args = new List<KeyValuePair<string, object>>
             {
-                new KeyValuePair<string, object>("lang", this.manager.Language)
+                new KeyValuePair<string, object>("lang", this.dataManager.Language)
             };
 
             Dictionary<string, Dictionary<int, Continent>> returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Continent>>>(
@@ -129,7 +142,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
             if (!this.BypassCaching)
             {
-                this.continentList = continents;
+                this.continentList.Value.AddRange(continents);
             }
 
             return continents;

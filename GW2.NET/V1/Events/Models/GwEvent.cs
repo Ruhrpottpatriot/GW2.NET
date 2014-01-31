@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GameEvent.cs" company="GW2.Net Coding Team">
+// <copyright file="GwEvent.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -19,6 +19,7 @@ namespace GW2DotNET.V1.Events.Models
     [Obsolete("This model is obsolete, use the GameEvent model in the DynamicEvents namespace instead.", false)]
     public class GwEvent : IEquatable<GwEvent>
     {
+        /// <summary>The event id.</summary>
         private readonly Guid eventId;
 
         /// <summary>Initializes a new instance of the <see cref="GwEvent"/> class.</summary>
@@ -33,7 +34,6 @@ namespace GW2DotNET.V1.Events.Models
             this.MapId = mapIdId;
             this.eventId = eventId;
             this.State = state;
-
         }
 
         /// <summary>

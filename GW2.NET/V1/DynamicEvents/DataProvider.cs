@@ -16,7 +16,7 @@ using GW2DotNET.V1.Infrastructure;
 namespace GW2DotNET.V1.DynamicEvents
 {
     /// <summary>The data provider.</summary>
-    public class DataProvider
+    public class DataProvider : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
@@ -34,8 +34,11 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Caching field for the world names. Lazy initialized.</summary>
         private readonly Lazy<Dictionary<int, string>> lazyWorldNames;
 
+        /// <summary>The event list cache file name.</summary>
+        private readonly string eventListCacheFileName;
+
         /// <summary>Backing field for the event list, so we can replace values.</summary>
-        private List<GameEvent> eventList;
+        private readonly Lazy<List<GameEvent>> eventList;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -55,25 +58,25 @@ namespace GW2DotNET.V1.DynamicEvents
         {
             this.dataManager = dataManager;
             this.BypassCache = bypassCaching;
+            this.eventListCacheFileName = string.Format("{0}\\Cache\\EventCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
 
             this.lazyEventNames = new Lazy<Dictionary<Guid, string>>(this.GetEventNames);
             this.lazyMapNames = new Lazy<Dictionary<int, string>>(this.GetMapNames);
             this.lazyWorldNames = new Lazy<Dictionary<int, string>>(this.GetWorldNames);
+
+            this.eventList = !this.BypassCache ? new Lazy<List<GameEvent>>(() => this.ReadCacheFromDisk<GameCache<List<GameEvent>>>(this.eventListCacheFileName).CacheData) : new Lazy<List<GameEvent>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>Gets or sets a value indicating whether bypass cache.</summary>
-        public bool BypassCache { get; set; }
-
         /// <summary>Gets the events.</summary>
         public IEnumerable<GameEvent> EventList
         {
             get
             {
-                return this.eventList;
+                return this.eventList.Value;
             }
         }
 
@@ -82,16 +85,22 @@ namespace GW2DotNET.V1.DynamicEvents
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
-        public void WriteCacheToDisk()
+        public override void WriteCacheToDisk()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            GameCache<List<GameEvent>> eventCache = new GameCache<List<GameEvent>>()
+            {
+                Build = this.dataManager.Build,
+                CacheData = this.eventList.Value
+            };
+
+            this.WriteDataToDisk(this.eventListCacheFileName, eventCache);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
         /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
-        public async Task WriteCacheToDiskAsync()
+        public override async Task WriteCacheToDiskAsync()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
         }
 
         /// <summary>Gets a list of all events from the server.</summary>
@@ -108,7 +117,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
             if (!this.BypassCache)
             {
-                this.eventList = resolvedEvents;
+                this.eventList.Value.AddRange(resolvedEvents);
             }
 
             return resolvedEvents;
@@ -128,7 +137,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
             if (!this.BypassCache)
             {
-                this.eventList = resolvedEvents;
+                this.eventList.Value.AddRange(resolvedEvents);
             }
 
             return resolvedEvents;
@@ -156,7 +165,7 @@ namespace GW2DotNET.V1.DynamicEvents
             gameEvent.Level = apiEvent.Level;
             gameEvent.Flags = apiEvent.Flags;
             gameEvent.Location = apiEvent.Location;
-            
+
             return gameEvent;
         }
 

@@ -98,7 +98,6 @@ namespace GW2DotNET.V1.WvW.Models
                 /// <summary>Gets the owner of the bonus.</summary>
                 [JsonProperty("owner")]
                 public string Owner { get; private set; }
-
             }
         }
     }

@@ -21,7 +21,6 @@ namespace GW2DotNET.V1.MapInformation.Models
             /// <param name="coordinates">The coordinates.</param>
             [JsonConstructor]
             public SkillChallenge(float[] coordinates)
-    
             {
                 this.Coordinates = coordinates;
             }

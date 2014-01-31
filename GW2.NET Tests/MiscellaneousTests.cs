@@ -7,16 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
+
 using GW2DotNET.V1;
-using GW2DotNET.V1.Events;
 
 using NUnit.Framework;
 
-namespace GW2.NET_Tests
+namespace GW2DotNET_Tests
 {
     /// <summary>
     /// The miscellaneous tests.
@@ -25,7 +22,7 @@ namespace GW2.NET_Tests
     public class MiscellaneousTests
     {
         /// <summary>The api manager.</summary>
-        private IApiManager apiManager;
+        private IDataManager dataManager;
 
         /// <summary>
         /// Runs before each test run.
@@ -33,24 +30,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.apiManager = new ApiManager();
-        }
-
-        /// <summary>The logging test.</summary>
-        [Test]
-        public void LoggingTest()
-        {
-            this.apiManager.Logger.WriteToLog(new NotImplementedException("This function was not implemented yet!", new NotImplementedException()), TraceEventType.Critical);
-
-            this.apiManager.Logger.WriteToLog("Some Information", TraceEventType.Information);
-
-            this.apiManager.Logger.ChangeLoggingLevel(SourceLevels.Critical);
-
-            this.apiManager.Logger.WriteToLog(new NotImplementedException("This function was not implemented yet!", new NotImplementedException()), TraceEventType.Critical);
-
-            this.apiManager.Logger.WriteToLog("Some Information", TraceEventType.Information);
-
-            Trace.WriteLine(this.apiManager.Logger.LogFileDirectory);
+            this.dataManager = new DataManager();
         }
 
         /// <summary>
@@ -59,9 +39,9 @@ namespace GW2.NET_Tests
         [Test]
         public void GetBuildNumber()
         {
-            Trace.WriteLine(string.Format("Build: {0}", this.apiManager.Build));
+            Trace.WriteLine(string.Format("Build: {0}", this.dataManager.Build));
 
-            Trace.WriteLine(string.Format("New Build: {0}", this.apiManager.GetLatestBuild()));
+            Trace.WriteLine(string.Format("New Build: {0}", this.dataManager.GetLatestBuild()));
         }
     }
 }

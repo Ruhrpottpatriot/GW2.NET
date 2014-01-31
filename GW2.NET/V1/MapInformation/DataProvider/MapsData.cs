@@ -18,17 +18,20 @@ using GW2DotNET.V1.MapInformation.Models;
 namespace GW2DotNET.V1.MapInformation.DataProvider
 {
     /// <summary>Provides the api manager with the maps data.</summary>
-    public class MapsData
+    public class MapsData : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>The manager.</summary>
-        private readonly IDataManager dataManger;
+        private readonly IDataManager dataManager;
 
         /// <summary>The maps.</summary>
         private readonly Lazy<List<Map>> mapsCache;
+
+        /// <summary>The maps cache file name.</summary>
+        private string mapsCacheFileName;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -42,21 +45,20 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         }
 
         /// <summary>Initializes a new instance of the <see cref="MapsData"/> class.</summary>
-        /// <param name="dataManger">The data manger.</param>
+        /// <param name="dataManager">The data manger.</param>
         /// <param name="bypassCaching">A value indicating whether to bypass caching.</param>
-        internal MapsData(IDataManager dataManger, bool bypassCaching)
+        internal MapsData(IDataManager dataManager, bool bypassCaching)
         {
-            this.dataManger = dataManger;
+            this.dataManager = dataManager;
             this.BypassCache = bypassCaching;
-            this.mapsCache = new Lazy<List<Map>>();
+            this.mapsCacheFileName = string.Format("{0}\\Cache\\MapsCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+
+            this.mapsCache = !this.BypassCache ? new Lazy<List<Map>>(() => this.ReadCacheFromDisk<GameCache<List<Map>>>(this.mapsCacheFileName).CacheData) : new Lazy<List<Map>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
-
-        /// <summary>Gets or sets a value indicating whether to bypass the cache.</summary>
-        public bool BypassCache { get; set; }
 
         /// <summary>Gets the map list.</summary>
         public IEnumerable<Map> MapList
@@ -72,16 +74,22 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
-        public void WriteCacheToDisk()
+        public override void WriteCacheToDisk()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            GameCache<IEnumerable<Map>> mapCache = new GameCache<IEnumerable<Map>>
+            {
+                Build = this.dataManager.Build,
+                CacheData = this.mapsCache.Value
+            };
+
+            this.WriteDataToDisk(this.mapsCacheFileName, mapCache);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
         /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
-        public async Task WriteCacheToDiskAsync()
+        public override async Task WriteCacheToDiskAsync()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
         }
 
         /// <summary>Calls the GW2 api to get a list of maps asynchronously.</summary>
@@ -90,7 +98,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         {
             List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
                             {
-                                new KeyValuePair<string, object>("lang", this.dataManger.Language)
+                                new KeyValuePair<string, object>("lang", this.dataManager.Language)
                             };
 
             Dictionary<string, Dictionary<int, Map>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
@@ -113,7 +121,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         {
             List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
                             {
-                                new KeyValuePair<string, object>("lang", this.dataManger.Language)
+                                new KeyValuePair<string, object>("lang", this.dataManager.Language)
                             };
 
             Dictionary<string, Dictionary<int, Map>> returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
@@ -142,7 +150,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
             List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
                             {
-                                new KeyValuePair<string, object>("lang", this.dataManger.Language),
+                                new KeyValuePair<string, object>("lang", this.dataManager.Language),
                                 new KeyValuePair<string, object>("map_id", mapId)
                             };
 
@@ -172,7 +180,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
             List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
                             {
-                                new KeyValuePair<string, object>("lang", this.dataManger.Language),
+                                new KeyValuePair<string, object>("lang", this.dataManager.Language),
                                 new KeyValuePair<string, object>("map_id", mapId)
                             };
 

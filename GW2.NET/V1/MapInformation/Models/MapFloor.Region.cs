@@ -26,7 +26,6 @@ namespace GW2DotNET.V1.MapInformation.Models
             /// <param name="maps">The maps.</param>
             [JsonConstructor]
             public Region(string name, int[] labelCoordinates, Dictionary<int, Map> maps)
-    
             {
                 this.Maps = maps.Values.Zip(maps.Keys, (value, key) => value.ResolveId(key)).ToList();
                 this.LabelCoordinates = labelCoordinates;

@@ -8,16 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
-using System.Threading;
+using System.Threading.Tasks;
 
 using GW2DotNET.V1;
 
 using NUnit.Framework;
 
-namespace GW2.NET_Tests
+namespace GW2DotNET_Tests
 {
-    using System.Threading.Tasks;
-
     /// <summary>
     /// The wvw tests.
     /// </summary>
@@ -27,7 +25,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The wvw manager.
         /// </summary>
-        private ApiManager manager;
+        private IDataManager manager;
 
         /// <summary>
         /// Runs before each test run
@@ -35,7 +33,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
+            this.manager = new DataManager(GW2DotNET.V1.Infrastructure.Language.En);
         }
 
         /// <summary>
@@ -46,19 +44,21 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var matchList = this.manager.PvpDataProvider.GetMatchList();
+            var matchList = this.manager.WvWData.GetMatchList();
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
             Trace.WriteLine(string.Format("Total Number of Matches: {0}", matchList.Count));
         }
 
+        /// <summary>The get match list async.</summary>
+        /// <returns>The <see cref="Task"/>.</returns>
         [Test]
         public async Task GetMatchListAsync()
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var matchList = await this.manager.PvpDataProvider.GetMatchListAsync();
+            var matchList = await this.manager.WvWData.GetMatchListAsync();
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -73,22 +73,21 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var singleMatch = this.manager.PvpDataProvider.GetSingleMatch("1-1");
+            var singleMatch = this.manager.WvWData.GetSingleMatch("1-1");
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
             Trace.WriteLine(string.Format("Match Id: {0}", singleMatch.MatchId));
         }
 
-        /// <summary>
-        /// Gets a single match from the api asynchronously.
-        /// </summary>
+        /// <summary>Gets a single match from the api asynchronously.</summary>
+        /// <returns>The <see cref="Task"/>.</returns>
         [Test]
         public async Task GetSingleMatchAsync()
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var singleMatch = await this.manager.PvpDataProvider.GetSingleMatchAsync("1-1");
+            var singleMatch = await this.manager.WvWData.GetSingleMatchAsync("1-1");
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 

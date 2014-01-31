@@ -17,7 +17,7 @@ using GW2DotNET.V1.MapInformation.Models;
 namespace GW2DotNET.V1.MapInformation.DataProvider
 {
     /// <summary>The map floor data.</summary>
-    public class MapFloorData
+    public class MapFloorData : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
@@ -28,6 +28,9 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
         /// <summary>Backing field for the map floor list property.</summary>
         private readonly Lazy<List<MapFloor>> mapFloorList;
+
+        /// <summary>The map floor cache file name.</summary>
+        private readonly string mapFloorCacheFileName;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -47,15 +50,14 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         {
             this.dataManager = dataManager;
             this.BypassCache = bypassCaching;
-            this.mapFloorList = new Lazy<List<MapFloor>>();
+            this.mapFloorCacheFileName = string.Format("{0}\\Cache\\MapFloorCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+
+            this.mapFloorList = !this.BypassCache ? new Lazy<List<MapFloor>>(() => this.ReadCacheFromDisk<GameCache<List<MapFloor>>>(this.mapFloorCacheFileName).CacheData) : new Lazy<List<MapFloor>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
-
-        /// <summary>Gets or sets a value indicating whether bypass the cache.</summary>
-        public bool BypassCache { get; set; }
 
         /// <summary>Gets the map floor list.</summary>
         public IEnumerable<MapFloor> MapFloorList
@@ -71,16 +73,22 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
-        public void WriteCacheToDisk()
+        public override void WriteCacheToDisk()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            GameCache<List<MapFloor>> mapFloorCache = new GameCache<List<MapFloor>>()
+            {
+                Build = this.dataManager.Build,
+                CacheData = this.mapFloorList.Value
+            };
+
+            this.WriteDataToDisk(this.mapFloorCacheFileName, mapFloorCache);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
         /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
-        public async Task WriteCacheToDiskAsync()
+        public override async Task WriteCacheToDiskAsync()
         {
-            throw new NotImplementedException("This function has not yet been implemented");
+            throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
         }
 
         /// <summary>Calls the GW2 api to get a map floor on the specified map and continent synchronously.</summary>
