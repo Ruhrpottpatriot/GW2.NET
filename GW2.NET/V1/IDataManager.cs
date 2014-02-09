@@ -78,5 +78,27 @@ namespace GW2DotNET.V1
 
         /// <summary>Completely clears the cache. There is no undo!</summary>
         void ClearCache();
+
+        /// <summary>Changes the location the DataManager will store the written cache.</summary>
+        /// <param name="newSavePath">The new location of the written cache.</param>
+        /// <remarks><para>This method changes the location of the written cache 
+        /// and moves the existing cache to it's new location.
+        /// This method will not overwrite existing files. 
+        /// If you want to overwrite existing files you have 
+        /// to use the <see cref="ChangeSavePath(string,bool)"/> method.</para>
+        /// <para>This method will check if the path ends with "GW2.NET". 
+        /// If the path does not end with "GW2.NET" it will be added automatically.</para></remarks>
+        void ChangeSavePath(string newSavePath);
+
+        /// <summary>Changes the location the DataManager will store the written cache.</summary>
+        /// <param name="newSavePath">The new location of the written cache.</param>
+        /// <param name="overwriteExistingFiles">A value indicating whether we should overwrite existing files.</param>
+        /// <remarks><para>This method will change the location of the data cache to the path specified in the method call.
+        /// The user can also specify whether to overwrite existing files or not. If he does not the method will silently skip
+        /// the move process, the user will get no feedback whether the file was actually moved.</para>
+        /// <para>This method will check if the path ends with "GW2.NET". 
+        /// If the path does not end with "GW2.NET" it will be added automatically.</para>
+        /// </remarks>
+        void ChangeSavePath(string newSavePath, bool overwriteExistingFiles);
     }
 }
