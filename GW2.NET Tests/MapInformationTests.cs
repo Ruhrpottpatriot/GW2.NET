@@ -60,7 +60,6 @@ namespace GW2DotNET_Tests
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             Task<IEnumerable<Continent>> task = this.manager.ContinentData.GetAllContinentsAsync();
-            task.Wait();
 
             List<Continent> continents = (await task).ToList();
 
@@ -93,7 +92,6 @@ namespace GW2DotNET_Tests
             Stopwatch stopwatch = Stopwatch.StartNew();
 
             Task<IEnumerable<Map>> task = this.manager.MapsData.GetMapListAsync();
-            task.Wait();
 
             List<Map> maps = (await task).ToList();
 
@@ -118,6 +116,8 @@ namespace GW2DotNET_Tests
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
+            Assert.AreEqual(map1, map2);
+
             Trace.WriteLine(string.Format("Are the two maps are equal: {0}", map1 == map2));
         }
 
@@ -131,17 +131,14 @@ namespace GW2DotNET_Tests
 
             Task<Map> task2 = this.manager.MapsData.GetMapAsync(80);
 
-            task1.Wait();
-            task2.Wait();
-
             Map map1 = await task1;
             Map map2 = await task2;
 
             stopwatch.Stop();
 
-            Assert.IsNotNullOrEmpty(map1.Name);
+            Assert.IsNotNull(map1);
 
-            Assert.IsNotNullOrEmpty(map2.Name);
+            Assert.IsNotNull(map2);
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -180,7 +177,6 @@ namespace GW2DotNET_Tests
             var stopwatch = Stopwatch.StartNew();
 
             var task = this.manager.MapFloorData.GetMapFloorAsync(1, 1);
-            task.Wait();
 
             var mapFloor = await task;
 
