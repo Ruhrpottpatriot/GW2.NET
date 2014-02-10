@@ -11,7 +11,7 @@ using System;
 
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Infrastructure
+namespace GW2DotNET.V1.Infrastructure.Converters
 {
     /// <summary>
     /// The boolean converter.

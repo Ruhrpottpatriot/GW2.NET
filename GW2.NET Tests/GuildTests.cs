@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1;
+using GW2DotNET.V1.Guilds.Models;
 
 using NUnit.Framework;
 
@@ -45,7 +46,7 @@ namespace GW2DotNET_Tests
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var guild = await this.dataManager.GuildsData.GetSingleGuildAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8"));
+            Guild guild = await this.dataManager.GuildsData.GetSingleGuildAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8"));
 
             watch.Stop();
 

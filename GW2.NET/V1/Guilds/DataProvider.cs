@@ -13,7 +13,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Guilds.Models;
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.Infrastructure.Exceptions;
 
 namespace GW2DotNET.V1.Guilds
 {
@@ -68,9 +67,13 @@ namespace GW2DotNET.V1.Guilds
             this.BypassCache = bypassCache;
             this.guildListCacheFileName = string.Format("{0}\\Cache\\GuildCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
 
-            this.guildList = !this.BypassCache ? new Lazy<List<Guild>>(() => this.ReadCacheFromDisk<GameCache<List<Guild>>>(this.guildListCacheFileName).CacheData) : new Lazy<List<Guild>>();
-        }
+            int build;
 
+            this.guildList = !this.BypassCache 
+                ? new Lazy<List<Guild>>(() => this.ReadCacheFromDisk<List<Guild>>(this.guildListCacheFileName, out build))
+                : new Lazy<List<Guild>>();
+        }
+        
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
@@ -101,7 +104,7 @@ namespace GW2DotNET.V1.Guilds
             }
 
             // Check if the guild is present in the cache, if not download it.
-            var guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Name == guildName);
+            Guild guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Name == guildName);
 
             if (guildToReturn == null)
             {
@@ -126,7 +129,7 @@ namespace GW2DotNET.V1.Guilds
                 return await this.FetchGuildByIdAsync(guildId);
             }
 
-            var guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Id == guildId);
+            Guild guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Id == guildId);
 
             if (guildToReturn == null)
             {
@@ -162,14 +165,8 @@ namespace GW2DotNET.V1.Guilds
         }
 
         /// <summary> Clears the guild cache for all already downloaded guilds.</summary>
-        /// <exception cref="CacheEmptyException">Thrown when the cache could not be cleared as it was already empty.</exception>
-        public void ClearCache()
+        public override void ClearCache()
         {
-            if (this.guildList == null)
-            {
-                throw new CacheEmptyException("Could not clear cache as it was empty.");
-            }
-
             this.guildList = new Lazy<List<Guild>>();
         }
 

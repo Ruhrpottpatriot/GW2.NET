@@ -26,11 +26,11 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>Backing field for the data manager.</summary>
         private readonly IDataManager dataManager;
 
-        /// <summary>Backing field for the map floor list property.</summary>
-        private readonly Lazy<List<MapFloor>> mapFloorList;
-
         /// <summary>The map floor cache file name.</summary>
         private readonly string mapFloorCacheFileName;
+
+        /// <summary>Backing field for the map floor list property.</summary>
+        private Lazy<List<MapFloor>> mapFloorList;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -52,7 +52,9 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
             this.BypassCache = bypassCaching;
             this.mapFloorCacheFileName = string.Format("{0}\\Cache\\MapFloorCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
 
-            this.mapFloorList = !this.BypassCache ? new Lazy<List<MapFloor>>(() => this.ReadCacheFromDisk<GameCache<List<MapFloor>>>(this.mapFloorCacheFileName).CacheData) : new Lazy<List<MapFloor>>();
+            int build;
+
+            this.mapFloorList = !this.BypassCache ? new Lazy<List<MapFloor>>(() => this.ReadCacheFromDisk<List<MapFloor>>(this.mapFloorCacheFileName, out build)) : new Lazy<List<MapFloor>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -89,6 +91,12 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
+        }
+
+        /// <summary>Clears the cache.</summary>
+        public override void ClearCache()
+        {
+            this.mapFloorList = new Lazy<List<MapFloor>>();
         }
 
         /// <summary>Calls the GW2 api to get a map floor on the specified map and continent synchronously.</summary>

@@ -31,21 +31,21 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>Backing field for the data manager.</summary>
         private readonly IDataManager dataManager;
 
-        /// <summary>
-        /// Backing field for the recipe id cache, lazy initialized.
-        /// </summary>
-        private readonly Lazy<List<int>> recipeIdListCache;
-
-        /// <summary>
-        /// Backing field for the recipe cache, lazy initialized.
-        /// </summary>
-        private readonly Lazy<List<Recipe>> recipeListCache;
-
         /// <summary>The recipe list cache file name.</summary>
         private readonly string recipeListCacheFileName;
 
         /// <summary>The recipe id list cache file name.</summary>
         private readonly string recipeIdListCacheFileName;
+
+        /// <summary>
+        /// Backing field for the recipe id cache, lazy initialized.
+        /// </summary>
+        private Lazy<List<int>> recipeIdListCache;
+
+        /// <summary>
+        /// Backing field for the recipe cache, lazy initialized.
+        /// </summary>
+        private Lazy<List<Recipe>> recipeListCache;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -69,8 +69,11 @@ namespace GW2DotNET.V1.Items.DataProviders
             this.recipeListCacheFileName = string.Format("{0}\\RecipeListCache{1}.json", this.dataManager.SavePath, this.dataManager.Language);
             this.recipeIdListCacheFileName = string.Format("{0}\\RecipeIdListCache{1}.json", this.dataManager.SavePath, this.dataManager.Language);
 
-            this.recipeIdListCache = !this.BypassCache ? new Lazy<List<int>>(() => this.ReadCacheFromDisk<GameCache<List<int>>>(this.recipeIdListCacheFileName).CacheData) : new Lazy<List<int>>();
-            this.recipeListCache = !this.BypassCache ? new Lazy<List<Recipe>>(() => this.ReadCacheFromDisk<GameCache<List<Recipe>>>(this.recipeListCacheFileName).CacheData) : new Lazy<List<Recipe>>();
+            int recipeIdBuild;
+            int recipeListBuild;
+
+            this.recipeIdListCache = !this.BypassCache ? new Lazy<List<int>>(() => this.ReadCacheFromDisk<List<int>>(this.recipeIdListCacheFileName, out recipeIdBuild)) : new Lazy<List<int>>();
+            this.recipeListCache = !this.BypassCache ? new Lazy<List<Recipe>>(() => this.ReadCacheFromDisk<List<Recipe>>(this.recipeListCacheFileName, out recipeListBuild)) : new Lazy<List<Recipe>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -124,6 +127,13 @@ namespace GW2DotNET.V1.Items.DataProviders
         public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
+        }
+
+        /// <summary>Clears the cache.</summary>
+        public override void ClearCache()
+        {
+            this.recipeIdListCache = new Lazy<List<int>>();
+            this.recipeListCache = new Lazy<List<Recipe>>();
         }
 
         /// <summary>Calls the GW2 api to get a list of all discovered recipe ids synchronously.</summary>

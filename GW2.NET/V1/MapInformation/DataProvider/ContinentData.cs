@@ -27,11 +27,11 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>The data manager.</summary>
         private readonly IDataManager dataManager;
 
-        /// <summary>Backing field for the continent list property.</summary>
-        private readonly Lazy<List<Continent>> continentList;
-
         /// <summary>The continent cache file name.</summary>
         private readonly string continentCacheFileName;
+
+        /// <summary>Backing field for the continent list property.</summary>
+        private Lazy<List<Continent>> continentList;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -54,7 +54,9 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
             this.BypassCaching = bypassCaching;
 
-            this.continentList = !this.BypassCache ? new Lazy<List<Continent>>(() => this.ReadCacheFromDisk<GameCache<List<Continent>>>(this.continentCacheFileName).CacheData) : new Lazy<List<Continent>>();
+            int build;
+
+            this.continentList = !this.BypassCache ? new Lazy<List<Continent>>(() => this.ReadCacheFromDisk<List<Continent>>(this.continentCacheFileName, out build)) : new Lazy<List<Continent>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -94,6 +96,12 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
+        }
+
+        /// <summary>Clears the cache.</summary>
+        public override void ClearCache()
+        {
+            this.continentList = new Lazy<List<Continent>>();
         }
 
         /// <summary>Calls the GW2 api to get all continents asynchronously.</summary>

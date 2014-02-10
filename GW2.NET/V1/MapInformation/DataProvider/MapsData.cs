@@ -27,11 +27,11 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>The manager.</summary>
         private readonly IDataManager dataManager;
 
-        /// <summary>The maps.</summary>
-        private readonly Lazy<List<Map>> mapsCache;
-
         /// <summary>The maps cache file name.</summary>
-        private string mapsCacheFileName;
+        private readonly string mapsCacheFileName;
+
+        /// <summary>The maps.</summary>
+        private Lazy<List<Map>> mapsCache;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -53,7 +53,9 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
             this.BypassCache = bypassCaching;
             this.mapsCacheFileName = string.Format("{0}\\Cache\\MapsCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
 
-            this.mapsCache = !this.BypassCache ? new Lazy<List<Map>>(() => this.ReadCacheFromDisk<GameCache<List<Map>>>(this.mapsCacheFileName).CacheData) : new Lazy<List<Map>>();
+            int build;
+
+            this.mapsCache = !this.BypassCache ? new Lazy<List<Map>>(() => this.ReadCacheFromDisk<List<Map>>(this.mapsCacheFileName, out build)) : new Lazy<List<Map>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -90,6 +92,12 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
+        }
+
+        /// <summary>Clears the cache.</summary>
+        public override void ClearCache()
+        {
+            this.mapsCache = new Lazy<List<Map>>();
         }
 
         /// <summary>Calls the GW2 api to get a list of maps asynchronously.</summary>

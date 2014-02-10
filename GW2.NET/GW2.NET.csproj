@@ -100,50 +100,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V1\ApiManager.cs">
-      <SubType>Code</SubType>
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
     <Compile Include="V1\DataManager.cs" />
     <Compile Include="V1\DynamicEvents\DataProvider.cs" />
     <Compile Include="V1\DynamicEvents\Models\GameEvent.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="V1\DynamicEvents\Models\GameEventState.cs" />
-    <Compile Include="V1\Events\DataProvider.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="V1\Events\DataProviders\EventData.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="V1\Events\DataProviders\WorldData.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="V1\Events\Models\GwEvent.cs" />
-    <Compile Include="V1\Events\Models\GwEventState.cs" />
-    <Compile Include="V1\Events\Models\GwWorld.cs" />
-    <Compile Include="V1\Events\Models\WorldEventName.cs" />
-    <Compile Include="V1\Events\Models\WorldEventNamesList.cs" />
     <Compile Include="V1\Guilds\DataProvider.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />
-    <Compile Include="V1\IApiManager.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="V1\IDataManager.cs" />
     <Compile Include="V1\Infrastructure\ApiCall.Categories.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
-    <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
+    <Compile Include="V1\Infrastructure\Converters\BooleanConverter.cs" />
     <Compile Include="V1\Infrastructure\ChatLinks.cs" />
     <Compile Include="V1\Infrastructure\DataProviderBase.cs" />
-    <Compile Include="V1\Infrastructure\Exceptions\CacheEmptyException.cs" />
-    <Compile Include="V1\Infrastructure\Exceptions\NoDataDownloadedException.cs" />
     <Compile Include="V1\Infrastructure\Extensions\EnumerableExtensions.cs" />
     <Compile Include="V1\Infrastructure\GameCache.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
-    <Compile Include="V1\Infrastructure\Logging\EventLogger.cs" />
-    <Compile Include="V1\Infrastructure\Logging\IEventLogger.cs" />
     <Compile Include="V1\Items\DataProviders\ColourData.cs" />
     <Compile Include="V1\Items\DataProviders\ItemData.cs">
       <SubType>Code</SubType>
@@ -200,9 +175,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="V1\Infrastructure\Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">

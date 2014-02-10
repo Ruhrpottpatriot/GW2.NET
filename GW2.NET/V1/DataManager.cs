@@ -59,9 +59,6 @@ namespace GW2DotNET.V1
         /// <summary>The maps data.</summary>
         private Lazy<MapInformation.DataProvider.MapsData> mapsData;
 
-        /// <summary>The wvw data.</summary>
-        private Lazy<WvW.DataProvider> wvwData;
-
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
         // --------------------------------------------------------------------------------------------------------------------
@@ -196,7 +193,7 @@ namespace GW2DotNET.V1
         {
             get
             {
-                return this.wvwData.Value;
+                return this.worldVersusWorldData.Value;
             }
         }
 
@@ -220,7 +217,7 @@ namespace GW2DotNET.V1
         /// <summary>Completely clears the cache. There is no undo!</summary>
         public void ClearCache()
         {
-            // throw new NotImplementedException("Clearing the cache was not implemented yet.");
+            // ToDo: Implement.
         }
 
         /// <summary>Changes the location the DataManager will store the written cache.</summary>

@@ -28,21 +28,21 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>The api manager.</summary>
         private readonly IDataManager dataManager;
 
-        /// <summary>
-        /// The item id cache.
-        /// </summary>
-        private readonly Lazy<List<int>> itemIdCache;
-
-        /// <summary>
-        /// The items cache.
-        /// </summary>
-        private readonly Lazy<List<Item>> itemListCache;
-
         /// <summary>The item cache file name.</summary>
         private readonly string itemListCacheFileName;
 
         /// <summary>The item id cache file name.</summary>
         private readonly string itemIdListCacheFileName;
+
+        /// <summary>
+        /// The item id cache.
+        /// </summary>
+        private Lazy<List<int>> itemIdCache;
+
+        /// <summary>
+        /// The items cache.
+        /// </summary>
+        private Lazy<List<Item>> itemListCache;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -66,8 +66,11 @@ namespace GW2DotNET.V1.Items.DataProviders
             this.itemListCacheFileName = string.Format("{0}\\ItemListCache{1}.json", this.dataManager.SavePath, this.dataManager.Language);
             this.itemIdListCacheFileName = string.Format("{0}\\ItemIdListCache{1}.json", dataManager.SavePath, dataManager.Language);
 
-            this.itemIdCache = !this.BypassCache ? new Lazy<List<int>>(() => this.ReadCacheFromDisk<GameCache<List<int>>>(this.itemIdListCacheFileName).CacheData) : new Lazy<List<int>>();
-            this.itemListCache = !this.BypassCache ? new Lazy<List<Item>>(() => this.ReadCacheFromDisk<GameCache<List<Item>>>(this.itemListCacheFileName).CacheData) : new Lazy<List<Item>>();
+            int itemIdBuild;
+            int itemListBuild;
+
+            this.itemIdCache = !this.BypassCache ? new Lazy<List<int>>(() => this.ReadCacheFromDisk<List<int>>(this.itemIdListCacheFileName, out itemIdBuild)) : new Lazy<List<int>>();
+            this.itemListCache = !this.BypassCache ? new Lazy<List<Item>>(() => this.ReadCacheFromDisk<List<Item>>(this.itemListCacheFileName, out itemListBuild)) : new Lazy<List<Item>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -218,6 +221,13 @@ namespace GW2DotNET.V1.Items.DataProviders
         public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
+        }
+
+        /// <summary>Clears the cache.</summary>
+        public override void ClearCache()
+        {
+            this.itemIdCache = new Lazy<List<int>>();
+            this.itemListCache = new Lazy<List<Item>>();
         }
     }
 }

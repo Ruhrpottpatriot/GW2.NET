@@ -26,18 +26,14 @@ namespace GW2DotNET.V1.Items.DataProviders
         // Fields
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// The data manager
-        /// </summary>
+        /// <summary>The data manager.</summary>
         private readonly IDataManager dataManager;
-
-        /// <summary>
-        /// The colours cache.
-        /// </summary>
-        private readonly Lazy<List<GwColour>> coloursCache;
 
         /// <summary>The colour data cache file name.</summary>
         private readonly string colourDataCacheFileName;
+
+        /// <summary>The colours cache.</summary>
+        private Lazy<List<GwColour>> coloursCache;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -59,7 +55,9 @@ namespace GW2DotNET.V1.Items.DataProviders
             this.BypassCache = bypassCaching;
             this.colourDataCacheFileName = string.Format("{0}\\Cache\\ColourCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
 
-            this.coloursCache = !this.BypassCache ? new Lazy<List<GwColour>>(() => this.ReadCacheFromDisk<GameCache<List<GwColour>>>(this.colourDataCacheFileName).CacheData) : new Lazy<List<GwColour>>();
+            int build;
+
+            this.coloursCache = !this.BypassCache ? new Lazy<List<GwColour>>(() => this.ReadCacheFromDisk<List<GwColour>>(this.colourDataCacheFileName, out build)) : new Lazy<List<GwColour>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -98,6 +96,12 @@ namespace GW2DotNET.V1.Items.DataProviders
         public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
+        }
+
+        /// <summary>Clears the cache.</summary>
+        public override void ClearCache()
+        {
+            this.coloursCache = new Lazy<List<GwColour>>();
         }
 
         /// <summary>Calls the GW2 api to get a list of all colours asynchronously.</summary>
@@ -154,12 +158,10 @@ namespace GW2DotNET.V1.Items.DataProviders
         {
             if (this.coloursCache.Value.Any(colour => colour.Id == colourId))
             {
-                return this.coloursCache.Value.SingleOrDefault(colour => colour.Id == colourId);
+                return this.coloursCache.Value.FirstOrDefault(colour => colour.Id == colourId);
             }
 
-            IEnumerable<GwColour> colours = await this.GetColourListAsync();
-
-            GwColour colourToReturn = colours.SingleOrDefault(colour => colour.Id == colourId);
+            GwColour colourToReturn = (await this.GetColourListAsync()).FirstOrDefault(colour => colour.Id == colourId);
 
             if (!this.BypassCache)
             {
@@ -177,10 +179,10 @@ namespace GW2DotNET.V1.Items.DataProviders
         {
             if (this.coloursCache.Value != null && this.coloursCache.Value.Any(colour => colour.Id == colourId))
             {
-                return this.coloursCache.Value.SingleOrDefault(colour => colour.Id == colourId);
+                return this.coloursCache.Value.FirstOrDefault(colour => colour.Id == colourId);
             }
 
-            GwColour colourToReturn = this.GetColourList().SingleOrDefault(colour => colour.Id == colourId);
+            GwColour colourToReturn = this.GetColourList().FirstOrDefault(colour => colour.Id == colourId);
 
             if (!this.BypassCache)
             {

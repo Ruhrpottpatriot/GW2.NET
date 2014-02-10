@@ -25,20 +25,20 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>The data manager.</summary>
         private readonly IDataManager dataManager;
 
-        /// <summary>Caching field for the event names. Lazy initialized.</summary>
-        private readonly Lazy<Dictionary<Guid, string>> lazyEventNames;
-
-        /// <summary>Caching field for the map names. Lazy initialized.</summary>
-        private readonly Lazy<Dictionary<int, string>> lazyMapNames;
-
-        /// <summary>Caching field for the world names. Lazy initialized.</summary>
-        private readonly Lazy<Dictionary<int, string>> lazyWorldNames;
-
         /// <summary>The event list cache file name.</summary>
         private readonly string eventListCacheFileName;
 
         /// <summary>Backing field for the event list, so we can replace values.</summary>
-        private readonly Lazy<List<GameEvent>> eventList;
+        private Lazy<List<GameEvent>> eventList;
+
+        /// <summary>Caching field for the event names. Lazy initialized.</summary>
+        private Lazy<Dictionary<Guid, string>> lazyEventNames;
+
+        /// <summary>Caching field for the map names. Lazy initialized.</summary>
+        private Lazy<Dictionary<int, string>> lazyMapNames;
+
+        /// <summary>Caching field for the world names. Lazy initialized.</summary>
+        private Lazy<Dictionary<int, string>> lazyWorldNames;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -60,11 +60,7 @@ namespace GW2DotNET.V1.DynamicEvents
             this.BypassCache = bypassCaching;
             this.eventListCacheFileName = string.Format("{0}\\Cache\\EventCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
 
-            this.lazyEventNames = new Lazy<Dictionary<Guid, string>>(this.GetEventNames);
-            this.lazyMapNames = new Lazy<Dictionary<int, string>>(this.GetMapNames);
-            this.lazyWorldNames = new Lazy<Dictionary<int, string>>(this.GetWorldNames);
-
-            this.eventList = !this.BypassCache ? new Lazy<List<GameEvent>>(() => this.ReadCacheFromDisk<GameCache<List<GameEvent>>>(this.eventListCacheFileName).CacheData) : new Lazy<List<GameEvent>>();
+            this.InitializeLazy();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -101,6 +97,16 @@ namespace GW2DotNET.V1.DynamicEvents
         public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
+        }
+
+        /// <summary>Clears the cache.</summary>
+        public override void ClearCache()
+        {
+            this.lazyEventNames = new Lazy<Dictionary<Guid, string>>(this.GetEventNames);
+            this.lazyMapNames = new Lazy<Dictionary<int, string>>(this.GetMapNames);
+            this.lazyWorldNames = new Lazy<Dictionary<int, string>>(this.GetWorldNames);
+
+            this.eventList = new Lazy<List<GameEvent>>();
         }
 
         /// <summary>Gets a list of all events from the server.</summary>
@@ -353,6 +359,18 @@ namespace GW2DotNET.V1.DynamicEvents
             }
 
             return cacheDictionary;
+        }
+
+        /// <summary>Initializes the lazy fields.</summary>
+        private void InitializeLazy()
+        {
+            this.lazyEventNames = new Lazy<Dictionary<Guid, string>>(this.GetEventNames);
+            this.lazyMapNames = new Lazy<Dictionary<int, string>>(this.GetMapNames);
+            this.lazyWorldNames = new Lazy<Dictionary<int, string>>(this.GetWorldNames);
+
+            int build;
+
+            this.eventList = !this.BypassCache ? new Lazy<List<GameEvent>>(() => this.ReadCacheFromDisk<List<GameEvent>>(this.eventListCacheFileName, out build)) : new Lazy<List<GameEvent>>();
         }
     }
 }

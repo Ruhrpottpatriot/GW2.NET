@@ -125,6 +125,7 @@ namespace GW2DotNET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
+            
             var task = this.manager.ColourData.GetSingleColourAsync(1231);
             task.Wait();
 

@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.Infrastructure
         {
             var response = await GetJsonAsync(apiMethod, arguments, category);
 
-            return await JsonConvert.DeserializeObjectAsync<T>(response);
+            return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(response));
         }
 
         /// <summary>
