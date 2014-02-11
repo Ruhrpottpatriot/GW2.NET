@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -177,40 +178,25 @@ namespace GW2DotNET.V1.MapInformation.Models
         }
 
         /// <summary>
-        /// Determines whether two specified instances of <see crdef="Map"/> are equal.
-        /// </summary>
-        /// <param name="mapA">The first object to compare.</param>param>
-        /// <param name="mapB">The second object to compare. </param>
-        /// <returns>true if mapA and mapB represent the same map; otherwise, false.</returns>
-        public static bool operator ==(Map mapA, Map mapB)
-        {
-            if (mapA != null && mapB != null)
-            {
-                return mapA.Id == mapB.Id;
-            }
-
-            return false;
-        }
-
-        /// <summary>
-        /// Determines whether two specified instances of <see crdef="Map"/> are not equal.
-        /// </summary>
-        /// <param name="mapA">The first object to compare.</param>param>
-        /// <param name="mapB">The second object to compare. </param>
-        /// <returns>true if mapA and mapB do not represent the same map; otherwise, false.</returns>
-        public static bool operator !=(Map mapA, Map mapB)
-        {
-            return !(mapA == mapB);
-        }
-
-        /// <summary>
         /// Indicates whether this instance and a specified object are equal.
         /// </summary>
         /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
         /// <param name="obj">Another object to compare to.</param>
         public override bool Equals(object obj)
         {
-            return obj is Map && this == (Map)obj;
+            if (obj == null)
+            {
+                return false;
+            }
+
+            Map map = obj as Map;
+
+            if ((object)map == null)
+            {
+                return false;
+            }
+
+            return this.Id == map.Id;
         }
 
         /// <summary>
@@ -220,6 +206,11 @@ namespace GW2DotNET.V1.MapInformation.Models
         /// <param name="obj">Another object to compare to. </param>
         public bool Equals(Map obj)
         {
+            if ((object)obj == null)
+            {
+                return false;
+            }
+
             return this.Id == obj.Id;
         }
 
