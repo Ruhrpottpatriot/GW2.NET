@@ -117,11 +117,15 @@ namespace GW2DotNET.V1.Guilds.Models
             /// </returns>
             public static bool operator ==(GuildEmblem emblemA, GuildEmblem emblemB)
             {
-                return emblemA.Background == emblemB.Background
-                    && emblemA.Foreground == emblemB.Foreground
-                    && emblemA.BackgroundColour == emblemB.BackgroundColour
-                    && emblemA.ForegroundPrimaryColour == emblemB.ForegroundPrimaryColour
-                    && emblemA.ForegroundSecondaryColour == emblemB.ForegroundSecondaryColour;
+                if (emblemA != null && emblemB != null)
+                {
+                    return emblemA.Background == emblemB.Background && emblemA.Foreground == emblemB.Foreground
+                           && emblemA.BackgroundColour == emblemB.BackgroundColour
+                           && emblemA.ForegroundPrimaryColour == emblemB.ForegroundPrimaryColour
+                           && emblemA.ForegroundSecondaryColour == emblemB.ForegroundSecondaryColour;
+                }
+
+                return false;
             }
 
             /// <summary>
@@ -138,11 +142,7 @@ namespace GW2DotNET.V1.Guilds.Models
             /// </returns>
             public static bool operator !=(GuildEmblem emblemA, GuildEmblem emblemB)
             {
-                return emblemA.Background != emblemB.Background
-                    && emblemA.Foreground != emblemB.Foreground
-                    && emblemA.BackgroundColour != emblemB.BackgroundColour
-                    && emblemA.ForegroundPrimaryColour != emblemB.ForegroundPrimaryColour
-                    && emblemA.ForegroundSecondaryColour != emblemB.ForegroundSecondaryColour;
+                return !(emblemA == emblemB);
             }
 
             /// <summary>

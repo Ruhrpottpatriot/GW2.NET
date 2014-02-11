@@ -30,7 +30,6 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// </param>
         [JsonConstructor]
         public Tool(ToolType type, int charges)
-
         {
             this.Charges = charges;
             this.Type = type;

@@ -49,7 +49,6 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// </param>
         [JsonConstructor]
         public Weapon(WeaponType type, IEnumerable<InfusionSlot> infusionSlots, int maxPower, int minPower, int? suffixId, InfixUpgrade infixUpgrade, int defense, WeaponDamageType damageType)
-
         {
             this.DamageType = damageType;
             this.Defense = defense;

@@ -9,12 +9,14 @@
 
 using System;
 using System.Diagnostics;
-using System.Threading;
+using System.Threading.Tasks;
+
 using GW2DotNET.V1;
+using GW2DotNET.V1.Guilds.Models;
 
 using NUnit.Framework;
 
-namespace GW2.NET_Tests
+namespace GW2DotNET_Tests
 {
     /// <summary>
     /// The guild tests.
@@ -25,7 +27,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The guild manager.
         /// </summary>
-        private ApiManager manager;
+        private IDataManager dataManager;
 
         /// <summary>
         /// Runs before each test run.
@@ -33,18 +35,18 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
+            this.dataManager = new DataManager(GW2DotNET.V1.Infrastructure.Language.En);
         }
 
         /// <summary>
         /// Gets a single guild from the api.
         /// </summary>
         [Test]
-        public void GetSingleGuild()
+        public async void GetSingleGuild()
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var guild = this.manager.Guilds[new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8")];
+            Guild guild = await this.dataManager.GuildsData.GetSingleGuildAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8"));
 
             watch.Stop();
 
@@ -54,18 +56,14 @@ namespace GW2.NET_Tests
             Trace.WriteLine(string.Format("Guild Name: {0}", guild.Name));
         }
 
-        /// <summary>
-        /// Gets a single guild from the api.
-        /// </summary>
+        /// <summary>Gets a single guild from the api.</summary>
+        /// <returns>The <see cref="Task"/>.</returns>
         [Test]
-        public void GetSingleGuildFromIdAsync()
+        public async Task GetSingleGuildFromIdAsync()
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var task = this.manager.Guilds.GetGuildFromIdAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8"), CancellationToken.None);
-            task.Wait();
-
-            var guild = task.Result;
+            var guild = await this.dataManager.GuildsData.GetSingleGuildAsync(new Guid("FBEACB6E-975B-4E10-9E52-B4E140F1C3B8"));
 
             watch.Stop();
 
@@ -75,18 +73,14 @@ namespace GW2.NET_Tests
             Trace.WriteLine(string.Format("Guild Name: {0}", guild.Name));
         }
 
-        /// <summary>
-        /// Gets a single guild from the api.
-        /// </summary>
+        /// <summary>Gets a single guild from the api.</summary>
+        /// <returns>The <see cref="Task"/>.</returns>
         [Test]
-        public void GetSingleGuildFromNameAsync()
+        public async Task GetSingleGuildFromNameAsync()
         {
             Stopwatch watch = Stopwatch.StartNew();
 
-            var task = this.manager.Guilds.GetGuildFromNameAsync("Wayward Blade", CancellationToken.None);
-            task.Wait();
-
-            var guild = task.Result;
+            var guild = await this.dataManager.GuildsData.GetSingleGuildAsync("Wayward Blade");
 
             watch.Stop();
 

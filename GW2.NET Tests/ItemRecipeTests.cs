@@ -7,14 +7,18 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
+using System.Threading.Tasks;
+
 using GW2DotNET.V1;
+using GW2DotNET.V1.Items.Models;
+using GW2DotNET.V1.Items.Models.Items;
 
 using NUnit.Framework;
 
-namespace GW2.NET_Tests
+namespace GW2DotNET_Tests
 {
     /// <summary>
     /// The item recipe tests.
@@ -25,7 +29,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The item manager.
         /// </summary>
-        private ApiManager manager;
+        private IDataManager dataManager;
 
         /// <summary>
         /// Runs before each test run.
@@ -33,7 +37,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
+            this.dataManager = new DataManager(GW2DotNET.V1.Infrastructure.Language.En);
         }
 
         /// <summary>
@@ -46,14 +50,14 @@ namespace GW2.NET_Tests
             Trace.WriteLine(string.Empty);
 
             Trace.WriteLine("Starting stopwatch");
-            var stopwatch = Stopwatch.StartNew();
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-            var recipe = this.manager.Recipes[805];
+            Recipe recipe = this.dataManager.RecipeData.GetRecipeDetail(805);
 
             Trace.WriteLine("Stopping stopwatch");
             stopwatch.Stop();
 
-            Assert.Greater(recipe.OutputItemId, 0);
+            Assert.IsNotNull(recipe.OutputItemId);
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -64,7 +68,7 @@ namespace GW2.NET_Tests
         /// Gets a recipe by id asynchronously.
         /// </summary>
         [Test]
-        public void GetRecipeAsync()
+        public async void GetRecipeAsync()
         {
             Trace.WriteLine("Getting a single recipe from the server asynchronously.");
             Trace.WriteLine(string.Empty);
@@ -72,10 +76,10 @@ namespace GW2.NET_Tests
             Trace.WriteLine("Starting stopwatch");
             var stopwatch = Stopwatch.StartNew();
 
-            var task = this.manager.Recipes.GetRecipeFromIdAsync(805, CancellationToken.None);
+            Task<Recipe> task = this.dataManager.RecipeData.GetRecipeDetailAsync(805);
             task.Wait();
 
-            var recipe = task.Result;
+            Recipe recipe = await task;
 
             Trace.WriteLine("Stopping stopwatch");
             stopwatch.Stop();
@@ -99,9 +103,9 @@ namespace GW2.NET_Tests
             Trace.WriteLine(string.Empty);
 
             Trace.WriteLine("Starting stopwatch");
-            var stopwatch = Stopwatch.StartNew();
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-            var recipes = this.manager.Recipes.ToList();
+            List<int> recipes = this.dataManager.RecipeData.GetRecipeIdList().ToList();
 
             Trace.WriteLine("Stopping stopwatch");
             stopwatch.Stop();
@@ -119,18 +123,18 @@ namespace GW2.NET_Tests
         /// Run at your own risk.
         /// </summary>
         [Test]
-        public void GetRecipesAsync()
+        public async void GetRecipesAsync()
         {
             Trace.WriteLine("Geting all recipes from the server asynchronously.");
             Trace.WriteLine(string.Empty);
 
             Trace.WriteLine("Starting stopwatch");
-            var stopwatch = Stopwatch.StartNew();
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-            var task = this.manager.Recipes.GetAllRecipesAsync(CancellationToken.None);
+            Task<IEnumerable<int>> task = this.dataManager.RecipeData.GetRecipeIdListAsync();
             task.Wait();
 
-            var recipes = task.Result.ToList();
+            List<int> recipes = (await task).ToList();
 
             Trace.WriteLine("Stopping stopwatch");
             stopwatch.Stop();
@@ -150,9 +154,9 @@ namespace GW2.NET_Tests
         [Test]
         public void GetItems()
         {
-            var stopwatch = Stopwatch.StartNew();
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-            var items = this.manager.Items.ToList();
+            List<int> items = this.dataManager.ItemData.GetItemIdList().ToList();
 
             stopwatch.Stop();
 
@@ -169,14 +173,14 @@ namespace GW2.NET_Tests
         /// If you are running this test make sure to run it in a separate NUnit session.
         /// </summary> 
         [Test]
-        public void GetItemsAsync()
+        public async void GetItemsAsync()
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var task = this.manager.Items.GetAllItemsAsync(CancellationToken.None);
+            var task = this.dataManager.ItemData.GetItemDetailListAsync();
             task.Wait();
 
-            var items = task.Result.ToList();
+            var items = (await task).ToList();
 
             stopwatch.Stop();
 
@@ -195,7 +199,7 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var item = this.manager.Items[23481];
+            var item = this.dataManager.ItemData.GetItemDetail(23481);
 
             stopwatch.Stop();
 
@@ -208,14 +212,14 @@ namespace GW2.NET_Tests
         /// Gets a single item from the server asynchronously.
         /// </summary>
         [Test]
-        public void GetItemAsync()
+        public async void GetItemAsync()
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var task = this.manager.Items.GetItemFromIdAsync(23481, CancellationToken.None);
+            Task<Item> task = this.dataManager.ItemData.GetItemDetailAsync(23481);
             task.Wait();
 
-            var item = task.Result;
+            var item = await task;
 
             stopwatch.Stop();
 

@@ -3,126 +3,250 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The data provider for the .
+//   
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1.Infrastructure;
+using GW2DotNET.V1.Infrastructure.Extensions;
 using GW2DotNET.V1.WvW.Models;
 
 namespace GW2DotNET.V1.WvW
 {
-    /// <summary>
-    /// The data provider for the world vs world api.
-    /// </summary>
-    /// <remarks>
-    /// This class will call the api server for a list of matches,
-    /// which can be accessed by the <see cref="All"/> property.
-    /// If the users wants a single match he can call the <see cref="GetSingleMatch(string)"/>
-    /// method which will return a single match.
-    /// Please note, that except the match list there is no cache and every call to GetSingleMatch method
-    /// will cause an api call. This is a deliberate design choice as matches usually change rater fast
-    /// and caching them is counter productive and wastes resources.
-    /// </remarks>
+    /// <summary>The data manager for the pvp part of the api.</summary>
     public class DataProvider
     {
-        /// <summary>A internal list </summary>
-        private Lazy<MatchList> matchList;
+        // --------------------------------------------------------------------------------------------------------------------
+        // Fields
+        // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>The internal list of objective names.</summary>
-        private Lazy<IEnumerable<WvWMatch.WvWMap.Objective>> objectiveNames;
+        /// <summary>The api manger.</summary>
+        private readonly IDataManager dataManager;
+
+        /// <summary>The matches.</summary>
+        private readonly List<WvWMatch> matches;
+
+        /// <summary>The match list.</summary>
+        private MatchList matchList;
+
+        /// <summary>The objective names.</summary>
+        private IEnumerable<WvWMatch.WvWMap.Objective> objectiveNames;
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Constructors and Destructors
+        // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
-        internal DataProvider()
+        /// <param name="dataManger">The api manger which stores some references for later use.</param>
+        /// <remarks>When calling this method the cache is bypassed by default.</remarks>
+        internal DataProvider(IDataManager dataManger)
+            : this(dataManger, true)
         {
-            this.matchList = new Lazy<MatchList>(this.GetMatchList);
-
-            this.objectiveNames = new Lazy<IEnumerable<WvWMatch.WvWMap.Objective>>(this.GetObjectiveNames);
         }
 
-        /// <summary>Gets a collection of all matches.</summary>
-        public MatchList All
+        /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
+        /// <param name="dataManager">The api manger which stores some references for later use.</param>
+        /// <param name="bypassCache">Set this to true if you want to bypass the cache and always query the server.</param>
+        internal DataProvider(IDataManager dataManager, bool bypassCache)
+        {
+            this.dataManager = dataManager;
+            this.BypassCache = bypassCache;
+            this.matches = new List<WvWMatch>();
+        }
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Properties
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>Gets or sets a value indicating whether the user is bypassing the cache and querying the server directly.</summary>
+        public bool BypassCache { get; set; }
+
+        /// <summary>Gets the matches.</summary>
+        public MatchList MatchList
         {
             get
             {
-                return this.matchList.Value;
+                return this.matchList;
             }
         }
 
-        /// <summary>Gets the objective names.</summary>
-        internal IEnumerable<WvWMatch.WvWMap.Objective> ObjectiveNames
+        // --------------------------------------------------------------------------------------------------------------------
+        // Methods
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>Gets all currently running world versus world matches.</summary>
+        /// <returns>The <see cref="Models.MatchList" />.</returns>
+        public MatchList GetMatchList()
         {
-            get
+            if (this.BypassCache)
             {
-                return this.objectiveNames.Value;
+                return ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
             }
+
+            var returnContent = ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
+            this.matchList = returnContent;
+
+            return returnContent;
         }
 
-        /// <summary>Gets a single match from the api server.</summary>
+        /// ReSharper disable CSharpWarnings::CS1574
+        /// <summary>Gets all currently running world versus world matches asynchronously.</summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task{TResult}" />
+        ///     containing the match list as result.</returns>
+        /// ReSharper restore CSharpWarnings::CS1574
+        public async Task<MatchList> GetMatchListAsync()
+        {
+            if (this.BypassCache)
+            {
+                MatchList returnList = await ApiCall.GetContentAsync<MatchList>("matches.json", null, ApiCall.Categories.WvW);
+                return returnList;
+            }
+
+            MatchList returnContent = await ApiCall.GetContentAsync<MatchList>("matches.json", null, ApiCall.Categories.WvW);
+            this.matchList = returnContent;
+
+            return returnContent;
+        }
+
+        /// <summary>Gets a single match from the api. </summary>
         /// <param name="matchId">The match id.</param>
         /// <returns>The <see cref="WvWMatch"/>.</returns>
         public WvWMatch GetSingleMatch(string matchId)
         {
-            var arguments = new List<KeyValuePair<string, object>>
+            if (this.BypassCache)
+            {
+                return this.GetMatch(matchId);
+            }
+
+            WvWMatch matchToReturn = this.matches.SingleOrDefault(match => match.MatchId == matchId);
+
+            if (matchToReturn == null)
+            {
+                matchToReturn = this.GetMatch(matchId);
+
+                this.matches.Add(matchToReturn);
+            }
+
+            return matchToReturn;
+        }
+
+        /// <summary>Gets a single match from the api asynchronously.</summary>
+        /// <param name="matchId">The match id.</param>
+        /// <returns>The <see cref="System.Threading.Tasks.Task{TResult}"/> containing the match as result.</returns>
+        public async Task<WvWMatch> GetSingleMatchAsync(string matchId)
+        {
+            if (this.BypassCache)
+            {
+                return await this.GetMatchAsync(matchId);
+            }
+
+            WvWMatch matchToReturn = this.matches.SingleOrDefault(match => match.MatchId == matchId);
+
+            if (matchToReturn == null)
+            {
+                matchToReturn = await this.GetMatchAsync(matchId);
+
+                this.matches.Add(matchToReturn);
+            }
+
+            return matchToReturn;
+        }
+
+        /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
+        public void WriteCacheToDisk()
+        {
+            throw new NotImplementedException("This function has not yet been implemented");
+        }
+
+        /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
+        public async Task WriteCacheToDiskAsync()
+        {
+            throw new NotImplementedException("This function has not yet been implemented");
+        }
+
+        /// <summary>Synchronously gets a match from the server.</summary>
+        /// <param name="matchId">The match id.</param>
+        /// <returns>The <see cref="WvWMatch"/>.</returns>
+        private WvWMatch GetMatch(string matchId)
+        {
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("match_id", matchId)
             };
 
-            var singleMatch = ApiCall.GetContent<WvWMatch>("match_details.json", arguments, ApiCall.Categories.WvW);
+            var returnMatch = ApiCall.GetContent<WvWMatch>("match_details.json", args, ApiCall.Categories.WvW);
 
-            foreach (WvWMatch.WvWMap.Objective objective in singleMatch.Maps.SelectMany(map => map.Objectives))
+            // Get the objective names. No need to write a log message here, as the method already does it.
+            this.GetObjectiveNames();
+
+            // resolve the objective names.
+            foreach (WvWMatch.WvWMap.Objective objective in returnMatch.Maps.SelectMany(map => map.Objectives))
             {
-                objective.ResolveObjectiveNames(this.ObjectiveNames.Single(o => o.Id == objective.Id));
+                objective.ResolveObjectiveNames(this.objectiveNames.Single(obje => obje.Id == objective.Id));
             }
 
-            var newMatch = singleMatch.ResolveInfos(this.All.Single(match => match.MatchId == matchId));
+            if (this.matchList.IsNullOrEmpty())
+            {
+                this.matchList = this.GetMatchList();
+            }
 
-            return newMatch;
+            var returnContent = returnMatch.ResolveInfos(this.matchList.Single(m => m.MatchId == matchId));
+
+            return returnContent;
         }
 
-        /// <summary>
-        /// Gets a single match from the api server asynchronously.
-        /// </summary>
+        /// <summary>Asynchronously gets a match from the server .</summary>
         /// <param name="matchId">The match id.</param>
-        /// <param name="cancellationToken">Propagates notification that the operation should be cancelled.</param>
-        /// <returns>The <see cref="WvWMatch"/>.</returns>
-        public Task<WvWMatch> GetSingleMatchAsync(string matchId, CancellationToken cancellationToken)
+        /// <returns>The <see cref="Task"/> containing the <see cref="WvWMatch"/>.</returns>
+        private async Task<WvWMatch> GetMatchAsync(string matchId)
         {
-            Func<WvWMatch> methodCall = () => this.GetSingleMatch(matchId);
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("match_id", matchId)
+            };
 
-            return Task.Factory.StartNew(methodCall, cancellationToken);
+            WvWMatch returnMatch = await ApiCall.GetContentAsync<WvWMatch>("match_details.json", args, ApiCall.Categories.WvW);
+
+            await this.GetObjectiveNamesAsync();
+
+            foreach (WvWMatch.WvWMap.Objective objective in returnMatch.Maps.SelectMany(map => map.Objectives))
+            {
+                objective.ResolveObjectiveNames(this.objectiveNames.Single(obje => obje.Id == objective.Id));
+            }
+
+            if (this.matchList.IsNullOrEmpty())
+            {
+                this.matchList = await this.GetMatchListAsync();
+            }
+
+            returnMatch = returnMatch.ResolveInfos(this.matchList.Single(m => m.MatchId == matchId));
+
+            return returnMatch;
         }
 
-        /// <summary>
-        /// Clears the map list cache. 
-        /// </summary>
-        /// <remarks>
-        /// This method will clear the cache and force a re-download of the match list
-        /// the next time the user requests it via the <see cref="All"/> property.
-        /// </remarks>
-        public void ClearCache()
+        /// <summary>Gets a collection with all objective names from the server.</summary>
+        private void GetObjectiveNames()
         {
-            this.matchList = new Lazy<MatchList>();
+            if (this.objectiveNames.IsNullOrEmpty())
+            {
+                this.objectiveNames = ApiCall.GetContent<IEnumerable<WvWMatch.WvWMap.Objective>>("objective_names.json", null, ApiCall.Categories.WvW);
+            }
         }
 
-        /// <summary>Gets the list of all matches from the api server.</summary>
-        /// <returns>A <see cref="IEnumerable{T}"/> containing all matches.</returns>
-        private MatchList GetMatchList()
+        /// <summary>Gets a collection with all objective names from the server asynchronously.</summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
+        private async Task GetObjectiveNamesAsync()
         {
-            return ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
-        }
-
-        /// <summary>The get objective names.</summary>
-        /// <returns>A <see cref="IEnumerable{T}"/> of all objective names.</returns>
-        private IEnumerable<WvWMatch.WvWMap.Objective> GetObjectiveNames()
-        {
-            return ApiCall.GetContent<IEnumerable<WvWMatch.WvWMap.Objective>>("objective_names.json", null, ApiCall.Categories.WvW);
+            if (this.objectiveNames.IsNullOrEmpty())
+            {
+                this.objectiveNames = await ApiCall.GetContentAsync<IEnumerable<WvWMatch.WvWMap.Objective>>("objective_names.json", null, ApiCall.Categories.WvW);
+            }
         }
     }
 }

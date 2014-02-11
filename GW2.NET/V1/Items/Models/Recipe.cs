@@ -145,6 +145,7 @@ namespace GW2DotNET.V1.Items.Models
             {
                 return false;
             }
+
             return other.Id == this.Id;
         }
     }
