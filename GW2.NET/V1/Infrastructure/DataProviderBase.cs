@@ -33,11 +33,10 @@ namespace GW2DotNET.V1.Infrastructure
         /// <summary>Clears the cache.</summary>
         public abstract void ClearCache();
 
-        /// <summary>
-        /// Synchronously reads the contents of the stored cache from the hard drive.
-        /// </summary>
+        /// <summary>Synchronously reads the contents of the stored cache from the hard drive.</summary>
         /// <typeparam name="T">The type to serialize the file contents into.</typeparam>
         /// <param name="path">The path of the cache file.</param>
+        /// <param name="build">The build.</param>
         /// <returns>The contents of the file serialized into <see cref="T"/>.</returns>
         public T ReadCacheFromDisk<T>(string path, out int build) where T : class, new() 
         {
@@ -65,11 +64,10 @@ namespace GW2DotNET.V1.Infrastructure
             }
         }
 
-        /// <summary>
-        /// Asynchronously reads the contents of the stored cache from the hard drive.
-        /// </summary>
+        /// <summary>Asynchronously reads the contents of the stored cache from the hard drive.</summary>
         /// <typeparam name="T">The type to serialize the file contents into.</typeparam>
         /// <param name="path">The path of the cache file.</param>
+        /// <param name="build">The build.</param>
         /// <returns>The contents of the file serialized into <see cref="T"/>.</returns>
         public Task<T> ReadCacheFromDiskAsync<T>(string path, out int build)
         {
