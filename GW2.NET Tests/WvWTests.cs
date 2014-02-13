@@ -8,14 +8,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Diagnostics;
-using System.Linq;
+using System.Threading.Tasks;
 
 using GW2DotNET.V1;
 
 using NUnit.Framework;
-using System.Threading;
 
-namespace GW2.NET_Tests
+namespace GW2DotNET_Tests
 {
     /// <summary>
     /// The wvw tests.
@@ -26,7 +25,7 @@ namespace GW2.NET_Tests
         /// <summary>
         /// The wvw manager.
         /// </summary>
-        private ApiManager manager;
+        private IDataManager manager;
 
         /// <summary>
         /// Runs before each test run
@@ -34,7 +33,7 @@ namespace GW2.NET_Tests
         [SetUp]
         public void SetUp()
         {
-            this.manager = new ApiManager(GW2DotNET.V1.Infrastructure.Language.En);
+            this.manager = new DataManager(GW2DotNET.V1.Infrastructure.Language.En);
         }
 
         /// <summary>
@@ -45,11 +44,25 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var matches = this.manager.WvWMatchData.All;
+            var matchList = this.manager.WvWData.GetMatchList();
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Trace.WriteLine(string.Format("Total Number of Matches: {0}", matches.Count));
+            Trace.WriteLine(string.Format("Total Number of Matches: {0}", matchList.Count));
+        }
+
+        /// <summary>The get match list async.</summary>
+        /// <returns>The <see cref="Task"/>.</returns>
+        [Test]
+        public async Task GetMatchListAsync()
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            var matchList = await this.manager.WvWData.GetMatchListAsync();
+
+            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
+
+            Trace.WriteLine(string.Format("Total Number of Matches: {0}", matchList.Count));
         }
 
         /// <summary>
@@ -60,27 +73,21 @@ namespace GW2.NET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var singleMatch = this.manager.WvWMatchData.GetSingleMatch("1-1");
+            var singleMatch = this.manager.WvWData.GetSingleMatch("1-1");
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
             Trace.WriteLine(string.Format("Match Id: {0}", singleMatch.MatchId));
         }
 
-        /// <summary>
-        /// Gets a single match from the api asynchronously.
-        /// </summary>
+        /// <summary>Gets a single match from the api asynchronously.</summary>
+        /// <returns>The <see cref="Task"/>.</returns>
         [Test]
-        public void GetSingleMatchAsync()
+        public async Task GetSingleMatchAsync()
         {
             var stopwatch = Stopwatch.StartNew();
 
-            var task = this.manager.WvWMatchData.GetSingleMatchAsync("1-1", CancellationToken.None);
-            task.Wait();
-
-            stopwatch.Stop();
-
-            var singleMatch = task.Result;
+            var singleMatch = await this.manager.WvWData.GetSingleMatchAsync("1-1");
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 

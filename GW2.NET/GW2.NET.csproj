@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\GW2.NET.XML</DocumentationFile>
     <LangVersion>4</LangVersion>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -70,8 +71,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -293,27 +295,29 @@
     <Compile Include="V1\Core\WvW\ObjectiveNames\Models\Objective.cs" />
     <Compile Include="V1\Core\WvW\ObjectiveNames\ObjectiveNamesRequest.cs" />
     <Compile Include="V1\Core\WvW\ObjectiveNames\ObjectiveNamesResponse.cs" />
+    <Compile Include="V1\DataManager.cs" />
+    <Compile Include="V1\DynamicEvents\DataProvider.cs" />
+    <Compile Include="V1\DynamicEvents\Models\GameEvent.cs" />
+    <Compile Include="V1\DynamicEvents\Models\GameEventState.cs" />
     <Compile Include="V1\Guilds\DataProvider.cs" />
-    <Compile Include="V1\Guilds\DataProviders\GuildData.cs" />
     <Compile Include="V1\Guilds\Models\Guild.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
     <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />
-    <Compile Include="V1\ApiManager.cs" />
-    <Compile Include="V1\IApiManager.cs" />
+    <Compile Include="V1\IDataManager.cs" />
     <Compile Include="V1\Infrastructure\ApiCall.Categories.cs" />
     <Compile Include="V1\Infrastructure\APICall.cs" />
-    <Compile Include="V1\Infrastructure\BooleanConverter.cs" />
+    <Compile Include="V1\Infrastructure\Converters\BooleanConverter.cs" />
     <Compile Include="V1\Infrastructure\ChatLinks.cs" />
-    <Compile Include="V1\Infrastructure\Exceptions\CacheEmptyException.cs" />
+    <Compile Include="V1\Infrastructure\DataProviderBase.cs" />
+    <Compile Include="V1\Infrastructure\Extensions\EnumerableExtensions.cs" />
+    <Compile Include="V1\Infrastructure\GameCache.cs" />
     <Compile Include="V1\Infrastructure\Language.cs" />
-    <Compile Include="V1\Infrastructure\Logging\EventLogger.cs" />
-    <Compile Include="V1\Items\DataProvider\ColourData.cs" />
-    <Compile Include="V1\Items\DataProvider\CacheDataBase.cs" />
-    <Compile Include="V1\Items\DataProvider\ItemCacheData.cs" />
-    <Compile Include="V1\Items\DataProvider\ItemIdCacheData.cs" />
+    <Compile Include="V1\Items\DataProviders\ColourData.cs" />
+    <Compile Include="V1\Items\DataProviders\ItemData.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="V1\Items\Models\GwColour.ColourDetails.cs" />
-    <Compile Include="V1\Items\DataProvider\ItemData.cs" />
-    <Compile Include="V1\Items\DataProvider\RecipeData.cs" />
+    <Compile Include="V1\Items\DataProviders\RecipeData.cs" />
     <Compile Include="V1\Items\Models\GwColour.RgbColour.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Armour.cs" />
     <Compile Include="V1\Items\Models\Items\SubType\Back.cs" />
@@ -340,35 +344,28 @@
     <Compile Include="V1\Items\Models\Items\SubType\UpgradeComponent.cs" />
     <Compile Include="V1\Items\Models\Items\ItemRarity.cs" />
     <Compile Include="V1\Items\Models\Items\ItemType.cs" />
-    <Compile Include="V1\Maps\DataProvider\ContinentData.cs" />
-    <Compile Include="V1\Maps\DataProvider\MapFloorData.cs" />
-    <Compile Include="V1\Maps\DataProvider\MapsData.cs" />
-    <Compile Include="V1\Maps\Models\Continent.cs" />
-    <Compile Include="V1\Maps\Models\Map.cs" />
-    <Compile Include="V1\Maps\Models\Map.PointOfInterest.cs" />
-    <Compile Include="V1\Maps\Models\Map.PointOfInterest.PoiType.cs" />
-    <Compile Include="V1\Maps\Models\Map.Sector.cs" />
-    <Compile Include="V1\Maps\Models\Map.SkillChallenge.cs" />
-    <Compile Include="V1\Maps\Models\Map.Task.cs" />
-    <Compile Include="V1\Maps\Models\MapFloor.cs" />
-    <Compile Include="V1\Maps\Models\MapFloor.Region.cs" />
-    <Compile Include="V1\World\DataProvider.cs" />
-    <Compile Include="V1\World\DataProviders\EventData.cs" />
-    <Compile Include="V1\World\DataProviders\WorldData.cs" />
-    <Compile Include="V1\World\Models\GwEvent.cs" />
-    <Compile Include="V1\World\Models\GwEventState.cs" />
-    <Compile Include="V1\World\Models\GwWorld.cs" />
-    <Compile Include="V1\World\Models\WorldEventName.cs" />
-    <Compile Include="V1\World\Models\WorldEventNamesList.cs" />
-    <Compile Include="V1\WvW\DataProvider.cs" />
+    <Compile Include="V1\MapInformation\DataProvider\ContinentData.cs" />
+    <Compile Include="V1\MapInformation\DataProvider\MapFloorData.cs" />
+    <Compile Include="V1\MapInformation\DataProvider\MapsData.cs" />
+    <Compile Include="V1\MapInformation\Models\Continent.cs" />
+    <Compile Include="V1\MapInformation\Models\Map.cs" />
+    <Compile Include="V1\MapInformation\Models\Map.PointOfInterest.cs" />
+    <Compile Include="V1\MapInformation\Models\Map.PointOfInterest.PoiType.cs" />
+    <Compile Include="V1\MapInformation\Models\Map.Sector.cs" />
+    <Compile Include="V1\MapInformation\Models\Map.SkillChallenge.cs" />
+    <Compile Include="V1\MapInformation\Models\Map.Task.cs" />
+    <Compile Include="V1\MapInformation\Models\MapFloor.cs" />
+    <Compile Include="V1\MapInformation\Models\MapFloor.Region.cs" />
     <Compile Include="V1\WvW\Models\MatchList.cs" />
     <Compile Include="V1\WvW\Models\MatchListEntry.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.Type.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.WvWObjective.cs" />
+    <Compile Include="V1\WvW\DataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
     <Compile Include="V1\Core\EventDetails\Models\DynamicEventDetails.DynamicEventStyles.cs" />
     <Compile Include="V1\Core\EventDetails\Models\LocationShape.cs" />

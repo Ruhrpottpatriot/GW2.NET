@@ -10,6 +10,7 @@
 using System;
 
 using GW2DotNET.V1.Infrastructure;
+using GW2DotNET.V1.Infrastructure.Converters;
 
 using Newtonsoft.Json;
 

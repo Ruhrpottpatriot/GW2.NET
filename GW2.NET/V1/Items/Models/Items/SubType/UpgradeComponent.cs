@@ -40,7 +40,6 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// </param>
         [JsonConstructor]
         public UpgradeComponent(InfixUpgrade infixUpgrade, UpgradeType type, string suffix, IEnumerable<UpgradeFlag> infusionUpgradeType, IEnumerable<UpgradeComponentFlags> flags)
-
         {
             this.Flags = flags;
             this.InfusionUpgradeType = infusionUpgradeType;

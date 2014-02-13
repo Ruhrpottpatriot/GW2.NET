@@ -158,6 +158,7 @@ namespace GW2DotNET.V1.Items.Models
             {
                 return false;
             }
+
             return other.Id == this.Id;
         }
 
@@ -186,8 +187,7 @@ namespace GW2DotNET.V1.Items.Models
 
             return colour.Id == this.Id;
         }
-
-
+        
         /// <summary>
         /// Serves as a hash function for a particular type. 
         /// </summary>

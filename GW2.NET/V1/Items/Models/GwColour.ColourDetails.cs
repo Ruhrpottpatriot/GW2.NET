@@ -115,6 +115,34 @@ namespace GW2DotNET.V1.Items.Models
                 private set;
             }
 
+            /// <summary>Checks two colour details for equality.</summary>
+            /// <param name="detailsA">The details a.</param>
+            /// <param name="detailsB">The details b.</param>
+            /// <returns>True if both colour details are equal.</returns>
+            public static bool operator ==(ColourDetails detailsA, ColourDetails detailsB)
+            {
+                if (ReferenceEquals(detailsA, detailsB))
+                {
+                    return true;
+                }
+
+                if (((object)detailsA == null) || ((object)detailsB == null))
+                {
+                    return false;
+                }
+
+                return detailsA.RgbValues == detailsB.RgbValues;
+            }
+
+            /// <summary>Checks two colour details for inequality.</summary>
+            /// <param name="detailsA">The details a.</param>
+            /// <param name="detailsB">The details b.</param>
+            /// <returns>True if both colour details are not equal.</returns>
+            public static bool operator !=(ColourDetails detailsA, ColourDetails detailsB)
+            {
+                return !(detailsA == detailsB);
+            }
+
             /// <summary>
             /// Indicates whether the current object is equal to another object of the same type.
             /// </summary>
@@ -164,38 +192,9 @@ namespace GW2DotNET.V1.Items.Models
             /// <returns>
             /// A hash code for the current <see cref="T:System.Object"/>.
             /// </returns>
-            /// <filterpriority>2</filterpriority>
             public override int GetHashCode()
             {
                 return this.RgbValues.GetHashCode();
-            }
-
-            /// <summary>The ==.</summary>
-            /// <param name="detailsA">The details a.</param>
-            /// <param name="detailsB">The details b.</param>
-            /// <returns></returns>
-            public static bool operator ==(ColourDetails detailsA, ColourDetails detailsB)
-            {
-                if (ReferenceEquals(detailsA, detailsB))
-                {
-                    return true;
-                }
-
-                if (((object)detailsA == null) || ((object)detailsB == null))
-                {
-                    return false;
-                }
-
-                return detailsA.RgbValues == detailsB.RgbValues;
-            }
-
-            /// <summary>The !=.</summary>
-            /// <param name="detailsA">The details a.</param>
-            /// <param name="detailsB">The details b.</param>
-            /// <returns></returns>
-            public static bool operator !=(ColourDetails detailsA, ColourDetails detailsB)
-            {
-                return !(detailsA == detailsB);
             }
         }
     }

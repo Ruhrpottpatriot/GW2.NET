@@ -37,7 +37,6 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
         /// </param>
         [JsonConstructor]
         public Trinket(TrinketType type, int? suffixId, IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade)
-
         {
             this.InfixUpgrade = infixUpgrade;
             this.InfusionSlots = infusionSlots;

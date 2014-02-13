@@ -10,10 +10,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 using GW2DotNET.V1.Guilds.Models;
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.Infrastructure.Exceptions;
 
 namespace GW2DotNET.V1.Guilds
 {
@@ -30,105 +29,175 @@ namespace GW2DotNET.V1.Guilds
     /// The users also has the possibility to get a complete collection of all guilds
     /// currently in the cache.
     /// </remarks>
-    public class DataProvider
+    public class DataProvider : DataProviderBase
     {
+        // --------------------------------------------------------------------------------------------------------------------
+        // Fields
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>The data manager.</summary>
+        private readonly IDataManager dataManager;
+
+        /// <summary>The guild list cache file name.</summary>
+        private readonly string guildListCacheFileName;
+
         /// <summary>
         /// The guild cache.
         /// </summary>
-        private List<Guild> guildCache;
+        private Lazy<List<Guild>> guildList;
 
-        /// <summary>The api manager.</summary>
-        private ApiManager apiManager;
+        // --------------------------------------------------------------------------------------------------------------------
+        // Constructors
+        // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
-        /// <param name="apiManager">The api Manager.</param>
-        internal DataProvider(ApiManager apiManager)
+        /// <param name="dataManager">The api Manager.</param>
+        /// <remarks>When calling this method the cache is not bypassed by default.</remarks>
+        internal DataProvider(IDataManager dataManager)
+            : this(dataManager, false)
         {
-            this.apiManager = apiManager;
-            this.guildCache = new List<Guild>();
         }
 
+        /// <summary>Initializes a new instance of the <see cref="DataProvider"/> class.</summary>
+        /// <param name="dataManager">The api manager.</param>
+        /// <param name="bypassCache">The bypass cache.</param>
+        internal DataProvider(IDataManager dataManager, bool bypassCache)
+        {
+            this.dataManager = dataManager;
+            this.BypassCache = bypassCache;
+            this.guildListCacheFileName = string.Format("{0}\\Cache\\GuildCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+
+            int build;
+
+            this.guildList = !this.BypassCache 
+                ? new Lazy<List<Guild>>(() => this.ReadCacheFromDisk<List<Guild>>(this.guildListCacheFileName, out build))
+                : new Lazy<List<Guild>>();
+        }
+        
+        // --------------------------------------------------------------------------------------------------------------------
+        // Properties
+        // --------------------------------------------------------------------------------------------------------------------
+
         /// <summary>
-        /// Gets a collection of all guilds currently in the cache.
+        /// Gets a collection of <see cref="Guild">Guilds</see> currently in the cache.
         /// </summary>
-        public IEnumerable<Guild> All
+        public IEnumerable<Guild> GuildList
         {
             get
             {
-                return this.guildCache;
+                return this.guildList.Value;
             }
         }
 
-        /// <summary>
-        /// Gets a single guild from the api.
-        /// </summary>
-        /// <param name="guildName">
-        /// The name of the guild.
-        /// </param>
-        /// <returns>
-        /// A <see cref="Guild"/>.
-        /// </returns>
-        public Guild GetSingleGuild(string guildName)
+        // --------------------------------------------------------------------------------------------------------------------
+        // Public Methods
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>Asynchronously gets a single guild from the api.</summary>
+        /// <param name="guildName">The name of the guild.</param>
+        /// <returns>The <see cref="Task"/> containing the <see cref="Guild"/> with the specified name.</returns>
+        public async Task<Guild> GetSingleGuildAsync(string guildName)
         {
-            var guildToReturn = this.guildCache.SingleOrDefault(g => g.Name == guildName);
+            if (this.BypassCache)
+            {
+                return await this.FetchGuildByNameAsync(guildName);
+            }
+
+            // Check if the guild is present in the cache, if not download it.
+            Guild guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Name == guildName);
 
             if (guildToReturn == null)
             {
-                var args = new List<KeyValuePair<string, object>>
+                guildToReturn = await this.FetchGuildByNameAsync(guildName);
+
+                if (!this.BypassCache)
                 {
-                    new KeyValuePair<string, object>("guild_name", guildName)
-                };
+                    this.guildList.Value.Add(guildToReturn);
+                }
+            }
 
-                guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
+            return guildToReturn;
+        }
 
-                this.guildCache.Add(guildToReturn);
+        /// <summary>Gets a single guild from the api.</summary>
+        /// <param name="guildId">The id of the guild.</param>
+        /// <returns>The <see cref="Task"/>containing the <see cref="Guild"/> with the specified id..</returns>
+        public async Task<Guild> GetSingleGuildAsync(Guid guildId)
+        {
+            if (this.BypassCache)
+            {
+                return await this.FetchGuildByIdAsync(guildId);
+            }
+
+            Guild guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Id == guildId);
+
+            if (guildToReturn == null)
+            {
+                guildToReturn = await this.FetchGuildByIdAsync(guildId);
+
+                if (!this.BypassCache)
+                {
+                    this.guildList.Value.Add(guildToReturn);
+                }
             }
 
             return guildToReturn;
         }
 
         /// <summary>
-        /// Gets a single guild from the api.
+        /// Writes the complete cache to the disk using the specified serializer.
         /// </summary>
-        /// <param name="guildId">
-        /// The id of the guild.
-        /// </param>
-        /// <returns>
-        /// A <see cref="Guild"/>.
-        /// </returns>
-        public Guild GetSingleGuild(Guid guildId)
+        public override void WriteCacheToDisk()
         {
-            var guildToReturn = this.guildCache.SingleOrDefault(g => g.Id == guildId);
-
-            if (guildToReturn == null)
+            GameCache<List<Guild>> guildCache = new GameCache<List<Guild>>
             {
-                var args = new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("guild_id", guildId)
-                };
-
-                guildToReturn = ApiCall.GetContent<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
-
-                this.guildCache.Add(guildToReturn);
-            }
-
-            return guildToReturn;
+                Build = this.dataManager.Build,
+                CacheData = this.guildList.Value
+            };
+            this.WriteDataToDisk(this.guildListCacheFileName, guildCache);
         }
 
-        /// <summary>
-        /// Clears the guild cache for all already downloaded guilds.
-        /// </summary>
-        /// <exception cref="CacheEmptyException">
-        /// Thrown when the cache could not be cleared as it was already empty.
-        /// </exception>
-        public void ClearCache()
+        /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task"/>.</returns>
+        public override async Task WriteCacheToDiskAsync()
         {
-            if (this.guildCache == null)
-            {
-                throw new CacheEmptyException("Could not clear cache as it was empty.");
-            }
+            throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
+        }
 
-            this.guildCache = new List<Guild>();
+        /// <summary> Clears the guild cache for all already downloaded guilds.</summary>
+        public override void ClearCache()
+        {
+            this.guildList = new Lazy<List<Guild>>();
+        }
+
+        // --------------------------------------------------------------------------------------------------------------------
+        // Private Methods
+        // --------------------------------------------------------------------------------------------------------------------
+
+        /// <summary>Asynchronously fetches a guild by its name from the server .</summary>
+        /// <param name="guildName">The guild name.</param>
+        /// <returns>The <see cref="Task"/> containing the <see cref="Guild"/> with the specified name.</returns>
+        private async Task<Guild> FetchGuildByNameAsync(string guildName)
+        {
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("guild_name", guildName)
+            };
+
+            return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
+        }
+
+        /// <summary>Asynchronously fetches a guild by it's id from the server.</summary>
+        /// <param name="id">The id.</param>
+        /// <returns>The <see cref="Task"/> containing the <see cref="Guild"/> with the specified id.</returns>
+        private async Task<Guild> FetchGuildByIdAsync(Guid id)
+        {
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
+            {
+                new KeyValuePair<string, object>("guild_id", id)
+            };
+
+            return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
         }
     }
 }
