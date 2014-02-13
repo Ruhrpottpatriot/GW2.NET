@@ -156,7 +156,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         {
             Dictionary<string, List<int>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, List<int>>>("recipes.json", null, ApiCall.Categories.Items);
 
-            var recipeIdDictionary = returnContent.Values.First();
+            List<int> recipeIdDictionary = returnContent.Values.First();
 
             if (!this.BypassCache)
             {

@@ -47,11 +47,11 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var dictionary = (Dictionary<Guid, TValue>)value;
+            Dictionary<Guid, TValue> dictionary = (Dictionary<Guid, TValue>)value;
 
             writer.WriteStartObject();
 
-            foreach (var item in dictionary)
+            foreach (KeyValuePair<Guid, TValue> item in dictionary)
             {
                 writer.WritePropertyName(item.Key.ToString().ToUpperInvariant());
 

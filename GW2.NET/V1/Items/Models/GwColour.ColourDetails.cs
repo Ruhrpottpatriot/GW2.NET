@@ -176,7 +176,7 @@ namespace GW2DotNET.V1.Items.Models
                 }
 
                 // If parameter cannot be cast to Point return false.
-                var colour = obj as ColourDetails;
+                ColourDetails colour = obj as ColourDetails;
 
                 if ((object)colour == null)
                 {

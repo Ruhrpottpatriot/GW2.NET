@@ -164,7 +164,7 @@ namespace GW2DotNET.V1.DynamicEvents
             // As return json is heavily nested we have to use
             // a Dictionary<string, Dictionary<Guid, GameEvent>>
             // to deserialize properly (srsly ANet, why?)
-            var apiEvent = ApiCall.GetContent<Dictionary<string, Dictionary<Guid, GameEvent>>>("event_details.json", args, ApiCall.Categories.DynamicEvents)["events"][gameEvent.EventId];
+            GameEvent apiEvent = ApiCall.GetContent<Dictionary<string, Dictionary<Guid, GameEvent>>>("event_details.json", args, ApiCall.Categories.DynamicEvents)["events"][gameEvent.EventId];
 
             // Transfer the details to the event the user supplied and return it.
             gameEvent.Name = apiEvent.Name;

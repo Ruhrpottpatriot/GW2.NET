@@ -51,9 +51,9 @@ namespace GW2DotNET.V1.Core.EventDetails.Converters
         /// <returns>Returns the target type.</returns>
         public override Type GetTargetType(Type objectType, JObject content)
         {
-            var typeReader = content["type"].CreateReader();
+            JsonReader typeReader = content["type"].CreateReader();
 
-            var locationShape = JsonSerializer.Create().Deserialize<LocationShape>(typeReader);
+            LocationShape locationShape = JsonSerializer.Create().Deserialize<LocationShape>(typeReader);
 
             Type locationType;
 

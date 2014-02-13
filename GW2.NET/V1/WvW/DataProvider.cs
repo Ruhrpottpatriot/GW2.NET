@@ -88,7 +88,7 @@ namespace GW2DotNET.V1.WvW
                 return ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
             }
 
-            var returnContent = ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
+            MatchList returnContent = ApiCall.GetContent<MatchList>("matches.json", null, ApiCall.Categories.WvW);
             this.matchList = returnContent;
 
             return returnContent;
@@ -180,7 +180,7 @@ namespace GW2DotNET.V1.WvW
                 new KeyValuePair<string, object>("match_id", matchId)
             };
 
-            var returnMatch = ApiCall.GetContent<WvWMatch>("match_details.json", args, ApiCall.Categories.WvW);
+            WvWMatch returnMatch = ApiCall.GetContent<WvWMatch>("match_details.json", args, ApiCall.Categories.WvW);
 
             // Get the objective names. No need to write a log message here, as the method already does it.
             this.GetObjectiveNames();
@@ -196,7 +196,7 @@ namespace GW2DotNET.V1.WvW
                 this.matchList = this.GetMatchList();
             }
 
-            var returnContent = returnMatch.ResolveInfos(this.matchList.Single(m => m.MatchId == matchId));
+            WvWMatch returnContent = returnMatch.ResolveInfos(this.matchList.Single(m => m.MatchId == matchId));
 
             return returnContent;
         }

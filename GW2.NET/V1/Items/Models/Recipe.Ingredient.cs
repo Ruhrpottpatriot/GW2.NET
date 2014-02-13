@@ -114,7 +114,7 @@ namespace GW2DotNET.V1.Items.Models
                 }
 
                 // If parameter cannot be cast to Point return false.
-                var ingredient = obj as Ingredient;
+                Ingredient ingredient = obj as Ingredient;
 
                 if ((object)ingredient == null)
                 {

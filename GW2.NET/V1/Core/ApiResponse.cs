@@ -86,7 +86,7 @@ namespace GW2DotNET.V1.Core
                 throw new InvalidOperationException("The service did not return an error response.");
             }
 
-            var errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(this.Content);
+            ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(this.Content);
 
             return new ApiException(
                 error: errorResponse.Error,
@@ -158,7 +158,7 @@ namespace GW2DotNET.V1.Core
                 return this;
             }
 
-            var apiException = this.DeserializeError();
+            ApiException apiException = this.DeserializeError();
             if (this.StatusCode == HttpStatusCode.InternalServerError)
             { /* HTTP status 500 (typically) indicates missing or invalid arguments */
                 throw new ArgumentException(apiException.Message, apiException);

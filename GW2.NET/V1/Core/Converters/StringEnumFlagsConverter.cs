@@ -88,11 +88,11 @@ namespace GW2DotNET.V1.Core.Converters
 
             Type enumType = value.GetType();
 
-            var values = value.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] values = value.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
             writer.WriteStartArray();
 
-            foreach (var item in values)
+            foreach (string item in values)
             {
                 base.WriteJson(writer, Enum.Parse(enumType, item, true), serializer);
             }

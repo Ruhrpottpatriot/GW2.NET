@@ -108,7 +108,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <returns>A <see cref="IEnumerable{T}"/> of continents.</returns>
         public async Task<IEnumerable<Continent>> GetAllContinentsAsync()
         {
-            var args = new List<KeyValuePair<string, object>>
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("lang", this.dataManager.Language)
             };
@@ -134,7 +134,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <returns>A <see cref="IEnumerable{T}"/> of continents.</returns>
         public IEnumerable<Continent> GetAllContinents()
         {
-            var args = new List<KeyValuePair<string, object>>
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("lang", this.dataManager.Language)
             };

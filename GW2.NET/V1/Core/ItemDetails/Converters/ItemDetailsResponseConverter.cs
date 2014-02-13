@@ -35,7 +35,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var itemDetails = (Item)serializer.Deserialize<Item>(reader);
+            Item itemDetails = (Item)serializer.Deserialize<Item>(reader);
 
             return new ItemDetailsResponse(itemDetails);
         }

@@ -60,7 +60,7 @@ namespace GW2DotNET.V1.Core.Converters
 
             if (value is Rectangle)
             {
-                var rectangle = (Rectangle)value;
+                Rectangle rectangle = (Rectangle)value;
 
                 writer.WriteStartArray();
 

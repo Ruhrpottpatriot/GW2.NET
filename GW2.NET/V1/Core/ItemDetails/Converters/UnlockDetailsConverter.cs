@@ -53,9 +53,9 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         /// <returns>Returns the target type.</returns>
         public override Type GetTargetType(Type objectType, JObject content)
         {
-            var typeReader = content["unlock_type"].CreateReader();
+            JsonReader typeReader = content["unlock_type"].CreateReader();
 
-            var jsonValue = JsonSerializer.Create().Deserialize<UnlockType>(typeReader);
+            UnlockType jsonValue = JsonSerializer.Create().Deserialize<UnlockType>(typeReader);
 
             Type itemType;
 

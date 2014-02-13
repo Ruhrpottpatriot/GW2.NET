@@ -207,7 +207,7 @@ namespace GW2DotNET.V1.WvW.Models
             }
 
             // If parameter cannot be cast to Point return false.
-            var match = obj as WvWMatch;
+            WvWMatch match = obj as WvWMatch;
 
             if ((object)match == null)
             {

@@ -130,7 +130,7 @@ namespace GW2DotNET.V1.Items.DataProviders
 
             foreach (int itemId in this.itemIdCache.Value)
             {
-                var args = new List<KeyValuePair<string, object>>
+                List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
                 {
                     new KeyValuePair<string, object>("item_id", itemId),
                     new KeyValuePair<string, object>("lang", this.dataManager.Language)
@@ -172,7 +172,7 @@ namespace GW2DotNET.V1.Items.DataProviders
                 }
             }
 
-            var args = new List<KeyValuePair<string, object>>
+            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
             {
                 new KeyValuePair<string, object>("item_id", itemId),
                 new KeyValuePair<string, object>("lang", this.dataManager.Language)

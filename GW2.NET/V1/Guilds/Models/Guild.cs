@@ -156,7 +156,7 @@ namespace GW2DotNET.V1.Guilds.Models
             }
 
             // If parameter cannot be cast to Point return false.
-            var guild = obj as Guild;
+            Guild guild = obj as Guild;
 
             if ((object)guild == null)
             {

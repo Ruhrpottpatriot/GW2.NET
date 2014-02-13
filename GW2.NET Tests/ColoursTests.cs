@@ -82,7 +82,7 @@ namespace GW2DotNET_Tests
         [Test]
         public async Task GetAllColoursAsync()
         {
-            var stopwatch = Stopwatch.StartNew();
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
             ColourData colourData = this.manager.ColourData;
 

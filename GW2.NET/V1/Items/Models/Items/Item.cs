@@ -367,7 +367,7 @@ namespace GW2DotNET.V1.Items.Models.Items
             }
 
             // If parameter cannot be cast to Point return false.
-            var item = obj as Item;
+            Item item = obj as Item;
 
             if ((object)item == null)
             {

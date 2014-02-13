@@ -48,7 +48,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var point = (Point)value;
+            Point point = (Point)value;
 
             writer.WriteStartArray();
 

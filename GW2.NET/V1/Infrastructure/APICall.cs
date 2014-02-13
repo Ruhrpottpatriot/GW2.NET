@@ -44,7 +44,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// <returns>An object converted to <see cref="T"/>.</returns>
         public static async Task<T> GetContentAsync<T>(string apiMethod, List<KeyValuePair<string, object>> arguments, Categories category)
         {
-            var response = await GetJsonAsync(apiMethod, arguments, category);
+            string response = await GetJsonAsync(apiMethod, arguments, category);
 
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(response));
         }
@@ -58,16 +58,16 @@ namespace GW2DotNET.V1.Infrastructure
         /// <returns>The JSON encoded <see cref="string"/>.</returns>
         private static string GetJson(string apiMethod, IEnumerable<KeyValuePair<string, object>> arguments, Categories category)
         {
-            var client = SwitchApiLocation(category);
+            RestClient client = SwitchApiLocation(category);
 
-            var restRequest = new RestRequest(apiMethod, Method.GET)
+            RestRequest restRequest = new RestRequest(apiMethod, Method.GET)
             {
                 RequestFormat = DataFormat.Json
             };
 
             if (arguments != null)
             {
-                foreach (var keyValuePair in arguments)
+                foreach (KeyValuePair<string, object> keyValuePair in arguments)
                 {
                     restRequest.AddParameter(keyValuePair.Key, keyValuePair.Value);
                 }
@@ -83,16 +83,16 @@ namespace GW2DotNET.V1.Infrastructure
         /// <returns>The JSON encoded <see cref="string"/>.</returns>
         private static async Task<string> GetJsonAsync(string apiMethod, IEnumerable<KeyValuePair<string, object>> arguments, Categories category)
         {
-            var client = SwitchApiLocation(category);
+            RestClient client = SwitchApiLocation(category);
 
-            var restRequest = new RestRequest(apiMethod, Method.GET)
+            RestRequest restRequest = new RestRequest(apiMethod, Method.GET)
                                   {
                                       RequestFormat = DataFormat.Json
                                   };
 
             if (arguments != null)
             {
-                foreach (var keyValuePair in arguments)
+                foreach (KeyValuePair<string, object> keyValuePair in arguments)
                 {
                     restRequest.AddParameter(keyValuePair.Key, keyValuePair.Value);
                 }
@@ -113,7 +113,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// </returns>
         private static RestClient SwitchApiLocation(Categories category)
         {
-            var client = new RestClient();
+            RestClient client = new RestClient();
 
             switch (category)
             {

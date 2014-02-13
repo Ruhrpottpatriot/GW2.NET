@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Infrastructure
         {
             byte[] bytes = BitConverter.GetBytes(valueInCopper);
 
-            var finalArray = new List<byte> { 1 };
+            List<byte> finalArray = new List<byte> { 1 };
 
             finalArray.AddRange(bytes);
 
@@ -61,7 +61,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// </remarks>
         public static string ItemChatLink(short quantity, int itemId)
         {
-            var byteList = new List<byte> { 2 };
+            List<byte> byteList = new List<byte> { 2 };
 
             byte[] quantityBytes = BitConverter.GetBytes(quantity);
             byte[] itemIdBytes = BitConverter.GetBytes(itemId);
@@ -85,7 +85,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// </returns>
         public static string TextChatLink(int textIdentifier)
         {
-            var byteList = new List<byte> { 3 };
+            List<byte> byteList = new List<byte> { 3 };
 
             byte[] textBytes = BitConverter.GetBytes(textIdentifier);
 
@@ -107,7 +107,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// </returns>
         public static string MapChatLink(int mapPointId)
         {
-            var byteList = new List<byte> { 4 };
+            List<byte> byteList = new List<byte> { 4 };
 
             byte[] textBytes = BitConverter.GetBytes(mapPointId);
 
@@ -129,7 +129,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// </returns>
         public static string SkillChatLink(int skillId)
         {
-            var byteList = new List<byte> { 6 };
+            List<byte> byteList = new List<byte> { 6 };
 
             byte[] textBytes = BitConverter.GetBytes(skillId);
 
@@ -151,7 +151,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// </returns>
         public static string TraitChatLink(int traitId)
         {
-            var byteList = new List<byte> { 7 };
+            List<byte> byteList = new List<byte> { 7 };
 
             byte[] textBytes = BitConverter.GetBytes(traitId);
 
@@ -173,7 +173,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// </returns>
         public static string RecipeChatLink(int recipeId)
         {
-            var byteList = new List<byte> { 9 };
+            List<byte> byteList = new List<byte> { 9 };
 
             byte[] textBytes = BitConverter.GetBytes(recipeId);
 
@@ -188,7 +188,7 @@ namespace GW2DotNET.V1.Infrastructure
         {
             byte[] encodedDataAsBytes = Convert.FromBase64String(encodedData);
 
-            var returnString = BitConverter.ToInt32(encodedDataAsBytes, 1).ToString();
+            string returnString = BitConverter.ToInt32(encodedDataAsBytes, 1).ToString();
 
             return returnString;
         }*/
