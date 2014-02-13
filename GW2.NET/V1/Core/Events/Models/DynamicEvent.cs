@@ -17,13 +17,6 @@ namespace GW2DotNET.V1.Core.Events.Models
     public partial class DynamicEvent
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicEvent"/> class.
-        /// </summary>
-        public DynamicEvent()
-        {
-        }
-
-        /// <summary>
         /// Gets or sets the <see cref="Guid"/> identifying the event.
         /// </summary>
         [JsonProperty("event_id", Order = 2)]

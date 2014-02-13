@@ -14,13 +14,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     public abstract class ItemDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemDetails"/> class.
-        /// </summary>
-        protected ItemDetails()
-        {
-        }
-
-        /// <summary>
         /// Gets the JSON representation of this instance.
         /// </summary>
         /// <returns>Returns a JSON <see cref="System.String"/>.</returns>

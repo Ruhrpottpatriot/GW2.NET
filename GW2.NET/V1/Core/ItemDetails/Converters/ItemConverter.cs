@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
     /// <summary>
     /// Converts an <see cref="Item"/> to and from its <see cref="System.String"/> representation.
     /// </summary>
-    public class ItemConverter : ContentBasedTypeCreationConverter<Item>
+    public class ItemConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>
         /// Backing field. Holds a dictionary of in-game item types and their corresponding .NET class.

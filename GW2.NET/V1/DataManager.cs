@@ -20,7 +20,6 @@ using GW2DotNET.V1.Infrastructure;
 namespace GW2DotNET.V1
 {
     /// <summary>The data manager for the api.</summary>
-    [Obsolete]
     public class DataManager : IDataManager
     {
         // --------------------------------------------------------------------------------------------------------------------

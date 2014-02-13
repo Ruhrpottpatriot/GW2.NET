@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
     /// <summary>
     /// Converts a JSON object that describes a consumable item's details to the <see cref="ConsumableItemDetails"/> class.
     /// </summary>
-    public class ConsumableDetailsConverter : ContentBasedTypeCreationConverter<ConsumableItemDetails>
+    public class ConsumableDetailsConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>
         /// Backing field. Holds a dictionary of in-game consumable item types and their corresponding .NET class.

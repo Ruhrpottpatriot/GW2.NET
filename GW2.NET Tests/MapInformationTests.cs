@@ -142,7 +142,7 @@ namespace GW2DotNET_Tests
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Trace.WriteLine(string.Format("The two maps are equal: {0}", map1 == map2));
+            Trace.WriteLine(string.Format("The two maps are equal: {0}", map1.Equals(map2)));
         }
 
         /// <summary>Gets a map by its name.</summary>

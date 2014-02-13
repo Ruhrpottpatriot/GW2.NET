@@ -16,7 +16,6 @@ namespace GW2DotNET.V1
 {
     /// <summary>Exposes properties and methods which allow the user to query 
     /// and manipulate data coming from the Guild Wars 2 api.</summary>
-    [Obsolete]
     public interface IDataManager
     {
         // --------------------------------------------------------------------------------------------------------------------

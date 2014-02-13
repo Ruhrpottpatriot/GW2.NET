@@ -112,10 +112,7 @@ namespace GW2DotNET.V1.Core
         {
             return this.ExecuteTaskAsync(request)
                 .ContinueWith<IApiResponse<TContent>>(
-                x =>
-                {
-                    return new ApiResponse<TContent>(x.Result);
-                });
+                x => new ApiResponse<TContent>(x.Result));
         }
 
         /// <summary>
@@ -129,10 +126,7 @@ namespace GW2DotNET.V1.Core
         {
             return this.ExecuteTaskAsync(request, token)
                 .ContinueWith<IApiResponse<TContent>>(
-                x =>
-                {
-                    return new ApiResponse<TContent>(x.Result);
-                },
+                x => new ApiResponse<TContent>(x.Result),
                 token);
         }
 

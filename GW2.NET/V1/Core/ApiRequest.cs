@@ -21,7 +21,6 @@ namespace GW2DotNET.V1.Core
         /// Initializes a new instance of the <see cref="ApiRequest"/> class.
         /// </summary>
         protected ApiRequest()
-            : base()
         {
         }
 

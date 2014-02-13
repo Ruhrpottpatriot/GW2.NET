@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Core.EventDetails.Converters
     /// <summary>
     /// Converts a <see cref="Location"/> to and from its <see cref="System.String"/> representation.
     /// </summary>
-    public class LocationConverter : ContentBasedTypeCreationConverter<Location>
+    public class LocationConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>
         /// Backing field. Holds a dictionary of event location shapes and their corresponding .NET class.

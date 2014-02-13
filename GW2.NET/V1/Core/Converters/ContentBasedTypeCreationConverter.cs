@@ -15,8 +15,7 @@ namespace GW2DotNET.V1.Core.Converters
     /// This is useful for complex types with an inheritance tree,
     /// where the exact type of the JSON content is not known at compile time.
     /// </summary>
-    /// <typeparam name="T">The target base type.</typeparam>
-    public abstract class ContentBasedTypeCreationConverter<T> : JsonConverter where T : class
+    public abstract class ContentBasedTypeCreationConverter : JsonConverter
     {
         /// <summary>
         /// Gets a value indicating whether this <see cref="JsonConverter"/> can write JSON.
