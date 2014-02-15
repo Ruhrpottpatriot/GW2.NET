@@ -18,7 +18,7 @@ using NUnit.Framework;
 namespace GW2DotNET_Tests.CoreTests
 {
     [TestFixture]
-    public class Build
+    public class BuildTests
     {
         private IApiClient client;
 

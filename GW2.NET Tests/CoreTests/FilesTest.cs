@@ -18,7 +18,7 @@ using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
 {
-    public class Files
+    public class FilesTest
     {
         private IApiClient client;
 

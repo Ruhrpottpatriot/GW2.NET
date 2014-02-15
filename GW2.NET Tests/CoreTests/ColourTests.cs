@@ -18,7 +18,7 @@ using NUnit.Framework;
 namespace GW2DotNET_Tests.CoreTests
 {
     [TestFixture]
-    class ColourTests
+    public class ColourTests
     {
         [Test]
         public void GetColours()

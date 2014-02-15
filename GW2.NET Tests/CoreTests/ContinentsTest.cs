@@ -19,7 +19,7 @@ using NUnit.Framework;
 namespace GW2DotNET_Tests.CoreTests
 {
     [TestFixture]
-    public class Continents
+    public class ContinentsTest
     {
         [Test]
         public void GetContinents()
