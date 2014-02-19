@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The service request that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        IApiResponse<TContent> Send<TContent>(IApiRequest request) where TContent : new();
+        IApiResponse<TContent> Send<TContent>(IApiRequest request) where TContent : JsonObject, new();
 
         /// <summary>
         /// Asynchronously send a request and return a response whose content can be mapped to the specified type.
@@ -27,6 +27,6 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The service request that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request) where TContent : new();
+        Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request) where TContent : JsonObject, new();
     }
 }

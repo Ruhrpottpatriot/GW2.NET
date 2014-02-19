@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Core.EventNames.Models
     /// <summary>
     /// Represents the localized name for a specific event.
     /// </summary>
-    public class DynamicEventName
+    public class DynamicEventName : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicEventName"/> class.
@@ -45,24 +45,5 @@ namespace GW2DotNET.V1.Core.EventNames.Models
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

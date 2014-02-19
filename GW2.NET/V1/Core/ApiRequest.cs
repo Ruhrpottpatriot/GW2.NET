@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an <see cref="ApiResponse{TContent}"/>.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public virtual IApiResponse<TContent> GetResponse<TContent>(IApiClient handler) where TContent : new()
+        public virtual IApiResponse<TContent> GetResponse<TContent>(IApiClient handler) where TContent : JsonObject, new()
         {
             return handler.Send<TContent>(this);
         }
@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an <see cref="ApiResponse{TContent}"/>.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public virtual Task<IApiResponse<TContent>> GetResponseAsync<TContent>(IApiClient handler) where TContent : new()
+        public virtual Task<IApiResponse<TContent>> GetResponseAsync<TContent>(IApiClient handler) where TContent : JsonObject, new()
         {
             return handler.SendAsync<TContent>(this);
         }

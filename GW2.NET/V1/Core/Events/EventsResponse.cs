@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Core.Events
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.
     /// </remarks>
-    public class EventsResponse
+    public class EventsResponse : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EventsResponse"/> class.
@@ -39,24 +39,5 @@ namespace GW2DotNET.V1.Core.Events
         /// </summary>
         [JsonProperty("events", Order = 0)]
         public IEnumerable<DynamicEvent> Events { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

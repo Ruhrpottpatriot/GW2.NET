@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
         /// <summary>
         /// Enumerates the possible types of POI.
         /// </summary>
-        public enum Category
+        public enum Category // TODO: move Category to namespace scope; rename to PointOfInterestCategory
         {
             /// <summary>
             /// The landmark POI.

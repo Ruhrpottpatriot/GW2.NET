@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.Continents.Models
     /// <summary>
     /// Represents a continent.
     /// </summary>
-    public class Continent
+    public class Continent : JsonObject
     {
         /// <summary>
         /// Gets or sets the dimensions of the continent.
@@ -46,24 +46,5 @@ namespace GW2DotNET.V1.Core.Continents.Models
         /// </summary>
         [JsonProperty("min_zoom", Order = 2)]
         public int MinimumZoom { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

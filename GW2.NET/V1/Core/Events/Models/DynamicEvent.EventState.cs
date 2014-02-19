@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.Events.Models
         /// <summary>
         /// Enumerates the possible states of a dynamic event.
         /// </summary>
-        public enum EventState
+        public enum EventState // TODO: move EventState to namespace scope; rename to DynamicEventState
         {
             /// <summary>The event is not running.</summary>
             Inactive = 1 << 0,

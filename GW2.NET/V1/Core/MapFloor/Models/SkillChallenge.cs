@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
     /// <summary>
     /// Represents a skill challenge location.
     /// </summary>
-    public class SkillChallenge
+    public class SkillChallenge : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SkillChallenge"/> class.
@@ -37,24 +37,5 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
         [JsonProperty("coord", Order = 0)]
         [JsonConverter(typeof(PointFConverter))]
         public PointF Coordinates { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

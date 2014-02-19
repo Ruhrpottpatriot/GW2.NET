@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Core.Files.Models
     /// <summary>
     /// Represents information about a file that can be retrieved from the render service.
     /// </summary>
-    public class Asset
+    public class Asset : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Asset"/> class.
@@ -42,24 +42,5 @@ namespace GW2DotNET.V1.Core.Files.Models
         /// </summary>
         [JsonProperty("signature", Order = 1)]
         public string Signature { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

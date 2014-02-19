@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Core.ItemDetails
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details"/> for more information.
     /// </remarks>
     [JsonConverter(typeof(ItemDetailsResponseConverter))]
-    public class ItemDetailsResponse
+    public class ItemDetailsResponse : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemDetailsResponse"/> class.
@@ -39,24 +39,5 @@ namespace GW2DotNET.V1.Core.ItemDetails
         /// Gets or sets the item details.
         /// </summary>
         public Item ItemDetails { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Core.Continents
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/continents"/> for more information.
     /// </remarks>
-    public class ContinentsResponse
+    public class ContinentsResponse : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContinentsResponse"/> class.
@@ -39,24 +39,5 @@ namespace GW2DotNET.V1.Core.Continents
         /// </summary>
         [JsonProperty("continents", Order = 0)]
         public IDictionary<int, Continent> Continents { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

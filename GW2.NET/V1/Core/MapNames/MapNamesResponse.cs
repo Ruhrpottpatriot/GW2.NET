@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Core.MapNames
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names"/> for more information.
     /// </remarks>
     [JsonConverter(typeof(MapNamesResponseConverter))]
-    public class MapNamesResponse
+    public class MapNamesResponse : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MapNamesResponse"/> class.
@@ -41,24 +41,5 @@ namespace GW2DotNET.V1.Core.MapNames
         /// Gets or sets the list of maps.
         /// </summary>
         public IEnumerable<Map> Maps { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

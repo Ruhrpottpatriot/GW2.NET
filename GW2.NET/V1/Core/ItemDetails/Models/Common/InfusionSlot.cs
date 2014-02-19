@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     /// <summary>
     /// Represents one of an item's infusion slots.
     /// </summary>
-    public class InfusionSlot
+    public class InfusionSlot : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InfusionSlot"/> class.
@@ -51,24 +51,5 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
         /// </summary>
         [JsonProperty("item", Order = 1, NullValueHandling = NullValueHandling.Ignore)]
         public string Item { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

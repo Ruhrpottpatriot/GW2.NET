@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Core
     /// Provides a RestSharp-specific implementation of the <see cref="IApiResponse{TContent}"/> interface.
     /// </summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>
-    public class ApiResponse<TContent> : RestResponse, IApiResponse<TContent>
+    public class ApiResponse<TContent> : RestResponse, IApiResponse<TContent> where TContent : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiResponse{TContent}"/> class using the specified <see cref="IRestResponse"/>.

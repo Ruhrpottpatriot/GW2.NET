@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Core.RecipeDetails.Models
     /// <summary>
     /// Represents one of a recipe's ingredients.
     /// </summary>
-    public class Ingredient
+    public class Ingredient : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Ingredient"/> class.
@@ -42,24 +42,5 @@ namespace GW2DotNET.V1.Core.RecipeDetails.Models
         /// </summary>
         [JsonProperty("item_id", Order = 0)]
         public int ItemId { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

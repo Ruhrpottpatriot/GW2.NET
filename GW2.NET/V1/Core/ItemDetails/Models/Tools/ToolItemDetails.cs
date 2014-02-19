@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Tools
@@ -35,7 +34,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Tools
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public ToolType Type { get; set; }
-        
+
         /// <summary>
         /// Gets or sets the tool's charges.
         /// </summary>

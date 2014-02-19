@@ -8,6 +8,7 @@ using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.Drawing;
 using GW2DotNET.V1.Core.EventDetails.Converters;
 using Newtonsoft.Json;
+using RestSharp;
 
 namespace GW2DotNET.V1.Core.EventDetails.Models
 {
@@ -15,7 +16,7 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
     /// Represents the location of an event on the map.
     /// </summary>
     [JsonConverter(typeof(LocationConverter))]
-    public abstract class Location
+    public abstract class Location : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
@@ -56,24 +57,5 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public LocationShape LocationType { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     /// <summary>
     /// Represents an item buff.
     /// </summary>
-    public class ItemBuff
+    public class ItemBuff : JsonObject
     {
         /// <summary>
         /// Gets or sets the buff's skill ID.
@@ -24,24 +24,5 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
         /// </summary>
         [JsonProperty("description", Order = 1)]
         public string Description { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }

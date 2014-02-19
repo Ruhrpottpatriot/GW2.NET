@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.Core.GuildDetails.Models
         /// </summary>
         [Flags]
         [JsonConverter(typeof(StringEnumFlagsConverter))]
-        public enum Transformations
+        public enum Transformations // TODO: move Transformations to namespace scope; rename to EmblemTransformations
         {
             /// <summary>Flip the background image horizontally.</summary>
             [EnumMember(Value = "FlipBackgroundHorizontal")]

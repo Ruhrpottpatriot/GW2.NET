@@ -110,6 +110,7 @@
     <Compile Include="V1\Core\ApiException.cs" />
     <Compile Include="V1\Core\ApiRequest.cs" />
     <Compile Include="V1\Core\ApiResponse.cs" />
+    <Compile Include="V1\Core\JsonObject.cs" />
     <Compile Include="V1\Core\Build\BuildRequest.cs" />
     <Compile Include="V1\Core\Build\BuildResponse.cs" />
     <Compile Include="V1\Core\Colors\ColorsRequest.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="V1\Core\IApiRequest.cs" />
     <Compile Include="V1\Core\IApiResponse.cs" />
     <Compile Include="V1\Core\Items\ItemsRequest.cs" />
+    <Compile Include="V1\Core\JsonDictionary.cs" />
     <Compile Include="V1\Core\MapFloor\Models\Map.cs" />
     <Compile Include="V1\Core\MapFloor\MapFloorRequest.cs" />
     <Compile Include="V1\Core\MapFloor\MapFloorResponse.cs" />
