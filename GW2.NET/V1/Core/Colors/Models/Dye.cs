@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Core.Colors.Models
     /// <summary>
     /// Represents a dye and its color component information.
     /// </summary>
-    public class Dye
+    public class Dye : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Dye"/> class.
@@ -69,24 +69,5 @@ namespace GW2DotNET.V1.Core.Colors.Models
         /// </summary>
         [JsonProperty("name", Order = 0)]
         public string Name { get; set; }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public override string ToString()
-        {
-            return JsonConvert.SerializeObject(this);
-        }
-
-        /// <summary>
-        /// Gets the JSON representation of this instance.
-        /// </summary>
-        /// <param name="indent">A value that indicates whether to indent the output.</param>
-        /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
-        {
-            return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
-        }
     }
 }
