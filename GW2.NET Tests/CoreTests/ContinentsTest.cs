@@ -9,7 +9,6 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
-
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.Continents;
 using GW2DotNET.V1.Core.Continents.Models;
@@ -33,6 +32,13 @@ namespace GW2DotNET_Tests.CoreTests
             Assert.IsNotNull(continents);
             Assert.IsNotEmpty(continents);
 
+            Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ContinentsResponse).FullName);
+
+            foreach (var pair in continents)
+            {
+                Assert.IsEmpty(pair.Value.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Continent).FullName);
+            }
+
             Trace.WriteLine(string.Format("Number of continents: {0}", continents.Count));
         }
 
@@ -47,6 +53,13 @@ namespace GW2DotNET_Tests.CoreTests
 
             Assert.IsNotNull(continents);
             Assert.IsNotEmpty(continents);
+
+            Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ContinentsResponse).FullName);
+
+            foreach (var pair in continents)
+            {
+                Assert.IsEmpty(pair.Value.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Continent).FullName);
+            }
 
             Trace.WriteLine(string.Format("Number of continents: {0}", continents.Count));
         }

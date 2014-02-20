@@ -9,7 +9,6 @@
 
 using System;
 using System.Diagnostics;
-
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.Files;
 using GW2DotNET.V1.Core.Files.Models;
@@ -40,6 +39,13 @@ namespace GW2DotNET_Tests.CoreTests
             Assert.IsNotNull(assets);
             Assert.IsNotEmpty(assets);
 
+            Assert.IsEmpty(assets.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Assets).FullName);
+
+            foreach (var pair in assets)
+            {
+                Assert.IsEmpty(pair.Value.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Asset).FullName);
+            }
+
             Trace.WriteLine(string.Format("Number of Assets: {0}", assets.Count));
         }
 
@@ -54,6 +60,13 @@ namespace GW2DotNET_Tests.CoreTests
 
             Assert.IsNotNull(assets);
             Assert.IsNotEmpty(assets);
+
+            Assert.IsEmpty(assets.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Assets).FullName);
+
+            foreach (var pair in assets)
+            {
+                Assert.IsEmpty(pair.Value.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Asset).FullName);
+            }
 
             Trace.WriteLine(string.Format("Number of Assets: {0}", assets.Count));
         }

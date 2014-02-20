@@ -5,7 +5,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace GW2DotNET.V1.Core
 {
@@ -15,6 +17,20 @@ namespace GW2DotNET.V1.Core
     [Serializable]
     public abstract class JsonObject
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JsonObject"/> class.
+        /// </summary>
+        public JsonObject()
+        {
+            this.ExtensionData = new Dictionary<string, JToken>();
+        }
+
+        /// <summary>
+        /// Gets or sets a dictionary of additional JSON properties that have no corresponding .NET property.
+        /// </summary>
+        [JsonExtensionData]
+        public IDictionary<string, JToken> ExtensionData { get; set; }
+
         /// <summary>
         /// Gets the JSON representation of this instance.
         /// </summary>

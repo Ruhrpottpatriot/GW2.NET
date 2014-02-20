@@ -12,7 +12,6 @@ using System.Diagnostics;
 
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.Build;
-
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -39,6 +38,8 @@ namespace GW2DotNET_Tests.CoreTests
 
             Assert.IsNotNull(build);
 
+            Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(BuildResponse).FullName);
+
             Trace.WriteLine(string.Format("Build: {0}", build));
         }
 
@@ -52,6 +53,8 @@ namespace GW2DotNET_Tests.CoreTests
             int build = response.BuildId;
 
             Assert.IsNotNull(build);
+
+            Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(BuildResponse).FullName);
 
             Trace.WriteLine(string.Format("Build: {0}", build));
         }
