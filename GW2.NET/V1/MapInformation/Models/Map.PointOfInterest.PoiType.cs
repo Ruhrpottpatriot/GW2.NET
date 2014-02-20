@@ -6,7 +6,6 @@
 //   Represents a map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.MapInformation.Models
 {
     /// <summary>Represents a map.</summary>
@@ -19,13 +18,13 @@ namespace GW2DotNET.V1.MapInformation.Models
             public enum PoiType
             {
                 /// <summary>A vista.</summary>
-                Vista,
+                Vista, 
 
                 /// <summary>A landmark.</summary>
-                Landmark,
+                Landmark, 
 
                 /// <summary>A waypoint.</summary>
-                Waypoint,
+                Waypoint, 
 
                 /// <summary>A unlock.</summary>
                 Unlock

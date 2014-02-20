@@ -13,9 +13,11 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web.Configuration;
 
+using GW2DotNET.V1.DynamicEvents;
 using GW2DotNET.V1.Infrastructure;
+using GW2DotNET.V1.Items.DataProviders;
+using GW2DotNET.V1.MapInformation.DataProvider;
 
 namespace GW2DotNET.V1
 {
@@ -29,41 +31,41 @@ namespace GW2DotNET.V1
         /// <summary>The game build.</summary>
         private int build = -1;
 
+        /// <summary>The colour data.</summary>
+        private Lazy<ColourData> colourData;
+
+        /// <summary>The continent data.</summary>
+        private Lazy<ContinentData> continentData;
+
         /// <summary>Backing field for the dynamic events data.</summary>
-        private Lazy<DynamicEvents.DataProvider> dynamicEventsData;
+        private Lazy<DataProvider> dynamicEventsData;
 
         /// <summary>The guilds data.</summary>
         private Lazy<Guilds.DataProvider> guildsData;
 
-        /// <summary>The world versus world data.</summary>
-        private Lazy<WvW.DataProvider> worldVersusWorldData;
+        /// <summary>The item data.</summary>
+        private Lazy<ItemData> itemData;
 
         /// <summary>The language.</summary>
         private Language language;
 
-        /// <summary>The colour data.</summary>
-        private Lazy<Items.DataProviders.ColourData> colourData;
-
-        /// <summary>The item data.</summary>
-        private Lazy<Items.DataProviders.ItemData> itemData;
-
-        /// <summary>The recipe data.</summary>
-        private Lazy<Items.DataProviders.RecipeData> recipeData;
-
-        /// <summary>The continent data.</summary>
-        private Lazy<MapInformation.DataProvider.ContinentData> continentData;
-
         /// <summary>The map floor data.</summary>
-        private Lazy<MapInformation.DataProvider.MapFloorData> mapFloorData;
+        private Lazy<MapFloorData> mapFloorData;
 
         /// <summary>The maps data.</summary>
-        private Lazy<MapInformation.DataProvider.MapsData> mapsData;
+        private Lazy<MapsData> mapsData;
+
+        /// <summary>The recipe data.</summary>
+        private Lazy<RecipeData> recipeData;
+
+        /// <summary>The world versus world data.</summary>
+        private Lazy<WvW.DataProvider> worldVersusWorldData;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>Initializes a new instance of the <see cref="DataManager"/> class, with the default language set to english.</summary>
+        /// <summary>Initializes a new instance of the <see cref="DataManager" /> class, with the default language set to english.</summary>
         public DataManager()
             : this(Language.En)
         {
@@ -111,13 +113,11 @@ namespace GW2DotNET.V1
             }
         }
 
-        /// <summary>
-        /// Gets the path to the cache.
-        /// </summary>
+        /// <summary>Gets the path to the cache.</summary>
         public string SavePath { get; private set; }
 
         /// <summary>Gets the dynamic events data. This property is lazy-initialized.</summary>
-        public DynamicEvents.DataProvider DynamicEventsData
+        public DataProvider DynamicEventsData
         {
             get
             {
@@ -135,7 +135,7 @@ namespace GW2DotNET.V1
         }
 
         /// <summary>Gets the colour data. This property is lazy-initialized.</summary>
-        public Items.DataProviders.ColourData ColourData
+        public ColourData ColourData
         {
             get
             {
@@ -144,7 +144,7 @@ namespace GW2DotNET.V1
         }
 
         /// <summary>Gets the item dara data. This property is lazy-initialized.</summary>
-        public Items.DataProviders.ItemData ItemData
+        public ItemData ItemData
         {
             get
             {
@@ -153,7 +153,7 @@ namespace GW2DotNET.V1
         }
 
         /// <summary>Gets the recipe data. This property is lazy-initialized.</summary>
-        public Items.DataProviders.RecipeData RecipeData
+        public RecipeData RecipeData
         {
             get
             {
@@ -162,7 +162,7 @@ namespace GW2DotNET.V1
         }
 
         /// <summary>Gets the continent data. This property is lazy-initialized.</summary>
-        public MapInformation.DataProvider.ContinentData ContinentData
+        public ContinentData ContinentData
         {
             get
             {
@@ -171,7 +171,7 @@ namespace GW2DotNET.V1
         }
 
         /// <summary>Gets the map floor data. This property is lazy-initialized.</summary>
-        public MapInformation.DataProvider.MapFloorData MapFloorData
+        public MapFloorData MapFloorData
         {
             get
             {
@@ -180,7 +180,7 @@ namespace GW2DotNET.V1
         }
 
         /// <summary>Gets the maps data. This property is lazy-initialized.</summary>
-        public MapInformation.DataProvider.MapsData MapsData
+        public MapsData MapsData
         {
             get
             {
@@ -198,19 +198,11 @@ namespace GW2DotNET.V1
         }
 
         /// <summary>Gets the latest build from the server.</summary>
-        /// <remarks>
-        /// This function will query the server for the current build. 
-        /// After a query this method will return the current build to the user.
-        /// It will also store the new build in the <see cref="Build"/> property and therefore cache it.
-        /// </remarks>
-        /// <returns>
-        /// An <see cref="T:System.Int32"/> containing the latest build.
-        /// </returns>
+        /// <remarks>This function will query the server for the current build. After a query this method will return the current build to the user. It will also store the new build in the <see cref="Build" /> property and therefore cache it.</remarks>
+        /// <returns>An <see cref="T:System.Int32" /> containing the latest build.</returns>
         public int GetLatestBuild()
         {
-            this.build =
-                ApiCall.GetContent<Dictionary<string, int>>("build.json", null, ApiCall.Categories.Miscellaneous)
-                    .Values.Single();
+            this.build = ApiCall.GetContent<Dictionary<string, int>>("build.json", null, ApiCall.Categories.Miscellaneous).Values.Single();
             return this.build;
         }
 
@@ -222,13 +214,9 @@ namespace GW2DotNET.V1
 
         /// <summary>Changes the location the DataManager will store the written cache.</summary>
         /// <param name="newSavePath">The new location of the written cache.</param>
-        /// <remarks><para>This method changes the location of the written cache 
-        /// and moves the existing cache to it's new location.
-        /// This method will not overwrite existing files. 
-        /// If you want to overwrite existing files you have 
-        /// to use the <see cref="IDataManager.ChangeSavePath(string,bool)"/> method.</para>
-        /// <para>This method will check if the path ends with "GW2.NET". 
-        /// If the path does not end with "GW2.NET" it will be added automatically.</para></remarks>
+        /// <remarks><para>This method changes the location of the written cache and moves the existing cache to it's new location. This method will not overwrite existing files. If you want to overwrite existing files you have to use the <see cref="IDataManager.ChangeSavePath(string,bool)"/> method.</para>
+        /// <para>This method will check if the path ends with "GW2.NET". If the path does not end with "GW2.NET" it will be added automatically.</para>
+        /// </remarks>
         public void ChangeSavePath(string newSavePath)
         {
             this.ChangeSavePath(newSavePath, false);
@@ -237,11 +225,8 @@ namespace GW2DotNET.V1
         /// <summary>Changes the location the DataManager will store the written cache.</summary>
         /// <param name="newSavePath">The new location of the written cache.</param>
         /// <param name="overwriteExistingFiles">A value indicating whether we should overwrite existing files.</param>
-        /// <remarks><para>This method will change the location of the data cache to the path specified in the method call.
-        /// The user can also specify whether to overwrite existing files or not. If he does not the method will silently skip
-        /// the move process, the user will get no feedback whether the file was actually moved.</para>
-        /// <para>This method will check if the path ends with "GW2.NET". 
-        /// If the path does not end with "GW2.NET" it will be added automatically.</para>
+        /// <remarks><para>This method will change the location of the data cache to the path specified in the method call. The user can also specify whether to overwrite existing files or not. If he does not the method will silently skip the move process, the user will get no feedback whether the file was actually moved.</para>
+        /// <para>This method will check if the path ends with "GW2.NET". If the path does not end with "GW2.NET" it will be added automatically.</para>
         /// </remarks>
         public void ChangeSavePath(string newSavePath, bool overwriteExistingFiles)
         {
@@ -253,7 +238,7 @@ namespace GW2DotNET.V1
             }
 
             // Create a new DirectoryInfo instance.
-            DirectoryInfo savePathDirectoryInfo = new DirectoryInfo(this.SavePath);
+            var savePathDirectoryInfo = new DirectoryInfo(this.SavePath);
 
             FileInfo[] files = savePathDirectoryInfo.GetFiles("*", SearchOption.AllDirectories);
 
@@ -269,7 +254,7 @@ namespace GW2DotNET.V1
                     string subPath = fileFolder.Remove(fileFolder.IndexOf(this.SavePath, StringComparison.Ordinal), this.SavePath.Length);
 
                     // Remove the beginning slash from the sub-dir path.
-                    Regex regex = new Regex(Regex.Escape(Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture)));
+                    var regex = new Regex(Regex.Escape(Path.DirectorySeparatorChar.ToString(CultureInfo.InvariantCulture)));
                     subPath = regex.Replace(subPath, string.Empty, 1);
 
                     // Combine the strings to the new path.
@@ -339,17 +324,17 @@ namespace GW2DotNET.V1
         /// <summary>Initializes the lazy fields.</summary>
         private void InitializeLazy()
         {
-            this.dynamicEventsData = new Lazy<DynamicEvents.DataProvider>(() => new DynamicEvents.DataProvider(this));
+            this.dynamicEventsData = new Lazy<DataProvider>(() => new DataProvider(this));
 
             this.guildsData = new Lazy<Guilds.DataProvider>(() => new Guilds.DataProvider(this));
 
-            this.colourData = new Lazy<Items.DataProviders.ColourData>(() => new Items.DataProviders.ColourData(this));
-            this.itemData = new Lazy<Items.DataProviders.ItemData>(() => new Items.DataProviders.ItemData(this));
-            this.recipeData = new Lazy<Items.DataProviders.RecipeData>(() => new Items.DataProviders.RecipeData(this));
+            this.colourData = new Lazy<ColourData>(() => new ColourData(this));
+            this.itemData = new Lazy<ItemData>(() => new ItemData(this));
+            this.recipeData = new Lazy<RecipeData>(() => new RecipeData(this));
 
-            this.continentData = new Lazy<MapInformation.DataProvider.ContinentData>(() => new MapInformation.DataProvider.ContinentData(this));
-            this.mapFloorData = new Lazy<MapInformation.DataProvider.MapFloorData>(() => new MapInformation.DataProvider.MapFloorData(this));
-            this.mapsData = new Lazy<MapInformation.DataProvider.MapsData>(() => new MapInformation.DataProvider.MapsData(this));
+            this.continentData = new Lazy<ContinentData>(() => new ContinentData(this));
+            this.mapFloorData = new Lazy<MapFloorData>(() => new MapFloorData(this));
+            this.mapsData = new Lazy<MapsData>(() => new MapsData(this));
 
             this.worldVersusWorldData = new Lazy<WvW.DataProvider>(() => new WvW.DataProvider(this));
         }

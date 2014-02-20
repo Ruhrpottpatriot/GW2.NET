@@ -17,20 +17,18 @@ using GW2DotNET.V1.Items.Models;
 
 namespace GW2DotNET.V1.Items.DataProviders
 {
-    /// <summary>
-    /// The colour data provider.
-    /// </summary>
+    /// <summary>The colour data provider.</summary>
     public class ColourData : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
         // Fields
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>The data manager.</summary>
-        private readonly IDataManager dataManager;
-
         /// <summary>The colour data cache file name.</summary>
         private readonly string colourDataCacheFileName;
+
+        /// <summary>The data manager.</summary>
+        private readonly IDataManager dataManager;
 
         /// <summary>The colours cache.</summary>
         private Lazy<List<GwColour>> coloursCache;
@@ -64,9 +62,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// Gets the colour list.
-        /// </summary>
+        /// <summary>Gets the colour list.</summary>
         public IEnumerable<GwColour> ColourList
         {
             get
@@ -82,17 +78,16 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            GameCache<List<GwColour>> cache = new GameCache<List<GwColour>>
-            {
-                Build = this.dataManager.Build,
-                CacheData = this.coloursCache.Value
-            };
+            var cache = new GameCache<List<GwColour>>
+                        {
+                            Build = this.dataManager.Build, CacheData = this.coloursCache.Value
+                        };
 
             this.WriteDataToDisk(this.colourDataCacheFileName, cache);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer.</summary>
-        /// <returns>The <see cref="Task"/>.</returns>
+        /// <returns>The <see cref="Task" />.</returns>
         public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
@@ -105,13 +100,13 @@ namespace GW2DotNET.V1.Items.DataProviders
         }
 
         /// <summary>Calls the GW2 api to get a list of all colours asynchronously.</summary>
-        /// <returns>A <see cref="IEnumerable{T}"/> containing all colours in the game.</returns>
+        /// <returns>A <see cref="IEnumerable{T}" /> containing all colours in the game.</returns>
         public async Task<IEnumerable<GwColour>> GetColourListAsync()
         {
-            List<KeyValuePair<string, object>> arguments = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-            };
+            var arguments = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                            };
 
             Dictionary<string, Dictionary<int, GwColour>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<int, GwColour>>>("colors.json", arguments, ApiCall.Categories.Miscellaneous);
 
@@ -128,15 +123,15 @@ namespace GW2DotNET.V1.Items.DataProviders
         }
 
         /// <summary>Calls the GW2 api to get a list of all colours synchronously.</summary>
-        /// <returns>A <see cref="IEnumerable{T}"/> containing all colours in the game.</returns>
+        /// <returns>A <see cref="IEnumerable{T}" /> containing all colours in the game.</returns>
         public IEnumerable<GwColour> GetColourList()
         {
-            List<KeyValuePair<string, object>> arguments = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-            };
+            var arguments = new List<KeyValuePair<string, object>>
+                            {
+                                new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                            };
 
-            Dictionary<string, Dictionary<int, GwColour>> returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, GwColour>>>("colors.json", arguments, ApiCall.Categories.Miscellaneous);
+            var returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, GwColour>>>("colors.json", arguments, ApiCall.Categories.Miscellaneous);
 
             Dictionary<int, GwColour> coloursDictionary = returnContent["colors"];
 
@@ -150,8 +145,7 @@ namespace GW2DotNET.V1.Items.DataProviders
             return colours;
         }
 
-        /// <summary>Checks if the requested colour is already in the cache,
-        /// if not calls the GW2 api to get the specified colour asynchronously.</summary>
+        /// <summary>Checks if the requested colour is already in the cache, if not calls the GW2 api to get the specified colour asynchronously.</summary>
         /// <param name="colourId">The colour id.</param>
         /// <returns>The <see cref="GwColour"/> with the specified id.</returns>
         public async Task<GwColour> GetSingleColourAsync(int colourId)
@@ -171,8 +165,7 @@ namespace GW2DotNET.V1.Items.DataProviders
             return colourToReturn;
         }
 
-        /// <summary>Checks if the requested colour is already in the cache,
-        /// if not calls the GW2 api to get the specified colour synchronously.</summary>
+        /// <summary>Checks if the requested colour is already in the cache, if not calls the GW2 api to get the specified colour synchronously.</summary>
         /// <param name="colourId">The colour id.</param>
         /// <returns>The <see cref="GwColour"/> with the specified id.</returns>
         public GwColour GetSingleColour(int colourId)
@@ -197,8 +190,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Resolves the ids on a <see cref="Dictionary{TKey,TValue}"/> of colours.</summary>
-        /// <param name="coloursToResolve">The <see cref="Dictionary{TKey, TValue}"/> containing 
-        /// the colour ids as Key and the colours itself as value.</param>
+        /// <param name="coloursToResolve">The <see cref="Dictionary{TKey, TValue}"/> containing the colour ids as Key and the colours itself as value.</param>
         /// <returns>The <see cref="List{T}"/> containing all colours with their ids resolved.</returns>
         private List<GwColour> ResolveColourId(Dictionary<int, GwColour> coloursToResolve)
         {

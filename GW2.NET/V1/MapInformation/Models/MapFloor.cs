@@ -29,18 +29,10 @@ namespace GW2DotNET.V1.MapInformation.Models
 
         /// <summary>Gets the texture dims.</summary>
         [JsonProperty("texture_dims")]
-        public int[] TextureDims
-        {
-            get;
-            private set;
-        }
+        public int[] TextureDims { get; private set; }
 
         /// <summary>Gets the regions.</summary>
         [JsonProperty("regions")]
-        public IEnumerable<Region> Regions
-        {
-            get;
-            private set;
-        }
+        public IEnumerable<Region> Regions { get; private set; }
     }
 }

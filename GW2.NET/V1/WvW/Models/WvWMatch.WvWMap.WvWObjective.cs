@@ -11,41 +11,23 @@ using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.WvW.Models
 {
-    /// <summary>
-    /// Represents a world vs world match.
-    /// </summary>
+    /// <summary>Represents a world vs world match.</summary>
     public partial class WvWMatch
     {
-        /// <summary>
-        /// Represents a world vs world map.
-        /// </summary>
+        /// <summary>Represents a world vs world map.</summary>
         public partial class WvWMap
         {
-            /// <summary>
-            /// Represents a map objective.
-            /// </summary>
+            /// <summary>Represents a map objective.</summary>
             public class Objective
             {
-                /// <summary>
-                /// The id.
-                /// </summary>
+                /// <summary>The id.</summary>
                 private readonly int id;
 
-                /// <summary>
-                /// Initializes a new instance of the <see cref="Objective"/> class.
-                /// </summary>
-                /// <param name="id">
-                /// The id.
-                /// </param>
-                /// <param name="owner">
-                /// The owner.
-                /// </param>
-                /// <param name="ownerGuild">
-                /// The owner guild.
-                /// </param>
-                /// <param name="name">
-                /// The name of the guild.
-                /// </param>
+                /// <summary>Initializes a new instance of the <see cref="Objective"/> class.</summary>
+                /// <param name="id">The id.</param>
+                /// <param name="owner">The owner.</param>
+                /// <param name="ownerGuild">The owner guild.</param>
+                /// <param name="name">The name of the guild.</param>
                 [JsonConstructor]
                 public Objective(int id, string owner, string ownerGuild, string name)
                 {
@@ -55,9 +37,7 @@ namespace GW2DotNET.V1.WvW.Models
                     this.OwnerGuild = ownerGuild;
                 }
 
-                /// <summary>
-                /// Gets the id.
-                /// </summary>
+                /// <summary>Gets the id.</summary>
                 [JsonProperty("id")]
                 public int Id
                 {
@@ -67,35 +47,17 @@ namespace GW2DotNET.V1.WvW.Models
                     }
                 }
 
-                /// <summary>
-                /// Gets the name.
-                /// </summary>
+                /// <summary>Gets the name.</summary>
                 [JsonProperty("name")]
-                public string Name
-                {
-                    get;
-                    private set;
-                }
+                public string Name { get; private set; }
 
-                /// <summary>
-                /// Gets the owner.
-                /// </summary>
+                /// <summary>Gets the owner.</summary>
                 [JsonProperty("owner")]
-                public string Owner
-                {
-                    get;
-                    private set;
-                }
+                public string Owner { get; private set; }
 
-                /// <summary>
-                /// Gets the owner guild.
-                /// </summary>
+                /// <summary>Gets the owner guild.</summary>
                 [JsonProperty("owner_guild")]
-                public string OwnerGuild
-                {
-                    get;
-                    private set;
-                }
+                public string OwnerGuild { get; private set; }
 
                 /// <summary>Resolves the name of an objective.</summary>
                 /// <param name="objective">The objective which supplies the name.</param>

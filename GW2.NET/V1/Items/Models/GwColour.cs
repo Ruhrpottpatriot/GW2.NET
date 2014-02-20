@@ -8,22 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
-
-using GW2DotNET.V1.Guilds.Models;
 
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models
 {
-    /// <summary>
-    /// Represents a colour in the game.
-    /// </summary>
+    /// <summary>Represents a colour in the game.</summary>
     public partial class GwColour : IEquatable<GwColour>
     {
-        /// <summary>
-        /// The colour id.
-        /// </summary>
+        /// <summary>The colour id.</summary>
         private readonly int id;
 
         /// <summary>Initializes a new instance of the <see cref="GwColour"/> class.</summary>
@@ -44,9 +37,7 @@ namespace GW2DotNET.V1.Items.Models
             this.Metal = metalDetail;
         }
 
-        /// <summary>
-        /// Gets the colour id.
-        /// </summary>
+        /// <summary>Gets the colour id.</summary>
         public int Id
         {
             get
@@ -55,64 +46,43 @@ namespace GW2DotNET.V1.Items.Models
             }
         }
 
-        /// <summary>
-        /// Gets the name.
-        /// </summary>
+        /// <summary>Gets the name.</summary>
         [JsonProperty("name")]
-        public string Name
-        {
-            get;
-            private set;
-        }
+        public string Name { get; private set; }
 
-        /// <summary>
-        /// Gets the base rgb.
-        /// </summary>
+        /// <summary>Gets the base rgb.</summary>
         [JsonProperty("base_rgb")]
         public int[] BaseRgb { get; private set; }
 
-        /// <summary>
-        /// Gets the colour modifying attributes on cloth.
-        /// </summary>
+        /// <summary>Gets the colour modifying attributes on cloth.</summary>
         [JsonProperty("cloth")]
-        public ColourDetails Cloth
-        {
-            get;
-            private set;
-        }
+        public ColourDetails Cloth { get; private set; }
 
-        /// <summary>
-        /// Gets the colour modifying attributes on leather.
-        /// </summary>
+        /// <summary>Gets the colour modifying attributes on leather.</summary>
         [JsonProperty("leather")]
-        public ColourDetails Leather
-        {
-            get;
-            private set;
-        }
+        public ColourDetails Leather { get; private set; }
 
-        /// <summary>
-        /// Gets the colour modifying attributes on metal.
-        /// </summary>
+        /// <summary>Gets the colour modifying attributes on metal.</summary>
         [JsonProperty("metal")]
-        public ColourDetails Metal
+        public ColourDetails Metal { get; private set; }
+
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(GwColour other)
         {
-            get;
-            private set;
+            if ((object)other == null)
+            {
+                return false;
+            }
+
+            return other.Id == this.Id;
         }
 
-        /// <summary>
-        /// Checks if two instances of <see cref="GwColour"/> are equal.
-        /// </summary>
-        /// <param name="colourA">
-        /// The first colour.
-        /// </param>
-        /// <param name="colourB">
-        /// The second colour.
-        /// </param>
-        /// <returns>
-        /// true if both instances are the same, otherwise false.
-        /// </returns>
+        /// <summary>Checks if two instances of <see cref="GwColour" /> are equal.</summary>
+        /// <param name="colourA">The first colour.</param>
+        /// <param name="colourB">The second colour.</param>
+        /// <returns>true if both instances are the same, otherwise false.</returns>
         public static bool operator ==(GwColour colourA, GwColour colourB)
         {
             if (ReferenceEquals(colourA, colourB))
@@ -128,47 +98,19 @@ namespace GW2DotNET.V1.Items.Models
             return colourA.Id == colourB.Id;
         }
 
-        /// <summary>
-        /// Checks if two instances of <see cref="GwColour"/> are not equal.
-        /// </summary>
-        /// <param name="colourA">
-        /// The first colour.
-        /// </param>
-        /// <param name="colourB">
-        /// The second colour.
-        /// </param>
-        /// <returns>
-        /// true if both instances are not the same, otherwise false.
-        /// </returns>
+        /// <summary>Checks if two instances of <see cref="GwColour" /> are not equal.</summary>
+        /// <param name="colourA">The first colour.</param>
+        /// <param name="colourB">The second colour.</param>
+        /// <returns>true if both instances are not the same, otherwise false.</returns>
         public static bool operator !=(GwColour colourA, GwColour colourB)
         {
             return !(colourA == colourB);
         }
 
-        /// <summary>
-        /// Indicates whether the current object is equal to another object of the same type.
-        /// </summary>
-        /// <returns>
-        /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
-        /// </returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(GwColour other)
-        {
-            if ((object)other == null)
-            {
-                return false;
-            }
-
-            return other.Id == this.Id;
-        }
-
-        /// <summary>
-        /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
-        /// </summary>
-        /// <returns>
-        /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
-        /// </returns>
-        /// <param name="obj">The object to compare with the current object. </param><filterpriority>2</filterpriority>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
+        /// <param name="obj">The object to compare with the current object. </param>
+        /// <filterpriority>2</filterpriority>
         public override bool Equals(object obj)
         {
             // If parameter is null return false.
@@ -187,13 +129,9 @@ namespace GW2DotNET.V1.Items.Models
 
             return colour.Id == this.Id;
         }
-        
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         /// <filterpriority>2</filterpriority>
         public override int GetHashCode()
         {

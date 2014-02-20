@@ -81,7 +81,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="V1\DataManager.cs" />
-    <Compile Include="V1\DynamicEvents\DataProvider.cs" />
+    <Compile Include="V1\DynamicEvents\DataProvider.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="V1\DynamicEvents\Models\GameEvent.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>

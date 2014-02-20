@@ -2,6 +2,9 @@
 // <copyright file="DataProvider.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   The data provider.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
@@ -83,11 +86,10 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            GameCache<List<GameEvent>> eventCache = new GameCache<List<GameEvent>>()
-            {
-                Build = this.dataManager.Build,
-                CacheData = this.eventList.Value
-            };
+            var eventCache = new GameCache<List<GameEvent>>
+                             {
+                                 Build = this.dataManager.Build, CacheData = this.eventList.Value
+                             };
 
             this.WriteDataToDisk(this.eventListCacheFileName, eventCache);
         }
@@ -154,17 +156,16 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <returns>A <see cref="GameEvent"/> with all details.</returns>
         public GameEvent GetEventDetails(GameEvent gameEvent)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("event_id", gameEvent.EventId),
-                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("event_id", gameEvent.EventId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
             // Get the event details from the server.
             // As return json is heavily nested we have to use
             // a Dictionary<string, Dictionary<Guid, GameEvent>>
             // to deserialize properly (srsly ANet, why?)
-            var apiEvent = ApiCall.GetContent<Dictionary<string, Dictionary<Guid, GameEvent>>>("event_details.json", args, ApiCall.Categories.DynamicEvents)["events"][gameEvent.EventId];
+            GameEvent apiEvent = ApiCall.GetContent<Dictionary<string, Dictionary<Guid, GameEvent>>>("event_details.json", args, ApiCall.Categories.DynamicEvents)["events"][gameEvent.EventId];
 
             // Transfer the details to the event the user supplied and return it.
             gameEvent.Name = apiEvent.Name;
@@ -180,11 +181,10 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <returns>The <see cref="Task{GameEvent}"/> with all details..</returns>
         public async Task<GameEvent> GetEventDetailsAsync(GameEvent gameEvent)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("event_id", gameEvent.EventId),
-                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("event_id", gameEvent.EventId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
             // Get the event details from the server.
             // As return json is heavily nested we have to use
@@ -211,17 +211,16 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Creates a <see cref="List{T}"/> containing <see cref="KeyValuePair{TKey,TValue}"/>s as arguments for the event list query.</summary>
         /// <param name="worldId">The world id.</param>
         /// <param name="mapId">The map id.</param>
-        /// <returns>The <see cref="List{T}"/> with all arguments.</returns>
+        /// <returns>The <see cref="List{T}"/> containing <see cref="KeyValuePair{TKey,TValue}"/> with all arguments.</returns>
         /// <exception cref="ArgumentException">Thrown when both parameters are at their default value, -1.</exception>
         private List<KeyValuePair<string, object>> CreateArgumentsForEventListQuery(int worldId, int mapId)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>();
+            var args = new List<KeyValuePair<string, object>>();
 
             // Add the arguments to a list
             if (worldId == -1 && mapId == -1)
             {
-                throw new ArgumentException(
-                    "Due to a bug, or limitations in the Guild Wars 2 API the events node will return a faulty JSON string. Therefore at least one parameter has to be specified.");
+                throw new ArgumentException("Due to a bug, or limitations in the Guild Wars 2 API the events node will return a faulty JSON string. Therefore at least one parameter has to be specified.");
             }
             else if (worldId == -1)
             {
@@ -245,29 +244,28 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <returns>A <see cref="IEnumerable{T}"/> which has all it's names resolved..</returns>
         private IEnumerable<GameEvent> ResolveNames(IEnumerable<GameEvent> events)
         {
-            List<GameEvent> eventsToReturn = new List<GameEvent>();
+            var eventsToReturn = new List<GameEvent>();
 
             //// Add the names to the events list.
             foreach (GameEvent gameEvent in events)
             {
                 // ReSharper disable AccessToForEachVariableInClosure
-                foreach (KeyValuePair<Guid, string> pair in this.lazyEventNames.Value.Where(pair => pair.Key == gameEvent.EventId))
+                foreach (var pair in this.lazyEventNames.Value.Where(pair => pair.Key == gameEvent.EventId))
                 {
                     gameEvent.Name = pair.Value;
                 }
 
-                foreach (KeyValuePair<int, string> pair in this.lazyMapNames.Value.Where(pair => pair.Key == gameEvent.Map.Id))
+                foreach (var pair in this.lazyMapNames.Value.Where(pair => pair.Key == gameEvent.Map.Id))
                 {
                     gameEvent.Map.Name = pair.Value;
                 }
 
-                foreach (
-                    KeyValuePair<int, string> pair in this.lazyWorldNames.Value.Where(pair => pair.Key == gameEvent.World.Id))
+                foreach (var pair in this.lazyWorldNames.Value.Where(pair => pair.Key == gameEvent.World.Id))
                 {
                     gameEvent.World.Name = pair.Value;
                 }
-                //// ReSharper restore AccessToForEachVariableInClosure
 
+                //// ReSharper restore AccessToForEachVariableInClosure
                 eventsToReturn.Add(gameEvent);
             }
 
@@ -275,46 +273,46 @@ namespace GW2DotNET.V1.DynamicEvents
         }
 
         /// <summary>Gets the world names from the server.</summary>
-        /// <returns>A <see cref="Dictionary{TKey,TValue}"/> containing all world names.</returns>
+        /// <returns>A <see cref="Dictionary{TKey,TValue}" /> containing all world names.</returns>
         private Dictionary<int, string> GetWorldNames()
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
             // Get the response.
-            List<Dictionary<string, string>> namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("world_names.json", args, ApiCall.Categories.DynamicEvents);
+            var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("world_names.json", args, ApiCall.Categories.DynamicEvents);
 
             return this.CleanResponse<Dictionary<int, string>>(namesResponse);
         }
 
         /// <summary>Gets the map names from the server.</summary>
-        /// <returns>A <see cref="Dictionary{TKey,TValue}"/> containing all map names.</returns>
+        /// <returns>A <see cref="Dictionary{TKey,TValue}" /> containing all map names.</returns>
         private Dictionary<int, string> GetMapNames()
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
             // Get the response.
-            List<Dictionary<string, string>> namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("map_names.json", args, ApiCall.Categories.DynamicEvents);
+            var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("map_names.json", args, ApiCall.Categories.DynamicEvents);
 
             return this.CleanResponse<Dictionary<int, string>>(namesResponse);
         }
 
         /// <summary>Gets the event names from the server.</summary>
-        /// <returns>A <see cref="Dictionary{TKey,TValue}"/> containing all the event names.</returns>
+        /// <returns>A <see cref="Dictionary{TKey,TValue}" /> containing all the event names.</returns>
         private Dictionary<Guid, string> GetEventNames()
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
             // Get the response.
-            List<Dictionary<string, string>> namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", args, ApiCall.Categories.DynamicEvents);
+            var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", args, ApiCall.Categories.DynamicEvents);
 
             return this.CleanResponse<Dictionary<Guid, string>>(namesResponse);
         }
@@ -327,16 +325,16 @@ namespace GW2DotNET.V1.DynamicEvents
         {
             Type dictType = typeof(T);
 
-            T cacheDictionary = (T)Activator.CreateInstance(dictType);
+            var cacheDictionary = (T)Activator.CreateInstance(dictType);
 
-            foreach (Dictionary<string, string> dictionary in dictionaryList)
+            foreach (var dictionary in dictionaryList)
             {
                 Type keyType = cacheDictionary.GetType().GetGenericArguments()[0];
 
                 string id = string.Empty;
                 string name = string.Empty;
 
-                foreach (KeyValuePair<string, string> keyValuePair in dictionary)
+                foreach (var keyValuePair in dictionary)
                 {
                     if (keyValuePair.Key == "id")
                     {

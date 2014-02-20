@@ -18,31 +18,19 @@ namespace GW2DotNET.V1.WvW.Models
     [JsonObject]
     public class MatchList : IEnumerable<MatchListEntry>
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MatchList"/> class.
-        /// </summary>
-        /// <param name="matches">
-        /// The list of matches.
-        /// </param>
+        /// <summary>Initializes a new instance of the <see cref="MatchList"/> class.</summary>
+        /// <param name="matches">The list of matches.</param>
         [JsonConstructor]
         public MatchList(List<MatchListEntry> matches)
         {
             this.Matches = matches;
         }
 
-        /// <summary>
-        /// Gets a collection of all matches.
-        /// </summary>
+        /// <summary>Gets a collection of all matches.</summary>
         [JsonProperty("wvw_matches")]
-        public List<MatchListEntry> Matches
-        {
-            get;
-            private set;
-        }
+        public List<MatchListEntry> Matches { get; private set; }
 
-        /// <summary>
-        /// Gets the total number of matches currently running.
-        /// </summary>
+        /// <summary>Gets the total number of matches currently running.</summary>
         public int Count
         {
             get
@@ -51,23 +39,15 @@ namespace GW2DotNET.V1.WvW.Models
             }
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through the collection.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can be used to iterate through the collection.
-        /// </returns>
+        /// <summary>Returns an enumerator that iterates through the collection.</summary>
+        /// <returns>A <see cref="T:System.Collections.Generic.IEnumerator`1" /> that can be used to iterate through the collection.</returns>
         public IEnumerator<MatchListEntry> GetEnumerator()
         {
             return this.Matches.GetEnumerator();
         }
 
-        /// <summary>
-        /// Returns an enumerator that iterates through a collection.
-        /// </summary>
-        /// <returns>
-        /// An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
-        /// </returns>
+        /// <summary>Returns an enumerator that iterates through a collection.</summary>
+        /// <returns>An <see cref="T:System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();

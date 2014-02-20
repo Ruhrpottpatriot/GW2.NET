@@ -11,9 +11,7 @@ using System;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
-    /// <summary>
-    /// The trophy.
-    /// </summary>
+    /// <summary>The trophy.</summary>
     [Serializable]
     public class Trophy
     {

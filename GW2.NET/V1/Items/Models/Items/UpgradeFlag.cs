@@ -6,27 +6,18 @@
 //   Enumerates the upgrade flags.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Models.Items
 {
-    /// <summary>
-    /// Enumerates the upgrade flags.
-    /// </summary>
+    /// <summary>Enumerates the upgrade flags.</summary>
     public enum UpgradeFlag
     {
-        /// <summary>
-        /// The item is a defense item.
-        /// </summary>
-        Defense,
+        /// <summary>The item is a defense item.</summary>
+        Defense, 
 
-        /// <summary>
-        /// The item is a offense item.
-        /// </summary>
-        Offense,
+        /// <summary>The item is a offense item.</summary>
+        Offense, 
 
-        /// <summary>
-        /// The item is a utility item.
-        /// </summary>
-        Utility,
+        /// <summary>The item is a utility item.</summary>
+        Utility, 
     }
 }

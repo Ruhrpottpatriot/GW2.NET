@@ -13,9 +13,7 @@ using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.WvW.Models
 {
-    /// <summary>
-    /// Represents an entry in the <see cref="MatchList"/>.
-    /// </summary>
+    /// <summary>Represents an entry in the <see cref="MatchList" />.</summary>
     public class MatchListEntry
     {
         /// <summary>Initializes a new instance of the <see cref="MatchListEntry"/> class.</summary>
@@ -38,56 +36,26 @@ namespace GW2DotNET.V1.WvW.Models
 
         /// <summary>Gets the match id.</summary>
         [JsonProperty("wvw_match_id")]
-        public string MatchId
-        {
-            get;
-            private set;
-        }
+        public string MatchId { get; private set; }
 
-        /// <summary>
-        /// Gets the id of the red world.
-        /// </summary>
+        /// <summary>Gets the id of the red world.</summary>
         [JsonProperty("red_world_id")]
-        public int RedWorldId
-        {
-            get;
-            private set;
-        }
+        public int RedWorldId { get; private set; }
 
-        /// <summary>
-        /// Gets the id of the blue world.
-        /// </summary>
+        /// <summary>Gets the id of the blue world.</summary>
         [JsonProperty("blue_world_id")]
-        public int BlueWorldId
-        {
-            get;
-            private set;
-        }
+        public int BlueWorldId { get; private set; }
 
-        /// <summary>
-        /// Gets the id of the green world.
-        /// </summary>
+        /// <summary>Gets the id of the green world.</summary>
         [JsonProperty("green_world_id")]
-        public int GreenWorldId
-        {
-            get;
-            private set;
-        }
+        public int GreenWorldId { get; private set; }
 
         /// <summary>Gets the start time.</summary>
         [JsonProperty("start_time")]
-        public DateTime StartTime
-        {
-            get;
-            private set;
-        }
+        public DateTime StartTime { get; private set; }
 
         /// <summary>Gets the end time.</summary>
         [JsonProperty("end_time")]
-        public DateTime EndTime
-        {
-            get;
-            private set;
-        }
+        public DateTime EndTime { get; private set; }
     }
 }

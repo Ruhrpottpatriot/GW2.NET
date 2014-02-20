@@ -11,9 +11,7 @@ using System;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
-    /// <summary>
-    /// The crafting material.
-    /// </summary>
+    /// <summary>The crafting material.</summary>
     [Serializable]
     public class CraftingMaterial
     {

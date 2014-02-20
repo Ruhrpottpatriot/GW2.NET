@@ -31,50 +31,26 @@ namespace GW2DotNET.V1.MapInformation.Models
         }
 
         /// <summary>Gets or sets the id.</summary>
-        public int Id
-        {
-            get;
-            set;
-        }
+        public int Id { get; set; }
 
         /// <summary>Gets the name.</summary>
         [JsonProperty("name")]
-        public string Name
-        {
-            get;
-            private set;
-        }
+        public string Name { get; private set; }
 
         /// <summary>Gets the continent dims.</summary>
         [JsonProperty("continent_dims")]
-        public int[] ContinentDims
-        {
-            get;
-            private set;
-        }
+        public int[] ContinentDims { get; private set; }
 
         /// <summary>Gets the minimum zoom.</summary>
         [JsonProperty("min_zoom")]
-        public int MinimumZoom
-        {
-            get;
-            private set;
-        }
+        public int MinimumZoom { get; private set; }
 
         /// <summary>Gets the maximum zoom.</summary>
         [JsonProperty("max_zoom")]
-        public int MaximumZoom
-        {
-            get;
-            private set;
-        }
+        public int MaximumZoom { get; private set; }
 
         /// <summary>Gets the floors.</summary>
         [JsonProperty("floors")]
-        public int[] Floors
-        {
-            get;
-            private set;
-        }
+        public int[] Floors { get; private set; }
     }
 }

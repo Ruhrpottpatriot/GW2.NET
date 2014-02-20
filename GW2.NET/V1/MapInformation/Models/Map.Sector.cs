@@ -33,35 +33,19 @@ namespace GW2DotNET.V1.MapInformation.Models
 
             /// <summary>Gets the id.</summary>
             [JsonProperty("sector_id")]
-            public int Id
-            {
-                get;
-                private set;
-            }
+            public int Id { get; private set; }
 
             /// <summary>Gets the name.</summary>
             [JsonProperty("name")]
-            public string Name
-            {
-                get;
-                private set;
-            }
+            public string Name { get; private set; }
 
             /// <summary>Gets the level.</summary>
             [JsonProperty("level")]
-            public int Level
-            {
-                get;
-                private set;
-            }
+            public int Level { get; private set; }
 
             /// <summary>Gets the coordinates.</summary>
             [JsonProperty("coord")]
-            public float[] Coordinates
-            {
-                get;
-                private set;
-            }
+            public float[] Coordinates { get; private set; }
         }
     }
 }

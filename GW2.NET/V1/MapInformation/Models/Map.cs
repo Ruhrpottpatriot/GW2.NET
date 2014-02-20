@@ -7,7 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
@@ -60,126 +59,64 @@ namespace GW2DotNET.V1.MapInformation.Models
         }
 
         /// <summary>Gets the id.</summary>
-        public int Id
-        {
-            get;
-            private set;
-        }
+        public int Id { get; private set; }
 
         /// <summary>Gets the name.</summary>
         [JsonProperty("map_name")]
-        public string Name
-        {
-            get;
-            private set;
-        }
+        public string Name { get; private set; }
 
         /// <summary>Gets the minimum level.</summary>
         [JsonProperty("min_level")]
-        public int MinimumLevel
-        {
-            get;
-            private set;
-        }
+        public int MinimumLevel { get; private set; }
 
         /// <summary>Gets the maximum level.</summary>
         [JsonProperty("max_level")]
-        public int MaximumLevel
-        {
-            get;
-            private set;
-        }
+        public int MaximumLevel { get; private set; }
 
         /// <summary>Gets the default floor.</summary>
         [JsonProperty("default_floor")]
-        public int DefaultFloor
-        {
-            get;
-            private set;
-        }
+        public int DefaultFloor { get; private set; }
 
         /// <summary>Gets the floors.</summary>
         [JsonProperty("floors")]
-        public int[] Floors
-        {
-            get;
-            private set;
-        }
+        public int[] Floors { get; private set; }
 
         /// <summary>Gets the region id.</summary>
         [JsonProperty("region_id")]
-        public int RegionId
-        {
-            get;
-            private set;
-        }
+        public int RegionId { get; private set; }
 
         /// <summary>Gets the region name.</summary>
         [JsonProperty("region_name")]
-        public string RegionName
-        {
-            get;
-            private set;
-        }
+        public string RegionName { get; private set; }
 
         /// <summary>Gets the continent.</summary>
-        public Continent Continent
-        {
-            get;
-            private set;
-        }
+        public Continent Continent { get; private set; }
 
         /// <summary>Gets the map rectangle.</summary>
         [JsonProperty("map_rect")]
-        public float[,] MapRectangle
-        {
-            get;
-            private set;
-        }
+        public float[,] MapRectangle { get; private set; }
 
         /// <summary>Gets the continent rectangle.</summary>
         [JsonProperty("continent_rect")]
-        public float[,] ContinentRectangle
-        {
-            get;
-            private set;
-        }
+        public float[,] ContinentRectangle { get; private set; }
 
         /// <summary>Gets the points of interest.</summary>
         [JsonProperty("points_of_interest")]
-        public IEnumerable<PointOfInterest> PointsOfInterest
-        {
-            get;
-            private set;
-        }
+        public IEnumerable<PointOfInterest> PointsOfInterest { get; private set; }
 
         /// <summary>Gets the tasks.</summary>
         [JsonProperty("tasks")]
-        public IEnumerable<Task> Tasks
-        {
-            get;
-            private set;
-        }
+        public IEnumerable<Task> Tasks { get; private set; }
 
         /// <summary>Gets the sectors.</summary>
         [JsonProperty("sectors")]
-        public IEnumerable<Sector> Sectors
-        {
-            get;
-            private set;
-        }
+        public IEnumerable<Sector> Sectors { get; private set; }
 
         /// <summary>Gets the skill challenges.</summary>
         [JsonProperty("skill_challenges")]
-        public IEnumerable<SkillChallenge> SkillChallenges
-        {
-            get;
-            private set;
-        }
+        public IEnumerable<SkillChallenge> SkillChallenges { get; private set; }
 
-        /// <summary>
-        /// Indicates whether this instance and a specified object are equal.
-        /// </summary>
+        /// <summary>Indicates whether this instance and a specified object are equal.</summary>
         /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
         /// <param name="obj">Another object to compare to.</param>
         public override bool Equals(object obj)
@@ -189,9 +126,9 @@ namespace GW2DotNET.V1.MapInformation.Models
                 return false;
             }
 
-            Map map = obj as Map;
+            var map = obj as Map;
 
-            if ((object)map == null)
+            if (map == null)
             {
                 return false;
             }
@@ -199,14 +136,12 @@ namespace GW2DotNET.V1.MapInformation.Models
             return this.Id == map.Id;
         }
 
-        /// <summary>
-        /// Indicates whether this instance and a specified <see cref="Map"/> are equal.
-        /// </summary>
+        /// <summary>Indicates whether this instance and a specified <see cref="Map"/> are equal.</summary>
         /// <returns>true if <paramref name="obj"/> and this instance are the same type and represent the same value; otherwise, false.</returns>
         /// <param name="obj">Another object to compare to. </param>
         public bool Equals(Map obj)
         {
-            if ((object)obj == null)
+            if (obj == null)
             {
                 return false;
             }
@@ -214,9 +149,7 @@ namespace GW2DotNET.V1.MapInformation.Models
             return this.Id == obj.Id;
         }
 
-        /// <summary>
-        /// Returns the hash code for this instance.
-        /// </summary>
+        /// <summary>Returns the hash code for this instance.</summary>
         /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode()
         {

@@ -27,11 +27,7 @@ namespace GW2DotNET.V1.MapInformation.Models
 
             /// <summary>Gets the coordinates.</summary>
             [JsonProperty("coord")]
-            public float[] Coordinates
-            {
-                get;
-                private set;
-            }
+            public float[] Coordinates { get; private set; }
         }
     }
 }

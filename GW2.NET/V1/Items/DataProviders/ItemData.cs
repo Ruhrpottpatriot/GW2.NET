@@ -11,14 +11,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models.Items;
 
 namespace GW2DotNET.V1.Items.DataProviders
 {
-    /// <summary>
-    /// The item data provider.
-    /// </summary>
+    /// <summary>The item data provider.</summary>
     public class ItemData : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
@@ -28,20 +27,16 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>The api manager.</summary>
         private readonly IDataManager dataManager;
 
-        /// <summary>The item cache file name.</summary>
-        private readonly string itemListCacheFileName;
-
         /// <summary>The item id cache file name.</summary>
         private readonly string itemIdListCacheFileName;
 
-        /// <summary>
-        /// The item id cache.
-        /// </summary>
+        /// <summary>The item cache file name.</summary>
+        private readonly string itemListCacheFileName;
+
+        /// <summary>The item id cache.</summary>
         private Lazy<List<int>> itemIdCache;
 
-        /// <summary>
-        /// The items cache.
-        /// </summary>
+        /// <summary>The items cache.</summary>
         private Lazy<List<Item>> itemListCache;
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -100,7 +95,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Asynchronously gets the item id list.</summary>
-        /// <returns>An <see cref="IEnumerable{T}"/> containing all item ids.</returns>
+        /// <returns>An <see cref="IEnumerable{T}" /> containing all item ids.</returns>
         public async Task<IEnumerable<int>> GetItemIdListAsync()
         {
             Dictionary<string, List<int>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, List<int>>>("items.json", null, ApiCall.Categories.Items);
@@ -116,25 +111,24 @@ namespace GW2DotNET.V1.Items.DataProviders
         }
 
         /// <summary>Synchronously gets the item id list.</summary>
-        /// <returns>An <see cref="IEnumerable{T}"/> containing all item ids.</returns>
+        /// <returns>An <see cref="IEnumerable{T}" /> containing all item ids.</returns>
         public IEnumerable<int> GetItemIdList()
         {
             return this.GetItemIdListAsync().Result;
         }
 
         /// <summary>Asynchronously gets the item detail list.</summary>
-        /// <returns>An <see cref="IEnumerable{T}"/> containing all item details.</returns>
+        /// <returns>An <see cref="IEnumerable{T}" /> containing all item details.</returns>
         public async Task<IEnumerable<Item>> GetItemDetailListAsync()
         {
-            List<Item> itemList = new List<Item>();
+            var itemList = new List<Item>();
 
             foreach (int itemId in this.itemIdCache.Value)
             {
                 var args = new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("item_id", itemId),
-                    new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                };
+                           {
+                               new KeyValuePair<string, object>("item_id", itemId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                           };
 
                 Item item = await ApiCall.GetContentAsync<Item>("item_details.json", args, ApiCall.Categories.Items);
 
@@ -150,7 +144,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         }
 
         /// <summary>Synchronously gets the item detail list.</summary>
-        /// <returns>A <see cref="IEnumerable{T}"/> containing all item details.</returns>
+        /// <returns>A <see cref="IEnumerable{T}" /> containing all item details.</returns>
         public IEnumerable<Item> GetItemDetailList()
         {
             return this.GetItemDetailListAsync().Result;
@@ -173,10 +167,9 @@ namespace GW2DotNET.V1.Items.DataProviders
             }
 
             var args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("item_id", itemId),
-                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-            };
+                       {
+                           new KeyValuePair<string, object>("item_id", itemId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
             Item itemToReturn = await ApiCall.GetContentAsync<Item>("item_details.json", args, ApiCall.Categories.Items);
 
@@ -199,19 +192,17 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            GameCache<List<Item>> itemCache = new GameCache<List<Item>>
-            {
-                Build = this.dataManager.Build,
-                CacheData = this.itemListCache.Value
-            };
+            var itemCache = new GameCache<List<Item>>
+                            {
+                                Build = this.dataManager.Build, CacheData = this.itemListCache.Value
+                            };
 
             this.WriteDataToDisk(this.itemListCacheFileName, itemCache);
 
-            GameCache<List<int>> idCache = new GameCache<List<int>>
-            {
-                Build = this.dataManager.Build,
-                CacheData = this.itemIdCache.Value
-            };
+            var idCache = new GameCache<List<int>>
+                          {
+                              Build = this.dataManager.Build, CacheData = this.itemIdCache.Value
+                          };
 
             this.WriteDataToDisk(this.itemIdListCacheFileName, idCache);
         }

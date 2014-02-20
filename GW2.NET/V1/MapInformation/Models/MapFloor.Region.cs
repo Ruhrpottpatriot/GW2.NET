@@ -33,35 +33,19 @@ namespace GW2DotNET.V1.MapInformation.Models
             }
 
             /// <summary>Gets the id.</summary>
-            public int Id
-            {
-                get;
-                internal set;
-            }
+            public int Id { get; internal set; }
 
             /// <summary>Gets the name.</summary>
             [JsonProperty("name")]
-            public string Name
-            {
-                get;
-                private set;
-            }
+            public string Name { get; private set; }
 
             /// <summary>Gets the label coordinates.</summary>
             [JsonProperty("label_coord")]
-            public int[] LabelCoordinates
-            {
-                get;
-                private set;
-            }
+            public int[] LabelCoordinates { get; private set; }
 
             /// <summary>Gets the maps.</summary>
             [JsonProperty("maps")]
-            public List<Map> Maps
-            {
-                get;
-                private set;
-            }
+            public List<Map> Maps { get; private set; }
 
             /// <summary>Resolves the Id for the current instance of the Region struct</summary>
             /// <param name="id">The id.</param>

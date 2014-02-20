@@ -35,43 +35,23 @@ namespace GW2DotNET.V1.MapInformation.Models
 
             /// <summary>Gets the id.</summary>
             [JsonProperty("poi_id")]
-            public int Id
-            {
-                get;
-                private set;
-            }
+            public int Id { get; private set; }
 
             /// <summary>Gets the name.</summary>
             [JsonProperty("name")]
-            public string Name
-            {
-                get;
-                private set;
-            }
+            public string Name { get; private set; }
 
             /// <summary>Gets the type.</summary>
             [JsonProperty("type")]
-            public PoiType Type
-            {
-                get;
-                private set;
-            }
+            public PoiType Type { get; private set; }
 
             /// <summary>Gets the floor.</summary>
             [JsonProperty("floor")]
-            public int Floor
-            {
-                get;
-                private set;
-            }
+            public int Floor { get; private set; }
 
             /// <summary>Gets the coordinates.</summary>
             [JsonProperty("coord")]
-            public float[] Coordinates
-            {
-                get;
-                private set;
-            }
+            public float[] Coordinates { get; private set; }
         }
     }
 }
