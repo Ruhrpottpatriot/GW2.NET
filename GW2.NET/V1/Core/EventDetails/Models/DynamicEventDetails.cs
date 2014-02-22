@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
     /// <summary>
     /// Represents details about a specific dynamic event.
     /// </summary>
-    public partial class DynamicEventDetails : JsonObject
+    public class DynamicEventDetails : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicEventDetails"/> class.
