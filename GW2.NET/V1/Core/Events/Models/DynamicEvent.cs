@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.Events.Models
     /// <summary>
     /// Represents a dynamic event and its status.
     /// </summary>
-    public partial class DynamicEvent : JsonObject
+    public class DynamicEvent : JsonObject
     {
         /// <summary>
         /// Gets or sets the <see cref="Guid"/> identifying the event.
