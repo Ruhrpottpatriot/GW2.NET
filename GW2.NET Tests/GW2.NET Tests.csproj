@@ -113,6 +113,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ColoursTests.cs" />
+    <Compile Include="CoreTests\ItemsTests.cs" />
     <Compile Include="CoreTests\GuildTests.cs" />
     <Compile Include="CoreTests\DynamicEventsTests.cs" />
     <Compile Include="CoreTests\ColorTests.cs" />

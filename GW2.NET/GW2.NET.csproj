@@ -114,6 +114,9 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEvents.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\Emblem.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\EmblemTransformations.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Catalog\Items.cs" />
+    <Compile Include="V1\Core\ItemsInformation\ItemsRequest.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Catalog\ItemsResult.cs" />
     <Compile Include="V1\Core\JsonList.cs" />
     <Compile Include="V1\Core\JsonObject.cs" />
     <Compile Include="V1\Core\BuildInformation\BuildRequest.cs" />
@@ -243,11 +246,9 @@
     <Compile Include="V1\Core\ItemDetails\Models\Common\InfusionSlotTypes.cs" />
     <Compile Include="V1\Core\ItemDetails\ItemDetailsRequest.cs" />
     <Compile Include="V1\Core\ItemDetails\ItemDetailsResponse.cs" />
-    <Compile Include="V1\Core\Items\ItemsResponse.cs" />
     <Compile Include="V1\Core\IApiClient.cs" />
     <Compile Include="V1\Core\IApiRequest.cs" />
     <Compile Include="V1\Core\IApiResponse.cs" />
-    <Compile Include="V1\Core\Items\ItemsRequest.cs" />
     <Compile Include="V1\Core\JsonDictionary.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
