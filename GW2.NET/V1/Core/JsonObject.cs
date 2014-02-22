@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="indent">A value that indicates whether to indent the output.</param>
         /// <returns>Returns a JSON <see cref="System.String"/>.</returns>
-        public string ToString(bool indent)
+        public virtual string ToString(bool indent)
         {
             return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
         }
