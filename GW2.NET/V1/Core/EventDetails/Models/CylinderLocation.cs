@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.Drawing;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.EventDetails.Models
@@ -22,21 +21,6 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         public CylinderLocation()
             : base(LocationShape.Cylinder)
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CylinderLocation"/> class using the specified values.
-        /// </summary>
-        /// <param name="center">The location's center.</param>
-        /// <param name="height">The location's height.</param>
-        /// <param name="radius">The location's radius.</param>
-        /// <param name="rotation">The location's rotation.</param>
-        public CylinderLocation(Point3D center, double height, double radius, double rotation)
-            : base(LocationShape.Cylinder, center)
-        {
-            this.Height = height;
-            this.Radius = radius;
-            this.Rotation = rotation;
         }
 
         /// <summary>

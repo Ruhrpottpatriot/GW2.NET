@@ -16,32 +16,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.UpgradeComponents
     public class UpgradeComponentItemDetails : ItemDetailsBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpgradeComponentItemDetails"/> class.
-        /// </summary>
-        public UpgradeComponentItemDetails()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UpgradeComponentItemDetails"/> class.
-        /// </summary>
-        /// <param name="type">The upgrade component's type.</param>
-        /// <param name="flags">The upgrade component's flags.</param>
-        /// <param name="infusionUpgradeFlags">The upgrade component's infusion upgrades.</param>
-        /// <param name="bonuses">The upgrade component's bonuses.</param>
-        /// <param name="infixUpgrade">The upgrade component's infix upgrade.</param>
-        /// <param name="suffix">The upgrade component's suffix.</param>
-        public UpgradeComponentItemDetails(UpgradeComponentType type, UpgradeComponentFlags flags, InfusionSlotTypes infusionUpgradeFlags, IEnumerable<string> bonuses, InfixUpgrade infixUpgrade, string suffix)
-        {
-            this.Type = type;
-            this.Flags = flags;
-            this.InfusionUpgradeFlags = infusionUpgradeFlags;
-            this.Bonuses = bonuses;
-            this.InfixUpgrade = infixUpgrade;
-            this.Suffix = suffix;
-        }
-
-        /// <summary>
         /// Gets or sets the upgrade component's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]

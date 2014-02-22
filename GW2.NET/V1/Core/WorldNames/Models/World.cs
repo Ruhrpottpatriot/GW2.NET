@@ -14,24 +14,6 @@ namespace GW2DotNET.V1.Core.WorldNames.Models
     public class World : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="World"/> class.
-        /// </summary>
-        public World()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="World"/> class using the specified values.
-        /// </summary>
-        /// <param name="id">The world's ID.</param>
-        /// <param name="name">The world's name.</param>
-        public World(int id, string name)
-        {
-            this.Id = id;
-            this.Name = name;
-        }
-
-        /// <summary>
         /// Gets or sets the world's ID.
         /// </summary>
         [JsonProperty("id", Order = 0)]

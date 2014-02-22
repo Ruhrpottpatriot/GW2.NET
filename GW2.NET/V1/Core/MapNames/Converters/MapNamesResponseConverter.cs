@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.MapNames.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(MapNamesResponseConverter).IsAssignableFrom(objectType);
+            return typeof(MapNamesResponse).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Core.MapNames.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return new MapNamesResponse(serializer.Deserialize<IEnumerable<Map>>(reader));
+            return new MapNamesResponse() { Maps = serializer.Deserialize<IEnumerable<Map>>(reader) };
         }
 
         /// <summary>

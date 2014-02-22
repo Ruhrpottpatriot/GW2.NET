@@ -22,22 +22,6 @@ namespace GW2DotNET.V1.Core.MapNames
     public class MapNamesResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapNamesResponse"/> class.
-        /// </summary>
-        public MapNamesResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MapNamesResponse"/> class using the specified list of maps.
-        /// </summary>
-        /// <param name="maps">The list of maps.</param>
-        public MapNamesResponse(IEnumerable<Map> maps)
-        {
-            this.Maps = maps;
-        }
-
-        /// <summary>
         /// Gets or sets the list of maps.
         /// </summary>
         public IEnumerable<Map> Maps { get; set; }

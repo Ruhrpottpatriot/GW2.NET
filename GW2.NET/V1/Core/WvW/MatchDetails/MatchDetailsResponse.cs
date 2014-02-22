@@ -19,26 +19,6 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails
     public class MatchDetailsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MatchDetailsResponse"/> class.
-        /// </summary>
-        public MatchDetailsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MatchDetailsResponse"/> class using the specified values.
-        /// </summary>
-        /// <param name="matchId">The match's ID.</param>
-        /// <param name="scores">The total scores.</param>
-        /// <param name="maps">The list of maps.</param>
-        public MatchDetailsResponse(string matchId, Scoreboard scores, IEnumerable<Map> maps)
-        {
-            this.MatchId = matchId;
-            this.Scores = scores;
-            this.Maps = maps;
-        }
-
-        /// <summary>
         /// Gets or sets the list of maps.
         /// </summary>
         [JsonProperty("maps", Order = 2)]

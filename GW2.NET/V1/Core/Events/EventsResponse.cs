@@ -19,22 +19,6 @@ namespace GW2DotNET.V1.Core.Events
     public class EventsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventsResponse"/> class.
-        /// </summary>
-        public EventsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EventsResponse"/> class using the specified list of events.
-        /// </summary>
-        /// <param name="events">The list of events.</param>
-        public EventsResponse(IEnumerable<DynamicEvent> events)
-        {
-            this.Events = events;
-        }
-
-        /// <summary>
         /// Gets or sets a list of event details.
         /// </summary>
         [JsonProperty("events", Order = 0)]

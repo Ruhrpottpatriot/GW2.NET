@@ -24,16 +24,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableItemDetails"/> class using the specified values.
-        /// </summary>
-        /// <param name="recipeId">The crafting recipe's ID.</param>
-        public CraftingRecipeUnlockConsumableItemDetails(int recipeId)
-            : base(UnlockType.CraftingRecipe)
-        {
-            this.RecipeId = recipeId;
-        }
-
-        /// <summary>
         /// Gets or sets the crafting recipe's ID.
         /// </summary>
         [JsonProperty("recipe_id", Order = 102)]

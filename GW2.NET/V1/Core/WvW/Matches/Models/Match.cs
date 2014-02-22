@@ -15,32 +15,6 @@ namespace GW2DotNET.V1.Core.WvW.Matches.Models
     public class Match : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Match"/> class.
-        /// </summary>
-        public Match()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Match"/> class using the specified values.
-        /// </summary>
-        /// <param name="matchId">The match's ID.</param>
-        /// <param name="redWorldId">The red world's ID.</param>
-        /// <param name="blueWorldId">The blue world's ID.</param>
-        /// <param name="greenWorldId">The green world's ID.</param>
-        /// <param name="startTime">The timestamp (UTC) of when the match started.</param>
-        /// <param name="endTime">The timestamp (UTC) of when the match ends.</param>
-        public Match(string matchId, int redWorldId, int blueWorldId, int greenWorldId, DateTimeOffset startTime, DateTimeOffset endTime)
-        {
-            this.MatchId = matchId;
-            this.RedWorldId = redWorldId;
-            this.BlueWorldId = blueWorldId;
-            this.GreenWorldId = greenWorldId;
-            this.StartTime = startTime;
-            this.EndTime = endTime;
-        }
-
-        /// <summary>
         /// Gets or sets the blue world's ID.
         /// </summary>
         [JsonProperty("blue_world_id", Order = 2)]

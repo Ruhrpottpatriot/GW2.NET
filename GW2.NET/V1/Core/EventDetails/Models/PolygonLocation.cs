@@ -7,7 +7,6 @@
 using System.Collections.Generic;
 using System.Drawing;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.Drawing;
 using Newtonsoft.Json;
 using JsonPointConverter = GW2DotNET.V1.Core.Converters.PointConverter;
 
@@ -25,19 +24,6 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         public PolygonLocation()
             : base(LocationShape.Polygon)
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PolygonLocation"/> class using the specified values.
-        /// </summary>
-        /// <param name="center">The location's center.</param>
-        /// <param name="zRange">The location's range on the z-axis.</param>
-        /// <param name="points">The series of points in the polygon.</param>
-        public PolygonLocation(Point3D center, Point zRange, IEnumerable<PointF> points)
-            : base(LocationShape.Polygon, center)
-        {
-            this.ZRange = zRange;
-            this.Points = points;
         }
 
         /// <summary>

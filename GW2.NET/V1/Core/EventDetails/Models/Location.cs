@@ -20,28 +20,10 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
         /// </summary>
-        protected Location()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Location"/> class using the specified values.
-        /// </summary>
         /// <param name="type">The location's shape.</param>
         protected Location(LocationShape type)
         {
             this.LocationType = type;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Location"/> class using the specified values.
-        /// </summary>
-        /// <param name="type">The location's shape.</param>
-        /// <param name="center">The location's center.</param>
-        protected Location(LocationShape type, Point3D center)
-        {
-            this.LocationType = type;
-            this.Center = center;
         }
 
         /// <summary>

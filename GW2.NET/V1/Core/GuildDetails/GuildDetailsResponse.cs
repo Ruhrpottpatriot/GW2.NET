@@ -20,28 +20,6 @@ namespace GW2DotNET.V1.Core.GuildDetails
     public class GuildDetailsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GuildDetailsResponse"/> class.
-        /// </summary>
-        public GuildDetailsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GuildDetailsResponse"/> class.
-        /// </summary>
-        /// <param name="guildId">The guild's ID.</param>
-        /// <param name="guildName">The guild's name.</param>
-        /// <param name="guildTag">The guild's tag.</param>
-        /// <param name="guildEmblem">The guild's emblem.</param>
-        public GuildDetailsResponse(Guid guildId, string guildName, string guildTag, Emblem guildEmblem)
-        {
-            this.GuildId = guildId;
-            this.GuildName = guildName;
-            this.GuildTag = guildTag;
-            this.GuildEmblem = guildEmblem;
-        }
-
-        /// <summary>
         /// Gets or sets detailed information about the guild's emblem, if any.
         /// </summary>
         [JsonProperty("emblem", Order = 3)]

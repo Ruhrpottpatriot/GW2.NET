@@ -14,24 +14,6 @@ namespace GW2DotNET.V1.Core.Files.Models
     public class Asset : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Asset"/> class.
-        /// </summary>
-        public Asset()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Asset"/> class.
-        /// </summary>
-        /// <param name="fileId">The file ID.</param>
-        /// <param name="signature">The file signature.</param>
-        public Asset(string fileId, string signature)
-        {
-            this.FileId = fileId;
-            this.Signature = signature;
-        }
-
-        /// <summary>
         /// Gets or sets the file ID to be used with the render service.
         /// </summary>
         [JsonProperty("file_id", Order = 0)]

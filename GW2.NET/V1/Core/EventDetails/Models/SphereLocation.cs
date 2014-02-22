@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.Drawing;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.EventDetails.Models
@@ -22,19 +21,6 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         public SphereLocation()
             : base(LocationShape.Sphere)
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SphereLocation"/> class using the specified values.
-        /// </summary>
-        /// <param name="center">The location's center.</param>
-        /// <param name="radius">The location's radius.</param>
-        /// <param name="rotation">The location's rotation.</param>
-        public SphereLocation(Point3D center, double radius, double rotation)
-            : base(LocationShape.Sphere, center)
-        {
-            this.Radius = radius;
-            this.Rotation = rotation;
         }
 
         /// <summary>

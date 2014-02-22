@@ -16,22 +16,6 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
     public class SkillChallenge : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SkillChallenge"/> class.
-        /// </summary>
-        public SkillChallenge()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SkillChallenge"/> class using the specified values.
-        /// </summary>
-        /// <param name="coordinates">The skill challenge's coordinates.</param>
-        public SkillChallenge(PointF coordinates)
-        {
-            this.Coordinates = coordinates;
-        }
-
-        /// <summary>
         /// Gets or sets the skill challenge's coordinates.
         /// </summary>
         [JsonProperty("coord", Order = 0)]

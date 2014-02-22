@@ -15,33 +15,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     public class InfixUpgrade : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InfixUpgrade"/> class.
-        /// </summary>
-        public InfixUpgrade()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InfixUpgrade"/> class using the specified values.
-        /// </summary>
-        /// <param name="attributes">The item's attributes.</param>
-        public InfixUpgrade(IEnumerable<ItemAttribute> attributes)
-        {
-            this.Attributes = attributes;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InfixUpgrade"/> class using the specified values.
-        /// </summary>
-        /// <param name="buff">The item's buff.</param>
-        /// <param name="attributes">The item's attributes.</param>
-        public InfixUpgrade(ItemBuff buff, IEnumerable<ItemAttribute> attributes)
-        {
-            this.Buff = buff;
-            this.Attributes = attributes;
-        }
-
-        /// <summary>
         /// Gets or sets the item's attributes.
         /// </summary>
         [JsonProperty("attributes", Order = 1)]

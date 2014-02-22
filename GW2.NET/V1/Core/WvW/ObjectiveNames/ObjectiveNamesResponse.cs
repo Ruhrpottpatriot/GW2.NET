@@ -21,22 +21,6 @@ namespace GW2DotNET.V1.Core.WvW.ObjectiveNames
     public class ObjectiveNamesResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectiveNamesResponse"/> class.
-        /// </summary>
-        public ObjectiveNamesResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectiveNamesResponse"/> class using the specified list of objectives.
-        /// </summary>
-        /// <param name="objectives">The list of objectives.</param>
-        public ObjectiveNamesResponse(IEnumerable<Objective> objectives)
-        {
-            this.Objectives = objectives;
-        }
-
-        /// <summary>
         /// Gets or sets the list of objectives.
         /// </summary>
         public IEnumerable<Objective> Objectives { get; set; }

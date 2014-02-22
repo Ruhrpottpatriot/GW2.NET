@@ -36,11 +36,8 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails.Converters
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var scores = serializer.Deserialize<int[]>(reader);
-            var red    = scores[0];
-            var blue   = scores[1];
-            var green  = scores[2];
 
-            return new Scoreboard(red, blue, green);
+            return new Scoreboard() { Red = scores[0], Blue = scores[1], Green = scores[2] };
         }
 
         /// <summary>

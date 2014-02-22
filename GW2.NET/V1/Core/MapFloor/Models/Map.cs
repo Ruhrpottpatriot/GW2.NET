@@ -17,40 +17,6 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
     public class Map : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map"/> class.
-        /// </summary>
-        public Map()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Map"/> class using the specified values.
-        /// </summary>
-        /// <param name="name">The map's name.</param>
-        /// <param name="minimumLevel">The minimum level of this map.</param>
-        /// <param name="maximumLevel">The maximum level of this map.</param>
-        /// <param name="defaultFloor">The default floor of this map.</param>
-        /// <param name="mapRectangle">The dimensions of the map.</param>
-        /// <param name="continentRectangle">The dimensions of the map within the continent coordinate system.</param>
-        /// <param name="pointsOfInterest">The list of Points of Interest.</param>
-        /// <param name="tasks">The list of renown hearts.</param>
-        /// <param name="skillChallenges">The list of skill challenges.</param>
-        /// <param name="sectors">The list of areas within the map.</param>
-        public Map(string name, int minimumLevel, int maximumLevel, int defaultFloor, Rectangle mapRectangle, Rectangle continentRectangle, IEnumerable<PointOfInterest> pointsOfInterest, IEnumerable<Task> tasks, IEnumerable<SkillChallenge> skillChallenges, IEnumerable<Sector> sectors)
-        {
-            this.Name = name;
-            this.MinimumLevel = minimumLevel;
-            this.MaximumLevel = maximumLevel;
-            this.DefaultFloor = defaultFloor;
-            this.MapRectangle = mapRectangle;
-            this.ContinentRectangle = continentRectangle;
-            this.PointsOfInterest = pointsOfInterest;
-            this.Tasks = tasks;
-            this.SkillChallenges = skillChallenges;
-            this.Sectors = sectors;
-        }
-
-        /// <summary>
         /// Gets or sets the dimensions of the map within the continent coordinate system.
         /// </summary>
         [JsonProperty("continent_rect", Order = 5)]

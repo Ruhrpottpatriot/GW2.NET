@@ -17,30 +17,6 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
     public class PointOfInterest : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PointOfInterest"/> class.
-        /// </summary>
-        public PointOfInterest()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="PointOfInterest"/> class using the specified values.
-        /// </summary>
-        /// <param name="poiId">The Point of Interest's ID.</param>
-        /// <param name="name">The Point of Interest's name.</param>
-        /// <param name="type">The Point of Interest's type.</param>
-        /// <param name="floor">The Point of Interest's floor.</param>
-        /// <param name="coordinates">The Point of Interest's coordinates.</param>
-        public PointOfInterest(int poiId, string name, PointOfInterestCategory type, int floor, PointF coordinates)
-        {
-            this.PoiId = poiId;
-            this.Name = name;
-            this.Type = type;
-            this.Floor = floor;
-            this.Coordinates = coordinates;
-        }
-
-        /// <summary>
         /// Gets or sets the Point of Interest's coordinates.
         /// </summary>
         [JsonProperty("coord", Order = 4)]

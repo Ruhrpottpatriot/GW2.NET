@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         {
             var itemDetails = serializer.Deserialize<Item>(reader);
 
-            return new ItemDetailsResponse(itemDetails);
+            return new ItemDetailsResponse() { ItemDetails = itemDetails };
         }
 
         /// <summary>

@@ -16,28 +16,6 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
     public class Sector : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Sector"/> class.
-        /// </summary>
-        public Sector()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Sector"/> class using the specified values.
-        /// </summary>
-        /// <param name="sectorId">The sector's ID.</param>
-        /// <param name="name">The sector's name.</param>
-        /// <param name="level">The sector's level.</param>
-        /// <param name="coordinates">The sector's coordinates.</param>
-        public Sector(int sectorId, string name, int level, PointF coordinates)
-        {
-            this.SectorId = sectorId;
-            this.Name = name;
-            this.Level = level;
-            this.Coordinates = coordinates;
-        }
-
-        /// <summary>
         /// Gets or sets the sector's coordinates, which is (usually) the center position.
         /// </summary>
         [JsonProperty("coord", Order = 3)]

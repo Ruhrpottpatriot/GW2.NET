@@ -14,30 +14,6 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
     public class DynamicEventDetails : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicEventDetails"/> class.
-        /// </summary>
-        public DynamicEventDetails()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicEventDetails"/> class.
-        /// </summary>
-        /// <param name="name">The name of the event.</param>
-        /// <param name="level">The event level.</param>
-        /// <param name="mapId">The map where the event takes place.</param>
-        /// <param name="flags">Additional flags.</param>
-        /// <param name="location">The location of the event.</param>
-        public DynamicEventDetails(string name, int level, int mapId, DynamicEventStyles flags, Location location)
-        {
-            this.Name = name;
-            this.Level = level;
-            this.MapId = mapId;
-            this.Flags = flags;
-            this.Location = location;
-        }
-
-        /// <summary>
         /// Gets or sets additional flags.
         /// </summary>
         [JsonProperty("flags", Order = 3)]

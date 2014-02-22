@@ -15,26 +15,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     public abstract class EquipmentItemDetails : ItemDetailsBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EquipmentItemDetails"/> class.
-        /// </summary>
-        protected EquipmentItemDetails()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EquipmentItemDetails"/> class.
-        /// </summary>
-        /// <param name="infusionSlots">The item's infusion slots.</param>
-        /// <param name="infixUpgrade">The item's infix upgrade.</param>
-        /// <param name="suffixItemId">The item's suffix item ID.</param>
-        protected EquipmentItemDetails(IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int? suffixItemId)
-        {
-            this.InfusionSlots = infusionSlots;
-            this.InfixUpgrade = infixUpgrade;
-            this.SuffixItemId = suffixItemId;
-        }
-
-        /// <summary>
         /// Gets or sets the item's infix upgrade.
         /// </summary>
         [JsonProperty("infix_upgrade", Order = 101, NullValueHandling = NullValueHandling.Ignore)]

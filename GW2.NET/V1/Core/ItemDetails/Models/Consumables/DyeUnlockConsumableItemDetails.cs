@@ -24,16 +24,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyeUnlockConsumableItemDetails"/> class using the specified values.
-        /// </summary>
-        /// <param name="colorId">The dye's color ID.</param>
-        public DyeUnlockConsumableItemDetails(int colorId)
-            : base(UnlockType.Dye)
-        {
-            this.ColorId = colorId;
-        }
-
-        /// <summary>
         /// Gets or sets the dye's color ID.
         /// </summary>
         [JsonProperty("color_id", Order = 101)]

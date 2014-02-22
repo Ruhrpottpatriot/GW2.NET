@@ -16,26 +16,6 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
     public class Scoreboard : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Scoreboard"/> class.
-        /// </summary>
-        public Scoreboard()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Scoreboard"/> class using the specified values.
-        /// </summary>
-        /// <param name="red">The red team's score.</param>
-        /// <param name="blue">The blue team's score.</param>
-        /// <param name="green">The green team's score.</param>
-        public Scoreboard(int red, int blue, int green)
-        {
-            this.Red = red;
-            this.Blue = blue;
-            this.Green = green;
-        }
-
-        /// <summary>
         /// Gets or sets the blue team's score.
         /// </summary>
         public int Blue { get; set; }

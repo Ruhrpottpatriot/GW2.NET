@@ -25,37 +25,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Item"/> class using the specified values.
-        /// </summary>
-        /// <param name="itemId">The item's ID.</param>
-        /// <param name="name">The item's name.</param>
-        /// <param name="description">The item's description.</param>
-        /// <param name="type">The item's type.</param>
-        /// <param name="level">The item's level.</param>
-        /// <param name="rarity">The item's rarity.</param>
-        /// <param name="vendorValue">The item's vendor value.</param>
-        /// <param name="iconFileId">The item's icon ID.</param>
-        /// <param name="iconFileSignature">The item's icon signature.</param>
-        /// <param name="gameTypes">The item's game types.</param>
-        /// <param name="flags">The item's additional flags.</param>
-        /// <param name="restrictions">The item's restrictions.</param>
-        protected Item(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions)
-        {
-            this.ItemId = itemId;
-            this.Name = name;
-            this.Description = description;
-            this.Type = type;
-            this.Level = level;
-            this.Rarity = rarity;
-            this.VendorValue = vendorValue;
-            this.IconFileId = iconFileId;
-            this.IconFileSignature = iconFileSignature;
-            this.GameTypes = gameTypes;
-            this.Flags = flags;
-            this.Restrictions = restrictions;
-        }
-
-        /// <summary>
         /// Gets or sets the item's ID.
         /// </summary>
         [JsonProperty("item_id", Order = 0)]

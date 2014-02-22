@@ -39,7 +39,7 @@ namespace GW2DotNET.V1.Core.Files.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return new FilesResponse(serializer.Deserialize<Assets>(reader));
+            return new FilesResponse() { Files = serializer.Deserialize<Assets>(reader) };
         }
 
         /// <summary>

@@ -20,22 +20,6 @@ namespace GW2DotNET.V1.Core.ItemDetails
     public class ItemDetailsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemDetailsResponse"/> class.
-        /// </summary>
-        public ItemDetailsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ItemDetailsResponse"/> class using the specified values.
-        /// </summary>
-        /// <param name="itemDetails">The item details.</param>
-        public ItemDetailsResponse(Item itemDetails)
-        {
-            this.ItemDetails = itemDetails;
-        }
-
-        /// <summary>
         /// Gets or sets the item details.
         /// </summary>
         public Item ItemDetails { get; set; }

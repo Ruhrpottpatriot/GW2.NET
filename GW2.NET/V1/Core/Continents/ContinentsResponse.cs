@@ -19,22 +19,6 @@ namespace GW2DotNET.V1.Core.Continents
     public class ContinentsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContinentsResponse"/> class.
-        /// </summary>
-        public ContinentsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ContinentsResponse"/> class using the specified values.
-        /// </summary>
-        /// <param name="continents">The collection of continents.</param>
-        public ContinentsResponse(IDictionary<int, Continent> continents)
-        {
-            this.Continents = continents;
-        }
-
-        /// <summary>
         /// Gets or sets the collection of continents.
         /// </summary>
         [JsonProperty("continents", Order = 0)]

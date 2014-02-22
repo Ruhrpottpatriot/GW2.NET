@@ -19,22 +19,6 @@ namespace GW2DotNET.V1.Core.WvW.Matches
     public class MatchesResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MatchesResponse"/> class.
-        /// </summary>
-        public MatchesResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MatchesResponse"/> class using the specified values.
-        /// </summary>
-        /// <param name="matches">The list of matches.</param>
-        public MatchesResponse(IEnumerable<Match> matches)
-        {
-            this.Matches = matches;
-        }
-
-        /// <summary>
         /// Gets or sets the list of matches.
         /// </summary>
         [JsonProperty("wvw_matches", Order = 0)]

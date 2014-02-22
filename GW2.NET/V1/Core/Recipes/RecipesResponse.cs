@@ -18,22 +18,6 @@ namespace GW2DotNET.V1.Core.Recipes
     public class RecipesResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RecipesResponse"/> class.
-        /// </summary>
-        public RecipesResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RecipesResponse"/> class using the specified values.
-        /// </summary>
-        /// <param name="recipes">The list of discovered recipes.</param>
-        public RecipesResponse(IEnumerable<int> recipes)
-        {
-            this.Recipes = recipes;
-        }
-
-        /// <summary>
         /// Gets or sets the list of discovered recipes.
         /// </summary>
         [JsonProperty("recipes", Order = 0)]

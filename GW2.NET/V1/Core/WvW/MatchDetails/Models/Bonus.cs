@@ -14,24 +14,6 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
     public class Bonus : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Bonus"/> class.
-        /// </summary>
-        public Bonus()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Bonus"/> class using the specified values.
-        /// </summary>
-        /// <param name="type">The bonus type.</param>
-        /// <param name="owner">The team that holds the bonus.</param>
-        public Bonus(BonusType type, TeamColor owner)
-        {
-            this.Type = type;
-            this.Owner = owner;
-        }
-
-        /// <summary>
         /// Gets or sets the team that holds the bonus.
         /// </summary>
         [JsonProperty("owner", Order = 1)]

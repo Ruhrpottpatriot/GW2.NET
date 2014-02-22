@@ -15,22 +15,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Tools
     public class ToolItemDetails : ItemDetailsBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ToolItemDetails"/> class.
-        /// </summary>
-        public ToolItemDetails()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ToolItemDetails"/> class using the specified values.
-        /// </summary>
-        /// <param name="type">The tool's type.</param>
-        public ToolItemDetails(ToolType type)
-        {
-            this.Type = type;
-        }
-
-        /// <summary>
         /// Gets or sets the tool's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]

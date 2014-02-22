@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Core.WvW.ObjectiveNames.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return new ObjectiveNamesResponse(serializer.Deserialize<IEnumerable<Objective>>(reader));
+            return new ObjectiveNamesResponse() { Objectives = serializer.Deserialize<IEnumerable<Objective>>(reader) };
         }
 
         /// <summary>

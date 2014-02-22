@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.ComponentModel;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
@@ -14,33 +15,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     public class InfusionSlot : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InfusionSlot"/> class.
-        /// </summary>
-        public InfusionSlot()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InfusionSlot"/> class using the specified values.
-        /// </summary>
-        /// <param name="flags">The infusion slot's type(s)</param>
-        public InfusionSlot(InfusionSlotTypes flags)
-            : this(flags, null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InfusionSlot"/> class using the specified values.
-        /// </summary>
-        /// <param name="flags">The infusion slot's type(s)</param>
-        /// <param name="item">The infusion slot's item. Reserved for future use.</param>
-        public InfusionSlot(InfusionSlotTypes flags, string item)
-        {
-            this.Flags = flags;
-            this.Item = item;
-        }
-
-        /// <summary>
         /// Gets or sets the infusion slot's type(s).
         /// </summary>
         [JsonProperty("flags", Order = 0)]
@@ -50,6 +24,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
         /// Gets or sets the infusion slot's item. Reserved for future use.
         /// </summary>
         [JsonProperty("item", Order = 1, NullValueHandling = NullValueHandling.Ignore)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Item { get; set; }
     }
 }

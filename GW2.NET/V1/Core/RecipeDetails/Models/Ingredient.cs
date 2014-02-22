@@ -14,24 +14,6 @@ namespace GW2DotNET.V1.Core.RecipeDetails.Models
     public class Ingredient : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Ingredient"/> class.
-        /// </summary>
-        public Ingredient()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Ingredient"/> class using the specified values.
-        /// </summary>
-        /// <param name="itemId">The required item.</param>
-        /// <param name="count">The number of items required.</param>
-        public Ingredient(int itemId, int count)
-        {
-            this.ItemId = itemId;
-            this.Count = count;
-        }
-
-        /// <summary>
         /// Gets or sets the number of items required.
         /// </summary>
         [JsonProperty("count", Order = 1)]

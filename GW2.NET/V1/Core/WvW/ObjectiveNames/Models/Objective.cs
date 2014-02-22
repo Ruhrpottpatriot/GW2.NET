@@ -14,24 +14,6 @@ namespace GW2DotNET.V1.Core.WvW.ObjectiveNames.Models
     public class Objective : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Objective"/> class.
-        /// </summary>
-        public Objective()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Objective"/> class using the specified values.
-        /// </summary>
-        /// <param name="id">The objective's ID.</param>
-        /// <param name="name">The objective's name.</param>
-        public Objective(int id, string name)
-        {
-            this.Id = id;
-            this.Name = name;
-        }
-
-        /// <summary>
         /// Gets or sets the objective's ID.
         /// </summary>
         [JsonProperty("id", Order = 0)]

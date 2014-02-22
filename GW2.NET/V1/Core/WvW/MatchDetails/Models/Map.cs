@@ -15,28 +15,6 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
     public class Map : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Map"/> class.
-        /// </summary>
-        public Map()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Map"/> class using the specified values.
-        /// </summary>
-        /// <param name="type">The map's type.</param>
-        /// <param name="scores">The map's scoreboard.</param>
-        /// <param name="objectives">The map's objectives.</param>
-        /// <param name="bonuses">The map's bonuses.</param>
-        public Map(MapType type, Scoreboard scores, IEnumerable<Objective> objectives, IEnumerable<Bonus> bonuses)
-        {
-            this.Type = type;
-            this.Scores = scores;
-            this.Objectives = objectives;
-            this.Bonuses = bonuses;
-        }
-
-        /// <summary>
         /// Gets or sets the map's bonuses.
         /// </summary>
         [JsonProperty("bonuses", Order = 3)]

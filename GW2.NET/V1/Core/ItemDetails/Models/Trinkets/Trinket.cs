@@ -25,28 +25,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Trinkets
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Trinket"/> class using the specified values.
-        /// </summary>
-        /// <param name="itemId">The trinket's ID.</param>
-        /// <param name="name">The trinket's name.</param>
-        /// <param name="description">The trinket's description.</param>
-        /// <param name="type">The trinket's type.</param>
-        /// <param name="level">The trinket's level.</param>
-        /// <param name="rarity">The trinket's rarity.</param>
-        /// <param name="vendorValue">The trinket's vendor value.</param>
-        /// <param name="iconFileId">The trinket's icon ID.</param>
-        /// <param name="iconFileSignature">The trinket's icon signature.</param>
-        /// <param name="gameTypes">The trinket's game types.</param>
-        /// <param name="flags">The trinket's additional flags.</param>
-        /// <param name="restrictions">The trinket's restrictions.</param>
-        /// <param name="trinketItemDetails">The trinket's details.</param>
-        public Trinket(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, TrinketItemDetails trinketItemDetails)
-            : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
-        {
-            this.TrinketItemDetails = trinketItemDetails;
-        }
-
-        /// <summary>
         /// Gets or sets the trinket's details.
         /// </summary>
         [JsonProperty("trinket", Order = 100)]

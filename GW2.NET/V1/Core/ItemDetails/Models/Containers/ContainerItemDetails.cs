@@ -15,22 +15,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Containers
     public class ContainerItemDetails : ItemDetailsBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContainerItemDetails"/> class.
-        /// </summary>
-        public ContainerItemDetails()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ContainerItemDetails"/> class using the specified values.
-        /// </summary>
-        /// <param name="type">The container's type.</param>
-        public ContainerItemDetails(ContainerType type)
-        {
-            this.Type = type;
-        }
-
-        /// <summary>
         /// Gets or sets the container's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]

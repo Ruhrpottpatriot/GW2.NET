@@ -39,7 +39,7 @@ namespace GW2DotNET.V1.Core.WorldNames.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return new WorldNamesResponse(serializer.Deserialize<IEnumerable<Models.World>>(reader));
+            return new WorldNamesResponse() { Worlds = serializer.Deserialize<IEnumerable<Models.World>>(reader) };
         }
 
         /// <summary>

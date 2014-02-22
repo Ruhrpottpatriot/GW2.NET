@@ -21,26 +21,10 @@ namespace GW2DotNET.V1.Core.EventDetails
     public class EventDetailsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventDetailsResponse"/> class.
-        /// </summary>
-        public EventDetailsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EventDetailsResponse"/> class.
-        /// </summary>
-        /// <param name="eventDetails">The list of event details.</param>
-        public EventDetailsResponse(Dictionary<Guid, DynamicEventDetails> eventDetails)
-        {
-            this.EventDetails = eventDetails;
-        }
-
-        /// <summary>
         /// Gets or sets a list of details about dynamic events.
         /// </summary>
         [JsonProperty("events")]
         [JsonConverter(typeof(GuidDictionaryConverter<DynamicEventDetails>))]
-        public Dictionary<Guid, DynamicEventDetails> EventDetails { get; set; }
+        public Dictionary<Guid, DynamicEventDetails> EventDetails { get; set; } // TODO: replace with JsonDictionary
     }
 }

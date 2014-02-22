@@ -25,17 +25,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FoodItemDetails"/> class using the specified values.
-        /// </summary>
-        /// <param name="description">The food's effect description.</param>
-        /// <param name="duration">The food's effect duration.</param>
-        public FoodItemDetails(string description, TimeSpan duration)
-        {
-            this.Description = description;
-            this.Duration = duration;
-        }
-
-        /// <summary>
         /// Gets or sets the food's effect description.
         /// </summary>
         [JsonProperty("description", Order = 101, NullValueHandling = NullValueHandling.Ignore)]

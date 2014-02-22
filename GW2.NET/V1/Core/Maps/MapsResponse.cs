@@ -19,22 +19,6 @@ namespace GW2DotNET.V1.Core.Maps
     public class MapsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapsResponse"/> class.
-        /// </summary>
-        public MapsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MapsResponse"/> class using the specified collection of maps.
-        /// </summary>
-        /// <param name="maps">The collection of maps.</param>
-        public MapsResponse(IDictionary<int, Map> maps)
-        {
-            this.Maps = maps;
-        }
-
-        /// <summary>
         /// Gets or sets the collection of maps.
         /// </summary>
         [JsonProperty("maps", Order = 0)]

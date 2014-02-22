@@ -18,22 +18,6 @@ namespace GW2DotNET.V1.Core.Items
     public class ItemsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemsResponse"/> class.
-        /// </summary>
-        public ItemsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ItemsResponse"/> class.
-        /// </summary>
-        /// <param name="items">The list of all discovered item IDs.</param>
-        public ItemsResponse(List<int> items)
-        {
-            this.Items = items;
-        }
-
-        /// <summary>
         /// Gets or sets a list of all discovered item IDs.
         /// </summary>
         [JsonProperty("items")]

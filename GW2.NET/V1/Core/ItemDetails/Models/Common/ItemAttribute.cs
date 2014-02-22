@@ -14,24 +14,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     public class ItemAttribute : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemAttribute"/> class.
-        /// </summary>
-        public ItemAttribute()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ItemAttribute"/> class using the specified values.
-        /// </summary>
-        /// <param name="type">The attribute's type.</param>
-        /// <param name="modifier">The attribute's modifier.</param>
-        public ItemAttribute(ItemAttributeType type, string modifier)
-        {
-            this.Type = type;
-            this.Modifier = modifier;
-        }
-
-        /// <summary>
         /// Gets or sets the attribute's modifier.
         /// </summary>
         [JsonProperty("modifier", Order = 1)]

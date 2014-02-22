@@ -15,22 +15,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Gizmos
     public class GizmoItemDetails : ItemDetailsBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GizmoItemDetails"/> class.
-        /// </summary>
-        public GizmoItemDetails()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GizmoItemDetails"/> class using the specified values.
-        /// </summary>
-        /// <param name="type">The gizmo's type.</param>
-        public GizmoItemDetails(GizmoType type)
-        {
-            this.Type = type;
-        }
-
-        /// <summary>
         /// Gets or sets the gizmo's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]

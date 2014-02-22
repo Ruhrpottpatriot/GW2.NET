@@ -19,25 +19,9 @@ namespace GW2DotNET.V1.Core.Colors
     public class ColorsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ColorsResponse"/> class.
-        /// </summary>
-        public ColorsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ColorsResponse"/> class using the specified collection of dyes.
-        /// </summary>
-        /// <param name="colors">The collection of dyes.</param>
-        public ColorsResponse(IDictionary<int, Dye> colors)
-        {
-            this.Colors = colors;
-        }
-
-        /// <summary>
         /// Gets or sets a collection of all dyes in the game.
         /// </summary>
         [JsonProperty("colors", Order = 0)]
-        public IDictionary<int, Dye> Colors { get; set; }
+        public IDictionary<int, Dye> Colors { get; set; } // TODO: replace with JsonDictionary
     }
 }

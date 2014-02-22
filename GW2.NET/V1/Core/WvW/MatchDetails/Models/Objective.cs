@@ -15,26 +15,6 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
     public class Objective : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Objective"/> class.
-        /// </summary>
-        public Objective()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Objective"/> class using the specified values.
-        /// </summary>
-        /// <param name="id">The objective's ID.</param>
-        /// <param name="owner">The objective's owner.</param>
-        /// <param name="ownerGuild">The guild ID of the guild currently claiming the objective.</param>
-        public Objective(int id, TeamColor owner, Guid? ownerGuild = null)
-        {
-            this.Id = id;
-            this.Owner = owner;
-            this.OwnerGuild = ownerGuild;
-        }
-
-        /// <summary>
         /// Gets or sets the objective's ID.
         /// </summary>
         [JsonProperty("id", Order = 0)]

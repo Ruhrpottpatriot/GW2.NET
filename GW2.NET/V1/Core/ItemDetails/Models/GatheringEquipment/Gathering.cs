@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.GatheringEquipment
     /// Represents a piece of gathering equipment.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
-    public class Gathering : Item
+    public class Gathering : Item // TODO: Rename 'Gathering' to 'GatheringEquipment'
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Gathering"/> class.
@@ -22,28 +22,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.GatheringEquipment
         public Gathering()
             : base(ItemType.Gathering)
         {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Gathering"/> class using the specified values.
-        /// </summary>
-        /// <param name="itemId">The gathering equipment's ID.</param>
-        /// <param name="name">The gathering equipment's name.</param>
-        /// <param name="description">The gathering equipment's description.</param>
-        /// <param name="type">The gathering equipment's type.</param>
-        /// <param name="level">The gathering equipment's level.</param>
-        /// <param name="rarity">The gathering equipment's rarity.</param>
-        /// <param name="vendorValue">The gathering equipment's vendor value.</param>
-        /// <param name="iconFileId">The gathering equipment's icon ID.</param>
-        /// <param name="iconFileSignature">The gathering equipment's icon signature.</param>
-        /// <param name="gameTypes">The gathering equipment's game types.</param>
-        /// <param name="flags">The gathering equipment's additional flags.</param>
-        /// <param name="restrictions">The gathering equipment's restrictions.</param>
-        /// <param name="gatheringItemDetails">The gathering equipment's details.</param>
-        public Gathering(int itemId, string name, string description, ItemType type, int level, ItemRarity rarity, int vendorValue, int iconFileId, string iconFileSignature, GameTypes gameTypes, ItemFlags flags, ItemRestrictions restrictions, GatheringItemDetails gatheringItemDetails)
-            : base(itemId, name, description, type, level, rarity, vendorValue, iconFileId, iconFileSignature, gameTypes, flags, restrictions)
-        {
-            this.GatheringItemDetails = gatheringItemDetails;
         }
 
         /// <summary>

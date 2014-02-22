@@ -16,28 +16,6 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
     public class Task : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Task"/> class.
-        /// </summary>
-        public Task()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Task"/> class using the specified values.
-        /// </summary>
-        /// <param name="taskId">The renown heart ID.</param>
-        /// <param name="objective">The name or objective.</param>
-        /// <param name="level">The level.</param>
-        /// <param name="coordinates">The skill challenge's coordinates.</param>
-        public Task(int taskId, string objective, int level, PointF coordinates)
-        {
-            this.TaskId = taskId;
-            this.Objective = objective;
-            this.Level = level;
-            this.Coordinates = coordinates;
-        }
-
-        /// <summary>
         /// Gets or sets the task's coordinates.
         /// </summary>
         [JsonProperty("coord", Order = 3)]

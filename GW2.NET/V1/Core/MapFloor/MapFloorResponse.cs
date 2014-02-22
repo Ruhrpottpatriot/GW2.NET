@@ -22,26 +22,6 @@ namespace GW2DotNET.V1.Core.MapFloor
     public class MapFloorResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapFloorResponse"/> class.
-        /// </summary>
-        public MapFloorResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MapFloorResponse"/> class using the specified values.
-        /// </summary>
-        /// <param name="textureDimensions">The texture's dimensions.</param>
-        /// <param name="clampedView">The rectangle of downloadable textures.</param>
-        /// <param name="regions">The collection of regions.</param>
-        public MapFloorResponse(Point textureDimensions, Rectangle? clampedView, IDictionary<int, Region> regions)
-        {
-            this.TextureDimensions = textureDimensions;
-            this.ClampedView = clampedView;
-            this.Regions = regions;
-        }
-
-        /// <summary>
         /// Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available on the tile server.
         /// </summary>
         [JsonProperty("clamped_view", Order = 1)]

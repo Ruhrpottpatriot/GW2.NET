@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
@@ -15,34 +14,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Weapons
     /// </summary>
     public class WeaponItemDetails : EquipmentItemDetails
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WeaponItemDetails"/> class.
-        /// </summary>
-        public WeaponItemDetails()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WeaponItemDetails"/> class using the specified values.
-        /// </summary>
-        /// <param name="infusionSlots">The weapon's infusion slots.</param>
-        /// <param name="infixUpgrade">The weapon's infix upgrade.</param>
-        /// <param name="suffixItemId">The weapon's suffix item ID.</param>
-        /// <param name="type">The weapon's type.</param>
-        /// <param name="damageType">The weapon's damage type.</param>
-        /// <param name="minimumPower">The weapon's minimum power stat.</param>
-        /// <param name="maximumPower">The weapon's maximum power stat.</param>
-        /// <param name="defense">The weapon's defense stat.</param>
-        public WeaponItemDetails(IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int? suffixItemId, WeaponType type, DamageType damageType, string minimumPower, string maximumPower, string defense)
-            : base(infusionSlots, infixUpgrade, suffixItemId)
-        {
-            this.Type = type;
-            this.DamageType = damageType;
-            this.MinimumPower = minimumPower;
-            this.MaximumPower = maximumPower;
-            this.Defense = defense;
-        }
-
         /// <summary>
         /// Gets or sets the weapon's damage type.
         /// </summary>

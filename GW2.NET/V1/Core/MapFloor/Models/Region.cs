@@ -17,26 +17,6 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
     public class Region : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Region"/> class.
-        /// </summary>
-        public Region()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Region"/> class using the specified values.
-        /// </summary>
-        /// <param name="name">The region's name.</param>
-        /// <param name="labelCoordinates">The coordinates of the region's label.</param>
-        /// <param name="maps">The collection of maps.</param>
-        public Region(string name, PointF labelCoordinates, IDictionary<int, Map> maps)
-        {
-            this.Name = name;
-            this.LabelCoordinates = labelCoordinates;
-            this.Maps = maps;
-        }
-
-        /// <summary>
         /// Gets or sets the coordinates of the region label.
         /// </summary>
         [JsonProperty("label_coord", Order = 1)]

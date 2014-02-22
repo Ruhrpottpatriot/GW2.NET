@@ -21,38 +21,6 @@ namespace GW2DotNET.V1.Core.RecipeDetails
     public class RecipeDetailsResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RecipeDetailsResponse"/> class.
-        /// </summary>
-        public RecipeDetailsResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RecipeDetailsResponse"/> class using the specified values.
-        /// </summary>
-        /// <param name="recipeId">The recipe's ID.</param>
-        /// <param name="type">The type of the output item.</param>
-        /// <param name="outputItemId">The output item's ID.</param>
-        /// <param name="outputItemCount">The amount of items produced.</param>
-        /// <param name="minimumRating">The recipe's minimum rating.</param>
-        /// <param name="timeToCraft">The time it takes to craft the item.</param>
-        /// <param name="disciplines">The crafting disciplines that can use the recipe.</param>
-        /// <param name="flags">The recipe's unlock type(s).</param>
-        /// <param name="ingredients">The required ingredients.</param>
-        public RecipeDetailsResponse(int recipeId, RecipeType type, int outputItemId, int outputItemCount, int minimumRating, TimeSpan timeToCraft, Disciplines disciplines, UnlockTypes flags, IEnumerable<Ingredient> ingredients)
-        {
-            this.RecipeId = recipeId;
-            this.Type = type;
-            this.OutputItemId = outputItemId;
-            this.OutputItemCount = outputItemCount;
-            this.MinimumRating = minimumRating;
-            this.TimeToCraft = timeToCraft;
-            this.Disciplines = disciplines;
-            this.Flags = flags;
-            this.Ingredients = ingredients;
-        }
-
-        /// <summary>
         /// Gets or sets the crafting disciplines that can use the recipe.
         /// </summary>
         [JsonProperty("disciplines", Order = 6)]

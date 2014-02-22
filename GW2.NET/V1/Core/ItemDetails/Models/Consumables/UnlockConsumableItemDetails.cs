@@ -13,21 +13,13 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
     /// Represents detailed information about an unlock item.
     /// </summary>
     [JsonConverter(typeof(UnlockDetailsConverter))]
-    public class UnlockConsumableItemDetails : ConsumableItemDetails
+    public abstract class UnlockConsumableItemDetails : ConsumableItemDetails
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UnlockConsumableItemDetails"/> class.
         /// </summary>
-        public UnlockConsumableItemDetails()
-            : base(ConsumableType.Unlock)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UnlockConsumableItemDetails"/> class using the specified values.
-        /// </summary>
         /// <param name="type">The unlock item's unlock type.</param>
-        public UnlockConsumableItemDetails(UnlockType type)
+        protected UnlockConsumableItemDetails(UnlockType type)
             : base(ConsumableType.Unlock)
         {
             this.UnlockType = type;

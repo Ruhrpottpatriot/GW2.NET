@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
@@ -15,30 +14,6 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.ArmorPieces
     /// </summary>
     public class ArmorItemDetails : EquipmentItemDetails
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ArmorItemDetails"/> class.
-        /// </summary>
-        public ArmorItemDetails()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ArmorItemDetails"/> class using the specified values.
-        /// </summary>
-        /// <param name="infusionSlots">The armor piece's infusion slots.</param>
-        /// <param name="infixUpgrade">The armor piece's infix upgrade.</param>
-        /// <param name="suffixItemId">The armor piece's suffix item ID.</param>
-        /// <param name="type">The armor piece's type.</param>
-        /// <param name="weightClass">The armor piece's weight class.</param>
-        /// <param name="defense">The armor piece's defense stat.</param>
-        public ArmorItemDetails(IEnumerable<InfusionSlot> infusionSlots, InfixUpgrade infixUpgrade, int? suffixItemId, ArmorType type, WeightClass weightClass, int defense)
-            : base(infusionSlots, infixUpgrade, suffixItemId)
-        {
-            this.Type = type;
-            this.WeightClass = weightClass;
-            this.Defense = defense;
-        }
-
         /// <summary>
         /// Gets or sets the armor piece's defense stat.
         /// </summary>

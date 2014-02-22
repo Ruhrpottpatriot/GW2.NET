@@ -21,22 +21,6 @@ namespace GW2DotNET.V1.Core.WorldNames
     public class WorldNamesResponse : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorldNamesResponse"/> class.
-        /// </summary>
-        public WorldNamesResponse()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WorldNamesResponse"/> class using the specified list of worlds.
-        /// </summary>
-        /// <param name="worlds">The list of worlds.</param>
-        public WorldNamesResponse(IEnumerable<World> worlds)
-        {
-            this.Worlds = worlds;
-        }
-
-        /// <summary>
         /// Gets or sets the list of worlds.
         /// </summary>
         public IEnumerable<World> Worlds { get; set; }
