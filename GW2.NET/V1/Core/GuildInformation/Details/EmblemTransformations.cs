@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.GuildDetails.Models
+namespace GW2DotNET.V1.Core.GuildInformation.Details
 {
     /// <summary>
     /// Enumerates the possible transformations for a guild emblem image.

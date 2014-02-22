@@ -6,7 +6,7 @@
 
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.GuildDetails.Models
+namespace GW2DotNET.V1.Core.GuildInformation.Details
 {
     /// <summary>
     /// Represents a guild's emblem.

@@ -112,6 +112,8 @@
     <Compile Include="V1\Core\ApiResponse.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNames.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEvents.cs" />
+    <Compile Include="V1\Core\GuildInformation\Details\Emblem.cs" />
+    <Compile Include="V1\Core\GuildInformation\Details\EmblemTransformations.cs" />
     <Compile Include="V1\Core\JsonList.cs" />
     <Compile Include="V1\Core\JsonObject.cs" />
     <Compile Include="V1\Core\BuildInformation\BuildRequest.cs" />
@@ -161,8 +163,8 @@
     <Compile Include="V1\Core\FilesInformation\Asset.cs" />
     <Compile Include="V1\Core\FilesInformation\Assets.cs" />
     <Compile Include="V1\Core\FilesInformation\FilesRequest.cs" />
-    <Compile Include="V1\Core\GuildDetails\GuildDetailsRequest.cs" />
-    <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.cs" />
+    <Compile Include="V1\Core\GuildInformation\GuildDetailsRequest.cs" />
+    <Compile Include="V1\Core\GuildInformation\Details\GuildDetails.cs" />
     <Compile Include="V1\Core\ItemDetails\Converters\ConsumableDetailsConverter.cs" />
     <Compile Include="V1\Core\ItemDetails\Converters\ItemConverter.cs" />
     <Compile Include="V1\Core\ItemDetails\Converters\ItemDetailsResponseConverter.cs" />
@@ -375,8 +377,6 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventStyles.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationShape.cs" />
     <Compile Include="V1\Core\MapFloor\Models\PointOfInterestCategory.cs" />
-    <Compile Include="V1\Core\GuildDetails\Models\Emblem.cs" />
-    <Compile Include="V1\Core\GuildDetails\Models\EmblemTransformations.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="V1\Core\Resources.resx">
