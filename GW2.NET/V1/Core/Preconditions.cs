@@ -18,36 +18,11 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="value">The actual value.</param>
-        /// <exception cref="ArgumentNullException">The exception that is thrown when the specified value is null.</exception>
-        /// <returns>The specified value.</returns>
-        internal static T EnsureNotNull<T>(T value) where T : class
-        {
-            return Preconditions.EnsureNotNull(value, null, null);
-        }
-
-        /// <summary>
-        /// Ensures that the specified value is not a null reference.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        /// <param name="value">The actual value.</param>
-        /// <param name="paramName">The name of the parameter.</param>
-        /// <exception cref="ArgumentNullException">The exception that is thrown when the specified value is null.</exception>
-        /// <returns>The specified value.</returns>
-        internal static T EnsureNotNull<T>(T value, string paramName) where T : class
-        {
-            return Preconditions.EnsureNotNull(value, paramName, null);
-        }
-
-        /// <summary>
-        /// Ensures that the specified value is not a null reference.
-        /// </summary>
-        /// <typeparam name="T">The value type.</typeparam>
-        /// <param name="value">The actual value.</param>
         /// <param name="paramName">The name of the parameter.</param>
         /// <param name="message">A message that describes the error.</param>
         /// <exception cref="ArgumentNullException">The exception that is thrown when the specified value is null.</exception>
         /// <returns>The specified value.</returns>
-        internal static T EnsureNotNull<T>(T value, string paramName, string message) where T : class
+        internal static T EnsureNotNull<T>(T value, string paramName = null, string message = null) where T : class
         {
             if (value == null)
             {
