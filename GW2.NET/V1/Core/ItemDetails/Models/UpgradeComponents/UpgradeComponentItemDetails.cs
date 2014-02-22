@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.UpgradeComponents
     /// <summary>
     /// Represents detailed information about an upgrade component.
     /// </summary>
-    public class UpgradeComponentItemDetails : Common.ItemDetails
+    public class UpgradeComponentItemDetails : ItemDetailsBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpgradeComponentItemDetails"/> class.

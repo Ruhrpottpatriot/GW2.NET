@@ -35,15 +35,11 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            int[][] corners = serializer.Deserialize<int[][]>(reader);
-
-            int left = corners[0][0];
-
-            int top = corners[0][1];
-
-            int right = corners[1][0];
-
-            int bottom = corners[1][1];
+            var corners = serializer.Deserialize<int[][]>(reader);
+            var left    = corners[0][0];
+            var top     = corners[0][1];
+            var right   = corners[1][0];
+            var bottom  = corners[1][1];
 
             return Rectangle.FromLTRB(left, top, right, bottom);
         }
@@ -56,12 +52,11 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
+            var rectangle = (Rectangle)value;
+
             writer.WriteStartArray();
 
-            if (value is Rectangle)
             {
-                Rectangle rectangle = (Rectangle)value;
-
                 writer.WriteStartArray();
 
                 {

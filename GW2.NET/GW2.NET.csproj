@@ -191,7 +191,7 @@
     <Compile Include="V1\Core\ItemDetails\Models\Bags\Bag.cs" />
     <Compile Include="V1\Core\ItemDetails\Models\Bags\BagItemDetails.cs" />
     <Compile Include="V1\Core\ItemDetails\Models\Common\EquipmentItemDetails.cs" />
-    <Compile Include="V1\Core\ItemDetails\Models\Common\ItemDetails.cs" />
+    <Compile Include="V1\Core\ItemDetails\Models\Common\ItemDetailsBase.cs" />
     <Compile Include="V1\Core\ItemDetails\Models\BackPieces\BackItemDetails.cs" />
     <Compile Include="V1\Core\ItemDetails\Models\Consumables\Consumable.cs" />
     <Compile Include="V1\Core\ItemDetails\Models\Containers\ContainerType.cs" />

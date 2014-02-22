@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.GatheringEquipment
@@ -11,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.GatheringEquipment
     /// <summary>
     /// Represents detailed information about a piece of gathering equipment.
     /// </summary>
-    public class GatheringItemDetails : Common.ItemDetails
+    public class GatheringItemDetails : ItemDetailsBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GatheringItemDetails"/> class.

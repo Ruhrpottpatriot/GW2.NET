@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Tools
@@ -11,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Tools
     /// <summary>
     /// Represents detailed information about a tool.
     /// </summary>
-    public class ToolItemDetails : Common.ItemDetails
+    public class ToolItemDetails : ItemDetailsBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ToolItemDetails"/> class.

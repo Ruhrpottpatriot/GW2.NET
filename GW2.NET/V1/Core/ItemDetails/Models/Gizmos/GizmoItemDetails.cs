@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Gizmos
     /// <summary>
     /// Represents detailed information about a gizmo.
     /// </summary>
-    public class GizmoItemDetails : Common.ItemDetails
+    public class GizmoItemDetails : ItemDetailsBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GizmoItemDetails"/> class.

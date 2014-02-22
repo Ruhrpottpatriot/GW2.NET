@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using GW2DotNET.V1.Core.Converters;
+using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Bags
@@ -12,7 +13,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Bags
     /// <summary>
     /// Represents detailed information about a bag.
     /// </summary>
-    public class BagItemDetails : Common.ItemDetails
+    public class BagItemDetails : ItemDetailsBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BagItemDetails"/> class.

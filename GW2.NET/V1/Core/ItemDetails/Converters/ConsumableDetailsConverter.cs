@@ -21,24 +21,24 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         /// <summary>
         /// Backing field. Holds a dictionary of in-game consumable item types and their corresponding .NET class.
         /// </summary>
-        private static readonly IDictionary<ConsumableType, Type> ConsumableTypes = new Dictionary<ConsumableType, Type>();
+        private static readonly IDictionary<ConsumableType, Type> KnownTypes = new Dictionary<ConsumableType, Type>();
 
         /// <summary>
         /// Initializes static members of the <see cref="ConsumableDetailsConverter"/> class.
         /// </summary>
         static ConsumableDetailsConverter()
         {
-            ConsumableTypes.Add(ConsumableType.Unknown, typeof(UnknownConsumableItemDetails));
-            ConsumableTypes.Add(ConsumableType.AppearanceChange, typeof(AppearanceChangeConsumableItemDetails));
-            ConsumableTypes.Add(ConsumableType.Booze, typeof(BoozeItemDetails));
-            ConsumableTypes.Add(ConsumableType.ContractNPC, typeof(ContractNPCConsumableItemDetails));
-            ConsumableTypes.Add(ConsumableType.Food, typeof(FoodItemDetails));
-            ConsumableTypes.Add(ConsumableType.Generic, typeof(GenericConsumableItemDetails));
-            ConsumableTypes.Add(ConsumableType.Halloween, typeof(HalloweenConsumableItemDetails));
-            ConsumableTypes.Add(ConsumableType.Immediate, typeof(ImmediateConsumableItemDetails));
-            ConsumableTypes.Add(ConsumableType.Transmutation, typeof(TransmutationConsumableItemDetails));
-            ConsumableTypes.Add(ConsumableType.Unlock, typeof(UnlockConsumableItemDetails));
-            ConsumableTypes.Add(ConsumableType.Utility, typeof(UtilityConsumableItemDetails));
+            KnownTypes.Add(ConsumableType.Unknown, typeof(UnknownConsumableItemDetails));
+            KnownTypes.Add(ConsumableType.AppearanceChange, typeof(AppearanceChangeConsumableItemDetails));
+            KnownTypes.Add(ConsumableType.Booze, typeof(BoozeItemDetails));
+            KnownTypes.Add(ConsumableType.ContractNPC, typeof(ContractNPCConsumableItemDetails));
+            KnownTypes.Add(ConsumableType.Food, typeof(FoodItemDetails));
+            KnownTypes.Add(ConsumableType.Generic, typeof(GenericConsumableItemDetails));
+            KnownTypes.Add(ConsumableType.Halloween, typeof(HalloweenConsumableItemDetails));
+            KnownTypes.Add(ConsumableType.Immediate, typeof(ImmediateConsumableItemDetails));
+            KnownTypes.Add(ConsumableType.Transmutation, typeof(TransmutationConsumableItemDetails));
+            KnownTypes.Add(ConsumableType.Unlock, typeof(UnlockConsumableItemDetails));
+            KnownTypes.Add(ConsumableType.Utility, typeof(UtilityConsumableItemDetails));
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return ConsumableTypes.Values.Contains(objectType);
+            return KnownTypes.Values.Contains(objectType);
         }
 
         /// <summary>
@@ -61,16 +61,16 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         {
             JsonReader typeReader = content["type"].CreateReader();
 
-            ConsumableType jsonValue = JsonSerializer.Create().Deserialize<ConsumableType>(typeReader);
+            var jsonValue = JsonSerializer.Create().Deserialize<ConsumableType>(typeReader);
 
-            Type itemType;
+            Type targetType;
 
-            if (!ConsumableTypes.TryGetValue(jsonValue, out itemType))
+            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
             {
-                itemType = typeof(UnknownConsumableItemDetails);
+                return typeof(UnknownConsumableItemDetails);
             }
 
-            return itemType;
+            return targetType;
         }
     }
 }

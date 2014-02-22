@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Consumables
     /// Represents detailed information about a consumable item.
     /// </summary>
     [JsonConverter(typeof(ConsumableDetailsConverter))]
-    public class ConsumableItemDetails : Common.ItemDetails
+    public class ConsumableItemDetails : ItemDetailsBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsumableItemDetails"/> class.

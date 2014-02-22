@@ -79,22 +79,14 @@ namespace GW2DotNET.V1.Core
         /// Gets the error response if the service returned an error status code.
         /// </summary>
         /// <returns>Return the error response as an instance of the <see cref="ApiException"/> class.</returns>
-        public ApiException DeserializeError()
+        public ErrorResponse DeserializeError()
         {
             if (this.IsSuccessStatusCode || !this.IsJsonResponse)
             { /* This method only makes sense when the response content is a JSON-formatted API error. */
                 throw new InvalidOperationException("The service did not return an error response.");
             }
 
-            ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(this.Content);
-
-            return new ApiException(
-                error: errorResponse.Error,
-                product: errorResponse.Product,
-                module: errorResponse.Module,
-                line: errorResponse.Line,
-                text: errorResponse.Text,
-                innerException: this.ErrorException);
+            return JsonConvert.DeserializeObject<ErrorResponse>(this.Content);
         }
 
         /// <summary>
@@ -146,11 +138,6 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <returns>Returns the current instance.</returns>
         /// <remarks>The current instance is returned to allow chaining method calls.</remarks>
-        /// <example>
-        /// <code>
-        /// <![CDATA[var responseContent = request.GetResponse<ObjectType>.EnsureSuccessStatusCode().DeserializeObject();]]>
-        /// </code>
-        /// </example>
         public IApiResponse<TContent> EnsureSuccessStatusCode()
         {
             if (this.IsSuccessStatusCode)
@@ -158,15 +145,7 @@ namespace GW2DotNET.V1.Core
                 return this;
             }
 
-            ApiException apiException = this.DeserializeError();
-            if (this.StatusCode == HttpStatusCode.InternalServerError)
-            { /* HTTP status 500 (typically) indicates missing or invalid arguments */
-                throw new ArgumentException(apiException.Message, apiException);
-            }
-            else
-            { /* Unknown error */
-                throw apiException;
-            }
+            throw new ApiException(this.DeserializeError(), this.ErrorException);
         }
 
         /// <summary>

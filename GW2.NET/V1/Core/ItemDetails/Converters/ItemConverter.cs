@@ -35,27 +35,27 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         /// <summary>
         /// Backing field. Holds a dictionary of in-game item types and their corresponding .NET class.
         /// </summary>
-        private static readonly IDictionary<ItemType, Type> ItemTypes = new Dictionary<ItemType, Type>();
+        private static readonly IDictionary<ItemType, Type> KnownTypes = new Dictionary<ItemType, Type>();
 
         /// <summary>
         /// Initializes static members of the <see cref="ItemConverter"/> class.
         /// </summary>
         static ItemConverter()
         {
-            ItemTypes.Add(ItemType.Armor, typeof(Armor));
-            ItemTypes.Add(ItemType.Back, typeof(Back));
-            ItemTypes.Add(ItemType.Bag, typeof(Bag));
-            ItemTypes.Add(ItemType.Consumable, typeof(Consumable));
-            ItemTypes.Add(ItemType.Container, typeof(Container));
-            ItemTypes.Add(ItemType.CraftingMaterial, typeof(CraftingMaterial));
-            ItemTypes.Add(ItemType.Gathering, typeof(Gathering));
-            ItemTypes.Add(ItemType.Gizmo, typeof(Gizmo));
-            ItemTypes.Add(ItemType.MiniPet, typeof(MiniPet));
-            ItemTypes.Add(ItemType.Tool, typeof(Tool));
-            ItemTypes.Add(ItemType.Trinket, typeof(Trinket));
-            ItemTypes.Add(ItemType.Trophy, typeof(Trophy));
-            ItemTypes.Add(ItemType.UpgradeComponent, typeof(UpgradeComponent));
-            ItemTypes.Add(ItemType.Weapon, typeof(Weapon));
+            KnownTypes.Add(ItemType.Armor, typeof(Armor));
+            KnownTypes.Add(ItemType.Back, typeof(Back));
+            KnownTypes.Add(ItemType.Bag, typeof(Bag));
+            KnownTypes.Add(ItemType.Consumable, typeof(Consumable));
+            KnownTypes.Add(ItemType.Container, typeof(Container));
+            KnownTypes.Add(ItemType.CraftingMaterial, typeof(CraftingMaterial));
+            KnownTypes.Add(ItemType.Gathering, typeof(Gathering));
+            KnownTypes.Add(ItemType.Gizmo, typeof(Gizmo));
+            KnownTypes.Add(ItemType.MiniPet, typeof(MiniPet));
+            KnownTypes.Add(ItemType.Tool, typeof(Tool));
+            KnownTypes.Add(ItemType.Trinket, typeof(Trinket));
+            KnownTypes.Add(ItemType.Trophy, typeof(Trophy));
+            KnownTypes.Add(ItemType.UpgradeComponent, typeof(UpgradeComponent));
+            KnownTypes.Add(ItemType.Weapon, typeof(Weapon));
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return ItemTypes.Values.Contains(objectType);
+            return KnownTypes.Values.Contains(objectType);
         }
 
         /// <summary>
@@ -78,16 +78,17 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         {
             JsonReader typeReader = content["type"].CreateReader();
 
-            ItemType jsonValue = JsonSerializer.Create().Deserialize<ItemType>(typeReader);
+            var jsonValue = JsonSerializer.Create().Deserialize<ItemType>(typeReader);
 
-            Type itemType;
+            Type targetType;
 
-            if (!ItemTypes.TryGetValue(jsonValue, out itemType))
+            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
             {
+                // TODO: consider introducing an UnknownItem class and enum value
                 throw new JsonSerializationException("Unknown item type: " + jsonValue);
             }
 
-            return itemType;
+            return targetType;
         }
     }
 }

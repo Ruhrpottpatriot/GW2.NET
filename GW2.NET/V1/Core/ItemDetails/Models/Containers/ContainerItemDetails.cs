@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.ItemDetails.Models.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemDetails.Models.Containers
@@ -11,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Containers
     /// <summary>
     /// Represents detailed information about a container.
     /// </summary>
-    public class ContainerItemDetails : Common.ItemDetails
+    public class ContainerItemDetails : ItemDetailsBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ContainerItemDetails"/> class.

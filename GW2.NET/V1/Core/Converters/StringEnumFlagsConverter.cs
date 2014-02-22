@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.Core.Converters
                 return base.ReadJson(reader, objectType, existingValue, serializer);
             }
 
-            Stack<string> individualFlags = new Stack<string>();
+            var individualFlags = new Stack<string>();
 
             do
             {

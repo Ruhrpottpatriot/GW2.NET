@@ -21,16 +21,16 @@ namespace GW2DotNET.V1.Core.EventDetails.Converters
         /// <summary>
         /// Backing field. Holds a dictionary of event location shapes and their corresponding .NET class.
         /// </summary>
-        private static readonly IDictionary<LocationShape, Type> LocationTypes = new Dictionary<LocationShape, Type>();
+        private static readonly IDictionary<LocationShape, Type> KnownTypes = new Dictionary<LocationShape, Type>();
 
         /// <summary>
         /// Initializes static members of the <see cref="LocationConverter"/> class.
         /// </summary>
         static LocationConverter()
         {
-            LocationTypes.Add(LocationShape.Sphere, typeof(SphereLocation));
-            LocationTypes.Add(LocationShape.Cylinder, typeof(CylinderLocation));
-            LocationTypes.Add(LocationShape.Polygon, typeof(PolygonLocation));
+            KnownTypes.Add(LocationShape.Sphere, typeof(SphereLocation));
+            KnownTypes.Add(LocationShape.Cylinder, typeof(CylinderLocation));
+            KnownTypes.Add(LocationShape.Polygon, typeof(PolygonLocation));
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Core.EventDetails.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return LocationTypes.Values.Contains(objectType);
+            return KnownTypes.Values.Contains(objectType);
         }
 
         /// <summary>
@@ -53,16 +53,17 @@ namespace GW2DotNET.V1.Core.EventDetails.Converters
         {
             JsonReader typeReader = content["type"].CreateReader();
 
-            LocationShape locationShape = JsonSerializer.Create().Deserialize<LocationShape>(typeReader);
+            var jsonValue = JsonSerializer.Create().Deserialize<LocationShape>(typeReader);
 
-            Type locationType;
+            Type targetType;
 
-            if (!LocationTypes.TryGetValue(locationShape, out locationType))
+            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
             {
-                throw new JsonSerializationException("Unknown location type: " + locationShape);
+                // TODO: consider introducing an UnknownLocation class and enum value
+                throw new JsonSerializationException("Unknown location type: " + jsonValue);
             }
 
-            return locationType;
+            return targetType;
         }
     }
 }

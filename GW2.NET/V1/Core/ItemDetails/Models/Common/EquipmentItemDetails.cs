@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemDetails.Models.Common
     /// <summary>
     /// Represents detailed information about an armor piece.
     /// </summary>
-    public abstract class EquipmentItemDetails : ItemDetails
+    public abstract class EquipmentItemDetails : ItemDetailsBase
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EquipmentItemDetails"/> class.

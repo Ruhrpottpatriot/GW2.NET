@@ -55,16 +55,16 @@ namespace GW2DotNET.V1.Core.ItemDetails.Converters
         {
             JsonReader typeReader = content["unlock_type"].CreateReader();
 
-            UnlockType jsonValue = JsonSerializer.Create().Deserialize<UnlockType>(typeReader);
+            var jsonValue = JsonSerializer.Create().Deserialize<UnlockType>(typeReader);
 
-            Type itemType;
+            Type targetType;
 
-            if (!UnlockTypes.TryGetValue(jsonValue, out itemType))
+            if (!UnlockTypes.TryGetValue(jsonValue, out targetType))
             {
-                itemType = typeof(UnknownUnlockConsumableItemDetails);
+                return typeof(UnknownUnlockConsumableItemDetails);
             }
 
-            return itemType;
+            return targetType;
         }
     }
 }

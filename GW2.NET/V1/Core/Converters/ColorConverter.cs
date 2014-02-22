@@ -35,9 +35,12 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            int[] rgb = serializer.Deserialize<int[]>(reader);
+            var rgb   = serializer.Deserialize<int[]>(reader);
+            var red   = rgb[0];
+            var green = rgb[1];
+            var blue  = rgb[2];
 
-            return Color.FromArgb(red: rgb[0], green: rgb[1], blue: rgb[2]);
+            return Color.FromArgb(red, green, blue);
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            Color color = (Color)value;
+            var color = (Color)value;
 
             writer.WriteStartArray();
 

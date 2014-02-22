@@ -9,7 +9,7 @@ using System;
 namespace GW2DotNET.V1.Core
 {
     /// <summary>
-    /// Represents errors resulting from incorrect input parameters.
+    /// Represents an API error.
     /// </summary>
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1"/> for more information regarding API errors.
@@ -17,54 +17,19 @@ namespace GW2DotNET.V1.Core
     public class ApiException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class with a specified error details.
+        /// Initializes a new instance of the <see cref="ApiException"/> class.
         /// </summary>
-        /// <param name="error">A number that indicates the error kind.</param>
-        /// <param name="product">A number that represents the product in which the error occurred.</param>
-        /// <param name="module">A number that represents the module in which the error occurred.</param>
-        /// <param name="line">The line number on which the error occurred.</param>
-        /// <param name="text">The error message that explains the reason for the exception.</param>
-        public ApiException(int error, int product, int module, int line, string text)
-            : this(error, product, module, line, text, null)
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class with a specified error details and a reference to the inner exception that is the cause of this exception.
-        /// </summary>
-        /// <param name="error">A number that indicates the error kind.</param>
-        /// <param name="product">A number that represents the product in which the error occurred.</param>
-        /// <param name="module">A number that represents the module in which the error occurred.</param>
-        /// <param name="line">The line number on which the error occurred.</param>
-        /// <param name="text">The error message that explains the reason for the exception.</param>
+        /// <param name="details">The error details.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
-        public ApiException(int error, int product, int module, int line, string text, Exception innerException)
-            : base(text ?? "Unknown API error", innerException)
+        public ApiException(ErrorResponse details, Exception innerException = null)
+            : base(Preconditions.EnsureNotNull(paramName: "details", value: details).Text, innerException)
         {
-            this.Error = error;
-            this.Product = product;
-            this.Module = module;
-            this.Line = line;
+            this.Details = details;
         }
 
         /// <summary>
-        /// Gets a number that indicates the error kind.
+        /// Gets the error details.
         /// </summary>
-        public int Error { get; private set; }
-
-        /// <summary>
-        /// Gets the line number on which the error occurred.
-        /// </summary>
-        public int Line { get; private set; }
-
-        /// <summary>
-        /// Gets a number that represents the module in which the error occurred.
-        /// </summary>
-        public int Module { get; private set; }
-
-        /// <summary>
-        /// Gets a number that represents the product in which the error occurred.
-        /// </summary>
-        public int Product { get; private set; }
+        public ErrorResponse Details { get; private set; }
     }
 }
