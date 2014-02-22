@@ -7,11 +7,11 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.EventDetails.Models;
+using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace GW2DotNET.V1.Core.EventDetails.Converters
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Converters
 {
     /// <summary>
     /// Converts a <see cref="Location"/> to and from its <see cref="System.String"/> representation.

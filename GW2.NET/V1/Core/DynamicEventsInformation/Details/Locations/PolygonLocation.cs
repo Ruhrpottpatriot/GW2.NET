@@ -8,9 +8,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
-using JsonPointConverter = GW2DotNET.V1.Core.Converters.PointConverter;
+using PointConverter = GW2DotNET.V1.Core.Converters.PointConverter;
 
-namespace GW2DotNET.V1.Core.EventDetails.Models
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
     /// Represents a polygonal location of an event on the map.
@@ -36,7 +36,7 @@ namespace GW2DotNET.V1.Core.EventDetails.Models
         /// Gets or sets the location's range on the z-axis.
         /// </summary>
         [JsonProperty("z_range", Order = 4)]
-        [JsonConverter(typeof(JsonPointConverter))]
+        [JsonConverter(typeof(PointConverter))]
         public Point ZRange { get; set; }
     }
 }

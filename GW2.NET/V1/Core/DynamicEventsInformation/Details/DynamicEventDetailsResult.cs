@@ -1,27 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventsResponse.cs" company="GW2.Net Coding Team">
+// <copyright file="DynamicEventDetailsResult.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
-using GW2DotNET.V1.Core.Events.Models;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.Events
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
 {
     /// <summary>
-    /// Represents a response that is the result of an <see cref="EventsRequest"/>.
+    /// Wraps a collection of dynamic events and their details.
     /// </summary>
-    /// <remarks>
-    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.
-    /// </remarks>
-    public class EventsResponse : JsonObject
+    public class DynamicEventDetailsResult : JsonObject
     {
         /// <summary>
-        /// Gets or sets a list of event details.
+        /// Gets or sets a list of details about dynamic events.
         /// </summary>
-        [JsonProperty("events", Order = 0)]
-        public IEnumerable<DynamicEvent> Events { get; set; }
+        [JsonProperty("events")]
+        public Dictionary<Guid, DynamicEventDetails> EventDetails { get; set; }
     }
 }

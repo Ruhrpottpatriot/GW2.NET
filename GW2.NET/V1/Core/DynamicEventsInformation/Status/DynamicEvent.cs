@@ -9,7 +9,7 @@ using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GW2DotNET.V1.Core.Events.Models
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
 {
     /// <summary>
     /// Represents a dynamic event and its status.

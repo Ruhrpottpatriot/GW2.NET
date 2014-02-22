@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GW2DotNET.V1.Core.EventDetails.Models
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
     /// Enumerates the possible location shapes.

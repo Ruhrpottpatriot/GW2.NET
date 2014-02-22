@@ -4,9 +4,10 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.EventDetails.Models
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
 {
     /// <summary>
     /// Represents details about a specific dynamic event.

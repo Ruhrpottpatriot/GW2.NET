@@ -9,7 +9,7 @@ using System.Runtime.Serialization;
 using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.EventDetails.Models
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
 {
     /// <summary>
     /// Enumerates the special event styles.

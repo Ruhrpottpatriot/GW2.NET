@@ -7,7 +7,7 @@
 using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.EventDetails.Models
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
     /// Represents a cylindrical location of an event on the map.

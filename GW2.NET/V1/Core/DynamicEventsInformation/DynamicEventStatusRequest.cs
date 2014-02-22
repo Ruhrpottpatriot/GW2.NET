@@ -1,13 +1,14 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventsRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="DynamicEventStatusRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
 
-namespace GW2DotNET.V1.Core.Events
+namespace GW2DotNET.V1.Core.DynamicEventsInformation
 {
     /// <summary>
     /// Represents a request for a list of events and their status that match the given filters (if any).
@@ -15,23 +16,23 @@ namespace GW2DotNET.V1.Core.Events
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.
     /// </remarks>
-    public class EventsRequest : ApiRequest
+    public class DynamicEventStatusRequest : ApiRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventsRequest"/> class.
+        /// Initializes a new instance of the <see cref="DynamicEventStatusRequest"/> class.
         /// </summary>
-        public EventsRequest()
+        public DynamicEventStatusRequest()
             : base(new Uri(Resources.Events, UriKind.Relative))
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventsRequest"/> class using the specified world, map and/or event IDs.
+        /// Initializes a new instance of the <see cref="DynamicEventStatusRequest"/> class using the specified world, map and/or event IDs.
         /// </summary>
         /// <param name="worldId">The world ID.</param>
         /// <param name="mapId">The map ID.</param>
         /// <param name="eventId">The event ID.</param>
-        public EventsRequest(int? worldId, int? mapId, Guid? eventId)
+        public DynamicEventStatusRequest(int? worldId = null, int? mapId = null, Guid? eventId = null)
             : base(new Uri(Resources.Events + "?world_id={world_id}&map_id={map_id}&event_id={event_id}", UriKind.Relative))
         {
             this.AddUrlSegment("world_id", worldId.ToString());
@@ -40,23 +41,23 @@ namespace GW2DotNET.V1.Core.Events
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="EventsResponse"/>.
+        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="DynamicEventsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="EventsResponse"/>.</returns>
-        public IApiResponse<EventsResponse> GetResponse(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="DynamicEventsResult"/>.</returns>
+        public IApiResponse<DynamicEventsResult> GetResponse(IApiClient handler)
         {
-            return base.GetResponse<EventsResponse>(handler);
+            return base.GetResponse<DynamicEventsResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="EventsResponse"/>.
+        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="DynamicEventsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="EventsResponse"/>.</returns>
-        public Task<IApiResponse<EventsResponse>> GetResponseAsync(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="DynamicEventsResult"/>.</returns>
+        public Task<IApiResponse<DynamicEventsResult>> GetResponseAsync(IApiClient handler)
         {
-            return base.GetResponseAsync<EventsResponse>(handler);
+            return base.GetResponseAsync<DynamicEventsResult>(handler);
         }
     }
 }

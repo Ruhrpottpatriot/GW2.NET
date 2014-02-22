@@ -6,10 +6,10 @@
 
 using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.Drawing;
-using GW2DotNET.V1.Core.EventDetails.Converters;
+using GW2DotNET.V1.Core.DynamicEventsInformation.Converters;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.EventDetails.Models
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
     /// Represents the location of an event on the map.

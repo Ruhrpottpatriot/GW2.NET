@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V1.Core.Events.Models
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
 {
     /// <summary>
     /// Enumerates the possible states of a dynamic event.

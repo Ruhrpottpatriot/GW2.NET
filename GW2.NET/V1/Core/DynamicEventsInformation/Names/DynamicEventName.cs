@@ -5,39 +5,19 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.EventNames.Models
+namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
 {
     /// <summary>
-    /// Represents the localized name for a specific event.
+    /// Represents a dynamic event and its localized name.
     /// </summary>
     public class DynamicEventName : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicEventName"/> class.
-        /// </summary>
-        public DynamicEventName()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicEventName"/> class using the specified values.
-        /// </summary>
-        /// <param name="id">The event ID.</param>
-        /// <param name="name">The localized event name.</param>
-        public DynamicEventName(Guid id, string name)
-        {
-            this.Id = id;
-            this.Name = name;
-        }
-
-        /// <summary>
         /// Gets or sets the event ID.
         /// </summary>
         [JsonProperty("id", Order = 0)]
-        [JsonConverter(typeof(GuidConverter))]
         public Guid Id { get; set; }
 
         /// <summary>
