@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Core.Events.Models
         /// </summary>
         [JsonProperty("state", Order = 3)]
         [JsonConverter(typeof(StringEnumConverter))]
-        public EventState State { get; set; }
+        public DynamicEventState State { get; set; }
 
         /// <summary>
         /// Gets or sets the world on which the event is running.
