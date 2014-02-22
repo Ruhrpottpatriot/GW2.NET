@@ -108,7 +108,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="jsonSerializerSettings">The <see cref="Newtonsoft.Json.JsonSerializerSettings"/> used to de-serialize the object.  If this is null, default serialization settings will be is used.</param>
         /// <returns>Returns the response as an instance of the specified type.</returns>
-        public TContent DeserializeResponse(JsonSerializerSettings jsonSerializerSettings)
+        public TContent Deserialize(JsonSerializerSettings jsonSerializerSettings)
         {
             if (!this.IsSuccessStatusCode)
             {
@@ -123,7 +123,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="converters">The converters to use while de-serializing.</param>
         /// <returns>Returns the response as an instance of the specified type.</returns>
-        public TContent DeserializeResponse(params JsonConverter[] converters)
+        public TContent Deserialize(params JsonConverter[] converters)
         {
             if (!this.IsSuccessStatusCode)
             {
