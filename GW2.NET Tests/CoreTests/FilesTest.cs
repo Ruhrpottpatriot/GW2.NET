@@ -32,7 +32,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             FilesRequest request = new FilesRequest();
 
-            FilesResponse response = request.GetResponse(this.client).DeserializeResponse();
+            FilesResponse response = request.GetResponse(this.client).Deserialize();
 
             Assets assets = response.Files;
 
@@ -54,7 +54,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             FilesRequest request = new FilesRequest();
 
-            FilesResponse response = (await request.GetResponseAsync(this.client)).DeserializeResponse();
+            FilesResponse response = (await request.GetResponseAsync(this.client)).Deserialize();
 
             Assets assets = response.Files;
 

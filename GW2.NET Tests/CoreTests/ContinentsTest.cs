@@ -25,7 +25,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             ContinentsRequest request = new ContinentsRequest();
 
-            ContinentsResponse response = request.GetResponse(ApiClient.Create()).DeserializeResponse();
+            ContinentsResponse response = request.GetResponse(ApiClient.Create()).Deserialize();
 
             IDictionary<int, Continent> continents = response.Continents;
 
@@ -47,7 +47,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             ContinentsRequest request = new ContinentsRequest();
 
-            ContinentsResponse response = (await request.GetResponseAsync(ApiClient.Create())).DeserializeResponse();
+            ContinentsResponse response = (await request.GetResponseAsync(ApiClient.Create())).Deserialize();
 
             IDictionary<int, Continent> continents = response.Continents;
 

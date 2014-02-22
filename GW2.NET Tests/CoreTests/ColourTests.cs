@@ -25,7 +25,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             ColorsRequest colorsRequest = new ColorsRequest(SupportedLanguages.English);
 
-            ColorsResponse colorsResponse = colorsRequest.GetResponse(ApiClient.Create()).DeserializeResponse();
+            ColorsResponse colorsResponse = colorsRequest.GetResponse(ApiClient.Create()).Deserialize();
 
             IDictionary<int, Dye> colours = colorsResponse.Colors;
 
@@ -52,7 +52,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             ColorsRequest request = new ColorsRequest(SupportedLanguages.English);
 
-            ColorsResponse colorsResponse = (await request.GetResponseAsync(ApiClient.Create())).DeserializeResponse();
+            ColorsResponse colorsResponse = (await request.GetResponseAsync(ApiClient.Create())).Deserialize();
 
             IDictionary<int, Dye> colours = colorsResponse.Colors;
 
@@ -80,7 +80,7 @@ namespace GW2DotNET_Tests.CoreTests
 
             ColorsRequest request = new ColorsRequest(SupportedLanguages.German);
 
-            ColorsResponse colorsResponse = request.GetResponse(ApiClient.Create()).DeserializeResponse();
+            ColorsResponse colorsResponse = request.GetResponse(ApiClient.Create()).Deserialize();
 
             IDictionary<int, Dye> colours = colorsResponse.Colors;
 
@@ -108,7 +108,7 @@ namespace GW2DotNET_Tests.CoreTests
 
             ColorsRequest request = new ColorsRequest(SupportedLanguages.French);
 
-            ColorsResponse colorsResponse = request.GetResponse(ApiClient.Create()).DeserializeResponse();
+            ColorsResponse colorsResponse = request.GetResponse(ApiClient.Create()).Deserialize();
 
             IDictionary<int, Dye> colours = colorsResponse.Colors;
 
@@ -136,7 +136,7 @@ namespace GW2DotNET_Tests.CoreTests
 
             ColorsRequest request = new ColorsRequest(SupportedLanguages.Spanish);
 
-            ColorsResponse colorsResponse = request.GetResponse(ApiClient.Create()).DeserializeResponse();
+            ColorsResponse colorsResponse = request.GetResponse(ApiClient.Create()).Deserialize();
 
             IDictionary<int, Dye> colours = colorsResponse.Colors;
 

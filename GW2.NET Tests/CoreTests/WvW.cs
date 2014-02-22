@@ -42,7 +42,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             MatchesRequest request = new MatchesRequest();
 
-            MatchesResponse response = request.GetResponse(this.client).DeserializeResponse();
+            MatchesResponse response = request.GetResponse(this.client).Deserialize();
 
             List<Match> matches = response.Matches.ToList();
 
@@ -64,7 +64,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             MatchesRequest request = new MatchesRequest();
 
-            MatchesResponse response = (await request.GetResponseAsync(this.client)).DeserializeResponse();
+            MatchesResponse response = (await request.GetResponseAsync(this.client)).Deserialize();
 
             List<Match> matches = response.Matches.ToList();
 
@@ -98,7 +98,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             MatchDetailsRequest request = new MatchDetailsRequest("1-1");
 
-            MatchDetailsResponse response = request.GetResponse(this.client).DeserializeResponse();
+            MatchDetailsResponse response = request.GetResponse(this.client).Deserialize();
             Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(MatchDetailsResponse).FullName);
 
             Scoreboard scoreboard = response.Scores;
@@ -134,7 +134,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             MatchDetailsRequest request = new MatchDetailsRequest("1-1");
 
-            MatchDetailsResponse response = (await request.GetResponseAsync(this.client)).DeserializeResponse();
+            MatchDetailsResponse response = (await request.GetResponseAsync(this.client)).Deserialize();
             Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(MatchDetailsResponse).FullName);
 
             Scoreboard scoreboard = response.Scores;
@@ -181,7 +181,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             ObjectiveNamesRequest request = new ObjectiveNamesRequest();
 
-            ObjectiveNamesResponse response = request.GetResponse(this.client).DeserializeResponse();
+            ObjectiveNamesResponse response = request.GetResponse(this.client).Deserialize();
             Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ObjectiveNamesResponse).FullName);
 
             List<Objective> objectiveNames = response.Objectives.ToList();
@@ -203,7 +203,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             ObjectiveNamesRequest request = new ObjectiveNamesRequest();
 
-            ObjectiveNamesResponse response = (await request.GetResponseAsync(this.client)).DeserializeResponse();
+            ObjectiveNamesResponse response = (await request.GetResponseAsync(this.client)).Deserialize();
             Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ObjectiveNamesResponse).FullName);
 
             List<Objective> objectiveNames = response.Objectives.ToList();
@@ -225,7 +225,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             ObjectiveNamesRequest request = new ObjectiveNamesRequest(SupportedLanguages.German);
 
-            ObjectiveNamesResponse response = request.GetResponse(this.client).DeserializeResponse();
+            ObjectiveNamesResponse response = request.GetResponse(this.client).Deserialize();
             Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ObjectiveNamesResponse).FullName);
 
             List<Objective> objectiveNames = response.Objectives.ToList();
@@ -247,7 +247,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             ObjectiveNamesRequest request = new ObjectiveNamesRequest(SupportedLanguages.French);
 
-            ObjectiveNamesResponse response = request.GetResponse(this.client).DeserializeResponse();
+            ObjectiveNamesResponse response = request.GetResponse(this.client).Deserialize();
             Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ObjectiveNamesResponse).FullName);
 
             List<Objective> objectiveNames = response.Objectives.ToList();
@@ -269,7 +269,7 @@ namespace GW2DotNET_Tests.CoreTests
         {
             ObjectiveNamesRequest request = new ObjectiveNamesRequest(SupportedLanguages.Spanish);
 
-            ObjectiveNamesResponse response = request.GetResponse(this.client).DeserializeResponse();
+            ObjectiveNamesResponse response = request.GetResponse(this.client).Deserialize();
             Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ObjectiveNamesResponse).FullName);
 
             List<Objective> objectiveNames = response.Objectives.ToList();

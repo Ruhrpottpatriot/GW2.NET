@@ -36,7 +36,7 @@ namespace GW2DotNET_Tests.CoreTests
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsTrue(response.IsJsonResponse);
 
-            var build    = response.DeserializeResponse();
+            var build    = response.Deserialize();
 
             Assert.IsNotNull(build);
 
@@ -54,7 +54,7 @@ namespace GW2DotNET_Tests.CoreTests
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsTrue(response.IsJsonResponse);
 
-            var build    = response.DeserializeResponse();
+            var build    = response.Deserialize();
 
             Assert.IsNotNull(build);
 

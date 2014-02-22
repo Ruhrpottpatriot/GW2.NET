@@ -93,7 +93,7 @@ namespace GW2DotNET.V1.Core
         /// Gets the response content as an object of the specified type.
         /// </summary>
         /// <returns>Returns the response as an instance of the specified type.</returns>
-        public TContent DeserializeResponse()
+        public TContent Deserialize()
         {
             if (!this.IsSuccessStatusCode)
             {
