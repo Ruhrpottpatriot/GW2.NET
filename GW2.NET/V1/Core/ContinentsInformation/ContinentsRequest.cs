@@ -7,7 +7,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace GW2DotNET.V1.Core.Continents
+namespace GW2DotNET.V1.Core.ContinentsInformation
 {
     /// <summary>
     /// Represents a request for static information about the continents.
@@ -26,23 +26,23 @@ namespace GW2DotNET.V1.Core.Continents
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ContinentsResponse"/>.
+        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ContinentsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ContinentsResponse"/>.</returns>
-        public IApiResponse<ContinentsResponse> GetResponse(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="ContinentsResult"/>.</returns>
+        public IApiResponse<ContinentsResult> GetResponse(IApiClient handler)
         {
-            return base.GetResponse<ContinentsResponse>(handler);
+            return base.GetResponse<ContinentsResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ContinentsResponse"/>.
+        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ContinentsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ContinentsResponse"/>.</returns>
-        public Task<IApiResponse<ContinentsResponse>> GetResponseAsync(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="ContinentsResult"/>.</returns>
+        public Task<IApiResponse<ContinentsResult>> GetResponseAsync(IApiClient handler)
         {
-            return base.GetResponseAsync<ContinentsResponse>(handler);
+            return base.GetResponseAsync<ContinentsResult>(handler);
         }
     }
 }

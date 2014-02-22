@@ -13,8 +13,8 @@ namespace GW2DotNET.V1.Core
     /// <summary>
     /// Provides the base class for strongly typed JSON dictionaries.
     /// </summary>
-    /// <typeparam name="TKey">The type of the key.</typeparam>
-    /// <typeparam name="TValue">The type of the value.</typeparam>
+    /// <typeparam name="TKey">The type of the keys.</typeparam>
+    /// <typeparam name="TValue">The type of the values.</typeparam>
     [Serializable]
     public class JsonDictionary<TKey, TValue> : JsonObject, IDictionary<TKey, TValue> where TValue : JsonObject
     {

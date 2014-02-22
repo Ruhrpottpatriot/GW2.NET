@@ -7,12 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using System.Diagnostics;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.Continents;
-using GW2DotNET.V1.Core.Continents.Models;
-
+using GW2DotNET.V1.Core.ContinentsInformation;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -20,48 +17,58 @@ namespace GW2DotNET_Tests.CoreTests
     [TestFixture]
     public class ContinentsTest
     {
+        private IApiClient client;
+
+        [SetUp]
+        public void SetUp()
+        {
+            this.client = ApiClient.Create();
+        }
+
         [Test]
         public void GetContinents()
         {
-            ContinentsRequest request = new ContinentsRequest();
+            var request  = new ContinentsRequest();
+            var response = request.GetResponse(client);
 
-            ContinentsResponse response = request.GetResponse(ApiClient.Create()).Deserialize();
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            Assert.IsTrue(response.IsJsonResponse);
 
-            IDictionary<int, Continent> continents = response.Continents;
+            var continentsResult = response.Deserialize();
 
-            Assert.IsNotNull(continents);
-            Assert.IsNotEmpty(continents);
+            Assert.IsNotNull(continentsResult.Continents);
+            Assert.IsNotEmpty(continentsResult.Continents);
+            Assert.IsEmpty(continentsResult.Continents.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ContinentsResult).FullName);
 
-            Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ContinentsResponse).FullName);
-
-            foreach (var pair in continents)
+            foreach (var pair in continentsResult.Continents)
             {
                 Assert.IsEmpty(pair.Value.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Continent).FullName);
             }
 
-            Trace.WriteLine(string.Format("Number of continents: {0}", continents.Count));
+            Trace.WriteLine(string.Format("Number of continents: {0}", continentsResult.Continents.Count));
         }
 
         [Test]
         public async void GetContinentsAsync()
         {
-            ContinentsRequest request = new ContinentsRequest();
+            var request  = new ContinentsRequest();
+            var response = await request.GetResponseAsync(client);
 
-            ContinentsResponse response = (await request.GetResponseAsync(ApiClient.Create())).Deserialize();
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            Assert.IsTrue(response.IsJsonResponse);
 
-            IDictionary<int, Continent> continents = response.Continents;
+            var continentsResult = response.Deserialize();
 
-            Assert.IsNotNull(continents);
-            Assert.IsNotEmpty(continents);
+            Assert.IsNotNull(continentsResult.Continents);
+            Assert.IsNotEmpty(continentsResult.Continents);
+            Assert.IsEmpty(continentsResult.Continents.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ContinentsResult).FullName);
 
-            Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ContinentsResponse).FullName);
-
-            foreach (var pair in continents)
+            foreach (var pair in continentsResult.Continents)
             {
                 Assert.IsEmpty(pair.Value.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Continent).FullName);
             }
 
-            Trace.WriteLine(string.Format("Number of continents: {0}", continents.Count));
+            Trace.WriteLine(string.Format("Number of continents: {0}", continentsResult.Continents.Count));
         }
     }
 }

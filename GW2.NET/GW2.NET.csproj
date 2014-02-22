@@ -110,6 +110,7 @@
     <Compile Include="V1\Core\ApiException.cs" />
     <Compile Include="V1\Core\ApiRequest.cs" />
     <Compile Include="V1\Core\ApiResponse.cs" />
+    <Compile Include="V1\Core\JsonList.cs" />
     <Compile Include="V1\Core\JsonObject.cs" />
     <Compile Include="V1\Core\BuildInformation\BuildRequest.cs" />
     <Compile Include="V1\Core\BuildInformation\Build.cs" />
@@ -117,9 +118,9 @@
     <Compile Include="V1\Core\ColorsInformation\ColorsResult.cs" />
     <Compile Include="V1\Core\ColorsInformation\Dye.cs" />
     <Compile Include="V1\Core\ColorsInformation\Material.cs" />
-    <Compile Include="V1\Core\Continents\Models\Continent.cs" />
-    <Compile Include="V1\Core\Continents\ContinentsRequest.cs" />
-    <Compile Include="V1\Core\Continents\ContinentsResponse.cs" />
+    <Compile Include="V1\Core\ContinentsInformation\Continent.cs" />
+    <Compile Include="V1\Core\ContinentsInformation\ContinentsRequest.cs" />
+    <Compile Include="V1\Core\ContinentsInformation\ContinentsResult.cs" />
     <Compile Include="V1\Core\Converters\ContentBasedTypeCreationConverter.cs" />
     <Compile Include="V1\Core\Converters\DefaultConverter.cs" />
     <Compile Include="V1\Core\Converters\MillisecondsTimespanConverter.cs" />

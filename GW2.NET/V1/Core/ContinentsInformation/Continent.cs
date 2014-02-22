@@ -4,12 +4,11 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using System.Drawing;
 using Newtonsoft.Json;
-using JsonSizeConverter = GW2DotNET.V1.Core.Converters.SizeConverter;
+using SizeConverter = GW2DotNET.V1.Core.Converters.SizeConverter;
 
-namespace GW2DotNET.V1.Core.Continents.Models
+namespace GW2DotNET.V1.Core.ContinentsInformation
 {
     /// <summary>
     /// Represents a continent.
@@ -20,7 +19,7 @@ namespace GW2DotNET.V1.Core.Continents.Models
         /// Gets or sets the dimensions of the continent.
         /// </summary>
         [JsonProperty("continent_dims", Order = 1)]
-        [JsonConverter(typeof(JsonSizeConverter))]
+        [JsonConverter(typeof(SizeConverter))]
         public Size ContinentDimensions { get; set; }
 
         /// <summary>
@@ -33,7 +32,7 @@ namespace GW2DotNET.V1.Core.Continents.Models
         /// Gets or sets a list of floors available for this continent.
         /// </summary>
         [JsonProperty("floors", Order = 4)]
-        public IEnumerable<int> Floors { get; set; }
+        public JsonList<int> Floors { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum zoom level for use with the map tile service.
