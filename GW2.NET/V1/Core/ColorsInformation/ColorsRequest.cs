@@ -8,10 +8,10 @@ using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace GW2DotNET.V1.Core.Colors
+namespace GW2DotNET.V1.Core.ColorsInformation
 {
     /// <summary>
-    /// Represents a request for information regarding all dyes in the game.
+    /// Represents a request for information regarding dyes in the game.
     /// </summary>
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/colors"/> for more information.
@@ -37,23 +37,23 @@ namespace GW2DotNET.V1.Core.Colors
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ColorsResponse"/>.
+        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ColorsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ColorsResponse"/>.</returns>
-        public IApiResponse<ColorsResponse> GetResponse(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="ColorsResult"/>.</returns>
+        public IApiResponse<ColorsResult> GetResponse(IApiClient handler)
         {
-            return base.GetResponse<ColorsResponse>(handler);
+            return base.GetResponse<ColorsResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ColorsResponse"/>.
+        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ColorsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ColorsResponse"/>.</returns>
-        public Task<IApiResponse<ColorsResponse>> GetResponseAsync(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="ColorsResult"/>.</returns>
+        public Task<IApiResponse<ColorsResult>> GetResponseAsync(IApiClient handler)
         {
-            return base.GetResponseAsync<ColorsResponse>(handler);
+            return base.GetResponseAsync<ColorsResult>(handler);
         }
     }
 }

@@ -113,10 +113,10 @@
     <Compile Include="V1\Core\JsonObject.cs" />
     <Compile Include="V1\Core\BuildInformation\BuildRequest.cs" />
     <Compile Include="V1\Core\BuildInformation\Build.cs" />
-    <Compile Include="V1\Core\Colors\ColorsRequest.cs" />
-    <Compile Include="V1\Core\Colors\ColorsResponse.cs" />
-    <Compile Include="V1\Core\Colors\Models\Dye.cs" />
-    <Compile Include="V1\Core\Colors\Models\Material.cs" />
+    <Compile Include="V1\Core\ColorsInformation\ColorsRequest.cs" />
+    <Compile Include="V1\Core\ColorsInformation\ColorsResult.cs" />
+    <Compile Include="V1\Core\ColorsInformation\Dye.cs" />
+    <Compile Include="V1\Core\ColorsInformation\Material.cs" />
     <Compile Include="V1\Core\Continents\Models\Continent.cs" />
     <Compile Include="V1\Core\Continents\ContinentsRequest.cs" />
     <Compile Include="V1\Core\Continents\ContinentsResponse.cs" />

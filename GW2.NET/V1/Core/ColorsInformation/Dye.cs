@@ -6,9 +6,9 @@
 
 using System.Drawing;
 using Newtonsoft.Json;
-using JsonColorConverter = GW2DotNET.V1.Core.Converters.ColorConverter;
+using ColorConverter = GW2DotNET.V1.Core.Converters.ColorConverter;
 
-namespace GW2DotNET.V1.Core.Colors.Models
+namespace GW2DotNET.V1.Core.ColorsInformation
 {
     /// <summary>
     /// Represents a dye and its color component information.
@@ -16,34 +16,10 @@ namespace GW2DotNET.V1.Core.Colors.Models
     public class Dye : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Dye"/> class.
-        /// </summary>
-        public Dye()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Dye"/> class using the specified values.
-        /// </summary>
-        /// <param name="name">The name of the dye.</param>
-        /// <param name="baseRGB">The base RGB values.</param>
-        /// <param name="cloth">Information on the appearance when applied on cloth armor.</param>
-        /// <param name="leather">Information on the appearance when applied on leather armor.</param>
-        /// <param name="metal">Information on the appearance when applied on metal armor.</param>
-        public Dye(string name, Color baseRGB, Material cloth, Material leather, Material metal)
-        {
-            this.Name = name;
-            this.BaseRGB = baseRGB;
-            this.Cloth = cloth;
-            this.Leather = leather;
-            this.Metal = metal;
-        }
-
-        /// <summary>
         /// Gets or sets the base RGB values.
         /// </summary>
         [JsonProperty("base_rgb", Order = 1)]
-        [JsonConverter(typeof(JsonColorConverter))]
+        [JsonConverter(typeof(ColorConverter))]
         public Color BaseRGB { get; set; }
 
         /// <summary>

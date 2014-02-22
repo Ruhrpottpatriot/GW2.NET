@@ -6,41 +6,15 @@
 
 using System.Drawing;
 using Newtonsoft.Json;
-using JsonColorConverter = GW2DotNET.V1.Core.Converters.ColorConverter;
+using ColorConverter = GW2DotNET.V1.Core.Converters.ColorConverter;
 
-namespace GW2DotNET.V1.Core.Colors.Models
+namespace GW2DotNET.V1.Core.ColorsInformation
 {
     /// <summary>
     /// Represents a dye's color component information for a specific material.
     /// </summary>
     public class Material : JsonObject
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Material"/> class.
-        /// </summary>
-        public Material()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Material"/> class using the specified values.
-        /// </summary>
-        /// <param name="brightness">The brightness.</param>
-        /// <param name="contrast">The contrast.</param>
-        /// <param name="hue">The hue in the HSL color space.</param>
-        /// <param name="saturation">The saturation in the HSL color space.</param>
-        /// <param name="lightness">The lightness in the HSL color space.</param>
-        /// <param name="rgb">The color.</param>
-        public Material(int brightness, double contrast, int hue, double saturation, double lightness, Color rgb)
-        {
-            this.Brightness = brightness;
-            this.Contrast = contrast;
-            this.Hue = hue;
-            this.Saturation = saturation;
-            this.Lightness = lightness;
-            this.RGB = rgb;
-        }
-
         /// <summary>
         /// Gets or sets the brightness.
         /// </summary>
@@ -69,7 +43,7 @@ namespace GW2DotNET.V1.Core.Colors.Models
         /// Gets or sets the color.
         /// </summary>
         [JsonProperty("rgb", Order = 5)]
-        [JsonConverter(typeof(JsonColorConverter))]
+        [JsonConverter(typeof(ColorConverter))]
         public Color RGB { get; set; }
 
         /// <summary>
