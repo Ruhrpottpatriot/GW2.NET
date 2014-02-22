@@ -7,7 +7,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace GW2DotNET.V1.Core.Files
+namespace GW2DotNET.V1.Core.FilesInformation
 {
     /// <summary>
     /// Represents a request for commonly requested in-game assets.
@@ -27,23 +27,23 @@ namespace GW2DotNET.V1.Core.Files
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="FilesResponse"/>.
+        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Assets"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="FilesResponse"/>.</returns>
-        public IApiResponse<FilesResponse> GetResponse(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="Assets"/>.</returns>
+        public IApiResponse<Assets> GetResponse(IApiClient handler)
         {
-            return base.GetResponse<FilesResponse>(handler);
+            return base.GetResponse<Assets>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="FilesResponse"/>.
+        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Assets"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="FilesResponse"/>.</returns>
-        public Task<IApiResponse<FilesResponse>> GetResponseAsync(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="Assets"/>.</returns>
+        public Task<IApiResponse<Assets>> GetResponseAsync(IApiClient handler)
         {
-            return base.GetResponseAsync<FilesResponse>(handler);
+            return base.GetResponseAsync<Assets>(handler);
         }
     }
 }

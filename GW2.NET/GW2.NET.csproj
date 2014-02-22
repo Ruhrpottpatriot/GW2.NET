@@ -158,11 +158,9 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventState.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\DynamicEventStatusRequest.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventsResult.cs" />
-    <Compile Include="V1\Core\Files\Converters\FilesResponseConverter.cs" />
-    <Compile Include="V1\Core\Files\Models\Asset.cs" />
-    <Compile Include="V1\Core\Files\Models\Assets.cs" />
-    <Compile Include="V1\Core\Files\FilesRequest.cs" />
-    <Compile Include="V1\Core\Files\FilesResponse.cs" />
+    <Compile Include="V1\Core\FilesInformation\Asset.cs" />
+    <Compile Include="V1\Core\FilesInformation\Assets.cs" />
+    <Compile Include="V1\Core\FilesInformation\FilesRequest.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsRequest.cs" />
     <Compile Include="V1\Core\GuildDetails\GuildDetailsResponse.cs" />
     <Compile Include="V1\Core\ItemDetails\Converters\ConsumableDetailsConverter.cs" />

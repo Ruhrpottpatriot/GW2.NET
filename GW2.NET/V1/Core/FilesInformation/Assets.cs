@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V1.Core.Files.Models
+namespace GW2DotNET.V1.Core.FilesInformation
 {
     /// <summary>
     /// Represents a collection of named assets.

@@ -6,7 +6,7 @@
 
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.Files.Models
+namespace GW2DotNET.V1.Core.FilesInformation
 {
     /// <summary>
     /// Represents information about a file that can be retrieved from the render service.
