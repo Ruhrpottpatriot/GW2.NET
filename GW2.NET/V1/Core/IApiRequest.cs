@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="handler">The HTTP client that sends the request over a network and returns a response.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        IApiResponse<TContent> GetResponse<TContent>(IApiClient handler) where TContent : JsonObject, new();
+        IApiResponse<TContent> GetResponse<TContent>(IApiClient handler) where TContent : JsonObject;
 
         /// <summary>
         /// Asynchronously sends this request to the specified API client and retrieves a response whose content can be mapped to the specified type.
@@ -27,6 +27,6 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="handler">The HTTP client that sends the request over a network and returns a response.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        Task<IApiResponse<TContent>> GetResponseAsync<TContent>(IApiClient handler) where TContent : JsonObject, new();
+        Task<IApiResponse<TContent>> GetResponseAsync<TContent>(IApiClient handler) where TContent : JsonObject;
     }
 }

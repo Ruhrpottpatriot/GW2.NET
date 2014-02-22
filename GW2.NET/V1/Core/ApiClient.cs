@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public IApiResponse<TContent> Send<TContent>(IApiRequest request) where TContent : JsonObject, new()
+        public IApiResponse<TContent> Send<TContent>(IApiRequest request) where TContent : JsonObject
         {
             Preconditions.EnsureNotNull(paramName: "request", value: request);
             if (!(request is IRestRequest))
@@ -73,7 +73,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request) where TContent : JsonObject, new()
+        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request) where TContent : JsonObject
         {
             Preconditions.EnsureNotNull(paramName: "request", value: request);
             if (!(request is ApiRequest))
@@ -91,7 +91,7 @@ namespace GW2DotNET.V1.Core
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request, CancellationToken token) where TContent : JsonObject, new()
+        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request, CancellationToken token) where TContent : JsonObject
         {
             Preconditions.EnsureNotNull(paramName: "request", value: request);
             if (!(request is ApiRequest))
@@ -108,7 +108,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request) where TContent : JsonObject, new()
+        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request) where TContent : JsonObject
         {
             return this.ExecuteTaskAsync(request)
                 .ContinueWith<IApiResponse<TContent>>(
@@ -122,7 +122,7 @@ namespace GW2DotNET.V1.Core
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request, CancellationToken token) where TContent : JsonObject, new()
+        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request, CancellationToken token) where TContent : JsonObject
         {
             return this.ExecuteTaskAsync(request, token)
                 .ContinueWith<IApiResponse<TContent>>(
@@ -136,7 +136,7 @@ namespace GW2DotNET.V1.Core
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private IApiResponse<TContent> SendImplementation<TContent>(IRestRequest request) where TContent : JsonObject, new()
+        private IApiResponse<TContent> SendImplementation<TContent>(IRestRequest request) where TContent : JsonObject
         {
             return new ApiResponse<TContent>(this.Execute(request));
         }
