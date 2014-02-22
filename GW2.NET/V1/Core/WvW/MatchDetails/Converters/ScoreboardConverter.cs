@@ -22,7 +22,7 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(ScoreboardConverter).IsAssignableFrom(objectType);
+            return typeof(Scoreboard).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -35,9 +35,12 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            int[] scores = serializer.Deserialize<int[]>(reader);
+            var scores = serializer.Deserialize<int[]>(reader);
+            var red    = scores[0];
+            var blue   = scores[1];
+            var green  = scores[2];
 
-            return new Scoreboard(red: scores[0], blue: scores[1], green: scores[2]);
+            return new Scoreboard(red, blue, green);
         }
 
         /// <summary>
@@ -48,7 +51,7 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            Scoreboard scores = (Scoreboard)value;
+            var scores = (Scoreboard)value;
 
             writer.WriteStartArray();
 
