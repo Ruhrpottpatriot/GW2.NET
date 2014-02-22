@@ -9,7 +9,7 @@ namespace GW2DotNET.V1.Core.Files.Models
     /// <summary>
     /// Represents a collection of named assets.
     /// </summary>
-    public class Assets : JsonDictionary<Asset>
+    public class Assets : JsonDictionary<string, Asset>
     {
     }
 }

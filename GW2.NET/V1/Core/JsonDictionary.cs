@@ -13,19 +13,20 @@ namespace GW2DotNET.V1.Core
     /// <summary>
     /// Provides the base class for strongly typed JSON dictionaries.
     /// </summary>
+    /// <typeparam name="TKey">The type of the key.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
     [Serializable]
-    public abstract class JsonDictionary<TValue> : JsonObject, IDictionary<string, TValue> where TValue : JsonObject
+    public abstract class JsonDictionary<TKey, TValue> : JsonObject, IDictionary<TKey, TValue> where TValue : JsonObject
     {
         /// <summary>Infrastructure. This class acts as a proxy for the dictionary stored in this field.</summary>
-        private readonly IDictionary<string, TValue> innerDictionary;
+        private readonly IDictionary<TKey, TValue> innerDictionary;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="JsonDictionary{TValue}" /> class.
+        /// Initializes a new instance of the <see cref="JsonDictionary{TKey, TValue}" /> class.
         /// </summary>
         public JsonDictionary()
         {
-            this.innerDictionary = new Dictionary<string, TValue>();
+            this.innerDictionary = new Dictionary<TKey, TValue>();
         }
 
         /// <summary>
@@ -45,15 +46,15 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Gets an <see cref="System.Collections.Generic.ICollection{T}"/> containing the keys of the <see cref="JsonDictionary{TValue}"/>.
+        /// Gets an <see cref="System.Collections.Generic.ICollection{T}"/> containing the keys of the <see cref="JsonDictionary{TKey, TValue}"/>.
         /// </summary>
-        public ICollection<string> Keys
+        public ICollection<TKey> Keys
         {
             get { return this.innerDictionary.Keys; }
         }
 
         /// <summary>
-        /// Gets an <see cref="System.Collections.Generic.ICollection{T}"/> containing the values in the <see cref="JsonDictionary{TValue}"/>.
+        /// Gets an <see cref="System.Collections.Generic.ICollection{T}"/> containing the values in the <see cref="JsonDictionary{TKey, TValue}"/>.
         /// </summary>
         public ICollection<TValue> Values
         {
@@ -65,18 +66,18 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="key">The key of the element to get or set.</param>
         /// <returns>The element with the specified key.</returns>
-        public TValue this[string key]
+        public TValue this[TKey key]
         {
             get { return this.innerDictionary[key]; }
             set { this.innerDictionary[key] = value; }
         }
 
         /// <summary>
-        /// Adds an element with the provided key and value to the <see cref="JsonDictionary{TValue}"/>.
+        /// Adds an element with the provided key and value to the <see cref="JsonDictionary{TKey, TValue}"/>.
         /// </summary>
         /// <param name="key">The text to use as the key of the element to add.</param>
         /// <param name="value">The object to use as the value of the element to add.</param>
-        public void Add(string key, TValue value)
+        public void Add(TKey key, TValue value)
         {
             this.innerDictionary.Add(key, value);
         }
@@ -85,7 +86,7 @@ namespace GW2DotNET.V1.Core
         /// Adds an item to the <see cref="System.Collections.Generic.ICollection{T}"/>.
         /// </summary>
         /// <param name="item">The object to add to the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
-        public void Add(KeyValuePair<string, TValue> item)
+        public void Add(KeyValuePair<TKey, TValue> item)
         {
             this.innerDictionary.Add(item);
         }
@@ -103,17 +104,17 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="item">The object to locate in the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
         /// <returns>true if item is found in the <see cref="System.Collections.Generic.ICollection{T}"/>; otherwise, false.</returns>
-        public bool Contains(KeyValuePair<string, TValue> item)
+        public bool Contains(KeyValuePair<TKey, TValue> item)
         {
             return this.innerDictionary.Contains(item);
         }
 
         /// <summary>
-        /// Determines whether the <see cref="JsonDictionary{TValue}"/> contains an element with the specified key.
+        /// Determines whether the <see cref="JsonDictionary{TKey, TValue}"/> contains an element with the specified key.
         /// </summary>
-        /// <param name="key">The key to locate in the <see cref="JsonDictionary{TValue}"/>.</param>
-        /// <returns>true if the <see cref="JsonDictionary{TValue}"/> contains an element with the key; otherwise, false.</returns>
-        public bool ContainsKey(string key)
+        /// <param name="key">The key to locate in the <see cref="JsonDictionary{TKey, TValue}"/>.</param>
+        /// <returns>true if the <see cref="JsonDictionary{TKey, TValue}"/> contains an element with the key; otherwise, false.</returns>
+        public bool ContainsKey(TKey key)
         {
             return this.innerDictionary.ContainsKey(key);
         }
@@ -123,7 +124,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="System.Array"/> that is the destination of the elements copied from <see cref="System.Collections.Generic.ICollection{T}"/>. The <see cref="System.Array"/> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
-        public void CopyTo(KeyValuePair<string, TValue>[] array, int arrayIndex)
+        public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
             this.innerDictionary.CopyTo(array, arrayIndex);
         }
@@ -132,7 +133,7 @@ namespace GW2DotNET.V1.Core
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>A <see cref="System.Collections.Generic.IEnumerator{T}"/> that can be used to iterate through the collection.</returns>
-        public IEnumerator<KeyValuePair<string, TValue>> GetEnumerator()
+        public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
             return this.innerDictionary.GetEnumerator();
         }
@@ -147,11 +148,11 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Removes the element with the specified key from the <see cref="JsonDictionary{TValue}"/>.
+        /// Removes the element with the specified key from the <see cref="JsonDictionary{TKey, TValue}"/>.
         /// </summary>
         /// <param name="key">The key of the element to remove.</param>
-        /// <returns>true if the element is successfully removed; otherwise, false. This method also returns false if key was not found in the <see cref="JsonDictionary{TValue}"/>.</returns>
-        public bool Remove(string key)
+        /// <returns>true if the element is successfully removed; otherwise, false. This method also returns false if key was not found in the <see cref="JsonDictionary{TKey, TValue}"/>.</returns>
+        public bool Remove(TKey key)
         {
             return this.innerDictionary.Remove(key);
         }
@@ -161,7 +162,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
         /// <returns>true if item was successfully removed from the <see cref="System.Collections.Generic.ICollection{T}"/>; otherwise, false. This method also returns false if item is not found in the original <see cref="System.Collections.Generic.ICollection{T}"/>.</returns>
-        public bool Remove(KeyValuePair<string, TValue> item)
+        public bool Remove(KeyValuePair<TKey, TValue> item)
         {
             return this.innerDictionary.Remove(item);
         }
@@ -171,8 +172,8 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.</param>
-        /// <returns>true if the <see cref="JsonDictionary{TValue}"/> contains an element with the specified key; otherwise, false.</returns>
-        public bool TryGetValue(string key, out TValue value)
+        /// <returns>true if the <see cref="JsonDictionary{TKey, TValue}"/> contains an element with the specified key; otherwise, false.</returns>
+        public bool TryGetValue(TKey key, out TValue value)
         {
             return this.innerDictionary.TryGetValue(key, out value);
         }
