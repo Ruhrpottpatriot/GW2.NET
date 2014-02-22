@@ -113,13 +113,13 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ColoursTests.cs" />
+    <Compile Include="CoreTests\MapsTests.cs" />
     <Compile Include="CoreTests\ItemsTests.cs" />
     <Compile Include="CoreTests\GuildTests.cs" />
     <Compile Include="CoreTests\DynamicEventsTests.cs" />
     <Compile Include="CoreTests\ColorTests.cs" />
     <Compile Include="CoreTests\FilesTest.cs" />
     <Compile Include="CoreTests\BuildTests.cs" />
-    <Compile Include="CoreTests\ContinentsTest.cs" />
     <Compile Include="CoreTests\WvW.cs" />
     <Compile Include="DynamicEventsTests.cs" />
     <Compile Include="GuildTests.cs" />

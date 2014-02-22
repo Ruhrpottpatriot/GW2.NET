@@ -197,9 +197,6 @@
     <Compile Include="V1\Core\ColorsInformation\ColorsResult.cs" />
     <Compile Include="V1\Core\ColorsInformation\Dye.cs" />
     <Compile Include="V1\Core\ColorsInformation\Material.cs" />
-    <Compile Include="V1\Core\ContinentsInformation\Continent.cs" />
-    <Compile Include="V1\Core\ContinentsInformation\ContinentsRequest.cs" />
-    <Compile Include="V1\Core\ContinentsInformation\ContinentsResult.cs" />
     <Compile Include="V1\Core\Converters\ContentBasedTypeCreationConverter.cs" />
     <Compile Include="V1\Core\Converters\DefaultConverter.cs" />
     <Compile Include="V1\Core\Converters\MillisecondsTimespanConverter.cs" />
@@ -246,21 +243,33 @@
     <Compile Include="V1\Core\JsonDictionary.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="V1\Core\MapFloor\Models\Map.cs" />
-    <Compile Include="V1\Core\MapFloor\MapFloorRequest.cs" />
-    <Compile Include="V1\Core\MapFloor\MapFloorResponse.cs" />
-    <Compile Include="V1\Core\MapFloor\Models\Region.cs" />
-    <Compile Include="V1\Core\MapFloor\Models\Sector.cs" />
-    <Compile Include="V1\Core\MapFloor\Models\PointOfInterest.cs" />
-    <Compile Include="V1\Core\MapFloor\Models\Task.cs" />
-    <Compile Include="V1\Core\MapFloor\Models\SkillChallenge.cs" />
-    <Compile Include="V1\Core\MapNames\Converters\MapNamesResponseConverter.cs" />
-    <Compile Include="V1\Core\MapNames\MapNamesRequest.cs" />
-    <Compile Include="V1\Core\MapNames\MapNamesResponse.cs" />
-    <Compile Include="V1\Core\MapNames\Models\Map.cs" />
-    <Compile Include="V1\Core\Maps\Models\Map.cs" />
-    <Compile Include="V1\Core\Maps\MapsRequest.cs" />
-    <Compile Include="V1\Core\Maps\MapsResponse.cs" />
+    <Compile Include="V1\Core\MapsInformation\Continents\MapContinent.cs" />
+    <Compile Include="V1\Core\MapsInformation\Continents\MapContinentsResult.cs" />
+    <Compile Include="V1\Core\MapsInformation\Continents\MapContinents.cs" />
+    <Compile Include="V1\Core\MapsInformation\Continents\MapFloors.cs" />
+    <Compile Include="V1\Core\MapsInformation\Details\MapDetails.cs" />
+    <Compile Include="V1\Core\MapsInformation\Details\MapsDetails.cs" />
+    <Compile Include="V1\Core\MapsInformation\Details\MapsDetailsResult.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\MapFloor.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\MapRegion.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\MapRegions.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\PointOfInterest.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\PointOfInterestCategory.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\PointsOfInterest.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\RenownTask.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\RenownTasks.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\Sector.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\Sectors.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\SkillChallenge.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\SkillChallenges.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Map.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Maps.cs" />
+    <Compile Include="V1\Core\MapsInformation\MapContinentsRequest.cs" />
+    <Compile Include="V1\Core\MapsInformation\MapFloorRequest.cs" />
+    <Compile Include="V1\Core\MapsInformation\MapNamesRequest.cs" />
+    <Compile Include="V1\Core\MapsInformation\MapDetailsRequest.cs" />
+    <Compile Include="V1\Core\MapsInformation\Names\MapName.cs" />
+    <Compile Include="V1\Core\MapsInformation\Names\MapNames.cs" />
     <Compile Include="V1\Core\Preconditions.cs" />
     <Compile Include="V1\Core\RecipeDetails\Models\RecipeType.cs" />
     <Compile Include="V1\Core\RecipeDetails\Models\UnlockTypes.cs" />
@@ -371,7 +380,6 @@
     <None Include="packages.config" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventStyles.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationShape.cs" />
-    <Compile Include="V1\Core\MapFloor\Models\PointOfInterestCategory.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="V1\Core\Resources.resx">

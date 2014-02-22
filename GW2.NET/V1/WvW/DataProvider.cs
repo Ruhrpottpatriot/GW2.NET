@@ -96,7 +96,7 @@ namespace GW2DotNET.V1.WvW
 
         /// ReSharper disable CSharpWarnings::CS1574
         /// <summary>Gets all currently running world versus world matches asynchronously.</summary>
-        /// <returns>The <see cref="System.Threading.Tasks.Task{TResult}" />
+        /// <returns>The <see cref="System.Threading.Tasks.RenownTask{TResult}" />
         ///     containing the match list as result.</returns>
         /// ReSharper restore CSharpWarnings::CS1574
         public async Task<MatchList> GetMatchListAsync()
@@ -137,7 +137,7 @@ namespace GW2DotNET.V1.WvW
 
         /// <summary>Gets a single match from the api asynchronously.</summary>
         /// <param name="matchId">The match id.</param>
-        /// <returns>The <see cref="System.Threading.Tasks.Task{TResult}"/> containing the match as result.</returns>
+        /// <returns>The <see cref="System.Threading.Tasks.RenownTask{TResult}"/> containing the match as result.</returns>
         public async Task<WvWMatch> GetSingleMatchAsync(string matchId)
         {
             if (this.BypassCache)

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapFloor.Region.cs" company="GW2.Net Coding Team">
+// <copyright file="MapFloor.MapRegion.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -63,7 +63,7 @@ namespace GW2DotNET.V1.MapInformation.Models
                 private set;
             }
 
-            /// <summary>Resolves the Id for the current instance of the Region struct</summary>
+            /// <summary>Resolves the Id for the current instance of the MapRegion struct</summary>
             /// <param name="id">The id.</param>
             /// <returns>The <see cref="Region"/>.</returns>
             internal Region ResolveId(int id)

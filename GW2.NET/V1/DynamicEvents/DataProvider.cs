@@ -177,7 +177,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Gets the details for a particular event asynchronously.</summary>
         /// <param name="gameEvent">The game event to get the details.</param>
-        /// <returns>The <see cref="Task{GameEvent}"/> with all details..</returns>
+        /// <returns>The <see cref="RenownTask{GameEvent}"/> with all details..</returns>
         public async Task<GameEvent> GetEventDetailsAsync(GameEvent gameEvent)
         {
             List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
