@@ -111,8 +111,8 @@
     <Compile Include="V1\Core\ApiRequest.cs" />
     <Compile Include="V1\Core\ApiResponse.cs" />
     <Compile Include="V1\Core\JsonObject.cs" />
-    <Compile Include="V1\Core\Build\BuildRequest.cs" />
-    <Compile Include="V1\Core\Build\BuildResponse.cs" />
+    <Compile Include="V1\Core\BuildInformation\BuildRequest.cs" />
+    <Compile Include="V1\Core\BuildInformation\Build.cs" />
     <Compile Include="V1\Core\Colors\ColorsRequest.cs" />
     <Compile Include="V1\Core\Colors\ColorsResponse.cs" />
     <Compile Include="V1\Core\Colors\Models\Dye.cs" />

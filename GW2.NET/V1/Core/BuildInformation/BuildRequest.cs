@@ -7,7 +7,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace GW2DotNET.V1.Core.Build
+namespace GW2DotNET.V1.Core.BuildInformation
 {
     /// <summary>
     /// Represents a request for the current build ID of the game.
@@ -26,23 +26,23 @@ namespace GW2DotNET.V1.Core.Build
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="BuildResponse"/>.
+        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Build"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="BuildResponse"/>.</returns>
-        public IApiResponse<BuildResponse> GetResponse(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="Build"/>.</returns>
+        public IApiResponse<Build> GetResponse(IApiClient handler)
         {
-            return base.GetResponse<BuildResponse>(handler);
+            return base.GetResponse<Build>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="BuildResponse"/>.
+        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Build"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="BuildResponse"/>.</returns>
-        public Task<IApiResponse<BuildResponse>> GetResponseAsync(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="Build"/>.</returns>
+        public Task<IApiResponse<Build>> GetResponseAsync(IApiClient handler)
         {
-            return base.GetResponseAsync<BuildResponse>(handler);
+            return base.GetResponseAsync<Build>(handler);
         }
     }
 }

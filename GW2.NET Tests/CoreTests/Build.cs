@@ -11,7 +11,7 @@ using System;
 using System.Diagnostics;
 
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.Build;
+using GW2DotNET.V1.Core.BuildInformation;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -30,33 +30,37 @@ namespace GW2DotNET_Tests.CoreTests
         [Test]
         public void GetBuildNumber()
         {
-            BuildRequest request = new BuildRequest();
+            var request  = new BuildRequest();
+            var response = request.GetResponse(client);
 
-            BuildResponse response = request.GetResponse(client).DeserializeResponse();
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            Assert.IsTrue(response.IsJsonResponse);
 
-            int build = response.BuildId;
+            var build    = response.DeserializeResponse();
 
             Assert.IsNotNull(build);
 
-            Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(BuildResponse).FullName);
+            Assert.IsEmpty(build.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Build).FullName);
 
-            Trace.WriteLine(string.Format("Build: {0}", build));
+            Trace.WriteLine(string.Format("Build: {0}", build.BuildId));
         }
 
         [Test]
         public async void GetBuildNumberAsync()
         {
-            BuildRequest request = new BuildRequest();
+            var request  = new BuildRequest();
+            var response = await request.GetResponseAsync(client);
 
-            BuildResponse response = (await request.GetResponseAsync(client)).DeserializeResponse();
+            Assert.IsTrue(response.IsSuccessStatusCode);
+            Assert.IsTrue(response.IsJsonResponse);
 
-            int build = response.BuildId;
+            var build    = response.DeserializeResponse();
 
             Assert.IsNotNull(build);
 
-            Assert.IsEmpty(response.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(BuildResponse).FullName);
+            Assert.IsEmpty(build.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Build).FullName);
 
-            Trace.WriteLine(string.Format("Build: {0}", build));
+            Trace.WriteLine(string.Format("Build: {0}", build.BuildId));
         }
     }
 }
