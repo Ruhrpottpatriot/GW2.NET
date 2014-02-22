@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Core
     /// <typeparam name="TKey">The type of the key.</typeparam>
     /// <typeparam name="TValue">The type of the value.</typeparam>
     [Serializable]
-    public abstract class JsonDictionary<TKey, TValue> : JsonObject, IDictionary<TKey, TValue> where TValue : JsonObject
+    public class JsonDictionary<TKey, TValue> : JsonObject, IDictionary<TKey, TValue> where TValue : JsonObject
     {
         /// <summary>Infrastructure. This class acts as a proxy for the dictionary stored in this field.</summary>
         private readonly IDictionary<TKey, TValue> innerDictionary;
