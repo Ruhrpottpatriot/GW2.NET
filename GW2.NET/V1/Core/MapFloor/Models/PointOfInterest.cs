@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
     /// <summary>
     /// Represents a Point of Interest (POI) location.
     /// </summary>
-    public partial class PointOfInterest : JsonObject
+    public class PointOfInterest : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PointOfInterest"/> class.
@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
         /// <param name="type">The Point of Interest's type.</param>
         /// <param name="floor">The Point of Interest's floor.</param>
         /// <param name="coordinates">The Point of Interest's coordinates.</param>
-        public PointOfInterest(int poiId, string name, Category type, int floor, PointF coordinates)
+        public PointOfInterest(int poiId, string name, PointOfInterestCategory type, int floor, PointF coordinates)
         {
             this.PoiId = poiId;
             this.Name = name;
@@ -70,6 +70,6 @@ namespace GW2DotNET.V1.Core.MapFloor.Models
         /// </summary>
         [JsonProperty("type", Order = 2)]
         [JsonConverter(typeof(StringEnumConverter))]
-        public Category Type { get; set; }
+        public PointOfInterestCategory Type { get; set; }
     }
 }

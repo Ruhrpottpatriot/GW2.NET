@@ -375,7 +375,7 @@
     <None Include="packages.config" />
     <Compile Include="V1\Core\EventDetails\Models\DynamicEventDetails.DynamicEventStyles.cs" />
     <Compile Include="V1\Core\EventDetails\Models\LocationShape.cs" />
-    <Compile Include="V1\Core\MapFloor\Models\PointOfInterest.Category.cs" />
+    <Compile Include="V1\Core\MapFloor\Models\PointOfInterestCategory.cs" />
     <Compile Include="V1\Core\GuildDetails\Models\Emblem.cs" />
     <Compile Include="V1\Core\GuildDetails\Models\EmblemTransformations.cs" />
   </ItemGroup>
