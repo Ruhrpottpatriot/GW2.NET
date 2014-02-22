@@ -8,7 +8,7 @@ using System.Drawing;
 using Newtonsoft.Json;
 using ColorConverter = GW2DotNET.V1.Core.Converters.ColorConverter;
 
-namespace GW2DotNET.V1.Core.ColorsInformation
+namespace GW2DotNET.V1.Core.ColorsInformation.Details
 {
     /// <summary>
     /// Represents a dye's color component information for a specific material.

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Dye.cs" company="GW2.Net Coding Team">
+// <copyright file="DyeDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -8,12 +8,12 @@ using System.Drawing;
 using Newtonsoft.Json;
 using ColorConverter = GW2DotNET.V1.Core.Converters.ColorConverter;
 
-namespace GW2DotNET.V1.Core.ColorsInformation
+namespace GW2DotNET.V1.Core.ColorsInformation.Details
 {
     /// <summary>
     /// Represents a dye and its color component information.
     /// </summary>
-    public class Dye : JsonObject
+    public class DyeDetails : JsonObject
     {
         /// <summary>
         /// Gets or sets the base RGB values.

@@ -10,6 +10,7 @@
 using System.Diagnostics;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.ColorsInformation;
+using GW2DotNET.V1.Core.ColorsInformation.Details;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -35,53 +36,22 @@ namespace GW2DotNET_Tests.CoreTests
             Assert.IsTrue(response.IsSuccessStatusCode);
             Assert.IsTrue(response.IsJsonResponse);
 
-            var colorsResult = response.Deserialize();
+            var dyesDetailsResult = response.Deserialize();
 
-            Assert.IsNotNull(colorsResult.Colors);
-            Assert.IsNotEmpty(colorsResult.Colors);
+            Assert.IsNotNull(dyesDetailsResult.Colors);
+            Assert.IsNotEmpty(dyesDetailsResult.Colors);
 
-            Assert.IsEmpty(colorsResult.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ColorsResult).FullName);
+            Assert.IsEmpty(dyesDetailsResult.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(DyesDetailsResult).FullName);
 
-            foreach (var pair in colorsResult.Colors)
+            foreach (var dyeDetails in dyesDetailsResult.Colors.Values)
             {
-                var dye = pair.Value;
-
-                Assert.IsEmpty(dye.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Dye).FullName);
-                Assert.IsEmpty(dye.Cloth.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Material).FullName);
-                Assert.IsEmpty(dye.Leather.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Material).FullName);
-                Assert.IsEmpty(dye.Metal.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Material).FullName);
+                Assert.IsEmpty(dyeDetails.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(DyeDetails).FullName);
+                Assert.IsEmpty(dyeDetails.Cloth.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Material).FullName);
+                Assert.IsEmpty(dyeDetails.Leather.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Material).FullName);
+                Assert.IsEmpty(dyeDetails.Metal.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Material).FullName);
             }
 
-            Trace.WriteLine(string.Format("Number of dyes: {0}", colorsResult.Colors.Count));
-        }
-
-        [Test]
-        public async void GetColorsAsync()
-        {
-            var request  = new ColorsRequest(SupportedLanguages.English);
-            var response = await request.GetResponseAsync(client);
-
-            Assert.IsTrue(response.IsSuccessStatusCode);
-            Assert.IsTrue(response.IsJsonResponse);
-
-            var colorsResult = response.Deserialize();
-
-            Assert.IsNotNull(colorsResult.Colors);
-            Assert.IsNotEmpty(colorsResult.Colors);
-
-            Assert.IsEmpty(colorsResult.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ColorsResult).FullName);
-
-            foreach (var pair in colorsResult.Colors)
-            {
-                var dye = pair.Value;
-
-                Assert.IsEmpty(dye.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Dye).FullName);
-                Assert.IsEmpty(dye.Cloth.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Material).FullName);
-                Assert.IsEmpty(dye.Leather.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Material).FullName);
-                Assert.IsEmpty(dye.Metal.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(Material).FullName);
-            }
-
-            Trace.WriteLine(string.Format("Number of dyes: {0}", colorsResult.Colors.Count));
+            Trace.WriteLine(string.Format("Number of dyes: {0}", dyesDetailsResult.Colors.Count));
         }
     }
 }

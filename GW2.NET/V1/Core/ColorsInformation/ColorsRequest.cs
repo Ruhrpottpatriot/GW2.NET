@@ -7,6 +7,7 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core.ColorsInformation.Details;
 
 namespace GW2DotNET.V1.Core.ColorsInformation
 {
@@ -37,23 +38,23 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ColorsResult"/>.
+        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="DyesDetailsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ColorsResult"/>.</returns>
-        public IApiResponse<ColorsResult> GetResponse(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="DyesDetailsResult"/>.</returns>
+        public IApiResponse<DyesDetailsResult> GetResponse(IApiClient handler)
         {
-            return base.GetResponse<ColorsResult>(handler);
+            return base.GetResponse<DyesDetailsResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ColorsResult"/>.
+        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="DyesDetailsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ColorsResult"/>.</returns>
-        public Task<IApiResponse<ColorsResult>> GetResponseAsync(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="DyesDetailsResult"/>.</returns>
+        public Task<IApiResponse<DyesDetailsResult>> GetResponseAsync(IApiClient handler)
         {
-            return base.GetResponseAsync<ColorsResult>(handler);
+            return base.GetResponseAsync<DyesDetailsResult>(handler);
         }
     }
 }
