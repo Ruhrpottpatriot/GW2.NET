@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Core.GuildDetails.Models
     /// <summary>
     /// Represents a guild's emblem.
     /// </summary>
-    public partial class Emblem : JsonObject
+    public class Emblem : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Emblem"/> class.
@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Core.GuildDetails.Models
         /// <param name="backgroundColorId">The background color ID.</param>
         /// <param name="foregroundPrimaryColorId">The primary foreground color ID.</param>
         /// <param name="foregroundSecondaryColorId">The secondary foreground color ID.</param>
-        public Emblem(int backgroundId, int foregroundId, Transformations flags, int backgroundColorId, int foregroundPrimaryColorId, int foregroundSecondaryColorId)
+        public Emblem(int backgroundId, int foregroundId, EmblemTransformations flags, int backgroundColorId, int foregroundPrimaryColorId, int foregroundSecondaryColorId)
         {
             this.BackgroundId = backgroundId;
             this.ForegroundId = foregroundId;
@@ -55,7 +55,7 @@ namespace GW2DotNET.V1.Core.GuildDetails.Models
         /// Gets or sets the image transformations, if any.
         /// </summary>
         [JsonProperty("flags", Order = 2)]
-        public Transformations Flags { get; set; }
+        public EmblemTransformations Flags { get; set; }
 
         /// <summary>
         /// Gets or sets the foreground image ID.
