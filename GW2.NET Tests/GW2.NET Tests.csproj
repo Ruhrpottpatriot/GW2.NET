@@ -113,6 +113,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="ColoursTests.cs" />
+    <Compile Include="CoreTests\WorldTests.cs" />
     <Compile Include="CoreTests\MapsTests.cs" />
     <Compile Include="CoreTests\ItemsTests.cs" />
     <Compile Include="CoreTests\GuildTests.cs" />

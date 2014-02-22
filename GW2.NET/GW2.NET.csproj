@@ -285,10 +285,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\SupportedLanguages.cs" />
-    <Compile Include="V1\Core\WorldNames\Converters\WorldNamesResponseConverter.cs" />
-    <Compile Include="V1\Core\WorldNames\Models\World.cs" />
-    <Compile Include="V1\Core\WorldNames\WorldNamesRequest.cs" />
-    <Compile Include="V1\Core\WorldNames\WorldNamesResponse.cs" />
+    <Compile Include="V1\Core\WorldsInformation\Names\WorldName.cs" />
+    <Compile Include="V1\Core\WorldsInformation\Names\WorldNames.cs" />
+    <Compile Include="V1\Core\WorldsInformation\WorldNamesRequest.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\Converters\ScoreboardConverter.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\MatchDetailsRequest.cs" />
     <Compile Include="V1\Core\WvW\MatchDetails\MatchDetailsResponse.cs" />
