@@ -118,13 +118,23 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEvents.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\Emblem.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\EmblemTransformations.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Catalog\Items.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Catalogs\Recipes.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Catalogs\Items.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Catalogs\RecipesResult.cs" />
     <Compile Include="V1\Core\ItemsInformation\Converters\ConsumableDetailsConverter.cs" />
     <Compile Include="V1\Core\ItemsInformation\Converters\ItemConverter.cs" />
     <Compile Include="V1\Core\ItemsInformation\Converters\UnlockDetailsConverter.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Gathering\GatheringEquipment.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Gathering\GatheringEquipmentDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Gathering\GatheringEquipmentType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\CraftingDisciplines.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\CraftingIngredient.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\RecipeDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\RecipeType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\RecipeUnlockTypes.cs" />
     <Compile Include="V1\Core\ItemsInformation\ItemDetailsRequest.cs" />
     <Compile Include="V1\Core\ItemsInformation\ItemsRequest.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Catalog\ItemsResult.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Catalogs\ItemsResult.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\ArmorPieces\Armor.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\ArmorPieces\ArmorItemDetails.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\ArmorPieces\ArmorType.cs" />
@@ -142,7 +152,6 @@
     <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemAttribute.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemAttributeType.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemBuff.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemDetailsBase.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemFlags.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemRarity.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemRestrictions.cs" />
@@ -171,9 +180,6 @@
     <Compile Include="V1\Core\ItemsInformation\Details\Containers\ContainerItemDetails.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Containers\ContainerType.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\CraftingMaterials\CraftingMaterial.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\GatheringEquipment\Gathering.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\GatheringEquipment\GatheringItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\GatheringEquipment\GatheringType.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Gizmos\Gizmo.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Gizmos\GizmoItemDetails.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Gizmos\GizmoType.cs" />
@@ -193,6 +199,8 @@
     <Compile Include="V1\Core\ItemsInformation\Details\Weapons\Weapon.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Weapons\WeaponItemDetails.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Weapons\WeaponType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\RecipeDetailsRequest.cs" />
+    <Compile Include="V1\Core\ItemsInformation\RecipesRequest.cs" />
     <Compile Include="V1\Core\JsonList.cs" />
     <Compile Include="V1\Core\JsonObject.cs" />
     <Compile Include="V1\Core\BuildInformation\BuildRequest.cs" />
@@ -272,14 +280,6 @@
     <Compile Include="V1\Core\MapsInformation\Names\MapName.cs" />
     <Compile Include="V1\Core\MapsInformation\Names\MapNames.cs" />
     <Compile Include="V1\Core\Preconditions.cs" />
-    <Compile Include="V1\Core\RecipeDetails\Models\RecipeType.cs" />
-    <Compile Include="V1\Core\RecipeDetails\Models\UnlockTypes.cs" />
-    <Compile Include="V1\Core\RecipeDetails\Models\Disciplines.cs" />
-    <Compile Include="V1\Core\RecipeDetails\Models\Ingredient.cs" />
-    <Compile Include="V1\Core\RecipeDetails\RecipeDetailsRequest.cs" />
-    <Compile Include="V1\Core\RecipeDetails\RecipeDetailsResponse.cs" />
-    <Compile Include="V1\Core\Recipes\RecipesRequest.cs" />
-    <Compile Include="V1\Core\Recipes\RecipesResponse.cs" />
     <Compile Include="V1\Core\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

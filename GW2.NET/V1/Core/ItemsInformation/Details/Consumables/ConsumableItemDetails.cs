@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using GW2DotNET.V1.Core.ItemsInformation.Converters;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Consumables
@@ -14,7 +13,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Consumables
     /// Represents detailed information about a consumable item.
     /// </summary>
     [JsonConverter(typeof(ConsumableDetailsConverter))]
-    public abstract class ConsumableItemDetails : ItemDetailsBase
+    public abstract class ConsumableItemDetails : JsonObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConsumableItemDetails"/> class.

@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Core.ItemsInformation.Details.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Gizmos
@@ -12,7 +11,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Gizmos
     /// <summary>
     /// Represents detailed information about a gizmo.
     /// </summary>
-    public class GizmoItemDetails : ItemDetailsBase
+    public class GizmoItemDetails : JsonObject
     {
         /// <summary>
         /// Gets or sets the gizmo's type.

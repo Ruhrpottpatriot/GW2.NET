@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Common;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Bags
@@ -13,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Bags
     /// <summary>
     /// Represents detailed information about a bag.
     /// </summary>
-    public class BagItemDetails : ItemDetailsBase
+    public class BagItemDetails : JsonObject
     {
         /// <summary>
         /// Gets or sets a value indicating whether this is an invisible bag.

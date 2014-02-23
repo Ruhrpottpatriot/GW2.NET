@@ -7,8 +7,9 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes;
 
-namespace GW2DotNET.V1.Core.RecipeDetails
+namespace GW2DotNET.V1.Core.ItemsInformation
 {
     /// <summary>
     /// Represents a request for information regarding a specific recipe.
@@ -42,23 +43,23 @@ namespace GW2DotNET.V1.Core.RecipeDetails
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="RecipeDetailsResponse"/>.
+        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="RecipeDetails"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="RecipeDetailsResponse"/>.</returns>
-        public IApiResponse<RecipeDetailsResponse> GetResponse(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="RecipeDetails"/>.</returns>
+        public IApiResponse<RecipeDetails> GetResponse(IApiClient handler)
         {
-            return base.GetResponse<RecipeDetailsResponse>(handler);
+            return base.GetResponse<RecipeDetails>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="RecipeDetailsResponse"/>.
+        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="RecipeDetails"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="RecipeDetailsResponse"/>.</returns>
-        public Task<IApiResponse<RecipeDetailsResponse>> GetResponseAsync(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="RecipeDetails"/>.</returns>
+        public Task<IApiResponse<RecipeDetails>> GetResponseAsync(IApiClient handler)
         {
-            return base.GetResponseAsync<RecipeDetailsResponse>(handler);
+            return base.GetResponseAsync<RecipeDetails>(handler);
         }
     }
 }

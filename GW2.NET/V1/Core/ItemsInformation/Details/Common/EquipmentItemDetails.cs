@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Common
     /// <summary>
     /// Represents detailed information about an armor piece.
     /// </summary>
-    public abstract class EquipmentItemDetails : ItemDetailsBase
+    public abstract class EquipmentItemDetails : JsonObject
     {
         /// <summary>
         /// Gets or sets the item's infix upgrade.

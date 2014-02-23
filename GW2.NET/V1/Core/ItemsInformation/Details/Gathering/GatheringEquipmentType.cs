@@ -8,13 +8,13 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GW2DotNET.V1.Core.ItemsInformation.Details.GatheringEquipment
+namespace GW2DotNET.V1.Core.ItemsInformation.Details.Gathering
 {
     /// <summary>
     /// Enumerates the possible types of gathering equipment.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum GatheringType
+    public enum GatheringEquipmentType
     {
         /// <summary>The 'Foraging' gathering equipment.</summary>
         [EnumMember(Value = "Foraging")]

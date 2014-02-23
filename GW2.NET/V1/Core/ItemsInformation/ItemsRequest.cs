@@ -6,7 +6,7 @@
 
 using System;
 using System.Threading.Tasks;
-using GW2DotNET.V1.Core.ItemsInformation.Catalog;
+using GW2DotNET.V1.Core.ItemsInformation.Catalogs;
 
 namespace GW2DotNET.V1.Core.ItemsInformation
 {

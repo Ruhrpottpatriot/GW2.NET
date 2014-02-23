@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GW2DotNET.V1.Core.RecipeDetails.Models
+namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     /// <summary>
     /// Enumerates all possible recipe types.
@@ -108,7 +108,7 @@ namespace GW2DotNET.V1.Core.RecipeDetails.Models
         [EnumMember(Value = "Feast")]
         Feast,
 
-        /// <summary>The 'Ingredient Cooking' recipe type.</summary>
+        /// <summary>The 'CraftingIngredient Cooking' recipe type.</summary>
         [EnumMember(Value = "IngredientCooking")]
         IngredientCooking,
 

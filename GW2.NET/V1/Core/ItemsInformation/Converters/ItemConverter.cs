@@ -14,7 +14,7 @@ using GW2DotNET.V1.Core.ItemsInformation.Details.Common;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Consumables;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Containers;
 using GW2DotNET.V1.Core.ItemsInformation.Details.CraftingMaterials;
-using GW2DotNET.V1.Core.ItemsInformation.Details.GatheringEquipment;
+using GW2DotNET.V1.Core.ItemsInformation.Details.Gathering;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Gizmos;
 using GW2DotNET.V1.Core.ItemsInformation.Details.MiniPets;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Tools;
@@ -48,7 +48,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Converters
             KnownTypes.Add(ItemType.Consumable, typeof(Consumable));
             KnownTypes.Add(ItemType.Container, typeof(Container));
             KnownTypes.Add(ItemType.CraftingMaterial, typeof(CraftingMaterial));
-            KnownTypes.Add(ItemType.Gathering, typeof(Gathering));
+            KnownTypes.Add(ItemType.Gathering, typeof(GatheringEquipment));
             KnownTypes.Add(ItemType.Gizmo, typeof(Gizmo));
             KnownTypes.Add(ItemType.MiniPet, typeof(MiniPet));
             KnownTypes.Add(ItemType.Tool, typeof(Tool));

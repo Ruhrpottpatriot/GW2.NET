@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.UpgradeComponents
     /// <summary>
     /// Represents detailed information about an upgrade component.
     /// </summary>
-    public class UpgradeComponentItemDetails : ItemDetailsBase
+    public class UpgradeComponentItemDetails : JsonObject
     {
         /// <summary>
         /// Gets or sets the upgrade component's type.

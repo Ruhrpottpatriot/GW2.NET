@@ -40,8 +40,8 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Common
         [EnumMember(Value = "CraftingMaterial")]
         CraftingMaterial = 1 << 5,
 
-        /// <summary>The 'Gathering' item type.</summary>
-        [EnumMember(Value = "Gathering")]
+        /// <summary>The 'GatheringEquipment' item type.</summary>
+        [EnumMember(Value = "GatheringEquipment")]
         Gathering = 1 << 6,
 
         /// <summary>The 'Gizmo' item type.</summary>

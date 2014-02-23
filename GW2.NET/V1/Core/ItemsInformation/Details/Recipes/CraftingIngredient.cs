@@ -1,28 +1,28 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ToolItemDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="CraftingIngredient.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.ItemsInformation.Details.Tools
+namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     /// <summary>
-    /// Represents detailed information about a tool.
+    /// Represents one of a recipe's ingredients.
     /// </summary>
-    public class ToolItemDetails : JsonObject
+    public class CraftingIngredient : JsonObject
     {
         /// <summary>
-        /// Gets or sets the tool's type.
+        /// Gets or sets the number of items required.
         /// </summary>
-        [JsonProperty("type", Order = 0)]
-        public ToolType Type { get; set; }
+        [JsonProperty("count", Order = 1)]
+        public int Count { get; set; }
 
         /// <summary>
-        /// Gets or sets the tool's charges.
+        /// Gets or sets the required item.
         /// </summary>
-        [JsonProperty("charges", Order = 1)]
-        public int Charges { get; set; }
+        [JsonProperty("item_id", Order = 0)]
+        public int ItemId { get; set; }
     }
 }
