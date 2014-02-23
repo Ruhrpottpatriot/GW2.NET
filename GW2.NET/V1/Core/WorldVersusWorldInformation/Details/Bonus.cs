@@ -6,7 +6,7 @@
 
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     /// <summary>
     /// Represents a World versus World map's bonus.

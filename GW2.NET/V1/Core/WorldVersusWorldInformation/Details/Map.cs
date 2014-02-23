@@ -4,10 +4,9 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     /// <summary>
     /// Represents a World versus World map.
@@ -18,13 +17,13 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
         /// Gets or sets the map's bonuses.
         /// </summary>
         [JsonProperty("bonuses", Order = 3)]
-        public IEnumerable<Bonus> Bonuses { get; set; }
+        public Bonuses Bonuses { get; set; }
 
         /// <summary>
         /// Gets or sets the map's objectives.
         /// </summary>
         [JsonProperty("objectives", Order = 2)]
-        public IEnumerable<Objective> Objectives { get; set; }
+        public Objectives Objectives { get; set; }
 
         /// <summary>
         /// Gets or sets the map's scoreboard.

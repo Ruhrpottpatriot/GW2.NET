@@ -121,7 +121,7 @@
     <Compile Include="CoreTests\ColorTests.cs" />
     <Compile Include="CoreTests\FilesTest.cs" />
     <Compile Include="CoreTests\BuildTests.cs" />
-    <Compile Include="CoreTests\WvW.cs" />
+    <Compile Include="CoreTests\WorldVersusWorldTests.cs" />
     <Compile Include="DynamicEventsTests.cs" />
     <Compile Include="GuildTests.cs" />
     <Compile Include="ItemRecipeTests.cs" />

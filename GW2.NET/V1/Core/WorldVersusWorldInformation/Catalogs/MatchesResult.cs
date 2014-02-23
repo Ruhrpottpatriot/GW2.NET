@@ -1,28 +1,22 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Objective.cs" company="GW2.Net Coding Team">
+// <copyright file="MatchesResult.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.WvW.ObjectiveNames.Models
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     /// <summary>
-    /// Represents an objective and its localized name.
+    /// Wraps a collection of matches.
     /// </summary>
-    public class Objective : JsonObject
+    public class MatchesResult : JsonObject
     {
         /// <summary>
-        /// Gets or sets the objective's ID.
+        /// Gets or sets a collection of matches.
         /// </summary>
-        [JsonProperty("id", Order = 0)]
-        public int Id { get; set; }
-
-        /// <summary>
-        /// Gets or sets the objective's name.
-        /// </summary>
-        [JsonProperty("name", Order = 1)]
-        public string Name { get; set; }
+        [JsonProperty("wvw_matches", Order = 0)]
+        public Matches Matches { get; set; }
     }
 }

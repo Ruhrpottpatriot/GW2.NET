@@ -7,7 +7,7 @@
 using System;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.WvW.Matches.Models
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     /// <summary>
     /// Represents a World versus World match.

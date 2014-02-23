@@ -1,33 +1,34 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Scoreboard.cs" company="GW2.Net Coding Team">
+// <copyright file="MatchDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Core.WvW.MatchDetails.Converters;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     /// <summary>
-    /// Represents a World versus World scoreboard.
+    /// Represents detailed information about a World versus World match.
     /// </summary>
-    [JsonConverter(typeof(ScoreboardConverter))]
-    public class Scoreboard : JsonObject
+    public class MatchDetails : JsonObject
     {
         /// <summary>
-        /// Gets or sets the blue team's score.
+        /// Gets or sets the list of maps.
         /// </summary>
-        public int Blue { get; set; }
+        [JsonProperty("maps", Order = 2)]
+        public Maps Maps { get; set; }
 
         /// <summary>
-        /// Gets or sets the green team's score.
+        /// Gets or sets the match's ID.
         /// </summary>
-        public int Green { get; set; }
+        [JsonProperty("match_id", Order = 0)]
+        public string MatchId { get; set; }
 
         /// <summary>
-        /// Gets or sets the red team's score.
+        /// Gets or sets the total scores.
         /// </summary>
-        public int Red { get; set; }
+        [JsonProperty("scores", Order = 1)]
+        public Scoreboard Scores { get; set; }
     }
 }

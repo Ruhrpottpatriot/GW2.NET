@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GW2DotNET.V1.Core.WvW.MatchDetails.Models
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     /// <summary>
     /// Enumerates all possible team colors.

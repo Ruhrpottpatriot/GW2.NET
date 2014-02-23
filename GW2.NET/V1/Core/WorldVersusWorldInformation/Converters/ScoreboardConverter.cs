@@ -5,10 +5,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using GW2DotNET.V1.Core.WvW.MatchDetails.Models;
+using GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core.WvW.MatchDetails.Converters
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Converters
 {
     /// <summary>
     /// Converts a JSON array of scores to and from a <see cref="Scoreboard"/>.

@@ -7,8 +7,9 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
 
-namespace GW2DotNET.V1.Core.WvW.ObjectiveNames
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation
 {
     /// <summary>
     /// Represents a request for a list of the localized World versus World objective names for the specified language.
@@ -38,23 +39,23 @@ namespace GW2DotNET.V1.Core.WvW.ObjectiveNames
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNamesResponse"/>.
+        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNames"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ObjectiveNamesResponse"/>.</returns>
-        public IApiResponse<ObjectiveNamesResponse> GetResponse(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="ObjectiveNames"/>.</returns>
+        public IApiResponse<ObjectiveNames> GetResponse(IApiClient handler)
         {
-            return base.GetResponse<ObjectiveNamesResponse>(handler);
+            return base.GetResponse<ObjectiveNames>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNamesResponse"/>.
+        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNames"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ObjectiveNamesResponse"/>.</returns>
-        public Task<IApiResponse<ObjectiveNamesResponse>> GetResponseAsync(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="ObjectiveNames"/>.</returns>
+        public Task<IApiResponse<ObjectiveNames>> GetResponseAsync(IApiClient handler)
         {
-            return base.GetResponseAsync<ObjectiveNamesResponse>(handler);
+            return base.GetResponseAsync<ObjectiveNames>(handler);
         }
     }
 }

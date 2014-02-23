@@ -6,8 +6,9 @@
 
 using System;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
 
-namespace GW2DotNET.V1.Core.WvW.MatchDetails
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation
 {
     /// <summary>
     /// Represents a request for details regarding the specified match, including the total score and further details for each map.
@@ -28,23 +29,23 @@ namespace GW2DotNET.V1.Core.WvW.MatchDetails
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MatchDetailsResponse"/>.
+        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MatchDetails"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="MatchDetailsResponse"/>.</returns>
-        public IApiResponse<MatchDetailsResponse> GetResponse(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="MatchDetails"/>.</returns>
+        public IApiResponse<MatchDetails> GetResponse(IApiClient handler)
         {
-            return base.GetResponse<MatchDetailsResponse>(handler);
+            return base.GetResponse<MatchDetails>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MatchDetailsResponse"/>.
+        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MatchDetails"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="MatchDetailsResponse"/>.</returns>
-        public Task<IApiResponse<MatchDetailsResponse>> GetResponseAsync(IApiClient handler)
+        /// <returns>Returns an instance of type <see cref="MatchDetails"/>.</returns>
+        public Task<IApiResponse<MatchDetails>> GetResponseAsync(IApiClient handler)
         {
-            return base.GetResponseAsync<MatchDetailsResponse>(handler);
+            return base.GetResponseAsync<MatchDetails>(handler);
         }
     }
 }
