@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Core
     /// </summary>
     /// <typeparam name="T">The type of the values.</typeparam>
     [Serializable]
-    public class JsonList<T> : JsonObject, IList<T>
+    public abstract class JsonList<T> : JsonObject, IList<T>
     {
         /// <summary>Infrastructure. This class acts as a proxy for the list stored in this field.</summary>
         private readonly IList<T> innerList;
