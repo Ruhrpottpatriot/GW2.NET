@@ -122,6 +122,7 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\Points.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNames.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEvents.cs" />
+    <Compile Include="V1\Core\ErrorInformation\ErrorResponse.cs" />
     <Compile Include="V1\Core\FilesInformation\Catalogs\Asset.cs" />
     <Compile Include="V1\Core\FilesInformation\Catalogs\Assets.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\Emblem.cs" />
@@ -380,7 +381,6 @@
     <Compile Include="V1\Core\Converters\ColorConverter.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
     <Compile Include="V1\Core\Drawing\Point3D.cs" />
-    <Compile Include="V1\Core\ErrorResponse.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\CylinderLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventDetails.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\Location.cs" />

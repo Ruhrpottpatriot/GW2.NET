@@ -6,7 +6,7 @@
 
 using Newtonsoft.Json;
 
-namespace GW2DotNET.V1.Core
+namespace GW2DotNET.V1.Core.ErrorInformation
 {
     /// <summary>
     /// Represents the response that is returned when an error occurs.

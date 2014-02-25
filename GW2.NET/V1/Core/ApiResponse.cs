@@ -7,6 +7,7 @@
 using System;
 using System.Net;
 using System.Net.Mime;
+using GW2DotNET.V1.Core.ErrorInformation;
 using Newtonsoft.Json;
 using RestSharp;
 

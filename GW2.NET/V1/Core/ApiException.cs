@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using GW2DotNET.V1.Core.ErrorInformation;
 
 namespace GW2DotNET.V1.Core
 {

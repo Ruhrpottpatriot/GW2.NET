@@ -7,6 +7,7 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
+using GW2DotNET.V1.Core.ErrorInformation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
