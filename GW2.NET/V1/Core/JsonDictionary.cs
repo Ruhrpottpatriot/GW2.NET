@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonDictionary{TKey, TValue}" /> class.
         /// </summary>
-        public JsonDictionary()
+        protected JsonDictionary()
         {
             this.innerDictionary = new Dictionary<TKey, TValue>();
         }

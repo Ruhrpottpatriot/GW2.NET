@@ -23,7 +23,7 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonList{T}"/> class.
         /// </summary>
-        public JsonList()
+        protected JsonList()
         {
             this.innerList = new List<T>();
         }
@@ -32,7 +32,7 @@ namespace GW2DotNET.V1.Core
         /// Initializes a new instance of the <see cref="JsonList{T}"/> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
-        public JsonList(int capacity)
+        protected JsonList(int capacity)
         {
             this.innerList = new List<T>(capacity);
         }
@@ -41,7 +41,7 @@ namespace GW2DotNET.V1.Core
         /// Initializes a new instance of the <see cref="JsonList{T}"/> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public JsonList(IEnumerable<T> collection)
+        protected JsonList(IEnumerable<T> collection)
         {
             this.innerList = new List<T>(collection);
         }

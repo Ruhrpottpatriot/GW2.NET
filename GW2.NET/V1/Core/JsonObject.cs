@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace GW2DotNET.V1.Core
 {
@@ -20,16 +19,16 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Initializes a new instance of the <see cref="JsonObject"/> class.
         /// </summary>
-        public JsonObject()
+        protected JsonObject()
         {
-            this.ExtensionData = new Dictionary<string, JToken>();
+            this.ExtensionData = new Dictionary<string, object>();
         }
 
         /// <summary>
         /// Gets or sets a dictionary of additional JSON properties that have no corresponding .NET property.
         /// </summary>
         [JsonExtensionData]
-        public IDictionary<string, JToken> ExtensionData { get; set; }
+        public IDictionary<string, object> ExtensionData { get; set; }
 
         /// <summary>
         /// Gets the JSON representation of this instance.
