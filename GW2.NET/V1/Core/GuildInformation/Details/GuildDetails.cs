@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.GuildInformation.Details
@@ -25,7 +24,6 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
         /// Gets or sets the guild's ID.
         /// </summary>
         [JsonProperty("guild_id", Order = 0)]
-        [JsonConverter(typeof(GuidConverter))]
         public Guid GuildId { get; set; }
 
         /// <summary>

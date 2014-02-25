@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// Initializes a new instance of the <see cref="SphereLocation"/> class.
         /// </summary>
         public SphereLocation()
-            : base(LocationShape.Sphere)
+            : base(LocationType.Sphere)
         {
         }
 

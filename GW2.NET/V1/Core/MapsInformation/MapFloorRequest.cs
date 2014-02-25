@@ -27,8 +27,8 @@ namespace GW2DotNET.V1.Core.MapsInformation
         public MapFloorRequest(int continentId, int floor)
             : base(new Uri(Resources.MapFloor + "?continent_id={continent_id}&floor={floor}", UriKind.Relative))
         {
-            this.AddUrlSegment("continent_id", continentId.ToString());
-            this.AddUrlSegment("floor", floor.ToString());
+            this.AddUrlSegment("continent_id", continentId.ToString(CultureInfo.InvariantCulture));
+            this.AddUrlSegment("floor", floor.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -41,8 +41,8 @@ namespace GW2DotNET.V1.Core.MapsInformation
             : base(new Uri(Resources.MapFloor + "?continent_id={continent_id}&floor={floor}&lang={language}", UriKind.Relative))
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            this.AddUrlSegment("continent_id", continentId.ToString());
-            this.AddUrlSegment("floor", floor.ToString());
+            this.AddUrlSegment("continent_id", continentId.ToString(CultureInfo.InvariantCulture));
+            this.AddUrlSegment("floor", floor.ToString(CultureInfo.InvariantCulture));
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
 

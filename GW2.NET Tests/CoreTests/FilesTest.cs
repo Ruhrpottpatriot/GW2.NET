@@ -11,6 +11,7 @@ using System;
 using System.Diagnostics;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.FilesInformation;
+using GW2DotNET.V1.Core.FilesInformation.Catalogs;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests

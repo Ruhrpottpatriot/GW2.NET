@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using GW2DotNET.V1.Core.WorldVersusWorldInformation.Converters;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details

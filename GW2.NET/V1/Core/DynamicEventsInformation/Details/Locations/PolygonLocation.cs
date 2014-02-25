@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using System.Drawing;
 using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
@@ -22,15 +21,15 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// Initializes a new instance of the <see cref="PolygonLocation"/> class.
         /// </summary>
         public PolygonLocation()
-            : base(LocationShape.Polygon)
+            : base(LocationType.Polygon)
         {
         }
 
         /// <summary>
         /// Gets or sets the series of points in the polygon.
         /// </summary>
-        [JsonProperty("points", Order = 5, ItemConverterType = typeof(PointFConverter))]
-        public IEnumerable<PointF> Points { get; set; }
+        [JsonProperty("points", Order = 5)]
+        public Points Points { get; set; }
 
         /// <summary>
         /// Gets or sets the location's range on the z-axis.

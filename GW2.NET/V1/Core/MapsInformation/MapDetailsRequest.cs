@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Core.MapsInformation
         public MapDetailsRequest(int mapId)
             : base(new Uri(Resources.Maps + "?map_id={map_id}", UriKind.Relative))
         {
-            this.AddUrlSegment("map_id", mapId.ToString());
+            this.AddUrlSegment("map_id", mapId.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace GW2DotNET.V1.Core.MapsInformation
             : base(new Uri(Resources.Maps + "?map_id={map_id}&lang={language}", UriKind.Relative))
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            this.AddUrlSegment("map_id", mapId.ToString());
+            this.AddUrlSegment("map_id", mapId.ToString(CultureInfo.InvariantCulture));
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
 

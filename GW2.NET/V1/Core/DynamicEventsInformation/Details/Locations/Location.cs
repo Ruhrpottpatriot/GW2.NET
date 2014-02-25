@@ -6,7 +6,6 @@
 
 using GW2DotNET.V1.Core.Converters;
 using GW2DotNET.V1.Core.Drawing;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Converters;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
@@ -20,10 +19,10 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// <summary>
         /// Initializes a new instance of the <see cref="Location"/> class.
         /// </summary>
-        /// <param name="type">The location's shape.</param>
-        protected Location(LocationShape type)
+        /// <param name="locationType">The location's type.</param>
+        protected Location(LocationType locationType)
         {
-            this.LocationType = type;
+            this.Type = locationType;
         }
 
         /// <summary>
@@ -37,6 +36,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// Gets or sets the shape of the location.
         /// </summary>
         [JsonProperty("type", Order = 0)]
-        public LocationShape LocationType { get; set; }
+        public LocationType Type { get; set; }
     }
 }

@@ -6,6 +6,7 @@
 
 using System;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core.FilesInformation.Catalogs;
 
 namespace GW2DotNET.V1.Core.FilesInformation
 {

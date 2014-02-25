@@ -110,109 +110,264 @@
     <Compile Include="V1\Core\ApiException.cs" />
     <Compile Include="V1\Core\ApiRequest.cs" />
     <Compile Include="V1\Core\ApiResponse.cs" />
+    <Compile Include="V1\Core\BuildInformation\Build.cs" />
+    <Compile Include="V1\Core\ColorsInformation\Details\DyeDetails.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\DyesDetailsResult.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\DyesDetails.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\DyeDetails.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\Material.cs" />
+    <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationConverter.cs">
+      <DependentUpon>Location.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\UnknownLocation.cs" />
+    <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\Points.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNames.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEvents.cs" />
+    <Compile Include="V1\Core\FilesInformation\Catalogs\Asset.cs" />
+    <Compile Include="V1\Core\FilesInformation\Catalogs\Assets.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\Emblem.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\EmblemTransformations.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Catalogs\Recipes.cs" />
     <Compile Include="V1\Core\ItemsInformation\Catalogs\Items.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Catalogs\Recipes.cs" />
     <Compile Include="V1\Core\ItemsInformation\Catalogs\RecipesResult.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Converters\ConsumableDetailsConverter.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Converters\ItemConverter.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Converters\UnlockDetailsConverter.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Gathering\GatheringEquipment.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Gathering\GatheringEquipmentDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Gathering\GatheringEquipmentType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gathering\Foraging\ForagingToolDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gathering\GatheringTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gathering\GatheringToolDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gathering\GatheringToolDetailsConverter.cs">
+      <DependentUpon>GatheringToolDetails.cs</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gathering\GatheringToolType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gathering\Logging\LoggingToolDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gathering\Mining\MiningToolDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gathering\Unknown\UnknownToolDetails.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Tools\ToolDetailsConverter.cs">
+      <DependentUpon>ToolDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Tools\Salvaging\SalvageToolDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Tools\Unknown\UnknownToolDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Trinkets\Accessories\AccessoryDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Trinkets\Amulets\AmuletDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Trinkets\Rings\RingDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Trinkets\TrinketDetailsConverter.cs">
+      <DependentUpon>TrinketDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Trinkets\Unknown\UnknownTrinketDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\Default\DefaultUpgradeComponentDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\Gems\GemUpgradeComponentDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\Bonuses.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\Runes\RuneUpgradeComponentDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\Sigils\SigilUpgradeComponentDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\Unknown\UnknownUpgradeComponentDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\UpgradeComponentDetailsConverter.cs">
+      <DependentUpon>UpgradeComponentDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Axes\AxeDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Bundles\LargeBundleDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Daggers\DaggerDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Focuses\FocusDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\GreatSwords\GreatSwordDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Hammers\HammerDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Harpoons\HarpoonDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\LongBows\LongBowDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Maces\MaceDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Pistols\PistolDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Rifles\RifleDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Scepters\ScepterDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Shields\ShieldDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\ShortBows\ShortBowDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\SpearGuns\SpearGunDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Staves\StaffDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Swords\SwordDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Torches\TorchDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Toys\ToyDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Toys\TwoHandedToyDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Tridents\TridentDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Unknown\UnknownWeaponDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\WarHorns\WarHornDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\WeaponDetailsConverter.cs">
+      <DependentUpon>WeaponDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\RecipeConverter.cs">
+      <DependentUpon>Recipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Item.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\ItemConverter.cs">
+      <DependentUpon>Item.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\Armor.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\ArmorDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\ArmorDetailsConverter.cs">
+      <DependentUpon>ArmorDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\ArmorType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\Boots\BootsDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\Coats\CoatDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\Gloves\GlovesDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\Helms\AquaticHelmDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\Helms\HelmDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\Leggings\LeggingsDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\Shoulders\ShouldersDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\Unknown\UnknownArmorDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Armors\WeightClass.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\BackPieces\Back.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\BackPieces\BackDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Bags\Bag.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Bags\BagDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Common\EquipmentDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Common\InfixUpgrade.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Common\InfusionSlot.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Common\InfusionSlots.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Common\InfusionSlotTypes.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Common\ItemAttribute.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Common\ItemAttributes.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Common\ItemAttributeType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Common\ItemBuff.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\AppearanceChange\AppearanceChangeConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Booze\BoozeConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Consumable.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\ConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\ConsumableDetailsConverter.cs">
+      <DependentUpon>ConsumableDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\ConsumableType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\ContractNpc\ContractNpcConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Food\FoodConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Generic\GenericConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Halloween\HalloweenConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Immediate\ImmediateConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Transmutation\TransmutationConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Unknown\UnknownConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Unlock\BagSlots\BagSlotUnlockConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Unlock\BankTabs\BankTabUnlockConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Unlock\CraftingRecipes\CraftingRecipeUnlockConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Unlock\Dyes\DyeUnlockConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Unlock\Unknown\UnknownUnlockConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Unlock\UnlockConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Unlock\UnlockConsumableDetailsConverter.cs">
+      <DependentUpon>UnlockConsumableDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Unlock\UnlockType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Consumables\Utility\UtilityConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Containers\Container.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Containers\ContainerDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Containers\ContainerDetailsConverter.cs">
+      <DependentUpon>ContainerDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Containers\ContainerType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Containers\Default\DefaultContainerDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Containers\GiftBoxes\GiftBoxContainerDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Containers\Unknown\UnknownContainerDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\CraftingMaterials\CraftingMaterial.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\GameTypes.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gizmos\Default\DefaultGizmoDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gizmos\Gizmo.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gizmos\GizmoDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gizmos\GizmoDetailsConverter.cs">
+      <DependentUpon>GizmoDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gizmos\GizmoType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gizmos\RentableContractNpcs\RentableContractNpcDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gizmos\Unknown\UnknownGizmoDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Gizmos\UnlimitedConsumables\UnlimitedConsumableDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\ItemFlags.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\ItemRarity.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\ItemRestrictions.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\ItemType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\MiniPets\MiniPet.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Tools\Tool.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Tools\ToolDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Tools\ToolType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Trinkets\Trinket.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Trinkets\TrinketDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Trinkets\TrinketType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Trophies\Trophy.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\UpgradeComponent.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\UpgradeComponentFlags.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\UpgradeComponentDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\UpgradeComponents\UpgradeComponentType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\DamageType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\Weapon.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\WeaponDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Items\Weapons\WeaponType.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Amulets\AmuletRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Axes\AxeRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Bags\BagRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Boots\BootsRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Bulks\BulkRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Coats\CoatRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Components\ComponentRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Consumable\ConsumableRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\CookingIngredients\CookingIngredientRecipe.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Recipes\CraftingDisciplines.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\CraftingIngredients.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Recipes\CraftingIngredient.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\RecipeDetails.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Daggers\DaggerRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Desserts\DessertRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Dyes\DyeRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Earrings\EarringRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Feasts\FeastRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Focuses\FocusRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Gloves\GlovesRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\GreatSwords\GreatSwordRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Hammers\HammerRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Harpoons\HarpoonRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Helms\HelmRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Inscriptions\InscriptionRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Insignias\InsigniaRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Leggings\LeggingsRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\LongBows\LongBowRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Maces\MaceRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Meals\MealRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Pistols\PistolRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Potions\PotionRecipe.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Recipes\RecipeType.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Recipes\RecipeUnlockTypes.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Refinements\RefinementRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Rifles\RifleRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Rings\RingRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Scepters\ScepterRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Seasonings\SeasoningRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Shields\ShieldRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\ShortBows\ShortBowRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Shoulders\ShouldersRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Snacks\SnackRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Soups\SoupRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\SpearGuns\SpearGunRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Staves\StaffRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Swords\SwordRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Torches\TorchRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Tridents\TridentRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Unknown\UnknownRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\UpgradeComponents\UpgradeComponentRecipe.cs" />
+    <Compile Include="V1\Core\ItemsInformation\Details\Recipes\WarHorns\WarHornRecipe.cs" />
     <Compile Include="V1\Core\ItemsInformation\ItemDetailsRequest.cs" />
     <Compile Include="V1\Core\ItemsInformation\ItemsRequest.cs" />
     <Compile Include="V1\Core\ItemsInformation\Catalogs\ItemsResult.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\ArmorPieces\Armor.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\ArmorPieces\ArmorItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\ArmorPieces\ArmorType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\ArmorPieces\WeightClass.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\BackPieces\Back.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\BackPieces\BackItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Bags\Bag.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Bags\BagItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\EquipmentItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\GameTypes.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\InfixUpgrade.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\InfusionSlot.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\InfusionSlotTypes.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\Item.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemAttribute.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemAttributeType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemBuff.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemFlags.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemRarity.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemRestrictions.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Common\ItemType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\AppearanceChangeConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\BagSlotUnlockConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\BankTabUnlockConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\BoozeItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\Consumable.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\ConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\ConsumableType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\ContractNpcConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\CraftingRecipeUnlockConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\DyeUnlockConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\FoodItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\GenericConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\HalloweenConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\ImmediateConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\TransmutationConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\UnknownConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\UnknownUnlockConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\UnlockConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\UnlockType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Consumables\UtilityConsumableItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Containers\Container.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Containers\ContainerItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Containers\ContainerType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\CraftingMaterials\CraftingMaterial.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Gizmos\Gizmo.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Gizmos\GizmoItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Gizmos\GizmoType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\MiniPets\MiniPet.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Tools\Tool.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Tools\ToolItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Tools\ToolType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Trinkets\Trinket.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Trinkets\TrinketItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Trinkets\TrinketType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Trophies\Trophy.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\UpgradeComponents\UpgradeComponent.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\UpgradeComponents\UpgradeComponentFlags.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\UpgradeComponents\UpgradeComponentItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\UpgradeComponents\UpgradeComponentType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Weapons\DamageType.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Weapons\Weapon.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Weapons\WeaponItemDetails.cs" />
-    <Compile Include="V1\Core\ItemsInformation\Details\Weapons\WeaponType.cs" />
     <Compile Include="V1\Core\ItemsInformation\RecipeDetailsRequest.cs" />
     <Compile Include="V1\Core\ItemsInformation\RecipesRequest.cs" />
     <Compile Include="V1\Core\JsonList.cs" />
     <Compile Include="V1\Core\JsonObject.cs" />
     <Compile Include="V1\Core\BuildInformation\BuildRequest.cs" />
-    <Compile Include="V1\Core\BuildInformation\Build.cs" />
     <Compile Include="V1\Core\ColorsInformation\ColorsRequest.cs" />
     <Compile Include="V1\Core\Converters\ContentBasedTypeCreationConverter.cs" />
     <Compile Include="V1\Core\Converters\DefaultConverter.cs" />
     <Compile Include="V1\Core\Converters\MillisecondsTimespanConverter.cs" />
     <Compile Include="V1\Core\Converters\NumericBooleanConverter.cs" />
-    <Compile Include="V1\Core\Converters\GuidDictionaryConverter.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
     <Compile Include="V1\Core\Converters\RectangleConverter.cs" />
     <Compile Include="V1\Core\Converters\PointFConverter.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
@@ -223,7 +378,6 @@
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="V1\Core\Converters\ColorConverter.cs" />
-    <Compile Include="V1\Core\Converters\GuidConverter.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
     <Compile Include="V1\Core\Drawing\Point3D.cs" />
     <Compile Include="V1\Core\ErrorResponse.cs" />
@@ -232,7 +386,6 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\Location.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventDetailsResult.cs" />
-    <Compile Include="V1\Core\DynamicEventsInformation\Converters\LocationConverter.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\PolygonLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\SphereLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventName.cs" />
@@ -241,8 +394,6 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventState.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\DynamicEventStatusRequest.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventsResult.cs" />
-    <Compile Include="V1\Core\FilesInformation\Asset.cs" />
-    <Compile Include="V1\Core\FilesInformation\Assets.cs" />
     <Compile Include="V1\Core\FilesInformation\FilesRequest.cs" />
     <Compile Include="V1\Core\GuildInformation\GuildDetailsRequest.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\GuildDetails.cs" />
@@ -294,7 +445,6 @@
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\MatchesResult.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\ObjectiveName.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\ObjectiveNames.cs" />
-    <Compile Include="V1\Core\WorldVersusWorldInformation\Converters\ScoreboardConverter.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\Bonuses.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\Bonus.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\BonusType.cs" />
@@ -305,6 +455,9 @@
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\Objectives.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\Objective.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\Scoreboard.cs" />
+    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\ScoreboardConverter.cs">
+      <DependentUpon>Scoreboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\TeamColor.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\MatchDetailsRequest.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\MatchesRequest.cs" />
@@ -382,12 +535,13 @@
     <None Include="app.config" />
     <None Include="packages.config" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventStyles.cs" />
-    <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationShape.cs" />
+    <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationType.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="V1\Core\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

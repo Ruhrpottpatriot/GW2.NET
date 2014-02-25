@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -20,7 +19,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
         /// Gets or sets the <see cref="Guid"/> identifying the event.
         /// </summary>
         [JsonProperty("event_id", Order = 2)]
-        [JsonConverter(typeof(GuidConverter))]
         public Guid EventId { get; set; }
 
         /// <summary>

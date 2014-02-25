@@ -7,7 +7,7 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Common;
+using GW2DotNET.V1.Core.ItemsInformation.Details;
 
 namespace GW2DotNET.V1.Core.ItemsInformation
 {
@@ -26,7 +26,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation
         public ItemDetailsRequest(int itemId)
             : base(new Uri(Resources.ItemDetails + "?item_id={item_id}", UriKind.Relative))
         {
-            this.AddUrlSegment("item_id", itemId.ToString());
+            this.AddUrlSegment("item_id", itemId.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation
             : base(new Uri(Resources.ItemDetails + "?item_id={item_id}&lang={language}", UriKind.Relative))
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            this.AddUrlSegment("item_id", itemId.ToString());
+            this.AddUrlSegment("item_id", itemId.ToString(CultureInfo.InvariantCulture));
             this.AddUrlSegment("language", language.TwoLetterISOLanguageName);
         }
 

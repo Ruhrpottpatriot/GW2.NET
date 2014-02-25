@@ -16,6 +16,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
     [JsonConverter(typeof(StringEnumConverter))]
     public enum RecipeType
     {
+        /// <summary>The 'Unknown' recipe type.</summary>
+        [EnumMember(Value = "Unknown")]
+        Unknown,
+
         /// <summary>The 'Axe' recipe type.</summary>
         [EnumMember(Value = "Axe")]
         Axe,
@@ -30,7 +34,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 
         /// <summary>The 'Great sword' recipe type.</summary>
         [EnumMember(Value = "Greatsword")]
-        Greatsword,
+        GreatSword,
 
         /// <summary>The 'Mace' recipe type.</summary>
         [EnumMember(Value = "Mace")]
@@ -66,7 +70,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 
         /// <summary>The 'Spear gun' recipe type.</summary>
         [EnumMember(Value = "Speargun")]
-        Speargun,
+        SpearGun,
 
         /// <summary>The 'Torch' recipe type.</summary>
         [EnumMember(Value = "Torch")]
@@ -74,7 +78,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 
         /// <summary>The 'War horn' recipe type.</summary>
         [EnumMember(Value = "Warhorn")]
-        Warhorn,
+        WarHorn,
 
         /// <summary>The 'Focus' recipe type.</summary>
         [EnumMember(Value = "Focus")]
@@ -108,7 +112,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
         [EnumMember(Value = "Feast")]
         Feast,
 
-        /// <summary>The 'CraftingIngredient Cooking' recipe type.</summary>
+        /// <summary>The 'Ingredient Cooking' recipe type.</summary>
         [EnumMember(Value = "IngredientCooking")]
         IngredientCooking,
 

@@ -68,9 +68,9 @@ namespace GW2DotNET_Tests.CoreTests
             Assert.IsNotEmpty(dynamicEventDetailsResult.EventDetails);
             Assert.IsEmpty(dynamicEventDetailsResult.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(DynamicEventDetailsResult).FullName);
 
-            foreach (var dynamicEvent in dynamicEventDetailsResult.EventDetails)
+            foreach (var dynamicEvent in dynamicEventDetailsResult.EventDetails.Values)
             {
-                Assert.IsEmpty(dynamicEvent.Value.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(DynamicEventDetails).FullName);
+                Assert.IsEmpty(dynamicEvent.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(DynamicEventDetails).FullName);
             }
         }
 

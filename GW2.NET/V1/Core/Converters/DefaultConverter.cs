@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Default converter.
+    /// Default converter. This converter is useful for use in inheritance trees, where a sub-class would otherwise use the same converter as its base class.
     /// </summary>
     public class DefaultConverter : JsonConverter
     {

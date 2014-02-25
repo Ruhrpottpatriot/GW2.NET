@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// Initializes a new instance of the <see cref="CylinderLocation"/> class.
         /// </summary>
         public CylinderLocation()
-            : base(LocationShape.Cylinder)
+            : base(LocationType.Cylinder)
         {
         }
 
