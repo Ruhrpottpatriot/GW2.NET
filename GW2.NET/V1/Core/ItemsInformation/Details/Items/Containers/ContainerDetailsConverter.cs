@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResponse>().Text);
+                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<ContainerType>(content["type"].CreateReader());

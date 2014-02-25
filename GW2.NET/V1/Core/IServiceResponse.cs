@@ -33,8 +33,8 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Gets the error result if the request was unsuccessful.
         /// </summary>
-        /// <returns>Return the error response as an instance of the <see cref="ErrorResponse"/> class.</returns>
-        ErrorResponse DeserializeError();
+        /// <returns>Return the error response as an instance of the <see cref="ErrorResult"/> class.</returns>
+        ErrorResult DeserializeError();
 
         /// <summary>
         /// Gets the response content as an object of the specified type.

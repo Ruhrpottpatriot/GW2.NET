@@ -23,7 +23,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="details">The error details.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
-        public ServiceException(ErrorResponse details, Exception innerException = null)
+        public ServiceException(ErrorResult details, Exception innerException = null)
             : base(Preconditions.EnsureNotNull(paramName: "details", value: details).Text, innerException)
         {
             this.Details = details;
@@ -32,6 +32,6 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Gets the error details.
         /// </summary>
-        public ErrorResponse Details { get; private set; }
+        public ErrorResult Details { get; private set; }
     }
 }

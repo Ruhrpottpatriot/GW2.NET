@@ -117,7 +117,7 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\Points.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNames.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEvents.cs" />
-    <Compile Include="V1\Core\ErrorInformation\ErrorResponse.cs" />
+    <Compile Include="V1\Core\ErrorInformation\ErrorResult.cs" />
     <Compile Include="V1\Core\FilesInformation\Catalogs\Asset.cs" />
     <Compile Include="V1\Core\FilesInformation\Catalogs\Assets.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\Emblem.cs" />

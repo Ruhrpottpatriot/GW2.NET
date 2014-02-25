@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ErrorResponse.cs" company="GW2.Net Coding Team">
+// <copyright file="ErrorResult.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -9,29 +9,29 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ErrorInformation
 {
     /// <summary>
-    /// Represents the response that is returned when an error occurs.
+    /// Represents the result that is returned when an error occurs.
     /// </summary>
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1"/> for more information.
     /// </remarks>
-    public class ErrorResponse : JsonObject
+    public class ErrorResult : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorResponse"/> class.
+        /// Initializes a new instance of the <see cref="ErrorResult"/> class.
         /// </summary>
-        public ErrorResponse()
+        public ErrorResult()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorResponse"/> class using the specified values.
+        /// Initializes a new instance of the <see cref="ErrorResult"/> class using the specified values.
         /// </summary>
         /// <param name="error">The error number.</param>
         /// <param name="product">The product number.</param>
         /// <param name="module">The module number.</param>
         /// <param name="line">The line number.</param>
         /// <param name="text">The error message.</param>
-        public ErrorResponse(int error, int product, int module, int line, string text)
+        public ErrorResult(int error, int product, int module, int line, string text)
         {
             this.Error = error;
             this.Product = product;

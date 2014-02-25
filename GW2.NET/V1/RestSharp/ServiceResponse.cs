@@ -82,14 +82,14 @@ namespace GW2DotNET.V1.RestSharp
         /// Gets the error response if the service returned an error status code.
         /// </summary>
         /// <returns>Return the error response as an instance of the <see cref="ServiceException"/> class.</returns>
-        public ErrorResponse DeserializeError()
+        public ErrorResult DeserializeError()
         {
             if (this.IsSuccessStatusCode || !this.IsJsonResponse)
             { /* This method only makes sense when the response content is a JSON-formatted API error. */
                 throw new InvalidOperationException("The service did not return an error response.");
             }
 
-            return JsonConvert.DeserializeObject<ErrorResponse>(this.Content);
+            return JsonConvert.DeserializeObject<ErrorResult>(this.Content);
         }
 
         /// <summary>

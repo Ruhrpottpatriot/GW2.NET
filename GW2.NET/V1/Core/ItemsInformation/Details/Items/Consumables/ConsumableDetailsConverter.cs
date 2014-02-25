@@ -72,7 +72,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResponse>().Text);
+                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<ConsumableType>(content["type"].CreateReader());

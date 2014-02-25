@@ -54,7 +54,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResponse>().Text);
+                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<ToolType>(content["type"].CreateReader());

@@ -54,7 +54,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResponse>().Text);
+                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<LocationType>(content["type"].CreateReader());

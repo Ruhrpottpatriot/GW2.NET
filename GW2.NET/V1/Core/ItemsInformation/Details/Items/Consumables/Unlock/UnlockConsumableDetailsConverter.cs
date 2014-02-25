@@ -60,7 +60,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
         {
             if (content["unlock_type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResponse>().Text);
+                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<UnlockType>(content["unlock_type"].CreateReader());
