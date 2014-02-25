@@ -10,6 +10,7 @@
 using System;
 using System.Diagnostics;
 using GW2DotNET.V1.Core;
+using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Catalogs;
 using GW2DotNET.V1.Core.ItemsInformation.Details;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
@@ -119,6 +120,27 @@ namespace GW2DotNET_Tests.CoreTests
             var weaponDetails = (LongBowDetails)weapon.WeaponDetails;
             Assert.AreEqual(weaponDetails.Type, WeaponType.LongBow);
             Assert.IsEmpty(weaponDetails.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(LongBowDetails).FullName);
+        }
+
+        [Test]
+        [ExpectedException(typeof(ServiceException))]
+        public void GetItemDetails_InvalidId_ServiceException()
+        {
+            int itemId = -1;
+
+            var request  = new ItemDetailsRequest(itemId);
+            var response = request.GetResponse(client);
+
+            Assert.IsFalse(response.IsSuccessStatusCode);
+            Assert.IsTrue(response.IsJsonResponse);
+
+            var errorResult = response.DeserializeError();
+            Assert.IsNotNull(errorResult);
+            Assert.IsEmpty(errorResult.ExtensionData, "The '{0}' class is missing one or more properties.", typeof(ErrorResult).FullName);
+
+            Trace.WriteLine(errorResult.Text);
+
+            response.EnsureSuccessStatusCode();
         }
     }
 }

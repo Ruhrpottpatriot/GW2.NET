@@ -17,57 +17,33 @@ namespace GW2DotNET.V1.Core.ErrorInformation
     public class ErrorResult : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorResult"/> class.
-        /// </summary>
-        public ErrorResult()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ErrorResult"/> class using the specified values.
-        /// </summary>
-        /// <param name="error">The error number.</param>
-        /// <param name="product">The product number.</param>
-        /// <param name="module">The module number.</param>
-        /// <param name="line">The line number.</param>
-        /// <param name="text">The error message.</param>
-        public ErrorResult(int error, int product, int module, int line, string text)
-        {
-            this.Error = error;
-            this.Product = product;
-            this.Module = module;
-            this.Line = line;
-            this.Text = text;
-        }
-
-        /// <summary>
         /// Gets or sets a number that indicates the error kind.
         /// </summary>
-        [JsonProperty("error")]
+        [JsonProperty(PropertyName = "error", Order = 0)]
         public int Error { get; set; }
 
         /// <summary>
         /// Gets or sets the line number on which the error occurred.
         /// </summary>
-        [JsonProperty("line")]
+        [JsonProperty(PropertyName = "line", Order = 3)]
         public int Line { get; set; }
 
         /// <summary>
         /// Gets or sets a number that represents the module in which the error occurred.
         /// </summary>
-        [JsonProperty("module")]
+        [JsonProperty(PropertyName = "module", Order = 2)]
         public int Module { get; set; }
 
         /// <summary>
         /// Gets or sets a number that represents the product in which the error occurred.
         /// </summary>
-        [JsonProperty("product")]
+        [JsonProperty(PropertyName = "product", Order = 1)]
         public int Product { get; set; }
 
         /// <summary>
         /// Gets or sets the error message.
         /// </summary>
-        [JsonProperty("text")]
+        [JsonProperty(PropertyName = "text", Order = 4)]
         public string Text { get; set; }
     }
 }
