@@ -7,9 +7,11 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.ColorsInformation.Details;
+using GW2DotNET.V1.Core.Utilities;
 
-namespace GW2DotNET.V1.Core.ColorsInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for information regarding dyes in the game.
@@ -17,7 +19,7 @@ namespace GW2DotNET.V1.Core.ColorsInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/colors"/> for more information.
     /// </remarks>
-    public class ColorsRequest : ApiRequest
+    public class ColorsRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ColorsRequest"/> class.
@@ -38,21 +40,21 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="DyesDetailsResult"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="DyesDetailsResult"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="DyesDetailsResult"/>.</returns>
-        public IApiResponse<DyesDetailsResult> GetResponse(IApiClient handler)
+        public IServiceResponse<DyesDetailsResult> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<DyesDetailsResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="DyesDetailsResult"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="DyesDetailsResult"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="DyesDetailsResult"/>.</returns>
-        public Task<IApiResponse<DyesDetailsResult>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<DyesDetailsResult>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<DyesDetailsResult>(handler);
         }

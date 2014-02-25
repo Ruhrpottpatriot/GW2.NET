@@ -10,20 +10,20 @@
 using System;
 using System.Diagnostics;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.FilesInformation;
 using GW2DotNET.V1.Core.FilesInformation.Catalogs;
+using GW2DotNET.V1.RestSharp;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
 {
     public class FilesTest
     {
-        private IApiClient client;
+        private IServiceClient client;
 
         [SetUp]
         public void SetUp()
         {
-            this.client = ApiClient.Create(new Version(1, 0));
+            this.client = ServiceClient.Create(new Version(1, 0));
         }
 
         [Test]

@@ -10,13 +10,13 @@
 using System;
 using System.Diagnostics;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.ItemsInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Catalogs;
 using GW2DotNET.V1.Core.ItemsInformation.Details;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.LongBows;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes;
+using GW2DotNET.V1.RestSharp;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -24,12 +24,12 @@ namespace GW2DotNET_Tests.CoreTests
     [TestFixture]
     public class ItemsTests
     {
-        private IApiClient client;
+        private IServiceClient client;
 
         [SetUp]
         public void SetUp()
         {
-            this.client = ApiClient.Create(new Version(1, 0));
+            this.client = ServiceClient.Create(new Version(1, 0));
         }
 
         [Test]

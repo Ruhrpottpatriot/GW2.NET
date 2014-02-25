@@ -6,7 +6,7 @@
 
 using System;
 
-namespace GW2DotNET.V1.Core
+namespace GW2DotNET.V1.Core.Utilities
 {
     /// <summary>
     /// Utility class. Provides static methods for validating arguments.

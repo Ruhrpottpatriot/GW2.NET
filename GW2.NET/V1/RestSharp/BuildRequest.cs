@@ -6,8 +6,10 @@
 
 using System;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
+using GW2DotNET.V1.Core.BuildInformation;
 
-namespace GW2DotNET.V1.Core.BuildInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for the current build ID of the game.
@@ -15,7 +17,7 @@ namespace GW2DotNET.V1.Core.BuildInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/build"/> for more information.
     /// </remarks>
-    public class BuildRequest : ApiRequest
+    public class BuildRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BuildRequest"/> class.
@@ -26,21 +28,21 @@ namespace GW2DotNET.V1.Core.BuildInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Build"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Build"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="Build"/>.</returns>
-        public IApiResponse<Build> GetResponse(IApiClient handler)
+        public IServiceResponse<Build> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<Build>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Build"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Build"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="Build"/>.</returns>
-        public Task<IApiResponse<Build>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<Build>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<Build>(handler);
         }

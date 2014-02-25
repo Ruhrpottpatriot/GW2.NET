@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ApiResponse.cs" company="GW2.Net Coding Team">
+// <copyright file="ServiceResponse.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -7,24 +7,26 @@
 using System;
 using System.Net;
 using System.Net.Mime;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.ErrorInformation;
 using Newtonsoft.Json;
 using RestSharp;
+using JsonObject = GW2DotNET.V1.Core.JsonObject;
 
-namespace GW2DotNET.V1.Core
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
-    /// Provides a RestSharp-specific implementation of the <see cref="IApiResponse{TContent}"/> interface.
+    /// Provides a RestSharp-specific implementation of the <see cref="IServiceResponse{TContent}"/> interface.
     /// </summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>
-    public class ApiResponse<TContent> : RestResponse, IApiResponse<TContent> where TContent : JsonObject
+    public class ServiceResponse<TContent> : RestResponse, IServiceResponse<TContent> where TContent : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse{TContent}"/> class using the specified <see cref="IRestResponse"/>.
+        /// Initializes a new instance of the <see cref="ServiceResponse{TContent}"/> class using the specified <see cref="IRestResponse"/>.
         /// </summary>
         /// <param name="source">The source response object.</param>
         /// <remarks>Copy constructor.</remarks>
-        internal ApiResponse(IRestResponse source)
+        internal ServiceResponse(IRestResponse source)
         {
             this.Content = source.Content;
             this.ContentEncoding = source.ContentEncoding;
@@ -79,7 +81,7 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Gets the error response if the service returned an error status code.
         /// </summary>
-        /// <returns>Return the error response as an instance of the <see cref="ApiException"/> class.</returns>
+        /// <returns>Return the error response as an instance of the <see cref="ServiceException"/> class.</returns>
         public ErrorResponse DeserializeError()
         {
             if (this.IsSuccessStatusCode || !this.IsJsonResponse)
@@ -139,14 +141,14 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <returns>Returns the current instance.</returns>
         /// <remarks>The current instance is returned to allow chaining method calls.</remarks>
-        public IApiResponse<TContent> EnsureSuccessStatusCode()
+        public IServiceResponse<TContent> EnsureSuccessStatusCode()
         {
             if (this.IsSuccessStatusCode)
             {
                 return this;
             }
 
-            throw new ApiException(this.DeserializeError(), this.ErrorException);
+            throw new ServiceException(this.DeserializeError(), this.ErrorException);
         }
 
         /// <summary>

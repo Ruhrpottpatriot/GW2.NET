@@ -11,7 +11,6 @@ using System;
 using System.Diagnostics;
 
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.MapsInformation;
 using GW2DotNET.V1.Core.MapsInformation.Continents;
 using GW2DotNET.V1.Core.MapsInformation.Details;
 using GW2DotNET.V1.Core.MapsInformation.Floors;
@@ -19,6 +18,7 @@ using GW2DotNET.V1.Core.MapsInformation.Floors.Regions;
 using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion;
 using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations;
 using GW2DotNET.V1.Core.MapsInformation.Names;
+using GW2DotNET.V1.RestSharp;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -26,12 +26,12 @@ namespace GW2DotNET_Tests.CoreTests
     [TestFixture]
     public class MapsTests
     {
-        private IApiClient client;
+        private IServiceClient client;
 
         [SetUp]
         public void SetUp()
         {
-            this.client = ApiClient.Create(new Version(1, 0));
+            this.client = ServiceClient.Create(new Version(1, 0));
         }
 
         [Test]

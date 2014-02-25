@@ -7,9 +7,11 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
+using GW2DotNET.V1.Core.Utilities;
 
-namespace GW2DotNET.V1.Core.DynamicEventsInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for static details about dynamic events.
@@ -17,7 +19,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details"/> for more information.
     /// </remarks>
-    public class DynamicEventDetailsRequest : ApiRequest
+    public class DynamicEventDetailsRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicEventDetailsRequest"/> class.
@@ -62,21 +64,21 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="DynamicEventDetailsResult"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="DynamicEventDetailsResult"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="DynamicEventDetailsResult"/>.</returns>
-        public IApiResponse<DynamicEventDetailsResult> GetResponse(IApiClient handler)
+        public IServiceResponse<DynamicEventDetailsResult> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<DynamicEventDetailsResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="DynamicEventDetailsResult"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="DynamicEventDetailsResult"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="DynamicEventDetailsResult"/>.</returns>
-        public Task<IApiResponse<DynamicEventDetailsResult>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<DynamicEventDetailsResult>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<DynamicEventDetailsResult>(handler);
         }

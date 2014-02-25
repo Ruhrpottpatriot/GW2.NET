@@ -7,9 +7,11 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
+using GW2DotNET.V1.Core.Utilities;
 using GW2DotNET.V1.Core.WorldsInformation.Names;
 
-namespace GW2DotNET.V1.Core.WorldsInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for a list of the localized WorldName names for the specified language.
@@ -17,7 +19,7 @@ namespace GW2DotNET.V1.Core.WorldsInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names"/> for more information.
     /// </remarks>
-    public class WorldNamesRequest : ApiRequest
+    public class WorldNamesRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WorldNamesRequest"/> class.
@@ -39,21 +41,21 @@ namespace GW2DotNET.V1.Core.WorldsInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="WorldNames"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="WorldNames"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="WorldNames"/>.</returns>
-        public IApiResponse<WorldNames> GetResponse(IApiClient handler)
+        public IServiceResponse<WorldNames> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<WorldNames>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="WorldNames"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="WorldNames"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="WorldNames"/>.</returns>
-        public Task<IApiResponse<WorldNames>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<WorldNames>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<WorldNames>(handler);
         }

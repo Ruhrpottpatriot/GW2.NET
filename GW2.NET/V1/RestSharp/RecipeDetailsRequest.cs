@@ -7,9 +7,11 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.ItemsInformation.Details;
+using GW2DotNET.V1.Core.Utilities;
 
-namespace GW2DotNET.V1.Core.ItemsInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for information regarding a specific recipe.
@@ -17,7 +19,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details"/> for more information.
     /// </remarks>
-    public class RecipeDetailsRequest : ApiRequest
+    public class RecipeDetailsRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecipeDetailsRequest"/> class using the specified recipe ID.
@@ -43,21 +45,21 @@ namespace GW2DotNET.V1.Core.ItemsInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Recipe"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Recipe"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="Recipe"/>.</returns>
-        public IApiResponse<Recipe> GetResponse(IApiClient handler)
+        public IServiceResponse<Recipe> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<Recipe>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Recipe"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Recipe"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="Recipe"/>.</returns>
-        public Task<IApiResponse<Recipe>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<Recipe>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<Recipe>(handler);
         }

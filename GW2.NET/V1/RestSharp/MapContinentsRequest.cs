@@ -6,9 +6,10 @@
 
 using System;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.MapsInformation.Continents;
 
-namespace GW2DotNET.V1.Core.MapsInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for static information about the continents.
@@ -16,7 +17,7 @@ namespace GW2DotNET.V1.Core.MapsInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/continents"/> for more information.
     /// </remarks>
-    public class MapContinentsRequest : ApiRequest
+    public class MapContinentsRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MapContinentsRequest"/> class.
@@ -27,21 +28,21 @@ namespace GW2DotNET.V1.Core.MapsInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MapContinentsResult"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapContinentsResult"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="MapContinentsResult"/>.</returns>
-        public IApiResponse<MapContinentsResult> GetResponse(IApiClient handler)
+        public IServiceResponse<MapContinentsResult> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<MapContinentsResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MapContinentsResult"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapContinentsResult"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="MapContinentsResult"/>.</returns>
-        public Task<IApiResponse<MapContinentsResult>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<MapContinentsResult>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<MapContinentsResult>(handler);
         }

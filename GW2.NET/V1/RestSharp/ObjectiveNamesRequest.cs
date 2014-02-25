@@ -7,9 +7,11 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
+using GW2DotNET.V1.Core.Utilities;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
 
-namespace GW2DotNET.V1.Core.WorldVersusWorldInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for a list of the localized World versus World objective names for the specified language.
@@ -17,7 +19,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names"/> for more information.
     /// </remarks>
-    public class ObjectiveNamesRequest : ApiRequest
+    public class ObjectiveNamesRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ObjectiveNamesRequest"/> class.
@@ -39,21 +41,21 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNames"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNames"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="ObjectiveNames"/>.</returns>
-        public IApiResponse<ObjectiveNames> GetResponse(IApiClient handler)
+        public IServiceResponse<ObjectiveNames> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<ObjectiveNames>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNames"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNames"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="ObjectiveNames"/>.</returns>
-        public Task<IApiResponse<ObjectiveNames>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<ObjectiveNames>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<ObjectiveNames>(handler);
         }

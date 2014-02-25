@@ -10,9 +10,9 @@
 using System.Diagnostics;
 
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.WorldVersusWorldInformation;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
+using GW2DotNET.V1.RestSharp;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -20,12 +20,12 @@ namespace GW2DotNET_Tests.CoreTests
     [TestFixture]
     public class WorldVersusWorldTests
     {
-        private IApiClient client;
+        private IServiceClient client;
 
         [SetUp]
         public void SetUp()
         {
-            this.client = ApiClient.Create();
+            this.client = ServiceClient.Create();
         }
 
         [Test]

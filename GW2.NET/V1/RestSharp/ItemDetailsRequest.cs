@@ -7,9 +7,11 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.ItemsInformation.Details;
+using GW2DotNET.V1.Core.Utilities;
 
-namespace GW2DotNET.V1.Core.ItemsInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for details regarding a specific item.
@@ -17,7 +19,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details"/> for more information.
     /// </remarks>
-    public class ItemDetailsRequest : ApiRequest
+    public class ItemDetailsRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemDetailsRequest"/> class using the specified item ID.
@@ -43,21 +45,21 @@ namespace GW2DotNET.V1.Core.ItemsInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Item"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Item"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="Item"/>.</returns>
-        public IApiResponse<Item> GetResponse(IApiClient handler)
+        public IServiceResponse<Item> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<Item>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Item"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Item"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="Item"/>.</returns>
-        public Task<IApiResponse<Item>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<Item>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<Item>(handler);
         }

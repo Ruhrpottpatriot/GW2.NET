@@ -6,9 +6,10 @@
 
 using System;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.FilesInformation.Catalogs;
 
-namespace GW2DotNET.V1.Core.FilesInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for commonly requested in-game assets.
@@ -17,7 +18,7 @@ namespace GW2DotNET.V1.Core.FilesInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/files"/> for more information.
     /// </remarks>
-    public class FilesRequest : ApiRequest
+    public class FilesRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FilesRequest"/> class.
@@ -28,21 +29,21 @@ namespace GW2DotNET.V1.Core.FilesInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Assets"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Assets"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="Assets"/>.</returns>
-        public IApiResponse<Assets> GetResponse(IApiClient handler)
+        public IServiceResponse<Assets> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<Assets>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="Assets"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Assets"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="Assets"/>.</returns>
-        public Task<IApiResponse<Assets>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<Assets>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<Assets>(handler);
         }

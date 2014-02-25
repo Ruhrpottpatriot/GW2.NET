@@ -7,9 +7,11 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.MapsInformation.Details;
+using GW2DotNET.V1.Core.Utilities;
 
-namespace GW2DotNET.V1.Core.MapsInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for details regarding (a) map(s) in the game.
@@ -17,7 +19,7 @@ namespace GW2DotNET.V1.Core.MapsInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/maps"/> for more information.
     /// </remarks>
-    public class MapDetailsRequest : ApiRequest
+    public class MapDetailsRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MapDetailsRequest"/> class.
@@ -62,21 +64,21 @@ namespace GW2DotNET.V1.Core.MapsInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MapsDetailsResult"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapsDetailsResult"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="MapsDetailsResult"/>.</returns>
-        public IApiResponse<MapsDetailsResult> GetResponse(IApiClient handler)
+        public IServiceResponse<MapsDetailsResult> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<MapsDetailsResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MapsDetailsResult"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapsDetailsResult"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="MapsDetailsResult"/>.</returns>
-        public Task<IApiResponse<MapsDetailsResult>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<MapsDetailsResult>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<MapsDetailsResult>(handler);
         }

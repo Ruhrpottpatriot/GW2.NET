@@ -7,9 +7,11 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.MapsInformation.Floors;
+using GW2DotNET.V1.Core.Utilities;
 
-namespace GW2DotNET.V1.Core.MapsInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for details regarding a map floor, used to populate a world map.
@@ -17,7 +19,7 @@ namespace GW2DotNET.V1.Core.MapsInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor"/> for more information.
     /// </remarks>
-    public class MapFloorRequest : ApiRequest
+    public class MapFloorRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MapFloorRequest"/> class.
@@ -47,21 +49,21 @@ namespace GW2DotNET.V1.Core.MapsInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MapFloor"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapFloor"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="MapFloor"/>.</returns>
-        public IApiResponse<MapFloor> GetResponse(IApiClient handler)
+        public IServiceResponse<MapFloor> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<MapFloor>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="MapFloor"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapFloor"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="MapFloor"/>.</returns>
-        public Task<IApiResponse<MapFloor>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<MapFloor>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<MapFloor>(handler);
         }

@@ -10,10 +10,10 @@
 using System;
 using System.Diagnostics;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.DynamicEventsInformation;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+using GW2DotNET.V1.RestSharp;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -21,12 +21,12 @@ namespace GW2DotNET_Tests.CoreTests
     [TestFixture]
     public class DynamicEventsTests
     {
-        private IApiClient client;
+        private IServiceClient client;
 
         [SetUp]
         public void SetUp()
         {
-            this.client = ApiClient.Create(new Version(1, 0));
+            this.client = ServiceClient.Create(new Version(1, 0));
         }
 
         [Test]

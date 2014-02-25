@@ -104,12 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="V1\Core\ApiClient.cs">
-      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
-    </Compile>
-    <Compile Include="V1\Core\ApiException.cs" />
-    <Compile Include="V1\Core\ApiRequest.cs" />
-    <Compile Include="V1\Core\ApiResponse.cs" />
+    <Compile Include="V1\Core\ServiceException.cs" />
     <Compile Include="V1\Core\BuildInformation\Build.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\DyeDetails.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\DyesDetailsResult.cs" />
@@ -356,15 +351,9 @@
     <Compile Include="V1\Core\ItemsInformation\Details\Recipes\Unknown\UnknownRecipe.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Recipes\UpgradeComponents\UpgradeComponentRecipe.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Recipes\WarHorns\WarHornRecipe.cs" />
-    <Compile Include="V1\Core\ItemsInformation\ItemDetailsRequest.cs" />
-    <Compile Include="V1\Core\ItemsInformation\ItemsRequest.cs" />
     <Compile Include="V1\Core\ItemsInformation\Catalogs\ItemsResult.cs" />
-    <Compile Include="V1\Core\ItemsInformation\RecipeDetailsRequest.cs" />
-    <Compile Include="V1\Core\ItemsInformation\RecipesRequest.cs" />
     <Compile Include="V1\Core\JsonList.cs" />
     <Compile Include="V1\Core\JsonObject.cs" />
-    <Compile Include="V1\Core\BuildInformation\BuildRequest.cs" />
-    <Compile Include="V1\Core\ColorsInformation\ColorsRequest.cs" />
     <Compile Include="V1\Core\Converters\ContentBasedTypeCreationConverter.cs" />
     <Compile Include="V1\Core\Converters\DefaultConverter.cs" />
     <Compile Include="V1\Core\Converters\MillisecondsTimespanConverter.cs" />
@@ -384,22 +373,17 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\CylinderLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventDetails.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\Location.cs" />
-    <Compile Include="V1\Core\DynamicEventsInformation\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventDetailsResult.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\PolygonLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\SphereLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventName.cs" />
-    <Compile Include="V1\Core\DynamicEventsInformation\DynamicEventNamesRequest.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEvent.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventState.cs" />
-    <Compile Include="V1\Core\DynamicEventsInformation\DynamicEventStatusRequest.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventsResult.cs" />
-    <Compile Include="V1\Core\FilesInformation\FilesRequest.cs" />
-    <Compile Include="V1\Core\GuildInformation\GuildDetailsRequest.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\GuildDetails.cs" />
-    <Compile Include="V1\Core\IApiClient.cs" />
-    <Compile Include="V1\Core\IApiRequest.cs" />
-    <Compile Include="V1\Core\IApiResponse.cs" />
+    <Compile Include="V1\Core\IServiceClient.cs" />
+    <Compile Include="V1\Core\IServiceRequest.cs" />
+    <Compile Include="V1\Core\IServiceResponse.cs" />
     <Compile Include="V1\Core\JsonDictionary.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
@@ -424,22 +408,17 @@
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Locations\SkillChallenges.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Map.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregion\Maps.cs" />
-    <Compile Include="V1\Core\MapsInformation\MapContinentsRequest.cs" />
-    <Compile Include="V1\Core\MapsInformation\MapFloorRequest.cs" />
-    <Compile Include="V1\Core\MapsInformation\MapNamesRequest.cs" />
-    <Compile Include="V1\Core\MapsInformation\MapDetailsRequest.cs" />
     <Compile Include="V1\Core\MapsInformation\Names\MapName.cs" />
     <Compile Include="V1\Core\MapsInformation\Names\MapNames.cs" />
-    <Compile Include="V1\Core\Preconditions.cs" />
     <Compile Include="V1\Core\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="V1\Core\SupportedLanguages.cs" />
+    <Compile Include="V1\Core\Utilities\Preconditions.cs" />
+    <Compile Include="V1\Core\Utilities\SupportedLanguages.cs" />
     <Compile Include="V1\Core\WorldsInformation\Names\WorldName.cs" />
     <Compile Include="V1\Core\WorldsInformation\Names\WorldNames.cs" />
-    <Compile Include="V1\Core\WorldsInformation\WorldNamesRequest.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\Matches.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\Match.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\MatchesResult.cs" />
@@ -459,9 +438,6 @@
       <DependentUpon>Scoreboard.cs</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\TeamColor.cs" />
-    <Compile Include="V1\Core\WorldVersusWorldInformation\MatchDetailsRequest.cs" />
-    <Compile Include="V1\Core\WorldVersusWorldInformation\MatchesRequest.cs" />
-    <Compile Include="V1\Core\WorldVersusWorldInformation\ObjectiveNamesRequest.cs" />
     <Compile Include="V1\DataManager.cs" />
     <Compile Include="V1\DynamicEvents\DataProvider.cs" />
     <Compile Include="V1\DynamicEvents\Models\GameEvent.cs" />
@@ -523,6 +499,28 @@
     <Compile Include="V1\MapInformation\Models\Map.Task.cs" />
     <Compile Include="V1\MapInformation\Models\MapFloor.cs" />
     <Compile Include="V1\MapInformation\Models\MapFloor.Region.cs" />
+    <Compile Include="V1\RestSharp\BuildRequest.cs" />
+    <Compile Include="V1\RestSharp\ColorsRequest.cs" />
+    <Compile Include="V1\RestSharp\DynamicEventDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\DynamicEventNamesRequest.cs" />
+    <Compile Include="V1\RestSharp\DynamicEventStatusRequest.cs" />
+    <Compile Include="V1\RestSharp\FilesRequest.cs" />
+    <Compile Include="V1\RestSharp\GuildDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\ItemDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\ItemsRequest.cs" />
+    <Compile Include="V1\RestSharp\MapContinentsRequest.cs" />
+    <Compile Include="V1\RestSharp\MapDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\MapFloorRequest.cs" />
+    <Compile Include="V1\RestSharp\MapNamesRequest.cs" />
+    <Compile Include="V1\RestSharp\MatchDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\MatchesRequest.cs" />
+    <Compile Include="V1\RestSharp\ObjectiveNamesRequest.cs" />
+    <Compile Include="V1\RestSharp\RecipeDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\RecipesRequest.cs" />
+    <Compile Include="V1\RestSharp\ServiceClient.cs" />
+    <Compile Include="V1\RestSharp\ServiceRequest.cs" />
+    <Compile Include="V1\RestSharp\ServiceResponse.cs" />
+    <Compile Include="V1\RestSharp\WorldNamesRequest.cs" />
     <Compile Include="V1\WvW\Models\MatchList.cs" />
     <Compile Include="V1\WvW\Models\MatchListEntry.cs" />
     <Compile Include="V1\WvW\Models\WvWMatch.cs" />

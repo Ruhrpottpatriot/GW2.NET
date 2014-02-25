@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ApiClient.cs" company="GW2.Net Coding Team">
+// <copyright file="ServiceClient.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -7,20 +7,23 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
+using GW2DotNET.V1.Core.Utilities;
 using RestSharp;
+using JsonObject = GW2DotNET.V1.Core.JsonObject;
 
-namespace GW2DotNET.V1.Core
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
-    /// Provides a RestSharp-specific implementation of the <see cref="IApiClient"/> interface.
+    /// Provides a RestSharp-specific implementation of the <see cref="IServiceClient"/> interface.
     /// </summary>
-    public class ApiClient : RestClient, IApiClient
+    public class ServiceClient : RestClient, IServiceClient
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiClient"/> class using the specified base URL and JSON de-serializer.
+        /// Initializes a new instance of the <see cref="ServiceClient"/> class using the specified base URL and JSON de-serializer.
         /// </summary>
         /// <param name="baseUrl">An absolute URI that represents the base URL for all API endpoints.</param>
-        public ApiClient(Uri baseUrl)
+        public ServiceClient(Uri baseUrl)
             : base(Preconditions.EnsureNotNull(paramName: "baseUrl", value: baseUrl).ToString())
         {
             if (!baseUrl.IsAbsoluteUri)
@@ -30,33 +33,33 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Factory method. Creates a new instance of the <see cref="ApiClient"/> class.
+        /// Factory method. Creates a new instance of the <see cref="ServiceClient"/> class.
         /// </summary>
-        /// <returns>Returns an instance of <see cref="ApiClient"/>.</returns>
-        public static IApiClient Create()
+        /// <returns>Returns an instance of <see cref="ServiceClient"/>.</returns>
+        public static IServiceClient Create()
         {
-            return new ApiClient(new Uri(string.Format(Resources.BaseUrl, 1)));
+            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, 1)));
         }
 
         /// <summary>
-        /// Factory method. Creates a new instance of the <see cref="ApiClient"/> class that targets the specified API version.
+        /// Factory method. Creates a new instance of the <see cref="ServiceClient"/> class that targets the specified API version.
         /// </summary>
         /// <param name="apiVersion">The target API version.</param>
-        /// <returns>Returns an instance of <see cref="ApiClient"/>.</returns>
-        public static IApiClient Create(Version apiVersion)
+        /// <returns>Returns an instance of <see cref="ServiceClient"/>.</returns>
+        public static IServiceClient Create(Version apiVersion)
         {
             Preconditions.EnsureNotNull(paramName: "apiVersion", value: apiVersion);
 
-            return new ApiClient(new Uri(string.Format(Resources.BaseUrl, apiVersion.Major)));
+            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, apiVersion.Major)));
         }
 
         /// <summary>
-        /// Sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse{TContent}"/> whose content can be mapped to the specified type.
+        /// Sends an <see cref="ServiceRequest"/> and returns an <see cref="ServiceResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public IApiResponse<TContent> Send<TContent>(IApiRequest request) where TContent : JsonObject
+        public IServiceResponse<TContent> Send<TContent>(IServiceRequest request) where TContent : JsonObject
         {
             Preconditions.EnsureNotNull(paramName: "request", value: request);
             if (!(request is IRestRequest))
@@ -68,15 +71,15 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Asynchronously sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse{TContent}"/> whose content can be mapped to the specified type.
+        /// Asynchronously sends an <see cref="ServiceRequest"/> and returns an <see cref="ServiceResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request) where TContent : JsonObject
+        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest request) where TContent : JsonObject
         {
             Preconditions.EnsureNotNull(paramName: "request", value: request);
-            if (!(request is ApiRequest))
+            if (!(request is ServiceRequest))
             { /* The specified request is of an incompatible type */
                 throw new NotSupportedException("Incompatible request type");
             }
@@ -85,16 +88,16 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Asynchronously sends an <see cref="ApiRequest"/> and returns an <see cref="ApiResponse{TContent}"/> whose content can be mapped to the specified type.
+        /// Asynchronously sends an <see cref="ServiceRequest"/> and returns an <see cref="ServiceResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
         /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public Task<IApiResponse<TContent>> SendAsync<TContent>(IApiRequest request, CancellationToken token) where TContent : JsonObject
+        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest request, CancellationToken token) where TContent : JsonObject
         {
             Preconditions.EnsureNotNull(paramName: "request", value: request);
-            if (!(request is ApiRequest))
+            if (!(request is ServiceRequest))
             { /* The specified request is of an incompatible type */
                 throw new NotSupportedException("Incompatible request type");
             }
@@ -106,27 +109,27 @@ namespace GW2DotNET.V1.Core
         /// Infrastructure. Implementation details for 'SendAsync'.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request) where TContent : JsonObject
+        private Task<IServiceResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request) where TContent : JsonObject
         {
             return this.ExecuteTaskAsync(request)
-                .ContinueWith<IApiResponse<TContent>>(
-                x => new ApiResponse<TContent>(x.Result));
+                .ContinueWith<IServiceResponse<TContent>>(
+                x => new ServiceResponse<TContent>(x.Result));
         }
 
         /// <summary>
         /// Infrastructure. Implementation details for 'SendAsync'.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
         /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private Task<IApiResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request, CancellationToken token) where TContent : JsonObject
+        private Task<IServiceResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request, CancellationToken token) where TContent : JsonObject
         {
             return this.ExecuteTaskAsync(request, token)
-                .ContinueWith<IApiResponse<TContent>>(
-                x => new ApiResponse<TContent>(x.Result),
+                .ContinueWith<IServiceResponse<TContent>>(
+                x => new ServiceResponse<TContent>(x.Result),
                 token);
         }
 
@@ -134,11 +137,11 @@ namespace GW2DotNET.V1.Core
         /// Infrastructure. Implementation details for 'Send'.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ApiRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
         /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private IApiResponse<TContent> SendImplementation<TContent>(IRestRequest request) where TContent : JsonObject
+        private IServiceResponse<TContent> SendImplementation<TContent>(IRestRequest request) where TContent : JsonObject
         {
-            return new ApiResponse<TContent>(this.Execute(request));
+            return new ServiceResponse<TContent>(this.Execute(request));
         }
     }
 }

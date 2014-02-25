@@ -11,8 +11,8 @@ using System;
 using System.Diagnostics;
 
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.WorldsInformation;
 using GW2DotNET.V1.Core.WorldsInformation.Names;
+using GW2DotNET.V1.RestSharp;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -20,12 +20,12 @@ namespace GW2DotNET_Tests.CoreTests
     [TestFixture]
     public class WorldTests
     {
-        private IApiClient client;
+        private IServiceClient client;
 
         [SetUp]
         public void SetUp()
         {
-            this.client = ApiClient.Create(new Version(1, 0));
+            this.client = ServiceClient.Create(new Version(1, 0));
         }
 
         [Test]

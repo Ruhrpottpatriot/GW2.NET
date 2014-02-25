@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ApiException.cs" company="GW2.Net Coding Team">
+// <copyright file="ServiceException.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using GW2DotNET.V1.Core.ErrorInformation;
+using GW2DotNET.V1.Core.Utilities;
 
 namespace GW2DotNET.V1.Core
 {
@@ -15,14 +16,14 @@ namespace GW2DotNET.V1.Core
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1"/> for more information regarding API errors.
     /// </remarks>
-    public class ApiException : Exception
+    public class ServiceException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
+        /// Initializes a new instance of the <see cref="ServiceException"/> class.
         /// </summary>
         /// <param name="details">The error details.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
-        public ApiException(ErrorResponse details, Exception innerException = null)
+        public ServiceException(ErrorResponse details, Exception innerException = null)
             : base(Preconditions.EnsureNotNull(paramName: "details", value: details).Text, innerException)
         {
             this.Details = details;

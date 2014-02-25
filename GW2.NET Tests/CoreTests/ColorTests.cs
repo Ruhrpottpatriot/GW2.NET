@@ -9,8 +9,9 @@
 
 using System.Diagnostics;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.ColorsInformation;
 using GW2DotNET.V1.Core.ColorsInformation.Details;
+using GW2DotNET.V1.Core.Utilities;
+using GW2DotNET.V1.RestSharp;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests.CoreTests
@@ -19,12 +20,12 @@ namespace GW2DotNET_Tests.CoreTests
     public class ColorTests
     {
 
-        private IApiClient client;
+        private IServiceClient client;
 
         [SetUp]
         public void SetUp()
         {
-            this.client = ApiClient.Create();
+            this.client = ServiceClient.Create();
         }
 
         [Test]

@@ -6,9 +6,10 @@
 
 using System;
 using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.GuildInformation.Details;
 
-namespace GW2DotNET.V1.Core.GuildInformation
+namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
     /// Represents a request for information regarding a specific guild.
@@ -16,7 +17,7 @@ namespace GW2DotNET.V1.Core.GuildInformation
     /// <remarks>
     /// See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details"/> for more information.
     /// </remarks>
-    public class GuildDetailsRequest : ApiRequest
+    public class GuildDetailsRequest : ServiceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GuildDetailsRequest"/> class using the specified guild ID.
@@ -49,21 +50,21 @@ namespace GW2DotNET.V1.Core.GuildInformation
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="GuildDetails"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="GuildDetails"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="GuildDetails"/>.</returns>
-        public IApiResponse<GuildDetails> GetResponse(IApiClient handler)
+        public IServiceResponse<GuildDetails> GetResponse(IServiceClient handler)
         {
             return base.GetResponse<GuildDetails>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ApiClient"/> and retrieves a response whose content is of type <see cref="GuildDetails"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="GuildDetails"/>.
         /// </summary>
-        /// <param name="handler">The <see cref="ApiClient"/> that sends the request over a network and returns an instance of type <see cref="ApiResponse{TContent}"/>.</param>
+        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
         /// <returns>Returns an instance of type <see cref="GuildDetails"/>.</returns>
-        public Task<IApiResponse<GuildDetails>> GetResponseAsync(IApiClient handler)
+        public Task<IServiceResponse<GuildDetails>> GetResponseAsync(IServiceClient handler)
         {
             return base.GetResponseAsync<GuildDetails>(handler);
         }
