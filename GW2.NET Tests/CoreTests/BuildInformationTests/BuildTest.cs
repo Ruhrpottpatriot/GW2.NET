@@ -20,7 +20,7 @@ namespace GW2DotNET_Tests.CoreTests.BuildInformationTests
         [Category("build.json")]
         public void Build_BuildIdReflectsInput()
         {
-            Assert.AreEqual(build.BuildId, 30318);
+            Assert.AreEqual(30318, build.BuildId);
         }
 
         [Test]
