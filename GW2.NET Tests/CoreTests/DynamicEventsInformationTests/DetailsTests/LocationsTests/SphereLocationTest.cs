@@ -49,6 +49,12 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.L
             Assert.AreEqual(expectedRotation, this.sphereLocation.Rotation);
         }
 
-
+        [Test]
+        [Category("event_details.json")]
+        [Category("ExtensionData")]
+        public void SphereLocation_ExtensionDataIsEmpty()
+        {
+            Assert.IsEmpty(this.sphereLocation.ExtensionData);
+        }
     }
 }

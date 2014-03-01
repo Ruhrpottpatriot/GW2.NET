@@ -56,5 +56,13 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.L
             const double expectedRotation = 1.2224D;
             Assert.AreEqual(expectedRotation, this.cylinderLocation.Rotation);
         }
+
+        [Test]
+        [Category("event_details.json")]
+        [Category("ExtensionData")]
+        public void CylinderLocation_ExtensionDataIsEmpty()
+        {
+            Assert.IsEmpty(this.cylinderLocation.ExtensionData);
+        }
     }
 }

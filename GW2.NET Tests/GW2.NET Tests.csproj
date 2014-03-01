@@ -124,6 +124,7 @@
     <Compile Include="CoreTests\DynamicEventsInformationTests\NamesTests\DynamicEventNameTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\StatusTests\DynamicEventStateTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\StatusTests\DynamicEventTest.cs" />
+    <Compile Include="CoreTests\ErrorInformationTests\ErrorResultTest.cs" />
     <Compile Include="CoreTests\WorldTests.cs" />
     <Compile Include="CoreTests\MapsTests.cs" />
     <Compile Include="CoreTests\ItemsTests.cs" />

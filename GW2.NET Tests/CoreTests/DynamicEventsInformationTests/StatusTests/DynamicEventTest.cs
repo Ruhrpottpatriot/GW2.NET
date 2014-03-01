@@ -49,5 +49,12 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.StatusTests
             Assert.AreEqual(expectedState, this.dynamicEvent.State);
         }
 
+        [Test]
+        [Category("events.json")]
+        [Category("ExtensionData")]
+        public void DynamicEvent_ExtensionDataIsEmpty()
+        {
+            Assert.IsEmpty(this.dynamicEvent.ExtensionData);
+        }
     }
 }

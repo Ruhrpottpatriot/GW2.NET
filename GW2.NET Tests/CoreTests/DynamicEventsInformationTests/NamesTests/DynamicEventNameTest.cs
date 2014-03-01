@@ -35,6 +35,7 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.NamesTests
 
         [Test]
         [Category("event_names.json")]
+        [Category("ExtensionData")]
         public void DynamicEventName_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(this.dynamicEventName.ExtensionData);

@@ -67,6 +67,7 @@ namespace GW2DotNET_Tests.CoreTests.ColorsInformation
 
         [Test]
         [Category("colors.json")]
+        [Category("ExtensionData")]
         public void Material_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(material.ExtensionData);

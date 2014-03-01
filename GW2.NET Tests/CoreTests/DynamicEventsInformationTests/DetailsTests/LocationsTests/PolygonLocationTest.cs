@@ -56,5 +56,13 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.L
             };
             Assert.AreEqual(expectedPoints, this.polygonLocation.Points);
         }
+
+        [Test]
+        [Category("event_details.json")]
+        [Category("ExtensionData")]
+        public void PolygonLocation_ExtensionDataIsEmpty()
+        {
+            Assert.IsEmpty(this.polygonLocation.ExtensionData);
+        }
     }
 }

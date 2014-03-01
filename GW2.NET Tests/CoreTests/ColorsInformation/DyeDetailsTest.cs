@@ -35,6 +35,7 @@ namespace GW2DotNET_Tests.CoreTests.ColorsInformation
 
         [Test]
         [Category("colors.json")]
+        [Category("ExtensionData")]
         public void DyeDetails_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(this.dyeDetails.ExtensionData);

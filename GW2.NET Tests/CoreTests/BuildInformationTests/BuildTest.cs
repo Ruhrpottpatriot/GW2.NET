@@ -27,6 +27,7 @@ namespace GW2DotNET_Tests.CoreTests.BuildInformationTests
 
         [Test]
         [Category("build.json")]
+        [Category("ExtensionData")]
         public void Build_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(build.ExtensionData);

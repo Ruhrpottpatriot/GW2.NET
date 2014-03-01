@@ -47,5 +47,13 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests
             const DynamicEventFlags expectedFlags = DynamicEventFlags.None;
             Assert.AreEqual(expectedFlags, this.dynamicEventDetails.Flags);
         }
+
+        [Test]
+        [Category("event_details.json")]
+        [Category("ExtensionData")]
+        public void DynamicEventDetails_ExtensionDataIsEmpty()
+        {
+            Assert.IsEmpty(this.dynamicEventDetails.ExtensionData);
+        }
     }
 }
