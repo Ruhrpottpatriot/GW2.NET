@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
         /// Gets or sets the file ID to be used with the render service.
         /// </summary>
         [JsonProperty("file_id", Order = 0)]
-        public string FileId { get; set; }
+        public int FileId { get; set; }
 
         /// <summary>
         /// Gets or sets file signature to be used with the render service.
