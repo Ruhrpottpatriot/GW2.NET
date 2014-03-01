@@ -44,7 +44,7 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests
         [Category("event_details.json")]
         public void DynamicEventDetails_FlagsReflectsInput()
         {
-            const DynamicEventStyles expectedFlags = DynamicEventStyles.None;
+            const DynamicEventFlags expectedFlags = DynamicEventFlags.None;
             Assert.AreEqual(expectedFlags, this.dynamicEventDetails.Flags);
         }
     }

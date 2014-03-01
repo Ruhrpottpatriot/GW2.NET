@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
         /// Gets or sets additional flags.
         /// </summary>
         [JsonProperty("flags", Order = 3)]
-        public DynamicEventStyles Flags { get; set; }
+        public DynamicEventFlags Flags { get; set; }
 
         /// <summary>
         /// Gets or sets the event level.

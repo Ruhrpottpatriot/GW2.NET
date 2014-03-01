@@ -532,7 +532,7 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventStyles.cs" />
+    <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventFlags.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationType.cs" />
   </ItemGroup>
   <ItemGroup>
