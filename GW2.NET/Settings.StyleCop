@@ -3,6 +3,7 @@
     <CollectionProperty Name="RecognizedWords">
       <Value>Asura</Value>
       <Value>Charr</Value>
+      <Value>Elementalist</Value>
       <Value>Sylvari</Value>
     </CollectionProperty>
   </GlobalSettings>
