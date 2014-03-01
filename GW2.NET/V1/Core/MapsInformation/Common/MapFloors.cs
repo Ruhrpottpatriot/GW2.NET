@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V1.Core.MapsInformation.Continents
+namespace GW2DotNET.V1.Core.MapsInformation.Common
 {
     /// <summary>
     /// Represents a collection of map floors.

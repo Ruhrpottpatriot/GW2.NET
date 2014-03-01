@@ -4,8 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using System.Drawing;
+using GW2DotNET.V1.Core.MapsInformation.Common;
 using Newtonsoft.Json;
 using RectangleConverter = GW2DotNET.V1.Core.Converters.RectangleConverter;
 
@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
         /// Gets or sets a list of available floors for this map.
         /// </summary>
         [JsonProperty("floors", Order = 4)]
-        public IEnumerable<int> Floors { get; set; }
+        public MapFloors Floors { get; set; }
 
         /// <summary>
         /// Gets or sets the map name.

@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Drawing;
+using GW2DotNET.V1.Core.MapsInformation.Common;
 using Newtonsoft.Json;
 using SizeConverter = GW2DotNET.V1.Core.Converters.SizeConverter;
 
