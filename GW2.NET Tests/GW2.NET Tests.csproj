@@ -128,7 +128,6 @@
     <Compile Include="CoreTests\MapsTests.cs" />
     <Compile Include="CoreTests\ItemsTests.cs" />
     <Compile Include="CoreTests\GuildTests.cs" />
-    <Compile Include="CoreTests\DynamicEventsTests.cs" />
     <Compile Include="CoreTests\FilesTest.cs" />
     <Compile Include="CoreTests\WorldVersusWorldTests.cs" />
     <Compile Include="DynamicEventsTests.cs" />
