@@ -36,10 +36,10 @@ namespace GW2DotNET.V1.Core.Converters
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             var corners = serializer.Deserialize<int[][]>(reader);
-            var left    = corners[0][0];
-            var top     = corners[0][1];
-            var right   = corners[1][0];
-            var bottom  = corners[1][1];
+            var top     = corners[0][0];
+            var left    = corners[0][1];
+            var bottom  = corners[1][0];
+            var right   = corners[1][1];
 
             return Rectangle.FromLTRB(left, top, right, bottom);
         }
@@ -60,9 +60,9 @@ namespace GW2DotNET.V1.Core.Converters
                 writer.WriteStartArray();
 
                 {
-                    serializer.Serialize(writer, rectangle.Left);
-
                     serializer.Serialize(writer, rectangle.Top);
+
+                    serializer.Serialize(writer, rectangle.Left);
                 }
 
                 writer.WriteEndArray();
@@ -70,9 +70,9 @@ namespace GW2DotNET.V1.Core.Converters
                 writer.WriteStartArray();
 
                 {
-                    serializer.Serialize(writer, rectangle.Right);
-
                     serializer.Serialize(writer, rectangle.Bottom);
+
+                    serializer.Serialize(writer, rectangle.Right);
                 }
 
                 writer.WriteEndArray();
