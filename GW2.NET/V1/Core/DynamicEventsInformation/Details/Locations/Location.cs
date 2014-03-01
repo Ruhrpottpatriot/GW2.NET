@@ -36,6 +36,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// Gets or sets the shape of the location.
         /// </summary>
         [JsonProperty("type", Order = 0)]
-        public LocationType Type { get; set; }
+        public LocationType Type { get; private set; }
     }
 }

@@ -13,23 +13,24 @@ namespace GW2DotNET_Tests.CoreTests.ColorsInformation
         [SetUp]
         public void Initialize()
         {
-            this.dyeDetails =
-                JsonConvert.DeserializeObject<DyeDetails>("{\"name\":\"Hot Pink\",\"base_rgb\":[128,26,26]}");
+            const string input = "{\"name\":\"Hot Pink\",\"base_rgb\":[128,26,26]}";
+            this.dyeDetails = JsonConvert.DeserializeObject<DyeDetails>(input);
         }
 
         [Test]
         [Category("colors.json")]
         public void DyeDetails_NameReflectsInput()
         {
-            Assert.AreEqual("Hot Pink", this.dyeDetails.Name);
+            const string expectedName = "Hot Pink";
+            Assert.AreEqual(expectedName, this.dyeDetails.Name);
         }
 
         [Test]
         [Category("colors.json")]
         public void DyeDetails_BaseRgbReflectsInput()
         {
-            var baseRgb = Color.FromArgb(128, 26, 26);
-            Assert.AreEqual(baseRgb, this.dyeDetails.BaseRGB);
+            var expectedBaseRgb = Color.FromArgb(128, 26, 26);
+            Assert.AreEqual(expectedBaseRgb, this.dyeDetails.BaseRGB);
         }
 
         [Test]

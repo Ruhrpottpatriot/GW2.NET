@@ -12,21 +12,20 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
 {
     /// <summary>
-    /// Enumerates the special event styles.
+    /// Enumerates the possible flags for events.
     /// </summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
-    public enum DynamicEventStyles
+    public enum DynamicEventStyles // TODO: rename to DynamicEventFlags
     {
-        /// <summary>
-        /// The group event style.
-        /// </summary>
-        [EnumMember(Value = "group_event")]
-        GroupEvent = 1,
+        /// <summary>Indicates no additional flags.</summary>
+        None = 0,
 
-        /// <summary>
-        /// The map-wide event style.
-        /// </summary>
+        /// <summary>The 'group event' flag.</summary>
+        [EnumMember(Value = "group_event")]
+        GroupEvent = 1 << 0,
+
+        /// <summary>The 'map-wide' event flag.</summary>
         [EnumMember(Value = "map_wide")]
         MapWide = 1 << 1
     }
