@@ -1,8 +1,9 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
     <CollectionProperty Name="RecognizedWords">
-      <Value>NPC</Value>
-      <Value>RGB</Value>
+      <Value>Asura</Value>
+      <Value>Charr</Value>
+      <Value>Sylvari</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Analyzers>
