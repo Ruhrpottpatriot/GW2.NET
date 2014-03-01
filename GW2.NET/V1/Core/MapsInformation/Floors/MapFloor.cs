@@ -7,8 +7,8 @@
 using System.Drawing;
 using GW2DotNET.V1.Core.MapsInformation.Floors.Regions;
 using Newtonsoft.Json;
-using PointConverter = GW2DotNET.V1.Core.Converters.PointConverter;
 using RectangleConverter = GW2DotNET.V1.Core.Converters.RectangleConverter;
+using SizeConverter = GW2DotNET.V1.Core.Converters.SizeConverter;
 
 namespace GW2DotNET.V1.Core.MapsInformation.Floors
 {
@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
         /// Gets or sets the texture's dimensions.
         /// </summary>
         [JsonProperty("texture_dims", Order = 0)]
-        [JsonConverter(typeof(PointConverter))]
-        public Point TextureDimensions { get; set; }
+        [JsonConverter(typeof(SizeConverter))]
+        public Size TextureDimensions { get; set; }
     }
 }
