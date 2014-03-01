@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PointOfInterestCategory.cs" company="GW2.Net Coding Team">
+// <copyright file="PointOfInterestType.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -9,9 +9,9 @@ using System.Runtime.Serialization;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
 {
     /// <summary>
-    /// Enumerates the possible types of POI.
+    /// Enumerates the known types of POI.
     /// </summary>
-    public enum PointOfInterestCategory
+    public enum PointOfInterestType
     {
         /// <summary>
         /// The 'landmark' POI.

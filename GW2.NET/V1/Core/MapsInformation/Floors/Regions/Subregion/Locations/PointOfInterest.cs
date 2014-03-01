@@ -46,6 +46,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
         /// </summary>
         [JsonProperty("type", Order = 2)]
         [JsonConverter(typeof(StringEnumConverter))]
-        public PointOfInterestCategory Type { get; set; }
+        public PointOfInterestType Type { get; set; }
     }
 }
