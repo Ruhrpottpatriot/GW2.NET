@@ -31,7 +31,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Armor;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Armor);
+            Assert.IsInstanceOf<Armor>(item);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Back;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Back);
+            Assert.IsInstanceOf<Back>(item);
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Bag;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Bag);
+            Assert.IsInstanceOf<Bag>(item);
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Consumable;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Consumable);
+            Assert.IsInstanceOf<Consumable>(item);
         }
 
         [Test]
@@ -79,7 +79,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Container;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Container);
+            Assert.IsInstanceOf<Container>(item);
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.CraftingMaterial;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is CraftingMaterial);
+            Assert.IsInstanceOf<CraftingMaterial>(item);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Gathering;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is GatheringTool);
+            Assert.IsInstanceOf<GatheringTool>(item);
         }
 
         [Test]
@@ -115,7 +115,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Gizmo;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Gizmo);
+            Assert.IsInstanceOf<Gizmo>(item);
         }
 
         [Test]
@@ -127,7 +127,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.MiniPet;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is MiniPet);
+            Assert.IsInstanceOf<MiniPet>(item);
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Tool;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Tool);
+            Assert.IsInstanceOf<Tool>(item);
         }
 
         [Test]
@@ -151,7 +151,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Trinket;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Trinket);
+            Assert.IsInstanceOf<Trinket>(item);
         }
 
         [Test]
@@ -163,7 +163,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Trophy;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Trophy);
+            Assert.IsInstanceOf<Trophy>(item);
         }
 
         [Test]
@@ -175,7 +175,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.UpgradeComponent;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is UpgradeComponent);
+            Assert.IsInstanceOf<UpgradeComponent>(item);
         }
 
         [Test]
@@ -187,7 +187,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTest
             const ItemType expectedItemType = ItemType.Weapon;
 
             Assert.AreEqual(expectedItemType, item.Type);
-            Assert.IsTrue(item is Weapon);
+            Assert.IsInstanceOf<Weapon>(item);
         }
     }
 }

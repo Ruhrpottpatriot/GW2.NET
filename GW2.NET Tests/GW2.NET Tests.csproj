@@ -118,6 +118,7 @@
     <Compile Include="CoreTests\ColorsInformation\MaterialTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\DetailsTests\DynamicEventDetailsTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\DetailsTests\DynamicEventFlagsTest.cs" />
+    <Compile Include="CoreTests\DynamicEventsInformationTests\DetailsTests\LocationsTests\LocationTypeTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\DetailsTests\LocationsTests\PolygonLocationTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\DetailsTests\LocationsTests\CylinderLocationTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\DetailsTests\LocationsTests\SphereLocationTest.cs" />
