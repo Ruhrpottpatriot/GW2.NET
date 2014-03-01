@@ -9,7 +9,7 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
     {
         [Test]
         [Category("guild_details.json")]
-        public void DynamicEventStyles_None_FlagsReflectsInput()
+        public void EmblemTransformations_None_FlagsReflectsInput()
         {
             const string input                        = "{\"flags\":[]}";
             var emblem                                = JsonConvert.DeserializeObject<Emblem>(input);
@@ -20,7 +20,7 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
 
         [Test]
         [Category("guild_details.json")]
-        public void DynamicEventStyles_FlipBackgroundHorizontal_FlagsReflectsInput()
+        public void EmblemTransformations_FlipBackgroundHorizontal_FlagsReflectsInput()
         {
             const string input                        = "{\"flags\":[\"FlipBackgroundHorizontal\"]}";
             var emblem                                = JsonConvert.DeserializeObject<Emblem>(input);
@@ -31,7 +31,7 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
 
         [Test]
         [Category("guild_details.json")]
-        public void DynamicEventStyles_FlipBackgroundVertical_FlagsReflectsInput()
+        public void EmblemTransformations_FlipBackgroundVertical_FlagsReflectsInput()
         {
             const string input                        = "{\"flags\":[\"FlipBackgroundVertical\"]}";
             var emblem                                = JsonConvert.DeserializeObject<Emblem>(input);
@@ -42,7 +42,7 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
 
         [Test]
         [Category("guild_details.json")]
-        public void DynamicEventStyles_FlipForegroundHorizontal_FlagsReflectsInput()
+        public void EmblemTransformations_FlipForegroundHorizontal_FlagsReflectsInput()
         {
             const string input                        = "{\"flags\":[\"FlipForegroundHorizontal\"]}";
             var emblem                                = JsonConvert.DeserializeObject<Emblem>(input);
@@ -53,7 +53,7 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
 
         [Test]
         [Category("guild_details.json")]
-        public void DynamicEventStyles_FlipForegroundVertical_FlagsReflectsInput()
+        public void EmblemTransformations_FlipForegroundVertical_FlagsReflectsInput()
         {
             const string input                        = "{\"flags\":[\"FlipForegroundVertical\"]}";
             var emblem                                = JsonConvert.DeserializeObject<Emblem>(input);
@@ -64,7 +64,7 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
 
         [Test]
         [Category("guild_details.json")]
-        public void DynamicEventStyles_Multiple_FlagsReflectsInput()
+        public void EmblemTransformations_Multiple_FlagsReflectsInput()
         {
             const string input                        = "{\"flags\":[\"FlipBackgroundHorizontal\",\"FlipBackgroundVertical\",\"FlipForegroundHorizontal\",\"FlipForegroundVertical\"]}";
             var emblem                                = JsonConvert.DeserializeObject<Emblem>(input);
