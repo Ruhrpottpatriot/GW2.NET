@@ -18,6 +18,9 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum EmblemTransformations
     {
+        /// <summary>Indicates no transformations.</summary>
+        None = 0,
+
         /// <summary>Flip the background image horizontally.</summary>
         [EnumMember(Value = "FlipBackgroundHorizontal")]
         FlipBackgroundHorizontal = 1 << 0,
