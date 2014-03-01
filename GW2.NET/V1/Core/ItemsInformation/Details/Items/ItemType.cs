@@ -16,6 +16,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ItemType
     {
+        /// <summary>The 'Unknown' item type.</summary>
+        [EnumMember(Value = "Unknown")]
+        Unknown = 0,
+
         /// <summary>The 'Armor' item type.</summary>
         [EnumMember(Value = "Armor")]
         Armor = 1 << 0,
@@ -40,8 +44,8 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
         [EnumMember(Value = "CraftingMaterial")]
         CraftingMaterial = 1 << 5,
 
-        /// <summary>The 'GatheringTool' item type.</summary>
-        [EnumMember(Value = "GatheringTool")]
+        /// <summary>The 'Gathering' item type.</summary>
+        [EnumMember(Value = "Gathering")]
         Gathering = 1 << 6,
 
         /// <summary>The 'Gizmo' item type.</summary>

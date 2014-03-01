@@ -21,6 +21,7 @@ using GW2DotNET.V1.Core.ItemsInformation.Details.Items.MiniPets;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trophies;
+using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons;
 using Newtonsoft.Json;
@@ -43,6 +44,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         /// </summary>
         static ItemConverter()
         {
+            KnownTypes.Add(ItemType.Unknown, typeof(UnknownItem));
             KnownTypes.Add(ItemType.Armor, typeof(Armor));
             KnownTypes.Add(ItemType.Back, typeof(Back));
             KnownTypes.Add(ItemType.Bag, typeof(Bag));
@@ -88,8 +90,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
 
             if (!KnownTypes.TryGetValue(jsonValue, out targetType))
             {
-                // TODO: consider introducing an UnknownItem class and enum value
-                throw new JsonSerializationException("Unknown item type: " + jsonValue);
+                return typeof(UnknownItem);
             }
 
             return targetType;

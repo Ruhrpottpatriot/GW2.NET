@@ -129,6 +129,11 @@
     <Compile Include="CoreTests\GuildInformationTests\EmblemTest.cs" />
     <Compile Include="CoreTests\GuildInformationTests\EmblemTransformationsTest.cs" />
     <Compile Include="CoreTests\GuildInformationTests\GuildDetailsTest.cs" />
+    <Compile Include="CoreTests\ItemsInformationTests\DetailsTests\ItemsTests\GameTypesTest.cs" />
+    <Compile Include="CoreTests\ItemsInformationTests\DetailsTests\ItemsTests\ItemTypeTest.cs" />
+    <Compile Include="CoreTests\ItemsInformationTests\DetailsTests\ItemsTests\ItemFlagsTest.cs" />
+    <Compile Include="CoreTests\ItemsInformationTests\DetailsTests\ItemsTests\ItemRestrictionsTest.cs" />
+    <Compile Include="CoreTests\ItemsInformationTests\DetailsTests\ItemTest.cs" />
     <Compile Include="CoreTests\WorldTests.cs" />
     <Compile Include="CoreTests\MapsTests.cs" />
     <Compile Include="CoreTests\ItemsTests.cs" />

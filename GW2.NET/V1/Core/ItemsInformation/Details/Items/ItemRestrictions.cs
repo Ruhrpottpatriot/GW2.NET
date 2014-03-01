@@ -5,7 +5,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Runtime.Serialization;
 using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
@@ -13,46 +12,37 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
 {
     /// <summary>
-    /// Enumerates the possible additional item flags.
+    /// Enumerates the known item restrictions.
     /// </summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum ItemRestrictions
     {
-        /// <summary>
-        /// The 'Asura' item restriction.
-        /// </summary>
+        /// <summary>Indicates no restrictions.</summary>
+        None = 0,
+
+        /// <summary>The 'Asura' item restriction.</summary>
         [EnumMember(Value = "Asura")]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "'Asura' is a valid name.")]
         Asura = 1 << 0,
 
-        /// <summary>
-        /// The 'Charr' item restriction.
-        /// </summary>
+        /// <summary>The 'Charr' item restriction.</summary>
         [EnumMember(Value = "Charr")]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "'Charr' is a valid name.")]
         Charr = 1 << 1,
 
-        /// <summary>
-        /// The 'Human' item restriction.
-        /// </summary>
+        /// <summary>The 'Human' item restriction.</summary>
         [EnumMember(Value = "Human")]
         Human = 1 << 2,
 
-        /// <summary>
-        /// The 'Norn' item restriction.
-        /// </summary>
+        /// <summary>The 'Norn' item restriction.</summary>
         [EnumMember(Value = "Norn")]
         Norn = 1 << 3,
 
         /// <summary>The 'Sylvari' item restriction.</summary>
         [EnumMember(Value = "Sylvari")]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "'Sylvari' is a valid name.")]
         Sylvari = 1 << 4,
 
         /// <summary>The 'Elementalist' item restriction.</summary>
         [EnumMember(Value = "Elementalist")]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "'Elementalist' is a valid name.")]
         Elementalist = 1 << 5,
 
         /// <summary>The 'Engineer' item restriction.</summary>
