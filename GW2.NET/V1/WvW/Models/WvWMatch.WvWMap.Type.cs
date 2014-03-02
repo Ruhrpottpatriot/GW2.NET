@@ -6,42 +6,27 @@
 //   Represents a world vs world match.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WvW.Models
 {
-    /// <summary>
-    /// Represents a world vs world match.
-    /// </summary>
+    /// <summary>Represents a world vs world match.</summary>
     public partial class WvWMatch
     {
-        /// <summary>
-        /// Represents a world vs world map.
-        /// </summary>
+        /// <summary>Represents a world vs world map.</summary>
         public partial class WvWMap
         {
-            /// <summary>
-            /// Enumerates the objective type.
-            /// </summary>
+            /// <summary>Enumerates the objective type.</summary>
             public enum Type
             {
-                /// <summary>
-                /// The red home.
-                /// </summary>
-                RedHome,
+                /// <summary>The red home.</summary>
+                RedHome, 
 
-                /// <summary>
-                /// The blue home.
-                /// </summary>
-                BlueHome,
+                /// <summary>The blue home.</summary>
+                BlueHome, 
 
-                /// <summary>
-                /// The green home.
-                /// </summary>
-                GreenHome,
+                /// <summary>The green home.</summary>
+                GreenHome, 
 
-                /// <summary>
-                /// The center.
-                /// </summary>
+                /// <summary>The center.</summary>
                 Center
             }
         }

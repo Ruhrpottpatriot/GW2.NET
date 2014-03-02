@@ -8,21 +8,18 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using Newtonsoft.Json;
+
 using RestSharp;
 
 namespace GW2DotNET.V1.Infrastructure
 {
-    using System;
-    using System.Threading.Tasks;
-
     /// <summary>Contains static methods to call the guild wars 2 API.</summary>
     public static partial class ApiCall
     {
-        /// <summary>
-        /// Calls the API and returns a CLI object of the specified type.
-        /// </summary>
+        /// <summary>Calls the API and returns a CLI object of the specified type.</summary>
         /// <param name="apiMethod">The API method to call.</param>
         /// <param name="arguments">The arguments to supply to the method.</param>
         /// <param name="category">The category the method is in.</param>
@@ -35,13 +32,12 @@ namespace GW2DotNET.V1.Infrastructure
             return JsonConvert.DeserializeObject<T>(jsonResponse);
         }
 
-        /// <summary>
-        /// Calls the api asynchronously and returns a CLI object of the specified type.</summary>
+        /// <summary>Calls the api asynchronously and returns a CLI object of the specified type.</summary>
         /// <param name="apiMethod">The api method to call.</param>
         /// <param name="arguments">The arguments to supply to the method.</param>
         /// <param name="category">The category the method is in.</param>
         /// <typeparam name="T">The type to covert the raw api result into.</typeparam>
-        /// <returns>An object converted to <see cref="T"/>.</returns>
+        /// <returns>An object converted to <see cref="Task{T}"/>.</returns>
         public static async Task<T> GetContentAsync<T>(string apiMethod, List<KeyValuePair<string, object>> arguments, Categories category)
         {
             string response = await GetJsonAsync(apiMethod, arguments, category);
@@ -49,9 +45,7 @@ namespace GW2DotNET.V1.Infrastructure
             return await Task.Factory.StartNew(() => JsonConvert.DeserializeObject<T>(response));
         }
 
-        /// <summary>
-        /// Gets the JSON string from the API.
-        /// </summary>
+        /// <summary>Gets the JSON string from the API.</summary>
         /// <param name="apiMethod">The API method to call.</param>
         /// <param name="arguments">The arguments to supply to the method.</param>
         /// <param name="category">The category the method is in.</param>
@@ -60,14 +54,14 @@ namespace GW2DotNET.V1.Infrastructure
         {
             RestClient client = SwitchApiLocation(category);
 
-            RestRequest restRequest = new RestRequest(apiMethod, Method.GET)
-            {
-                RequestFormat = DataFormat.Json
-            };
+            var restRequest = new RestRequest(apiMethod, Method.GET)
+                              {
+                                  RequestFormat = DataFormat.Json
+                              };
 
             if (arguments != null)
             {
-                foreach (KeyValuePair<string, object> keyValuePair in arguments)
+                foreach (var keyValuePair in arguments)
                 {
                     restRequest.AddParameter(keyValuePair.Key, keyValuePair.Value);
                 }
@@ -85,14 +79,14 @@ namespace GW2DotNET.V1.Infrastructure
         {
             RestClient client = SwitchApiLocation(category);
 
-            RestRequest restRequest = new RestRequest(apiMethod, Method.GET)
-                                  {
-                                      RequestFormat = DataFormat.Json
-                                  };
+            var restRequest = new RestRequest(apiMethod, Method.GET)
+                              {
+                                  RequestFormat = DataFormat.Json
+                              };
 
             if (arguments != null)
             {
-                foreach (KeyValuePair<string, object> keyValuePair in arguments)
+                foreach (var keyValuePair in arguments)
                 {
                     restRequest.AddParameter(keyValuePair.Key, keyValuePair.Value);
                 }
@@ -101,19 +95,12 @@ namespace GW2DotNET.V1.Infrastructure
             return await TaskEx.Run(() => client.Execute(restRequest).Content);
         }
 
-        /// <summary>
-        /// Do a switch based on the place where the caller wants to go. 
-        /// Simple solution to keep the call in one method and not two.
-        /// </summary>
-        /// <param name="category">
-        /// The category of the api.
-        /// </param>
-        /// <returns>
-        /// The <see cref="RestClient"/>.
-        /// </returns>
+        /// <summary>Do a switch based on the place where the caller wants to go. Simple solution to keep the call in one method and not two.</summary>
+        /// <param name="category">The category of the api.</param>
+        /// <returns>The <see cref="RestClient"/>.</returns>
         private static RestClient SwitchApiLocation(Categories category)
         {
-            RestClient client = new RestClient();
+            var client = new RestClient();
 
             switch (category)
             {

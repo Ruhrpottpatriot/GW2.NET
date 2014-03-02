@@ -13,14 +13,10 @@ using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.WvW.Models
 {
-    /// <summary>
-    /// Represents a world vs world match.
-    /// </summary>
+    /// <summary>Represents a world vs world match.</summary>
     public partial class WvWMatch
     {
-        /// <summary>
-        /// Represents a world vs world map.
-        /// </summary>
+        /// <summary>Represents a world vs world map.</summary>
         public partial class WvWMap
         {
             /// <summary>Initializes a new instance of the <see cref="WvWMap"/> class.</summary>
@@ -37,35 +33,17 @@ namespace GW2DotNET.V1.WvW.Models
                 this.Objectives = objectives;
             }
 
-            /// <summary>
-            /// Gets the map type.
-            /// </summary>
+            /// <summary>Gets the map type.</summary>
             [JsonProperty("type")]
-            public Type MapType
-            {
-                get;
-                private set;
-            }
+            public Type MapType { get; private set; }
 
-            /// <summary>
-            /// Gets the scores.
-            /// </summary>
+            /// <summary>Gets the scores.</summary>
             [JsonProperty("scores")]
-            public IEnumerable<int> Scores
-            {
-                get;
-                private set;
-            }
+            public IEnumerable<int> Scores { get; private set; }
 
-            /// <summary>
-            /// Gets the objectives.
-            /// </summary>
+            /// <summary>Gets the objectives.</summary>
             [JsonProperty("objectives")]
-            public IEnumerable<Objective> Objectives
-            {
-                get;
-                private set;
-            }
+            public IEnumerable<Objective> Objectives { get; private set; }
 
             /// <summary>Gets the objective bonuses.</summary>
             [JsonProperty("bonuses")]
@@ -74,6 +52,13 @@ namespace GW2DotNET.V1.WvW.Models
             /// <summary>Represents a bonus to an objective.</summary>
             public class Bonus
             {
+                /// <summary>Enumerates the types an objective bonus can have.</summary>
+                public enum BonusType
+                {
+                    /// <summary>The bloodlust type.</summary>
+                    Bloodlust
+                }
+
                 /// <summary>Initializes a new instance of the <see cref="Bonus"/> class.</summary>
                 /// <param name="type">The type.</param>
                 /// <param name="owner">The owner.</param>
@@ -82,13 +67,6 @@ namespace GW2DotNET.V1.WvW.Models
                 {
                     this.Owner = owner;
                     this.Type = type;
-                }
-
-                /// <summary>Enumerates the types an objective bonus can have.</summary>
-                public enum BonusType
-                {
-                    /// <summary>The bloodlust type.</summary>
-                    Bloodlust
                 }
 
                 /// <summary>Gets the type of the bonus.</summary>

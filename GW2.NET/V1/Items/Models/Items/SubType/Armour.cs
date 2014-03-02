@@ -14,12 +14,51 @@ using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
-    /// <summary>
-    /// The armour.
-    /// </summary>
+    /// <summary>The armour.</summary>
     [Serializable]
     public class Armour
     {
+        /// <summary>Enumerates the armour class.</summary>
+        public enum ArmourClass
+        {
+            /// <summary>The item is clothing.</summary>
+            Clothing, 
+
+            /// <summary>The item is light armour.</summary>
+            Light, 
+
+            /// <summary>The item is medium armour.</summary>
+            Medium, 
+
+            /// <summary>The item is heavy armour.</summary>
+            Heavy
+        }
+
+        /// <summary>Enumerates the armour type.</summary>
+        public enum ArmourType
+        {
+            /// <summary>The item belong in the boots slot.</summary>
+            Boots, 
+
+            /// <summary>The item belong in the helm slot.</summary>
+            Helm, 
+
+            /// <summary>The item belong in the leggings slot.</summary>
+            Leggings, 
+
+            /// <summary>The item belong in the gloves slot.</summary>
+            Gloves, 
+
+            /// <summary>The item belong in the shoulders slot.</summary>
+            Shoulders, 
+
+            /// <summary>The item belong in the coat slot.</summary>
+            Coat, 
+
+            /// <summary>The item belong in the aquatic helmet slot.</summary>
+            HelmAquatic, 
+        }
+
         /// <summary>Initializes a new instance of the <see cref="Armour"/> class.</summary>
         /// <param name="armourClass">The armour class.</param>
         /// <param name="type">The type.</param>
@@ -38,131 +77,28 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             this.Class = armourClass;
         }
 
-        /// <summary>
-        /// Enumerates the armour class.
-        /// </summary>
-        public enum ArmourClass
-        {
-            /// <summary>
-            /// The item is clothing.
-            /// </summary>
-            Clothing,
-
-            /// <summary>
-            /// The item is light armour.
-            /// </summary>
-            Light,
-
-            /// <summary>
-            /// The item is medium armour.
-            /// </summary>
-            Medium,
-
-            /// <summary>
-            /// The item is heavy armour.
-            /// </summary>
-            Heavy
-        }
-
-        /// <summary>
-        /// Enumerates the armour type.
-        /// </summary>
-        public enum ArmourType
-        {
-            /// <summary>
-            /// The item belong in the boots slot.
-            /// </summary>
-            Boots,
-
-            /// <summary>
-            /// The item belong in the helm slot.
-            /// </summary>
-            Helm,
-
-            /// <summary>
-            /// The item belong in the leggings slot.
-            /// </summary>
-            Leggings,
-
-            /// <summary>
-            /// The item belong in the gloves slot.
-            /// </summary>
-            Gloves,
-
-            /// <summary>
-            /// The item belong in the shoulders slot.
-            /// </summary>
-            Shoulders,
-
-            /// <summary>
-            /// The item belong in the coat slot.
-            /// </summary>
-            Coat,
-
-            /// <summary>
-            /// The item belong in the aquatic helmet slot.
-            /// </summary>
-            HelmAquatic,
-        }
-
-        /// <summary>
-        /// Gets the armour class.
-        /// </summary>
+        /// <summary>Gets the armour class.</summary>
         [JsonProperty("weight_class")]
-        public ArmourClass Class
-        {
-            get;
-            private set;
-        }
+        public ArmourClass Class { get; private set; }
 
-        /// <summary>
-        /// Gets the armour type.
-        /// </summary>
+        /// <summary>Gets the armour type.</summary>
         [JsonProperty("type")]
-        public ArmourType Type
-        {
-            get;
-            private set;
-        }
+        public ArmourType Type { get; private set; }
 
-        /// <summary>
-        /// Gets the suffix id.
-        /// </summary>
+        /// <summary>Gets the suffix id.</summary>
         [JsonProperty("suffix_item_id")]
-        public int? SuffixId
-        {
-            get;
-            private set;
-        }
+        public int? SuffixId { get; private set; }
 
-        /// <summary>
-        /// Gets the infusion slots.
-        /// </summary>
+        /// <summary>Gets the infusion slots.</summary>
         [JsonProperty("infusion_slots")]
-        public IEnumerable<InfusionSlot> InfusionSlots
-        {
-            get;
-            private set;
-        }
+        public IEnumerable<InfusionSlot> InfusionSlots { get; private set; }
 
-        /// <summary>
-        /// Gets the infix upgrade.
-        /// </summary>
+        /// <summary>Gets the infix upgrade.</summary>
         [JsonProperty("infix_upgrade")]
-        public InfixUpgrade InfixUpgrade
-        {
-            get;
-            private set;
-        }
+        public InfixUpgrade InfixUpgrade { get; private set; }
 
-        /// <summary>
-        /// Gets the defense.
-        /// </summary>
+        /// <summary>Gets the defense.</summary>
         [JsonProperty("defense")]
-        public int Defense
-        {
-            get;
-            private set;
-        }
+        public int Defense { get; private set; }
     }
 }

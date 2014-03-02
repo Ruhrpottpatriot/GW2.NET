@@ -19,38 +19,37 @@ namespace GW2DotNET.V1.Infrastructure
     /// <summary>Abstract bas class providing base methods for derived classes.</summary>
     public abstract class DataProviderBase
     {
-        /// <summary>Gets or sets a value indicating whether the user is bypassing the cache
-        /// and querying the server directly.</summary>
+        /// <summary>Gets or sets a value indicating whether the user is bypassing the cache and querying the server directly.</summary>
         public bool BypassCache { get; set; }
 
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public abstract void WriteCacheToDisk();
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer.</summary>
-        /// <returns>The <see cref="Task"/>.</returns>
+        /// <returns>The <see cref="Task" />.</returns>
         public abstract Task WriteCacheToDiskAsync();
 
         /// <summary>Clears the cache.</summary>
         public abstract void ClearCache();
 
         /// <summary>Synchronously reads the contents of the stored cache from the hard drive.</summary>
-        /// <typeparam name="T">The type to serialize the file contents into.</typeparam>
+        /// <typeparam name="TReturn">The type to serialize the file contents into.</typeparam>
         /// <param name="path">The path of the cache file.</param>
         /// <param name="build">The build.</param>
-        /// <returns>The contents of the file serialized into <see cref="T"/>.</returns>
-        public T ReadCacheFromDisk<T>(string path, out int build) where T : class, new() 
+        /// <returns>The contents of the file serialized into <see cref="TReturn"/>.</returns>
+        public TReturn ReadCacheFromDisk<TReturn>(string path, out int build) where TReturn : class, new()
         {
             if (File.Exists(path))
             {
                 using (FileStream fileStream = File.OpenRead(path))
                 {
-                    using (StreamReader streamReader = new StreamReader(fileStream))
+                    using (var streamReader = new StreamReader(fileStream))
                     {
-                        JsonTextReader jsonTextReader = new JsonTextReader(streamReader);
+                        var jsonTextReader = new JsonTextReader(streamReader);
 
-                        JsonSerializer jsonSerializer = new JsonSerializer();
+                        var jsonSerializer = new JsonSerializer();
 
-                        GameCache<T> cache = jsonSerializer.Deserialize<GameCache<T>>(jsonTextReader);
+                        var cache = jsonSerializer.Deserialize<GameCache<TReturn>>(jsonTextReader);
 
                         build = cache.Build;
                         return cache.CacheData;
@@ -60,7 +59,7 @@ namespace GW2DotNET.V1.Infrastructure
             else
             {
                 build = -1;
-                return new T();
+                return new TReturn();
             }
         }
 

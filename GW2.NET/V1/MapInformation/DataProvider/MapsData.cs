@@ -78,11 +78,10 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            GameCache<IEnumerable<Map>> mapCache = new GameCache<IEnumerable<Map>>
-            {
-                Build = this.dataManager.Build,
-                CacheData = this.mapsCache.Value
-            };
+            var mapCache = new GameCache<IEnumerable<Map>>
+                           {
+                               Build = this.dataManager.Build, CacheData = this.mapsCache.Value
+                           };
 
             this.WriteDataToDisk(this.mapsCacheFileName, mapCache);
         }
@@ -101,13 +100,13 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         }
 
         /// <summary>Calls the GW2 api to get a list of maps asynchronously.</summary>
-        /// <returns>A <see cref="IEnumerable{T}"/>containing all maps.</returns>
+        /// <returns>A <see cref="IEnumerable{T}" />containing all maps.</returns>
         public async Task<IEnumerable<Map>> GetMapListAsync()
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-                            {
-                                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
             Dictionary<string, Dictionary<int, Map>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
 
@@ -124,15 +123,15 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         }
 
         /// <summary>Calls the GW2 api to get a list of maps synchronously.</summary>
-        /// <returns>A <see cref="IEnumerable{T}"/>containing all maps.</returns>
+        /// <returns>A <see cref="IEnumerable{T}" />containing all maps.</returns>
         public IEnumerable<Map> GetMapList()
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-                            {
-                                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
-            Dictionary<string, Dictionary<int, Map>> returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
+            var returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
 
             Dictionary<int, Map> mapsDictionary = returnContent.Values.First();
 
@@ -156,11 +155,10 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
                 return this.mapsCache.Value.SingleOrDefault(map => map.Id == mapId);
             }
 
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-                            {
-                                new KeyValuePair<string, object>("lang", this.dataManager.Language),
-                                new KeyValuePair<string, object>("map_id", mapId)
-                            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("lang", this.dataManager.Language), new KeyValuePair<string, object>("map_id", mapId)
+                       };
 
             Dictionary<string, Dictionary<int, Map>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
 
@@ -191,13 +189,12 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
                 }
             }
 
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-                            {
-                                new KeyValuePair<string, object>("lang", this.dataManager.Language),
-                                new KeyValuePair<string, object>("map_id", mapId)
-                            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("lang", this.dataManager.Language), new KeyValuePair<string, object>("map_id", mapId)
+                       };
 
-            Dictionary<string, Dictionary<int, Map>> returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
+            var returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Map>>>("maps.json", args, ApiCall.Categories.World);
 
             Dictionary<int, Map> mapsDictionary = returnContent.Values.First();
 
@@ -216,8 +213,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Resolves the ids of the maps returned by the api.</summary>
-        /// <param name="mapsToResolve">The <see cref="Dictionary{TKey, TValue}"/> containing 
-        /// the map ids as Key and the maps itself as value.</param>
+        /// <param name="mapsToResolve">The <see cref="Dictionary{TKey, TValue}"/> containing the map ids as Key and the maps itself as value.</param>
         /// <returns>A <see cref="List{T}"/> with maps that have their Ids resolved.</returns>
         private List<Map> ResolveId(Dictionary<int, Map> mapsToResolve)
         {

@@ -77,11 +77,10 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            GameCache<List<MapFloor>> mapFloorCache = new GameCache<List<MapFloor>>()
-            {
-                Build = this.dataManager.Build,
-                CacheData = this.mapFloorList.Value
-            };
+            var mapFloorCache = new GameCache<List<MapFloor>>
+                                {
+                                    Build = this.dataManager.Build, CacheData = this.mapFloorList.Value
+                                };
 
             this.WriteDataToDisk(this.mapFloorCacheFileName, mapFloorCache);
         }
@@ -105,14 +104,12 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <returns>The requested <see cref="MapFloor"/>.</returns>
         public MapFloor GetMapFloor(int continentId, int floor)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-                        {
-                            new KeyValuePair<string, object>("continent_id", continentId),
-                            new KeyValuePair<string, object>("floor", floor),
-                            new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                        };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("continent_id", continentId), new KeyValuePair<string, object>("floor", floor), new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
-            MapFloor floorToReturn = ApiCall.GetContent<MapFloor>("map_floor.json", args, ApiCall.Categories.World);
+            var floorToReturn = ApiCall.GetContent<MapFloor>("map_floor.json", args, ApiCall.Categories.World);
 
             if (!this.BypassCache)
             {
@@ -128,12 +125,10 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <returns>The requested <see cref="MapFloor"/>.</returns>
         public async Task<MapFloor> GetMapFloorAsync(int continentId, int floor)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-                        {
-                            new KeyValuePair<string, object>("continent_id", continentId),
-                            new KeyValuePair<string, object>("floor", floor),
-                            new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                        };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("continent_id", continentId), new KeyValuePair<string, object>("floor", floor), new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
             MapFloor floorToReturn = await ApiCall.GetContentAsync<MapFloor>("map_floor.json", args, ApiCall.Categories.World);
 

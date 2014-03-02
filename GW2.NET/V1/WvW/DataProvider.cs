@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   
+//   The data manager for the pvp part of the api.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -175,10 +175,10 @@ namespace GW2DotNET.V1.WvW
         /// <returns>The <see cref="WvWMatch"/>.</returns>
         private WvWMatch GetMatch(string matchId)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("match_id", matchId)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("match_id", matchId)
+                       };
 
             WvWMatch returnMatch = ApiCall.GetContent<WvWMatch>("match_details.json", args, ApiCall.Categories.WvW);
 
@@ -206,10 +206,10 @@ namespace GW2DotNET.V1.WvW
         /// <returns>The <see cref="Task"/> containing the <see cref="WvWMatch"/>.</returns>
         private async Task<WvWMatch> GetMatchAsync(string matchId)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("match_id", matchId)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("match_id", matchId)
+                       };
 
             WvWMatch returnMatch = await ApiCall.GetContentAsync<WvWMatch>("match_details.json", args, ApiCall.Categories.WvW);
 

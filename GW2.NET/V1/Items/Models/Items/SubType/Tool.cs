@@ -13,21 +13,29 @@ using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
-    /// <summary>
-    /// A tool, includes salvage tools.
-    /// </summary>
+    /// <summary>A tool, includes salvage tools.</summary>
     [Serializable]
     public class Tool
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Tool"/> class.
-        /// </summary>
-        /// <param name="type">
-        /// The type.
-        /// </param>
-        /// <param name="charges">
-        /// The charges.
-        /// </param>
+        /// <summary>Enumerates the tool types.</summary>
+        public enum ToolType
+        {
+            /// <summary>A salvage tool.</summary>
+            Salvage, 
+
+            /// <summary>A logging tool.</summary>
+            Logging, 
+
+            /// <summary>A foraging tool.</summary>
+            Foraging, 
+
+            /// <summary>A mining tool.</summary>
+            Mining, 
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="Tool"/> class.</summary>
+        /// <param name="type">The type.</param>
+        /// <param name="charges">The charges.</param>
         [JsonConstructor]
         public Tool(ToolType type, int charges)
         {
@@ -35,49 +43,11 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             this.Type = type;
         }
 
-        /// <summary>
-        /// Enumerates the tool types.
-        /// </summary>
-        public enum ToolType
-        {
-            /// <summary>
-            /// A salvage tool.
-            /// </summary>
-            Salvage,
-
-            /// <summary>
-            /// A logging tool.
-            /// </summary>
-            Logging,
-
-            /// <summary>
-            /// A foraging tool.
-            /// </summary>
-            Foraging,
-
-            /// <summary>
-            /// A mining tool.
-            /// </summary>
-            Mining,
-        }
-
-        /// <summary>
-        /// Gets the type.
-        /// </summary>
+        /// <summary>Gets the type.</summary>
         [JsonProperty("type")]
-        public ToolType Type
-        {
-            get;
-            private set;
-        }
+        public ToolType Type { get; private set; }
 
-        /// <summary>
-        /// Gets the charges.
-        /// </summary>
-        public int Charges
-        {
-            get;
-            private set;
-        }
+        /// <summary>Gets the charges.</summary>
+        public int Charges { get; private set; }
     }
 }

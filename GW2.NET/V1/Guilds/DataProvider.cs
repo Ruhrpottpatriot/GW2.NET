@@ -11,24 +11,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using GW2DotNET.V1.Guilds.Models;
 using GW2DotNET.V1.Infrastructure;
 
 namespace GW2DotNET.V1.Guilds
 {
     /// <summary>The data provider for the guild api</summary>
-    /// <remarks>
-    /// This data provider will supply the user with a list of guilds. 
-    /// As there is currently no way to get a complete list of guilds this implementation
-    /// will require the user to know either the guild name, or the guild id. 
-    /// When the user requests a guild the data provider will first look in the cache
-    /// and see if a guild with that name/id is already present. If it is it will return the guild
-    /// from the cache. If no guild with said name/id is present in the cache the data provider
-    /// will query the api for said guild. After the query has completed the data provider will
-    /// add the guild to the cache and subsequent calls to that guild will be done against the cache.
-    /// The users also has the possibility to get a complete collection of all guilds
-    /// currently in the cache.
-    /// </remarks>
+    /// <remarks>This data provider will supply the user with a list of guilds. As there is currently no way to get a complete list of guilds this implementation will require the user to know either the guild name, or the guild id. When the user requests a guild the data provider will first look in the cache and see if a guild with that name/id is already present. If it is it will return the guild from the cache. If no guild with said name/id is present in the cache the data provider will query the api for said guild. After the query has completed the data provider will add the guild to the cache and subsequent calls to that guild will be done against the cache. The users also has the possibility to get a complete collection of all guilds currently in the cache.</remarks>
     public class DataProvider : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
@@ -41,9 +31,7 @@ namespace GW2DotNET.V1.Guilds
         /// <summary>The guild list cache file name.</summary>
         private readonly string guildListCacheFileName;
 
-        /// <summary>
-        /// The guild cache.
-        /// </summary>
+        /// <summary>The guild cache.</summary>
         private Lazy<List<Guild>> guildList;
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -69,18 +57,14 @@ namespace GW2DotNET.V1.Guilds
 
             int build;
 
-            this.guildList = !this.BypassCache 
-                ? new Lazy<List<Guild>>(() => this.ReadCacheFromDisk<List<Guild>>(this.guildListCacheFileName, out build))
-                : new Lazy<List<Guild>>();
+            this.guildList = !this.BypassCache ? new Lazy<List<Guild>>(() => this.ReadCacheFromDisk<List<Guild>>(this.guildListCacheFileName, out build)) : new Lazy<List<Guild>>();
         }
-        
+
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// Gets a collection of <see cref="Guild">Guilds</see> currently in the cache.
-        /// </summary>
+        /// <summary>Gets a collection of <see cref="Guild">Guilds</see> currently in the cache.</summary>
         public IEnumerable<Guild> GuildList
         {
             get
@@ -144,21 +128,18 @@ namespace GW2DotNET.V1.Guilds
             return guildToReturn;
         }
 
-        /// <summary>
-        /// Writes the complete cache to the disk using the specified serializer.
-        /// </summary>
+        /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            GameCache<List<Guild>> guildCache = new GameCache<List<Guild>>
-            {
-                Build = this.dataManager.Build,
-                CacheData = this.guildList.Value
-            };
+            var guildCache = new GameCache<List<Guild>>
+                             {
+                                 Build = this.dataManager.Build, CacheData = this.guildList.Value
+                             };
             this.WriteDataToDisk(this.guildListCacheFileName, guildCache);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
-        /// <returns>The <see cref="System.Threading.Tasks.Task"/>.</returns>
+        /// <returns>The <see cref="System.Threading.Tasks.Task" />.</returns>
         public override async Task WriteCacheToDiskAsync()
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
@@ -179,10 +160,10 @@ namespace GW2DotNET.V1.Guilds
         /// <returns>The <see cref="Task"/> containing the <see cref="Guild"/> with the specified name.</returns>
         private async Task<Guild> FetchGuildByNameAsync(string guildName)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("guild_name", guildName)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("guild_name", guildName)
+                       };
 
             return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
         }
@@ -192,10 +173,10 @@ namespace GW2DotNET.V1.Guilds
         /// <returns>The <see cref="Task"/> containing the <see cref="Guild"/> with the specified id.</returns>
         private async Task<Guild> FetchGuildByIdAsync(Guid id)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("guild_id", id)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("guild_id", id)
+                       };
 
             return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
         }

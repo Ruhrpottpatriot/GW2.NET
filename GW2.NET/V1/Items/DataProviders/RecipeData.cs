@@ -15,13 +15,9 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Items.Models;
 
-using Microsoft.Win32;
-
 namespace GW2DotNET.V1.Items.DataProviders
 {
-    /// <summary>
-    /// The recipe data provider.
-    /// </summary>
+    /// <summary>The recipe data provider.</summary>
     public class RecipeData : DataProviderBase
     {
         // --------------------------------------------------------------------------------------------------------------------
@@ -31,20 +27,16 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>Backing field for the data manager.</summary>
         private readonly IDataManager dataManager;
 
-        /// <summary>The recipe list cache file name.</summary>
-        private readonly string recipeListCacheFileName;
-
         /// <summary>The recipe id list cache file name.</summary>
         private readonly string recipeIdListCacheFileName;
 
-        /// <summary>
-        /// Backing field for the recipe id cache, lazy initialized.
-        /// </summary>
+        /// <summary>The recipe list cache file name.</summary>
+        private readonly string recipeListCacheFileName;
+
+        /// <summary>Backing field for the recipe id cache, lazy initialized.</summary>
         private Lazy<List<int>> recipeIdListCache;
 
-        /// <summary>
-        /// Backing field for the recipe cache, lazy initialized.
-        /// </summary>
+        /// <summary>Backing field for the recipe cache, lazy initialized.</summary>
         private Lazy<List<Recipe>> recipeListCache;
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -105,19 +97,17 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            GameCache<List<int>> idCacheData = new GameCache<List<int>>
-            {
-                Build = this.dataManager.Build,
-                CacheData = this.recipeIdListCache.Value
-            };
+            var idCacheData = new GameCache<List<int>>
+                              {
+                                  Build = this.dataManager.Build, CacheData = this.recipeIdListCache.Value
+                              };
 
             this.WriteDataToDisk(this.recipeIdListCacheFileName, idCacheData);
 
-            GameCache<List<Recipe>> recipeCacheData = new GameCache<List<Recipe>>
-            {
-                Build = this.dataManager.Build,
-                CacheData = this.recipeListCache.Value
-            };
+            var recipeCacheData = new GameCache<List<Recipe>>
+                                  {
+                                      Build = this.dataManager.Build, CacheData = this.recipeListCache.Value
+                                  };
 
             this.WriteDataToDisk(this.recipeListCacheFileName, recipeCacheData);
         }
@@ -137,7 +127,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         }
 
         /// <summary>Calls the GW2 api to get a list of all discovered recipe ids synchronously.</summary>
-        /// <returns>An <see cref="IEnumerable{T}"/> containing the Ids of all discovered recipes.</returns>
+        /// <returns>An <see cref="IEnumerable{T}" /> containing the Ids of all discovered recipes.</returns>
         public IEnumerable<int> GetRecipeIdList()
         {
             List<int> returnContent = ApiCall.GetContent<Dictionary<string, List<int>>>("recipes.json", null, ApiCall.Categories.Items).Values.First();
@@ -151,7 +141,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         }
 
         /// <summary>Calls the GW2 api to get a list of all discovered recipe ids asynchronously.</summary>
-        /// <returns>An <see cref="IEnumerable{T}"/> containing the Ids of all discovered recipes.</returns>
+        /// <returns>An <see cref="IEnumerable{T}" /> containing the Ids of all discovered recipes.</returns>
         public async Task<IEnumerable<int>> GetRecipeIdListAsync()
         {
             Dictionary<string, List<int>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, List<int>>>("recipes.json", null, ApiCall.Categories.Items);
@@ -167,18 +157,17 @@ namespace GW2DotNET.V1.Items.DataProviders
         }
 
         /// <summary>Calls the GW2 api to get the details of all discovered recipes asynchronously.</summary>
-        /// <returns>A <see cref="IEnumerable{T}"/> containing all recipes and their details.</returns>
+        /// <returns>A <see cref="IEnumerable{T}" /> containing all recipes and their details.</returns>
         public async Task<IEnumerable<Recipe>> GetRecipeDetailListAsync()
         {
-            List<Recipe> recipes = new List<Recipe>();
+            var recipes = new List<Recipe>();
 
             foreach (int recipeId in this.recipeIdListCache.Value)
             {
-                List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-                {
-                    new KeyValuePair<string, object>("recipe_id", recipeId),
-                    new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                };
+                var args = new List<KeyValuePair<string, object>>
+                           {
+                               new KeyValuePair<string, object>("recipe_id", recipeId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                           };
 
                 Recipe returnContent = await ApiCall.GetContentAsync<Recipe>("recipe_details.json", args, ApiCall.Categories.Items);
 
@@ -198,11 +187,10 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <returns>The <see cref="Recipe"/> with the specified id.</returns>
         public async Task<Recipe> GetRecipeDetailAsync(int recipeId)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("recipe_id", recipeId),
-                new KeyValuePair<string, object>("lang", this.dataManager.Language)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("recipe_id", recipeId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
+                       };
 
             Recipe returnContent = await ApiCall.GetContentAsync<Recipe>("recipe_details.json", args, ApiCall.Categories.Items);
 
@@ -219,12 +207,12 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <returns>The <see cref="Recipe"/> with the specified id.</returns>
         public Recipe GetRecipeDetail(int recipeId)
         {
-            List<KeyValuePair<string, object>> args = new List<KeyValuePair<string, object>>
-            {
-                new KeyValuePair<string, object>("recipe_id", recipeId)
-            };
+            var args = new List<KeyValuePair<string, object>>
+                       {
+                           new KeyValuePair<string, object>("recipe_id", recipeId)
+                       };
 
-            Recipe returnContent = ApiCall.GetContent<Recipe>("recipe_details.json", args, ApiCall.Categories.Items);
+            var returnContent = ApiCall.GetContent<Recipe>("recipe_details.json", args, ApiCall.Categories.Items);
 
             if (!this.BypassCache)
             {

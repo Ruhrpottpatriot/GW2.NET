@@ -13,14 +13,21 @@ using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
-    /// <summary>
-    /// The container.
-    /// </summary>
+    /// <summary>The container.</summary>
     [Serializable]
     public class Container
     {
-        /// <summary>Initializes a new instance of the <see cref="Container"/> class. 
-        /// Initializes a new instance of the <see cref="Container"/> class.</summary>
+        /// <summary>Enumerates the container type.</summary>
+        public enum ContainerType
+        {
+            /// <summary>A default container.</summary>
+            Default, 
+
+            /// <summary>A gift box.</summary>
+            GiftBox
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="Container"/> class. Initializes a new instance of the <see cref="Container"/> class.</summary>
         /// <param name="type">The type.</param>
         [JsonConstructor]
         public Container(ContainerType type)
@@ -28,30 +35,8 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             this.Type = type;
         }
 
-        /// <summary>
-        /// Enumerates the container type.
-        /// </summary>
-        public enum ContainerType
-        {
-            /// <summary>
-            /// A default container.
-            /// </summary>
-            Default,
-
-            /// <summary>
-            /// A gift box.
-            /// </summary>
-            GiftBox
-        }
-
-        /// <summary>
-        /// Gets the type.
-        /// </summary>
+        /// <summary>Gets the type.</summary>
         [JsonProperty("type")]
-        public ContainerType Type
-        {
-            get;
-            private set;
-        }
+        public ContainerType Type { get; private set; }
     }
 }

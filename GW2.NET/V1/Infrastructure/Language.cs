@@ -6,32 +6,21 @@
 //   Enumerates all possible languages to get the content.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Infrastructure
 {
-    /// <summary>
-    /// Enumerates all possible languages to get the content.
-    /// </summary>
+    /// <summary>Enumerates all possible languages to get the content.</summary>
     public enum Language
     {
-        /// <summary>
-        /// The english language.
-        /// </summary>
-        En,
+        /// <summary>The english language.</summary>
+        En, 
 
-        /// <summary>
-        /// The french language
-        /// </summary>
-        Fr,
+        /// <summary>The french language</summary>
+        Fr, 
 
-        /// <summary>
-        /// The german language.
-        /// </summary>
-        De,
+        /// <summary>The german language.</summary>
+        De, 
 
-        /// <summary>
-        /// The spanish language
-        /// </summary>
+        /// <summary>The spanish language</summary>
         Es
     }
 }

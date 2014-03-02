@@ -14,21 +14,13 @@ using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models.Items
 {
-    /// <summary>
-    /// The infusion slot.
-    /// </summary>
+    /// <summary>The infusion slot.</summary>
     [Serializable]
     public class InfusionSlot
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InfusionSlot"/> class.
-        /// </summary>
-        /// <param name="item">
-        /// The item.
-        /// </param>
-        /// <param name="flags">
-        /// The flags.
-        /// </param>
+        /// <summary>Initializes a new instance of the <see cref="InfusionSlot"/> class.</summary>
+        /// <param name="item">The item.</param>
+        /// <param name="flags">The flags.</param>
         [JsonConstructor]
         public InfusionSlot(string item, IEnumerable<UpgradeFlag> flags)
         {
@@ -36,15 +28,11 @@ namespace GW2DotNET.V1.Items.Models.Items
             this.Item = item;
         }
 
-        /// <summary>
-        /// Gets the item.
-        /// </summary>
+        /// <summary>Gets the item.</summary>
         [JsonProperty("item")]
         public string Item { get; private set; }
 
-        /// <summary>
-        /// Gets the item flags.
-        /// </summary>
+        /// <summary>Gets the item flags.</summary>
         [JsonProperty("flags")]
         public IEnumerable<UpgradeFlag> Flags { get; private set; }
     }

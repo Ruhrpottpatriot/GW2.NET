@@ -9,28 +9,19 @@
 
 using System;
 
-using GW2DotNET.V1.Infrastructure;
 using GW2DotNET.V1.Infrastructure.Converters;
 
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Items.Models.Items.SubType
 {
-    /// <summary>
-    /// A bag.
-    /// </summary>
+    /// <summary>A bag.</summary>
     [Serializable]
     public class Bag
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Bag"/> class.
-        /// </summary>
-        /// <param name="size">
-        /// The size.
-        /// </param>
-        /// <param name="noSellOrSort">
-        /// The no sell or sort.
-        /// </param>
+        /// <summary>Initializes a new instance of the <see cref="Bag"/> class.</summary>
+        /// <param name="size">The size.</param>
+        /// <param name="noSellOrSort">The no sell or sort.</param>
         [JsonConstructor]
         public Bag(int size, bool noSellOrSort)
         {
@@ -38,25 +29,13 @@ namespace GW2DotNET.V1.Items.Models.Items.SubType
             this.Size = size;
         }
 
-        /// <summary>
-        /// Gets the bag size.
-        /// </summary>
+        /// <summary>Gets the bag size.</summary>
         [JsonProperty("size")]
-        public int Size
-        {
-            get;
-            private set;
-        }
+        public int Size { get; private set; }
 
-        /// <summary>
-        /// Gets a value indicating whether the bag can be sold or sorted.
-        /// </summary>
+        /// <summary>Gets a value indicating whether the bag can be sold or sorted.</summary>
         [JsonProperty("no_sell_or_sort")]
         [JsonConverter(typeof(BooleanConverter))]
-        public bool NoSellOrSort
-        {
-            get;
-            private set;
-        }
+        public bool NoSellOrSort { get; private set; }
     }
 }
