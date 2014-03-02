@@ -1,9 +1,8 @@
-﻿
-using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+﻿using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.StatusTests
+namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformation.Status
 {
     public class DynamicEventStateTest
     {

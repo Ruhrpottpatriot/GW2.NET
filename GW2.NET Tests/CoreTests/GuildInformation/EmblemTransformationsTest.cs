@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
+namespace GW2DotNET_Tests.CoreTests.GuildInformation
 {
     [TestFixture]
     public class EmblemTransformationsTest

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests
+namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformation.Details
 {
     [TestFixture]
     public class DynamicEventDetailsTest
@@ -12,7 +12,7 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests
         [SetUp]
         public void Initialize()
         {
-            const string input       = "{\"name\":\"Kill the Risen commander to avenge Forgal.\",\"level\":54,\"map_id\":73,\"flags\":[],\"location\":{\"type\":\"sphere\",\"center\":[1852.43,-29331.8,2304.68],\"radius\":2500,\"rotation\":0}}";
+            const string input       = "{\"name\":\"\",\"level\":0,\"map_id\":0,\"flags\":[],\"location\":{}}";
             this.dynamicEventDetails = JsonConvert.DeserializeObject<DynamicEventDetails>(input);
         }
 
@@ -20,32 +20,40 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests
         [Category("event_details.json")]
         public void DynamicEventDetails_NameReflectsInput()
         {
-            const string expectedName = "Kill the Risen commander to avenge Forgal.";
-            Assert.AreEqual(expectedName, this.dynamicEventDetails.Name);
+            var expected = string.Empty;
+            var actual   = this.dynamicEventDetails.Name;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void DynamicEventDetails_LevelReflectsInput()
         {
-            const int expectedLevel = 54;
-            Assert.AreEqual(expectedLevel, this.dynamicEventDetails.Level);
+            const int expected = default(int);
+            var actual         = this.dynamicEventDetails.Level;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void DynamicEventDetails_MapIdReflectsInput()
         {
-            const int expectedMapId = 73;
-            Assert.AreEqual(expectedMapId, this.dynamicEventDetails.MapId);
+            const int expected = default(int);
+            var actual         = this.dynamicEventDetails.MapId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void DynamicEventDetails_FlagsReflectsInput()
         {
-            const DynamicEventFlags expectedFlags = DynamicEventFlags.None;
-            Assert.AreEqual(expectedFlags, this.dynamicEventDetails.Flags);
+            const DynamicEventFlags expected = default(DynamicEventFlags);
+            var actual                       = this.dynamicEventDetails.Flags;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

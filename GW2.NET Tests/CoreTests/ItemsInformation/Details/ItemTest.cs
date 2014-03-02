@@ -4,7 +4,7 @@ using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests
+namespace GW2DotNET_Tests.CoreTests.ItemsInformation.Details
 {
     [TestFixture]
     public class ItemTest
@@ -14,7 +14,7 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"item_id\":\"1\",\"name\":\"Test Item\",\"description\":\"Testing.\",\"type\":\"Unknown\",\"level\":\"80\",\"rarity\":\"Junk\",\"vendor_value\":\"1\",\"icon_file_id\":\"10000\",\"icon_file_signature\":\"11A11A111A11AA1A11A11A1111A11111AAA1AA11\",\"game_types\":[\"Activity\",\"Dungeon\",\"PvE\",\"WvW\"],\"flags\":[\"SoulbindOnAcquire\",\"SoulBindOnUse\"],\"restrictions\":[]}";
+            const string input = "{\"item_id\":\"0\",\"name\":\"\",\"description\":\"\",\"type\":\"Unknown\",\"level\":\"0\",\"rarity\":\"Unknown\",\"vendor_value\":\"0\",\"icon_file_id\":\"0\",\"icon_file_signature\":\"\",\"game_types\":[],\"flags\":[],\"restrictions\":[]}";
             this.item = JsonConvert.DeserializeObject<UnknownItem>(input);
         }
 
@@ -22,96 +22,120 @@ namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests
         [Category("item_details.json")]
         public void Item_ItemIdReflectsInput()
         {
-            const int expectedId = 1;
-            Assert.AreEqual(expectedId, this.item.ItemId);
+            const int expected = default(int);
+            var actual         = this.item.ItemId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_NameReflectsInput()
         {
-            const string expectedName = "Test Item";
-            Assert.AreEqual(expectedName, this.item.Name);
+            var expected = string.Empty;
+            var actual   = this.item.Name;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_DescriptionReflectsInput()
         {
-            const string expectedDescription = "Testing.";
-            Assert.AreEqual(expectedDescription, this.item.Description);
+            var expected = string.Empty;
+            var actual   = this.item.Description;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_TypeReflectsInput()
         {
-            const ItemType expectedItemType = ItemType.Unknown;
-            Assert.AreEqual(expectedItemType, this.item.Type);
+            const ItemType expected = default(ItemType);
+            var actual              = this.item.Type;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_LevelReflectsInput()
         {
-            const int expectedLevel = 80;
-            Assert.AreEqual(expectedLevel, this.item.Level);
+            const int expected = default(int);
+            var actual         = this.item.Level;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_RarityReflectsInput()
         {
-            const ItemRarity expectedItemRarity = ItemRarity.Junk;
-            Assert.AreEqual(expectedItemRarity, this.item.Rarity);
+            const ItemRarity expected = default(ItemRarity);
+            var actual                = this.item.Rarity;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_VendorValueReflectsInput()
         {
-            const int expectedVendorValue = 1;
-            Assert.AreEqual(expectedVendorValue, this.item.VendorValue);
+            const int expected = default(int);
+            var actual         = this.item.VendorValue;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_IconFileIdReflectsInput()
         {
-            const int expectedIconFileId = 10000;
-            Assert.AreEqual(expectedIconFileId, this.item.IconFileId);
+            const int expected = default(int);
+            var actual         = this.item.IconFileId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_IconFileSignatureReflectsInput()
         {
-            const string expectedIconFileSignature = "11A11A111A11AA1A11A11A1111A11111AAA1AA11";
-            Assert.AreEqual(expectedIconFileSignature, this.item.IconFileSignature);
+            var expected = string.Empty;
+            var actual   = this.item.IconFileSignature;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_GameTypesReflectsInput()
         {
-            const GameTypes expectedGameTypes = GameTypes.Activity | GameTypes.Dungeon | GameTypes.PvE | GameTypes.WvW;
-            Assert.AreEqual(expectedGameTypes, this.item.GameTypes);
+            const GameTypes expected = default(GameTypes);
+            var actual               = this.item.GameTypes;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_FlagsReflectsInput()
         {
-            const ItemFlags expectedItemFlags = ItemFlags.SoulBindOnAcquire | ItemFlags.SoulBindOnUse;
-            Assert.AreEqual(expectedItemFlags, this.item.Flags);
+            const ItemFlags expected = default(ItemFlags);
+            var actual               = this.item.Flags;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("item_details.json")]
         public void Item_RestrictionsReflectsInput()
         {
-            const ItemRestrictions expectedItemRestrictions = ItemRestrictions.None;
-            Assert.AreEqual(expectedItemRestrictions, this.item.Restrictions);
+            const ItemRestrictions expected = default(ItemRestrictions);
+            var actual                      = this.item.Restrictions;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

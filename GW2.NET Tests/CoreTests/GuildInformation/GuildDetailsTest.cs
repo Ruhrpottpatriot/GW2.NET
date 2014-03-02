@@ -3,7 +3,7 @@ using GW2DotNET.V1.Core.GuildInformation.Details;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
+namespace GW2DotNET_Tests.CoreTests.GuildInformation
 {
     [TestFixture]
     public class GuildDetailsTest
@@ -13,7 +13,7 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"guild_id\":\"75FD83CF-0C45-4834-BC4C-097F93A487AF\",\"guild_name\":\"Veterans Of Lions Arch\",\"tag\":\"LA\"}";
+            const string input = "{\"guild_id\":\"00000000-0000-0000-0000-000000000000\",\"guild_name\":\"\",\"tag\":\"\",\"emblem\":{}}";
             this.guildDetails = JsonConvert.DeserializeObject<GuildDetails>(input);
         }
 
@@ -21,24 +21,40 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
         [Category("guild_details.json")]
         public void GuildDetails_GuildIdReflectsInput()
         {
-            var expectedGuildId = Guid.Parse("75FD83CF-0C45-4834-BC4C-097F93A487AF");
-            Assert.AreEqual(expectedGuildId, this.guildDetails.GuildId);
+            var expected = default(Guid);
+            var actual   = this.guildDetails.GuildId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
         public void GuildDetails_GuildNameReflectsInput()
         {
-            const string expectedGuildName = "Veterans Of Lions Arch";
-            Assert.AreEqual(expectedGuildName, this.guildDetails.GuildName);
+            var expected = string.Empty;
+            var actual   = this.guildDetails.GuildName;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
         public void GuildDetails_TagReflectsInput()
         {
-            const string expectedTag = "LA";
-            Assert.AreEqual(expectedTag, this.guildDetails.GuildTag);
+            var expected = string.Empty;
+            var actual   = this.guildDetails.GuildTag;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("guild_details.json")]
+        public void GuildDetails_GuildEmblemReflectsInput()
+        {
+            var expected = new Emblem();
+            var actual   = this.guildDetails.GuildEmblem;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

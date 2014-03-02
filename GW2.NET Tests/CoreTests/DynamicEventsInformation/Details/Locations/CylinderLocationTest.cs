@@ -3,7 +3,7 @@ using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.LocationsTests
+namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformation.Details.Locations
 {
     [TestFixture]
     public class CylinderLocationTest
@@ -13,7 +13,7 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.L
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"type\":\"cylinder\",\"center\":[-5867.86,-3511.69,-2316.88],\"height\":421.177,\"radius\":1042.44,\"rotation\":1.2224}";
+            const string input = "{\"type\":\"cylinder\",\"center\":[],\"height\":0,\"radius\":0,\"rotation\":0}";
             this.cylinderLocation = JsonConvert.DeserializeObject<CylinderLocation>(input);
         }
 
@@ -21,40 +21,50 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.L
         [Category("event_details.json")]
         public void CylinderLocation_TypeReflectsInput()
         {
-            const LocationType expectedLocationType = LocationType.Cylinder;
-            Assert.AreEqual(expectedLocationType, this.cylinderLocation.Type);
+            const LocationType expected = LocationType.Cylinder;
+            var actual                  = this.cylinderLocation.Type;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void CylinderLocation_CenterReflectsInput()
         {
-            var expectedCenter = new Point3D(-5867.86D, -3511.69D, -2316.88D);
-            Assert.AreEqual(expectedCenter, this.cylinderLocation.Center);
+            var expected = default(Point3D);
+            var actual   = this.cylinderLocation.Center;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void CylinderLocation_HeightReflectsInput()
         {
-            const double expectedHeight = 421.177D;
-            Assert.AreEqual(expectedHeight, this.cylinderLocation.Height);
+            const double expected = default(double);
+            var actual            = this.cylinderLocation.Height;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void CylinderLocation_RadiusReflectsInput()
         {
-            const double expectedRadius = 1042.44D;
-            Assert.AreEqual(expectedRadius, this.cylinderLocation.Radius);
+            const double expected = default(double);
+            var actual            = this.cylinderLocation.Radius;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void CylinderLocation_RotationReflectsInput()
         {
-            const double expectedRotation = 1.2224D;
-            Assert.AreEqual(expectedRotation, this.cylinderLocation.Rotation);
+            const double expected = default(double);
+            var actual            = this.cylinderLocation.Rotation;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

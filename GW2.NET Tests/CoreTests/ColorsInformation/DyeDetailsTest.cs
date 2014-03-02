@@ -13,7 +13,7 @@ namespace GW2DotNET_Tests.CoreTests.ColorsInformation
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"name\":\"Hot Pink\",\"base_rgb\":[128,26,26]}";
+            const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
             this.dyeDetails = JsonConvert.DeserializeObject<DyeDetails>(input);
         }
 
@@ -21,16 +21,50 @@ namespace GW2DotNET_Tests.CoreTests.ColorsInformation
         [Category("colors.json")]
         public void DyeDetails_NameReflectsInput()
         {
-            const string expectedName = "Hot Pink";
-            Assert.AreEqual(expectedName, this.dyeDetails.Name);
+            var expected = string.Empty;
+            var actual   = this.dyeDetails.Name;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
         public void DyeDetails_BaseRgbReflectsInput()
         {
-            var expectedBaseRgb = Color.FromArgb(128, 26, 26);
-            Assert.AreEqual(expectedBaseRgb, this.dyeDetails.BaseRGB);
+            var expected = default(Color);
+            var actual   = this.dyeDetails.BaseRGB;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("colors.json")]
+        public void DyeDetails_ClothReflectsInput()
+        {
+            var expected = new Material();
+            var actual   = this.dyeDetails.Cloth;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("colors.json")]
+        public void DyeDetails_LeatherReflectsInput()
+        {
+            var expected = new Material();
+            var actual   = this.dyeDetails.Leather;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("colors.json")]
+        public void DyeDetails_MetalReflectsInput()
+        {
+            var expected = new Material();
+            var actual   = this.dyeDetails.Metal;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

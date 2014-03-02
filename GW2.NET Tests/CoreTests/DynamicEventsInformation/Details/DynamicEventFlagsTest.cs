@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests
+namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformation.Details
 {
     [TestFixture]
     public class DynamicEventFlagsTest

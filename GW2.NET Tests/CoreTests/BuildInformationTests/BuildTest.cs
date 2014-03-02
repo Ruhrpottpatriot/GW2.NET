@@ -13,7 +13,7 @@ namespace GW2DotNET_Tests.CoreTests.BuildInformationTests
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"build_id\":30318}";
+            const string input = "{\"build_id\":0}";
             this.build = JsonConvert.DeserializeObject<Build>(input);
         }
 
@@ -21,8 +21,10 @@ namespace GW2DotNET_Tests.CoreTests.BuildInformationTests
         [Category("build.json")]
         public void Build_BuildIdReflectsInput()
         {
-            const int expectedBuildId = 30318;
-            Assert.AreEqual(expectedBuildId, build.BuildId);
+            const int expected = default(int);
+            var actual         = build.BuildId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

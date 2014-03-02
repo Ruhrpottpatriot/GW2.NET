@@ -3,7 +3,7 @@ using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.ItemsInformationTests.DetailsTests.ItemsTests
+namespace GW2DotNET_Tests.CoreTests.ItemsInformation.Details.Items
 {
     [TestFixture]
     public class GameTypesTest

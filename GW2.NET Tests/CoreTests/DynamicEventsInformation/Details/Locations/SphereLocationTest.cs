@@ -3,7 +3,7 @@ using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.LocationsTests
+namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformation.Details.Locations
 {
     [TestFixture]
     public class SphereLocationTest
@@ -13,7 +13,7 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.L
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"type\":\"sphere\",\"center\":[13137.8,-2747.37,-2160.03],\"radius\":5000,\"rotation\":4.68689}";
+            const string input = "{\"type\":\"sphere\",\"center\":[],\"radius\":0,\"rotation\":0}";
             this.sphereLocation = JsonConvert.DeserializeObject<SphereLocation>(input);
         }
 
@@ -21,32 +21,40 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.L
         [Category("event_details.json")]
         public void SphereLocation_TypeReflectsInput()
         {
-            const LocationType expectedLocationType = LocationType.Sphere;
-            Assert.AreEqual(expectedLocationType, this.sphereLocation.Type);
+            const LocationType expected = LocationType.Sphere;
+            var actual                  = this.sphereLocation.Type;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void SphereLocation_CenterReflectsInput()
         {
-            var expectedCenter = new Point3D(13137.8D, -2747.37D, -2160.03D);
-            Assert.AreEqual(expectedCenter, this.sphereLocation.Center);
+            var expected = default(Point3D);
+            var actual   = this.sphereLocation.Center;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void SphereLocation_RadiusReflectsInput()
         {
-            const double expectedRadius = 5000D;
-            Assert.AreEqual(expectedRadius, this.sphereLocation.Radius);
+            const double expected = default(double);
+            var actual            = this.sphereLocation.Radius;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void SphereLocation_RotationReflectsInput()
         {
-            const double expectedRotation = 4.68689D;
-            Assert.AreEqual(expectedRotation, this.sphereLocation.Rotation);
+            const double expected = default(double);
+            var actual            = this.sphereLocation.Rotation;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

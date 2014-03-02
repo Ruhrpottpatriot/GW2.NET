@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.FilesInformationTests
+namespace GW2DotNET_Tests.CoreTests.FilesInformation
 {
     [TestFixture]
     public class AssetTest
@@ -12,7 +12,7 @@ namespace GW2DotNET_Tests.CoreTests.FilesInformationTests
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"file_id\":528724,\"signature\":\"5A4E663071250EC72668C09E3C082E595A380BF7\"}";
+            const string input = "{\"file_id\":0,\"signature\":\"\"}";
             this.asset = JsonConvert.DeserializeObject<Asset>(input);
         }
 
@@ -20,16 +20,20 @@ namespace GW2DotNET_Tests.CoreTests.FilesInformationTests
         [Category("files.json")]
         public void Asset_FileIdReflectsInput()
         {
-            const int expectedFileId = 528724;
-            Assert.AreEqual(expectedFileId, this.asset.FileId);
+            const int expected = default(int);
+            var actual         = this.asset.FileId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("files.json")]
         public void Asset_SignatureReflectsInput()
         {
-            const string expectedSignature = "5A4E663071250EC72668C09E3C082E595A380BF7";
-            Assert.AreEqual(expectedSignature, this.asset.Signature);
+            var expected = string.Empty;
+            var actual   = this.asset.Signature;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

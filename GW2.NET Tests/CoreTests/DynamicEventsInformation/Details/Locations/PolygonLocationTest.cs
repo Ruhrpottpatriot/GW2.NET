@@ -4,7 +4,7 @@ using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.LocationsTests
+namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformation.Details.Locations
 {
     [TestFixture]
     public class PolygonLocationTest
@@ -14,7 +14,7 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.L
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"type\":\"poly\",\"center\":[-45685.2,-13819.6,-1113],\"z_range\":[-2389,163],\"points\":[[-49395.8,-15845.5],[-42699.7,-15794.1],[-43053,-14081.4],[-43629.7,-11725.4],[-49647.8,-11651.7]]}";
+            const string input = "{\"type\":\"poly\",\"center\":[],\"z_range\":[],\"points\":[]}";
             this.polygonLocation = JsonConvert.DeserializeObject<PolygonLocation>(input);
         }
 
@@ -22,39 +22,40 @@ namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.DetailsTests.L
         [Category("event_details.json")]
         public void PolygonLocation_TypeReflectsInput()
         {
-            const LocationType expectedLocationType = LocationType.Polygon;
-            Assert.AreEqual(expectedLocationType, this.polygonLocation.Type);
+            const LocationType expected = LocationType.Polygon;
+            var actual                  = this.polygonLocation.Type;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void PolygonLocation_CenterReflectsInput()
         {
-            var expectedCenter = new Point3D(-45685.2D, -13819.6D, -1113D);
-            Assert.AreEqual(expectedCenter, this.polygonLocation.Center);
+            var expected = default(Point3D);
+            var actual   = this.polygonLocation.Center;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void PolygonLocation_ZRangeReflectsInput()
         {
-            var expectedZRange = new Point(-2389, 163);
-            Assert.AreEqual(expectedZRange, this.polygonLocation.ZRange);
+            var expected = default(Point);
+            var actual   = this.polygonLocation.ZRange;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("event_details.json")]
         public void PolygonLocation_PointsReflectsInput()
         {
-            var expectedPoints = new Points()
-            {
-                new PointF(-49395.8F,-15845.5F),
-                new PointF(-42699.7F,-15794.1F),
-                new PointF(-43053F,-14081.4F),
-                new PointF(-43629.7F,-11725.4F),
-                new PointF(-49647.8F,-11651.7F)
-            };
-            Assert.AreEqual(expectedPoints, this.polygonLocation.Points);
+            var expected = new Points();
+            var actual   = this.polygonLocation.Points;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

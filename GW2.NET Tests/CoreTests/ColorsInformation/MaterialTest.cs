@@ -13,7 +13,7 @@ namespace GW2DotNET_Tests.CoreTests.ColorsInformation
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"brightness\":14,\"contrast\":1.21094,\"hue\":340,\"saturation\":0.820313,\"lightness\":1.44531,\"rgb\":[169,54,94]}";
+            const string input = "{\"brightness\":0,\"contrast\":0,\"hue\":0,\"saturation\":0,\"lightness\":0,\"rgb\":[]}";
             this.material = JsonConvert.DeserializeObject<Material>(input);
         }
 
@@ -21,48 +21,60 @@ namespace GW2DotNET_Tests.CoreTests.ColorsInformation
         [Category("colors.json")]
         public void Material_BrightnessReflectsInput()
         {
-            const int expectedBrightness = 14;
-            Assert.AreEqual(expectedBrightness, material.Brightness);
+            const int expected = default(int);
+            var actual         = material.Brightness;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
         public void Material_ContrastReflectsInput()
         {
-            const double expectedContrast = 1.21094;
-            Assert.AreEqual(expectedContrast, material.Contrast);
+            const double expected = default(double);
+            var actual            = material.Contrast;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
         public void Material_HueReflectsInput()
         {
-            const int expectedHue = 340;
-            Assert.AreEqual(expectedHue, material.Hue);
+            const int expected = default(int);
+            var actual         = material.Hue;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
         public void Material_SaturationReflectsInput()
         {
-            const double expectedSaturation = 0.820313;
-            Assert.AreEqual(expectedSaturation, material.Saturation);
+            const double expected = default(double);
+            var actual            = material.Saturation;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
         public void Material_LightnessReflectsInput()
         {
-            const double expectedLightness = 1.44531;
-            Assert.AreEqual(expectedLightness, material.Lightness);
+            const double expected = default(double);
+            var actual            = material.Lightness;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
         public void Material_RgbReflectsInput()
         {
-            var expectedRgb = Color.FromArgb(169, 54, 94);
-            Assert.AreEqual(expectedRgb, material.RGB);
+            var expected = default(Color);
+            var actual   = material.RGB;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

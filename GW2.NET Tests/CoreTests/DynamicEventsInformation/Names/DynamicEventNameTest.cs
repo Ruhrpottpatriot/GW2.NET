@@ -3,7 +3,7 @@ using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformationTests.NamesTests
+namespace GW2DotNET_Tests.CoreTests.DynamicEventsInformation.Names
 {
     [TestFixture]
     public class DynamicEventNameTest

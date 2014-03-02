@@ -11,11 +11,15 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
 {
     /// <summary>
-    /// Enumerates the possible item rarities.
+    /// Enumerates the known item rarities.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ItemRarity
     {
+        /// <summary>The 'Unknown' item rarity.</summary>
+        [EnumMember(Value = "Unknown")]
+        Unknown = 0,
+
         /// <summary>The 'Junk' item rarity.</summary>
         [EnumMember(Value = "Junk")]
         Junk = 1 << 0,

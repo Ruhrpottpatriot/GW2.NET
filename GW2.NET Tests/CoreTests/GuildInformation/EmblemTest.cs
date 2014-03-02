@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
+namespace GW2DotNET_Tests.CoreTests.GuildInformation
 {
     [TestFixture]
     public class EmblemTest
@@ -12,7 +12,7 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"background_id\":27,\"foreground_id\":114,\"flags\":[],\"background_color_id\":11,\"foreground_primary_color_id\":584,\"foreground_secondary_color_id\":64}";
+            const string input = "{\"background_id\":0,\"foreground_id\":0,\"flags\":[],\"background_color_id\":0,\"foreground_primary_color_id\":0,\"foreground_secondary_color_id\":0}";
             this.emblem = JsonConvert.DeserializeObject<Emblem>(input);
         }
 
@@ -20,48 +20,60 @@ namespace GW2DotNET_Tests.CoreTests.GuildInformationTests
         [Category("guild_details.json")]
         public void Emblem_BackgroundIdReflectsInput()
         {
-            const int expectedBackgroundId = 27;
-            Assert.AreEqual(expectedBackgroundId, emblem.BackgroundId);
+            const int expected = default(int);
+            var actual         = emblem.BackgroundId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
         public void Emblem_ForegroundIdReflectsInput()
         {
-            const int expectedForegroundId = 114;
-            Assert.AreEqual(expectedForegroundId, this.emblem.ForegroundId);
+            const int expected = default(int);
+            var actual         = this.emblem.ForegroundId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
         public void Emblem_FlagsReflectsInput()
         {
-            const EmblemTransformations expectedFlags = EmblemTransformations.None;
-            Assert.AreEqual(expectedFlags, this.emblem.Flags);
+            const EmblemTransformations expectedFlags = default(EmblemTransformations);
+            var actual                                = this.emblem.Flags;
+
+            Assert.AreEqual(expectedFlags, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
         public void Emblem_BackgroundColorIdReflectsInput()
         {
-            const int expectedBackgroundColorId = 11;
-            Assert.AreEqual(expectedBackgroundColorId, this.emblem.BackgroundColorId);
+            const int expected = default(int);
+            var actual         = this.emblem.BackgroundColorId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
         public void Emblem_ForegroundPrimaryColorIdReflectsInput()
         {
-            const int expectedForegroundPrimaryColorId = 584;
-            Assert.AreEqual(expectedForegroundPrimaryColorId, this.emblem.ForegroundPrimaryColorId);
+            const int expected = default(int);
+            var actual         = this.emblem.ForegroundPrimaryColorId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
         public void Emblem_ForegroundSecondaryColorIdReflectsInput()
         {
-            const int expectedForegroundSecondaryColorId = 64;
-            Assert.AreEqual(expectedForegroundSecondaryColorId, this.emblem.ForegroundSecondaryColorId);
+            const int expected = default(int);
+            var actual         = this.emblem.ForegroundSecondaryColorId;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]

@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.CoreTests.ErrorInformationTests
+namespace GW2DotNET_Tests.CoreTests.ErrorInformation
 {
     [TestFixture]
     public class ErrorResultTest
@@ -12,7 +12,7 @@ namespace GW2DotNET_Tests.CoreTests.ErrorInformationTests
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"error\":1,\"product\":1,\"module\":1,\"line\":1,\"text\":\"error\"}";
+            const string input = "{\"error\":0,\"product\":0,\"module\":0,\"line\":0,\"text\":\"\"}";
             this.errorResult = JsonConvert.DeserializeObject<ErrorResult>(input);
         }
 
@@ -20,32 +20,40 @@ namespace GW2DotNET_Tests.CoreTests.ErrorInformationTests
         [Category("errors")]
         public void ErrorResult_ErrorReflectsInput()
         {
-            const int expectedError = 1;
-            Assert.AreEqual(expectedError, this.errorResult.Error);
+            const int expected = default(int);
+            var actual         = this.errorResult.Error;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("errors")]
         public void ErrorResult_ProductReflectsInput()
         {
-            const int expectedProduct = 1;
-            Assert.AreEqual(expectedProduct, this.errorResult.Product);
+            const int expected = default(int);
+            var actual         = this.errorResult.Product;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("errors")]
         public void ErrorResult_ModuleReflectsInput()
         {
-            const int expectedModule = 1;
-            Assert.AreEqual(expectedModule, this.errorResult.Module);
+            const int expected = default(int);
+            var actual         = this.errorResult.Module;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("errors")]
         public void ErrorResult_TextReflectsInput()
         {
-            const string expectedText = "error";
-            Assert.AreEqual(expectedText, this.errorResult.Text);
+            var expected = string.Empty;
+            var actual   = this.errorResult.Text;
+
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
