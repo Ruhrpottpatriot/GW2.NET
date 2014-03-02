@@ -1,0 +1,26 @@
+﻿using System;
+
+namespace GW2DotNET.Extensions
+{
+    /// <summary>
+    /// Provides utility methods for the <see cref="System.Type"/> class.
+    /// </summary>
+    internal static class TypeExtensions
+    {
+        /// <summary>
+        /// Gets the default value of the specified type.
+        /// </summary>
+        /// <param name="type">The instance of <see cref="System.Type"/> that specifies the target type.</param>
+        /// <returns>The default value.</returns>
+        /// <remarks>This method is semantically the equivalent of calling <c>default(objectType)</c>.</remarks>
+        internal static object CreateDefault(this Type type)
+        {
+            if (type.IsValueType)
+            {
+                return Activator.CreateInstance(type);
+            }
+
+            return null;
+        }
+    }
+}

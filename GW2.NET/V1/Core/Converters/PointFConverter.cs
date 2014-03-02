@@ -6,6 +6,8 @@
 
 using System;
 using System.Drawing;
+using GW2DotNET.Extensions;
+using GW2DotNET.V1.Core.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
@@ -22,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(PointF);
+            return typeof(PointF?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -35,11 +37,31 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var points = serializer.Deserialize<float[]>(reader);
-            var x      = points[0];
-            var y      = points[1];
+            if (reader.TokenType == JsonToken.Null)
+            {
+                return objectType.CreateDefault();
+            }
 
-            return new PointF(x, y);
+            var points = serializer.Deserialize<float[]>(reader);
+
+            try
+            {
+                Preconditions.EnsureInRange(value: points.Length, floor: 0, ceiling: 2);
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
+            }
+
+            switch (points.Length)
+            {
+                case 0:
+                    return default(PointF);
+                case 1:
+                    return new PointF(x: points[0], y: points[0]);
+                default:
+                    return new PointF(x: points[0], y: points[1]);
+            }
         }
 
         /// <summary>
@@ -55,9 +77,9 @@ namespace GW2DotNET.V1.Core.Converters
             writer.WriteStartArray();
 
             {
-                serializer.Serialize(writer, point.X);
+                serializer.Serialize(writer, Math.Truncate(point.X * 100000) / 100000);
 
-                serializer.Serialize(writer, point.Y);
+                serializer.Serialize(writer, Math.Truncate(point.Y * 100000) / 100000);
             }
 
             writer.WriteEndArray();
