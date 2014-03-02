@@ -42,25 +42,25 @@ namespace GW2DotNET.V1.Core.Converters
                 return objectType.CreateDefault();
             }
 
-            var points = serializer.Deserialize<float[]>(reader);
+            var values = serializer.Deserialize<float[]>(reader);
 
             try
             {
-                Preconditions.EnsureInRange(value: points.Length, floor: 0, ceiling: 2);
+                Preconditions.EnsureInRange(value: values.Length, floor: 0, ceiling: 2);
             }
             catch (ArgumentOutOfRangeException exception)
             {
                 throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
             }
 
-            switch (points.Length)
+            switch (values.Length)
             {
                 case 0:
                     return default(PointF);
                 case 1:
-                    return new PointF(x: points[0], y: points[0]);
+                    return new PointF(x: values[0], y: values[0]);
                 default:
-                    return new PointF(x: points[0], y: points[1]);
+                    return new PointF(x: values[0], y: values[1]);
             }
         }
 

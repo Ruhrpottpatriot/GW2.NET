@@ -6,6 +6,8 @@
 
 using System;
 using System.Drawing;
+using GW2DotNET.Extensions;
+using GW2DotNET.V1.Core.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
@@ -22,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(Color);
+            return typeof(Color?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -35,10 +37,25 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var rgb   = serializer.Deserialize<int[]>(reader);
-            var red   = rgb[0];
-            var green = rgb[1];
-            var blue  = rgb[2];
+            if (reader.TokenType == JsonToken.Null)
+            {
+                return objectType.CreateDefault();
+            }
+
+            var values   = serializer.Deserialize<int[]>(reader);
+
+            try
+            {
+                Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 3);
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                throw new JsonSerializationException("The input must specify exactly 3 color values.", exception);
+            }
+
+            var red   = values[0];
+            var green = values[1];
+            var blue  = values[2];
 
             return Color.FromArgb(red, green, blue);
         }

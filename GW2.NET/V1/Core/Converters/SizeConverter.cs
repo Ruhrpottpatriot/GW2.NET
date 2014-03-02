@@ -6,6 +6,8 @@
 
 using System;
 using System.Drawing;
+using GW2DotNET.Extensions;
+using GW2DotNET.V1.Core.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
@@ -22,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(Size);
+            return typeof(Size?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -35,11 +37,31 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var dimensions = serializer.Deserialize<int[]>(reader);
-            var width      = dimensions[0];
-            var height     = dimensions[1];
+            if (reader.TokenType == JsonToken.Null)
+            {
+                return objectType.CreateDefault();
+            }
 
-            return new Size(width, height);
+            var values = serializer.Deserialize<int[]>(reader);
+
+            try
+            {
+                Preconditions.EnsureInRange(value: values.Length, floor: 0, ceiling: 2);
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
+            }
+
+            switch (values.Length)
+            {
+                case 0:
+                    return default(Size);
+                case 1:
+                    return new Size(width: values[0], height: values[0]);
+                default:
+                    return new Size(width: values[0], height: values[1]);
+            }
         }
 
         /// <summary>

@@ -5,7 +5,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using GW2DotNET.Extensions;
 using GW2DotNET.V1.Core.Drawing;
+using GW2DotNET.V1.Core.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
@@ -22,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(Point3D);
+            return typeof(Point3D?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -35,10 +37,25 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var points = serializer.Deserialize<double[]>(reader);
-            var x      = points[0];
-            var y      = points[1];
-            var z      = points[2];
+            if (reader.TokenType == JsonToken.Null)
+            {
+                return objectType.CreateDefault();
+            }
+
+            var values = serializer.Deserialize<double[]>(reader);
+
+            try
+            {
+                Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 3);
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                throw new JsonSerializationException("The input must specify exactly 3 dimensions.", exception);
+            }
+
+            var x      = values[0];
+            var y      = values[1];
+            var z      = values[2];
 
             return new Point3D(x, y, z);
         }

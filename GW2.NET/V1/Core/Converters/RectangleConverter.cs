@@ -6,6 +6,8 @@
 
 using System;
 using System.Drawing;
+using GW2DotNET.Extensions;
+using GW2DotNET.V1.Core.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
@@ -22,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(Rectangle);
+            return typeof(Rectangle?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -35,11 +37,53 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var corners = serializer.Deserialize<int[][]>(reader);
-            var top     = corners[0][0];
-            var left    = corners[0][1];
-            var bottom  = corners[1][0];
-            var right   = corners[1][1];
+            if (reader.TokenType == JsonToken.Null)
+            {
+                return objectType.CreateDefault();
+            }
+
+            var values = serializer.Deserialize<int[][]>(reader);
+
+            try
+            {
+                Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 2);
+                Preconditions.EnsureInRange(value: values[0].Length, floor: 0, ceiling: 2);
+                Preconditions.EnsureInRange(value: values[1].Length, floor: 0, ceiling: 2);
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                throw new JsonSerializationException("Bad coordinates.", exception);
+            }
+
+            int top, left, bottom, right;
+
+            switch (values[0].Length)
+            {
+                case 2:
+                    top = values[0][0];
+                    left = values[0][1];
+                    break;
+                case 1:
+                    top = left = values[0][0];
+                    break;
+                default:
+                    top = left = default(int);
+                    break;
+            }
+
+            switch (values[1].Length)
+            {
+                case 2:
+                    bottom = values[1][0];
+                    right = values[1][1];
+                    break;
+                case 1:
+                    bottom = right = values[1][0];
+                    break;
+                default:
+                    bottom = right = default(int);
+                    break;
+            }
 
             return Rectangle.FromLTRB(left, top, right, bottom);
         }

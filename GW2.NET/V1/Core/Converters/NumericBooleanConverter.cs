@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using GW2DotNET.Extensions;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
@@ -21,7 +22,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(bool);
+            return typeof(bool?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -34,6 +35,11 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            if (reader.TokenType == JsonToken.Null)
+            {
+                return objectType.CreateDefault();
+            }
+
             var numericBoolean = serializer.Deserialize<int>(reader);
 
             return Convert.ToBoolean(numericBoolean);
