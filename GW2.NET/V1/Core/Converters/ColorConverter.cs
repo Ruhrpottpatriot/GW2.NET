@@ -42,22 +42,30 @@ namespace GW2DotNET.V1.Core.Converters
                 return objectType.CreateDefault();
             }
 
-            var values   = serializer.Deserialize<int[]>(reader);
+            var values = serializer.Deserialize<int[]>(reader);
 
             try
             {
-                Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 3);
+                Preconditions.EnsureInRange(value: values.Length, floor: 0, ceiling: 4);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("The input must specify exactly 3 color values.", exception);
+                throw new JsonSerializationException("The input specifies more than 4 values.", exception);
             }
 
-            var red   = values[0];
-            var green = values[1];
-            var blue  = values[2];
-
-            return Color.FromArgb(red, green, blue);
+            switch (values.Length)
+            {
+                case 1:
+                    return Color.FromArgb(red: values[0], green: 0, blue: 0);
+                case 2:
+                    return Color.FromArgb(red: values[0], green: values[1], blue: 0);
+                case 3:
+                    return Color.FromArgb(red: values[0], green: values[1], blue: values[2]);
+                case 4:
+                    return Color.FromArgb(alpha: values[0], red: values[1], green: values[2], blue: values[3]);
+                default:
+                    return default(Color);
+            }
         }
 
         /// <summary>
@@ -73,6 +81,11 @@ namespace GW2DotNET.V1.Core.Converters
             writer.WriteStartArray();
 
             {
+                if (color.A != byte.MaxValue)
+                {
+                    writer.WriteValue(color.A);
+                }
+
                 writer.WriteValue(color.R);
 
                 writer.WriteValue(color.G);
