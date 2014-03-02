@@ -116,6 +116,9 @@
     <Compile Include="CoreTests\BuildInformationTests\BuildTest.cs" />
     <Compile Include="CoreTests\ColorsInformation\DyeDetailsTest.cs" />
     <Compile Include="CoreTests\ColorsInformation\MaterialTest.cs" />
+    <Compile Include="CoreTests\Converters\PointConverterTest.cs" />
+    <Compile Include="CoreTests\Converters\SizeConverterTest.cs" />
+    <Compile Include="CoreTests\Converters\PointFConverterTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\DetailsTests\DynamicEventDetailsTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\DetailsTests\DynamicEventFlagsTest.cs" />
     <Compile Include="CoreTests\DynamicEventsInformationTests\DetailsTests\LocationsTests\LocationTypeTest.cs" />
@@ -135,6 +138,16 @@
     <Compile Include="CoreTests\ItemsInformationTests\DetailsTests\ItemsTests\ItemFlagsTest.cs" />
     <Compile Include="CoreTests\ItemsInformationTests\DetailsTests\ItemsTests\ItemRestrictionsTest.cs" />
     <Compile Include="CoreTests\ItemsInformationTests\DetailsTests\ItemTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Continents\MapContinentTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Details\MapDetailsTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Floors\MapFloorTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Floors\Regions\MapRegionTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Floors\Regions\Subregion\Locations\SectorTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Floors\Regions\Subregion\Locations\SkillChallengeTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Floors\Regions\Subregion\Locations\RenownTaskTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Floors\Regions\Subregion\Locations\PointOfInterestTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Floors\Regions\Subregion\MapTest.cs" />
+    <Compile Include="CoreTests\MapsInformation\Names\MapNameTest.cs" />
     <Compile Include="CoreTests\WorldTests.cs" />
     <Compile Include="CoreTests\MapsTests.cs" />
     <Compile Include="CoreTests\ItemsTests.cs" />
