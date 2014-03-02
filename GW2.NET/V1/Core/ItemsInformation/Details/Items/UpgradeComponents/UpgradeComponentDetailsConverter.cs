@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Default;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Gems;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Runes;
@@ -60,7 +59,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownUpgradeComponentDetails);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<UpgradeComponentType>(content["type"].CreateReader());

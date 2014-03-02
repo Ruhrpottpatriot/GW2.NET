@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Accessories;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Amulets;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Rings;
@@ -58,7 +57,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownTrinketDetails);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<TrinketType>(content["type"].CreateReader());

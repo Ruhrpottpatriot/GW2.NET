@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.Default;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.RentableContractNpcs;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.Unknown;
@@ -58,7 +57,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownGizmoDetails);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<GizmoType>(content["type"].CreateReader());

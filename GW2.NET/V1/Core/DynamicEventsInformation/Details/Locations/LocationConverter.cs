@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -54,7 +53,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownLocation);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<LocationType>(content["type"].CreateReader());

@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools.Salvaging;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools.Unknown;
 using Newtonsoft.Json;
@@ -54,7 +53,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownToolDetails);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<ToolType>(content["type"].CreateReader());

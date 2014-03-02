@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Foraging;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Logging;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Mining;
@@ -58,7 +57,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownToolDetails);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<GatheringToolType>(content["type"].CreateReader());

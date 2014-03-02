@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces;
@@ -81,7 +80,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownItem);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<ItemType>(content["type"].CreateReader());

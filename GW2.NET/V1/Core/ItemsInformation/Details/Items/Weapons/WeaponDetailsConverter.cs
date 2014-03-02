@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Axes;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Bundles;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Daggers;
@@ -95,7 +94,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownWeaponDetails);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<WeaponType>(content["type"].CreateReader());

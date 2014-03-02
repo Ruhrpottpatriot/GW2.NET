@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Amulets;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Axes;
@@ -141,7 +140,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownRecipe);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<RecipeType>(content["type"].CreateReader());

@@ -7,7 +7,6 @@
 using System;
 using System.Collections.Generic;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ErrorInformation;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Boots;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Coats;
 using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Gloves;
@@ -65,7 +64,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
         {
             if (content["type"] == null)
             {
-                throw new JsonSerializationException(content.ToObject<ErrorResult>().Text);
+                return typeof(UnknownArmorDetails);
             }
 
             var jsonValue = JsonSerializer.Create().Deserialize<ArmorType>(content["type"].CreateReader());
