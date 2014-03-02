@@ -13,27 +13,23 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
     /// </summary>
     public enum PointOfInterestType
     {
-        /// <summary>
-        /// The 'landmark' POI.
-        /// </summary>
+        /// <summary>The 'unknown' POI.</summary>
+        [EnumMember(Value = "unknown")]
+        Unknown = 0,
+
+        /// <summary>The 'landmark' POI.</summary>
         [EnumMember(Value = "landmark")]
         Landmark = 1 << 0,
 
-        /// <summary>
-        /// The 'waypoint' POI.
-        /// </summary>
+        /// <summary>The 'waypoint' POI.</summary>
         [EnumMember(Value = "waypoint")]
         Waypoint = 1 << 1,
 
-        /// <summary>
-        /// The 'vista' POI.
-        /// </summary>
+        /// <summary>The 'vista' POI.</summary>
         [EnumMember(Value = "vista")]
         Vista = 1 << 2,
 
-        /// <summary>
-        /// The 'unlock' POI.
-        /// </summary>
+        /// <summary>The 'unlock' POI.</summary>
         [EnumMember(Value = "unlock")]
         Unlock = 1 << 3
     }
