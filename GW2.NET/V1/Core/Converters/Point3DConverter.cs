@@ -46,18 +46,29 @@ namespace GW2DotNET.V1.Core.Converters
 
             try
             {
-                Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 3);
+                Preconditions.EnsureInRange(value: values.Length, floor: 0, ceiling: 3);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("The input must specify exactly 3 dimensions.", exception);
+                throw new JsonSerializationException("The input specifies more than 3 values.", exception);
             }
 
-            var x      = values[0];
-            var y      = values[1];
-            var z      = values[2];
+            double y = default(double), z = default(double);
 
-            return new Point3D(x, y, z);
+            switch (values.Length)
+            {
+                case 3:
+                    z = values[2];
+                    goto case 2;
+                case 2:
+                    y = values[1];
+                    goto case 1;
+                case 1:
+                    var x = values[0];
+                    return new Point3D(x, y, z);
+                default:
+                    return default(Point3D);
+            }
         }
 
         /// <summary>

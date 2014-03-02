@@ -106,10 +106,10 @@ namespace GW2DotNET_Tests.CoreTests.Converters
 
         [Test]
         [Category("Converters")]
-        public void PointConverter_ReadSingleValue_ConverterAssumesXEqualsY()
+        public void PointConverter_ReadSingleValue_ConverterAssumesValueIsX()
         {
             const string input = "[1]";
-            var expected       = new Point(1, 1);
+            var expected       = new Point(1, 0);
             var actual         = JsonConvert.DeserializeObject<Point>(input, new PointConverter());
 
             Assert.AreEqual(expected, actual);

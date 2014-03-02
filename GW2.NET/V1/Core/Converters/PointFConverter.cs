@@ -53,14 +53,18 @@ namespace GW2DotNET.V1.Core.Converters
                 throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
             }
 
+            float x, y = default(float);
+
             switch (values.Length)
             {
-                case 0:
-                    return default(PointF);
+                case 2:
+                    y = values[1];
+                    goto case 1;
                 case 1:
-                    return new PointF(x: values[0], y: values[0]);
+                    x = values[0];
+                    return new PointF(x, y);
                 default:
-                    return new PointF(x: values[0], y: values[1]);
+                    return default(PointF);
             }
         }
 
