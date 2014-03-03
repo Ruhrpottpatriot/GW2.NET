@@ -8,13 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-
-using GW2DotNET.V1.DynamicEvents.Models;
+using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
+using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
+using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+using GW2DotNET.V1.Core.MapsInformation.Names;
+using GW2DotNET.V1.Core.WorldsInformation.Names;
 using GW2DotNET.V1.Infrastructure;
+using GW2DotNET.V1.RestSharp;
 
 namespace GW2DotNET.V1.DynamicEvents
 {
@@ -32,16 +34,16 @@ namespace GW2DotNET.V1.DynamicEvents
         private readonly string eventListCacheFileName;
 
         /// <summary>Backing field for the event list, so we can replace values.</summary>
-        private Lazy<List<GameEvent>> eventList;
+        private Lazy<Core.DynamicEventsInformation.Status.DynamicEvents> eventList; // TODO: rename namespace to fix this collision
 
         /// <summary>Caching field for the event names. Lazy initialized.</summary>
-        private Lazy<Dictionary<Guid, string>> lazyEventNames;
+        private Lazy<DynamicEventNames> lazyEventNames;
 
         /// <summary>Caching field for the map names. Lazy initialized.</summary>
-        private Lazy<Dictionary<int, string>> lazyMapNames;
+        private Lazy<MapNames> lazyMapNames;
 
         /// <summary>Caching field for the world names. Lazy initialized.</summary>
-        private Lazy<Dictionary<int, string>> lazyWorldNames;
+        private Lazy<WorldNames> lazyWorldNames;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -71,7 +73,7 @@ namespace GW2DotNET.V1.DynamicEvents
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Gets the events.</summary>
-        public IEnumerable<GameEvent> EventList
+        public Core.DynamicEventsInformation.Status.DynamicEvents EventList
         {
             get
             {
@@ -86,9 +88,10 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            var eventCache = new GameCache<List<GameEvent>>
+            var eventCache = new GameCache<Core.DynamicEventsInformation.Status.DynamicEvents>
                              {
-                                 Build = this.dataManager.Build, CacheData = this.eventList.Value
+                                 Build = this.dataManager.Build,
+                                 CacheData = this.eventList.Value
                              };
 
             this.WriteDataToDisk(this.eventListCacheFileName, eventCache);
@@ -104,271 +107,150 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Clears the cache.</summary>
         public override void ClearCache()
         {
-            this.lazyEventNames = new Lazy<Dictionary<Guid, string>>(this.GetEventNames);
-            this.lazyMapNames = new Lazy<Dictionary<int, string>>(this.GetMapNames);
-            this.lazyWorldNames = new Lazy<Dictionary<int, string>>(this.GetWorldNames);
+            this.lazyEventNames = new Lazy<DynamicEventNames>(this.GetEventNames);
+            this.lazyMapNames = new Lazy<MapNames>(this.GetMapNames);
+            this.lazyWorldNames = new Lazy<WorldNames>(this.GetWorldNames);
 
-            this.eventList = new Lazy<List<GameEvent>>();
+            this.eventList = new Lazy<Core.DynamicEventsInformation.Status.DynamicEvents>();
         }
 
         /// <summary>Gets a list of all events from the server.</summary>
         /// <param name="worldId">The id of the world where the events are on.</param>
         /// <param name="mapId">The id of the map where all events are from.</param>
-        /// <returns>A <see cref="IEnumerable{GameEvent}">collection</see> of events.</returns>
-        public IEnumerable<GameEvent> GetEventList(int worldId = -1, int mapId = -1)
+        /// <param name="eventId"></param>
+        /// <returns>A <see cref="IEnumerable{DynamicEvent}">collection</see> of events.</returns>
+        public IEnumerable<DynamicEvent> GetEventList(int? worldId = null, int? mapId = null, Guid? eventId = null)
         {
-            List<KeyValuePair<string, object>> args = this.CreateArgumentsForEventListQuery(worldId, mapId);
+            var serviceClient = ServiceClient.Create();
 
-            IEnumerable<GameEvent> response = ApiCall.GetContent<Dictionary<string, IEnumerable<GameEvent>>>("events.json", args, ApiCall.Categories.DynamicEvents)["events"].ToList();
+            var request = new DynamicEventStatusRequest(worldId, mapId, eventId);
 
-            List<GameEvent> resolvedEvents = this.ResolveNames(response).ToList();
+            var response = request.GetResponse(serviceClient);
+
+            var events = response.EnsureSuccessStatusCode().Deserialize().Events;
 
             if (!this.BypassCache)
             {
-                this.eventList.Value.AddRange(resolvedEvents);
+                this.eventList.Value.AddRange(events);
             }
 
-            return resolvedEvents;
+            return events;
         }
 
         /// <summary>Asynchronously gets a list of all events from the server.</summary>
         /// <param name="worldId">The id of the world where the events are on.</param>
         /// <param name="mapId">The id of the map where all events are from.</param>
-        /// <returns>A <see cref="IEnumerable{GameEvent}">collection</see> of events.</returns>
-        public async Task<IEnumerable<GameEvent>> GetEventListAsync(int worldId = -1, int mapId = -1)
+        /// <param name="eventId"></param>
+        /// <returns>A <see cref="IEnumerable{DynamicEvent}">collection</see> of events.</returns>
+        public async Task<IEnumerable<DynamicEvent>> GetEventListAsync(int? worldId = null, int? mapId = null, Guid? eventId = null)
         {
-            List<KeyValuePair<string, object>> args = this.CreateArgumentsForEventListQuery(worldId, mapId);
+            var serviceClient = ServiceClient.Create();
 
-            Dictionary<string, IEnumerable<GameEvent>> response = await ApiCall.GetContentAsync<Dictionary<string, IEnumerable<GameEvent>>>("events.json", args, ApiCall.Categories.DynamicEvents);
+            var request = new DynamicEventStatusRequest(worldId, mapId, eventId);
 
-            List<GameEvent> resolvedEvents = this.ResolveNames(response["events"]).ToList();
+            var response = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
+
+            var events = response.EnsureSuccessStatusCode().Deserialize().Events;
 
             if (!this.BypassCache)
             {
-                this.eventList.Value.AddRange(resolvedEvents);
+                this.eventList.Value.AddRange(events);
             }
 
-            return resolvedEvents;
+            return events;
         }
 
         /// <summary>Gets the details for a particular event.</summary>
-        /// <param name="gameEvent">The game event to get the details.</param>
-        /// <returns>A <see cref="GameEvent"/> with all details.</returns>
-        public GameEvent GetEventDetails(GameEvent gameEvent)
+        /// <param name="dynamicEvent">The game event to get the details.</param>
+        /// <returns>A <see cref="DynamicEvent"/> with all details.</returns>
+        public DynamicEventDetails GetEventDetails(DynamicEvent dynamicEvent)
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("event_id", gameEvent.EventId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                       };
+            var serviceClient = ServiceClient.Create();
 
-            // Get the event details from the server.
-            // As return json is heavily nested we have to use
-            // a Dictionary<string, Dictionary<Guid, GameEvent>>
-            // to deserialize properly (srsly ANet, why?)
-            GameEvent apiEvent = ApiCall.GetContent<Dictionary<string, Dictionary<Guid, GameEvent>>>("event_details.json", args, ApiCall.Categories.DynamicEvents)["events"][gameEvent.EventId];
+            var request = new DynamicEventDetailsRequest(dynamicEvent.EventId); // TODO: CultureInfo parameter
 
-            // Transfer the details to the event the user supplied and return it.
-            gameEvent.Name = apiEvent.Name;
-            gameEvent.Level = apiEvent.Level;
-            gameEvent.Flags = apiEvent.Flags;
-            gameEvent.Location = apiEvent.Location;
+            var response = request.GetResponse(serviceClient);
 
-            return gameEvent;
+            var dynamicEventDetails = response.EnsureSuccessStatusCode().Deserialize().EventDetails[dynamicEvent.EventId];
+
+            return dynamicEventDetails;
         }
 
         /// <summary>Gets the details for a particular event asynchronously.</summary>
-        /// <param name="gameEvent">The game event to get the details.</param>
-        /// <returns>The <see cref="RenownTask{GameEvent}"/> with all details..</returns>
-        public async Task<GameEvent> GetEventDetailsAsync(GameEvent gameEvent)
+        /// <param name="dynamicEvent">The game event to get the details.</param>
+        /// <returns>The <see cref="Task{DynamicEvent}"/> with all details..</returns>
+        public async Task<DynamicEventDetails> GetEventDetailsAsync(DynamicEvent dynamicEvent)
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("event_id", gameEvent.EventId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                       };
+            var serviceClient = ServiceClient.Create();
 
-            // Get the event details from the server.
-            // As return json is heavily nested we have to use
-            // a Dictionary<string, Dictionary<Guid, GameEvent>>
-            // to deserialize properly (srsly ANet, why?)
-            Dictionary<string, Dictionary<Guid, GameEvent>> returnTask = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<Guid, GameEvent>>>("event_details.json", args, ApiCall.Categories.DynamicEvents);
+            var request = new DynamicEventDetailsRequest(dynamicEvent.EventId); // TODO: CultureInfo parameter
 
-            // Store the return in a task, as we cannot use indexers with await
-            GameEvent apiEvent = returnTask["events"][gameEvent.EventId];
+            var response = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
 
-            // Transfer the details to the event the user supplied and return it.
-            gameEvent.Name = apiEvent.Name;
-            gameEvent.Level = apiEvent.Level;
-            gameEvent.Flags = apiEvent.Flags;
-            gameEvent.Location = apiEvent.Location;
+            var dynamicEventDetails = response.EnsureSuccessStatusCode().Deserialize().EventDetails[dynamicEvent.EventId];
 
-            return gameEvent;
+            return dynamicEventDetails;
         }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Private Methods
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>Creates a <see cref="List{T}"/> containing <see cref="KeyValuePair{TKey,TValue}"/>s as arguments for the event list query.</summary>
-        /// <param name="worldId">The world id.</param>
-        /// <param name="mapId">The map id.</param>
-        /// <returns>The <see cref="List{T}"/> containing <see cref="KeyValuePair{TKey,TValue}"/> with all arguments.</returns>
-        /// <exception cref="ArgumentException">Thrown when both parameters are at their default value, -1.</exception>
-        private List<KeyValuePair<string, object>> CreateArgumentsForEventListQuery(int worldId, int mapId)
-        {
-            var args = new List<KeyValuePair<string, object>>();
-
-            // Add the arguments to a list
-            if (worldId == -1 && mapId == -1)
-            {
-                throw new ArgumentException("Due to a bug, or limitations in the Guild Wars 2 API the events node will return a faulty JSON string. Therefore at least one parameter has to be specified.");
-            }
-            else if (worldId == -1)
-            {
-                args.Add(new KeyValuePair<string, object>("map_id", mapId));
-            }
-            else if (mapId == -1)
-            {
-                args.Add(new KeyValuePair<string, object>("world_id", worldId));
-            }
-            else
-            {
-                args.Add(new KeyValuePair<string, object>("map_id", mapId));
-                args.Add(new KeyValuePair<string, object>("world_id", worldId));
-            }
-
-            return args;
-        }
-
-        /// <summary>Resolves the event-, map- and world-names of an event collection.</summary>
-        /// <param name="events">The collection of events.</param>
-        /// <returns>A <see cref="IEnumerable{T}"/> which has all it's names resolved..</returns>
-        private IEnumerable<GameEvent> ResolveNames(IEnumerable<GameEvent> events)
-        {
-            var eventsToReturn = new List<GameEvent>();
-
-            //// Add the names to the events list.
-            foreach (GameEvent gameEvent in events)
-            {
-                // ReSharper disable AccessToForEachVariableInClosure
-                foreach (var pair in this.lazyEventNames.Value.Where(pair => pair.Key == gameEvent.EventId))
-                {
-                    gameEvent.Name = pair.Value;
-                }
-
-                foreach (var pair in this.lazyMapNames.Value.Where(pair => pair.Key == gameEvent.Map.Id))
-                {
-                    gameEvent.Map.Name = pair.Value;
-                }
-
-                foreach (var pair in this.lazyWorldNames.Value.Where(pair => pair.Key == gameEvent.World.Id))
-                {
-                    gameEvent.World.Name = pair.Value;
-                }
-
-                //// ReSharper restore AccessToForEachVariableInClosure
-                eventsToReturn.Add(gameEvent);
-            }
-
-            return eventsToReturn;
-        }
-
         /// <summary>Gets the world names from the server.</summary>
-        /// <returns>A <see cref="Dictionary{TKey,TValue}" /> containing all world names.</returns>
-        private Dictionary<int, string> GetWorldNames()
+        /// <returns>An <see cref="IEnumerable{WorldName}"/> containing all world names.</returns>
+        private WorldNames GetWorldNames()
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                       };
+            var serviceClient = ServiceClient.Create();
 
-            // Get the response.
-            var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("world_names.json", args, ApiCall.Categories.DynamicEvents);
+            var request = new WorldNamesRequest(); // TODO: CultureInfo parameter
 
-            return this.CleanResponse<Dictionary<int, string>>(namesResponse);
+            var response = request.GetResponse(serviceClient);
+
+            var names = response.EnsureSuccessStatusCode().Deserialize();
+
+            return names;
         }
 
         /// <summary>Gets the map names from the server.</summary>
-        /// <returns>A <see cref="Dictionary{TKey,TValue}" /> containing all map names.</returns>
-        private Dictionary<int, string> GetMapNames()
+        /// <returns>An <see cref="IEnumerable{MapName}"/> containing all map names.</returns>
+        private MapNames GetMapNames()
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                       };
+            var serviceClient = ServiceClient.Create();
 
-            // Get the response.
-            var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("map_names.json", args, ApiCall.Categories.DynamicEvents);
+            var request = new MapNamesRequest(); // TODO: CultureInfo parameter
 
-            return this.CleanResponse<Dictionary<int, string>>(namesResponse);
+            var response = request.GetResponse(serviceClient);
+
+            var names = response.EnsureSuccessStatusCode().Deserialize();
+
+            return names;
         }
 
         /// <summary>Gets the event names from the server.</summary>
-        /// <returns>A <see cref="Dictionary{TKey,TValue}" /> containing all the event names.</returns>
-        private Dictionary<Guid, string> GetEventNames()
+        /// <returns>An <see cref="IEnumerable{DynamicEventName}"/> containing all event names.</returns>
+        private DynamicEventNames GetEventNames()
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                       };
+            var serviceClient = ServiceClient.Create();
 
-            // Get the response.
-            var namesResponse = ApiCall.GetContent<List<Dictionary<string, string>>>("event_names.json", args, ApiCall.Categories.DynamicEvents);
+            var request = new DynamicEventNamesRequest(); // TODO: CultureInfo parameter
 
-            return this.CleanResponse<Dictionary<Guid, string>>(namesResponse);
-        }
+            var response = request.GetResponse(serviceClient);
 
-        /// <summary>Cleans the input of the surrounding </summary>
-        /// <param name="dictionaryList">The dictionary list.</param>
-        /// <typeparam name="T">A collection implementing the <see cref="IDictionary"/> interface.</typeparam>
-        /// <returns>A cleaned <see cref="T"/>.</returns>
-        private T CleanResponse<T>(IEnumerable<Dictionary<string, string>> dictionaryList) where T : IDictionary
-        {
-            Type dictType = typeof(T);
+            var names = response.EnsureSuccessStatusCode().Deserialize();
 
-            var cacheDictionary = (T)Activator.CreateInstance(dictType);
-
-            foreach (var dictionary in dictionaryList)
-            {
-                Type keyType = cacheDictionary.GetType().GetGenericArguments()[0];
-
-                string id = string.Empty;
-                string name = string.Empty;
-
-                foreach (var keyValuePair in dictionary)
-                {
-                    if (keyValuePair.Key == "id")
-                    {
-                        id = keyValuePair.Value;
-                    }
-                    else
-                    {
-                        name = keyValuePair.Value;
-                    }
-                }
-
-                if (keyType == typeof(Guid))
-                {
-                    cacheDictionary.Add(new Guid(id), name);
-                }
-                else if (keyType == typeof(int))
-                {
-                    cacheDictionary.Add(int.Parse(id), name);
-                }
-            }
-
-            return cacheDictionary;
+            return names;
         }
 
         /// <summary>Initializes the lazy fields.</summary>
         private void InitializeLazy()
         {
-            this.lazyEventNames = new Lazy<Dictionary<Guid, string>>(this.GetEventNames);
-            this.lazyMapNames = new Lazy<Dictionary<int, string>>(this.GetMapNames);
-            this.lazyWorldNames = new Lazy<Dictionary<int, string>>(this.GetWorldNames);
+            this.lazyEventNames = new Lazy<DynamicEventNames>(this.GetEventNames);
+            this.lazyMapNames = new Lazy<MapNames>(this.GetMapNames);
+            this.lazyWorldNames = new Lazy<WorldNames>(this.GetWorldNames);
 
             int build;
 
-            this.eventList = !this.BypassCache ? new Lazy<List<GameEvent>>(() => this.ReadCacheFromDisk<List<GameEvent>>(this.eventListCacheFileName, out build)) : new Lazy<List<GameEvent>>();
+            this.eventList = !this.BypassCache ? new Lazy<Core.DynamicEventsInformation.Status.DynamicEvents>(() => this.ReadCacheFromDisk<Core.DynamicEventsInformation.Status.DynamicEvents>(this.eventListCacheFileName, out build)) : new Lazy<Core.DynamicEventsInformation.Status.DynamicEvents>();
         }
     }
 }

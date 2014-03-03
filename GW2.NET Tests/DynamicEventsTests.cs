@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1;
-using GW2DotNET.V1.DynamicEvents.Models;
 
 using NUnit.Framework;
 
@@ -43,7 +41,7 @@ namespace GW2DotNET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            List<GameEvent> events = this.manager.DynamicEventsData.GetEventList(ServerIdToQuery).ToList();
+            var events = this.manager.DynamicEventsData.GetEventList(ServerIdToQuery).ToList();
 
             stopwatch.Stop();
 
@@ -61,7 +59,7 @@ namespace GW2DotNET_Tests
         {
             var stopwatch = Stopwatch.StartNew();
 
-            List<GameEvent> events = (await this.manager.DynamicEventsData.GetEventListAsync(ServerIdToQuery)).ToList();
+            var events = (await this.manager.DynamicEventsData.GetEventListAsync(ServerIdToQuery)).ToList();
 
             stopwatch.Stop();
 
@@ -76,15 +74,15 @@ namespace GW2DotNET_Tests
         [Test]
         public void GetEventDetails()
         {
-            List<GameEvent> events = this.manager.DynamicEventsData.GetEventList(ServerIdToQuery).ToList();
+            var events = this.manager.DynamicEventsData.GetEventList(ServerIdToQuery).ToList();
 
             var stopwatch = Stopwatch.StartNew();
 
-            GameEvent sphereEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("EED8A79F-B374-4AE6-BA6F-B7B98D9D7142")));
+            var sphereEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("EED8A79F-B374-4AE6-BA6F-B7B98D9D7142")));
 
             // Not called since apparently no such event exists and I know no event which is cylindric.
-            // GameEvent cylinderEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("3A2B85C5-DE73-4402-BD84-8F53AA394A52")));
-            GameEvent polyEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("CEA84FBF-2368-467C-92EA-7FA60D527C7B")));
+            // var cylinderEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("3A2B85C5-DE73-4402-BD84-8F53AA394A52")));
+            var polyEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("CEA84FBF-2368-467C-92EA-7FA60D527C7B")));
 
             stopwatch.Stop();
 
@@ -100,15 +98,15 @@ namespace GW2DotNET_Tests
         [Test]
         public async Task GetEventDetailsAsync()
         {
-            List<GameEvent> events = this.manager.DynamicEventsData.GetEventList(ServerIdToQuery).ToList();
+            var events = this.manager.DynamicEventsData.GetEventList(ServerIdToQuery).ToList();
 
             var stopwatch = Stopwatch.StartNew();
 
-            GameEvent sphereEvent = await this.manager.DynamicEventsData.GetEventDetailsAsync(events.Single(evnt => evnt.EventId == new Guid("EED8A79F-B374-4AE6-BA6F-B7B98D9D7142")));
+            var sphereEvent = await this.manager.DynamicEventsData.GetEventDetailsAsync(events.Single(evnt => evnt.EventId == new Guid("EED8A79F-B374-4AE6-BA6F-B7B98D9D7142")));
 
             // Not called since apparently no such event exists and I know no event which is cylindric.
-            // GameEvent cylinderEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("3A2B85C5-DE73-4402-BD84-8F53AA394A52")));
-            GameEvent polyEvent = await this.manager.DynamicEventsData.GetEventDetailsAsync(events.Single(evnt => evnt.EventId == new Guid("CEA84FBF-2368-467C-92EA-7FA60D527C7B")));
+            // var cylinderEvent = this.manager.DynamicEventsData.GetEventDetails(events.Single(evnt => evnt.EventId == new Guid("3A2B85C5-DE73-4402-BD84-8F53AA394A52")));
+            var polyEvent = await this.manager.DynamicEventsData.GetEventDetailsAsync(events.Single(evnt => evnt.EventId == new Guid("CEA84FBF-2368-467C-92EA-7FA60D527C7B")));
 
             stopwatch.Stop();
 
