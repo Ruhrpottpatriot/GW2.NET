@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Gets the number of elements contained in the <see cref="System.Collections.Generic.ICollection{T}"/>.
         /// </summary>
-        public int Count
+        public virtual int Count
         {
             get { return this.innerList.Count; }
         }
@@ -57,7 +57,7 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Gets a value indicating whether the <see cref="System.Collections.Generic.ICollection{T}"/> is read-only.
         /// </summary>
-        public bool IsReadOnly
+        public virtual bool IsReadOnly
         {
             get { return this.innerList.IsReadOnly; }
         }
@@ -67,7 +67,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="index">The zero-based index of the element to get or set.</param>
         /// <returns>The element at the specified index.</returns>
-        public T this[int index]
+        public virtual T this[int index]
         {
             get { return this.innerList[index]; }
             set { this.innerList[index] = value; }
@@ -77,15 +77,25 @@ namespace GW2DotNET.V1.Core
         /// Adds an item to the <see cref="System.Collections.Generic.ICollection{T}"/>.
         /// </summary>
         /// <param name="item"> The object to add to the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
-        public void Add(T item)
+        public virtual void Add(T item)
         {
             this.innerList.Add(item);
         }
 
         /// <summary>
+        /// Adds the elements of the specified collection to the end of the <see cref="JsonList{T}"/>.
+        /// </summary>
+        /// <param name="collection">The collection whose elements should be added to the end of the <see cref="JsonList{T}"/>. The collection itself cannot be null, but it can contain elements that are null, if type <typeparamref name="T"/> is a reference type.</param>
+        /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
+        public virtual void AddRange(IEnumerable<T> collection)
+        {
+            ((List<T>)this.innerList).AddRange(collection);
+        }
+
+        /// <summary>
         /// Removes all items from the <see cref="System.Collections.Generic.ICollection{T}"/>.
         /// </summary>
-        public void Clear()
+        public virtual void Clear()
         {
             this.innerList.Clear();
         }
@@ -95,7 +105,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="item">The object to locate in the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
         /// <returns><c>true</c> if item is found in the <see cref="System.Collections.Generic.ICollection{T}"/>; otherwise, <c>false</c>.</returns>
-        public bool Contains(T item)
+        public virtual bool Contains(T item)
         {
             return this.innerList.Contains(item);
         }
@@ -105,7 +115,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="array">The one-dimensional <see cref="System.Array"/> that is the destination of the elements copied from <see cref="System.Collections.Generic.ICollection{T}"/>. The <see cref="System.Array"/> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
-        public void CopyTo(T[] array, int arrayIndex)
+        public virtual void CopyTo(T[] array, int arrayIndex)
         {
             this.innerList.CopyTo(array, arrayIndex);
         }
@@ -133,7 +143,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="item">The object to locate in the <see cref="System.Collections.Generic.IList{T}"/>.</param>
         /// <returns>The index of item if found in the list; otherwise, -1.</returns>
-        public int IndexOf(T item)
+        public virtual int IndexOf(T item)
         {
             return this.innerList.IndexOf(item);
         }
@@ -143,7 +153,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="index">The zero-based index at which item should be inserted.</param>
         /// <param name="item">The object to insert into the <see cref="System.Collections.Generic.IList{T}"/>.</param>
-        public void Insert(int index, T item)
+        public virtual void Insert(int index, T item)
         {
             this.innerList.Insert(index, item);
         }
@@ -153,7 +163,7 @@ namespace GW2DotNET.V1.Core
         /// </summary>
         /// <param name="item">The object to remove from the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
         /// <returns><c>true</c>if item was successfully removed from the <see cref="System.Collections.Generic.ICollection{T}"/>; otherwise, <c>false</c>. This method also returns <c>false</c> if item is not found in the original <see cref="System.Collections.Generic.ICollection{T}"/>.</returns>
-        public bool Remove(T item)
+        public virtual bool Remove(T item)
         {
             return this.innerList.Remove(item);
         }
@@ -162,7 +172,7 @@ namespace GW2DotNET.V1.Core
         /// Removes the <see cref="System.Collections.Generic.IList{T}"/> item at the specified index.
         /// </summary>
         /// <param name="index">The zero-based index of the item to remove.</param>
-        public void RemoveAt(int index)
+        public virtual void RemoveAt(int index)
         {
             this.innerList.RemoveAt(index);
         }
