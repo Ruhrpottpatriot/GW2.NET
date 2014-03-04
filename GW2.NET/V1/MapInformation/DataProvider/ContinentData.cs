@@ -9,11 +9,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-
+using GW2DotNET.V1.Core.MapsInformation.Continents;
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.MapInformation.Models;
+using GW2DotNET.V1.RestSharp;
 
 namespace GW2DotNET.V1.MapInformation.DataProvider
 {
@@ -31,7 +30,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         private readonly IDataManager dataManager;
 
         /// <summary>Backing field for the continent list property.</summary>
-        private Lazy<List<Continent>> continentList;
+        private Lazy<MapContinents> continentList;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -56,7 +55,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
             int build;
 
-            this.continentList = !this.BypassCache ? new Lazy<List<Continent>>(() => this.ReadCacheFromDisk<List<Continent>>(this.continentCacheFileName, out build)) : new Lazy<List<Continent>>();
+            this.continentList = !this.BypassCache ? new Lazy<MapContinents>(() => this.ReadCacheFromDisk<MapContinents>(this.continentCacheFileName, out build)) : new Lazy<MapContinents>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -67,7 +66,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         public bool BypassCaching { get; set; }
 
         /// <summary>Gets the continent list.</summary>
-        public IEnumerable<Continent> ContinentList
+        public IEnumerable<KeyValuePair<int, MapContinent>> ContinentList
         {
             get
             {
@@ -82,9 +81,10 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            var continentCache = new GameCache<List<Continent>>
+            var continentCache = new GameCache<MapContinents>
                                  {
-                                     Build = this.dataManager.Build, CacheData = this.continentList.Value
+                                     Build = this.dataManager.Build,
+                                     CacheData = this.continentList.Value
                                  };
 
             this.WriteDataToDisk(this.continentCacheFileName, continentCache);
@@ -100,27 +100,27 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>Clears the cache.</summary>
         public override void ClearCache()
         {
-            this.continentList = new Lazy<List<Continent>>();
+            this.continentList = new Lazy<MapContinents>();
         }
 
         /// <summary>Calls the GW2 api to get all continents asynchronously.</summary>
         /// <returns>A <see cref="IEnumerable{T}" /> of continents.</returns>
-        public async Task<IEnumerable<Continent>> GetAllContinentsAsync()
+        public async Task<IEnumerable<KeyValuePair<int, MapContinent>>> GetAllContinentsAsync()
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                       };
+            var serviceClient = ServiceClient.Create();
 
-            Dictionary<string, Dictionary<int, Continent>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, Dictionary<int, Continent>>>("continents.json", args, ApiCall.Categories.World);
+            var request = new MapContinentsRequest();
 
-            Dictionary<int, Continent> continentDictionary = returnContent.Values.First();
+            var response = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
 
-            List<Continent> continents = this.ResolveId(continentDictionary);
+            var continents = response.EnsureSuccessStatusCode().Deserialize().Continents;
 
             if (!this.BypassCaching)
             {
-                this.continentList.Value.AddRange(continents);
+                foreach (var kvp in continents)
+                {
+                    this.continentList.Value[kvp.Key] = kvp.Value;
+                }
             }
 
             return continents;
@@ -128,43 +128,22 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
         /// <summary>Calls the GW2 api to get all continents synchronously.</summary>
         /// <returns>A <see cref="IEnumerable{T}" /> of continents.</returns>
-        public IEnumerable<Continent> GetAllContinents()
+        public IEnumerable<KeyValuePair<int, MapContinent>> GetAllContinents()
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                       };
+            var serviceClient = ServiceClient.Create();
 
-            var returnContent = ApiCall.GetContent<Dictionary<string, Dictionary<int, Continent>>>("continents.json", args, ApiCall.Categories.World);
+            var request = new MapContinentsRequest();
 
-            Dictionary<int, Continent> continentDictionary = returnContent.Values.First();
+            var response = request.GetResponse(serviceClient);
 
-            List<Continent> continents = this.ResolveId(continentDictionary);
+            var continents = response.EnsureSuccessStatusCode().Deserialize().Continents;
 
             if (!this.BypassCaching)
             {
-                this.continentList.Value.AddRange(continents);
-            }
-
-            return continents;
-        }
-
-        // --------------------------------------------------------------------------------------------------------------------
-        // Private Methods
-        // --------------------------------------------------------------------------------------------------------------------
-
-        /// <summary>Resolves the ids of the continent dictionary.</summary>
-        /// <param name="continentsToResolve">The <see cref="Dictionary{TKey, TValue}"/> containing the continent ids as Key and the continents itself as value.</param>
-        /// <returns>A <see cref="List{T}"/> containing all continents with their ids resolved..</returns>
-        private List<Continent> ResolveId(Dictionary<int, Continent> continentsToResolve)
-        {
-            var continents = new List<Continent>();
-
-            foreach (var keyValuePair in continentsToResolve)
-            {
-                keyValuePair.Value.Id = keyValuePair.Key;
-
-                continents.Add(keyValuePair.Value);
+                foreach (var kvp in continents)
+                {
+                    this.continentList.Value[kvp.Key] = kvp.Value;
+                }
             }
 
             return continents;

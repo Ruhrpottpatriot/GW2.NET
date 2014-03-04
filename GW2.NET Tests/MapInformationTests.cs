@@ -46,7 +46,7 @@ namespace GW2DotNET_Tests
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            List<Continent> continents = this.manager.ContinentData.GetAllContinents().ToList();
+            var continents = this.manager.ContinentData.GetAllContinents().ToList();
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
@@ -59,9 +59,9 @@ namespace GW2DotNET_Tests
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            Task<IEnumerable<Continent>> task = this.manager.ContinentData.GetAllContinentsAsync();
+            var task = this.manager.ContinentData.GetAllContinentsAsync();
 
-            List<Continent> continents = (await task).ToList();
+            var continents = (await task).ToList();
 
             stopwatch.Stop();
 
