@@ -42,7 +42,7 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions
         [Category("map_floor.json")]
         public void MapRegion_MapsReflectsInput()
         {
-            var expected = new Maps();
+            var expected = new MapCollection();
             var actual   = this.mapRegion.Maps;
 
             Assert.AreEqual(expected, actual);

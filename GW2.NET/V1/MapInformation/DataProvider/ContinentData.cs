@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         private readonly IDataManager dataManager;
 
         /// <summary>Backing field for the continent list property.</summary>
-        private Lazy<MapContinents> continentList;
+        private Lazy<MapContinentCollection> continentList;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -55,7 +55,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
             int build;
 
-            this.continentList = !this.BypassCache ? new Lazy<MapContinents>(() => this.ReadCacheFromDisk<MapContinents>(this.continentCacheFileName, out build)) : new Lazy<MapContinents>();
+            this.continentList = !this.BypassCache ? new Lazy<MapContinentCollection>(() => this.ReadCacheFromDisk<MapContinentCollection>(this.continentCacheFileName, out build)) : new Lazy<MapContinentCollection>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -81,7 +81,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            var continentCache = new GameCache<MapContinents>
+            var continentCache = new GameCache<MapContinentCollection>
                                  {
                                      Build = this.dataManager.Build,
                                      CacheData = this.continentList.Value
@@ -100,7 +100,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>Clears the cache.</summary>
         public override void ClearCache()
         {
-            this.continentList = new Lazy<MapContinents>();
+            this.continentList = new Lazy<MapContinentCollection>();
         }
 
         /// <summary>Calls the GW2 api to get all continents asynchronously.</summary>

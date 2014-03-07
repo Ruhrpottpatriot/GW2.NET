@@ -1,39 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Maps.cs" company="GW2.Net Coding Team">
+// <copyright file="AssetCollection.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 
-namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
+namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
 {
     /// <summary>
-    /// Represents a collection of maps and their details.
+    /// Represents a collection of named assets.
     /// </summary>
-    public class Maps : JsonDictionary<int, Map>
+    public class AssetCollection : JsonDictionary<string, Asset>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Maps"/> class.
+        /// Initializes a new instance of the <see cref="AssetCollection"/> class.
         /// </summary>
-        public Maps()
+        public AssetCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Maps"/> class.
+        /// Initializes a new instance of the <see cref="AssetCollection"/> class.
         /// </summary>
         /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
-        public Maps(int capacity)
+        public AssetCollection(int capacity)
             : base(capacity)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Maps"/> class.
+        /// Initializes a new instance of the <see cref="AssetCollection"/> class.
         /// </summary>
         /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
-        public Maps(IDictionary<int, Map> dictionary)
+        public AssetCollection(IDictionary<string, Asset> dictionary)
             : base(dictionary)
         {
         }

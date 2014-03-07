@@ -17,6 +17,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
         /// Gets or sets the collection of maps and their details.
         /// </summary>
         [JsonProperty("maps", Order = 0)]
-        public MapsDetails Maps { get; set; }
+        public MapDetailsCollection Maps { get; set; }
     }
 }

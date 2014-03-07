@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
         /// Gets or sets the collection of regions.
         /// </summary>
         [JsonProperty("regions", Order = 2)]
-        public MapRegions MapRegions { get; set; }
+        public MapRegionCollection MapRegions { get; set; } // TODO: rename MapRegions to Regions
 
         /// <summary>
         /// Gets or sets the texture's dimensions.

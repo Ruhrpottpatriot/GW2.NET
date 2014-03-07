@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         private readonly IDataManager dataManager;
 
         /// <summary>The colours cache.</summary>
-        private Lazy<Dyes> coloursCache;
+        private Lazy<DyeCollection> coloursCache;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -54,7 +54,7 @@ namespace GW2DotNET.V1.Items.DataProviders
 
             int build;
 
-            this.coloursCache = !this.BypassCache ? new Lazy<Dyes>(() => this.ReadCacheFromDisk<Dyes>(this.colourDataCacheFileName, out build)) : new Lazy<Dyes>();
+            this.coloursCache = !this.BypassCache ? new Lazy<DyeCollection>(() => this.ReadCacheFromDisk<DyeCollection>(this.colourDataCacheFileName, out build)) : new Lazy<DyeCollection>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -77,7 +77,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            var cache = new GameCache<Dyes>
+            var cache = new GameCache<DyeCollection>
                         {
                             Build = this.dataManager.Build,
                             CacheData = this.coloursCache.Value
@@ -96,7 +96,7 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>Clears the cache.</summary>
         public override void ClearCache()
         {
-            this.coloursCache = new Lazy<Dyes>();
+            this.coloursCache = new Lazy<DyeCollection>();
         }
 
         /// <summary>Calls the GW2 api to get a list of all colours asynchronously.</summary>

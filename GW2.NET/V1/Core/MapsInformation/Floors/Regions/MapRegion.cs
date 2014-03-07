@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
         /// Gets or sets a collection of maps and their details.
         /// </summary>
         [JsonProperty("maps", Order = 2)]
-        public Maps Maps { get; set; }
+        public MapCollection Maps { get; set; }
 
         /// <summary>
         /// Gets or sets the region's name.

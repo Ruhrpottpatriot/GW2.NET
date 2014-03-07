@@ -17,6 +17,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
         /// Gets or sets a collection of continents.
         /// </summary>
         [JsonProperty("continents", Order = 0)]
-        public MapContinents Continents { get; set; }
+        public MapContinentCollection Continents { get; set; }
     }
 }

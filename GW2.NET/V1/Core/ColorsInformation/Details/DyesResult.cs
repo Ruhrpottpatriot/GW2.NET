@@ -17,6 +17,6 @@ namespace GW2DotNET.V1.Core.ColorsInformation.Details
         /// Gets or sets a collection of dyes in the game.
         /// </summary>
         [JsonProperty("colors", Order = 0)]
-        public Dyes Colors { get; set; }
+        public DyeCollection Colors { get; set; }
     }
 }

@@ -90,7 +90,7 @@
     <Compile Include="V1\Core\BuildInformation\Build.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\Dye.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\DyesResult.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\Dyes.cs" />
+    <Compile Include="V1\Core\ColorsInformation\Details\DyeCollection.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\Material.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationConverter.cs">
       <DependentUpon>Location.cs</DependentUpon>
@@ -101,7 +101,7 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventCollection.cs" />
     <Compile Include="V1\Core\ErrorInformation\ErrorResult.cs" />
     <Compile Include="V1\Core\FilesInformation\Catalogs\Asset.cs" />
-    <Compile Include="V1\Core\FilesInformation\Catalogs\Assets.cs" />
+    <Compile Include="V1\Core\FilesInformation\Catalogs\AssetCollection.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\Emblem.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\EmblemTransformations.cs" />
     <Compile Include="V1\Core\ItemsInformation\Catalogs\ItemCollection.cs" />
@@ -371,13 +371,13 @@
     </Compile>
     <Compile Include="V1\Core\MapsInformation\Continents\MapContinent.cs" />
     <Compile Include="V1\Core\MapsInformation\Continents\MapContinentsResult.cs" />
-    <Compile Include="V1\Core\MapsInformation\Continents\MapContinents.cs" />
+    <Compile Include="V1\Core\MapsInformation\Continents\MapContinentCollection.cs" />
     <Compile Include="V1\Core\MapsInformation\Details\MapDetails.cs" />
-    <Compile Include="V1\Core\MapsInformation\Details\MapsDetails.cs" />
+    <Compile Include="V1\Core\MapsInformation\Details\MapDetailsCollection.cs" />
     <Compile Include="V1\Core\MapsInformation\Details\MapsDetailsResult.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\MapFloor.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\MapRegion.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\MapRegions.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\MapRegionCollection.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\PointOfInterest.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\PointOfInterestType.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\PointOfInterestCollection.cs" />
@@ -388,7 +388,7 @@
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\SkillChallenge.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\SkillChallengeCollection.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Map.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Maps.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\MapCollection.cs" />
     <Compile Include="V1\Core\MapsInformation\Names\MapName.cs" />
     <Compile Include="V1\Core\MapsInformation\Names\MapNameCollection.cs" />
     <Compile Include="V1\Core\Resources.Designer.cs">

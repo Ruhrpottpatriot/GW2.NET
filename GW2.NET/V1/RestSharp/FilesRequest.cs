@@ -29,23 +29,23 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Assets"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="AssetCollection"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="Assets"/>.</returns>
-        public IServiceResponse<Assets> GetResponse(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="AssetCollection"/>.</returns>
+        public IServiceResponse<AssetCollection> GetResponse(IServiceClient handler)
         {
-            return base.GetResponse<Assets>(handler);
+            return base.GetResponse<AssetCollection>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Assets"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="AssetCollection"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="Assets"/>.</returns>
-        public Task<IServiceResponse<Assets>> GetResponseAsync(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="AssetCollection"/>.</returns>
+        public Task<IServiceResponse<AssetCollection>> GetResponseAsync(IServiceClient handler)
         {
-            return base.GetResponseAsync<Assets>(handler);
+            return base.GetResponseAsync<AssetCollection>(handler);
         }
     }
 }
