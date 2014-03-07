@@ -16,14 +16,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicEvents"/> class.
         /// </summary>
-        public DynamicEvents() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicEvents"/> class.
-        /// </summary>
-        /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public DynamicEvents(IEnumerable<DynamicEvent> collection)
-            : base(collection)
+        public DynamicEvents()
         {
         }
 
@@ -33,6 +26,15 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public DynamicEvents(int capacity)
             : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DynamicEvents"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public DynamicEvents(IEnumerable<DynamicEvent> collection)
+            : base(collection)
         {
         }
     }

@@ -16,7 +16,9 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicEventNames"/> class.
         /// </summary>
-        public DynamicEventNames() { }
+        public DynamicEventNames()
+        {
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DynamicEventNames"/> class.

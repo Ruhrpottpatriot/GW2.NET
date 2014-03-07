@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.MapsInformation.Details
 {
     /// <summary>
@@ -11,5 +13,29 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
     /// </summary>
     public class MapsDetails : JsonDictionary<int, MapDetails>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapsDetails"/> class.
+        /// </summary>
+        public MapsDetails()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapsDetails"/> class.
+        /// </summary>
+        /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
+        public MapsDetails(int capacity)
+            : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MapsDetails"/> class.
+        /// </summary>
+        /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
+        public MapsDetails(IDictionary<int, MapDetails> dictionary)
+            : base(dictionary)
+        {
+        }
     }
 }

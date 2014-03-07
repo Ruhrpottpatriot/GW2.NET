@@ -16,14 +16,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
         /// <summary>
         /// Initializes a new instance of the <see cref="Recipes"/> class.
         /// </summary>
-        public Recipes() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Recipes"/> class.
-        /// </summary>
-        /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public Recipes(IEnumerable<int> collection)
-            : base(collection)
+        public Recipes()
         {
         }
 
@@ -33,6 +26,15 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public Recipes(int capacity)
             : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Recipes"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public Recipes(IEnumerable<int> collection)
+            : base(collection)
         {
         }
     }

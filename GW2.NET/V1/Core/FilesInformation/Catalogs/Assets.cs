@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
 {
     /// <summary>
@@ -11,5 +13,29 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
     /// </summary>
     public class Assets : JsonDictionary<string, Asset>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Assets"/> class.
+        /// </summary>
+        public Assets()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Assets"/> class.
+        /// </summary>
+        /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
+        public Assets(int capacity)
+            : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Assets"/> class.
+        /// </summary>
+        /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
+        public Assets(IDictionary<string, Asset> dictionary)
+            : base(dictionary)
+        {
+        }
     }
 }

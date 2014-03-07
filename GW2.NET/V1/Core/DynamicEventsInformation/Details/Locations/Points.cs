@@ -20,14 +20,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// <summary>
         /// Initializes a new instance of the <see cref="Points"/> class.
         /// </summary>
-        public Points() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Points"/> class.
-        /// </summary>
-        /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public Points(IEnumerable<PointF> collection)
-            : base(collection)
+        public Points()
         {
         }
 
@@ -37,6 +30,15 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public Points(int capacity)
             : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Points"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public Points(IEnumerable<PointF> collection)
+            : base(collection)
         {
         }
     }

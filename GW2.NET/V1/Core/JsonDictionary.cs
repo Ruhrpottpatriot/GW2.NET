@@ -30,6 +30,24 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
+        /// Initializes a new instance of the <see cref="JsonDictionary{TKey, TValue}" /> class.
+        /// </summary>
+        /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
+        protected JsonDictionary(int capacity)
+        {
+            this.innerDictionary = new Dictionary<TKey, TValue>(capacity);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JsonDictionary{TKey, TValue}" /> class.
+        /// </summary>
+        /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
+        protected JsonDictionary(IDictionary<TKey, TValue> dictionary)
+        {
+            this.innerDictionary = new Dictionary<TKey, TValue>(dictionary);
+        }
+
+        /// <summary>
         /// Gets the number of elements contained in the <see cref="System.Collections.Generic.ICollection{T}"/>.
         /// </summary>
         public int Count
