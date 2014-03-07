@@ -7,41 +7,41 @@ using NUnit.Framework;
 namespace GW2DotNET_Tests.Core.MapsInformation.Floors
 {
     [TestFixture]
-    public class MapFloorTest
+    public class FloorTest
     {
-        private MapFloor mapFloor;
+        private Floor floor;
 
         [SetUp]
         public void Initialize()
         {
             const string input = "{\"texture_dims\":[],\"regions\":{}}";
-            this.mapFloor = JsonConvert.DeserializeObject<MapFloor>(input);
+            this.floor = JsonConvert.DeserializeObject<Floor>(input);
         }
 
         [Test]
         [Category("map_floor.json")]
-        public void MapFloor_TextureDimensionsReflectsInput()
+        public void Floor_TextureDimensionsReflectsInput()
         {
             var expected = default(Size);
-            var actual   = this.mapFloor.TextureDimensions;
+            var actual   = this.floor.TextureDimensions;
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("map_floor.json")]
-        public void MapFloor_MapRegionsReflectsInput()
+        public void Floor_MapRegionsReflectsInput()
         {
-            var expected = new MapRegionCollection();
-            var actual   = this.mapFloor.MapRegions;
+            var expected = new RegionCollection();
+            var actual   = this.floor.MapRegions;
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("map_floor.json")]
         [Category("ExtensionData")]
-        public void MapFloor_ExtensionDataIsEmpty()
+        public void Floor_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.mapFloor.ExtensionData);
+            Assert.IsEmpty(this.floor.ExtensionData);
         }
     }
 }

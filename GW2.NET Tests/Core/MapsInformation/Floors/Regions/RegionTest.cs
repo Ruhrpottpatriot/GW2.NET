@@ -1,49 +1,49 @@
 ﻿using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions;
 using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions;
 using Newtonsoft.Json;
 using NUnit.Framework;
+using Region = GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Region;
 
 namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions
 {
     [TestFixture]
-    public class MapRegionTest
+    public class RegionTest
     {
-        private MapRegion mapRegion;
+        private Region region;
 
         [SetUp]
         public void Initialize()
         {
             const string input = "{\"name\":\"\",\"label_coord\":[],\"maps\":{}}";
-            this.mapRegion = JsonConvert.DeserializeObject<MapRegion>(input);
+            this.region = JsonConvert.DeserializeObject<Region>(input);
         }
 
         [Test]
         [Category("map_floor.json")]
-        public void MapRegion_NameReflectsInput()
+        public void Region_NameReflectsInput()
         {
             var expected = string.Empty;
-            var actual   = this.mapRegion.Name;
+            var actual   = this.region.Name;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("map_floor.json")]
-        public void MapRegion_LabelCoordinatesReflectsInput()
+        public void Region_LabelCoordinatesReflectsInput()
         {
             var expected = default(PointF);
-            var actual   = this.mapRegion.LabelCoordinates;
+            var actual   = this.region.LabelCoordinates;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("map_floor.json")]
-        public void MapRegion_MapsReflectsInput()
+        public void Region_MapsReflectsInput()
         {
-            var expected = new MapCollection();
-            var actual   = this.mapRegion.Maps;
+            var expected = new SubregionCollection();
+            var actual   = this.region.Maps;
 
             Assert.AreEqual(expected, actual);
         }
@@ -51,9 +51,9 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions
         [Test]
         [Category("map_floor.json")]
         [Category("ExtensionData")]
-        public void MapRegion_ExtensionDataIsEmpty()
+        public void Region_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.mapRegion.ExtensionData);
+            Assert.IsEmpty(this.region.ExtensionData);
         }
     }
 }

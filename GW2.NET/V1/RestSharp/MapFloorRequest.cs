@@ -49,23 +49,23 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapFloor"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Floor"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="MapFloor"/>.</returns>
-        public IServiceResponse<MapFloor> GetResponse(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="Floor"/>.</returns>
+        public IServiceResponse<Floor> GetResponse(IServiceClient handler)
         {
-            return base.GetResponse<MapFloor>(handler);
+            return base.GetResponse<Floor>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapFloor"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Floor"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="MapFloor"/>.</returns>
-        public Task<IServiceResponse<MapFloor>> GetResponseAsync(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="Floor"/>.</returns>
+        public Task<IServiceResponse<Floor>> GetResponseAsync(IServiceClient handler)
         {
-            return base.GetResponseAsync<MapFloor>(handler);
+            return base.GetResponseAsync<Floor>(handler);
         }
     }
 }

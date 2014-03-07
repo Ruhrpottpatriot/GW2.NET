@@ -64,23 +64,23 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapsDetailsResult"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="MapsDetailsResult"/>.</returns>
-        public IServiceResponse<MapsDetailsResult> GetResponse(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="MapsResult"/>.</returns>
+        public IServiceResponse<MapsResult> GetResponse(IServiceClient handler)
         {
-            return base.GetResponse<MapsDetailsResult>(handler);
+            return base.GetResponse<MapsResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapsDetailsResult"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MapsResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="MapsDetailsResult"/>.</returns>
-        public Task<IServiceResponse<MapsDetailsResult>> GetResponseAsync(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="MapsResult"/>.</returns>
+        public Task<IServiceResponse<MapsResult>> GetResponseAsync(IServiceClient handler)
         {
-            return base.GetResponseAsync<MapsDetailsResult>(handler);
+            return base.GetResponseAsync<MapsResult>(handler);
         }
     }
 }

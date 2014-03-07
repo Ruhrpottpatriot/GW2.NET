@@ -3,7 +3,7 @@ using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregion.Locations
+namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     [TestFixture]
     public class PointOfInterestTest

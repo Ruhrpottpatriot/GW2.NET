@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         private readonly IDataManager dataManager;
 
         /// <summary>Backing field for the continent list property.</summary>
-        private Lazy<MapContinentCollection> continentList;
+        private Lazy<ContinentCollection> continentList;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -55,7 +55,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
             int build;
 
-            this.continentList = !this.BypassCache ? new Lazy<MapContinentCollection>(() => this.ReadCacheFromDisk<MapContinentCollection>(this.continentCacheFileName, out build)) : new Lazy<MapContinentCollection>();
+            this.continentList = !this.BypassCache ? new Lazy<ContinentCollection>(() => this.ReadCacheFromDisk<ContinentCollection>(this.continentCacheFileName, out build)) : new Lazy<ContinentCollection>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         public bool BypassCaching { get; set; }
 
         /// <summary>Gets the continent list.</summary>
-        public IEnumerable<KeyValuePair<int, MapContinent>> ContinentList
+        public IEnumerable<KeyValuePair<int, Continent>> ContinentList
         {
             get
             {
@@ -81,7 +81,7 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            var continentCache = new GameCache<MapContinentCollection>
+            var continentCache = new GameCache<ContinentCollection>
                                  {
                                      Build = this.dataManager.Build,
                                      CacheData = this.continentList.Value
@@ -100,16 +100,16 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
         /// <summary>Clears the cache.</summary>
         public override void ClearCache()
         {
-            this.continentList = new Lazy<MapContinentCollection>();
+            this.continentList = new Lazy<ContinentCollection>();
         }
 
         /// <summary>Calls the GW2 api to get all continents asynchronously.</summary>
         /// <returns>A <see cref="IEnumerable{T}" /> of continents.</returns>
-        public async Task<IEnumerable<KeyValuePair<int, MapContinent>>> GetAllContinentsAsync()
+        public async Task<IEnumerable<KeyValuePair<int, Continent>>> GetAllContinentsAsync()
         {
             var serviceClient = ServiceClient.Create();
 
-            var request = new MapContinentsRequest();
+            var request = new ContinentsRequest();
 
             var response = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
 
@@ -128,11 +128,11 @@ namespace GW2DotNET.V1.MapInformation.DataProvider
 
         /// <summary>Calls the GW2 api to get all continents synchronously.</summary>
         /// <returns>A <see cref="IEnumerable{T}" /> of continents.</returns>
-        public IEnumerable<KeyValuePair<int, MapContinent>> GetAllContinents()
+        public IEnumerable<KeyValuePair<int, Continent>> GetAllContinents()
         {
             var serviceClient = ServiceClient.Create();
 
-            var request = new MapContinentsRequest();
+            var request = new ContinentsRequest();
 
             var response = request.GetResponse(serviceClient);
 

@@ -84,24 +84,33 @@
   <ItemGroup>
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="V1\Core\ColorsInformation\Details\DyeCollection.cs" />
+    <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNameCollection.cs" />
+    <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventCollection.cs" />
+    <Compile Include="V1\Core\FilesInformation\Catalogs\AssetCollection.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Items\Unknown\UnknownItem.cs" />
-    <Compile Include="V1\Core\MapsInformation\Common\MapFloorCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Common\FloorCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Continents\ContinentCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Details\MapCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\RegionCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\PointOfInterestCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\RenownTaskCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\SectorCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\SkillChallengeCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\SubregionCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Names\MapNameCollection.cs" />
     <Compile Include="V1\Core\ServiceException.cs" />
     <Compile Include="V1\Core\BuildInformation\Build.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\Dye.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\DyesResult.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\DyeCollection.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\Material.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationConverter.cs">
       <DependentUpon>Location.cs</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\UnknownLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\PointCollection.cs" />
-    <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNameCollection.cs" />
-    <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventCollection.cs" />
     <Compile Include="V1\Core\ErrorInformation\ErrorResult.cs" />
     <Compile Include="V1\Core\FilesInformation\Catalogs\Asset.cs" />
-    <Compile Include="V1\Core\FilesInformation\Catalogs\AssetCollection.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\Emblem.cs" />
     <Compile Include="V1\Core\GuildInformation\Details\EmblemTransformations.cs" />
     <Compile Include="V1\Core\ItemsInformation\Catalogs\ItemCollection.cs" />
@@ -369,28 +378,19 @@
     <Compile Include="V1\Core\JsonDictionary.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="V1\Core\MapsInformation\Continents\MapContinent.cs" />
-    <Compile Include="V1\Core\MapsInformation\Continents\MapContinentsResult.cs" />
-    <Compile Include="V1\Core\MapsInformation\Continents\MapContinentCollection.cs" />
-    <Compile Include="V1\Core\MapsInformation\Details\MapDetails.cs" />
-    <Compile Include="V1\Core\MapsInformation\Details\MapDetailsCollection.cs" />
-    <Compile Include="V1\Core\MapsInformation\Details\MapsDetailsResult.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\MapFloor.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\MapRegion.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\MapRegionCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Continents\Continent.cs" />
+    <Compile Include="V1\Core\MapsInformation\Continents\ContinentsResult.cs" />
+    <Compile Include="V1\Core\MapsInformation\Details\Map.cs" />
+    <Compile Include="V1\Core\MapsInformation\Details\MapsResult.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Floor.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Region.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\PointOfInterest.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\PointOfInterestType.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\PointOfInterestCollection.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\RenownTask.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\RenownTaskCollection.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\Sector.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\SectorCollection.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\SkillChallenge.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\SkillChallengeCollection.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Map.cs" />
-    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\MapCollection.cs" />
+    <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Subregion.cs" />
     <Compile Include="V1\Core\MapsInformation\Names\MapName.cs" />
-    <Compile Include="V1\Core\MapsInformation\Names\MapNameCollection.cs" />
     <Compile Include="V1\Core\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -489,7 +489,7 @@
     <Compile Include="V1\RestSharp\GuildDetailsRequest.cs" />
     <Compile Include="V1\RestSharp\ItemDetailsRequest.cs" />
     <Compile Include="V1\RestSharp\ItemsRequest.cs" />
-    <Compile Include="V1\RestSharp\MapContinentsRequest.cs" />
+    <Compile Include="V1\RestSharp\ContinentsRequest.cs" />
     <Compile Include="V1\RestSharp\MapDetailsRequest.cs" />
     <Compile Include="V1\RestSharp\MapFloorRequest.cs" />
     <Compile Include="V1\RestSharp\MapNamesRequest.cs" />

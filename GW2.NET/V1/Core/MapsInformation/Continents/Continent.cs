@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapContinent.cs" company="GW2.Net Coding Team">
+// <copyright file="Continent.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
     /// <summary>
     /// Represents a continent.
     /// </summary>
-    public class MapContinent : JsonObject
+    public class Continent : JsonObject
     {
         /// <summary>
         /// Gets or sets the dimensions of the continent.
@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
         /// Gets or sets a collection of floors available for this continent.
         /// </summary>
         [JsonProperty("floors", Order = 4)]
-        public MapFloorCollection Floors { get; set; }
+        public FloorCollection Floors { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum zoom level for use with the map tile service.

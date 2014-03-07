@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapRegion.cs" company="GW2.Net Coding Team">
+// <copyright file="Region.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
     /// <summary>
     /// Represents a region on the map.
     /// </summary>
-    public class MapRegion : JsonObject
+    public class Region : JsonObject
     {
         /// <summary>
         /// Gets or sets the coordinates of the region label.
@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
         /// Gets or sets a collection of maps and their details.
         /// </summary>
         [JsonProperty("maps", Order = 2)]
-        public MapCollection Maps { get; set; }
+        public SubregionCollection Maps { get; set; }
 
         /// <summary>
         /// Gets or sets the region's name.

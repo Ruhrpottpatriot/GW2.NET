@@ -7,113 +7,113 @@ using NUnit.Framework;
 namespace GW2DotNET_Tests.Core.MapsInformation.Details
 {
     [TestFixture]
-    public class MapDetailsTest
+    public class MapTest
     {
-        private MapDetails mapDetails;
+        private Map map;
 
         [SetUp]
         public void Initialize()
         {
             const string input = "{\"map_name\":\"\",\"min_level\":0,\"max_level\":0,\"default_floor\":0,\"floors\":[],\"region_id\":0,\"region_name\":\"\",\"continent_id\":0,\"continent_name\":\"\",\"map_rect\":[[],[]],\"continent_rect\":[[],[]]}";
-            this.mapDetails = JsonConvert.DeserializeObject<MapDetails>(input);
+            this.map = JsonConvert.DeserializeObject<Map>(input);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_MapNameReflectsInput()
+        public void Map_MapNameReflectsInput()
         {
             string expected = string.Empty;
-            var actual      = this.mapDetails.MapName;
+            var actual      = this.map.MapName;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_MinimumLevelReflectsInput()
+        public void Map_MinimumLevelReflectsInput()
         {
             const int expected = default(int);
-            var actual         = this.mapDetails.MinimumLevel;
+            var actual         = this.map.MinimumLevel;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_MaximumLevelReflectsInput()
+        public void Map_MaximumLevelReflectsInput()
         {
             const int expected = default(int);
-            var actual         = this.mapDetails.MaximumLevel;
+            var actual         = this.map.MaximumLevel;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_DefaultFloorReflectsInput()
+        public void Map_DefaultFloorReflectsInput()
         {
             const int expected = default(int);
-            var actual         = this.mapDetails.DefaultFloor;
+            var actual         = this.map.DefaultFloor;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_FloorsReflectsInput()
+        public void Map_FloorsReflectsInput()
         {
-            var expected = new MapFloorCollection();
-            var actual   = this.mapDetails.Floors;
+            var expected = new FloorCollection();
+            var actual   = this.map.Floors;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_RegionIdReflectsInput()
+        public void Map_RegionIdReflectsInput()
         {
             const int expected = default(int);
-            var actual         = this.mapDetails.RegionId;
+            var actual         = this.map.RegionId;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_RegionNameReflectsInput()
+        public void Map_RegionNameReflectsInput()
         {
             string expected = string.Empty;
-            var actual      = this.mapDetails.RegionName;
+            var actual      = this.map.RegionName;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_ContinentIdReflectsInput()
+        public void Map_ContinentIdReflectsInput()
         {
             const int expected = default(int);
-            var actual         = this.mapDetails.ContinentId;
+            var actual         = this.map.ContinentId;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_ContinentNameReflectsInput()
+        public void Map_ContinentNameReflectsInput()
         {
             string expected = string.Empty;
-            var actual      = this.mapDetails.ContinentName;
+            var actual      = this.map.ContinentName;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_MapRectangleReflectsInput()
+        public void Map_MapRectangleReflectsInput()
         {
             var expected = default(Rectangle);
-            var actual   = this.mapDetails.MapRectangle;
+            var actual   = this.map.MapRectangle;
 
             Assert.AreEqual(expected, actual);
         }
@@ -121,10 +121,10 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Details
 
         [Test]
         [Category("maps.json")]
-        public void MapDetails_ContinentRectangleReflectsInput()
+        public void Map_ContinentRectangleReflectsInput()
         {
             var expected = default(Rectangle);
-            var actual = this.mapDetails.ContinentRectangle;
+            var actual = this.map.ContinentRectangle;
 
             Assert.AreEqual(expected, actual);
         }
@@ -132,9 +132,9 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Details
         [Test]
         [Category("maps.json")]
         [Category("ExtensionData")]
-        public void MapDetails_ExtensionDataIsEmpty()
+        public void Map_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.mapDetails.ExtensionData);
+            Assert.IsEmpty(this.map.ExtensionData);
         }
     }
 }

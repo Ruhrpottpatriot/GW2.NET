@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="Map.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
     /// <summary>
     /// Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.
     /// </summary>
-    public class MapDetails : JsonObject
+    public class Map : JsonObject
     {
         /// <summary>
         /// Gets or sets the ID of the continent this map belongs to.
@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
         /// Gets or sets a list of available floors for this map.
         /// </summary>
         [JsonProperty("floors", Order = 4)]
-        public MapFloorCollection Floors { get; set; }
+        public FloorCollection Floors { get; set; }
 
         /// <summary>
         /// Gets or sets the map name.

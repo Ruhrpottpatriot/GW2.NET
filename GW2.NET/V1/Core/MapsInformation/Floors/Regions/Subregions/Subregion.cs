@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Map.cs" company="GW2.Net Coding Team">
+// <copyright file="Subregion.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
     /// <summary>
     /// Represents a map and its details.
     /// </summary>
-    public class Map : JsonObject
+    public class Subregion : JsonObject
     {
         /// <summary>
         /// Gets or sets the dimensions of the map within the continent coordinate system.

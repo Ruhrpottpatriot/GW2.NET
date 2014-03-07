@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapFloor.cs" company="GW2.Net Coding Team">
+// <copyright file="Floor.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
     /// <remarks>
     /// The returned data only contains static content. Dynamic content, such as vendors, is not currently available.
     /// </remarks>
-    public class MapFloor : JsonObject
+    public class Floor : JsonObject
     {
         /// <summary>
         /// Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available on the tile server.
@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
         /// Gets or sets the collection of regions.
         /// </summary>
         [JsonProperty("regions", Order = 2)]
-        public MapRegionCollection MapRegions { get; set; } // TODO: rename MapRegions to Regions
+        public RegionCollection MapRegions { get; set; } // TODO: rename MapRegions to Regions
 
         /// <summary>
         /// Gets or sets the texture's dimensions.
