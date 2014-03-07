@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.Utilities;
 using RestSharp;
-using JsonObject = GW2DotNET.V1.Core.JsonObject;
 
 namespace GW2DotNET.V1.RestSharp
 {
@@ -35,7 +34,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <summary>
         /// Factory method. Creates a new instance of the <see cref="ServiceClient"/> class.
         /// </summary>
-        /// <returns>Returns an instance of <see cref="ServiceClient"/>.</returns>
+        /// <returns>A new instance of the <see cref="ServiceClient"/> class.</returns>
         public static IServiceClient Create()
         {
             return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, 1)));
@@ -44,104 +43,92 @@ namespace GW2DotNET.V1.RestSharp
         /// <summary>
         /// Factory method. Creates a new instance of the <see cref="ServiceClient"/> class that targets the specified API version.
         /// </summary>
-        /// <param name="apiVersion">The target API version.</param>
-        /// <returns>Returns an instance of <see cref="ServiceClient"/>.</returns>
-        public static IServiceClient Create(Version apiVersion)
+        /// <param name="version">The target API version.</param>
+        /// <returns>A new instance of the <see cref="ServiceClient"/> class.</returns>
+        public static IServiceClient Create(Version version)
         {
-            Preconditions.EnsureNotNull(paramName: "apiVersion", value: apiVersion);
+            Preconditions.EnsureNotNull(paramName: "version", value: version);
 
-            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, apiVersion.Major)));
+            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, version.Major)));
         }
 
         /// <summary>
         /// Sends an <see cref="ServiceRequest"/> and returns an <see cref="ServiceResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public IServiceResponse<TContent> Send<TContent>(IServiceRequest request) where TContent : JsonObject
+        /// <param name="serviceRequest">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
+        /// <returns>The response.</returns>
+        public IServiceResponse<TContent> Send<TContent>(IServiceRequest serviceRequest) where TContent : Core.JsonObject
         {
-            Preconditions.EnsureNotNull(paramName: "request", value: request);
-            if (!(request is IRestRequest))
+            Preconditions.EnsureNotNull(paramName: "serviceRequest", value: serviceRequest);
+            if (!(serviceRequest is IRestRequest))
             { /* The specified request is of an incompatible type */
                 throw new NotSupportedException("Incompatible request type");
             }
 
-            return this.SendImplementation<TContent>(request as IRestRequest);
+            return this.SendImplementation<TContent>(serviceRequest as IRestRequest);
         }
 
         /// <summary>
         /// Asynchronously sends an <see cref="ServiceRequest"/> and returns an <see cref="ServiceResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest request) where TContent : JsonObject
+        /// <param name="serviceRequest">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest) where TContent : Core.JsonObject
         {
-            Preconditions.EnsureNotNull(paramName: "request", value: request);
-            if (!(request is ServiceRequest))
-            { /* The specified request is of an incompatible type */
-                throw new NotSupportedException("Incompatible request type");
-            }
-
-            return this.SendAsyncImplementation<TContent>(request as IRestRequest);
+            return this.SendAsync<TContent>(serviceRequest, CancellationToken.None);
         }
 
         /// <summary>
         /// Asynchronously sends an <see cref="ServiceRequest"/> and returns an <see cref="ServiceResponse{TContent}"/> whose content can be mapped to the specified type.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
-        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest request, CancellationToken token) where TContent : JsonObject
+        /// <param name="serviceRequest">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TContent : Core.JsonObject
         {
-            Preconditions.EnsureNotNull(paramName: "request", value: request);
-            if (!(request is ServiceRequest))
+            Preconditions.EnsureNotNull(paramName: "serviceRequest", value: serviceRequest);
+            if (!(serviceRequest is ServiceRequest))
             { /* The specified request is of an incompatible type */
                 throw new NotSupportedException("Incompatible request type");
             }
 
-            return this.SendAsyncImplementation<TContent>(request as IRestRequest, token);
+            return this.SendAsyncImplementation<TContent>(serviceRequest as IRestRequest, cancellationToken);
         }
 
         /// <summary>
         /// Infrastructure. Implementation details for 'SendAsync'.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private Task<IServiceResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request) where TContent : JsonObject
+        /// <param name="restRequest">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The response.</returns>
+        private Task<IServiceResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest restRequest, CancellationToken cancellationToken) where TContent : Core.JsonObject
         {
-            return this.ExecuteTaskAsync(request)
-                .ContinueWith<IServiceResponse<TContent>>(
-                x => new ServiceResponse<TContent>(x.Result));
-        }
+            var t1 = this.ExecuteTaskAsync(restRequest, cancellationToken);
 
-        /// <summary>
-        /// Infrastructure. Implementation details for 'SendAsync'.
-        /// </summary>
-        /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
-        /// <param name="token">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private Task<IServiceResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest request, CancellationToken token) where TContent : JsonObject
-        {
-            return this.ExecuteTaskAsync(request, token)
-                .ContinueWith<IServiceResponse<TContent>>(
-                x => new ServiceResponse<TContent>(x.Result),
-                token);
+            var t2 = t1.ContinueWith<IServiceResponse<TContent>>(
+                task => new ServiceResponse<TContent>(task.Result),
+                cancellationToken,
+                TaskContinuationOptions.OnlyOnRanToCompletion,
+                TaskScheduler.Current);
+
+            return t2;
         }
 
         /// <summary>
         /// Infrastructure. Implementation details for 'Send'.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        private IServiceResponse<TContent> SendImplementation<TContent>(IRestRequest request) where TContent : JsonObject
+        /// <param name="restRequest">The request</param>
+        /// <returns>The response.</returns>
+        private IServiceResponse<TContent> SendImplementation<TContent>(IRestRequest restRequest) where TContent : Core.JsonObject
         {
-            return new ServiceResponse<TContent>(this.Execute(request));
+            var restResponse = this.Execute(restRequest);
+
+            return new ServiceResponse<TContent>(restResponse);
         }
     }
 }

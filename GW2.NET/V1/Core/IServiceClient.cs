@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GW2DotNET.V1.Core
@@ -14,19 +15,28 @@ namespace GW2DotNET.V1.Core
     public interface IServiceClient
     {
         /// <summary>
-        /// Send a request and return a response whose content can be mapped to the specified type.
+        /// Sends a request and returns the response.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The service request that targets a specific API endpoint.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        IServiceResponse<TContent> Send<TContent>(IServiceRequest request) where TContent : JsonObject;
+        /// <param name="serviceRequest">The service request.</param>
+        /// <returns>The response.</returns>
+        IServiceResponse<TContent> Send<TContent>(IServiceRequest serviceRequest) where TContent : JsonObject;
 
         /// <summary>
-        /// Asynchronously send a request and return a response whose content can be mapped to the specified type.
+        /// Sends a request and returns the response.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="request">The service request that targets a specific API endpoint.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest request) where TContent : JsonObject;
+        /// <param name="serviceRequest">The service request.</param>
+        /// <returns>The response.</returns>
+        Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest) where TContent : JsonObject;
+
+        /// <summary>
+        /// Sends a request and returns the response.
+        /// </summary>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
+        /// <param name="serviceRequest">The service request.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The response.</returns>
+        Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TContent : JsonObject;
     }
 }
