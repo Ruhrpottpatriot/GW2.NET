@@ -112,8 +112,6 @@ namespace GW2DotNET.V1.Guilds
                 return await this.FetchGuildByIdAsync(guildId);
             }
 
-            Guild guild;
-
             Guild guildToReturn = this.guildList.Value.Find(g => g.GuildId == guildId);
 
             if (guildToReturn == null)
