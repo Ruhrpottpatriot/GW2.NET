@@ -6,53 +6,53 @@ using NUnit.Framework;
 namespace GW2DotNET_Tests.Core.GuildInformation
 {
     [TestFixture]
-    public class GuildDetailsTest
+    public class GuildTest
     {
-        private GuildDetails guildDetails;
+        private Guild guild;
 
         [SetUp]
         public void Initialize()
         {
             const string input = "{\"guild_id\":\"00000000-0000-0000-0000-000000000000\",\"guild_name\":\"\",\"tag\":\"\",\"emblem\":{}}";
-            this.guildDetails = JsonConvert.DeserializeObject<GuildDetails>(input);
+            this.guild = JsonConvert.DeserializeObject<Guild>(input);
         }
 
         [Test]
         [Category("guild_details.json")]
-        public void GuildDetails_GuildIdReflectsInput()
+        public void Guild_GuildIdReflectsInput()
         {
             var expected = default(Guid);
-            var actual   = this.guildDetails.GuildId;
+            var actual   = this.guild.GuildId;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
-        public void GuildDetails_GuildNameReflectsInput()
+        public void Guild_NameReflectsInput()
         {
             var expected = string.Empty;
-            var actual   = this.guildDetails.GuildName;
+            var actual   = this.guild.Name;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
-        public void GuildDetails_TagReflectsInput()
+        public void Guild_TagReflectsInput()
         {
             var expected = string.Empty;
-            var actual   = this.guildDetails.GuildTag;
+            var actual   = this.guild.Tag;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("guild_details.json")]
-        public void GuildDetails_GuildEmblemReflectsInput()
+        public void Guild_EmblemReflectsInput()
         {
             var expected = new Emblem();
-            var actual   = this.guildDetails.GuildEmblem;
+            var actual   = this.guild.Emblem;
 
             Assert.AreEqual(expected, actual);
         }
@@ -60,9 +60,9 @@ namespace GW2DotNET_Tests.Core.GuildInformation
         [Test]
         [Category("guild_details.json")]
         [Category("ExtensionData")]
-        public void GuildDetails_ExtensionDataIsEmpty()
+        public void Guild_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.guildDetails.ExtensionData);
+            Assert.IsEmpty(this.guild.ExtensionData);
         }
     }
 }

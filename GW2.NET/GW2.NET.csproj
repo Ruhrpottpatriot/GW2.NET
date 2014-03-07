@@ -362,7 +362,7 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEvent.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventState.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventsResult.cs" />
-    <Compile Include="V1\Core\GuildInformation\Details\GuildDetails.cs" />
+    <Compile Include="V1\Core\GuildInformation\Details\Guild.cs" />
     <Compile Include="V1\Core\IServiceClient.cs" />
     <Compile Include="V1\Core\IServiceRequest.cs" />
     <Compile Include="V1\Core\IServiceResponse.cs" />

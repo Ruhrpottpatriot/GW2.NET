@@ -132,7 +132,7 @@
     <Compile Include="Core\FilesInformation\AssetTest.cs" />
     <Compile Include="Core\GuildInformation\EmblemTest.cs" />
     <Compile Include="Core\GuildInformation\EmblemTransformationsTest.cs" />
-    <Compile Include="Core\GuildInformation\GuildDetailsTest.cs" />
+    <Compile Include="Core\GuildInformation\GuildTest.cs" />
     <Compile Include="Core\ItemsInformation\Details\Items\GameTypesTest.cs" />
     <Compile Include="Core\ItemsInformation\Details\Items\ItemTypeTest.cs" />
     <Compile Include="Core\ItemsInformation\Details\Items\ItemFlagsTest.cs" />

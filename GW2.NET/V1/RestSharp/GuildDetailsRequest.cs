@@ -50,23 +50,23 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="GuildDetails"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Guild"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="GuildDetails"/>.</returns>
-        public IServiceResponse<GuildDetails> GetResponse(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="Guild"/>.</returns>
+        public IServiceResponse<Guild> GetResponse(IServiceClient handler)
         {
-            return base.GetResponse<GuildDetails>(handler);
+            return base.GetResponse<Guild>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="GuildDetails"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Guild"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="GuildDetails"/>.</returns>
-        public Task<IServiceResponse<GuildDetails>> GetResponseAsync(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="Guild"/>.</returns>
+        public Task<IServiceResponse<Guild>> GetResponseAsync(IServiceClient handler)
         {
-            return base.GetResponseAsync<GuildDetails>(handler);
+            return base.GetResponseAsync<Guild>(handler);
         }
     }
 }
