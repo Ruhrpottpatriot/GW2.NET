@@ -12,8 +12,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1;
-using GW2DotNET.V1.Guilds.Models;
-
+using GW2DotNET.V1.Core.GuildInformation.Details;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests
@@ -42,7 +41,7 @@ namespace GW2DotNET_Tests
         /// Gets a single guild from the api.
         /// </summary>
         [Test]
-        public async void GetSingleGuild()
+        public async Task GetSingleGuild()
         {
             Stopwatch watch = Stopwatch.StartNew();
 
@@ -84,10 +83,10 @@ namespace GW2DotNET_Tests
 
             watch.Stop();
 
-            Assert.AreNotEqual(guild.Id, Guid.Empty);
+            Assert.AreNotEqual(guild.GuildId, Guid.Empty);
 
             Trace.WriteLine(string.Format("Elapsed time: {0}", watch.ElapsedMilliseconds));
-            Trace.WriteLine(string.Format("Guild Name: {0}", guild.Id));
+            Trace.WriteLine(string.Format("Guild Name: {0}", guild.Name));
         }
     }
 }

@@ -9,11 +9,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-
-using GW2DotNET.V1.Guilds.Models;
+using GW2DotNET.V1.Core.GuildInformation.Details;
 using GW2DotNET.V1.Infrastructure;
+using GW2DotNET.V1.RestSharp;
 
 namespace GW2DotNET.V1.Guilds
 {
@@ -88,7 +87,7 @@ namespace GW2DotNET.V1.Guilds
             }
 
             // Check if the guild is present in the cache, if not download it.
-            Guild guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Name == guildName);
+            Guild guildToReturn = this.guildList.Value.Find(g => g.Name == guildName);
 
             if (guildToReturn == null)
             {
@@ -113,7 +112,9 @@ namespace GW2DotNET.V1.Guilds
                 return await this.FetchGuildByIdAsync(guildId);
             }
 
-            Guild guildToReturn = this.guildList.Value.SingleOrDefault(g => g.Id == guildId);
+            Guild guild;
+
+            Guild guildToReturn = this.guildList.Value.Find(g => g.GuildId == guildId);
 
             if (guildToReturn == null)
             {
@@ -133,7 +134,8 @@ namespace GW2DotNET.V1.Guilds
         {
             var guildCache = new GameCache<List<Guild>>
                              {
-                                 Build = this.dataManager.Build, CacheData = this.guildList.Value
+                                 Build = this.dataManager.Build,
+                                 CacheData = this.guildList.Value
                              };
             this.WriteDataToDisk(this.guildListCacheFileName, guildCache);
         }
@@ -160,12 +162,12 @@ namespace GW2DotNET.V1.Guilds
         /// <returns>The <see cref="Task"/> containing the <see cref="Guild"/> with the specified name.</returns>
         private async Task<Guild> FetchGuildByNameAsync(string guildName)
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("guild_name", guildName)
-                       };
+            var serviceClient = ServiceClient.Create();
+            var request       = new GuildDetailsRequest(guildName);
+            var response      = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
+            var guild         = response.EnsureSuccessStatusCode().Deserialize();
 
-            return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
+            return guild;
         }
 
         /// <summary>Asynchronously fetches a guild by it's id from the server.</summary>
@@ -173,12 +175,12 @@ namespace GW2DotNET.V1.Guilds
         /// <returns>The <see cref="Task"/> containing the <see cref="Guild"/> with the specified id.</returns>
         private async Task<Guild> FetchGuildByIdAsync(Guid id)
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("guild_id", id)
-                       };
+            var serviceClient = ServiceClient.Create();
+            var request       = new GuildDetailsRequest(id);
+            var response      = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
+            var guild         = response.EnsureSuccessStatusCode().Deserialize();
 
-            return await ApiCall.GetContentAsync<Guild>("guild_details.json", args, ApiCall.Categories.Guild);
+            return guild;
         }
     }
 }
