@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.BuildInformation;
@@ -28,23 +29,34 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Build"/>.
+        /// Sends the current request and returns a response.
         /// </summary>
-        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="Build"/>.</returns>
-        public IServiceResponse<Build> GetResponse(IServiceClient handler)
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public IServiceResponse<Build> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<Build>(handler);
+            return base.GetResponse<Build>(serviceClient);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Build"/>.
+        /// Sends the current request and returns a response.
         /// </summary>
-        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="Build"/>.</returns>
-        public Task<IServiceResponse<Build>> GetResponseAsync(IServiceClient handler)
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<Build>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<Build>(handler);
+            return base.GetResponseAsync<Build>(serviceClient);
+        }
+
+        /// <summary>
+        /// Sends the current request and returns a response.
+        /// </summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<Build>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        {
+            return base.GetResponseAsync<Build>(serviceClient, cancellationToken);
         }
     }
 }

@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.MapsInformation.Continents;
@@ -28,23 +29,34 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="ContinentsResult"/>.
+        /// Sends the current request and returns a response.
         /// </summary>
-        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ContinentsResult"/>.</returns>
-        public IServiceResponse<ContinentsResult> GetResponse(IServiceClient handler)
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public IServiceResponse<ContinentsResult> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<ContinentsResult>(handler);
+            return base.GetResponse<ContinentsResult>(serviceClient);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="ContinentsResult"/>.
+        /// Sends the current request and returns a response.
         /// </summary>
-        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ContinentsResult"/>.</returns>
-        public Task<IServiceResponse<ContinentsResult>> GetResponseAsync(IServiceClient handler)
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<ContinentsResult>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<ContinentsResult>(handler);
+            return base.GetResponseAsync<ContinentsResult>(serviceClient);
+        }
+
+        /// <summary>
+        /// Sends the current request and returns a response.
+        /// </summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<ContinentsResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        {
+            return base.GetResponseAsync<ContinentsResult>(serviceClient, cancellationToken);
         }
     }
 }

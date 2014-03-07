@@ -28,23 +28,23 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MatchesResult"/>.
+        /// Sends the current request and returns a response.
         /// </summary>
-        /// <param name="handler">The <see cref="ServiceResponse{TContent}"/> that sends the request over a network and returns an instance of type <see cref="MatchesResult"/>.</param>
-        /// <returns>Returns an instance of type <see cref="MatchesResult"/>.</returns>
-        public IServiceResponse<MatchesResult> GetResponse(IServiceClient handler)
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public IServiceResponse<MatchesResult> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<MatchesResult>(handler);
+            return base.GetResponse<MatchesResult>(serviceClient);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="MatchesResult"/>.
+        /// Sends the current request and returns a response.
         /// </summary>
-        /// <param name="handler">The <see cref="ServiceResponse{TContent}"/> that sends the request over a network and returns an instance of type <see cref="MatchesResult"/>.</param>
-        /// <returns>Returns an instance of type <see cref="MatchesResult"/>.</returns>
-        public Task<IServiceResponse<MatchesResult>> GetResponseAsync(IServiceClient handler)
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<MatchesResult>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<MatchesResult>(handler);
+            return base.GetResponseAsync<MatchesResult>(serviceClient);
         }
     }
 }

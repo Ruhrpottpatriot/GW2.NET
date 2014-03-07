@@ -6,6 +6,7 @@
 
 using System;
 using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.ItemsInformation.Details;
@@ -45,23 +46,34 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Recipe"/>.
+        /// Sends the current request and returns a response.
         /// </summary>
-        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="Recipe"/>.</returns>
-        public IServiceResponse<Recipe> GetResponse(IServiceClient handler)
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public IServiceResponse<Recipe> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<Recipe>(handler);
+            return base.GetResponse<Recipe>(serviceClient);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="Recipe"/>.
+        /// Sends the current request and returns a response.
         /// </summary>
-        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="Recipe"/>.</returns>
-        public Task<IServiceResponse<Recipe>> GetResponseAsync(IServiceClient handler)
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<Recipe>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<Recipe>(handler);
+            return base.GetResponseAsync<Recipe>(serviceClient);
+        }
+
+        /// <summary>
+        /// Sends the current request and returns a response.
+        /// </summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<Recipe>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        {
+            return base.GetResponseAsync<Recipe>(serviceClient, cancellationToken);
         }
     }
 }

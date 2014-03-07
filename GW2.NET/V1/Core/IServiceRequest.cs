@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace GW2DotNET.V1.Core
@@ -14,19 +15,28 @@ namespace GW2DotNET.V1.Core
     public interface IServiceRequest
     {
         /// <summary>
-        /// Sends this request to the specified API client and retrieves a response whose content can be mapped to the specified type.
+        /// Sends the current request and returns a response.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="handler">The HTTP client that sends the request over a network and returns a response.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        IServiceResponse<TContent> GetResponse<TContent>(IServiceClient handler) where TContent : JsonObject;
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        IServiceResponse<TContent> GetResponse<TContent>(IServiceClient serviceClient) where TContent : JsonObject;
 
         /// <summary>
-        /// Asynchronously sends this request to the specified API client and retrieves a response whose content can be mapped to the specified type.
+        /// Sends the current request and returns a response.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="handler">The HTTP client that sends the request over a network and returns a response.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient handler) where TContent : JsonObject;
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient) where TContent : JsonObject;
+
+        /// <summary>
+        /// Sends the current request and returns a response.
+        /// </summary>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The response.</returns>
+        Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient, CancellationToken cancellationToken) where TContent : JsonObject;
     }
 }

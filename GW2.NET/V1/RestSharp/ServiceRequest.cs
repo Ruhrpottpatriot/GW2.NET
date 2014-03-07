@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.Utilities;
@@ -18,17 +19,8 @@ namespace GW2DotNET.V1.RestSharp
     /// </summary>
     public abstract class ServiceRequest : RestRequest, IServiceRequest
     {
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceRequest"/> class.
-        /// </summary>
-        protected ServiceRequest()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceRequest"/> class using the specified resource path.
         /// </summary>
         /// <param name="resource">A relative URI that indicates the target endpoint.</param>
         protected ServiceRequest(Uri resource)
@@ -40,28 +32,38 @@ namespace GW2DotNET.V1.RestSharp
             }
         }
 
-        #endregion Constructors
-
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content can be mapped to the specified type.
+        /// Sends the current request and returns a response.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public virtual IServiceResponse<TContent> GetResponse<TContent>(IServiceClient handler) where TContent : JsonObject
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public virtual IServiceResponse<TContent> GetResponse<TContent>(IServiceClient serviceClient) where TContent : JsonObject
         {
-            return handler.Send<TContent>(this);
+            return serviceClient.Send<TContent>(this);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content can be mapped to the specified type.
+        /// Sends the current request and returns a response.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
-        /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns the response content as an instance of the specified type.</returns>
-        public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient handler) where TContent : JsonObject
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient) where TContent : JsonObject
         {
-            return handler.SendAsync<TContent>(this);
+            return serviceClient.SendAsync<TContent>(this);
+        }
+
+        /// <summary>
+        /// Sends the current request and returns a response.
+        /// </summary>
+        /// <typeparam name="TContent">The type of the response content.</typeparam>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The response.</returns>
+        public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient, CancellationToken cancellationToken) where TContent : JsonObject
+        {
+            return serviceClient.SendAsync<TContent>(this, cancellationToken);
         }
     }
 }
