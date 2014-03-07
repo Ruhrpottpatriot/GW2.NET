@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------<param name="capacity">The initial number of elements that the new dictionary can contain.</param>
-// <copyright file="DyesDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="Dyes.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -11,29 +11,29 @@ namespace GW2DotNET.V1.Core.ColorsInformation.Details
     /// <summary>
     /// Represents a collection of dyes and their color component information.
     /// </summary>
-    public class DyesDetails : JsonDictionary<int, DyeDetails>
+    public class Dyes : JsonDictionary<int, Dye>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyesDetails"/> class.
+        /// Initializes a new instance of the <see cref="Dyes"/> class.
         /// </summary>
-        public DyesDetails()
+        public Dyes()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyesDetails"/> class.
+        /// Initializes a new instance of the <see cref="Dyes"/> class.
         /// </summary>
         /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
-        public DyesDetails(int capacity)
+        public Dyes(int capacity)
             : base(capacity)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyesDetails"/> class.
+        /// Initializes a new instance of the <see cref="Dyes"/> class.
         /// </summary>
         /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
-        public DyesDetails(IDictionary<int, DyeDetails> dictionary)
+        public Dyes(IDictionary<int, Dye> dictionary)
             : base(dictionary)
         {
         }

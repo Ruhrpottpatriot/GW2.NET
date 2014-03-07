@@ -114,7 +114,7 @@
   <ItemGroup>
     <Compile Include="ColoursTests.cs" />
     <Compile Include="Core\BuildInformation\BuildTest.cs" />
-    <Compile Include="Core\ColorsInformation\DyeDetailsTest.cs" />
+    <Compile Include="Core\ColorsInformation\DyeTest.cs" />
     <Compile Include="Core\ColorsInformation\MaterialTest.cs" />
     <Compile Include="Core\Converters\PointConverterTest.cs" />
     <Compile Include="Core\Converters\SizeConverterTest.cs" />

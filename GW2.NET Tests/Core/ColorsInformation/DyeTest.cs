@@ -6,63 +6,63 @@ using NUnit.Framework;
 namespace GW2DotNET_Tests.Core.ColorsInformation
 {
     [TestFixture]
-    public class DyeDetailsTest
+    public class DyeTest
     {
-        private DyeDetails dyeDetails;
+        private Dye dye;
 
         [SetUp]
         public void Initialize()
         {
             const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
-            this.dyeDetails = JsonConvert.DeserializeObject<DyeDetails>(input);
+            this.dye = JsonConvert.DeserializeObject<Dye>(input);
         }
 
         [Test]
         [Category("colors.json")]
-        public void DyeDetails_NameReflectsInput()
+        public void Dye_NameReflectsInput()
         {
             var expected = string.Empty;
-            var actual   = this.dyeDetails.Name;
+            var actual   = this.dye.Name;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void DyeDetails_BaseRgbReflectsInput()
+        public void Dye_BaseRgbReflectsInput()
         {
             var expected = default(Color);
-            var actual   = this.dyeDetails.BaseRGB;
+            var actual   = this.dye.BaseRgb;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void DyeDetails_ClothReflectsInput()
+        public void Dye_ClothReflectsInput()
         {
             var expected = new Material();
-            var actual   = this.dyeDetails.Cloth;
+            var actual   = this.dye.Cloth;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void DyeDetails_LeatherReflectsInput()
+        public void Dye_LeatherReflectsInput()
         {
             var expected = new Material();
-            var actual   = this.dyeDetails.Leather;
+            var actual   = this.dye.Leather;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void DyeDetails_MetalReflectsInput()
+        public void Dye_MetalReflectsInput()
         {
             var expected = new Material();
-            var actual   = this.dyeDetails.Metal;
+            var actual   = this.dye.Metal;
 
             Assert.AreEqual(expected, actual);
         }
@@ -70,9 +70,9 @@ namespace GW2DotNET_Tests.Core.ColorsInformation
         [Test]
         [Category("colors.json")]
         [Category("ExtensionData")]
-        public void DyeDetails_ExtensionDataIsEmpty()
+        public void Dye_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.dyeDetails.ExtensionData);
+            Assert.IsEmpty(this.dye.ExtensionData);
         }
     }
 }

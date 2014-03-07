@@ -88,9 +88,9 @@
     <Compile Include="V1\Core\MapsInformation\Common\MapFloors.cs" />
     <Compile Include="V1\Core\ServiceException.cs" />
     <Compile Include="V1\Core\BuildInformation\Build.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\DyeDetails.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\DyesDetailsResult.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\DyesDetails.cs" />
+    <Compile Include="V1\Core\ColorsInformation\Details\Dye.cs" />
+    <Compile Include="V1\Core\ColorsInformation\Details\DyesResult.cs" />
+    <Compile Include="V1\Core\ColorsInformation\Details\Dyes.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\Material.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationConverter.cs">
       <DependentUpon>Location.cs</DependentUpon>

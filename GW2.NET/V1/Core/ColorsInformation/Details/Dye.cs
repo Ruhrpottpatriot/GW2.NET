@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DyeDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="Dye.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,14 +13,14 @@ namespace GW2DotNET.V1.Core.ColorsInformation.Details
     /// <summary>
     /// Represents a dye and its color component information.
     /// </summary>
-    public class DyeDetails : JsonObject
+    public class Dye : JsonObject
     {
         /// <summary>
         /// Gets or sets the base RGB values.
         /// </summary>
         [JsonProperty("base_rgb", Order = 1)]
         [JsonConverter(typeof(ColorConverter))]
-        public Color BaseRGB { get; set; }
+        public Color BaseRgb { get; set; }
 
         /// <summary>
         /// Gets or sets detailed information on the appearance when applied on cloth armor.

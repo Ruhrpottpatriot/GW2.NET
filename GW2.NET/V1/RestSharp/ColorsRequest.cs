@@ -40,23 +40,23 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="DyesDetailsResult"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="DyesResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="DyesDetailsResult"/>.</returns>
-        public IServiceResponse<DyesDetailsResult> GetResponse(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="DyesResult"/>.</returns>
+        public IServiceResponse<DyesResult> GetResponse(IServiceClient handler)
         {
-            return base.GetResponse<DyesDetailsResult>(handler);
+            return base.GetResponse<DyesResult>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="DyesDetailsResult"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="DyesResult"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="DyesDetailsResult"/>.</returns>
-        public Task<IServiceResponse<DyesDetailsResult>> GetResponseAsync(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="DyesResult"/>.</returns>
+        public Task<IServiceResponse<DyesResult>> GetResponseAsync(IServiceClient handler)
         {
-            return base.GetResponseAsync<DyesDetailsResult>(handler);
+            return base.GetResponseAsync<DyesResult>(handler);
         }
     }
 }
