@@ -29,10 +29,10 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors
 
         [Test]
         [Category("map_floor.json")]
-        public void Floor_MapRegionsReflectsInput()
+        public void Floor_RegionsReflectsInput()
         {
             var expected = new RegionCollection();
-            var actual   = this.floor.MapRegions;
+            var actual   = this.floor.Regions;
             Assert.AreEqual(expected, actual);
         }
 

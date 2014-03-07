@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.DynamicEvents
         private readonly string eventListCacheFileName;
 
         /// <summary>Backing field for the event list, so we can replace values.</summary>
-        private Lazy<DynamicEventCollection> eventList; // TODO: rename namespace to fix this collision
+        private Lazy<DynamicEventCollection> eventList;
 
         /// <summary>Caching field for the event names. Lazy initialized.</summary>
         private Lazy<DynamicEventNameCollection> lazyEventNames;
