@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations;
+using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
 using Newtonsoft.Json;
 using NUnit.Framework;
 

@@ -6,7 +6,7 @@
 
 using System.Collections.Generic;
 
-namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
+namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     /// <summary>
     /// Represents a collection of areas within a map.

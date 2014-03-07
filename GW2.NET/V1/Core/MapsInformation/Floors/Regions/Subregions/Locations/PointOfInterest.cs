@@ -9,7 +9,7 @@ using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
+namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     /// <summary>
     /// Represents a Point of Interest (POI) location.

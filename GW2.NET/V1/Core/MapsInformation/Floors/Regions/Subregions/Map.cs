@@ -5,11 +5,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations;
+using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
 using Newtonsoft.Json;
 using RectangleConverter = GW2DotNET.V1.Core.Converters.RectangleConverter;
 
-namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion
+namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
 {
     /// <summary>
     /// Represents a map and its details.

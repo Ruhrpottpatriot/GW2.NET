@@ -6,7 +6,7 @@
 
 using System.Runtime.Serialization;
 
-namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
+namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     /// <summary>
     /// Enumerates the known types of POI.
