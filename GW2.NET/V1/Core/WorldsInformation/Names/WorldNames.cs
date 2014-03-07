@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.WorldsInformation.Names
 {
     /// <summary>
@@ -11,5 +13,30 @@ namespace GW2DotNET.V1.Core.WorldsInformation.Names
     /// </summary>
     public class WorldNames : JsonList<WorldName>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorldNames"/> class.
+        /// </summary>
+        public WorldNames()
+            : base()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorldNames"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public WorldNames(IEnumerable<WorldName> collection)
+            : base(collection)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorldNames"/> class.
+        /// </summary>
+        /// <param name="capacity">The number of elements that the new list can initially store.</param>
+        public WorldNames(int capacity)
+            : base(capacity)
+        {
+        }
     }
 }

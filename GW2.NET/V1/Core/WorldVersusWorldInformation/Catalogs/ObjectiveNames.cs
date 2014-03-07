@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     /// <summary>
@@ -11,5 +13,29 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
     /// </summary>
     public class ObjectiveNames : JsonList<ObjectiveName>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObjectiveNames"/> class.
+        /// </summary>
+        public ObjectiveNames()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObjectiveNames"/> class.
+        /// </summary>
+        /// <param name="capacity">The number of elements that the new list can initially store.</param>
+        public ObjectiveNames(int capacity)
+            : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ObjectiveNames"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public ObjectiveNames(IEnumerable<ObjectiveName> collection)
+            : base(collection)
+        {
+        }
     }
 }

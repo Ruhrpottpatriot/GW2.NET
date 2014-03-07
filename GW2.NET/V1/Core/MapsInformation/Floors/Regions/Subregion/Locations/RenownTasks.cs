@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
 {
     /// <summary>
@@ -11,5 +13,29 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
     /// </summary>
     public class RenownTasks : JsonList<RenownTask>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RenownTasks"/> class.
+        /// </summary>
+        public RenownTasks()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RenownTasks"/> class.
+        /// </summary>
+        /// <param name="capacity">The number of elements that the new list can initially store.</param>
+        public RenownTasks(int capacity)
+            : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RenownTasks"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public RenownTasks(IEnumerable<RenownTask> collection)
+            : base(collection)
+        {
+        }
     }
 }

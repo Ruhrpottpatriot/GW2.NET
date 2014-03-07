@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     /// <summary>
@@ -11,5 +13,29 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
     /// </summary>
     public class CraftingIngredients : JsonList<CraftingIngredient>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CraftingIngredients"/> class.
+        /// </summary>
+        public CraftingIngredients()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CraftingIngredients"/> class.
+        /// </summary>
+        /// <param name="capacity">The number of elements that the new list can initially store.</param>
+        public CraftingIngredients(int capacity)
+            : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CraftingIngredients"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public CraftingIngredients(IEnumerable<CraftingIngredient> collection)
+            : base(collection)
+        {
+        }
     }
 }

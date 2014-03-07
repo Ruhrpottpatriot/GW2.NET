@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     /// <summary>
@@ -11,5 +13,29 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
     /// </summary>
     public class ItemAttributes : JsonList<ItemAttribute>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemAttributes"/> class.
+        /// </summary>
+        public ItemAttributes()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemAttributes"/> class.
+        /// </summary>
+        /// <param name="capacity">The number of elements that the new list can initially store.</param>
+        public ItemAttributes(int capacity)
+            : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ItemAttributes"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public ItemAttributes(IEnumerable<ItemAttribute> collection)
+            : base(collection)
+        {
+        }
     }
 }

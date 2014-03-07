@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
 {
     /// <summary>
@@ -11,5 +13,29 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion.Locations
     /// </summary>
     public class SkillChallenges : JsonList<SkillChallenge>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SkillChallenges"/> class.
+        /// </summary>
+        public SkillChallenges()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SkillChallenges"/> class.
+        /// </summary>
+        /// <param name="capacity">The number of elements that the new list can initially store.</param>
+        public SkillChallenges(int capacity)
+            : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SkillChallenges"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public SkillChallenges(IEnumerable<SkillChallenge> collection)
+            : base(collection)
+        {
+        }
     }
 }

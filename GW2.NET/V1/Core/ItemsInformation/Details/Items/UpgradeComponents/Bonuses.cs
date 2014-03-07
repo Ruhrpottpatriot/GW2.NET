@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
 {
     /// <summary>
@@ -11,5 +13,29 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
     /// </summary>
     public class Bonuses : JsonList<string>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Bonuses"/> class.
+        /// </summary>
+        public Bonuses()
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Bonuses"/> class.
+        /// </summary>
+        /// <param name="capacity">The number of elements that the new list can initially store.</param>
+        public Bonuses(int capacity)
+            : base(capacity)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Bonuses"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public Bonuses(IEnumerable<string> collection)
+            : base(collection)
+        {
+        }
     }
 }

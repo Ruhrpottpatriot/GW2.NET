@@ -4,6 +4,8 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Generic;
+
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     /// <summary>
@@ -11,5 +13,27 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
     /// </summary>
     public class InfusionSlots : JsonList<InfusionSlot>
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InfusionSlots"/> class.
+        /// </summary>
+        public InfusionSlots() { }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InfusionSlots"/> class.
+        /// </summary>
+        /// <param name="collection">The collection whose elements are copied to the new list.</param>
+        public InfusionSlots(IEnumerable<InfusionSlot> collection)
+            : base(collection)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InfusionSlots"/> class.
+        /// </summary>
+        /// <param name="capacity">The number of elements that the new list can initially store.</param>
+        public InfusionSlots(int capacity)
+            : base(capacity)
+        {
+        }
     }
 }
