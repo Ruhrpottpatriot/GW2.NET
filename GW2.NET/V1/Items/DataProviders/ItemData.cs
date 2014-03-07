@@ -9,11 +9,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-
+using GW2DotNET.V1.Core.ItemsInformation.Details;
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.Items.Models.Items;
+using GW2DotNET.V1.RestSharp;
 
 namespace GW2DotNET.V1.Items.DataProviders
 {
@@ -98,56 +97,34 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <returns>An <see cref="IEnumerable{T}" /> containing all item ids.</returns>
         public async Task<IEnumerable<int>> GetItemIdListAsync()
         {
-            Dictionary<string, List<int>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, List<int>>>("items.json", null, ApiCall.Categories.Items);
-
-            List<int> itemIdList = returnContent.Values.First();
+            var serviceClient = ServiceClient.Create();
+            var request       = new ItemsRequest();
+            var response      = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
+            var items         = response.EnsureSuccessStatusCode().Deserialize().Items;
 
             if (!this.BypassCache)
             {
-                this.itemIdCache.Value.AddRange(itemIdList);
+                this.itemIdCache.Value.AddRange(items);
             }
 
-            return itemIdList;
+            return items;
         }
 
         /// <summary>Synchronously gets the item id list.</summary>
         /// <returns>An <see cref="IEnumerable{T}" /> containing all item ids.</returns>
         public IEnumerable<int> GetItemIdList()
         {
-            return this.GetItemIdListAsync().Result;
-        }
-
-        /// <summary>Asynchronously gets the item detail list.</summary>
-        /// <returns>An <see cref="IEnumerable{T}" /> containing all item details.</returns>
-        public async Task<IEnumerable<Item>> GetItemDetailListAsync()
-        {
-            var itemList = new List<Item>();
-
-            foreach (int itemId in this.itemIdCache.Value)
-            {
-                var args = new List<KeyValuePair<string, object>>
-                           {
-                               new KeyValuePair<string, object>("item_id", itemId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                           };
-
-                Item item = await ApiCall.GetContentAsync<Item>("item_details.json", args, ApiCall.Categories.Items);
-
-                itemList.Add(item);
-            }
+            var serviceClient = ServiceClient.Create();
+            var request       = new ItemsRequest();
+            var response      = request.GetResponse(serviceClient);
+            var items         = response.EnsureSuccessStatusCode().Deserialize().Items;
 
             if (!this.BypassCache)
             {
-                this.itemListCache.Value.AddRange(itemList);
+                this.itemIdCache.Value.AddRange(items);
             }
 
-            return itemList;
-        }
-
-        /// <summary>Synchronously gets the item detail list.</summary>
-        /// <returns>A <see cref="IEnumerable{T}" /> containing all item details.</returns>
-        public IEnumerable<Item> GetItemDetailList()
-        {
-            return this.GetItemDetailListAsync().Result;
+            return items;
         }
 
         /// <summary>Asynchronously gets the details of an item with the specified id.</summary>
@@ -158,7 +135,7 @@ namespace GW2DotNET.V1.Items.DataProviders
             // Check if the item is in the cache
             if (!this.BypassCache)
             {
-                Item item = this.itemListCache.Value.SingleOrDefault(itm => itm.Id == itemId);
+                Item item = this.itemListCache.Value.Find(itm => itm.ItemId == itemId);
 
                 if (item != null)
                 {
@@ -166,19 +143,17 @@ namespace GW2DotNET.V1.Items.DataProviders
                 }
             }
 
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("item_id", itemId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                       };
-
-            Item itemToReturn = await ApiCall.GetContentAsync<Item>("item_details.json", args, ApiCall.Categories.Items);
+            var serviceClient = ServiceClient.Create();
+            var request       = new ItemDetailsRequest(itemId); // TODO: CultureInfo parameter
+            var response      = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
+            var itemDetails   = response.EnsureSuccessStatusCode().Deserialize();
 
             if (!this.BypassCache)
             {
-                this.itemListCache.Value.Add(itemToReturn);
+                this.itemListCache.Value.Add(itemDetails);
             }
 
-            return itemToReturn;
+            return itemDetails;
         }
 
         /// <summary>Synchronously gets the details of an item with the specified id.</summary>
@@ -186,7 +161,28 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <returns>An <see cref="Item"/> with all its details.</returns>
         public Item GetItemDetail(int itemId)
         {
-            return this.GetItemDetailAsync(itemId).Result;
+            // Check if the item is in the cache
+            if (!this.BypassCache)
+            {
+                Item item = this.itemListCache.Value.Find(itm => itm.ItemId == itemId);
+
+                if (item != null)
+                {
+                    return item;
+                }
+            }
+
+            var serviceClient = ServiceClient.Create();
+            var request       = new ItemDetailsRequest(itemId); // TODO: CultureInfo parameter
+            var response      = request.GetResponse(serviceClient);
+            var itemDetails   = response.EnsureSuccessStatusCode().Deserialize();
+
+            if (!this.BypassCache)
+            {
+                this.itemListCache.Value.Add(itemDetails);
+            }
+
+            return itemDetails;
         }
 
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
@@ -194,14 +190,16 @@ namespace GW2DotNET.V1.Items.DataProviders
         {
             var itemCache = new GameCache<List<Item>>
                             {
-                                Build = this.dataManager.Build, CacheData = this.itemListCache.Value
+                                Build = this.dataManager.Build,
+                                CacheData = this.itemListCache.Value
                             };
 
             this.WriteDataToDisk(this.itemListCacheFileName, itemCache);
 
             var idCache = new GameCache<List<int>>
                           {
-                              Build = this.dataManager.Build, CacheData = this.itemIdCache.Value
+                              Build = this.dataManager.Build,
+                              CacheData = this.itemIdCache.Value
                           };
 
             this.WriteDataToDisk(this.itemIdListCacheFileName, idCache);

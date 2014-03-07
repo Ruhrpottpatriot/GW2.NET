@@ -9,11 +9,10 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-
+using GW2DotNET.V1.Core.ItemsInformation.Details;
 using GW2DotNET.V1.Infrastructure;
-using GW2DotNET.V1.Items.Models;
+using GW2DotNET.V1.RestSharp;
 
 namespace GW2DotNET.V1.Items.DataProviders
 {
@@ -34,10 +33,10 @@ namespace GW2DotNET.V1.Items.DataProviders
         private readonly string recipeListCacheFileName;
 
         /// <summary>Backing field for the recipe id cache, lazy initialized.</summary>
-        private Lazy<List<int>> recipeIdListCache;
+        private Lazy<List<int>> recipesCache;
 
         /// <summary>Backing field for the recipe cache, lazy initialized.</summary>
-        private Lazy<List<Recipe>> recipeListCache;
+        private Lazy<List<Recipe>> recipesDetailsCache;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -64,29 +63,29 @@ namespace GW2DotNET.V1.Items.DataProviders
             int recipeIdBuild;
             int recipeListBuild;
 
-            this.recipeIdListCache = !this.BypassCache ? new Lazy<List<int>>(() => this.ReadCacheFromDisk<List<int>>(this.recipeIdListCacheFileName, out recipeIdBuild)) : new Lazy<List<int>>();
-            this.recipeListCache = !this.BypassCache ? new Lazy<List<Recipe>>(() => this.ReadCacheFromDisk<List<Recipe>>(this.recipeListCacheFileName, out recipeListBuild)) : new Lazy<List<Recipe>>();
+            this.recipesCache = !this.BypassCache ? new Lazy<List<int>>(() => this.ReadCacheFromDisk<List<int>>(this.recipeIdListCacheFileName, out recipeIdBuild)) : new Lazy<List<int>>();
+            this.recipesDetailsCache = !this.BypassCache ? new Lazy<List<Recipe>>(() => this.ReadCacheFromDisk<List<Recipe>>(this.recipeListCacheFileName, out recipeListBuild)) : new Lazy<List<Recipe>>();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
         // Properties
         // --------------------------------------------------------------------------------------------------------------------
 
-        /// <summary>Gets the recipe list.</summary>
-        public IEnumerable<Recipe> RecipeList
+        /// <summary>Gets the recipe id list.</summary>
+        public IEnumerable<int> Recipes
         {
             get
             {
-                return this.recipeListCache.Value;
+                return this.recipesCache.Value;
             }
         }
 
-        /// <summary>Gets the recipe id list.</summary>
-        public IEnumerable<int> RecipeIdList
+        /// <summary>Gets the recipe list.</summary>
+        public IEnumerable<Recipe> RecipesDetails
         {
             get
             {
-                return this.recipeIdListCache.Value;
+                return this.recipesDetailsCache.Value;
             }
         }
 
@@ -99,14 +98,16 @@ namespace GW2DotNET.V1.Items.DataProviders
         {
             var idCacheData = new GameCache<List<int>>
                               {
-                                  Build = this.dataManager.Build, CacheData = this.recipeIdListCache.Value
+                                  Build = this.dataManager.Build,
+                                  CacheData = this.recipesCache.Value
                               };
 
             this.WriteDataToDisk(this.recipeIdListCacheFileName, idCacheData);
 
             var recipeCacheData = new GameCache<List<Recipe>>
                                   {
-                                      Build = this.dataManager.Build, CacheData = this.recipeListCache.Value
+                                      Build = this.dataManager.Build,
+                                      CacheData = this.recipesDetailsCache.Value
                                   };
 
             this.WriteDataToDisk(this.recipeListCacheFileName, recipeCacheData);
@@ -122,104 +123,78 @@ namespace GW2DotNET.V1.Items.DataProviders
         /// <summary>Clears the cache.</summary>
         public override void ClearCache()
         {
-            this.recipeIdListCache = new Lazy<List<int>>();
-            this.recipeListCache = new Lazy<List<Recipe>>();
+            this.recipesCache = new Lazy<List<int>>();
+            this.recipesDetailsCache = new Lazy<List<Recipe>>();
         }
 
         /// <summary>Calls the GW2 api to get a list of all discovered recipe ids synchronously.</summary>
         /// <returns>An <see cref="IEnumerable{T}" /> containing the Ids of all discovered recipes.</returns>
-        public IEnumerable<int> GetRecipeIdList()
+        public IEnumerable<int> GetRecipes()
         {
-            List<int> returnContent = ApiCall.GetContent<Dictionary<string, List<int>>>("recipes.json", null, ApiCall.Categories.Items).Values.First();
+            var serviceClient = ServiceClient.Create();
+            var request       = new RecipesRequest();
+            var response      = request.GetResponse(serviceClient);
+            var recipes       = response.EnsureSuccessStatusCode().Deserialize().Recipes;
 
             if (!this.BypassCache)
             {
-                this.recipeIdListCache.Value.AddRange(returnContent);
-            }
-
-            return returnContent;
-        }
-
-        /// <summary>Calls the GW2 api to get a list of all discovered recipe ids asynchronously.</summary>
-        /// <returns>An <see cref="IEnumerable{T}" /> containing the Ids of all discovered recipes.</returns>
-        public async Task<IEnumerable<int>> GetRecipeIdListAsync()
-        {
-            Dictionary<string, List<int>> returnContent = await ApiCall.GetContentAsync<Dictionary<string, List<int>>>("recipes.json", null, ApiCall.Categories.Items);
-
-            List<int> recipeIdDictionary = returnContent.Values.First();
-
-            if (!this.BypassCache)
-            {
-                this.recipeIdListCache.Value.AddRange(recipeIdDictionary);
-            }
-
-            return recipeIdDictionary;
-        }
-
-        /// <summary>Calls the GW2 api to get the details of all discovered recipes asynchronously.</summary>
-        /// <returns>A <see cref="IEnumerable{T}" /> containing all recipes and their details.</returns>
-        public async Task<IEnumerable<Recipe>> GetRecipeDetailListAsync()
-        {
-            var recipes = new List<Recipe>();
-
-            foreach (int recipeId in this.recipeIdListCache.Value)
-            {
-                var args = new List<KeyValuePair<string, object>>
-                           {
-                               new KeyValuePair<string, object>("recipe_id", recipeId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                           };
-
-                Recipe returnContent = await ApiCall.GetContentAsync<Recipe>("recipe_details.json", args, ApiCall.Categories.Items);
-
-                recipes.Add(returnContent);
-            }
-
-            if (!this.BypassCache)
-            {
-                this.recipeListCache.Value.AddRange(recipes);
+                this.recipesCache.Value.AddRange(recipes);
             }
 
             return recipes;
         }
 
-        /// <summary>Calls the GW2 api to get the details of the specified recipe asynchronously.</summary>
-        /// <param name="recipeId">The id of the recipe.</param>
-        /// <returns>The <see cref="Recipe"/> with the specified id.</returns>
-        public async Task<Recipe> GetRecipeDetailAsync(int recipeId)
+        /// <summary>Calls the GW2 api to get a list of all discovered recipe ids asynchronously.</summary>
+        /// <returns>An <see cref="IEnumerable{T}" /> containing the Ids of all discovered recipes.</returns>
+        public async Task<IEnumerable<int>> GetRecipesAsync()
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("recipe_id", recipeId), new KeyValuePair<string, object>("lang", this.dataManager.Language)
-                       };
-
-            Recipe returnContent = await ApiCall.GetContentAsync<Recipe>("recipe_details.json", args, ApiCall.Categories.Items);
+            var serviceClient = ServiceClient.Create();
+            var request       = new RecipesRequest();
+            var response      = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
+            var recipes       = response.EnsureSuccessStatusCode().Deserialize().Recipes;
 
             if (!this.BypassCache)
             {
-                this.recipeListCache.Value.Add(returnContent);
+                this.recipesCache.Value.AddRange(recipes);
             }
 
-            return returnContent;
+            return recipes;
         }
 
         /// <summary>Calls the GW2 api to get the details of the specified recipe synchronously.</summary>
         /// <param name="recipeId">The id of the recipe.</param>
         /// <returns>The <see cref="Recipe"/> with the specified id.</returns>
-        public Recipe GetRecipeDetail(int recipeId)
+        public Recipe GetRecipeDetails(int recipeId)
         {
-            var args = new List<KeyValuePair<string, object>>
-                       {
-                           new KeyValuePair<string, object>("recipe_id", recipeId)
-                       };
-
-            var returnContent = ApiCall.GetContent<Recipe>("recipe_details.json", args, ApiCall.Categories.Items);
+            var serviceClient = ServiceClient.Create();
+            var request       = new RecipeDetailsRequest(recipeId); // TODO: CultureInfo parameter
+            var response      = request.GetResponse(serviceClient);
+            var recipe        = response.EnsureSuccessStatusCode().Deserialize();
 
             if (!this.BypassCache)
             {
-                this.recipeListCache.Value.Add(returnContent);
+                this.recipesDetailsCache.Value.Add(recipe);
             }
 
-            return returnContent;
+            return recipe;
+        }
+
+        /// <summary>Calls the GW2 api to get the details of the specified recipe asynchronously.</summary>
+        /// <param name="recipeId">The id of the recipe.</param>
+        /// <returns>The <see cref="Recipe"/> with the specified id.</returns>
+        public async Task<Recipe> GetRecipeDetailsAsync(int recipeId)
+        {
+            var serviceClient = ServiceClient.Create();
+            var request       = new RecipeDetailsRequest(recipeId); // TODO: CultureInfo parameter
+            var response      = await request.GetResponseAsync(serviceClient).ConfigureAwait(false);
+            var recipe        = response.EnsureSuccessStatusCode().Deserialize();
+
+            if (!this.BypassCache)
+            {
+                this.recipesDetailsCache.Value.Add(recipe);
+            }
+
+            return recipe;
         }
     }
 }

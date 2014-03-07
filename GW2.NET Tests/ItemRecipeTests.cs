@@ -7,15 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 
 using GW2DotNET.V1;
-using GW2DotNET.V1.Items.Models;
-using GW2DotNET.V1.Items.Models.Items;
-
+using GW2DotNET.V1.Core.ItemsInformation.Details;
 using NUnit.Framework;
 
 namespace GW2DotNET_Tests
@@ -52,7 +48,7 @@ namespace GW2DotNET_Tests
             Trace.WriteLine("Starting stopwatch");
             Stopwatch stopwatch = Stopwatch.StartNew();
 
-            Recipe recipe = this.dataManager.RecipeData.GetRecipeDetail(805);
+            Recipe recipe = this.dataManager.RecipeData.GetRecipeDetails(805);
 
             Trace.WriteLine("Stopping stopwatch");
             stopwatch.Stop();
@@ -61,7 +57,7 @@ namespace GW2DotNET_Tests
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Trace.WriteLine(string.Format("Recipe Details: {0} (Crafts: {1})", recipe.Id, recipe.OutputItemId));
+            Trace.WriteLine(string.Format("Recipe Details: {0} (Crafts: {1})", recipe.RecipeId, recipe.OutputItemId));
         }
 
         /// <summary>
@@ -76,7 +72,7 @@ namespace GW2DotNET_Tests
             Trace.WriteLine("Starting stopwatch");
             var stopwatch = Stopwatch.StartNew();
 
-            Task<Recipe> task = this.dataManager.RecipeData.GetRecipeDetailAsync(805);
+            Task<Recipe> task = this.dataManager.RecipeData.GetRecipeDetailsAsync(805);
             task.Wait();
 
             Recipe recipe = await task;
@@ -88,107 +84,7 @@ namespace GW2DotNET_Tests
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Trace.WriteLine(string.Format("Recipe Details: {0} (Crafts: {1})", recipe.Id, recipe.OutputItemId));
-        }
-
-        /// <summary>
-        /// Gets all recipes from the server.
-        /// !!WARNING!! This method will run about 15 minutes.
-        /// Run at your own risk.
-        /// </summary>
-        [Test]
-        public void GetRecipes()
-        {
-            Trace.WriteLine("Geting all recipes from the server.");
-            Trace.WriteLine(string.Empty);
-
-            Trace.WriteLine("Starting stopwatch");
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
-            List<int> recipes = this.dataManager.RecipeData.GetRecipeIdList().ToList();
-
-            Trace.WriteLine("Stopping stopwatch");
-            stopwatch.Stop();
-
-            Assert.IsNotEmpty(recipes);
-
-            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
-
-            Trace.WriteLine(string.Format("Total number of recipes: {0}", recipes.Count));
-        }
-
-        /// <summary>
-        /// Gets all recipes from the server asynchronously.
-        /// !!WARNING!! This method will run about 15 minutes.
-        /// Run at your own risk.
-        /// </summary>
-        [Test]
-        public async void GetRecipesAsync()
-        {
-            Trace.WriteLine("Geting all recipes from the server asynchronously.");
-            Trace.WriteLine(string.Empty);
-
-            Trace.WriteLine("Starting stopwatch");
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
-            Task<IEnumerable<int>> task = this.dataManager.RecipeData.GetRecipeIdListAsync();
-            task.Wait();
-
-            List<int> recipes = (await task).ToList();
-
-            Trace.WriteLine("Stopping stopwatch");
-            stopwatch.Stop();
-
-            Assert.IsNotEmpty(recipes);
-
-            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
-
-            Trace.WriteLine(string.Format("Total number of recipes: {0}", recipes.Count));
-        }
-
-        /// <summary>
-        /// Gets all items from the server.
-        /// !!!WARNING!!!: Running this method will take a long time.
-        /// If you are running this test make sure to run it in a separate NUnit session.
-        /// </summary> 
-        [Test]
-        public void GetItems()
-        {
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
-            List<int> items = this.dataManager.ItemData.GetItemIdList().ToList();
-
-            stopwatch.Stop();
-
-            Assert.IsNotEmpty(items);
-
-            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
-
-            Trace.WriteLine(string.Format("Recipe Details: {0}", items.Count));
-        }
-
-        /// <summary>
-        /// Gets all items from the server asynchronously.
-        /// !!!WARNING!!!: Running this method will take a long time.
-        /// If you are running this test make sure to run it in a separate NUnit session.
-        /// </summary> 
-        [Test]
-        public async void GetItemsAsync()
-        {
-            var stopwatch = Stopwatch.StartNew();
-
-            var task = this.dataManager.ItemData.GetItemDetailListAsync();
-            task.Wait();
-
-            var items = (await task).ToList();
-
-            stopwatch.Stop();
-
-            Assert.IsNotEmpty(items);
-
-            Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
-
-            Trace.WriteLine(string.Format("Recipe Details: {0}", items.Count));
+            Trace.WriteLine(string.Format("Recipe Details: {0} (Crafts: {1})", recipe.RecipeId, recipe.OutputItemId));
         }
 
         /// <summary>
@@ -205,7 +101,7 @@ namespace GW2DotNET_Tests
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Trace.WriteLine(string.Format("Recipe Details: {0}", item.Id));
+            Trace.WriteLine(string.Format("Recipe Details: {0}", item.ItemId));
         }
 
         /// <summary>
@@ -227,7 +123,7 @@ namespace GW2DotNET_Tests
 
             Trace.WriteLine(string.Format("Elapsed Time: {0}", stopwatch.ElapsedMilliseconds));
 
-            Trace.WriteLine(string.Format("Recipe Details: {0}", item.Id));
+            Trace.WriteLine(string.Format("Recipe Details: {0}", item.ItemId));
         }
     }
 }
