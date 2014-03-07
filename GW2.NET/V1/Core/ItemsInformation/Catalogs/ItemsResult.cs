@@ -17,6 +17,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
         /// Gets or sets a collection of item IDs.
         /// </summary>
         [JsonProperty("items")]
-        public Items Items { get; set; }
+        public ItemCollection Items { get; set; }
     }
 }

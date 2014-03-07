@@ -1,39 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ItemAttributes.cs" company="GW2.Net Coding Team">
+// <copyright file="MapNameCollection.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 
-namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
+namespace GW2DotNET.V1.Core.MapsInformation.Names
 {
     /// <summary>
-    /// Represents a collection of item attributes.
+    /// Represents a collection of maps and their localized name.
     /// </summary>
-    public class ItemAttributes : JsonList<ItemAttribute>
+    public class MapNameCollection : JsonList<MapName>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemAttributes"/> class.
+        /// Initializes a new instance of the <see cref="MapNameCollection"/> class.
         /// </summary>
-        public ItemAttributes()
+        public MapNameCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemAttributes"/> class.
+        /// Initializes a new instance of the <see cref="MapNameCollection"/> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
-        public ItemAttributes(int capacity)
+        public MapNameCollection(int capacity)
             : base(capacity)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemAttributes"/> class.
+        /// Initializes a new instance of the <see cref="MapNameCollection"/> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public ItemAttributes(IEnumerable<ItemAttribute> collection)
+        public MapNameCollection(IEnumerable<MapName> collection)
             : base(collection)
         {
         }

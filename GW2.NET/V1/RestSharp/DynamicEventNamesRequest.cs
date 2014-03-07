@@ -41,23 +41,23 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient" /> and retrieves a response whose content is of type <see cref="DynamicEventNames" />.
+        /// Sends this request to the specified <see cref="ServiceClient" /> and retrieves a response whose content is of type <see cref="DynamicEventNameCollection" />.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient" /> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}" />.</param>
-        /// <returns>Returns an instance of type <see cref="DynamicEventNames" />.</returns>
-        public IServiceResponse<DynamicEventNames> GetResponse(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="DynamicEventNameCollection" />.</returns>
+        public IServiceResponse<DynamicEventNameCollection> GetResponse(IServiceClient handler)
         {
-            return base.GetResponse<DynamicEventNames>(handler);
+            return base.GetResponse<DynamicEventNameCollection>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient" /> and retrieves a response whose content is of type <see cref="DynamicEventNames" />.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient" /> and retrieves a response whose content is of type <see cref="DynamicEventNameCollection" />.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient" /> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}" />.</param>
-        /// <returns>Returns an instance of type <see cref="DynamicEventNames" />.</returns>
-        public Task<IServiceResponse<DynamicEventNames>> GetResponseAsync(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="DynamicEventNameCollection" />.</returns>
+        public Task<IServiceResponse<DynamicEventNameCollection>> GetResponseAsync(IServiceClient handler)
         {
-            return base.GetResponseAsync<DynamicEventNames>(handler);
+            return base.GetResponseAsync<DynamicEventNameCollection>(handler);
         }
     }
 }

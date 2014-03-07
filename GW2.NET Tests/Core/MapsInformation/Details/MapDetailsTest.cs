@@ -62,7 +62,7 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Details
         [Category("maps.json")]
         public void MapDetails_FloorsReflectsInput()
         {
-            var expected = new MapFloors();
+            var expected = new MapFloorCollection();
             var actual   = this.mapDetails.Floors;
 
             Assert.AreEqual(expected, actual);

@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
         /// Gets or sets the item's attributes.
         /// </summary>
         [JsonProperty("attributes", Order = 1)]
-        public ItemAttributes Attributes { get; set; }
+        public ItemAttributeCollection Attributes { get; set; }
 
         /// <summary>
         /// Gets or sets the item's buff.

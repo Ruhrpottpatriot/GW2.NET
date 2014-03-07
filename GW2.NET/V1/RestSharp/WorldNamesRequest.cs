@@ -41,23 +41,23 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="WorldNames"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="WorldNameCollection"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="WorldNames"/>.</returns>
-        public IServiceResponse<WorldNames> GetResponse(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="WorldNameCollection"/>.</returns>
+        public IServiceResponse<WorldNameCollection> GetResponse(IServiceClient handler)
         {
-            return base.GetResponse<WorldNames>(handler);
+            return base.GetResponse<WorldNameCollection>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="WorldNames"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="WorldNameCollection"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="WorldNames"/>.</returns>
-        public Task<IServiceResponse<WorldNames>> GetResponseAsync(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="WorldNameCollection"/>.</returns>
+        public Task<IServiceResponse<WorldNameCollection>> GetResponseAsync(IServiceClient handler)
         {
-            return base.GetResponseAsync<WorldNames>(handler);
+            return base.GetResponseAsync<WorldNameCollection>(handler);
         }
     }
 }

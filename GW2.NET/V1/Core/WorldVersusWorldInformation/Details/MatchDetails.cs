@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         /// Gets or sets the list of maps.
         /// </summary>
         [JsonProperty("maps", Order = 2)]
-        public Maps Maps { get; set; }
+        public MapCollection Maps { get; set; }
 
         /// <summary>
         /// Gets or sets the match's ID.

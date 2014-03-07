@@ -17,6 +17,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
         /// Gets or sets a collection of recipes.
         /// </summary>
         [JsonProperty("recipes", Order = 0)]
-        public Recipes Recipes { get; set; }
+        public RecipeCollection Recipes { get; set; }
     }
 }

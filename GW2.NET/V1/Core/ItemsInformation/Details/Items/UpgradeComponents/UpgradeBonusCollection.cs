@@ -1,39 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CraftingIngredients.cs" company="GW2.Net Coding Team">
+// <copyright file="UpgradeBonusCollection.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 
-namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
+namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
 {
     /// <summary>
-    /// Represents a collection of crafting ingredients.
+    /// Represents a collection of upgrade bonuses.
     /// </summary>
-    public class CraftingIngredients : JsonList<CraftingIngredient>
+    public class UpgradeBonusCollection : JsonList<string>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingIngredients"/> class.
+        /// Initializes a new instance of the <see cref="UpgradeBonusCollection"/> class.
         /// </summary>
-        public CraftingIngredients()
+        public UpgradeBonusCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingIngredients"/> class.
+        /// Initializes a new instance of the <see cref="UpgradeBonusCollection"/> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
-        public CraftingIngredients(int capacity)
+        public UpgradeBonusCollection(int capacity)
             : base(capacity)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingIngredients"/> class.
+        /// Initializes a new instance of the <see cref="UpgradeBonusCollection"/> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public CraftingIngredients(IEnumerable<CraftingIngredient> collection)
+        public UpgradeBonusCollection(IEnumerable<string> collection)
             : base(collection)
         {
         }

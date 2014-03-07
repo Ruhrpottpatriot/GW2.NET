@@ -42,7 +42,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         /// Gets or sets a collection of the required ingredients.
         /// </summary>
         [JsonProperty("ingredients", Order = 8)]
-        public CraftingIngredients Ingredients { get; set; }
+        public CraftingIngredientCollection Ingredients { get; set; }
 
         /// <summary>
         /// Gets or sets the recipe's minimum rating.

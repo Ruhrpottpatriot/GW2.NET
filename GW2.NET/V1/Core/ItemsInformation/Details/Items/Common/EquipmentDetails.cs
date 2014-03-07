@@ -23,7 +23,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
         /// Gets or sets the item's infusion slots.
         /// </summary>
         [JsonProperty(PropertyName = "infusion_slots", Order = 100)]
-        public InfusionSlots InfusionSlots { get; set; }
+        public InfusionSlotCollection InfusionSlots { get; set; }
 
         /// <summary>
         /// Gets or sets the item's suffix item's ID.

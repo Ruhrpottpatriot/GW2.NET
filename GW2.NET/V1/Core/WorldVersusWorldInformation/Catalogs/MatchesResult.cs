@@ -17,6 +17,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
         /// Gets or sets a collection of matches.
         /// </summary>
         [JsonProperty("wvw_matches", Order = 0)]
-        public Matches Matches { get; set; }
+        public MatchCollection Matches { get; set; }
     }
 }

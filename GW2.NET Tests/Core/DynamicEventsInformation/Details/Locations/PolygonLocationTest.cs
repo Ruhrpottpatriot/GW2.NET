@@ -52,8 +52,8 @@ namespace GW2DotNET_Tests.Core.DynamicEventsInformation.Details.Locations
         [Category("event_details.json")]
         public void PolygonLocation_PointsReflectsInput()
         {
-            var expected = new Points();
-            var actual   = this.polygonLocation.Points;
+            var expected = new PointCollection();
+            var actual   = this.polygonLocation.PointCollection;
 
             Assert.AreEqual(expected, actual);
         }

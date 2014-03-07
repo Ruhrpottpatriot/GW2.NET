@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// Gets or sets the series of points in the polygon.
         /// </summary>
         [JsonProperty("points", Order = 5)]
-        public Points Points { get; set; }
+        public PointCollection PointCollection { get; set; }
 
         /// <summary>
         /// Gets or sets the location's range on the z-axis.

@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion;
 using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions;
 using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
 using Newtonsoft.Json;
@@ -77,7 +76,7 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregion
         [Category("map_floor.json")]
         public void Map_PointsOfInterestReflectsInput()
         {
-            var expected = new PointsOfInterest();
+            var expected = new PointOfInterestCollection();
             var actual   = this.map.PointsOfInterest;
             Assert.AreEqual(expected, actual);
         }
@@ -86,7 +85,7 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregion
         [Category("map_floor.json")]
         public void Map_TasksReflectsInput()
         {
-            var expected = new RenownTasks();
+            var expected = new RenownTaskCollection();
             var actual   = this.map.Tasks;
             Assert.AreEqual(expected, actual);
         }
@@ -95,7 +94,7 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregion
         [Category("map_floor.json")]
         public void Map_SkillChallengesReflectsInput()
         {
-            var expected = new SkillChallenges();
+            var expected = new SkillChallengeCollection();
             var actual   = this.map.SkillChallenges;
             Assert.AreEqual(expected, actual);
         }
@@ -104,7 +103,7 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregion
         [Category("map_floor.json")]
         public void Map_SectorsReflectsInput()
         {
-            var expected = new Sectors();
+            var expected = new SectorCollection();
             var actual   = this.map.Sectors;
             Assert.AreEqual(expected, actual);
         }

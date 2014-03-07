@@ -58,24 +58,24 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
         /// Gets or sets a collection of Points of Interest locations.
         /// </summary>
         [JsonProperty("points_of_interest", Order = 6)]
-        public PointsOfInterest PointsOfInterest { get; set; }
+        public PointOfInterestCollection PointsOfInterest { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of areas within the map.
         /// </summary>
         [JsonProperty("sectors", Order = 9)]
-        public Sectors Sectors { get; set; }
+        public SectorCollection Sectors { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of skill challenge locations.
         /// </summary>
         [JsonProperty("skill_challenges", Order = 8)]
-        public SkillChallenges SkillChallenges { get; set; }
+        public SkillChallengeCollection SkillChallenges { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of renown heart locations.
         /// </summary>
         [JsonProperty("tasks", Order = 7)]
-        public RenownTasks Tasks { get; set; }
+        public RenownTaskCollection Tasks { get; set; }
     }
 }

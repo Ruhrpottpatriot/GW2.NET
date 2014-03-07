@@ -41,23 +41,23 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNames"/>.
+        /// Sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNameCollection"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ObjectiveNames"/>.</returns>
-        public IServiceResponse<ObjectiveNames> GetResponse(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="ObjectiveNameCollection"/>.</returns>
+        public IServiceResponse<ObjectiveNameCollection> GetResponse(IServiceClient handler)
         {
-            return base.GetResponse<ObjectiveNames>(handler);
+            return base.GetResponse<ObjectiveNameCollection>(handler);
         }
 
         /// <summary>
-        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNames"/>.
+        /// Asynchronously sends this request to the specified <see cref="ServiceClient"/> and retrieves a response whose content is of type <see cref="ObjectiveNameCollection"/>.
         /// </summary>
         /// <param name="handler">The <see cref="ServiceClient"/> that sends the request over a network and returns an instance of type <see cref="ServiceResponse{TContent}"/>.</param>
-        /// <returns>Returns an instance of type <see cref="ObjectiveNames"/>.</returns>
-        public Task<IServiceResponse<ObjectiveNames>> GetResponseAsync(IServiceClient handler)
+        /// <returns>Returns an instance of type <see cref="ObjectiveNameCollection"/>.</returns>
+        public Task<IServiceResponse<ObjectiveNameCollection>> GetResponseAsync(IServiceClient handler)
         {
-            return base.GetResponseAsync<ObjectiveNames>(handler);
+            return base.GetResponseAsync<ObjectiveNameCollection>(handler);
         }
     }
 }

@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
         /// Gets or sets a collection of floors available for this continent.
         /// </summary>
         [JsonProperty("floors", Order = 4)]
-        public MapFloors Floors { get; set; }
+        public MapFloorCollection Floors { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum zoom level for use with the map tile service.

@@ -17,13 +17,13 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         /// Gets or sets the map's bonuses.
         /// </summary>
         [JsonProperty("bonuses", Order = 3)]
-        public Bonuses Bonuses { get; set; }
+        public MapBonusCollection Bonuses { get; set; }
 
         /// <summary>
         /// Gets or sets the map's objectives.
         /// </summary>
         [JsonProperty("objectives", Order = 2)]
-        public Objectives Objectives { get; set; }
+        public ObjectiveCollection Objectives { get; set; }
 
         /// <summary>
         /// Gets or sets the map's scoreboard.

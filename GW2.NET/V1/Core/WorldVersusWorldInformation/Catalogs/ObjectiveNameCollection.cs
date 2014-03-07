@@ -1,39 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RenownTasks.cs" company="GW2.Net Coding Team">
+// <copyright file="ObjectiveNameCollection.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
 
-namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
+namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     /// <summary>
-    /// Represents a collection of renown heart locations.
+    /// Represents a collection of objectives and their localized name.
     /// </summary>
-    public class RenownTasks : JsonList<RenownTask>
+    public class ObjectiveNameCollection : JsonList<ObjectiveName>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenownTasks"/> class.
+        /// Initializes a new instance of the <see cref="ObjectiveNameCollection"/> class.
         /// </summary>
-        public RenownTasks()
+        public ObjectiveNameCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenownTasks"/> class.
+        /// Initializes a new instance of the <see cref="ObjectiveNameCollection"/> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
-        public RenownTasks(int capacity)
+        public ObjectiveNameCollection(int capacity)
             : base(capacity)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RenownTasks"/> class.
+        /// Initializes a new instance of the <see cref="ObjectiveNameCollection"/> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public RenownTasks(IEnumerable<RenownTask> collection)
+        public ObjectiveNameCollection(IEnumerable<ObjectiveName> collection)
             : base(collection)
         {
         }

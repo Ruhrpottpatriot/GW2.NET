@@ -62,7 +62,7 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Continents
         [Category("continents.json")]
         public void MapContinent_FloorsReflectsInput()
         {
-            var expected = new MapFloors();
+            var expected = new MapFloorCollection();
             var actual   = this.mapContinent.Floors;
 
             Assert.AreEqual(expected, actual);

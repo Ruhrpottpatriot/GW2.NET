@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
         /// Gets or sets the upgrade component's bonuses.
         /// </summary>
         [JsonProperty(PropertyName = "bonuses", Order = 3)]
-        public Bonuses Bonuses { get; set; }
+        public UpgradeBonusCollection Bonuses { get; set; }
 
         /// <summary>
         /// Gets or sets the upgrade component's infix upgrade.

@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
         /// Gets or sets a list of available floors for this map.
         /// </summary>
         [JsonProperty("floors", Order = 4)]
-        public MapFloors Floors { get; set; }
+        public MapFloorCollection Floors { get; set; }
 
         /// <summary>
         /// Gets or sets the map name.

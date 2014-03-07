@@ -6,7 +6,6 @@
 
 using System.Drawing;
 using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregion;
 using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions;
 using Newtonsoft.Json;
 

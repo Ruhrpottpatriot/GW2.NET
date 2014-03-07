@@ -17,6 +17,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
         /// Gets or sets a list of event details.
         /// </summary>
         [JsonProperty("events", Order = 0)]
-        public DynamicEvents Events { get; set; }
+        public DynamicEventCollection Events { get; set; }
     }
 }

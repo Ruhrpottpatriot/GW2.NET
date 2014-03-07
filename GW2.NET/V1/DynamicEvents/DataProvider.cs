@@ -34,16 +34,16 @@ namespace GW2DotNET.V1.DynamicEvents
         private readonly string eventListCacheFileName;
 
         /// <summary>Backing field for the event list, so we can replace values.</summary>
-        private Lazy<Core.DynamicEventsInformation.Status.DynamicEvents> eventList; // TODO: rename namespace to fix this collision
+        private Lazy<DynamicEventCollection> eventList; // TODO: rename namespace to fix this collision
 
         /// <summary>Caching field for the event names. Lazy initialized.</summary>
-        private Lazy<DynamicEventNames> lazyEventNames;
+        private Lazy<DynamicEventNameCollection> lazyEventNames;
 
         /// <summary>Caching field for the map names. Lazy initialized.</summary>
-        private Lazy<MapNames> lazyMapNames;
+        private Lazy<MapNameCollection> lazyMapNames;
 
         /// <summary>Caching field for the world names. Lazy initialized.</summary>
-        private Lazy<WorldNames> lazyWorldNames;
+        private Lazy<WorldNameCollection> lazyWorldNames;
 
         // --------------------------------------------------------------------------------------------------------------------
         // Constructors & Destructors
@@ -62,10 +62,10 @@ namespace GW2DotNET.V1.DynamicEvents
         public DataProvider(IDataManager dataManager, bool bypassCaching)
         {
             this.dataManager = dataManager;
-            this.BypassCache = bypassCaching;
-            this.eventListCacheFileName = string.Format("{0}\\Cache\\EventCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
+            BypassCache = bypassCaching;
+            eventListCacheFileName = string.Format("{0}\\Cache\\EventCache-{1}.json", this.dataManager.SavePath, this.dataManager.Language);
 
-            this.InitializeLazy();
+            InitializeLazy();
         }
 
         // --------------------------------------------------------------------------------------------------------------------
@@ -73,11 +73,11 @@ namespace GW2DotNET.V1.DynamicEvents
         // --------------------------------------------------------------------------------------------------------------------
 
         /// <summary>Gets the events.</summary>
-        public Core.DynamicEventsInformation.Status.DynamicEvents EventList
+        public DynamicEventCollection EventList
         {
             get
             {
-                return this.eventList.Value;
+                return eventList.Value;
             }
         }
 
@@ -88,13 +88,13 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Writes the complete cache to the disk using the specified serializer.</summary>
         public override void WriteCacheToDisk()
         {
-            var eventCache = new GameCache<Core.DynamicEventsInformation.Status.DynamicEvents>
+            var eventCache = new GameCache<DynamicEventCollection>
                              {
-                                 Build = this.dataManager.Build,
-                                 CacheData = this.eventList.Value
+                                 Build = dataManager.Build,
+                                 CacheData = eventList.Value
                              };
 
-            this.WriteDataToDisk(this.eventListCacheFileName, eventCache);
+            WriteDataToDisk(eventListCacheFileName, eventCache);
         }
 
         /// <summary>Writes the complete cache to the disk asynchronously using the specified serializer</summary>
@@ -107,11 +107,11 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Clears the cache.</summary>
         public override void ClearCache()
         {
-            this.lazyEventNames = new Lazy<DynamicEventNames>(this.GetEventNames);
-            this.lazyMapNames = new Lazy<MapNames>(this.GetMapNames);
-            this.lazyWorldNames = new Lazy<WorldNames>(this.GetWorldNames);
+            lazyEventNames = new Lazy<DynamicEventNameCollection>(GetEventNames);
+            lazyMapNames = new Lazy<MapNameCollection>(GetMapNames);
+            lazyWorldNames = new Lazy<WorldNameCollection>(GetWorldNames);
 
-            this.eventList = new Lazy<Core.DynamicEventsInformation.Status.DynamicEvents>();
+            eventList = new Lazy<DynamicEventCollection>();
         }
 
         /// <summary>Gets a list of all events from the server.</summary>
@@ -129,9 +129,9 @@ namespace GW2DotNET.V1.DynamicEvents
 
             var events = response.EnsureSuccessStatusCode().Deserialize().Events;
 
-            if (!this.BypassCache)
+            if (!BypassCache)
             {
-                this.eventList.Value.AddRange(events);
+                eventList.Value.AddRange(events);
             }
 
             return events;
@@ -152,9 +152,9 @@ namespace GW2DotNET.V1.DynamicEvents
 
             var events = response.EnsureSuccessStatusCode().Deserialize().Events;
 
-            if (!this.BypassCache)
+            if (!BypassCache)
             {
-                this.eventList.Value.AddRange(events);
+                eventList.Value.AddRange(events);
             }
 
             return events;
@@ -198,7 +198,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Gets the world names from the server.</summary>
         /// <returns>An <see cref="IEnumerable{WorldName}"/> containing all world names.</returns>
-        private WorldNames GetWorldNames()
+        private WorldNameCollection GetWorldNames()
         {
             var serviceClient = ServiceClient.Create();
 
@@ -213,7 +213,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Gets the map names from the server.</summary>
         /// <returns>An <see cref="IEnumerable{MapName}"/> containing all map names.</returns>
-        private MapNames GetMapNames()
+        private MapNameCollection GetMapNames()
         {
             var serviceClient = ServiceClient.Create();
 
@@ -228,7 +228,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Gets the event names from the server.</summary>
         /// <returns>An <see cref="IEnumerable{DynamicEventName}"/> containing all event names.</returns>
-        private DynamicEventNames GetEventNames()
+        private DynamicEventNameCollection GetEventNames()
         {
             var serviceClient = ServiceClient.Create();
 
@@ -244,13 +244,13 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Initializes the lazy fields.</summary>
         private void InitializeLazy()
         {
-            this.lazyEventNames = new Lazy<DynamicEventNames>(this.GetEventNames);
-            this.lazyMapNames = new Lazy<MapNames>(this.GetMapNames);
-            this.lazyWorldNames = new Lazy<WorldNames>(this.GetWorldNames);
+            lazyEventNames = new Lazy<DynamicEventNameCollection>(GetEventNames);
+            lazyMapNames = new Lazy<MapNameCollection>(GetMapNames);
+            lazyWorldNames = new Lazy<WorldNameCollection>(GetWorldNames);
 
             int build;
 
-            this.eventList = !this.BypassCache ? new Lazy<Core.DynamicEventsInformation.Status.DynamicEvents>(() => this.ReadCacheFromDisk<Core.DynamicEventsInformation.Status.DynamicEvents>(this.eventListCacheFileName, out build)) : new Lazy<Core.DynamicEventsInformation.Status.DynamicEvents>();
+            eventList = !BypassCache ? new Lazy<DynamicEventCollection>(() => ReadCacheFromDisk<DynamicEventCollection>(eventListCacheFileName, out build)) : new Lazy<DynamicEventCollection>();
         }
     }
 }
