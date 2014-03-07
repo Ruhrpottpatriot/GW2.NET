@@ -36,7 +36,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// <typeparam name="TReturn">The type to serialize the file contents into.</typeparam>
         /// <param name="path">The path of the cache file.</param>
         /// <param name="build">The build.</param>
-        /// <returns>The contents of the file serialized into <see cref="TReturn"/>.</returns>
+        /// <returns>The contents of the file serialized into <typeparamref name="TReturn"/>.</returns>
         public TReturn ReadCacheFromDisk<TReturn>(string path, out int build) where TReturn : class, new()
         {
             if (File.Exists(path))
@@ -67,7 +67,7 @@ namespace GW2DotNET.V1.Infrastructure
         /// <typeparam name="T">The type to serialize the file contents into.</typeparam>
         /// <param name="path">The path of the cache file.</param>
         /// <param name="build">The build.</param>
-        /// <returns>The contents of the file serialized into <see cref="T"/>.</returns>
+        /// <returns>The contents of the file serialized into <typeparamref name="T"/>.</returns>
         public Task<T> ReadCacheFromDiskAsync<T>(string path, out int build)
         {
             throw new NotImplementedException("This function has not yet been implemented. Use the synchronous method instead.");
