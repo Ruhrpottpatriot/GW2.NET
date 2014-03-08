@@ -10,10 +10,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.Utilities;
 using GW2DotNET.V1.Core;
-using RestSharp;
-using JsonObject = GW2DotNET.V1.Core.JsonObject;
 
-namespace GW2DotNET.V1.RestSharp
+namespace RestSharp
 {
     /// <summary>
     ///     Provides a RestSharp-specific implementation of the <see cref="IServiceRequest" /> interface.
@@ -44,7 +42,7 @@ namespace GW2DotNET.V1.RestSharp
         /// </summary>
         /// <param name="resource">The service endpoint as a relative URI.</param>
         protected ServiceRequest(Uri resource)
-            : base(Preconditions.EnsureNotNull(paramName: "resource", value: resource))
+            : base((Uri)Preconditions.EnsureNotNull(paramName: "resource", value: resource))
         {
             if (resource.IsAbsoluteUri)
             {
@@ -72,7 +70,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public virtual IServiceResponse<TContent> GetResponse<TContent>(IServiceClient serviceClient)
-            where TContent : JsonObject
+            where TContent : GW2DotNET.V1.Core.JsonObject
         {
             return serviceClient.Send<TContent>(this);
         }
@@ -84,7 +82,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient)
-            where TContent : JsonObject
+            where TContent : GW2DotNET.V1.Core.JsonObject
         {
             return serviceClient.SendAsync<TContent>(this);
         }
@@ -96,7 +94,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <param name="serviceClient">The service client.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient, CancellationToken cancellationToken) where TContent : JsonObject
+        public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient, CancellationToken cancellationToken) where TContent : GW2DotNET.V1.Core.JsonObject
         {
             return serviceClient.SendAsync<TContent>(this, cancellationToken);
         }

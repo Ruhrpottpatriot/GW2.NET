@@ -1,30 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MatchesRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="MapNamesRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
+using GW2DotNET.V1.Core.MapsInformation.Names;
 
-namespace GW2DotNET.V1.RestSharp.Requests
+namespace RestSharp.Requests
 {
     /// <summary>
-    ///     Represents a request for a list of the currently running World versus World matches, with the participating worlds
-    ///     included in the result.
+    ///     Represents a request for a list of localized map names.
     /// </summary>
     /// <remarks>
-    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches" /> for more information.
+    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names" /> for more information.
     /// </remarks>
-    public class MatchesRequest : ServiceRequest
+    public class MapNamesRequest : ServiceRequest
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MatchesRequest" /> class.
+        ///     Initializes a new instance of the <see cref="MapNamesRequest" /> class.
         /// </summary>
-        public MatchesRequest()
-            : base(Resources.Matches)
+        public MapNamesRequest()
+            : base(Resources.MapNames)
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="MapNamesRequest" /> class.
+        /// </summary>
+        /// <param name="languageInfo">The output language.</param>
+        public MapNamesRequest(CultureInfo languageInfo)
+            : base(Resources.MapNames, languageInfo)
         {
         }
 
@@ -33,9 +42,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public IServiceResponse<MatchesResult> GetResponse(IServiceClient serviceClient)
+        public IServiceResponse<MapNameCollection> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<MatchesResult>(serviceClient);
+            return base.GetResponse<MapNameCollection>(serviceClient);
         }
 
         /// <summary>
@@ -43,9 +52,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<MatchesResult>> GetResponseAsync(IServiceClient serviceClient)
+        public Task<IServiceResponse<MapNameCollection>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<MatchesResult>(serviceClient);
+            return base.GetResponseAsync<MapNameCollection>(serviceClient);
         }
 
         /// <summary>
@@ -54,9 +63,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// <param name="serviceClient">The service client.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<MatchesResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        public Task<IServiceResponse<MapNameCollection>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<MatchesResult>(serviceClient, cancellationToken);
+            return base.GetResponseAsync<MapNameCollection>(serviceClient, cancellationToken);
         }
     }
 }

@@ -9,10 +9,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.Utilities;
 using GW2DotNET.V1.Core;
-using RestSharp;
-using JsonObject = GW2DotNET.V1.Core.JsonObject;
 
-namespace GW2DotNET.V1.RestSharp
+namespace RestSharp
 {
     /// <summary>
     ///     Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.
@@ -62,7 +60,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="serviceRequest">The <see cref="ServiceRequest" /> that targets a specific API endpoint.</param>
         /// <returns>The response.</returns>
-        public IServiceResponse<TContent> Send<TContent>(IServiceRequest serviceRequest) where TContent : JsonObject
+        public IServiceResponse<TContent> Send<TContent>(IServiceRequest serviceRequest) where TContent : GW2DotNET.V1.Core.JsonObject
         {
             Preconditions.EnsureNotNull(paramName: "serviceRequest", value: serviceRequest);
             if (!(serviceRequest is IRestRequest))
@@ -81,7 +79,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="serviceRequest">The <see cref="ServiceRequest" /> that targets a specific API endpoint.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest) where TContent : JsonObject
+        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest) where TContent : GW2DotNET.V1.Core.JsonObject
         {
             return this.SendAsync<TContent>(serviceRequest, CancellationToken.None);
         }
@@ -94,7 +92,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <param name="serviceRequest">The <see cref="ServiceRequest" /> that targets a specific API endpoint.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TContent : JsonObject
+        public Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TContent : GW2DotNET.V1.Core.JsonObject
         {
             Preconditions.EnsureNotNull(paramName: "serviceRequest", value: serviceRequest);
             if (!(serviceRequest is ServiceRequest))
@@ -113,7 +111,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <param name="restRequest">The <see cref="ServiceRequest" /> that targets a specific API endpoint.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        private Task<IServiceResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest restRequest, CancellationToken cancellationToken) where TContent : JsonObject
+        private Task<IServiceResponse<TContent>> SendAsyncImplementation<TContent>(IRestRequest restRequest, CancellationToken cancellationToken) where TContent : GW2DotNET.V1.Core.JsonObject
         {
             Task<IRestResponse> t1 = this.ExecuteTaskAsync(restRequest, cancellationToken);
 
@@ -133,7 +131,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <param name="restRequest">The request</param>
         /// <returns>The response.</returns>
         private IServiceResponse<TContent> SendImplementation<TContent>(IRestRequest restRequest)
-            where TContent : JsonObject
+            where TContent : GW2DotNET.V1.Core.JsonObject
         {
             IRestResponse restResponse = this.Execute(restRequest);
 

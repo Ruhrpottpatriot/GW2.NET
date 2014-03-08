@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.ItemsInformation.Details;
 
-namespace GW2DotNET.V1.RestSharp.Requests
+namespace RestSharp.Requests
 {
     /// <summary>
     ///     Represents a request for information regarding a specific recipe.

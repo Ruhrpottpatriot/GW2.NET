@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.MapsInformation.Details;
 
-namespace GW2DotNET.V1.RestSharp.Requests
+namespace RestSharp.Requests
 {
     /// <summary>
     ///     Represents a request for details regarding (a) map(s) in the game.

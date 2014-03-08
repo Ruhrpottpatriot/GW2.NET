@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
 
-namespace GW2DotNET.V1.RestSharp.Requests
+namespace RestSharp.Requests
 {
     /// <summary>
     ///     Represents a request for a list of events and their status that match the given filters (if any).

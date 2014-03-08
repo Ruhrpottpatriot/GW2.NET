@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.ItemsInformation.Catalogs;
 
-namespace GW2DotNET.V1.RestSharp.Requests
+namespace RestSharp.Requests
 {
     /// <summary>
     ///     Represents a request for a list of all discovered recipes.

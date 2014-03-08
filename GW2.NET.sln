@@ -14,9 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6F853A
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharp.GW2.NET", "RestSharp.GW2.NET\RestSharp.GW2.NET.csproj", "{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 4
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -26,6 +28,9 @@ Global
 		SccProjectUniqueName2 = GW2.NET\\GW2.NET.csproj
 		SccProjectName2 = GW2.NET
 		SccLocalPath2 = GW2.NET
+		SccProjectUniqueName3 = RestSharp.GW2.NET\\RestSharp.GW2.NET.csproj
+		SccProjectName3 = RestSharp.GW2.NET
+		SccLocalPath3 = RestSharp.GW2.NET
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +65,14 @@ Global
 		{D138871F-94ED-4BB0-999A-2ACD3732DF30}.Release|x64.Build.0 = Release|Any CPU
 		{D138871F-94ED-4BB0-999A-2ACD3732DF30}.Release|x86.ActiveCfg = Release|Any CPU
 		{D138871F-94ED-4BB0-999A-2ACD3732DF30}.Release|x86.Build.0 = Release|Any CPU
+		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Release|x64.ActiveCfg = Release|Any CPU
+		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

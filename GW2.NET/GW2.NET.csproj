@@ -44,10 +44,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=104.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -395,29 +391,7 @@
       <DependentUpon>Scoreboard.cs</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\TeamColor.cs" />
-    <Compile Include="V1\RestSharp\Requests\BuildRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\ColorsRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\ContinentsRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\DynamicEventDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\DynamicEventNamesRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\DynamicEventRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\FilesRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\GuildDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\ItemDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\ItemsRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\MapDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\MapFloorRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\MapNamesRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\MatchDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\MatchesRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\ObjectiveNamesRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\RecipeDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\RecipesRequest.cs" />
-    <Compile Include="V1\RestSharp\Requests\WorldNamesRequest.cs" />
-    <Compile Include="V1\RestSharp\ServiceClient.cs" />
-    <Compile Include="V1\RestSharp\ServiceManager.cs" />
-    <Compile Include="V1\RestSharp\ServiceRequest.cs" />
-    <Compile Include="V1\RestSharp\ServiceResponse.cs" />
+    <Compile Include="V1\ServiceProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -427,7 +401,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="V1\Core\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>

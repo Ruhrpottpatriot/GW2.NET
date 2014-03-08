@@ -11,7 +11,7 @@ namespace GW2DotNET.Utilities
     /// <summary>
     ///     Utility class. Provides static methods for validating arguments.
     /// </summary>
-    internal static class Preconditions
+    public static class Preconditions
     {
         /// <summary>
         ///     Ensures that the specified value is not a null reference.
@@ -22,7 +22,7 @@ namespace GW2DotNET.Utilities
         /// <param name="message">A message that describes the error.</param>
         /// <exception cref="System.ArgumentNullException">The exception that is thrown when the specified value is null.</exception>
         /// <returns>The specified value.</returns>
-        internal static T EnsureNotNull<T>(T value, string paramName = null, string message = null) where T : class
+        public static T EnsureNotNull<T>(T value, string paramName = null, string message = null) where T : class
         {
             if (value == null)
             {
@@ -45,7 +45,7 @@ namespace GW2DotNET.Utilities
         ///     the expected value.
         /// </exception>
         /// <returns>The specified value.</returns>
-        internal static T EnsureExact<T>(T expectedValue, T actualValue, string paramName = null, string message = null)
+        public static T EnsureExact<T>(T expectedValue, T actualValue, string paramName = null, string message = null)
         {
             if (!object.Equals(expectedValue, actualValue))
             {
@@ -68,7 +68,7 @@ namespace GW2DotNET.Utilities
         ///     range.
         /// </exception>
         /// <returns>The specified value.</returns>
-        internal static int EnsureInRange(
+        public static int EnsureInRange(
             int value,
             int floor,
             int ceiling,

@@ -1,39 +1,30 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ColorsRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="MatchesRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.ColorsInformation.Details;
+using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
 
-namespace GW2DotNET.V1.RestSharp.Requests
+namespace RestSharp.Requests
 {
     /// <summary>
-    ///     Represents a request for information regarding dyes in the game.
+    ///     Represents a request for a list of the currently running World versus World matches, with the participating worlds
+    ///     included in the result.
     /// </summary>
     /// <remarks>
-    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/colors" /> for more information.
+    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches" /> for more information.
     /// </remarks>
-    public class ColorsRequest : ServiceRequest
+    public class MatchesRequest : ServiceRequest
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ColorsRequest" /> class.
+        ///     Initializes a new instance of the <see cref="MatchesRequest" /> class.
         /// </summary>
-        public ColorsRequest()
-            : base(Resources.Colors)
-        {
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ColorsRequest" /> class.
-        /// </summary>
-        /// <param name="languageInfo">The output language.</param>
-        public ColorsRequest(CultureInfo languageInfo)
-            : base(Resources.Colors, languageInfo)
+        public MatchesRequest()
+            : base(Resources.Matches)
         {
         }
 
@@ -42,9 +33,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public IServiceResponse<DyesResult> GetResponse(IServiceClient serviceClient)
+        public IServiceResponse<MatchesResult> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<DyesResult>(serviceClient);
+            return base.GetResponse<MatchesResult>(serviceClient);
         }
 
         /// <summary>
@@ -52,9 +43,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<DyesResult>> GetResponseAsync(IServiceClient serviceClient)
+        public Task<IServiceResponse<MatchesResult>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<DyesResult>(serviceClient);
+            return base.GetResponseAsync<MatchesResult>(serviceClient);
         }
 
         /// <summary>
@@ -63,9 +54,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// <param name="serviceClient">The service client.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<DyesResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        public Task<IServiceResponse<MatchesResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<DyesResult>(serviceClient, cancellationToken);
+            return base.GetResponseAsync<MatchesResult>(serviceClient, cancellationToken);
         }
     }
 }

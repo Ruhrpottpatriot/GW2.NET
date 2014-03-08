@@ -26,9 +26,9 @@ using GW2DotNET.V1.Core.MapsInformation.Names;
 using GW2DotNET.V1.Core.WorldsInformation.Names;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
-using GW2DotNET.V1.RestSharp.Requests;
+using RestSharp.Requests;
 
-namespace GW2DotNET.V1.RestSharp
+namespace RestSharp
 {
     /// <summary>
     ///     Provides a RestSharp-specific implementation of the Guild Wars 2 service.
@@ -948,7 +948,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="request">The request.</param>
         /// <returns>The response content.</returns>
-        private TResult Get<TResult>(IServiceRequest request) where TResult : JsonObject
+        private TResult Get<TResult>(IServiceRequest request) where TResult : GW2DotNET.V1.Core.JsonObject
         {
             IServiceResponse<TResult> response = request.GetResponse<TResult>(this.serviceClient);
             TResult content = response.EnsureSuccessStatusCode().Deserialize();
@@ -964,7 +964,7 @@ namespace GW2DotNET.V1.RestSharp
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response content.</returns>
         private Task<TResult> GetAsync<TResult>(IServiceRequest request, CancellationToken? cancellationToken = null)
-            where TResult : JsonObject
+            where TResult : GW2DotNET.V1.Core.JsonObject
         {
             CancellationToken token = cancellationToken.GetValueOrDefault(CancellationToken.None);
             Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(this.serviceClient, token);
@@ -992,8 +992,8 @@ namespace GW2DotNET.V1.RestSharp
         /// <param name="selector">The selector.</param>
         /// <returns>The selected result.</returns>
         private Task<TResult> Select<TContent, TResult>(Task<TContent> result, Func<TContent, TResult> selector)
-            where TContent : JsonObject
-            where TResult : JsonObject
+            where TContent : GW2DotNET.V1.Core.JsonObject
+            where TResult : GW2DotNET.V1.Core.JsonObject
         {
             return result.ContinueWith(task => selector(task.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
         }

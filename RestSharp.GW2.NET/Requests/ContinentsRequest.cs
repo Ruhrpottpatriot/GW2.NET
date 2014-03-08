@@ -1,39 +1,29 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapNamesRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="ContinentsRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.MapsInformation.Names;
+using GW2DotNET.V1.Core.MapsInformation.Continents;
 
-namespace GW2DotNET.V1.RestSharp.Requests
+namespace RestSharp.Requests
 {
     /// <summary>
-    ///     Represents a request for a list of localized map names.
+    ///     Represents a request for static information about the continents.
     /// </summary>
     /// <remarks>
-    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names" /> for more information.
+    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/continents" /> for more information.
     /// </remarks>
-    public class MapNamesRequest : ServiceRequest
+    public class ContinentsRequest : ServiceRequest
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="MapNamesRequest" /> class.
+        ///     Initializes a new instance of the <see cref="ContinentsRequest" /> class.
         /// </summary>
-        public MapNamesRequest()
-            : base(Resources.MapNames)
-        {
-        }
-
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MapNamesRequest" /> class.
-        /// </summary>
-        /// <param name="languageInfo">The output language.</param>
-        public MapNamesRequest(CultureInfo languageInfo)
-            : base(Resources.MapNames, languageInfo)
+        public ContinentsRequest()
+            : base(Resources.Continents)
         {
         }
 
@@ -42,9 +32,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public IServiceResponse<MapNameCollection> GetResponse(IServiceClient serviceClient)
+        public IServiceResponse<ContinentsResult> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<MapNameCollection>(serviceClient);
+            return base.GetResponse<ContinentsResult>(serviceClient);
         }
 
         /// <summary>
@@ -52,9 +42,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<MapNameCollection>> GetResponseAsync(IServiceClient serviceClient)
+        public Task<IServiceResponse<ContinentsResult>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<MapNameCollection>(serviceClient);
+            return base.GetResponseAsync<ContinentsResult>(serviceClient);
         }
 
         /// <summary>
@@ -63,9 +53,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// <param name="serviceClient">The service client.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<MapNameCollection>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        public Task<IServiceResponse<ContinentsResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<MapNameCollection>(serviceClient, cancellationToken);
+            return base.GetResponseAsync<ContinentsResult>(serviceClient, cancellationToken);
         }
     }
 }

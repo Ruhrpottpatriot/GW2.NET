@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ItemsRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="BuildRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -7,23 +7,23 @@
 using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.ItemsInformation.Catalogs;
+using GW2DotNET.V1.Core.BuildInformation;
 
-namespace GW2DotNET.V1.RestSharp.Requests
+namespace RestSharp.Requests
 {
     /// <summary>
-    ///     Represents a request for a list of all discovered items.
+    ///     Represents a request for the current build ID of the game.
     /// </summary>
     /// <remarks>
-    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/items" /> for more information.
+    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.
     /// </remarks>
-    public class ItemsRequest : ServiceRequest
+    public class BuildRequest : ServiceRequest
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ItemsRequest" /> class.
+        ///     Initializes a new instance of the <see cref="BuildRequest" /> class.
         /// </summary>
-        public ItemsRequest()
-            : base(Resources.Items)
+        public BuildRequest()
+            : base(Resources.Build)
         {
         }
 
@@ -32,9 +32,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public IServiceResponse<ItemsResult> GetResponse(IServiceClient serviceClient)
+        public IServiceResponse<Build> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<ItemsResult>(serviceClient);
+            return base.GetResponse<Build>(serviceClient);
         }
 
         /// <summary>
@@ -42,9 +42,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<ItemsResult>> GetResponseAsync(IServiceClient serviceClient)
+        public Task<IServiceResponse<Build>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<ItemsResult>(serviceClient);
+            return base.GetResponseAsync<Build>(serviceClient);
         }
 
         /// <summary>
@@ -53,9 +53,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// <param name="serviceClient">The service client.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<ItemsResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        public Task<IServiceResponse<Build>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<ItemsResult>(serviceClient, cancellationToken);
+            return base.GetResponseAsync<Build>(serviceClient, cancellationToken);
         }
     }
 }

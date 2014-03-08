@@ -1,29 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContinentsRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="ColorsRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.MapsInformation.Continents;
+using GW2DotNET.V1.Core.ColorsInformation.Details;
 
-namespace GW2DotNET.V1.RestSharp.Requests
+namespace RestSharp.Requests
 {
     /// <summary>
-    ///     Represents a request for static information about the continents.
+    ///     Represents a request for information regarding dyes in the game.
     /// </summary>
     /// <remarks>
-    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/continents" /> for more information.
+    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/colors" /> for more information.
     /// </remarks>
-    public class ContinentsRequest : ServiceRequest
+    public class ColorsRequest : ServiceRequest
     {
         /// <summary>
-        ///     Initializes a new instance of the <see cref="ContinentsRequest" /> class.
+        ///     Initializes a new instance of the <see cref="ColorsRequest" /> class.
         /// </summary>
-        public ContinentsRequest()
-            : base(Resources.Continents)
+        public ColorsRequest()
+            : base(Resources.Colors)
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ColorsRequest" /> class.
+        /// </summary>
+        /// <param name="languageInfo">The output language.</param>
+        public ColorsRequest(CultureInfo languageInfo)
+            : base(Resources.Colors, languageInfo)
         {
         }
 
@@ -32,9 +42,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public IServiceResponse<ContinentsResult> GetResponse(IServiceClient serviceClient)
+        public IServiceResponse<DyesResult> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<ContinentsResult>(serviceClient);
+            return base.GetResponse<DyesResult>(serviceClient);
         }
 
         /// <summary>
@@ -42,9 +52,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<ContinentsResult>> GetResponseAsync(IServiceClient serviceClient)
+        public Task<IServiceResponse<DyesResult>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<ContinentsResult>(serviceClient);
+            return base.GetResponseAsync<DyesResult>(serviceClient);
         }
 
         /// <summary>
@@ -53,9 +63,9 @@ namespace GW2DotNET.V1.RestSharp.Requests
         /// <param name="serviceClient">The service client.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<ContinentsResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        public Task<IServiceResponse<DyesResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<ContinentsResult>(serviceClient, cancellationToken);
+            return base.GetResponseAsync<DyesResult>(serviceClient, cancellationToken);
         }
     }
 }

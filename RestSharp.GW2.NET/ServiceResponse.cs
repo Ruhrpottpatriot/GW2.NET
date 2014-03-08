@@ -10,16 +10,14 @@ using System.Net.Mime;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.ErrorInformation;
 using Newtonsoft.Json;
-using RestSharp;
-using JsonObject = GW2DotNET.V1.Core.JsonObject;
 
-namespace GW2DotNET.V1.RestSharp
+namespace RestSharp
 {
     /// <summary>
     ///     Provides a RestSharp-specific implementation of the <see cref="IServiceResponse{TContent}" /> interface.
     /// </summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>
-    public class ServiceResponse<TContent> : RestResponse, IServiceResponse<TContent> where TContent : JsonObject
+    public class ServiceResponse<TContent> : RestResponse, IServiceResponse<TContent> where TContent : GW2DotNET.V1.Core.JsonObject
     {
         /// <summary>
         ///     Initializes a new instance of the <see cref="ServiceResponse{TContent}" /> class using the specified
