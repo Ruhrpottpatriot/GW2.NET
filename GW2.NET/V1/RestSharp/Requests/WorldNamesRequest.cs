@@ -1,0 +1,71 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="WorldNamesRequest.cs" company="GW2.Net Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
+using GW2DotNET.V1.Core;
+using GW2DotNET.V1.Core.WorldsInformation.Names;
+
+namespace GW2DotNET.V1.RestSharp.Requests
+{
+    /// <summary>
+    ///     Represents a request for a list of the localized WorldName names for the specified language.
+    /// </summary>
+    /// <remarks>
+    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names" /> for more information.
+    /// </remarks>
+    public class WorldNamesRequest : ServiceRequest
+    {
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="WorldNamesRequest" /> class.
+        /// </summary>
+        public WorldNamesRequest()
+            : base(Resources.WorldNames)
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="WorldNamesRequest" /> class.
+        /// </summary>
+        /// <param name="languageInfo">The output language.</param>
+        public WorldNamesRequest(CultureInfo languageInfo)
+            : base(Resources.WorldNames, languageInfo)
+        {
+        }
+
+        /// <summary>
+        ///     Sends the current request and returns a response.
+        /// </summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public IServiceResponse<WorldNameCollection> GetResponse(IServiceClient serviceClient)
+        {
+            return base.GetResponse<WorldNameCollection>(serviceClient);
+        }
+
+        /// <summary>
+        ///     Sends the current request and returns a response.
+        /// </summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<WorldNameCollection>> GetResponseAsync(IServiceClient serviceClient)
+        {
+            return base.GetResponseAsync<WorldNameCollection>(serviceClient);
+        }
+
+        /// <summary>
+        ///     Sends the current request and returns a response.
+        /// </summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>The response.</returns>
+        public Task<IServiceResponse<WorldNameCollection>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        {
+            return base.GetResponseAsync<WorldNameCollection>(serviceClient, cancellationToken);
+        }
+    }
+}

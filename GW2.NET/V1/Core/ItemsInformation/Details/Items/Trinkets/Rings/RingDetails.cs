@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Rings
 {
     /// <summary>
-    /// Represents detailed information about a ring.
+    ///     Represents detailed information about a ring.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class RingDetails : TrinketDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RingDetails"/> class.
+        ///     Initializes a new instance of the <see cref="RingDetails" /> class.
         /// </summary>
         public RingDetails()
             : base(TrinketType.Ring)

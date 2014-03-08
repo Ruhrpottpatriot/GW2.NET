@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.MapsInformation.Details
 {
     /// <summary>
-    /// Represents a collection of maps and their details.
+    ///     Represents a collection of maps and their details.
     /// </summary>
     public class MapCollection : JsonDictionary<int, Map>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapCollection"/> class.
+        ///     Initializes a new instance of the <see cref="MapCollection" /> class.
         /// </summary>
         public MapCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapCollection"/> class.
+        ///     Initializes a new instance of the <see cref="MapCollection" /> class.
         /// </summary>
         /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
         public MapCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapCollection"/> class.
+        ///     Initializes a new instance of the <see cref="MapCollection" /> class.
         /// </summary>
         /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
         public MapCollection(IDictionary<int, Map> dictionary)

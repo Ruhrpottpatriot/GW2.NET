@@ -9,12 +9,12 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     /// <summary>
-    /// Wraps a collection of matches.
+    ///     Wraps a collection of matches.
     /// </summary>
     public class MatchesResult : JsonObject
     {
         /// <summary>
-        /// Gets or sets a collection of matches.
+        ///     Gets or sets a collection of matches.
         /// </summary>
         [JsonProperty("wvw_matches", Order = 0)]
         public MatchCollection Matches { get; set; }

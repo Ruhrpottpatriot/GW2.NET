@@ -9,28 +9,23 @@ using System.Runtime.Serialization;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     /// <summary>
-    /// Enumerates the known types of POI.
+    ///     Enumerates the known types of POI.
     /// </summary>
     public enum PointOfInterestType
     {
         /// <summary>The 'unknown' POI.</summary>
-        [EnumMember(Value = "unknown")]
-        Unknown = 0,
+        [EnumMember(Value = "unknown")] Unknown = 0,
 
         /// <summary>The 'landmark' POI.</summary>
-        [EnumMember(Value = "landmark")]
-        Landmark = 1 << 0,
+        [EnumMember(Value = "landmark")] Landmark = 1 << 0,
 
         /// <summary>The 'waypoint' POI.</summary>
-        [EnumMember(Value = "waypoint")]
-        Waypoint = 1 << 1,
+        [EnumMember(Value = "waypoint")] Waypoint = 1 << 1,
 
         /// <summary>The 'vista' POI.</summary>
-        [EnumMember(Value = "vista")]
-        Vista = 1 << 2,
+        [EnumMember(Value = "vista")] Vista = 1 << 2,
 
         /// <summary>The 'unlock' POI.</summary>
-        [EnumMember(Value = "unlock")]
-        Unlock = 1 << 3
+        [EnumMember(Value = "unlock")] Unlock = 1 << 3
     }
 }

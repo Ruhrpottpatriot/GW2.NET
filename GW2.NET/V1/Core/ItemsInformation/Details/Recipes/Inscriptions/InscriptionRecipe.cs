@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Inscriptions
 {
     /// <summary>
-    /// Represents detailed information about an inscription crafting recipe.
+    ///     Represents detailed information about an inscription crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class InscriptionRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InscriptionRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="InscriptionRecipe" /> class.
         /// </summary>
         public InscriptionRecipe()
             : base(RecipeType.Inscription)

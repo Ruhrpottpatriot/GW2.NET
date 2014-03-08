@@ -9,24 +9,24 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     /// <summary>
-    /// Represents detailed information about a piece of combat equipment.
+    ///     Represents detailed information about a piece of combat equipment.
     /// </summary>
     public abstract class EquipmentDetails : JsonObject
     {
         /// <summary>
-        /// Gets or sets the item's infix upgrade.
+        ///     Gets or sets the item's infix upgrade.
         /// </summary>
         [JsonProperty(PropertyName = "infix_upgrade", Order = 101, NullValueHandling = NullValueHandling.Ignore)]
         public InfixUpgrade InfixUpgrade { get; set; }
 
         /// <summary>
-        /// Gets or sets the item's infusion slots.
+        ///     Gets or sets the item's infusion slots.
         /// </summary>
         [JsonProperty(PropertyName = "infusion_slots", Order = 100)]
         public InfusionSlotCollection InfusionSlots { get; set; }
 
         /// <summary>
-        /// Gets or sets the item's suffix item's ID.
+        ///     Gets or sets the item's suffix item's ID.
         /// </summary>
         [JsonProperty(PropertyName = "suffix_item_id", Order = 102)]
         public int? SuffixItemId { get; set; }

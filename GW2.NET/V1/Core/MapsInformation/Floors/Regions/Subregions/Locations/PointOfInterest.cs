@@ -12,37 +12,37 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     /// <summary>
-    /// Represents a Point of Interest (POI) location.
+    ///     Represents a Point of Interest (POI) location.
     /// </summary>
     public class PointOfInterest : JsonObject
     {
         /// <summary>
-        /// Gets or sets the Point of Interest's coordinates.
+        ///     Gets or sets the Point of Interest's coordinates.
         /// </summary>
         [JsonProperty("coord", Order = 4)]
         [JsonConverter(typeof(PointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>
-        /// Gets or sets the Point of Interest's floor.
+        ///     Gets or sets the Point of Interest's floor.
         /// </summary>
         [JsonProperty("floor", Order = 3)]
         public int Floor { get; set; }
 
         /// <summary>
-        /// Gets or sets the Point of Interest's name.
+        ///     Gets or sets the Point of Interest's name.
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the Point of Interest's ID.
+        ///     Gets or sets the Point of Interest's ID.
         /// </summary>
         [JsonProperty("poi_id", Order = 0)]
         public int PoiId { get; set; }
 
         /// <summary>
-        /// Gets or sets the Point of Interest's type.
+        ///     Gets or sets the Point of Interest's type.
         /// </summary>
         [JsonProperty("type", Order = 2)]
         [JsonConverter(typeof(StringEnumConverter))]

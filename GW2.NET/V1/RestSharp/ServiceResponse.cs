@@ -16,13 +16,14 @@ using JsonObject = GW2DotNET.V1.Core.JsonObject;
 namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
-    /// Provides a RestSharp-specific implementation of the <see cref="IServiceResponse{TContent}"/> interface.
+    ///     Provides a RestSharp-specific implementation of the <see cref="IServiceResponse{TContent}" /> interface.
     /// </summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>
     public class ServiceResponse<TContent> : RestResponse, IServiceResponse<TContent> where TContent : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceResponse{TContent}"/> class using the specified <see cref="IRestResponse"/>.
+        ///     Initializes a new instance of the <see cref="ServiceResponse{TContent}" /> class using the specified
+        ///     <see cref="IRestResponse" />.
         /// </summary>
         /// <param name="source">The source response object.</param>
         /// <remarks>Copy constructor.</remarks>
@@ -46,46 +47,38 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Gets a value indicating the Internet media type of the message content.
+        ///     Gets a value indicating the Internet media type of the message content.
         /// </summary>
         public new ContentType ContentType
         {
-            get
-            {
-                return new ContentType(base.ContentType);
-            }
+            get { return new ContentType(base.ContentType); }
         }
 
         /// <summary>
-        /// Gets a value indicating whether the service returned a JSON response.
+        ///     Gets a value indicating whether the service returned a JSON response.
         /// </summary>
         public bool IsJsonResponse
         {
-            get
-            {
-                return string.Equals(this.ContentType.MediaType, "application/json", StringComparison.OrdinalIgnoreCase);
-            }
+            get { return string.Equals(this.ContentType.MediaType, "application/json", StringComparison.OrdinalIgnoreCase); }
         }
 
         /// <summary>
-        /// Gets a value indicating whether the service returned a success status code.
+        ///     Gets a value indicating whether the service returned a success status code.
         /// </summary>
         public bool IsSuccessStatusCode
         {
-            get
-            {
-                return this.StatusCode == HttpStatusCode.OK;
-            }
+            get { return this.StatusCode == HttpStatusCode.OK; }
         }
 
         /// <summary>
-        /// Gets the error response if the service returned an error status code.
+        ///     Gets the error response if the service returned an error status code.
         /// </summary>
-        /// <returns>Return the error response as an instance of the <see cref="ServiceException"/> class.</returns>
+        /// <returns>Return the error response as an instance of the <see cref="ServiceException" /> class.</returns>
         public ErrorResult DeserializeError()
         {
             if (this.IsSuccessStatusCode || !this.IsJsonResponse)
-            { /* This method only makes sense when the response content is a JSON-formatted API error. */
+            {
+                /* This method only makes sense when the response content is a JSON-formatted API error. */
                 throw new InvalidOperationException("The service did not return an error response.");
             }
 
@@ -93,7 +86,7 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Gets the response content as an object of the specified type.
+        ///     Gets the response content as an object of the specified type.
         /// </summary>
         /// <returns>Returns the response as an instance of the specified type.</returns>
         public TContent Deserialize()
@@ -107,37 +100,7 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Gets the response content as an object of the specified type using the specified <see cref="Newtonsoft.Json.JsonSerializerSettings"/>.
-        /// </summary>
-        /// <param name="jsonSerializerSettings">The <see cref="Newtonsoft.Json.JsonSerializerSettings"/> used to de-serialize the object.  If this is null, default serialization settings will be is used.</param>
-        /// <returns>Returns the response as an instance of the specified type.</returns>
-        public TContent Deserialize(JsonSerializerSettings jsonSerializerSettings)
-        {
-            if (!this.IsSuccessStatusCode)
-            {
-                throw new InvalidOperationException("The service returned an error response.");
-            }
-
-            return JsonConvert.DeserializeObject<TContent>(this.Content, jsonSerializerSettings);
-        }
-
-        /// <summary>
-        /// Gets the response content as an object of the specified type using a collection of <see cref="Newtonsoft.Json.JsonConverter"/>.
-        /// </summary>
-        /// <param name="converters">The converters to use while de-serializing.</param>
-        /// <returns>Returns the response as an instance of the specified type.</returns>
-        public TContent Deserialize(params JsonConverter[] converters)
-        {
-            if (!this.IsSuccessStatusCode)
-            {
-                throw new InvalidOperationException("The service returned an error response.");
-            }
-
-            return JsonConvert.DeserializeObject<TContent>(this.Content, converters);
-        }
-
-        /// <summary>
-        /// Throws an exception if the service did not return a success status code.
+        ///     Throws an exception if the service did not return a success status code.
         /// </summary>
         /// <returns>Returns the current instance.</returns>
         /// <remarks>The current instance is returned to allow chaining method calls.</remarks>
@@ -152,7 +115,42 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Returns a string that represents the current response.
+        ///     Gets the response content as an object of the specified type using the specified
+        ///     <see cref="Newtonsoft.Json.JsonSerializerSettings" />.
+        /// </summary>
+        /// <param name="jsonSerializerSettings">
+        ///     The <see cref="Newtonsoft.Json.JsonSerializerSettings" /> used to de-serialize the
+        ///     object.  If this is null, default serialization settings will be is used.
+        /// </param>
+        /// <returns>Returns the response as an instance of the specified type.</returns>
+        public TContent Deserialize(JsonSerializerSettings jsonSerializerSettings)
+        {
+            if (!this.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("The service returned an error response.");
+            }
+
+            return JsonConvert.DeserializeObject<TContent>(this.Content, jsonSerializerSettings);
+        }
+
+        /// <summary>
+        ///     Gets the response content as an object of the specified type using a collection of
+        ///     <see cref="Newtonsoft.Json.JsonConverter" />.
+        /// </summary>
+        /// <param name="converters">The converters to use while de-serializing.</param>
+        /// <returns>Returns the response as an instance of the specified type.</returns>
+        public TContent Deserialize(params JsonConverter[] converters)
+        {
+            if (!this.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("The service returned an error response.");
+            }
+
+            return JsonConvert.DeserializeObject<TContent>(this.Content, converters);
+        }
+
+        /// <summary>
+        ///     Returns a string that represents the current response.
         /// </summary>
         /// <returns>Returns a JSON-formatted string.</returns>
         public override string ToString()

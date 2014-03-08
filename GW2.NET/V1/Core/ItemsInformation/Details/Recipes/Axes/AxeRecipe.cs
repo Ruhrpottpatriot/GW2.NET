@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Axes
 {
     /// <summary>
-    /// Represents detailed information about an axe crafting recipe.
+    ///     Represents detailed information about an axe crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class AxeRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AxeRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="AxeRecipe" /> class.
         /// </summary>
         public AxeRecipe()
             : base(RecipeType.Axe)

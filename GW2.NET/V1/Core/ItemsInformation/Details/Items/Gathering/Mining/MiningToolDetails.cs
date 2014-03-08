@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Mining
 {
     /// <summary>
-    /// Represents detailed information about a mining tool.
+    ///     Represents detailed information about a mining tool.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class MiningToolDetails : GatheringToolDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MiningToolDetails"/> class.
+        ///     Initializes a new instance of the <see cref="MiningToolDetails" /> class.
         /// </summary>
         public MiningToolDetails()
             : base(GatheringToolType.Mining)

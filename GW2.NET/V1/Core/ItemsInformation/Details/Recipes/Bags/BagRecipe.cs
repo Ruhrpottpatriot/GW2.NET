@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Bags
 {
     /// <summary>
-    /// Represents detailed information about a bag crafting recipe.
+    ///     Represents detailed information about a bag crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class BagRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BagRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="BagRecipe" /> class.
         /// </summary>
         public BagRecipe()
             : base(RecipeType.Bag)

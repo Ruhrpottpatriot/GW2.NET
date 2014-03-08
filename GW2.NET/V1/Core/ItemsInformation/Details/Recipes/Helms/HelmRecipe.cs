@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Helms
 {
     /// <summary>
-    /// Represents detailed information about a helm crafting recipe.
+    ///     Represents detailed information about a helm crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class HelmRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HelmRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="HelmRecipe" /> class.
         /// </summary>
         public HelmRecipe()
             : base(RecipeType.Helm)

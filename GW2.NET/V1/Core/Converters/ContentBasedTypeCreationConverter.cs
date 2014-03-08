@@ -11,23 +11,23 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Deserializes an instance of a specific type based on the content.
-    /// This is useful for complex types with an inheritance tree,
-    /// where the exact type of the JSON content is not known at compile time.
+    ///     Deserializes an instance of a specific type based on the content.
+    ///     This is useful for complex types with an inheritance tree,
+    ///     where the exact type of the JSON content is not known at compile time.
     /// </summary>
     public abstract class ContentBasedTypeCreationConverter : JsonConverter
     {
         /// <summary>
-        /// Gets a value indicating whether this <see cref="JsonConverter"/> can write JSON.
+        ///     Gets a value indicating whether this <see cref="JsonConverter" /> can write JSON.
         /// </summary>
-        /// <value><c>true</c> if this <see cref="JsonConverter"/> can write JSON; otherwise, <c>false</c>.</value>
+        /// <value><c>true</c> if this <see cref="JsonConverter" /> can write JSON; otherwise, <c>false</c>.</value>
         public override bool CanWrite
         {
             get { return false; }
         }
 
         /// <summary>
-        /// Gets the object type that will be used by the serializer.
+        ///     Gets the object type that will be used by the serializer.
         /// </summary>
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>
@@ -35,9 +35,9 @@ namespace GW2DotNET.V1.Core.Converters
         public abstract Type GetTargetType(Type objectType, JObject content);
 
         /// <summary>
-        /// Reads the JSON representation of the object.
+        ///     Reads the JSON representation of the object.
         /// </summary>
-        /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
+        /// <param name="reader">The <see cref="JsonReader" /> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
@@ -57,9 +57,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Writes the JSON representation of the object.
+        ///     Writes the JSON representation of the object.
         /// </summary>
-        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+        /// <param name="writer">The <see cref="JsonWriter" /> to write to.</param>
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

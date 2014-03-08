@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Amulets
 {
     /// <summary>
-    /// Represents detailed information about an amulet crafting recipe.
+    ///     Represents detailed information about an amulet crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class AmuletRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AmuletRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="AmuletRecipe" /> class.
         /// </summary>
         public AmuletRecipe()
             : base(RecipeType.Amulet)

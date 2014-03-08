@@ -11,25 +11,21 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
-    /// Enumerates the possible location shapes.
+    ///     Enumerates the possible location shapes.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum LocationType
     {
         /// <summary> The 'unknown' location type.</summary>
-        [EnumMember(Value = "unknown")]
-        Unknown = 0,
+        [EnumMember(Value = "unknown")] Unknown = 0,
 
         /// <summary> The 'sphere' location type.</summary>
-        [EnumMember(Value = "sphere")]
-        Sphere = 1 << 0,
+        [EnumMember(Value = "sphere")] Sphere = 1 << 0,
 
         /// <summary> The 'cylinder' location type.</summary>
-        [EnumMember(Value = "cylinder")]
-        Cylinder = 1 << 1,
+        [EnumMember(Value = "cylinder")] Cylinder = 1 << 1,
 
         /// <summary> The 'poly' location type.</summary>
-        [EnumMember(Value = "poly")]
-        Polygon = 1 << 2
+        [EnumMember(Value = "poly")] Polygon = 1 << 2
     }
 }

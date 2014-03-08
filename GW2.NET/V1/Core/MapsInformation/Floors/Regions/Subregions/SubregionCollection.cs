@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
 {
     /// <summary>
-    /// Represents a collection of maps and their details.
+    ///     Represents a collection of maps and their details.
     /// </summary>
     public class SubregionCollection : JsonDictionary<int, Subregion>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubregionCollection"/> class.
+        ///     Initializes a new instance of the <see cref="SubregionCollection" /> class.
         /// </summary>
         public SubregionCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubregionCollection"/> class.
+        ///     Initializes a new instance of the <see cref="SubregionCollection" /> class.
         /// </summary>
         /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
         public SubregionCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SubregionCollection"/> class.
+        ///     Initializes a new instance of the <see cref="SubregionCollection" /> class.
         /// </summary>
         /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
         public SubregionCollection(IDictionary<int, Subregion> dictionary)

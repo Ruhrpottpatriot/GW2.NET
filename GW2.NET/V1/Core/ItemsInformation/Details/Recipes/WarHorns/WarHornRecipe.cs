@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.WarHorns
 {
     /// <summary>
-    /// Represents detailed information about a war horn crafting recipe.
+    ///     Represents detailed information about a war horn crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class WarHornRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WarHornRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="WarHornRecipe" /> class.
         /// </summary>
         public WarHornRecipe()
             : base(RecipeType.WarHorn)

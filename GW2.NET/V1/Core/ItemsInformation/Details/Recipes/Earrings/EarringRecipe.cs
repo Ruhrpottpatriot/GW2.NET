@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Earrings
 {
     /// <summary>
-    /// Represents detailed information about an earring crafting recipe.
+    ///     Represents detailed information about an earring crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class EarringRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EarringRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="EarringRecipe" /> class.
         /// </summary>
         public EarringRecipe()
             : base(RecipeType.Earring)

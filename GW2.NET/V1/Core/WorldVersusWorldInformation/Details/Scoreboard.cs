@@ -9,23 +9,23 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     /// <summary>
-    /// Represents a World versus World scoreboard.
+    ///     Represents a World versus World scoreboard.
     /// </summary>
     [JsonConverter(typeof(ScoreboardConverter))]
     public class Scoreboard : JsonObject
     {
         /// <summary>
-        /// Gets or sets the blue team's score.
+        ///     Gets or sets the blue team's score.
         /// </summary>
         public int Blue { get; set; }
 
         /// <summary>
-        /// Gets or sets the green team's score.
+        ///     Gets or sets the green team's score.
         /// </summary>
         public int Green { get; set; }
 
         /// <summary>
-        /// Gets or sets the red team's score.
+        ///     Gets or sets the red team's score.
         /// </summary>
         public int Red { get; set; }
     }

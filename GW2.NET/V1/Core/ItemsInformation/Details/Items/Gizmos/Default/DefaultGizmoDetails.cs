@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.Default
 {
     /// <summary>
-    /// Represents detailed information about a default gizmo.
+    ///     Represents detailed information about a default gizmo.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class DefaultGizmoDetails : GizmoDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultGizmoDetails"/> class.
+        ///     Initializes a new instance of the <see cref="DefaultGizmoDetails" /> class.
         /// </summary>
         public DefaultGizmoDetails()
             : base(GizmoType.Default)

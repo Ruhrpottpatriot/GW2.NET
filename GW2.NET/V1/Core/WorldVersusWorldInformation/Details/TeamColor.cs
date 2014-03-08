@@ -11,25 +11,21 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     /// <summary>
-    /// Enumerates all possible team colors.
+    ///     Enumerates all possible team colors.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TeamColor
     {
         /// <summary>The 'Blue' color.</summary>
-        [EnumMember(Value = "Blue")]
-        Blue = 1 << 0,
+        [EnumMember(Value = "Blue")] Blue = 1 << 0,
 
         /// <summary>The 'Green' color.</summary>
-        [EnumMember(Value = "Green")]
-        Green = 1 << 1,
+        [EnumMember(Value = "Green")] Green = 1 << 1,
 
         /// <summary>The 'Red' color.</summary>
-        [EnumMember(Value = "Red")]
-        Red = 1 << 2,
+        [EnumMember(Value = "Red")] Red = 1 << 2,
 
         /// <summary>The 'Neutral' color.</summary>
-        [EnumMember(Value = "Neutral")]
-        Neutral = 1 << 3
+        [EnumMember(Value = "Neutral")] Neutral = 1 << 3
     }
 }

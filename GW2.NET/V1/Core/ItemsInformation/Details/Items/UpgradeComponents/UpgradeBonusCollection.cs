@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
 {
     /// <summary>
-    /// Represents a collection of upgrade bonuses.
+    ///     Represents a collection of upgrade bonuses.
     /// </summary>
     public class UpgradeBonusCollection : JsonList<string>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpgradeBonusCollection"/> class.
+        ///     Initializes a new instance of the <see cref="UpgradeBonusCollection" /> class.
         /// </summary>
         public UpgradeBonusCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpgradeBonusCollection"/> class.
+        ///     Initializes a new instance of the <see cref="UpgradeBonusCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public UpgradeBonusCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpgradeBonusCollection"/> class.
+        ///     Initializes a new instance of the <see cref="UpgradeBonusCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public UpgradeBonusCollection(IEnumerable<string> collection)

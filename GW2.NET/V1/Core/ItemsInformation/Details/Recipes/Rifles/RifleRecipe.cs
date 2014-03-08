@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Rifles
 {
     /// <summary>
-    /// Represents detailed information about a rifle crafting recipe.
+    ///     Represents detailed information about a rifle crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class RifleRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RifleRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="RifleRecipe" /> class.
         /// </summary>
         public RifleRecipe()
             : base(RecipeType.Rifle)

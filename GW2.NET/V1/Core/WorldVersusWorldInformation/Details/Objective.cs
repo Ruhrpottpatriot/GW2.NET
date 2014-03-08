@@ -10,24 +10,24 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     /// <summary>
-    /// Represents one of a World versus World map's objectives.
+    ///     Represents one of a World versus World map's objectives.
     /// </summary>
     public class Objective : JsonObject
     {
         /// <summary>
-        /// Gets or sets the objective's ID.
+        ///     Gets or sets the objective's ID.
         /// </summary>
-        [JsonProperty("id", Order = 0)]
+        [JsonProperty("ID", Order = 0)]
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the objective's owner.
+        ///     Gets or sets the objective's owner.
         /// </summary>
         [JsonProperty("owner", Order = 1)]
         public TeamColor Owner { get; set; }
 
         /// <summary>
-        /// Gets or sets the guild ID of the guild currently claiming the objective.
+        ///     Gets or sets the guild ID of the guild currently claiming the objective.
         /// </summary>
         [JsonProperty("owner_guild", Order = 2, NullValueHandling = NullValueHandling.Ignore)]
         public Guid? OwnerGuild { get; set; }

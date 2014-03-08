@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
 {
     /// <summary>
-    /// Represents detailed information about a weapon.
+    ///     Represents detailed information about a weapon.
     /// </summary>
     [JsonConverter(typeof(WeaponDetailsConverter))]
     public abstract class WeaponDetails : EquipmentDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WeaponDetails"/> class.
+        ///     Initializes a new instance of the <see cref="WeaponDetails" /> class.
         /// </summary>
         /// <param name="weaponType">The weapon's type.</param>
         protected WeaponDetails(WeaponType weaponType)
@@ -25,31 +25,31 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
         }
 
         /// <summary>
-        /// Gets or sets the weapon's damage type.
+        ///     Gets or sets the weapon's damage type.
         /// </summary>
         [JsonProperty("damage_type", Order = 1)]
         public DamageType DamageType { get; set; }
 
         /// <summary>
-        /// Gets or sets the weapon's defense.
+        ///     Gets or sets the weapon's defense.
         /// </summary>
         [JsonProperty("defense", Order = 4)]
         public int Defense { get; set; }
 
         /// <summary>
-        /// Gets or sets the weapon's maximum power.
+        ///     Gets or sets the weapon's maximum power.
         /// </summary>
         [JsonProperty("max_power", Order = 3)]
         public int MaximumPower { get; set; }
 
         /// <summary>
-        /// Gets or sets the weapon's minimum power.
+        ///     Gets or sets the weapon's minimum power.
         /// </summary>
         [JsonProperty("min_power", Order = 2)]
         public int MinimumPower { get; set; }
 
         /// <summary>
-        /// Gets or sets the weapon's type.
+        ///     Gets or sets the weapon's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public WeaponType Type { get; set; }

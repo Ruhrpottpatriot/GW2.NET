@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers.Default
 {
     /// <summary>
-    /// Represents detailed information about a default container.
+    ///     Represents detailed information about a default container.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class DefaultContainerDetails : ContainerDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultContainerDetails"/> class.
+        ///     Initializes a new instance of the <see cref="DefaultContainerDetails" /> class.
         /// </summary>
         public DefaultContainerDetails()
             : base(ContainerType.Default)

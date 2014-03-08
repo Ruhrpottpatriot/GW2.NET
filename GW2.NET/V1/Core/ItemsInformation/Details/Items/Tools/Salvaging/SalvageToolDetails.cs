@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools.Salvaging
 {
     /// <summary>
-    /// Represents detailed information about a salvaging tool.
+    ///     Represents detailed information about a salvaging tool.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class SalvageToolDetails : ToolDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SalvageToolDetails"/> class.
+        ///     Initializes a new instance of the <see cref="SalvageToolDetails" /> class.
         /// </summary>
         public SalvageToolDetails()
             : base(ToolType.Salvage)

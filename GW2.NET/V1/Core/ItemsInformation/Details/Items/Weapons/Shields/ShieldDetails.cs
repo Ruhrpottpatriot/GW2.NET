@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Shields
 {
     /// <summary>
-    /// Represents detailed information about a shield.
+    ///     Represents detailed information about a shield.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class ShieldDetails : WeaponDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShieldDetails"/> class.
+        ///     Initializes a new instance of the <see cref="ShieldDetails" /> class.
         /// </summary>
         public ShieldDetails()
             : base(WeaponType.Shield)

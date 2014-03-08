@@ -11,27 +11,24 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
 {
     /// <summary>
-    /// Enumerates the possible container types.
+    ///     Enumerates the possible container types.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ContainerType
     {
         /// <summary>
-        /// The 'Unknown' container type.
+        ///     The 'Unknown' container type.
         /// </summary>
-        [EnumMember(Value = "Unknown")]
-        Unknown = 0,
+        [EnumMember(Value = "Unknown")] Unknown = 0,
 
         /// <summary>
-        /// The 'Default' container type.
+        ///     The 'Default' container type.
         /// </summary>
-        [EnumMember(Value = "Default")]
-        Default = 1 << 0,
+        [EnumMember(Value = "Default")] Default = 1 << 0,
 
         /// <summary>
-        /// The 'Gift Box' container type.
+        ///     The 'Gift Box' container type.
         /// </summary>
-        [EnumMember(Value = "GiftBox")]
-        GiftBox = 1 << 1
+        [EnumMember(Value = "GiftBox")] GiftBox = 1 << 1
     }
 }

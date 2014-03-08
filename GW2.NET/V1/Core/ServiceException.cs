@@ -5,21 +5,21 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using GW2DotNET.Utilities;
 using GW2DotNET.V1.Core.ErrorInformation;
-using GW2DotNET.V1.Core.Utilities;
 
 namespace GW2DotNET.V1.Core
 {
     /// <summary>
-    /// Represents an API error.
+    ///     Represents an API error.
     /// </summary>
     /// <remarks>
-    /// See <a href="http://wiki.guildwars2.com/wiki/API:1"/> for more information regarding API errors.
+    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1" /> for more information regarding API errors.
     /// </remarks>
     public class ServiceException : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceException"/> class.
+        ///     Initializes a new instance of the <see cref="ServiceException" /> class.
         /// </summary>
         /// <param name="details">The error details.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core
         }
 
         /// <summary>
-        /// Gets the error details.
+        ///     Gets the error details.
         /// </summary>
         public ErrorResult Details { get; private set; }
     }

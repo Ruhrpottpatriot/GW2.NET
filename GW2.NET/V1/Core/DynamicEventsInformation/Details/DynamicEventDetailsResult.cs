@@ -4,21 +4,19 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
 {
     /// <summary>
-    /// Wraps a collection of dynamic events and their details.
+    ///     Wraps a collection of dynamic events and their details.
     /// </summary>
     public class DynamicEventDetailsResult : JsonObject
     {
         /// <summary>
-        /// Gets or sets a list of details about dynamic events.
+        ///     Gets or sets a list of details about dynamic events.
         /// </summary>
         [JsonProperty("events")]
-        public Dictionary<Guid, DynamicEventDetails> EventDetails { get; set; }
+        public DynamicEventDetailsCollection EventDetails { get; set; }
     }
 }

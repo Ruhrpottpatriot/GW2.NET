@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     /// <summary>
-    /// Represents one of a recipe's ingredients.
+    ///     Represents one of a recipe's ingredients.
     /// </summary>
     public class CraftingIngredient : JsonObject
     {
         /// <summary>
-        /// Gets or sets the number of items required.
+        ///     Gets or sets the number of items required.
         /// </summary>
         [JsonProperty("count", Order = 1)]
         public int Count { get; set; }
 
         /// <summary>
-        /// Gets or sets the required item.
+        ///     Gets or sets the required item.
         /// </summary>
         [JsonProperty("item_id", Order = 0)]
         public int ItemId { get; set; }

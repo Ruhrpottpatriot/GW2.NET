@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     /// <summary>
-    /// Represents a collection of areas within a map.
+    ///     Represents a collection of areas within a map.
     /// </summary>
     public class SectorCollection : JsonList<Sector>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectorCollection"/> class.
+        ///     Initializes a new instance of the <see cref="SectorCollection" /> class.
         /// </summary>
         public SectorCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectorCollection"/> class.
+        ///     Initializes a new instance of the <see cref="SectorCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public SectorCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SectorCollection"/> class.
+        ///     Initializes a new instance of the <see cref="SectorCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public SectorCollection(IEnumerable<Sector> collection)

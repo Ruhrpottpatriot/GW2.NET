@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Staves
 {
     /// <summary>
-    /// Represents detailed information about a staff crafting recipe.
+    ///     Represents detailed information about a staff crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class StaffRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StaffRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="StaffRecipe" /> class.
         /// </summary>
         public StaffRecipe()
             : base(RecipeType.Staff)

@@ -4,13 +4,11 @@ using Newtonsoft.Json;
 using NUnit.Framework;
 using Region = GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Region;
 
-namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions
+namespace GW2DotNET.Core.MapsInformation.Floors.Regions
 {
     [TestFixture]
     public class RegionTest
     {
-        private Region region;
-
         [SetUp]
         public void Initialize()
         {
@@ -18,22 +16,22 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions
             this.region = JsonConvert.DeserializeObject<Region>(input);
         }
 
+        private Region region;
+
         [Test]
         [Category("map_floor.json")]
-        public void Region_NameReflectsInput()
+        [Category("ExtensionData")]
+        public void Region_ExtensionDataIsEmpty()
         {
-            var expected = string.Empty;
-            var actual   = this.region.Name;
-
-            Assert.AreEqual(expected, actual);
+            Assert.IsEmpty(this.region.ExtensionData);
         }
 
         [Test]
         [Category("map_floor.json")]
         public void Region_LabelCoordinatesReflectsInput()
         {
-            var expected = default(PointF);
-            var actual   = this.region.LabelCoordinates;
+            PointF expected = default(PointF);
+            PointF actual = this.region.LabelCoordinates;
 
             Assert.AreEqual(expected, actual);
         }
@@ -43,17 +41,19 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions
         public void Region_MapsReflectsInput()
         {
             var expected = new SubregionCollection();
-            var actual   = this.region.Maps;
+            SubregionCollection actual = this.region.Maps;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("map_floor.json")]
-        [Category("ExtensionData")]
-        public void Region_ExtensionDataIsEmpty()
+        public void Region_NameReflectsInput()
         {
-            Assert.IsEmpty(this.region.ExtensionData);
+            string expected = string.Empty;
+            string actual = this.region.Name;
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }

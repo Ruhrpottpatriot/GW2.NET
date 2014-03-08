@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
 {
     /// <summary>
-    /// Represents a collection of item IDs.
+    ///     Represents a collection of item IDs.
     /// </summary>
     public class ItemCollection : JsonList<int>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ItemCollection" /> class.
         /// </summary>
         public ItemCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ItemCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public ItemCollection(IEnumerable<int> collection)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ItemCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ItemCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public ItemCollection(int capacity)

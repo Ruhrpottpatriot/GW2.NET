@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Amulets
 {
     /// <summary>
-    /// Represents detailed information about an amulet.
+    ///     Represents detailed information about an amulet.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class AmuletDetails : TrinketDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AmuletDetails"/> class.
+        ///     Initializes a new instance of the <see cref="AmuletDetails" /> class.
         /// </summary>
         public AmuletDetails()
             : base(TrinketType.Amulet)

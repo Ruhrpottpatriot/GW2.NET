@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Leggings
 {
     /// <summary>
-    /// Represents detailed information about leg protection.
+    ///     Represents detailed information about leg protection.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class LeggingsDetails : ArmorDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LeggingsDetails"/> class
+        ///     Initializes a new instance of the <see cref="LeggingsDetails" /> class
         /// </summary>
         public LeggingsDetails()
             : base(ArmorType.Leggings)

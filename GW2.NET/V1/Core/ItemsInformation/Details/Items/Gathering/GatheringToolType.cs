@@ -11,25 +11,21 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering
 {
     /// <summary>
-    /// Enumerates the possible types of gathering equipment.
+    ///     Enumerates the possible types of gathering equipment.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum GatheringToolType
     {
         /// <summary>The 'Unknown' gathering tool.</summary>
-        [EnumMember(Value = "Unknown")]
-        Unknown = 0,
+        [EnumMember(Value = "Unknown")] Unknown = 0,
 
         /// <summary>The 'Foraging' gathering tool.</summary>
-        [EnumMember(Value = "Foraging")]
-        Foraging = 1 << 0,
+        [EnumMember(Value = "Foraging")] Foraging = 1 << 0,
 
         /// <summary>The 'Logging' gathering tool.</summary>
-        [EnumMember(Value = "Logging")]
-        Logging = 1 << 1,
+        [EnumMember(Value = "Logging")] Logging = 1 << 1,
 
         /// <summary>The 'Mining' gathering tool.</summary>
-        [EnumMember(Value = "Mining")]
-        Mining = 1 << 2
+        [EnumMember(Value = "Mining")] Mining = 1 << 2
     }
 }

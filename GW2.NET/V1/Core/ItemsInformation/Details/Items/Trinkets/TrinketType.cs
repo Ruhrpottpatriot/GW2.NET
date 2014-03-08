@@ -11,25 +11,21 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
 {
     /// <summary>
-    /// Enumerates the possible trinket types.
+    ///     Enumerates the possible trinket types.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TrinketType
     {
         /// <summary>The 'Unknown' trinket type.</summary>
-        [EnumMember(Value = "Unknown")]
-        Unknown = 0,
+        [EnumMember(Value = "Unknown")] Unknown = 0,
 
         /// <summary>The 'Accessory' trinket type.</summary>
-        [EnumMember(Value = "Accessory")]
-        Accessory = 1 << 0,
+        [EnumMember(Value = "Accessory")] Accessory = 1 << 0,
 
         /// <summary>The 'Amulet' trinket type.</summary>
-        [EnumMember(Value = "Amulet")]
-        Amulet = 1 << 2,
+        [EnumMember(Value = "Amulet")] Amulet = 1 << 2,
 
         /// <summary>The 'Ring' trinket type.</summary>
-        [EnumMember(Value = "Ring")]
-        Ring = 1 << 3
+        [EnumMember(Value = "Ring")] Ring = 1 << 3
     }
 }

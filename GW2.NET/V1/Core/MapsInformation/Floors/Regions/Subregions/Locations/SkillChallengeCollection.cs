@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     /// <summary>
-    /// Represents a collection of skill challenge locations.
+    ///     Represents a collection of skill challenge locations.
     /// </summary>
     public class SkillChallengeCollection : JsonList<SkillChallenge>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SkillChallengeCollection"/> class.
+        ///     Initializes a new instance of the <see cref="SkillChallengeCollection" /> class.
         /// </summary>
         public SkillChallengeCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SkillChallengeCollection"/> class.
+        ///     Initializes a new instance of the <see cref="SkillChallengeCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public SkillChallengeCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="SkillChallengeCollection"/> class.
+        ///     Initializes a new instance of the <see cref="SkillChallengeCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public SkillChallengeCollection(IEnumerable<SkillChallenge> collection)

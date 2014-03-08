@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Utility
 {
     /// <summary>
-    /// Represents detailed information about a utility consumable item.
+    ///     Represents detailed information about a utility consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class UtilityConsumableDetails : ConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UtilityConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="UtilityConsumableDetails" /> class.
         /// </summary>
         public UtilityConsumableDetails()
             : base(ConsumableType.Utility)

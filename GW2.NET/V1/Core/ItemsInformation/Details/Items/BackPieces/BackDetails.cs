@@ -9,7 +9,7 @@ using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces
 {
     /// <summary>
-    /// Represents detailed information about a back piece.
+    ///     Represents detailed information about a back piece.
     /// </summary>
     public class BackDetails : EquipmentDetails
     {

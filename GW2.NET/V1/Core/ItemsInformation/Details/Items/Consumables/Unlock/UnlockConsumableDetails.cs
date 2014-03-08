@@ -9,13 +9,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
 {
     /// <summary>
-    /// Represents detailed information about an unlock item.
+    ///     Represents detailed information about an unlock item.
     /// </summary>
     [JsonConverter(typeof(UnlockConsumableDetailsConverter))]
     public abstract class UnlockConsumableDetails : ConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnlockConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="UnlockConsumableDetails" /> class.
         /// </summary>
         /// <param name="type">The unlock item's unlock type.</param>
         protected UnlockConsumableDetails(UnlockType type)
@@ -25,7 +25,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
         }
 
         /// <summary>
-        /// Gets or sets the unlock item's unlock type.
+        ///     Gets or sets the unlock item's unlock type.
         /// </summary>
         [JsonProperty("unlock_type", Order = 100)]
         public UnlockType UnlockType { get; set; }

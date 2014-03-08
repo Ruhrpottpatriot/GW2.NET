@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Seasonings
 {
     /// <summary>
-    /// Represents detailed information about a seasoning crafting recipe.
+    ///     Represents detailed information about a seasoning crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class SeasoningRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SeasoningRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="SeasoningRecipe" /> class.
         /// </summary>
         public SeasoningRecipe()
             : base(RecipeType.Seasoning)

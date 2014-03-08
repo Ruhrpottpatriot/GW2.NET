@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags
 {
     /// <summary>
-    /// Represents a bag.
+    ///     Represents a bag.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class Bag : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Bag"/> class.
+        ///     Initializes a new instance of the <see cref="Bag" /> class.
         /// </summary>
         public Bag()
             : base(ItemType.Bag)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags
         }
 
         /// <summary>
-        /// Gets or sets the bag's details.
+        ///     Gets or sets the bag's details.
         /// </summary>
         [JsonProperty("bag", Order = 100)]
         public BagDetails BagDetails { get; set; }

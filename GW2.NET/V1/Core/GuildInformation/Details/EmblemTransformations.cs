@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.GuildInformation.Details
 {
     /// <summary>
-    /// Enumerates the possible transformations for a guild emblem image.
+    ///     Enumerates the possible transformations for a guild emblem image.
     /// </summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
@@ -22,19 +22,15 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
         None = 0,
 
         /// <summary>Flip the background image horizontally.</summary>
-        [EnumMember(Value = "FlipBackgroundHorizontal")]
-        FlipBackgroundHorizontal = 1 << 0,
+        [EnumMember(Value = "FlipBackgroundHorizontal")] FlipBackgroundHorizontal = 1 << 0,
 
         /// <summary>Flip the background image vertically.</summary>
-        [EnumMember(Value = "FlipBackgroundVertical")]
-        FlipBackgroundVertical = 1 << 1,
+        [EnumMember(Value = "FlipBackgroundVertical")] FlipBackgroundVertical = 1 << 1,
 
         /// <summary>Flip the foreground image horizontally.</summary>
-        [EnumMember(Value = "FlipForegroundHorizontal")]
-        FlipForegroundHorizontal = 1 << 2,
+        [EnumMember(Value = "FlipForegroundHorizontal")] FlipForegroundHorizontal = 1 << 2,
 
         /// <summary>Flip the foreground image vertically.</summary>
-        [EnumMember(Value = "FlipForegroundVertical")]
-        FlipForegroundVertical = 1 << 3
+        [EnumMember(Value = "FlipForegroundVertical")] FlipForegroundVertical = 1 << 3
     }
 }

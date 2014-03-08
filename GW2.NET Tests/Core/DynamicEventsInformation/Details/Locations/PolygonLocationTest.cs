@@ -4,13 +4,11 @@ using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.Core.DynamicEventsInformation.Details.Locations
+namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 {
     [TestFixture]
     public class PolygonLocationTest
     {
-        private PolygonLocation polygonLocation;
-
         [SetUp]
         public void Initialize()
         {
@@ -18,42 +16,14 @@ namespace GW2DotNET_Tests.Core.DynamicEventsInformation.Details.Locations
             this.polygonLocation = JsonConvert.DeserializeObject<PolygonLocation>(input);
         }
 
-        [Test]
-        [Category("event_details.json")]
-        public void PolygonLocation_TypeReflectsInput()
-        {
-            const LocationType expected = LocationType.Polygon;
-            var actual                  = this.polygonLocation.Type;
-
-            Assert.AreEqual(expected, actual);
-        }
+        private PolygonLocation polygonLocation;
 
         [Test]
         [Category("event_details.json")]
         public void PolygonLocation_CenterReflectsInput()
         {
-            var expected = default(Point3D);
-            var actual   = this.polygonLocation.Center;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("event_details.json")]
-        public void PolygonLocation_ZRangeReflectsInput()
-        {
-            var expected = default(Point);
-            var actual   = this.polygonLocation.ZRange;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("event_details.json")]
-        public void PolygonLocation_PointsReflectsInput()
-        {
-            var expected = new PointCollection();
-            var actual   = this.polygonLocation.PointCollection;
+            Point3D expected = default(Point3D);
+            Point3D actual = this.polygonLocation.Center;
 
             Assert.AreEqual(expected, actual);
         }
@@ -64,6 +34,36 @@ namespace GW2DotNET_Tests.Core.DynamicEventsInformation.Details.Locations
         public void PolygonLocation_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(this.polygonLocation.ExtensionData);
+        }
+
+        [Test]
+        [Category("event_details.json")]
+        public void PolygonLocation_PointsReflectsInput()
+        {
+            var expected = new PointCollection();
+            PointCollection actual = this.polygonLocation.PointCollection;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("event_details.json")]
+        public void PolygonLocation_TypeReflectsInput()
+        {
+            const LocationType expected = LocationType.Polygon;
+            LocationType actual = this.polygonLocation.Type;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("event_details.json")]
+        public void PolygonLocation_ZRangeReflectsInput()
+        {
+            Point expected = default(Point);
+            Point actual = this.polygonLocation.ZRange;
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }

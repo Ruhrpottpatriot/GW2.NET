@@ -3,13 +3,11 @@ using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregions.Locations
+namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     [TestFixture]
     public class RenownTaskTest
     {
-        private RenownTask renownTask;
-
         [SetUp]
         public void Initialize()
         {
@@ -17,39 +15,14 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregions.Locatio
             this.renownTask = JsonConvert.DeserializeObject<RenownTask>(input);
         }
 
-        [Test]
-        [Category("map_floor.json")]
-        public void RenownTask_TaskIdReflectsInput()
-        {
-            const int expected = default(int);
-            var actual         = this.renownTask.TaskId;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("map_floor.json")]
-        public void RenownTask_ObjectiveReflectsInput()
-        {
-            var expected = string.Empty;
-            var actual   = this.renownTask.Objective;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("map_floor.json")]
-        public void RenownTask_LevelReflectsInput()
-        {
-            const int expected = default(int);
-            var actual         = this.renownTask.Level;
-            Assert.AreEqual(expected, actual);
-        }
+        private RenownTask renownTask;
 
         [Test]
         [Category("map_floor.json")]
         public void RenownTask_CoordinatesReflectsInput()
         {
-            var expected = default(PointF);
-            var actual   = this.renownTask.Coordinates;
+            PointF expected = default(PointF);
+            PointF actual = this.renownTask.Coordinates;
             Assert.AreEqual(expected, actual);
         }
 
@@ -59,6 +32,33 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregions.Locatio
         public void RenownTask_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(this.renownTask.ExtensionData);
+        }
+
+        [Test]
+        [Category("map_floor.json")]
+        public void RenownTask_LevelReflectsInput()
+        {
+            const int expected = default(int);
+            int actual = this.renownTask.Level;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("map_floor.json")]
+        public void RenownTask_ObjectiveReflectsInput()
+        {
+            string expected = string.Empty;
+            string actual = this.renownTask.Objective;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("map_floor.json")]
+        public void RenownTask_TaskIdReflectsInput()
+        {
+            const int expected = default(int);
+            int actual = this.renownTask.TaskId;
+            Assert.AreEqual(expected, actual);
         }
     }
 }

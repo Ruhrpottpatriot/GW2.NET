@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Boots
 {
     /// <summary>
-    /// Represents detailed information about feet protection.
+    ///     Represents detailed information about feet protection.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class BootsDetails : ArmorDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BootsDetails"/> class
+        ///     Initializes a new instance of the <see cref="BootsDetails" /> class
         /// </summary>
         public BootsDetails()
             : base(ArmorType.Boots)

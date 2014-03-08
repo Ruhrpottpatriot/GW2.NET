@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
-    /// Represents a spherical location of an event on the map.
+    ///     Represents a spherical location of an event on the map.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class SphereLocation : Location
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SphereLocation"/> class.
+        ///     Initializes a new instance of the <see cref="SphereLocation" /> class.
         /// </summary>
         public SphereLocation()
             : base(LocationType.Sphere)
@@ -24,13 +24,13 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         }
 
         /// <summary>
-        /// Gets or sets the location's radius.
+        ///     Gets or sets the location's radius.
         /// </summary>
         [JsonProperty("radius", Order = 4)]
         public double Radius { get; set; }
 
         /// <summary>
-        /// Gets or sets the location's rotation.
+        ///     Gets or sets the location's rotation.
         /// </summary>
         [JsonProperty("rotation", Order = 5)]
         public double Rotation { get; set; }

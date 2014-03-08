@@ -9,15 +9,15 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.BuildInformation
 {
     /// <summary>
-    /// Represents the current build of the game.
+    ///     Represents the current build of the game.
     /// </summary>
     /// <remarks>
-    /// See <a href="http://wiki.guildwars2.com/wiki/API:1/build"/> for more information.
+    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.
     /// </remarks>
     public class Build : JsonObject
     {
         /// <summary>
-        /// Gets or sets the current build ID of the game.
+        ///     Gets or sets the current build ID of the game.
         /// </summary>
         [JsonProperty("build_id", Order = 0)]
         public int BuildId { get; set; }

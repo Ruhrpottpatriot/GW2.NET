@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
 {
     /// <summary>
-    /// Enumerates the known item restrictions.
+    ///     Enumerates the known item restrictions.
     /// </summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
@@ -22,55 +22,42 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
         None = 0,
 
         /// <summary>The 'Asura' item restriction.</summary>
-        [EnumMember(Value = "Asura")]
-        Asura = 1 << 0,
+        [EnumMember(Value = "Asura")] Asura = 1 << 0,
 
         /// <summary>The 'Charr' item restriction.</summary>
-        [EnumMember(Value = "Charr")]
-        Charr = 1 << 1,
+        [EnumMember(Value = "Charr")] Charr = 1 << 1,
 
         /// <summary>The 'Human' item restriction.</summary>
-        [EnumMember(Value = "Human")]
-        Human = 1 << 2,
+        [EnumMember(Value = "Human")] Human = 1 << 2,
 
         /// <summary>The 'Norn' item restriction.</summary>
-        [EnumMember(Value = "Norn")]
-        Norn = 1 << 3,
+        [EnumMember(Value = "Norn")] Norn = 1 << 3,
 
         /// <summary>The 'Sylvari' item restriction.</summary>
-        [EnumMember(Value = "Sylvari")]
-        Sylvari = 1 << 4,
+        [EnumMember(Value = "Sylvari")] Sylvari = 1 << 4,
 
         /// <summary>The 'Elementalist' item restriction.</summary>
-        [EnumMember(Value = "Elementalist")]
-        Elementalist = 1 << 5,
+        [EnumMember(Value = "Elementalist")] Elementalist = 1 << 5,
 
         /// <summary>The 'Engineer' item restriction.</summary>
-        [EnumMember(Value = "Engineer")]
-        Engineer = 1 << 6,
+        [EnumMember(Value = "Engineer")] Engineer = 1 << 6,
 
         /// <summary>The 'Guardian' item restriction.</summary>
-        [EnumMember(Value = "Guardian")]
-        Guardian = 1 << 7,
+        [EnumMember(Value = "Guardian")] Guardian = 1 << 7,
 
         /// <summary>The 'Mesmer' item restriction.</summary>
-        [EnumMember(Value = "Mesmer")]
-        Mesmer = 1 << 8,
+        [EnumMember(Value = "Mesmer")] Mesmer = 1 << 8,
 
         /// <summary>The 'Necromancer' item restriction.</summary>
-        [EnumMember(Value = "Necromancer")]
-        Necromancer = 1 << 9,
+        [EnumMember(Value = "Necromancer")] Necromancer = 1 << 9,
 
         /// <summary>The 'Ranger' item restriction.</summary>
-        [EnumMember(Value = "Ranger")]
-        Ranger = 1 << 10,
+        [EnumMember(Value = "Ranger")] Ranger = 1 << 10,
 
         /// <summary>The 'Thief' item restriction.</summary>
-        [EnumMember(Value = "Thief")]
-        Thief = 1 << 11,
+        [EnumMember(Value = "Thief")] Thief = 1 << 11,
 
         /// <summary>The 'Warrior' item restriction.</summary>
-        [EnumMember(Value = "Warrior")]
-        Warrior = 1 << 12
+        [EnumMember(Value = "Warrior")] Warrior = 1 << 12
     }
 }

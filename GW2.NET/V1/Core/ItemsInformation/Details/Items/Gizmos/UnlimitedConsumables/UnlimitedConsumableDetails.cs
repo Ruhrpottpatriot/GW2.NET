@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.UnlimitedConsumables
 {
     /// <summary>
-    /// Represents detailed information about an unlimited consumable gizmo.
+    ///     Represents detailed information about an unlimited consumable gizmo.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class UnlimitedConsumableDetails : GizmoDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnlimitedConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="UnlimitedConsumableDetails" /> class.
         /// </summary>
         public UnlimitedConsumableDetails()
             : base(GizmoType.UnlimitedConsumable)

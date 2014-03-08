@@ -2,13 +2,11 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.Core.BuildInformation
+namespace GW2DotNET.Core.BuildInformation
 {
     [TestFixture]
     public class BuildTest
     {
-        private Build build;
-
         [SetUp]
         public void Initialize()
         {
@@ -16,12 +14,14 @@ namespace GW2DotNET_Tests.Core.BuildInformation
             this.build = JsonConvert.DeserializeObject<Build>(input);
         }
 
+        private Build build;
+
         [Test]
         [Category("build.json")]
         public void Build_BuildIdReflectsInput()
         {
             const int expected = default(int);
-            var actual         = build.BuildId;
+            int actual = this.build.BuildId;
 
             Assert.AreEqual(expected, actual);
         }
@@ -31,7 +31,7 @@ namespace GW2DotNET_Tests.Core.BuildInformation
         [Category("ExtensionData")]
         public void Build_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(build.ExtensionData);
+            Assert.IsEmpty(this.build.ExtensionData);
         }
     }
 }

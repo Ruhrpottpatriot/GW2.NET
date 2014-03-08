@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
 {
     /// <summary>
-    /// Represents information about a file that can be retrieved from the render service.
+    ///     Represents information about a file that can be retrieved from the render service.
     /// </summary>
     public class Asset : JsonObject
     {
         /// <summary>
-        /// Gets or sets the file ID to be used with the render service.
+        ///     Gets or sets the file ID to be used with the render service.
         /// </summary>
         [JsonProperty("file_id", Order = 0)]
         public int FileId { get; set; }
 
         /// <summary>
-        /// Gets or sets file signature to be used with the render service.
+        ///     Gets or sets file signature to be used with the render service.
         /// </summary>
         [JsonProperty("signature", Order = 1)]
         public string Signature { get; set; }

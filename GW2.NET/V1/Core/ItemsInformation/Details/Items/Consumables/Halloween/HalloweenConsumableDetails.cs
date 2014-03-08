@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Halloween
 {
     /// <summary>
-    /// Represents detailed information about a halloween consumable item.
+    ///     Represents detailed information about a halloween consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class HalloweenConsumableDetails : ConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HalloweenConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="HalloweenConsumableDetails" /> class.
         /// </summary>
         public HalloweenConsumableDetails()
             : base(ConsumableType.Halloween)

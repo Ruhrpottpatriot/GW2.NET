@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     /// <summary>
-    /// Represents a collection of a World versus World map objectives.
+    ///     Represents a collection of a World versus World map objectives.
     /// </summary>
     public class ObjectiveCollection : JsonList<Objective>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectiveCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ObjectiveCollection" /> class.
         /// </summary>
         public ObjectiveCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectiveCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ObjectiveCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public ObjectiveCollection(IEnumerable<Objective> collection)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectiveCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ObjectiveCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public ObjectiveCollection(int capacity)

@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     /// <summary>
-    /// Represents a collection of objectives and their localized name.
+    ///     Represents a collection of objectives and their localized name.
     /// </summary>
     public class ObjectiveNameCollection : JsonList<ObjectiveName>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectiveNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ObjectiveNameCollection" /> class.
         /// </summary>
         public ObjectiveNameCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectiveNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ObjectiveNameCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public ObjectiveNameCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ObjectiveNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="ObjectiveNameCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public ObjectiveNameCollection(IEnumerable<ObjectiveName> collection)

@@ -11,57 +11,49 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
 {
     /// <summary>
-    /// Enumerates the possible armor piece types.
+    ///     Enumerates the possible armor piece types.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ArmorType
     {
         /// <summary>
-        /// The 'Unknown' armor piece type.
+        ///     The 'Unknown' armor piece type.
         /// </summary>
-        [EnumMember(Value = "Unknown")]
-        Unknown = 0,
+        [EnumMember(Value = "Unknown")] Unknown = 0,
 
         /// <summary>
-        /// The 'Boots' armor piece type.
+        ///     The 'Boots' armor piece type.
         /// </summary>
-        [EnumMember(Value = "Boots")]
-        Boots = 1 << 0,
+        [EnumMember(Value = "Boots")] Boots = 1 << 0,
 
         /// <summary>
-        /// The 'Coat' armor piece type.
+        ///     The 'Coat' armor piece type.
         /// </summary>
-        [EnumMember(Value = "Coat")]
-        Coat = 1 << 1,
+        [EnumMember(Value = "Coat")] Coat = 1 << 1,
 
         /// <summary>
-        /// The 'Gloves' armor piece type.
+        ///     The 'Gloves' armor piece type.
         /// </summary>
-        [EnumMember(Value = "Gloves")]
-        Gloves = 1 << 2,
+        [EnumMember(Value = "Gloves")] Gloves = 1 << 2,
 
         /// <summary>
-        /// The 'Helm' armor piece type.
+        ///     The 'Helm' armor piece type.
         /// </summary>
-        [EnumMember(Value = "Helm")]
-        Helm = 1 << 3,
+        [EnumMember(Value = "Helm")] Helm = 1 << 3,
 
         /// <summary>
-        /// The 'Helm Aquatic' armor piece type.
+        ///     The 'Helm Aquatic' armor piece type.
         /// </summary>
-        [EnumMember(Value = "HelmAquatic")]
-        HelmAquatic = 1 << 4,
+        [EnumMember(Value = "HelmAquatic")] HelmAquatic = 1 << 4,
 
         /// <summary>
-        /// The 'Leggings' armor piece type.
+        ///     The 'Leggings' armor piece type.
         /// </summary>
-        [EnumMember(Value = "Leggings")]
-        Leggings = 1 << 5,
+        [EnumMember(Value = "Leggings")] Leggings = 1 << 5,
 
         /// <summary>
-        /// The 'Shoulders' armor piece type.
+        ///     The 'Shoulders' armor piece type.
         /// </summary>
-        [EnumMember(Value = "Shoulders")]
-        Shoulders = 1 << 6
+        [EnumMember(Value = "Shoulders")] Shoulders = 1 << 6
     }
 }

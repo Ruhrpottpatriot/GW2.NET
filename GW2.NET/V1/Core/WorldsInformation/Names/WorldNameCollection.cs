@@ -9,20 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.WorldsInformation.Names
 {
     /// <summary>
-    /// Represents a collection of worlds and their localized name.
+    ///     Represents a collection of worlds and their localized name.
     /// </summary>
     public class WorldNameCollection : JsonList<WorldName>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorldNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="WorldNameCollection" /> class.
         /// </summary>
         public WorldNameCollection()
-            : base()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorldNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="WorldNameCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public WorldNameCollection(IEnumerable<WorldName> collection)
@@ -31,7 +30,7 @@ namespace GW2DotNET.V1.Core.WorldsInformation.Names
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorldNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="WorldNameCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public WorldNameCollection(int capacity)

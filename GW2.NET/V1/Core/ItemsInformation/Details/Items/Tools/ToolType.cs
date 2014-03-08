@@ -11,17 +11,15 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
 {
     /// <summary>
-    /// Enumerates the possible tool types.
+    ///     Enumerates the possible tool types.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ToolType
     {
         /// <summary>The 'Unknown' tool type.</summary>
-        [EnumMember(Value = "Unknown")]
-        Unknown = 0,
+        [EnumMember(Value = "Unknown")] Unknown = 0,
 
         /// <summary>The 'Salvage' tool type.</summary>
-        [EnumMember(Value = "Salvage")]
-        Salvage = 1 << 0
+        [EnumMember(Value = "Salvage")] Salvage = 1 << 0
     }
 }

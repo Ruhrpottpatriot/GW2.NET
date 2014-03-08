@@ -7,18 +7,18 @@
 using System;
 using System.Drawing;
 using GW2DotNET.Extensions;
-using GW2DotNET.V1.Core.Utilities;
+using GW2DotNET.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a <see cref="Rectangle"/> to and from its <see cref="System.String"/> representation.
+    ///     Converts a <see cref="Rectangle" /> to and from its <see cref="System.String" /> representation.
     /// </summary>
     public class RectangleConverter : JsonConverter
     {
         /// <summary>
-        /// Determines whether this instance can convert the specified object type.
+        ///     Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -28,9 +28,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Reads the JSON representation of the object.
+        ///     Reads the JSON representation of the object.
         /// </summary>
-        /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
+        /// <param name="reader">The <see cref="JsonReader" /> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
@@ -47,8 +47,8 @@ namespace GW2DotNET.V1.Core.Converters
             try
             {
                 Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 2);
-                Preconditions.EnsureInRange(value: values[0].Length, floor: 0, ceiling: 2);
-                Preconditions.EnsureInRange(value: values[1].Length, floor: 0, ceiling: 2);
+                Preconditions.EnsureInRange(values[0].Length, 0, 2);
+                Preconditions.EnsureInRange(values[1].Length, 0, 2);
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -89,9 +89,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Writes the JSON representation of the object.
+        ///     Writes the JSON representation of the object.
         /// </summary>
-        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+        /// <param name="writer">The <see cref="JsonWriter" /> to write to.</param>
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.CraftingMaterials
 {
     /// <summary>
-    /// Represents a crafting material.
+    ///     Represents a crafting material.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class CraftingMaterial : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingMaterial"/> class.
+        ///     Initializes a new instance of the <see cref="CraftingMaterial" /> class.
         /// </summary>
         public CraftingMaterial()
             : base(ItemType.CraftingMaterial)

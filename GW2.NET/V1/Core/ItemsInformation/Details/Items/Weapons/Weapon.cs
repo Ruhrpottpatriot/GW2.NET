@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
 {
     /// <summary>
-    /// Represents a weapon.
+    ///     Represents a weapon.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class Weapon : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Weapon"/> class.
+        ///     Initializes a new instance of the <see cref="Weapon" /> class.
         /// </summary>
         public Weapon()
             : base(ItemType.Weapon)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
         }
 
         /// <summary>
-        /// Gets or sets the weapon's details.
+        ///     Gets or sets the weapon's details.
         /// </summary>
         [JsonProperty("weapon", Order = 100)]
         public WeaponDetails WeaponDetails { get; set; }

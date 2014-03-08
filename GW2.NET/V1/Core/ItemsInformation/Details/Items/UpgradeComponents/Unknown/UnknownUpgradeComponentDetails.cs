@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Unknown
 {
     /// <summary>
-    /// Represents detailed information about an unknown upgrade component.
+    ///     Represents detailed information about an unknown upgrade component.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class UnknownUpgradeComponentDetails : UpgradeComponentDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnknownUpgradeComponentDetails"/> class.
+        ///     Initializes a new instance of the <see cref="UnknownUpgradeComponentDetails" /> class.
         /// </summary>
         public UnknownUpgradeComponentDetails()
             : base(UpgradeComponentType.Unknown)

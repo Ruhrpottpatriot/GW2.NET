@@ -12,39 +12,45 @@ using SizeConverter = GW2DotNET.V1.Core.Converters.SizeConverter;
 namespace GW2DotNET.V1.Core.MapsInformation.Continents
 {
     /// <summary>
-    /// Represents a continent.
+    ///     Represents a continent.
     /// </summary>
     public class Continent : JsonObject
     {
         /// <summary>
-        /// Gets or sets the dimensions of the continent.
+        ///     Gets or sets the dimensions of the continent.
         /// </summary>
-        [JsonProperty("continent_dims", Order = 1)]
+        [JsonProperty("continent_dims", Order = 2)]
         [JsonConverter(typeof(SizeConverter))]
         public Size ContinentDimensions { get; set; }
 
         /// <summary>
-        /// Gets or sets the name of the continent.
+        ///     Gets or sets the ID of the continent.
         /// </summary>
         [JsonProperty("name", Order = 0)]
+        public int ContinentId { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the name of the continent.
+        /// </summary>
+        [JsonProperty("name", Order = 1)]
         public string ContinentName { get; set; }
 
         /// <summary>
-        /// Gets or sets a collection of floors available for this continent.
+        ///     Gets or sets a collection of floors available for this continent.
         /// </summary>
-        [JsonProperty("floors", Order = 4)]
+        [JsonProperty("floors", Order = 5)]
         public FloorCollection Floors { get; set; }
 
         /// <summary>
-        /// Gets or sets the maximum zoom level for use with the map tile service.
+        ///     Gets or sets the maximum zoom level for use with the map tile service.
         /// </summary>
-        [JsonProperty("max_zoom", Order = 3)]
+        [JsonProperty("max_zoom", Order = 4)]
         public int MaximumZoom { get; set; }
 
         /// <summary>
-        /// Gets or sets the minimum zoom level for use with the map tile service.
+        ///     Gets or sets the minimum zoom level for use with the map tile service.
         /// </summary>
-        [JsonProperty("min_zoom", Order = 2)]
+        [JsonProperty("min_zoom", Order = 3)]
         public int MinimumZoom { get; set; }
     }
 }

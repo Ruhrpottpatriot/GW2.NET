@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.BankTabs
 {
     /// <summary>
-    /// Represents detailed information about a bank tab unlock item.
+    ///     Represents detailed information about a bank tab unlock item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class BankTabUnlockConsumableDetails : UnlockConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankTabUnlockConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="BankTabUnlockConsumableDetails" /> class.
         /// </summary>
         public BankTabUnlockConsumableDetails()
             : base(UnlockType.BankTab)

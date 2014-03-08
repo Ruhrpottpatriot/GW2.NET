@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
-    /// Represents a cylindrical location of an event on the map.
+    ///     Represents a cylindrical location of an event on the map.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class CylinderLocation : Location
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CylinderLocation"/> class.
+        ///     Initializes a new instance of the <see cref="CylinderLocation" /> class.
         /// </summary>
         public CylinderLocation()
             : base(LocationType.Cylinder)
@@ -24,19 +24,19 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         }
 
         /// <summary>
-        /// Gets or sets the location's height.
+        ///     Gets or sets the location's height.
         /// </summary>
         [JsonProperty("height", Order = 3)]
         public double Height { get; set; }
 
         /// <summary>
-        /// Gets or sets the location's radius.
+        ///     Gets or sets the location's radius.
         /// </summary>
         [JsonProperty("radius", Order = 4)]
         public double Radius { get; set; }
 
         /// <summary>
-        /// Gets or sets the location's rotation.
+        ///     Gets or sets the location's rotation.
         /// </summary>
         [JsonProperty("rotation", Order = 5)]
         public double Rotation { get; set; }

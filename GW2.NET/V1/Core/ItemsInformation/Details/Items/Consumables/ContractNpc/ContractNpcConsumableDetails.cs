@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.ContractNpc
 {
     /// <summary>
-    /// Represents detailed information about an appearance changing consumable item.
+    ///     Represents detailed information about an appearance changing consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class ContractNpcConsumableDetails : ConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ContractNpcConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="ContractNpcConsumableDetails" /> class.
         /// </summary>
         public ContractNpcConsumableDetails()
             : base(ConsumableType.ContractNpc)

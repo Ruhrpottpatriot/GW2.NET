@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Transmutation
 {
     /// <summary>
-    /// Represents detailed information about a transmutation consumable item.
+    ///     Represents detailed information about a transmutation consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class TransmutationConsumableDetails : ConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransmutationConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="TransmutationConsumableDetails" /> class.
         /// </summary>
         public TransmutationConsumableDetails()
             : base(ConsumableType.Transmutation)

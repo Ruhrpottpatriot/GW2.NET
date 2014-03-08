@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Insignias
 {
     /// <summary>
-    /// Represents detailed information about an insignia crafting recipe.
+    ///     Represents detailed information about an insignia crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class InsigniaRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InsigniaRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="InsigniaRecipe" /> class.
         /// </summary>
         public InsigniaRecipe()
             : base(RecipeType.Insignia)

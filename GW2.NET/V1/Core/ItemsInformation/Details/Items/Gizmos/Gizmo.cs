@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
 {
     /// <summary>
-    /// Represents a gizmo.
+    ///     Represents a gizmo.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class Gizmo : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Gizmo"/> class.
+        ///     Initializes a new instance of the <see cref="Gizmo" /> class.
         /// </summary>
         public Gizmo()
             : base(ItemType.Gizmo)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
         }
 
         /// <summary>
-        /// Gets or sets the gizmo's details.
+        ///     Gets or sets the gizmo's details.
         /// </summary>
         [JsonProperty("gizmo", Order = 100)]
         public GizmoDetails GizmoDetails { get; set; }

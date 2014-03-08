@@ -10,19 +10,19 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags
 {
     /// <summary>
-    /// Represents detailed information about a bag.
+    ///     Represents detailed information about a bag.
     /// </summary>
     public class BagDetails : JsonObject
     {
         /// <summary>
-        /// Gets or sets a value indicating whether this is an invisible bag.
+        ///     Gets or sets a value indicating whether this is an invisible bag.
         /// </summary>
         [JsonProperty("no_sell_or_sort", Order = 0)]
         [JsonConverter(typeof(NumericBooleanConverter))]
         public bool NoSellOrSort { get; set; }
 
         /// <summary>
-        /// Gets or sets the bag's capacity.
+        ///     Gets or sets the bag's capacity.
         /// </summary>
         [JsonProperty("size", Order = 1)]
         public int Size { get; set; }

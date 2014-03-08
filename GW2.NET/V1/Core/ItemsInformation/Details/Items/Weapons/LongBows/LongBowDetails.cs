@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.LongBows
 {
     /// <summary>
-    /// Represents detailed information about a long bow.
+    ///     Represents detailed information about a long bow.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class LongBowDetails : WeaponDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LongBowDetails"/> class.
+        ///     Initializes a new instance of the <see cref="LongBowDetails" /> class.
         /// </summary>
         public LongBowDetails()
             : base(WeaponType.LongBow)

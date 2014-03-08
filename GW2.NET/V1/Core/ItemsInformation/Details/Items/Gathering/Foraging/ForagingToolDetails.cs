@@ -10,14 +10,14 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Foraging
 {
     /// <summary>
-    /// Represents detailed information about a foraging tool.
+    ///     Represents detailed information about a foraging tool.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class ForagingToolDetails : GatheringToolDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ForagingToolDetails"/> class.
-        /// </summary>  
+        ///     Initializes a new instance of the <see cref="ForagingToolDetails" /> class.
+        /// </summary>
         public ForagingToolDetails()
             : base(GatheringToolType.Foraging)
         {

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Helms
 {
     /// <summary>
-    /// Represents detailed information about aquatic head protection.
+    ///     Represents detailed information about aquatic head protection.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class AquaticHelmDetails : ArmorDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AquaticHelmDetails"/> class
+        ///     Initializes a new instance of the <see cref="AquaticHelmDetails" /> class
         /// </summary>
         public AquaticHelmDetails()
             : base(ArmorType.HelmAquatic)

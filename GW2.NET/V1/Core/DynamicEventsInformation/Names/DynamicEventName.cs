@@ -10,18 +10,18 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
 {
     /// <summary>
-    /// Represents a dynamic event and its localized name.
+    ///     Represents a dynamic event and its localized name.
     /// </summary>
     public class DynamicEventName : JsonObject
     {
         /// <summary>
-        /// Gets or sets the event ID.
+        ///     Gets or sets the event ID.
         /// </summary>
-        [JsonProperty("id", Order = 0)]
+        [JsonProperty("ID", Order = 0)]
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the localized event name.
+        ///     Gets or sets the localized event name.
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
 {
     /// <summary>
-    /// Represents detailed information about an armor piece.
+    ///     Represents detailed information about an armor piece.
     /// </summary>
     [JsonConverter(typeof(ArmorDetailsConverter))]
     public abstract class ArmorDetails : EquipmentDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ArmorDetails"/> class.
+        ///     Initializes a new instance of the <see cref="ArmorDetails" /> class.
         /// </summary>
         /// <param name="armorType">The armor type.</param>
         protected ArmorDetails(ArmorType armorType)
@@ -25,19 +25,19 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
         }
 
         /// <summary>
-        /// Gets or sets the armor piece's defense stat.
+        ///     Gets or sets the armor piece's defense stat.
         /// </summary>
         [JsonProperty("defense", Order = 2)]
         public int Defense { get; set; }
 
         /// <summary>
-        /// Gets or sets the armor piece's type.
+        ///     Gets or sets the armor piece's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public ArmorType Type { get; set; }
 
         /// <summary>
-        /// Gets or sets the armor piece's weight class.
+        ///     Gets or sets the armor piece's weight class.
         /// </summary>
         [JsonProperty("weight_class", Order = 1)]
         public WeightClass WeightClass { get; set; }

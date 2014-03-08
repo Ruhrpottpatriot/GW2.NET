@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Dyes
 {
     /// <summary>
-    /// Represents detailed information about a dye.
+    ///     Represents detailed information about a dye.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class DyeUnlockConsumableDetails : UnlockConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyeUnlockConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="DyeUnlockConsumableDetails" /> class.
         /// </summary>
         public DyeUnlockConsumableDetails()
             : base(UnlockType.Dye)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Dy
         }
 
         /// <summary>
-        /// Gets or sets the dye's color ID.
+        ///     Gets or sets the dye's color ID.
         /// </summary>
         [JsonProperty("color_id", Order = 101)]
         public int ColorId { get; set; }

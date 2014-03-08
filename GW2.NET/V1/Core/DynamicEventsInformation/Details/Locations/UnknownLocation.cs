@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
-    /// Represents an unknown location.
+    ///     Represents an unknown location.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class UnknownLocation : Location
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnknownLocation"/> class.
+        ///     Initializes a new instance of the <see cref="UnknownLocation" /> class.
         /// </summary>
         public UnknownLocation()
             : base(LocationType.Unknown)

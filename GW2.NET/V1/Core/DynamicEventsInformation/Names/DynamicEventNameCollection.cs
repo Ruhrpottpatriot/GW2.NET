@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
 {
     /// <summary>
-    /// Represents a collection of dynamic events and their localized name.
+    ///     Represents a collection of dynamic events and their localized name.
     /// </summary>
     public class DynamicEventNameCollection : JsonList<DynamicEventName>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicEventNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="DynamicEventNameCollection" /> class.
         /// </summary>
         public DynamicEventNameCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicEventNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="DynamicEventNameCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public DynamicEventNameCollection(IEnumerable<DynamicEventName> collection)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DynamicEventNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="DynamicEventNameCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public DynamicEventNameCollection(int capacity)

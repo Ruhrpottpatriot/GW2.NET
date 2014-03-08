@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
 {
     /// <summary>
-    /// Represents a container.
+    ///     Represents a container.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class Container : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Container"/> class.
+        ///     Initializes a new instance of the <see cref="Container" /> class.
         /// </summary>
         public Container()
             : base(ItemType.Container)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
         }
 
         /// <summary>
-        /// Gets or sets the container's details.
+        ///     Gets or sets the container's details.
         /// </summary>
         [JsonProperty("container", Order = 100)]
         public ContainerDetails ContainerDetails { get; set; }

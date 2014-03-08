@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Unknown
 {
     /// <summary>
-    /// Represents detailed information about an unknown crafting recipe.
+    ///     Represents detailed information about an unknown crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class UnknownRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnknownRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="UnknownRecipe" /> class.
         /// </summary>
         public UnknownRecipe()
             : base(RecipeType.Unknown)

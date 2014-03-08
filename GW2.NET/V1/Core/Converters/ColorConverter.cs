@@ -7,18 +7,18 @@
 using System;
 using System.Drawing;
 using GW2DotNET.Extensions;
-using GW2DotNET.V1.Core.Utilities;
+using GW2DotNET.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a <see cref="Color"/> to and from its <see cref="System.String"/> representation.
+    ///     Converts a <see cref="Color" /> to and from its <see cref="System.String" /> representation.
     /// </summary>
     public class ColorConverter : JsonConverter
     {
         /// <summary>
-        /// Determines whether this instance can convert the specified object type.
+        ///     Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -28,9 +28,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Reads the JSON representation of the object.
+        ///     Reads the JSON representation of the object.
         /// </summary>
-        /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
+        /// <param name="reader">The <see cref="JsonReader" /> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.Core.Converters
 
             try
             {
-                Preconditions.EnsureInRange(value: values.Length, floor: 0, ceiling: 4);
+                Preconditions.EnsureInRange(values.Length, 0, 4);
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -56,22 +56,22 @@ namespace GW2DotNET.V1.Core.Converters
             switch (values.Length)
             {
                 case 1:
-                    return Color.FromArgb(red: values[0], green: 0, blue: 0);
+                    return Color.FromArgb(values[0], 0, 0);
                 case 2:
-                    return Color.FromArgb(red: values[0], green: values[1], blue: 0);
+                    return Color.FromArgb(values[0], values[1], 0);
                 case 3:
-                    return Color.FromArgb(red: values[0], green: values[1], blue: values[2]);
+                    return Color.FromArgb(values[0], values[1], values[2]);
                 case 4:
-                    return Color.FromArgb(alpha: values[0], red: values[1], green: values[2], blue: values[3]);
+                    return Color.FromArgb(values[0], values[1], values[2], values[3]);
                 default:
                     return default(Color);
             }
         }
 
         /// <summary>
-        /// Writes the JSON representation of the object.
+        ///     Writes the JSON representation of the object.
         /// </summary>
-        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+        /// <param name="writer">The <see cref="JsonWriter" /> to write to.</param>
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

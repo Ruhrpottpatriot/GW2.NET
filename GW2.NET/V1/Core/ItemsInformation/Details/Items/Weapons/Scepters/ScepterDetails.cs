@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Scepters
 {
     /// <summary>
-    /// Represents detailed information about a scepter.
+    ///     Represents detailed information about a scepter.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class ScepterDetails : WeaponDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ScepterDetails"/> class.
+        ///     Initializes a new instance of the <see cref="ScepterDetails" /> class.
         /// </summary>
         public ScepterDetails()
             : base(WeaponType.Scepter)

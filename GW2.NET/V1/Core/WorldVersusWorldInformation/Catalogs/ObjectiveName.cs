@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     /// <summary>
-    /// Represents an objective and its localized name.
+    ///     Represents an objective and its localized name.
     /// </summary>
     public class ObjectiveName : JsonObject
     {
         /// <summary>
-        /// Gets or sets the objective's ID.
+        ///     Gets or sets the objective's ID.
         /// </summary>
-        [JsonProperty("id", Order = 0)]
+        [JsonProperty("ID", Order = 0)]
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the objective's name.
+        ///     Gets or sets the objective's name.
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }

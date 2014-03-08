@@ -11,12 +11,12 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a timespan to and from its <see cref="System.String"/> representation in milliseconds.
+    ///     Converts a timespan to and from its <see cref="System.String" /> representation in milliseconds.
     /// </summary>
     public class MillisecondsTimespanConverter : JsonConverter
     {
         /// <summary>
-        /// Determines whether this instance can convert the specified object type.
+        ///     Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -26,9 +26,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Reads the JSON representation of the object.
+        ///     Reads the JSON representation of the object.
         /// </summary>
-        /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
+        /// <param name="reader">The <see cref="JsonReader" /> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
@@ -46,9 +46,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Writes the JSON representation of the object.
+        ///     Writes the JSON representation of the object.
         /// </summary>
-        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+        /// <param name="writer">The <see cref="JsonWriter" /> to write to.</param>
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

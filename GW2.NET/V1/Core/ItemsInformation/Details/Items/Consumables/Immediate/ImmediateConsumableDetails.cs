@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Immediate
 {
     /// <summary>
-    /// Represents detailed information about an immediate consumable item.
+    ///     Represents detailed information about an immediate consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class ImmediateConsumableDetails : ConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ImmediateConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="ImmediateConsumableDetails" /> class.
         /// </summary>
         public ImmediateConsumableDetails()
             : base(ConsumableType.Immediate)

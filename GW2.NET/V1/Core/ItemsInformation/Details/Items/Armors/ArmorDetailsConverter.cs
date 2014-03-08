@@ -20,17 +20,18 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
 {
     /// <summary>
-    /// Converts an instance of a class that extends <see cref="ArmorDetails"/> from its <see cref="System.String"/> representation.
+    ///     Converts an instance of a class that extends <see cref="ArmorDetails" /> from its <see cref="System.String" />
+    ///     representation.
     /// </summary>
     public class ArmorDetailsConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>
-        /// Backing field. Holds a dictionary of known JSON values and their corresponding type.
+        ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<ArmorType, Type> KnownTypes = new Dictionary<ArmorType, Type>();
 
         /// <summary>
-        /// Initializes static members of the <see cref="ArmorDetailsConverter"/> class.
+        ///     Initializes static members of the <see cref="ArmorDetailsConverter" /> class.
         /// </summary>
         static ArmorDetailsConverter()
         {
@@ -45,7 +46,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
         }
 
         /// <summary>
-        /// Determines whether this instance can convert the specified object type.
+        ///     Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">ToolType of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -55,7 +56,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
         }
 
         /// <summary>
-        /// Gets the object type that will be used by the serializer.
+        ///     Gets the object type that will be used by the serializer.
         /// </summary>
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>

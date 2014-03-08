@@ -11,13 +11,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
 {
     /// <summary>
-    /// Represents detailed information about an edible item.
+    ///     Represents detailed information about an edible item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class FoodConsumableDetails : ConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FoodConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="FoodConsumableDetails" /> class.
         /// </summary>
         public FoodConsumableDetails()
             : base(ConsumableType.Food)
@@ -25,13 +25,13 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
         }
 
         /// <summary>
-        /// Gets or sets the food's effect description.
+        ///     Gets or sets the food's effect description.
         /// </summary>
         [JsonProperty("description", Order = 101, NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the food's effect duration.
+        ///     Gets or sets the food's effect duration.
         /// </summary>
         [JsonProperty("duration_ms", Order = 100, NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(MillisecondsTimespanConverter))]

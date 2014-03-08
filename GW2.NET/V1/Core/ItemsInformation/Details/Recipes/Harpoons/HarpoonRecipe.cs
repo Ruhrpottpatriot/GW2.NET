@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Harpoons
 {
     /// <summary>
-    /// Represents detailed information about a harpoon crafting recipe.
+    ///     Represents detailed information about a harpoon crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class HarpoonRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="HarpoonRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="HarpoonRecipe" /> class.
         /// </summary>
         public HarpoonRecipe()
             : base(RecipeType.Harpoon)

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Maces
 {
     /// <summary>
-    /// Represents detailed information about a mace crafting recipe.
+    ///     Represents detailed information about a mace crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class MaceRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MaceRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="MaceRecipe" /> class.
         /// </summary>
         public MaceRecipe()
             : base(RecipeType.Mace)

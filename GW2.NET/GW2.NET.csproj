@@ -40,18 +40,6 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Threading.Tasks.Extensions.Desktop, Version=1.0.165.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\net40\Microsoft.Threading.Tasks.Extensions.Desktop.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -63,31 +51,21 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.IO">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.IO.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net" />
-    <Reference Include="System.Runtime">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.Runtime.dll</HintPath>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Threading.Tasks">
-      <HintPath>..\packages\Microsoft.Bcl.1.1.6\lib\net40\System.Threading.Tasks.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatLinks.cs" />
+    <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Preconditions.cs" />
     <Compile Include="V1\Core\ColorsInformation\Details\DyeCollection.cs" />
+    <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventDetailsCollection.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNameCollection.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventCollection.cs" />
     <Compile Include="V1\Core\FilesInformation\Catalogs\AssetCollection.cs" />
+    <Compile Include="V1\Core\IServiceManager.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Items\Unknown\UnknownItem.cs" />
     <Compile Include="V1\Core\MapsInformation\Common\FloorCollection.cs" />
     <Compile Include="V1\Core\MapsInformation\Continents\ContinentCollection.cs" />
@@ -396,8 +374,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="V1\Core\Utilities\Preconditions.cs" />
-    <Compile Include="V1\Core\Utilities\SupportedLanguages.cs" />
     <Compile Include="V1\Core\WorldsInformation\Names\WorldName.cs" />
     <Compile Include="V1\Core\WorldsInformation\Names\WorldNameCollection.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\MatchCollection.cs" />
@@ -406,11 +382,11 @@
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\ObjectiveName.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\ObjectiveNameCollection.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\MapBonusCollection.cs" />
-    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\Bonus.cs" />
-    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\BonusType.cs" />
-    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\MapCollection.cs" />
-    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\Map.cs" />
-    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\MapType.cs" />
+    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\MapBonus.cs" />
+    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\MapBonusType.cs" />
+    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\CompetitiveMapCollection.cs" />
+    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\CompetitiveMap.cs" />
+    <Compile Include="V1\Core\WorldVersusWorldInformation\Details\CompetitiveMapType.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\MatchDetails.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\ObjectiveCollection.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\Objective.cs" />
@@ -419,100 +395,32 @@
       <DependentUpon>Scoreboard.cs</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\TeamColor.cs" />
-    <Compile Include="V1\DataManager.cs" />
-    <Compile Include="V1\DynamicEvents\DataProvider.cs" />
-    <Compile Include="V1\DynamicEvents\Models\GameEvent.cs" />
-    <Compile Include="V1\DynamicEvents\Models\GameEventState.cs" />
-    <Compile Include="V1\Guilds\DataProvider.cs" />
-    <Compile Include="V1\Guilds\Models\Guild.cs" />
-    <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.cs" />
-    <Compile Include="V1\Guilds\Models\Guild.GuildEmblem.GuildEmblemFlags.cs" />
-    <Compile Include="V1\IDataManager.cs" />
-    <Compile Include="V1\Infrastructure\ApiCall.Categories.cs" />
-    <Compile Include="V1\Infrastructure\APICall.cs" />
-    <Compile Include="V1\Infrastructure\Converters\BooleanConverter.cs" />
-    <Compile Include="V1\Infrastructure\ChatLinks.cs" />
-    <Compile Include="V1\Infrastructure\DataProviderBase.cs" />
-    <Compile Include="V1\Infrastructure\Extensions\EnumerableExtensions.cs" />
-    <Compile Include="V1\Infrastructure\GameCache.cs" />
-    <Compile Include="V1\Infrastructure\Language.cs" />
-    <Compile Include="V1\Items\DataProviders\ColourData.cs" />
-    <Compile Include="V1\Items\DataProviders\ItemData.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="V1\Items\Models\GwColour.ColourDetails.cs" />
-    <Compile Include="V1\Items\DataProviders\RecipeData.cs" />
-    <Compile Include="V1\Items\Models\GwColour.RgbColour.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Armour.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Back.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Bag.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Consumable.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Container.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\CraftingMaterial.cs" />
-    <Compile Include="V1\Items\Models\Items\GameType.cs" />
-    <Compile Include="V1\Items\Models\GwColour.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Gizmo.cs" />
-    <Compile Include="V1\Items\Models\Items\InfixUpgrade.cs" />
-    <Compile Include="V1\Items\Models\Items\InfusionSlot.cs" />
-    <Compile Include="V1\Items\Models\Items\Item.cs" />
-    <Compile Include="V1\Items\Models\Items\ItemFlags.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Tool.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Trinket.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Trophy.cs" />
-    <Compile Include="V1\Items\Models\Items\UpgradeFlag.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\Weapon.cs" />
-    <Compile Include="V1\Items\Models\Recipe.cs" />
-    <Compile Include="V1\Items\Models\Recipe.Ingredient.cs" />
-    <Compile Include="V1\Items\Models\RecipeType.cs" />
-    <Compile Include="V1\Items\Models\Items\ItemRestrictions.cs" />
-    <Compile Include="V1\Items\Models\Items\SubType\UpgradeComponent.cs" />
-    <Compile Include="V1\Items\Models\Items\ItemRarity.cs" />
-    <Compile Include="V1\Items\Models\Items\ItemType.cs" />
-    <Compile Include="V1\MapInformation\DataProvider\ContinentData.cs" />
-    <Compile Include="V1\MapInformation\DataProvider\MapFloorData.cs" />
-    <Compile Include="V1\MapInformation\DataProvider\MapsData.cs" />
-    <Compile Include="V1\MapInformation\Models\Continent.cs" />
-    <Compile Include="V1\MapInformation\Models\Map.cs" />
-    <Compile Include="V1\MapInformation\Models\Map.PointOfInterest.cs" />
-    <Compile Include="V1\MapInformation\Models\Map.PointOfInterest.PoiType.cs" />
-    <Compile Include="V1\MapInformation\Models\Map.Sector.cs" />
-    <Compile Include="V1\MapInformation\Models\Map.SkillChallenge.cs" />
-    <Compile Include="V1\MapInformation\Models\Map.Task.cs" />
-    <Compile Include="V1\MapInformation\Models\MapFloor.cs" />
-    <Compile Include="V1\MapInformation\Models\MapFloor.Region.cs" />
-    <Compile Include="V1\RestSharp\BuildRequest.cs" />
-    <Compile Include="V1\RestSharp\ColorsRequest.cs" />
-    <Compile Include="V1\RestSharp\DynamicEventDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\DynamicEventNamesRequest.cs" />
-    <Compile Include="V1\RestSharp\DynamicEventStatusRequest.cs" />
-    <Compile Include="V1\RestSharp\FilesRequest.cs" />
-    <Compile Include="V1\RestSharp\GuildDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\ItemDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\ItemsRequest.cs" />
-    <Compile Include="V1\RestSharp\ContinentsRequest.cs" />
-    <Compile Include="V1\RestSharp\MapDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\MapFloorRequest.cs" />
-    <Compile Include="V1\RestSharp\MapNamesRequest.cs" />
-    <Compile Include="V1\RestSharp\MatchDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\MatchesRequest.cs" />
-    <Compile Include="V1\RestSharp\ObjectiveNamesRequest.cs" />
-    <Compile Include="V1\RestSharp\RecipeDetailsRequest.cs" />
-    <Compile Include="V1\RestSharp\RecipesRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\BuildRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\ColorsRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\ContinentsRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\DynamicEventDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\DynamicEventNamesRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\DynamicEventRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\FilesRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\GuildDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\ItemDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\ItemsRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\MapDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\MapFloorRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\MapNamesRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\MatchDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\MatchesRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\ObjectiveNamesRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\RecipeDetailsRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\RecipesRequest.cs" />
+    <Compile Include="V1\RestSharp\Requests\WorldNamesRequest.cs" />
     <Compile Include="V1\RestSharp\ServiceClient.cs" />
+    <Compile Include="V1\RestSharp\ServiceManager.cs" />
     <Compile Include="V1\RestSharp\ServiceRequest.cs" />
     <Compile Include="V1\RestSharp\ServiceResponse.cs" />
-    <Compile Include="V1\RestSharp\WorldNamesRequest.cs" />
-    <Compile Include="V1\WvW\Models\MatchList.cs" />
-    <Compile Include="V1\WvW\Models\MatchListEntry.cs" />
-    <Compile Include="V1\WvW\Models\WvWMatch.cs" />
-    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.cs" />
-    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.Type.cs" />
-    <Compile Include="V1\WvW\Models\WvWMatch.WvWMap.WvWObjective.cs" />
-    <Compile Include="V1\WvW\DataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Backlog.dgml" />
     <None Include="packages.config" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventFlags.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationType.cs" />
@@ -526,11 +434,6 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
-    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
-    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
-  </Target>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

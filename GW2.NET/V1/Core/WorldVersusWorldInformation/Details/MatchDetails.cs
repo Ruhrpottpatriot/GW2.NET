@@ -9,24 +9,24 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     /// <summary>
-    /// Represents detailed information about a World versus World match.
+    ///     Represents detailed information about a World versus World match.
     /// </summary>
     public class MatchDetails : JsonObject
     {
         /// <summary>
-        /// Gets or sets the list of maps.
+        ///     Gets or sets the list of maps.
         /// </summary>
         [JsonProperty("maps", Order = 2)]
-        public MapCollection Maps { get; set; }
+        public CompetitiveMapCollection Maps { get; set; }
 
         /// <summary>
-        /// Gets or sets the match's ID.
+        ///     Gets or sets the match's ID.
         /// </summary>
         [JsonProperty("match_id", Order = 0)]
         public string MatchId { get; set; }
 
         /// <summary>
-        /// Gets or sets the total scores.
+        ///     Gets or sets the total scores.
         /// </summary>
         [JsonProperty("scores", Order = 1)]
         public Scoreboard Scores { get; set; }

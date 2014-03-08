@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
 {
     /// <summary>
-    /// Represents a collection of named assets.
+    ///     Represents a collection of named assets.
     /// </summary>
     public class AssetCollection : JsonDictionary<string, Asset>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssetCollection"/> class.
+        ///     Initializes a new instance of the <see cref="AssetCollection" /> class.
         /// </summary>
         public AssetCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssetCollection"/> class.
+        ///     Initializes a new instance of the <see cref="AssetCollection" /> class.
         /// </summary>
         /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
         public AssetCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AssetCollection"/> class.
+        ///     Initializes a new instance of the <see cref="AssetCollection" /> class.
         /// </summary>
         /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
         public AssetCollection(IDictionary<string, Asset> dictionary)

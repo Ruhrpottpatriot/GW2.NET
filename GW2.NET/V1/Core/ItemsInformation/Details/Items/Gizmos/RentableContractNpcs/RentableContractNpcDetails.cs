@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.RentableContractNpcs
 {
     /// <summary>
-    /// Represents detailed information about a rentable contract NPC.
+    ///     Represents detailed information about a rentable contract NPC.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class RentableContractNpcDetails : GizmoDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RentableContractNpcDetails"/> class.
+        ///     Initializes a new instance of the <see cref="RentableContractNpcDetails" /> class.
         /// </summary>
         public RentableContractNpcDetails()
             : base(GizmoType.RentableContractNpc)

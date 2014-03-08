@@ -12,13 +12,13 @@ using PointConverter = GW2DotNET.V1.Core.Converters.PointConverter;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
-    /// Represents a polygonal location of an event on the map.
+    ///     Represents a polygonal location of an event on the map.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class PolygonLocation : Location
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PolygonLocation"/> class.
+        ///     Initializes a new instance of the <see cref="PolygonLocation" /> class.
         /// </summary>
         public PolygonLocation()
             : base(LocationType.Polygon)
@@ -26,13 +26,13 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         }
 
         /// <summary>
-        /// Gets or sets the series of points in the polygon.
+        ///     Gets or sets the series of points in the polygon.
         /// </summary>
         [JsonProperty("points", Order = 5)]
         public PointCollection PointCollection { get; set; }
 
         /// <summary>
-        /// Gets or sets the location's range on the z-axis.
+        ///     Gets or sets the location's range on the z-axis.
         /// </summary>
         [JsonProperty("z_range", Order = 4)]
         [JsonConverter(typeof(PointConverter))]

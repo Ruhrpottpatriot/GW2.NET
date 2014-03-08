@@ -9,12 +9,12 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.MapsInformation.Details
 {
     /// <summary>
-    /// Wraps a collection of maps and their details.
+    ///     Wraps a collection of maps and their details.
     /// </summary>
     public class MapsResult : JsonObject
     {
         /// <summary>
-        /// Gets or sets the collection of maps and their details.
+        ///     Gets or sets the collection of maps and their details.
         /// </summary>
         [JsonProperty("maps", Order = 0)]
         public MapCollection Maps { get; set; }

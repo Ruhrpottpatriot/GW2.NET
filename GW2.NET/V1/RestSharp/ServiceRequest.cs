@@ -5,24 +5,44 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using GW2DotNET.Utilities;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.Utilities;
 using RestSharp;
 using JsonObject = GW2DotNET.V1.Core.JsonObject;
 
 namespace GW2DotNET.V1.RestSharp
 {
     /// <summary>
-    /// Provides a RestSharp-specific implementation of the <see cref="IServiceRequest"/> interface.
+    ///     Provides a RestSharp-specific implementation of the <see cref="IServiceRequest" /> interface.
     /// </summary>
     public abstract class ServiceRequest : RestRequest, IServiceRequest
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ServiceRequest"/> class.
+        ///     Initializes a new instance of the <see cref="ServiceRequest" /> class.
         /// </summary>
-        /// <param name="resource">A relative URI that indicates the target endpoint.</param>
+        /// <param name="resource">The service endpoint.</param>
+        protected ServiceRequest(string resource)
+            : this(new Uri(resource, UriKind.Relative))
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ServiceRequest" /> class.
+        /// </summary>
+        /// <param name="resource">The service endpoint.</param>
+        /// <param name="languageInfo">The output language</param>
+        protected ServiceRequest(string resource, CultureInfo languageInfo)
+            : this(new Uri(resource, UriKind.Relative), languageInfo)
+        {
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="ServiceRequest" /> class.
+        /// </summary>
+        /// <param name="resource">The service endpoint as a relative URI.</param>
         protected ServiceRequest(Uri resource)
             : base(Preconditions.EnsureNotNull(paramName: "resource", value: resource))
         {
@@ -33,33 +53,48 @@ namespace GW2DotNET.V1.RestSharp
         }
 
         /// <summary>
-        /// Sends the current request and returns a response.
+        ///     Initializes a new instance of the <see cref="ServiceRequest" /> class.
+        /// </summary>
+        /// <param name="resource">The service endpoint as a relative URI.</param>
+        /// <param name="languageInfo">The output language</param>
+        protected ServiceRequest(Uri resource, CultureInfo languageInfo)
+            : this(resource)
+        {
+            Preconditions.EnsureNotNull(paramName: "languageInfo", value: languageInfo);
+
+            this.AddParameter("lang", languageInfo);
+        }
+
+        /// <summary>
+        ///     Sends the current request and returns a response.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public virtual IServiceResponse<TContent> GetResponse<TContent>(IServiceClient serviceClient) where TContent : JsonObject
+        public virtual IServiceResponse<TContent> GetResponse<TContent>(IServiceClient serviceClient)
+            where TContent : JsonObject
         {
             return serviceClient.Send<TContent>(this);
         }
 
         /// <summary>
-        /// Sends the current request and returns a response.
+        ///     Sends the current request and returns a response.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient) where TContent : JsonObject
+        public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient)
+            where TContent : JsonObject
         {
             return serviceClient.SendAsync<TContent>(this);
         }
 
         /// <summary>
-        /// Sends the current request and returns a response.
+        ///     Sends the current request and returns a response.
         /// </summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="serviceClient">The service client.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
         public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient, CancellationToken cancellationToken) where TContent : JsonObject
         {

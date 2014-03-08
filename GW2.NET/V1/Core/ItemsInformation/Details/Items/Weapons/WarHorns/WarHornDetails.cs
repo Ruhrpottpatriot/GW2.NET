@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.WarHorns
 {
     /// <summary>
-    /// Represents detailed information about a war horn.
+    ///     Represents detailed information about a war horn.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class WarHornDetails : WeaponDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WarHornDetails"/> class.
+        ///     Initializes a new instance of the <see cref="WarHornDetails" /> class.
         /// </summary>
         public WarHornDetails()
             : base(WeaponType.Warhorn)

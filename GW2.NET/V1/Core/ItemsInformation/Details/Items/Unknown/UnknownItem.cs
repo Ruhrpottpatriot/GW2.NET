@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown
 {
     /// <summary>
-    /// Represents an unknown item..
+    ///     Represents an unknown item..
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class UnknownItem : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnknownItem"/> class.
+        ///     Initializes a new instance of the <see cref="UnknownItem" /> class.
         /// </summary>
         public UnknownItem()
             : base(ItemType.Unknown)

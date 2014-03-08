@@ -2,18 +2,26 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.Core.MapsInformation.Names
+namespace GW2DotNET.Core.MapsInformation.Names
 {
     [TestFixture]
     public class MapNameTest
     {
-        private MapName mapName;
-
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"id\":\"0\",\"name\":\"\"}";
+            const string input = "{\"ID\":\"0\",\"name\":\"\"}";
             this.mapName = JsonConvert.DeserializeObject<MapName>(input);
+        }
+
+        private MapName mapName;
+
+        [Test]
+        [Category("map_names.json")]
+        [Category("ExtensionData")]
+        public void MapName_ExtensionDataIsEmpty()
+        {
+            Assert.IsEmpty(this.mapName.ExtensionData);
         }
 
         [Test]
@@ -21,7 +29,7 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Names
         public void MapName_IdReflectsInput()
         {
             const int expected = default(int);
-            var actual         = this.mapName.Id;
+            int actual = this.mapName.Id;
 
             Assert.AreEqual(expected, actual);
         }
@@ -30,18 +38,10 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Names
         [Category("map_names.json")]
         public void MapName_NameReflectsInput()
         {
-            var expected = string.Empty;
-            var actual   = this.mapName.Name;
+            string expected = string.Empty;
+            string actual = this.mapName.Name;
 
             Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("map_names.json")]
-        [Category("ExtensionData")]
-        public void MapName_ExtensionDataIsEmpty()
-        {
-            Assert.IsEmpty(this.mapName.ExtensionData);
         }
     }
 }

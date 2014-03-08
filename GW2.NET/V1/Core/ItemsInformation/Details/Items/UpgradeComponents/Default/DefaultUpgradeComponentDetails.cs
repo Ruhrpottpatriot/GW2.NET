@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Default
 {
     /// <summary>
-    /// Represents detailed information about a default upgrade component.
+    ///     Represents detailed information about a default upgrade component.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class DefaultUpgradeComponentDetails : UpgradeComponentDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultUpgradeComponentDetails"/> class.
+        ///     Initializes a new instance of the <see cref="DefaultUpgradeComponentDetails" /> class.
         /// </summary>
         public DefaultUpgradeComponentDetails()
             : base(UpgradeComponentType.Default)

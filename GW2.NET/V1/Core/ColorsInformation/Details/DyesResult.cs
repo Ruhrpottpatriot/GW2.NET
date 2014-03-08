@@ -9,12 +9,12 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ColorsInformation.Details
 {
     /// <summary>
-    /// Wraps a collection of dyes in the game.
+    ///     Wraps a collection of dyes in the game.
     /// </summary>
     public class DyesResult : JsonObject
     {
         /// <summary>
-        /// Gets or sets a collection of dyes in the game.
+        ///     Gets or sets a collection of dyes in the game.
         /// </summary>
         [JsonProperty("colors", Order = 0)]
         public DyeCollection Colors { get; set; }

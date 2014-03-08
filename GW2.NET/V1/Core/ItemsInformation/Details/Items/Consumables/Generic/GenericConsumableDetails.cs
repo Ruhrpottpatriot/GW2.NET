@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Generic
 {
     /// <summary>
-    /// Represents detailed information about a generic consumable item.
+    ///     Represents detailed information about a generic consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class GenericConsumableDetails : ConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenericConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="GenericConsumableDetails" /> class.
         /// </summary>
         public GenericConsumableDetails()
             : base(ConsumableType.Generic)

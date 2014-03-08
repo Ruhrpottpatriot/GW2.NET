@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Rings
 {
     /// <summary>
-    /// Represents detailed information about a ring crafting recipe.
+    ///     Represents detailed information about a ring crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class RingRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RingRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="RingRecipe" /> class.
         /// </summary>
         public RingRecipe()
             : base(RecipeType.Ring)

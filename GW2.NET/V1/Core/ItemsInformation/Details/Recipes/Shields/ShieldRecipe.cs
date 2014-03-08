@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shields
 {
     /// <summary>
-    /// Represents detailed information about a shield crafting recipe.
+    ///     Represents detailed information about a shield crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class ShieldRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShieldRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="ShieldRecipe" /> class.
         /// </summary>
         public ShieldRecipe()
             : base(RecipeType.Shield)

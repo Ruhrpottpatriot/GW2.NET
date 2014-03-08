@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     /// <summary>
-    /// Represents item stats that are inherent to a specific item.
+    ///     Represents item stats that are inherent to a specific item.
     /// </summary>
     public class InfixUpgrade : JsonObject
     {
         /// <summary>
-        /// Gets or sets the item's attributes.
+        ///     Gets or sets the item's attributes.
         /// </summary>
         [JsonProperty("attributes", Order = 1)]
         public ItemAttributeCollection Attributes { get; set; }
 
         /// <summary>
-        /// Gets or sets the item's buff.
+        ///     Gets or sets the item's buff.
         /// </summary>
         [JsonProperty("buff", Order = 0, NullValueHandling = NullValueHandling.Ignore)]
         public ItemBuff Buff { get; set; }

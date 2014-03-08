@@ -14,12 +14,12 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a bit flag <see cref="Enum"/> to and from a string array of flag names.
+    ///     Converts a bit flag <see cref="Enum" /> to and from a string array of flag names.
     /// </summary>
     public class StringEnumFlagsConverter : StringEnumConverter
     {
         /// <summary>
-        /// Determines whether this instance can convert the specified object type.
+        ///     Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -29,9 +29,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Reads the JSON representation of the object.
+        ///     Reads the JSON representation of the object.
         /// </summary>
-        /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
+        /// <param name="reader">The <see cref="JsonReader" /> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
@@ -72,9 +72,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Writes the JSON representation of the object.
+        ///     Writes the JSON representation of the object.
         /// </summary>
-        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+        /// <param name="writer">The <see cref="JsonWriter" /> to write to.</param>
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -101,9 +101,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Writes an opening and closing bracket.
+        ///     Writes an opening and closing bracket.
         /// </summary>
-        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+        /// <param name="writer">The <see cref="JsonWriter" /> to write to.</param>
         private void WriteEmptyArray(JsonWriter writer)
         {
             writer.WriteStartArray();

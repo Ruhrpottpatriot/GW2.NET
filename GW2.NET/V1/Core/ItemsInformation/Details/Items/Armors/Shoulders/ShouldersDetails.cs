@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Shoulders
 {
     /// <summary>
-    /// Represents detailed information about shoulder protection.
+    ///     Represents detailed information about shoulder protection.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class ShouldersDetails : ArmorDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShouldersDetails"/> class
+        ///     Initializes a new instance of the <see cref="ShouldersDetails" /> class
         /// </summary>
         public ShouldersDetails()
             : base(ArmorType.Shoulders)

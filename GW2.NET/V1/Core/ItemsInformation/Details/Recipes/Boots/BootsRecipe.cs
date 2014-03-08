@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Boots
 {
     /// <summary>
-    /// Represents detailed information about a boots crafting recipe.
+    ///     Represents detailed information about a boots crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class BootsRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BootsRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="BootsRecipe" /> class.
         /// </summary>
         public BootsRecipe()
             : base(RecipeType.Boots)

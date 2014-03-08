@@ -24,17 +24,18 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
 {
     /// <summary>
-    /// Converts an instance of a class that extends <see cref="ConsumableDetails"/> from its <see cref="System.String"/> representation.
+    ///     Converts an instance of a class that extends <see cref="ConsumableDetails" /> from its <see cref="System.String" />
+    ///     representation.
     /// </summary>
     public class ConsumableDetailsConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>
-        /// Backing field. Holds a dictionary of known JSON values and their corresponding type.
+        ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<ConsumableType, Type> KnownTypes = new Dictionary<ConsumableType, Type>();
 
         /// <summary>
-        /// Initializes static members of the <see cref="ConsumableDetailsConverter"/> class.
+        ///     Initializes static members of the <see cref="ConsumableDetailsConverter" /> class.
         /// </summary>
         static ConsumableDetailsConverter()
         {
@@ -52,7 +53,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
         }
 
         /// <summary>
-        /// Determines whether this instance can convert the specified object type.
+        ///     Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">ToolType of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -62,7 +63,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
         }
 
         /// <summary>
-        /// Gets the object type that will be used by the serializer.
+        ///     Gets the object type that will be used by the serializer.
         /// </summary>
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>

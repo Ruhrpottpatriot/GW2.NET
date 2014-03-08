@@ -12,7 +12,7 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
 {
     /// <summary>
-    /// Enumerates the known game type restrictions.
+    ///     Enumerates the known game type restrictions.
     /// </summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
@@ -22,28 +22,22 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
         None = 0,
 
         /// <summary>The 'Activity' game type restriction.</summary>
-        [EnumMember(Value = "Activity")]
-        Activity = 1 << 0,
+        [EnumMember(Value = "Activity")] Activity = 1 << 0,
 
         /// <summary>The 'Dungeon' game type restriction.</summary>
-        [EnumMember(Value = "Dungeon")]
-        Dungeon = 1 << 1,
+        [EnumMember(Value = "Dungeon")] Dungeon = 1 << 1,
 
         /// <summary>The 'Player versus Environment' game type restriction.</summary>
-        [EnumMember(Value = "Pve")]
-        PvE = 1 << 2,
+        [EnumMember(Value = "Pve")] PvE = 1 << 2,
 
         /// <summary>The 'Player versus Player' game type restriction.</summary>
-        [EnumMember(Value = "Pvp")]
-        PvP = 1 << 3,
+        [EnumMember(Value = "Pvp")] PvP = 1 << 3,
 
         /// <summary>The 'Player versus Player Lobby' game type restriction.</summary>
         /// <remarks>Indicates an item that can be used in 'Heart of the Mists'.</remarks>
-        [EnumMember(Value = "PvpLobby")]
-        PvPLobby = 1 << 4,
+        [EnumMember(Value = "PvpLobby")] PvPLobby = 1 << 4,
 
         /// <summary>The 'World versus World' game type restriction.</summary>
-        [EnumMember(Value = "Wvw")]
-        WvW = 1 << 5
+        [EnumMember(Value = "Wvw")] WvW = 1 << 5
     }
 }

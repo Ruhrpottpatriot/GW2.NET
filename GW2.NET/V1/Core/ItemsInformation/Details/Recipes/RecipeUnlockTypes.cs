@@ -12,18 +12,16 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     /// <summary>
-    /// Enumerates all possible ways to unlock a recipe.
+    ///     Enumerates all possible ways to unlock a recipe.
     /// </summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum RecipeUnlockTypes
     {
         /// <summary>The 'Auto Learned' recipes.</summary>
-        [EnumMember(Value = "AutoLearned")]
-        AutoLearned = 1 << 0,
+        [EnumMember(Value = "AutoLearned")] AutoLearned = 1 << 0,
 
         /// <summary>The 'Learned From Item' recipes.</summary>
-        [EnumMember(Value = "LearnedFromItem")]
-        LearnedFromItem = 1 << 1
+        [EnumMember(Value = "LearnedFromItem")] LearnedFromItem = 1 << 1
     }
 }

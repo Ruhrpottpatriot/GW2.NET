@@ -3,13 +3,11 @@ using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregions.Locations
+namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     [TestFixture]
     public class PointOfInterestTest
     {
-        private PointOfInterest pointOfInterest;
-
         [SetUp]
         public void Initialize()
         {
@@ -17,42 +15,14 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregions.Locatio
             this.pointOfInterest = JsonConvert.DeserializeObject<PointOfInterest>(input);
         }
 
-        [Test]
-        [Category("map_floor.json")]
-        public void PointOfInterest_NameReflectsInput()
-        {
-            var expected = string.Empty;
-            var actual   = this.pointOfInterest.Name;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("map_floor.json")]
-        public void PointOfInterest_TypeReflectsInput()
-        {
-            const PointOfInterestType expected = default(PointOfInterestType);
-            var actual                         = this.pointOfInterest.Type;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("map_floor.json")]
-        public void PointOfInterest_FloorReflectsInput()
-        {
-            const int expected = default(int);
-            var actual         = this.pointOfInterest.Floor;
-
-            Assert.AreEqual(expected, actual);
-        }
+        private PointOfInterest pointOfInterest;
 
         [Test]
         [Category("map_floor.json")]
         public void PointOfInterest_CoordinatesReflectsInput()
         {
-            var expected = default(PointF);
-            var actual   = this.pointOfInterest.Coordinates;
+            PointF expected = default(PointF);
+            PointF actual = this.pointOfInterest.Coordinates;
 
             Assert.AreEqual(expected, actual);
         }
@@ -63,6 +33,36 @@ namespace GW2DotNET_Tests.Core.MapsInformation.Floors.Regions.Subregions.Locatio
         public void PointOfInterest_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(this.pointOfInterest.ExtensionData);
+        }
+
+        [Test]
+        [Category("map_floor.json")]
+        public void PointOfInterest_FloorReflectsInput()
+        {
+            const int expected = default(int);
+            int actual = this.pointOfInterest.Floor;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("map_floor.json")]
+        public void PointOfInterest_NameReflectsInput()
+        {
+            string expected = string.Empty;
+            string actual = this.pointOfInterest.Name;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("map_floor.json")]
+        public void PointOfInterest_TypeReflectsInput()
+        {
+            const PointOfInterestType expected = default(PointOfInterestType);
+            PointOfInterestType actual = this.pointOfInterest.Type;
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
 {
     /// <summary>
-    /// Represents detailed information about a trinket.
+    ///     Represents detailed information about a trinket.
     /// </summary>
     [JsonConverter(typeof(TrinketDetailsConverter))]
     public abstract class TrinketDetails : EquipmentDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrinketDetails"/> class.
+        ///     Initializes a new instance of the <see cref="TrinketDetails" /> class.
         /// </summary>
         /// <param name="trinketType">The trinket's type.</param>
         protected TrinketDetails(TrinketType trinketType)
@@ -25,7 +25,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
         }
 
         /// <summary>
-        /// Gets or sets the trinket's type.
+        ///     Gets or sets the trinket's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public TrinketType Type { get; set; }

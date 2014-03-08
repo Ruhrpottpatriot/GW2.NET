@@ -11,33 +11,29 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
 {
     /// <summary>
-    /// Enumerates the possible armor piece weight classes.
+    ///     Enumerates the possible armor piece weight classes.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum WeightClass
     {
         /// <summary>
-        /// The 'Clothing' weight class.
+        ///     The 'Clothing' weight class.
         /// </summary>
-        [EnumMember(Value = "Clothing")]
-        Clothing = 1 << 0,
+        [EnumMember(Value = "Clothing")] Clothing = 1 << 0,
 
         /// <summary>
-        /// The 'Light' weight class.
+        ///     The 'Light' weight class.
         /// </summary>
-        [EnumMember(Value = "Light")]
-        Light = 1 << 1,
+        [EnumMember(Value = "Light")] Light = 1 << 1,
 
         /// <summary>
-        /// The 'Medium' weight class.
+        ///     The 'Medium' weight class.
         /// </summary>
-        [EnumMember(Value = "Medium")]
-        Medium = 1 << 2,
+        [EnumMember(Value = "Medium")] Medium = 1 << 2,
 
         /// <summary>
-        /// The 'Heavy' weight class.
+        ///     The 'Heavy' weight class.
         /// </summary>
-        [EnumMember(Value = "Heavy")]
-        Heavy = 1 << 3
+        [EnumMember(Value = "Heavy")] Heavy = 1 << 3
     }
 }

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Unknown
 {
     /// <summary>
-    /// Represents detailed information about an unknown trinket.
+    ///     Represents detailed information about an unknown trinket.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class UnknownTrinketDetails : TrinketDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnknownTrinketDetails"/> class.
+        ///     Initializes a new instance of the <see cref="UnknownTrinketDetails" /> class.
         /// </summary>
         public UnknownTrinketDetails()
             : base(TrinketType.Unknown)

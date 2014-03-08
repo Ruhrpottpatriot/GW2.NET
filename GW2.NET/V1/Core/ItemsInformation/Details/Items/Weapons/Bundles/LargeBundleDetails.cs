@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Bundles
 {
     /// <summary>
-    /// Represents detailed information about a large bundle.
+    ///     Represents detailed information about a large bundle.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class LargeBundleDetails : WeaponDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LargeBundleDetails"/> class.
+        ///     Initializes a new instance of the <see cref="LargeBundleDetails" /> class.
         /// </summary>
         public LargeBundleDetails()
             : base(WeaponType.LargeBundle)

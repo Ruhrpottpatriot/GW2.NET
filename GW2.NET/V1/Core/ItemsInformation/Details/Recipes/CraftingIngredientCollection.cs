@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     /// <summary>
-    /// Represents a collection of crafting ingredients.
+    ///     Represents a collection of crafting ingredients.
     /// </summary>
     public class CraftingIngredientCollection : JsonList<CraftingIngredient>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingIngredientCollection"/> class.
+        ///     Initializes a new instance of the <see cref="CraftingIngredientCollection" /> class.
         /// </summary>
         public CraftingIngredientCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingIngredientCollection"/> class.
+        ///     Initializes a new instance of the <see cref="CraftingIngredientCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public CraftingIngredientCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingIngredientCollection"/> class.
+        ///     Initializes a new instance of the <see cref="CraftingIngredientCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public CraftingIngredientCollection(IEnumerable<CraftingIngredient> collection)

@@ -17,7 +17,7 @@ using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
+namespace GW2DotNET.Core.ItemsInformation.Details.Items
 {
     [TestFixture]
     public class ItemTypeTest
@@ -26,8 +26,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Armor_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Armor\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Armor\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Armor;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -38,8 +38,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Back_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Back\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Back\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Back;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -50,8 +50,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Bag_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Bag\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Bag\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Bag;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -62,8 +62,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Consumable_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Consumable\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Consumable\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Consumable;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -74,8 +74,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Container_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Container\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Container\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Container;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -86,8 +86,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_CraftingMaterial_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"CraftingMaterial\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"CraftingMaterial\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.CraftingMaterial;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -98,8 +98,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Gathering_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Gathering\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Gathering\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Gathering;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -110,8 +110,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Gizmo_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Gizmo\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Gizmo\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Gizmo;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -122,8 +122,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_MiniPet_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"MiniPet\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"MiniPet\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.MiniPet;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -134,8 +134,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Tool_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Tool\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Tool\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Tool;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -146,8 +146,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Trinket_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Trinket\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Trinket\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Trinket;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -158,8 +158,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Trophy_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Trophy\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Trophy\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Trophy;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -170,8 +170,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_UpgradeComponent_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"UpgradeComponent\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"UpgradeComponent\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.UpgradeComponent;
 
             Assert.AreEqual(expectedItemType, item.Type);
@@ -182,8 +182,8 @@ namespace GW2DotNET_Tests.Core.ItemsInformation.Details.Items
         [Category("item_details.json")]
         public void ItemType_Weapon_TypeReflectsInput()
         {
-            const string input              = "{\"type\":\"Weapon\"}";
-            var item                        = JsonConvert.DeserializeObject<Item>(input);
+            const string input = "{\"type\":\"Weapon\"}";
+            var item = JsonConvert.DeserializeObject<Item>(input);
             const ItemType expectedItemType = ItemType.Weapon;
 
             Assert.AreEqual(expectedItemType, item.Type);

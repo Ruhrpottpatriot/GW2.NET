@@ -12,28 +12,25 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     /// <summary>
-    /// Enumerates the possible infusion slot types.
+    ///     Enumerates the possible infusion slot types.
     /// </summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum InfusionSlotTypes
     {
         /// <summary>
-        /// The defensive infusion slot type.
+        ///     The defensive infusion slot type.
         /// </summary>
-        [EnumMember(Value = "Defense")]
-        Defense = 1 << 0,
+        [EnumMember(Value = "Defense")] Defense = 1 << 0,
 
         /// <summary>
-        /// The offensive infusion slot type.
+        ///     The offensive infusion slot type.
         /// </summary>
-        [EnumMember(Value = "Offense")]
-        Offense = 1 << 1,
+        [EnumMember(Value = "Offense")] Offense = 1 << 1,
 
         /// <summary>
-        /// The utility infusion slot type.
+        ///     The utility infusion slot type.
         /// </summary>
-        [EnumMember(Value = "Utility")]
-        Utility = 1 << 2
+        [EnumMember(Value = "Utility")] Utility = 1 << 2
     }
 }

@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
 {
     /// <summary>
-    /// Represents a collection of regions on the map.
+    ///     Represents a collection of regions on the map.
     /// </summary>
     public class RegionCollection : JsonDictionary<int, Region>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegionCollection"/> class.
+        ///     Initializes a new instance of the <see cref="RegionCollection" /> class.
         /// </summary>
         public RegionCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegionCollection"/> class.
+        ///     Initializes a new instance of the <see cref="RegionCollection" /> class.
         /// </summary>
         /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
         public RegionCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="RegionCollection"/> class.
+        ///     Initializes a new instance of the <see cref="RegionCollection" /> class.
         /// </summary>
         /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
         public RegionCollection(IDictionary<int, Region> dictionary)

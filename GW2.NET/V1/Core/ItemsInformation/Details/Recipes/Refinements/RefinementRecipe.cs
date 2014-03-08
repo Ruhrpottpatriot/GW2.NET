@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Refinements
 {
     /// <summary>
-    /// Represents detailed information about a refinement crafting recipe.
+    ///     Represents detailed information about a refinement crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class RefinementRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="RefinementRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="RefinementRecipe" /> class.
         /// </summary>
         public RefinementRecipe()
             : base(RecipeType.Refinement)

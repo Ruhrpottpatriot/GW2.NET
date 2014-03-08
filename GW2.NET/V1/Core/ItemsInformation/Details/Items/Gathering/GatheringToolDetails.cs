@@ -9,13 +9,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering
 {
     /// <summary>
-    /// Represents detailed information about a gathering tool.
+    ///     Represents detailed information about a gathering tool.
     /// </summary>
     [JsonConverter(typeof(GatheringToolDetailsConverter))]
     public abstract class GatheringToolDetails : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GatheringToolDetails"/> class.
+        ///     Initializes a new instance of the <see cref="GatheringToolDetails" /> class.
         /// </summary>
         /// <param name="gatheringToolType">The gathering tool type.</param>
         protected GatheringToolDetails(GatheringToolType gatheringToolType)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering
         }
 
         /// <summary>
-        /// Gets or sets the gathering equipment's type.
+        ///     Gets or sets the gathering equipment's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public GatheringToolType ToolType { get; set; }

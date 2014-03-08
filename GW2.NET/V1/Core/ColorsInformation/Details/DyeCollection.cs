@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.ColorsInformation.Details
 {
     /// <summary>
-    /// Represents a collection of dyes and their color component information.
+    ///     Represents a collection of dyes and their color component information.
     /// </summary>
     public class DyeCollection : JsonDictionary<int, Dye>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyeCollection"/> class.
+        ///     Initializes a new instance of the <see cref="DyeCollection" /> class.
         /// </summary>
         public DyeCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyeCollection"/> class.
+        ///     Initializes a new instance of the <see cref="DyeCollection" /> class.
         /// </summary>
         /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
         public DyeCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.ColorsInformation.Details
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="DyeCollection"/> class.
+        ///     Initializes a new instance of the <see cref="DyeCollection" /> class.
         /// </summary>
         /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
         public DyeCollection(IDictionary<int, Dye> dictionary)

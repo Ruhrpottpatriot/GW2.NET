@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Bulks
 {
     /// <summary>
-    /// Represents detailed information about a bulk crafting recipe.
+    ///     Represents detailed information about a bulk crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class BulkRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="BulkRecipe" /> class.
         /// </summary>
         public BulkRecipe()
             : base(RecipeType.Bulk)

@@ -11,12 +11,12 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     /// <summary>
-    /// Represents a skill challenge location.
+    ///     Represents a skill challenge location.
     /// </summary>
     public class SkillChallenge : JsonObject
     {
         /// <summary>
-        /// Gets or sets the skill challenge's coordinates.
+        ///     Gets or sets the skill challenge's coordinates.
         /// </summary>
         [JsonProperty("coord", Order = 0)]
         [JsonConverter(typeof(PointFConverter))]

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Toys
 {
     /// <summary>
-    /// Represents detailed information about a two-handed toy.
+    ///     Represents detailed information about a two-handed toy.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class TwoHandedToyDetails : WeaponDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TwoHandedToyDetails"/> class.
+        ///     Initializes a new instance of the <see cref="TwoHandedToyDetails" /> class.
         /// </summary>
         public TwoHandedToyDetails()
             : base(WeaponType.TwoHandedToy)

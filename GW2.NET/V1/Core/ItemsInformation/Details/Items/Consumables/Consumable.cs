@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
 {
     /// <summary>
-    /// Represents a consumable item.
+    ///     Represents a consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class Consumable : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Consumable"/> class.
+        ///     Initializes a new instance of the <see cref="Consumable" /> class.
         /// </summary>
         public Consumable()
             : base(ItemType.Consumable)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
         }
 
         /// <summary>
-        /// Gets or sets the consumable item's details.
+        ///     Gets or sets the consumable item's details.
         /// </summary>
         [JsonProperty("consumable", Order = 100)]
         public ConsumableDetails ConsumableItemDetails { get; set; }

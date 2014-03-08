@@ -2,13 +2,11 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.Core.ErrorInformation
+namespace GW2DotNET.Core.ErrorInformation
 {
     [TestFixture]
     public class ErrorResultTest
     {
-        private ErrorResult errorResult;
-
         [SetUp]
         public void Initialize()
         {
@@ -16,42 +14,14 @@ namespace GW2DotNET_Tests.Core.ErrorInformation
             this.errorResult = JsonConvert.DeserializeObject<ErrorResult>(input);
         }
 
+        private ErrorResult errorResult;
+
         [Test]
         [Category("errors")]
         public void ErrorResult_ErrorReflectsInput()
         {
             const int expected = default(int);
-            var actual         = this.errorResult.Error;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("errors")]
-        public void ErrorResult_ProductReflectsInput()
-        {
-            const int expected = default(int);
-            var actual         = this.errorResult.Product;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("errors")]
-        public void ErrorResult_ModuleReflectsInput()
-        {
-            const int expected = default(int);
-            var actual         = this.errorResult.Module;
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("errors")]
-        public void ErrorResult_TextReflectsInput()
-        {
-            var expected = string.Empty;
-            var actual   = this.errorResult.Text;
+            int actual = this.errorResult.Error;
 
             Assert.AreEqual(expected, actual);
         }
@@ -62,6 +32,36 @@ namespace GW2DotNET_Tests.Core.ErrorInformation
         public void ErrorResult_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(this.errorResult.ExtensionData);
+        }
+
+        [Test]
+        [Category("errors")]
+        public void ErrorResult_ModuleReflectsInput()
+        {
+            const int expected = default(int);
+            int actual = this.errorResult.Module;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("errors")]
+        public void ErrorResult_ProductReflectsInput()
+        {
+            const int expected = default(int);
+            int actual = this.errorResult.Product;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("errors")]
+        public void ErrorResult_TextReflectsInput()
+        {
+            string expected = string.Empty;
+            string actual = this.errorResult.Text;
+
+            Assert.AreEqual(expected, actual);
         }
     }
 }

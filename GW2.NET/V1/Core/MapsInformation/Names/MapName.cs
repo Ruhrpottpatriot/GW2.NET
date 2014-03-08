@@ -9,18 +9,18 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.MapsInformation.Names
 {
     /// <summary>
-    /// Represents a map and its localized name.
+    ///     Represents a map and its localized name.
     /// </summary>
     public class MapName : JsonObject
     {
         /// <summary>
-        /// Gets or sets the map's ID.
+        ///     Gets or sets the map's ID.
         /// </summary>
-        [JsonProperty("id", Order = 0)]
+        [JsonProperty("ID", Order = 0)]
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the map's name.
+        ///     Gets or sets the map's name.
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }

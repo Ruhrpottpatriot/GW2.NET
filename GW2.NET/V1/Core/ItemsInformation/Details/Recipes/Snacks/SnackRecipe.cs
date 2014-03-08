@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Snacks
 {
     /// <summary>
-    /// Represents detailed information about a snack crafting recipe.
+    ///     Represents detailed information about a snack crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class SnackRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SnackRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="SnackRecipe" /> class.
         /// </summary>
         public SnackRecipe()
             : base(RecipeType.Snack)

@@ -18,17 +18,18 @@ using Newtonsoft.Json.Linq;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
 {
     /// <summary>
-    /// Converts an instance of a class that extends <see cref="UnlockConsumableDetails"/> from its <see cref="System.String"/> representation.
+    ///     Converts an instance of a class that extends <see cref="UnlockConsumableDetails" /> from its
+    ///     <see cref="System.String" /> representation.
     /// </summary>
     public class UnlockConsumableDetailsConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>
-        /// Backing field. Holds a dictionary of in-game unlock item types and their corresponding .NET class.
+        ///     Backing field. Holds a dictionary of in-game unlock item types and their corresponding .NET class.
         /// </summary>
         private static readonly IDictionary<UnlockType, Type> KnownTypes = new Dictionary<UnlockType, Type>();
 
         /// <summary>
-        /// Initializes static members of the <see cref="UnlockConsumableDetailsConverter"/> class.
+        ///     Initializes static members of the <see cref="UnlockConsumableDetailsConverter" /> class.
         /// </summary>
         static UnlockConsumableDetailsConverter()
         {
@@ -40,7 +41,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
         }
 
         /// <summary>
-        /// Determines whether this instance can convert the specified object type.
+        ///     Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">ToolType of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -50,7 +51,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
         }
 
         /// <summary>
-        /// Gets the object type that will be used by the serializer.
+        ///     Gets the object type that will be used by the serializer.
         /// </summary>
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>

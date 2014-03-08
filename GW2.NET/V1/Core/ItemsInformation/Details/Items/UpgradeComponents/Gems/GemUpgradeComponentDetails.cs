@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Gems
 {
     /// <summary>
-    /// Represents detailed information about a gem upgrade component.
+    ///     Represents detailed information about a gem upgrade component.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class GemUpgradeComponentDetails : UpgradeComponentDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GemUpgradeComponentDetails"/> class.
+        ///     Initializes a new instance of the <see cref="GemUpgradeComponentDetails" /> class.
         /// </summary>
         public GemUpgradeComponentDetails()
             : base(UpgradeComponentType.Gem)

@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.MapsInformation.Names
 {
     /// <summary>
-    /// Represents a collection of maps and their localized name.
+    ///     Represents a collection of maps and their localized name.
     /// </summary>
     public class MapNameCollection : JsonList<MapName>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="MapNameCollection" /> class.
         /// </summary>
         public MapNameCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="MapNameCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public MapNameCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Names
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MapNameCollection"/> class.
+        ///     Initializes a new instance of the <see cref="MapNameCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public MapNameCollection(IEnumerable<MapName> collection)

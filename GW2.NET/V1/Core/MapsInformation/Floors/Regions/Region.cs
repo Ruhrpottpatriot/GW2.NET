@@ -12,25 +12,25 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
 {
     /// <summary>
-    /// Represents a region on the map.
+    ///     Represents a region on the map.
     /// </summary>
     public class Region : JsonObject
     {
         /// <summary>
-        /// Gets or sets the coordinates of the region label.
+        ///     Gets or sets the coordinates of the region label.
         /// </summary>
         [JsonProperty("label_coord", Order = 1)]
         [JsonConverter(typeof(PointFConverter))]
         public PointF LabelCoordinates { get; set; }
 
         /// <summary>
-        /// Gets or sets a collection of maps and their details.
+        ///     Gets or sets a collection of maps and their details.
         /// </summary>
         [JsonProperty("maps", Order = 2)]
         public SubregionCollection Maps { get; set; }
 
         /// <summary>
-        /// Gets or sets the region's name.
+        ///     Gets or sets the region's name.
         /// </summary>
         [JsonProperty("name", Order = 0)]
         public string Name { get; set; }

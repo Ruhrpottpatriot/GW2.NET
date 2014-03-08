@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Sigils
 {
     /// <summary>
-    /// Represents detailed information about a sigil upgrade component.
+    ///     Represents detailed information about a sigil upgrade component.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class SigilUpgradeComponentDetails : UpgradeComponentDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SigilUpgradeComponentDetails"/> class.
+        ///     Initializes a new instance of the <see cref="SigilUpgradeComponentDetails" /> class.
         /// </summary>
         public SigilUpgradeComponentDetails()
             : base(UpgradeComponentType.Sigil)

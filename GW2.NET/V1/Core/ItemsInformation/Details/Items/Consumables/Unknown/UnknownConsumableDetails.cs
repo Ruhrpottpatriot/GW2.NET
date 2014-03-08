@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unknown
 {
     /// <summary>
-    /// Represents detailed information about an unknown consumable item.
+    ///     Represents detailed information about an unknown consumable item.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class UnknownConsumableDetails : ConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnknownConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="UnknownConsumableDetails" /> class.
         /// </summary>
         public UnknownConsumableDetails()
             : base(ConsumableType.Unknown)

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trophies
 {
     /// <summary>
-    /// Represents a trophy.
+    ///     Represents a trophy.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class Trophy : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Trophy"/> class.
+        ///     Initializes a new instance of the <see cref="Trophy" /> class.
         /// </summary>
         public Trophy()
             : base(ItemType.Trophy)

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.CraftingRecipes
 {
     /// <summary>
-    /// Represents detailed information about a crafting recipe.
+    ///     Represents detailed information about a crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class CraftingRecipeUnlockConsumableDetails : UnlockConsumableDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableDetails"/> class.
+        ///     Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableDetails" /> class.
         /// </summary>
         public CraftingRecipeUnlockConsumableDetails()
             : base(UnlockType.CraftingRecipe)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Cr
         }
 
         /// <summary>
-        /// Gets or sets the crafting recipe's ID.
+        ///     Gets or sets the crafting recipe's ID.
         /// </summary>
         [JsonProperty("recipe_id", Order = 102)]
         public int RecipeId { get; set; }

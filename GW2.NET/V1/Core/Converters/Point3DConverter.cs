@@ -6,19 +6,19 @@
 
 using System;
 using GW2DotNET.Extensions;
+using GW2DotNET.Utilities;
 using GW2DotNET.V1.Core.Drawing;
-using GW2DotNET.V1.Core.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    /// Converts a <see cref="Point3D"/> to and from its <see cref="System.String"/> representation.
+    ///     Converts a <see cref="Point3D" /> to and from its <see cref="System.String" /> representation.
     /// </summary>
     public class Point3DConverter : JsonConverter
     {
         /// <summary>
-        /// Determines whether this instance can convert the specified object type.
+        ///     Determines whether this instance can convert the specified object type.
         /// </summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -28,9 +28,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Reads the JSON representation of the object.
+        ///     Reads the JSON representation of the object.
         /// </summary>
-        /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
+        /// <param name="reader">The <see cref="JsonReader" /> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.Core.Converters
 
             try
             {
-                Preconditions.EnsureInRange(value: values.Length, floor: 0, ceiling: 3);
+                Preconditions.EnsureInRange(values.Length, 0, 3);
             }
             catch (ArgumentOutOfRangeException exception)
             {
@@ -64,7 +64,7 @@ namespace GW2DotNET.V1.Core.Converters
                     y = values[1];
                     goto case 1;
                 case 1:
-                    var x = values[0];
+                    double x = values[0];
                     return new Point3D(x, y, z);
                 default:
                     return default(Point3D);
@@ -72,9 +72,9 @@ namespace GW2DotNET.V1.Core.Converters
         }
 
         /// <summary>
-        /// Writes the JSON representation of the object.
+        ///     Writes the JSON representation of the object.
         /// </summary>
-        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
+        /// <param name="writer">The <see cref="JsonWriter" /> to write to.</param>
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)

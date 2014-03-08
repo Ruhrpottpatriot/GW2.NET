@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Daggers
 {
     /// <summary>
-    /// Represents detailed information about a focus.
+    ///     Represents detailed information about a focus.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class DaggerDetails : WeaponDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DaggerDetails"/> class.
+        ///     Initializes a new instance of the <see cref="DaggerDetails" /> class.
         /// </summary>
         public DaggerDetails()
             : base(WeaponType.Dagger)

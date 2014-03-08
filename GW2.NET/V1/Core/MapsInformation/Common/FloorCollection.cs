@@ -9,19 +9,19 @@ using System.Collections.Generic;
 namespace GW2DotNET.V1.Core.MapsInformation.Common
 {
     /// <summary>
-    /// Represents a collection of map floors.
+    ///     Represents a collection of map floors.
     /// </summary>
     public class FloorCollection : JsonList<int>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FloorCollection"/> class.
+        ///     Initializes a new instance of the <see cref="FloorCollection" /> class.
         /// </summary>
         public FloorCollection()
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FloorCollection"/> class.
+        ///     Initializes a new instance of the <see cref="FloorCollection" /> class.
         /// </summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public FloorCollection(int capacity)
@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Common
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FloorCollection"/> class.
+        ///     Initializes a new instance of the <see cref="FloorCollection" /> class.
         /// </summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public FloorCollection(IEnumerable<int> collection)

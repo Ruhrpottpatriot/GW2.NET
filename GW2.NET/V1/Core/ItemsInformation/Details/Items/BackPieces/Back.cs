@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces
 {
     /// <summary>
-    /// Represents a back piece.
+    ///     Represents a back piece.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class Back : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Back"/> class.
+        ///     Initializes a new instance of the <see cref="Back" /> class.
         /// </summary>
         public Back()
             : base(ItemType.Back)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces
         }
 
         /// <summary>
-        /// Gets or sets the back piece's details.
+        ///     Gets or sets the back piece's details.
         /// </summary>
         [JsonProperty("back", Order = 100)]
         public BackDetails BackDetails { get; set; }

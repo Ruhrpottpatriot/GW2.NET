@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
 {
     /// <summary>
-    /// Represents a tool.
+    ///     Represents a tool.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class Tool : Item
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Tool"/> class.
+        ///     Initializes a new instance of the <see cref="Tool" /> class.
         /// </summary>
         public Tool()
             : base(ItemType.Tool)
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
         }
 
         /// <summary>
-        /// Gets or sets the tool's details.
+        ///     Gets or sets the tool's details.
         /// </summary>
         [JsonProperty("tool", Order = 100)]
         public ToolDetails ToolDetails { get; set; }

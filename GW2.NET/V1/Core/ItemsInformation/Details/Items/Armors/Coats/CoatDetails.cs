@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Coats
 {
     /// <summary>
-    /// Represents detailed information about chest protection.
+    ///     Represents detailed information about chest protection.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class CoatDetails : ArmorDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CoatDetails"/> class
+        ///     Initializes a new instance of the <see cref="CoatDetails" /> class
         /// </summary>
         public CoatDetails()
             : base(ArmorType.Coat)

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Focuses
 {
     /// <summary>
-    /// Represents detailed information about a focus crafting recipe.
+    ///     Represents detailed information about a focus crafting recipe.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class FocusRecipe : Recipe
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FocusRecipe"/> class.
+        ///     Initializes a new instance of the <see cref="FocusRecipe" /> class.
         /// </summary>
         public FocusRecipe()
             : base(RecipeType.Focus)

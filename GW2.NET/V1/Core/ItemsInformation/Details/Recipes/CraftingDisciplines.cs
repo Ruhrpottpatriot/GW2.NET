@@ -12,42 +12,34 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     /// <summary>
-    /// Enumerates the possible crafting disciplines.
+    ///     Enumerates the possible crafting disciplines.
     /// </summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum CraftingDisciplines
     {
         /// <summary>The 'Armor smith' crafting discipline.</summary>
-        [EnumMember(Value = "Armorsmith")]
-        Armorsmith = 1 << 0,
+        [EnumMember(Value = "Armorsmith")] Armorsmith = 1 << 0,
 
         /// <summary>The 'Artificer' crafting discipline.</summary>
-        [EnumMember(Value = "Artificer")]
-        Artificer = 1 << 1,
+        [EnumMember(Value = "Artificer")] Artificer = 1 << 1,
 
         /// <summary>The 'Chef' crafting discipline.</summary>
-        [EnumMember(Value = "Chef")]
-        Chef = 1 << 2,
+        [EnumMember(Value = "Chef")] Chef = 1 << 2,
 
         /// <summary>The 'Huntsman' crafting discipline.</summary>
-        [EnumMember(Value = "Huntsman")]
-        Huntsman = 1 << 3,
+        [EnumMember(Value = "Huntsman")] Huntsman = 1 << 3,
 
         /// <summary>The 'Jeweler' crafting discipline.</summary>
-        [EnumMember(Value = "Jeweler")]
-        Jeweler = 1 << 4,
+        [EnumMember(Value = "Jeweler")] Jeweler = 1 << 4,
 
         /// <summary>The 'Leatherworker' crafting discipline.</summary>
-        [EnumMember(Value = "Leatherworker")]
-        Leatherworker = 1 << 5,
+        [EnumMember(Value = "Leatherworker")] Leatherworker = 1 << 5,
 
         /// <summary>The 'Tailor' crafting discipline.</summary>
-        [EnumMember(Value = "Tailor")]
-        Tailor = 1 << 6,
+        [EnumMember(Value = "Tailor")] Tailor = 1 << 6,
 
         /// <summary>The 'Weapon smith' crafting discipline.</summary>
-        [EnumMember(Value = "Weaponsmith")]
-        Weaponsmith = 1 << 7
+        [EnumMember(Value = "Weaponsmith")] Weaponsmith = 1 << 7
     }
 }

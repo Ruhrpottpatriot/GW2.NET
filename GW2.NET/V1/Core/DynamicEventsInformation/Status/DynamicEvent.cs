@@ -11,31 +11,31 @@ using Newtonsoft.Json.Converters;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
 {
     /// <summary>
-    /// Represents a dynamic event and its status.
+    ///     Represents a dynamic event and its status.
     /// </summary>
     public class DynamicEvent : JsonObject
     {
         /// <summary>
-        /// Gets or sets the <see cref="Guid"/> identifying the event.
+        ///     Gets or sets the <see cref="Guid" /> identifying the event.
         /// </summary>
         [JsonProperty("event_id", Order = 2)]
         public Guid EventId { get; set; }
 
         /// <summary>
-        /// Gets or sets the map on which the event is running.
+        ///     Gets or sets the map on which the event is running.
         /// </summary>
         [JsonProperty("map_id", Order = 1)]
         public int MapId { get; set; }
 
         /// <summary>
-        /// Gets or sets the current state of the event.
+        ///     Gets or sets the current state of the event.
         /// </summary>
         [JsonProperty("state", Order = 3)]
         [JsonConverter(typeof(StringEnumConverter))]
         public DynamicEventState State { get; set; }
 
         /// <summary>
-        /// Gets or sets the world on which the event is running.
+        ///     Gets or sets the world on which the event is running.
         /// </summary>
         [JsonProperty("world_id", Order = 0)]
         public int WorldId { get; set; }

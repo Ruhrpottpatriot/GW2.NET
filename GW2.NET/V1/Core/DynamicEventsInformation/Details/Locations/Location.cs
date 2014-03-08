@@ -11,13 +11,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
-    /// Represents the location of an event on the map.
+    ///     Represents the location of an event on the map.
     /// </summary>
     [JsonConverter(typeof(LocationConverter))]
     public abstract class Location : JsonObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Location"/> class.
+        ///     Initializes a new instance of the <see cref="Location" /> class.
         /// </summary>
         /// <param name="locationType">The location's type.</param>
         protected Location(LocationType locationType)
@@ -26,14 +26,14 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         }
 
         /// <summary>
-        /// Gets or sets the center coordinates.
+        ///     Gets or sets the center coordinates.
         /// </summary>
         [JsonProperty("center", Order = 1)]
         [JsonConverter(typeof(Point3DConverter))]
         public Point3D Center { get; set; }
 
         /// <summary>
-        /// Gets the shape of the location.
+        ///     Gets the shape of the location.
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public LocationType Type { get; private set; }

@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Logging
 {
     /// <summary>
-    /// Represents detailed information about a logging tool.
+    ///     Represents detailed information about a logging tool.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class LoggingToolDetails : GatheringToolDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="LoggingToolDetails"/> class.
+        ///     Initializes a new instance of the <see cref="LoggingToolDetails" /> class.
         /// </summary>
         public LoggingToolDetails()
             : base(GatheringToolType.Logging)

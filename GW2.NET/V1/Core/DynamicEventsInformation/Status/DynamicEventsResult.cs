@@ -9,12 +9,12 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
 {
     /// <summary>
-    /// Wraps a collection of dynamic events.
+    ///     Wraps a collection of dynamic events.
     /// </summary>
     public class DynamicEventsResult : JsonObject
     {
         /// <summary>
-        /// Gets or sets a list of event details.
+        ///     Gets or sets a list of event details.
         /// </summary>
         [JsonProperty("events", Order = 0)]
         public DynamicEventCollection Events { get; set; }

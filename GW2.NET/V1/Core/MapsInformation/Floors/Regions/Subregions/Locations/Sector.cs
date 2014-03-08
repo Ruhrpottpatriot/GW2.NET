@@ -11,31 +11,31 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     /// <summary>
-    /// Represents an area within a map.
+    ///     Represents an area within a map.
     /// </summary>
     public class Sector : JsonObject
     {
         /// <summary>
-        /// Gets or sets the sector's coordinates, which is (usually) the center position.
+        ///     Gets or sets the sector's coordinates, which is (usually) the center position.
         /// </summary>
         [JsonProperty("coord", Order = 3)]
         [JsonConverter(typeof(PointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>
-        /// Gets or sets the sector's level.
+        ///     Gets or sets the sector's level.
         /// </summary>
         [JsonProperty("level", Order = 2)]
         public int Level { get; set; }
 
         /// <summary>
-        /// Gets or sets the sector's name.
+        ///     Gets or sets the sector's name.
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the sector's ID.
+        ///     Gets or sets the sector's ID.
         /// </summary>
         [JsonProperty("sector_id", Order = 0)]
         public int SectorId { get; set; }

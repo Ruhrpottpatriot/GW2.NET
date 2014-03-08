@@ -61,7 +61,7 @@ namespace GW2DotNET.V1.Core {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://api.guildwars2.com/v{0}/.
+        ///   Looks up a localized string similar to https://API.guildwars2.com/v{0}/.
         /// </summary>
         internal static string BaseUrl {
             get {

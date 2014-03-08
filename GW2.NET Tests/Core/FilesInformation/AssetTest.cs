@@ -2,13 +2,11 @@
 using Newtonsoft.Json;
 using NUnit.Framework;
 
-namespace GW2DotNET_Tests.Core.FilesInformation
+namespace GW2DotNET.Core.FilesInformation
 {
     [TestFixture]
     public class AssetTest
     {
-        private Asset asset;
-
         [SetUp]
         public void Initialize()
         {
@@ -16,12 +14,22 @@ namespace GW2DotNET_Tests.Core.FilesInformation
             this.asset = JsonConvert.DeserializeObject<Asset>(input);
         }
 
+        private Asset asset;
+
+        [Test]
+        [Category("files.json")]
+        [Category("ExtensionData")]
+        public void Asset_ExtensionDataIsEmpty()
+        {
+            Assert.IsEmpty(this.asset.ExtensionData);
+        }
+
         [Test]
         [Category("files.json")]
         public void Asset_FileIdReflectsInput()
         {
             const int expected = default(int);
-            var actual         = this.asset.FileId;
+            int actual = this.asset.FileId;
 
             Assert.AreEqual(expected, actual);
         }
@@ -30,18 +38,10 @@ namespace GW2DotNET_Tests.Core.FilesInformation
         [Category("files.json")]
         public void Asset_SignatureReflectsInput()
         {
-            var expected = string.Empty;
-            var actual   = this.asset.Signature;
+            string expected = string.Empty;
+            string actual = this.asset.Signature;
 
             Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("files.json")]
-        [Category("ExtensionData")]
-        public void Asset_ExtensionDataIsEmpty()
-        {
-            Assert.IsEmpty(this.asset.ExtensionData);
         }
     }
 }

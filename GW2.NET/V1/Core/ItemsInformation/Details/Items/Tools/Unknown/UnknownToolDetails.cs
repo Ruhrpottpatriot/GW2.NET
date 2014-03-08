@@ -10,13 +10,13 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools.Unknown
 {
     /// <summary>
-    /// Represents detailed information about an unknown tool.
+    ///     Represents detailed information about an unknown tool.
     /// </summary>
     [JsonConverter(typeof(DefaultConverter))]
     public class UnknownToolDetails : ToolDetails
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="UnknownToolDetails"/> class.
+        ///     Initializes a new instance of the <see cref="UnknownToolDetails" /> class.
         /// </summary>
         public UnknownToolDetails()
             : base(ToolType.Unknown)
