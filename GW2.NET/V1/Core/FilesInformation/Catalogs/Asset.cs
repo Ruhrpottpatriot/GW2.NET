@@ -20,6 +20,12 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
         public int FileId { get; set; }
 
         /// <summary>
+        ///     Gets or sets the file name.
+        /// </summary>
+        [JsonProperty("file_name", Order = 2)]
+        public string FileName { get; set; }
+
+        /// <summary>
         ///     Gets or sets file signature to be used with the render service.
         /// </summary>
         [JsonProperty("signature", Order = 1)]

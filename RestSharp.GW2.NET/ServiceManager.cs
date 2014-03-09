@@ -26,9 +26,9 @@ using GW2DotNET.V1.Core.MapsInformation.Names;
 using GW2DotNET.V1.Core.WorldsInformation.Names;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
-using RestSharp.Requests;
+using RestSharp.GW2DotNET.Requests;
 
-namespace RestSharp
+namespace RestSharp.GW2DotNET
 {
     /// <summary>
     ///     Provides a RestSharp-specific implementation of the Guild Wars 2 service.
@@ -139,9 +139,9 @@ namespace RestSharp
         public DyeCollection GetColors()
         {
             var request = new ColorsRequest(this.PreferredLanguageInfo);
-            var response = this.Get<DyeCollection>(request);
+            var response = this.Get<DyesResult>(request);
 
-            return response;
+            return response.Colors;
         }
 
         /// <summary>
@@ -152,9 +152,9 @@ namespace RestSharp
         public Task<DyeCollection> GetColorsAsync(CancellationToken? cancellationToken = null)
         {
             var request = new ColorsRequest(this.PreferredLanguageInfo);
-            Task<DyeCollection> response = this.GetAsync<DyeCollection>(request, cancellationToken);
+            var response = this.GetAsync<DyesResult>(request, cancellationToken);
 
-            return response;
+            return this.Select(response, result => result.Colors);
         }
 
         #endregion colors.json
@@ -305,103 +305,379 @@ namespace RestSharp
         #endregion event_names.json
 
         #region events.json
-
         /// <summary>
-        ///     Gets a collection of dynamic events and their status.
+        /// Gets a collection of dynamic events and their status.
         /// </summary>
-        /// <param name="worldName">The world filter.</param>
-        /// <param name="mapName">The map filter.</param>
-        /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEvents(WorldName worldName = null, MapName mapName = null, Guid? eventId = null)
+        public DynamicEventCollection GetDynamicEvents()
         {
-            int? worldId = null;
-            int? mapId = null;
-
-            if (worldName != null)
-            {
-                worldId = worldName.Id;
-            }
-
-            if (mapName != null)
-            {
-                mapId = mapName.Id;
-            }
-
-            var request = new DynamicEventRequest(worldId, mapId, eventId);
+            var request = new DynamicEventRequest();
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
         }
 
         /// <summary>
-        ///     Gets a collection of dynamic events and their status.
+        /// Gets a collection of dynamic events and their status.
         /// </summary>
-        /// <param name="worldId">The world filter.</param>
-        /// <param name="mapId">The map filter.</param>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEvents(int? worldId = null, int? mapId = null, Guid? eventId = null)
+        public DynamicEventCollection GetDynamicEventsById(Guid eventId)
         {
-            var request = new DynamicEventRequest(worldId, mapId, eventId);
+            var request = new DynamicEventRequest()
+            {
+                EventId = eventId
+            };
+
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
         }
 
         /// <summary>
-        ///     Gets a collection of dynamic events and their status.
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsById(Guid eventId, int worldId)
+        {
+            var request = new DynamicEventRequest()
+            {
+                EventId = eventId,
+                WorldId = worldId
+            };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsById(Guid eventId, WorldName worldName)
+        {
+            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
+
+            var request = new DynamicEventRequest()
+            {
+                EventId = eventId,
+                WorldId = worldName.Id
+            };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByMap(int mapId)
+        {
+            var request = new DynamicEventRequest()
+            {
+                MapId = mapId
+            };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByMap(int mapId, int worldId)
+        {
+            var request = new DynamicEventRequest()
+            {
+                MapId = mapId,
+                WorldId = worldId
+            };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByMap(MapName mapName)
+        {
+            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
+
+            var request = new DynamicEventRequest()
+            {
+                MapId = mapName.Id,
+            };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByMap(MapName mapName, WorldName worldName)
+        {
+            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
+            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
+
+            var request = new DynamicEventRequest()
+            {
+                MapId = mapName.Id,
+                WorldId = worldName.Id
+            };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByWorld(int worldId)
+        {
+            var request = new DynamicEventRequest()
+            {
+                WorldId = worldId
+            };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
         /// </summary>
         /// <param name="worldName">The world filter.</param>
-        /// <param name="mapName">The map filter.</param>
-        /// <param name="eventId">The dynamic event filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByWorld(WorldName worldName)
+        {
+            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
+
+            var request = new DynamicEventRequest()
+            {
+                WorldId = worldName.Id
+            };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
-        public Task<DynamicEventCollection> GetDynamicEventsAsync(
-            WorldName worldName = null,
-            MapName mapName = null,
-            Guid? eventId = null,
-            CancellationToken? cancellationToken = null)
+        public Task<DynamicEventCollection> GetDynamicEventsAsync(CancellationToken? cancellationToken = null)
         {
-            int? worldId = null;
-            int? mapId = null;
-
-            if (worldName != null)
-            {
-                worldId = worldName.Id;
-            }
-
-            if (mapName != null)
-            {
-                mapId = mapName.Id;
-            }
-
-            var request = new DynamicEventRequest(worldId, mapId, eventId);
-            Task<DynamicEventsResult> response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+            var request = new DynamicEventRequest();
+            var response = this.GetAsync<DynamicEventsResult>(request);
 
             return this.Select(response, result => result.Events);
         }
 
         /// <summary>
-        ///     Gets a collection of dynamic events and their status.
+        /// Gets a collection of dynamic events and their status.
         /// </summary>
-        /// <param name="worldId">The world filter.</param>
-        /// <param name="mapId">The map filter.</param>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
-        public Task<DynamicEventCollection> GetDynamicEventsAsync(
-            int? worldId = null,
-            int? mapId = null,
-            Guid? eventId = null,
-            CancellationToken? cancellationToken = null)
+        public Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventRequest(worldId, mapId, eventId);
-            Task<DynamicEventsResult> response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+            var request = new DynamicEventRequest()
+            {
+                EventId = eventId
+            };
+
+            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, int worldId, CancellationToken? cancellationToken = null)
+        {
+            var request = new DynamicEventRequest()
+            {
+                EventId = eventId,
+                WorldId = worldId
+            };
+
+            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+
+            return this.Select(response, result => result.Events);
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, WorldName worldName, CancellationToken? cancellationToken = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
+
+            var request = new DynamicEventRequest()
+            {
+                EventId = eventId,
+                WorldId = worldName.Id
+            };
+
+            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+
+            return this.Select(response, result => result.Events);
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(int mapId, CancellationToken? cancellationToken = null)
+        {
+            var request = new DynamicEventRequest()
+            {
+                MapId = mapId
+            };
+
+            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+
+            return this.Select(response, result => result.Events);
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken? cancellationToken = null)
+        {
+            var request = new DynamicEventRequest()
+            {
+                MapId = mapId,
+                WorldId = worldId
+            };
+
+            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+
+            return this.Select(response, result => result.Events);
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(MapName mapName, CancellationToken? cancellationToken = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
+
+            var request = new DynamicEventRequest()
+            {
+                MapId = mapName.Id
+            };
+
+            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+
+            return this.Select(response, result => result.Events);
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(MapName mapName, WorldName worldName, CancellationToken? cancellationToken = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
+            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
+
+            var request = new DynamicEventRequest()
+            {
+                MapId = mapName.Id,
+                WorldId = worldName.Id
+            };
+
+            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+
+            return this.Select(response, result => result.Events);
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="worldId">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public Task<DynamicEventCollection> GetDynamicEventsByWorldAsync(int worldId, CancellationToken? cancellationToken = null)
+        {
+            var request = new DynamicEventRequest()
+            {
+                WorldId = worldId
+            };
+
+            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+
+            return this.Select(response, result => result.Events);
+        }
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="worldName">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public Task<DynamicEventCollection> GetDynamicEventsByWorldAsync(WorldName worldName, CancellationToken? cancellationToken = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
+
+            var request = new DynamicEventRequest()
+            {
+                WorldId = worldName.Id
+            };
+
+            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
+
+            return this.Select(response, result => result.Events);
+        }
         #endregion events.json
 
         #region files.json
@@ -948,7 +1224,7 @@ namespace RestSharp
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="request">The request.</param>
         /// <returns>The response content.</returns>
-        private TResult Get<TResult>(IServiceRequest request) where TResult : GW2DotNET.V1.Core.JsonObject
+        private TResult Get<TResult>(IServiceRequest request) where TResult : global::GW2DotNET.V1.Core.JsonObject
         {
             IServiceResponse<TResult> response = request.GetResponse<TResult>(this.serviceClient);
             TResult content = response.EnsureSuccessStatusCode().Deserialize();
@@ -964,7 +1240,7 @@ namespace RestSharp
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response content.</returns>
         private Task<TResult> GetAsync<TResult>(IServiceRequest request, CancellationToken? cancellationToken = null)
-            where TResult : GW2DotNET.V1.Core.JsonObject
+            where TResult : global::GW2DotNET.V1.Core.JsonObject
         {
             CancellationToken token = cancellationToken.GetValueOrDefault(CancellationToken.None);
             Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(this.serviceClient, token);
@@ -992,8 +1268,8 @@ namespace RestSharp
         /// <param name="selector">The selector.</param>
         /// <returns>The selected result.</returns>
         private Task<TResult> Select<TContent, TResult>(Task<TContent> result, Func<TContent, TResult> selector)
-            where TContent : GW2DotNET.V1.Core.JsonObject
-            where TResult : GW2DotNET.V1.Core.JsonObject
+            where TContent : global::GW2DotNET.V1.Core.JsonObject
+            where TResult : global::GW2DotNET.V1.Core.JsonObject
         {
             return result.ContinueWith(task => selector(task.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
         }

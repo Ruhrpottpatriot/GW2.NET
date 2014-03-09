@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
 
-namespace RestSharp.Requests
+namespace RestSharp.GW2DotNET.Requests
 {
     /// <summary>
     ///     Represents a request for details regarding the specified match, including the total score and further details for

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
 
-namespace RestSharp.Requests
+namespace RestSharp.GW2DotNET.Requests
 {
     /// <summary>
     ///     Represents a request for a list of the localized World versus World objective names for the specified language.

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
 
-namespace RestSharp.Requests
+namespace RestSharp.GW2DotNET.Requests
 {
     /// <summary>
     ///     Represents a request for a list of the currently running World versus World matches, with the participating worlds

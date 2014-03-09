@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
 
-namespace RestSharp.Requests
+namespace RestSharp.GW2DotNET.Requests
 {
     /// <summary>
     ///     Represents a request for static details about dynamic events.

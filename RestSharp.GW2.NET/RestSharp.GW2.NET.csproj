@@ -7,7 +7,7 @@
     <ProjectGuid>{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RestSharp</RootNamespace>
+    <RootNamespace>RestSharp.GW2DotNET</RootNamespace>
     <AssemblyName>RestSharp.GW2.NET</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

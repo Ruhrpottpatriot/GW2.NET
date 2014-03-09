@@ -135,40 +135,158 @@ namespace GW2DotNET.V1.Core
         /// <summary>
         /// Gets a collection of dynamic events and their status.
         /// </summary>
-        /// <param name="worldName">The world filter.</param>
-        /// <param name="mapName">The map filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        DynamicEventCollection GetDynamicEvents();
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
-        DynamicEventCollection GetDynamicEvents(WorldName worldName = null, MapName mapName = null, Guid? eventId = null);
+        DynamicEventCollection GetDynamicEventsById(Guid eventId);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        DynamicEventCollection GetDynamicEventsById(Guid eventId, int worldId);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        DynamicEventCollection GetDynamicEventsById(Guid eventId, WorldName worldName);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        DynamicEventCollection GetDynamicEventsByMap(int mapId);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        DynamicEventCollection GetDynamicEventsByMap(int mapId, int worldId);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        DynamicEventCollection GetDynamicEventsByMap(MapName mapName);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        DynamicEventCollection GetDynamicEventsByMap(MapName mapName, WorldName worldName);
 
         /// <summary>
         /// Gets a collection of dynamic events and their status.
         /// </summary>
         /// <param name="worldId">The world filter.</param>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
-        DynamicEventCollection GetDynamicEvents(int? worldId = null, int? mapId = null, Guid? eventId = null);
+        DynamicEventCollection GetDynamicEventsByWorld(int worldId);
 
         /// <summary>
         /// Gets a collection of dynamic events and their status.
         /// </summary>
         /// <param name="worldName">The world filter.</param>
-        /// <param name="mapName">The map filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        DynamicEventCollection GetDynamicEventsByWorld(WorldName worldName);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        Task<DynamicEventCollection> GetDynamicEventsAsync(CancellationToken? cancellationToken = null);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
-        Task<DynamicEventCollection> GetDynamicEventsAsync(WorldName worldName = null, MapName mapName = null, Guid? eventId = null, CancellationToken? cancellationToken = null);
+        Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken? cancellationToken = null);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, int worldId, CancellationToken? cancellationToken = null);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, WorldName worldName, CancellationToken? cancellationToken = null);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        Task<DynamicEventCollection> GetDynamicEventsByMapAsync(int mapId, CancellationToken? cancellationToken = null);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        Task<DynamicEventCollection> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken? cancellationToken = null);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        Task<DynamicEventCollection> GetDynamicEventsByMapAsync(MapName mapName, CancellationToken? cancellationToken = null);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        Task<DynamicEventCollection> GetDynamicEventsByMapAsync(MapName mapName, WorldName worldName, CancellationToken? cancellationToken = null);
 
         /// <summary>
         /// Gets a collection of dynamic events and their status.
         /// </summary>
         /// <param name="worldId">The world filter.</param>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
-        Task<DynamicEventCollection> GetDynamicEventsAsync(int? worldId = null, int? mapId = null, Guid? eventId = null, CancellationToken? cancellationToken = null);
+        Task<DynamicEventCollection> GetDynamicEventsByWorldAsync(int worldId, CancellationToken? cancellationToken = null);
+
+        /// <summary>
+        /// Gets a collection of dynamic events and their status.
+        /// </summary>
+        /// <param name="worldName">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        Task<DynamicEventCollection> GetDynamicEventsByWorldAsync(WorldName worldName, CancellationToken? cancellationToken = null);
 
         /// <summary>
         /// Gets a collection of commonly requested in-game assets.
