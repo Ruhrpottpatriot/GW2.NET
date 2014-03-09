@@ -5,6 +5,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
 {
@@ -36,6 +37,19 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
         public SubregionCollection(IDictionary<int, Subregion> dictionary)
             : base(dictionary)
         {
+        }
+
+        /// <summary>
+        ///     Sets each value's ID property to its corresponding key.
+        /// </summary>
+        /// <param name="context">The streaming context.</param>
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {
+            foreach (var kvp in this)
+            {
+                kvp.Value.MapId = kvp.Key;
+            }
         }
     }
 }
