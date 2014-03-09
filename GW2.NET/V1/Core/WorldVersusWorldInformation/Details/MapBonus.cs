@@ -2,17 +2,22 @@
 // <copyright file="MapBonus.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a World versus World map's bonus.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents a World versus World map's bonus.
     /// </summary>
     public class MapBonus : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the team that holds the bonus.
         /// </summary>
@@ -24,5 +29,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public MapBonusType Type { get; set; }
+
+        #endregion
     }
 }

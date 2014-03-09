@@ -1,14 +1,29 @@
-﻿using System.Drawing;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JsonSizeConverterTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The json size converter test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.Converters
 {
+    using System.Drawing;
+
     using GW2DotNET.V1.Core.Converters;
 
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The json size converter test.</summary>
     [TestFixture]
     public class JsonSizeConverterTest
     {
+        #region Public Methods and Operators
+
+        /// <summary>The json size converter_ read both nil_ returns default.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadBothNil_ReturnsDefault()
@@ -20,6 +35,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ read empty array_ returns default.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadEmptyArray_ReturnsDefault()
@@ -31,6 +47,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ read empty_ exception is thrown for value type.</summary>
         [Test]
         [Category("Converters")]
         [ExpectedException(typeof(JsonSerializationException))]
@@ -40,6 +57,7 @@ namespace GW2DotNET.Core.Converters
             JsonConvert.DeserializeObject<Size>(input, new JsonSizeConverter());
         }
 
+        /// <summary>The json size converter_ read empty_ returns null for nullable type.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadEmpty_ReturnsNullForNullableType()
@@ -50,6 +68,7 @@ namespace GW2DotNET.Core.Converters
             Assert.IsNull(output);
         }
 
+        /// <summary>The json size converter_ read more than two values_ converter throws json serialization exception.</summary>
         [Test]
         [Category("Converters")]
         [ExpectedException(typeof(JsonSerializationException))]
@@ -59,6 +78,7 @@ namespace GW2DotNET.Core.Converters
             JsonConvert.DeserializeObject<Size>(input, new JsonSizeConverter());
         }
 
+        /// <summary>The json size converter_ read negative extremes_ size reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadNegativeExtremes_SizeReflectsInput()
@@ -70,6 +90,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ read negative values_ size refects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadNegativeValues_SizeRefectsInput()
@@ -81,7 +102,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
-
+        /// <summary>The json size converter_ read null_ returns default for value type.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadNull_ReturnsDefaultForValueType()
@@ -93,6 +114,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ read null_ returns null for nullable type.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadNull_ReturnsNullForNullableType()
@@ -103,6 +125,7 @@ namespace GW2DotNET.Core.Converters
             Assert.IsNull(output);
         }
 
+        /// <summary>The json size converter_ read positive extremes_ size reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadPositiveExtremes_SizeReflectsInput()
@@ -114,6 +137,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ read positive values_ size refects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadPositiveValues_SizeRefectsInput()
@@ -125,6 +149,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ read single nil_ returns default.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadSingleNil_ReturnsDefault()
@@ -136,6 +161,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ read single value_ converter assumes x equals y.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_ReadSingleValue_ConverterAssumesXEqualsY()
@@ -147,6 +173,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ write default size_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_WriteDefaultSize_JsonReflectsInput()
@@ -158,6 +185,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ write negative extremes_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_WriteNegativeExtremes_JsonReflectsInput()
@@ -169,6 +197,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ write negative values_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_WriteNegativeValues_JsonReflectsInput()
@@ -180,7 +209,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
-
+        /// <summary>The json size converter_ write positive extremes_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_WritePositiveExtremes_JsonReflectsInput()
@@ -192,6 +221,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json size converter_ write positive values_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonSizeConverter_WritePositiveValues_JsonReflectsInput()
@@ -202,5 +232,7 @@ namespace GW2DotNET.Core.Converters
 
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

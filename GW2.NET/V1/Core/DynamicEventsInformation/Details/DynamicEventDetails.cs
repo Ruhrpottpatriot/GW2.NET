@@ -2,19 +2,26 @@
 // <copyright file="DynamicEventDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents details about a specific dynamic event.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
 {
+    using System;
+
+    using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
+
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents details about a specific dynamic event.
     /// </summary>
     public class DynamicEventDetails : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the event's ID.
         /// </summary>
@@ -50,5 +57,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
+
+        #endregion
     }
 }

@@ -1,13 +1,36 @@
-﻿using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PointOfInterestTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The point of interest test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The point of interest test.</summary>
     [TestFixture]
     public class PointOfInterestTest
     {
+        #region Fields
+
+        /// <summary>The point of interest.</summary>
+        private PointOfInterest pointOfInterest;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
         {
@@ -15,8 +38,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             this.pointOfInterest = JsonConvert.DeserializeObject<PointOfInterest>(input);
         }
 
-        private PointOfInterest pointOfInterest;
-
+        /// <summary>The point of interest_ coordinates reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void PointOfInterest_CoordinatesReflectsInput()
@@ -27,6 +49,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The point of interest_ extension data is empty.</summary>
         [Test]
         [Category("map_floor.json")]
         [Category("ExtensionData")]
@@ -35,6 +58,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.IsEmpty(this.pointOfInterest.ExtensionData);
         }
 
+        /// <summary>The point of interest_ floor reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void PointOfInterest_FloorReflectsInput()
@@ -45,6 +69,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The point of interest_ name reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void PointOfInterest_NameReflectsInput()
@@ -55,6 +80,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The point of interest_ type reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void PointOfInterest_TypeReflectsInput()
@@ -64,5 +90,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
 
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

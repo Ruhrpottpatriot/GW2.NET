@@ -2,29 +2,38 @@
 // <copyright file="Recipe.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents detailed information about a crafting recipe.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details
 {
+    using System;
+
+    using GW2DotNET.V1.Core.Converters;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes;
+
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents detailed information about a crafting recipe.
     /// </summary>
     [JsonConverter(typeof(RecipeConverter))]
     public abstract class Recipe : JsonObject
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Recipe" /> class.
-        /// </summary>
+        #region Constructors and Destructors
+
+        /// <summary>Initializes a new instance of the <see cref="Recipe"/> class.</summary>
         /// <param name="recipeType">The recipe's type.</param>
         protected Recipe(RecipeType recipeType)
         {
             this.Type = recipeType;
         }
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the crafting disciplines that can use the recipe.
@@ -80,5 +89,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         /// </summary>
         [JsonProperty("type", Order = 1)]
         public RecipeType Type { get; set; }
+
+        #endregion
     }
 }

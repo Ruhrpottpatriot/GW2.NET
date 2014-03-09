@@ -2,17 +2,22 @@
 // <copyright file="ObjectiveCollection.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a collection of a World versus World map objectives.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.Collections.Generic;
 
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
+    using System.Collections.Generic;
+
     /// <summary>
     ///     Represents a collection of a World versus World map objectives.
     /// </summary>
     public class ObjectiveCollection : JsonList<Objective>
     {
+        #region Constructors and Destructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="ObjectiveCollection" /> class.
         /// </summary>
@@ -20,22 +25,20 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         {
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ObjectiveCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveCollection"/> class.</summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
         public ObjectiveCollection(IEnumerable<Objective> collection)
             : base(collection)
         {
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ObjectiveCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveCollection"/> class.</summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
         public ObjectiveCollection(int capacity)
             : base(capacity)
         {
         }
+
+        #endregion
     }
 }

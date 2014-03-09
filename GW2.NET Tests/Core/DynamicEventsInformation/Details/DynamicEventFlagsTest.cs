@@ -1,12 +1,27 @@
-﻿using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DynamicEventFlagsTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The dynamic event flags test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.DynamicEventsInformation.Details
 {
+    using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The dynamic event flags test.</summary>
     [TestFixture]
     public class DynamicEventFlagsTest
     {
+        #region Public Methods and Operators
+
+        /// <summary>The dynamic event styles_ group event_ flags reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void DynamicEventStyles_GroupEvent_FlagsReflectsInput()
@@ -18,6 +33,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
             Assert.AreEqual(expectedFlags, dynamicEventDetails.Flags);
         }
 
+        /// <summary>The dynamic event styles_ map wide_ flags reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void DynamicEventStyles_MapWide_FlagsReflectsInput()
@@ -29,6 +45,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
             Assert.AreEqual(expectedFlags, dynamicEventDetails.Flags);
         }
 
+        /// <summary>The dynamic event styles_ multiple_ flags reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void DynamicEventStyles_Multiple_FlagsReflectsInput()
@@ -40,6 +57,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
             Assert.AreEqual(expectedFlags, dynamicEventDetails.Flags);
         }
 
+        /// <summary>The dynamic event styles_ none_ flags reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void DynamicEventStyles_None_FlagsReflectsInput()
@@ -50,5 +68,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
 
             Assert.AreEqual(expectedFlags, dynamicEventDetails.Flags);
         }
+
+        #endregion
     }
 }

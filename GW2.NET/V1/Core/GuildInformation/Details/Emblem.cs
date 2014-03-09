@@ -2,17 +2,22 @@
 // <copyright file="Emblem.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a guild's emblem.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.GuildInformation.Details
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents a guild's emblem.
     /// </summary>
     public class Emblem : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the background color ID.
         /// </summary>
@@ -48,5 +53,7 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
         /// </summary>
         [JsonProperty("foreground_secondary_color_id", Order = 5)]
         public int ForegroundSecondaryColorId { get; set; }
+
+        #endregion
     }
 }

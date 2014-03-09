@@ -1,14 +1,36 @@
-﻿using GW2DotNET.V1.Core.ItemsInformation.Details;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ItemTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The item test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.ItemsInformation.Details
 {
+    using GW2DotNET.V1.Core.ItemsInformation.Details;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The item test.</summary>
     [TestFixture]
     public class ItemTest
     {
+        #region Fields
+
+        /// <summary>The item.</summary>
+        private Item item;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
         {
@@ -17,8 +39,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             this.item = JsonConvert.DeserializeObject<UnknownItem>(input);
         }
 
-        private Item item;
-
+        /// <summary>The item_ description reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_DescriptionReflectsInput()
@@ -29,6 +50,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ extension data is empty.</summary>
         [Test]
         [Category("item_details.json")]
         [Category("ExtensionData")]
@@ -37,6 +59,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.IsEmpty(this.item.ExtensionData);
         }
 
+        /// <summary>The item_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_FlagsReflectsInput()
@@ -47,6 +70,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_GameTypesReflectsInput()
@@ -57,6 +81,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ icon file id reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_IconFileIdReflectsInput()
@@ -67,6 +92,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ icon file signature reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_IconFileSignatureReflectsInput()
@@ -77,6 +103,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ item id reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_ItemIdReflectsInput()
@@ -87,6 +114,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ level reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_LevelReflectsInput()
@@ -97,6 +125,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ name reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_NameReflectsInput()
@@ -107,6 +136,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ rarity reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_RarityReflectsInput()
@@ -117,6 +147,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_RestrictionsReflectsInput()
@@ -127,6 +158,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_TypeReflectsInput()
@@ -137,6 +169,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The item_ vendor value reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Item_VendorValueReflectsInput()
@@ -146,5 +179,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details
 
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

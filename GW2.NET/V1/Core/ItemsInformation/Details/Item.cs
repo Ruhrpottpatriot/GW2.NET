@@ -2,39 +2,35 @@
 // <copyright file="Item.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents detailed information about an in-game item.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details
 {
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
+
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents detailed information about an in-game item.
     /// </summary>
     [JsonConverter(typeof(ItemConverter))]
     public abstract class Item : JsonObject
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Item" /> class.
-        /// </summary>
+        #region Constructors and Destructors
+
+        /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>
         /// <param name="type">The item's type.</param>
         protected Item(ItemType type)
         {
             this.Type = type;
         }
 
-        /// <summary>
-        ///     Gets or sets the item's ID.
-        /// </summary>
-        [JsonProperty("item_id", Order = 0)]
-        public int ItemId { get; set; }
+        #endregion
 
-        /// <summary>
-        ///     Gets or sets the item's name.
-        /// </summary>
-        [JsonProperty("name", Order = 1)]
-        public string Name { get; set; }
+        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the item's description.
@@ -43,28 +39,16 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         public string Description { get; set; }
 
         /// <summary>
-        ///     Gets or sets the item's type.
+        ///     Gets or sets the item's additional flags.
         /// </summary>
-        [JsonProperty("type", Order = 3)]
-        public ItemType Type { get; set; }
+        [JsonProperty("flags", Order = 10)]
+        public ItemFlags Flags { get; set; }
 
         /// <summary>
-        ///     Gets or sets the item's level.
+        ///     Gets or sets the item's game types.
         /// </summary>
-        [JsonProperty("level", Order = 4)]
-        public int Level { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the item's rarity.
-        /// </summary>
-        [JsonProperty("rarity", Order = 5)]
-        public ItemRarity Rarity { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the item's vendor value.
-        /// </summary>
-        [JsonProperty("vendor_value", Order = 6)]
-        public int VendorValue { get; set; }
+        [JsonProperty("game_types", Order = 9)]
+        public GameTypes GameTypes { get; set; }
 
         /// <summary>
         ///     Gets or sets the item's icon ID for use with the render service.
@@ -79,21 +63,47 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         public string IconFileSignature { get; set; }
 
         /// <summary>
-        ///     Gets or sets the item's game types.
+        ///     Gets or sets the item's ID.
         /// </summary>
-        [JsonProperty("game_types", Order = 9)]
-        public GameTypes GameTypes { get; set; }
+        [JsonProperty("item_id", Order = 0)]
+        public int ItemId { get; set; }
 
         /// <summary>
-        ///     Gets or sets the item's additional flags.
+        ///     Gets or sets the item's level.
         /// </summary>
-        [JsonProperty("flags", Order = 10)]
-        public ItemFlags Flags { get; set; }
+        [JsonProperty("level", Order = 4)]
+        public int Level { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the item's name.
+        /// </summary>
+        [JsonProperty("name", Order = 1)]
+        public string Name { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the item's rarity.
+        /// </summary>
+        [JsonProperty("rarity", Order = 5)]
+        public ItemRarity Rarity { get; set; }
 
         /// <summary>
         ///     Gets or sets the item's restrictions.
         /// </summary>
         [JsonProperty("restrictions", Order = 11)]
         public ItemRestrictions Restrictions { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the item's type.
+        /// </summary>
+        [JsonProperty("type", Order = 3)]
+        public ItemType Type { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the item's vendor value.
+        /// </summary>
+        [JsonProperty("vendor_value", Order = 6)]
+        public int VendorValue { get; set; }
+
+        #endregion
     }
 }

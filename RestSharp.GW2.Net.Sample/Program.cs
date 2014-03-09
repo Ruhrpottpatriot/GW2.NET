@@ -1,20 +1,19 @@
-﻿
-using System;
-using System.Linq;
-using GW2DotNET.V1;
-using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
-using GW2DotNET.V1.Core.ErrorInformation;
-using RestSharp.GW2DotNET;
-using RestSharp.GW2DotNET.Sample;
-
-namespace RestSharp
+﻿namespace RestSharp.GW2DotNET.Sample
 {
+    using System;
+    using System.Linq;
+
+    using global::GW2DotNET.V1;
+    using global::GW2DotNET.V1.Core;
+    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+    using global::GW2DotNET.V1.Core.ErrorInformation;
+
+    using RestSharp.GW2DotNET;
+
     class Program
     {
 
-        static void Main(string[] args)
+        static void Main()
         {
             Console.BufferWidth = Console.BufferHeight = Int16.MaxValue - 1;
 
@@ -122,7 +121,7 @@ namespace RestSharp
         {
             var table = new ConsoleTable("ID", "Name", "Color");
 
-            foreach (var color in serviceProvider.GetColors().Values.OrderBy(color => color.ColorId))
+            foreach (var color in serviceProvider.GetColors().Values.OrderByDescending(x => x))
             {
                 table.AddRow(color.ColorId, color.Name, color.Cloth.Rgb);
             }
@@ -174,7 +173,7 @@ namespace RestSharp
             Console.WriteLine();
         }
 
-        private DynamicEventNameCollection PrintEventNames(ServiceProvider serviceProvider)
+        private void PrintEventNames(ServiceProvider serviceProvider)
         {
             var table = new ConsoleTable("ID", "Event ID", "Name");
 
@@ -188,8 +187,6 @@ namespace RestSharp
             table.Write();
 
             Console.WriteLine();
-
-            return collection;
         }
 
         private void PrintEvents(ServiceProvider serviceProvider)
@@ -208,25 +205,11 @@ namespace RestSharp
 
             if (mapId.HasValue)
             {
-                if (worldId.HasValue)
-                {
-                    collection = serviceProvider.GetDynamicEventsByMap(mapId.Value, worldId.Value);
-                }
-                else
-                {
-                    collection = serviceProvider.GetDynamicEventsByMap(mapId.Value);
-                }
+                collection = worldId.HasValue ? serviceProvider.GetDynamicEventsByMap(mapId.Value, worldId.Value) : serviceProvider.GetDynamicEventsByMap(mapId.Value);
             }
             else
             {
-                if (worldId.HasValue)
-                {
-                    collection = serviceProvider.GetDynamicEventsByWorld(worldId.Value);
-                }
-                else
-                {
-                    collection = serviceProvider.GetDynamicEvents();
-                }
+                collection = worldId.HasValue ? serviceProvider.GetDynamicEventsByWorld(worldId.Value) : serviceProvider.GetDynamicEvents();
             }
 
             var dynamicEventNames = serviceProvider.GetDynamicEventNames();

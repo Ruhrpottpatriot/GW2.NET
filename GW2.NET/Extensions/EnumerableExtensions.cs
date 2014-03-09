@@ -7,21 +7,25 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
-
 namespace GW2DotNET.Extensions
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>Some IEnumerable extensions.</summary>
     public static class EnumerableExtensions
     {
+        #region Public Methods and Operators
+
         /// <summary>Checks if a collection is null or empty.</summary>
         /// <param name="enumerable">The enumerable to check.</param>
         /// <typeparam name="T">they type to check</typeparam>
-        /// <returns>The <see cref="bool" />.</returns>
+        /// <returns>The <see cref="bool"/>.</returns>
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> enumerable)
         {
             return enumerable == null || !enumerable.Any();
         }
+
+        #endregion
     }
 }

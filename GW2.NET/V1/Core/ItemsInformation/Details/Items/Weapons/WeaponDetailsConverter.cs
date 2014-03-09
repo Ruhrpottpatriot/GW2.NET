@@ -2,48 +2,60 @@
 // <copyright file="WeaponDetailsConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Converts an instance of a class that extends <see cref="WeaponDetails" /> from its <see cref="System.String" />
+//   representation.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Axes;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Bundles;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Daggers;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Focuses;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.GreatSwords;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Hammers;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Harpoons;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.LongBows;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Maces;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Pistols;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Rifles;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Scepters;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Shields;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.ShortBows;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.SpearGuns;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Staves;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Swords;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Torches;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Toys;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Tridents;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Unknown;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.WarHorns;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2DotNET.V1.Core.Converters;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Axes;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Bundles;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Daggers;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Focuses;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.GreatSwords;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Hammers;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Harpoons;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.LongBows;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Maces;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Pistols;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Rifles;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Scepters;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Shields;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.ShortBows;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.SpearGuns;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Staves;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Swords;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Torches;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Toys;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Tridents;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Unknown;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.WarHorns;
+
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
     /// <summary>
     ///     Converts an instance of a class that extends <see cref="WeaponDetails" /> from its <see cref="System.String" />
     ///     representation.
     /// </summary>
     public class WeaponDetailsConverter : ContentBasedTypeCreationConverter
     {
+        #region Static Fields
+
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<WeaponType, Type> KnownTypes = new Dictionary<WeaponType, Type>();
+
+        #endregion
+
+        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="WeaponDetailsConverter" /> class.
@@ -75,9 +87,11 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
             KnownTypes.Add(WeaponType.Warhorn, typeof(WarHornDetails));
         }
 
-        /// <summary>
-        ///     Determines whether this instance can convert the specified object type.
-        /// </summary>
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
@@ -85,9 +99,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
             return KnownTypes.Values.Contains(objectType);
         }
 
-        /// <summary>
-        ///     Gets the object type that will be used by the serializer.
-        /// </summary>
+        /// <summary>Gets the object type that will be used by the serializer.</summary>
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>
         /// <returns>Returns the target type.</returns>
@@ -109,5 +121,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
 
             return targetType;
         }
+
+        #endregion
     }
 }

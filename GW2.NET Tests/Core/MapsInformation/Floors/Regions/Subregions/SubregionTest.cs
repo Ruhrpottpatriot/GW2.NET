@@ -1,14 +1,37 @@
-﻿using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SubregionTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The subregion test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions;
+    using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The subregion test.</summary>
     [TestFixture]
     public class SubregionTest
     {
+        #region Fields
+
+        /// <summary>The subregion.</summary>
+        private Subregion subregion;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
         {
@@ -17,8 +40,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             this.subregion = JsonConvert.DeserializeObject<Subregion>(input);
         }
 
-        private Subregion subregion;
-
+        /// <summary>The subregion_ continent rectangle reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_ContinentRectangleReflectsInput()
@@ -28,6 +50,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The subregion_ default floor reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_DefaultFloorReflectsInput()
@@ -37,6 +60,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The subregion_ extension data is empty.</summary>
         [Test]
         [Category("map_floor.json")]
         [Category("ExtensionData")]
@@ -45,6 +69,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.IsEmpty(this.subregion.ExtensionData);
         }
 
+        /// <summary>The subregion_ map rectangle reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_MapRectangleReflectsInput()
@@ -54,6 +79,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The subregion_ maximum level reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_MaximumLevelReflectsInput()
@@ -63,6 +89,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The subregion_ minimum level reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_MinimumLevelReflectsInput()
@@ -72,6 +99,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The subregion_ name reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_NameReflectsInput()
@@ -81,6 +109,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The subregion_ points of interest reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_PointsOfInterestReflectsInput()
@@ -90,6 +119,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The subregion_ sectors reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_SectorsReflectsInput()
@@ -99,6 +129,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The subregion_ skill challenges reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_SkillChallengesReflectsInput()
@@ -108,6 +139,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The subregion_ tasks reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Subregion_TasksReflectsInput()
@@ -116,5 +148,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             RenownTaskCollection actual = this.subregion.Tasks;
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

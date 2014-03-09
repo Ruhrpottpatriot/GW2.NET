@@ -1,22 +1,35 @@
-﻿using GW2DotNET.V1.Core.Drawing;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="CylinderLocationTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The cylinder location test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 {
+    using GW2DotNET.V1.Core.Drawing;
+    using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The cylinder location test.</summary>
     [TestFixture]
     public class CylinderLocationTest
     {
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"type\":\"cylinder\",\"center\":[],\"height\":0,\"radius\":0,\"rotation\":0}";
-            this.cylinderLocation = JsonConvert.DeserializeObject<CylinderLocation>(input);
-        }
+        #region Fields
 
+        /// <summary>The cylinder location.</summary>
         private CylinderLocation cylinderLocation;
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The cylinder location_ center reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void CylinderLocation_CenterReflectsInput()
@@ -27,6 +40,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The cylinder location_ extension data is empty.</summary>
         [Test]
         [Category("event_details.json")]
         [Category("ExtensionData")]
@@ -35,6 +49,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.IsEmpty(this.cylinderLocation.ExtensionData);
         }
 
+        /// <summary>The cylinder location_ height reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void CylinderLocation_HeightReflectsInput()
@@ -45,6 +60,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The cylinder location_ radius reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void CylinderLocation_RadiusReflectsInput()
@@ -55,6 +71,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The cylinder location_ rotation reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void CylinderLocation_RotationReflectsInput()
@@ -65,6 +82,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The cylinder location_ type reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void CylinderLocation_TypeReflectsInput()
@@ -74,5 +92,15 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"type\":\"cylinder\",\"center\":[],\"height\":0,\"radius\":0,\"rotation\":0}";
+            this.cylinderLocation = JsonConvert.DeserializeObject<CylinderLocation>(input);
+        }
+
+        #endregion
     }
 }

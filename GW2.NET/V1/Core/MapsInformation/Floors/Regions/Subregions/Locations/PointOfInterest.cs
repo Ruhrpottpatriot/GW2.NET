@@ -2,20 +2,27 @@
 // <copyright file="PointOfInterest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a Point of Interest (POI) location.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.Drawing;
-using GW2DotNET.V1.Core.Converters;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.Converters;
+
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Converters;
+
     /// <summary>
     ///     Represents a Point of Interest (POI) location.
     /// </summary>
     public class PointOfInterest : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the Point of Interest's coordinates.
         /// </summary>
@@ -47,5 +54,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         [JsonProperty("type", Order = 2)]
         [JsonConverter(typeof(StringEnumConverter))]
         public PointOfInterestType Type { get; set; }
+
+        #endregion
     }
 }

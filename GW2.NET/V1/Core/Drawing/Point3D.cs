@@ -2,6 +2,9 @@
 // <copyright file="Point3D.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents an x-, y-, and z-coordinate point in 3-D space.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.V1.Core.Drawing
@@ -14,9 +17,9 @@ namespace GW2DotNET.V1.Core.Drawing
     /// </remarks>
     public struct Point3D
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Point3D" /> structure using the specified values.
-        /// </summary>
+        #region Constructors and Destructors
+
+        /// <summary>Initializes a new instance of the <see cref="Point3D"/> structure using the specified values.</summary>
         /// <param name="x">The x-coordinate.</param>
         /// <param name="y">The y-coordinate.</param>
         /// <param name="z">The z-coordinate.</param>
@@ -27,6 +30,10 @@ namespace GW2DotNET.V1.Core.Drawing
             this.Y = y;
             this.Z = z;
         }
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the x-coordinate of this Point3D structure.
@@ -43,6 +50,10 @@ namespace GW2DotNET.V1.Core.Drawing
         /// </summary>
         public double Z { get; set; }
 
+        #endregion
+
+        #region Public Methods and Operators
+
         /// <summary>
         ///     Gets the text representation of this instance.
         /// </summary>
@@ -51,5 +62,7 @@ namespace GW2DotNET.V1.Core.Drawing
         {
             return string.Format("[{0}, {1}, {2}]", this.X, this.Y, this.Z);
         }
+
+        #endregion
     }
 }

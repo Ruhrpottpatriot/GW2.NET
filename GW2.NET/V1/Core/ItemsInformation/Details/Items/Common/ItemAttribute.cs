@@ -2,17 +2,22 @@
 // <copyright file="ItemAttribute.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents one of an item's attributes.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents one of an item's attributes.
     /// </summary>
     public class ItemAttribute : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the attribute's modifier.
         /// </summary>
@@ -24,5 +29,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
         /// </summary>
         [JsonProperty("attribute", Order = 0)]
         public ItemAttributeType Type { get; set; }
+
+        #endregion
     }
 }

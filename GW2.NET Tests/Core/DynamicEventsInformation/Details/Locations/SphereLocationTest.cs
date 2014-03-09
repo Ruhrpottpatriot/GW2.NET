@@ -1,13 +1,35 @@
-﻿using GW2DotNET.V1.Core.Drawing;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SphereLocationTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The sphere location test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 {
+    using GW2DotNET.V1.Core.Drawing;
+    using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The sphere location test.</summary>
     [TestFixture]
     public class SphereLocationTest
     {
+        #region Fields
+
+        /// <summary>The sphere location.</summary>
+        private SphereLocation sphereLocation;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
         {
@@ -15,8 +37,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             this.sphereLocation = JsonConvert.DeserializeObject<SphereLocation>(input);
         }
 
-        private SphereLocation sphereLocation;
-
+        /// <summary>The sphere location_ center reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void SphereLocation_CenterReflectsInput()
@@ -27,6 +48,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The sphere location_ extension data is empty.</summary>
         [Test]
         [Category("event_details.json")]
         [Category("ExtensionData")]
@@ -35,6 +57,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.IsEmpty(this.sphereLocation.ExtensionData);
         }
 
+        /// <summary>The sphere location_ radius reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void SphereLocation_RadiusReflectsInput()
@@ -45,6 +68,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The sphere location_ rotation reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void SphereLocation_RotationReflectsInput()
@@ -55,6 +79,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The sphere location_ type reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void SphereLocation_TypeReflectsInput()
@@ -64,5 +89,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

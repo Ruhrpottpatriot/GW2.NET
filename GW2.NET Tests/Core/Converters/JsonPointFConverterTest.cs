@@ -1,13 +1,29 @@
-﻿using System.Drawing;
-using GW2DotNET.V1.Core.Converters;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="JsonPointFConverterTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The json point f converter test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.Converters
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.Converters;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The json point f converter test.</summary>
     [TestFixture]
     public class JsonPointFConverterTest
     {
+        #region Public Methods and Operators
+
+        /// <summary>The json point f converter_ read both nil_ returns default.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadBothNil_ReturnsDefault()
@@ -19,6 +35,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ read empty array_ returns default.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadEmptyArray_ReturnsDefault()
@@ -30,6 +47,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ read empty_ exception is thrown for value type.</summary>
         [Test]
         [Category("Converters")]
         [ExpectedException(typeof(JsonSerializationException))]
@@ -39,6 +57,7 @@ namespace GW2DotNET.Core.Converters
             JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
         }
 
+        /// <summary>The json point f converter_ read empty_ returns null for nullable type.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadEmpty_ReturnsNullForNullableType()
@@ -49,6 +68,7 @@ namespace GW2DotNET.Core.Converters
             Assert.IsNull(output);
         }
 
+        /// <summary>The json point f converter_ read more than two values_ converter throws json serialization exception.</summary>
         [Test]
         [Category("Converters")]
         [ExpectedException(typeof(JsonSerializationException))]
@@ -58,6 +78,7 @@ namespace GW2DotNET.Core.Converters
             JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
         }
 
+        /// <summary>The json point f converter_ read negative extremes_ point f reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadNegativeExtremes_PointFReflectsInput()
@@ -69,6 +90,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ read negative values_ point f refects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadNegativeValues_PointFRefectsInput()
@@ -80,7 +102,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
-
+        /// <summary>The json point f converter_ read null_ returns default for value type.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadNull_ReturnsDefaultForValueType()
@@ -92,6 +114,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ read null_ returns null for nullable type.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadNull_ReturnsNullForNullableType()
@@ -102,6 +125,7 @@ namespace GW2DotNET.Core.Converters
             Assert.IsNull(output);
         }
 
+        /// <summary>The json point f converter_ read positive extremes_ point f reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadPositiveExtremes_PointFReflectsInput()
@@ -113,6 +137,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ read positive values_ point f refects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadPositiveValues_PointFRefectsInput()
@@ -124,6 +149,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ read single nil_ returns default.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadSingleNil_ReturnsDefault()
@@ -135,6 +161,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ read single value_ converter assumes value is x.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_ReadSingleValue_ConverterAssumesValueIsX()
@@ -146,6 +173,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ write default point f_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_WriteDefaultPointF_JsonReflectsInput()
@@ -157,6 +185,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ write negative extremes_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_WriteNegativeExtremes_JsonReflectsInput()
@@ -168,6 +197,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ write negative values_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_WriteNegativeValues_JsonReflectsInput()
@@ -179,12 +209,10 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
-
+        /// <summary>The json point f converter_ write positive extremes_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        [Ignore(
-            "Known bug: this test fails due to loss of accuracy in floating point numbers when working with large numbers."
-            )]
+        [Ignore("Known bug: this test fails due to loss of accuracy in floating point numbers when working with large numbers.")]
         public void JsonPointFConverter_WritePositiveExtremes_JsonReflectsInput()
         {
             const string expected = "[2147483647.0,2147483647.0]";
@@ -194,6 +222,7 @@ namespace GW2DotNET.Core.Converters
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The json point f converter_ write positive values_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
         public void JsonPointFConverter_WritePositiveValues_JsonReflectsInput()
@@ -204,5 +233,7 @@ namespace GW2DotNET.Core.Converters
 
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

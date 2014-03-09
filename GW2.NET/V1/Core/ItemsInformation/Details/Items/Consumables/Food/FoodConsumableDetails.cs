@@ -2,20 +2,27 @@
 // <copyright file="FoodConsumableDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents detailed information about an edible item.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using GW2DotNET.V1.Core.Converters;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
 {
+    using System;
+
+    using GW2DotNET.V1.Core.Converters;
+
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents detailed information about an edible item.
     /// </summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class FoodConsumableDetails : ConsumableDetails
     {
+        #region Constructors and Destructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="FoodConsumableDetails" /> class.
         /// </summary>
@@ -23,6 +30,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
             : base(ConsumableType.Food)
         {
         }
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the food's effect description.
@@ -36,5 +47,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
         [JsonProperty("duration_ms", Order = 100, NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(JsonTimespanConverter))]
         public TimeSpan? Duration { get; set; }
+
+        #endregion
     }
 }

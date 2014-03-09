@@ -1,13 +1,28 @@
-﻿using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ItemFlagsTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The item flags test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.ItemsInformation.Details.Items
 {
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The item flags test.</summary>
     [TestFixture]
     public class ItemFlagsTest
     {
+        #region Public Methods and Operators
+
+        /// <summary>The item flags_ account bound_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_AccountBound_FlagsReflectsInput()
@@ -19,6 +34,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ hide suffix_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_HideSuffix_FlagsReflectsInput()
@@ -30,6 +46,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ multiple_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_Multiple_FlagsReflectsInput()
@@ -41,6 +58,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ no mystic forge_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_NoMysticForge_FlagsReflectsInput()
@@ -52,6 +70,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ no salvage_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_NoSalvage_FlagsReflectsInput()
@@ -63,6 +82,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ no sell_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_NoSell_FlagsReflectsInput()
@@ -74,6 +94,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ no underwater_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_NoUnderwater_FlagsReflectsInput()
@@ -85,6 +106,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ none_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_None_FlagsReflectsInput()
@@ -96,6 +118,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ not upgradeable_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_NotUpgradeable_FlagsReflectsInput()
@@ -107,6 +130,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ soul bind on acquire_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_SoulBindOnAcquire_FlagsReflectsInput()
@@ -118,6 +142,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ soul bind on use_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_SoulBindOnUse_FlagsReflectsInput()
@@ -129,6 +154,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
 
+        /// <summary>The item flags_ unique_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemFlags_Unique_FlagsReflectsInput()
@@ -139,5 +165,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
 
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
+
+        #endregion
     }
 }

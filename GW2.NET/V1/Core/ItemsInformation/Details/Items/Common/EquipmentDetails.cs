@@ -2,17 +2,22 @@
 // <copyright file="EquipmentDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents detailed information about a piece of combat equipment.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents detailed information about a piece of combat equipment.
     /// </summary>
     public abstract class EquipmentDetails : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the item's infix upgrade.
         /// </summary>
@@ -30,5 +35,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
         /// </summary>
         [JsonProperty(PropertyName = "suffix_item_id", Order = 102)]
         public int? SuffixItemId { get; set; }
+
+        #endregion
     }
 }

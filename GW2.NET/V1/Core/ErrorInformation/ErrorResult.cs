@@ -2,12 +2,15 @@
 // <copyright file="ErrorResult.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents the result that is returned when an error occurs.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ErrorInformation
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents the result that is returned when an error occurs.
     /// </summary>
@@ -16,6 +19,8 @@ namespace GW2DotNET.V1.Core.ErrorInformation
     /// </remarks>
     public class ErrorResult : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets a number that indicates the error kind.
         /// </summary>
@@ -45,5 +50,7 @@ namespace GW2DotNET.V1.Core.ErrorInformation
         /// </summary>
         [JsonProperty(PropertyName = "text", Order = 4)]
         public string Text { get; set; }
+
+        #endregion
     }
 }

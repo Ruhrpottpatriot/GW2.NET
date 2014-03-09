@@ -2,44 +2,72 @@
 // <copyright file="ServiceManager.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Provides a RestSharp-specific implementation of the Guild Wars 2 service.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using GW2DotNET.Utilities;
-using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.BuildInformation;
-using GW2DotNET.V1.Core.ColorsInformation;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
-using GW2DotNET.V1.Core.FilesInformation.Catalogs;
-using GW2DotNET.V1.Core.GuildInformation.Details;
-using GW2DotNET.V1.Core.ItemsInformation.Catalogs;
-using GW2DotNET.V1.Core.ItemsInformation.Details;
-using GW2DotNET.V1.Core.MapsInformation.Continents;
-using GW2DotNET.V1.Core.MapsInformation.Details;
-using GW2DotNET.V1.Core.MapsInformation.Floors;
-using GW2DotNET.V1.Core.MapsInformation.Names;
-using GW2DotNET.V1.Core.WorldsInformation.Names;
-using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
-using GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
-using RestSharp.GW2DotNET.Requests;
 
 namespace RestSharp.GW2DotNET
 {
+    using System;
+    using System.Globalization;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using global::GW2DotNET.Utilities;
+
+    using global::GW2DotNET.V1.Core;
+
+    using global::GW2DotNET.V1.Core.BuildInformation;
+
+    using global::GW2DotNET.V1.Core.ColorsInformation;
+
+    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Details;
+
+    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Names;
+
+    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+
+    using global::GW2DotNET.V1.Core.FilesInformation.Catalogs;
+
+    using global::GW2DotNET.V1.Core.GuildInformation.Details;
+
+    using global::GW2DotNET.V1.Core.ItemsInformation.Catalogs;
+
+    using global::GW2DotNET.V1.Core.ItemsInformation.Details;
+
+    using global::GW2DotNET.V1.Core.MapsInformation.Continents;
+
+    using global::GW2DotNET.V1.Core.MapsInformation.Details;
+
+    using global::GW2DotNET.V1.Core.MapsInformation.Floors;
+
+    using global::GW2DotNET.V1.Core.MapsInformation.Names;
+
+    using global::GW2DotNET.V1.Core.WorldsInformation.Names;
+
+    using global::GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
+
+    using global::GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
+
+    using RestSharp.GW2DotNET.Requests;
+
     /// <summary>
     ///     Provides a RestSharp-specific implementation of the Guild Wars 2 service.
     /// </summary>
     public class ServiceManager : IServiceManager
     {
+        #region Fields
+
         /// <summary>Infrastructure. Stores the service client.</summary>
         private readonly IServiceClient serviceClient;
 
         /// <summary>Infrastructure. Stores the preferred language info.</summary>
         private CultureInfo preferredLanguageInfo;
+
+        #endregion
+
+        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ServiceManager" /> class.
@@ -49,27 +77,21 @@ namespace RestSharp.GW2DotNET
         {
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ServiceManager" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ServiceManager(IServiceClient serviceClient)
             : this(serviceClient, null)
         {
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ServiceManager" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="preferredLanguageInfo">The preferred language.</param>
         public ServiceManager(CultureInfo preferredLanguageInfo)
             : this(ServiceClient.Create(), preferredLanguageInfo)
         {
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ServiceManager" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="preferredLanguageInfo">The preferred language.</param>
         public ServiceManager(IServiceClient serviceClient, CultureInfo preferredLanguageInfo)
@@ -79,6 +101,10 @@ namespace RestSharp.GW2DotNET
             this.serviceClient = serviceClient;
             this.preferredLanguageInfo = preferredLanguageInfo;
         }
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the preferred language.
@@ -101,7 +127,9 @@ namespace RestSharp.GW2DotNET
             }
         }
 
-        #region build.json
+        #endregion
+
+        #region Public Methods and Operators
 
         /// <summary>
         ///     Gets the current game build.
@@ -115,10 +143,8 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the current build.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the current build.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The current game build.</returns>
         public Task<Build> GetBuildAsync(CancellationToken? cancellationToken = null)
         {
@@ -127,10 +153,6 @@ namespace RestSharp.GW2DotNET
 
             return response;
         }
-
-        #endregion build.json
-
-        #region colors.json
 
         /// <summary>
         ///     Gets the collection of dyes in the game.
@@ -144,10 +166,8 @@ namespace RestSharp.GW2DotNET
             return response.Colors;
         }
 
-        /// <summary>
-        ///     Gets the collection of dyes in the game.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the collection of dyes in the game.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of dyes.</returns>
         public Task<ColorCollection> GetColorsAsync(CancellationToken? cancellationToken = null)
         {
@@ -156,10 +176,6 @@ namespace RestSharp.GW2DotNET
 
             return this.Select(response, result => result.Colors);
         }
-
-        #endregion colors.json
-
-        #region continents.json
 
         /// <summary>
         ///     Gets the collection of continents in the game.
@@ -173,10 +189,8 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of continents in the game.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the collection of continents in the game.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of continents</returns>
         public Task<ContinentCollection> GetContinentsAsync(CancellationToken? cancellationToken = null)
         {
@@ -185,10 +199,6 @@ namespace RestSharp.GW2DotNET
 
             return response;
         }
-
-        #endregion continents.json
-
-        #region event_details.json
 
         /// <summary>
         ///     Gets a collection of dynamic events and their details.
@@ -202,9 +212,7 @@ namespace RestSharp.GW2DotNET
             return response.EventDetails;
         }
 
-        /// <summary>
-        ///     Gets a collection of dynamic events and their details.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="dynamicEventName">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events.</returns>
         public DynamicEventDetailsCollection GetDynamicEventDetails(DynamicEventName dynamicEventName)
@@ -217,9 +225,7 @@ namespace RestSharp.GW2DotNET
             return response.EventDetails;
         }
 
-        /// <summary>
-        ///     Gets a collection of dynamic events and their details.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events.</returns>
         public DynamicEventDetailsCollection GetDynamicEventDetails(Guid eventId)
@@ -230,10 +236,8 @@ namespace RestSharp.GW2DotNET
             return response.EventDetails;
         }
 
-        /// <summary>
-        ///     Gets a collection of dynamic events and their details.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets a collection of dynamic events and their details.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events.</returns>
         public Task<DynamicEventDetailsCollection> GetDynamicEventDetailsAsync(CancellationToken? cancellationToken = null)
         {
@@ -243,11 +247,9 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.EventDetails);
         }
 
-        /// <summary>
-        ///     Gets a collection of dynamic events and their details.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="dynamicEventName">The dynamic event filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events.</returns>
         public Task<DynamicEventDetailsCollection> GetDynamicEventDetailsAsync(DynamicEventName dynamicEventName, CancellationToken? cancellationToken = null)
         {
@@ -259,11 +261,9 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.EventDetails);
         }
 
-        /// <summary>
-        ///     Gets a collection of dynamic events and their details.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events.</returns>
         public Task<DynamicEventDetailsCollection> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken? cancellationToken = null)
         {
@@ -272,10 +272,6 @@ namespace RestSharp.GW2DotNET
 
             return this.Select(response, result => result.EventDetails);
         }
-
-        #endregion event_details.json
-
-        #region event_names.json
 
         /// <summary>
         ///     Gets the collection of dynamic events and their localized name.
@@ -289,10 +285,8 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of dynamic events and their localized name.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the collection of dynamic events and their localized name.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of dynamic events and their localized name.</returns>
         public Task<DynamicEventNameCollection> GetDynamicEventNamesAsync(CancellationToken? cancellationToken = null)
         {
@@ -302,9 +296,6 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        #endregion event_names.json
-
-        #region events.json
         /// <summary>
         /// Gets a collection of dynamic events and their status.
         /// </summary>
@@ -317,180 +308,8 @@ namespace RestSharp.GW2DotNET
             return response.Events;
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEventsById(Guid eventId)
-        {
-            var request = new DynamicEventRequest()
-            {
-                EventId = eventId
-            };
-
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
-        }
-
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEventsById(Guid eventId, int worldId)
-        {
-            var request = new DynamicEventRequest()
-            {
-                EventId = eventId,
-                WorldId = worldId
-            };
-
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
-        }
-
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="worldName">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEventsById(Guid eventId, WorldName worldName)
-        {
-            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
-
-            var request = new DynamicEventRequest()
-            {
-                EventId = eventId,
-                WorldId = worldName.Id
-            };
-
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
-        }
-
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEventsByMap(int mapId)
-        {
-            var request = new DynamicEventRequest()
-            {
-                MapId = mapId
-            };
-
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
-        }
-
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEventsByMap(int mapId, int worldId)
-        {
-            var request = new DynamicEventRequest()
-            {
-                MapId = mapId,
-                WorldId = worldId
-            };
-
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
-        }
-
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="mapName">The map filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEventsByMap(MapName mapName)
-        {
-            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
-
-            var request = new DynamicEventRequest()
-            {
-                MapId = mapName.Id,
-            };
-
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
-        }
-
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="mapName">The map filter.</param>
-        /// <param name="worldName">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEventsByMap(MapName mapName, WorldName worldName)
-        {
-            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
-            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
-
-            var request = new DynamicEventRequest()
-            {
-                MapId = mapName.Id,
-                WorldId = worldName.Id
-            };
-
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
-        }
-
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEventsByWorld(int worldId)
-        {
-            var request = new DynamicEventRequest()
-            {
-                WorldId = worldId
-            };
-
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
-        }
-
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="worldName">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        public DynamicEventCollection GetDynamicEventsByWorld(WorldName worldName)
-        {
-            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
-
-            var request = new DynamicEventRequest()
-            {
-                WorldId = worldName.Id
-            };
-
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
-        }
-
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsAsync(CancellationToken? cancellationToken = null)
         {
@@ -500,187 +319,256 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsById(Guid eventId)
+        {
+            var request = new DynamicEventRequest { EventId = eventId };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsById(Guid eventId, int worldId)
+        {
+            var request = new DynamicEventRequest { EventId = eventId, WorldId = worldId };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsById(Guid eventId, WorldName worldName)
+        {
+            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
+
+            var request = new DynamicEventRequest { EventId = eventId, WorldId = worldName.Id };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventRequest()
-            {
-                EventId = eventId
-            };
+            var request = new DynamicEventRequest { EventId = eventId };
 
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="worldId">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, int worldId, CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventRequest()
-            {
-                EventId = eventId,
-                WorldId = worldId
-            };
+            var request = new DynamicEventRequest { EventId = eventId, WorldId = worldId };
 
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="worldName">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, WorldName worldName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
-            var request = new DynamicEventRequest()
-            {
-                EventId = eventId,
-                WorldId = worldName.Id
-            };
+            var request = new DynamicEventRequest { EventId = eventId, WorldId = worldName.Id };
 
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="mapId">The map filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByMap(int mapId)
+        {
+            var request = new DynamicEventRequest { MapId = mapId };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByMap(int mapId, int worldId)
+        {
+            var request = new DynamicEventRequest { MapId = mapId, WorldId = worldId };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByMap(MapName mapName)
+        {
+            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
+
+            var request = new DynamicEventRequest { MapId = mapName.Id, };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <param name="worldName">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByMap(MapName mapName, WorldName worldName)
+        {
+            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
+            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
+
+            var request = new DynamicEventRequest { MapId = mapName.Id, WorldId = worldName.Id };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(int mapId, CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventRequest()
-            {
-                MapId = mapId
-            };
+            var request = new DynamicEventRequest { MapId = mapId };
 
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="mapId">The map filter.</param>
         /// <param name="worldId">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventRequest()
-            {
-                MapId = mapId,
-                WorldId = worldId
-            };
+            var request = new DynamicEventRequest { MapId = mapId, WorldId = worldId };
 
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="mapName">The map filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(MapName mapName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
 
-            var request = new DynamicEventRequest()
-            {
-                MapId = mapName.Id
-            };
+            var request = new DynamicEventRequest { MapId = mapName.Id };
 
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="mapName">The map filter.</param>
         /// <param name="worldName">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(MapName mapName, WorldName worldName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
-            var request = new DynamicEventRequest()
-            {
-                MapId = mapName.Id,
-                WorldId = worldName.Id
-            };
+            var request = new DynamicEventRequest { MapId = mapName.Id, WorldId = worldName.Id };
 
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="worldId">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByWorld(int worldId)
+        {
+            var request = new DynamicEventRequest { WorldId = worldId };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="worldName">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        public DynamicEventCollection GetDynamicEventsByWorld(WorldName worldName)
+        {
+            Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
+
+            var request = new DynamicEventRequest { WorldId = worldName.Id };
+
+            var response = this.Get<DynamicEventsResult>(request);
+
+            return response.Events;
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="worldId">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsByWorldAsync(int worldId, CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventRequest()
-            {
-                WorldId = worldId
-            };
+            var request = new DynamicEventRequest { WorldId = worldId };
 
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="worldName">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         public Task<DynamicEventCollection> GetDynamicEventsByWorldAsync(WorldName worldName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
-            var request = new DynamicEventRequest()
-            {
-                WorldId = worldName.Id
-            };
+            var request = new DynamicEventRequest { WorldId = worldName.Id };
 
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
-        #endregion events.json
-
-        #region files.json
 
         /// <summary>
         ///     Gets a collection of commonly requested in-game assets.
@@ -694,10 +582,8 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a collection of commonly requested in-game assets.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets a collection of commonly requested in-game assets.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of commonly requested in-game assets.</returns>
         public Task<AssetCollection> GetFilesAsync(CancellationToken? cancellationToken = null)
         {
@@ -707,13 +593,7 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        #endregion files.json
-
-        #region guild_details.json
-
-        /// <summary>
-        ///     Gets a guild and its details.
-        /// </summary>
+        /// <summary>Gets a guild and its details.</summary>
         /// <param name="guildId">The guild's ID.</param>
         /// <returns>A guild and its details.</returns>
         public Guild GetGuildDetails(Guid guildId)
@@ -724,9 +604,7 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a guild and its details.
-        /// </summary>
+        /// <summary>Gets a guild and its details.</summary>
         /// <param name="guildName">The guild's name.</param>
         /// <returns>A guild and its details.</returns>
         public Guild GetGuildDetails(string guildName)
@@ -737,11 +615,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a guild and its details.
-        /// </summary>
+        /// <summary>Gets a guild and its details.</summary>
         /// <param name="guildId">The guild's ID.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A guild and its details.</returns>
         public Task<Guild> GetGuildDetailsAsync(Guid guildId, CancellationToken? cancellationToken = null)
         {
@@ -751,11 +627,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a guild and its details.
-        /// </summary>
+        /// <summary>Gets a guild and its details.</summary>
         /// <param name="guildName">The guild's name.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A guild and its details.</returns>
         public Task<Guild> GetGuildDetailsAsync(string guildName, CancellationToken? cancellationToken = null)
         {
@@ -765,13 +639,7 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        #endregion guild_details.json
-
-        #region item_details.json
-
-        /// <summary>
-        ///     Gets an item and its details.
-        /// </summary>
+        /// <summary>Gets an item and its details.</summary>
         /// <param name="itemId">The item's ID.</param>
         /// <returns>An item and its details.</returns>
         public Item GetItemDetails(int itemId)
@@ -782,11 +650,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets an item and its details.
-        /// </summary>
+        /// <summary>Gets an item and its details.</summary>
         /// <param name="itemId">The item's ID.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its details.</returns>
         public Task<Item> GetItemDetailsAsync(int itemId, CancellationToken? cancellationToken = null)
         {
@@ -795,10 +661,6 @@ namespace RestSharp.GW2DotNET
 
             return response;
         }
-
-        #endregion item_details.json
-
-        #region items.json
 
         /// <summary>
         ///     Gets the collection of discovered items.
@@ -812,10 +674,8 @@ namespace RestSharp.GW2DotNET
             return response.Items;
         }
 
-        /// <summary>
-        ///     Gets the collection of discovered items.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the collection of discovered items.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of discovered items.</returns>
         public Task<ItemCollection> GetItemsAsync(CancellationToken? cancellationToken = null)
         {
@@ -825,13 +685,7 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.Items);
         }
 
-        #endregion items.json
-
-        #region map_floor.json
-
-        /// <summary>
-        ///     Gets a map floor and its details.
-        /// </summary>
+        /// <summary>Gets a map floor and its details.</summary>
         /// <param name="continent">The continent.</param>
         /// <param name="floor">The map floor.</param>
         /// <returns>A map floor and its details.</returns>
@@ -845,9 +699,7 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a map floor and its details.
-        /// </summary>
+        /// <summary>Gets a map floor and its details.</summary>
         /// <param name="continentId">The continent.</param>
         /// <param name="floor">The map floor.</param>
         /// <returns>A map floor and its details.</returns>
@@ -859,12 +711,10 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a map floor and its details.
-        /// </summary>
+        /// <summary>Gets a map floor and its details.</summary>
         /// <param name="continent">The continent.</param>
         /// <param name="floor">The map floor.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its details.</returns>
         public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CancellationToken? cancellationToken = null)
         {
@@ -876,12 +726,10 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a map floor and its details.
-        /// </summary>
+        /// <summary>Gets a map floor and its details.</summary>
         /// <param name="continentId">The continent.</param>
         /// <param name="floor">The map floor.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its details.</returns>
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CancellationToken? cancellationToken = null)
         {
@@ -890,10 +738,6 @@ namespace RestSharp.GW2DotNET
 
             return response;
         }
-
-        #endregion map_floor.json
-
-        #region map_names.json
 
         /// <summary>
         ///     Gets the collection of maps and their localized name.
@@ -907,10 +751,8 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of maps and their localized name.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the collection of maps and their localized name.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of maps and their localized name.</returns>
         public Task<MapNameCollection> GetMapNamesAsync(CancellationToken? cancellationToken = null)
         {
@@ -919,10 +761,6 @@ namespace RestSharp.GW2DotNET
 
             return response;
         }
-
-        #endregion map_names.json
-
-        #region maps.json
 
         /// <summary>
         ///     Gets a collection of maps and their details.
@@ -936,9 +774,7 @@ namespace RestSharp.GW2DotNET
             return response.Maps;
         }
 
-        /// <summary>
-        ///     Gets a collection of maps and their details.
-        /// </summary>
+        /// <summary>Gets a collection of maps and their details.</summary>
         /// <param name="mapName">The map filter.</param>
         /// <returns>A collection of maps and their details.</returns>
         public MapCollection GetMaps(MapName mapName)
@@ -951,9 +787,7 @@ namespace RestSharp.GW2DotNET
             return response.Maps;
         }
 
-        /// <summary>
-        ///     Gets a collection of maps and their details.
-        /// </summary>
+        /// <summary>Gets a collection of maps and their details.</summary>
         /// <param name="mapId">The map filter.</param>
         /// <returns>A collection of maps and their details.</returns>
         public MapCollection GetMaps(int mapId)
@@ -964,10 +798,8 @@ namespace RestSharp.GW2DotNET
             return response.Maps;
         }
 
-        /// <summary>
-        ///     Gets a collection of maps and their details.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets a collection of maps and their details.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their details.</returns>
         public Task<MapCollection> GetMapsAsync(CancellationToken? cancellationToken = null)
         {
@@ -977,11 +809,9 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.Maps);
         }
 
-        /// <summary>
-        ///     Gets a collection of maps and their details.
-        /// </summary>
+        /// <summary>Gets a collection of maps and their details.</summary>
         /// <param name="mapName">The map filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their details.</returns>
         public Task<MapCollection> GetMapsAsync(MapName mapName, CancellationToken? cancellationToken = null)
         {
@@ -993,11 +823,9 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.Maps);
         }
 
-        /// <summary>
-        ///     Gets a collection of maps and their details.
-        /// </summary>
+        /// <summary>Gets a collection of maps and their details.</summary>
         /// <param name="mapId">The map filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their details.</returns>
         public Task<MapCollection> GetMapsAsync(int mapId, CancellationToken? cancellationToken = null)
         {
@@ -1007,13 +835,7 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.Maps);
         }
 
-        #endregion maps.json
-
-        #region wvw/match_details.json
-
-        /// <summary>
-        ///     Gets a World versus World match and its details.
-        /// </summary>
+        /// <summary>Gets a World versus World match and its details.</summary>
         /// <param name="matchId">The match.</param>
         /// <returns>A World versus World match and its details.</returns>
         public MatchDetails GetMatchDetails(string matchId)
@@ -1024,11 +846,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a World versus World match and its details.
-        /// </summary>
+        /// <summary>Gets a World versus World match and its details.</summary>
         /// <param name="matchId">The match.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A World versus World match and its details.</returns>
         public Task<MatchDetails> GetMatchDetailsAsync(string matchId, CancellationToken? cancellationToken = null)
         {
@@ -1037,10 +857,6 @@ namespace RestSharp.GW2DotNET
 
             return response;
         }
-
-        #endregion wvw/match_details.json
-
-        #region wvw/matches.json
 
         /// <summary>
         ///     Gets the collection of currently running World versus World matches.
@@ -1054,10 +870,8 @@ namespace RestSharp.GW2DotNET
             return response.Matches;
         }
 
-        /// <summary>
-        ///     Gets the collection of currently running World versus World matches.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the collection of currently running World versus World matches.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of currently running World versus World matches.</returns>
         public Task<MatchCollection> GetMatchesAsync(CancellationToken? cancellationToken = null)
         {
@@ -1066,10 +880,6 @@ namespace RestSharp.GW2DotNET
 
             return this.Select(response, result => result.Matches);
         }
-
-        #endregion wvw/matches.json
-
-        #region wvw/objective_names.json
 
         /// <summary>
         ///     Gets the collection of World versus World objectives and their localized name.
@@ -1083,10 +893,8 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of World versus World objectives and their localized name.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the collection of World versus World objectives and their localized name.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of World versus World objectives and their localized name.</returns>
         public Task<ObjectiveNameCollection> GetObjectiveNamesAsync(CancellationToken? cancellationToken = null)
         {
@@ -1096,13 +904,7 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        #endregion wvw/objective_names.json
-
-        #region recipe_details.json
-
-        /// <summary>
-        ///     Gets a recipe and its details.
-        /// </summary>
+        /// <summary>Gets a recipe and its details.</summary>
         /// <param name="recipe">The recipe.</param>
         /// <returns>A recipe and its details.</returns>
         public Recipe GetRecipeDetails(Recipe recipe)
@@ -1115,9 +917,7 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a recipe and its details.
-        /// </summary>
+        /// <summary>Gets a recipe and its details.</summary>
         /// <param name="recipeId">The recipe.</param>
         /// <returns>A recipe and its details.</returns>
         public Recipe GetRecipeDetails(int recipeId)
@@ -1128,11 +928,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a recipe and its details.
-        /// </summary>
+        /// <summary>Gets a recipe and its details.</summary>
         /// <param name="recipe">The recipe.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its details.</returns>
         public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CancellationToken? cancellationToken = null)
         {
@@ -1144,11 +942,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a recipe and its details.
-        /// </summary>
+        /// <summary>Gets a recipe and its details.</summary>
         /// <param name="recipeId">The recipe.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its details.</returns>
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CancellationToken? cancellationToken = null)
         {
@@ -1157,10 +953,6 @@ namespace RestSharp.GW2DotNET
 
             return response;
         }
-
-        #endregion recipe_details.json
-
-        #region recipes.json
 
         /// <summary>
         ///     Gets the collection of discovered recipes.
@@ -1174,10 +966,8 @@ namespace RestSharp.GW2DotNET
             return response.Recipes;
         }
 
-        /// <summary>
-        ///     Gets the collection of discovered recipes.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the collection of discovered recipes.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of discovered recipes.</returns>
         public Task<RecipeCollection> GetRecipesAsync(CancellationToken? cancellationToken = null)
         {
@@ -1186,10 +976,6 @@ namespace RestSharp.GW2DotNET
 
             return this.Select(response, result => result.Recipes);
         }
-
-        #endregion recipes.json
-
-        #region world_names.json
 
         /// <summary>
         ///     Gets the collection of worlds and their localized name.
@@ -1203,10 +989,8 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of worlds and their localized name.
-        /// </summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <summary>Gets the collection of worlds and their localized name.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of worlds and their localized name.</returns>
         public Task<WorldNameCollection> GetWorldNamesAsync(CancellationToken? cancellationToken = null)
         {
@@ -1216,11 +1000,11 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        #endregion world_names.json
+        #endregion
 
-        /// <summary>
-        ///     Sends a request and gets the response content.
-        /// </summary>
+        #region Methods
+
+        /// <summary>Sends a request and gets the response content.</summary>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="request">The request.</param>
         /// <returns>The response content.</returns>
@@ -1232,12 +1016,10 @@ namespace RestSharp.GW2DotNET
             return content;
         }
 
-        /// <summary>
-        ///     Sends a request and gets the response content.
-        /// </summary>
+        /// <summary>Sends a request and gets the response content.</summary>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="request">The request.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response content.</returns>
         private Task<TResult> GetAsync<TResult>(IServiceRequest request, CancellationToken? cancellationToken = null)
             where TResult : global::GW2DotNET.V1.Core.JsonObject
@@ -1259,9 +1041,7 @@ namespace RestSharp.GW2DotNET
             return t2;
         }
 
-        /// <summary>
-        ///     Gets the service response and selects a result based on the specified selector.
-        /// </summary>
+        /// <summary>Gets the service response and selects a result based on the specified selector.</summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <typeparam name="TResult">The type of the selected item.</typeparam>
         /// <param name="result">The response content.</param>
@@ -1273,5 +1053,7 @@ namespace RestSharp.GW2DotNET
         {
             return result.ContinueWith(task => selector(task.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
         }
+
+        #endregion
     }
 }

@@ -1,13 +1,36 @@
-﻿using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="RenownTaskTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The renown task test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The renown task test.</summary>
     [TestFixture]
     public class RenownTaskTest
     {
+        #region Fields
+
+        /// <summary>The renown task.</summary>
+        private RenownTask renownTask;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
         {
@@ -15,8 +38,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             this.renownTask = JsonConvert.DeserializeObject<RenownTask>(input);
         }
 
-        private RenownTask renownTask;
-
+        /// <summary>The renown task_ coordinates reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void RenownTask_CoordinatesReflectsInput()
@@ -26,6 +48,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The renown task_ extension data is empty.</summary>
         [Test]
         [Category("map_floor.json")]
         [Category("ExtensionData")]
@@ -34,6 +57,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.IsEmpty(this.renownTask.ExtensionData);
         }
 
+        /// <summary>The renown task_ level reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void RenownTask_LevelReflectsInput()
@@ -43,6 +67,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The renown task_ objective reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void RenownTask_ObjectiveReflectsInput()
@@ -52,6 +77,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The renown task_ task id reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void RenownTask_TaskIdReflectsInput()
@@ -60,5 +86,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             int actual = this.renownTask.TaskId;
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

@@ -2,27 +2,35 @@
 // <copyright file="WeaponDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents detailed information about a weapon.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
 {
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common;
+
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents detailed information about a weapon.
     /// </summary>
     [JsonConverter(typeof(WeaponDetailsConverter))]
     public abstract class WeaponDetails : EquipmentDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="WeaponDetails" /> class.
-        /// </summary>
+        #region Constructors and Destructors
+
+        /// <summary>Initializes a new instance of the <see cref="WeaponDetails"/> class.</summary>
         /// <param name="weaponType">The weapon's type.</param>
         protected WeaponDetails(WeaponType weaponType)
         {
             this.Type = weaponType;
         }
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the weapon's damage type.
@@ -53,5 +61,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public WeaponType Type { get; set; }
+
+        #endregion
     }
 }

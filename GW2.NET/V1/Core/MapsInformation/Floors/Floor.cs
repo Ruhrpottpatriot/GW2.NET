@@ -2,15 +2,19 @@
 // <copyright file="Floor.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a map floor, used to populate a world map. All coordinates are map coordinates.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.MapsInformation.Floors
 {
+    using System.Drawing;
+
     using GW2DotNET.V1.Core.Converters;
+    using GW2DotNET.V1.Core.MapsInformation.Floors.Regions;
+
+    using Newtonsoft.Json;
 
     /// <summary>
     ///     Represents a map floor, used to populate a world map. All coordinates are map coordinates.
@@ -20,6 +24,8 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
     /// </remarks>
     public class Floor : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available
         ///     on the tile server.
@@ -40,5 +46,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
         [JsonProperty("texture_dims", Order = 0)]
         [JsonConverter(typeof(JsonSizeConverter))]
         public Size TextureDimensions { get; set; }
+
+        #endregion
     }
 }

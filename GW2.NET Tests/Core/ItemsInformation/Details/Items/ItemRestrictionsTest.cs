@@ -1,13 +1,28 @@
-﻿using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ItemRestrictionsTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The item restrictions test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.ItemsInformation.Details.Items
 {
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The item restrictions test.</summary>
     [TestFixture]
     public class ItemRestrictionsTest
     {
+        #region Public Methods and Operators
+
+        /// <summary>The item restrictions_ asura_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Asura_RestrictionsReflectsInput()
@@ -19,6 +34,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ charr_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Charr_RestrictionsReflectsInput()
@@ -30,6 +46,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ elementalist_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Elementalist_RestrictionsReflectsInput()
@@ -41,6 +58,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ engineer_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Engineer_RestrictionsReflectsInput()
@@ -52,6 +70,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ guardian_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Guardian_RestrictionsReflectsInput()
@@ -63,6 +82,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ human_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Human_RestrictionsReflectsInput()
@@ -74,6 +94,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ mesmer_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Mesmer_RestrictionsReflectsInput()
@@ -85,6 +106,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ multiple_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Multiple_RestrictionsReflectsInput()
@@ -96,6 +118,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ necromancer_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Necromancer_RestrictionsReflectsInput()
@@ -107,6 +130,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ none_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_None_RestrictionsReflectsInput()
@@ -118,6 +142,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ norn_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Norn_RestrictionsReflectsInput()
@@ -129,6 +154,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ ranger_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Ranger_RestrictionsReflectsInput()
@@ -140,6 +166,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ sylvari_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Sylvari_RestrictionsReflectsInput()
@@ -151,6 +178,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ thief_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Thief_RestrictionsReflectsInput()
@@ -162,6 +190,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
 
+        /// <summary>The item restrictions_ warrior_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemRestrictions_Warrior_RestrictionsReflectsInput()
@@ -172,5 +201,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
 
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
+
+        #endregion
     }
 }

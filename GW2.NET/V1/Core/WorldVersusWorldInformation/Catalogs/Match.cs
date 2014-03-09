@@ -2,18 +2,24 @@
 // <copyright file="Match.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a World versus World match.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
+    using System;
+
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents a World versus World match.
     /// </summary>
     public class Match : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the blue world's ID.
         /// </summary>
@@ -49,5 +55,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
         /// </summary>
         [JsonProperty("start_time", Order = 4)]
         public DateTimeOffset StartTime { get; set; }
+
+        #endregion
     }
 }

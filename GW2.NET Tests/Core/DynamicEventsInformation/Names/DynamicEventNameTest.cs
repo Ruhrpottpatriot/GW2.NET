@@ -1,23 +1,36 @@
-﻿using System;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DynamicEventNameTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The dynamic event name test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.DynamicEventsInformation.Names
 {
+    using System;
+
+    using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The dynamic event name test.</summary>
     [TestFixture]
     public class DynamicEventNameTest
     {
-        [SetUp]
-        public void Initialize()
-        {
-            const string input =
-                "{\"ID\":\"893057AB-695C-4553-9D8C-A4CC04557C84\",\"name\":\"Kill the Risen commander to avenge Forgal.\"}";
-            this.dynamicEventName = JsonConvert.DeserializeObject<DynamicEventName>(input);
-        }
+        #region Fields
 
+        /// <summary>The dynamic event name.</summary>
         private DynamicEventName dynamicEventName;
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The dynamic event name_ extension data is empty.</summary>
         [Test]
         [Category("event_names.json")]
         [Category("ExtensionData")]
@@ -26,6 +39,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Names
             Assert.IsEmpty(this.dynamicEventName.ExtensionData);
         }
 
+        /// <summary>The dynamic event name_ id reflects input.</summary>
         [Test]
         [Category("event_names.json")]
         public void DynamicEventName_IdReflectsInput()
@@ -34,6 +48,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Names
             Assert.AreEqual(expectedId, this.dynamicEventName.Id);
         }
 
+        /// <summary>The dynamic event name_ name reflects input.</summary>
         [Test]
         [Category("event_names.json")]
         public void DynamicEventName_NameReflectsInput()
@@ -41,5 +56,15 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Names
             const string expectedName = "Kill the Risen commander to avenge Forgal.";
             Assert.AreEqual(expectedName, this.dynamicEventName.Name);
         }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"ID\":\"893057AB-695C-4553-9D8C-A4CC04557C84\",\"name\":\"Kill the Risen commander to avenge Forgal.\"}";
+            this.dynamicEventName = JsonConvert.DeserializeObject<DynamicEventName>(input);
+        }
+
+        #endregion
     }
 }

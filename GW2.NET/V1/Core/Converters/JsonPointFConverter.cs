@@ -2,24 +2,29 @@
 // <copyright file="JsonPointFConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Converts a <see cref="PointF" /> to and from its <see cref="System.String" /> representation.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using System.Drawing;
-using GW2DotNET.Extensions;
-using GW2DotNET.Utilities;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
 {
+    using System;
+    using System.Drawing;
+
+    using GW2DotNET.Extensions;
+    using GW2DotNET.Utilities;
+
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Converts a <see cref="PointF" /> to and from its <see cref="System.String" /> representation.
     /// </summary>
     public class JsonPointFConverter : JsonConverter
     {
-        /// <summary>
-        ///     Determines whether this instance can convert the specified object type.
-        /// </summary>
+        #region Public Methods and Operators
+
+        /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
@@ -27,10 +32,8 @@ namespace GW2DotNET.V1.Core.Converters
             return typeof(PointF?).IsAssignableFrom(objectType);
         }
 
-        /// <summary>
-        ///     Reads the JSON representation of the object.
-        /// </summary>
-        /// <param name="reader">The <see cref="JsonReader" /> to read from.</param>
+        /// <summary>Reads the JSON representation of the object.</summary>
+        /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
         /// <param name="serializer">The calling serializer.</param>
@@ -68,10 +71,8 @@ namespace GW2DotNET.V1.Core.Converters
             }
         }
 
-        /// <summary>
-        ///     Writes the JSON representation of the object.
-        /// </summary>
-        /// <param name="writer">The <see cref="JsonWriter" /> to write to.</param>
+        /// <summary>Writes the JSON representation of the object.</summary>
+        /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
         /// <param name="value">The value.</param>
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
@@ -79,7 +80,6 @@ namespace GW2DotNET.V1.Core.Converters
             var point = (PointF)value;
 
             writer.WriteStartArray();
-
             {
                 serializer.Serialize(writer, Math.Truncate(point.X * 100000) / 100000);
 
@@ -88,5 +88,7 @@ namespace GW2DotNET.V1.Core.Converters
 
             writer.WriteEndArray();
         }
+
+        #endregion
     }
 }

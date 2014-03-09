@@ -1,21 +1,34 @@
-﻿using GW2DotNET.V1.Core.BuildInformation;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="BuildTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The build test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.BuildInformation
 {
+    using GW2DotNET.V1.Core.BuildInformation;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The build test.</summary>
     [TestFixture]
     public class BuildTest
     {
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"build_id\":0}";
-            this.build = JsonConvert.DeserializeObject<Build>(input);
-        }
+        #region Fields
 
+        /// <summary>The build.</summary>
         private Build build;
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The build_ build id reflects input.</summary>
         [Test]
         [Category("build.json")]
         public void Build_BuildIdReflectsInput()
@@ -26,6 +39,7 @@ namespace GW2DotNET.Core.BuildInformation
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The build_ extension data is empty.</summary>
         [Test]
         [Category("build.json")]
         [Category("ExtensionData")]
@@ -33,5 +47,15 @@ namespace GW2DotNET.Core.BuildInformation
         {
             Assert.IsEmpty(this.build.ExtensionData);
         }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"build_id\":0}";
+            this.build = JsonConvert.DeserializeObject<Build>(input);
+        }
+
+        #endregion
     }
 }

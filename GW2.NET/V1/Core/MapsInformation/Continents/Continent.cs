@@ -2,21 +2,27 @@
 // <copyright file="Continent.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a continent.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Common;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.MapsInformation.Continents
 {
+    using System.Drawing;
+
     using GW2DotNET.V1.Core.Converters;
+    using GW2DotNET.V1.Core.MapsInformation.Common;
+
+    using Newtonsoft.Json;
 
     /// <summary>
     ///     Represents a continent.
     /// </summary>
     public class Continent : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the dimensions of the continent.
         /// </summary>
@@ -53,5 +59,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
         /// </summary>
         [JsonProperty("min_zoom", Order = 3)]
         public int MinimumZoom { get; set; }
+
+        #endregion
     }
 }

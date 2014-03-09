@@ -1,41 +1,58 @@
-﻿using GW2DotNET.V1.Core.ColorsInformation;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ColorPaletteTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The color palette test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.ColorsInformation
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.ColorsInformation;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The color palette test.</summary>
     [TestFixture]
     public class ColorPaletteTest
     {
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
-            this.color = JsonConvert.DeserializeObject<ColorPalette>(input);
-        }
+        #region Fields
 
+        /// <summary>The color.</summary>
         private ColorPalette color;
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The color palette_ base rgb reflects input.</summary>
         [Test]
         [Category("colors.json")]
         public void ColorPalette_BaseRgbReflectsInput()
         {
-            System.Drawing.Color expected = default(System.Drawing.Color);
-            System.Drawing.Color actual   = this.color.BaseRgb;
+            Color expected = default(Color);
+            Color actual = this.color.BaseRgb;
 
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The color palette_ cloth reflects input.</summary>
         [Test]
         [Category("colors.json")]
         public void ColorPalette_ClothReflectsInput()
         {
-            var expected      = new ColorModel();
+            var expected = new ColorModel();
             ColorModel actual = this.color.Cloth;
 
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The color palette_ extension data is empty.</summary>
         [Test]
         [Category("colors.json")]
         [Category("ExtensionData")]
@@ -44,34 +61,47 @@ namespace GW2DotNET.Core.ColorsInformation
             Assert.IsEmpty(this.color.ExtensionData);
         }
 
+        /// <summary>The color palette_ leather reflects input.</summary>
         [Test]
         [Category("colors.json")]
         public void ColorPalette_LeatherReflectsInput()
         {
-            var expected      = new ColorModel();
+            var expected = new ColorModel();
             ColorModel actual = this.color.Leather;
 
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The color palette_ metal reflects input.</summary>
         [Test]
         [Category("colors.json")]
         public void ColorPalette_MetalReflectsInput()
         {
-            var expected      = new ColorModel();
+            var expected = new ColorModel();
             ColorModel actual = this.color.Metal;
 
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The color palette_ name reflects input.</summary>
         [Test]
         [Category("colors.json")]
         public void ColorPalette_NameReflectsInput()
         {
             string expected = string.Empty;
-            string actual   = this.color.Name;
+            string actual = this.color.Name;
 
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
+            this.color = JsonConvert.DeserializeObject<ColorPalette>(input);
+        }
+
+        #endregion
     }
 }

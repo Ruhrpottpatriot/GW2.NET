@@ -2,17 +2,22 @@
 // <copyright file="WorldName.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a world and its localized name.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.WorldsInformation.Names
 {
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents a world and its localized name.
     /// </summary>
     public class WorldName : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the world's ID.
         /// </summary>
@@ -24,5 +29,7 @@ namespace GW2DotNET.V1.Core.WorldsInformation.Names
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
+
+        #endregion
     }
 }

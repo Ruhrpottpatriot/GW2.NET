@@ -1,13 +1,28 @@
-﻿using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="GameTypesTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The game types test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.ItemsInformation.Details.Items
 {
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The game types test.</summary>
     [TestFixture]
     public class GameTypesTest
     {
+        #region Public Methods and Operators
+
+        /// <summary>The game types_ activity_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void GameTypes_Activity_GameTypesReflectsInput()
@@ -19,6 +34,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedGameTypes, item.GameTypes);
         }
 
+        /// <summary>The game types_ dungeon_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void GameTypes_Dungeon_GameTypesReflectsInput()
@@ -30,6 +46,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedGameTypes, item.GameTypes);
         }
 
+        /// <summary>The game types_ multiple_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void GameTypes_Multiple_GameTypesReflectsInput()
@@ -41,6 +58,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedGameTypes, item.GameTypes);
         }
 
+        /// <summary>The game types_ none_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void GameTypes_None_GameTypesReflectsInput()
@@ -52,6 +70,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedGameTypes, item.GameTypes);
         }
 
+        /// <summary>The game types_ pv e_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void GameTypes_PvE_GameTypesReflectsInput()
@@ -63,6 +82,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedGameTypes, item.GameTypes);
         }
 
+        /// <summary>The game types_ pv p lobby_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void GameTypes_PvPLobby_GameTypesReflectsInput()
@@ -74,6 +94,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedGameTypes, item.GameTypes);
         }
 
+        /// <summary>The game types_ pv p_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void GameTypes_PvP_GameTypesReflectsInput()
@@ -85,6 +106,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedGameTypes, item.GameTypes);
         }
 
+        /// <summary>The game types_ wv w_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void GameTypes_WvW_GameTypesReflectsInput()
@@ -95,5 +117,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
 
             Assert.AreEqual(expectedGameTypes, item.GameTypes);
         }
+
+        #endregion
     }
 }

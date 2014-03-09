@@ -2,17 +2,22 @@
 // <copyright file="DynamicEventDetailsRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a request for static details about dynamic events.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
 
 namespace RestSharp.GW2DotNET.Requests
 {
+    using System;
+    using System.Globalization;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using global::GW2DotNET.V1.Core;
+
+    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Details;
+
     /// <summary>
     ///     Represents a request for static details about dynamic events.
     /// </summary>
@@ -21,6 +26,8 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class DynamicEventDetailsRequest : ServiceRequest
     {
+        #region Constructors and Destructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="DynamicEventDetailsRequest" /> class.
         /// </summary>
@@ -29,18 +36,14 @@ namespace RestSharp.GW2DotNET.Requests
         {
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="DynamicEventDetailsRequest" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsRequest"/> class.</summary>
         /// <param name="languageInfo">The output language.</param>
         public DynamicEventDetailsRequest(CultureInfo languageInfo)
             : base(Resources.EventDetails, languageInfo)
         {
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="DynamicEventDetailsRequest" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsRequest"/> class.</summary>
         /// <param name="eventId">The event ID.</param>
         public DynamicEventDetailsRequest(Guid eventId)
             : this()
@@ -48,9 +51,7 @@ namespace RestSharp.GW2DotNET.Requests
             this.AddParameter("event_id", eventId);
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="DynamicEventDetailsRequest" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsRequest"/> class.</summary>
         /// <param name="eventId">The event ID.</param>
         /// <param name="languageInfo">The output language.</param>
         public DynamicEventDetailsRequest(Guid eventId, CultureInfo languageInfo)
@@ -59,35 +60,35 @@ namespace RestSharp.GW2DotNET.Requests
             this.AddParameter("event_id", eventId);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public IServiceResponse<DynamicEventDetailsResult> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<DynamicEventDetailsResult>(serviceClient);
+            return this.GetResponse<DynamicEventDetailsResult>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<DynamicEventDetailsResult>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<DynamicEventDetailsResult>(serviceClient);
+            return this.GetResponseAsync<DynamicEventDetailsResult>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<DynamicEventDetailsResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<DynamicEventDetailsResult>(serviceClient, cancellationToken);
+            return this.GetResponseAsync<DynamicEventDetailsResult>(serviceClient, cancellationToken);
         }
+
+        #endregion
     }
 }

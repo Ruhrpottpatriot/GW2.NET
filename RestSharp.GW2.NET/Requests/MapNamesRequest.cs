@@ -2,16 +2,21 @@
 // <copyright file="MapNamesRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a request for a list of localized map names.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.MapsInformation.Names;
 
 namespace RestSharp.GW2DotNET.Requests
 {
+    using System.Globalization;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using global::GW2DotNET.V1.Core;
+
+    using global::GW2DotNET.V1.Core.MapsInformation.Names;
+
     /// <summary>
     ///     Represents a request for a list of localized map names.
     /// </summary>
@@ -20,6 +25,8 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class MapNamesRequest : ServiceRequest
     {
+        #region Constructors and Destructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="MapNamesRequest" /> class.
         /// </summary>
@@ -28,44 +35,42 @@ namespace RestSharp.GW2DotNET.Requests
         {
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MapNamesRequest" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MapNamesRequest"/> class.</summary>
         /// <param name="languageInfo">The output language.</param>
         public MapNamesRequest(CultureInfo languageInfo)
             : base(Resources.MapNames, languageInfo)
         {
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public IServiceResponse<MapNameCollection> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<MapNameCollection>(serviceClient);
+            return this.GetResponse<MapNameCollection>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<MapNameCollection>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<MapNameCollection>(serviceClient);
+            return this.GetResponseAsync<MapNameCollection>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<MapNameCollection>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<MapNameCollection>(serviceClient, cancellationToken);
+            return this.GetResponseAsync<MapNameCollection>(serviceClient, cancellationToken);
         }
+
+        #endregion
     }
 }

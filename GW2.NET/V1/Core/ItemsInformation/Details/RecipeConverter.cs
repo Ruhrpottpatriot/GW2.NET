@@ -2,72 +2,84 @@
 // <copyright file="RecipeConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Converts an instance of a class that extends <see cref="Recipe" /> from its <see cref="System.String" />
+//   representation.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using System.Collections.Generic;
-using GW2DotNET.V1.Core.Converters;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Amulets;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Axes;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Bags;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Boots;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Bulks;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Coats;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Components;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.CookingIngredients;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Daggers;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Desserts;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Dyes;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Earrings;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Feasts;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Focuses;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Gloves;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.GreatSwords;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Hammers;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Harpoons;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Helms;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Inscriptions;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Insignias;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Leggings;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.LongBows;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Maces;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Meals;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Pistols;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Potions;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Refinements;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Rifles;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Rings;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Scepters;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Seasonings;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shields;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.ShortBows;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shoulders;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Snacks;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Soups;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.SpearGuns;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Staves;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Swords;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Torches;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Tridents;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Unknown;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.UpgradeComponents;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.WarHorns;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace GW2DotNET.V1.Core.ItemsInformation.Details
 {
+    using System;
+    using System.Collections.Generic;
+
+    using GW2DotNET.V1.Core.Converters;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Amulets;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Axes;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Bags;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Boots;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Bulks;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Coats;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Components;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.CookingIngredients;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Daggers;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Desserts;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Dyes;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Earrings;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Feasts;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Focuses;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Gloves;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.GreatSwords;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Hammers;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Harpoons;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Helms;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Inscriptions;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Insignias;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Leggings;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.LongBows;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Maces;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Meals;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Pistols;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Potions;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Refinements;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Rifles;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Rings;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Scepters;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Seasonings;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shields;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.ShortBows;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shoulders;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Snacks;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Soups;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.SpearGuns;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Staves;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Swords;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Torches;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Tridents;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Unknown;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.UpgradeComponents;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.WarHorns;
+
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
     /// <summary>
     ///     Converts an instance of a class that extends <see cref="Recipe" /> from its <see cref="System.String" />
     ///     representation.
     /// </summary>
     public class RecipeConverter : ContentBasedTypeCreationConverter
     {
+        #region Static Fields
+
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<RecipeType, Type> KnownTypes = new Dictionary<RecipeType, Type>();
+
+        #endregion
+
+        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="RecipeConverter" /> class.
@@ -121,9 +133,11 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
             KnownTypes.Add(RecipeType.Bulk, typeof(BulkRecipe));
         }
 
-        /// <summary>
-        ///     Determines whether this instance can convert the specified object type.
-        /// </summary>
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
@@ -131,9 +145,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
             return KnownTypes.Values.Contains(objectType);
         }
 
-        /// <summary>
-        ///     Gets the object type that will be used by the serializer.
-        /// </summary>
+        /// <summary>Gets the object type that will be used by the serializer.</summary>
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>
         /// <returns>Returns the target type.</returns>
@@ -155,5 +167,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
 
             return targetType;
         }
+
+        #endregion
     }
 }

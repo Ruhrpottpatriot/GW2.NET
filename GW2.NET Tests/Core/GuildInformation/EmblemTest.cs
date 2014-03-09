@@ -1,22 +1,34 @@
-﻿using GW2DotNET.V1.Core.GuildInformation.Details;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EmblemTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The emblem test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.GuildInformation
 {
+    using GW2DotNET.V1.Core.GuildInformation.Details;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The emblem test.</summary>
     [TestFixture]
     public class EmblemTest
     {
-        [SetUp]
-        public void Initialize()
-        {
-            const string input =
-                "{\"background_id\":0,\"foreground_id\":0,\"flags\":[],\"background_color_id\":0,\"foreground_primary_color_id\":0,\"foreground_secondary_color_id\":0}";
-            this.emblem = JsonConvert.DeserializeObject<Emblem>(input);
-        }
+        #region Fields
 
+        /// <summary>The emblem.</summary>
         private Emblem emblem;
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The emblem_ background color id reflects input.</summary>
         [Test]
         [Category("guild_details.json")]
         public void Emblem_BackgroundColorIdReflectsInput()
@@ -27,6 +39,7 @@ namespace GW2DotNET.Core.GuildInformation
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The emblem_ background id reflects input.</summary>
         [Test]
         [Category("guild_details.json")]
         public void Emblem_BackgroundIdReflectsInput()
@@ -37,6 +50,7 @@ namespace GW2DotNET.Core.GuildInformation
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The emblem_ extension data is empty.</summary>
         [Test]
         [Category("guild_details.json")]
         [Category("ExtensionData")]
@@ -45,6 +59,7 @@ namespace GW2DotNET.Core.GuildInformation
             Assert.IsEmpty(this.emblem.ExtensionData);
         }
 
+        /// <summary>The emblem_ flags reflects input.</summary>
         [Test]
         [Category("guild_details.json")]
         public void Emblem_FlagsReflectsInput()
@@ -55,6 +70,7 @@ namespace GW2DotNET.Core.GuildInformation
             Assert.AreEqual(expectedFlags, actual);
         }
 
+        /// <summary>The emblem_ foreground id reflects input.</summary>
         [Test]
         [Category("guild_details.json")]
         public void Emblem_ForegroundIdReflectsInput()
@@ -65,6 +81,7 @@ namespace GW2DotNET.Core.GuildInformation
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The emblem_ foreground primary color id reflects input.</summary>
         [Test]
         [Category("guild_details.json")]
         public void Emblem_ForegroundPrimaryColorIdReflectsInput()
@@ -75,6 +92,7 @@ namespace GW2DotNET.Core.GuildInformation
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The emblem_ foreground secondary color id reflects input.</summary>
         [Test]
         [Category("guild_details.json")]
         public void Emblem_ForegroundSecondaryColorIdReflectsInput()
@@ -84,5 +102,16 @@ namespace GW2DotNET.Core.GuildInformation
 
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input =
+                "{\"background_id\":0,\"foreground_id\":0,\"flags\":[],\"background_color_id\":0,\"foreground_primary_color_id\":0,\"foreground_secondary_color_id\":0}";
+            this.emblem = JsonConvert.DeserializeObject<Emblem>(input);
+        }
+
+        #endregion
     }
 }

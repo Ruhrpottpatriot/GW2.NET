@@ -1,23 +1,37 @@
-﻿using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FloorTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The floor test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.MapsInformation.Floors
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.MapsInformation.Floors;
+    using GW2DotNET.V1.Core.MapsInformation.Floors.Regions;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The floor test.</summary>
     [TestFixture]
     public class FloorTest
     {
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"texture_dims\":[],\"regions\":{}}";
-            this.floor = JsonConvert.DeserializeObject<Floor>(input);
-        }
+        #region Fields
 
+        /// <summary>The floor.</summary>
         private Floor floor;
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The floor_ extension data is empty.</summary>
         [Test]
         [Category("map_floor.json")]
         [Category("ExtensionData")]
@@ -26,6 +40,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors
             Assert.IsEmpty(this.floor.ExtensionData);
         }
 
+        /// <summary>The floor_ regions reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Floor_RegionsReflectsInput()
@@ -35,6 +50,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The floor_ texture dimensions reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Floor_TextureDimensionsReflectsInput()
@@ -43,5 +59,15 @@ namespace GW2DotNET.Core.MapsInformation.Floors
             Size actual = this.floor.TextureDimensions;
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"texture_dims\":[],\"regions\":{}}";
+            this.floor = JsonConvert.DeserializeObject<Floor>(input);
+        }
+
+        #endregion
     }
 }

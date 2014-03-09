@@ -1,14 +1,37 @@
-﻿using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Common;
-using GW2DotNET.V1.Core.MapsInformation.Details;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MapTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The map test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.MapsInformation.Details
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.MapsInformation.Common;
+    using GW2DotNET.V1.Core.MapsInformation.Details;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The map test.</summary>
     [TestFixture]
     public class MapTest
     {
+        #region Fields
+
+        /// <summary>The map.</summary>
+        private Map map;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
         {
@@ -17,8 +40,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             this.map = JsonConvert.DeserializeObject<Map>(input);
         }
 
-        private Map map;
-
+        /// <summary>The map_ continent id reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_ContinentIdReflectsInput()
@@ -29,6 +51,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map_ continent name reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_ContinentNameReflectsInput()
@@ -39,7 +62,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
-
+        /// <summary>The map_ continent rectangle reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_ContinentRectangleReflectsInput()
@@ -50,6 +73,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map_ default floor reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_DefaultFloorReflectsInput()
@@ -60,6 +84,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map_ extension data is empty.</summary>
         [Test]
         [Category("maps.json")]
         [Category("ExtensionData")]
@@ -68,6 +93,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.IsEmpty(this.map.ExtensionData);
         }
 
+        /// <summary>The map_ floors reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_FloorsReflectsInput()
@@ -78,6 +104,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map_ map name reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_MapNameReflectsInput()
@@ -88,6 +115,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map_ map rectangle reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_MapRectangleReflectsInput()
@@ -98,6 +126,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map_ maximum level reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_MaximumLevelReflectsInput()
@@ -108,6 +137,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map_ minimum level reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_MinimumLevelReflectsInput()
@@ -118,6 +148,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map_ region id reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_RegionIdReflectsInput()
@@ -128,6 +159,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map_ region name reflects input.</summary>
         [Test]
         [Category("maps.json")]
         public void Map_RegionNameReflectsInput()
@@ -137,5 +169,7 @@ namespace GW2DotNET.Core.MapsInformation.Details
 
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

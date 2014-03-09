@@ -2,21 +2,27 @@
 // <copyright file="Subregion.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a map and its details.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
 {
+    using System.Drawing;
+
     using GW2DotNET.V1.Core.Converters;
+    using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
+
+    using Newtonsoft.Json;
 
     /// <summary>
     ///     Represents a map and its details.
     /// </summary>
     public class Subregion : JsonObject
     {
+        #region Public Properties
+
         /// <summary>
         ///     Gets or sets the dimensions of the map within the continent coordinate system.
         /// </summary>
@@ -84,5 +90,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
         /// </summary>
         [JsonProperty("tasks", Order = 8)]
         public RenownTaskCollection Tasks { get; set; }
+
+        #endregion
     }
 }

@@ -2,15 +2,21 @@
 // <copyright file="MatchDetailsRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a request for details regarding the specified match, including the total score and further details for
+//   each map.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.Threading;
-using System.Threading.Tasks;
-using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
 
 namespace RestSharp.GW2DotNET.Requests
 {
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using global::GW2DotNET.V1.Core;
+
+    using global::GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
+
     /// <summary>
     ///     Represents a request for details regarding the specified match, including the total score and further details for
     ///     each map.
@@ -20,9 +26,9 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class MatchDetailsRequest : ServiceRequest
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MatchDetailsRequest" /> class.
-        /// </summary>
+        #region Constructors and Destructors
+
+        /// <summary>Initializes a new instance of the <see cref="MatchDetailsRequest"/> class.</summary>
         /// <param name="matchId">The match ID.</param>
         public MatchDetailsRequest(string matchId)
             : base(Resources.MatchDetails)
@@ -30,35 +36,35 @@ namespace RestSharp.GW2DotNET.Requests
             this.AddParameter("match_id", matchId);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public IServiceResponse<MatchDetails> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<MatchDetails>(serviceClient);
+            return this.GetResponse<MatchDetails>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<MatchDetails>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<MatchDetails>(serviceClient);
+            return this.GetResponseAsync<MatchDetails>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<MatchDetails>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<MatchDetails>(serviceClient, cancellationToken);
+            return this.GetResponseAsync<MatchDetails>(serviceClient, cancellationToken);
         }
+
+        #endregion
     }
 }

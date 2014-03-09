@@ -1,14 +1,37 @@
-﻿using System.Drawing;
-using GW2DotNET.V1.Core.Drawing;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="PolygonLocationTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The polygon location test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.Drawing;
+    using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The polygon location test.</summary>
     [TestFixture]
     public class PolygonLocationTest
     {
+        #region Fields
+
+        /// <summary>The polygon location.</summary>
+        private PolygonLocation polygonLocation;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
         {
@@ -16,8 +39,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             this.polygonLocation = JsonConvert.DeserializeObject<PolygonLocation>(input);
         }
 
-        private PolygonLocation polygonLocation;
-
+        /// <summary>The polygon location_ center reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void PolygonLocation_CenterReflectsInput()
@@ -28,6 +50,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The polygon location_ extension data is empty.</summary>
         [Test]
         [Category("event_details.json")]
         [Category("ExtensionData")]
@@ -36,6 +59,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.IsEmpty(this.polygonLocation.ExtensionData);
         }
 
+        /// <summary>The polygon location_ points reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void PolygonLocation_PointsReflectsInput()
@@ -46,6 +70,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The polygon location_ type reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void PolygonLocation_TypeReflectsInput()
@@ -56,6 +81,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The polygon location_ z range reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void PolygonLocation_ZRangeReflectsInput()
@@ -65,5 +91,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

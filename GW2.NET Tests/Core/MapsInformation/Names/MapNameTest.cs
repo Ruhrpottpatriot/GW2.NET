@@ -1,12 +1,34 @@
-﻿using GW2DotNET.V1.Core.MapsInformation.Names;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="MapNameTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The map name test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.MapsInformation.Names
 {
+    using GW2DotNET.V1.Core.MapsInformation.Names;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The map name test.</summary>
     [TestFixture]
     public class MapNameTest
     {
+        #region Fields
+
+        /// <summary>The map name.</summary>
+        private MapName mapName;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
         {
@@ -14,8 +36,7 @@ namespace GW2DotNET.Core.MapsInformation.Names
             this.mapName = JsonConvert.DeserializeObject<MapName>(input);
         }
 
-        private MapName mapName;
-
+        /// <summary>The map name_ extension data is empty.</summary>
         [Test]
         [Category("map_names.json")]
         [Category("ExtensionData")]
@@ -24,6 +45,7 @@ namespace GW2DotNET.Core.MapsInformation.Names
             Assert.IsEmpty(this.mapName.ExtensionData);
         }
 
+        /// <summary>The map name_ id reflects input.</summary>
         [Test]
         [Category("map_names.json")]
         public void MapName_IdReflectsInput()
@@ -34,6 +56,7 @@ namespace GW2DotNET.Core.MapsInformation.Names
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The map name_ name reflects input.</summary>
         [Test]
         [Category("map_names.json")]
         public void MapName_NameReflectsInput()
@@ -43,5 +66,7 @@ namespace GW2DotNET.Core.MapsInformation.Names
 
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

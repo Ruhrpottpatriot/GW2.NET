@@ -2,16 +2,21 @@
 // <copyright file="DynamicEventRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a request for a list of events and their status that match the given filters (if any).
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
 
 namespace RestSharp.GW2DotNET.Requests
 {
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using global::GW2DotNET.V1.Core;
+
+    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+
     /// <summary>
     ///     Represents a request for a list of events and their status that match the given filters (if any).
     /// </summary>
@@ -20,6 +25,8 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class DynamicEventRequest : ServiceRequest
     {
+        #region Fields
+
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private readonly Parameter eventIdParameter;
 
@@ -29,36 +36,26 @@ namespace RestSharp.GW2DotNET.Requests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private readonly Parameter worldIdParameter;
 
+        #endregion
+
+        #region Constructors and Destructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="DynamicEventRequest" /> class.
         /// </summary>
         public DynamicEventRequest()
             : base(Resources.Events)
         {
-            this.AddParameter(
-                this.worldIdParameter = new Parameter
-                {
-                    Name = "world_id",
-                    Value = string.Empty,
-                    Type = ParameterType.GetOrPost
-                });
+            this.AddParameter(this.worldIdParameter = new Parameter { Name = "world_id", Value = string.Empty, Type = ParameterType.GetOrPost });
 
-            this.AddParameter(
-                this.mapIdParameter = new Parameter
-                {
-                    Name = "map_id",
-                    Value = string.Empty,
-                    Type = ParameterType.GetOrPost
-                });
+            this.AddParameter(this.mapIdParameter = new Parameter { Name = "map_id", Value = string.Empty, Type = ParameterType.GetOrPost });
 
-            this.AddParameter(
-                this.eventIdParameter = new Parameter
-                {
-                    Name = "event_id",
-                    Value = string.Empty,
-                    Type = ParameterType.GetOrPost
-                });
+            this.AddParameter(this.eventIdParameter = new Parameter { Name = "event_id", Value = string.Empty, Type = ParameterType.GetOrPost });
         }
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the event ID filter.
@@ -123,35 +120,35 @@ namespace RestSharp.GW2DotNET.Requests
             }
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public IServiceResponse<DynamicEventsResult> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<DynamicEventsResult>(serviceClient);
+            return this.GetResponse<DynamicEventsResult>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<DynamicEventsResult>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<DynamicEventsResult>(serviceClient);
+            return this.GetResponseAsync<DynamicEventsResult>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<DynamicEventsResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<DynamicEventsResult>(serviceClient, cancellationToken);
+            return this.GetResponseAsync<DynamicEventsResult>(serviceClient, cancellationToken);
         }
+
+        #endregion
     }
 }

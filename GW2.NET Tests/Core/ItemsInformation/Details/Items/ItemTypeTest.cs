@@ -1,27 +1,42 @@
-﻿using GW2DotNET.V1.Core.ItemsInformation.Details;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.CraftingMaterials;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.MiniPets;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trophies;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents;
-using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ItemTypeTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The item type test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.ItemsInformation.Details.Items
 {
+    using GW2DotNET.V1.Core.ItemsInformation.Details;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.CraftingMaterials;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.MiniPets;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trophies;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents;
+    using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The item type test.</summary>
     [TestFixture]
     public class ItemTypeTest
     {
+        #region Public Methods and Operators
+
+        /// <summary>The item type_ armor_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Armor_TypeReflectsInput()
@@ -34,6 +49,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<Armor>(item);
         }
 
+        /// <summary>The item type_ back_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Back_TypeReflectsInput()
@@ -46,6 +62,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<Back>(item);
         }
 
+        /// <summary>The item type_ bag_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Bag_TypeReflectsInput()
@@ -58,6 +75,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<Bag>(item);
         }
 
+        /// <summary>The item type_ consumable_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Consumable_TypeReflectsInput()
@@ -70,6 +88,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<Consumable>(item);
         }
 
+        /// <summary>The item type_ container_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Container_TypeReflectsInput()
@@ -82,6 +101,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<Container>(item);
         }
 
+        /// <summary>The item type_ crafting material_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_CraftingMaterial_TypeReflectsInput()
@@ -94,6 +114,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<CraftingMaterial>(item);
         }
 
+        /// <summary>The item type_ gathering_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Gathering_TypeReflectsInput()
@@ -106,6 +127,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<GatheringTool>(item);
         }
 
+        /// <summary>The item type_ gizmo_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Gizmo_TypeReflectsInput()
@@ -118,6 +140,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<Gizmo>(item);
         }
 
+        /// <summary>The item type_ mini pet_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_MiniPet_TypeReflectsInput()
@@ -130,6 +153,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<MiniPet>(item);
         }
 
+        /// <summary>The item type_ tool_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Tool_TypeReflectsInput()
@@ -142,6 +166,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<Tool>(item);
         }
 
+        /// <summary>The item type_ trinket_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Trinket_TypeReflectsInput()
@@ -154,6 +179,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<Trinket>(item);
         }
 
+        /// <summary>The item type_ trophy_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Trophy_TypeReflectsInput()
@@ -166,6 +192,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<Trophy>(item);
         }
 
+        /// <summary>The item type_ upgrade component_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_UpgradeComponent_TypeReflectsInput()
@@ -178,6 +205,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.IsInstanceOf<UpgradeComponent>(item);
         }
 
+        /// <summary>The item type_ weapon_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void ItemType_Weapon_TypeReflectsInput()
@@ -189,5 +217,7 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Weapon>(item);
         }
+
+        #endregion
     }
 }

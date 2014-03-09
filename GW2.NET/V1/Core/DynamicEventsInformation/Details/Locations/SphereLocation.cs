@@ -2,19 +2,25 @@
 // <copyright file="SphereLocation.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a spherical location of an event on the map.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using GW2DotNET.V1.Core.Converters;
-using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
+    using GW2DotNET.V1.Core.Converters;
+
+    using Newtonsoft.Json;
+
     /// <summary>
     ///     Represents a spherical location of an event on the map.
     /// </summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class SphereLocation : Location
     {
+        #region Constructors and Destructors
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="SphereLocation" /> class.
         /// </summary>
@@ -22,6 +28,10 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
             : base(LocationType.Sphere)
         {
         }
+
+        #endregion
+
+        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the location's radius.
@@ -34,5 +44,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// </summary>
         [JsonProperty("rotation", Order = 5)]
         public double Rotation { get; set; }
+
+        #endregion
     }
 }

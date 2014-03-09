@@ -1,21 +1,34 @@
-﻿using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="DynamicEventDetailsTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The dynamic event details test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.DynamicEventsInformation.Details
 {
+    using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The dynamic event details test.</summary>
     [TestFixture]
     public class DynamicEventDetailsTest
     {
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"name\":\"\",\"level\":0,\"map_id\":0,\"flags\":[],\"location\":{}}";
-            this.dynamicEventDetails = JsonConvert.DeserializeObject<DynamicEventDetails>(input);
-        }
+        #region Fields
 
+        /// <summary>The dynamic event details.</summary>
         private DynamicEventDetails dynamicEventDetails;
 
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The dynamic event details_ extension data is empty.</summary>
         [Test]
         [Category("event_details.json")]
         [Category("ExtensionData")]
@@ -24,6 +37,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
             Assert.IsEmpty(this.dynamicEventDetails.ExtensionData);
         }
 
+        /// <summary>The dynamic event details_ flags reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void DynamicEventDetails_FlagsReflectsInput()
@@ -34,6 +48,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The dynamic event details_ level reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void DynamicEventDetails_LevelReflectsInput()
@@ -44,6 +59,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The dynamic event details_ map id reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void DynamicEventDetails_MapIdReflectsInput()
@@ -54,6 +70,7 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The dynamic event details_ name reflects input.</summary>
         [Test]
         [Category("event_details.json")]
         public void DynamicEventDetails_NameReflectsInput()
@@ -63,5 +80,15 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
 
             Assert.AreEqual(expected, actual);
         }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"name\":\"\",\"level\":0,\"map_id\":0,\"flags\":[],\"location\":{}}";
+            this.dynamicEventDetails = JsonConvert.DeserializeObject<DynamicEventDetails>(input);
+        }
+
+        #endregion
     }
 }

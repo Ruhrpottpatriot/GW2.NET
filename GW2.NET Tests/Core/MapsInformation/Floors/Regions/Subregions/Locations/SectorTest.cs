@@ -1,13 +1,36 @@
-﻿using System.Drawing;
-using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
-using Newtonsoft.Json;
-using NUnit.Framework;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="SectorTest.cs" company="">
+//   
+// </copyright>
+// <summary>
+//    The sector test.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
+    using System.Drawing;
+
+    using GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations;
+
+    using Newtonsoft.Json;
+
+    using NUnit.Framework;
+
+    /// <summary>The sector test.</summary>
     [TestFixture]
     public class SectorTest
     {
+        #region Fields
+
+        /// <summary>The sector.</summary>
+        private Sector sector;
+
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
         {
@@ -15,8 +38,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             this.sector = JsonConvert.DeserializeObject<Sector>(input);
         }
 
-        private Sector sector;
-
+        /// <summary>The sector_ coordinates reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Sector_CoordinatesReflectsInput()
@@ -27,6 +49,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The sector_ extension data is empty.</summary>
         [Test]
         [Category("map_floor.json")]
         [Category("ExtensionData")]
@@ -35,6 +58,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.IsEmpty(this.sector.ExtensionData);
         }
 
+        /// <summary>The sector_ level reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Sector_LevelReflectsInput()
@@ -45,6 +69,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The sector_ name reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Sector_NameReflectsInput()
@@ -55,6 +80,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             Assert.AreEqual(expected, actual);
         }
 
+        /// <summary>The sector_ sector id reflects input.</summary>
         [Test]
         [Category("map_floor.json")]
         public void Sector_SectorIdReflectsInput()
@@ -64,5 +90,7 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
 
             Assert.AreEqual(expected, actual);
         }
+
+        #endregion
     }
 }

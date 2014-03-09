@@ -2,16 +2,21 @@
 // <copyright file="MapFloorRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
+// <summary>
+//   Represents a request for details regarding a map floor, used to populate a world map.
+// </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.MapsInformation.Floors;
 
 namespace RestSharp.GW2DotNET.Requests
 {
+    using System.Globalization;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using global::GW2DotNET.V1.Core;
+
+    using global::GW2DotNET.V1.Core.MapsInformation.Floors;
+
     /// <summary>
     ///     Represents a request for details regarding a map floor, used to populate a world map.
     /// </summary>
@@ -20,9 +25,9 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class MapFloorRequest : ServiceRequest
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MapFloorRequest" /> class.
-        /// </summary>
+        #region Constructors and Destructors
+
+        /// <summary>Initializes a new instance of the <see cref="MapFloorRequest"/> class.</summary>
         /// <param name="continentId">The continent's ID.</param>
         /// <param name="floor">The map floor.</param>
         public MapFloorRequest(int continentId, int floor)
@@ -32,9 +37,7 @@ namespace RestSharp.GW2DotNET.Requests
             this.AddParameter("floor", floor);
         }
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MapFloorRequest" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MapFloorRequest"/> class.</summary>
         /// <param name="continentId">The continent's ID.</param>
         /// <param name="floor">The map floor.</param>
         /// <param name="languageInfo">The output language.</param>
@@ -45,35 +48,35 @@ namespace RestSharp.GW2DotNET.Requests
             this.AddParameter("floor", floor);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        #endregion
+
+        #region Public Methods and Operators
+
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public IServiceResponse<Floor> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<Floor>(serviceClient);
+            return this.GetResponse<Floor>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<Floor>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<Floor>(serviceClient);
+            return this.GetResponseAsync<Floor>(serviceClient);
         }
 
-        /// <summary>
-        ///     Sends the current request and returns a response.
-        /// </summary>
+        /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response.</returns>
         public Task<IServiceResponse<Floor>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<Floor>(serviceClient, cancellationToken);
+            return this.GetResponseAsync<Floor>(serviceClient, cancellationToken);
         }
+
+        #endregion
     }
 }
