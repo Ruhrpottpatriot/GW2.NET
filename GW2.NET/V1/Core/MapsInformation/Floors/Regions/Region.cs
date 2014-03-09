@@ -19,20 +19,26 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
         /// <summary>
         ///     Gets or sets the coordinates of the region label.
         /// </summary>
-        [JsonProperty("label_coord", Order = 1)]
+        [JsonProperty("label_coord", Order = 2)]
         [JsonConverter(typeof(PointFConverter))]
         public PointF LabelCoordinates { get; set; }
 
         /// <summary>
         ///     Gets or sets a collection of maps and their details.
         /// </summary>
-        [JsonProperty("maps", Order = 2)]
+        [JsonProperty("maps", Order = 3)]
         public SubregionCollection Maps { get; set; }
 
         /// <summary>
         ///     Gets or sets the region's name.
         /// </summary>
-        [JsonProperty("name", Order = 0)]
+        [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the region's ID.
+        /// </summary>
+        [JsonProperty("region_id", Order = 0)]
+        public int RegionId { get; set; }
     }
 }
