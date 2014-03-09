@@ -1,38 +1,37 @@
-﻿using System.Drawing;
-using GW2DotNET.V1.Core.ColorsInformation.Details;
+﻿using GW2DotNET.V1.Core.ColorsInformation;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace GW2DotNET.Core.ColorsInformation
 {
     [TestFixture]
-    public class DyeTest
+    public class ColorPaletteTest
     {
         [SetUp]
         public void Initialize()
         {
             const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
-            this.dye = JsonConvert.DeserializeObject<Dye>(input);
+            this.color = JsonConvert.DeserializeObject<ColorPalette>(input);
         }
 
-        private Dye dye;
+        private ColorPalette color;
 
         [Test]
         [Category("colors.json")]
-        public void Dye_BaseRgbReflectsInput()
+        public void ColorPalette_BaseRgbReflectsInput()
         {
-            Color expected = default(Color);
-            Color actual = this.dye.BaseRgb;
+            System.Drawing.Color expected = default(System.Drawing.Color);
+            System.Drawing.Color actual   = this.color.BaseRgb;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void Dye_ClothReflectsInput()
+        public void ColorPalette_ClothReflectsInput()
         {
-            var expected = new Material();
-            Material actual = this.dye.Cloth;
+            var expected      = new ColorModel();
+            ColorModel actual = this.color.Cloth;
 
             Assert.AreEqual(expected, actual);
         }
@@ -40,37 +39,37 @@ namespace GW2DotNET.Core.ColorsInformation
         [Test]
         [Category("colors.json")]
         [Category("ExtensionData")]
-        public void Dye_ExtensionDataIsEmpty()
+        public void ColorPalette_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.dye.ExtensionData);
+            Assert.IsEmpty(this.color.ExtensionData);
         }
 
         [Test]
         [Category("colors.json")]
-        public void Dye_LeatherReflectsInput()
+        public void ColorPalette_LeatherReflectsInput()
         {
-            var expected = new Material();
-            Material actual = this.dye.Leather;
+            var expected      = new ColorModel();
+            ColorModel actual = this.color.Leather;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void Dye_MetalReflectsInput()
+        public void ColorPalette_MetalReflectsInput()
         {
-            var expected = new Material();
-            Material actual = this.dye.Metal;
+            var expected      = new ColorModel();
+            ColorModel actual = this.color.Metal;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void Dye_NameReflectsInput()
+        public void ColorPalette_NameReflectsInput()
         {
             string expected = string.Empty;
-            string actual = this.dye.Name;
+            string actual   = this.color.Name;
 
             Assert.AreEqual(expected, actual);
         }

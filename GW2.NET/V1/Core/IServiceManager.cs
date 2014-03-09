@@ -9,7 +9,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core.BuildInformation;
-using GW2DotNET.V1.Core.ColorsInformation.Details;
+using GW2DotNET.V1.Core.ColorsInformation;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
@@ -54,14 +54,14 @@ namespace GW2DotNET.V1.Core
         /// Gets the collection of dyes in the game.
         /// </summary>
         /// <returns>The collection of dyes.</returns>
-        DyeCollection GetColors();
+        ColorCollection GetColors();
 
         /// <summary>
         /// Gets the collection of dyes in the game.
         /// </summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The collection of dyes.</returns>
-        Task<DyeCollection> GetColorsAsync(CancellationToken? cancellationToken = null);
+        Task<ColorCollection> GetColorsAsync(CancellationToken? cancellationToken = null);
 
         /// <summary>
         /// Gets the collection of continents in the game.

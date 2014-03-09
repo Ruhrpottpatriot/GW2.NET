@@ -1,39 +1,40 @@
 ﻿using System.Drawing;
-using GW2DotNET.V1.Core.ColorsInformation.Details;
+using GW2DotNET.V1.Core.ColorsInformation;
 using Newtonsoft.Json;
 using NUnit.Framework;
 
 namespace GW2DotNET.Core.ColorsInformation
 {
+    using Color = System.Drawing.Color;
+
     [TestFixture]
-    public class MaterialTest
+    public class ColorModelTest
     {
         [SetUp]
         public void Initialize()
         {
-            const string input =
-                "{\"brightness\":0,\"contrast\":0,\"hue\":0,\"saturation\":0,\"lightness\":0,\"rgb\":[]}";
-            this.material = JsonConvert.DeserializeObject<Material>(input);
+            const string input = "{\"brightness\":0,\"contrast\":0,\"hue\":0,\"saturation\":0,\"lightness\":0,\"rgb\":[]}";
+            this.colorModel = JsonConvert.DeserializeObject<ColorModel>(input);
         }
 
-        private Material material;
+        private ColorModel colorModel;
 
         [Test]
         [Category("colors.json")]
-        public void Material_BrightnessReflectsInput()
+        public void ColorModel_BrightnessReflectsInput()
         {
             const int expected = default(int);
-            int actual = this.material.Brightness;
+            int actual         = this.colorModel.Brightness;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void Material_ContrastReflectsInput()
+        public void ColorModel_ContrastReflectsInput()
         {
             const double expected = default(double);
-            double actual = this.material.Contrast;
+            double actual         = this.colorModel.Contrast;
 
             Assert.AreEqual(expected, actual);
         }
@@ -41,47 +42,47 @@ namespace GW2DotNET.Core.ColorsInformation
         [Test]
         [Category("colors.json")]
         [Category("ExtensionData")]
-        public void Material_ExtensionDataIsEmpty()
+        public void ColorModel_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.material.ExtensionData);
+            Assert.IsEmpty(this.colorModel.ExtensionData);
         }
 
         [Test]
         [Category("colors.json")]
-        public void Material_HueReflectsInput()
+        public void ColorModel_HueReflectsInput()
         {
             const int expected = default(int);
-            int actual = this.material.Hue;
+            int actual         = this.colorModel.Hue;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void Material_LightnessReflectsInput()
+        public void ColorModel_LightnessReflectsInput()
         {
             const double expected = default(double);
-            double actual = this.material.Lightness;
+            double actual         = this.colorModel.Lightness;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void Material_RgbReflectsInput()
+        public void ColorModel_RgbReflectsInput()
         {
             Color expected = default(Color);
-            Color actual = this.material.Rgb;
+            Color actual   = this.colorModel.Rgb;
 
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         [Category("colors.json")]
-        public void Material_SaturationReflectsInput()
+        public void ColorModel_SaturationReflectsInput()
         {
             const double expected = default(double);
-            double actual = this.material.Saturation;
+            double actual         = this.colorModel.Saturation;
 
             Assert.AreEqual(expected, actual);
         }

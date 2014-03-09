@@ -66,8 +66,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Core\BuildInformation\BuildTest.cs" />
-    <Compile Include="Core\ColorsInformation\DyeTest.cs" />
-    <Compile Include="Core\ColorsInformation\MaterialTest.cs" />
+    <Compile Include="Core\ColorsInformation\ColorPaletteTest.cs" />
+    <Compile Include="Core\ColorsInformation\ColorModelTest.cs" />
     <Compile Include="Core\Converters\PointConverterTest.cs" />
     <Compile Include="Core\Converters\SizeConverterTest.cs" />
     <Compile Include="Core\Converters\PointFConverterTest.cs" />

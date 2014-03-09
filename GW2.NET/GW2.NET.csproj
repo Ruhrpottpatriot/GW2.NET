@@ -56,7 +56,12 @@
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Preconditions.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\DyeCollection.cs" />
+    <Compile Include="V1\Core\ColorsInformation\ColorPalette.cs" />
+    <Compile Include="V1\Core\ColorsInformation\ColorCollection.cs" />
+    <Compile Include="V1\Core\ColorsInformation\ColorsResult.cs" />
+    <Compile Include="V1\Core\ColorsInformation\ColorModel.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventDetailsCollection.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNameCollection.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventCollection.cs" />
@@ -75,9 +80,6 @@
     <Compile Include="V1\Core\MapsInformation\Names\MapNameCollection.cs" />
     <Compile Include="V1\Core\ServiceException.cs" />
     <Compile Include="V1\Core\BuildInformation\Build.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\Dye.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\DyesResult.cs" />
-    <Compile Include="V1\Core\ColorsInformation\Details\Material.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationConverter.cs">
       <DependentUpon>Location.cs</DependentUpon>
     </Compile>

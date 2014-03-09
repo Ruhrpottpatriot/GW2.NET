@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using GW2DotNET.Utilities;
 using GW2DotNET.V1.Core;
 using GW2DotNET.V1.Core.BuildInformation;
-using GW2DotNET.V1.Core.ColorsInformation.Details;
+using GW2DotNET.V1.Core.ColorsInformation;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
@@ -87,7 +87,7 @@ namespace GW2DotNET.V1
         /// Gets the collection of dyes in the game.
         /// </summary>
         /// <returns>The collection of dyes.</returns>
-        public DyeCollection GetColors()
+        public ColorCollection GetColors()
         {
             return this.serviceManager.GetColors();
         }
@@ -97,7 +97,7 @@ namespace GW2DotNET.V1
         /// </summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The collection of dyes.</returns>
-        public Task<DyeCollection> GetColorsAsync(CancellationToken? cancellationToken = null)
+        public Task<ColorCollection> GetColorsAsync(CancellationToken? cancellationToken = null)
         {
             return this.serviceManager.GetColorsAsync(cancellationToken);
         }

@@ -8,7 +8,7 @@ using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using GW2DotNET.V1.Core;
-using GW2DotNET.V1.Core.ColorsInformation.Details;
+using GW2DotNET.V1.Core.ColorsInformation;
 
 namespace RestSharp.GW2DotNET.Requests
 {
@@ -42,9 +42,9 @@ namespace RestSharp.GW2DotNET.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public IServiceResponse<DyesResult> GetResponse(IServiceClient serviceClient)
+        public IServiceResponse<ColorsResult> GetResponse(IServiceClient serviceClient)
         {
-            return base.GetResponse<DyesResult>(serviceClient);
+            return base.GetResponse<ColorsResult>(serviceClient);
         }
 
         /// <summary>
@@ -52,9 +52,9 @@ namespace RestSharp.GW2DotNET.Requests
         /// </summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<DyesResult>> GetResponseAsync(IServiceClient serviceClient)
+        public Task<IServiceResponse<ColorsResult>> GetResponseAsync(IServiceClient serviceClient)
         {
-            return base.GetResponseAsync<DyesResult>(serviceClient);
+            return base.GetResponseAsync<ColorsResult>(serviceClient);
         }
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace RestSharp.GW2DotNET.Requests
         /// <param name="serviceClient">The service client.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken" /> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        public Task<IServiceResponse<DyesResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
+        public Task<IServiceResponse<ColorsResult>> GetResponseAsync(IServiceClient serviceClient, CancellationToken cancellationToken)
         {
-            return base.GetResponseAsync<DyesResult>(serviceClient, cancellationToken);
+            return base.GetResponseAsync<ColorsResult>(serviceClient, cancellationToken);
         }
     }
 }
