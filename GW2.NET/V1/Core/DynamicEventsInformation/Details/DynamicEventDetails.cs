@@ -4,6 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
 using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
 using Newtonsoft.Json;
 
@@ -15,33 +16,39 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
     public class DynamicEventDetails : JsonObject
     {
         /// <summary>
+        ///     Gets or sets the event's ID.
+        /// </summary>
+        [JsonProperty("event_id", Order = 0)]
+        public Guid EventId { get; set; }
+
+        /// <summary>
         ///     Gets or sets additional flags.
         /// </summary>
-        [JsonProperty("flags", Order = 3)]
+        [JsonProperty("flags", Order = 4)]
         public DynamicEventFlags Flags { get; set; }
 
         /// <summary>
         ///     Gets or sets the event level.
         /// </summary>
-        [JsonProperty("level", Order = 1)]
+        [JsonProperty("level", Order = 2)]
         public int Level { get; set; }
 
         /// <summary>
         ///     Gets or sets the location of the event.
         /// </summary>
-        [JsonProperty("location", Order = 4)]
+        [JsonProperty("location", Order = 5)]
         public Location Location { get; set; }
 
         /// <summary>
         ///     Gets or sets the map where the event takes place.
         /// </summary>
-        [JsonProperty("map_id", Order = 2)]
+        [JsonProperty("map_id", Order = 3)]
         public int MapId { get; set; }
 
         /// <summary>
         ///     Gets or sets the name of the event.
         /// </summary>
-        [JsonProperty("name", Order = 0)]
+        [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
     }
 }
