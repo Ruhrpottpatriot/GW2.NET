@@ -36,6 +36,15 @@ namespace RestSharp.GW2DotNET.Requests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private readonly Parameter worldIdParameter;
 
+        /// <summary>The event filter.</summary>
+        private Guid? eventId;
+
+        /// <summary>The map filter.</summary>
+        private int? mapId;
+
+        /// <summary>The world filter.</summary>
+        private int? worldId;
+
         #endregion
 
         #region Constructors and Destructors
@@ -58,65 +67,50 @@ namespace RestSharp.GW2DotNET.Requests
         #region Public Properties
 
         /// <summary>
-        ///     Gets or sets the event ID filter.
+        ///     Gets or sets the event filter.
         /// </summary>
         public Guid? EventId
         {
             get
             {
-                if (string.IsNullOrEmpty((string)this.eventIdParameter.Value))
-                {
-                    return null;
-                }
-
-                return Guid.Parse((string)this.eventIdParameter.Value);
+                return this.eventId;
             }
 
             set
             {
-                this.eventIdParameter.Value = value.ToString();
+                this.eventIdParameter.Value = (this.eventId = value).ToString();
             }
         }
 
         /// <summary>
-        ///     Gets or sets the map ID filter.
+        ///     Gets or sets the map filter.
         /// </summary>
         public int? MapId
         {
             get
             {
-                if (string.IsNullOrEmpty((string)this.mapIdParameter.Value))
-                {
-                    return null;
-                }
-
-                return int.Parse((string)this.mapIdParameter.Value);
+                return this.mapId;
             }
 
             set
             {
-                this.mapIdParameter.Value = value.ToString();
+                this.mapIdParameter.Value = (this.mapId = value).ToString();
             }
         }
 
         /// <summary>
-        ///     Gets or sets the world ID filter.
+        ///     Gets or sets the world filter.
         /// </summary>
         public int? WorldId
         {
             get
             {
-                if (string.IsNullOrEmpty((string)this.worldIdParameter.Value))
-                {
-                    return null;
-                }
-
-                return int.Parse((string)this.worldIdParameter.Value);
+                return this.worldId;
             }
 
             set
             {
-                this.worldIdParameter.Value = value.ToString();
+                this.worldIdParameter.Value = (this.worldId = value).ToString();
             }
         }
 

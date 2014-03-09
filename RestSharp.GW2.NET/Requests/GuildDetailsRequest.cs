@@ -25,22 +25,62 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class GuildDetailsRequest : ServiceRequest
     {
+        #region Fields
+
+        /// <summary>Infrastructure. Stores a parameter.</summary>
+        private readonly Parameter guildIdParameter;
+
+        /// <summary>Infrastructure. Stores a parameter.</summary>
+        private readonly Parameter guildNameParameter;
+
+        /// <summary>The guild ID.</summary>
+        private Guid? guildId;
+
+        /// <summary>The guild name.</summary>
+        private string guildName;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="GuildDetailsRequest"/> class.</summary>
-        /// <param name="guildId">The guild ID to query for.</param>
-        public GuildDetailsRequest(Guid guildId)
+        public GuildDetailsRequest()
             : base(Resources.GuildDetails)
         {
-            this.AddParameter("guild_id", guildId);
+            this.AddParameter(this.guildIdParameter = new Parameter { Name = "guild_id", Value = string.Empty, Type = ParameterType.GetOrPost });
+            this.AddParameter(this.guildNameParameter = new Parameter { Name = "guild_name", Value = string.Empty, Type = ParameterType.GetOrPost });
         }
 
-        /// <summary>Initializes a new instance of the <see cref="GuildDetailsRequest"/> class.</summary>
-        /// <param name="guildName">The guild name to query for.</param>
-        public GuildDetailsRequest(string guildName)
-            : base(Resources.GuildDetails)
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets the guild ID.</summary>
+        public Guid? GuildId
         {
-            this.AddParameter("guild_name", guildName);
+            get
+            {
+                return this.guildId;
+            }
+
+            set
+            {
+                this.guildIdParameter.Value = (this.guildId = value).ToString();
+            }
+        }
+
+        /// <summary>Gets or sets the guild name.</summary>
+        public string GuildName
+        {
+            get
+            {
+                return this.guildName;
+            }
+
+            set
+            {
+                this.guildNameParameter.Value = this.guildName = value;
+            }
         }
 
         #endregion

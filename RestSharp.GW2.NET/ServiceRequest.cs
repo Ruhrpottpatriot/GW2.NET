@@ -23,6 +23,16 @@ namespace RestSharp.GW2DotNET
     /// </summary>
     public abstract class ServiceRequest : RestRequest, IServiceRequest
     {
+        #region Fields
+
+        /// <summary>TODO The preferred language parameter.</summary>
+        private readonly Parameter preferredLanguageParameter;
+
+        /// <summary>TODO The preferred language info.</summary>
+        private CultureInfo preferredLanguageInfo;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="ServiceRequest"/> class.</summary>
@@ -30,14 +40,7 @@ namespace RestSharp.GW2DotNET
         protected ServiceRequest(string resource)
             : this(new Uri(resource, UriKind.Relative))
         {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ServiceRequest"/> class.</summary>
-        /// <param name="resource">The service endpoint.</param>
-        /// <param name="languageInfo">The output language</param>
-        protected ServiceRequest(string resource, CultureInfo languageInfo)
-            : this(new Uri(resource, UriKind.Relative), languageInfo)
-        {
+            this.AddParameter(this.preferredLanguageParameter = new Parameter { Name = "lang", Value = string.Empty, Type = ParameterType.GetOrPost });
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceRequest"/> class.</summary>
@@ -51,15 +54,25 @@ namespace RestSharp.GW2DotNET
             }
         }
 
-        /// <summary>Initializes a new instance of the <see cref="ServiceRequest"/> class.</summary>
-        /// <param name="resource">The service endpoint as a relative URI.</param>
-        /// <param name="languageInfo">The output language</param>
-        protected ServiceRequest(Uri resource, CultureInfo languageInfo)
-            : this(resource)
-        {
-            Preconditions.EnsureNotNull(paramName: "languageInfo", value: languageInfo);
+        #endregion
 
-            this.AddParameter("lang", languageInfo);
+        #region Public Properties
+
+        /// <summary>
+        ///     Gets or sets the preferred language info.
+        /// </summary>
+        public CultureInfo PreferredLanguageInfo
+        {
+            get
+            {
+                return this.preferredLanguageInfo;
+            }
+
+            set
+            {
+                this.preferredLanguageParameter.Value = ((this.preferredLanguageInfo = value) == null) ? string.Empty : value.TwoLetterISOLanguageName;
+            }
+ // don't worry about the weird syntax. All it does is synchronize values.
         }
 
         #endregion

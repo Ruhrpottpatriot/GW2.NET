@@ -113,12 +113,7 @@ namespace RestSharp.GW2DotNET
         {
             get
             {
-                if (this.preferredLanguageInfo == null)
-                {
-                    return CultureInfo.CurrentUICulture;
-                }
-
-                return this.preferredLanguageInfo;
+                return this.preferredLanguageInfo ?? CultureInfo.CurrentUICulture;
             }
 
             set
@@ -160,7 +155,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of dyes.</returns>
         public ColorCollection GetColors()
         {
-            var request = new ColorsRequest(this.PreferredLanguageInfo);
+            var request = new ColorsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<ColorsResult>(request);
 
             return response.Colors;
@@ -171,7 +166,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of dyes.</returns>
         public Task<ColorCollection> GetColorsAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new ColorsRequest(this.PreferredLanguageInfo);
+            var request = new ColorsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.GetAsync<ColorsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Colors);
@@ -206,7 +201,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A collection of dynamic events.</returns>
         public DynamicEventDetailsCollection GetDynamicEventDetails()
         {
-            var request = new DynamicEventDetailsRequest(this.PreferredLanguageInfo);
+            var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<DynamicEventDetailsResult>(request);
 
             return response.EventDetails;
@@ -219,7 +214,7 @@ namespace RestSharp.GW2DotNET
         {
             Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
 
-            var request = new DynamicEventDetailsRequest(dynamicEventName.Id, this.PreferredLanguageInfo);
+            var request = new DynamicEventDetailsRequest { EventId = dynamicEventName.Id, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<DynamicEventDetailsResult>(request);
 
             return response.EventDetails;
@@ -230,7 +225,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A collection of dynamic events.</returns>
         public DynamicEventDetailsCollection GetDynamicEventDetails(Guid eventId)
         {
-            var request = new DynamicEventDetailsRequest(eventId, this.PreferredLanguageInfo);
+            var request = new DynamicEventDetailsRequest { EventId = eventId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<DynamicEventDetailsResult>(request);
 
             return response.EventDetails;
@@ -241,7 +236,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A collection of dynamic events.</returns>
         public Task<DynamicEventDetailsCollection> GetDynamicEventDetailsAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventDetailsRequest(this.PreferredLanguageInfo);
+            var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<DynamicEventDetailsResult> response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.EventDetails);
@@ -255,7 +250,7 @@ namespace RestSharp.GW2DotNET
         {
             Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
 
-            var request = new DynamicEventDetailsRequest(dynamicEventName.Id, this.PreferredLanguageInfo);
+            var request = new DynamicEventDetailsRequest { EventId = dynamicEventName.Id, PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<DynamicEventDetailsResult> response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.EventDetails);
@@ -267,7 +262,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A collection of dynamic events.</returns>
         public Task<DynamicEventDetailsCollection> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventDetailsRequest(eventId, this.PreferredLanguageInfo);
+            var request = new DynamicEventDetailsRequest { EventId = eventId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<DynamicEventDetailsResult> response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.EventDetails);
@@ -279,7 +274,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of dynamic events and their localized name.</returns>
         public DynamicEventNameCollection GetDynamicEventNames()
         {
-            var request = new DynamicEventNamesRequest(this.PreferredLanguageInfo);
+            var request = new DynamicEventNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<DynamicEventNameCollection>(request);
 
             return response;
@@ -290,7 +285,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of dynamic events and their localized name.</returns>
         public Task<DynamicEventNameCollection> GetDynamicEventNamesAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventNamesRequest(this.PreferredLanguageInfo);
+            var request = new DynamicEventNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<DynamicEventNameCollection> response = this.GetAsync<DynamicEventNameCollection>(request, cancellationToken);
 
             return response;
@@ -598,7 +593,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A guild and its details.</returns>
         public Guild GetGuildDetails(Guid guildId)
         {
-            var request = new GuildDetailsRequest(guildId);
+            var request = new GuildDetailsRequest { GuildId = guildId };
             var response = this.Get<Guild>(request);
 
             return response;
@@ -609,7 +604,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A guild and its details.</returns>
         public Guild GetGuildDetails(string guildName)
         {
-            var request = new GuildDetailsRequest(guildName);
+            var request = new GuildDetailsRequest { GuildName = guildName };
             var response = this.Get<Guild>(request);
 
             return response;
@@ -621,7 +616,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A guild and its details.</returns>
         public Task<Guild> GetGuildDetailsAsync(Guid guildId, CancellationToken? cancellationToken = null)
         {
-            var request = new GuildDetailsRequest(guildId);
+            var request = new GuildDetailsRequest { GuildId = guildId };
             Task<Guild> response = this.GetAsync<Guild>(request, cancellationToken);
 
             return response;
@@ -633,7 +628,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A guild and its details.</returns>
         public Task<Guild> GetGuildDetailsAsync(string guildName, CancellationToken? cancellationToken = null)
         {
-            var request = new GuildDetailsRequest(guildName);
+            var request = new GuildDetailsRequest { GuildName = guildName };
             Task<Guild> response = this.GetAsync<Guild>(request, cancellationToken);
 
             return response;
@@ -644,7 +639,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>An item and its details.</returns>
         public Item GetItemDetails(int itemId)
         {
-            var request = new ItemDetailsRequest(itemId, this.PreferredLanguageInfo);
+            var request = new ItemDetailsRequest { ItemId = itemId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<Item>(request);
 
             return response;
@@ -656,7 +651,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>An item and its details.</returns>
         public Task<Item> GetItemDetailsAsync(int itemId, CancellationToken? cancellationToken = null)
         {
-            var request = new ItemDetailsRequest(itemId, this.PreferredLanguageInfo);
+            var request = new ItemDetailsRequest { ItemId = itemId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<Item> response = this.GetAsync<Item>(request, cancellationToken);
 
             return response;
@@ -693,7 +688,7 @@ namespace RestSharp.GW2DotNET
         {
             Preconditions.EnsureNotNull(paramName: "continent", value: continent);
 
-            var request = new MapFloorRequest(continent.ContinentId, floor, this.PreferredLanguageInfo);
+            var request = new MapFloorRequest { ContinentId = continent.ContinentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<Floor>(request);
 
             return response;
@@ -705,7 +700,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A map floor and its details.</returns>
         public Floor GetMapFloor(int continentId, int floor)
         {
-            var request = new MapFloorRequest(continentId, floor, this.PreferredLanguageInfo);
+            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<Floor>(request);
 
             return response;
@@ -720,7 +715,7 @@ namespace RestSharp.GW2DotNET
         {
             Preconditions.EnsureNotNull(paramName: "continent", value: continent);
 
-            var request = new MapFloorRequest(continent.ContinentId, floor, this.PreferredLanguageInfo);
+            var request = new MapFloorRequest { ContinentId = continent.ContinentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<Floor> response = this.GetAsync<Floor>(request, cancellationToken);
 
             return response;
@@ -733,7 +728,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A map floor and its details.</returns>
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CancellationToken? cancellationToken = null)
         {
-            var request = new MapFloorRequest(continentId, floor, this.PreferredLanguageInfo);
+            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<Floor> response = this.GetAsync<Floor>(request, cancellationToken);
 
             return response;
@@ -745,7 +740,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of maps and their localized name.</returns>
         public MapNameCollection GetMapNames()
         {
-            var request = new MapNamesRequest(this.PreferredLanguageInfo);
+            var request = new MapNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<MapNameCollection>(request);
 
             return response;
@@ -756,7 +751,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of maps and their localized name.</returns>
         public Task<MapNameCollection> GetMapNamesAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new MapNamesRequest(this.PreferredLanguageInfo);
+            var request = new MapNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<MapNameCollection> response = this.GetAsync<MapNameCollection>(request, cancellationToken);
 
             return response;
@@ -768,7 +763,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A collection of maps and their details.</returns>
         public MapCollection GetMaps()
         {
-            var request = new MapDetailsRequest(this.PreferredLanguageInfo);
+            var request = new MapDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<MapsResult>(request);
 
             return response.Maps;
@@ -781,7 +776,7 @@ namespace RestSharp.GW2DotNET
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
 
-            var request = new MapDetailsRequest(mapName.Id, this.PreferredLanguageInfo);
+            var request = new MapDetailsRequest { MapId = mapName.Id, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<MapsResult>(request);
 
             return response.Maps;
@@ -792,7 +787,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A collection of maps and their details.</returns>
         public MapCollection GetMaps(int mapId)
         {
-            var request = new MapDetailsRequest(mapId, this.PreferredLanguageInfo);
+            var request = new MapDetailsRequest { MapId = mapId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<MapsResult>(request);
 
             return response.Maps;
@@ -803,7 +798,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A collection of maps and their details.</returns>
         public Task<MapCollection> GetMapsAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new MapDetailsRequest(this.PreferredLanguageInfo);
+            var request = new MapDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<MapsResult> response = this.GetAsync<MapsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Maps);
@@ -817,7 +812,7 @@ namespace RestSharp.GW2DotNET
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
 
-            var request = new MapDetailsRequest(mapName.Id, this.PreferredLanguageInfo);
+            var request = new MapDetailsRequest { MapId = mapName.Id, PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<MapsResult> response = this.GetAsync<MapsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Maps);
@@ -829,7 +824,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A collection of maps and their details.</returns>
         public Task<MapCollection> GetMapsAsync(int mapId, CancellationToken? cancellationToken = null)
         {
-            var request = new MapDetailsRequest(mapId, this.PreferredLanguageInfo);
+            var request = new MapDetailsRequest { MapId = mapId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<MapsResult> response = this.GetAsync<MapsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Maps);
@@ -840,7 +835,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A World versus World match and its details.</returns>
         public MatchDetails GetMatchDetails(string matchId)
         {
-            var request = new MatchDetailsRequest(matchId);
+            var request = new MatchDetailsRequest { MatchId = matchId };
             var response = this.Get<MatchDetails>(request);
 
             return response;
@@ -852,7 +847,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A World versus World match and its details.</returns>
         public Task<MatchDetails> GetMatchDetailsAsync(string matchId, CancellationToken? cancellationToken = null)
         {
-            var request = new MatchDetailsRequest(matchId);
+            var request = new MatchDetailsRequest { MatchId = matchId };
             Task<MatchDetails> response = this.GetAsync<MatchDetails>(request, cancellationToken);
 
             return response;
@@ -887,7 +882,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of World versus World objectives and their localized name.</returns>
         public ObjectiveNameCollection GetObjectiveNames()
         {
-            var request = new ObjectiveNamesRequest(this.PreferredLanguageInfo);
+            var request = new ObjectiveNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<ObjectiveNameCollection>(request);
 
             return response;
@@ -898,7 +893,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of World versus World objectives and their localized name.</returns>
         public Task<ObjectiveNameCollection> GetObjectiveNamesAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new ObjectiveNamesRequest(this.PreferredLanguageInfo);
+            var request = new ObjectiveNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<ObjectiveNameCollection> response = this.GetAsync<ObjectiveNameCollection>(request, cancellationToken);
 
             return response;
@@ -911,7 +906,7 @@ namespace RestSharp.GW2DotNET
         {
             Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
 
-            var request = new RecipeDetailsRequest(recipe.RecipeId, this.PreferredLanguageInfo);
+            var request = new RecipeDetailsRequest { RecipeId = recipe.RecipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<Recipe>(request);
 
             return response;
@@ -922,7 +917,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A recipe and its details.</returns>
         public Recipe GetRecipeDetails(int recipeId)
         {
-            var request = new RecipeDetailsRequest(recipeId, this.PreferredLanguageInfo);
+            var request = new RecipeDetailsRequest { RecipeId = recipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<Recipe>(request);
 
             return response;
@@ -936,7 +931,7 @@ namespace RestSharp.GW2DotNET
         {
             Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
 
-            var request = new RecipeDetailsRequest(recipe.RecipeId, this.PreferredLanguageInfo);
+            var request = new RecipeDetailsRequest { RecipeId = recipe.RecipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<Recipe> response = this.GetAsync<Recipe>(request, cancellationToken);
 
             return response;
@@ -948,7 +943,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A recipe and its details.</returns>
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CancellationToken? cancellationToken = null)
         {
-            var request = new RecipeDetailsRequest(recipeId, this.PreferredLanguageInfo);
+            var request = new RecipeDetailsRequest { RecipeId = recipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<Recipe> response = this.GetAsync<Recipe>(request, cancellationToken);
 
             return response;
@@ -983,7 +978,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of worlds and their localized name.</returns>
         public WorldNameCollection GetWorldNames()
         {
-            var request = new WorldNamesRequest(this.PreferredLanguageInfo);
+            var request = new WorldNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<WorldNameCollection>(request);
 
             return response;
@@ -994,7 +989,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>The collection of worlds and their localized name.</returns>
         public Task<WorldNameCollection> GetWorldNamesAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new WorldNamesRequest(this.PreferredLanguageInfo);
+            var request = new WorldNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             Task<WorldNameCollection> response = this.GetAsync<WorldNameCollection>(request, cancellationToken);
 
             return response;
@@ -1028,14 +1023,14 @@ namespace RestSharp.GW2DotNET
             Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(this.serviceClient, token);
             Task<TResult> t2 = t1.ContinueWith(
                 task =>
-                {
-                    IServiceResponse<TResult> response = task.Result;
-                    TResult content = response.EnsureSuccessStatusCode().Deserialize();
+                    {
+                        IServiceResponse<TResult> response = task.Result;
+                        TResult content = response.EnsureSuccessStatusCode().Deserialize();
 
-                    return content;
-                },
-                token,
-                TaskContinuationOptions.OnlyOnRanToCompletion,
+                        return content;
+                    }, 
+                token, 
+                TaskContinuationOptions.OnlyOnRanToCompletion, 
                 TaskScheduler.Current);
 
             return t2;
@@ -1048,8 +1043,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="selector">The selector.</param>
         /// <returns>The selected result.</returns>
         private Task<TResult> Select<TContent, TResult>(Task<TContent> result, Func<TContent, TResult> selector)
-            where TContent : global::GW2DotNET.V1.Core.JsonObject
-            where TResult : global::GW2DotNET.V1.Core.JsonObject
+            where TContent : global::GW2DotNET.V1.Core.JsonObject where TResult : global::GW2DotNET.V1.Core.JsonObject
         {
             return result.ContinueWith(task => selector(task.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
         }

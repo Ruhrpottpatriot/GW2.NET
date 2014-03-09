@@ -9,7 +9,6 @@
 
 namespace RestSharp.GW2DotNET.Requests
 {
-    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -25,23 +24,41 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class ItemDetailsRequest : ServiceRequest
     {
+        #region Fields
+
+        /// <summary>Infrastructure. Stores a parameter.</summary>
+        private readonly Parameter itemIdParameter;
+
+        /// <summary>The item ID.</summary>
+        private int itemId;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="ItemDetailsRequest"/> class.</summary>
-        /// <param name="itemId">The item's ID.</param>
-        public ItemDetailsRequest(int itemId)
+        public ItemDetailsRequest()
             : base(Resources.ItemDetails)
         {
-            this.AddParameter("item_id", itemId);
+            this.AddParameter(this.itemIdParameter = new Parameter { Name = "item_id", Value = default(int), Type = ParameterType.GetOrPost });
         }
 
-        /// <summary>Initializes a new instance of the <see cref="ItemDetailsRequest"/> class.</summary>
-        /// <param name="itemId">The item's ID.</param>
-        /// <param name="languageInfo">The output language.</param>
-        public ItemDetailsRequest(int itemId, CultureInfo languageInfo)
-            : base(Resources.ItemDetails, languageInfo)
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets the item ID.</summary>
+        public int ItemId
         {
-            this.AddParameter("item_id", itemId);
+            get
+            {
+                return this.itemId;
+            }
+
+            set
+            {
+                this.itemIdParameter.Value = this.itemId = value;
+            }
         }
 
         #endregion

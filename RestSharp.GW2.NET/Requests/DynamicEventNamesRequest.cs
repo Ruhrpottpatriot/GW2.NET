@@ -9,7 +9,6 @@
 
 namespace RestSharp.GW2DotNET.Requests
 {
-    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -32,13 +31,6 @@ namespace RestSharp.GW2DotNET.Requests
         /// </summary>
         public DynamicEventNamesRequest()
             : base(Resources.EventNames)
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventNamesRequest"/> class.</summary>
-        /// <param name="languageInfo">The output language.</param>
-        public DynamicEventNamesRequest(CultureInfo languageInfo)
-            : base(Resources.EventNames, languageInfo)
         {
         }
 

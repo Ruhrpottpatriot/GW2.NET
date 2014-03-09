@@ -26,14 +26,41 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class MatchDetailsRequest : ServiceRequest
     {
+        #region Fields
+
+        /// <summary>Infrastructure. Stores a parameter.</summary>
+        private readonly Parameter matchIdParameter;
+
+        /// <summary>The match ID.</summary>
+        private string matchId;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="MatchDetailsRequest"/> class.</summary>
-        /// <param name="matchId">The match ID.</param>
-        public MatchDetailsRequest(string matchId)
+        public MatchDetailsRequest()
             : base(Resources.MatchDetails)
         {
-            this.AddParameter("match_id", matchId);
+            this.AddParameter(this.matchIdParameter = new Parameter { Name = "match_id", Value = string.Empty, Type = ParameterType.GetOrPost });
+        }
+
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets the match ID.</summary>
+        public string MatchId
+        {
+            get
+            {
+                return this.matchId;
+            }
+
+            set
+            {
+                this.matchIdParameter.Value = this.matchId = value;
+            }
         }
 
         #endregion

@@ -9,7 +9,6 @@
 
 namespace RestSharp.GW2DotNET.Requests
 {
-    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -25,27 +24,62 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class MapFloorRequest : ServiceRequest
     {
+        #region Fields
+
+        /// <summary>Infrastructure. Stores a parameter.</summary>
+        private readonly Parameter continentIdParameter;
+
+        /// <summary>Infrastructure. Stores a parameter.</summary>
+        private readonly Parameter floorParameter;
+
+        /// <summary>The continent ID.</summary>
+        private int continentId;
+
+        /// <summary>The floor.</summary>
+        private int floor;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="MapFloorRequest"/> class.</summary>
-        /// <param name="continentId">The continent's ID.</param>
-        /// <param name="floor">The map floor.</param>
-        public MapFloorRequest(int continentId, int floor)
+        public MapFloorRequest()
             : base(Resources.MapFloor)
         {
-            this.AddParameter("continent_id", continentId);
-            this.AddParameter("floor", floor);
+            this.AddParameter(this.continentIdParameter = new Parameter { Name = "continent_id", Value = default(int), Type = ParameterType.GetOrPost });
+            this.AddParameter(this.floorParameter = new Parameter { Name = "floor", Value = default(int), Type = ParameterType.GetOrPost });
         }
 
-        /// <summary>Initializes a new instance of the <see cref="MapFloorRequest"/> class.</summary>
-        /// <param name="continentId">The continent's ID.</param>
-        /// <param name="floor">The map floor.</param>
-        /// <param name="languageInfo">The output language.</param>
-        public MapFloorRequest(int continentId, int floor, CultureInfo languageInfo)
-            : base(Resources.MapFloor, languageInfo)
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets the continent ID.</summary>
+        public int ContinentId
         {
-            this.AddParameter("continent_id", continentId);
-            this.AddParameter("floor", floor);
+            get
+            {
+                return this.continentId;
+            }
+
+            set
+            {
+                this.continentIdParameter.Value = this.continentId = value;
+            }
+        }
+
+        /// <summary>Gets or sets the floor.</summary>
+        public int Floor
+        {
+            get
+            {
+                return this.floor;
+            }
+
+            set
+            {
+                this.floorParameter.Value = this.floor = value;
+            }
         }
 
         #endregion

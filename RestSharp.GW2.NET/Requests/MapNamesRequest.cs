@@ -9,7 +9,6 @@
 
 namespace RestSharp.GW2DotNET.Requests
 {
-    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -32,13 +31,6 @@ namespace RestSharp.GW2DotNET.Requests
         /// </summary>
         public MapNamesRequest()
             : base(Resources.MapNames)
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="MapNamesRequest"/> class.</summary>
-        /// <param name="languageInfo">The output language.</param>
-        public MapNamesRequest(CultureInfo languageInfo)
-            : base(Resources.MapNames, languageInfo)
         {
         }
 

@@ -9,7 +9,6 @@
 
 namespace RestSharp.GW2DotNET.Requests
 {
-    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -25,6 +24,16 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class MapDetailsRequest : ServiceRequest
     {
+        #region Fields
+
+        /// <summary>Infrastructure. Stores a parameter.</summary>
+        private readonly Parameter mapIdParameter;
+
+        /// <summary>The map filter.</summary>
+        private int? mapId;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>
@@ -33,22 +42,27 @@ namespace RestSharp.GW2DotNET.Requests
         public MapDetailsRequest()
             : base(Resources.Maps)
         {
+            this.AddParameter(this.mapIdParameter = new Parameter { Name = "map_id", Value = string.Empty, Type = ParameterType.GetOrPost });
         }
 
-        /// <summary>Initializes a new instance of the <see cref="MapDetailsRequest"/> class.</summary>
-        /// <param name="languageInfo">The output language.</param>
-        public MapDetailsRequest(CultureInfo languageInfo)
-            : base(Resources.Maps, languageInfo)
-        {
-        }
+        #endregion
 
-        /// <summary>Initializes a new instance of the <see cref="MapDetailsRequest"/> class.</summary>
-        /// <param name="mapId">The map's ID.</param>
-        /// <param name="languageInfo">The output language.</param>
-        public MapDetailsRequest(int mapId, CultureInfo languageInfo)
-            : this(languageInfo)
+        #region Public Properties
+
+        /// <summary>
+        /// Gets or sets the map filter.
+        /// </summary>
+        public int? MapId
         {
-            this.AddParameter("map_id", mapId);
+            get
+            {
+                return this.mapId;
+            }
+
+            set
+            {
+                this.mapIdParameter.Value = (this.mapId = value).ToString();
+            }
         }
 
         #endregion

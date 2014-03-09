@@ -9,7 +9,6 @@
 
 namespace RestSharp.GW2DotNET.Requests
 {
-    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -32,13 +31,6 @@ namespace RestSharp.GW2DotNET.Requests
         /// </summary>
         public ColorsRequest()
             : base(Resources.Colors)
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ColorsRequest"/> class.</summary>
-        /// <param name="languageInfo">The output language.</param>
-        public ColorsRequest(CultureInfo languageInfo)
-            : base(Resources.Colors, languageInfo)
         {
         }
 

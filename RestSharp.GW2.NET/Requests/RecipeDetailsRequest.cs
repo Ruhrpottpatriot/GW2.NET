@@ -9,7 +9,6 @@
 
 namespace RestSharp.GW2DotNET.Requests
 {
-    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -25,23 +24,41 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class RecipeDetailsRequest : ServiceRequest
     {
+        #region Fields
+
+        /// <summary>Infrastructure. Stores the recipe ID parameter.</summary>
+        private readonly Parameter recipeIdParameter;
+
+        /// <summary>Infrastructure. Stores the recipe ID.</summary>
+        private int recipeId;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="RecipeDetailsRequest"/> class.</summary>
-        /// <param name="recipeId">The recipe's ID.</param>
-        public RecipeDetailsRequest(int recipeId)
+        public RecipeDetailsRequest()
             : base(Resources.RecipeDetails)
         {
-            this.AddParameter("recipe_id", recipeId);
+            this.AddParameter(this.recipeIdParameter = new Parameter { Name = "recipe_id", Value = default(int), Type = ParameterType.GetOrPost });
         }
 
-        /// <summary>Initializes a new instance of the <see cref="RecipeDetailsRequest"/> class.</summary>
-        /// <param name="recipeId">The recipe's ID.</param>
-        /// <param name="languageInfo">The output language.</param>
-        public RecipeDetailsRequest(int recipeId, CultureInfo languageInfo)
-            : base(Resources.RecipeDetails, languageInfo)
+        #endregion
+
+        #region Public Properties
+
+        /// <summary>Gets or sets the recipe ID.</summary>
+        public int RecipeId
         {
-            this.AddParameter("recipe_id", recipeId);
+            get
+            {
+                return this.recipeId;
+            }
+
+            set
+            {
+                this.recipeIdParameter.Value = this.recipeId = value;
+            }
         }
 
         #endregion

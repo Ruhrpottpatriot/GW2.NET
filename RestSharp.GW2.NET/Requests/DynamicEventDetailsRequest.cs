@@ -10,7 +10,6 @@
 namespace RestSharp.GW2DotNET.Requests
 {
     using System;
-    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -26,6 +25,16 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class DynamicEventDetailsRequest : ServiceRequest
     {
+        #region Fields
+
+        /// <summary>Infrastructure. Stores a parameter.</summary>
+        private readonly Parameter eventIdParameter;
+
+        /// <summary>The event filter.</summary>
+        private Guid? eventId;
+
+        #endregion
+
         #region Constructors and Destructors
 
         /// <summary>
@@ -34,30 +43,25 @@ namespace RestSharp.GW2DotNET.Requests
         public DynamicEventDetailsRequest()
             : base(Resources.EventDetails)
         {
+            this.AddParameter(this.eventIdParameter = new Parameter { Name = "event_id", Value = string.Empty, Type = ParameterType.GetOrPost });
         }
 
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsRequest"/> class.</summary>
-        /// <param name="languageInfo">The output language.</param>
-        public DynamicEventDetailsRequest(CultureInfo languageInfo)
-            : base(Resources.EventDetails, languageInfo)
-        {
-        }
+        #endregion
 
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsRequest"/> class.</summary>
-        /// <param name="eventId">The event ID.</param>
-        public DynamicEventDetailsRequest(Guid eventId)
-            : this()
-        {
-            this.AddParameter("event_id", eventId);
-        }
+        #region Public Properties
 
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsRequest"/> class.</summary>
-        /// <param name="eventId">The event ID.</param>
-        /// <param name="languageInfo">The output language.</param>
-        public DynamicEventDetailsRequest(Guid eventId, CultureInfo languageInfo)
-            : this(languageInfo)
+        /// <summary>Gets or sets the event filter.</summary>
+        public Guid? EventId
         {
-            this.AddParameter("event_id", eventId);
+            get
+            {
+                return this.eventId;
+            }
+
+            set
+            {
+                this.eventIdParameter.Value = (this.eventId = value).ToString();
+            }
         }
 
         #endregion
