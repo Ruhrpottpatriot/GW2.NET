@@ -7,16 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET", "GW2.NET\GW2.NET.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET Tests", "GW2.NET Tests\GW2.NET Tests.csproj", "{D138871F-94ED-4BB0-999A-2ACD3732DF30}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6F853A6E-E9BA-49B4-A20F-0A3EB5CF4161}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharp.GW2.NET", "RestSharp.GW2.NET\RestSharp.GW2.NET.csproj", "{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharp.GW2.NET.Sample", "RestSharp.GW2.NET.Sample\RestSharp.GW2.NET.Sample.csproj", "{BC40AB1A-44C8-4DFF-AABB-9A7B7D0B26A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{57002F16-9BE4-4850-A2B9-24F4147A2ED7}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharp.GW2.NET", "RestSharp.GW2.NET\RestSharp.GW2.NET.csproj", "{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharp.GW2.Net.Sample", "RestSharp.GW2.Net.Sample\RestSharp.GW2.Net.Sample.csproj", "{BC40AB1A-44C8-4DFF-AABB-9A7B7D0B26A8}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -33,9 +33,9 @@ Global
 		SccProjectUniqueName3 = RestSharp.GW2.NET\\RestSharp.GW2.NET.csproj
 		SccProjectName3 = RestSharp.GW2.NET
 		SccLocalPath3 = RestSharp.GW2.NET
-		SccProjectUniqueName4 = RestSharp.GW2.Net.Sample\\RestSharp.GW2.Net.Sample.csproj
-		SccProjectName4 = RestSharp.GW2.Net.Sample
-		SccLocalPath4 = RestSharp.GW2.Net.Sample
+		SccProjectUniqueName4 = RestSharp.GW2.Net.Sample\\RestSharp.GW2.NET.Sample.csproj
+		SccProjectName4 = RestSharp.GW2.NET.Sample
+		SccLocalPath4 = RestSharp.GW2.NET.Sample
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
