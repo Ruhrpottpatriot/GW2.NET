@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Hammers
     /// <summary>
     ///     Represents detailed information about a hammer.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class HammerDetails : WeaponDetails
     {
         /// <summary>

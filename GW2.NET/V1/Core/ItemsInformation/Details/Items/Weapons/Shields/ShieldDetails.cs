@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Shields
     /// <summary>
     ///     Represents detailed information about a shield.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class ShieldDetails : WeaponDetails
     {
         /// <summary>

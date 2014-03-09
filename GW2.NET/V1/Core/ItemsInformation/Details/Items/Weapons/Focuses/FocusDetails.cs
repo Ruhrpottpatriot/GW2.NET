@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Focuses
     /// <summary>
     ///     Represents detailed information about a focus.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class FocusDetails : WeaponDetails
     {
         /// <summary>

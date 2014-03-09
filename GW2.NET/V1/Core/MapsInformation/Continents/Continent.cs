@@ -7,10 +7,11 @@
 using System.Drawing;
 using GW2DotNET.V1.Core.MapsInformation.Common;
 using Newtonsoft.Json;
-using SizeConverter = GW2DotNET.V1.Core.Converters.SizeConverter;
 
 namespace GW2DotNET.V1.Core.MapsInformation.Continents
 {
+    using GW2DotNET.V1.Core.Converters;
+
     /// <summary>
     ///     Represents a continent.
     /// </summary>
@@ -20,7 +21,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
         ///     Gets or sets the dimensions of the continent.
         /// </summary>
         [JsonProperty("continent_dims", Order = 2)]
-        [JsonConverter(typeof(SizeConverter))]
+        [JsonConverter(typeof(JsonSizeConverter))]
         public Size ContinentDimensions { get; set; }
 
         /// <summary>

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.Default
     /// <summary>
     ///     Represents detailed information about a default gizmo.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class DefaultGizmoDetails : GizmoDetails
     {
         /// <summary>

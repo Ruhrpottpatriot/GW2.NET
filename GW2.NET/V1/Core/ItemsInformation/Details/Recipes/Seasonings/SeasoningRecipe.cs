@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Seasonings
     /// <summary>
     ///     Represents detailed information about a seasoning crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class SeasoningRecipe : Recipe
     {
         /// <summary>

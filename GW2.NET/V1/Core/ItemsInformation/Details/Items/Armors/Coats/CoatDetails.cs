@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Coats
     /// <summary>
     ///     Represents detailed information about chest protection.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class CoatDetails : ArmorDetails
     {
         /// <summary>

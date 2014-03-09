@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.Unknown
     /// <summary>
     ///     Represents detailed information about an unknown gizmo.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownGizmoDetails : GizmoDetails
     {
         /// <summary>

@@ -1,21 +1,19 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PointFConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="JsonTimespanConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
-using System.Drawing;
 using GW2DotNET.Extensions;
-using GW2DotNET.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    ///     Converts a <see cref="PointF" /> to and from its <see cref="System.String" /> representation.
+    ///     Converts a timespan to and from its <see cref="System.String" /> representation in milliseconds.
     /// </summary>
-    public class PointFConverter : JsonConverter
+    public class JsonTimespanConverter : JsonConverter
     {
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -24,7 +22,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(PointF?).IsAssignableFrom(objectType);
+            return typeof(TimeSpan?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -42,30 +40,9 @@ namespace GW2DotNET.V1.Core.Converters
                 return objectType.CreateDefault();
             }
 
-            var values = serializer.Deserialize<float[]>(reader);
+            var milliseconds = serializer.Deserialize<double>(reader);
 
-            try
-            {
-                Preconditions.EnsureInRange(values.Length, 0, 2);
-            }
-            catch (ArgumentOutOfRangeException exception)
-            {
-                throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
-            }
-
-            var y = default(float);
-
-            switch (values.Length)
-            {
-                case 2:
-                    y = values[1];
-                    goto case 1;
-                case 1:
-                    var x = values[0];
-                    return new PointF(x, y);
-                default:
-                    return default(PointF);
-            }
+            return TimeSpan.FromMilliseconds(milliseconds);
         }
 
         /// <summary>
@@ -76,17 +53,9 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var point = (PointF)value;
+            var timeSpan = (TimeSpan)value;
 
-            writer.WriteStartArray();
-
-            {
-                serializer.Serialize(writer, Math.Truncate(point.X * 100000) / 100000);
-
-                serializer.Serialize(writer, Math.Truncate(point.Y * 100000) / 100000);
-            }
-
-            writer.WriteEndArray();
+            serializer.Serialize(writer, timeSpan.TotalMilliseconds);
         }
     }
 }

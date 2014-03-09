@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Gloves
     /// <summary>
     ///     Represents detailed information about a gloves crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class GlovesRecipe : Recipe
     {
         /// <summary>

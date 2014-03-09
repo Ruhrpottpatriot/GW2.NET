@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         ///     Gets or sets the center coordinates.
         /// </summary>
         [JsonProperty("center", Order = 1)]
-        [JsonConverter(typeof(Point3DConverter))]
+        [JsonConverter(typeof(JsonPoint3DConverter))]
         public Point3D Center { get; set; }
 
         /// <summary>

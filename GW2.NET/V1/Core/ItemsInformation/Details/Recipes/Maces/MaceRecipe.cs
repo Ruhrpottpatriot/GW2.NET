@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Maces
     /// <summary>
     ///     Represents detailed information about a mace crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class MaceRecipe : Recipe
     {
         /// <summary>

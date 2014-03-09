@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.UpgradeComponents
     /// <summary>
     ///     Represents detailed information about an upgrade component crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UpgradeComponentRecipe : Recipe
     {
         /// <summary>

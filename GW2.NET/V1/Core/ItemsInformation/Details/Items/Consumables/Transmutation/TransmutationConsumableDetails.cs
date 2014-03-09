@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Transmuta
     /// <summary>
     ///     Represents detailed information about a transmutation consumable item.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class TransmutationConsumableDetails : ConsumableDetails
     {
         /// <summary>

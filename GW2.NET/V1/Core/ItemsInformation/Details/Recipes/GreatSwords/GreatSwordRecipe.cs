@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.GreatSwords
     /// <summary>
     ///     Represents detailed information about a great sword crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class GreatSwordRecipe : Recipe
     {
         /// <summary>

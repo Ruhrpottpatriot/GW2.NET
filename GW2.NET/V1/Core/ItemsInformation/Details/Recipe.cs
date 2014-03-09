@@ -72,7 +72,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         ///     Gets or sets the time it takes to craft the recipe.
         /// </summary>
         [JsonProperty("time_to_craft_ms", Order = 5)]
-        [JsonConverter(typeof(MillisecondsTimespanConverter))]
+        [JsonConverter(typeof(JsonTimespanConverter))]
         public TimeSpan TimeToCraft { get; set; }
 
         /// <summary>

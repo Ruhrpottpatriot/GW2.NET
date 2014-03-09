@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Toys
     /// <summary>
     ///     Represents detailed information about a two-handed toy.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class TwoHandedToyDetails : WeaponDetails
     {
         /// <summary>

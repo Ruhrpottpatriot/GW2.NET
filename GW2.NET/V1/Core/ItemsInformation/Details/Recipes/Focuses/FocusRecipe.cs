@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Focuses
     /// <summary>
     ///     Represents detailed information about a focus crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class FocusRecipe : Recipe
     {
         /// <summary>

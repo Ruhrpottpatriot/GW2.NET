@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.ShortBows
     /// <summary>
     ///     Represents detailed information about a short bow crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class ShortBowRecipe : Recipe
     {
         /// <summary>

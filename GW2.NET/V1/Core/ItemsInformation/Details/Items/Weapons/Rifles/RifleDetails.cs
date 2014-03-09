@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Rifles
     /// <summary>
     ///     Represents detailed information about a rifle.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class RifleDetails : WeaponDetails
     {
         /// <summary>

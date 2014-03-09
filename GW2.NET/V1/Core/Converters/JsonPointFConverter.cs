@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RectangleConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="JsonPointFConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,9 +13,9 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    ///     Converts a <see cref="Rectangle" /> to and from its <see cref="System.String" /> representation.
+    ///     Converts a <see cref="PointF" /> to and from its <see cref="System.String" /> representation.
     /// </summary>
-    public class RectangleConverter : JsonConverter
+    public class JsonPointFConverter : JsonConverter
     {
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Rectangle?).IsAssignableFrom(objectType);
+            return typeof(PointF?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -42,50 +42,30 @@ namespace GW2DotNET.V1.Core.Converters
                 return objectType.CreateDefault();
             }
 
-            var values = serializer.Deserialize<int[][]>(reader);
+            var values = serializer.Deserialize<float[]>(reader);
 
             try
             {
-                Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 2);
-                Preconditions.EnsureInRange(values[0].Length, 0, 2);
-                Preconditions.EnsureInRange(values[1].Length, 0, 2);
+                Preconditions.EnsureInRange(values.Length, 0, 2);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("Bad coordinates.", exception);
+                throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
             }
 
-            int top, left, bottom, right;
+            var y = default(float);
 
-            switch (values[0].Length)
+            switch (values.Length)
             {
                 case 2:
-                    top = values[0][0];
-                    left = values[0][1];
-                    break;
+                    y = values[1];
+                    goto case 1;
                 case 1:
-                    top = left = values[0][0];
-                    break;
+                    var x = values[0];
+                    return new PointF(x, y);
                 default:
-                    top = left = default(int);
-                    break;
+                    return default(PointF);
             }
-
-            switch (values[1].Length)
-            {
-                case 2:
-                    bottom = values[1][0];
-                    right = values[1][1];
-                    break;
-                case 1:
-                    bottom = right = values[1][0];
-                    break;
-                default:
-                    bottom = right = default(int);
-                    break;
-            }
-
-            return Rectangle.FromLTRB(left, top, right, bottom);
         }
 
         /// <summary>
@@ -96,30 +76,14 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var rectangle = (Rectangle)value;
+            var point = (PointF)value;
 
             writer.WriteStartArray();
 
             {
-                writer.WriteStartArray();
+                serializer.Serialize(writer, Math.Truncate(point.X * 100000) / 100000);
 
-                {
-                    serializer.Serialize(writer, rectangle.Top);
-
-                    serializer.Serialize(writer, rectangle.Left);
-                }
-
-                writer.WriteEndArray();
-
-                writer.WriteStartArray();
-
-                {
-                    serializer.Serialize(writer, rectangle.Bottom);
-
-                    serializer.Serialize(writer, rectangle.Right);
-                }
-
-                writer.WriteEndArray();
+                serializer.Serialize(writer, Math.Truncate(point.Y * 100000) / 100000);
             }
 
             writer.WriteEndArray();

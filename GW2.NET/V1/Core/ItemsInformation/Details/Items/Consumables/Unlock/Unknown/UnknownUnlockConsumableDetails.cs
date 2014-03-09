@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Un
     /// <summary>
     ///     Represents detailed information about an unknown unlock item.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownUnlockConsumableDetails : UnlockConsumableDetails
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shoulders
     /// <summary>
     ///     Represents detailed information about a shoulders crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class ShouldersRecipe : Recipe
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.WarHorns
     /// <summary>
     ///     Represents detailed information about a war horn crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class WarHornRecipe : Recipe
     {
         /// <summary>

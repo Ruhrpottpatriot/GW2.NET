@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Bundles
     /// <summary>
     ///     Represents detailed information about a large bundle.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class LargeBundleDetails : WeaponDetails
     {
         /// <summary>

@@ -7,11 +7,11 @@
 using System.Drawing;
 using GW2DotNET.V1.Core.MapsInformation.Floors.Regions;
 using Newtonsoft.Json;
-using RectangleConverter = GW2DotNET.V1.Core.Converters.RectangleConverter;
-using SizeConverter = GW2DotNET.V1.Core.Converters.SizeConverter;
 
 namespace GW2DotNET.V1.Core.MapsInformation.Floors
 {
+    using GW2DotNET.V1.Core.Converters;
+
     /// <summary>
     ///     Represents a map floor, used to populate a world map. All coordinates are map coordinates.
     /// </summary>
@@ -25,7 +25,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
         ///     on the tile server.
         /// </summary>
         [JsonProperty("clamped_view", Order = 1)]
-        [JsonConverter(typeof(RectangleConverter))]
+        [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle? ClampedView { get; set; }
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
         ///     Gets or sets the texture's dimensions.
         /// </summary>
         [JsonProperty("texture_dims", Order = 0)]
-        [JsonConverter(typeof(SizeConverter))]
+        [JsonConverter(typeof(JsonSizeConverter))]
         public Size TextureDimensions { get; set; }
     }
 }

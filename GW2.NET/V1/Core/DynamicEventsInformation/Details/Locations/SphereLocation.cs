@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
     /// <summary>
     ///     Represents a spherical location of an event on the map.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class SphereLocation : Location
     {
         /// <summary>

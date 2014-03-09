@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         ///     Gets or sets the skill challenge's coordinates.
         /// </summary>
         [JsonProperty("coord", Order = 0)]
-        [JsonConverter(typeof(PointFConverter))]
+        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
     }
 }

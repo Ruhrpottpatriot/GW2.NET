@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         ///     Gets or sets the sector's coordinates, which is (usually) the center position.
         /// </summary>
         [JsonProperty("coord", Order = 3)]
-        [JsonConverter(typeof(PointFConverter))]
+        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>

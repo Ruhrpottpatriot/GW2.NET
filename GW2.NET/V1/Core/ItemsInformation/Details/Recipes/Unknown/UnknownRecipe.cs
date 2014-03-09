@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Unknown
     /// <summary>
     ///     Represents detailed information about an unknown crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownRecipe : Recipe
     {
         /// <summary>

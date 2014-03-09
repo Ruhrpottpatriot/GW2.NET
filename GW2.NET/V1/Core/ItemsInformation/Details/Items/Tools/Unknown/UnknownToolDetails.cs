@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools.Unknown
     /// <summary>
     ///     Represents detailed information about an unknown tool.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownToolDetails : ToolDetails
     {
         /// <summary>

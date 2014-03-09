@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
     /// <summary>
     ///     Represents a cylindrical location of an event on the map.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class CylinderLocation : Location
     {
         /// <summary>

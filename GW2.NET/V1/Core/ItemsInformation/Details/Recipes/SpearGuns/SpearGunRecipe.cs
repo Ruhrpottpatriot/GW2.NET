@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.SpearGuns
     /// <summary>
     ///     Represents detailed information about a spear gun crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class SpearGunRecipe : Recipe
     {
         /// <summary>

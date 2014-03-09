@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.ShortBows
     /// <summary>
     ///     Represents detailed information about a short bow.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class ShortBowDetails : WeaponDetails
     {
         /// <summary>

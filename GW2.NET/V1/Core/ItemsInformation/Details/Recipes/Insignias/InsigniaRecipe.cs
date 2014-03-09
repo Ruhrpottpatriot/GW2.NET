@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Insignias
     /// <summary>
     ///     Represents detailed information about an insignia crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class InsigniaRecipe : Recipe
     {
         /// <summary>

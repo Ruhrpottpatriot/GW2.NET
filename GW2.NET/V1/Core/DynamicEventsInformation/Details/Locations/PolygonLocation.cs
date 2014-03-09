@@ -7,14 +7,13 @@
 using System.Drawing;
 using GW2DotNET.V1.Core.Converters;
 using Newtonsoft.Json;
-using PointConverter = GW2DotNET.V1.Core.Converters.PointConverter;
 
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     /// <summary>
     ///     Represents a polygonal location of an event on the map.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class PolygonLocation : Location
     {
         /// <summary>
@@ -35,7 +34,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         ///     Gets or sets the location's range on the z-axis.
         /// </summary>
         [JsonProperty("z_range", Order = 4)]
-        [JsonConverter(typeof(PointConverter))]
+        [JsonConverter(typeof(JsonPointConverter))]
         public Point ZRange { get; set; }
     }
 }

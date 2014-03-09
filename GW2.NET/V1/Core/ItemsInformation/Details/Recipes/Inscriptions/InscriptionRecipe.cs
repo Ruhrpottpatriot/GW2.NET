@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Inscriptions
     /// <summary>
     ///     Represents detailed information about an inscription crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class InscriptionRecipe : Recipe
     {
         /// <summary>

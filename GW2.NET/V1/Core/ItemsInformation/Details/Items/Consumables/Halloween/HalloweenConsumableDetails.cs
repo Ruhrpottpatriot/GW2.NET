@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Halloween
     /// <summary>
     ///     Represents detailed information about a halloween consumable item.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class HalloweenConsumableDetails : ConsumableDetails
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Hammers
     /// <summary>
     ///     Represents detailed information about a hammer crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class HammerRecipe : Recipe
     {
         /// <summary>

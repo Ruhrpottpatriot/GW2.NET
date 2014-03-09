@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Maces
     /// <summary>
     ///     Represents detailed information about a mace.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class MaceDetails : WeaponDetails
     {
         /// <summary>

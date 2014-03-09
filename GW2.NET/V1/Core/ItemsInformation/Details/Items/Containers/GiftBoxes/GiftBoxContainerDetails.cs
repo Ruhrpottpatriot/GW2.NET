@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers.GiftBoxes
     /// <summary>
     ///     Represents detailed information about a gift box container.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class GiftBoxContainerDetails : ContainerDetails
     {
         /// <summary>

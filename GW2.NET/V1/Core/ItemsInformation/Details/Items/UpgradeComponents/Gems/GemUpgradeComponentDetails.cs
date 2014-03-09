@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Gem
     /// <summary>
     ///     Represents detailed information about a gem upgrade component.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class GemUpgradeComponentDetails : UpgradeComponentDetails
     {
         /// <summary>

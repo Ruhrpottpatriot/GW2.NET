@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Rings
     /// <summary>
     ///     Represents detailed information about a ring.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class RingDetails : TrinketDetails
     {
         /// <summary>

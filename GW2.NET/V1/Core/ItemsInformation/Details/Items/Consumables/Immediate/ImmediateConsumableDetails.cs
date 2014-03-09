@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Immediate
     /// <summary>
     ///     Represents detailed information about an immediate consumable item.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class ImmediateConsumableDetails : ConsumableDetails
     {
         /// <summary>

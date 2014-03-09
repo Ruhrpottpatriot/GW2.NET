@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.LongBows
     /// <summary>
     ///     Represents detailed information about a long bow crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class LongBowRecipe : Recipe
     {
         /// <summary>

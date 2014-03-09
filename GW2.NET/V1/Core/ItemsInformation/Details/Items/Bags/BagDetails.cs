@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags
         ///     Gets or sets a value indicating whether this is an invisible bag.
         /// </summary>
         [JsonProperty("no_sell_or_sort", Order = 0)]
-        [JsonConverter(typeof(NumericBooleanConverter))]
+        [JsonConverter(typeof(JsonBooleanConverter))]
         public bool NoSellOrSort { get; set; }
 
         /// <summary>

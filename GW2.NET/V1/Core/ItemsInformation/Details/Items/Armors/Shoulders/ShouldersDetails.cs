@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Shoulders
     /// <summary>
     ///     Represents detailed information about shoulder protection.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class ShouldersDetails : ArmorDetails
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Axes
     /// <summary>
     ///     Represents detailed information about an axe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class AxeDetails : WeaponDetails
     {
         /// <summary>

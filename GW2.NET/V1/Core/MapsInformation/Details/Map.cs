@@ -7,10 +7,11 @@
 using System.Drawing;
 using GW2DotNET.V1.Core.MapsInformation.Common;
 using Newtonsoft.Json;
-using RectangleConverter = GW2DotNET.V1.Core.Converters.RectangleConverter;
 
 namespace GW2DotNET.V1.Core.MapsInformation.Details
 {
+    using GW2DotNET.V1.Core.Converters;
+
     /// <summary>
     ///     Represents a map and its details, including details about floor and translation data on how to translate between
     ///     world coordinates and map coordinates.
@@ -33,7 +34,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
         ///     Gets or sets the dimensions of the map within the continent coordinate system.
         /// </summary>
         [JsonProperty("continent_rect", Order = 11)]
-        [JsonConverter(typeof(RectangleConverter))]
+        [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle ContinentRectangle { get; set; }
 
         /// <summary>
@@ -64,7 +65,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
         ///     Gets or sets the dimensions of the map.
         /// </summary>
         [JsonProperty("map_rect", Order = 10)]
-        [JsonConverter(typeof(RectangleConverter))]
+        [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle MapRectangle { get; set; }
 
         /// <summary>

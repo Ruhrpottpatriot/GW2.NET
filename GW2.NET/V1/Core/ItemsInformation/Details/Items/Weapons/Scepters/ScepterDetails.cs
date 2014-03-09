@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Scepters
     /// <summary>
     ///     Represents detailed information about a scepter.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class ScepterDetails : WeaponDetails
     {
         /// <summary>

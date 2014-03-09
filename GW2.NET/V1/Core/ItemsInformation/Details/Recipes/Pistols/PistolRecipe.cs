@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Pistols
     /// <summary>
     ///     Represents detailed information about a pistol crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class PistolRecipe : Recipe
     {
         /// <summary>

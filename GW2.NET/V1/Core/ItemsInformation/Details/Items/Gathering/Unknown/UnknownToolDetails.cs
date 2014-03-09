@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Unknown
     /// <summary>
     ///     Represents detailed information about an unknown gathering tool.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownToolDetails : GatheringToolDetails
     {
         /// <summary>

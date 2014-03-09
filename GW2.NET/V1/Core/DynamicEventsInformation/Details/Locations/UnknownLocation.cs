@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
     /// <summary>
     ///     Represents an unknown location.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownLocation : Location
     {
         /// <summary>

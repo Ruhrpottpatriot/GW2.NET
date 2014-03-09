@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Sig
     /// <summary>
     ///     Represents detailed information about a sigil upgrade component.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class SigilUpgradeComponentDetails : UpgradeComponentDetails
     {
         /// <summary>

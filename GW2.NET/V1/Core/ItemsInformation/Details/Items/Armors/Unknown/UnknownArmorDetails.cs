@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Unknown
     /// <summary>
     ///     Represents detailed information about an unknown armor piece.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownArmorDetails : ArmorDetails
     {
         /// <summary>

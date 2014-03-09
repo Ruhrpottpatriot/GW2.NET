@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers.Unknown
     /// <summary>
     ///     Represents detailed information about an unknown container.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownContainerDetails : ContainerDetails
     {
         /// <summary>

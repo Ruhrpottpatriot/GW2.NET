@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
     /// <summary>
     ///     Represents detailed information about an edible item.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class FoodConsumableDetails : ConsumableDetails
     {
         /// <summary>
@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
         ///     Gets or sets the food's effect duration.
         /// </summary>
         [JsonProperty("duration_ms", Order = 100, NullValueHandling = NullValueHandling.Ignore)]
-        [JsonConverter(typeof(MillisecondsTimespanConverter))]
+        [JsonConverter(typeof(JsonTimespanConverter))]
         public TimeSpan? Duration { get; set; }
     }
 }

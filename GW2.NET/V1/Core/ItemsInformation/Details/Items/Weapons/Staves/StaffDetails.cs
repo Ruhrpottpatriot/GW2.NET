@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Staves
     /// <summary>
     ///     Represents detailed information about a staff.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class StaffDetails : WeaponDetails
     {
         /// <summary>

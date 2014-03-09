@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Torches
     /// <summary>
     ///     Represents detailed information about a torch.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class TorchDetails : WeaponDetails
     {
         /// <summary>

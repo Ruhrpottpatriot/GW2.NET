@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unknown
     /// <summary>
     ///     Represents detailed information about an unknown consumable item.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownConsumableDetails : ConsumableDetails
     {
         /// <summary>

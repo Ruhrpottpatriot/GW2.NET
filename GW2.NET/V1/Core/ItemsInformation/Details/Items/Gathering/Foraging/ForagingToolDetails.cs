@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Foraging
     /// <summary>
     ///     Represents detailed information about a foraging tool.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class ForagingToolDetails : GatheringToolDetails
     {
         /// <summary>

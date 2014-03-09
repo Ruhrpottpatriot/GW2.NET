@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Unknown
     /// <summary>
     ///     Represents detailed information about an unknown trinket.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownTrinketDetails : TrinketDetails
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Mining
     /// <summary>
     ///     Represents detailed information about a mining tool.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class MiningToolDetails : GatheringToolDetails
     {
         /// <summary>

@@ -68,9 +68,9 @@
     <Compile Include="Core\BuildInformation\BuildTest.cs" />
     <Compile Include="Core\ColorsInformation\ColorPaletteTest.cs" />
     <Compile Include="Core\ColorsInformation\ColorModelTest.cs" />
-    <Compile Include="Core\Converters\PointConverterTest.cs" />
-    <Compile Include="Core\Converters\SizeConverterTest.cs" />
-    <Compile Include="Core\Converters\PointFConverterTest.cs" />
+    <Compile Include="Core\Converters\JsonPointConverterTest.cs" />
+    <Compile Include="Core\Converters\JsonSizeConverterTest.cs" />
+    <Compile Include="Core\Converters\JsonPointFConverterTest.cs" />
     <Compile Include="Core\DynamicEventsInformation\Details\DynamicEventDetailsTest.cs" />
     <Compile Include="Core\DynamicEventsInformation\Details\DynamicEventFlagsTest.cs" />
     <Compile Include="Core\DynamicEventsInformation\Details\Locations\LocationTypeTest.cs" />

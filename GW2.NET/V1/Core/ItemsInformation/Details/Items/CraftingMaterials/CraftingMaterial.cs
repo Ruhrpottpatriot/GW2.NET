@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.CraftingMaterials
     /// <summary>
     ///     Represents a crafting material.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class CraftingMaterial : Item
     {
         /// <summary>

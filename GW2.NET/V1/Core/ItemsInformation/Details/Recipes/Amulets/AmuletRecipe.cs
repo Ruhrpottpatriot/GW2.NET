@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Amulets
     /// <summary>
     ///     Represents detailed information about an amulet crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class AmuletRecipe : Recipe
     {
         /// <summary>

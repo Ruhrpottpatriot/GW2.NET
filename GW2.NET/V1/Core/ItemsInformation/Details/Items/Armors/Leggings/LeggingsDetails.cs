@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Leggings
     /// <summary>
     ///     Represents detailed information about leg protection.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class LeggingsDetails : ArmorDetails
     {
         /// <summary>

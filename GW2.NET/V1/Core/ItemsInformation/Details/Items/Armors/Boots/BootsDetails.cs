@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Boots
     /// <summary>
     ///     Represents detailed information about feet protection.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class BootsDetails : ArmorDetails
     {
         /// <summary>

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SizeConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="JsonRectangleConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
@@ -13,9 +13,9 @@ using Newtonsoft.Json;
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    ///     Converts a <see cref="Size" /> to and from its <see cref="System.String" /> representation.
+    ///     Converts a <see cref="Rectangle" /> to and from its <see cref="System.String" /> representation.
     /// </summary>
-    public class SizeConverter : JsonConverter
+    public class JsonRectangleConverter : JsonConverter
     {
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Size?).IsAssignableFrom(objectType);
+            return typeof(Rectangle?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -42,26 +42,50 @@ namespace GW2DotNET.V1.Core.Converters
                 return objectType.CreateDefault();
             }
 
-            var values = serializer.Deserialize<int[]>(reader);
+            var values = serializer.Deserialize<int[][]>(reader);
 
             try
             {
-                Preconditions.EnsureInRange(values.Length, 0, 2);
+                Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 2);
+                Preconditions.EnsureInRange(values[0].Length, 0, 2);
+                Preconditions.EnsureInRange(values[1].Length, 0, 2);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
+                throw new JsonSerializationException("Bad coordinates.", exception);
             }
 
-            switch (values.Length)
+            int top, left, bottom, right;
+
+            switch (values[0].Length)
             {
-                case 0:
-                    return default(Size);
+                case 2:
+                    top = values[0][0];
+                    left = values[0][1];
+                    break;
                 case 1:
-                    return new Size(values[0], values[0]);
+                    top = left = values[0][0];
+                    break;
                 default:
-                    return new Size(values[0], values[1]);
+                    top = left = default(int);
+                    break;
             }
+
+            switch (values[1].Length)
+            {
+                case 2:
+                    bottom = values[1][0];
+                    right = values[1][1];
+                    break;
+                case 1:
+                    bottom = right = values[1][0];
+                    break;
+                default:
+                    bottom = right = default(int);
+                    break;
+            }
+
+            return Rectangle.FromLTRB(left, top, right, bottom);
         }
 
         /// <summary>
@@ -72,14 +96,30 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var size = (Size)value;
+            var rectangle = (Rectangle)value;
 
             writer.WriteStartArray();
 
             {
-                writer.WriteValue(size.Width);
+                writer.WriteStartArray();
 
-                writer.WriteValue(size.Height);
+                {
+                    serializer.Serialize(writer, rectangle.Top);
+
+                    serializer.Serialize(writer, rectangle.Left);
+                }
+
+                writer.WriteEndArray();
+
+                writer.WriteStartArray();
+
+                {
+                    serializer.Serialize(writer, rectangle.Bottom);
+
+                    serializer.Serialize(writer, rectangle.Right);
+                }
+
+                writer.WriteEndArray();
             }
 
             writer.WriteEndArray();

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.RentableContra
     /// <summary>
     ///     Represents detailed information about a rentable contract NPC.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class RentableContractNpcDetails : GizmoDetails
     {
         /// <summary>

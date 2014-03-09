@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Utility
     /// <summary>
     ///     Represents detailed information about a utility consumable item.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UtilityConsumableDetails : ConsumableDetails
     {
         /// <summary>

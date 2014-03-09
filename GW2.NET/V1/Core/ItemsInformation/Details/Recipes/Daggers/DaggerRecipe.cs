@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Daggers
     /// <summary>
     ///     Represents detailed information about a dagger crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class DaggerRecipe : Recipe
     {
         /// <summary>

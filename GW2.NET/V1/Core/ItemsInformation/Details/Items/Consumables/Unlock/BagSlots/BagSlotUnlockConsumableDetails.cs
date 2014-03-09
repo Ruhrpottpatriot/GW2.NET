@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Ba
     /// <summary>
     ///     Represents detailed information about a bag slot unlock item.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class BagSlotUnlockConsumableDetails : UnlockConsumableDetails
     {
         /// <summary>

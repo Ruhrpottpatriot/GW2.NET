@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Cr
     /// <summary>
     ///     Represents detailed information about a crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class CraftingRecipeUnlockConsumableDetails : UnlockConsumableDetails
     {
         /// <summary>

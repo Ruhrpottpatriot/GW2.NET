@@ -1,21 +1,21 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Point3DConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="JsonSizeConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Drawing;
 using GW2DotNET.Extensions;
 using GW2DotNET.Utilities;
-using GW2DotNET.V1.Core.Drawing;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    ///     Converts a <see cref="Point3D" /> to and from its <see cref="System.String" /> representation.
+    ///     Converts a <see cref="Size" /> to and from its <see cref="System.String" /> representation.
     /// </summary>
-    public class Point3DConverter : JsonConverter
+    public class JsonSizeConverter : JsonConverter
     {
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Point3D?).IsAssignableFrom(objectType);
+            return typeof(Size?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -42,32 +42,25 @@ namespace GW2DotNET.V1.Core.Converters
                 return objectType.CreateDefault();
             }
 
-            var values = serializer.Deserialize<double[]>(reader);
+            var values = serializer.Deserialize<int[]>(reader);
 
             try
             {
-                Preconditions.EnsureInRange(values.Length, 0, 3);
+                Preconditions.EnsureInRange(values.Length, 0, 2);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("The input specifies more than 3 values.", exception);
+                throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
             }
-
-            double y = default(double), z = default(double);
 
             switch (values.Length)
             {
-                case 3:
-                    z = values[2];
-                    goto case 2;
-                case 2:
-                    y = values[1];
-                    goto case 1;
+                case 0:
+                    return default(Size);
                 case 1:
-                    double x = values[0];
-                    return new Point3D(x, y, z);
+                    return new Size(values[0], values[0]);
                 default:
-                    return default(Point3D);
+                    return new Size(values[0], values[1]);
             }
         }
 
@@ -79,16 +72,14 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var point3D = (Point3D)value;
+            var size = (Size)value;
 
             writer.WriteStartArray();
 
             {
-                serializer.Serialize(writer, point3D.X);
+                writer.WriteValue(size.Width);
 
-                serializer.Serialize(writer, point3D.Y);
-
-                serializer.Serialize(writer, point3D.Z);
+                writer.WriteValue(size.Height);
             }
 
             writer.WriteEndArray();

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools.Salvaging
     /// <summary>
     ///     Represents detailed information about a salvaging tool.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class SalvageToolDetails : ToolDetails
     {
         /// <summary>

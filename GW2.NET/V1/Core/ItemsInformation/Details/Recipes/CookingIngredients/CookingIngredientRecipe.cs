@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.CookingIngredients
     /// <summary>
     ///     Represents detailed information about a consumable cooking ingredient recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class CookingIngredientRecipe : Recipe
     {
         /// <summary>

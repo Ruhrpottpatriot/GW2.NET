@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Leggings
     /// <summary>
     ///     Represents detailed information about a leggings crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class LeggingsRecipe : Recipe
     {
         /// <summary>

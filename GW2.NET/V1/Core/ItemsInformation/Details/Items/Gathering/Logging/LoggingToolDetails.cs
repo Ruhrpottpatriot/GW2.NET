@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Logging
     /// <summary>
     ///     Represents detailed information about a logging tool.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class LoggingToolDetails : GatheringToolDetails
     {
         /// <summary>

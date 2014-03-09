@@ -1,19 +1,21 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="NumericBooleanConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="JsonPoint3DConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
 using GW2DotNET.Extensions;
+using GW2DotNET.Utilities;
+using GW2DotNET.V1.Core.Drawing;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    ///     Converts a <see cref="System.Boolean" /> to and from its numeric <see cref="System.String" /> representation.
+    ///     Converts a <see cref="Point3D" /> to and from its <see cref="System.String" /> representation.
     /// </summary>
-    public class NumericBooleanConverter : JsonConverter
+    public class JsonPoint3DConverter : JsonConverter
     {
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -22,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(bool?).IsAssignableFrom(objectType);
+            return typeof(Point3D?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -40,9 +42,33 @@ namespace GW2DotNET.V1.Core.Converters
                 return objectType.CreateDefault();
             }
 
-            var numericBoolean = serializer.Deserialize<int>(reader);
+            var values = serializer.Deserialize<double[]>(reader);
 
-            return Convert.ToBoolean(numericBoolean);
+            try
+            {
+                Preconditions.EnsureInRange(values.Length, 0, 3);
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                throw new JsonSerializationException("The input specifies more than 3 values.", exception);
+            }
+
+            double y = default(double), z = default(double);
+
+            switch (values.Length)
+            {
+                case 3:
+                    z = values[2];
+                    goto case 2;
+                case 2:
+                    y = values[1];
+                    goto case 1;
+                case 1:
+                    double x = values[0];
+                    return new Point3D(x, y, z);
+                default:
+                    return default(Point3D);
+            }
         }
 
         /// <summary>
@@ -53,9 +79,19 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            int numericBoolean = Convert.ToInt32((bool)value);
+            var point3D = (Point3D)value;
 
-            serializer.Serialize(writer, numericBoolean);
+            writer.WriteStartArray();
+
+            {
+                serializer.Serialize(writer, point3D.X);
+
+                serializer.Serialize(writer, point3D.Y);
+
+                serializer.Serialize(writer, point3D.Z);
+            }
+
+            writer.WriteEndArray();
         }
     }
 }

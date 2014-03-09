@@ -12,9 +12,9 @@ namespace GW2DotNET.V1.Core.ColorsInformation
     using System;
     using System.Drawing;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Converters;
 
-    using ColorConverter = GW2DotNET.V1.Core.Converters.ColorConverter;
+    using Newtonsoft.Json;
 
     /// <summary>
     ///     Represents a color's component information.
@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         ///     Gets or sets the color.
         /// </summary>
         [JsonProperty("rgb", Order = 5)]
-        [JsonConverter(typeof(ColorConverter))]
+        [JsonConverter(typeof(JsonColorConverter))]
         public Color Rgb { get; set; }
 
         /// <summary>

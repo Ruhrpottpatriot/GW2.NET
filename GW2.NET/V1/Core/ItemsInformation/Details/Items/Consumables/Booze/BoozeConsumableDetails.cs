@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Booze
     /// <summary>
     ///     Represents detailed information about a drink.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class BoozeConsumableDetails : ConsumableDetails
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Appearanc
     /// <summary>
     ///     Represents detailed information about an appearance changing consumable item.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class AppearanceChangeConsumableDetails : ConsumableDetails
     {
         /// <summary>

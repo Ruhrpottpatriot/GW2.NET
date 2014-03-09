@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Helms
     /// <summary>
     ///     Represents detailed information about head protection.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class HelmDetails : ArmorDetails
     {
         /// <summary>

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Run
     /// <summary>
     ///     Represents detailed information about a rune upgrade component.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class RuneUpgradeComponentDetails : UpgradeComponentDetails
     {
         /// <summary>

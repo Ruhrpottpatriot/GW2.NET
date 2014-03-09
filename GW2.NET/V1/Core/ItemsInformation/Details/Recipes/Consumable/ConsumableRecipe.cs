@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Consumable
     /// <summary>
     ///     Represents detailed information about a consumable crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class ConsumableRecipe : Recipe
     {
         /// <summary>

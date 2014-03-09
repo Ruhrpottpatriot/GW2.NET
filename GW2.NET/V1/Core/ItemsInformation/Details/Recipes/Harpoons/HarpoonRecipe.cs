@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Harpoons
     /// <summary>
     ///     Represents detailed information about a harpoon crafting recipe.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class HarpoonRecipe : Recipe
     {
         /// <summary>

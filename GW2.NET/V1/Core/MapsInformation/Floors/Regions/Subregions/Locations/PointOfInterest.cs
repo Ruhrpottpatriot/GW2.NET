@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         ///     Gets or sets the Point of Interest's coordinates.
         /// </summary>
         [JsonProperty("coord", Order = 4)]
-        [JsonConverter(typeof(PointFConverter))]
+        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>

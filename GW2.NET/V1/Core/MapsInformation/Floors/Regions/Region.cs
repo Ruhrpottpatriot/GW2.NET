@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
         ///     Gets or sets the coordinates of the region label.
         /// </summary>
         [JsonProperty("label_coord", Order = 2)]
-        [JsonConverter(typeof(PointFConverter))]
+        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF LabelCoordinates { get; set; }
 
         /// <summary>

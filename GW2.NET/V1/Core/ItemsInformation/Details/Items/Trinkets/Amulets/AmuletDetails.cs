@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Amulets
     /// <summary>
     ///     Represents detailed information about an amulet.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class AmuletDetails : TrinketDetails
     {
         /// <summary>

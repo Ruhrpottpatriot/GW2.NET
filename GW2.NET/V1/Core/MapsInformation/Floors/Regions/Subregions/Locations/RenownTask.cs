@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         ///     Gets or sets the task's coordinates.
         /// </summary>
         [JsonProperty("coord", Order = 3)]
-        [JsonConverter(typeof(PointFConverter))]
+        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>

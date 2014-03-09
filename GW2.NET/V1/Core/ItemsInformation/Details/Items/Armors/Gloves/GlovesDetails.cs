@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Gloves
     /// <summary>
     ///     Represents detailed information about arm protection.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class GlovesDetails : ArmorDetails
     {
         /// <summary>

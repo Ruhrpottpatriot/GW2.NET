@@ -1,19 +1,21 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MillisecondsTimespanConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="JsonColorConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Drawing;
 using GW2DotNET.Extensions;
+using GW2DotNET.Utilities;
 using Newtonsoft.Json;
 
 namespace GW2DotNET.V1.Core.Converters
 {
     /// <summary>
-    ///     Converts a timespan to and from its <see cref="System.String" /> representation in milliseconds.
+    ///     Converts a <see cref="Color" /> to and from its <see cref="System.String" /> representation.
     /// </summary>
-    public class MillisecondsTimespanConverter : JsonConverter
+    public class JsonColorConverter : JsonConverter
     {
         /// <summary>
         ///     Determines whether this instance can convert the specified object type.
@@ -22,7 +24,7 @@ namespace GW2DotNET.V1.Core.Converters
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(TimeSpan?).IsAssignableFrom(objectType);
+            return typeof(Color?).IsAssignableFrom(objectType);
         }
 
         /// <summary>
@@ -40,9 +42,30 @@ namespace GW2DotNET.V1.Core.Converters
                 return objectType.CreateDefault();
             }
 
-            var milliseconds = serializer.Deserialize<double>(reader);
+            var values = serializer.Deserialize<int[]>(reader);
 
-            return TimeSpan.FromMilliseconds(milliseconds);
+            try
+            {
+                Preconditions.EnsureInRange(values.Length, 0, 4);
+            }
+            catch (ArgumentOutOfRangeException exception)
+            {
+                throw new JsonSerializationException("The input specifies more than 4 values.", exception);
+            }
+
+            switch (values.Length)
+            {
+                case 1:
+                    return Color.FromArgb(values[0], 0, 0);
+                case 2:
+                    return Color.FromArgb(values[0], values[1], 0);
+                case 3:
+                    return Color.FromArgb(values[0], values[1], values[2]);
+                case 4:
+                    return Color.FromArgb(values[0], values[1], values[2], values[3]);
+                default:
+                    return default(Color);
+            }
         }
 
         /// <summary>
@@ -53,9 +76,24 @@ namespace GW2DotNET.V1.Core.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var timeSpan = (TimeSpan)value;
+            var color = (Color)value;
 
-            serializer.Serialize(writer, timeSpan.TotalMilliseconds);
+            writer.WriteStartArray();
+
+            {
+                if (color.A != byte.MaxValue)
+                {
+                    writer.WriteValue(color.A);
+                }
+
+                writer.WriteValue(color.R);
+
+                writer.WriteValue(color.G);
+
+                writer.WriteValue(color.B);
+            }
+
+            writer.WriteEndArray();
         }
     }
 }

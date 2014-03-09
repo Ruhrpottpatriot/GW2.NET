@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.UnlimitedConsu
     /// <summary>
     ///     Represents detailed information about an unlimited consumable gizmo.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnlimitedConsumableDetails : GizmoDetails
     {
         /// <summary>

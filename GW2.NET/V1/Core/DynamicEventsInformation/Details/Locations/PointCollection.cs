@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
     /// <summary>
     ///     Represents a collection of points.
     /// </summary>
-    [JsonArray(ItemConverterType = typeof(PointFConverter))]
+    [JsonArray(ItemConverterType = typeof(JsonPointFConverter))]
     public class PointCollection : JsonList<PointF>
     {
         /// <summary>

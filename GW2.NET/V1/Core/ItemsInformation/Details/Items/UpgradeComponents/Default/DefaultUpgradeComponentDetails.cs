@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Def
     /// <summary>
     ///     Represents detailed information about a default upgrade component.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class DefaultUpgradeComponentDetails : UpgradeComponentDetails
     {
         /// <summary>

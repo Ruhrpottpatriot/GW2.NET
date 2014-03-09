@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Unk
     /// <summary>
     ///     Represents detailed information about an unknown upgrade component.
     /// </summary>
-    [JsonConverter(typeof(DefaultConverter))]
+    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownUpgradeComponentDetails : UpgradeComponentDetails
     {
         /// <summary>

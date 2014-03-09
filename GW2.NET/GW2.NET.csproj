@@ -322,19 +322,19 @@
     <Compile Include="V1\Core\JsonList.cs" />
     <Compile Include="V1\Core\JsonObject.cs" />
     <Compile Include="V1\Core\Converters\ContentBasedTypeCreationConverter.cs" />
-    <Compile Include="V1\Core\Converters\DefaultConverter.cs" />
-    <Compile Include="V1\Core\Converters\MillisecondsTimespanConverter.cs" />
-    <Compile Include="V1\Core\Converters\NumericBooleanConverter.cs" />
-    <Compile Include="V1\Core\Converters\RectangleConverter.cs" />
-    <Compile Include="V1\Core\Converters\PointFConverter.cs">
+    <Compile Include="V1\Core\Converters\DefaultJsonConverter.cs" />
+    <Compile Include="V1\Core\Converters\JsonTimespanConverter.cs" />
+    <Compile Include="V1\Core\Converters\JsonBooleanConverter.cs" />
+    <Compile Include="V1\Core\Converters\JsonRectangleConverter.cs" />
+    <Compile Include="V1\Core\Converters\JsonPointFConverter.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="V1\Core\Converters\PointConverter.cs" />
-    <Compile Include="V1\Core\Converters\Point3DConverter.cs" />
-    <Compile Include="V1\Core\Converters\SizeConverter.cs">
+    <Compile Include="V1\Core\Converters\JsonPointConverter.cs" />
+    <Compile Include="V1\Core\Converters\JsonPoint3DConverter.cs" />
+    <Compile Include="V1\Core\Converters\JsonSizeConverter.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="V1\Core\Converters\ColorConverter.cs" />
+    <Compile Include="V1\Core\Converters\JsonColorConverter.cs" />
     <Compile Include="V1\Core\Converters\StringEnumFlagsConverter.cs" />
     <Compile Include="V1\Core\Drawing\Point3D.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\CylinderLocation.cs" />

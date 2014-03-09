@@ -12,9 +12,9 @@ namespace GW2DotNET.V1.Core.ColorsInformation
     using System;
     using System.Drawing;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Converters;
 
-    using ColorConverter = GW2DotNET.V1.Core.Converters.ColorConverter;
+    using Newtonsoft.Json;
 
     /// <summary>
     ///     Represents a named color and its color component information for cloth, leather and metal materials.
@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         ///     Gets or sets the base RGB values.
         /// </summary>
         [JsonProperty("base_rgb", Order = 2)]
-        [JsonConverter(typeof(ColorConverter))]
+        [JsonConverter(typeof(JsonColorConverter))]
         public Color BaseRgb { get; set; }
 
         /// <summary>
