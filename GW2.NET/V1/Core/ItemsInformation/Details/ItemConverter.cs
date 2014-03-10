@@ -40,16 +40,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
     /// </summary>
     public class ItemConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<ItemType, Type> KnownTypes = new Dictionary<ItemType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="ItemConverter" /> class.
@@ -72,10 +66,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
             KnownTypes.Add(ItemType.UpgradeComponent, typeof(UpgradeComponent));
             KnownTypes.Add(ItemType.Weapon, typeof(Weapon));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
@@ -107,7 +97,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
 
             return targetType;
         }
-
-        #endregion
     }
 }

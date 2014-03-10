@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Names
     /// </summary>
     public class MapNameCollection : JsonList<MapName>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="MapNameCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Names
             : base(collection)
         {
         }
-
-        #endregion
     }
 }

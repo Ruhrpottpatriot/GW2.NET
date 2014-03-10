@@ -24,8 +24,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
     /// </remarks>
     public class Floor : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available
         ///     on the tile server.
@@ -46,7 +44,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors
         [JsonProperty("texture_dims", Order = 0)]
         [JsonConverter(typeof(JsonSizeConverter))]
         public Size TextureDimensions { get; set; }
-
-        #endregion
     }
 }

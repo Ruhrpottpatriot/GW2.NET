@@ -17,8 +17,6 @@ namespace GW2DotNET.V1.Core.ColorsInformation
     /// </summary>
     public class ColorCollection : JsonDictionary<int, ColorPalette>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ColorCollection" /> class.
         /// </summary>
@@ -40,10 +38,6 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         {
         }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>Sets each value's ID property to its corresponding key.</summary>
         /// <param name="context">The streaming context.</param>
         [OnDeserialized]
@@ -54,7 +48,5 @@ namespace GW2DotNET.V1.Core.ColorsInformation
                 kvp.Value.ColorId = kvp.Key;
             }
         }
-
-        #endregion
     }
 }

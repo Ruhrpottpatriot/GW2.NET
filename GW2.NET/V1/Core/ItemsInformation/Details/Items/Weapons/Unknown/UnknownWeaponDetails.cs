@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Unknown
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownWeaponDetails : WeaponDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="UnknownWeaponDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Unknown
             : base(WeaponType.Unknown)
         {
         }
-
-        #endregion
     }
 }

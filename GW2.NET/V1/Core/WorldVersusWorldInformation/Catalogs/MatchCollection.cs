@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
     /// </summary>
     public class MatchCollection : JsonList<Match>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="MatchCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
             : base(collection)
         {
         }
-
-        #endregion
     }
 }

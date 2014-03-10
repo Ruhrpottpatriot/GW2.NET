@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The build test.
+//   The build test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,14 +19,16 @@ namespace GW2DotNET.Core.BuildInformation
     [TestFixture]
     public class BuildTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"build_id\":0}";
+            this.build = JsonConvert.DeserializeObject<Build>(input);
+        }
 
         /// <summary>The build.</summary>
         private Build build;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The build_ build id reflects input.</summary>
         [Test]
@@ -47,15 +49,5 @@ namespace GW2DotNET.Core.BuildInformation
         {
             Assert.IsEmpty(this.build.ExtensionData);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"build_id\":0}";
-            this.build = JsonConvert.DeserializeObject<Build>(input);
-        }
-
-        #endregion
     }
 }

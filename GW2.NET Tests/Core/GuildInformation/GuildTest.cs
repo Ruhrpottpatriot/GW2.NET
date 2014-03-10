@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The guild test.
+//   The guild test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,14 +21,16 @@ namespace GW2DotNET.Core.GuildInformation
     [TestFixture]
     public class GuildTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"guild_id\":\"00000000-0000-0000-0000-000000000000\",\"guild_name\":\"\",\"tag\":\"\",\"emblem\":{}}";
+            this.guild = JsonConvert.DeserializeObject<Guild>(input);
+        }
 
         /// <summary>The guild.</summary>
         private Guild guild;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The guild_ emblem reflects input.</summary>
         [Test]
@@ -82,15 +84,5 @@ namespace GW2DotNET.Core.GuildInformation
 
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"guild_id\":\"00000000-0000-0000-0000-000000000000\",\"guild_name\":\"\",\"tag\":\"\",\"emblem\":{}}";
-            this.guild = JsonConvert.DeserializeObject<Guild>(input);
-        }
-
-        #endregion
     }
 }

@@ -38,14 +38,8 @@ namespace GW2DotNET.V1
     /// </summary>
     public class ServiceProvider : IServiceManager
     {
-        #region Fields
-
         /// <summary>Infrastructure. Stores the service manager.</summary>
         private readonly IServiceManager serviceManager;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="ServiceProvider"/> class.</summary>
         /// <param name="serviceManager">The service manager.</param>
@@ -55,10 +49,6 @@ namespace GW2DotNET.V1
 
             this.serviceManager = serviceManager;
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Gets or sets the preferred language.
@@ -75,10 +65,6 @@ namespace GW2DotNET.V1
                 this.serviceManager.PreferredLanguageInfo = value;
             }
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>
         /// Gets the current game build.
@@ -686,7 +672,5 @@ namespace GW2DotNET.V1
         {
             return this.serviceManager.GetWorldNamesAsync(cancellationToken);
         }
-
-        #endregion
     }
 }

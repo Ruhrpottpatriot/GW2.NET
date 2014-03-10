@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The polygon location test.
+//   The polygon location test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -22,15 +22,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
     [TestFixture]
     public class PolygonLocationTest
     {
-        #region Fields
-
-        /// <summary>The polygon location.</summary>
-        private PolygonLocation polygonLocation;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -38,6 +29,9 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             const string input = "{\"type\":\"poly\",\"center\":[],\"z_range\":[],\"points\":[]}";
             this.polygonLocation = JsonConvert.DeserializeObject<PolygonLocation>(input);
         }
+
+        /// <summary>The polygon location.</summary>
+        private PolygonLocation polygonLocation;
 
         /// <summary>The polygon location_ center reflects input.</summary>
         [Test]
@@ -91,7 +85,5 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

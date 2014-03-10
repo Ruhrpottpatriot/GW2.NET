@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Un
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownUnlockConsumableDetails : UnlockConsumableDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="UnknownUnlockConsumableDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Un
             : base(UnlockType.Unknown)
         {
         }
-
-        #endregion
     }
 }

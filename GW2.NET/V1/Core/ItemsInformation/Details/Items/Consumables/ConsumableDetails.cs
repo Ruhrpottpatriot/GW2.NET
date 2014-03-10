@@ -17,8 +17,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
     [JsonConverter(typeof(ConsumableDetailsConverter))]
     public abstract class ConsumableDetails : JsonObject
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="ConsumableDetails"/> class.</summary>
         /// <param name="type">The consumable's type.</param>
         protected ConsumableDetails(ConsumableType type)
@@ -26,16 +24,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
             this.Type = type;
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the consumable's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public ConsumableType Type { get; set; }
-
-        #endregion
     }
 }

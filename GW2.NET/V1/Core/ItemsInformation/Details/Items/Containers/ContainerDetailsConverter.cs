@@ -27,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
     /// </summary>
     public class ContainerDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<ContainerType, Type> KnownTypes = new Dictionary<ContainerType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="ContainerDetailsConverter" /> class.
@@ -47,10 +41,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
             KnownTypes.Add(ContainerType.Default, typeof(DefaultContainerDetails));
             KnownTypes.Add(ContainerType.GiftBox, typeof(GiftBoxContainerDetails));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
@@ -82,7 +72,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
 
             return targetType;
         }
-
-        #endregion
     }
 }

@@ -18,8 +18,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
     /// </summary>
     public class Objective : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the objective's ID.
         /// </summary>
@@ -37,7 +35,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         /// </summary>
         [JsonProperty("owner_guild", Order = 2, NullValueHandling = NullValueHandling.Ignore)]
         public Guid? OwnerGuild { get; set; }
-
-        #endregion
     }
 }

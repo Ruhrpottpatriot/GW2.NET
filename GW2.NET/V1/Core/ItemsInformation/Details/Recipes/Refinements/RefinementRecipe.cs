@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Refinements
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class RefinementRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="RefinementRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Refinements
             : base(RecipeType.Refinement)
         {
         }
-
-        #endregion
     }
 }

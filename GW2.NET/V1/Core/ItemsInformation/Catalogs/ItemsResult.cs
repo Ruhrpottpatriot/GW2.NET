@@ -16,14 +16,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
     /// </summary>
     public class ItemsResult : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a collection of item IDs.
         /// </summary>
         [JsonProperty("items")]
         public ItemCollection Items { get; set; }
-
-        #endregion
     }
 }

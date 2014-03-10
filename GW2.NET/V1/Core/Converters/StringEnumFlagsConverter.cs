@@ -22,8 +22,6 @@ namespace GW2DotNET.V1.Core.Converters
     /// </summary>
     public class StringEnumFlagsConverter : StringEnumConverter
     {
-        #region Public Methods and Operators
-
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -100,10 +98,6 @@ namespace GW2DotNET.V1.Core.Converters
             writer.WriteEndArray();
         }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>Writes an opening and closing bracket.</summary>
         /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
         private void WriteEmptyArray(JsonWriter writer)
@@ -112,7 +106,5 @@ namespace GW2DotNET.V1.Core.Converters
 
             writer.WriteEndArray();
         }
-
-        #endregion
     }
 }

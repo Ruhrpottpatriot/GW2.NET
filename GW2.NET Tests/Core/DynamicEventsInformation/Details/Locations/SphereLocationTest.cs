@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The sphere location test.
+//   The sphere location test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,15 +20,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
     [TestFixture]
     public class SphereLocationTest
     {
-        #region Fields
-
-        /// <summary>The sphere location.</summary>
-        private SphereLocation sphereLocation;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -36,6 +27,9 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             const string input = "{\"type\":\"sphere\",\"center\":[],\"radius\":0,\"rotation\":0}";
             this.sphereLocation = JsonConvert.DeserializeObject<SphereLocation>(input);
         }
+
+        /// <summary>The sphere location.</summary>
+        private SphereLocation sphereLocation;
 
         /// <summary>The sphere location_ center reflects input.</summary>
         [Test]
@@ -89,7 +83,5 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

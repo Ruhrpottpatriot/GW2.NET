@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trophies
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Trophy : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="Trophy" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trophies
             : base(ItemType.Trophy)
         {
         }
-
-        #endregion
     }
 }

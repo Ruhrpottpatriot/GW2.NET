@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldsInformation.Names
     /// </summary>
     public class WorldNameCollection : JsonList<WorldName>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="WorldNameCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.WorldsInformation.Names
             : base(capacity)
         {
         }
-
-        #endregion
     }
 }

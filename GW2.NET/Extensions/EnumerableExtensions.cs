@@ -15,8 +15,6 @@ namespace GW2DotNET.Extensions
     /// <summary>Some IEnumerable extensions.</summary>
     public static class EnumerableExtensions
     {
-        #region Public Methods and Operators
-
         /// <summary>Checks if a collection is null or empty.</summary>
         /// <param name="enumerable">The enumerable to check.</param>
         /// <typeparam name="T">they type to check</typeparam>
@@ -25,7 +23,5 @@ namespace GW2DotNET.Extensions
         {
             return enumerable == null || !enumerable.Any();
         }
-
-        #endregion
     }
 }

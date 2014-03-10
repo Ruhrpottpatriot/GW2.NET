@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Gizmo : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="Gizmo" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the gizmo's details.
         /// </summary>
         [JsonProperty("gizmo", Order = 100)]
         public GizmoDetails GizmoDetails { get; set; }
-
-        #endregion
     }
 }

@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The dynamic event state test.
+//   The dynamic event state test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 

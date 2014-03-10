@@ -46,16 +46,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
     /// </summary>
     public class WeaponDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<WeaponType, Type> KnownTypes = new Dictionary<WeaponType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="WeaponDetailsConverter" /> class.
@@ -87,10 +81,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
             KnownTypes.Add(WeaponType.Warhorn, typeof(WarHornDetails));
         }
 
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -121,7 +111,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
 
             return targetType;
         }
-
-        #endregion
     }
 }

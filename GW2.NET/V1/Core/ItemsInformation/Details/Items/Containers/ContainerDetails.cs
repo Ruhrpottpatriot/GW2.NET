@@ -17,8 +17,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
     [JsonConverter(typeof(ContainerDetailsConverter))]
     public abstract class ContainerDetails : JsonObject
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="ContainerDetails"/> class.</summary>
         /// <param name="containerType">The container type.</param>
         protected ContainerDetails(ContainerType containerType)
@@ -26,16 +24,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
             this.Type = containerType;
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the container's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public ContainerType Type { get; set; }
-
-        #endregion
     }
 }

@@ -18,8 +18,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
     /// </summary>
     public class DynamicEventName : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the event ID.
         /// </summary>
@@ -31,7 +29,5 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
-
-        #endregion
     }
 }

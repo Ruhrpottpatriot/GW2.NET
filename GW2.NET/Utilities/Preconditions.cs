@@ -16,8 +16,6 @@ namespace GW2DotNET.Utilities
     /// </summary>
     public static class Preconditions
     {
-        #region Public Methods and Operators
-
         /// <summary>Ensures that the specified value is equal to the expected value.</summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="expectedValue">The expected value.</param>
@@ -72,7 +70,5 @@ namespace GW2DotNET.Utilities
 
             return value;
         }
-
-        #endregion
     }
 }

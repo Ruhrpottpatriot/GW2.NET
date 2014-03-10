@@ -17,8 +17,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
     [JsonConverter(typeof(GizmoDetailsConverter))]
     public abstract class GizmoDetails : JsonObject
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="GizmoDetails"/> class.</summary>
         /// <param name="gizmoType">The gizmo type.</param>
         protected GizmoDetails(GizmoType gizmoType)
@@ -26,16 +24,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
             this.Type = gizmoType;
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the gizmo's type.
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public GizmoType Type { get; set; }
-
-        #endregion
     }
 }

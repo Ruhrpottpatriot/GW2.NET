@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The dynamic event details test.
+//   The dynamic event details test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,14 +19,16 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
     [TestFixture]
     public class DynamicEventDetailsTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"name\":\"\",\"level\":0,\"map_id\":0,\"flags\":[],\"location\":{}}";
+            this.dynamicEventDetails = JsonConvert.DeserializeObject<DynamicEventDetails>(input);
+        }
 
         /// <summary>The dynamic event details.</summary>
         private DynamicEventDetails dynamicEventDetails;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The dynamic event details_ extension data is empty.</summary>
         [Test]
@@ -80,15 +82,5 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
 
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"name\":\"\",\"level\":0,\"map_id\":0,\"flags\":[],\"location\":{}}";
-            this.dynamicEventDetails = JsonConvert.DeserializeObject<DynamicEventDetails>(input);
-        }
-
-        #endregion
     }
 }

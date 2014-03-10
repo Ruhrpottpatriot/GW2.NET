@@ -21,8 +21,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
     /// </summary>
     public class Subregion : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the dimensions of the map within the continent coordinate system.
         /// </summary>
@@ -90,7 +88,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
         /// </summary>
         [JsonProperty("tasks", Order = 8)]
         public RenownTaskCollection Tasks { get; set; }
-
-        #endregion
     }
 }

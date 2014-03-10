@@ -25,8 +25,6 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class DynamicEventRequest : ServiceRequest
     {
-        #region Fields
-
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private readonly Parameter eventIdParameter;
 
@@ -45,10 +43,6 @@ namespace RestSharp.GW2DotNET.Requests
         /// <summary>The world filter.</summary>
         private int? worldId;
 
-        #endregion
-
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="DynamicEventRequest" /> class.
         /// </summary>
@@ -61,10 +55,6 @@ namespace RestSharp.GW2DotNET.Requests
 
             this.AddParameter(this.eventIdParameter = new Parameter { Name = "event_id", Value = string.Empty, Type = ParameterType.GetOrPost });
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the event filter.
@@ -114,10 +104,6 @@ namespace RestSharp.GW2DotNET.Requests
             }
         }
 
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
@@ -142,7 +128,5 @@ namespace RestSharp.GW2DotNET.Requests
         {
             return this.GetResponseAsync<DynamicEventsResult>(serviceClient, cancellationToken);
         }
-
-        #endregion
     }
 }

@@ -24,8 +24,6 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class WorldNamesRequest : ServiceRequest
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="WorldNamesRequest" /> class.
         /// </summary>
@@ -33,10 +31,6 @@ namespace RestSharp.GW2DotNET.Requests
             : base(Resources.WorldNames)
         {
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -62,7 +56,5 @@ namespace RestSharp.GW2DotNET.Requests
         {
             return this.GetResponseAsync<WorldNameCollection>(serviceClient, cancellationToken);
         }
-
-        #endregion
     }
 }

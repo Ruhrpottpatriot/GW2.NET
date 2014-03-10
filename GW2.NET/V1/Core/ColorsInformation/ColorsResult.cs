@@ -18,17 +18,29 @@ namespace GW2DotNET.V1.Core.ColorsInformation
     /// </summary>
     public class ColorsResult : JsonObject, IEquatable<ColorsResult>
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a collection of colors in the game.
         /// </summary>
         [JsonProperty("colors", Order = 0)]
         public ColorCollection Colors { get; set; }
 
-        #endregion
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(ColorsResult other)
+        {
+            if (object.ReferenceEquals(null, other))
+            {
+                return false;
+            }
 
-        #region Public Methods and Operators
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return object.Equals(this.Colors, other.Colors);
+        }
 
         /// <summary>
         ///     Indicates whether an object is equal to another object of the same type.
@@ -56,24 +68,6 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         public static bool operator !=(ColorsResult left, ColorsResult right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
-        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(ColorsResult other)
-        {
-            if (object.ReferenceEquals(null, other))
-            {
-                return false;
-            }
-
-            if (object.ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            return object.Equals(this.Colors, other.Colors);
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
@@ -110,7 +104,5 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         {
             return this.Colors != null ? this.Colors.GetHashCode() : 0;
         }
-
-        #endregion
     }
 }

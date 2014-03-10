@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The region test.
+//   The region test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -23,15 +23,6 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions
     [TestFixture]
     public class RegionTest
     {
-        #region Fields
-
-        /// <summary>The region.</summary>
-        private Region region;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -39,6 +30,9 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions
             const string input = "{\"name\":\"\",\"label_coord\":[],\"maps\":{}}";
             this.region = JsonConvert.DeserializeObject<Region>(input);
         }
+
+        /// <summary>The region.</summary>
+        private Region region;
 
         /// <summary>The region_ extension data is empty.</summary>
         [Test]
@@ -81,7 +75,5 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions
 
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

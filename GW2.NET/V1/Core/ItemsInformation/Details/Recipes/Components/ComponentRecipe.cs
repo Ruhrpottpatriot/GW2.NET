@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Components
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ComponentRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ComponentRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Components
             : base(RecipeType.Component)
         {
         }
-
-        #endregion
     }
 }

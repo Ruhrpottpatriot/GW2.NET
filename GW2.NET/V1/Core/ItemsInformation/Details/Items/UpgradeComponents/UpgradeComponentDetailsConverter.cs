@@ -29,16 +29,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
     /// </summary>
     public class UpgradeComponentDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<UpgradeComponentType, Type> KnownTypes = new Dictionary<UpgradeComponentType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="UpgradeComponentDetailsConverter" /> class.
@@ -51,10 +45,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
             KnownTypes.Add(UpgradeComponentType.Rune, typeof(RuneUpgradeComponentDetails));
             KnownTypes.Add(UpgradeComponentType.Sigil, typeof(SigilUpgradeComponentDetails));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
@@ -86,7 +76,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
 
             return targetType;
         }
-
-        #endregion
     }
 }

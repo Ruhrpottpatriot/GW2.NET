@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Toys
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ToyDetails : WeaponDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ToyDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Toys
             : base(WeaponType.Toy)
         {
         }
-
-        #endregion
     }
 }

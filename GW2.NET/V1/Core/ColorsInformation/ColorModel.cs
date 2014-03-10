@@ -21,8 +21,6 @@ namespace GW2DotNET.V1.Core.ColorsInformation
     /// </summary>
     public class ColorModel : JsonObject, IEquatable<ColorModel>
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the brightness.
         /// </summary>
@@ -60,9 +58,24 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         [JsonProperty("saturation", Order = 3)]
         public double Saturation { get; set; }
 
-        #endregion
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(ColorModel other)
+        {
+            if (object.ReferenceEquals(null, other))
+            {
+                return false;
+            }
 
-        #region Public Methods and Operators
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return this.Brightness == other.Brightness && this.Contrast.Equals(other.Contrast) && this.Hue == other.Hue
+                   && this.Lightness.Equals(other.Lightness) && this.Rgb.Equals(other.Rgb) && this.Saturation.Equals(other.Saturation);
+        }
 
         /// <summary>
         ///     Indicates whether an object is equal to another object of the same type.
@@ -90,25 +103,6 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         public static bool operator !=(ColorModel left, ColorModel right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
-        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(ColorModel other)
-        {
-            if (object.ReferenceEquals(null, other))
-            {
-                return false;
-            }
-
-            if (object.ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            return this.Brightness == other.Brightness && this.Contrast.Equals(other.Contrast) && this.Hue == other.Hue
-                   && this.Lightness.Equals(other.Lightness) && this.Rgb.Equals(other.Rgb) && this.Saturation.Equals(other.Saturation);
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
@@ -154,7 +148,5 @@ namespace GW2DotNET.V1.Core.ColorsInformation
                 return hashCode;
             }
         }
-
-        #endregion
     }
 }

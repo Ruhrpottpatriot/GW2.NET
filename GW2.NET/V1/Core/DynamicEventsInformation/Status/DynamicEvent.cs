@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
     /// </summary>
     public class DynamicEvent : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the <see cref="Guid" /> identifying the event.
         /// </summary>
@@ -45,7 +43,5 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
         /// </summary>
         [JsonProperty("world_id", Order = 0)]
         public int WorldId { get; set; }
-
-        #endregion
     }
 }

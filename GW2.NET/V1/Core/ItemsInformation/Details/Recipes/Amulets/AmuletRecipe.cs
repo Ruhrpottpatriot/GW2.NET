@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Amulets
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class AmuletRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="AmuletRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Amulets
             : base(RecipeType.Amulet)
         {
         }
-
-        #endregion
     }
 }

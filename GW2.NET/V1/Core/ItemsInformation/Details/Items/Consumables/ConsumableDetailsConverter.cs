@@ -35,16 +35,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
     /// </summary>
     public class ConsumableDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<ConsumableType, Type> KnownTypes = new Dictionary<ConsumableType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="ConsumableDetailsConverter" /> class.
@@ -63,10 +57,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
             KnownTypes.Add(ConsumableType.Unlock, typeof(UnlockConsumableDetails));
             KnownTypes.Add(ConsumableType.Utility, typeof(UtilityConsumableDetails));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
@@ -98,7 +88,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
 
             return targetType;
         }
-
-        #endregion
     }
 }

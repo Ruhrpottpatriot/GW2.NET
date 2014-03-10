@@ -24,16 +24,10 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
     /// </summary>
     public class LocationConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<LocationType, Type> KnownTypes = new Dictionary<LocationType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="LocationConverter" /> class.
@@ -45,10 +39,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
             KnownTypes.Add(LocationType.Cylinder, typeof(CylinderLocation));
             KnownTypes.Add(LocationType.Polygon, typeof(PolygonLocation));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
@@ -80,7 +70,5 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 
             return targetType;
         }
-
-        #endregion
     }
 }

@@ -18,8 +18,6 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
     /// </summary>
     public class Guild : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets detailed information about the guild's emblem, if any.
         /// </summary>
@@ -43,7 +41,5 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
         /// </summary>
         [JsonProperty("tag", Order = 2)]
         public string Tag { get; set; }
-
-        #endregion
     }
 }

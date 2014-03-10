@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.RentableContra
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class RentableContractNpcDetails : GizmoDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="RentableContractNpcDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.RentableContra
             : base(GizmoType.RentableContractNpc)
         {
         }
-
-        #endregion
     }
 }

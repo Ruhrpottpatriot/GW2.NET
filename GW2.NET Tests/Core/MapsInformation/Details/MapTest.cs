@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The map test.
+//   The map test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -22,15 +22,6 @@ namespace GW2DotNET.Core.MapsInformation.Details
     [TestFixture]
     public class MapTest
     {
-        #region Fields
-
-        /// <summary>The map.</summary>
-        private Map map;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -39,6 +30,9 @@ namespace GW2DotNET.Core.MapsInformation.Details
                 "{\"map_name\":\"\",\"min_level\":0,\"max_level\":0,\"default_floor\":0,\"floors\":[],\"region_id\":0,\"region_name\":\"\",\"continent_id\":0,\"continent_name\":\"\",\"map_rect\":[[],[]],\"continent_rect\":[[],[]]}";
             this.map = JsonConvert.DeserializeObject<Map>(input);
         }
+
+        /// <summary>The map.</summary>
+        private Map map;
 
         /// <summary>The map_ continent id reflects input.</summary>
         [Test]
@@ -169,7 +163,5 @@ namespace GW2DotNET.Core.MapsInformation.Details
 
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

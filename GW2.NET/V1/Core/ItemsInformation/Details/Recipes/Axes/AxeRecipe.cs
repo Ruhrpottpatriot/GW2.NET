@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Axes
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class AxeRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="AxeRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Axes
             : base(RecipeType.Axe)
         {
         }
-
-        #endregion
     }
 }

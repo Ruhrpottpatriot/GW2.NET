@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Gloves
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GlovesDetails : ArmorDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="GlovesDetails" /> class
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Gloves
             : base(ArmorType.Gloves)
         {
         }
-
-        #endregion
     }
 }

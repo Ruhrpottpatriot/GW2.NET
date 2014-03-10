@@ -24,17 +24,11 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class ItemDetailsRequest : ServiceRequest
     {
-        #region Fields
-
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private readonly Parameter itemIdParameter;
 
         /// <summary>The item ID.</summary>
         private int itemId;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="ItemDetailsRequest"/> class.</summary>
         public ItemDetailsRequest()
@@ -42,10 +36,6 @@ namespace RestSharp.GW2DotNET.Requests
         {
             this.AddParameter(this.itemIdParameter = new Parameter { Name = "item_id", Value = default(int), Type = ParameterType.GetOrPost });
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>Gets or sets the item ID.</summary>
         public int ItemId
@@ -60,10 +50,6 @@ namespace RestSharp.GW2DotNET.Requests
                 this.itemIdParameter.Value = this.itemId = value;
             }
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -89,7 +75,5 @@ namespace RestSharp.GW2DotNET.Requests
         {
             return this.GetResponseAsync<Item>(serviceClient, cancellationToken);
         }
-
-        #endregion
     }
 }

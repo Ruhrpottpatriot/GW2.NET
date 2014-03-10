@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
     /// </summary>
     public class DynamicEventNameCollection : JsonList<DynamicEventName>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="DynamicEventNameCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
             : base(capacity)
         {
         }
-
-        #endregion
     }
 }

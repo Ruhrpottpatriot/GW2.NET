@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
     /// </summary>
     public class ItemBuff : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the buff's description.
         /// </summary>
@@ -29,7 +27,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
         /// </summary>
         [JsonProperty("skill_id", Order = 0)]
         public string SkillId { get; set; }
-
-        #endregion
     }
 }

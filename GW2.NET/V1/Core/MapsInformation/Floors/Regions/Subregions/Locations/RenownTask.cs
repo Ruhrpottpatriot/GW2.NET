@@ -20,8 +20,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
     /// </summary>
     public class RenownTask : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the task's coordinates.
         /// </summary>
@@ -46,7 +44,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         /// </summary>
         [JsonProperty("task_id", Order = 0)]
         public int TaskId { get; set; }
-
-        #endregion
     }
 }

@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Scepters
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ScepterRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ScepterRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Scepters
             : base(RecipeType.Scepter)
         {
         }
-
-        #endregion
     }
 }

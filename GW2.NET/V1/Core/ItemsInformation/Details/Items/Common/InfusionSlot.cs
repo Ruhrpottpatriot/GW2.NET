@@ -18,8 +18,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
     /// </summary>
     public class InfusionSlot : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the infusion slot's type(s).
         /// </summary>
@@ -32,7 +30,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
         [JsonProperty("item", Order = 1, NullValueHandling = NullValueHandling.Ignore)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Item { get; set; }
-
-        #endregion
     }
 }

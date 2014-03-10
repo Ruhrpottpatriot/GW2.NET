@@ -15,8 +15,6 @@ namespace GW2DotNET
     /// <summary>Contains static methods to get the chat link for a specific in-game object.</summary>
     public static class ChatLinks
     {
-        #region Public Methods and Operators
-
         /// <summary>Converts a amount of money in a chat link.</summary>
         /// <param name="valueInCopper">The value of the money.</param>
         /// <returns>A chat link usable in-game.</returns>
@@ -133,8 +131,6 @@ namespace GW2DotNET
 
             return string.Format("[&{0}]", base64String);
         }
-
-        #endregion
 
         /* static public string DecodeFrom64(string encodedData)
         {

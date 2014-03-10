@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The asset test.
+//   The asset test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,14 +19,16 @@ namespace GW2DotNET.Core.FilesInformation
     [TestFixture]
     public class AssetTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"file_id\":0,\"signature\":\"\"}";
+            this.asset = JsonConvert.DeserializeObject<Asset>(input);
+        }
 
         /// <summary>The asset.</summary>
         private Asset asset;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The asset_ extension data is empty.</summary>
         [Test]
@@ -58,15 +60,5 @@ namespace GW2DotNET.Core.FilesInformation
 
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"file_id\":0,\"signature\":\"\"}";
-            this.asset = JsonConvert.DeserializeObject<Asset>(input);
-        }
-
-        #endregion
     }
 }

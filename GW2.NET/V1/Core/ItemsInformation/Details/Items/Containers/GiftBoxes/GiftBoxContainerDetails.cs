@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers.GiftBoxes
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GiftBoxContainerDetails : ContainerDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="GiftBoxContainerDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers.GiftBoxes
             : base(ContainerType.GiftBox)
         {
         }
-
-        #endregion
     }
 }

@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Hammers
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class HammerDetails : WeaponDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="HammerDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Hammers
             : base(WeaponType.Hammer)
         {
         }
-
-        #endregion
     }
 }

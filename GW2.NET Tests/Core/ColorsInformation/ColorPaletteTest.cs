@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The color palette test.
+//   The color palette test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,14 +21,16 @@ namespace GW2DotNET.Core.ColorsInformation
     [TestFixture]
     public class ColorPaletteTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
+            this.color = JsonConvert.DeserializeObject<ColorPalette>(input);
+        }
 
         /// <summary>The color.</summary>
         private ColorPalette color;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The color palette_ base rgb reflects input.</summary>
         [Test]
@@ -93,15 +95,5 @@ namespace GW2DotNET.Core.ColorsInformation
 
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
-            this.color = JsonConvert.DeserializeObject<ColorPalette>(input);
-        }
-
-        #endregion
     }
 }

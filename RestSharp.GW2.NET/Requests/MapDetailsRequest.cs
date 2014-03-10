@@ -24,17 +24,11 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class MapDetailsRequest : ServiceRequest
     {
-        #region Fields
-
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private readonly Parameter mapIdParameter;
 
         /// <summary>The map filter.</summary>
         private int? mapId;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="MapDetailsRequest" /> class.
@@ -44,10 +38,6 @@ namespace RestSharp.GW2DotNET.Requests
         {
             this.AddParameter(this.mapIdParameter = new Parameter { Name = "map_id", Value = string.Empty, Type = ParameterType.GetOrPost });
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         /// Gets or sets the map filter.
@@ -64,10 +54,6 @@ namespace RestSharp.GW2DotNET.Requests
                 this.mapIdParameter.Value = (this.mapId = value).ToString();
             }
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -93,7 +79,5 @@ namespace RestSharp.GW2DotNET.Requests
         {
             return this.GetResponseAsync<MapsResult>(serviceClient, cancellationToken);
         }
-
-        #endregion
     }
 }

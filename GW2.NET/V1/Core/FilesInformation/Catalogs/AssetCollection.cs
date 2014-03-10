@@ -17,8 +17,6 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
     /// </summary>
     public class AssetCollection : JsonDictionary<string, Asset>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="AssetCollection" /> class.
         /// </summary>
@@ -40,10 +38,6 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
         {
         }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>Sets each value's name property to its corresponding key.</summary>
         /// <param name="context">The streaming context.</param>
         [OnDeserialized]
@@ -54,7 +48,5 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
                 kvp.Value.FileName = kvp.Key;
             }
         }
-
-        #endregion
     }
 }

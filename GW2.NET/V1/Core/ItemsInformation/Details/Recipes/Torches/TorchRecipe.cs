@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Torches
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class TorchRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="TorchRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Torches
             : base(RecipeType.Torch)
         {
         }
-
-        #endregion
     }
 }

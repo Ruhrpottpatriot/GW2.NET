@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
     /// </summary>
     public class CraftingIngredientCollection : JsonList<CraftingIngredient>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="CraftingIngredientCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
             : base(collection)
         {
         }
-
-        #endregion
     }
 }

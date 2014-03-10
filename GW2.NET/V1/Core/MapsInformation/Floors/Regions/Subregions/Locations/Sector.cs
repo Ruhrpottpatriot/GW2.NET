@@ -20,8 +20,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
     /// </summary>
     public class Sector : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the sector's coordinates, which is (usually) the center position.
         /// </summary>
@@ -46,7 +44,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         /// </summary>
         [JsonProperty("sector_id", Order = 0)]
         public int SectorId { get; set; }
-
-        #endregion
     }
 }

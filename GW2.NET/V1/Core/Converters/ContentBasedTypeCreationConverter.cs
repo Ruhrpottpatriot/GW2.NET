@@ -23,8 +23,6 @@ namespace GW2DotNET.V1.Core.Converters
     /// </summary>
     public abstract class ContentBasedTypeCreationConverter : JsonConverter
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets a value indicating whether this <see cref="JsonConverter" /> can write JSON.
         /// </summary>
@@ -36,10 +34,6 @@ namespace GW2DotNET.V1.Core.Converters
                 return false;
             }
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Gets the object type that will be used by the serializer.</summary>
         /// <param name="objectType">The type of the object.</param>
@@ -75,7 +69,5 @@ namespace GW2DotNET.V1.Core.Converters
         {
             throw new NotSupportedException();
         }
-
-        #endregion
     }
 }

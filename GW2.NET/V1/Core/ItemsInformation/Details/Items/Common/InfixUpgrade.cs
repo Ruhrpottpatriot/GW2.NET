@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
     /// </summary>
     public class InfixUpgrade : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the item's attributes.
         /// </summary>
@@ -29,7 +27,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
         /// </summary>
         [JsonProperty("buff", Order = 0, NullValueHandling = NullValueHandling.Ignore)]
         public ItemBuff Buff { get; set; }
-
-        #endregion
     }
 }

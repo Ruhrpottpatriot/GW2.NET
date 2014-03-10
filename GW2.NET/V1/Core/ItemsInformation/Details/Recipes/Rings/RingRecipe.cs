@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Rings
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class RingRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="RingRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Rings
             : base(RecipeType.Ring)
         {
         }
-
-        #endregion
     }
 }

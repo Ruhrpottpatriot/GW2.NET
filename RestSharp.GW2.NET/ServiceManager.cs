@@ -57,17 +57,11 @@ namespace RestSharp.GW2DotNET
     /// </summary>
     public class ServiceManager : IServiceManager
     {
-        #region Fields
-
         /// <summary>Infrastructure. Stores the service client.</summary>
         private readonly IServiceClient serviceClient;
 
         /// <summary>Infrastructure. Stores the preferred language info.</summary>
         private CultureInfo preferredLanguageInfo;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="ServiceManager" /> class.
@@ -102,10 +96,6 @@ namespace RestSharp.GW2DotNET
             this.preferredLanguageInfo = preferredLanguageInfo;
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the preferred language.
         /// </summary>
@@ -121,10 +111,6 @@ namespace RestSharp.GW2DotNET
                 this.preferredLanguageInfo = value;
             }
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>
         ///     Gets the current game build.
@@ -995,10 +981,6 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>Sends a request and gets the response content.</summary>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="request">The request.</param>
@@ -1023,14 +1005,14 @@ namespace RestSharp.GW2DotNET
             Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(this.serviceClient, token);
             Task<TResult> t2 = t1.ContinueWith(
                 task =>
-                    {
-                        IServiceResponse<TResult> response = task.Result;
-                        TResult content = response.EnsureSuccessStatusCode().Deserialize();
+                {
+                    IServiceResponse<TResult> response = task.Result;
+                    TResult content = response.EnsureSuccessStatusCode().Deserialize();
 
-                        return content;
-                    }, 
-                token, 
-                TaskContinuationOptions.OnlyOnRanToCompletion, 
+                    return content;
+                },
+                token,
+                TaskContinuationOptions.OnlyOnRanToCompletion,
                 TaskScheduler.Current);
 
             return t2;
@@ -1043,11 +1025,10 @@ namespace RestSharp.GW2DotNET
         /// <param name="selector">The selector.</param>
         /// <returns>The selected result.</returns>
         private Task<TResult> Select<TContent, TResult>(Task<TContent> result, Func<TContent, TResult> selector)
-            where TContent : global::GW2DotNET.V1.Core.JsonObject where TResult : global::GW2DotNET.V1.Core.JsonObject
+            where TContent : global::GW2DotNET.V1.Core.JsonObject
+            where TResult : global::GW2DotNET.V1.Core.JsonObject
         {
             return result.ContinueWith(task => selector(task.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
         }
-
-        #endregion
     }
 }

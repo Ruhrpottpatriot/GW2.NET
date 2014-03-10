@@ -19,18 +19,12 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
     [JsonConverter(typeof(WeaponDetailsConverter))]
     public abstract class WeaponDetails : EquipmentDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="WeaponDetails"/> class.</summary>
         /// <param name="weaponType">The weapon's type.</param>
         protected WeaponDetails(WeaponType weaponType)
         {
             this.Type = weaponType;
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the weapon's damage type.
@@ -61,7 +55,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public WeaponType Type { get; set; }
-
-        #endregion
     }
 }

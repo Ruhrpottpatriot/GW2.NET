@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Trinket : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="Trinket" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the trinket's details.
         /// </summary>
         [JsonProperty("trinket", Order = 100)]
         public TrinketDetails TrinketDetails { get; set; }
-
-        #endregion
     }
 }

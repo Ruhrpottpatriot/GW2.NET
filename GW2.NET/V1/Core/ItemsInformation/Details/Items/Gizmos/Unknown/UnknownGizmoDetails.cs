@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.Unknown
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownGizmoDetails : GizmoDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="UnknownGizmoDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.Unknown
             : base(GizmoType.Unknown)
         {
         }
-
-        #endregion
     }
 }

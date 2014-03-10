@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Sig
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class SigilUpgradeComponentDetails : UpgradeComponentDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="SigilUpgradeComponentDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Sig
             : base(UpgradeComponentType.Sigil)
         {
         }
-
-        #endregion
     }
 }

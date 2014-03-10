@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The dynamic event flags test.
+//   The dynamic event flags test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,8 +19,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
     [TestFixture]
     public class DynamicEventFlagsTest
     {
-        #region Public Methods and Operators
-
         /// <summary>The dynamic event styles_ group event_ flags reflects input.</summary>
         [Test]
         [Category("event_details.json")]
@@ -68,7 +66,5 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
 
             Assert.AreEqual(expectedFlags, dynamicEventDetails.Flags);
         }
-
-        #endregion
     }
 }

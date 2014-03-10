@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The floor test.
+//   The floor test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -22,14 +22,16 @@ namespace GW2DotNET.Core.MapsInformation.Floors
     [TestFixture]
     public class FloorTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"texture_dims\":[],\"regions\":{}}";
+            this.floor = JsonConvert.DeserializeObject<Floor>(input);
+        }
 
         /// <summary>The floor.</summary>
         private Floor floor;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The floor_ extension data is empty.</summary>
         [Test]
@@ -59,15 +61,5 @@ namespace GW2DotNET.Core.MapsInformation.Floors
             Size actual = this.floor.TextureDimensions;
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"texture_dims\":[],\"regions\":{}}";
-            this.floor = JsonConvert.DeserializeObject<Floor>(input);
-        }
-
-        #endregion
     }
 }

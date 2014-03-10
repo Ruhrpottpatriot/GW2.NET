@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Focuses
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class FocusDetails : WeaponDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="FocusDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Focuses
             : base(WeaponType.Focus)
         {
         }
-
-        #endregion
     }
 }

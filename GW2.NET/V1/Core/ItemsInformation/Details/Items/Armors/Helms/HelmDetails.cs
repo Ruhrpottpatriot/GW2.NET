@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Helms
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class HelmDetails : ArmorDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="HelmDetails" /> class
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Helms
             : base(ArmorType.Helm)
         {
         }
-
-        #endregion
     }
 }

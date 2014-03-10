@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Transmuta
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class TransmutationConsumableDetails : ConsumableDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="TransmutationConsumableDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Transmuta
             : base(ConsumableType.Transmutation)
         {
         }
-
-        #endregion
     }
 }

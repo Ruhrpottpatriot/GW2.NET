@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The item restrictions test.
+//   The item restrictions test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,8 +20,6 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
     [TestFixture]
     public class ItemRestrictionsTest
     {
-        #region Public Methods and Operators
-
         /// <summary>The item restrictions_ asura_ restrictions reflects input.</summary>
         [Test]
         [Category("item_details.json")]
@@ -201,7 +199,5 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
 
             Assert.AreEqual(expectedItemRestrictions, item.Restrictions);
         }
-
-        #endregion
     }
 }

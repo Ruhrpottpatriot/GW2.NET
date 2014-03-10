@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Run
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class RuneUpgradeComponentDetails : UpgradeComponentDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="RuneUpgradeComponentDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Run
             : base(UpgradeComponentType.Rune)
         {
         }
-
-        #endregion
     }
 }

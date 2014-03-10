@@ -24,8 +24,6 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class MapFloorRequest : ServiceRequest
     {
-        #region Fields
-
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private readonly Parameter continentIdParameter;
 
@@ -38,10 +36,6 @@ namespace RestSharp.GW2DotNET.Requests
         /// <summary>The floor.</summary>
         private int floor;
 
-        #endregion
-
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="MapFloorRequest"/> class.</summary>
         public MapFloorRequest()
             : base(Resources.MapFloor)
@@ -49,10 +43,6 @@ namespace RestSharp.GW2DotNET.Requests
             this.AddParameter(this.continentIdParameter = new Parameter { Name = "continent_id", Value = default(int), Type = ParameterType.GetOrPost });
             this.AddParameter(this.floorParameter = new Parameter { Name = "floor", Value = default(int), Type = ParameterType.GetOrPost });
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>Gets or sets the continent ID.</summary>
         public int ContinentId
@@ -82,10 +72,6 @@ namespace RestSharp.GW2DotNET.Requests
             }
         }
 
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
@@ -110,7 +96,5 @@ namespace RestSharp.GW2DotNET.Requests
         {
             return this.GetResponseAsync<Floor>(serviceClient, cancellationToken);
         }
-
-        #endregion
     }
 }

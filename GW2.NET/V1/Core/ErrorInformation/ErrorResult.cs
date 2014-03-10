@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ErrorInformation
     /// </remarks>
     public class ErrorResult : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a number that indicates the error kind.
         /// </summary>
@@ -50,7 +48,5 @@ namespace GW2DotNET.V1.Core.ErrorInformation
         /// </summary>
         [JsonProperty(PropertyName = "text", Order = 4)]
         public string Text { get; set; }
-
-        #endregion
     }
 }

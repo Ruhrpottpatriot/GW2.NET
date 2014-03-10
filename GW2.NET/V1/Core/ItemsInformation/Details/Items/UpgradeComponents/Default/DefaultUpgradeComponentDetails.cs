@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Def
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class DefaultUpgradeComponentDetails : UpgradeComponentDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="DefaultUpgradeComponentDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Def
             : base(UpgradeComponentType.Default)
         {
         }
-
-        #endregion
     }
 }

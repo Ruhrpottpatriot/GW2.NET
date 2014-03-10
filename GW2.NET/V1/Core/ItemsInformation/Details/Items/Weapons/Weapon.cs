@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Weapon : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="Weapon" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the weapon's details.
         /// </summary>
         [JsonProperty("weapon", Order = 100)]
         public WeaponDetails WeaponDetails { get; set; }
-
-        #endregion
     }
 }

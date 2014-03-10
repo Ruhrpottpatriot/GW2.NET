@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Rifles
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class RifleDetails : WeaponDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="RifleDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Rifles
             : base(WeaponType.Rifle)
         {
         }
-
-        #endregion
     }
 }

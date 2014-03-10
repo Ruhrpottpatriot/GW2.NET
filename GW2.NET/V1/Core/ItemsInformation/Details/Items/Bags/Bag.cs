@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Bag : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="Bag" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the bag's details.
         /// </summary>
         [JsonProperty("bag", Order = 100)]
         public BagDetails BagDetails { get; set; }
-
-        #endregion
     }
 }

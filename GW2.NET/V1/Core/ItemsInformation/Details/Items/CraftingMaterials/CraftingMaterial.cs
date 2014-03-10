@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.CraftingMaterials
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class CraftingMaterial : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="CraftingMaterial" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.CraftingMaterials
             : base(ItemType.CraftingMaterial)
         {
         }
-
-        #endregion
     }
 }

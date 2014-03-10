@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Back : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="Back" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the back piece's details.
         /// </summary>
         [JsonProperty("back", Order = 100)]
         public BackDetails BackDetails { get; set; }
-
-        #endregion
     }
 }

@@ -16,14 +16,10 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
     /// </summary>
     public class DynamicEventsResult : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a list of event details.
         /// </summary>
         [JsonProperty("events", Order = 0)]
         public DynamicEventCollection Events { get; set; }
-
-        #endregion
     }
 }

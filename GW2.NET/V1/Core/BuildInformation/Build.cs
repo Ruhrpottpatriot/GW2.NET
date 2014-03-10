@@ -19,14 +19,10 @@ namespace GW2DotNET.V1.Core.BuildInformation
     /// </remarks>
     public class Build : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the current build ID of the game.
         /// </summary>
         [JsonProperty("build_id", Order = 0)]
         public int BuildId { get; set; }
-
-        #endregion
     }
 }

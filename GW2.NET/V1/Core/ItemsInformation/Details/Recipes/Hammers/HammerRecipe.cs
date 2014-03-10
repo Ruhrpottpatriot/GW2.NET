@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Hammers
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class HammerRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="HammerRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Hammers
             : base(RecipeType.Hammer)
         {
         }
-
-        #endregion
     }
 }

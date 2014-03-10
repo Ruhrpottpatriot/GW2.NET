@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Consumable
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ConsumableRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ConsumableRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Consumable
             : base(RecipeType.Consumable)
         {
         }
-
-        #endregion
     }
 }

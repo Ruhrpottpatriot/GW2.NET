@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The color model test.
+//   The color model test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,14 +21,16 @@ namespace GW2DotNET.Core.ColorsInformation
     [TestFixture]
     public class ColorModelTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"brightness\":0,\"contrast\":0,\"hue\":0,\"saturation\":0,\"lightness\":0,\"rgb\":[]}";
+            this.colorModel = JsonConvert.DeserializeObject<ColorModel>(input);
+        }
 
         /// <summary>The color model.</summary>
         private ColorModel colorModel;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The color model_ brightness reflects input.</summary>
         [Test]
@@ -104,15 +106,5 @@ namespace GW2DotNET.Core.ColorsInformation
 
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"brightness\":0,\"contrast\":0,\"hue\":0,\"saturation\":0,\"lightness\":0,\"rgb\":[]}";
-            this.colorModel = JsonConvert.DeserializeObject<ColorModel>(input);
-        }
-
-        #endregion
     }
 }

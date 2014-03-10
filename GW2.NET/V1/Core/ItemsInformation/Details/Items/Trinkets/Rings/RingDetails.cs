@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Rings
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class RingDetails : TrinketDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="RingDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Rings
             : base(TrinketType.Ring)
         {
         }
-
-        #endregion
     }
 }

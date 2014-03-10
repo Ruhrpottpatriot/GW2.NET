@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The subregion test.
+//   The subregion test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -22,15 +22,6 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
     [TestFixture]
     public class SubregionTest
     {
-        #region Fields
-
-        /// <summary>The subregion.</summary>
-        private Subregion subregion;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -39,6 +30,9 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
                 "{\"name\":\"\",\"min_level\":0,\"max_level\":0,\"default_floor\":0,\"map_rect\":[[],[]],\"continent_rect\":[[],[]],\"points_of_interest\":[],\"tasks\":[],\"skill_challenges\":[],\"sectors\":[]}";
             this.subregion = JsonConvert.DeserializeObject<Subregion>(input);
         }
+
+        /// <summary>The subregion.</summary>
+        private Subregion subregion;
 
         /// <summary>The subregion_ continent rectangle reflects input.</summary>
         [Test]
@@ -148,7 +142,5 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
             RenownTaskCollection actual = this.subregion.Tasks;
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

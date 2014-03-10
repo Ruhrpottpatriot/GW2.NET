@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Earrings
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class EarringRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="EarringRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Earrings
             : base(RecipeType.Earring)
         {
         }
-
-        #endregion
     }
 }

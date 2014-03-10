@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The item flags test.
+//   The item flags test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,8 +20,6 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
     [TestFixture]
     public class ItemFlagsTest
     {
-        #region Public Methods and Operators
-
         /// <summary>The item flags_ account bound_ flags reflects input.</summary>
         [Test]
         [Category("item_details.json")]
@@ -165,7 +163,5 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
 
             Assert.AreEqual(expectedItemFlags, item.Flags);
         }
-
-        #endregion
     }
 }

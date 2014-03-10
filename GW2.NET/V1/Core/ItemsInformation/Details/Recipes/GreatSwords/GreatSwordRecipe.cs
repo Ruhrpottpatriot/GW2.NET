@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.GreatSwords
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GreatSwordRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="GreatSwordRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.GreatSwords
             : base(RecipeType.GreatSword)
         {
         }
-
-        #endregion
     }
 }

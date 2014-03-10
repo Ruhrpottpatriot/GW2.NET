@@ -22,8 +22,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
     [JsonArray(ItemConverterType = typeof(JsonPointFConverter))]
     public class PointCollection : JsonList<PointF>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="PointCollection" /> class.
         /// </summary>
@@ -44,7 +42,5 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
             : base(collection)
         {
         }
-
-        #endregion
     }
 }

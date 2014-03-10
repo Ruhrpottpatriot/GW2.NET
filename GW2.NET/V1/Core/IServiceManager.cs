@@ -36,16 +36,10 @@ namespace GW2DotNET.V1.Core
     /// </summary>
     public interface IServiceManager
     {
-        #region Public Properties
-
         /// <summary>
         /// Gets or sets the preferred language.
         /// </summary>
         CultureInfo PreferredLanguageInfo { get; set; }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>
         /// Gets the current game build.
@@ -443,7 +437,5 @@ namespace GW2DotNET.V1.Core
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of worlds and their localized name.</returns>
         Task<WorldNameCollection> GetWorldNamesAsync(CancellationToken? cancellationToken = null);
-
-        #endregion
     }
 }

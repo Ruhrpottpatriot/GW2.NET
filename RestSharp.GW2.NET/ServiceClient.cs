@@ -22,8 +22,6 @@ namespace RestSharp.GW2DotNET
     /// </summary>
     public class ServiceClient : RestClient, IServiceClient
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class using the specified base URL and JSON
         ///     de-serializer.</summary>
         /// <param name="baseUrl">An absolute URI that represents the base URL for all API endpoints.</param>
@@ -34,30 +32,6 @@ namespace RestSharp.GW2DotNET
             {
                 throw new ArgumentException("'baseUrl' cannot be a relative URI.");
             }
-        }
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        ///     Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.
-        /// </summary>
-        /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
-        public static IServiceClient Create()
-        {
-            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, 1)));
-        }
-
-        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient"/> class that targets the specified API
-        ///     version.</summary>
-        /// <param name="version">The target API version.</param>
-        /// <returns>A new instance of the <see cref="ServiceClient"/> class.</returns>
-        public static IServiceClient Create(Version version)
-        {
-            Preconditions.EnsureNotNull(paramName: "version", value: version);
-
-            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, version.Major)));
         }
 
         /// <summary>Sends an <see cref="ServiceRequest"/> and returns an <see cref="ServiceResponse{TContent}"/> whose content can be
@@ -106,9 +80,25 @@ namespace RestSharp.GW2DotNET
             return this.SendAsyncImplementation<TContent>(serviceRequest as IRestRequest, cancellationToken);
         }
 
-        #endregion
+        /// <summary>
+        ///     Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.
+        /// </summary>
+        /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
+        public static IServiceClient Create()
+        {
+            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, 1)));
+        }
 
-        #region Methods
+        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient"/> class that targets the specified API
+        ///     version.</summary>
+        /// <param name="version">The target API version.</param>
+        /// <returns>A new instance of the <see cref="ServiceClient"/> class.</returns>
+        public static IServiceClient Create(Version version)
+        {
+            Preconditions.EnsureNotNull(paramName: "version", value: version);
+
+            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, version.Major)));
+        }
 
         /// <summary>Infrastructure. Implementation details for 'SendAsync'.</summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
@@ -121,9 +111,9 @@ namespace RestSharp.GW2DotNET
             Task<IRestResponse> t1 = this.ExecuteTaskAsync(restRequest, cancellationToken);
 
             Task<IServiceResponse<TContent>> t2 = t1.ContinueWith<IServiceResponse<TContent>>(
-                task => new ServiceResponse<TContent>(task.Result), 
-                cancellationToken, 
-                TaskContinuationOptions.OnlyOnRanToCompletion, 
+                task => new ServiceResponse<TContent>(task.Result),
+                cancellationToken,
+                TaskContinuationOptions.OnlyOnRanToCompletion,
                 TaskScheduler.Current);
 
             return t2;
@@ -139,7 +129,5 @@ namespace RestSharp.GW2DotNET
 
             return new ServiceResponse<TContent>(restResponse);
         }
-
-        #endregion
     }
 }

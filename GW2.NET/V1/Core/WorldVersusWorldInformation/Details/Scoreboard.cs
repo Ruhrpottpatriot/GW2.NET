@@ -17,8 +17,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
     [JsonConverter(typeof(ScoreboardConverter))]
     public class Scoreboard : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the blue team's score.
         /// </summary>
@@ -33,7 +31,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         ///     Gets or sets the red team's score.
         /// </summary>
         public int Red { get; set; }
-
-        #endregion
     }
 }

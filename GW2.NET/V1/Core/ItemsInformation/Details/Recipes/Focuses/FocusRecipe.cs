@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Focuses
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class FocusRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="FocusRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Focuses
             : base(RecipeType.Focus)
         {
         }
-
-        #endregion
     }
 }

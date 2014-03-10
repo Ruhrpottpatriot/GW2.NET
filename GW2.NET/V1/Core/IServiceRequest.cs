@@ -17,8 +17,6 @@ namespace GW2DotNET.V1.Core
     /// </summary>
     public interface IServiceRequest
     {
-        #region Public Methods and Operators
-
         /// <summary>Sends the current request and returns a response.</summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="serviceClient">The service client.</param>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core
         /// <returns>The response.</returns>
         Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient, CancellationToken cancellationToken)
             where TContent : JsonObject;
-
-        #endregion
     }
 }

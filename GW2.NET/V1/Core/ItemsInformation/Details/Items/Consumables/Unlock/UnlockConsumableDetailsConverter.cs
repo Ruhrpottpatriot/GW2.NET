@@ -29,16 +29,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
     /// </summary>
     public class UnlockConsumableDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of in-game unlock item types and their corresponding .NET class.
         /// </summary>
         private static readonly IDictionary<UnlockType, Type> KnownTypes = new Dictionary<UnlockType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="UnlockConsumableDetailsConverter" /> class.
@@ -51,10 +45,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
             KnownTypes.Add(UnlockType.CraftingRecipe, typeof(CraftingRecipeUnlockConsumableDetails));
             KnownTypes.Add(UnlockType.Dye, typeof(DyeUnlockConsumableDetails));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
@@ -86,7 +76,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
 
             return targetType;
         }
-
-        #endregion
     }
 }

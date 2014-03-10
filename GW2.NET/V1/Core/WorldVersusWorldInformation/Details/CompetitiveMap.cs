@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
     /// </summary>
     public class CompetitiveMap : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the map's bonuses.
         /// </summary>
@@ -41,7 +39,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public CompetitiveMapType Type { get; set; }
-
-        #endregion
     }
 }

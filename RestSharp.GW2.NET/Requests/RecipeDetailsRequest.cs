@@ -24,17 +24,11 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class RecipeDetailsRequest : ServiceRequest
     {
-        #region Fields
-
         /// <summary>Infrastructure. Stores the recipe ID parameter.</summary>
         private readonly Parameter recipeIdParameter;
 
         /// <summary>Infrastructure. Stores the recipe ID.</summary>
         private int recipeId;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="RecipeDetailsRequest"/> class.</summary>
         public RecipeDetailsRequest()
@@ -42,10 +36,6 @@ namespace RestSharp.GW2DotNET.Requests
         {
             this.AddParameter(this.recipeIdParameter = new Parameter { Name = "recipe_id", Value = default(int), Type = ParameterType.GetOrPost });
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>Gets or sets the recipe ID.</summary>
         public int RecipeId
@@ -60,10 +50,6 @@ namespace RestSharp.GW2DotNET.Requests
                 this.recipeIdParameter.Value = this.recipeId = value;
             }
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -89,7 +75,5 @@ namespace RestSharp.GW2DotNET.Requests
         {
             return this.GetResponseAsync<Recipe>(serviceClient, cancellationToken);
         }
-
-        #endregion
     }
 }

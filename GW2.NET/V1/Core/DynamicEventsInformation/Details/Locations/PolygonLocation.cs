@@ -21,8 +21,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class PolygonLocation : Location
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="PolygonLocation" /> class.
         /// </summary>
@@ -30,10 +28,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
             : base(LocationType.Polygon)
         {
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the series of points in the polygon.
@@ -47,7 +41,5 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         [JsonProperty("z_range", Order = 4)]
         [JsonConverter(typeof(JsonPointConverter))]
         public Point ZRange { get; set; }
-
-        #endregion
     }
 }

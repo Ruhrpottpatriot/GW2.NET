@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Logging
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class LoggingToolDetails : GatheringToolDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="LoggingToolDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Logging
             : base(GatheringToolType.Logging)
         {
         }
-
-        #endregion
     }
 }

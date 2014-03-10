@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.UnlimitedConsu
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnlimitedConsumableDetails : GizmoDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="UnlimitedConsumableDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.UnlimitedConsu
             : base(GizmoType.UnlimitedConsumable)
         {
         }
-
-        #endregion
     }
 }

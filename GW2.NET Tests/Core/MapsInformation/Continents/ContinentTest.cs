@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The continent test.
+//   The continent test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -22,14 +22,16 @@ namespace GW2DotNET.Core.MapsInformation.Continents
     [TestFixture]
     public class ContinentTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"name\":\"\",\"continent_dims\":[],\"min_zoom\":0,\"max_zoom\":0,\"floors\":[]}";
+            this.continent = JsonConvert.DeserializeObject<Continent>(input);
+        }
 
         /// <summary>The continent.</summary>
         private Continent continent;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The continent test_ continent dimensions reflects input.</summary>
         [Test]
@@ -94,15 +96,5 @@ namespace GW2DotNET.Core.MapsInformation.Continents
 
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"name\":\"\",\"continent_dims\":[],\"min_zoom\":0,\"max_zoom\":0,\"floors\":[]}";
-            this.continent = JsonConvert.DeserializeObject<Continent>(input);
-        }
-
-        #endregion
     }
 }

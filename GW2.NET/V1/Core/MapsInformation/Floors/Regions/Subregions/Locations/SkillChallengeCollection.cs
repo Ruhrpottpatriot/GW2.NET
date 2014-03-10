@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
     /// </summary>
     public class SkillChallengeCollection : JsonList<SkillChallenge>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="SkillChallengeCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
             : base(collection)
         {
         }
-
-        #endregion
     }
 }

@@ -18,14 +18,8 @@ namespace GW2DotNET.V1.Core
     [Serializable]
     public abstract class JsonList<T> : JsonObject, IList<T>
     {
-        #region Fields
-
         /// <summary>Infrastructure. This class acts as a proxy for the list stored in this field.</summary>
         private readonly IList<T> innerList;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="JsonList{T}" /> class.
@@ -49,10 +43,6 @@ namespace GW2DotNET.V1.Core
             this.innerList = new List<T>(collection);
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets the number of elements contained in the <see cref="System.Collections.Generic.ICollection{T}" />.
         /// </summary>
@@ -75,10 +65,6 @@ namespace GW2DotNET.V1.Core
             }
         }
 
-        #endregion
-
-        #region Public Indexers
-
         /// <summary>Gets or sets the element at the specified index.</summary>
         /// <param name="index">The zero-based index of the element to get or set.</param>
         /// <returns>The element at the specified index.</returns>
@@ -95,25 +81,11 @@ namespace GW2DotNET.V1.Core
             }
         }
 
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>Adds an item to the <see cref="System.Collections.Generic.ICollection{T}"/>.</summary>
         /// <param name="item">The object to add to the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
         public virtual void Add(T item)
         {
             this.innerList.Add(item);
-        }
-
-        /// <summary>Adds the elements of the specified collection to the end of the <see cref="JsonList{T}"/>.</summary>
-        /// <param name="collection">The collection whose elements should be added to the end of the <see cref="JsonList{T}"/>.
-        ///     The collection itself cannot be null, but it can contain elements that are null, if type <typeparamref name="T"/>
-        ///     is a reference type.</param>
-        /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
-        public virtual void AddRange(IEnumerable<T> collection)
-        {
-            ((List<T>)this.innerList).AddRange(collection);
         }
 
         /// <summary>
@@ -182,10 +154,6 @@ namespace GW2DotNET.V1.Core
             this.innerList.RemoveAt(index);
         }
 
-        #endregion
-
-        #region Explicit Interface Methods
-
         /// <summary>
         ///     Returns an enumerator that iterates through a collection.
         /// </summary>
@@ -195,6 +163,14 @@ namespace GW2DotNET.V1.Core
             return ((IEnumerable)this.innerList).GetEnumerator();
         }
 
-        #endregion
+        /// <summary>Adds the elements of the specified collection to the end of the <see cref="JsonList{T}"/>.</summary>
+        /// <param name="collection">The collection whose elements should be added to the end of the <see cref="JsonList{T}"/>.
+        ///     The collection itself cannot be null, but it can contain elements that are null, if type <typeparamref name="T"/>
+        ///     is a reference type.</param>
+        /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
+        public virtual void AddRange(IEnumerable<T> collection)
+        {
+            ((List<T>)this.innerList).AddRange(collection);
+        }
     }
 }

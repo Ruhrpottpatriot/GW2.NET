@@ -21,8 +21,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class FoodConsumableDetails : ConsumableDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="FoodConsumableDetails" /> class.
         /// </summary>
@@ -30,10 +28,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
             : base(ConsumableType.Food)
         {
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the food's effect description.
@@ -47,7 +41,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
         [JsonProperty("duration_ms", Order = 100, NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(JsonTimespanConverter))]
         public TimeSpan? Duration { get; set; }
-
-        #endregion
     }
 }

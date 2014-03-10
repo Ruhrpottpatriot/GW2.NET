@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The renown task test.
+//   The renown task test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,15 +21,6 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
     [TestFixture]
     public class RenownTaskTest
     {
-        #region Fields
-
-        /// <summary>The renown task.</summary>
-        private RenownTask renownTask;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -37,6 +28,9 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             const string input = "{\"task_id\":0,\"objective\":\"\",\"level\":0,\"coord\":[]}";
             this.renownTask = JsonConvert.DeserializeObject<RenownTask>(input);
         }
+
+        /// <summary>The renown task.</summary>
+        private RenownTask renownTask;
 
         /// <summary>The renown task_ coordinates reflects input.</summary>
         [Test]
@@ -86,7 +80,5 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             int actual = this.renownTask.TaskId;
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

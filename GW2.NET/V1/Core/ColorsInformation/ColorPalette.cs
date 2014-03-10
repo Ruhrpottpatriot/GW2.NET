@@ -21,8 +21,6 @@ namespace GW2DotNET.V1.Core.ColorsInformation
     /// </summary>
     public class ColorPalette : JsonObject, IEquatable<ColorPalette>, IComparable<ColorPalette>
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the base RGB values.
         /// </summary>
@@ -60,38 +58,6 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
 
-        #endregion
-
-        #region Public Methods and Operators
-
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
-        /// <param name="left">The object on the left side.</param>
-        /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
-        public static bool operator ==(ColorPalette left, ColorPalette right)
-        {
-            return object.Equals(left, right);
-        }
-
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
-        /// <param name="left">The object on the left side.</param>
-        /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
-        public static bool operator !=(ColorPalette left, ColorPalette right)
-        {
-            return !object.Equals(left, right);
-        }
-
         /// <summary>Compares the current object with another object of the same type.</summary>
         /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following
         ///     meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This
@@ -124,6 +90,34 @@ namespace GW2DotNET.V1.Core.ColorsInformation
 
             return this.BaseRgb.Equals(other.BaseRgb) && object.Equals(this.Cloth, other.Cloth) && this.ColorId == other.ColorId
                    && object.Equals(this.Leather, other.Leather) && object.Equals(this.Metal, other.Metal) && string.Equals(this.Name, other.Name);
+        }
+
+        /// <summary>
+        ///     Indicates whether an object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="left">The object on the left side.</param>
+        /// <param name="right">The object on the right side.</param>
+        /// <returns>
+        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
+        ///     false.
+        /// </returns>
+        public static bool operator ==(ColorPalette left, ColorPalette right)
+        {
+            return object.Equals(left, right);
+        }
+
+        /// <summary>
+        ///     Indicates whether an object differs from another object of the same type.
+        /// </summary>
+        /// <param name="left">The object on the left side.</param>
+        /// <param name="right">The object on the right side.</param>
+        /// <returns>
+        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
+        ///     otherwise, false.
+        /// </returns>
+        public static bool operator !=(ColorPalette left, ColorPalette right)
+        {
+            return !object.Equals(left, right);
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
@@ -169,7 +163,5 @@ namespace GW2DotNET.V1.Core.ColorsInformation
                 return hashCode;
             }
         }
-
-        #endregion
     }
 }

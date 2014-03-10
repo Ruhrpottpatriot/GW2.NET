@@ -18,8 +18,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
     /// </summary>
     public class ScoreboardConverter : JsonConverter
     {
-        #region Public Methods and Operators
-
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -60,7 +58,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 
             writer.WriteEndArray();
         }
-
-        #endregion
     }
 }

@@ -23,8 +23,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
     /// </summary>
     public class Map : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the ID of the continent this map belongs to.
         /// </summary>
@@ -98,7 +96,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
         /// </summary>
         [JsonProperty("region_name", Order = 7)]
         public string RegionName { get; set; }
-
-        #endregion
     }
 }

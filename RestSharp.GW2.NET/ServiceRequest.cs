@@ -23,17 +23,11 @@ namespace RestSharp.GW2DotNET
     /// </summary>
     public abstract class ServiceRequest : RestRequest, IServiceRequest
     {
-        #region Fields
-
         /// <summary>TODO The preferred language parameter.</summary>
         private readonly Parameter preferredLanguageParameter;
 
         /// <summary>TODO The preferred language info.</summary>
         private CultureInfo preferredLanguageInfo;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="ServiceRequest"/> class.</summary>
         /// <param name="resource">The service endpoint.</param>
@@ -54,10 +48,6 @@ namespace RestSharp.GW2DotNET
             }
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the preferred language info.
         /// </summary>
@@ -72,12 +62,9 @@ namespace RestSharp.GW2DotNET
             {
                 this.preferredLanguageParameter.Value = ((this.preferredLanguageInfo = value) == null) ? string.Empty : value.TwoLetterISOLanguageName;
             }
- // don't worry about the weird syntax. All it does is synchronize values.
+
+            // don't worry about the weird syntax. All it does is synchronize values.
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Sends the current request and returns a response.</summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
@@ -108,7 +95,5 @@ namespace RestSharp.GW2DotNET
         {
             return serviceClient.SendAsync<TContent>(this, cancellationToken);
         }
-
-        #endregion
     }
 }

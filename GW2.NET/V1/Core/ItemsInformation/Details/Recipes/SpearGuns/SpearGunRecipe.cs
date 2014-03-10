@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.SpearGuns
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class SpearGunRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="SpearGunRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.SpearGuns
             : base(RecipeType.SpearGun)
         {
         }
-
-        #endregion
     }
 }

@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
     /// </summary>
     public class InfusionSlotCollection : JsonList<InfusionSlot>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="InfusionSlotCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
             : base(collection)
         {
         }
-
-        #endregion
     }
 }

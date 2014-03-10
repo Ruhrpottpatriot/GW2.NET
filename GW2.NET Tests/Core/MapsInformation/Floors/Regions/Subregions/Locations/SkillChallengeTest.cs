@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The skill challenge test.
+//   The skill challenge test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,15 +21,6 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
     [TestFixture]
     public class SkillChallengeTest
     {
-        #region Fields
-
-        /// <summary>The skill challenge.</summary>
-        private SkillChallenge skillChallenge;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -37,6 +28,9 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             const string input = "{\"coord\":[]}";
             this.skillChallenge = JsonConvert.DeserializeObject<SkillChallenge>(input);
         }
+
+        /// <summary>The skill challenge.</summary>
+        private SkillChallenge skillChallenge;
 
         /// <summary>The skill challenge_ coordinates reflects input.</summary>
         [Test]
@@ -56,7 +50,5 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
         {
             Assert.IsEmpty(this.skillChallenge.ExtensionData);
         }
-
-        #endregion
     }
 }

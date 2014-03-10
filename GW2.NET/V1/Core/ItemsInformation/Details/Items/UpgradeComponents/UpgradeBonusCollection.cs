@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
     /// </summary>
     public class UpgradeBonusCollection : JsonList<string>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="UpgradeBonusCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
             : base(collection)
         {
         }
-
-        #endregion
     }
 }

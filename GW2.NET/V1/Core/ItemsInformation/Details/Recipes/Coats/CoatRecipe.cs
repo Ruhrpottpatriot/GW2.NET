@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Coats
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class CoatRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="CoatRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Coats
             : base(RecipeType.Coat)
         {
         }
-
-        #endregion
     }
 }

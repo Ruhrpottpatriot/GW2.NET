@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
     /// </summary>
     public class Emblem : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the background color ID.
         /// </summary>
@@ -53,7 +51,5 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
         /// </summary>
         [JsonProperty("foreground_secondary_color_id", Order = 5)]
         public int ForegroundSecondaryColorId { get; set; }
-
-        #endregion
     }
 }

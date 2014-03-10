@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownItem : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="UnknownItem" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown
             : base(ItemType.Unknown)
         {
         }
-
-        #endregion
     }
 }

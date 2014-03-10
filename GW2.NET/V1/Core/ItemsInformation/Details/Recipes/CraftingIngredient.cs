@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
     /// </summary>
     public class CraftingIngredient : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the number of items required.
         /// </summary>
@@ -29,7 +27,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
         /// </summary>
         [JsonProperty("item_id", Order = 0)]
         public int ItemId { get; set; }
-
-        #endregion
     }
 }

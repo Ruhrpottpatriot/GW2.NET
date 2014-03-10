@@ -31,16 +31,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
     /// </summary>
     public class ArmorDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<ArmorType, Type> KnownTypes = new Dictionary<ArmorType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="ArmorDetailsConverter" /> class.
@@ -56,10 +50,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
             KnownTypes.Add(ArmorType.Leggings, typeof(LeggingsDetails));
             KnownTypes.Add(ArmorType.Shoulders, typeof(ShouldersDetails));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
@@ -91,7 +81,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
 
             return targetType;
         }
-
-        #endregion
     }
 }

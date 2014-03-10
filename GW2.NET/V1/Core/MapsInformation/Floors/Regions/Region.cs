@@ -21,8 +21,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
     /// </summary>
     public class Region : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the coordinates of the region label.
         /// </summary>
@@ -47,7 +45,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions
         /// </summary>
         [JsonProperty("region_id", Order = 0)]
         public int RegionId { get; set; }
-
-        #endregion
     }
 }

@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shields
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ShieldRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ShieldRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shields
             : base(RecipeType.Shield)
         {
         }
-
-        #endregion
     }
 }

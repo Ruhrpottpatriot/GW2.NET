@@ -21,8 +21,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
     /// </summary>
     public class PointOfInterest : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the Point of Interest's coordinates.
         /// </summary>
@@ -54,7 +52,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         [JsonProperty("type", Order = 2)]
         [JsonConverter(typeof(StringEnumConverter))]
         public PointOfInterestType Type { get; set; }
-
-        #endregion
     }
 }

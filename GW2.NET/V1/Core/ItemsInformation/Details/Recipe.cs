@@ -22,18 +22,12 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
     [JsonConverter(typeof(RecipeConverter))]
     public abstract class Recipe : JsonObject
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="Recipe"/> class.</summary>
         /// <param name="recipeType">The recipe's type.</param>
         protected Recipe(RecipeType recipeType)
         {
             this.Type = recipeType;
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the crafting disciplines that can use the recipe.
@@ -89,7 +83,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         /// </summary>
         [JsonProperty("type", Order = 1)]
         public RecipeType Type { get; set; }
-
-        #endregion
     }
 }

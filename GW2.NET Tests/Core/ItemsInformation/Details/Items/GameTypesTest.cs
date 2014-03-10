@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The game types test.
+//   The game types test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,8 +20,6 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
     [TestFixture]
     public class GameTypesTest
     {
-        #region Public Methods and Operators
-
         /// <summary>The game types_ activity_ game types reflects input.</summary>
         [Test]
         [Category("item_details.json")]
@@ -117,7 +115,5 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
 
             Assert.AreEqual(expectedGameTypes, item.GameTypes);
         }
-
-        #endregion
     }
 }

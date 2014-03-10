@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Bags
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class BagRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="BagRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Bags
             : base(RecipeType.Bag)
         {
         }
-
-        #endregion
     }
 }

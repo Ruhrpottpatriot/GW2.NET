@@ -17,8 +17,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
     /// </summary>
     public class SubregionCollection : JsonDictionary<int, Subregion>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="SubregionCollection" /> class.
         /// </summary>
@@ -40,10 +38,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
         {
         }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>Sets each value's ID property to its corresponding key.</summary>
         /// <param name="context">The streaming context.</param>
         [OnDeserialized]
@@ -54,7 +48,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
                 kvp.Value.MapId = kvp.Key;
             }
         }
-
-        #endregion
     }
 }

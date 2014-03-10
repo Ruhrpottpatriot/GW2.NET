@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.WarHorns
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class WarHornRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="WarHornRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.WarHorns
             : base(RecipeType.WarHorn)
         {
         }
-
-        #endregion
     }
 }

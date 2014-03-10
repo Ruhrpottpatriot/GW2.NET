@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Halloween
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class HalloweenConsumableDetails : ConsumableDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="HalloweenConsumableDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Halloween
             : base(ConsumableType.Halloween)
         {
         }
-
-        #endregion
     }
 }

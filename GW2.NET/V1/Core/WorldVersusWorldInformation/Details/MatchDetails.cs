@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
     /// </summary>
     public class MatchDetails : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the list of maps.
         /// </summary>
@@ -35,7 +33,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         /// </summary>
         [JsonProperty("scores", Order = 1)]
         public Scoreboard Scores { get; set; }
-
-        #endregion
     }
 }

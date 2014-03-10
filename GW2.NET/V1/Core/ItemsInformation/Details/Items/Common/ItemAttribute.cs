@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
     /// </summary>
     public class ItemAttribute : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the attribute's modifier.
         /// </summary>
@@ -29,7 +27,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
         /// </summary>
         [JsonProperty("attribute", Order = 0)]
         public ItemAttributeType Type { get; set; }
-
-        #endregion
     }
 }

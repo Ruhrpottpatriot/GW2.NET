@@ -20,14 +20,8 @@ namespace GW2DotNET.V1.Core
     public abstract class JsonDictionary<TKey, TValue> : JsonObject, IDictionary<TKey, TValue>
         where TValue : JsonObject
     {
-        #region Fields
-
         /// <summary>Infrastructure. This class acts as a proxy for the dictionary stored in this field.</summary>
         private readonly IDictionary<TKey, TValue> innerDictionary;
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}"/> class. Initializes a new instance of the <see cref="JsonDictionary{TKey, TValue}"/> class.</summary>
         protected JsonDictionary()
@@ -48,10 +42,6 @@ namespace GW2DotNET.V1.Core
         {
             this.innerDictionary = new Dictionary<TKey, TValue>(dictionary);
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets the number of elements contained in the <see cref="System.Collections.Generic.ICollection{T}" />.
@@ -99,10 +89,6 @@ namespace GW2DotNET.V1.Core
             }
         }
 
-        #endregion
-
-        #region Public Indexers
-
         /// <summary>Gets or sets the element with the specified key.</summary>
         /// <param name="key">The key of the element to get or set.</param>
         /// <returns>The element with the specified key.</returns>
@@ -118,10 +104,6 @@ namespace GW2DotNET.V1.Core
                 this.innerDictionary[key] = value;
             }
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Adds an element with the provided key and value to the <see cref="JsonDictionary{TKey, TValue}"/>.</summary>
         /// <param name="key">The text to use as the key of the element to add.</param>
@@ -206,10 +188,6 @@ namespace GW2DotNET.V1.Core
             return this.innerDictionary.TryGetValue(key, out value);
         }
 
-        #endregion
-
-        #region Explicit Interface Methods
-
         /// <summary>
         ///     Returns an enumerator that iterates through the collection.
         /// </summary>
@@ -218,7 +196,5 @@ namespace GW2DotNET.V1.Core
         {
             return this.innerDictionary.GetEnumerator();
         }
-
-        #endregion
     }
 }

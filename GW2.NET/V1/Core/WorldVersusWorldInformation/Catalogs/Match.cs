@@ -18,8 +18,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
     /// </summary>
     public class Match : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the blue world's ID.
         /// </summary>
@@ -55,7 +53,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
         /// </summary>
         [JsonProperty("start_time", Order = 4)]
         public DateTimeOffset StartTime { get; set; }
-
-        #endregion
     }
 }

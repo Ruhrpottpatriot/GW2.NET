@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
     /// </summary>
     public abstract class EquipmentDetails : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the item's infix upgrade.
         /// </summary>
@@ -35,7 +33,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
         /// </summary>
         [JsonProperty(PropertyName = "suffix_item_id", Order = 102)]
         public int? SuffixItemId { get; set; }
-
-        #endregion
     }
 }

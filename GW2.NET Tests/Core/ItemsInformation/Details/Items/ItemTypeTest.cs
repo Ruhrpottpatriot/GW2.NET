@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The item type test.
+//   The item type test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -34,8 +34,6 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
     [TestFixture]
     public class ItemTypeTest
     {
-        #region Public Methods and Operators
-
         /// <summary>The item type_ armor_ type reflects input.</summary>
         [Test]
         [Category("item_details.json")]
@@ -217,7 +215,5 @@ namespace GW2DotNET.Core.ItemsInformation.Details.Items
             Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Weapon>(item);
         }
-
-        #endregion
     }
 }

@@ -19,18 +19,12 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
     [JsonConverter(typeof(ArmorDetailsConverter))]
     public abstract class ArmorDetails : EquipmentDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="ArmorDetails"/> class.</summary>
         /// <param name="armorType">The armor type.</param>
         protected ArmorDetails(ArmorType armorType)
         {
             this.Type = armorType;
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the armor piece's defense stat.
@@ -49,7 +43,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
         /// </summary>
         [JsonProperty("weight_class", Order = 1)]
         public WeightClass WeightClass { get; set; }
-
-        #endregion
     }
 }

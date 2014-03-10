@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Generic
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GenericConsumableDetails : ConsumableDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="GenericConsumableDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Generic
             : base(ConsumableType.Generic)
         {
         }
-
-        #endregion
     }
 }

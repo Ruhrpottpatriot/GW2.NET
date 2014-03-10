@@ -19,18 +19,12 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
     [JsonConverter(typeof(ItemConverter))]
     public abstract class Item : JsonObject
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>
         /// <param name="type">The item's type.</param>
         protected Item(ItemType type)
         {
             this.Type = type;
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the item's description.
@@ -103,7 +97,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
         /// </summary>
         [JsonProperty("vendor_value", Order = 6)]
         public int VendorValue { get; set; }
-
-        #endregion
     }
 }

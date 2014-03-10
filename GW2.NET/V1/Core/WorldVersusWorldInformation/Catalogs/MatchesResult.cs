@@ -16,14 +16,10 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
     /// </summary>
     public class MatchesResult : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a collection of matches.
         /// </summary>
         [JsonProperty("wvw_matches", Order = 0)]
         public MatchCollection Matches { get; set; }
-
-        #endregion
     }
 }

@@ -16,14 +16,10 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
     /// </summary>
     public class ContinentsResult : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a collection of continents.
         /// </summary>
         [JsonProperty("continents", Order = 0)]
         public ContinentCollection Continents { get; set; }
-
-        #endregion
     }
 }

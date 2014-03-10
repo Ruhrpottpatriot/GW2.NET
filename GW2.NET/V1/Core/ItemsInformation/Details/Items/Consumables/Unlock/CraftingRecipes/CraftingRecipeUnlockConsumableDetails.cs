@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Cr
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class CraftingRecipeUnlockConsumableDetails : UnlockConsumableDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableDetails" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Cr
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the crafting recipe's ID.
         /// </summary>
         [JsonProperty("recipe_id", Order = 102)]
         public int RecipeId { get; set; }
-
-        #endregion
     }
 }

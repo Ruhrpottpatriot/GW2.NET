@@ -16,14 +16,10 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
     /// </summary>
     public class MapsResult : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the collection of maps and their details.
         /// </summary>
         [JsonProperty("maps", Order = 0)]
         public MapCollection Maps { get; set; }
-
-        #endregion
     }
 }

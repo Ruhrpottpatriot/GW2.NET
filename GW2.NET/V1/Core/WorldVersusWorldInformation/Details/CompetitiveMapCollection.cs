@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
     /// </summary>
     public class CompetitiveMapCollection : JsonList<CompetitiveMap>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="CompetitiveMapCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
             : base(capacity)
         {
         }
-
-        #endregion
     }
 }

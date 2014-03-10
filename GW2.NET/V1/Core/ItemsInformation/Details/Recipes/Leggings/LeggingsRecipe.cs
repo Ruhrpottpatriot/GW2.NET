@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Leggings
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class LeggingsRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="LeggingsRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Leggings
             : base(RecipeType.Leggings)
         {
         }
-
-        #endregion
     }
 }

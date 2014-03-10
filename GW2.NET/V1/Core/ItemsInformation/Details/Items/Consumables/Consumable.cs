@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Consumable : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="Consumable" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the consumable item's details.
         /// </summary>
         [JsonProperty("consumable", Order = 100)]
         public ConsumableDetails ConsumableItemDetails { get; set; }
-
-        #endregion
     }
 }

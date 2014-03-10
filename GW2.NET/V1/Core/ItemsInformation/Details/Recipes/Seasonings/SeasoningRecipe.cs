@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Seasonings
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class SeasoningRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="SeasoningRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Seasonings
             : base(RecipeType.Seasoning)
         {
         }
-
-        #endregion
     }
 }

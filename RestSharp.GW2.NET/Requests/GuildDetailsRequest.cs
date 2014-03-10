@@ -25,8 +25,6 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class GuildDetailsRequest : ServiceRequest
     {
-        #region Fields
-
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private readonly Parameter guildIdParameter;
 
@@ -39,10 +37,6 @@ namespace RestSharp.GW2DotNET.Requests
         /// <summary>The guild name.</summary>
         private string guildName;
 
-        #endregion
-
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="GuildDetailsRequest"/> class.</summary>
         public GuildDetailsRequest()
             : base(Resources.GuildDetails)
@@ -50,10 +44,6 @@ namespace RestSharp.GW2DotNET.Requests
             this.AddParameter(this.guildIdParameter = new Parameter { Name = "guild_id", Value = string.Empty, Type = ParameterType.GetOrPost });
             this.AddParameter(this.guildNameParameter = new Parameter { Name = "guild_name", Value = string.Empty, Type = ParameterType.GetOrPost });
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>Gets or sets the guild ID.</summary>
         public Guid? GuildId
@@ -83,10 +73,6 @@ namespace RestSharp.GW2DotNET.Requests
             }
         }
 
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
@@ -111,7 +97,5 @@ namespace RestSharp.GW2DotNET.Requests
         {
             return this.GetResponseAsync<Guild>(serviceClient, cancellationToken);
         }
-
-        #endregion
     }
 }

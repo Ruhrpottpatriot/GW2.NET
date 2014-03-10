@@ -26,16 +26,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
     /// </summary>
     public class ToolDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<ToolType, Type> KnownTypes = new Dictionary<ToolType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="ToolDetailsConverter" /> class.
@@ -45,10 +39,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
             KnownTypes.Add(ToolType.Unknown, typeof(UnknownToolDetails));
             KnownTypes.Add(ToolType.Salvage, typeof(SalvageToolDetails));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
@@ -80,7 +70,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
 
             return targetType;
         }
-
-        #endregion
     }
 }

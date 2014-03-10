@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The location type test.
+//   The location type test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,8 +19,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
     [TestFixture]
     public class LocationTypeTest
     {
-        #region Public Methods and Operators
-
         /// <summary>The location type_ cylinder_ type reflects input.</summary>
         [Test]
         [Category("event_details.json")]
@@ -62,7 +60,5 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             Assert.AreEqual(expected, actual);
             Assert.IsInstanceOf<SphereLocation>(location);
         }
-
-        #endregion
     }
 }

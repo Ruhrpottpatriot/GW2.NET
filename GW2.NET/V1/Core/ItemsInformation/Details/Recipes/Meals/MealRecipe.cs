@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Meals
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class MealRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="MealRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Meals
             : base(RecipeType.Meal)
         {
         }
-
-        #endregion
     }
 }

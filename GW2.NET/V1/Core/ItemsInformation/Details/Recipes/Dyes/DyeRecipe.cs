@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Dyes
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class DyeRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="DyeRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Dyes
             : base(RecipeType.Dye)
         {
         }
-
-        #endregion
     }
 }

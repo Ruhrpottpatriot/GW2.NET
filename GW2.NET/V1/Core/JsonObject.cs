@@ -20,8 +20,6 @@ namespace GW2DotNET.V1.Core
     [Serializable]
     public abstract class JsonObject
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="JsonObject" /> class.
         /// </summary>
@@ -30,19 +28,11 @@ namespace GW2DotNET.V1.Core
             this.ExtensionData = new Dictionary<string, object>();
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a dictionary of additional JSON properties that have no corresponding .NET property.
         /// </summary>
         [JsonExtensionData]
         public IDictionary<string, object> ExtensionData { get; set; }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>
         ///     Gets the JSON representation of this instance.
@@ -60,7 +50,5 @@ namespace GW2DotNET.V1.Core
         {
             return JsonConvert.SerializeObject(this, indent ? Formatting.Indented : Formatting.None);
         }
-
-        #endregion
     }
 }

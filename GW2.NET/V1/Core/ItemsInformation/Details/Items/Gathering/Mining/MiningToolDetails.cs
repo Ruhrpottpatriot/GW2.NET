@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Mining
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class MiningToolDetails : GatheringToolDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="MiningToolDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Mining
             : base(GatheringToolType.Mining)
         {
         }
-
-        #endregion
     }
 }

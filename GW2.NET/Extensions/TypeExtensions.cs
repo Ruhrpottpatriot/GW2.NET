@@ -16,8 +16,6 @@ namespace GW2DotNET.Extensions
     /// </summary>
     internal static class TypeExtensions
     {
-        #region Methods
-
         /// <summary>Gets the default value of the specified type.</summary>
         /// <param name="type">The instance of <see cref="System.Type"/> that specifies the target type.</param>
         /// <returns>The default value.</returns>
@@ -31,7 +29,5 @@ namespace GW2DotNET.Extensions
 
             return null;
         }
-
-        #endregion
     }
 }

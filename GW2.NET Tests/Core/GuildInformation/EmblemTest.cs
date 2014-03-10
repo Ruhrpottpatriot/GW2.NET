@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The emblem test.
+//   The emblem test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,14 +19,17 @@ namespace GW2DotNET.Core.GuildInformation
     [TestFixture]
     public class EmblemTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input =
+                "{\"background_id\":0,\"foreground_id\":0,\"flags\":[],\"background_color_id\":0,\"foreground_primary_color_id\":0,\"foreground_secondary_color_id\":0}";
+            this.emblem = JsonConvert.DeserializeObject<Emblem>(input);
+        }
 
         /// <summary>The emblem.</summary>
         private Emblem emblem;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The emblem_ background color id reflects input.</summary>
         [Test]
@@ -102,16 +105,5 @@ namespace GW2DotNET.Core.GuildInformation
 
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input =
-                "{\"background_id\":0,\"foreground_id\":0,\"flags\":[],\"background_color_id\":0,\"foreground_primary_color_id\":0,\"foreground_secondary_color_id\":0}";
-            this.emblem = JsonConvert.DeserializeObject<Emblem>(input);
-        }
-
-        #endregion
     }
 }

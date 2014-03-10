@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Scepters
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ScepterDetails : WeaponDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ScepterDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Scepters
             : base(WeaponType.Scepter)
         {
         }
-
-        #endregion
     }
 }

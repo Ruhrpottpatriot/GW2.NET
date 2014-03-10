@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The item test.
+//   The item test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,15 +21,6 @@ namespace GW2DotNET.Core.ItemsInformation.Details
     [TestFixture]
     public class ItemTest
     {
-        #region Fields
-
-        /// <summary>The item.</summary>
-        private Item item;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -38,6 +29,9 @@ namespace GW2DotNET.Core.ItemsInformation.Details
                 "{\"item_id\":\"0\",\"name\":\"\",\"description\":\"\",\"type\":\"Unknown\",\"level\":\"0\",\"rarity\":\"Unknown\",\"vendor_value\":\"0\",\"icon_file_id\":\"0\",\"icon_file_signature\":\"\",\"game_types\":[],\"flags\":[],\"restrictions\":[]}";
             this.item = JsonConvert.DeserializeObject<UnknownItem>(input);
         }
+
+        /// <summary>The item.</summary>
+        private Item item;
 
         /// <summary>The item_ description reflects input.</summary>
         [Test]
@@ -179,7 +173,5 @@ namespace GW2DotNET.Core.ItemsInformation.Details
 
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

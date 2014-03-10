@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldsInformation.Names
     /// </summary>
     public class WorldName : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the world's ID.
         /// </summary>
@@ -29,7 +27,5 @@ namespace GW2DotNET.V1.Core.WorldsInformation.Names
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
-
-        #endregion
     }
 }

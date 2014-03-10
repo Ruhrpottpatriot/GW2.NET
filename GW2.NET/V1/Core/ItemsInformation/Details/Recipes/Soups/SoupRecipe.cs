@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Soups
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class SoupRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="SoupRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Soups
             : base(RecipeType.Soup)
         {
         }
-
-        #endregion
     }
 }

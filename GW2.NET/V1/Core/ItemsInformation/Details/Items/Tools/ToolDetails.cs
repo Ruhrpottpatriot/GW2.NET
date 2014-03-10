@@ -17,18 +17,12 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
     [JsonConverter(typeof(ToolDetailsConverter))]
     public abstract class ToolDetails : JsonObject
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="ToolDetails"/> class.</summary>
         /// <param name="toolType">The tool's type.</param>
         protected ToolDetails(ToolType toolType)
         {
             this.Type = toolType;
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the tool's charges.
@@ -41,7 +35,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public ToolType Type { get; set; }
-
-        #endregion
     }
 }

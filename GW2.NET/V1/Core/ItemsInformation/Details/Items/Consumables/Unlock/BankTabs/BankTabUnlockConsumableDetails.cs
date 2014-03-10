@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Ba
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class BankTabUnlockConsumableDetails : UnlockConsumableDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="BankTabUnlockConsumableDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Ba
             : base(UnlockType.BankTab)
         {
         }
-
-        #endregion
     }
 }

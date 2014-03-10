@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Gloves
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GlovesRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="GlovesRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Gloves
             : base(RecipeType.Gloves)
         {
         }
-
-        #endregion
     }
 }

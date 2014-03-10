@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shoulders
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ShouldersRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ShouldersRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shoulders
             : base(RecipeType.Shoulders)
         {
         }
-
-        #endregion
     }
 }

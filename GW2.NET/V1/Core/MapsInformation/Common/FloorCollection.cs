@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Common
     /// </summary>
     public class FloorCollection : JsonList<int>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="FloorCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Common
             : base(collection)
         {
         }
-
-        #endregion
     }
 }

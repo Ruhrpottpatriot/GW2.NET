@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
     /// </summary>
     public class ObjectiveName : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the objective's ID.
         /// </summary>
@@ -29,7 +27,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
         /// </summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
-
-        #endregion
     }
 }

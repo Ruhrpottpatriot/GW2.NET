@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The point of interest test.
+//   The point of interest test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,15 +21,6 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
     [TestFixture]
     public class PointOfInterestTest
     {
-        #region Fields
-
-        /// <summary>The point of interest.</summary>
-        private PointOfInterest pointOfInterest;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -37,6 +28,9 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             const string input = "{\"poi_id\":0,\"name\":\"\",\"type\":\"unknown\",\"floor\":0,\"coord\":[]}";
             this.pointOfInterest = JsonConvert.DeserializeObject<PointOfInterest>(input);
         }
+
+        /// <summary>The point of interest.</summary>
+        private PointOfInterest pointOfInterest;
 
         /// <summary>The point of interest_ coordinates reflects input.</summary>
         [Test]
@@ -90,7 +84,5 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
 
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

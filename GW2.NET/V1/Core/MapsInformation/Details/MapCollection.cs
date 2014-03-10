@@ -17,8 +17,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
     /// </summary>
     public class MapCollection : JsonDictionary<int, Map>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="MapCollection" /> class.
         /// </summary>
@@ -40,10 +38,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
         {
         }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>Sets each value's ID property to its corresponding key.</summary>
         /// <param name="context">The streaming context.</param>
         [OnDeserialized]
@@ -54,7 +48,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Details
                 kvp.Value.MapId = kvp.Key;
             }
         }
-
-        #endregion
     }
 }

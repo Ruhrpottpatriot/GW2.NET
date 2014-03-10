@@ -28,16 +28,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
     /// </summary>
     public class TrinketDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<TrinketType, Type> KnownTypes = new Dictionary<TrinketType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="TrinketDetailsConverter" /> class.
@@ -49,10 +43,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
             KnownTypes.Add(TrinketType.Amulet, typeof(AmuletDetails));
             KnownTypes.Add(TrinketType.Ring, typeof(RingDetails));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">ToolType of the object.</param>
@@ -84,7 +74,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
 
             return targetType;
         }
-
-        #endregion
     }
 }

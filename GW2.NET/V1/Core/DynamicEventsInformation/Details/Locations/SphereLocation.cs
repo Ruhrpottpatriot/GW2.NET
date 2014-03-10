@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class SphereLocation : Location
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="SphereLocation" /> class.
         /// </summary>
@@ -28,10 +26,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
             : base(LocationType.Sphere)
         {
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the location's radius.
@@ -44,7 +38,5 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
         /// </summary>
         [JsonProperty("rotation", Order = 5)]
         public double Rotation { get; set; }
-
-        #endregion
     }
 }

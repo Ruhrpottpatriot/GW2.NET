@@ -18,8 +18,6 @@ namespace GW2DotNET.V1.Core
     public interface IServiceResponse<out TContent>
         where TContent : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets a value indicating the Internet media type of the message content.
         /// </summary>
@@ -34,10 +32,6 @@ namespace GW2DotNET.V1.Core
         ///     Gets a value indicating whether the service returned a success status code.
         /// </summary>
         bool IsSuccessStatusCode { get; }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>
         ///     Gets the response content as an object of the specified type.
@@ -57,7 +51,5 @@ namespace GW2DotNET.V1.Core
         /// <returns>Returns the current instance.</returns>
         /// <remarks>The current instance is returned to allow chaining method calls.</remarks>
         IServiceResponse<TContent> EnsureSuccessStatusCode();
-
-        #endregion
     }
 }

@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GatheringTool : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="GatheringTool" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the gathering equipment's details.
         /// </summary>
         [JsonProperty("gathering", Order = 100)]
         public GatheringToolDetails GatheringToolDetails { get; set; }
-
-        #endregion
     }
 }

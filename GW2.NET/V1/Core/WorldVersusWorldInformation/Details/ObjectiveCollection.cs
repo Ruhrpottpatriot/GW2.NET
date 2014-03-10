@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
     /// </summary>
     public class ObjectiveCollection : JsonList<Objective>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ObjectiveCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
             : base(capacity)
         {
         }
-
-        #endregion
     }
 }

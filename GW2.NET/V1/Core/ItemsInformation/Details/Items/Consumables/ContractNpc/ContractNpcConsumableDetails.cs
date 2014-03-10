@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.ContractN
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ContractNpcConsumableDetails : ConsumableDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ContractNpcConsumableDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.ContractN
             : base(ConsumableType.ContractNpc)
         {
         }
-
-        #endregion
     }
 }

@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The emblem transformations test.
+//   The emblem transformations test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,8 +19,6 @@ namespace GW2DotNET.Core.GuildInformation
     [TestFixture]
     public class EmblemTransformationsTest
     {
-        #region Public Methods and Operators
-
         /// <summary>The emblem transformations_ flip background horizontal_ flags reflects input.</summary>
         [Test]
         [Category("guild_details.json")]
@@ -94,7 +92,5 @@ namespace GW2DotNET.Core.GuildInformation
 
             Assert.AreEqual(expectedFlags, emblem.Flags);
         }
-
-        #endregion
     }
 }

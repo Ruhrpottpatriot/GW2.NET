@@ -22,8 +22,6 @@ namespace GW2DotNET.V1.Core
     /// </remarks>
     public class ServiceException : Exception
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="ServiceException"/> class.</summary>
         /// <param name="details">The error details.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
@@ -33,15 +31,9 @@ namespace GW2DotNET.V1.Core
             this.Details = details;
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets the error details.
         /// </summary>
         public ErrorResult Details { get; private set; }
-
-        #endregion
     }
 }

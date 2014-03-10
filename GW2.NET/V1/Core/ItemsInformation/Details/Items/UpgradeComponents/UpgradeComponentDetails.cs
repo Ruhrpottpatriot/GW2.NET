@@ -19,18 +19,12 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
     [JsonConverter(typeof(UpgradeComponentDetailsConverter))]
     public abstract class UpgradeComponentDetails : JsonObject
     {
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="UpgradeComponentDetails"/> class.</summary>
         /// <param name="upgradeComponentType">The upgrade component's type.</param>
         protected UpgradeComponentDetails(UpgradeComponentType upgradeComponentType)
         {
             this.Type = upgradeComponentType;
         }
-
-        #endregion
-
-        #region Public Properties
 
         /// <summary>
         ///     Gets or sets the upgrade component's bonuses.
@@ -67,7 +61,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public UpgradeComponentType Type { get; set; }
-
-        #endregion
     }
 }

@@ -18,8 +18,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags
     /// </summary>
     public class BagDetails : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a value indicating whether this is an invisible bag.
         /// </summary>
@@ -32,7 +30,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags
         /// </summary>
         [JsonProperty("size", Order = 1)]
         public int Size { get; set; }
-
-        #endregion
     }
 }

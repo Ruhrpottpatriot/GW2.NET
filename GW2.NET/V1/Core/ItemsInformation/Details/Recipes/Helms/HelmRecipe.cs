@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Helms
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class HelmRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="HelmRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Helms
             : base(RecipeType.Helm)
         {
         }
-
-        #endregion
     }
 }

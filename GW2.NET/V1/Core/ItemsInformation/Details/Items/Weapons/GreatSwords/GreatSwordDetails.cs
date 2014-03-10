@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.GreatSwords
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GreatSwordDetails : WeaponDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="GreatSwordDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.GreatSwords
             : base(WeaponType.GreatSword)
         {
         }
-
-        #endregion
     }
 }

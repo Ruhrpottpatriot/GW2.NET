@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Dy
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class DyeUnlockConsumableDetails : UnlockConsumableDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="DyeUnlockConsumableDetails" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Dy
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the dye's color ID.
         /// </summary>
         [JsonProperty("color_id", Order = 101)]
         public int ColorId { get; set; }
-
-        #endregion
     }
 }

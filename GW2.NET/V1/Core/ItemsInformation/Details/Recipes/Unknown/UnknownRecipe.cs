@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Unknown
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="UnknownRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Unknown
             : base(RecipeType.Unknown)
         {
         }
-
-        #endregion
     }
 }

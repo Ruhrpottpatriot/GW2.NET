@@ -20,8 +20,6 @@ namespace GW2DotNET.V1.Core.Converters
     /// </summary>
     public class DefaultJsonConverter : JsonConverter
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets a value indicating whether this converter can read JSON.
         /// </summary>
@@ -43,10 +41,6 @@ namespace GW2DotNET.V1.Core.Converters
                 return false;
             }
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">Type of the object.</param>
@@ -75,7 +69,5 @@ namespace GW2DotNET.V1.Core.Converters
         {
             throw new InvalidOperationException();
         }
-
-        #endregion
     }
 }

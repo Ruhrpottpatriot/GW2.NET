@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The map name test.
+//   The map name test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -19,15 +19,6 @@ namespace GW2DotNET.Core.MapsInformation.Names
     [TestFixture]
     public class MapNameTest
     {
-        #region Fields
-
-        /// <summary>The map name.</summary>
-        private MapName mapName;
-
-        #endregion
-
-        #region Public Methods and Operators
-
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -35,6 +26,9 @@ namespace GW2DotNET.Core.MapsInformation.Names
             const string input = "{\"ID\":\"0\",\"name\":\"\"}";
             this.mapName = JsonConvert.DeserializeObject<MapName>(input);
         }
+
+        /// <summary>The map name.</summary>
+        private MapName mapName;
 
         /// <summary>The map name_ extension data is empty.</summary>
         [Test]
@@ -66,7 +60,5 @@ namespace GW2DotNET.Core.MapsInformation.Names
 
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

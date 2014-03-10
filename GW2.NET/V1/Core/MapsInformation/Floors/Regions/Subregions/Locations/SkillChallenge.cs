@@ -20,15 +20,11 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
     /// </summary>
     public class SkillChallenge : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the skill challenge's coordinates.
         /// </summary>
         [JsonProperty("coord", Order = 0)]
         [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
-
-        #endregion
     }
 }

@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The cylinder location test.
+//   The cylinder location test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -20,14 +20,16 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
     [TestFixture]
     public class CylinderLocationTest
     {
-        #region Fields
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"type\":\"cylinder\",\"center\":[],\"height\":0,\"radius\":0,\"rotation\":0}";
+            this.cylinderLocation = JsonConvert.DeserializeObject<CylinderLocation>(input);
+        }
 
         /// <summary>The cylinder location.</summary>
         private CylinderLocation cylinderLocation;
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>The cylinder location_ center reflects input.</summary>
         [Test]
@@ -92,15 +94,5 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 
             Assert.AreEqual(expected, actual);
         }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"type\":\"cylinder\",\"center\":[],\"height\":0,\"radius\":0,\"rotation\":0}";
-            this.cylinderLocation = JsonConvert.DeserializeObject<CylinderLocation>(input);
-        }
-
-        #endregion
     }
 }

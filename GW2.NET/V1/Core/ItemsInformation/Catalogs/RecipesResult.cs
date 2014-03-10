@@ -16,14 +16,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
     /// </summary>
     public class RecipesResult : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets a collection of recipes.
         /// </summary>
         [JsonProperty("recipes", Order = 0)]
         public RecipeCollection Recipes { get; set; }
-
-        #endregion
     }
 }

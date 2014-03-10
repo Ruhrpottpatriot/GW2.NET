@@ -21,8 +21,6 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
     /// </summary>
     public class Continent : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the dimensions of the continent.
         /// </summary>
@@ -59,7 +57,5 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
         /// </summary>
         [JsonProperty("min_zoom", Order = 3)]
         public int MinimumZoom { get; set; }
-
-        #endregion
     }
 }

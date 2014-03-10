@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Staves
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class StaffRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="StaffRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Staves
             : base(RecipeType.Staff)
         {
         }
-
-        #endregion
     }
 }

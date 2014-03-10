@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Container : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="Container" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the container's details.
         /// </summary>
         [JsonProperty("container", Order = 100)]
         public ContainerDetails ContainerDetails { get; set; }
-
-        #endregion
     }
 }

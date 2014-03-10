@@ -28,16 +28,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering
     /// </summary>
     public class GatheringToolDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<GatheringToolType, Type> KnownTypes = new Dictionary<GatheringToolType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="GatheringToolDetailsConverter" /> class.
@@ -49,10 +43,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering
             KnownTypes.Add(GatheringToolType.Logging, typeof(LoggingToolDetails));
             KnownTypes.Add(GatheringToolType.Mining, typeof(MiningToolDetails));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">locationType of the object.</param>
@@ -84,7 +74,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering
 
             return targetType;
         }
-
-        #endregion
     }
 }

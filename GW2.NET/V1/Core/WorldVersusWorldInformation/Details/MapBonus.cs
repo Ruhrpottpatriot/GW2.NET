@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
     /// </summary>
     public class MapBonus : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the team that holds the bonus.
         /// </summary>
@@ -29,7 +27,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public MapBonusType Type { get; set; }
-
-        #endregion
     }
 }

@@ -3,7 +3,7 @@
 //   
 // </copyright>
 // <summary>
-//    The json size converter test.
+//   The json size converter test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -21,8 +21,6 @@ namespace GW2DotNET.Core.Converters
     [TestFixture]
     public class JsonSizeConverterTest
     {
-        #region Public Methods and Operators
-
         /// <summary>The json size converter_ read both nil_ returns default.</summary>
         [Test]
         [Category("Converters")]
@@ -232,7 +230,5 @@ namespace GW2DotNET.Core.Converters
 
             Assert.AreEqual(expected, actual);
         }
-
-        #endregion
     }
 }

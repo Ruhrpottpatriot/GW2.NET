@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools.Unknown
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownToolDetails : ToolDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="UnknownToolDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools.Unknown
             : base(ToolType.Unknown)
         {
         }
-
-        #endregion
     }
 }

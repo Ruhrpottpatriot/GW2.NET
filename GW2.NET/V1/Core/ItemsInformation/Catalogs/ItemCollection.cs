@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
     /// </summary>
     public class ItemCollection : JsonList<int>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ItemCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
             : base(capacity)
         {
         }
-
-        #endregion
     }
 }

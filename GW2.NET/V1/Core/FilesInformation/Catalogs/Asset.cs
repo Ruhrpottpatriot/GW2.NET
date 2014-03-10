@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
     /// </summary>
     public class Asset : JsonObject
     {
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the file ID to be used with the render service.
         /// </summary>
@@ -35,7 +33,5 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
         /// </summary>
         [JsonProperty("signature", Order = 1)]
         public string Signature { get; set; }
-
-        #endregion
     }
 }

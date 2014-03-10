@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Inscriptions
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class InscriptionRecipe : Recipe
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="InscriptionRecipe" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Inscriptions
             : base(RecipeType.Inscription)
         {
         }
-
-        #endregion
     }
 }

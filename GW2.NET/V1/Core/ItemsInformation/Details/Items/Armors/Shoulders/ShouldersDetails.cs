@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Shoulders
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ShouldersDetails : ArmorDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ShouldersDetails" /> class
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Shoulders
             : base(ArmorType.Shoulders)
         {
         }
-
-        #endregion
     }
 }

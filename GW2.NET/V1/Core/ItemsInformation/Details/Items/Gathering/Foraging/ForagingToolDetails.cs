@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Foraging
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ForagingToolDetails : GatheringToolDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ForagingToolDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Foraging
             : base(GatheringToolType.Foraging)
         {
         }
-
-        #endregion
     }
 }

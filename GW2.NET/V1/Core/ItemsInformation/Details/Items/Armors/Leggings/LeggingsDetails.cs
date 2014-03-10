@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Leggings
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class LeggingsDetails : ArmorDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="LeggingsDetails" /> class
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Leggings
             : base(ArmorType.Leggings)
         {
         }
-
-        #endregion
     }
 }

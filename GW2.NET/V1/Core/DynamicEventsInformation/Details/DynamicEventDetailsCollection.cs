@@ -18,8 +18,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
     /// </summary>
     public class DynamicEventDetailsCollection : JsonDictionary<Guid, DynamicEventDetails>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="DynamicEventDetailsCollection" /> class.
         /// </summary>
@@ -41,10 +39,6 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
         {
         }
 
-        #endregion
-
-        #region Methods
-
         /// <summary>Sets each value's ID property to its corresponding key.</summary>
         /// <param name="context">The streaming context.</param>
         [OnDeserialized]
@@ -55,7 +49,5 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
                 kvp.Value.EventId = kvp.Key;
             }
         }
-
-        #endregion
     }
 }

@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Tool : Item
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="Tool" /> class.
         /// </summary>
@@ -29,16 +27,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
         {
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>
         ///     Gets or sets the tool's details.
         /// </summary>
         [JsonProperty("tool", Order = 100)]
         public ToolDetails ToolDetails { get; set; }
-
-        #endregion
     }
 }

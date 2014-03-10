@@ -16,8 +16,6 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
     /// </summary>
     public class ObjectiveNameCollection : JsonList<ObjectiveName>
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="ObjectiveNameCollection" /> class.
         /// </summary>
@@ -38,7 +36,5 @@ namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
             : base(collection)
         {
         }
-
-        #endregion
     }
 }

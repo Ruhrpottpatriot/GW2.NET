@@ -26,8 +26,6 @@ namespace RestSharp.GW2DotNET.Requests
     /// </remarks>
     public class MatchesRequest : ServiceRequest
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="MatchesRequest" /> class.
         /// </summary>
@@ -35,10 +33,6 @@ namespace RestSharp.GW2DotNET.Requests
             : base(Resources.Matches)
         {
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Sends the current request and returns a response.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -64,7 +58,5 @@ namespace RestSharp.GW2DotNET.Requests
         {
             return this.GetResponseAsync<MatchesResult>(serviceClient, cancellationToken);
         }
-
-        #endregion
     }
 }

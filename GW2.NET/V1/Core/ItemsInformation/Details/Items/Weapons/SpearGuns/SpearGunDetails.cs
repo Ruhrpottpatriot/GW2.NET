@@ -19,8 +19,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.SpearGuns
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class SpearGunDetails : WeaponDetails
     {
-        #region Constructors and Destructors
-
         /// <summary>
         ///     Initializes a new instance of the <see cref="SpearGunDetails" /> class.
         /// </summary>
@@ -28,7 +26,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.SpearGuns
             : base(WeaponType.SpearGun)
         {
         }
-
-        #endregion
     }
 }

@@ -28,16 +28,10 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
     /// </summary>
     public class GizmoDetailsConverter : ContentBasedTypeCreationConverter
     {
-        #region Static Fields
-
         /// <summary>
         ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
         /// </summary>
         private static readonly IDictionary<GizmoType, Type> KnownTypes = new Dictionary<GizmoType, Type>();
-
-        #endregion
-
-        #region Constructors and Destructors
 
         /// <summary>
         ///     Initializes static members of the <see cref="GizmoDetailsConverter" /> class.
@@ -49,10 +43,6 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
             KnownTypes.Add(GizmoType.RentableContractNpc, typeof(RentableContractNpcDetails));
             KnownTypes.Add(GizmoType.UnlimitedConsumable, typeof(UnlimitedConsumableDetails));
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">locationType of the object.</param>
@@ -84,7 +74,5 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
 
             return targetType;
         }
-
-        #endregion
     }
 }
