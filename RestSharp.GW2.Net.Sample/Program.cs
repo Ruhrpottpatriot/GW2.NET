@@ -1,23 +1,34 @@
-﻿namespace RestSharp.GW2DotNET.Sample
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="Program.cs" company="">
+//   
+// </copyright>
+// <summary>
+//   The program.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace RestSharp.GW2DotNET.Sample
 {
     using System;
     using System.Linq;
 
     using global::GW2DotNET.V1;
+
     using global::GW2DotNET.V1.Core;
+
     using global::GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+
     using global::GW2DotNET.V1.Core.ErrorInformation;
 
-    using RestSharp.GW2DotNET;
-
-    class Program
+    /// <summary>The program.</summary>
+    internal class Program
     {
-
-        static void Main()
+        /// <summary>main.</summary>
+        private static void Main()
         {
-            Console.BufferWidth = Console.BufferHeight = Int16.MaxValue - 1;
+            Console.BufferWidth = Console.BufferHeight = short.MaxValue - 1;
 
-            var serviceManager  = new ServiceManager();
+            var serviceManager = new ServiceManager();
             var serviceProvider = new ServiceProvider(serviceManager);
 
             PrintBanner(serviceProvider);
@@ -25,6 +36,8 @@
             new Program().Main(serviceProvider);
         }
 
+        /// <summary>TODO The print banner.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
         private static void PrintBanner(ServiceProvider serviceProvider)
         {
             Console.WriteLine(@"+--------------------------------------------+");
@@ -43,11 +56,12 @@
             Console.WriteLine(@"+--------------------------------------------+");
         }
 
+        /// <summary>TODO The main.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
         private void Main(ServiceProvider serviceProvider)
         {
             do
             {
-
                 Console.WriteLine();
                 Console.WriteLine(@"[1] colors.json");
                 Console.WriteLine(@"[2]. files.json");
@@ -103,9 +117,10 @@
                 }
             }
             while (true);
-
         }
 
+        /// <summary>TODO The print error.</summary>
+        /// <param name="errorResult">TODO The error result.</param>
         private void PrintError(ErrorResult errorResult)
         {
             var table = new ConsoleTable("Error", "Message");
@@ -117,6 +132,8 @@
             Console.WriteLine();
         }
 
+        /// <summary>TODO The print colors.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
         private void PrintColors(ServiceProvider serviceProvider)
         {
             var table = new ConsoleTable("ID", "Name", "Color");
@@ -131,6 +148,8 @@
             Console.WriteLine();
         }
 
+        /// <summary>TODO The print files.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
         private void PrintFiles(ServiceProvider serviceProvider)
         {
             var table = new ConsoleTable("Name", "ID", "Signature");
@@ -145,6 +164,8 @@
             Console.WriteLine();
         }
 
+        /// <summary>TODO The print world names.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
         private void PrintWorldNames(ServiceProvider serviceProvider)
         {
             var table = new ConsoleTable("ID", "World");
@@ -159,6 +180,8 @@
             Console.WriteLine();
         }
 
+        /// <summary>TODO The print map names.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
         private void PrintMapNames(ServiceProvider serviceProvider)
         {
             var table = new ConsoleTable("ID", "Map");
@@ -173,6 +196,8 @@
             Console.WriteLine();
         }
 
+        /// <summary>TODO The print event names.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
         private void PrintEventNames(ServiceProvider serviceProvider)
         {
             var table = new ConsoleTable("ID", "Event ID", "Name");
@@ -189,6 +214,8 @@
             Console.WriteLine();
         }
 
+        /// <summary>TODO The print events.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
         private void PrintEvents(ServiceProvider serviceProvider)
         {
             var table = new ConsoleTable("Name", "ID", "State");
@@ -205,7 +232,9 @@
 
             if (mapId.HasValue)
             {
-                collection = worldId.HasValue ? serviceProvider.GetDynamicEventsByMap(mapId.Value, worldId.Value) : serviceProvider.GetDynamicEventsByMap(mapId.Value);
+                collection = worldId.HasValue
+                                 ? serviceProvider.GetDynamicEventsByMap(mapId.Value, worldId.Value)
+                                 : serviceProvider.GetDynamicEventsByMap(mapId.Value);
             }
             else
             {
@@ -224,7 +253,9 @@
             Console.WriteLine();
         }
 
-
+        /// <summary>TODO The get int.</summary>
+        /// <param name="prompt">TODO The prompt.</param>
+        /// <returns>The <see cref="int?"/>.</returns>
         private int? GetInt(string prompt = null)
         {
             string rawInput = default(string);
@@ -241,6 +272,5 @@
 
             return input;
         }
-
     }
 }

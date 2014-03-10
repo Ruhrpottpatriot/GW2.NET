@@ -18,8 +18,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Status
     /// <summary>The dynamic event state test.</summary>
     public class DynamicEventStateTest
     {
-        #region Public Methods and Operators
-
         /// <summary>The dynamic event_ active_ state reflects input.</summary>
         [Test]
         [Category("events.json")]
@@ -91,7 +89,5 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Status
 
             Assert.AreEqual(expectedState, dynamicEvent.State);
         }
-
-        #endregion
     }
 }
