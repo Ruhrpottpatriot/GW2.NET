@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Continents
         /// <summary>
         ///     Gets or sets the ID of the continent.
         /// </summary>
-        [JsonProperty("name", Order = 0)]
+        [JsonProperty("continent_id", Order = 0)]
         public int ContinentId { get; set; }
 
         /// <summary>
