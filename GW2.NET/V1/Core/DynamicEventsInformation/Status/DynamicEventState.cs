@@ -11,10 +11,14 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
     using System.Runtime.Serialization;
 
     /// <summary>
-    ///     Enumerates the possible states of a dynamic event.
+    ///     Enumerates the known states of a dynamic event.
     /// </summary>
     public enum DynamicEventState
     {
+        /// <summary>The event state is unknown.</summary>
+        [EnumMember(Value = "Unknown")]
+        Unknown = 0, 
+
         /// <summary>The event is not running.</summary>
         [EnumMember(Value = "Inactive")]
         Inactive = 1 << 0, 
