@@ -86,9 +86,7 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following
-        ///     meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This
-        ///     object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(ColorPalette other)
         {
@@ -115,14 +113,12 @@ namespace GW2DotNET.V1.Core.ColorsInformation
                 return true;
             }
 
-            return this.BaseRgb.Equals(other.BaseRgb) && object.Equals(this.Cloth, other.Cloth) && this.ColorId == other.ColorId
-                   && object.Equals(this.Leather, other.Leather) && object.Equals(this.Metal, other.Metal) && string.Equals(this.Name, other.Name);
+            return this.ColorId == other.ColorId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
-        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>;
-        ///     otherwise, false.</returns>
-        /// <param name="obj">The object to compare with the current object.</param>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
+        /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)
         {
             if (object.ReferenceEquals(null, obj))
@@ -144,23 +140,14 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         }
 
         /// <summary>
-        ///     Serves as a hash function for a particular type.
+        /// Serves as a hash function for a particular type. 
         /// </summary>
         /// <returns>
-        ///     A hash code for the current <see cref="T:System.Object" />.
+        /// A hash code for the current <see cref="T:System.Object"/>.
         /// </returns>
         public override int GetHashCode()
         {
-            unchecked
-            {
-                int hashCode = this.BaseRgb.GetHashCode();
-                hashCode = (hashCode * 397) ^ (this.Cloth != null ? this.Cloth.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ this.ColorId;
-                hashCode = (hashCode * 397) ^ (this.Leather != null ? this.Leather.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (this.Metal != null ? this.Metal.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ (this.Name != null ? this.Name.GetHashCode() : 0);
-                return hashCode;
-            }
+            return this.ColorId;
         }
     }
 }
