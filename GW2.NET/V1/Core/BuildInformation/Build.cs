@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Core.BuildInformation
     /// <remarks>
     ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.
     /// </remarks>
-    public class Build : JsonObject, IEquatable<Build>
+    public class Build : JsonObject, IEquatable<Build>, IComparable<Build>
     {
         /// <summary>
         ///     Gets or sets the current build ID of the game.
@@ -52,6 +52,14 @@ namespace GW2DotNET.V1.Core.BuildInformation
         public static bool operator !=(Build left, Build right)
         {
             return !object.Equals(left, right);
+        }
+
+        /// <summary>Compares the current object with another object of the same type.</summary>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public int CompareTo(Build other)
+        {
+            return other == null ? 1 : this.BuildId.CompareTo(other.BuildId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
