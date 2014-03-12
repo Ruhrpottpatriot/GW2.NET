@@ -69,6 +69,19 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
             return !object.Equals(left, right);
         }
 
+        /// <summary>Compares the current object with another object of the same type.</summary>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public int CompareTo(Guild other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+
+            return this.GuildId.CompareTo(other.GuildId);
+        }
+
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
@@ -85,23 +98,6 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
             }
 
             return this.GuildId.Equals(other.GuildId);
-        }
-
-        /// <summary>
-        /// Compares the current object with another object of the same type.
-        /// </summary>
-        /// <returns>
-        /// A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. 
-        /// </returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Guild other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.GuildId.CompareTo(other.GuildId);
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>

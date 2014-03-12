@@ -9,11 +9,16 @@
 namespace RestSharp.GW2DotNET
 {
     using System;
+    using System.Drawing;
+    using System.Drawing.Imaging;
     using System.Globalization;
+    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
     using global::GW2DotNET.Utilities;
+
+    using global::GW2DotNET.V1;
 
     using global::GW2DotNET.V1.Core;
 
@@ -980,6 +985,49 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
+        /// <summary>Renders an image.</summary>
+        /// <param name="file">The file.</param>
+        /// <param name="imageFormat">The image Format.</param>
+        /// <returns>The <see cref="Image"/>.</returns>
+        public Image Render(IRenderable file, ImageFormat imageFormat)
+        {
+            Preconditions.EnsureNotNull(paramName: "file", value: file);
+            Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
+
+            var client = new ServiceClient(new Uri(Services.RenderServiceUrl));
+            var request = new RenderFileRequest(file, imageFormat);
+            var response = request.GetResponse(client).EnsureSuccessStatusCode();
+            var rawBytes = ((RestResponse)response).RawBytes;
+
+            return Image.FromStream(new MemoryStream(rawBytes));
+        }
+
+        /// <summary>Renders an image.</summary>
+        /// <param name="file">The file.</param>
+        /// <param name="imageFormat">The image format.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The <see cref="Image"/>.</returns>
+        public Task<Image> RenderAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "file", value: file);
+            Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
+
+            CancellationToken token = cancellationToken.GetValueOrDefault(CancellationToken.None);
+            var client = new ServiceClient(new Uri(Services.RenderServiceUrl));
+            var request = new RenderFileRequest(file, imageFormat);
+            return request.GetResponseAsync(client, token).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result.EnsureSuccessStatusCode();
+                        var rawBytes = ((RestResponse)response).RawBytes;
+
+                        return Image.FromStream(new MemoryStream(rawBytes));
+                    }, 
+                token, 
+                TaskContinuationOptions.OnlyOnRanToCompletion, 
+                TaskScheduler.Current);
+        }
+
         /// <summary>Sends a request and gets the response content.</summary>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="request">The request.</param>
@@ -1000,8 +1048,20 @@ namespace RestSharp.GW2DotNET
         private Task<TResult> GetAsync<TResult>(IServiceRequest request, CancellationToken? cancellationToken = null)
             where TResult : global::GW2DotNET.V1.Core.JsonObject
         {
+            return this.GetAsync<TResult>(this.serviceClient, request, cancellationToken);
+        }
+
+        /// <summary>Sends a request and gets the response content.</summary>
+        /// <typeparam name="TResult">The type of the response content.</typeparam>
+        /// <param name="client">The client.</param>
+        /// <param name="request">The request.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The response content.</returns>
+        private Task<TResult> GetAsync<TResult>(IServiceClient client, IServiceRequest request, CancellationToken? cancellationToken = null)
+            where TResult : global::GW2DotNET.V1.Core.JsonObject
+        {
             CancellationToken token = cancellationToken.GetValueOrDefault(CancellationToken.None);
-            Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(this.serviceClient, token);
+            Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(client, token);
             Task<TResult> t2 = t1.ContinueWith(
                 task =>
                     {

@@ -9,6 +9,8 @@
 namespace GW2DotNET.V1
 {
     using System;
+    using System.Drawing;
+    using System.Drawing.Imaging;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -670,6 +672,25 @@ namespace GW2DotNET.V1
         public Task<WorldNameCollection> GetWorldNamesAsync(CancellationToken? cancellationToken = null)
         {
             return this.serviceManager.GetWorldNamesAsync(cancellationToken);
+        }
+
+        /// <summary>Renders an image.</summary>
+        /// <param name="file">The file.</param>
+        /// <param name="imageFormat">The image Format.</param>
+        /// <returns>The <see cref="Image"/>.</returns>
+        public Image Render(IRenderable file, ImageFormat imageFormat)
+        {
+            return this.serviceManager.Render(file, imageFormat);
+        }
+
+        /// <summary>Renders an image.</summary>
+        /// <param name="file">The file.</param>
+        /// <param name="imageFormat">The image format.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The <see cref="Image"/>.</returns>
+        public Task<Image> RenderAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null)
+        {
+            return this.serviceManager.RenderAsync(file, imageFormat, cancellationToken);
         }
     }
 }

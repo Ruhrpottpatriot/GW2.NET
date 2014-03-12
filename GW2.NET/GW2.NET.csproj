@@ -66,6 +66,7 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNameCollection.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventCollection.cs" />
     <Compile Include="V1\Core\FilesInformation\Catalogs\AssetCollection.cs" />
+    <Compile Include="V1\Core\IRenderable.cs" />
     <Compile Include="V1\Core\IServiceManager.cs" />
     <Compile Include="V1\Core\ItemsInformation\Details\Items\Unknown\UnknownItem.cs" />
     <Compile Include="V1\Core\MapsInformation\Common\FloorCollection.cs" />

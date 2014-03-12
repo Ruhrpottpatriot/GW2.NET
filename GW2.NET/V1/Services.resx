@@ -117,84 +117,88 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BaseUrl" xml:space="preserve">
-    <value>https://api.guildwars2.com/v{0}/</value>
-    <comment>The base URL for all endpoints.</comment>
-  </data>
   <data name="Build" xml:space="preserve">
-    <value>build.json</value>
+    <value>v1/build.json</value>
     <comment>Returns the current build ID.</comment>
   </data>
   <data name="Colors" xml:space="preserve">
-    <value>colors.json</value>
+    <value>v1/colors.json</value>
     <comment>Returns a list of dyes in the game.</comment>
   </data>
   <data name="Continents" xml:space="preserve">
-    <value>continents.json</value>
+    <value>v1/continents.json</value>
     <comment>Returns a list of continents and information about each continent.</comment>
   </data>
+  <data name="DataServiceUrl" xml:space="preserve">
+    <value>https://api.guildwars2.com</value>
+    <comment>The base URL for data endpoints.</comment>
+  </data>
   <data name="EventDetails" xml:space="preserve">
-    <value>event_details.json</value>
+    <value>v1/event_details.json</value>
     <comment>Returns detailed information about events.</comment>
   </data>
   <data name="EventNames" xml:space="preserve">
-    <value>event_names.json</value>
+    <value>v1/event_names.json</value>
     <comment>Returns a list of localized event names.</comment>
   </data>
   <data name="Events" xml:space="preserve">
-    <value>events.json</value>
+    <value>v1/events.json</value>
     <comment>Returns the current status of events for a specific world.</comment>
   </data>
   <data name="Files" xml:space="preserve">
-    <value>files.json</value>
+    <value>v1/files.json</value>
     <comment>Returns commonly requested assets.</comment>
   </data>
   <data name="GuildDetails" xml:space="preserve">
-    <value>guild_details.json</value>
+    <value>v1/guild_details.json</value>
     <comment>Returns detailed information about a guild.</comment>
   </data>
   <data name="ItemDetails" xml:space="preserve">
-    <value>item_details.json</value>
+    <value>v1/item_details.json</value>
     <comment>Returns detailed information about an item.</comment>
   </data>
   <data name="Items" xml:space="preserve">
-    <value>items.json</value>
+    <value>v1/items.json</value>
     <comment>Returns a list of discovered items.</comment>
   </data>
   <data name="MapFloor" xml:space="preserve">
-    <value>map_floor.json</value>
+    <value>v1/map_floor.json</value>
     <comment>Returns detailed information about a map floor</comment>
   </data>
   <data name="MapNames" xml:space="preserve">
-    <value>map_names.json</value>
+    <value>v1/map_names.json</value>
     <comment>Returns a list of localized map names.</comment>
   </data>
   <data name="Maps" xml:space="preserve">
-    <value>maps.json</value>
+    <value>v1/maps.json</value>
     <comment>Returns a list of maps in the game.</comment>
   </data>
   <data name="MatchDetails" xml:space="preserve">
-    <value>wvw/match_details.json</value>
+    <value>v1/wvw/match_details.json</value>
     <comment>Returns details about a WvW match.</comment>
   </data>
   <data name="Matches" xml:space="preserve">
-    <value>wvw/matches.json</value>
+    <value>v1/wvw/matches.json</value>
     <comment>Returns the currently running WvW matches.</comment>
   </data>
   <data name="ObjectiveNames" xml:space="preserve">
-    <value>wvw/objective_names.json</value>
+    <value>v1/wvw/objective_names.json</value>
     <comment>Returns a list of WvW objective names.</comment>
   </data>
   <data name="RecipeDetails" xml:space="preserve">
-    <value>recipe_details.json</value>
+    <value>v1/recipe_details.json</value>
     <comment>Returns detailed information about a recipe.</comment>
   </data>
   <data name="Recipes" xml:space="preserve">
-    <value>recipes.json</value>
+    <value>v1/recipes.json</value>
     <comment>Returns a list of discovered recipes.</comment>
   </data>
+  <data name="RenderServiceUrl" xml:space="preserve">
+    <value>https://render.guildwars2.com</value>
+    <comment>The base URL for image data endpoints.</comment>
+  </data>
   <data name="WorldNames" xml:space="preserve">
-    <value>world_names.json</value>
+    <value>v1/world_names.json</value>
     <comment>Returns a list of localized world names.</comment>
   </data>
 </root>

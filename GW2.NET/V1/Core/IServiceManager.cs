@@ -9,6 +9,8 @@
 namespace GW2DotNET.V1.Core
 {
     using System;
+    using System.Drawing;
+    using System.Drawing.Imaging;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -436,5 +438,18 @@ namespace GW2DotNET.V1.Core
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of worlds and their localized name.</returns>
         Task<WorldNameCollection> GetWorldNamesAsync(CancellationToken? cancellationToken = null);
+
+        /// <summary>Renders an image.</summary>
+        /// <param name="file">The file.</param>
+        /// <param name="imageFormat">The image Format.</param>
+        /// <returns>The <see cref="Image"/>.</returns>
+        Image Render(IRenderable file, ImageFormat imageFormat);
+
+        /// <summary>Renders an image.</summary>
+        /// <param name="file">The file.</param>
+        /// <param name="imageFormat">The image format.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The <see cref="Image"/>.</returns>
+        Task<Image> RenderAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null);
     }
 }

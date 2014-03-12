@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
     /// <summary>
     ///     Represents information about a file that can be retrieved from the render service.
     /// </summary>
-    public class Asset : JsonObject, IEquatable<Asset>, IComparable<Asset>
+    public class Asset : JsonObject, IEquatable<Asset>, IComparable<Asset>, IRenderable
     {
         /// <summary>
         ///     Gets or sets the file ID to be used with the render service.
@@ -115,6 +115,21 @@ namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
             }
 
             return this.Equals((Asset)obj);
+        }
+
+        /// <summary>Gets the file's ID.</summary>
+        /// <returns>The file's ID.</returns>
+        public int GetFileId()
+        {
+            return this.FileId;
+        }
+
+        /// <summary>Gets the file's signature
+        /// .</summary>
+        /// <returns>The file's signature.</returns>
+        public string GetFileSignature()
+        {
+            return this.Signature;
         }
 
         /// <summary>

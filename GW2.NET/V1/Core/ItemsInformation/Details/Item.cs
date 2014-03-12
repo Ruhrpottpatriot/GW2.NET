@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
     ///     Represents detailed information about an in-game item.
     /// </summary>
     [JsonConverter(typeof(ItemConverter))]
-    public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>
+    public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
         /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>
         /// <param name="type">The item's type.</param>
@@ -179,6 +179,20 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details
             }
 
             return this.Equals((Item)obj);
+        }
+
+        /// <summary>Gets the file's ID.</summary>
+        /// <returns>The file's ID.</returns>
+        public int GetFileId()
+        {
+            return this.IconFileId;
+        }
+
+        /// <summary>Gets the file's signature.</summary>
+        /// <returns>The file's signature.</returns>
+        public string GetFileSignature()
+        {
+            return this.IconFileSignature;
         }
 
         /// <summary>

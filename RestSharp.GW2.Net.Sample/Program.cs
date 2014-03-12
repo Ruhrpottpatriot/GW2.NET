@@ -9,7 +9,10 @@
 namespace RestSharp.GW2DotNET.Sample
 {
     using System;
+    using System.Drawing.Imaging;
+    using System.IO;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using global::GW2DotNET.V1;
 

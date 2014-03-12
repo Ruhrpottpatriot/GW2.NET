@@ -9,6 +9,9 @@
 namespace RestSharp.GW2DotNET
 {
     using System;
+    using System.Drawing;
+    using System.Drawing.Imaging;
+    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -17,6 +20,8 @@ namespace RestSharp.GW2DotNET
     using global::GW2DotNET.V1;
 
     using global::GW2DotNET.V1.Core;
+
+    using RestSharp.GW2DotNET.Requests;
 
     /// <summary>
     ///     Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.
@@ -41,18 +46,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
         public static IServiceClient Create()
         {
-            return new ServiceClient(new Uri(string.Format(Services.BaseUrl, 1)));
-        }
-
-        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient"/> class that targets the specified API
-        ///     version.</summary>
-        /// <param name="version">The target API version.</param>
-        /// <returns>A new instance of the <see cref="ServiceClient"/> class.</returns>
-        public static IServiceClient Create(Version version)
-        {
-            Preconditions.EnsureNotNull(paramName: "version", value: version);
-
-            return new ServiceClient(new Uri(string.Format(Services.BaseUrl, version.Major)));
+            return new ServiceClient(new Uri(Services.DataServiceUrl));
         }
 
         /// <summary>Sends an <see cref="ServiceRequest"/> and returns an <see cref="ServiceResponse{TContent}"/> whose content can be
