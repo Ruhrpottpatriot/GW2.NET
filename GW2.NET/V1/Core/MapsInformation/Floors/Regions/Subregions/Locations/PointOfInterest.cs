@@ -44,7 +44,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         ///     Gets or sets the Point of Interest's ID.
         /// </summary>
         [JsonProperty("poi_id", Order = 0)]
-        public int PoiId { get; set; } // TODO: rename 'PoiId' to 'PointOfInterestId'
+        public int PointOfInterestId { get; set; }
 
         /// <summary>
         ///     Gets or sets the Point of Interest's type.
@@ -91,7 +91,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
                 return 1;
             }
 
-            return this.PoiId.CompareTo(other.PoiId);
+            return this.PointOfInterestId.CompareTo(other.PointOfInterestId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
@@ -109,7 +109,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
                 return true;
             }
 
-            return this.PoiId == other.PoiId;
+            return this.PointOfInterestId == other.PointOfInterestId;
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
@@ -143,7 +143,7 @@ namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions.Locations
         /// </returns>
         public override int GetHashCode()
         {
-            return this.PoiId;
+            return this.PointOfInterestId;
         }
     }
 }
