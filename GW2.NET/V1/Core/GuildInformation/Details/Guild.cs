@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
     /// <summary>
     ///     Represents a guild and its details.
     /// </summary>
-    public class Guild : JsonObject
+    public class Guild : JsonObject, IEquatable<Guild>, IComparable<Guild>
     {
         /// <summary>
         ///     Gets or sets detailed information about the guild's emblem, if any.
@@ -40,5 +40,102 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
         /// </summary>
         [JsonProperty("tag", Order = 2)]
         public string Tag { get; set; }
+
+        /// <summary>
+        ///     Indicates whether an object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="left">The object on the left side.</param>
+        /// <param name="right">The object on the right side.</param>
+        /// <returns>
+        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
+        ///     false.
+        /// </returns>
+        public static bool operator ==(Guild left, Guild right)
+        {
+            return object.Equals(left, right);
+        }
+
+        /// <summary>
+        ///     Indicates whether an object differs from another object of the same type.
+        /// </summary>
+        /// <param name="left">The object on the left side.</param>
+        /// <param name="right">The object on the right side.</param>
+        /// <returns>
+        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
+        ///     otherwise, false.
+        /// </returns>
+        public static bool operator !=(Guild left, Guild right)
+        {
+            return !object.Equals(left, right);
+        }
+
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(Guild other)
+        {
+            if (object.ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return this.GuildId.Equals(other.GuildId);
+        }
+
+        /// <summary>
+        /// Compares the current object with another object of the same type.
+        /// </summary>
+        /// <returns>
+        /// A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. 
+        /// </returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public int CompareTo(Guild other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+
+            return this.GuildId.CompareTo(other.GuildId);
+        }
+
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
+        /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
+        public override bool Equals(object obj)
+        {
+            if (object.ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return this.Equals((Guild)obj);
+        }
+
+        /// <summary>
+        /// Serves as a hash function for a particular type. 
+        /// </summary>
+        /// <returns>
+        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return this.GuildId.GetHashCode();
+        }
     }
 }
