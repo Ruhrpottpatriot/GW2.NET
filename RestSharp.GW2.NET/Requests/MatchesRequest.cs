@@ -13,6 +13,7 @@ namespace RestSharp.GW2DotNET.Requests
     using System.Threading;
     using System.Threading.Tasks;
 
+    using global::GW2DotNET.V1;
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
@@ -30,7 +31,7 @@ namespace RestSharp.GW2DotNET.Requests
         ///     Initializes a new instance of the <see cref="MatchesRequest" /> class.
         /// </summary>
         public MatchesRequest()
-            : base(Resources.Matches)
+            : base(Services.Matches)
         {
         }
 

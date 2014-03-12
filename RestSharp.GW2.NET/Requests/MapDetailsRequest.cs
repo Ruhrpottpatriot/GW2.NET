@@ -12,6 +12,7 @@ namespace RestSharp.GW2DotNET.Requests
     using System.Threading;
     using System.Threading.Tasks;
 
+    using global::GW2DotNET.V1;
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.MapsInformation.Details;
@@ -34,7 +35,7 @@ namespace RestSharp.GW2DotNET.Requests
         ///     Initializes a new instance of the <see cref="MapDetailsRequest" /> class.
         /// </summary>
         public MapDetailsRequest()
-            : base(Resources.Maps)
+            : base(Services.Maps)
         {
             this.AddParameter(this.mapIdParameter = new Parameter { Name = "map_id", Value = string.Empty, Type = ParameterType.GetOrPost });
         }

@@ -12,6 +12,7 @@ namespace RestSharp.GW2DotNET.Requests
     using System.Threading;
     using System.Threading.Tasks;
 
+    using global::GW2DotNET.V1;
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.ItemsInformation.Catalogs;
@@ -28,7 +29,7 @@ namespace RestSharp.GW2DotNET.Requests
         ///     Initializes a new instance of the <see cref="RecipesRequest" /> class.
         /// </summary>
         public RecipesRequest()
-            : base(Resources.Recipes)
+            : base(Services.Recipes)
         {
         }
 

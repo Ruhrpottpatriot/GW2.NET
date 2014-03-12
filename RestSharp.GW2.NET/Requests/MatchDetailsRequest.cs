@@ -13,6 +13,7 @@ namespace RestSharp.GW2DotNET.Requests
     using System.Threading;
     using System.Threading.Tasks;
 
+    using global::GW2DotNET.V1;
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
@@ -34,7 +35,7 @@ namespace RestSharp.GW2DotNET.Requests
 
         /// <summary>Initializes a new instance of the <see cref="MatchDetailsRequest"/> class.</summary>
         public MatchDetailsRequest()
-            : base(Resources.MatchDetails)
+            : base(Services.MatchDetails)
         {
             this.AddParameter(this.matchIdParameter = new Parameter { Name = "match_id", Value = string.Empty, Type = ParameterType.GetOrPost });
         }

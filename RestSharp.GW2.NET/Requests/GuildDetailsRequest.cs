@@ -13,6 +13,7 @@ namespace RestSharp.GW2DotNET.Requests
     using System.Threading;
     using System.Threading.Tasks;
 
+    using global::GW2DotNET.V1;
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.GuildInformation.Details;
@@ -39,7 +40,7 @@ namespace RestSharp.GW2DotNET.Requests
 
         /// <summary>Initializes a new instance of the <see cref="GuildDetailsRequest"/> class.</summary>
         public GuildDetailsRequest()
-            : base(Resources.GuildDetails)
+            : base(Services.GuildDetails)
         {
             this.AddParameter(this.guildIdParameter = new Parameter { Name = "guild_id", Value = string.Empty, Type = ParameterType.GetOrPost });
             this.AddParameter(this.guildNameParameter = new Parameter { Name = "guild_name", Value = string.Empty, Type = ParameterType.GetOrPost });

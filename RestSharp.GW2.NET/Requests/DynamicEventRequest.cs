@@ -13,6 +13,7 @@ namespace RestSharp.GW2DotNET.Requests
     using System.Threading;
     using System.Threading.Tasks;
 
+    using global::GW2DotNET.V1;
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.DynamicEventsInformation.Status;
@@ -47,7 +48,7 @@ namespace RestSharp.GW2DotNET.Requests
         ///     Initializes a new instance of the <see cref="DynamicEventRequest" /> class.
         /// </summary>
         public DynamicEventRequest()
-            : base(Resources.Events)
+            : base(Services.Events)
         {
             this.AddParameter(this.worldIdParameter = new Parameter { Name = "world_id", Value = string.Empty, Type = ParameterType.GetOrPost });
 

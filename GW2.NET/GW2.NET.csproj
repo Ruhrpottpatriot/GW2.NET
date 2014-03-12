@@ -367,11 +367,6 @@
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Locations\SkillChallenge.cs" />
     <Compile Include="V1\Core\MapsInformation\Floors\Regions\Subregions\Subregion.cs" />
     <Compile Include="V1\Core\MapsInformation\Names\MapName.cs" />
-    <Compile Include="V1\Core\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="V1\Core\WorldsInformation\Names\WorldName.cs" />
     <Compile Include="V1\Core\WorldsInformation\Names\WorldNameCollection.cs" />
     <Compile Include="V1\Core\WorldVersusWorldInformation\Catalogs\MatchCollection.cs" />
@@ -394,6 +389,11 @@
     </Compile>
     <Compile Include="V1\Core\WorldVersusWorldInformation\Details\TeamColor.cs" />
     <Compile Include="V1\ServiceProvider.cs" />
+    <Compile Include="V1\Services.Designer.cs">
+      <DependentUpon>Services.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -402,13 +402,12 @@
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationType.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="V1\Core\Resources.resx">
+    <EmbeddedResource Include="V1\Services.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Services.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

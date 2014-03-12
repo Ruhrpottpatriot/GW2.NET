@@ -12,6 +12,7 @@ namespace RestSharp.GW2DotNET.Requests
     using System.Threading;
     using System.Threading.Tasks;
 
+    using global::GW2DotNET.V1;
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.ItemsInformation.Details;
@@ -32,7 +33,7 @@ namespace RestSharp.GW2DotNET.Requests
 
         /// <summary>Initializes a new instance of the <see cref="ItemDetailsRequest"/> class.</summary>
         public ItemDetailsRequest()
-            : base(Resources.ItemDetails)
+            : base(Services.ItemDetails)
         {
             this.AddParameter(this.itemIdParameter = new Parameter { Name = "item_id", Value = default(int), Type = ParameterType.GetOrPost });
         }

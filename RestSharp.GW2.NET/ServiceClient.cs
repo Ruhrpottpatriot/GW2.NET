@@ -14,7 +14,7 @@ namespace RestSharp.GW2DotNET
     using System.Threading.Tasks;
 
     using global::GW2DotNET.Utilities;
-
+    using global::GW2DotNET.V1;
     using global::GW2DotNET.V1.Core;
 
     /// <summary>
@@ -86,7 +86,7 @@ namespace RestSharp.GW2DotNET
         /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
         public static IServiceClient Create()
         {
-            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, 1)));
+            return new ServiceClient(new Uri(string.Format(Services.BaseUrl, 1)));
         }
 
         /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient"/> class that targets the specified API
@@ -97,7 +97,7 @@ namespace RestSharp.GW2DotNET
         {
             Preconditions.EnsureNotNull(paramName: "version", value: version);
 
-            return new ServiceClient(new Uri(string.Format(Resources.BaseUrl, version.Major)));
+            return new ServiceClient(new Uri(string.Format(Services.BaseUrl, version.Major)));
         }
 
         /// <summary>Infrastructure. Implementation details for 'SendAsync'.</summary>
