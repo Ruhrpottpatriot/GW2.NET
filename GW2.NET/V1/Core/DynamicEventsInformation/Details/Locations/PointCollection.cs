@@ -6,7 +6,6 @@
 //   Represents a collection of points.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     using System.Collections.Generic;

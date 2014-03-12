@@ -6,7 +6,6 @@
 //   The build test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.BuildInformation
 {
     using GW2DotNET.V1.Core.BuildInformation;
@@ -19,14 +18,6 @@ namespace GW2DotNET.Core.BuildInformation
     [TestFixture]
     public class BuildTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"build_id\":0}";
-            this.build = JsonConvert.DeserializeObject<Build>(input);
-        }
-
         /// <summary>The build.</summary>
         private Build build;
 
@@ -48,6 +39,14 @@ namespace GW2DotNET.Core.BuildInformation
         public void Build_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(this.build.ExtensionData);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"build_id\":0}";
+            this.build = JsonConvert.DeserializeObject<Build>(input);
         }
     }
 }

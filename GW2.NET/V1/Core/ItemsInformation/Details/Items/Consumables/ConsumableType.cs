@@ -6,7 +6,6 @@
 //   Enumerates the possible consumable types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
 {
     using System.Runtime.Serialization;

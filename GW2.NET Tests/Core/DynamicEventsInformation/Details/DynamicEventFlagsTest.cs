@@ -6,7 +6,6 @@
 //   The dynamic event flags test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.DynamicEventsInformation.Details
 {
     using GW2DotNET.V1.Core.DynamicEventsInformation.Details;

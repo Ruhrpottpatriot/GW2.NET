@@ -6,7 +6,6 @@
 //   Enumerates the possible location shapes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     using System.Runtime.Serialization;

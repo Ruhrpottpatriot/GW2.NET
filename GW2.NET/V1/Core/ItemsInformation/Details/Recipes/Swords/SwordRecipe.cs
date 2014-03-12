@@ -6,7 +6,6 @@
 //   Represents detailed information about a sword crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Swords
 {
     using GW2DotNET.V1.Core.Converters;

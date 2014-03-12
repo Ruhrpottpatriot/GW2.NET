@@ -3,10 +3,9 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.
+//   Provides a RestSharp-specific implementation of the  interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET
 {
     using System;
@@ -14,7 +13,9 @@ namespace RestSharp.GW2DotNET
     using System.Threading.Tasks;
 
     using global::GW2DotNET.Utilities;
+
     using global::GW2DotNET.V1;
+
     using global::GW2DotNET.V1.Core;
 
     /// <summary>
@@ -32,6 +33,26 @@ namespace RestSharp.GW2DotNET
             {
                 throw new ArgumentException("'baseUrl' cannot be a relative URI.");
             }
+        }
+
+        /// <summary>
+        ///     Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.
+        /// </summary>
+        /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
+        public static IServiceClient Create()
+        {
+            return new ServiceClient(new Uri(string.Format(Services.BaseUrl, 1)));
+        }
+
+        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient"/> class that targets the specified API
+        ///     version.</summary>
+        /// <param name="version">The target API version.</param>
+        /// <returns>A new instance of the <see cref="ServiceClient"/> class.</returns>
+        public static IServiceClient Create(Version version)
+        {
+            Preconditions.EnsureNotNull(paramName: "version", value: version);
+
+            return new ServiceClient(new Uri(string.Format(Services.BaseUrl, version.Major)));
         }
 
         /// <summary>Sends an <see cref="ServiceRequest"/> and returns an <see cref="ServiceResponse{TContent}"/> whose content can be
@@ -80,26 +101,6 @@ namespace RestSharp.GW2DotNET
             return this.SendAsyncImplementation<TContent>(serviceRequest as IRestRequest, cancellationToken);
         }
 
-        /// <summary>
-        ///     Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.
-        /// </summary>
-        /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
-        public static IServiceClient Create()
-        {
-            return new ServiceClient(new Uri(string.Format(Services.BaseUrl, 1)));
-        }
-
-        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient"/> class that targets the specified API
-        ///     version.</summary>
-        /// <param name="version">The target API version.</param>
-        /// <returns>A new instance of the <see cref="ServiceClient"/> class.</returns>
-        public static IServiceClient Create(Version version)
-        {
-            Preconditions.EnsureNotNull(paramName: "version", value: version);
-
-            return new ServiceClient(new Uri(string.Format(Services.BaseUrl, version.Major)));
-        }
-
         /// <summary>Infrastructure. Implementation details for 'SendAsync'.</summary>
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="restRequest">The <see cref="ServiceRequest"/> that targets a specific API endpoint.</param>
@@ -111,9 +112,9 @@ namespace RestSharp.GW2DotNET
             Task<IRestResponse> t1 = this.ExecuteTaskAsync(restRequest, cancellationToken);
 
             Task<IServiceResponse<TContent>> t2 = t1.ContinueWith<IServiceResponse<TContent>>(
-                task => new ServiceResponse<TContent>(task.Result),
-                cancellationToken,
-                TaskContinuationOptions.OnlyOnRanToCompletion,
+                task => new ServiceResponse<TContent>(task.Result), 
+                cancellationToken, 
+                TaskContinuationOptions.OnlyOnRanToCompletion, 
                 TaskScheduler.Current);
 
             return t2;

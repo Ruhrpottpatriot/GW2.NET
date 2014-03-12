@@ -6,7 +6,6 @@
 //   Enumerates all possible team colors.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     using System.Runtime.Serialization;

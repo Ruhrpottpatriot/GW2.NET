@@ -6,7 +6,6 @@
 //   Represents detailed information about a torch.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Torches
 {
     using GW2DotNET.V1.Core.Converters;

@@ -6,7 +6,6 @@
 //   Represents detailed information about a tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
 {
     using Newtonsoft.Json;

@@ -6,7 +6,6 @@
 //   Represents detailed information about a feast crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Feasts
 {
     using GW2DotNET.V1.Core.Converters;

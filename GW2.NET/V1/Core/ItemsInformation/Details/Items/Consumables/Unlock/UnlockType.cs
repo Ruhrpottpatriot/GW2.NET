@@ -6,7 +6,6 @@
 //   Enumerates the possible types of unlock consumables.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock
 {
     using System.Runtime.Serialization;

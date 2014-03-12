@@ -6,7 +6,6 @@
 //   Represents a collection of continents.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.MapsInformation.Continents
 {
     using System.Collections.Generic;

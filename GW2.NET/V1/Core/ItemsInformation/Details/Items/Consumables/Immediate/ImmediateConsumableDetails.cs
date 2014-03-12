@@ -6,7 +6,6 @@
 //   Represents detailed information about an immediate consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Immediate
 {
     using GW2DotNET.V1.Core.Converters;

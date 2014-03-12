@@ -6,7 +6,6 @@
 //   Represents detailed information about an edible item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Food
 {
     using System;

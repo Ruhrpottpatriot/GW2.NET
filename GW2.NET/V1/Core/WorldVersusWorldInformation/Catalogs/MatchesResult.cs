@@ -6,7 +6,6 @@
 //   Wraps a collection of matches.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     using Newtonsoft.Json;

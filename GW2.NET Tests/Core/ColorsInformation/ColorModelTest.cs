@@ -6,7 +6,6 @@
 //   The color model test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.ColorsInformation
 {
     using System.Drawing;
@@ -21,14 +20,6 @@ namespace GW2DotNET.Core.ColorsInformation
     [TestFixture]
     public class ColorModelTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"brightness\":0,\"contrast\":0,\"hue\":0,\"saturation\":0,\"lightness\":0,\"rgb\":[]}";
-            this.colorModel = JsonConvert.DeserializeObject<ColorModel>(input);
-        }
-
         /// <summary>The color model.</summary>
         private ColorModel colorModel;
 
@@ -105,6 +96,14 @@ namespace GW2DotNET.Core.ColorsInformation
             double actual = this.colorModel.Saturation;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"brightness\":0,\"contrast\":0,\"hue\":0,\"saturation\":0,\"lightness\":0,\"rgb\":[]}";
+            this.colorModel = JsonConvert.DeserializeObject<ColorModel>(input);
         }
     }
 }

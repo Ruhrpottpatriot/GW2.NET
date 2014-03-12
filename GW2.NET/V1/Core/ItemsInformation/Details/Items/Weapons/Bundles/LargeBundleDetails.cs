@@ -6,7 +6,6 @@
 //   Represents detailed information about a large bundle.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Bundles
 {
     using GW2DotNET.V1.Core.Converters;

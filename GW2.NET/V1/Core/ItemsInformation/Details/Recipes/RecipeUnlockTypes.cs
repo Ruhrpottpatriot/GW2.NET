@@ -6,7 +6,6 @@
 //   Enumerates all possible ways to unlock a recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     using System;

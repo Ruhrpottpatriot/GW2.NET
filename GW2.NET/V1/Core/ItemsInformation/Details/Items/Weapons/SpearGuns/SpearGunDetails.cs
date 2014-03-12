@@ -6,7 +6,6 @@
 //   Represents detailed information about a spear gun.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.SpearGuns
 {
     using GW2DotNET.V1.Core.Converters;

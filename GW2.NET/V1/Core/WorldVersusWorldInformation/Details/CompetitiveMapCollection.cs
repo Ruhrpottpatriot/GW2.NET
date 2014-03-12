@@ -6,7 +6,6 @@
 //   Represents a collection of World versus World maps.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     using System.Collections.Generic;

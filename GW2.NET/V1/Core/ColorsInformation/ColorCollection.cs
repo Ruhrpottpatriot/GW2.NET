@@ -6,7 +6,6 @@
 //   Represents a collection of color palettes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ColorsInformation
 {
     using System.Collections.Generic;

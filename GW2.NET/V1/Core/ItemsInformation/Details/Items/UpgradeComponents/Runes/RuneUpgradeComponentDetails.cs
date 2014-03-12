@@ -6,7 +6,6 @@
 //   Represents detailed information about a rune upgrade component.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents.Runes
 {
     using GW2DotNET.V1.Core.Converters;

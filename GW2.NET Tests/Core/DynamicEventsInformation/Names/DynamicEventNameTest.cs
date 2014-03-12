@@ -6,7 +6,6 @@
 //   The dynamic event name test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.DynamicEventsInformation.Names
 {
     using System;
@@ -21,14 +20,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Names
     [TestFixture]
     public class DynamicEventNameTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"ID\":\"893057AB-695C-4553-9D8C-A4CC04557C84\",\"name\":\"Kill the Risen commander to avenge Forgal.\"}";
-            this.dynamicEventName = JsonConvert.DeserializeObject<DynamicEventName>(input);
-        }
-
         /// <summary>The dynamic event name.</summary>
         private DynamicEventName dynamicEventName;
 
@@ -57,6 +48,14 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Names
         {
             const string expectedName = "Kill the Risen commander to avenge Forgal.";
             Assert.AreEqual(expectedName, this.dynamicEventName.Name);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"ID\":\"893057AB-695C-4553-9D8C-A4CC04557C84\",\"name\":\"Kill the Risen commander to avenge Forgal.\"}";
+            this.dynamicEventName = JsonConvert.DeserializeObject<DynamicEventName>(input);
         }
     }
 }

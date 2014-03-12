@@ -6,7 +6,6 @@
 //   Represents detailed information about a pistol.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Pistols
 {
     using GW2DotNET.V1.Core.Converters;

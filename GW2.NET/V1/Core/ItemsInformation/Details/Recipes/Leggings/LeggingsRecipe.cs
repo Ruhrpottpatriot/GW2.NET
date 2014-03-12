@@ -6,7 +6,6 @@
 //   Represents detailed information about a leggings crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Leggings
 {
     using GW2DotNET.V1.Core.Converters;

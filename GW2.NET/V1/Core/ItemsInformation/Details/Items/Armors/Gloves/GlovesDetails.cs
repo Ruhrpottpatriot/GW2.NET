@@ -6,7 +6,6 @@
 //   Represents detailed information about arm protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Gloves
 {
     using GW2DotNET.V1.Core.Converters;

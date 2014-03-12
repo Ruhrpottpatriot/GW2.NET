@@ -6,7 +6,6 @@
 //   Represents one of an item's attributes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     using Newtonsoft.Json;

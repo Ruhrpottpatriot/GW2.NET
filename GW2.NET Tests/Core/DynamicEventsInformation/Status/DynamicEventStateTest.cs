@@ -6,7 +6,6 @@
 //   The dynamic event state test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.DynamicEventsInformation.Status
 {
     using GW2DotNET.V1.Core.DynamicEventsInformation.Status;

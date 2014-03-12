@@ -6,7 +6,6 @@
 //   Represents detailed information about a bulk crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Bulks
 {
     using GW2DotNET.V1.Core.Converters;

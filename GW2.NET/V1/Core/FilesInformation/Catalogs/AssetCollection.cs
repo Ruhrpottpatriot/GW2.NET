@@ -6,7 +6,6 @@
 //   Represents a collection of named assets.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
 {
     using System.Collections.Generic;

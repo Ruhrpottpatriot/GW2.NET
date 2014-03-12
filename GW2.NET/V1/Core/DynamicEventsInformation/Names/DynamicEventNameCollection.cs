@@ -6,7 +6,6 @@
 //   Represents a collection of dynamic events and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Names
 {
     using System.Collections.Generic;

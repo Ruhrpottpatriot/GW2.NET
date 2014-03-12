@@ -6,7 +6,6 @@
 //   Enumerates the known game type restrictions.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
 {
     using System;

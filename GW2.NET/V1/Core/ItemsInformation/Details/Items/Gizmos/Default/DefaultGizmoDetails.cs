@@ -6,7 +6,6 @@
 //   Represents detailed information about a default gizmo.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.Default
 {
     using GW2DotNET.V1.Core.Converters;

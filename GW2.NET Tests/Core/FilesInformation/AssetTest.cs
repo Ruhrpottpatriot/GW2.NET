@@ -6,7 +6,6 @@
 //   The asset test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.FilesInformation
 {
     using GW2DotNET.V1.Core.FilesInformation.Catalogs;
@@ -19,14 +18,6 @@ namespace GW2DotNET.Core.FilesInformation
     [TestFixture]
     public class AssetTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"file_id\":0,\"signature\":\"\"}";
-            this.asset = JsonConvert.DeserializeObject<Asset>(input);
-        }
-
         /// <summary>The asset.</summary>
         private Asset asset;
 
@@ -59,6 +50,14 @@ namespace GW2DotNET.Core.FilesInformation
             string actual = this.asset.Signature;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"file_id\":0,\"signature\":\"\"}";
+            this.asset = JsonConvert.DeserializeObject<Asset>(input);
         }
     }
 }

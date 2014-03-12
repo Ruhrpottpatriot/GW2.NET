@@ -6,7 +6,6 @@
 //   Represents detailed information about a dye.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.Dyes
 {
     using GW2DotNET.V1.Core.Converters;

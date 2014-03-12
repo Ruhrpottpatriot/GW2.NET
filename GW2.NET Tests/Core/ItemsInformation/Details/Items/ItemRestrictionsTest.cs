@@ -6,7 +6,6 @@
 //   The item restrictions test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.ItemsInformation.Details.Items
 {
     using GW2DotNET.V1.Core.ItemsInformation.Details.Items;

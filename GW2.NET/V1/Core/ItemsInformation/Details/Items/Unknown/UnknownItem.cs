@@ -6,7 +6,6 @@
 //   Represents an unknown item..
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Unknown
 {
     using GW2DotNET.V1.Core.Converters;

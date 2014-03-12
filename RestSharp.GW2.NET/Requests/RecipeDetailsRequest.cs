@@ -6,13 +6,13 @@
 //   Represents a request for information regarding a specific recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET.Requests
 {
     using System.Threading;
     using System.Threading.Tasks;
 
     using global::GW2DotNET.V1;
+
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.ItemsInformation.Details;

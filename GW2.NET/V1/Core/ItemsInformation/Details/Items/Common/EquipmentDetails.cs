@@ -6,7 +6,6 @@
 //   Represents detailed information about a piece of combat equipment.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     using Newtonsoft.Json;

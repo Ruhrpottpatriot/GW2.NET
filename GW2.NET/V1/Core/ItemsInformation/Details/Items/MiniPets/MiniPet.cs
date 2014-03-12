@@ -6,7 +6,6 @@
 //   Represents a mini pet.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.MiniPets
 {
     using GW2DotNET.V1.Core.Converters;

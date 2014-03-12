@@ -6,7 +6,6 @@
 //   Represents detailed information about a mace.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Maces
 {
     using GW2DotNET.V1.Core.Converters;

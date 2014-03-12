@@ -6,7 +6,6 @@
 //   Enumerates the possible states of a dynamic event.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
 {
     using System.Runtime.Serialization;

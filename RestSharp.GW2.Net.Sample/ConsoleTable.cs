@@ -7,7 +7,6 @@
 //   https://github.com/khalidabuhakmeh/ConsoleTables
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET.Sample
 {
     using System;
@@ -34,6 +33,25 @@ namespace RestSharp.GW2DotNET.Sample
 
         /// <summary>Gets or sets the rows.</summary>
         public IList<object[]> Rows { get; protected set; }
+
+        /// <summary>TODO The from.</summary>
+        /// <param name="values">TODO The values.</param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns>The <see cref="ConsoleTable"/>.</returns>
+        public static ConsoleTable From<T>(IEnumerable<T> values)
+        {
+            var table = new ConsoleTable();
+
+            var columns = typeof(T).GetProperties().Select(x => x.Name).ToArray();
+            table.AddColumn(columns);
+
+            foreach (var propertyValues in values.Select(value => columns.Select(column => typeof(T).GetProperty(column).GetValue(value, null))))
+            {
+                table.AddRow(propertyValues.ToArray());
+            }
+
+            return table;
+        }
 
         /// <summary>TODO The add column.</summary>
         /// <param name="names">TODO The names.</param>
@@ -72,25 +90,6 @@ namespace RestSharp.GW2DotNET.Sample
 
             this.Rows.Add(values);
             return this;
-        }
-
-        /// <summary>TODO The from.</summary>
-        /// <param name="values">TODO The values.</param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns>The <see cref="ConsoleTable"/>.</returns>
-        public static ConsoleTable From<T>(IEnumerable<T> values)
-        {
-            var table = new ConsoleTable();
-
-            var columns = typeof(T).GetProperties().Select(x => x.Name).ToArray();
-            table.AddColumn(columns);
-
-            foreach (var propertyValues in values.Select(value => columns.Select(column => typeof(T).GetProperty(column).GetValue(value, null))))
-            {
-                table.AddRow(propertyValues.ToArray());
-            }
-
-            return table;
         }
 
         /// <summary>TODO The to string.</summary>

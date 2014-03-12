@@ -6,7 +6,6 @@
 //   The subregion test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
 {
     using System.Drawing;
@@ -22,6 +21,9 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
     [TestFixture]
     public class SubregionTest
     {
+        /// <summary>The subregion.</summary>
+        private Subregion subregion;
+
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -30,9 +32,6 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions
                 "{\"name\":\"\",\"min_level\":0,\"max_level\":0,\"default_floor\":0,\"map_rect\":[[],[]],\"continent_rect\":[[],[]],\"points_of_interest\":[],\"tasks\":[],\"skill_challenges\":[],\"sectors\":[]}";
             this.subregion = JsonConvert.DeserializeObject<Subregion>(input);
         }
-
-        /// <summary>The subregion.</summary>
-        private Subregion subregion;
 
         /// <summary>The subregion_ continent rectangle reflects input.</summary>
         [Test]

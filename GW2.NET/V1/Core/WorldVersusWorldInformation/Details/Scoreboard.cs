@@ -6,7 +6,6 @@
 //   Represents a World versus World scoreboard.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Details
 {
     using Newtonsoft.Json;

@@ -6,7 +6,6 @@
 //   Represents detailed information about a potion crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Potions
 {
     using GW2DotNET.V1.Core.Converters;

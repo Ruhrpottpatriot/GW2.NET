@@ -6,7 +6,6 @@
 //   The polygon location test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 {
     using System.Drawing;
@@ -22,6 +21,9 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
     [TestFixture]
     public class PolygonLocationTest
     {
+        /// <summary>The polygon location.</summary>
+        private PolygonLocation polygonLocation;
+
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -29,9 +31,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             const string input = "{\"type\":\"poly\",\"center\":[],\"z_range\":[],\"points\":[]}";
             this.polygonLocation = JsonConvert.DeserializeObject<PolygonLocation>(input);
         }
-
-        /// <summary>The polygon location.</summary>
-        private PolygonLocation polygonLocation;
 
         /// <summary>The polygon location_ center reflects input.</summary>
         [Test]

@@ -6,7 +6,6 @@
 //   The json point f converter test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.Converters
 {
     using System.Drawing;

@@ -6,7 +6,6 @@
 //   Represents a map and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.MapsInformation.Names
 {
     using Newtonsoft.Json;

@@ -6,7 +6,6 @@
 //   The program.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET.Sample
 {
     using System;
@@ -54,6 +53,26 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine(build.BuildId);
             Console.WriteLine();
             Console.WriteLine(@"+--------------------------------------------+");
+        }
+
+        /// <summary>TODO The get int.</summary>
+        /// <param name="prompt">TODO The prompt.</param>
+        /// <returns>The <see cref="int"/>.</returns>
+        private int? GetInt(string prompt = null)
+        {
+            string rawInput = default(string);
+            int input;
+            do
+            {
+                Console.Write(prompt);
+                if (rawInput == string.Empty)
+                {
+                    return null;
+                }
+            }
+            while (!int.TryParse(rawInput = Console.ReadLine(), out input));
+
+            return input;
         }
 
         /// <summary>TODO The main.</summary>
@@ -119,19 +138,6 @@ namespace RestSharp.GW2DotNET.Sample
             while (true);
         }
 
-        /// <summary>TODO The print error.</summary>
-        /// <param name="errorResult">TODO The error result.</param>
-        private void PrintError(ErrorResult errorResult)
-        {
-            var table = new ConsoleTable("Error", "Message");
-
-            table.AddRow(errorResult.Error, errorResult.Text);
-
-            table.Write();
-
-            Console.WriteLine();
-        }
-
         /// <summary>TODO The print colors.</summary>
         /// <param name="serviceProvider">TODO The service provider.</param>
         private void PrintColors(ServiceProvider serviceProvider)
@@ -148,48 +154,13 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine();
         }
 
-        /// <summary>TODO The print files.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void PrintFiles(ServiceProvider serviceProvider)
+        /// <summary>TODO The print error.</summary>
+        /// <param name="errorResult">TODO The error result.</param>
+        private void PrintError(ErrorResult errorResult)
         {
-            var table = new ConsoleTable("Name", "ID", "Signature");
+            var table = new ConsoleTable("Error", "Message");
 
-            foreach (var file in serviceProvider.GetFiles().Values)
-            {
-                table.AddRow(file.FileName, file.FileId, file.Signature);
-            }
-
-            table.Write();
-
-            Console.WriteLine();
-        }
-
-        /// <summary>TODO The print world names.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void PrintWorldNames(ServiceProvider serviceProvider)
-        {
-            var table = new ConsoleTable("ID", "World");
-
-            foreach (var world in serviceProvider.GetWorldNames())
-            {
-                table.AddRow(world.Id, world.Name);
-            }
-
-            table.Write();
-
-            Console.WriteLine();
-        }
-
-        /// <summary>TODO The print map names.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void PrintMapNames(ServiceProvider serviceProvider)
-        {
-            var table = new ConsoleTable("ID", "Map");
-
-            foreach (var map in serviceProvider.GetMapNames())
-            {
-                table.AddRow(map.Id, map.Name);
-            }
+            table.AddRow(errorResult.Error, errorResult.Text);
 
             table.Write();
 
@@ -253,24 +224,52 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine();
         }
 
-        /// <summary>TODO The get int.</summary>
-        /// <param name="prompt">TODO The prompt.</param>
-        /// <returns>The <see cref="int?"/>.</returns>
-        private int? GetInt(string prompt = null)
+        /// <summary>TODO The print files.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
+        private void PrintFiles(ServiceProvider serviceProvider)
         {
-            string rawInput = default(string);
-            int input;
-            do
-            {
-                Console.Write(prompt);
-                if (rawInput == string.Empty)
-                {
-                    return null;
-                }
-            }
-            while (!int.TryParse(rawInput = Console.ReadLine(), out input));
+            var table = new ConsoleTable("Name", "ID", "Signature");
 
-            return input;
+            foreach (var file in serviceProvider.GetFiles().Values)
+            {
+                table.AddRow(file.FileName, file.FileId, file.Signature);
+            }
+
+            table.Write();
+
+            Console.WriteLine();
+        }
+
+        /// <summary>TODO The print map names.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
+        private void PrintMapNames(ServiceProvider serviceProvider)
+        {
+            var table = new ConsoleTable("ID", "Map");
+
+            foreach (var map in serviceProvider.GetMapNames())
+            {
+                table.AddRow(map.Id, map.Name);
+            }
+
+            table.Write();
+
+            Console.WriteLine();
+        }
+
+        /// <summary>TODO The print world names.</summary>
+        /// <param name="serviceProvider">TODO The service provider.</param>
+        private void PrintWorldNames(ServiceProvider serviceProvider)
+        {
+            var table = new ConsoleTable("ID", "World");
+
+            foreach (var world in serviceProvider.GetWorldNames())
+            {
+                table.AddRow(world.Id, world.Name);
+            }
+
+            table.Write();
+
+            Console.WriteLine();
         }
     }
 }

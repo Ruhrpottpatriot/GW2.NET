@@ -6,7 +6,6 @@
 //   Represents detailed information about a bank tab unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.BankTabs
 {
     using GW2DotNET.V1.Core.Converters;

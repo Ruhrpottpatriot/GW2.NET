@@ -6,7 +6,6 @@
 //   Enumerates the possible infusion slot types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     using System;

@@ -6,7 +6,6 @@
 //   Represents detailed information about an unlimited consumable gizmo.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.UnlimitedConsumables
 {
     using GW2DotNET.V1.Core.Converters;

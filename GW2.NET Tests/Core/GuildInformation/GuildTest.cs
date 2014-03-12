@@ -6,7 +6,6 @@
 //   The guild test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.GuildInformation
 {
     using System;
@@ -21,14 +20,6 @@ namespace GW2DotNET.Core.GuildInformation
     [TestFixture]
     public class GuildTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"guild_id\":\"00000000-0000-0000-0000-000000000000\",\"guild_name\":\"\",\"tag\":\"\",\"emblem\":{}}";
-            this.guild = JsonConvert.DeserializeObject<Guild>(input);
-        }
-
         /// <summary>The guild.</summary>
         private Guild guild;
 
@@ -83,6 +74,14 @@ namespace GW2DotNET.Core.GuildInformation
             string actual = this.guild.Tag;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"guild_id\":\"00000000-0000-0000-0000-000000000000\",\"guild_name\":\"\",\"tag\":\"\",\"emblem\":{}}";
+            this.guild = JsonConvert.DeserializeObject<Guild>(input);
         }
     }
 }

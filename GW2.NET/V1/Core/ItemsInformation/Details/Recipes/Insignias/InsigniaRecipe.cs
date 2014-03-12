@@ -6,7 +6,6 @@
 //   Represents detailed information about an insignia crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Insignias
 {
     using GW2DotNET.V1.Core.Converters;

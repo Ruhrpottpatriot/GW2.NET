@@ -6,7 +6,6 @@
 //   Represents detailed information about a soup crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Soups
 {
     using GW2DotNET.V1.Core.Converters;

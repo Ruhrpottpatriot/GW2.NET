@@ -6,7 +6,6 @@
 //   The region test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.MapsInformation.Floors.Regions
 {
     using System.Drawing;
@@ -23,6 +22,9 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions
     [TestFixture]
     public class RegionTest
     {
+        /// <summary>The region.</summary>
+        private Region region;
+
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -30,9 +32,6 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions
             const string input = "{\"name\":\"\",\"label_coord\":[],\"maps\":{}}";
             this.region = JsonConvert.DeserializeObject<Region>(input);
         }
-
-        /// <summary>The region.</summary>
-        private Region region;
 
         /// <summary>The region_ extension data is empty.</summary>
         [Test]

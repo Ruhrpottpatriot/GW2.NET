@@ -6,7 +6,6 @@
 //   Represents a bag.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Bags
 {
     using GW2DotNET.V1.Core.Converters;

@@ -6,7 +6,6 @@
 //   Represents detailed information about a crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details
 {
     using System;

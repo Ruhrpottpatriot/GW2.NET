@@ -6,7 +6,6 @@
 //   The sphere location test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 {
     using GW2DotNET.V1.Core.Drawing;
@@ -20,6 +19,9 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
     [TestFixture]
     public class SphereLocationTest
     {
+        /// <summary>The sphere location.</summary>
+        private SphereLocation sphereLocation;
+
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -27,9 +29,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             const string input = "{\"type\":\"sphere\",\"center\":[],\"radius\":0,\"rotation\":0}";
             this.sphereLocation = JsonConvert.DeserializeObject<SphereLocation>(input);
         }
-
-        /// <summary>The sphere location.</summary>
-        private SphereLocation sphereLocation;
 
         /// <summary>The sphere location_ center reflects input.</summary>
         [Test]

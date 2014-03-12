@@ -6,7 +6,6 @@
 //   Represents detailed information about a bag slot unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unlock.BagSlots
 {
     using GW2DotNET.V1.Core.Converters;

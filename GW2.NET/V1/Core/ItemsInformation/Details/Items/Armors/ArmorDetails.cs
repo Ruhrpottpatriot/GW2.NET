@@ -6,7 +6,6 @@
 //   Represents detailed information about an armor piece.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
 {
     using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common;

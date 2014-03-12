@@ -6,7 +6,6 @@
 //   Provides the base class for strongly typed JSON dictionaries.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core
 {
     using System;

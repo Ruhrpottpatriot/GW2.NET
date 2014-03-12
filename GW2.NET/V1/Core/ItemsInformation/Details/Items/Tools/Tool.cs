@@ -6,7 +6,6 @@
 //   Represents a tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools
 {
     using GW2DotNET.V1.Core.Converters;

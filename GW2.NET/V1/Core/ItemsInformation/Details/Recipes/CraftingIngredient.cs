@@ -6,7 +6,6 @@
 //   Represents one of a recipe's ingredients.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     using Newtonsoft.Json;

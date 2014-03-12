@@ -6,7 +6,6 @@
 //   Represents detailed information about a logging tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Logging
 {
     using GW2DotNET.V1.Core.Converters;

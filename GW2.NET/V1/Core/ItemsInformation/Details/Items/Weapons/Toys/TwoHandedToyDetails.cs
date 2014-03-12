@@ -6,7 +6,6 @@
 //   Represents detailed information about a two-handed toy.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Toys
 {
     using GW2DotNET.V1.Core.Converters;

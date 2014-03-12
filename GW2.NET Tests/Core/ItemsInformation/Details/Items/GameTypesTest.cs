@@ -6,7 +6,6 @@
 //   The game types test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.ItemsInformation.Details.Items
 {
     using GW2DotNET.V1.Core.ItemsInformation.Details.Items;

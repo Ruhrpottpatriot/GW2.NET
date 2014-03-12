@@ -6,7 +6,6 @@
 //   Represents a collection of World versus World matches.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     using System.Collections.Generic;

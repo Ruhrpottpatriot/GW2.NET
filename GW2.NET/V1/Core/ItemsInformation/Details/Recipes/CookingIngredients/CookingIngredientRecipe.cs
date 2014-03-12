@@ -6,7 +6,6 @@
 //   Represents detailed information about a consumable cooking ingredient recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.CookingIngredients
 {
     using GW2DotNET.V1.Core.Converters;

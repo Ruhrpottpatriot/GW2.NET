@@ -6,7 +6,6 @@
 //   Represents information about a file that can be retrieved from the render service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.FilesInformation.Catalogs
 {
     using Newtonsoft.Json;

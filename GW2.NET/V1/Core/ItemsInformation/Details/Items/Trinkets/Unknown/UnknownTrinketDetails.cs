@@ -6,7 +6,6 @@
 //   Represents detailed information about an unknown trinket.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets.Unknown
 {
     using GW2DotNET.V1.Core.Converters;

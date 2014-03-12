@@ -6,7 +6,6 @@
 //   The dynamic event test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.DynamicEventsInformation.Status
 {
     using System;
@@ -21,14 +20,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Status
     [TestFixture]
     public class DynamicEventTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"world_id\":1001,\"map_id\":73,\"event_id\":\"893057AB-695C-4553-9D8C-A4CC04557C84\",\"state\":\"Preparation\"}";
-            this.dynamicEvent = JsonConvert.DeserializeObject<DynamicEvent>(input);
-        }
-
         /// <summary>The dynamic event.</summary>
         private DynamicEvent dynamicEvent;
 
@@ -75,6 +66,14 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Status
         {
             const int expectedWorldId = 1001;
             Assert.AreEqual(expectedWorldId, this.dynamicEvent.WorldId);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"world_id\":1001,\"map_id\":73,\"event_id\":\"893057AB-695C-4553-9D8C-A4CC04557C84\",\"state\":\"Preparation\"}";
+            this.dynamicEvent = JsonConvert.DeserializeObject<DynamicEvent>(input);
         }
     }
 }

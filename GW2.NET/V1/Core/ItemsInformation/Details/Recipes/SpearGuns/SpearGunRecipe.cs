@@ -6,7 +6,6 @@
 //   Represents detailed information about a spear gun crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.SpearGuns
 {
     using GW2DotNET.V1.Core.Converters;

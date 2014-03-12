@@ -6,7 +6,6 @@
 //   Represents a collection of maps and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.MapsInformation.Names
 {
     using System.Collections.Generic;

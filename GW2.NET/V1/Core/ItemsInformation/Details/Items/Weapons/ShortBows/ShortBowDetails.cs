@@ -6,7 +6,6 @@
 //   Represents detailed information about a short bow.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.ShortBows
 {
     using GW2DotNET.V1.Core.Converters;

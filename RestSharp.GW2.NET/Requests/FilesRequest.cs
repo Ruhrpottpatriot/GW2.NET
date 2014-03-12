@@ -7,13 +7,13 @@
 //   The returned information can be used with the render service to retrieve assets.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET.Requests
 {
     using System.Threading;
     using System.Threading.Tasks;
 
     using global::GW2DotNET.V1;
+
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.FilesInformation.Catalogs;

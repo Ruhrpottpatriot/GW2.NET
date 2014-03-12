@@ -6,7 +6,6 @@
 //   Represents a guild's emblem.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.GuildInformation.Details
 {
     using Newtonsoft.Json;

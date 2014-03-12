@@ -6,7 +6,6 @@
 //   The error result test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.ErrorInformation
 {
     using GW2DotNET.V1.Core.ErrorInformation;
@@ -19,14 +18,6 @@ namespace GW2DotNET.Core.ErrorInformation
     [TestFixture]
     public class ErrorResultTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"error\":0,\"product\":0,\"module\":0,\"line\":0,\"text\":\"\"}";
-            this.errorResult = JsonConvert.DeserializeObject<ErrorResult>(input);
-        }
-
         /// <summary>The error result.</summary>
         private ErrorResult errorResult;
 
@@ -81,6 +72,14 @@ namespace GW2DotNET.Core.ErrorInformation
             string actual = this.errorResult.Text;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"error\":0,\"product\":0,\"module\":0,\"line\":0,\"text\":\"\"}";
+            this.errorResult = JsonConvert.DeserializeObject<ErrorResult>(input);
         }
     }
 }

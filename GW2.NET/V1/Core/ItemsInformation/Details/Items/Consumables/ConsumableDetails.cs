@@ -6,7 +6,6 @@
 //   Represents detailed information about a consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
 {
     using Newtonsoft.Json;

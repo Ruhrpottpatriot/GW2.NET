@@ -6,7 +6,6 @@
 //   Represents detailed information about an unknown tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Tools.Unknown
 {
     using GW2DotNET.V1.Core.Converters;

@@ -6,7 +6,6 @@
 //   Represents a container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
 {
     using GW2DotNET.V1.Core.Converters;

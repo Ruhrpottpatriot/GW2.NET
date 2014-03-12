@@ -6,7 +6,6 @@
 //   Represents a map and its details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.MapsInformation.Floors.Regions.Subregions
 {
     using System.Drawing;

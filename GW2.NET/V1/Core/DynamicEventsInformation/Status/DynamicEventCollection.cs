@@ -6,7 +6,6 @@
 //   Represents a collection of dynamic events and their status.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Status
 {
     using System.Collections.Generic;

@@ -6,7 +6,6 @@
 //   Represents detailed information about an in-game item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details
 {
     using GW2DotNET.V1.Core.ItemsInformation.Details.Items;

@@ -7,7 +7,6 @@
 //   world coordinates and map coordinates.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.MapsInformation.Details
 {
     using System.Drawing;

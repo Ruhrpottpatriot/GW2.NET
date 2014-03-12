@@ -3,10 +3,9 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides a RestSharp-specific implementation of the <see cref="IServiceResponse{TContent}" /> interface.
+//   Provides a RestSharp-specific implementation of the  interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET
 {
     using System;
@@ -93,6 +92,33 @@ namespace RestSharp.GW2DotNET
             return JsonConvert.DeserializeObject<TContent>(this.Content);
         }
 
+        /// <summary>Gets the response content as an object of the specified type using the specified<see cref="Newtonsoft.Json.JsonSerializerSettings"/>.</summary>
+        /// <param name="jsonSerializerSettings">The <see cref="Newtonsoft.Json.JsonSerializerSettings"/> used to de-serialize the
+        ///     object.  If this is null, default serialization settings will be is used.</param>
+        /// <returns>Returns the response as an instance of the specified type.</returns>
+        public TContent Deserialize(JsonSerializerSettings jsonSerializerSettings)
+        {
+            if (!this.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("The service returned an error response.");
+            }
+
+            return JsonConvert.DeserializeObject<TContent>(this.Content, jsonSerializerSettings);
+        }
+
+        /// <summary>Gets the response content as an object of the specified type using a collection of<see cref="Newtonsoft.Json.JsonConverter"/>.</summary>
+        /// <param name="converters">The converters to use while de-serializing.</param>
+        /// <returns>Returns the response as an instance of the specified type.</returns>
+        public TContent Deserialize(params JsonConverter[] converters)
+        {
+            if (!this.IsSuccessStatusCode)
+            {
+                throw new InvalidOperationException("The service returned an error response.");
+            }
+
+            return JsonConvert.DeserializeObject<TContent>(this.Content, converters);
+        }
+
         /// <summary>
         ///     Gets the error response if the service returned an error status code.
         /// </summary>
@@ -121,33 +147,6 @@ namespace RestSharp.GW2DotNET
             }
 
             throw new ServiceException(this.DeserializeError(), this.ErrorException);
-        }
-
-        /// <summary>Gets the response content as an object of the specified type using the specified<see cref="Newtonsoft.Json.JsonSerializerSettings"/>.</summary>
-        /// <param name="jsonSerializerSettings">The <see cref="Newtonsoft.Json.JsonSerializerSettings"/> used to de-serialize the
-        ///     object.  If this is null, default serialization settings will be is used.</param>
-        /// <returns>Returns the response as an instance of the specified type.</returns>
-        public TContent Deserialize(JsonSerializerSettings jsonSerializerSettings)
-        {
-            if (!this.IsSuccessStatusCode)
-            {
-                throw new InvalidOperationException("The service returned an error response.");
-            }
-
-            return JsonConvert.DeserializeObject<TContent>(this.Content, jsonSerializerSettings);
-        }
-
-        /// <summary>Gets the response content as an object of the specified type using a collection of<see cref="Newtonsoft.Json.JsonConverter"/>.</summary>
-        /// <param name="converters">The converters to use while de-serializing.</param>
-        /// <returns>Returns the response as an instance of the specified type.</returns>
-        public TContent Deserialize(params JsonConverter[] converters)
-        {
-            if (!this.IsSuccessStatusCode)
-            {
-                throw new InvalidOperationException("The service returned an error response.");
-            }
-
-            return JsonConvert.DeserializeObject<TContent>(this.Content, converters);
         }
 
         /// <summary>

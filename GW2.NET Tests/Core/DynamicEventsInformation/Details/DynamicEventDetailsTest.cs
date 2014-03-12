@@ -6,7 +6,6 @@
 //   The dynamic event details test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.DynamicEventsInformation.Details
 {
     using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
@@ -19,14 +18,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
     [TestFixture]
     public class DynamicEventDetailsTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"name\":\"\",\"level\":0,\"map_id\":0,\"flags\":[],\"location\":{}}";
-            this.dynamicEventDetails = JsonConvert.DeserializeObject<DynamicEventDetails>(input);
-        }
-
         /// <summary>The dynamic event details.</summary>
         private DynamicEventDetails dynamicEventDetails;
 
@@ -81,6 +72,14 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
             string actual = this.dynamicEventDetails.Name;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"name\":\"\",\"level\":0,\"map_id\":0,\"flags\":[],\"location\":{}}";
+            this.dynamicEventDetails = JsonConvert.DeserializeObject<DynamicEventDetails>(input);
         }
     }
 }

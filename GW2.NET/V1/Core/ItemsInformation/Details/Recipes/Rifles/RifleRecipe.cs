@@ -6,7 +6,6 @@
 //   Represents detailed information about a rifle crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Rifles
 {
     using GW2DotNET.V1.Core.Converters;

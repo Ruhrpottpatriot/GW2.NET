@@ -6,7 +6,6 @@
 //   The map name test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.MapsInformation.Names
 {
     using GW2DotNET.V1.Core.MapsInformation.Names;
@@ -19,6 +18,9 @@ namespace GW2DotNET.Core.MapsInformation.Names
     [TestFixture]
     public class MapNameTest
     {
+        /// <summary>The map name.</summary>
+        private MapName mapName;
+
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -26,9 +28,6 @@ namespace GW2DotNET.Core.MapsInformation.Names
             const string input = "{\"ID\":\"0\",\"name\":\"\"}";
             this.mapName = JsonConvert.DeserializeObject<MapName>(input);
         }
-
-        /// <summary>The map name.</summary>
-        private MapName mapName;
 
         /// <summary>The map name_ extension data is empty.</summary>
         [Test]

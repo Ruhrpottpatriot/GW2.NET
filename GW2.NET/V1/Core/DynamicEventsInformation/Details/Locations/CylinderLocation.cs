@@ -6,7 +6,6 @@
 //   Represents a cylindrical location of an event on the map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations
 {
     using GW2DotNET.V1.Core.Converters;

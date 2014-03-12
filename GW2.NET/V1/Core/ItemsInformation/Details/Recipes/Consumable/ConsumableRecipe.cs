@@ -6,7 +6,6 @@
 //   Represents detailed information about a consumable crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Consumable
 {
     using GW2DotNET.V1.Core.Converters;

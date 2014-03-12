@@ -6,7 +6,6 @@
 //   Represents detailed information about a default container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers.Default
 {
     using GW2DotNET.V1.Core.Converters;

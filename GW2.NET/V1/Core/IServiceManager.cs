@@ -6,7 +6,6 @@
 //   Provides the interface for service managers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core
 {
     using System;

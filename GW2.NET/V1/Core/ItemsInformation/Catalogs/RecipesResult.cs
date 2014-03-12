@@ -6,7 +6,6 @@
 //   Wraps a collection of recipe IDs.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Catalogs
 {
     using Newtonsoft.Json;

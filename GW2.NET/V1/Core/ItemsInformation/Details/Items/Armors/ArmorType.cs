@@ -6,7 +6,6 @@
 //   Enumerates the possible armor piece types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
 {
     using System.Runtime.Serialization;

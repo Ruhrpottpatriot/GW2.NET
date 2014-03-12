@@ -6,7 +6,6 @@
 //   Represents a collection of maps and their details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.MapsInformation.Details
 {
     using System.Collections.Generic;

@@ -6,7 +6,6 @@
 //   Represents detailed information about a gift box container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers.GiftBoxes
 {
     using GW2DotNET.V1.Core.Converters;

@@ -6,7 +6,6 @@
 //   Represents item stats that are inherent to a specific item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     using Newtonsoft.Json;

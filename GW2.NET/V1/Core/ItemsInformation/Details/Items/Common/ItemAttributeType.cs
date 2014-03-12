@@ -6,7 +6,6 @@
 //   Enumerates the possible attribute types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     using System.Runtime.Serialization;

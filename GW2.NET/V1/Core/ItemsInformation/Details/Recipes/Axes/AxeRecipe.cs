@@ -6,7 +6,6 @@
 //   Represents detailed information about an axe crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Axes
 {
     using GW2DotNET.V1.Core.Converters;

@@ -6,7 +6,6 @@
 //   Enumerates the possible container types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
 {
     using System.Runtime.Serialization;

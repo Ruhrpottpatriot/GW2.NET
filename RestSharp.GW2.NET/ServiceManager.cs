@@ -6,7 +6,6 @@
 //   Provides a RestSharp-specific implementation of the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET
 {
     using System;
@@ -1005,14 +1004,14 @@ namespace RestSharp.GW2DotNET
             Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(this.serviceClient, token);
             Task<TResult> t2 = t1.ContinueWith(
                 task =>
-                {
-                    IServiceResponse<TResult> response = task.Result;
-                    TResult content = response.EnsureSuccessStatusCode().Deserialize();
+                    {
+                        IServiceResponse<TResult> response = task.Result;
+                        TResult content = response.EnsureSuccessStatusCode().Deserialize();
 
-                    return content;
-                },
-                token,
-                TaskContinuationOptions.OnlyOnRanToCompletion,
+                        return content;
+                    }, 
+                token, 
+                TaskContinuationOptions.OnlyOnRanToCompletion, 
                 TaskScheduler.Current);
 
             return t2;
@@ -1025,8 +1024,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="selector">The selector.</param>
         /// <returns>The selected result.</returns>
         private Task<TResult> Select<TContent, TResult>(Task<TContent> result, Func<TContent, TResult> selector)
-            where TContent : global::GW2DotNET.V1.Core.JsonObject
-            where TResult : global::GW2DotNET.V1.Core.JsonObject
+            where TContent : global::GW2DotNET.V1.Core.JsonObject where TResult : global::GW2DotNET.V1.Core.JsonObject
         {
             return result.ContinueWith(task => selector(task.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
         }

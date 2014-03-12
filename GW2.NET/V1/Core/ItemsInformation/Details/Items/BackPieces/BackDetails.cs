@@ -6,7 +6,6 @@
 //   Represents detailed information about a back piece.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces
 {
     using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common;

@@ -6,7 +6,6 @@
 //   Represents detailed information about a sword.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Swords
 {
     using GW2DotNET.V1.Core.Converters;

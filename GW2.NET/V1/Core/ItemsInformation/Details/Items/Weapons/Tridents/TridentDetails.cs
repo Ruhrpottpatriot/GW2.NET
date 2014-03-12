@@ -6,7 +6,6 @@
 //   Represents detailed information about a trident.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Tridents
 {
     using GW2DotNET.V1.Core.Converters;

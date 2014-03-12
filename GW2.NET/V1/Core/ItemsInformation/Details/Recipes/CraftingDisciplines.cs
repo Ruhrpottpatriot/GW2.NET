@@ -6,7 +6,6 @@
 //   Enumerates the possible crafting disciplines.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     using System;

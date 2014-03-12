@@ -6,7 +6,6 @@
 //   Contains static methods to get the chat link for a specific in-game object.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET
 {
     using System;

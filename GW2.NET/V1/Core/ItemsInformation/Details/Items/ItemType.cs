@@ -6,7 +6,6 @@
 //   Enumerates the possible item types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items
 {
     using System.Runtime.Serialization;

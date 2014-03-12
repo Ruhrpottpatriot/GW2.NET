@@ -6,7 +6,6 @@
 //   Represents detailed information about a weapon.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
 {
     using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common;

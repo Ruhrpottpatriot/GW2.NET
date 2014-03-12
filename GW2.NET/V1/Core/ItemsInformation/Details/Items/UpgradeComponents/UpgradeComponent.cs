@@ -6,7 +6,6 @@
 //   Represents an upgrade component.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
 {
     using GW2DotNET.V1.Core.Converters;

@@ -6,7 +6,6 @@
 //   Represents detailed information about a container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Containers
 {
     using Newtonsoft.Json;

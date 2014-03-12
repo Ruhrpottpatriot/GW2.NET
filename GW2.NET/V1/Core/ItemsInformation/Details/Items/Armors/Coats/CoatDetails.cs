@@ -6,7 +6,6 @@
 //   Represents detailed information about chest protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Coats
 {
     using GW2DotNET.V1.Core.Converters;

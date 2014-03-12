@@ -6,7 +6,6 @@
 //   Represents detailed information about a shoulders crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Shoulders
 {
     using GW2DotNET.V1.Core.Converters;

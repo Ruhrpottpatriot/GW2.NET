@@ -6,7 +6,6 @@
 //   Represents a collection of objectives and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     using System.Collections.Generic;

@@ -6,7 +6,6 @@
 //   Enumerates all possible recipe types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes
 {
     using System.Runtime.Serialization;

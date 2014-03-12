@@ -6,7 +6,6 @@
 //   Represents detailed information about leg protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Leggings
 {
     using GW2DotNET.V1.Core.Converters;

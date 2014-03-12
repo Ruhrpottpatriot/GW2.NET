@@ -6,7 +6,6 @@
 //   Represents detailed information about a boots crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Boots
 {
     using GW2DotNET.V1.Core.Converters;

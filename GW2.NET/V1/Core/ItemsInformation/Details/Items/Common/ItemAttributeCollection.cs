@@ -6,7 +6,6 @@
 //   Represents a collection of item attributes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common
 {
     using System.Collections.Generic;

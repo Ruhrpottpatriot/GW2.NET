@@ -6,7 +6,6 @@
 //   Enumerates the possible gizmo types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
 {
     using System.Runtime.Serialization;

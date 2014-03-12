@@ -6,7 +6,6 @@
 //   The color palette test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.ColorsInformation
 {
     using System.Drawing;
@@ -21,14 +20,6 @@ namespace GW2DotNET.Core.ColorsInformation
     [TestFixture]
     public class ColorPaletteTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
-            this.color = JsonConvert.DeserializeObject<ColorPalette>(input);
-        }
-
         /// <summary>The color.</summary>
         private ColorPalette color;
 
@@ -94,6 +85,14 @@ namespace GW2DotNET.Core.ColorsInformation
             string actual = this.color.Name;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
+            this.color = JsonConvert.DeserializeObject<ColorPalette>(input);
         }
     }
 }

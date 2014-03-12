@@ -6,7 +6,6 @@
 //   Represents a request for static details about dynamic events.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET.Requests
 {
     using System;
@@ -14,6 +13,7 @@ namespace RestSharp.GW2DotNET.Requests
     using System.Threading.Tasks;
 
     using global::GW2DotNET.V1;
+
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.DynamicEventsInformation.Details;

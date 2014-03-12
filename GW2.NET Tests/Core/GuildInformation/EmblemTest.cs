@@ -6,7 +6,6 @@
 //   The emblem test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.GuildInformation
 {
     using GW2DotNET.V1.Core.GuildInformation.Details;
@@ -19,15 +18,6 @@ namespace GW2DotNET.Core.GuildInformation
     [TestFixture]
     public class EmblemTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input =
-                "{\"background_id\":0,\"foreground_id\":0,\"flags\":[],\"background_color_id\":0,\"foreground_primary_color_id\":0,\"foreground_secondary_color_id\":0}";
-            this.emblem = JsonConvert.DeserializeObject<Emblem>(input);
-        }
-
         /// <summary>The emblem.</summary>
         private Emblem emblem;
 
@@ -104,6 +94,15 @@ namespace GW2DotNET.Core.GuildInformation
             int actual = this.emblem.ForegroundSecondaryColorId;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input =
+                "{\"background_id\":0,\"foreground_id\":0,\"flags\":[],\"background_color_id\":0,\"foreground_primary_color_id\":0,\"foreground_secondary_color_id\":0}";
+            this.emblem = JsonConvert.DeserializeObject<Emblem>(input);
         }
     }
 }

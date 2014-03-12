@@ -6,7 +6,6 @@
 //   Represents detailed information about a great sword.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.GreatSwords
 {
     using GW2DotNET.V1.Core.Converters;

@@ -6,7 +6,6 @@
 //   Represents detailed information about aquatic head protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Helms
 {
     using GW2DotNET.V1.Core.Converters;

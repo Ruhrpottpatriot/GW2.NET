@@ -6,7 +6,6 @@
 //   Represents detailed information about a foraging tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Foraging
 {
     using GW2DotNET.V1.Core.Converters;

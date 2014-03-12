@@ -8,7 +8,6 @@
 //   where the exact type of the JSON content is not known at compile time.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.Converters
 {
     using System;

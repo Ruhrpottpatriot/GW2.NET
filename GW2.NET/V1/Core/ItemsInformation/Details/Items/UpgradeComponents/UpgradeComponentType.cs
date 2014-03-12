@@ -6,7 +6,6 @@
 //   Enumerates the possible upgrade component types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.UpgradeComponents
 {
     using System.Runtime.Serialization;

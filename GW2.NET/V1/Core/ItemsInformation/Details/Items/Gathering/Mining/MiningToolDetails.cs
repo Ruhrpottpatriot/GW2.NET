@@ -6,7 +6,6 @@
 //   Represents detailed information about a mining tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gathering.Mining
 {
     using GW2DotNET.V1.Core.Converters;

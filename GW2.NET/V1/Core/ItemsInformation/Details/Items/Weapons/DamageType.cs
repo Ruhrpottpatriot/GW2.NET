@@ -6,7 +6,6 @@
 //   Enumerates the possible weapon damage types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons
 {
     using System.Runtime.Serialization;

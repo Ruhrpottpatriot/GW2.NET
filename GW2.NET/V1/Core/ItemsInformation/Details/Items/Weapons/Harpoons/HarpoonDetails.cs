@@ -6,7 +6,6 @@
 //   Represents detailed information about a harpoon.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Harpoons
 {
     using GW2DotNET.V1.Core.Converters;

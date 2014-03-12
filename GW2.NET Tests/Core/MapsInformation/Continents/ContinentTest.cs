@@ -6,7 +6,6 @@
 //   The continent test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.MapsInformation.Continents
 {
     using System.Drawing;
@@ -22,14 +21,6 @@ namespace GW2DotNET.Core.MapsInformation.Continents
     [TestFixture]
     public class ContinentTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"name\":\"\",\"continent_dims\":[],\"min_zoom\":0,\"max_zoom\":0,\"floors\":[]}";
-            this.continent = JsonConvert.DeserializeObject<Continent>(input);
-        }
-
         /// <summary>The continent.</summary>
         private Continent continent;
 
@@ -95,6 +86,14 @@ namespace GW2DotNET.Core.MapsInformation.Continents
             int actual = this.continent.MinimumZoom;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"name\":\"\",\"continent_dims\":[],\"min_zoom\":0,\"max_zoom\":0,\"floors\":[]}";
+            this.continent = JsonConvert.DeserializeObject<Continent>(input);
         }
     }
 }

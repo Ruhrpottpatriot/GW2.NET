@@ -6,7 +6,6 @@
 //   The sector test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
 {
     using System.Drawing;
@@ -21,6 +20,9 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
     [TestFixture]
     public class SectorTest
     {
+        /// <summary>The sector.</summary>
+        private Sector sector;
+
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()
@@ -28,9 +30,6 @@ namespace GW2DotNET.Core.MapsInformation.Floors.Regions.Subregions.Locations
             const string input = "{\"sector_id\":0,\"name\":\"\",\"level\":0,\"coord\":[]}";
             this.sector = JsonConvert.DeserializeObject<Sector>(input);
         }
-
-        /// <summary>The sector.</summary>
-        private Sector sector;
 
         /// <summary>The sector_ coordinates reflects input.</summary>
         [Test]

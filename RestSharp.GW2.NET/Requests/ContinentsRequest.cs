@@ -6,13 +6,13 @@
 //   Represents a request for static information about the continents.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET.Requests
 {
     using System.Threading;
     using System.Threading.Tasks;
 
     using global::GW2DotNET.V1;
+
     using global::GW2DotNET.V1.Core;
 
     using global::GW2DotNET.V1.Core.MapsInformation.Continents;

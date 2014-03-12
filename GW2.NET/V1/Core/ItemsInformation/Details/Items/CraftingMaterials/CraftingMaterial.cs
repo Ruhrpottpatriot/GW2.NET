@@ -6,7 +6,6 @@
 //   Represents a crafting material.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.CraftingMaterials
 {
     using GW2DotNET.V1.Core.Converters;

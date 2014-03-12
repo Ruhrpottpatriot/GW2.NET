@@ -3,10 +3,9 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides utility methods for the <see cref="System.Type" /> class.
+//   Provides utility methods for the  class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Extensions
 {
     using System;

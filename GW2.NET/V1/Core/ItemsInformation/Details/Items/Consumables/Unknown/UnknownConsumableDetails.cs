@@ -6,7 +6,6 @@
 //   Represents detailed information about an unknown consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables.Unknown
 {
     using GW2DotNET.V1.Core.Converters;

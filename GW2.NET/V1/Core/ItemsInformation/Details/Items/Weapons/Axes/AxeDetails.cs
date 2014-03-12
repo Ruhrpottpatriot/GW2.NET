@@ -6,7 +6,6 @@
 //   Represents detailed information about an axe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Axes
 {
     using GW2DotNET.V1.Core.Converters;

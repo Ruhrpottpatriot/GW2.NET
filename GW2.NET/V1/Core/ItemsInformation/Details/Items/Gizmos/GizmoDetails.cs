@@ -6,7 +6,6 @@
 //   Represents detailed information about a gizmo.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos
 {
     using Newtonsoft.Json;

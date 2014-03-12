@@ -6,7 +6,6 @@
 //   The emblem transformations test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.GuildInformation
 {
     using GW2DotNET.V1.Core.GuildInformation.Details;

@@ -6,7 +6,6 @@
 //   Provides the base class for strongly typed JSON lists.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core
 {
     using System;
@@ -88,6 +87,16 @@ namespace GW2DotNET.V1.Core
             this.innerList.Add(item);
         }
 
+        /// <summary>Adds the elements of the specified collection to the end of the <see cref="JsonList{T}"/>.</summary>
+        /// <param name="collection">The collection whose elements should be added to the end of the <see cref="JsonList{T}"/>.
+        ///     The collection itself cannot be null, but it can contain elements that are null, if type <typeparamref name="T"/>
+        ///     is a reference type.</param>
+        /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
+        public virtual void AddRange(IEnumerable<T> collection)
+        {
+            ((List<T>)this.innerList).AddRange(collection);
+        }
+
         /// <summary>
         ///     Removes all items from the <see cref="System.Collections.Generic.ICollection{T}" />.
         /// </summary>
@@ -161,16 +170,6 @@ namespace GW2DotNET.V1.Core
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IEnumerable)this.innerList).GetEnumerator();
-        }
-
-        /// <summary>Adds the elements of the specified collection to the end of the <see cref="JsonList{T}"/>.</summary>
-        /// <param name="collection">The collection whose elements should be added to the end of the <see cref="JsonList{T}"/>.
-        ///     The collection itself cannot be null, but it can contain elements that are null, if type <typeparamref name="T"/>
-        ///     is a reference type.</param>
-        /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
-        public virtual void AddRange(IEnumerable<T> collection)
-        {
-            ((List<T>)this.innerList).AddRange(collection);
         }
     }
 }

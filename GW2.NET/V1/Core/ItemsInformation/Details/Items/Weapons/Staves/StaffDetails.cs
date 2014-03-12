@@ -6,7 +6,6 @@
 //   Represents detailed information about a staff.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Staves
 {
     using GW2DotNET.V1.Core.Converters;

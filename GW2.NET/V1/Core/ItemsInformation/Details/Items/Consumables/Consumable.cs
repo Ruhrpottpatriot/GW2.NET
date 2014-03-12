@@ -6,7 +6,6 @@
 //   Represents a consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Consumables
 {
     using GW2DotNET.V1.Core.Converters;

@@ -7,7 +7,6 @@
 //   same converter as its base class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.Converters
 {
     using System;

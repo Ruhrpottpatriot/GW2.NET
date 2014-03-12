@@ -6,7 +6,6 @@
 //   Represents detailed information about a short bow crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.ShortBows
 {
     using GW2DotNET.V1.Core.Converters;

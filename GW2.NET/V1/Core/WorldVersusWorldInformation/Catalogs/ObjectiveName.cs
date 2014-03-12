@@ -6,7 +6,6 @@
 //   Represents an objective and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs
 {
     using Newtonsoft.Json;

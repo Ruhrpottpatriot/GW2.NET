@@ -6,7 +6,6 @@
 //   The location type test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 {
     using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;

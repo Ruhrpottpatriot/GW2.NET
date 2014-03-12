@@ -6,7 +6,6 @@
 //   The floor test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.MapsInformation.Floors
 {
     using System.Drawing;
@@ -22,14 +21,6 @@ namespace GW2DotNET.Core.MapsInformation.Floors
     [TestFixture]
     public class FloorTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"texture_dims\":[],\"regions\":{}}";
-            this.floor = JsonConvert.DeserializeObject<Floor>(input);
-        }
-
         /// <summary>The floor.</summary>
         private Floor floor;
 
@@ -60,6 +51,14 @@ namespace GW2DotNET.Core.MapsInformation.Floors
             Size expected = default(Size);
             Size actual = this.floor.TextureDimensions;
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"texture_dims\":[],\"regions\":{}}";
+            this.floor = JsonConvert.DeserializeObject<Floor>(input);
         }
     }
 }

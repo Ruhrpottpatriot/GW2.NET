@@ -6,7 +6,6 @@
 //   Represents detailed information about a rentable contract NPC.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Gizmos.RentableContractNpcs
 {
     using GW2DotNET.V1.Core.Converters;

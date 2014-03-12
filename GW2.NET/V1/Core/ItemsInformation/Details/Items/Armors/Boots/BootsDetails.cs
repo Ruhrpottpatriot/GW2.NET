@@ -6,7 +6,6 @@
 //   Represents detailed information about feet protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors.Boots
 {
     using GW2DotNET.V1.Core.Converters;

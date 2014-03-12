@@ -6,7 +6,6 @@
 //   Represents detailed information about an upgrade component crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.UpgradeComponents
 {
     using GW2DotNET.V1.Core.Converters;

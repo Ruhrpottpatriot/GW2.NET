@@ -6,7 +6,6 @@
 //   Represents detailed information about a trinket.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Trinkets
 {
     using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common;

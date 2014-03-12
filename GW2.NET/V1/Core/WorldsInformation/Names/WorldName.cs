@@ -6,7 +6,6 @@
 //   Represents a world and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.WorldsInformation.Names
 {
     using Newtonsoft.Json;

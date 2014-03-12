@@ -6,7 +6,6 @@
 //   Represents detailed information about a focus.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Weapons.Focuses
 {
     using GW2DotNET.V1.Core.Converters;

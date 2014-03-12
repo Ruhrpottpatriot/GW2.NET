@@ -6,7 +6,6 @@
 //   Represents detailed information about a war horn crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.WarHorns
 {
     using GW2DotNET.V1.Core.Converters;

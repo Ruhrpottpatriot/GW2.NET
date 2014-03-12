@@ -3,11 +3,10 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of a class that extends <see cref="ArmorDetails" /> from its <see cref="System.String" />
+//   Converts an instance of a class that extends  from its
 //   representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
 {
     using System;

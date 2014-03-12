@@ -6,7 +6,6 @@
 //   The cylinder location test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 {
     using GW2DotNET.V1.Core.Drawing;
@@ -20,14 +19,6 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
     [TestFixture]
     public class CylinderLocationTest
     {
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"type\":\"cylinder\",\"center\":[],\"height\":0,\"radius\":0,\"rotation\":0}";
-            this.cylinderLocation = JsonConvert.DeserializeObject<CylinderLocation>(input);
-        }
-
         /// <summary>The cylinder location.</summary>
         private CylinderLocation cylinderLocation;
 
@@ -93,6 +84,14 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
             LocationType actual = this.cylinderLocation.Type;
 
             Assert.AreEqual(expected, actual);
+        }
+
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"type\":\"cylinder\",\"center\":[],\"height\":0,\"radius\":0,\"rotation\":0}";
+            this.cylinderLocation = JsonConvert.DeserializeObject<CylinderLocation>(input);
         }
     }
 }

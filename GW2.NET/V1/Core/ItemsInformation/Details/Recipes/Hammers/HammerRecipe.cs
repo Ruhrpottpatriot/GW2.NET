@@ -6,7 +6,6 @@
 //   Represents detailed information about a hammer crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.Hammers
 {
     using GW2DotNET.V1.Core.Converters;

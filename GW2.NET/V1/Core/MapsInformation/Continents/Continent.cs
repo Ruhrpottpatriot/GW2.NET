@@ -6,7 +6,6 @@
 //   Represents a continent.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.MapsInformation.Continents
 {
     using System.Drawing;

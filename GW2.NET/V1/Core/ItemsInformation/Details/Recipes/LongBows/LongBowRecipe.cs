@@ -6,7 +6,6 @@
 //   Represents detailed information about a long bow crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Recipes.LongBows
 {
     using GW2DotNET.V1.Core.Converters;
