@@ -26,6 +26,9 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         [JsonProperty("brightness", Order = 0)]
         public int Brightness { get; set; }
 
+        /// <summary>Gets or sets the color palette.</summary>
+        public ColorPalette ColorPalette { get; set; }
+
         /// <summary>
         ///     Gets or sets the contrast.
         /// </summary>

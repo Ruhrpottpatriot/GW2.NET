@@ -20,8 +20,8 @@ namespace GW2DotNET.Core.ColorsInformation
     [TestFixture]
     public class ColorPaletteTest
     {
-        /// <summary>The color.</summary>
-        private ColorPalette color;
+        /// <summary>The colorPalette.</summary>
+        private ColorPalette colorPalette;
 
         /// <summary>The color palette_ base rgb reflects input.</summary>
         [Test]
@@ -29,7 +29,7 @@ namespace GW2DotNET.Core.ColorsInformation
         public void ColorPalette_BaseRgbReflectsInput()
         {
             Color expected = default(Color);
-            Color actual = this.color.BaseRgb;
+            Color actual = this.colorPalette.BaseRgb;
 
             Assert.AreEqual(expected, actual);
         }
@@ -40,7 +40,7 @@ namespace GW2DotNET.Core.ColorsInformation
         public void ColorPalette_ClothReflectsInput()
         {
             var expected = new ColorModel();
-            ColorModel actual = this.color.Cloth;
+            ColorModel actual = this.colorPalette.Cloth;
 
             Assert.AreEqual(expected, actual);
         }
@@ -51,7 +51,7 @@ namespace GW2DotNET.Core.ColorsInformation
         [Category("ExtensionData")]
         public void ColorPalette_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.color.ExtensionData);
+            Assert.IsEmpty(this.colorPalette.ExtensionData);
         }
 
         /// <summary>The color palette_ leather reflects input.</summary>
@@ -60,7 +60,7 @@ namespace GW2DotNET.Core.ColorsInformation
         public void ColorPalette_LeatherReflectsInput()
         {
             var expected = new ColorModel();
-            ColorModel actual = this.color.Leather;
+            ColorModel actual = this.colorPalette.Leather;
 
             Assert.AreEqual(expected, actual);
         }
@@ -71,7 +71,27 @@ namespace GW2DotNET.Core.ColorsInformation
         public void ColorPalette_MetalReflectsInput()
         {
             var expected = new ColorModel();
-            ColorModel actual = this.color.Metal;
+            ColorModel actual = this.colorPalette.Metal;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("colors.json")]
+        public void ColorPalette_LeatherColorPaletteIsThis()
+        {
+            var expected = this.colorPalette;
+            var actual = this.colorPalette.Leather.ColorPalette;
+
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        [Category("colors.json")]
+        public void ColorPalette_MetalColorPaletteIsThis()
+        {
+            var expected = this.colorPalette;
+            var actual = this.colorPalette.Metal.ColorPalette;
 
             Assert.AreEqual(expected, actual);
         }
@@ -82,7 +102,7 @@ namespace GW2DotNET.Core.ColorsInformation
         public void ColorPalette_NameReflectsInput()
         {
             string expected = string.Empty;
-            string actual = this.color.Name;
+            string actual = this.colorPalette.Name;
 
             Assert.AreEqual(expected, actual);
         }
@@ -92,7 +112,7 @@ namespace GW2DotNET.Core.ColorsInformation
         public void Initialize()
         {
             const string input = "{\"name\":\"\",\"base_rgb\":[],\"cloth\":{},\"leather\":{},\"metal\":{}}";
-            this.color = JsonConvert.DeserializeObject<ColorPalette>(input);
+            this.colorPalette = JsonConvert.DeserializeObject<ColorPalette>(input);
         }
     }
 }

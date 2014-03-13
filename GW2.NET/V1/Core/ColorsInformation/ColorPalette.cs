@@ -20,6 +20,15 @@ namespace GW2DotNET.V1.Core.ColorsInformation
     /// </summary>
     public class ColorPalette : JsonObject, IEquatable<ColorPalette>, IComparable<ColorPalette>
     {
+        /// <summary>Infrastructure. Stores a color model.</summary>
+        private ColorModel cloth;
+
+        /// <summary>Infrastructure. Stores a color model.</summary>
+        private ColorModel leather;
+
+        /// <summary>Infrastructure. Stores a color model.</summary>
+        private ColorModel metal;
+
         /// <summary>
         ///     Gets or sets the base RGB values.
         /// </summary>
@@ -28,10 +37,22 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         public Color BaseRgb { get; set; }
 
         /// <summary>
-        ///     Gets or sets detailed information on the appearance when applied on cloth armor.
+        ///     Gets or sets detailed information on the color's appearance when applied to cloth armor.
         /// </summary>
         [JsonProperty("cloth", Order = 3)]
-        public ColorModel Cloth { get; set; }
+        public ColorModel Cloth
+        {
+            get
+            {
+                return this.cloth;
+            }
+
+            set
+            {
+                this.cloth = value;
+                value.ColorPalette = this;
+            }
+        }
 
         /// <summary>
         ///     Gets or sets the color's ID.
@@ -40,16 +61,40 @@ namespace GW2DotNET.V1.Core.ColorsInformation
         public int ColorId { get; set; }
 
         /// <summary>
-        ///     Gets or sets detailed information on the appearance when applied on leather armor.
+        ///     Gets or sets detailed information on the color's appearance when applied to leather armor.
         /// </summary>
         [JsonProperty("leather", Order = 4)]
-        public ColorModel Leather { get; set; }
+        public ColorModel Leather
+        {
+            get
+            {
+                return this.leather;
+            }
+
+            set
+            {
+                this.leather = value;
+                value.ColorPalette = this;
+            }
+        }
 
         /// <summary>
-        ///     Gets or sets detailed information on the appearance when applied on metal armor.
+        ///     Gets or sets detailed information on the color's appearance when applied to metal armor.
         /// </summary>
         [JsonProperty("metal", Order = 5)]
-        public ColorModel Metal { get; set; }
+        public ColorModel Metal
+        {
+            get
+            {
+                return this.metal;
+            }
+
+            set
+            {
+                this.metal = value;
+                value.ColorPalette = this;
+            }
+        }
 
         /// <summary>
         ///     Gets or sets the name of the dye.
