@@ -18,6 +18,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
     /// </summary>
     public class BagDetails : JsonObject
     {
+        /// <summary>Gets or sets the bag.</summary>
+        public Bag Bag { get; set; }
+
         /// <summary>
         ///     Gets or sets a value indicating whether this is an invisible bag.
         /// </summary>
