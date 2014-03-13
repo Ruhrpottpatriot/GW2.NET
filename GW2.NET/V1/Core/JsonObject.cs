@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Core
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
 
     using Newtonsoft.Json;
 
@@ -17,6 +18,7 @@ namespace GW2DotNET.V1.Core
     ///     Provides the base class for strongly typed JSON objects.
     /// </summary>
     [Serializable]
+    [DataContract]
     public abstract class JsonObject
     {
         /// <summary>
