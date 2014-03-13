@@ -15,7 +15,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.BuildInformation;
+    using global::GW2DotNET.V1.Core.Builds;
 
     /// <summary>
     ///     Represents a request for the current build ID of the game.

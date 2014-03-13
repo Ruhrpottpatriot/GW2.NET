@@ -15,7 +15,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.MapsInformation.Details;
+    using global::GW2DotNET.V1.Core.Maps;
 
     /// <summary>
     ///     Represents a request for details regarding (a) map(s) in the game.

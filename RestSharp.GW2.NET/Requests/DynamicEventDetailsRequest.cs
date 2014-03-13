@@ -16,7 +16,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Details;
+    using global::GW2DotNET.V1.Core.DynamicEvents.Details;
 
     /// <summary>
     ///     Represents a request for static details about dynamic events.

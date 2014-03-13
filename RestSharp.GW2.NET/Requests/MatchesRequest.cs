@@ -16,7 +16,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
+    using global::GW2DotNET.V1.Core.WorldVersusWorld.Matches;
 
     /// <summary>
     ///     Represents a request for a list of the currently running World versus World matches, with the participating worlds

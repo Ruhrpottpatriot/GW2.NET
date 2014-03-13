@@ -10,7 +10,8 @@ namespace GW2DotNET.V1.Core
 {
     using System.Net.Mime;
 
-    using GW2DotNET.V1.Core.ErrorInformation;
+    using GW2DotNET.V1.Core.Common;
+    using GW2DotNET.V1.Core.Errors;
 
     /// <summary>Provides the base interface for HTTP responses originating from the Guild Wars 2 API.</summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>

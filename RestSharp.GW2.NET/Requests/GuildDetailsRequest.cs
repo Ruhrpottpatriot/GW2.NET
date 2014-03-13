@@ -16,7 +16,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.GuildInformation.Details;
+    using global::GW2DotNET.V1.Core.Guilds.Details;
 
     /// <summary>
     ///     Represents a request for information regarding a specific guild.

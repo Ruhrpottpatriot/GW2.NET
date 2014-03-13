@@ -16,7 +16,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
+    using global::GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details;
 
     /// <summary>
     ///     Represents a request for details regarding the specified match, including the total score and further details for

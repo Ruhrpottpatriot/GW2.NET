@@ -15,7 +15,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.WorldsInformation.Names;
+    using global::GW2DotNET.V1.Core.Worlds.Names;
 
     /// <summary>
     ///     Represents a request for a list of the localized WorldName names for the specified language.

@@ -15,7 +15,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Names;
+    using global::GW2DotNET.V1.Core.DynamicEvents.Names;
 
     /// <summary>
     ///     Represents a request for a list of events and their localized name.

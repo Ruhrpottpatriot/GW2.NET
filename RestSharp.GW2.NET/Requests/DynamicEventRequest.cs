@@ -16,7 +16,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+    using global::GW2DotNET.V1.Core.DynamicEvents;
 
     /// <summary>
     ///     Represents a request for a list of events and their status that match the given filters (if any).

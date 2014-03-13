@@ -15,7 +15,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.MapsInformation.Floors;
+    using global::GW2DotNET.V1.Core.Maps.Floors;
 
     /// <summary>
     ///     Represents a request for details regarding a map floor, used to populate a world map.

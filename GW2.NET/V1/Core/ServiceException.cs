@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Core
     using System;
 
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Core.ErrorInformation;
+    using GW2DotNET.V1.Core.Errors;
 
     /// <summary>
     ///     Represents an API error.

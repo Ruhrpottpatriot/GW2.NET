@@ -69,7 +69,8 @@ namespace RestSharp.GW2DotNET
         /// <typeparam name="TContent">The type of the response content.</typeparam>
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
-        public virtual IServiceResponse<TContent> GetResponse<TContent>(IServiceClient serviceClient) where TContent : global::GW2DotNET.V1.Core.JsonObject
+        public virtual IServiceResponse<TContent> GetResponse<TContent>(IServiceClient serviceClient)
+            where TContent : global::GW2DotNET.V1.Core.Common.JsonObject
         {
             return serviceClient.Send<TContent>(this);
         }
@@ -79,7 +80,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="serviceClient">The service client.</param>
         /// <returns>The response.</returns>
         public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient)
-            where TContent : global::GW2DotNET.V1.Core.JsonObject
+            where TContent : global::GW2DotNET.V1.Core.Common.JsonObject
         {
             return serviceClient.SendAsync<TContent>(this);
         }
@@ -90,7 +91,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response.</returns>
         public virtual Task<IServiceResponse<TContent>> GetResponseAsync<TContent>(IServiceClient serviceClient, CancellationToken cancellationToken)
-            where TContent : global::GW2DotNET.V1.Core.JsonObject
+            where TContent : global::GW2DotNET.V1.Core.Common.JsonObject
         {
             return serviceClient.SendAsync<TContent>(this, cancellationToken);
         }

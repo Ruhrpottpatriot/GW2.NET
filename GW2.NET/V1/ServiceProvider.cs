@@ -17,22 +17,25 @@ namespace GW2DotNET.V1
 
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Core;
-    using GW2DotNET.V1.Core.BuildInformation;
-    using GW2DotNET.V1.Core.ColorsInformation;
-    using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
-    using GW2DotNET.V1.Core.DynamicEventsInformation.Names;
-    using GW2DotNET.V1.Core.DynamicEventsInformation.Status;
-    using GW2DotNET.V1.Core.FilesInformation.Catalogs;
-    using GW2DotNET.V1.Core.GuildInformation.Details;
-    using GW2DotNET.V1.Core.ItemsInformation.Catalogs;
-    using GW2DotNET.V1.Core.ItemsInformation.Details;
-    using GW2DotNET.V1.Core.MapsInformation.Continents;
-    using GW2DotNET.V1.Core.MapsInformation.Details;
-    using GW2DotNET.V1.Core.MapsInformation.Floors;
-    using GW2DotNET.V1.Core.MapsInformation.Names;
-    using GW2DotNET.V1.Core.WorldsInformation.Names;
-    using GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
-    using GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
+    using GW2DotNET.V1.Core.Builds;
+    using GW2DotNET.V1.Core.Colors;
+    using GW2DotNET.V1.Core.Continents;
+    using GW2DotNET.V1.Core.DynamicEvents;
+    using GW2DotNET.V1.Core.DynamicEvents.Details;
+    using GW2DotNET.V1.Core.DynamicEvents.Names;
+    using GW2DotNET.V1.Core.Files;
+    using GW2DotNET.V1.Core.Guilds.Details;
+    using GW2DotNET.V1.Core.Items;
+    using GW2DotNET.V1.Core.Items.Details;
+    using GW2DotNET.V1.Core.Maps;
+    using GW2DotNET.V1.Core.Maps.Floors;
+    using GW2DotNET.V1.Core.Maps.Names;
+    using GW2DotNET.V1.Core.Recipes;
+    using GW2DotNET.V1.Core.Recipes.Details;
+    using GW2DotNET.V1.Core.Worlds.Names;
+    using GW2DotNET.V1.Core.WorldVersusWorld.Matches;
+    using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details;
+    using GW2DotNET.V1.Core.WorldVersusWorld.Objectives.Names;
 
     /// <summary>
     ///     Wraps a service manager that provides an implementation of the Guild Wars 2 service.

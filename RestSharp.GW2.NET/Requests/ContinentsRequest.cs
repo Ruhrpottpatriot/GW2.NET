@@ -15,7 +15,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.MapsInformation.Continents;
+    using global::GW2DotNET.V1.Core.Continents;
 
     /// <summary>
     ///     Represents a request for static information about the continents.

@@ -11,6 +11,8 @@ namespace GW2DotNET.V1.Core
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Core.Common;
+
     /// <summary>
     ///     Provides the base interface for HTTP requests targeting the Guild Wars 2 API.
     /// </summary>

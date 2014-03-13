@@ -15,7 +15,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.MapsInformation.Names;
+    using global::GW2DotNET.V1.Core.Maps.Names;
 
     /// <summary>
     ///     Represents a request for a list of localized map names.

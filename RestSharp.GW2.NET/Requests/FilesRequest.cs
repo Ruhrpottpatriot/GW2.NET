@@ -16,7 +16,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.FilesInformation.Catalogs;
+    using global::GW2DotNET.V1.Core.Files;
 
     /// <summary>
     ///     Represents a request for commonly requested in-game assets.

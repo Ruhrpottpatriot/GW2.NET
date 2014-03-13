@@ -22,37 +22,43 @@ namespace RestSharp.GW2DotNET
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.BuildInformation;
+    using global::GW2DotNET.V1.Core.Builds;
 
-    using global::GW2DotNET.V1.Core.ColorsInformation;
+    using global::GW2DotNET.V1.Core.Colors;
 
-    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Details;
+    using global::GW2DotNET.V1.Core.Continents;
 
-    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Names;
+    using global::GW2DotNET.V1.Core.DynamicEvents;
 
-    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+    using global::GW2DotNET.V1.Core.DynamicEvents.Details;
 
-    using global::GW2DotNET.V1.Core.FilesInformation.Catalogs;
+    using global::GW2DotNET.V1.Core.DynamicEvents.Names;
 
-    using global::GW2DotNET.V1.Core.GuildInformation.Details;
+    using global::GW2DotNET.V1.Core.Files;
 
-    using global::GW2DotNET.V1.Core.ItemsInformation.Catalogs;
+    using global::GW2DotNET.V1.Core.Guilds.Details;
 
-    using global::GW2DotNET.V1.Core.ItemsInformation.Details;
+    using global::GW2DotNET.V1.Core.Items;
 
-    using global::GW2DotNET.V1.Core.MapsInformation.Continents;
+    using global::GW2DotNET.V1.Core.Items.Details;
 
-    using global::GW2DotNET.V1.Core.MapsInformation.Details;
+    using global::GW2DotNET.V1.Core.Maps;
 
-    using global::GW2DotNET.V1.Core.MapsInformation.Floors;
+    using global::GW2DotNET.V1.Core.Maps.Floors;
 
-    using global::GW2DotNET.V1.Core.MapsInformation.Names;
+    using global::GW2DotNET.V1.Core.Maps.Names;
 
-    using global::GW2DotNET.V1.Core.WorldsInformation.Names;
+    using global::GW2DotNET.V1.Core.Recipes;
 
-    using global::GW2DotNET.V1.Core.WorldVersusWorldInformation.Catalogs;
+    using global::GW2DotNET.V1.Core.Recipes.Details;
 
-    using global::GW2DotNET.V1.Core.WorldVersusWorldInformation.Details;
+    using global::GW2DotNET.V1.Core.Worlds.Names;
+
+    using global::GW2DotNET.V1.Core.WorldVersusWorld.Matches;
+
+    using global::GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details;
+
+    using global::GW2DotNET.V1.Core.WorldVersusWorld.Objectives.Names;
 
     using RestSharp.GW2DotNET.Requests;
 
@@ -1032,7 +1038,7 @@ namespace RestSharp.GW2DotNET
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="request">The request.</param>
         /// <returns>The response content.</returns>
-        private TResult Get<TResult>(IServiceRequest request) where TResult : global::GW2DotNET.V1.Core.JsonObject
+        private TResult Get<TResult>(IServiceRequest request) where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
         {
             IServiceResponse<TResult> response = request.GetResponse<TResult>(this.serviceClient);
             TResult content = response.EnsureSuccessStatusCode().Deserialize();
@@ -1046,7 +1052,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response content.</returns>
         private Task<TResult> GetAsync<TResult>(IServiceRequest request, CancellationToken? cancellationToken = null)
-            where TResult : global::GW2DotNET.V1.Core.JsonObject
+            where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
         {
             return this.GetAsync<TResult>(this.serviceClient, request, cancellationToken);
         }
@@ -1058,7 +1064,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response content.</returns>
         private Task<TResult> GetAsync<TResult>(IServiceClient client, IServiceRequest request, CancellationToken? cancellationToken = null)
-            where TResult : global::GW2DotNET.V1.Core.JsonObject
+            where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
         {
             CancellationToken token = cancellationToken.GetValueOrDefault(CancellationToken.None);
             Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(client, token);
@@ -1084,7 +1090,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="selector">The selector.</param>
         /// <returns>The selected result.</returns>
         private Task<TResult> Select<TContent, TResult>(Task<TContent> result, Func<TContent, TResult> selector)
-            where TContent : global::GW2DotNET.V1.Core.JsonObject where TResult : global::GW2DotNET.V1.Core.JsonObject
+            where TContent : global::GW2DotNET.V1.Core.Common.JsonObject where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
         {
             return result.ContinueWith(task => selector(task.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
         }

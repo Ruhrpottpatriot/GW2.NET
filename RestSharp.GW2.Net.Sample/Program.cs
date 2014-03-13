@@ -9,18 +9,15 @@
 namespace RestSharp.GW2DotNET.Sample
 {
     using System;
-    using System.Drawing.Imaging;
-    using System.IO;
     using System.Linq;
-    using System.Threading.Tasks;
 
     using global::GW2DotNET.V1;
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.DynamicEventsInformation.Status;
+    using global::GW2DotNET.V1.Core.DynamicEvents;
 
-    using global::GW2DotNET.V1.Core.ErrorInformation;
+    using global::GW2DotNET.V1.Core.Errors;
 
     /// <summary>The program.</summary>
     internal class Program

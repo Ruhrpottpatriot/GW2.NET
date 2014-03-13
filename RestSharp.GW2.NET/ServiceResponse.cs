@@ -14,14 +14,14 @@ namespace RestSharp.GW2DotNET
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.ErrorInformation;
+    using global::GW2DotNET.V1.Core.Errors;
 
     using Newtonsoft.Json;
 
     /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceResponse{TContent}"/> interface.</summary>
     /// <typeparam name="TContent">The type of the response content.</typeparam>
     public class ServiceResponse<TContent> : RestResponse, IServiceResponse<TContent>
-        where TContent : global::GW2DotNET.V1.Core.JsonObject
+        where TContent : global::GW2DotNET.V1.Core.Common.JsonObject
     {
         /// <summary>Initializes a new instance of the <see cref="ServiceResponse{TContent}"/> class using the specified<see cref="IRestResponse"/>.</summary>
         /// <param name="source">The source response object.</param>

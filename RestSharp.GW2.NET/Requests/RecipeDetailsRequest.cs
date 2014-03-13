@@ -15,7 +15,7 @@ namespace RestSharp.GW2DotNET.Requests
 
     using global::GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1.Core.ItemsInformation.Details;
+    using global::GW2DotNET.V1.Core.Recipes.Details;
 
     /// <summary>
     ///     Represents a request for information regarding a specific recipe.
