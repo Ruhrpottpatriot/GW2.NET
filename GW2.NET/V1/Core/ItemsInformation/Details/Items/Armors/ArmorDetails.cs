@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
 {
+    using System;
+
     using GW2DotNET.V1.Core.ItemsInformation.Details.Items.Common;
 
     using Newtonsoft.Json;
@@ -24,6 +26,9 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
         {
             this.Type = armorType;
         }
+
+        /// <summary>Gets or sets the armor.</summary>
+        public Armor Armor { get; set; }
 
         /// <summary>
         ///     Gets or sets the armor piece's defense stat.
