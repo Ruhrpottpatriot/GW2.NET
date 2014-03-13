@@ -14,11 +14,17 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.Armors
     using Newtonsoft.Json.Converters;
 
     /// <summary>
-    ///     Enumerates the possible armor piece weight classes.
+    ///     Enumerates the known armor piece weight classes.
     /// </summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum WeightClass
     {
+        /// <summary>
+        ///     The 'Unknown' weight class.
+        /// </summary>
+        [EnumMember(Value = "Unknown")]
+        Unknown = 0, 
+
         /// <summary>
         ///     The 'Clothing' weight class.
         /// </summary>
