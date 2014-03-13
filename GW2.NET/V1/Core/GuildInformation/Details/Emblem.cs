@@ -53,6 +53,9 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
         [JsonProperty("foreground_secondary_color_id", Order = 5)]
         public int ForegroundSecondaryColorId { get; set; }
 
+        /// <summary>Gets or sets the guild.</summary>
+        public Guild Guild { get; set; }
+
         /// <summary>
         ///     Indicates whether an object is equal to another object of the same type.
         /// </summary>

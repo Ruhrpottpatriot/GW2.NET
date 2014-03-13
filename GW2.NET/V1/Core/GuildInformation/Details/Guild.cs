@@ -17,11 +17,26 @@ namespace GW2DotNET.V1.Core.GuildInformation.Details
     /// </summary>
     public class Guild : JsonObject, IEquatable<Guild>, IComparable<Guild>
     {
+        /// <summary>Infrastructure. Stores an emblem.</summary>
+        private Emblem emblem;
+
         /// <summary>
         ///     Gets or sets detailed information about the guild's emblem, if any.
         /// </summary>
         [JsonProperty("emblem", Order = 3)]
-        public Emblem Emblem { get; set; }
+        public Emblem Emblem
+        {
+            get
+            {
+                return this.emblem;
+            }
+
+            set
+            {
+                this.emblem = value;
+                value.Guild = this;
+            }
+        }
 
         /// <summary>
         ///     Gets or sets the guild's ID.

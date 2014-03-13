@@ -34,6 +34,16 @@ namespace GW2DotNET.Core.GuildInformation
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        [Category("guild_details.json")]
+        public void Guild_EmblemGuildIsThis()
+        {
+            var expected = this.guild;
+            var actual = this.guild.Emblem.Guild;
+
+            Assert.AreEqual(expected, actual);
+        }
+
         /// <summary>The guild_ extension data is empty.</summary>
         [Test]
         [Category("guild_details.json")]
