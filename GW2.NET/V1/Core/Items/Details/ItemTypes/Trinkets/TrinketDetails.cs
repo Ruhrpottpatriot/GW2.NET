@@ -25,6 +25,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
             this.Type = trinketType;
         }
 
+        /// <summary>Gets or sets the trinket.</summary>
+        public Trinket Trinket { get; set; }
+
         /// <summary>
         ///     Gets or sets the trinket's type.
         /// </summary>

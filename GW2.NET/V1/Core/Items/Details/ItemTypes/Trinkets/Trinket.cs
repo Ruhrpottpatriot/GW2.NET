@@ -18,6 +18,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Trinket : Item
     {
+        /// <summary>Infrastructure. Stores the trinket details.</summary>
+        private TrinketDetails trinketDetails;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Trinket" /> class.
         /// </summary>
@@ -30,6 +33,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
         ///     Gets or sets the trinket's details.
         /// </summary>
         [JsonProperty("trinket", Order = 100)]
-        public TrinketDetails TrinketDetails { get; set; }
+        public TrinketDetails TrinketDetails
+        {
+            get
+            {
+                return this.trinketDetails;
+            }
+
+            set
+            {
+                this.trinketDetails = value;
+                value.Trinket = this;
+            }
+        }
     }
 }
