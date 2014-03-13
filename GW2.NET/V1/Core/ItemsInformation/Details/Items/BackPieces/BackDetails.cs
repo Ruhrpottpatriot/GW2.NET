@@ -15,5 +15,7 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces
     /// </summary>
     public class BackDetails : EquipmentDetails
     {
+        /// <summary>Gets or sets the back.</summary>
+        public Back Back { get; set; }
     }
 }

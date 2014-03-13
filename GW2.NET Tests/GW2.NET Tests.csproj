@@ -85,6 +85,7 @@
     <Compile Include="Core\GuildInformation\EmblemTransformationsTest.cs" />
     <Compile Include="Core\GuildInformation\GuildTest.cs" />
     <Compile Include="Core\ItemsInformation\Details\Items\Armors\ArmorTest.cs" />
+    <Compile Include="Core\ItemsInformation\Details\Items\BackPieces\BackTest.cs" />
     <Compile Include="Core\ItemsInformation\Details\Items\GameTypesTest.cs" />
     <Compile Include="Core\ItemsInformation\Details\Items\ItemTypeTest.cs" />
     <Compile Include="Core\ItemsInformation\Details\Items\ItemFlagsTest.cs" />

@@ -18,6 +18,9 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Back : Item
     {
+        /// <summary>Infrastructure. Stores the back details.</summary>
+        private BackDetails backDetails;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Back" /> class.
         /// </summary>
@@ -30,6 +33,18 @@ namespace GW2DotNET.V1.Core.ItemsInformation.Details.Items.BackPieces
         ///     Gets or sets the back piece's details.
         /// </summary>
         [JsonProperty("back", Order = 100)]
-        public BackDetails BackDetails { get; set; }
+        public BackDetails BackDetails
+        {
+            get
+            {
+                return this.backDetails;
+            }
+
+            set
+            {
+                this.backDetails = value;
+                value.Back = this;
+            }
+        }
     }
 }
