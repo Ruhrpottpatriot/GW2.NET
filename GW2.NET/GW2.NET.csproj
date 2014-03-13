@@ -63,6 +63,10 @@
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventDetailsCollection.cs" />
+    <Compile Include="V1\Core\DynamicEventsInformation\Details\Location.cs" />
+    <Compile Include="V1\Core\DynamicEventsInformation\Details\LocationConverter.cs">
+      <DependentUpon>Location.cs</DependentUpon>
+    </Compile>
     <Compile Include="V1\Core\DynamicEventsInformation\Names\DynamicEventNameCollection.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Status\DynamicEventCollection.cs" />
     <Compile Include="V1\Core\FilesInformation\Catalogs\AssetCollection.cs" />
@@ -81,9 +85,6 @@
     <Compile Include="V1\Core\MapsInformation\Names\MapNameCollection.cs" />
     <Compile Include="V1\Core\ServiceException.cs" />
     <Compile Include="V1\Core\BuildInformation\Build.cs" />
-    <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\LocationConverter.cs">
-      <DependentUpon>Location.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\UnknownLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\PointCollection.cs" />
     <Compile Include="V1\Core\ErrorInformation\ErrorResult.cs" />
@@ -340,7 +341,6 @@
     <Compile Include="V1\Core\Drawing\Point3D.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\CylinderLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventDetails.cs" />
-    <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\Location.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\DynamicEventDetailsResult.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\PolygonLocation.cs" />
     <Compile Include="V1\Core\DynamicEventsInformation\Details\Locations\SphereLocation.cs" />

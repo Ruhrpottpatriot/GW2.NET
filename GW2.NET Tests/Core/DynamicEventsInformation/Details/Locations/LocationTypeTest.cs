@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Core.DynamicEventsInformation.Details.Locations
 {
+    using GW2DotNET.V1.Core.DynamicEventsInformation.Details;
     using GW2DotNET.V1.Core.DynamicEventsInformation.Details.Locations;
 
     using Newtonsoft.Json;
