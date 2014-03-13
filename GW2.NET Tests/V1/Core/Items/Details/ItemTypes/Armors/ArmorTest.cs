@@ -19,7 +19,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         /// <summary>The armor.</summary>
         private Armor armor;
 
-        /// <summary>TODO The armor_ armor details reflects input.</summary>
         [Test]
         [Category("item_details.json")]
         public void Armor_ArmorDetailsReflectsInput()
@@ -30,7 +29,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>TODO The armor_ extension data is empty.</summary>
         [Test]
         [Category("item_details.json")]
         [Category("ExtensionData")]

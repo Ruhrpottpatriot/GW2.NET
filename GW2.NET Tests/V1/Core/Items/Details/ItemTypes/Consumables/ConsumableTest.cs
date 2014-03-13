@@ -6,31 +6,33 @@
 //   The item test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
+namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
 {
+    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;
 
     [TestFixture]
-    public class BackTest
+    public class ConsumableTest
     {
-        private Back back;
+        private Consumable consumable;
 
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"item_id\":\"0\",\"back\":{}}";
+            const string input = "{\"item_id\":\"0\",\"consumable\":{}}";
 
-            this.back = JsonConvert.DeserializeObject<Back>(input);
+            this.consumable = JsonConvert.DeserializeObject<Consumable>(input);
         }
 
         [Test]
         [Category("item_details.json")]
-        public void Back_BackDetailsBackIsThis()
+        public void Consumable_ConsumableDetailConsumableIsThis()
         {
-            var expected = this.back;
-            var actual = this.back.BackDetails.Back;
+            var expected = this.consumable;
+            var actual = this.consumable.ConsumableItemDetails.Consumable;
 
             Assert.AreEqual(expected, actual);
         }
@@ -38,9 +40,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
         [Test]
         [Category("item_details.json")]
         [Category("ExtensionData")]
-        public void Back_ExtensionDataIsEmpty()
+        public void Consumable_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.back.ExtensionData);
+            Assert.IsEmpty(this.consumable.ExtensionData);
         }
     }
 }

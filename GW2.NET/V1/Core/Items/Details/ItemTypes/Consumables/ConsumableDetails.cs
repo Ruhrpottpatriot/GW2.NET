@@ -25,6 +25,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
             this.Type = type;
         }
 
+        /// <summary>Gets or sets the consumable.</summary>
+        public Consumable Consumable { get; set; }
+
         /// <summary>
         ///     Gets or sets the consumable's type.
         /// </summary>

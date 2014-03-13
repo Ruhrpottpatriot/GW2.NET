@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
 
         [Test]
         [Category("item_details.json")]
-        public void Back_BagDetailsBagIsThis()
+        public void Bag_BagDetailsBagIsThis()
         {
             var expected = this.bag;
             var actual = this.bag.BagDetails.Bag;
@@ -38,7 +38,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
         [Test]
         [Category("item_details.json")]
         [Category("ExtensionData")]
-        public void Back_ExtensionDataIsEmpty()
+        public void Bag_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(this.bag.ExtensionData);
         }
