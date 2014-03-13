@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
 
         [Test]
         [Category("item_details.json")]
-        public void Bag_BagDetailsBagIsThis()
+        public void Bag_DetailsReferencesSourceItem()
         {
             var expected = this.bag;
             var actual = this.bag.BagDetails.Bag;

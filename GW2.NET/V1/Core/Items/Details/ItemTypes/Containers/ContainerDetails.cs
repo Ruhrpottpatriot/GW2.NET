@@ -25,6 +25,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
             this.Type = containerType;
         }
 
+        /// <summary>Gets or sets the container.</summary>
+        public Container Container { get; set; }
+
         /// <summary>
         ///     Gets or sets the container's type.
         /// </summary>

@@ -89,6 +89,7 @@
     <Compile Include="V1\Core\Items\Details\ItemFlagsTest.cs" />
     <Compile Include="V1\Core\Items\Details\ItemRestrictionsTest.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Armors\ArmorTest.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerTest.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTest.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Bags\BagTest.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Backs\BackTest.cs" />

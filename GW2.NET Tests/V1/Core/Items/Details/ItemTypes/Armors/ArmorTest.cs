@@ -19,9 +19,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         /// <summary>The armor.</summary>
         private Armor armor;
 
+        /// <summary>The initialize.</summary>
+        [SetUp]
+        public void Initialize()
+        {
+            const string input = "{\"item_id\":\"0\",\"armor\":{}}";
+
+            this.armor = JsonConvert.DeserializeObject<Armor>(input);
+        }
+
         [Test]
         [Category("item_details.json")]
-        public void Armor_ArmorDetailsReflectsInput()
+        public void Armor_DetailsReferencesSourceItem()
         {
             var expected = this.armor;
             var actual = this.armor.ArmorDetails.Armor;
@@ -35,15 +44,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         public void Armor_ExtensionDataIsEmpty()
         {
             Assert.IsEmpty(this.armor.ExtensionData);
-        }
-
-        /// <summary>The initialize.</summary>
-        [SetUp]
-        public void Initialize()
-        {
-            const string input = "{\"item_id\":\"0\",\"armor\":{}}";
-
-            this.armor = JsonConvert.DeserializeObject<Armor>(input);
         }
     }
 }

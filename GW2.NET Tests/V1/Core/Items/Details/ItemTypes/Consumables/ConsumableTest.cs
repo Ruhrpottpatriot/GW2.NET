@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
 
         [Test]
         [Category("item_details.json")]
-        public void Consumable_ConsumableDetailConsumableIsThis()
+        public void Consumable_DetailsReferencesSourceItem()
         {
             var expected = this.consumable;
             var actual = this.consumable.ConsumableDetails.Consumable;

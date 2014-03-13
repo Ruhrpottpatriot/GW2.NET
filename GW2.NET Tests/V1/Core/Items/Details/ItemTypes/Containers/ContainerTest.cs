@@ -6,31 +6,31 @@
 //   The item test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
+namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
 {
     using Newtonsoft.Json;
 
     using NUnit.Framework;
 
     [TestFixture]
-    public class BackTest
+    public class ContainerTest
     {
-        private Back back;
+        private Container container;
 
         [SetUp]
         public void Initialize()
         {
-            const string input = "{\"item_id\":\"0\",\"back\":{}}";
+            const string input = "{\"item_id\":\"0\",\"container\":{}}";
 
-            this.back = JsonConvert.DeserializeObject<Back>(input);
+            this.container = JsonConvert.DeserializeObject<Container>(input);
         }
 
         [Test]
         [Category("item_details.json")]
-        public void Back_DetailsReferencesSourceItem()
+        public void Container_DetailsReferencesSourceItem()
         {
-            var expected = this.back;
-            var actual = this.back.BackDetails.Back;
+            var expected = this.container;
+            var actual = this.container.ContainerDetails.Container;
 
             Assert.AreEqual(expected, actual);
         }
@@ -38,9 +38,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
         [Test]
         [Category("item_details.json")]
         [Category("ExtensionData")]
-        public void Back_ExtensionDataIsEmpty()
+        public void Container_ExtensionDataIsEmpty()
         {
-            Assert.IsEmpty(this.back.ExtensionData);
+            Assert.IsEmpty(this.container.ExtensionData);
         }
     }
 }
