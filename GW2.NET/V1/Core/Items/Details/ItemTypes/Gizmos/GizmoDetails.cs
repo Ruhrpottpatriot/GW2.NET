@@ -25,6 +25,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
             this.Type = gizmoType;
         }
 
+        /// <summary>Gets or sets the gizmo.</summary>
+        public Gizmo Gizmo { get; set; }
+
         /// <summary>
         ///     Gets or sets the gizmo's type.
         /// </summary>

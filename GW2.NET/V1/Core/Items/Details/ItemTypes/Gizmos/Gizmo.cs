@@ -18,6 +18,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Gizmo : Item
     {
+        /// <summary>Infrastructure. Stores the gizmo details.</summary>
+        private GizmoDetails gizmoDetails;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Gizmo" /> class.
         /// </summary>
@@ -30,6 +33,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
         ///     Gets or sets the gizmo's details.
         /// </summary>
         [JsonProperty("gizmo", Order = 100)]
-        public GizmoDetails GizmoDetails { get; set; }
+        public GizmoDetails GizmoDetails
+        {
+            get
+            {
+                return this.gizmoDetails;
+            }
+
+            set
+            {
+                this.gizmoDetails = value;
+                value.Gizmo = this;
+            }
+        }
     }
 }
