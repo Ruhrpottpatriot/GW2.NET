@@ -25,6 +25,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools
             this.ToolType = gatheringToolType;
         }
 
+        /// <summary>Gets or sets the gathering tool.</summary>
+        public GatheringTool GatheringTool { get; set; }
+
         /// <summary>
         ///     Gets or sets the gathering equipment's type.
         /// </summary>

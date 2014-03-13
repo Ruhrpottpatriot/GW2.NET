@@ -18,6 +18,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GatheringTool : Item
     {
+        /// <summary>Infrastructure. Stores the gathering tool details.</summary>
+        private GatheringToolDetails gatheringToolDetails;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="GatheringTool" /> class.
         /// </summary>
@@ -30,6 +33,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools
         ///     Gets or sets the gathering equipment's details.
         /// </summary>
         [JsonProperty("gathering", Order = 100)]
-        public GatheringToolDetails GatheringToolDetails { get; set; }
+        public GatheringToolDetails GatheringToolDetails
+        {
+            get
+            {
+                return this.gatheringToolDetails;
+            }
+
+            set
+            {
+                this.gatheringToolDetails = value;
+                value.GatheringTool = this;
+            }
+        }
     }
 }
