@@ -54,5 +54,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public WeaponType Type { get; set; }
+
+        /// <summary>Gets or sets the weapon.</summary>
+        public Weapon Weapon { get; set; }
     }
 }
