@@ -31,6 +31,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
         [JsonProperty("charges", Order = 1)]
         public int Charges { get; set; }
 
+        /// <summary>Gets or sets the tool.</summary>
+        public Tool Tool { get; set; }
+
         /// <summary>
         ///     Gets or sets the tool's type.
         /// </summary>

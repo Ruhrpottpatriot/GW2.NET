@@ -18,6 +18,9 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Tool : Item
     {
+        /// <summary>Infrastructure. Stores the tool details.</summary>
+        private ToolDetails toolDetails;
+
         /// <summary>
         ///     Initializes a new instance of the <see cref="Tool" /> class.
         /// </summary>
@@ -30,6 +33,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
         ///     Gets or sets the tool's details.
         /// </summary>
         [JsonProperty("tool", Order = 100)]
-        public ToolDetails ToolDetails { get; set; }
+        public ToolDetails ToolDetails
+        {
+            get
+            {
+                return this.toolDetails;
+            }
+
+            set
+            {
+                this.toolDetails = value;
+                value.Tool = this;
+            }
+        }
     }
 }
