@@ -61,5 +61,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
         /// </summary>
         [JsonProperty("type", Order = 0)]
         public UpgradeComponentType Type { get; set; }
+
+        /// <summary>Gets or sets the upgrade component.</summary>
+        public UpgradeComponent UpgradeComponent { get; set; }
     }
 }
