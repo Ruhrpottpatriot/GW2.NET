@@ -74,6 +74,16 @@ namespace GW2DotNET.Core.DynamicEventsInformation.Details
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        [Category("event_details.json")]
+        public void DynamicEventDetails_LocationDynamicEventDetailsIsThis()
+        {
+            var expected = this.dynamicEventDetails;
+            var actual = this.dynamicEventDetails.Location.DynamicEventDetails;
+
+            Assert.AreEqual(expected, actual);
+        }
+
         /// <summary>The initialize.</summary>
         [SetUp]
         public void Initialize()

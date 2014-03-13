@@ -42,6 +42,9 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
         [JsonProperty("type", Order = 0)]
         public LocationType Type { get; private set; }
 
+        /// <summary>Gets or sets the dynamic event details.</summary>
+        public DynamicEventDetails DynamicEventDetails { get; set; }
+
         /// <summary>
         ///     Indicates whether an object is equal to another object of the same type.
         /// </summary>

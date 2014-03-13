@@ -19,6 +19,8 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
     /// </summary>
     public class DynamicEventDetails : JsonObject, IEquatable<DynamicEventDetails>, IComparable<DynamicEventDetails>
     {
+        private Location location;
+
         /// <summary>
         ///     Gets or sets the event's ID.
         /// </summary>
@@ -41,7 +43,19 @@ namespace GW2DotNET.V1.Core.DynamicEventsInformation.Details
         ///     Gets or sets the location of the event.
         /// </summary>
         [JsonProperty("location", Order = 5)]
-        public Location Location { get; set; }
+        public Location Location
+        {
+            get
+            {
+                return this.location;
+            }
+
+            set
+            {
+                this.location = value;
+                value.DynamicEventDetails = this;
+            }
+        }
 
         /// <summary>
         ///     Gets or sets the map where the event takes place.
