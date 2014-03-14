@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
 {
+    using System;
+
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Common;
 
@@ -17,7 +19,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
     ///     Represents detailed information about an upgrade component.
     /// </summary>
     [JsonConverter(typeof(UpgradeComponentDetailsConverter))]
-    public abstract class UpgradeComponentDetails : JsonObject
+    public abstract class UpgradeComponentDetails : JsonObject, IEquatable<UpgradeComponentDetails>
     {
         /// <summary>Initializes a new instance of the <see cref="UpgradeComponentDetails"/> class.</summary>
         /// <param name="upgradeComponentType">The upgrade component's type.</param>
@@ -64,5 +66,85 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
 
         /// <summary>Gets or sets the upgrade component.</summary>
         public UpgradeComponent UpgradeComponent { get; set; }
+
+        /// <summary>
+        ///     Indicates whether an object is equal to another object of the same type.
+        /// </summary>
+        /// <param name="left">The object on the left side.</param>
+        /// <param name="right">The object on the right side.</param>
+        /// <returns>
+        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
+        ///     false.
+        /// </returns>
+        public static bool operator ==(UpgradeComponentDetails left, UpgradeComponentDetails right)
+        {
+            return object.Equals(left, right);
+        }
+
+        /// <summary>
+        ///     Indicates whether an object differs from another object of the same type.
+        /// </summary>
+        /// <param name="left">The object on the left side.</param>
+        /// <param name="right">The object on the right side.</param>
+        /// <returns>
+        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
+        ///     otherwise, false.
+        /// </returns>
+        public static bool operator !=(UpgradeComponentDetails left, UpgradeComponentDetails right)
+        {
+            return !object.Equals(left, right);
+        }
+
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(UpgradeComponentDetails other)
+        {
+            if (object.ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return object.Equals(this.UpgradeComponent, other.UpgradeComponent);
+        }
+
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
+        /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
+        public override bool Equals(object obj)
+        {
+            if (object.ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (object.ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return this.Equals((UpgradeComponentDetails)obj);
+        }
+
+        /// <summary>
+        /// Serves as a hash function for a particular type. 
+        /// </summary>
+        /// <returns>
+        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return this.UpgradeComponent != null ? this.UpgradeComponent.GetHashCode() : 0;
+        }
     }
 }
