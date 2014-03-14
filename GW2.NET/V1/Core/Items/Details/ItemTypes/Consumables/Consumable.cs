@@ -18,8 +18,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Consumable : Item
     {
-        /// <summary>Infrastructure. Stores the consumable item details.</summary>
-        private ConsumableDetails consumableDetails;
+        /// <summary>Infrastructure. Stores the item details.</summary>
+        private ConsumableDetails details;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Consumable" /> class.
@@ -30,19 +30,19 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
         }
 
         /// <summary>
-        ///     Gets or sets the consumable item's details.
+        ///     Gets or sets the item details.
         /// </summary>
         [JsonProperty("consumable", Order = 100)]
-        public ConsumableDetails ConsumableDetails
+        public ConsumableDetails Details
         {
             get
             {
-                return this.consumableDetails;
+                return this.details;
             }
 
             set
             {
-                this.consumableDetails = value;
+                this.details = value;
                 value.Consumable = this;
             }
         }

@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
         public void Bag_DetailsReferencesSourceItem()
         {
             var expected = this.bag;
-            var actual = this.bag.BagDetails.Bag;
+            var actual = this.bag.Details.Bag;
 
             Assert.AreEqual(expected, actual);
         }

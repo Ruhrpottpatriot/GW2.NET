@@ -18,8 +18,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Weapon : Item
     {
-        /// <summary>Infrastructure. Stores the weapon details.</summary>
-        private WeaponDetails weaponDetails;
+        /// <summary>Infrastructure. Stores the item details.</summary>
+        private WeaponDetails details;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Weapon" /> class.
@@ -30,19 +30,19 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
         }
 
         /// <summary>
-        ///     Gets or sets the weapon's details.
+        ///     Gets or sets the item details.
         /// </summary>
         [JsonProperty("weapon", Order = 100)]
-        public WeaponDetails WeaponDetails
+        public WeaponDetails Details
         {
             get
             {
-                return this.weaponDetails;
+                return this.details;
             }
 
             set
             {
-                this.weaponDetails = value;
+                this.details = value;
                 value.Weapon = this;
             }
         }

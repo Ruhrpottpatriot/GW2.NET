@@ -18,8 +18,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UpgradeComponent : Item
     {
-        /// <summary>Infrastructure. Stores the upgrade component details.</summary>
-        private UpgradeComponentDetails upgradeComponentDetails;
+        /// <summary>Infrastructure. Stores the item details.</summary>
+        private UpgradeComponentDetails details;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="UpgradeComponent" /> class.
@@ -30,19 +30,19 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
         }
 
         /// <summary>
-        ///     Gets or sets the upgrade component's details.
+        ///     Gets or sets the item details.
         /// </summary>
         [JsonProperty("upgrade_component", Order = 100)]
-        public UpgradeComponentDetails UpgradeComponentDetails
+        public UpgradeComponentDetails Details
         {
             get
             {
-                return this.upgradeComponentDetails;
+                return this.details;
             }
 
             set
             {
-                this.upgradeComponentDetails = value;
+                this.details = value;
                 value.UpgradeComponent = this;
             }
         }

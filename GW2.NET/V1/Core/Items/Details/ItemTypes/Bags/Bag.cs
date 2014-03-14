@@ -18,8 +18,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Bag : Item
     {
-        /// <summary>Infrastructure. Stores the bag details.</summary>
-        private BagDetails bagDetails;
+        /// <summary>Infrastructure. Stores the item details.</summary>
+        private BagDetails details;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Bag" /> class.
@@ -30,19 +30,19 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
         }
 
         /// <summary>
-        ///     Gets or sets the bag's details.
+        ///     Gets or sets the item details.
         /// </summary>
         [JsonProperty("bag", Order = 100)]
-        public BagDetails BagDetails
+        public BagDetails Details
         {
             get
             {
-                return this.bagDetails;
+                return this.details;
             }
 
             set
             {
-                this.bagDetails = value;
+                this.details = value;
                 value.Bag = this;
             }
         }

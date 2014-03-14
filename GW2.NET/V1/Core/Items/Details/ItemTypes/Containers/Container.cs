@@ -18,8 +18,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Container : Item
     {
-        /// <summary>Infrastructure. Stores the container details.</summary>
-        private ContainerDetails containerDetails;
+        /// <summary>Infrastructure. Stores the item details.</summary>
+        private ContainerDetails details;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Container" /> class.
@@ -30,19 +30,19 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
         }
 
         /// <summary>
-        ///     Gets or sets the container's details.
+        ///     Gets or sets the item details.
         /// </summary>
         [JsonProperty("container", Order = 100)]
-        public ContainerDetails ContainerDetails
+        public ContainerDetails Details
         {
             get
             {
-                return this.containerDetails;
+                return this.details;
             }
 
             set
             {
-                this.containerDetails = value;
+                this.details = value;
                 value.Container = this;
             }
         }

@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
         public void Back_DetailsReferencesSourceItem()
         {
             var expected = this.back;
-            var actual = this.back.BackDetails.Back;
+            var actual = this.back.Details.Back;
 
             Assert.AreEqual(expected, actual);
         }

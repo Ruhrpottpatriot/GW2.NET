@@ -18,8 +18,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Armor : Item
     {
-        /// <summary>Infrastructure. Stores the armor details.</summary>
-        private ArmorDetails armorDetails;
+        /// <summary>Infrastructure. Stores the item details.</summary>
+        private ArmorDetails details;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Armor" /> class.
@@ -30,19 +30,19 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         }
 
         /// <summary>
-        ///     Gets or sets the armor piece's details.
+        ///     Gets or sets the item details.
         /// </summary>
         [JsonProperty("armor", Order = 100)]
-        public ArmorDetails ArmorDetails
+        public ArmorDetails Details
         {
             get
             {
-                return this.armorDetails;
+                return this.details;
             }
 
             set
             {
-                this.armorDetails = value;
+                this.details = value;
                 value.Armor = this;
             }
         }

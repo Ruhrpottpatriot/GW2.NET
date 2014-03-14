@@ -13,13 +13,13 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
     using Newtonsoft.Json;
 
     /// <summary>
-    ///     Represents a back piece.
+    ///     Represents a back item.
     /// </summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Back : Item
     {
-        /// <summary>Infrastructure. Stores the back details.</summary>
-        private BackDetails backDetails;
+        /// <summary>Infrastructure. Stores the item details.</summary>
+        private BackDetails details;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Back" /> class.
@@ -30,19 +30,19 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
         }
 
         /// <summary>
-        ///     Gets or sets the back piece's details.
+        ///     Gets or sets the item details.
         /// </summary>
         [JsonProperty("back", Order = 100)]
-        public BackDetails BackDetails
+        public BackDetails Details
         {
             get
             {
-                return this.backDetails;
+                return this.details;
             }
 
             set
             {
-                this.backDetails = value;
+                this.details = value;
                 value.Back = this;
             }
         }
