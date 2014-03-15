@@ -175,9 +175,9 @@ namespace RestSharp.GW2DotNET
         public ContinentCollection GetContinents()
         {
             var request = new ContinentsRequest();
-            var response = this.Get<ContinentCollection>(request);
+            var response = this.Get<ContinentsResult>(request);
 
-            return response;
+            return response.Continents;
         }
 
         /// <summary>Gets the collection of continents in the game.</summary>
@@ -186,9 +186,9 @@ namespace RestSharp.GW2DotNET
         public Task<ContinentCollection> GetContinentsAsync(CancellationToken? cancellationToken = null)
         {
             var request = new ContinentsRequest();
-            Task<ContinentCollection> response = this.GetAsync<ContinentCollection>(request, cancellationToken);
+            Task<ContinentsResult> response = this.GetAsync<ContinentsResult>(request, cancellationToken);
 
-            return response;
+            return this.Select(response, result => result.Continents);
         }
 
         /// <summary>
@@ -1023,14 +1023,14 @@ namespace RestSharp.GW2DotNET
             var request = new RenderFileRequest(file, imageFormat);
             return request.GetResponseAsync(client, token).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result.EnsureSuccessStatusCode();
-                        var rawBytes = ((RestResponse)response).RawBytes;
+                {
+                    var response = task.Result.EnsureSuccessStatusCode();
+                    var rawBytes = ((RestResponse)response).RawBytes;
 
-                        return Image.FromStream(new MemoryStream(rawBytes));
-                    }, 
-                token, 
-                TaskContinuationOptions.OnlyOnRanToCompletion, 
+                    return Image.FromStream(new MemoryStream(rawBytes));
+                },
+                token,
+                TaskContinuationOptions.OnlyOnRanToCompletion,
                 TaskScheduler.Current);
         }
 
@@ -1070,14 +1070,14 @@ namespace RestSharp.GW2DotNET
             Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(client, token);
             Task<TResult> t2 = t1.ContinueWith(
                 task =>
-                    {
-                        IServiceResponse<TResult> response = task.Result;
-                        TResult content = response.EnsureSuccessStatusCode().Deserialize();
+                {
+                    IServiceResponse<TResult> response = task.Result;
+                    TResult content = response.EnsureSuccessStatusCode().Deserialize();
 
-                        return content;
-                    }, 
-                token, 
-                TaskContinuationOptions.OnlyOnRanToCompletion, 
+                    return content;
+                },
+                token,
+                TaskContinuationOptions.OnlyOnRanToCompletion,
                 TaskScheduler.Current);
 
             return t2;
@@ -1090,7 +1090,8 @@ namespace RestSharp.GW2DotNET
         /// <param name="selector">The selector.</param>
         /// <returns>The selected result.</returns>
         private Task<TResult> Select<TContent, TResult>(Task<TContent> result, Func<TContent, TResult> selector)
-            where TContent : global::GW2DotNET.V1.Core.Common.JsonObject where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
+            where TContent : global::GW2DotNET.V1.Core.Common.JsonObject
+            where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
         {
             return result.ContinueWith(task => selector(task.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
         }
