@@ -68,7 +68,7 @@ namespace RestSharp.GW2DotNET.Requests
             Preconditions.EnsureNotNull(paramName: "file", value: file);
             Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
 
-            return string.Format("file/{0}/{1}.{2}", file.GetFileSignature(), file.GetFileId(), GetExtension(imageFormat));
+            return string.Format("file/{0}/{1}.{2}", file.FileSignature, file.FileId, GetExtension(imageFormat));
         }
 
         /// <summary>Gets a file extension for the specified image format.</summary>

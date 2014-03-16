@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Core.Files
         public void Asset_SignatureReflectsInput()
         {
             string expected = string.Empty;
-            string actual = this.asset.Signature;
+            string actual = this.asset.FileSignature;
 
             Assert.AreEqual(expected, actual);
         }

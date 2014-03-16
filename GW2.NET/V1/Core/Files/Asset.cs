@@ -35,7 +35,7 @@ namespace GW2DotNET.V1.Core.Files
         ///     Gets or sets file signature to be used with the render service.
         /// </summary>
         [JsonProperty("signature", Order = 1)]
-        public string Signature { get; set; }
+        public string FileSignature { get; set; }
 
         /// <summary>
         ///     Indicates whether an object is equal to another object of the same type.
@@ -117,21 +117,6 @@ namespace GW2DotNET.V1.Core.Files
             }
 
             return this.Equals((Asset)obj);
-        }
-
-        /// <summary>Gets the file's ID.</summary>
-        /// <returns>The file's ID.</returns>
-        public int GetFileId()
-        {
-            return this.FileId;
-        }
-
-        /// <summary>Gets the file's signature
-        /// .</summary>
-        /// <returns>The file's signature.</returns>
-        public string GetFileSignature()
-        {
-            return this.Signature;
         }
 
         /// <summary>

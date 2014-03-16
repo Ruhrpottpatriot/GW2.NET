@@ -232,7 +232,7 @@ namespace RestSharp.GW2DotNET.Sample
 
             foreach (var file in serviceProvider.GetFiles().Values)
             {
-                table.AddRow(file.FileName, file.FileId, file.Signature);
+                table.AddRow(file.FileName, file.FileId, file.FileSignature);
             }
 
             table.Write();

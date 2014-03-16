@@ -78,7 +78,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         public void Item_IconFileIdReflectsInput()
         {
             const int expected = default(int);
-            int actual = this.item.IconFileId;
+            int actual = this.item.FileId;
 
             Assert.AreEqual(expected, actual);
         }
@@ -89,7 +89,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         public void Item_IconFileSignatureReflectsInput()
         {
             string expected = string.Empty;
-            string actual = this.item.IconFileSignature;
+            string actual = this.item.FileSignature;
 
             Assert.AreEqual(expected, actual);
         }

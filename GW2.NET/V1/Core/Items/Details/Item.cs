@@ -49,13 +49,13 @@ namespace GW2DotNET.V1.Core.Items.Details
         ///     Gets or sets the item's icon ID for use with the render service.
         /// </summary>
         [JsonProperty("icon_file_id", Order = 7)]
-        public int IconFileId { get; set; }
+        public int FileId { get; set; }
 
         /// <summary>
         ///     Gets or sets the item's icon signature for use with the render service.
         /// </summary>
         [JsonProperty("icon_file_signature", Order = 8)]
-        public string IconFileSignature { get; set; }
+        public string FileSignature { get; set; }
 
         /// <summary>
         ///     Gets or sets the item's ID.
@@ -179,20 +179,6 @@ namespace GW2DotNET.V1.Core.Items.Details
             }
 
             return this.Equals((Item)obj);
-        }
-
-        /// <summary>Gets the file's ID.</summary>
-        /// <returns>The file's ID.</returns>
-        public int GetFileId()
-        {
-            return this.IconFileId;
-        }
-
-        /// <summary>Gets the file's signature.</summary>
-        /// <returns>The file's signature.</returns>
-        public string GetFileSignature()
-        {
-            return this.IconFileSignature;
         }
 
         /// <summary>
