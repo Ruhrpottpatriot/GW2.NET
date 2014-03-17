@@ -48,37 +48,10 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Requests\RenderFileRequest.cs" />
-    <Compile Include="Requests\BuildRequest.cs" />
-    <Compile Include="Requests\ColorsRequest.cs" />
-    <Compile Include="Requests\ContinentsRequest.cs" />
-    <Compile Include="Requests\DynamicEventDetailsRequest.cs" />
-    <Compile Include="Requests\DynamicEventNamesRequest.cs" />
-    <Compile Include="Requests\DynamicEventRequest.cs" />
-    <Compile Include="Requests\FilesRequest.cs" />
-    <Compile Include="Requests\GuildDetailsRequest.cs" />
-    <Compile Include="Requests\ItemDetailsRequest.cs" />
-    <Compile Include="Requests\ItemsRequest.cs" />
-    <Compile Include="Requests\MapDetailsRequest.cs" />
-    <Compile Include="Requests\MapFloorRequest.cs" />
-    <Compile Include="Requests\MapNamesRequest.cs" />
-    <Compile Include="Requests\MatchDetailsRequest.cs" />
-    <Compile Include="Requests\MatchesRequest.cs" />
-    <Compile Include="Requests\ObjectiveNamesRequest.cs" />
-    <Compile Include="Requests\RecipeDetailsRequest.cs" />
-    <Compile Include="Requests\RecipesRequest.cs" />
-    <Compile Include="Requests\WorldNamesRequest.cs" />
     <Compile Include="ServiceClient.cs" />
-    <Compile Include="ServiceManager.cs" />
-    <Compile Include="ServiceRequest.cs" />
     <Compile Include="ServiceResponse.cs" />
   </ItemGroup>
   <ItemGroup>

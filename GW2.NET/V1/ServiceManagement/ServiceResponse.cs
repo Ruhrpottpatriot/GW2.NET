@@ -3,35 +3,30 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides a RestSharp-specific implementation of the  interface.
+//   Provides a plain .NET implementation of the  interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace RestSharp.GW2DotNET
+namespace GW2DotNET.V1.ServiceManagement
 {
     using System;
     using System.Drawing;
     using System.IO;
+    using System.IO.Compression;
     using System.Net;
     using System.Net.Mime;
 
-    using global::GW2DotNET.Utilities;
-
-    using global::GW2DotNET.V1.Core;
-
-    using global::GW2DotNET.V1.Core.Common;
-
-    using global::GW2DotNET.V1.Core.Errors;
+    using GW2DotNET.Utilities;
+    using GW2DotNET.V1.Core;
+    using GW2DotNET.V1.Core.Common;
+    using GW2DotNET.V1.Core.Errors;
 
     using Newtonsoft.Json;
 
-    /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceResponse{TResult}"/> interface.</summary>
+    /// <summary>Provides a plain .NET implementation of the <see cref="IServiceResponse{TResult}"/> interface.</summary>
     /// <typeparam name="TResult">The type of the response content.</typeparam>
-    public class ServiceResponse<TResult> : IServiceResponse<TResult>
+    public class ServiceResponse<TResult> : IServiceResponse<TResult>, IDisposable
         where TResult : class
     {
-        /// <summary>Infrastructure. Stores the inner <see cref="IRestResponse" />.</summary>
-        private readonly IRestResponse innerRestResponse;
-
         /// <summary>Infrastructure. Stores a JSON result.</summary>
         private ErrorResult errorResult;
 
@@ -39,29 +34,28 @@ namespace RestSharp.GW2DotNET
         private TResult result;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceResponse{TResult}"/> class.</summary>
-        /// <param name="restResponse">The <see cref="IRestResponse"/>.</param>
-        public ServiceResponse(IRestResponse restResponse)
+        /// <param name="webResponse">The <see cref="System.Net.HttpWebResponse"/></param>
+        /// <param name="webException">The <see cref="System.Net.WebException"/>.</param>
+        public ServiceResponse(HttpWebResponse webResponse, WebException webException = null)
         {
-            Preconditions.EnsureNotNull(paramName: "restResponse", value: restResponse);
+            Preconditions.EnsureNotNull(paramName: "webResponse", value: webResponse);
 
-            this.innerRestResponse = restResponse;
+            this.WebResponse = webResponse;
+            this.WebException = webException;
         }
 
-        /// <summary>Gets a value indicating the Internet media type of the message content.</summary>
+        /// <summary>
+        ///     Gets a value indicating the Internet media type of the message content.
+        /// </summary>
         public ContentType ContentType
         {
             get
             {
-                if (string.IsNullOrEmpty(this.innerRestResponse.ContentType))
-                {
-                    return null;
-                }
-
-                return new ContentType(this.innerRestResponse.ContentType);
+                return string.IsNullOrEmpty(this.WebResponse.ContentType) ? null : new ContentType(this.WebResponse.ContentType);
             }
         }
 
-        /// <summary>Gets a value indicating whether the service returned an image response.</summary>
+        /// <summary>Gets a value indicating whether is image response.</summary>
         public bool IsImageResponse
         {
             get
@@ -75,7 +69,9 @@ namespace RestSharp.GW2DotNET
             }
         }
 
-        /// <summary>Gets a value indicating whether the service returned a JSON response.</summary>
+        /// <summary>
+        ///     Gets a value indicating whether the service returned a JSON response.
+        /// </summary>
         public bool IsJsonResponse
         {
             get
@@ -89,7 +85,9 @@ namespace RestSharp.GW2DotNET
             }
         }
 
-        /// <summary>Gets a value indicating whether the service returned a success status code.</summary>
+        /// <summary>
+        ///     Gets a value indicating whether the service returned a success status code.
+        /// </summary>
         public bool IsSuccessStatusCode
         {
             get
@@ -104,9 +102,15 @@ namespace RestSharp.GW2DotNET
         {
             get
             {
-                return this.innerRestResponse.StatusCode;
+                return this.WebResponse.StatusCode;
             }
         }
+
+        /// <summary>Gets or sets the web exception.</summary>
+        private WebException WebException { get; set; }
+
+        /// <summary>Gets or sets the web response.</summary>
+        private HttpWebResponse WebResponse { get; set; }
 
         /// <summary>Gets the response content as an object of the specified type.</summary>
         /// <returns>Returns the response as an instance of the specified type.</returns>
@@ -127,7 +131,7 @@ namespace RestSharp.GW2DotNET
                     throw new InvalidOperationException("Unable to deserialize the response content: the service did not return a JSON result.");
                 }
 
-                return this.result ?? (this.result = DeserializeJson<TResult>(this.innerRestResponse));
+                return this.result ?? (this.result = DeserializeJson<TResult>(this.WebResponse));
             }
 
             if (typeof(Image).IsAssignableFrom(typeof(TResult)))
@@ -139,7 +143,7 @@ namespace RestSharp.GW2DotNET
                     throw new InvalidOperationException("Unable to deserialize the response content: the service did not return an image result.");
                 }
 
-                return this.result ?? (this.result = DeserializeImage(this.innerRestResponse));
+                return this.result ?? (this.result = DeserializeImage(this.WebResponse));
             }
 
             throw new NotSupportedException("Unable to deserialize the response content: the type of 'TResult' is unsupported.");
@@ -158,15 +162,22 @@ namespace RestSharp.GW2DotNET
             if (!this.IsJsonResponse)
             {
                 // if the service didn't include a JSON result object
-                return this.errorResult ?? (this.errorResult = new ErrorResult { Text = this.innerRestResponse.ErrorMessage });
+                return this.errorResult ?? (this.errorResult = new ErrorResult { Text = this.WebException.Message });
             }
 
-            return this.errorResult ?? (this.errorResult = DeserializeJson<ErrorResult>(this.innerRestResponse));
+            return this.errorResult ?? (this.errorResult = DeserializeJson<ErrorResult>(this.WebResponse));
         }
 
-        /// <summary>Throws an exception if the request did not return a success status code.</summary>
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
+        /// </summary>
+        public void Dispose()
+        {
+            this.WebResponse.Close();
+        }
+
+        /// <summary>Throws an exception if the service did not return a success code.</summary>
         /// <returns>Returns the current instance.</returns>
-        /// <remarks>The current instance is returned to allow chaining method calls.</remarks>
         public IServiceResponse<TResult> EnsureSuccessStatusCode()
         {
             if (this.IsSuccessStatusCode)
@@ -174,26 +185,38 @@ namespace RestSharp.GW2DotNET
                 return this;
             }
 
-            throw new ServiceException(this.DeserializeError(), this.innerRestResponse.ErrorException);
+            throw new ServiceException(this.DeserializeError(), this.WebException);
         }
 
         /// <summary>Infrastructure. Gets the response content.</summary>
-        /// <param name="restResponse">The web response.</param>
+        /// <param name="webResponse">The web response.</param>
         /// <returns>The response content.</returns>
-        private static TResult DeserializeImage(IRestResponse restResponse)
+        private static TResult DeserializeImage(WebResponse webResponse)
         {
-            var stream = new MemoryStream(restResponse.RawBytes);
+            var stream = webResponse.GetResponseStream() ?? new MemoryStream();
+
+            if (webResponse.Headers[HttpResponseHeader.ContentEncoding] == "gzip")
+            {
+                stream = new GZipStream(stream, CompressionMode.Decompress, false);
+            }
 
             return (TResult)(object)Image.FromStream(stream);
         }
 
         /// <summary>Infrastructure. Gets the response content.</summary>
-        /// <param name="restResponse">The web response.</param>
+        /// <param name="webResponse">The web response.</param>
         /// <typeparam name="T">The type of the response content.</typeparam>
         /// <returns>The response content.</returns>
-        private static T DeserializeJson<T>(IRestResponse restResponse)
+        private static T DeserializeJson<T>(WebResponse webResponse)
         {
-            using (var streamReader = new StreamReader(new MemoryStream(restResponse.RawBytes)))
+            var stream = webResponse.GetResponseStream() ?? new MemoryStream();
+
+            if (webResponse.Headers[HttpResponseHeader.ContentEncoding] == "gzip")
+            {
+                stream = new GZipStream(stream, CompressionMode.Decompress, false);
+            }
+
+            using (var streamReader = new StreamReader(stream))
             {
                 using (var jsonReader = new JsonTextReader(streamReader))
                 {

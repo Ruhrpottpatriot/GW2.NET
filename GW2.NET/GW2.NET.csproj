@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="ChatLinks.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\Int32Extensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Preconditions.cs" />
@@ -369,7 +370,30 @@
     <Compile Include="V1\Core\WorldVersusWorld\Matches\MatchesResult.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveName.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveNameCollection.cs" />
-    <Compile Include="V1\ServiceProvider.cs" />
+    <Compile Include="V1\ServiceManager.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\DynamicEventDetailsRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\BuildRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\ContinentsRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\ColorsRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\DynamicEventRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\DynamicEventNamesRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\FilesRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\GuildDetailsRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\ItemDetailsRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\ItemsRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\MapDetailsRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\MapFloorRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\MapNamesRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\MatchDetailsRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\MatchesRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\ObjectiveNamesRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\RecipeDetailsRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\RecipesRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\RenderFileRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequests\WorldNamesRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceClient.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceRequest.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceResponse.cs" />
     <Compile Include="V1\Services.Designer.cs">
       <DependentUpon>Services.resx</DependentUpon>
       <AutoGen>True</AutoGen>

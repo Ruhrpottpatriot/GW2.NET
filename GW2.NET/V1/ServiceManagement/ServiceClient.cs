@@ -3,54 +3,56 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides a RestSharp-specific implementation of the  interface.
+//   Provides a plain .NET implementation of the  interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace RestSharp.GW2DotNET
+namespace GW2DotNET.V1.ServiceManagement
 {
     using System;
+    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using global::GW2DotNET.Utilities;
+    using GW2DotNET.Utilities;
+    using GW2DotNET.V1.Core;
 
-    using global::GW2DotNET.V1;
-
-    using global::GW2DotNET.V1.Core;
-
-    /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.</summary>
+    /// <summary>Provides a plain .NET implementation of the <see cref="IServiceClient"/> interface.</summary>
     public class ServiceClient : IServiceClient
     {
-        /// <summary>Infrastructure. Stores the inner <see cref="IRestClient" />.</summary>
-        private readonly IRestClient innerRestClient;
+        /// <summary>Infrastructure. Stores the base URL.</summary>
+        private readonly Uri baseUrl;
 
-        /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class using the specified base URL and JSON de-serializer.</summary>
         /// <param name="baseUrl">An absolute URI that represents the base URL for all API endpoints.</param>
         public ServiceClient(Uri baseUrl)
         {
             Preconditions.EnsureNotNull(paramName: "baseUrl", value: baseUrl);
             Preconditions.Ensure(baseUrl.IsAbsoluteUri, paramName: "baseUrl", message: "'baseUrl' cannot be a relative URI.");
 
-            this.innerRestClient = new RestClient(baseUrl.ToString());
+            this.baseUrl = baseUrl;
         }
 
-        /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
-        /// <param name="restClient">The inner <see cref="IRestClient"/>.</param>
-        public ServiceClient(IRestClient restClient)
+        /// <summary>Gets the base URL.</summary>
+        public Uri BaseUrl
         {
-            Preconditions.EnsureNotNull(paramName: "restClient", value: restClient);
-
-            this.innerRestClient = restClient;
+            get
+            {
+                return this.baseUrl;
+            }
         }
 
-        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.</summary>
+        /// <summary>
+        /// Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.
+        /// </summary>
         /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
         public static IServiceClient DataServiceClient()
         {
             return new ServiceClient(new Uri(Services.DataServiceUrl));
         }
 
-        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.</summary>
+        /// <summary>
+        /// Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.
+        /// </summary>
         /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
         public static IServiceClient RenderServiceClient()
         {
@@ -59,8 +61,8 @@ namespace RestSharp.GW2DotNET
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceRequest">The service request.</param>
-        /// <returns>The response.</returns>
+        /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
+        /// <returns>The <see cref="IServiceResponse{TResult}"/>.</returns>
         public IServiceResponse<TResult> Send<TResult>(IServiceRequest serviceRequest) where TResult : class
         {
             Preconditions.EnsureNotNull(paramName: "serviceRequest", value: serviceRequest);
@@ -70,8 +72,8 @@ namespace RestSharp.GW2DotNET
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceRequest">The service request.</param>
-        /// <returns>The response.</returns>
+        /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
+        /// <returns>The <see cref="IServiceResponse{TResult}"/>.</returns>
         public Task<IServiceResponse<TResult>> SendAsync<TResult>(IServiceRequest serviceRequest) where TResult : class
         {
             return this.SendAsync<TResult>(serviceRequest, CancellationToken.None);
@@ -79,9 +81,9 @@ namespace RestSharp.GW2DotNET
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceRequest">The service request.</param>
+        /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The response.</returns>
+        /// <returns>The <see cref="IServiceResponse{TResult}"/>.</returns>
         public Task<IServiceResponse<TResult>> SendAsync<TResult>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TResult : class
         {
             Preconditions.EnsureNotNull(paramName: "serviceRequest", value: serviceRequest);
@@ -89,44 +91,69 @@ namespace RestSharp.GW2DotNET
             return this.SendAsyncImplementation<TResult>(serviceRequest, cancellationToken);
         }
 
-        /// <summary>Infrastructure. Creates a new instance of the <see cref="RestRequest"/> class.</summary>
+        /// <summary>Infrastructure. Creates a new instance of the <see cref="System.Net.WebRequest"/> class.</summary>
         /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
-        /// <returns>The <see cref="RestRequest"/>.</returns>
-        private RestRequest CreateRestRequest(IServiceRequest serviceRequest)
+        /// <returns>The <see cref="System.Net.WebRequest"/>.</returns>
+        private WebRequest CreateWebRequest(IServiceRequest serviceRequest)
         {
-            var uriBuilder = new UriBuilder(this.innerRestClient.BaseUrl)
-                                 {
-                                     Path = serviceRequest.ResourceUri.ToString(), 
-                                     Query = serviceRequest.GetQueryString()
-                                 };
+            var uriBuilder = new UriBuilder(this.BaseUrl) { Path = serviceRequest.ResourceUri.ToString(), Query = serviceRequest.GetQueryString() };
 
-            return new RestRequest(uriBuilder.Uri.PathAndQuery);
+            var request = (HttpWebRequest)WebRequest.Create(uriBuilder.ToString());
+            request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");
+
+            return request;
         }
 
         /// <summary>Infrastructure. Implementation details for 'SendAsync'.</summary>
+        /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>The <see cref="IServiceResponse{TResult}"/>.</returns>
         private Task<IServiceResponse<TResult>> SendAsyncImplementation<TResult>(IServiceRequest serviceRequest, CancellationToken cancellationToken)
             where TResult : class
         {
-            var request = this.CreateRestRequest(serviceRequest);
-            return
-                this.innerRestClient.ExecuteTaskAsync(request, cancellationToken)
-                    .ContinueWith<IServiceResponse<TResult>>(task => new ServiceResponse<TResult>(task.Result), cancellationToken);
+            var request = this.CreateWebRequest(serviceRequest);
+
+            return Task.Factory.FromAsync<WebResponse>(request.BeginGetResponse, request.EndGetResponse, null).ContinueWith<IServiceResponse<TResult>>(
+                task =>
+                    {
+                        HttpWebResponse response;
+                        if (task.IsFaulted && task.Exception != null)
+                        {
+                            // catch WebException exception
+                            var exception = task.Exception.GetBaseException() as WebException;
+                            if (exception != null)
+                            {
+                                response = (HttpWebResponse)exception.Response;
+                                return new ServiceResponse<TResult>(response);
+                            }
+                        }
+
+                        // unhandled exceptions at this point (if any) are propagated back to the calling thread automatically
+                        response = (HttpWebResponse)task.Result;
+                        return new ServiceResponse<TResult>(response);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Infrastructure. Implementation details for 'Send'.</summary>
-        /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
+        /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
         /// <returns>The <see cref="IServiceResponse{TResult}"/>.</returns>
         private IServiceResponse<TResult> SendImplementation<TResult>(IServiceRequest serviceRequest) where TResult : class
         {
-            var request = this.CreateRestRequest(serviceRequest);
-            var response = this.innerRestClient.Execute(request);
+            var request = this.CreateWebRequest(serviceRequest);
 
-            return new ServiceResponse<TResult>(response);
+            try
+            {
+                var response = (HttpWebResponse)request.GetResponse();
+                return new ServiceResponse<TResult>(response);
+            }
+            catch (WebException exception)
+            {
+                var response = (HttpWebResponse)exception.Response;
+                return new ServiceResponse<TResult>(response, exception);
+            }
         }
     }
 }

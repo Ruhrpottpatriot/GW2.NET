@@ -11,30 +11,26 @@ namespace GW2DotNET.V1.Core
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Core.Common;
-
-    /// <summary>
-    ///     Provides the base interface for HTTP clients targeting the Guild Wars 2 API.
-    /// </summary>
+    /// <summary>Provides the base interface for HTTP clients targeting the Guild Wars 2 API.</summary>
     public interface IServiceClient
     {
         /// <summary>Sends a request and returns the response.</summary>
-        /// <typeparam name="TContent">The type of the response content.</typeparam>
+        /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="serviceRequest">The service request.</param>
         /// <returns>The response.</returns>
-        IServiceResponse<TContent> Send<TContent>(IServiceRequest serviceRequest) where TContent : JsonObject;
+        IServiceResponse<TResult> Send<TResult>(IServiceRequest serviceRequest) where TResult : class;
 
         /// <summary>Sends a request and returns the response.</summary>
-        /// <typeparam name="TContent">The type of the response content.</typeparam>
+        /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="serviceRequest">The service request.</param>
         /// <returns>The response.</returns>
-        Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest) where TContent : JsonObject;
+        Task<IServiceResponse<TResult>> SendAsync<TResult>(IServiceRequest serviceRequest) where TResult : class;
 
         /// <summary>Sends a request and returns the response.</summary>
-        /// <typeparam name="TContent">The type of the response content.</typeparam>
+        /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="serviceRequest">The service request.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response.</returns>
-        Task<IServiceResponse<TContent>> SendAsync<TContent>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TContent : JsonObject;
+        Task<IServiceResponse<TResult>> SendAsync<TResult>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TResult : class;
     }
 }

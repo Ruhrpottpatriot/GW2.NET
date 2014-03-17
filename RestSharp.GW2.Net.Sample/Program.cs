@@ -27,29 +27,30 @@ namespace RestSharp.GW2DotNET.Sample
         {
             Console.BufferWidth = Console.BufferHeight = short.MaxValue - 1;
 
-            var serviceManager = new ServiceManager();
-            var serviceProvider = new ServiceProvider(serviceManager);
+            var dataService = ServiceClient.DataServiceClient();
+            var renderService = ServiceClient.RenderServiceClient();
+            var serviceManager = new ServiceManager(dataService, renderService);
 
-            PrintBanner(serviceProvider);
+            PrintBanner(serviceManager);
 
-            new Program().Main(serviceProvider);
+            new Program().Main(serviceManager);
         }
 
         /// <summary>TODO The print banner.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private static void PrintBanner(ServiceProvider serviceProvider)
+        /// <param name="serviceManager">TODO The service provider.</param>
+        private static void PrintBanner(IServiceManager serviceManager)
         {
             Console.WriteLine(@"+--------------------------------------------+");
             Console.WriteLine(@"| Welcome to the GW2.NET sample application! |");
             Console.WriteLine(@"+--------------------------------------------+");
             Console.WriteLine();
-            Console.Write(@" Today is...");
+            Console.Write(@" Today is... ");
             Console.WriteLine(DateTime.Now.ToShortDateString());
             Console.WriteLine();
             Console.WriteLine(@"+--------------------------------------------+");
             Console.WriteLine();
             Console.Write(@" The current game build is... ");
-            var build = serviceProvider.GetBuild();
+            var build = serviceManager.GetBuild();
             Console.WriteLine(build.BuildId);
             Console.WriteLine();
             Console.WriteLine(@"+--------------------------------------------+");
@@ -76,18 +77,18 @@ namespace RestSharp.GW2DotNET.Sample
         }
 
         /// <summary>TODO The main.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void Main(ServiceProvider serviceProvider)
+        /// <param name="serviceManager">TODO The service provider.</param>
+        private void Main(IServiceManager serviceManager)
         {
             do
             {
                 Console.WriteLine();
                 Console.WriteLine(@"[1] colors.json");
-                Console.WriteLine(@"[2]. files.json");
-                Console.WriteLine(@"[3]. world_names.json");
-                Console.WriteLine(@"[4]. map_names.json");
-                Console.WriteLine(@"[5]. event_names.json");
-                Console.WriteLine(@"[6]. events.json");
+                Console.WriteLine(@"[2] files.json");
+                Console.WriteLine(@"[3] world_names.json");
+                Console.WriteLine(@"[4] map_names.json");
+                Console.WriteLine(@"[5] event_names.json");
+                Console.WriteLine(@"[6] events.json");
                 Console.WriteLine();
                 Console.WriteLine(@"[Q] exit");
 
@@ -101,27 +102,27 @@ namespace RestSharp.GW2DotNET.Sample
                     {
                         case ConsoleKey.NumPad1:
                         case ConsoleKey.D1:
-                            this.PrintColors(serviceProvider);
+                            this.PrintColors(serviceManager);
                             break;
                         case ConsoleKey.NumPad2:
                         case ConsoleKey.D2:
-                            this.PrintFiles(serviceProvider);
+                            this.PrintFiles(serviceManager);
                             break;
                         case ConsoleKey.NumPad3:
                         case ConsoleKey.D3:
-                            this.PrintWorldNames(serviceProvider);
+                            this.PrintWorldNames(serviceManager);
                             break;
                         case ConsoleKey.NumPad4:
                         case ConsoleKey.D4:
-                            this.PrintMapNames(serviceProvider);
+                            this.PrintMapNames(serviceManager);
                             break;
                         case ConsoleKey.NumPad5:
                         case ConsoleKey.D5:
-                            this.PrintEventNames(serviceProvider);
+                            this.PrintEventNames(serviceManager);
                             break;
                         case ConsoleKey.NumPad6:
                         case ConsoleKey.D6:
-                            this.PrintEvents(serviceProvider);
+                            this.PrintEvents(serviceManager);
                             break;
                         case ConsoleKey.Q:
                             return;
@@ -139,12 +140,12 @@ namespace RestSharp.GW2DotNET.Sample
         }
 
         /// <summary>TODO The print colors.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void PrintColors(ServiceProvider serviceProvider)
+        /// <param name="serviceManager">TODO The service provider.</param>
+        private void PrintColors(IServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "Name", "Color");
 
-            foreach (var color in serviceProvider.GetColors().Values.OrderByDescending(x => x))
+            foreach (var color in serviceManager.GetColors().Values.OrderByDescending(x => x))
             {
                 table.AddRow(color.ColorId, color.Name, color.Cloth.Rgb);
             }
@@ -168,12 +169,12 @@ namespace RestSharp.GW2DotNET.Sample
         }
 
         /// <summary>TODO The print event names.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void PrintEventNames(ServiceProvider serviceProvider)
+        /// <param name="serviceManager">TODO The service provider.</param>
+        private void PrintEventNames(IServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "Event ID", "Name");
 
-            var collection = serviceProvider.GetDynamicEventNames();
+            var collection = serviceManager.GetDynamicEventNames();
 
             for (int i = 0; i < collection.Count; i++)
             {
@@ -186,16 +187,16 @@ namespace RestSharp.GW2DotNET.Sample
         }
 
         /// <summary>TODO The print events.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void PrintEvents(ServiceProvider serviceProvider)
+        /// <param name="serviceManager">TODO The service provider.</param>
+        private void PrintEvents(IServiceManager serviceManager)
         {
             var table = new ConsoleTable("Name", "ID", "State");
 
-            this.PrintMapNames(serviceProvider);
+            this.PrintMapNames(serviceManager);
 
             int? mapId = this.GetInt("Pick a map ID []: ");
 
-            this.PrintWorldNames(serviceProvider);
+            this.PrintWorldNames(serviceManager);
 
             int? worldId = this.GetInt("Pick a world ID []: ");
 
@@ -204,15 +205,15 @@ namespace RestSharp.GW2DotNET.Sample
             if (mapId.HasValue)
             {
                 collection = worldId.HasValue
-                                 ? serviceProvider.GetDynamicEventsByMap(mapId.Value, worldId.Value)
-                                 : serviceProvider.GetDynamicEventsByMap(mapId.Value);
+                                 ? serviceManager.GetDynamicEventsByMap(mapId.Value, worldId.Value)
+                                 : serviceManager.GetDynamicEventsByMap(mapId.Value);
             }
             else
             {
-                collection = worldId.HasValue ? serviceProvider.GetDynamicEventsByWorld(worldId.Value) : serviceProvider.GetDynamicEvents();
+                collection = worldId.HasValue ? serviceManager.GetDynamicEventsByWorld(worldId.Value) : serviceManager.GetDynamicEvents();
             }
 
-            var dynamicEventNames = serviceProvider.GetDynamicEventNames();
+            var dynamicEventNames = serviceManager.GetDynamicEventNames();
 
             foreach (var dynamicEvent in collection)
             {
@@ -225,12 +226,12 @@ namespace RestSharp.GW2DotNET.Sample
         }
 
         /// <summary>TODO The print files.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void PrintFiles(ServiceProvider serviceProvider)
+        /// <param name="serviceManager">TODO The service provider.</param>
+        private void PrintFiles(IServiceManager serviceManager)
         {
             var table = new ConsoleTable("Name", "ID", "Signature");
 
-            foreach (var file in serviceProvider.GetFiles().Values)
+            foreach (var file in serviceManager.GetFiles().Values)
             {
                 table.AddRow(file.FileName, file.FileId, file.FileSignature);
             }
@@ -241,12 +242,12 @@ namespace RestSharp.GW2DotNET.Sample
         }
 
         /// <summary>TODO The print map names.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void PrintMapNames(ServiceProvider serviceProvider)
+        /// <param name="serviceManager">TODO The service provider.</param>
+        private void PrintMapNames(IServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "Map");
 
-            foreach (var map in serviceProvider.GetMapNames())
+            foreach (var map in serviceManager.GetMapNames())
             {
                 table.AddRow(map.Id, map.Name);
             }
@@ -257,12 +258,12 @@ namespace RestSharp.GW2DotNET.Sample
         }
 
         /// <summary>TODO The print world names.</summary>
-        /// <param name="serviceProvider">TODO The service provider.</param>
-        private void PrintWorldNames(ServiceProvider serviceProvider)
+        /// <param name="serviceManager">TODO The service provider.</param>
+        private void PrintWorldNames(IServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "World");
 
-            foreach (var world in serviceProvider.GetWorldNames())
+            foreach (var world in serviceManager.GetWorldNames())
             {
                 table.AddRow(world.Id, world.Name);
             }

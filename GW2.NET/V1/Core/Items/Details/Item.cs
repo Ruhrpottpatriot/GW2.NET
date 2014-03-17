@@ -34,18 +34,6 @@ namespace GW2DotNET.V1.Core.Items.Details
         public string Description { get; set; }
 
         /// <summary>
-        ///     Gets or sets the item's additional flags.
-        /// </summary>
-        [JsonProperty("flags", Order = 10)]
-        public ItemFlags Flags { get; set; }
-
-        /// <summary>
-        ///     Gets or sets the item's game types.
-        /// </summary>
-        [JsonProperty("game_types", Order = 9)]
-        public GameRestrictions GameTypes { get; set; }
-
-        /// <summary>
         ///     Gets or sets the item's icon ID for use with the render service.
         /// </summary>
         [JsonProperty("icon_file_id", Order = 7)]
@@ -56,6 +44,18 @@ namespace GW2DotNET.V1.Core.Items.Details
         /// </summary>
         [JsonProperty("icon_file_signature", Order = 8)]
         public string FileSignature { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the item's additional flags.
+        /// </summary>
+        [JsonProperty("flags", Order = 10)]
+        public ItemFlags Flags { get; set; }
+
+        /// <summary>
+        ///     Gets or sets the item's game types.
+        /// </summary>
+        [JsonProperty("game_types", Order = 9)]
+        public GameRestrictions GameTypes { get; set; }
 
         /// <summary>
         ///     Gets or sets the item's ID.

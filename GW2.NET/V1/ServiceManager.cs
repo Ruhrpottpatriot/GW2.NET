@@ -1,113 +1,88 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
+// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="ServiceManager.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides a RestSharp-specific implementation of the Guild Wars 2 service.
+//   Provides a plain .NET implementation of the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace RestSharp.GW2DotNET
+namespace GW2DotNET.V1
 {
     using System;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.Globalization;
-    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using global::GW2DotNET.Utilities;
+    using GW2DotNET.Utilities;
+    using GW2DotNET.V1.Core;
+    using GW2DotNET.V1.Core.Builds;
+    using GW2DotNET.V1.Core.Colors;
+    using GW2DotNET.V1.Core.Common;
+    using GW2DotNET.V1.Core.Continents;
+    using GW2DotNET.V1.Core.DynamicEvents;
+    using GW2DotNET.V1.Core.DynamicEvents.Details;
+    using GW2DotNET.V1.Core.DynamicEvents.Names;
+    using GW2DotNET.V1.Core.Files;
+    using GW2DotNET.V1.Core.Guilds.Details;
+    using GW2DotNET.V1.Core.Items;
+    using GW2DotNET.V1.Core.Items.Details;
+    using GW2DotNET.V1.Core.Maps;
+    using GW2DotNET.V1.Core.Maps.Floors;
+    using GW2DotNET.V1.Core.Maps.Names;
+    using GW2DotNET.V1.Core.Recipes;
+    using GW2DotNET.V1.Core.Recipes.Details;
+    using GW2DotNET.V1.Core.Worlds.Names;
+    using GW2DotNET.V1.Core.WorldVersusWorld.Matches;
+    using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details;
+    using GW2DotNET.V1.Core.WorldVersusWorld.Objectives.Names;
+    using GW2DotNET.V1.ServiceManagement;
+    using GW2DotNET.V1.ServiceManagement.ServiceRequests;
 
-    using global::GW2DotNET.V1;
-
-    using global::GW2DotNET.V1.Core;
-
-    using global::GW2DotNET.V1.Core.Builds;
-
-    using global::GW2DotNET.V1.Core.Colors;
-
-    using global::GW2DotNET.V1.Core.Continents;
-
-    using global::GW2DotNET.V1.Core.DynamicEvents;
-
-    using global::GW2DotNET.V1.Core.DynamicEvents.Details;
-
-    using global::GW2DotNET.V1.Core.DynamicEvents.Names;
-
-    using global::GW2DotNET.V1.Core.Files;
-
-    using global::GW2DotNET.V1.Core.Guilds.Details;
-
-    using global::GW2DotNET.V1.Core.Items;
-
-    using global::GW2DotNET.V1.Core.Items.Details;
-
-    using global::GW2DotNET.V1.Core.Maps;
-
-    using global::GW2DotNET.V1.Core.Maps.Floors;
-
-    using global::GW2DotNET.V1.Core.Maps.Names;
-
-    using global::GW2DotNET.V1.Core.Recipes;
-
-    using global::GW2DotNET.V1.Core.Recipes.Details;
-
-    using global::GW2DotNET.V1.Core.Worlds.Names;
-
-    using global::GW2DotNET.V1.Core.WorldVersusWorld.Matches;
-
-    using global::GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details;
-
-    using global::GW2DotNET.V1.Core.WorldVersusWorld.Objectives.Names;
-
-    using RestSharp.GW2DotNET.Requests;
-
-    /// <summary>
-    ///     Provides a RestSharp-specific implementation of the Guild Wars 2 service.
-    /// </summary>
+    /// <summary>Provides a plain .NET implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IServiceManager
     {
-        /// <summary>Infrastructure. Stores the service client.</summary>
-        private readonly IServiceClient serviceClient;
+        /// <summary>Infrastructure. Stores a service client.</summary>
+        private readonly IServiceClient dataService;
+
+        /// <summary>Infrastructure. Stores a service client.</summary>
+        private readonly IServiceClient renderService;
 
         /// <summary>Infrastructure. Stores the preferred language info.</summary>
         private CultureInfo preferredLanguageInfo;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ServiceManager" /> class.
-        /// </summary>
-        public ServiceManager()
-            : this(ServiceClient.Create(), null)
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public ServiceManager(IServiceClient serviceClient)
-            : this(serviceClient, null)
-        {
-        }
-
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="preferredLanguageInfo">The preferred language.</param>
-        public ServiceManager(CultureInfo preferredLanguageInfo)
-            : this(ServiceClient.Create(), preferredLanguageInfo)
+        public ServiceManager(CultureInfo preferredLanguageInfo = null)
+            : this(ServiceClient.DataServiceClient(), ServiceClient.RenderServiceClient(), preferredLanguageInfo)
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
+        /// <param name="dataService">The da service client.</param>
         /// <param name="preferredLanguageInfo">The preferred language.</param>
-        public ServiceManager(IServiceClient serviceClient, CultureInfo preferredLanguageInfo)
+        public ServiceManager(IServiceClient dataService, CultureInfo preferredLanguageInfo = null)
+            : this(dataService, ServiceClient.RenderServiceClient(), preferredLanguageInfo)
         {
-            Preconditions.EnsureNotNull(paramName: "serviceClient", value: serviceClient);
+        }
 
-            this.serviceClient = serviceClient;
-            this.preferredLanguageInfo = preferredLanguageInfo;
+        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
+        /// <param name="dataService">The data service client.</param>
+        /// <param name="renderService">The render Service Client.</param>
+        /// <param name="preferredLanguageInfo">The preferred language.</param>
+        public ServiceManager(IServiceClient dataService, IServiceClient renderService, CultureInfo preferredLanguageInfo = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "dataService", value: dataService);
+            Preconditions.EnsureNotNull(paramName: "renderService", value: renderService);
+
+            this.dataService = dataService;
+            this.renderService = renderService;
+            this.PreferredLanguageInfo = preferredLanguageInfo;
         }
 
         /// <summary>
-        ///     Gets or sets the preferred language.
+        /// Gets or sets the preferred language.
         /// </summary>
         public CultureInfo PreferredLanguageInfo
         {
@@ -122,10 +97,9 @@ namespace RestSharp.GW2DotNET
             }
         }
 
-        /// <summary>
-        ///     Gets the current game build.
-        /// </summary>
+        /// <summary>Gets the current game build.</summary>
         /// <returns>The current game build.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.</remarks>
         public Build GetBuild()
         {
             var request = new BuildRequest();
@@ -137,18 +111,18 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the current build.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The current game build.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build"/> for more information.</remarks>
         public Task<Build> GetBuildAsync(CancellationToken? cancellationToken = null)
         {
             var request = new BuildRequest();
-            Task<Build> response = this.GetAsync<Build>(request, cancellationToken);
+            var response = this.GetAsync<Build>(request, cancellationToken);
 
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of dyes in the game.
-        /// </summary>
+        /// <summary>Gets the collection of dyes in the game.</summary>
         /// <returns>The collection of dyes.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors" /> for more information.</remarks>
         public ColorCollection GetColors()
         {
             var request = new ColorsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -160,6 +134,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the collection of dyes in the game.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of dyes.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors"/> for more information.</remarks>
         public Task<ColorCollection> GetColorsAsync(CancellationToken? cancellationToken = null)
         {
             var request = new ColorsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -168,10 +143,9 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.Colors);
         }
 
-        /// <summary>
-        ///     Gets the collection of continents in the game.
-        /// </summary>
+        /// <summary>Gets the collection of continents in the game.</summary>
         /// <returns>The collection of continents</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents" /> for more information.</remarks>
         public ContinentCollection GetContinents()
         {
             var request = new ContinentsRequest();
@@ -183,6 +157,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the collection of continents in the game.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of continents</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents"/> for more information.</remarks>
         public Task<ContinentCollection> GetContinentsAsync(CancellationToken? cancellationToken = null)
         {
             var request = new ContinentsRequest();
@@ -191,10 +166,9 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.Continents);
         }
 
-        /// <summary>
-        ///     Gets a collection of dynamic events and their details.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <returns>A collection of dynamic events.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details" /> for more information.</remarks>
         public DynamicEventDetailsCollection GetDynamicEventDetails()
         {
             var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -206,6 +180,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="dynamicEventName">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details"/> for more information.</remarks>
         public DynamicEventDetailsCollection GetDynamicEventDetails(DynamicEventName dynamicEventName)
         {
             Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
@@ -219,6 +194,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details"/> for more information.</remarks>
         public DynamicEventDetailsCollection GetDynamicEventDetails(Guid eventId)
         {
             var request = new DynamicEventDetailsRequest { EventId = eventId, PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -228,26 +204,16 @@ namespace RestSharp.GW2DotNET
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events.</returns>
-        public Task<DynamicEventDetailsCollection> GetDynamicEventDetailsAsync(CancellationToken? cancellationToken = null)
-        {
-            var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<DynamicEventDetailsResult> response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
-
-            return this.Select(response, result => result.EventDetails);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="dynamicEventName">The dynamic event filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details"/> for more information.</remarks>
         public Task<DynamicEventDetailsCollection> GetDynamicEventDetailsAsync(DynamicEventName dynamicEventName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
 
             var request = new DynamicEventDetailsRequest { EventId = dynamicEventName.Id, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<DynamicEventDetailsResult> response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
+            var response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.EventDetails);
         }
@@ -256,18 +222,30 @@ namespace RestSharp.GW2DotNET
         /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details"/> for more information.</remarks>
         public Task<DynamicEventDetailsCollection> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken? cancellationToken = null)
         {
             var request = new DynamicEventDetailsRequest { EventId = eventId, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<DynamicEventDetailsResult> response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
+            var response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.EventDetails);
         }
 
-        /// <summary>
-        ///     Gets the collection of dynamic events and their localized name.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their details.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details"/> for more information.</remarks>
+        public Task<DynamicEventDetailsCollection> GetDynamicEventDetailsAsync(CancellationToken? cancellationToken = null)
+        {
+            var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
+
+            return this.Select(response, result => result.EventDetails);
+        }
+
+        /// <summary>Gets the collection of dynamic events and their localized name.</summary>
         /// <returns>The collection of dynamic events and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names" /> for more information.</remarks>
         public DynamicEventNameCollection GetDynamicEventNames()
         {
             var request = new DynamicEventNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -279,18 +257,18 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the collection of dynamic events and their localized name.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of dynamic events and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names"/> for more information.</remarks>
         public Task<DynamicEventNameCollection> GetDynamicEventNamesAsync(CancellationToken? cancellationToken = null)
         {
             var request = new DynamicEventNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<DynamicEventNameCollection> response = this.GetAsync<DynamicEventNameCollection>(request, cancellationToken);
+            var response = this.GetAsync<DynamicEventNameCollection>(request, cancellationToken);
 
             return response;
         }
 
-        /// <summary>
-        /// Gets a collection of dynamic events and their status.
-        /// </summary>
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events" /> for more information.</remarks>
         public DynamicEventCollection GetDynamicEvents()
         {
             var request = new DynamicEventRequest();
@@ -302,6 +280,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsAsync(CancellationToken? cancellationToken = null)
         {
             var request = new DynamicEventRequest();
@@ -313,10 +292,10 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public DynamicEventCollection GetDynamicEventsById(Guid eventId)
         {
             var request = new DynamicEventRequest { EventId = eventId };
-
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
@@ -326,10 +305,10 @@ namespace RestSharp.GW2DotNET
         /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="worldId">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public DynamicEventCollection GetDynamicEventsById(Guid eventId, int worldId)
         {
             var request = new DynamicEventRequest { EventId = eventId, WorldId = worldId };
-
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
@@ -339,12 +318,12 @@ namespace RestSharp.GW2DotNET
         /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="worldName">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public DynamicEventCollection GetDynamicEventsById(Guid eventId, WorldName worldName)
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
             var request = new DynamicEventRequest { EventId = eventId, WorldId = worldName.Id };
-
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
@@ -354,10 +333,10 @@ namespace RestSharp.GW2DotNET
         /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken? cancellationToken = null)
         {
             var request = new DynamicEventRequest { EventId = eventId };
-
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
@@ -368,10 +347,10 @@ namespace RestSharp.GW2DotNET
         /// <param name="worldId">The world filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, int worldId, CancellationToken? cancellationToken = null)
         {
             var request = new DynamicEventRequest { EventId = eventId, WorldId = worldId };
-
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
@@ -382,12 +361,12 @@ namespace RestSharp.GW2DotNET
         /// <param name="worldName">The world filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsByIdAsync(Guid eventId, WorldName worldName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
             var request = new DynamicEventRequest { EventId = eventId, WorldId = worldName.Id };
-
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
@@ -396,10 +375,10 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="mapId">The map filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public DynamicEventCollection GetDynamicEventsByMap(int mapId)
         {
             var request = new DynamicEventRequest { MapId = mapId };
-
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
@@ -409,10 +388,10 @@ namespace RestSharp.GW2DotNET
         /// <param name="mapId">The map filter.</param>
         /// <param name="worldId">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public DynamicEventCollection GetDynamicEventsByMap(int mapId, int worldId)
         {
             var request = new DynamicEventRequest { MapId = mapId, WorldId = worldId };
-
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
@@ -421,12 +400,12 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="mapName">The map filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public DynamicEventCollection GetDynamicEventsByMap(MapName mapName)
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
 
             var request = new DynamicEventRequest { MapId = mapName.Id, };
-
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
@@ -436,13 +415,13 @@ namespace RestSharp.GW2DotNET
         /// <param name="mapName">The map filter.</param>
         /// <param name="worldName">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public DynamicEventCollection GetDynamicEventsByMap(MapName mapName, WorldName worldName)
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
             var request = new DynamicEventRequest { MapId = mapName.Id, WorldId = worldName.Id };
-
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
@@ -452,10 +431,10 @@ namespace RestSharp.GW2DotNET
         /// <param name="mapId">The map filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(int mapId, CancellationToken? cancellationToken = null)
         {
             var request = new DynamicEventRequest { MapId = mapId };
-
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
@@ -466,10 +445,10 @@ namespace RestSharp.GW2DotNET
         /// <param name="worldId">The world filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken? cancellationToken = null)
         {
             var request = new DynamicEventRequest { MapId = mapId, WorldId = worldId };
-
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
@@ -479,12 +458,12 @@ namespace RestSharp.GW2DotNET
         /// <param name="mapName">The map filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(MapName mapName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
 
             var request = new DynamicEventRequest { MapId = mapName.Id };
-
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
@@ -495,13 +474,13 @@ namespace RestSharp.GW2DotNET
         /// <param name="worldName">The world filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsByMapAsync(MapName mapName, WorldName worldName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
             var request = new DynamicEventRequest { MapId = mapName.Id, WorldId = worldName.Id };
-
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
@@ -510,10 +489,10 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="worldId">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public DynamicEventCollection GetDynamicEventsByWorld(int worldId)
         {
             var request = new DynamicEventRequest { WorldId = worldId };
-
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
@@ -522,12 +501,12 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="worldName">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public DynamicEventCollection GetDynamicEventsByWorld(WorldName worldName)
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
             var request = new DynamicEventRequest { WorldId = worldName.Id };
-
             var response = this.Get<DynamicEventsResult>(request);
 
             return response.Events;
@@ -537,10 +516,10 @@ namespace RestSharp.GW2DotNET
         /// <param name="worldId">The world filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsByWorldAsync(int worldId, CancellationToken? cancellationToken = null)
         {
             var request = new DynamicEventRequest { WorldId = worldId };
-
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
@@ -550,21 +529,20 @@ namespace RestSharp.GW2DotNET
         /// <param name="worldName">The world filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events"/> for more information.</remarks>
         public Task<DynamicEventCollection> GetDynamicEventsByWorldAsync(WorldName worldName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
             var request = new DynamicEventRequest { WorldId = worldName.Id };
-
             var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
 
             return this.Select(response, result => result.Events);
         }
 
-        /// <summary>
-        ///     Gets a collection of commonly requested in-game assets.
-        /// </summary>
+        /// <summary>Gets a collection of commonly requested in-game assets.</summary>
         /// <returns>A collection of commonly requested in-game assets.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files" /> for more information.</remarks>
         public AssetCollection GetFiles()
         {
             var request = new FilesRequest();
@@ -576,6 +554,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of commonly requested in-game assets.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files"/> for more information.</remarks>
         public Task<AssetCollection> GetFilesAsync(CancellationToken? cancellationToken = null)
         {
             var request = new FilesRequest();
@@ -587,6 +566,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a guild and its details.</summary>
         /// <param name="guildId">The guild's ID.</param>
         /// <returns>A guild and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details"/> for more information.</remarks>
         public Guild GetGuildDetails(Guid guildId)
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
@@ -598,6 +578,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a guild and its details.</summary>
         /// <param name="guildName">The guild's name.</param>
         /// <returns>A guild and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details"/> for more information.</remarks>
         public Guild GetGuildDetails(string guildName)
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
@@ -610,6 +591,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="guildId">The guild's ID.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A guild and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details"/> for more information.</remarks>
         public Task<Guild> GetGuildDetailsAsync(Guid guildId, CancellationToken? cancellationToken = null)
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
@@ -622,6 +604,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="guildName">The guild's name.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A guild and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details"/> for more information.</remarks>
         public Task<Guild> GetGuildDetailsAsync(string guildName, CancellationToken? cancellationToken = null)
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
@@ -633,6 +616,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets an item and its details.</summary>
         /// <param name="itemId">The item's ID.</param>
         /// <returns>An item and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details"/> for more information.</remarks>
         public Item GetItemDetails(int itemId)
         {
             var request = new ItemDetailsRequest { ItemId = itemId, PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -645,6 +629,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="itemId">The item's ID.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details"/> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int itemId, CancellationToken? cancellationToken = null)
         {
             var request = new ItemDetailsRequest { ItemId = itemId, PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -653,10 +638,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of discovered items.
-        /// </summary>
+        /// <summary>Gets the collection of discovered items.</summary>
         /// <returns>The collection of discovered items.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items" /> for more information.</remarks>
         public ItemCollection GetItems()
         {
             var request = new ItemsRequest();
@@ -668,6 +652,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the collection of discovered items.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of discovered items.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items"/> for more information.</remarks>
         public Task<ItemCollection> GetItemsAsync(CancellationToken? cancellationToken = null)
         {
             var request = new ItemsRequest();
@@ -680,6 +665,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="continent">The continent.</param>
         /// <param name="floor">The map floor.</param>
         /// <returns>A map floor and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor"/> for more information.</remarks>
         public Floor GetMapFloor(Continent continent, int floor)
         {
             Preconditions.EnsureNotNull(paramName: "continent", value: continent);
@@ -694,6 +680,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="continentId">The continent.</param>
         /// <param name="floor">The map floor.</param>
         /// <returns>A map floor and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor"/> for more information.</remarks>
         public Floor GetMapFloor(int continentId, int floor)
         {
             var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -707,6 +694,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="floor">The map floor.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor"/> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "continent", value: continent);
@@ -722,6 +710,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="floor">The map floor.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor"/> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CancellationToken? cancellationToken = null)
         {
             var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -730,10 +719,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of maps and their localized name.
-        /// </summary>
+        /// <summary>Gets the collection of maps and their localized name.</summary>
         /// <returns>The collection of maps and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names" /> for more information.</remarks>
         public MapNameCollection GetMapNames()
         {
             var request = new MapNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -745,6 +733,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the collection of maps and their localized name.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of maps and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names"/> for more information.</remarks>
         public Task<MapNameCollection> GetMapNamesAsync(CancellationToken? cancellationToken = null)
         {
             var request = new MapNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -753,10 +742,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets a collection of maps and their details.
-        /// </summary>
+        /// <summary>Gets a collection of maps and their details.</summary>
         /// <returns>A collection of maps and their details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps" /> for more information.</remarks>
         public MapCollection GetMaps()
         {
             var request = new MapDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -768,6 +756,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of maps and their details.</summary>
         /// <param name="mapName">The map filter.</param>
         /// <returns>A collection of maps and their details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps"/> for more information.</remarks>
         public MapCollection GetMaps(MapName mapName)
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
@@ -781,6 +770,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of maps and their details.</summary>
         /// <param name="mapId">The map filter.</param>
         /// <returns>A collection of maps and their details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps"/> for more information.</remarks>
         public MapCollection GetMaps(int mapId)
         {
             var request = new MapDetailsRequest { MapId = mapId, PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -792,6 +782,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a collection of maps and their details.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps"/> for more information.</remarks>
         public Task<MapCollection> GetMapsAsync(CancellationToken? cancellationToken = null)
         {
             var request = new MapDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -804,6 +795,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="mapName">The map filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps"/> for more information.</remarks>
         public Task<MapCollection> GetMapsAsync(MapName mapName, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
@@ -818,6 +810,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="mapId">The map filter.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps"/> for more information.</remarks>
         public Task<MapCollection> GetMapsAsync(int mapId, CancellationToken? cancellationToken = null)
         {
             var request = new MapDetailsRequest { MapId = mapId, PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -829,6 +822,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a World versus World match and its details.</summary>
         /// <param name="matchId">The match.</param>
         /// <returns>A World versus World match and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details"/> for more information.</remarks>
         public MatchDetails GetMatchDetails(string matchId)
         {
             var request = new MatchDetailsRequest { MatchId = matchId };
@@ -841,6 +835,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="matchId">The match.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A World versus World match and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details"/> for more information.</remarks>
         public Task<MatchDetails> GetMatchDetailsAsync(string matchId, CancellationToken? cancellationToken = null)
         {
             var request = new MatchDetailsRequest { MatchId = matchId };
@@ -849,10 +844,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of currently running World versus World matches.
-        /// </summary>
+        /// <summary>Gets the collection of currently running World versus World matches.</summary>
         /// <returns>The collection of currently running World versus World matches.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches" /> for more information.</remarks>
         public MatchCollection GetMatches()
         {
             var request = new MatchesRequest();
@@ -864,6 +858,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the collection of currently running World versus World matches.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of currently running World versus World matches.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches"/> for more information.</remarks>
         public Task<MatchCollection> GetMatchesAsync(CancellationToken? cancellationToken = null)
         {
             var request = new MatchesRequest();
@@ -872,10 +867,9 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.Matches);
         }
 
-        /// <summary>
-        ///     Gets the collection of World versus World objectives and their localized name.
-        /// </summary>
+        /// <summary>Gets the collection of World versus World objectives and their localized name.</summary>
         /// <returns>The collection of World versus World objectives and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names" /> for more information.</remarks>
         public ObjectiveNameCollection GetObjectiveNames()
         {
             var request = new ObjectiveNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -887,6 +881,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the collection of World versus World objectives and their localized name.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of World versus World objectives and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names"/> for more information.</remarks>
         public Task<ObjectiveNameCollection> GetObjectiveNamesAsync(CancellationToken? cancellationToken = null)
         {
             var request = new ObjectiveNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -898,6 +893,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a recipe and its details.</summary>
         /// <param name="recipe">The recipe.</param>
         /// <returns>A recipe and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details"/> for more information.</remarks>
         public Recipe GetRecipeDetails(Recipe recipe)
         {
             Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
@@ -911,6 +907,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets a recipe and its details.</summary>
         /// <param name="recipeId">The recipe.</param>
         /// <returns>A recipe and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details"/> for more information.</remarks>
         public Recipe GetRecipeDetails(int recipeId)
         {
             var request = new RecipeDetailsRequest { RecipeId = recipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -923,6 +920,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="recipe">The recipe.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details"/> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
@@ -937,6 +935,7 @@ namespace RestSharp.GW2DotNET
         /// <param name="recipeId">The recipe.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details"/> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CancellationToken? cancellationToken = null)
         {
             var request = new RecipeDetailsRequest { RecipeId = recipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -945,10 +944,9 @@ namespace RestSharp.GW2DotNET
             return response;
         }
 
-        /// <summary>
-        ///     Gets the collection of discovered recipes.
-        /// </summary>
+        /// <summary>Gets the collection of discovered recipes.</summary>
         /// <returns>The collection of discovered recipes.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes" /> for more information.</remarks>
         public RecipeCollection GetRecipes()
         {
             var request = new RecipesRequest();
@@ -960,6 +958,7 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the collection of discovered recipes.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of discovered recipes.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes"/> for more information.</remarks>
         public Task<RecipeCollection> GetRecipesAsync(CancellationToken? cancellationToken = null)
         {
             var request = new RecipesRequest();
@@ -968,10 +967,9 @@ namespace RestSharp.GW2DotNET
             return this.Select(response, result => result.Recipes);
         }
 
-        /// <summary>
-        ///     Gets the collection of worlds and their localized name.
-        /// </summary>
+        /// <summary>Gets the collection of worlds and their localized name.</summary>
         /// <returns>The collection of worlds and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names" /> for more information.</remarks>
         public WorldNameCollection GetWorldNames()
         {
             var request = new WorldNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
@@ -983,10 +981,11 @@ namespace RestSharp.GW2DotNET
         /// <summary>Gets the collection of worlds and their localized name.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The collection of worlds and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names"/> for more information.</remarks>
         public Task<WorldNameCollection> GetWorldNamesAsync(CancellationToken? cancellationToken = null)
         {
             var request = new WorldNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<WorldNameCollection> response = this.GetAsync<WorldNameCollection>(request, cancellationToken);
+            var response = this.GetAsync<WorldNameCollection>(request, cancellationToken);
 
             return response;
         }
@@ -995,17 +994,13 @@ namespace RestSharp.GW2DotNET
         /// <param name="file">The file.</param>
         /// <param name="imageFormat">The image Format.</param>
         /// <returns>The <see cref="Image"/>.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service"/> for more information.</remarks>
         public Image Render(IRenderable file, ImageFormat imageFormat)
         {
-            Preconditions.EnsureNotNull(paramName: "file", value: file);
-            Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
-
-            var client = new ServiceClient(new Uri(Services.RenderServiceUrl));
             var request = new RenderFileRequest(file, imageFormat);
-            var response = request.GetResponse(client).EnsureSuccessStatusCode();
-            var rawBytes = ((RestResponse)response).RawBytes;
+            var response = this.Get<Image>(this.renderService, request);
 
-            return Image.FromStream(new MemoryStream(rawBytes));
+            return response;
         }
 
         /// <summary>Renders an image.</summary>
@@ -1013,74 +1008,89 @@ namespace RestSharp.GW2DotNET
         /// <param name="imageFormat">The image format.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The <see cref="Image"/>.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service"/> for more information.</remarks>
         public Task<Image> RenderAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null)
         {
-            Preconditions.EnsureNotNull(paramName: "file", value: file);
-            Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
-
-            CancellationToken token = cancellationToken.GetValueOrDefault(CancellationToken.None);
-            var client = new ServiceClient(new Uri(Services.RenderServiceUrl));
             var request = new RenderFileRequest(file, imageFormat);
-            return request.GetResponseAsync(client, token).ContinueWith(
-                task =>
-                {
-                    var response = task.Result.EnsureSuccessStatusCode();
-                    var rawBytes = ((RestResponse)response).RawBytes;
+            var response = this.GetAsync<Image>(this.renderService, request, cancellationToken);
 
-                    return Image.FromStream(new MemoryStream(rawBytes));
-                },
-                token,
-                TaskContinuationOptions.OnlyOnRanToCompletion,
-                TaskScheduler.Current);
+            return response;
         }
 
-        /// <summary>Sends a request and gets the response content.</summary>
-        /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="request">The request.</param>
+        /// <summary>Infrastructure. Sends a request and gets the response.</summary>
+        /// <param name="serviceRequest">The service request.</param>
+        /// <typeparam name="TResult">The type of the response content</typeparam>
         /// <returns>The response content.</returns>
-        private TResult Get<TResult>(IServiceRequest request) where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
+        private TResult Get<TResult>(ServiceRequest serviceRequest) where TResult : class
         {
-            IServiceResponse<TResult> response = request.GetResponse<TResult>(this.serviceClient);
-            TResult content = response.EnsureSuccessStatusCode().Deserialize();
-
-            return content;
+            return this.Get<TResult>(this.dataService, serviceRequest);
         }
 
-        /// <summary>Sends a request and gets the response content.</summary>
+        /// <summary>Infrastructure. Sends a request and gets the response.</summary>
+        /// <param name="service">The service.</param>
+        /// <param name="serviceRequest">The service request.</param>
+        /// <typeparam name="TResult">The type of the response content</typeparam>
+        /// <returns>The response content.</returns>
+        private TResult Get<TResult>(IServiceClient service, ServiceRequest serviceRequest) where TResult : class
+        {
+            IServiceResponse<TResult> serviceResponse = null;
+            try
+            {
+                serviceResponse = serviceRequest.GetResponse<TResult>(service);
+                return serviceResponse.EnsureSuccessStatusCode().Deserialize();
+            }
+            finally
+            {
+                // clean up if necessary
+                var disposable = serviceResponse as IDisposable;
+                if (disposable != null)
+                {
+                    disposable.Dispose();
+                }
+            }
+        }
+
+        /// <summary>Infrastructure. Sends a request and gets the response.</summary>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <param name="request">The request.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response content.</returns>
-        private Task<TResult> GetAsync<TResult>(IServiceRequest request, CancellationToken? cancellationToken = null)
-            where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
+        private Task<TResult> GetAsync<TResult>(IServiceRequest request, CancellationToken? cancellationToken = null) where TResult : class
         {
-            return this.GetAsync<TResult>(this.serviceClient, request, cancellationToken);
+            return this.GetAsync<TResult>(this.dataService, request, cancellationToken);
         }
 
-        /// <summary>Sends a request and gets the response content.</summary>
+        /// <summary>Infrastructure. Sends a request and gets the response.</summary>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="client">The client.</param>
+        /// <param name="service">The client.</param>
         /// <param name="request">The request.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The response content.</returns>
-        private Task<TResult> GetAsync<TResult>(IServiceClient client, IServiceRequest request, CancellationToken? cancellationToken = null)
-            where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
+        private Task<TResult> GetAsync<TResult>(IServiceClient service, IServiceRequest request, CancellationToken? cancellationToken = null)
+            where TResult : class
         {
-            CancellationToken token = cancellationToken.GetValueOrDefault(CancellationToken.None);
-            Task<IServiceResponse<TResult>> t1 = request.GetResponseAsync<TResult>(client, token);
-            Task<TResult> t2 = t1.ContinueWith(
+            var token = cancellationToken.GetValueOrDefault(CancellationToken.None);
+
+            return request.GetResponseAsync<TResult>(service, token).ContinueWith(
                 task =>
-                {
-                    IServiceResponse<TResult> response = task.Result;
-                    TResult content = response.EnsureSuccessStatusCode().Deserialize();
-
-                    return content;
-                },
-                token,
-                TaskContinuationOptions.OnlyOnRanToCompletion,
-                TaskScheduler.Current);
-
-            return t2;
+                    {
+                        IServiceResponse<TResult> serviceResponse = null;
+                        try
+                        {
+                            serviceResponse = task.Result;
+                            return serviceResponse.EnsureSuccessStatusCode().Deserialize();
+                        }
+                        finally
+                        {
+                            // clean up if necessary
+                            var disposable = serviceResponse as IDisposable;
+                            if (disposable != null)
+                            {
+                                disposable.Dispose();
+                            }
+                        }
+                    }, 
+                token);
         }
 
         /// <summary>Gets the service response and selects a result based on the specified selector.</summary>
@@ -1089,11 +1099,10 @@ namespace RestSharp.GW2DotNET
         /// <param name="result">The response content.</param>
         /// <param name="selector">The selector.</param>
         /// <returns>The selected result.</returns>
-        private Task<TResult> Select<TContent, TResult>(Task<TContent> result, Func<TContent, TResult> selector)
-            where TContent : global::GW2DotNET.V1.Core.Common.JsonObject
-            where TResult : global::GW2DotNET.V1.Core.Common.JsonObject
+        private Task<TResult> Select<TContent, TResult>(Task<TContent> result, Func<TContent, TResult> selector) where TContent : JsonObject
+            where TResult : JsonObject
         {
-            return result.ContinueWith(task => selector(task.Result), TaskContinuationOptions.OnlyOnRanToCompletion);
+            return result.ContinueWith(task => selector(task.Result));
         }
     }
 }
