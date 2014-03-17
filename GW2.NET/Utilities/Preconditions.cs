@@ -15,14 +15,29 @@ namespace GW2DotNET.Utilities
     /// </summary>
     public static class Preconditions
     {
+        /// <summary>Ensures that the specified condition is met.</summary>
+        /// <param name="condition">The condition.</param>
+        /// <param name="paramName">The name of the parameter.</param>
+        /// <param name="message">A message that describes the error.</param>
+        /// <exception cref="ArgumentException">The exception that is thrown when the specified condition is not met.</exception>
+        /// <returns>The specified value.</returns>
+        public static bool Ensure(bool condition, string paramName = null, string message = null)
+        {
+            if (!condition)
+            {
+                throw new ArgumentException(message, paramName);
+            }
+
+            return true;
+        }
+
         /// <summary>Ensures that the specified value is equal to the expected value.</summary>
         /// <typeparam name="T">The value type.</typeparam>
         /// <param name="expectedValue">The expected value.</param>
         /// <param name="actualValue">The actual value.</param>
         /// <param name="paramName">The name of the parameter.</param>
         /// <param name="message">A message that describes the error.</param>
-        /// <exception cref="System.ArgumentOutOfRangeException">The exception that is thrown when the specified value differs from
-        ///     the expected value.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">The exception that is thrown when the specified value differs from the expected value.</exception>
         /// <returns>The specified value.</returns>
         public static T EnsureExact<T>(T expectedValue, T actualValue, string paramName = null, string message = null)
         {
@@ -40,8 +55,7 @@ namespace GW2DotNET.Utilities
         /// <param name="ceiling">The maximum value.</param>
         /// <param name="paramName">The name of the parameter.</param>
         /// <param name="message">A message that describes the error.</param>
-        /// <exception cref="System.ArgumentOutOfRangeException">The exception that is thrown when the specified value is out of
-        ///     range.</exception>
+        /// <exception cref="System.ArgumentOutOfRangeException">The exception that is thrown when the specified value is out of range.</exception>
         /// <returns>The specified value.</returns>
         public static int EnsureInRange(int value, int floor, int ceiling, string paramName = null, string message = null)
         {
