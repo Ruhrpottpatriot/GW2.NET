@@ -13,14 +13,10 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of maps and their details.
-    /// </summary>
+    /// <summary>Represents a collection of maps and their details.</summary>
     public class SubregionCollection : JsonDictionary<int, Subregion>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="SubregionCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="SubregionCollection" /> class.</summary>
         public SubregionCollection()
         {
         }

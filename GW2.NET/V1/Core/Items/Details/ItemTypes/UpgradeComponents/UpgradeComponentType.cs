@@ -13,9 +13,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the possible upgrade component types.
-    /// </summary>
+    /// <summary>Enumerates the possible upgrade component types.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum UpgradeComponentType
     {

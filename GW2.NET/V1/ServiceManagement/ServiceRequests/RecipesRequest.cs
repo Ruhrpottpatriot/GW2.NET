@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
     /// <summary>Represents a request for a list of all discovered recipes.</summary>
     public class RecipesRequest : ServiceRequest
     {
-        /// <summary>Initializes a new instance of the <see cref="RecipesRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="RecipesRequest" /> class.</summary>
         public RecipesRequest()
             : base(Services.Recipes)
         {

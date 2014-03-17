@@ -23,7 +23,7 @@ namespace GW2DotNET.V1.Core
         Uri ResourceUri { get; }
 
         /// <summary>Gets the query string.</summary>
-        /// <returns>The query <see cref="string"/>.</returns>
+        /// <returns>The query <see cref="string" />.</returns>
         string GetQueryString();
 
         /// <summary>Sends the current request and returns a response.</summary>

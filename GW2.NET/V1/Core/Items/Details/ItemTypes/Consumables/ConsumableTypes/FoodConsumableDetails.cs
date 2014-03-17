@@ -14,29 +14,21 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an edible item.
-    /// </summary>
+    /// <summary>Represents detailed information about an edible item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class FoodConsumableDetails : ConsumableDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="FoodConsumableDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="FoodConsumableDetails" /> class.</summary>
         public FoodConsumableDetails()
             : base(ConsumableType.Food)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the food's effect description.
-        /// </summary>
+        /// <summary>Gets or sets the food's effect description.</summary>
         [JsonProperty("description", Order = 101, NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the food's effect duration.
-        /// </summary>
+        /// <summary>Gets or sets the food's effect duration.</summary>
         [JsonProperty("duration_ms", Order = 100, NullValueHandling = NullValueHandling.Ignore)]
         [JsonConverter(typeof(JsonTimespanConverter))]
         public TimeSpan? Duration { get; set; }

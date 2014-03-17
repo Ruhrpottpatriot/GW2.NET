@@ -12,26 +12,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a tool.
-    /// </summary>
+    /// <summary>Represents a tool.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Tool : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
         private ToolDetails detail;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Tool" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="Tool" /> class.</summary>
         public Tool()
             : base(ItemType.Tool)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the item details.
-        /// </summary>
+        /// <summary>Gets or sets the item details.</summary>
         [JsonProperty("tool", Order = 100)]
         public ToolDetails Detail
         {

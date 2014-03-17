@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a long bow crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a long bow crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class LongBowRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="LongBowRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="LongBowRecipe" /> class.</summary>
         public LongBowRecipe()
             : base(RecipeType.LongBow)
         {

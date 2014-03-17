@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents.UpgradeCom
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a default upgrade component.
-    /// </summary>
+    /// <summary>Represents detailed information about a default upgrade component.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class DefaultUpgradeComponentDetails : UpgradeComponentDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="DefaultUpgradeComponentDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DefaultUpgradeComponentDetails" /> class.</summary>
         public DefaultUpgradeComponentDetails()
             : base(UpgradeComponentType.Default)
         {

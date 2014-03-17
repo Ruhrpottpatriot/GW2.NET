@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Worlds.Names
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of worlds and their localized name.
-    /// </summary>
+    /// <summary>Represents a collection of worlds and their localized name.</summary>
     public class WorldNameCollection : JsonList<WorldName>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="WorldNameCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="WorldNameCollection" /> class.</summary>
         public WorldNameCollection()
         {
         }

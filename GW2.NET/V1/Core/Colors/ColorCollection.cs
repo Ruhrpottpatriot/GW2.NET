@@ -13,14 +13,10 @@ namespace GW2DotNET.V1.Core.Colors
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of color palettes.
-    /// </summary>
+    /// <summary>Represents a collection of color palettes.</summary>
     public class ColorCollection : JsonDictionary<int, ColorPalette>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ColorCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ColorCollection" /> class.</summary>
         public ColorCollection()
         {
         }

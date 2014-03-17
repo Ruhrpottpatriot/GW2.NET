@@ -14,10 +14,7 @@ namespace RestSharp.GW2DotNET.Sample
     using System.Linq;
     using System.Text;
 
-    /// <summary>
-    /// Copyright (c) 2013 Khalid Abuhakmeh
-    /// https://github.com/khalidabuhakmeh/ConsoleTables
-    /// </summary>
+    /// <summary>Copyright (c) 2013 Khalid Abuhakmeh https://github.com/khalidabuhakmeh/ConsoleTables</summary>
     public class ConsoleTable
     {
         /// <summary>Initializes a new instance of the <see cref="ConsoleTable"/> class.</summary>
@@ -93,7 +90,7 @@ namespace RestSharp.GW2DotNET.Sample
         }
 
         /// <summary>TODO The to string.</summary>
-        /// <returns>The <see cref="string"/>.</returns>
+        /// <returns>The <see cref="string" />.</returns>
         public override string ToString()
         {
             var builder = new StringBuilder();

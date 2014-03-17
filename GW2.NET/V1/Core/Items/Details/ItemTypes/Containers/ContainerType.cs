@@ -13,27 +13,19 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the possible container types.
-    /// </summary>
+    /// <summary>Enumerates the possible container types.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ContainerType
     {
-        /// <summary>
-        ///     The 'Unknown' container type.
-        /// </summary>
+        /// <summary>The 'Unknown' container type.</summary>
         [EnumMember(Value = "Unknown")]
         Unknown = 0, 
 
-        /// <summary>
-        ///     The 'Default' container type.
-        /// </summary>
+        /// <summary>The 'Default' container type.</summary>
         [EnumMember(Value = "Default")]
         Default = 1 << 0, 
 
-        /// <summary>
-        ///     The 'Gift Box' container type.
-        /// </summary>
+        /// <summary>The 'Gift Box' container type.</summary>
         [EnumMember(Value = "GiftBox")]
         GiftBox = 1 << 1
     }

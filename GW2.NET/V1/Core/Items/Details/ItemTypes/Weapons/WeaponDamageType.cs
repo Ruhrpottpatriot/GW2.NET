@@ -13,33 +13,23 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the possible weapon damage types.
-    /// </summary>
+    /// <summary>Enumerates the possible weapon damage types.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum WeaponDamageType
     {
-        /// <summary>
-        ///     The 'Fire' damage type.
-        /// </summary>
+        /// <summary>The 'Fire' damage type.</summary>
         [EnumMember(Value = "Fire")]
         Fire = 1 << 0, 
 
-        /// <summary>
-        ///     The 'Ice' damage type.
-        /// </summary>
+        /// <summary>The 'Ice' damage type.</summary>
         [EnumMember(Value = "Ice")]
         Ice = 1 << 1, 
 
-        /// <summary>
-        ///     The 'Lightning' damage type.
-        /// </summary>
+        /// <summary>The 'Lightning' damage type.</summary>
         [EnumMember(Value = "Lightning")]
         Lightning = 1 << 2, 
 
-        /// <summary>
-        ///     The 'Physical' damage type.
-        /// </summary>
+        /// <summary>The 'Physical' damage type.</summary>
         [EnumMember(Value = "Physical")]
         Physical = 1 << 3
     }

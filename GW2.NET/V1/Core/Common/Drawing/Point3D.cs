@@ -10,12 +10,8 @@ namespace GW2DotNET.V1.Core.Common.Drawing
 {
     using System;
 
-    /// <summary>
-    ///     Represents an x-, y-, and z-coordinate point in 3-D space.
-    /// </summary>
-    /// <remarks>
-    ///     This struct exists because it would be silly to add a WPF reference for its Point3D struct.
-    /// </remarks>
+    /// <summary>Represents an x-, y-, and z-coordinate point in 3-D space.</summary>
+    /// <remarks>This struct exists because it would be silly to add a WPF reference for its Point3D struct.</remarks>
     public struct Point3D : IEquatable<Point3D>
     {
         /// <summary>Initializes a new instance of the <see cref="Point3D"/> structure using the specified values.</summary>
@@ -30,44 +26,28 @@ namespace GW2DotNET.V1.Core.Common.Drawing
             this.Z = z;
         }
 
-        /// <summary>
-        ///     Gets or sets the x-coordinate of this Point3D structure.
-        /// </summary>
+        /// <summary>Gets or sets the x-coordinate of this Point3D structure.</summary>
         public double X { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the y-coordinate of this Point3D structure.
-        /// </summary>
+        /// <summary>Gets or sets the y-coordinate of this Point3D structure.</summary>
         public double Y { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the z-coordinate of this Point3D structure.
-        /// </summary>
+        /// <summary>Gets or sets the z-coordinate of this Point3D structure.</summary>
         public double Z { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(Point3D left, Point3D right)
         {
             return left.Equals(right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(Point3D left, Point3D right)
         {
             return !left.Equals(right);
@@ -94,12 +74,8 @@ namespace GW2DotNET.V1.Core.Common.Drawing
             return obj is Point3D && this.Equals((Point3D)obj);
         }
 
-        /// <summary>
-        /// Returns the hash code for this instance.
-        /// </summary>
-        /// <returns>
-        /// A 32-bit signed integer that is the hash code for this instance.
-        /// </returns>
+        /// <summary>Returns the hash code for this instance.</summary>
+        /// <returns>A 32-bit signed integer that is the hash code for this instance.</returns>
         public override int GetHashCode()
         {
             unchecked
@@ -111,9 +87,7 @@ namespace GW2DotNET.V1.Core.Common.Drawing
             }
         }
 
-        /// <summary>
-        ///     Gets the text representation of this instance.
-        /// </summary>
+        /// <summary>Gets the text representation of this instance.</summary>
         /// <returns>Returns a <see cref="System.String" />.</returns>
         public override string ToString()
         {

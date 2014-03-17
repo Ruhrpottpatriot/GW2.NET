@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools.GatheringTool
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an unknown gathering tool.
-    /// </summary>
+    /// <summary>Represents detailed information about an unknown gathering tool.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownToolDetails : GatheringToolDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UnknownToolDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UnknownToolDetails" /> class.</summary>
         public UnknownToolDetails()
             : base(GatheringToolType.Unknown)
         {

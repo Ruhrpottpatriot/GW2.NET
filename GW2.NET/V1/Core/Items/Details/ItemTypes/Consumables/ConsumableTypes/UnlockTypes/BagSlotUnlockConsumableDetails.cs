@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a bag slot unlock item.
-    /// </summary>
+    /// <summary>Represents detailed information about a bag slot unlock item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class BagSlotUnlockConsumableDetails : UnlockConsumableDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="BagSlotUnlockConsumableDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="BagSlotUnlockConsumableDetails" /> class.</summary>
         public BagSlotUnlockConsumableDetails()
             : base(UnlockType.BagSlot)
         {

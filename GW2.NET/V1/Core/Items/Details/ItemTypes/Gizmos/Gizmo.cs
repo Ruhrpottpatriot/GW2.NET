@@ -12,26 +12,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a gizmo.
-    /// </summary>
+    /// <summary>Represents a gizmo.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Gizmo : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
         private GizmoDetails details;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Gizmo" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="Gizmo" /> class.</summary>
         public Gizmo()
             : base(ItemType.Gizmo)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the item details.
-        /// </summary>
+        /// <summary>Gets or sets the item details.</summary>
         [JsonProperty("gizmo", Order = 100)]
         public GizmoDetails Details
         {

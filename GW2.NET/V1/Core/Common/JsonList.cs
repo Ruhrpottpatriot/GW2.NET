@@ -20,9 +20,7 @@ namespace GW2DotNET.V1.Core.Common
         /// <summary>Infrastructure. This class acts as a proxy for the list stored in this field.</summary>
         private readonly IList<T> innerList;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="JsonList{T}" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="JsonList{T}" /> class.</summary>
         protected JsonList()
         {
             this.innerList = new List<T>();
@@ -42,9 +40,7 @@ namespace GW2DotNET.V1.Core.Common
             this.innerList = new List<T>(collection);
         }
 
-        /// <summary>
-        ///     Gets the number of elements contained in the <see cref="System.Collections.Generic.ICollection{T}" />.
-        /// </summary>
+        /// <summary>Gets the number of elements contained in the <see cref="System.Collections.Generic.ICollection{T}" />.</summary>
         public virtual int Count
         {
             get
@@ -53,9 +49,7 @@ namespace GW2DotNET.V1.Core.Common
             }
         }
 
-        /// <summary>
-        ///     Gets a value indicating whether the <see cref="System.Collections.Generic.ICollection{T}" /> is read-only.
-        /// </summary>
+        /// <summary>Gets a value indicating whether the <see cref="System.Collections.Generic.ICollection{T}" /> is read-only.</summary>
         public virtual bool IsReadOnly
         {
             get
@@ -88,18 +82,15 @@ namespace GW2DotNET.V1.Core.Common
         }
 
         /// <summary>Adds the elements of the specified collection to the end of the <see cref="JsonList{T}"/>.</summary>
-        /// <param name="collection">The collection whose elements should be added to the end of the <see cref="JsonList{T}"/>.
-        ///     The collection itself cannot be null, but it can contain elements that are null, if type <typeparamref name="T"/>
-        ///     is a reference type.</param>
+        /// <param name="collection">The collection whose elements should be added to the end of the <see cref="JsonList{T}"/>. The collection itself cannot be null, but it can contain elements that are null, if type <typeparamref name="T"/>
+        /// is a reference type.</param>
         /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
         public virtual void AddRange(IEnumerable<T> collection)
         {
             ((List<T>)this.innerList).AddRange(collection);
         }
 
-        /// <summary>
-        ///     Removes all items from the <see cref="System.Collections.Generic.ICollection{T}" />.
-        /// </summary>
+        /// <summary>Removes all items from the <see cref="System.Collections.Generic.ICollection{T}" />.</summary>
         public virtual void Clear()
         {
             this.innerList.Clear();
@@ -114,17 +105,14 @@ namespace GW2DotNET.V1.Core.Common
         }
 
         /// <summary>Copies the elements of the <see cref="System.Collections.Generic.ICollection{T}"/> to an<see cref="System.Array"/>, starting at a particular <see cref="System.Array"/> index.</summary>
-        /// <param name="array">The one-dimensional <see cref="System.Array"/> that is the destination of the elements copied from<see cref="System.Collections.Generic.ICollection{T}"/>. The <see cref="System.Array"/> must have zero-based
-        ///     indexing.</param>
+        /// <param name="array">The one-dimensional <see cref="System.Array"/> that is the destination of the elements copied from<see cref="System.Collections.Generic.ICollection{T}"/>. The <see cref="System.Array"/> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public virtual void CopyTo(T[] array, int arrayIndex)
         {
             this.innerList.CopyTo(array, arrayIndex);
         }
 
-        /// <summary>
-        ///     Returns an enumerator that iterates through a collection.
-        /// </summary>
+        /// <summary>Returns an enumerator that iterates through a collection.</summary>
         /// <returns>An <see cref="System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
         public IEnumerator<T> GetEnumerator()
         {
@@ -147,10 +135,9 @@ namespace GW2DotNET.V1.Core.Common
             this.innerList.Insert(index, item);
         }
 
-        /// <summary>Removes the first occurrence of a specific object from the <see cref="System.Collections.Generic.ICollection{T}"/>
-        ///     .</summary>
+        /// <summary>Removes the first occurrence of a specific object from the <see cref="System.Collections.Generic.ICollection{T}"/>.</summary>
         /// <param name="item">The object to remove from the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
-        /// <returns><c>true</c>if item was successfully removed from the <see cref="System.Collections.Generic.ICollection{T}"/>; otherwise, false. This method also returns false if item is not found in the original<see cref="System.Collections.Generic.ICollection{T}"/>.</returns>
+        /// <returns><c>true</c>if item was successfully removed from the <see cref="System.Collections.Generic.ICollection{T}"/>; otherwise, false. This method also returns false if item is not found in the original <see cref="System.Collections.Generic.ICollection{T}"/>.</returns>
         public virtual bool Remove(T item)
         {
             return this.innerList.Remove(item);
@@ -163,9 +150,7 @@ namespace GW2DotNET.V1.Core.Common
             this.innerList.RemoveAt(index);
         }
 
-        /// <summary>
-        ///     Returns an enumerator that iterates through a collection.
-        /// </summary>
+        /// <summary>Returns an enumerator that iterates through a collection.</summary>
         /// <returns>An <see cref="System.Collections.IEnumerator" /> object that can be used to iterate through the collection.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {

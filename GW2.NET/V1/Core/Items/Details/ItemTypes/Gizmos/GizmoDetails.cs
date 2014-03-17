@@ -14,9 +14,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a gizmo.
-    /// </summary>
+    /// <summary>Represents detailed information about a gizmo.</summary>
     [JsonConverter(typeof(GizmoDetailsConverter))]
     public abstract class GizmoDetails : JsonObject, IEquatable<GizmoDetails>
     {
@@ -30,35 +28,23 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
         /// <summary>Gets or sets the gizmo.</summary>
         public Gizmo Gizmo { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the gizmo's type.
-        /// </summary>
+        /// <summary>Gets or sets the gizmo's type.</summary>
         [JsonProperty("type", Order = 0)]
         public GizmoType Type { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(GizmoDetails left, GizmoDetails right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(GizmoDetails left, GizmoDetails right)
         {
             return !object.Equals(left, right);
@@ -105,12 +91,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
             return this.Equals((GizmoDetails)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.Gizmo != null ? this.Gizmo.GetHashCode() : 0;

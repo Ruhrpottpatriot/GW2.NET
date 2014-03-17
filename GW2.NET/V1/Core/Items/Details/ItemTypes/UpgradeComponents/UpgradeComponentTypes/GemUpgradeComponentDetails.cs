@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents.UpgradeCom
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a gem upgrade component.
-    /// </summary>
+    /// <summary>Represents detailed information about a gem upgrade component.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GemUpgradeComponentDetails : UpgradeComponentDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="GemUpgradeComponentDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="GemUpgradeComponentDetails" /> class.</summary>
         public GemUpgradeComponentDetails()
             : base(UpgradeComponentType.Gem)
         {

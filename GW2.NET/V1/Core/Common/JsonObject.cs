@@ -14,30 +14,22 @@ namespace GW2DotNET.V1.Core.Common
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Provides the base class for strongly typed JSON objects.
-    /// </summary>
+    /// <summary>Provides the base class for strongly typed JSON objects.</summary>
     [Serializable]
     [DataContract]
     public abstract class JsonObject
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="JsonObject" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="JsonObject" /> class.</summary>
         protected JsonObject()
         {
             this.ExtensionData = new Dictionary<string, object>();
         }
 
-        /// <summary>
-        ///     Gets or sets a dictionary of additional JSON properties that have no corresponding .NET property.
-        /// </summary>
+        /// <summary>Gets or sets a dictionary of additional JSON properties that have no corresponding .NET property.</summary>
         [JsonExtensionData]
         public IDictionary<string, object> ExtensionData { get; set; }
 
-        /// <summary>
-        ///     Gets the JSON representation of this instance.
-        /// </summary>
+        /// <summary>Gets the JSON representation of this instance.</summary>
         /// <returns>Returns a JSON <see cref="System.String" />.</returns>
         public override string ToString()
         {

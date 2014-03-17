@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a hammer crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a hammer crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class HammerRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="HammerRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="HammerRecipe" /> class.</summary>
         public HammerRecipe()
             : base(RecipeType.Hammer)
         {

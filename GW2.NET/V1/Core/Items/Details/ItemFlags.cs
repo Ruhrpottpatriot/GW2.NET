@@ -15,9 +15,7 @@ namespace GW2DotNET.V1.Core.Items.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Enumerates the known additional item flags.
-    /// </summary>
+    /// <summary>Enumerates the known additional item flags.</summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum ItemFlags

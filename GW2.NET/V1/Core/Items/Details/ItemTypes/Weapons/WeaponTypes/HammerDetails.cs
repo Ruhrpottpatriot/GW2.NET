@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons.WeaponTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a hammer.
-    /// </summary>
+    /// <summary>Represents detailed information about a hammer.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class HammerDetails : WeaponDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="HammerDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="HammerDetails" /> class.</summary>
         public HammerDetails()
             : base(WeaponType.Hammer)
         {

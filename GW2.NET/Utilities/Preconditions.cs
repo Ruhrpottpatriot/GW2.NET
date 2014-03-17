@@ -10,9 +10,7 @@ namespace GW2DotNET.Utilities
 {
     using System;
 
-    /// <summary>
-    ///     Utility class. Provides static methods for validating arguments.
-    /// </summary>
+    /// <summary>Utility class. Provides static methods for validating arguments.</summary>
     public static class Preconditions
     {
         /// <summary>Ensures that the specified condition is met.</summary>

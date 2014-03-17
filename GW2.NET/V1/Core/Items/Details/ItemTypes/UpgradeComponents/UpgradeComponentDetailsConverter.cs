@@ -18,20 +18,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>
-    ///     Converts an instance of a class that extends <see cref="UpgradeComponentDetails" /> from its
-    ///     <see cref="System.String" /> representation.
-    /// </summary>
+    /// <summary>Converts an instance of a class that extends <see cref="UpgradeComponentDetails" /> from its
+    /// <see cref="System.String" /> representation.</summary>
     public class UpgradeComponentDetailsConverter : ContentBasedTypeCreationConverter
     {
-        /// <summary>
-        ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
-        /// </summary>
+        /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
         private static readonly IDictionary<UpgradeComponentType, Type> KnownTypes = new Dictionary<UpgradeComponentType, Type>();
 
-        /// <summary>
-        ///     Initializes static members of the <see cref="UpgradeComponentDetailsConverter" /> class.
-        /// </summary>
+        /// <summary>Initializes static members of the <see cref="UpgradeComponentDetailsConverter" /> class.</summary>
         static UpgradeComponentDetailsConverter()
         {
             KnownTypes.Add(UpgradeComponentType.Unknown, typeof(UnknownUpgradeComponentDetails));

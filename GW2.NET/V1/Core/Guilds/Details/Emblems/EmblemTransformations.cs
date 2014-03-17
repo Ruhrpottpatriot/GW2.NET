@@ -15,9 +15,7 @@ namespace GW2DotNET.V1.Core.Guilds.Details.Emblems
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Enumerates the possible transformations for a guild emblem image.
-    /// </summary>
+    /// <summary>Enumerates the possible transformations for a guild emblem image.</summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum EmblemTransformations

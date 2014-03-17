@@ -13,75 +13,51 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the possible consumable types.
-    /// </summary>
+    /// <summary>Enumerates the possible consumable types.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ConsumableType
     {
-        /// <summary>
-        ///     The 'Unknown' consumable type.
-        /// </summary>
+        /// <summary>The 'Unknown' consumable type.</summary>
         [EnumMember(Value = "Unknown")]
         Unknown = 0, 
 
-        /// <summary>
-        ///     The 'Appearance Change' consumable type.
-        /// </summary>
+        /// <summary>The 'Appearance Change' consumable type.</summary>
         [EnumMember(Value = "AppearanceChange")]
         AppearanceChange = 1 << 0, 
 
-        /// <summary>
-        ///     The 'Booze' consumable type.
-        /// </summary>
+        /// <summary>The 'Booze' consumable type.</summary>
         [EnumMember(Value = "Booze")]
         Booze = 1 << 1, 
 
-        /// <summary>
-        ///     The 'Contract NPC' consumable type.
-        /// </summary>
+        /// <summary>The 'Contract NPC' consumable type.</summary>
         [EnumMember(Value = "ContractNpc")]
         ContractNpc = 1 << 2, 
 
-        /// <summary>
-        ///     The 'Food' consumable type.
-        /// </summary>
+        /// <summary>The 'Food' consumable type.</summary>
         [EnumMember(Value = "Food")]
         Food = 1 << 3, 
 
-        /// <summary>
-        ///     The 'Generic' consumable type.
-        /// </summary>
+        /// <summary>The 'Generic' consumable type.</summary>
         [EnumMember(Value = "Generic")]
         Generic = 1 << 4, 
 
-        /// <summary>
-        ///     The 'Halloween' consumable type.
-        /// </summary>
+        /// <summary>The 'Halloween' consumable type.</summary>
         [EnumMember(Value = "Halloween")]
         Halloween = 1 << 5, 
 
-        /// <summary>
-        ///     The 'Immediate' consumable type.
-        /// </summary>
+        /// <summary>The 'Immediate' consumable type.</summary>
         [EnumMember(Value = "Immediate")]
         Immediate = 1 << 6, 
 
-        /// <summary>
-        ///     The 'Transmutation' consumable type.
-        /// </summary>
+        /// <summary>The 'Transmutation' consumable type.</summary>
         [EnumMember(Value = "Transmutation")]
         Transmutation = 1 << 7, 
 
-        /// <summary>
-        ///     The 'Unlock' consumable type.
-        /// </summary>
+        /// <summary>The 'Unlock' consumable type.</summary>
         [EnumMember(Value = "Unlock")]
         Unlock = 1 << 8, 
 
-        /// <summary>
-        ///     The 'Utility' consumable type.
-        /// </summary>
+        /// <summary>The 'Utility' consumable type.</summary>
         [EnumMember(Value = "Utility")]
         Utility = 1 << 9
     }

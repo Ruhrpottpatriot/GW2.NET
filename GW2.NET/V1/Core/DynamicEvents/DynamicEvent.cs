@@ -15,59 +15,39 @@ namespace GW2DotNET.V1.Core.DynamicEvents
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Represents a dynamic event and its status.
-    /// </summary>
+    /// <summary>Represents a dynamic event and its status.</summary>
     public class DynamicEvent : JsonObject, IEquatable<DynamicEvent>, IComparable<DynamicEvent>
     {
-        /// <summary>
-        ///     Gets or sets the <see cref="Guid" /> identifying the event.
-        /// </summary>
+        /// <summary>Gets or sets the <see cref="Guid" /> identifying the event.</summary>
         [JsonProperty("event_id", Order = 2)]
         public Guid EventId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the map on which the event is running.
-        /// </summary>
+        /// <summary>Gets or sets the map on which the event is running.</summary>
         [JsonProperty("map_id", Order = 1)]
         public int MapId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the current state of the event.
-        /// </summary>
+        /// <summary>Gets or sets the current state of the event.</summary>
         [JsonProperty("state", Order = 3)]
         [JsonConverter(typeof(StringEnumConverter))]
         public DynamicEventState State { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the world on which the event is running.
-        /// </summary>
+        /// <summary>Gets or sets the world on which the event is running.</summary>
         [JsonProperty("world_id", Order = 0)]
         public int WorldId { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(DynamicEvent left, DynamicEvent right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(DynamicEvent left, DynamicEvent right)
         {
             return !object.Equals(left, right);
@@ -127,12 +107,8 @@ namespace GW2DotNET.V1.Core.DynamicEvents
             return this.Equals((DynamicEvent)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             unchecked

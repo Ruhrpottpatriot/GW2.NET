@@ -13,15 +13,10 @@ namespace GW2DotNET.V1.Core.Common.Converters
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Default converter. This converter is useful for use in inheritance trees, where a sub-class would otherwise use the
-    ///     same converter as its base class.
-    /// </summary>
+    /// <summary>Default converter. This converter is useful for use in inheritance trees, where a sub-class would otherwise use the same converter as its base class.</summary>
     public class DefaultJsonConverter : JsonConverter
     {
-        /// <summary>
-        ///     Gets a value indicating whether this converter can read JSON.
-        /// </summary>
+        /// <summary>Gets a value indicating whether this converter can read JSON.</summary>
         public override bool CanRead
         {
             get
@@ -30,9 +25,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
             }
         }
 
-        /// <summary>
-        ///     Gets a value indicating whether this converter can write JSON.
-        /// </summary>
+        /// <summary>Gets a value indicating whether this converter can write JSON.</summary>
         public override bool CanWrite
         {
             get

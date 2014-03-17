@@ -18,20 +18,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>
-    ///     Converts an instance of a class that extends <see cref="ContainerDetails" /> from its <see cref="System.String" />
-    ///     representation.
-    /// </summary>
+    /// <summary>Converts an instance of a class that extends <see cref="ContainerDetails" /> from its <see cref="System.String" />
+    /// representation.</summary>
     public class ContainerDetailsConverter : ContentBasedTypeCreationConverter
     {
-        /// <summary>
-        ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
-        /// </summary>
+        /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
         private static readonly IDictionary<ContainerType, Type> KnownTypes = new Dictionary<ContainerType, Type>();
 
-        /// <summary>
-        ///     Initializes static members of the <see cref="ContainerDetailsConverter" /> class.
-        /// </summary>
+        /// <summary>Initializes static members of the <see cref="ContainerDetailsConverter" /> class.</summary>
         static ContainerDetailsConverter()
         {
             KnownTypes.Add(ContainerType.Unknown, typeof(UnknownContainerDetails));

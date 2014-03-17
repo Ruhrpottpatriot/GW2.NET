@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents an unknown item..
-    /// </summary>
+    /// <summary>Represents an unknown item..</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownItem : Item
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UnknownItem" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UnknownItem" /> class.</summary>
         public UnknownItem()
             : base(ItemType.Unknown)
         {

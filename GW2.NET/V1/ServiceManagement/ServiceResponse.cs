@@ -44,9 +44,7 @@ namespace GW2DotNET.V1.ServiceManagement
             this.WebException = webException;
         }
 
-        /// <summary>
-        ///     Gets a value indicating the Internet media type of the message content.
-        /// </summary>
+        /// <summary>Gets a value indicating the Internet media type of the message content.</summary>
         public ContentType ContentType
         {
             get
@@ -69,9 +67,7 @@ namespace GW2DotNET.V1.ServiceManagement
             }
         }
 
-        /// <summary>
-        ///     Gets a value indicating whether the service returned a JSON response.
-        /// </summary>
+        /// <summary>Gets a value indicating whether the service returned a JSON response.</summary>
         public bool IsJsonResponse
         {
             get
@@ -85,9 +81,7 @@ namespace GW2DotNET.V1.ServiceManagement
             }
         }
 
-        /// <summary>
-        ///     Gets a value indicating whether the service returned a success status code.
-        /// </summary>
+        /// <summary>Gets a value indicating whether the service returned a success status code.</summary>
         public bool IsSuccessStatusCode
         {
             get
@@ -168,9 +162,7 @@ namespace GW2DotNET.V1.ServiceManagement
             return this.errorResult ?? (this.errorResult = DeserializeJson<ErrorResult>(this.WebResponse));
         }
 
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
+        /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         public void Dispose()
         {
             this.WebResponse.Close();

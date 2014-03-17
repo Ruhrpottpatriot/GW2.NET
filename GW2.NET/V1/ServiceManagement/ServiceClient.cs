@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.ServiceManagement
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Core;
 
-    /// <summary>Provides a plain .NET implementation of the <see cref="IServiceClient"/> interface.</summary>
+    /// <summary>Provides a plain .NET implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
     {
         /// <summary>Infrastructure. Stores the base URL.</summary>
@@ -41,18 +41,14 @@ namespace GW2DotNET.V1.ServiceManagement
             }
         }
 
-        /// <summary>
-        /// Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.
-        /// </summary>
+        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.</summary>
         /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
         public static IServiceClient DataServiceClient()
         {
             return new ServiceClient(new Uri(Services.DataServiceUrl));
         }
 
-        /// <summary>
-        /// Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.
-        /// </summary>
+        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.</summary>
         /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
         public static IServiceClient RenderServiceClient()
         {

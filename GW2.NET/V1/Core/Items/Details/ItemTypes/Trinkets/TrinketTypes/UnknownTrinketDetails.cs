@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets.TrinketTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an unknown trinket.
-    /// </summary>
+    /// <summary>Represents detailed information about an unknown trinket.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownTrinketDetails : TrinketDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UnknownTrinketDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UnknownTrinketDetails" /> class.</summary>
         public UnknownTrinketDetails()
             : base(TrinketType.Unknown)
         {

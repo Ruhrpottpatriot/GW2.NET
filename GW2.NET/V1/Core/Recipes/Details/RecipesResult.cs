@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Recipes.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Wraps a collection of recipe IDs.
-    /// </summary>
+    /// <summary>Wraps a collection of recipe IDs.</summary>
     public class RecipesResult : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets a collection of recipes.
-        /// </summary>
+        /// <summary>Gets or sets a collection of recipes.</summary>
         [JsonProperty("recipes", Order = 0)]
         public RecipeCollection Recipes { get; set; }
     }

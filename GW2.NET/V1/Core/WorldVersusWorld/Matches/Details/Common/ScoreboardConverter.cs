@@ -12,9 +12,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Common
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Converts a JSON array of scores to and from a <see cref="Scoreboard" />.
-    /// </summary>
+    /// <summary>Converts a JSON array of scores to and from a <see cref="Scoreboard" />.</summary>
     public class ScoreboardConverter : JsonConverter
     {
         /// <summary>Determines whether this instance can convert the specified object type.</summary>

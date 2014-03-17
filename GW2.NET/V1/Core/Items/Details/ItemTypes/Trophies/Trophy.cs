@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trophies
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a trophy.
-    /// </summary>
+    /// <summary>Represents a trophy.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Trophy : Item
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Trophy" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="Trophy" /> class.</summary>
         public Trophy()
             : base(ItemType.Trophy)
         {

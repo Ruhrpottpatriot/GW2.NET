@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.MiniPets
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a mini pet.
-    /// </summary>
+    /// <summary>Represents a mini pet.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class MiniPet : Item
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MiniPet" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MiniPet" /> class.</summary>
         public MiniPet()
             : base(ItemType.MiniPet)
         {

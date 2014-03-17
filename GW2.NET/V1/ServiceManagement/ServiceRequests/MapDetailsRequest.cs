@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private int? mapId;
 
-        /// <summary>Initializes a new instance of the <see cref="MapDetailsRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MapDetailsRequest" /> class.</summary>
         public MapDetailsRequest()
             : base(Services.Maps)
         {

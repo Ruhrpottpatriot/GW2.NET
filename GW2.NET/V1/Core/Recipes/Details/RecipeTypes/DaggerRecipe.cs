@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a dagger crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a dagger crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class DaggerRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="DaggerRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DaggerRecipe" /> class.</summary>
         public DaggerRecipe()
             : base(RecipeType.Dagger)
         {

@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
     /// <summary>Represents a request for information regarding colors in the game.</summary>
     public class ColorsRequest : ServiceRequest
     {
-        /// <summary>Initializes a new instance of the <see cref="ColorsRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ColorsRequest" /> class.</summary>
         public ColorsRequest()
             : base(Services.Colors)
         {

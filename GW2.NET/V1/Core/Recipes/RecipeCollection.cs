@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Recipes
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of recipe IDs.
-    /// </summary>
+    /// <summary>Represents a collection of recipe IDs.</summary>
     public class RecipeCollection : JsonList<int>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="RecipeCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="RecipeCollection" /> class.</summary>
         public RecipeCollection()
         {
         }

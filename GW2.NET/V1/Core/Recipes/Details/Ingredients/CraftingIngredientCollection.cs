@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Recipes.Details.Ingredients
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of crafting ingredients.
-    /// </summary>
+    /// <summary>Represents a collection of crafting ingredients.</summary>
     public class CraftingIngredientCollection : JsonList<CraftingIngredient>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="CraftingIngredientCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="CraftingIngredientCollection" /> class.</summary>
         public CraftingIngredientCollection()
         {
         }

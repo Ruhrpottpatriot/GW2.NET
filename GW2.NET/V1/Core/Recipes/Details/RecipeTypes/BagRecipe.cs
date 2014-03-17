@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a bag crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a bag crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class BagRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="BagRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="BagRecipe" /> class.</summary>
         public BagRecipe()
             : base(RecipeType.Bag)
         {

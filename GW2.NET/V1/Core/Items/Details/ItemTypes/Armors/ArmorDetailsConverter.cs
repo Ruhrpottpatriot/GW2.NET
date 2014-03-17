@@ -18,20 +18,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>
-    ///     Converts an instance of a class that extends <see cref="ArmorDetails" /> from its <see cref="System.String" />
-    ///     representation.
-    /// </summary>
+    /// <summary>Converts an instance of a class that extends <see cref="ArmorDetails" /> from its <see cref="System.String" />
+    /// representation.</summary>
     public class ArmorDetailsConverter : ContentBasedTypeCreationConverter
     {
-        /// <summary>
-        ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
-        /// </summary>
+        /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
         private static readonly IDictionary<ArmorType, Type> KnownTypes = new Dictionary<ArmorType, Type>();
 
-        /// <summary>
-        ///     Initializes static members of the <see cref="ArmorDetailsConverter" /> class.
-        /// </summary>
+        /// <summary>Initializes static members of the <see cref="ArmorDetailsConverter" /> class.</summary>
         static ArmorDetailsConverter()
         {
             KnownTypes.Add(ArmorType.Unknown, typeof(UnknownArmorDetails));

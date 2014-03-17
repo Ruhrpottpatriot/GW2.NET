@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of infusion slots.
-    /// </summary>
+    /// <summary>Represents a collection of infusion slots.</summary>
     public class InfusionSlotCollection : JsonList<InfusionSlot>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="InfusionSlotCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="InfusionSlotCollection" /> class.</summary>
         public InfusionSlotCollection()
         {
         }

@@ -14,9 +14,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a tool.
-    /// </summary>
+    /// <summary>Represents detailed information about a tool.</summary>
     [JsonConverter(typeof(ToolDetailsConverter))]
     public abstract class ToolDetails : JsonObject, IEquatable<ToolDetails>
     {
@@ -27,44 +25,30 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
             this.Type = toolType;
         }
 
-        /// <summary>
-        ///     Gets or sets the tool's charges.
-        /// </summary>
+        /// <summary>Gets or sets the tool's charges.</summary>
         [JsonProperty("charges", Order = 1)]
         public int Charges { get; set; }
 
         /// <summary>Gets or sets the tool.</summary>
         public Tool Tool { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the tool's type.
-        /// </summary>
+        /// <summary>Gets or sets the tool's type.</summary>
         [JsonProperty("type", Order = 0)]
         public ToolType Type { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(ToolDetails left, ToolDetails right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(ToolDetails left, ToolDetails right)
         {
             return !object.Equals(left, right);
@@ -111,12 +95,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
             return this.Equals((ToolDetails)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.Tool != null ? this.Tool.GetHashCode() : 0;

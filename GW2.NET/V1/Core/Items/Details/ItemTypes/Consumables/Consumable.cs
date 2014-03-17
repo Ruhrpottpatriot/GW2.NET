@@ -12,26 +12,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a consumable item.
-    /// </summary>
+    /// <summary>Represents a consumable item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Consumable : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
         private ConsumableDetails details;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Consumable" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="Consumable" /> class.</summary>
         public Consumable()
             : base(ItemType.Consumable)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the item details.
-        /// </summary>
+        /// <summary>Gets or sets the item details.</summary>
         [JsonProperty("consumable", Order = 100)]
         public ConsumableDetails Details
         {

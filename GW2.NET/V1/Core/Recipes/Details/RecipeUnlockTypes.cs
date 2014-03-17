@@ -15,9 +15,7 @@ namespace GW2DotNET.V1.Core.Recipes.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Enumerates all possible ways to unlock a recipe.
-    /// </summary>
+    /// <summary>Enumerates all possible ways to unlock a recipe.</summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum RecipeUnlockTypes

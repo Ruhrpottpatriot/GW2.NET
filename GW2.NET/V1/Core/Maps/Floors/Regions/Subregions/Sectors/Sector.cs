@@ -16,59 +16,39 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Sectors
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents an area within a map.
-    /// </summary>
+    /// <summary>Represents an area within a map.</summary>
     public class Sector : JsonObject, IEquatable<Sector>, IComparable<Sector>
     {
-        /// <summary>
-        ///     Gets or sets the sector's coordinates, which is (usually) the center position.
-        /// </summary>
+        /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
         [JsonProperty("coord", Order = 3)]
         [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the sector's level.
-        /// </summary>
+        /// <summary>Gets or sets the sector's level.</summary>
         [JsonProperty("level", Order = 2)]
         public int Level { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the sector's name.
-        /// </summary>
+        /// <summary>Gets or sets the sector's name.</summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the sector's ID.
-        /// </summary>
+        /// <summary>Gets or sets the sector's ID.</summary>
         [JsonProperty("sector_id", Order = 0)]
         public int SectorId { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(Sector left, Sector right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(Sector left, Sector right)
         {
             return !object.Equals(left, right);
@@ -128,12 +108,8 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Sectors
             return this.Equals((Sector)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.SectorId;

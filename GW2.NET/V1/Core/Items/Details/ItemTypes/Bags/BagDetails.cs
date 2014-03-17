@@ -15,50 +15,34 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a bag.
-    /// </summary>
+    /// <summary>Represents detailed information about a bag.</summary>
     public class BagDetails : JsonObject, IEquatable<BagDetails>
     {
         /// <summary>Gets or sets the bag.</summary>
         public Bag Bag { get; set; }
 
-        /// <summary>
-        ///     Gets or sets a value indicating whether this is an invisible bag.
-        /// </summary>
+        /// <summary>Gets or sets a value indicating whether this is an invisible bag.</summary>
         [JsonProperty("no_sell_or_sort", Order = 0)]
         [JsonConverter(typeof(JsonBooleanConverter))]
         public bool NoSellOrSort { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the bag's capacity.
-        /// </summary>
+        /// <summary>Gets or sets the bag's capacity.</summary>
         [JsonProperty("size", Order = 1)]
         public int Size { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(BagDetails left, BagDetails right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(BagDetails left, BagDetails right)
         {
             return !object.Equals(left, right);
@@ -105,12 +89,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
             return this.Equals((BagDetails)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.Bag != null ? this.Bag.GetHashCode() : 0;

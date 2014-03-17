@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons.WeaponTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a long bow.
-    /// </summary>
+    /// <summary>Represents detailed information about a long bow.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class LongBowDetails : WeaponDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="LongBowDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="LongBowDetails" /> class.</summary>
         public LongBowDetails()
             : base(WeaponType.LongBow)
         {

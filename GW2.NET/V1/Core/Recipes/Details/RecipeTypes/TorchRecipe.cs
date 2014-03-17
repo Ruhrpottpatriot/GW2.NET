@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a torch crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a torch crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class TorchRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="TorchRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="TorchRecipe" /> class.</summary>
         public TorchRecipe()
             : base(RecipeType.Torch)
         {

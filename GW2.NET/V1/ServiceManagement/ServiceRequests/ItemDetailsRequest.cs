@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private int? itemId;
 
-        /// <summary>Initializes a new instance of the <see cref="ItemDetailsRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ItemDetailsRequest" /> class.</summary>
         public ItemDetailsRequest()
             : base(Services.ItemDetails)
         {

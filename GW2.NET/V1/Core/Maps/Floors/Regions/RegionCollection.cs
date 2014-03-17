@@ -13,14 +13,10 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of regions on the map.
-    /// </summary>
+    /// <summary>Represents a collection of regions on the map.</summary>
     public class RegionCollection : JsonDictionary<int, Region>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="RegionCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="RegionCollection" /> class.</summary>
         public RegionCollection()
         {
         }

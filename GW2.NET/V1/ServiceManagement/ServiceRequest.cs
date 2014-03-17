@@ -63,7 +63,7 @@ namespace GW2DotNET.V1.ServiceManagement
         public Uri ResourceUri { get; private set; }
 
         /// <summary>Gets the query string.</summary>
-        /// <returns>The query <see cref="string"/>.</returns>
+        /// <returns>The query <see cref="string" />.</returns>
         public string GetQueryString()
         {
             return string.Join("&", this.Query.Where(pair => !string.IsNullOrEmpty(pair.Value)).Select(EncodeNameValuePair));
@@ -98,12 +98,8 @@ namespace GW2DotNET.V1.ServiceManagement
             return serviceClient.SendAsync<TResult>(this, cancellationToken);
         }
 
-        /// <summary>
-        /// Returns a string that represents the current object.
-        /// </summary>
-        /// <returns>
-        /// A string that represents the current object.
-        /// </returns>
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return this.ResourceUri.ToString();

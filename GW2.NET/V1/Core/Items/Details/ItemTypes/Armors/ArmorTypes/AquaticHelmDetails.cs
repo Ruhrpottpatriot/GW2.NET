@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors.ArmorTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about aquatic head protection.
-    /// </summary>
+    /// <summary>Represents detailed information about aquatic head protection.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class AquaticHelmDetails : ArmorDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="AquaticHelmDetails" /> class
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="AquaticHelmDetails" /> class</summary>
         public AquaticHelmDetails()
             : base(ArmorType.HelmAquatic)
         {

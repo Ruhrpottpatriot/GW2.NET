@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Maps.Names
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of maps and their localized name.
-    /// </summary>
+    /// <summary>Represents a collection of maps and their localized name.</summary>
     public class MapNameCollection : JsonList<MapName>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MapNameCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MapNameCollection" /> class.</summary>
         public MapNameCollection()
         {
         }

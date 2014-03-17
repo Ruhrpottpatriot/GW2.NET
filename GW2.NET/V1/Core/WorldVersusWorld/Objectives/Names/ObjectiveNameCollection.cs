@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Objectives.Names
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of objectives and their localized name.
-    /// </summary>
+    /// <summary>Represents a collection of objectives and their localized name.</summary>
     public class ObjectiveNameCollection : JsonList<ObjectiveName>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ObjectiveNameCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveNameCollection" /> class.</summary>
         public ObjectiveNameCollection()
         {
         }

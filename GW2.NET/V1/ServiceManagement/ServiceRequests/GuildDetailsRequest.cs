@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private string guildName;
 
-        /// <summary>Initializes a new instance of the <see cref="GuildDetailsRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="GuildDetailsRequest" /> class.</summary>
         public GuildDetailsRequest()
             : base(Services.GuildDetails)
         {

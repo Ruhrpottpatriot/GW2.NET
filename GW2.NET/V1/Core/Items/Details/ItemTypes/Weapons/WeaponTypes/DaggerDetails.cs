@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons.WeaponTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a focus.
-    /// </summary>
+    /// <summary>Represents detailed information about a focus.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class DaggerDetails : WeaponDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="DaggerDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DaggerDetails" /> class.</summary>
         public DaggerDetails()
             : base(WeaponType.Dagger)
         {

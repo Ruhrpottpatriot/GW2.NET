@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private Guid? eventId;
 
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsRequest" /> class.</summary>
         public DynamicEventDetailsRequest()
             : base(Services.EventDetails)
         {

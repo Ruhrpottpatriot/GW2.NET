@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons.WeaponTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a great sword.
-    /// </summary>
+    /// <summary>Represents detailed information about a great sword.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GreatSwordDetails : WeaponDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="GreatSwordDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="GreatSwordDetails" /> class.</summary>
         public GreatSwordDetails()
             : base(WeaponType.GreatSword)
         {

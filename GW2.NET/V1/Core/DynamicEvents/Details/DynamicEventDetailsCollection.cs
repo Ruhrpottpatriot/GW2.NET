@@ -14,14 +14,10 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of dynamic events and their localized name.
-    /// </summary>
+    /// <summary>Represents a collection of dynamic events and their localized name.</summary>
     public class DynamicEventDetailsCollection : JsonDictionary<Guid, DynamicEventDetails>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="DynamicEventDetailsCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsCollection" /> class.</summary>
         public DynamicEventDetailsCollection()
         {
         }

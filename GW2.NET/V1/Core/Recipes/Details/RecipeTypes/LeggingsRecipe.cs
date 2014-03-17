@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a leggings crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a leggings crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class LeggingsRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="LeggingsRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="LeggingsRecipe" /> class.</summary>
         public LeggingsRecipe()
             : base(RecipeType.Leggings)
         {

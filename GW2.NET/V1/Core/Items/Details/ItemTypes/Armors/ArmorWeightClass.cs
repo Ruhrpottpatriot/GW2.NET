@@ -13,39 +13,27 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the known armor piece weight classes.
-    /// </summary>
+    /// <summary>Enumerates the known armor piece weight classes.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ArmorWeightClass
     {
-        /// <summary>
-        ///     The 'Unknown' weight class.
-        /// </summary>
+        /// <summary>The 'Unknown' weight class.</summary>
         [EnumMember(Value = "Unknown")]
         Unknown = 0, 
 
-        /// <summary>
-        ///     The 'Clothing' weight class.
-        /// </summary>
+        /// <summary>The 'Clothing' weight class.</summary>
         [EnumMember(Value = "Clothing")]
         Clothing = 1 << 0, 
 
-        /// <summary>
-        ///     The 'Light' weight class.
-        /// </summary>
+        /// <summary>The 'Light' weight class.</summary>
         [EnumMember(Value = "Light")]
         Light = 1 << 1, 
 
-        /// <summary>
-        ///     The 'Medium' weight class.
-        /// </summary>
+        /// <summary>The 'Medium' weight class.</summary>
         [EnumMember(Value = "Medium")]
         Medium = 1 << 2, 
 
-        /// <summary>
-        ///     The 'Heavy' weight class.
-        /// </summary>
+        /// <summary>The 'Heavy' weight class.</summary>
         [EnumMember(Value = "Heavy")]
         Heavy = 1 << 3
     }

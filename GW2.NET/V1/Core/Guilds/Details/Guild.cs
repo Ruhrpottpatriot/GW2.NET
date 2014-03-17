@@ -15,17 +15,13 @@ namespace GW2DotNET.V1.Core.Guilds.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a guild and its details.
-    /// </summary>
+    /// <summary>Represents a guild and its details.</summary>
     public class Guild : JsonObject, IEquatable<Guild>, IComparable<Guild>
     {
         /// <summary>Infrastructure. Stores an emblem.</summary>
         private Emblem emblem;
 
-        /// <summary>
-        ///     Gets or sets detailed information about the guild's emblem, if any.
-        /// </summary>
+        /// <summary>Gets or sets detailed information about the guild's emblem, if any.</summary>
         [JsonProperty("emblem", Order = 3)]
         public Emblem Emblem
         {
@@ -41,47 +37,31 @@ namespace GW2DotNET.V1.Core.Guilds.Details
             }
         }
 
-        /// <summary>
-        ///     Gets or sets the guild's ID.
-        /// </summary>
+        /// <summary>Gets or sets the guild's ID.</summary>
         [JsonProperty("guild_id", Order = 0)]
         public Guid GuildId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the guild's name.
-        /// </summary>
+        /// <summary>Gets or sets the guild's name.</summary>
         [JsonProperty("guild_name", Order = 1)]
         public string Name { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the guild's tag.
-        /// </summary>
+        /// <summary>Gets or sets the guild's tag.</summary>
         [JsonProperty("tag", Order = 2)]
         public string Tag { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(Guild left, Guild right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(Guild left, Guild right)
         {
             return !object.Equals(left, right);
@@ -141,12 +121,8 @@ namespace GW2DotNET.V1.Core.Guilds.Details
             return this.Equals((Guild)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.GuildId.GetHashCode();

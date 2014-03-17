@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
     /// <summary>Represents a request for the current build ID of the game.</summary>
     public class BuildRequest : ServiceRequest
     {
-        /// <summary>Initializes a new instance of the <see cref="BuildRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="BuildRequest" /> class.</summary>
         public BuildRequest()
             : base(Services.Build)
         {

@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a refinement crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a refinement crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class RefinementRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="RefinementRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="RefinementRecipe" /> class.</summary>
         public RefinementRecipe()
             : base(RecipeType.Refinement)
         {

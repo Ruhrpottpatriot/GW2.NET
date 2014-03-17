@@ -12,25 +12,17 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Common
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a World versus World scoreboard.
-    /// </summary>
+    /// <summary>Represents a World versus World scoreboard.</summary>
     [JsonConverter(typeof(ScoreboardConverter))]
     public class Scoreboard : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets the blue team's score.
-        /// </summary>
+        /// <summary>Gets or sets the blue team's score.</summary>
         public int Blue { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the green team's score.
-        /// </summary>
+        /// <summary>Gets or sets the green team's score.</summary>
         public int Green { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the red team's score.
-        /// </summary>
+        /// <summary>Gets or sets the red team's score.</summary>
         public int Red { get; set; }
     }
 }

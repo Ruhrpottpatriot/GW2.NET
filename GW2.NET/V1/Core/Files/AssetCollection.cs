@@ -13,14 +13,10 @@ namespace GW2DotNET.V1.Core.Files
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of named assets.
-    /// </summary>
+    /// <summary>Represents a collection of named assets.</summary>
     public class AssetCollection : JsonDictionary<string, Asset>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="AssetCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="AssetCollection" /> class.</summary>
         public AssetCollection()
         {
         }

@@ -13,14 +13,10 @@ namespace GW2DotNET.V1.Core.Continents
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of continents.
-    /// </summary>
+    /// <summary>Represents a collection of continents.</summary>
     public class ContinentCollection : JsonDictionary<int, Continent>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ContinentCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ContinentCollection" /> class.</summary>
         public ContinentCollection()
         {
         }

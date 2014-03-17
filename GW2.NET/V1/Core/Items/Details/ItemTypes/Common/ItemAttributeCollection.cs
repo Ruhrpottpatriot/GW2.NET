@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of item attributes.
-    /// </summary>
+    /// <summary>Represents a collection of item attributes.</summary>
     public class ItemAttributeCollection : JsonList<ItemAttribute>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ItemAttributeCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ItemAttributeCollection" /> class.</summary>
         public ItemAttributeCollection()
         {
         }

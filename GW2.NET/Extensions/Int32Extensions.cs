@@ -10,7 +10,7 @@ namespace GW2DotNET.Extensions
 {
     using System.Globalization;
 
-    /// <summary>Provides extension methods for the <see cref="T:System.Int32"/> type.</summary>
+    /// <summary>Provides extension methods for the <see cref="T:System.Int32" /> type.</summary>
     public static class Int32Extensions
     {
         /// <summary>Converts the numeric value of this instance to its equivalent string representation using the format rules of the invariant culture.</summary>

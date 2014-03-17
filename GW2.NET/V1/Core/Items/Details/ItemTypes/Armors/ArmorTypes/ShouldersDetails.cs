@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors.ArmorTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about shoulder protection.
-    /// </summary>
+    /// <summary>Represents detailed information about shoulder protection.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ShouldersDetails : ArmorDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ShouldersDetails" /> class
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ShouldersDetails" /> class</summary>
         public ShouldersDetails()
             : base(ArmorType.Shoulders)
         {

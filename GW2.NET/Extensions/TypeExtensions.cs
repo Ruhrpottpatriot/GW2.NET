@@ -10,9 +10,7 @@ namespace GW2DotNET.Extensions
 {
     using System;
 
-    /// <summary>
-    ///     Provides utility methods for the <see cref="System.Type" /> class.
-    /// </summary>
+    /// <summary>Provides utility methods for the <see cref="System.Type" /> class.</summary>
     internal static class TypeExtensions
     {
         /// <summary>Gets the default value of the specified type.</summary>

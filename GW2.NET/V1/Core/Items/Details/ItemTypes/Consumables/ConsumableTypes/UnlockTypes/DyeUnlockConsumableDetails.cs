@@ -12,23 +12,17 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a dye.
-    /// </summary>
+    /// <summary>Represents detailed information about a dye.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class DyeUnlockConsumableDetails : UnlockConsumableDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="DyeUnlockConsumableDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DyeUnlockConsumableDetails" /> class.</summary>
         public DyeUnlockConsumableDetails()
             : base(UnlockType.Dye)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the dye's color ID.
-        /// </summary>
+        /// <summary>Gets or sets the dye's color ID.</summary>
         [JsonProperty("color_id", Order = 101)]
         public int ColorId { get; set; }
     }

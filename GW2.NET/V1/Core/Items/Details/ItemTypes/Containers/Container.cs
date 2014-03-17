@@ -12,26 +12,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a container.
-    /// </summary>
+    /// <summary>Represents a container.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Container : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
         private ContainerDetails details;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Container" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="Container" /> class.</summary>
         public Container()
             : base(ItemType.Container)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the item details.
-        /// </summary>
+        /// <summary>Gets or sets the item details.</summary>
         [JsonProperty("container", Order = 100)]
         public ContainerDetails Details
         {

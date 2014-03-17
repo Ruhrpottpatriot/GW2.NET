@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.SkillChallenges
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of skill challenge locations.
-    /// </summary>
+    /// <summary>Represents a collection of skill challenge locations.</summary>
     public class SkillChallengeCollection : JsonList<SkillChallenge>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="SkillChallengeCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="SkillChallengeCollection" /> class.</summary>
         public SkillChallengeCollection()
         {
         }

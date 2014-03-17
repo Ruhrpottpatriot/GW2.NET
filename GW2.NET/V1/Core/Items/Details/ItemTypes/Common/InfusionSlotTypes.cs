@@ -15,28 +15,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Enumerates the possible infusion slot types.
-    /// </summary>
+    /// <summary>Enumerates the possible infusion slot types.</summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum InfusionSlotTypes
     {
-        /// <summary>
-        ///     The defensive infusion slot type.
-        /// </summary>
+        /// <summary>The defensive infusion slot type.</summary>
         [EnumMember(Value = "Defense")]
         Defense = 1 << 0, 
 
-        /// <summary>
-        ///     The offensive infusion slot type.
-        /// </summary>
+        /// <summary>The offensive infusion slot type.</summary>
         [EnumMember(Value = "Offense")]
         Offense = 1 << 1, 
 
-        /// <summary>
-        ///     The utility infusion slot type.
-        /// </summary>
+        /// <summary>The utility infusion slot type.</summary>
         [EnumMember(Value = "Utility")]
         Utility = 1 << 2
     }

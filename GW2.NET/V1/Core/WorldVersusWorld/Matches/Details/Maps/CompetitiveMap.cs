@@ -15,32 +15,22 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a World versus World map.
-    /// </summary>
+    /// <summary>Represents a World versus World map.</summary>
     public class CompetitiveMap : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets the map's bonuses.
-        /// </summary>
+        /// <summary>Gets or sets the map's bonuses.</summary>
         [JsonProperty("bonuses", Order = 3)]
         public MapBonusCollection Bonuses { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the map's objectives.
-        /// </summary>
+        /// <summary>Gets or sets the map's objectives.</summary>
         [JsonProperty("objectives", Order = 2)]
         public ObjectiveCollection Objectives { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the map's scoreboard.
-        /// </summary>
+        /// <summary>Gets or sets the map's scoreboard.</summary>
         [JsonProperty("scores", Order = 1)]
         public Scoreboard Scores { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the map's type.
-        /// </summary>
+        /// <summary>Gets or sets the map's type.</summary>
         [JsonProperty("type", Order = 0)]
         public CompetitiveMapType Type { get; set; }
     }

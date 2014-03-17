@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents.UpgradeCom
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a rune upgrade component.
-    /// </summary>
+    /// <summary>Represents detailed information about a rune upgrade component.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class RuneUpgradeComponentDetails : UpgradeComponentDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="RuneUpgradeComponentDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="RuneUpgradeComponentDetails" /> class.</summary>
         public RuneUpgradeComponentDetails()
             : base(UpgradeComponentType.Rune)
         {

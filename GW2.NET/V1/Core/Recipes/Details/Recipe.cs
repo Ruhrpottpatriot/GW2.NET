@@ -16,9 +16,7 @@ namespace GW2DotNET.V1.Core.Recipes.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a crafting recipe.</summary>
     [JsonConverter(typeof(RecipeConverter))]
     public abstract class Recipe : JsonObject, IEquatable<Recipe>, IComparable<Recipe>
     {
@@ -29,84 +27,56 @@ namespace GW2DotNET.V1.Core.Recipes.Details
             this.Type = recipeType;
         }
 
-        /// <summary>
-        ///     Gets or sets the crafting disciplines that can use the recipe.
-        /// </summary>
+        /// <summary>Gets or sets the crafting disciplines that can use the recipe.</summary>
         [JsonProperty("disciplines", Order = 6)]
         public CraftingDisciplines CraftingDisciplines { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the recipe's unlock type(s).
-        /// </summary>
+        /// <summary>Gets or sets the recipe's unlock type(s).</summary>
         [JsonProperty("flags", Order = 7)]
         public RecipeUnlockTypes Flags { get; set; }
 
-        /// <summary>
-        ///     Gets or sets a collection of the required ingredients.
-        /// </summary>
+        /// <summary>Gets or sets a collection of the required ingredients.</summary>
         [JsonProperty("ingredients", Order = 8)]
         public CraftingIngredientCollection Ingredients { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the recipe's minimum rating.
-        /// </summary>
+        /// <summary>Gets or sets the recipe's minimum rating.</summary>
         [JsonProperty("min_rating", Order = 4)]
         public int MinimumRating { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the amount of items produced.
-        /// </summary>
+        /// <summary>Gets or sets the amount of items produced.</summary>
         [JsonProperty("output_item_count", Order = 3)]
         public int OutputItemCount { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the output item's ID.
-        /// </summary>
+        /// <summary>Gets or sets the output item's ID.</summary>
         [JsonProperty("output_item_id", Order = 2)]
         public int OutputItemId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the recipe's ID.
-        /// </summary>
+        /// <summary>Gets or sets the recipe's ID.</summary>
         [JsonProperty("recipe_id", Order = 0)]
         public int RecipeId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the time it takes to craft the recipe.
-        /// </summary>
+        /// <summary>Gets or sets the time it takes to craft the recipe.</summary>
         [JsonProperty("time_to_craft_ms", Order = 5)]
         [JsonConverter(typeof(JsonTimespanConverter))]
         public TimeSpan TimeToCraft { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the type of the output item.
-        /// </summary>
+        /// <summary>Gets or sets the type of the output item.</summary>
         [JsonProperty("type", Order = 1)]
         public RecipeType Type { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(Recipe left, Recipe right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(Recipe left, Recipe right)
         {
             return !object.Equals(left, right);
@@ -166,12 +136,8 @@ namespace GW2DotNET.V1.Core.Recipes.Details
             return this.Equals((Recipe)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.RecipeId;

@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers.ContainerTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an unknown container.
-    /// </summary>
+    /// <summary>Represents detailed information about an unknown container.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownContainerDetails : ContainerDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UnknownContainerDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UnknownContainerDetails" /> class.</summary>
         public UnknownContainerDetails()
             : base(ContainerType.Unknown)
         {

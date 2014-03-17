@@ -12,20 +12,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents one of an item's attributes.
-    /// </summary>
+    /// <summary>Represents one of an item's attributes.</summary>
     public class ItemAttribute : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets the attribute's modifier.
-        /// </summary>
+        /// <summary>Gets or sets the attribute's modifier.</summary>
         [JsonProperty("modifier", Order = 1)]
         public int Modifier { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the attribute's type.
-        /// </summary>
+        /// <summary>Gets or sets the attribute's type.</summary>
         [JsonProperty("attribute", Order = 0)]
         public ItemAttributeType Type { get; set; }
     }

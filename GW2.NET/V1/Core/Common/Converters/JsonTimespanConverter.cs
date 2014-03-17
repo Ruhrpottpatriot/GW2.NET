@@ -14,9 +14,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Converts a timespan to and from its <see cref="System.String" /> representation in milliseconds.
-    /// </summary>
+    /// <summary>Converts a timespan to and from its <see cref="System.String" /> representation in milliseconds.</summary>
     public class JsonTimespanConverter : JsonConverter
     {
         /// <summary>Determines whether this instance can convert the specified object type.</summary>

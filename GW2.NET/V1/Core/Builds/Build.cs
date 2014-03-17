@@ -14,43 +14,27 @@ namespace GW2DotNET.V1.Core.Builds
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents the current build of the game.
-    /// </summary>
-    /// <remarks>
-    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.
-    /// </remarks>
+    /// <summary>Represents the current build of the game.</summary>
+    /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.</remarks>
     public class Build : JsonObject, IEquatable<Build>, IComparable<Build>
     {
-        /// <summary>
-        ///     Gets or sets the current build ID of the game.
-        /// </summary>
+        /// <summary>Gets or sets the current build ID of the game.</summary>
         [JsonProperty("build_id", Order = 0)]
         public int BuildId { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(Build left, Build right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(Build left, Build right)
         {
             return !object.Equals(left, right);
@@ -105,12 +89,8 @@ namespace GW2DotNET.V1.Core.Builds
             return this.Equals((Build)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.BuildId;

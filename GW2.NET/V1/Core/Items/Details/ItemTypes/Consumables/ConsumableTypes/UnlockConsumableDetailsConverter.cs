@@ -18,20 +18,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>
-    ///     Converts an instance of a class that extends <see cref="UnlockConsumableDetails" /> from its
-    ///     <see cref="System.String" /> representation.
-    /// </summary>
+    /// <summary>Converts an instance of a class that extends <see cref="UnlockConsumableDetails" /> from its
+    /// <see cref="System.String" /> representation.</summary>
     public class UnlockConsumableDetailsConverter : ContentBasedTypeCreationConverter
     {
-        /// <summary>
-        ///     Backing field. Holds a dictionary of in-game unlock item types and their corresponding .NET class.
-        /// </summary>
+        /// <summary>Backing field. Holds a dictionary of in-game unlock item types and their corresponding .NET class.</summary>
         private static readonly IDictionary<UnlockType, Type> KnownTypes = new Dictionary<UnlockType, Type>();
 
-        /// <summary>
-        ///     Initializes static members of the <see cref="UnlockConsumableDetailsConverter" /> class.
-        /// </summary>
+        /// <summary>Initializes static members of the <see cref="UnlockConsumableDetailsConverter" /> class.</summary>
         static UnlockConsumableDetailsConverter()
         {
             KnownTypes.Add(UnlockType.Unknown, typeof(UnknownUnlockConsumableDetails));

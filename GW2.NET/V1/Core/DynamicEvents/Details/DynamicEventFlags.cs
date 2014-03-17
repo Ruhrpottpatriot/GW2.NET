@@ -15,9 +15,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Enumerates the possible flags for events.
-    /// </summary>
+    /// <summary>Enumerates the possible flags for events.</summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum DynamicEventFlags

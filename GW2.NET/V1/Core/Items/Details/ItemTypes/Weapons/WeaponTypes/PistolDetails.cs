@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons.WeaponTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a pistol.
-    /// </summary>
+    /// <summary>Represents detailed information about a pistol.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class PistolDetails : WeaponDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="PistolDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="PistolDetails" /> class.</summary>
         public PistolDetails()
             : base(WeaponType.Pistol)
         {

@@ -10,9 +10,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 {
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an unlock item.
-    /// </summary>
+    /// <summary>Represents detailed information about an unlock item.</summary>
     [JsonConverter(typeof(UnlockConsumableDetailsConverter))]
     public abstract class UnlockConsumableDetails : ConsumableDetails
     {
@@ -24,9 +22,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
             this.UnlockType = type;
         }
 
-        /// <summary>
-        ///     Gets or sets the unlock item's unlock type.
-        /// </summary>
+        /// <summary>Gets or sets the unlock item's unlock type.</summary>
         [JsonProperty("unlock_type", Order = 100)]
         public UnlockType UnlockType { get; set; }
     }

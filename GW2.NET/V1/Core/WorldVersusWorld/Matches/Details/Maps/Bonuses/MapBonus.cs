@@ -13,20 +13,14 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Bonuses
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a World versus World map's bonus.
-    /// </summary>
+    /// <summary>Represents a World versus World map's bonus.</summary>
     public class MapBonus : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets the team that holds the bonus.
-        /// </summary>
+        /// <summary>Gets or sets the team that holds the bonus.</summary>
         [JsonProperty("owner", Order = 1)]
         public TeamColor Owner { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the bonus type.
-        /// </summary>
+        /// <summary>Gets or sets the bonus type.</summary>
         [JsonProperty("type", Order = 0)]
         public MapBonusType Type { get; set; }
     }

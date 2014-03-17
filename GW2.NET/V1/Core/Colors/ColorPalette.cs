@@ -16,9 +16,7 @@ namespace GW2DotNET.V1.Core.Colors
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a named color and its color component information for cloth, leather and metal materials.
-    /// </summary>
+    /// <summary>Represents a named color and its color component information for cloth, leather and metal materials.</summary>
     public class ColorPalette : JsonObject, IEquatable<ColorPalette>, IComparable<ColorPalette>
     {
         /// <summary>Infrastructure. Stores a color model.</summary>
@@ -30,16 +28,12 @@ namespace GW2DotNET.V1.Core.Colors
         /// <summary>Infrastructure. Stores a color model.</summary>
         private ColorModel metal;
 
-        /// <summary>
-        ///     Gets or sets the base RGB values.
-        /// </summary>
+        /// <summary>Gets or sets the base RGB values.</summary>
         [JsonProperty("base_rgb", Order = 2)]
         [JsonConverter(typeof(JsonColorConverter))]
         public Color BaseRgb { get; set; }
 
-        /// <summary>
-        ///     Gets or sets detailed information on the color's appearance when applied to cloth armor.
-        /// </summary>
+        /// <summary>Gets or sets detailed information on the color's appearance when applied to cloth armor.</summary>
         [JsonProperty("cloth", Order = 3)]
         public ColorModel Cloth
         {
@@ -55,15 +49,11 @@ namespace GW2DotNET.V1.Core.Colors
             }
         }
 
-        /// <summary>
-        ///     Gets or sets the color's ID.
-        /// </summary>
+        /// <summary>Gets or sets the color's ID.</summary>
         [JsonProperty("color_id", Order = 0)]
         public int ColorId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets detailed information on the color's appearance when applied to leather armor.
-        /// </summary>
+        /// <summary>Gets or sets detailed information on the color's appearance when applied to leather armor.</summary>
         [JsonProperty("leather", Order = 4)]
         public ColorModel Leather
         {
@@ -79,9 +69,7 @@ namespace GW2DotNET.V1.Core.Colors
             }
         }
 
-        /// <summary>
-        ///     Gets or sets detailed information on the color's appearance when applied to metal armor.
-        /// </summary>
+        /// <summary>Gets or sets detailed information on the color's appearance when applied to metal armor.</summary>
         [JsonProperty("metal", Order = 5)]
         public ColorModel Metal
         {
@@ -97,35 +85,23 @@ namespace GW2DotNET.V1.Core.Colors
             }
         }
 
-        /// <summary>
-        ///     Gets or sets the name of the dye.
-        /// </summary>
+        /// <summary>Gets or sets the name of the dye.</summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(ColorPalette left, ColorPalette right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(ColorPalette left, ColorPalette right)
         {
             return !object.Equals(left, right);
@@ -185,12 +161,8 @@ namespace GW2DotNET.V1.Core.Colors
             return this.Equals((ColorPalette)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.ColorId;

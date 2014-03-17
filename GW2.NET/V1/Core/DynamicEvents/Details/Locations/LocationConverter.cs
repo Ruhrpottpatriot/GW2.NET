@@ -18,20 +18,14 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>
-    ///     Converts an instance of a class that extends <see cref="Location" /> from its <see cref="System.String" />
-    ///     representation.
-    /// </summary>
+    /// <summary>Converts an instance of a class that extends <see cref="Location" /> from its <see cref="System.String" />
+    /// representation.</summary>
     public class LocationConverter : ContentBasedTypeCreationConverter
     {
-        /// <summary>
-        ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
-        /// </summary>
+        /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
         private static readonly IDictionary<LocationType, Type> KnownTypes = new Dictionary<LocationType, Type>();
 
-        /// <summary>
-        ///     Initializes static members of the <see cref="LocationConverter" /> class.
-        /// </summary>
+        /// <summary>Initializes static members of the <see cref="LocationConverter" /> class.</summary>
         static LocationConverter()
         {
             KnownTypes.Add(LocationType.Unknown, typeof(UnknownLocation));

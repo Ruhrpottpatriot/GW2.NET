@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a consumable crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a consumable crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ConsumableRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ConsumableRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ConsumableRecipe" /> class.</summary>
         public ConsumableRecipe()
             : base(RecipeType.Consumable)
         {

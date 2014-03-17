@@ -16,9 +16,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
     using Newtonsoft.Json.Converters;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>
-    ///     Converts a bit flag <see cref="Enum" /> to and from a string array of flag names.
-    /// </summary>
+    /// <summary>Converts a bit flag <see cref="Enum" /> to and from a string array of flag names.</summary>
     public class StringEnumFlagsConverter : StringEnumConverter
     {
         /// <summary>Determines whether this instance can convert the specified object type.</summary>

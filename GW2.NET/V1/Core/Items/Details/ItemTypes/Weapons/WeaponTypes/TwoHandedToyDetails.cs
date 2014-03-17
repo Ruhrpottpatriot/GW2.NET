@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons.WeaponTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a two-handed toy.
-    /// </summary>
+    /// <summary>Represents detailed information about a two-handed toy.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class TwoHandedToyDetails : WeaponDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="TwoHandedToyDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="TwoHandedToyDetails" /> class.</summary>
         public TwoHandedToyDetails()
             : base(WeaponType.TwoHandedToy)
         {

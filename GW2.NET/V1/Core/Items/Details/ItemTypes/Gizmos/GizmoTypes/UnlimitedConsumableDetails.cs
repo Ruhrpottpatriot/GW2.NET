@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos.GizmoTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an unlimited consumable gizmo.
-    /// </summary>
+    /// <summary>Represents detailed information about an unlimited consumable gizmo.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnlimitedConsumableDetails : GizmoDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UnlimitedConsumableDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UnlimitedConsumableDetails" /> class.</summary>
         public UnlimitedConsumableDetails()
             : base(GizmoType.UnlimitedConsumable)
         {

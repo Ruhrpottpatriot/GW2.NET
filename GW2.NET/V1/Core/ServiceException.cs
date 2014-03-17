@@ -13,12 +13,8 @@ namespace GW2DotNET.V1.Core
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Core.Errors;
 
-    /// <summary>
-    ///     Represents an API error.
-    /// </summary>
-    /// <remarks>
-    ///     See <a href="http://wiki.guildwars2.com/wiki/API:1" /> for more information regarding API errors.
-    /// </remarks>
+    /// <summary>Represents an API error.</summary>
+    /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1" /> for more information regarding API errors.</remarks>
     public class ServiceException : Exception
     {
         /// <summary>Initializes a new instance of the <see cref="ServiceException"/> class.</summary>
@@ -30,9 +26,7 @@ namespace GW2DotNET.V1.Core
             this.Details = details;
         }
 
-        /// <summary>
-        ///     Gets the error details.
-        /// </summary>
+        /// <summary>Gets the error details.</summary>
         public ErrorResult Details { get; private set; }
     }
 }

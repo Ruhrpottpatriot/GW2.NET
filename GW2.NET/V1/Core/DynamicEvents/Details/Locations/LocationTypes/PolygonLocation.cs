@@ -14,29 +14,21 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a polygonal location of an event on the map.
-    /// </summary>
+    /// <summary>Represents a polygonal location of an event on the map.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class PolygonLocation : Location
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="PolygonLocation" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="PolygonLocation" /> class.</summary>
         public PolygonLocation()
             : base(LocationType.Polygon)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the series of points in the polygon.
-        /// </summary>
+        /// <summary>Gets or sets the series of points in the polygon.</summary>
         [JsonProperty("points", Order = 5)]
         public PointCollection PointCollection { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the location's range on the z-axis.
-        /// </summary>
+        /// <summary>Gets or sets the location's range on the z-axis.</summary>
         [JsonProperty("z_range", Order = 4)]
         [JsonConverter(typeof(JsonPointConverter))]
         public Point ZRange { get; set; }

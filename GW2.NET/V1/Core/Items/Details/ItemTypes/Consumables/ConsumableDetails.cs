@@ -14,9 +14,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a consumable item.
-    /// </summary>
+    /// <summary>Represents detailed information about a consumable item.</summary>
     [JsonConverter(typeof(ConsumableDetailsConverter))]
     public abstract class ConsumableDetails : JsonObject, IEquatable<ConsumableDetails>
     {
@@ -30,35 +28,23 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
         /// <summary>Gets or sets the consumable.</summary>
         public Consumable Consumable { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the consumable's type.
-        /// </summary>
+        /// <summary>Gets or sets the consumable's type.</summary>
         [JsonProperty("type", Order = 0)]
         public ConsumableType Type { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(ConsumableDetails left, ConsumableDetails right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(ConsumableDetails left, ConsumableDetails right)
         {
             return !object.Equals(left, right);
@@ -105,12 +91,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
             return this.Equals((ConsumableDetails)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.Consumable != null ? this.Consumable.GetHashCode() : 0;

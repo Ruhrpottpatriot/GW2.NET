@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Items.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Wraps a collection of item IDs.
-    /// </summary>
+    /// <summary>Wraps a collection of item IDs.</summary>
     public class ItemsResult : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets a collection of item IDs.
-        /// </summary>
+        /// <summary>Gets or sets a collection of item IDs.</summary>
         [JsonProperty("items")]
         public ItemCollection Items { get; set; }
     }

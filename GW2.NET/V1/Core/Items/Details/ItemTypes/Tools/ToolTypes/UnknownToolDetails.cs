@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools.ToolTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an unknown tool.
-    /// </summary>
+    /// <summary>Represents detailed information about an unknown tool.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownToolDetails : ToolDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UnknownToolDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UnknownToolDetails" /> class.</summary>
         public UnknownToolDetails()
             : base(ToolType.Unknown)
         {

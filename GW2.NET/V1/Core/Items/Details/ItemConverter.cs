@@ -32,20 +32,14 @@ namespace GW2DotNET.V1.Core.Items.Details
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>
-    ///     Converts an instance of a class that extends <see cref="Item" /> from its <see cref="System.String" />
-    ///     representation.
-    /// </summary>
+    /// <summary>Converts an instance of a class that extends <see cref="Item" /> from its <see cref="System.String" />
+    /// representation.</summary>
     public class ItemConverter : ContentBasedTypeCreationConverter
     {
-        /// <summary>
-        ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
-        /// </summary>
+        /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
         private static readonly IDictionary<ItemType, Type> KnownTypes = new Dictionary<ItemType, Type>();
 
-        /// <summary>
-        ///     Initializes static members of the <see cref="ItemConverter" /> class.
-        /// </summary>
+        /// <summary>Initializes static members of the <see cref="ItemConverter" /> class.</summary>
         static ItemConverter()
         {
             KnownTypes.Add(ItemType.Unknown, typeof(UnknownItem));

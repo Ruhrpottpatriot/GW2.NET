@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors.ArmorTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an unknown armor piece.
-    /// </summary>
+    /// <summary>Represents detailed information about an unknown armor piece.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownArmorDetails : ArmorDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UnknownArmorDetails" /> class
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UnknownArmorDetails" /> class</summary>
         public UnknownArmorDetails()
             : base(ArmorType.Unknown)
         {

@@ -13,14 +13,10 @@ namespace GW2DotNET.V1.Core.Maps
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of maps and their details.
-    /// </summary>
+    /// <summary>Represents a collection of maps and their details.</summary>
     public class MapCollection : JsonDictionary<int, Map>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MapCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MapCollection" /> class.</summary>
         public MapCollection()
         {
         }

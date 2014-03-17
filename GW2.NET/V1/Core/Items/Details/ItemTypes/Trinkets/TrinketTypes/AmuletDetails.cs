@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets.TrinketTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an amulet.
-    /// </summary>
+    /// <summary>Represents detailed information about an amulet.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class AmuletDetails : TrinketDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="AmuletDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="AmuletDetails" /> class.</summary>
         public AmuletDetails()
             : base(TrinketType.Amulet)
         {

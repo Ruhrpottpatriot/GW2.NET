@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
     /// <summary>Represents a request for static information about the continents.</summary>
     public class ContinentsRequest : ServiceRequest
     {
-        /// <summary>Initializes a new instance of the <see cref="ContinentsRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ContinentsRequest" /> class.</summary>
         public ContinentsRequest()
             : base(Services.Continents)
         {

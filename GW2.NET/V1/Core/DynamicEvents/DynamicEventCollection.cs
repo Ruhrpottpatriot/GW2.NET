@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.DynamicEvents
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of dynamic events and their status.
-    /// </summary>
+    /// <summary>Represents a collection of dynamic events and their status.</summary>
     public class DynamicEventCollection : JsonList<DynamicEvent>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="DynamicEventCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventCollection" /> class.</summary>
         public DynamicEventCollection()
         {
         }

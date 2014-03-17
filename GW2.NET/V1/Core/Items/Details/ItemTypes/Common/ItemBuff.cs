@@ -12,20 +12,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents an item buff.
-    /// </summary>
+    /// <summary>Represents an item buff.</summary>
     public class ItemBuff : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets the buff's description.
-        /// </summary>
+        /// <summary>Gets or sets the buff's description.</summary>
         [JsonProperty("description", Order = 1)]
         public string Description { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the buff's skill ID.
-        /// </summary>
+        /// <summary>Gets or sets the buff's skill ID.</summary>
         [JsonProperty("skill_id", Order = 0)]
         public string SkillId { get; set; }
     }

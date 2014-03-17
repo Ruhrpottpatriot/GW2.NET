@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Continents
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Wraps a collection of continents.
-    /// </summary>
+    /// <summary>Wraps a collection of continents.</summary>
     public class ContinentsResult : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets a collection of continents.
-        /// </summary>
+        /// <summary>Gets or sets a collection of continents.</summary>
         [JsonProperty("continents", Order = 0)]
         public ContinentCollection Continents { get; set; }
     }

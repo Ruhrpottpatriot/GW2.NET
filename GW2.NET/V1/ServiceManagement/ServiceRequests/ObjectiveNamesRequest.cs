@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
     /// <summary>Represents a request for a list of objectives and their localized name.</summary>
     public class ObjectiveNamesRequest : ServiceRequest
     {
-        /// <summary>Initializes a new instance of the <see cref="ObjectiveNamesRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveNamesRequest" /> class.</summary>
         public ObjectiveNamesRequest()
             : base(Services.ObjectiveNames)
         {

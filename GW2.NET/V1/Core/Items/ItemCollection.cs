@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Items
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of item IDs.
-    /// </summary>
+    /// <summary>Represents a collection of item IDs.</summary>
     public class ItemCollection : JsonList<int>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ItemCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ItemCollection" /> class.</summary>
         public ItemCollection()
         {
         }

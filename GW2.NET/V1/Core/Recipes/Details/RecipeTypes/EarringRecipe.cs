@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an earring crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about an earring crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class EarringRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="EarringRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="EarringRecipe" /> class.</summary>
         public EarringRecipe()
             : base(RecipeType.Earring)
         {

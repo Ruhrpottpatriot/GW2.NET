@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a bulk crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a bulk crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class BulkRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="BulkRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="BulkRecipe" /> class.</summary>
         public BulkRecipe()
             : base(RecipeType.Bulk)
         {

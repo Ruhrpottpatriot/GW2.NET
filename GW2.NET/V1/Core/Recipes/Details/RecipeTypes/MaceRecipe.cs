@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a mace crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a mace crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class MaceRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MaceRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MaceRecipe" /> class.</summary>
         public MaceRecipe()
             : base(RecipeType.Mace)
         {

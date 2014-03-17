@@ -16,59 +16,39 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Tasks
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a renown heart location.
-    /// </summary>
+    /// <summary>Represents a renown heart location.</summary>
     public class RenownTask : JsonObject, IEquatable<RenownTask>, IComparable<RenownTask>
     {
-        /// <summary>
-        ///     Gets or sets the task's coordinates.
-        /// </summary>
+        /// <summary>Gets or sets the task's coordinates.</summary>
         [JsonProperty("coord", Order = 3)]
         [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the level.
-        /// </summary>
+        /// <summary>Gets or sets the level.</summary>
         [JsonProperty("level", Order = 2)]
         public int Level { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the name or objective.
-        /// </summary>
+        /// <summary>Gets or sets the name or objective.</summary>
         [JsonProperty("objective", Order = 1)]
         public string Objective { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the renown heart ID.
-        /// </summary>
+        /// <summary>Gets or sets the renown heart ID.</summary>
         [JsonProperty("task_id", Order = 0)]
         public int TaskId { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(RenownTask left, RenownTask right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(RenownTask left, RenownTask right)
         {
             return !object.Equals(left, right);
@@ -128,12 +108,8 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Tasks
             return this.Equals((RenownTask)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.TaskId;

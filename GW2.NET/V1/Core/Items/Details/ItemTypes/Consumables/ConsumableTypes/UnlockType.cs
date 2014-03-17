@@ -13,9 +13,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the possible types of unlock consumables.
-    /// </summary>
+    /// <summary>Enumerates the possible types of unlock consumables.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum UnlockType
     {

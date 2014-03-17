@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents an unknown location.
-    /// </summary>
+    /// <summary>Represents an unknown location.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownLocation : Location
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UnknownLocation" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UnknownLocation" /> class.</summary>
         public UnknownLocation()
             : base(LocationType.Unknown)
         {

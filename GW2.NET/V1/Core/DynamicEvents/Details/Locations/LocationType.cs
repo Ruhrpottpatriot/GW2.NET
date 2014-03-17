@@ -13,9 +13,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the possible location shapes.
-    /// </summary>
+    /// <summary>Enumerates the possible location shapes.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum LocationType
     {

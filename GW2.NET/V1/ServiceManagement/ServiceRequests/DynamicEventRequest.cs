@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private int? worldId;
 
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventRequest" /> class.</summary>
         public DynamicEventRequest()
             : base(Services.Events)
         {

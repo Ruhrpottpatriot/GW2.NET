@@ -14,46 +14,30 @@ namespace GW2DotNET.V1.Core.Maps.Names
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a map and its localized name.
-    /// </summary>
+    /// <summary>Represents a map and its localized name.</summary>
     public class MapName : JsonObject, IEquatable<MapName>, IComparable<MapName>
     {
-        /// <summary>
-        ///     Gets or sets the map's ID.
-        /// </summary>
+        /// <summary>Gets or sets the map's ID.</summary>
         [JsonProperty("id", Order = 0)]
         public int Id { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the map's name.
-        /// </summary>
+        /// <summary>Gets or sets the map's name.</summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(MapName left, MapName right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(MapName left, MapName right)
         {
             return !object.Equals(left, right);
@@ -113,12 +97,8 @@ namespace GW2DotNET.V1.Core.Maps.Names
             return this.Equals((MapName)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.Id;

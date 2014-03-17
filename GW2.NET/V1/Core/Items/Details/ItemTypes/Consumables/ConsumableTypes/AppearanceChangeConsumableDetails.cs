@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an appearance changing consumable item.
-    /// </summary>
+    /// <summary>Represents detailed information about an appearance changing consumable item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class AppearanceChangeConsumableDetails : ConsumableDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="AppearanceChangeConsumableDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="AppearanceChangeConsumableDetails" /> class.</summary>
         public AppearanceChangeConsumableDetails()
             : base(ConsumableType.AppearanceChange)
         {

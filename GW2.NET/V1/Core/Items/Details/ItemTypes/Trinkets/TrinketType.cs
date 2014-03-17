@@ -13,9 +13,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the possible trinket types.
-    /// </summary>
+    /// <summary>Enumerates the possible trinket types.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TrinketType
     {

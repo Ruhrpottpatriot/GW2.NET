@@ -13,9 +13,7 @@ namespace GW2DotNET.V1.Core.Recipes.Details
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates all possible recipe types.
-    /// </summary>
+    /// <summary>Enumerates all possible recipe types.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum RecipeType
     {

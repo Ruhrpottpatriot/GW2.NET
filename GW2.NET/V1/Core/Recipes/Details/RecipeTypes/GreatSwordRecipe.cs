@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a great sword crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a great sword crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GreatSwordRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="GreatSwordRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="GreatSwordRecipe" /> class.</summary>
         public GreatSwordRecipe()
             : base(RecipeType.GreatSword)
         {

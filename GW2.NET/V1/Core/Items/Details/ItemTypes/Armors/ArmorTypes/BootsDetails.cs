@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors.ArmorTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about feet protection.
-    /// </summary>
+    /// <summary>Represents detailed information about feet protection.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class BootsDetails : ArmorDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="BootsDetails" /> class
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="BootsDetails" /> class</summary>
         public BootsDetails()
             : base(ArmorType.Boots)
         {

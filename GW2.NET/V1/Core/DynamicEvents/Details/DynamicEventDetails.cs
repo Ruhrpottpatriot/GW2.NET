@@ -15,35 +15,25 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents details about a specific dynamic event.
-    /// </summary>
+    /// <summary>Represents details about a specific dynamic event.</summary>
     public class DynamicEventDetails : JsonObject, IEquatable<DynamicEventDetails>, IComparable<DynamicEventDetails>
     {
         /// <summary>Infrastructure. Stores the location.</summary>
         private Location location;
 
-        /// <summary>
-        ///     Gets or sets the event's ID.
-        /// </summary>
+        /// <summary>Gets or sets the event's ID.</summary>
         [JsonProperty("event_id", Order = 0)]
         public Guid EventId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets additional flags.
-        /// </summary>
+        /// <summary>Gets or sets additional flags.</summary>
         [JsonProperty("flags", Order = 4)]
         public DynamicEventFlags Flags { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the event level.
-        /// </summary>
+        /// <summary>Gets or sets the event level.</summary>
         [JsonProperty("level", Order = 2)]
         public int Level { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the location of the event.
-        /// </summary>
+        /// <summary>Gets or sets the location of the event.</summary>
         [JsonProperty("location", Order = 5)]
         public Location Location
         {
@@ -59,41 +49,27 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
             }
         }
 
-        /// <summary>
-        ///     Gets or sets the map where the event takes place.
-        /// </summary>
+        /// <summary>Gets or sets the map where the event takes place.</summary>
         [JsonProperty("map_id", Order = 3)]
         public int MapId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the name of the event.
-        /// </summary>
+        /// <summary>Gets or sets the name of the event.</summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(DynamicEventDetails left, DynamicEventDetails right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(DynamicEventDetails left, DynamicEventDetails right)
         {
             return !object.Equals(left, right);
@@ -131,8 +107,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
-        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>;
-        ///     otherwise, false.</returns>
+        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)
         {
@@ -154,12 +129,8 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
             return this.Equals((DynamicEventDetails)obj);
         }
 
-        /// <summary>
-        ///     Serves as a hash function for a particular type.
-        /// </summary>
-        /// <returns>
-        ///     A hash code for the current <see cref="T:System.Object" />.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.EventId.GetHashCode();

@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools.GatheringTool
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a foraging tool.
-    /// </summary>
+    /// <summary>Represents detailed information about a foraging tool.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class ForagingToolDetails : GatheringToolDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ForagingToolDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ForagingToolDetails" /> class.</summary>
         public ForagingToolDetails()
             : base(GatheringToolType.Foraging)
         {

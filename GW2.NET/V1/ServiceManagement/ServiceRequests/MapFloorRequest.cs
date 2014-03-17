@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private int floor;
 
-        /// <summary>Initializes a new instance of the <see cref="MapFloorRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MapFloorRequest" /> class.</summary>
         public MapFloorRequest()
             : base(Services.MapFloor)
         {

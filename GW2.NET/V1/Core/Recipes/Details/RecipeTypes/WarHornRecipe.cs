@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a war horn crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a war horn crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class WarHornRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="WarHornRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="WarHornRecipe" /> class.</summary>
         public WarHornRecipe()
             : base(RecipeType.WarHorn)
         {

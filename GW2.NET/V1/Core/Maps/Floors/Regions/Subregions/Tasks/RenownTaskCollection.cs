@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Tasks
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of renown heart locations.
-    /// </summary>
+    /// <summary>Represents a collection of renown heart locations.</summary>
     public class RenownTaskCollection : JsonList<RenownTask>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="RenownTaskCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="RenownTaskCollection" /> class.</summary>
         public RenownTaskCollection()
         {
         }

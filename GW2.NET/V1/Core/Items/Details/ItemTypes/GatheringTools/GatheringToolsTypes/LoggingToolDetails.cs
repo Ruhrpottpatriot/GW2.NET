@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools.GatheringTool
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a logging tool.
-    /// </summary>
+    /// <summary>Represents detailed information about a logging tool.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class LoggingToolDetails : GatheringToolDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="LoggingToolDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="LoggingToolDetails" /> class.</summary>
         public LoggingToolDetails()
             : base(GatheringToolType.Logging)
         {

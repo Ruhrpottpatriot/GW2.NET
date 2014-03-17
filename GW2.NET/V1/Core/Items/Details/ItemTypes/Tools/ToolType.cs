@@ -13,9 +13,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the possible tool types.
-    /// </summary>
+    /// <summary>Enumerates the possible tool types.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ToolType
     {

@@ -16,74 +16,50 @@ namespace GW2DotNET.V1.Core.Colors
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a color's component information.
-    /// </summary>
+    /// <summary>Represents a color's component information.</summary>
     public class ColorModel : JsonObject, IEquatable<ColorModel>
     {
-        /// <summary>
-        ///     Gets or sets the brightness.
-        /// </summary>
+        /// <summary>Gets or sets the brightness.</summary>
         [JsonProperty("brightness", Order = 0)]
         public int Brightness { get; set; }
 
         /// <summary>Gets or sets the color palette.</summary>
         public ColorPalette ColorPalette { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the contrast.
-        /// </summary>
+        /// <summary>Gets or sets the contrast.</summary>
         [JsonProperty("contrast", Order = 1)]
         public double Contrast { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the hue in the HSL color space.
-        /// </summary>
+        /// <summary>Gets or sets the hue in the HSL color space.</summary>
         [JsonProperty("hue", Order = 2)]
         public int Hue { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the lightness in the HSL color space.
-        /// </summary>
+        /// <summary>Gets or sets the lightness in the HSL color space.</summary>
         [JsonProperty("lightness", Order = 4)]
         public double Lightness { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the color.
-        /// </summary>
+        /// <summary>Gets or sets the color.</summary>
         [JsonProperty("rgb", Order = 5)]
         [JsonConverter(typeof(JsonColorConverter))]
         public Color Rgb { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the saturation in the HSL color space.
-        /// </summary>
+        /// <summary>Gets or sets the saturation in the HSL color space.</summary>
         [JsonProperty("saturation", Order = 3)]
         public double Saturation { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(ColorModel left, ColorModel right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(ColorModel left, ColorModel right)
         {
             return !object.Equals(left, right);
@@ -109,8 +85,7 @@ namespace GW2DotNET.V1.Core.Colors
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
-        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>;
-        ///     otherwise, false.</returns>
+        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The object to compare with the current object. </param>
         public override bool Equals(object obj)
         {
@@ -132,12 +107,8 @@ namespace GW2DotNET.V1.Core.Colors
             return this.Equals((ColorModel)obj);
         }
 
-        /// <summary>
-        ///     Serves as a hash function for a particular type.
-        /// </summary>
-        /// <returns>
-        ///     A hash code for the current <see cref="T:System.Object" />.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             unchecked

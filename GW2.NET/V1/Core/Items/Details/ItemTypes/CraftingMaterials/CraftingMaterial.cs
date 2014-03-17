@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.CraftingMaterials
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a crafting material.
-    /// </summary>
+    /// <summary>Represents a crafting material.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class CraftingMaterial : Item
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="CraftingMaterial" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="CraftingMaterial" /> class.</summary>
         public CraftingMaterial()
             : base(ItemType.CraftingMaterial)
         {

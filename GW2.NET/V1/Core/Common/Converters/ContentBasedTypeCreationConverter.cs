@@ -15,16 +15,10 @@ namespace GW2DotNET.V1.Core.Common.Converters
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>
-    ///     Deserializes an instance of a specific type based on the content.
-    ///     This is useful for complex types with an inheritance tree,
-    ///     where the exact type of the JSON content is not known at compile time.
-    /// </summary>
+    /// <summary>Deserializes an instance of a specific type based on the content. This is useful for complex types with an inheritance tree, where the exact type of the JSON content is not known at compile time.</summary>
     public abstract class ContentBasedTypeCreationConverter : JsonConverter
     {
-        /// <summary>
-        ///     Gets a value indicating whether this <see cref="JsonConverter" /> can write JSON.
-        /// </summary>
+        /// <summary>Gets a value indicating whether this <see cref="JsonConverter" /> can write JSON.</summary>
         /// <value><c>true</c> if this <see cref="JsonConverter" /> can write JSON; otherwise, <c>false</c>.</value>
         public override bool CanWrite
         {

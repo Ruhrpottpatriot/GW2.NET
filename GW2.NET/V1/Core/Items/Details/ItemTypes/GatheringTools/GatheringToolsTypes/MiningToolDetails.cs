@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools.GatheringTool
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a mining tool.
-    /// </summary>
+    /// <summary>Represents detailed information about a mining tool.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class MiningToolDetails : GatheringToolDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MiningToolDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MiningToolDetails" /> class.</summary>
         public MiningToolDetails()
             : base(GatheringToolType.Mining)
         {

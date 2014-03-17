@@ -14,9 +14,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an armor piece.
-    /// </summary>
+    /// <summary>Represents detailed information about an armor piece.</summary>
     [JsonConverter(typeof(ArmorDetailsConverter))]
     public abstract class ArmorDetails : EquipmentDetails, IEquatable<ArmorDetails>
     {
@@ -30,47 +28,31 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         /// <summary>Gets or sets the armor.</summary>
         public Armor Armor { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the armor piece's defense stat.
-        /// </summary>
+        /// <summary>Gets or sets the armor piece's defense stat.</summary>
         [JsonProperty("defense", Order = 2)]
         public int Defense { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the armor piece's type.
-        /// </summary>
+        /// <summary>Gets or sets the armor piece's type.</summary>
         [JsonProperty("type", Order = 0)]
         public ArmorType Type { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the armor piece's weight class.
-        /// </summary>
+        /// <summary>Gets or sets the armor piece's weight class.</summary>
         [JsonProperty("weight_class", Order = 1)]
         public ArmorWeightClass WeightClass { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(ArmorDetails left, ArmorDetails right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(ArmorDetails left, ArmorDetails right)
         {
             return !object.Equals(left, right);
@@ -117,12 +99,8 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
             return this.Equals((ArmorDetails)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.Armor != null ? this.Armor.GetHashCode() : 0;

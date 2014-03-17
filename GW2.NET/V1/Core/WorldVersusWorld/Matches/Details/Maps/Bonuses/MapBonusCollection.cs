@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Bonuses
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of World versus World map bonuses.
-    /// </summary>
+    /// <summary>Represents a collection of World versus World map bonuses.</summary>
     public class MapBonusCollection : JsonList<MapBonus>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MapBonusCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MapBonusCollection" /> class.</summary>
         public MapBonusCollection()
         {
         }

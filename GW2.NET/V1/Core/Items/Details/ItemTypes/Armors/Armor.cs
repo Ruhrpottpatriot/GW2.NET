@@ -12,26 +12,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents an armor piece.
-    /// </summary>
+    /// <summary>Represents an armor piece.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Armor : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
         private ArmorDetails details;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Armor" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="Armor" /> class.</summary>
         public Armor()
             : base(ItemType.Armor)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the item details.
-        /// </summary>
+        /// <summary>Gets or sets the item details.</summary>
         [JsonProperty("armor", Order = 100)]
         public ArmorDetails Details
         {

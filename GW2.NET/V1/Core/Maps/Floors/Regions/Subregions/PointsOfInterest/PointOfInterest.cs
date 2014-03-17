@@ -17,66 +17,44 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.PointsOfInterest
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Represents a Point of Interest (POI) location.
-    /// </summary>
+    /// <summary>Represents a Point of Interest (POI) location.</summary>
     public class PointOfInterest : JsonObject, IEquatable<PointOfInterest>, IComparable<PointOfInterest>
     {
-        /// <summary>
-        ///     Gets or sets the Point of Interest's coordinates.
-        /// </summary>
+        /// <summary>Gets or sets the Point of Interest's coordinates.</summary>
         [JsonProperty("coord", Order = 4)]
         [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the Point of Interest's floor.
-        /// </summary>
+        /// <summary>Gets or sets the Point of Interest's floor.</summary>
         [JsonProperty("floor", Order = 3)]
         public int Floor { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the Point of Interest's name.
-        /// </summary>
+        /// <summary>Gets or sets the Point of Interest's name.</summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the Point of Interest's ID.
-        /// </summary>
+        /// <summary>Gets or sets the Point of Interest's ID.</summary>
         [JsonProperty("poi_id", Order = 0)]
         public int PointOfInterestId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the Point of Interest's type.
-        /// </summary>
+        /// <summary>Gets or sets the Point of Interest's type.</summary>
         [JsonProperty("type", Order = 2)]
         [JsonConverter(typeof(StringEnumConverter))]
         public PointOfInterestType Type { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(PointOfInterest left, PointOfInterest right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(PointOfInterest left, PointOfInterest right)
         {
             return !object.Equals(left, right);
@@ -136,12 +114,8 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.PointsOfInterest
             return this.Equals((PointOfInterest)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.PointOfInterestId;

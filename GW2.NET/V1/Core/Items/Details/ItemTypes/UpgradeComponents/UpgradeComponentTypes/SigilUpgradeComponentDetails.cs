@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents.UpgradeCom
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a sigil upgrade component.
-    /// </summary>
+    /// <summary>Represents detailed information about a sigil upgrade component.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class SigilUpgradeComponentDetails : UpgradeComponentDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="SigilUpgradeComponentDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="SigilUpgradeComponentDetails" /> class.</summary>
         public SigilUpgradeComponentDetails()
             : base(UpgradeComponentType.Sigil)
         {

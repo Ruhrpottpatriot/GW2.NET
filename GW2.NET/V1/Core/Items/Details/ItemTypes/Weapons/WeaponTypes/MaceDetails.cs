@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons.WeaponTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a mace.
-    /// </summary>
+    /// <summary>Represents detailed information about a mace.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class MaceDetails : WeaponDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MaceDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MaceDetails" /> class.</summary>
         public MaceDetails()
             : base(WeaponType.Mace)
         {

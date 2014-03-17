@@ -13,9 +13,7 @@ namespace GW2DotNET.V1.Core.Items.Details
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the known item rarities.
-    /// </summary>
+    /// <summary>Enumerates the known item rarities.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ItemRarity
     {

@@ -15,9 +15,7 @@ namespace GW2DotNET.V1.Core.Items.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Enumerates the known game type restrictions.
-    /// </summary>
+    /// <summary>Enumerates the known game type restrictions.</summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum GameRestrictions

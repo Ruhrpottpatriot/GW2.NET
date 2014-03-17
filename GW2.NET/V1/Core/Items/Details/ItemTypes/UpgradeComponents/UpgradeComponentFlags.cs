@@ -15,9 +15,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Enumerates the possible upgrade component flags.
-    /// </summary>
+    /// <summary>Enumerates the possible upgrade component flags.</summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum UpgradeComponentFlags

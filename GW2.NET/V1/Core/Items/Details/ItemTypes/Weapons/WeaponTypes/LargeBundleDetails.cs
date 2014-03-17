@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons.WeaponTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a large bundle.
-    /// </summary>
+    /// <summary>Represents detailed information about a large bundle.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class LargeBundleDetails : WeaponDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="LargeBundleDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="LargeBundleDetails" /> class.</summary>
         public LargeBundleDetails()
             : base(WeaponType.LargeBundle)
         {

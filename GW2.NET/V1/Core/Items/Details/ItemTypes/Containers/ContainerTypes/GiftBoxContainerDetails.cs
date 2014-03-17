@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers.ContainerTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a gift box container.
-    /// </summary>
+    /// <summary>Represents detailed information about a gift box container.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GiftBoxContainerDetails : ContainerDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="GiftBoxContainerDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="GiftBoxContainerDetails" /> class.</summary>
         public GiftBoxContainerDetails()
             : base(ContainerType.GiftBox)
         {

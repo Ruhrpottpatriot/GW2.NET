@@ -16,15 +16,11 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a collection of points.
-    /// </summary>
+    /// <summary>Represents a collection of points.</summary>
     [JsonArray(ItemConverterType = typeof(JsonPointFConverter))]
     public class PointCollection : JsonList<PointF>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="PointCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="PointCollection" /> class.</summary>
         public PointCollection()
         {
         }

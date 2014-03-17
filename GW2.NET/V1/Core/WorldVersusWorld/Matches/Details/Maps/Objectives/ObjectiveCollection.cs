@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Objectives
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of a World versus World map objectives.
-    /// </summary>
+    /// <summary>Represents a collection of a World versus World map objectives.</summary>
     public class ObjectiveCollection : JsonList<Objective>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="ObjectiveCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveCollection" /> class.</summary>
         public ObjectiveCollection()
         {
         }

@@ -10,9 +10,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.PointsOfInterest
 {
     using System.Runtime.Serialization;
 
-    /// <summary>
-    ///     Enumerates the known types of POI.
-    /// </summary>
+    /// <summary>Enumerates the known types of POI.</summary>
     public enum PointOfInterestType
     {
         /// <summary>The 'unknown' POI.</summary>

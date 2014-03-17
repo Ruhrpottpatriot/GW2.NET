@@ -12,26 +12,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a gathering tool.
-    /// </summary>
+    /// <summary>Represents a gathering tool.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GatheringTool : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
         private GatheringToolDetails details;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="GatheringTool" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="GatheringTool" /> class.</summary>
         public GatheringTool()
             : base(ItemType.Gathering)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the item details.
-        /// </summary>
+        /// <summary>Gets or sets the item details.</summary>
         [JsonProperty("gathering", Order = 100)]
         public GatheringToolDetails Details
         {

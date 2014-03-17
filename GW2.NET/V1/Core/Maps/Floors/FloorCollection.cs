@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Maps.Floors
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of map floors.
-    /// </summary>
+    /// <summary>Represents a collection of map floors.</summary>
     public class FloorCollection : JsonList<int>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="FloorCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="FloorCollection" /> class.</summary>
         public FloorCollection()
         {
         }

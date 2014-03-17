@@ -14,20 +14,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents one of an item's infusion slots.
-    /// </summary>
+    /// <summary>Represents one of an item's infusion slots.</summary>
     public class InfusionSlot : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets the infusion slot's type(s).
-        /// </summary>
+        /// <summary>Gets or sets the infusion slot's type(s).</summary>
         [JsonProperty("flags", Order = 0)]
         public InfusionSlotTypes Flags { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the infusion slot's item. Reserved for future use.
-        /// </summary>
+        /// <summary>Gets or sets the infusion slot's item. Reserved for future use.</summary>
         [JsonProperty("item", Order = 1, NullValueHandling = NullValueHandling.Ignore)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Item { get; set; }

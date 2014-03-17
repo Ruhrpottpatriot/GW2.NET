@@ -15,9 +15,7 @@ namespace GW2DotNET.V1.Core.Items.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Enumerates the known item restrictions.
-    /// </summary>
+    /// <summary>Enumerates the known item restrictions.</summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum ItemRestrictions

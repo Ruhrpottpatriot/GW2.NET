@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an insignia crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about an insignia crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class InsigniaRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="InsigniaRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="InsigniaRecipe" /> class.</summary>
         public InsigniaRecipe()
             : base(RecipeType.Insignia)
         {

@@ -22,29 +22,27 @@ namespace GW2DotNET.V1.Core.Common
         /// <summary>Infrastructure. This class acts as a proxy for the dictionary stored in this field.</summary>
         private readonly IDictionary<TKey, TValue> innerDictionary;
 
-        /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}"/> class. Initializes a new instance of the <see cref="JsonDictionary{TKey, TValue}"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}" /> class.</summary>
         protected JsonDictionary()
         {
             this.innerDictionary = new Dictionary<TKey, TValue>();
         }
 
-        /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}"/> class. Initializes a new instance of the <see cref="JsonDictionary{TKey, TValue}"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}"/> class.</summary>
         /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
         protected JsonDictionary(int capacity)
         {
             this.innerDictionary = new Dictionary<TKey, TValue>(capacity);
         }
 
-        /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}"/> class. Initializes a new instance of the <see cref="JsonDictionary{TKey, TValue}"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}"/> class.</summary>
         /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
         protected JsonDictionary(IDictionary<TKey, TValue> dictionary)
         {
             this.innerDictionary = new Dictionary<TKey, TValue>(dictionary);
         }
 
-        /// <summary>
-        ///     Gets the number of elements contained in the <see cref="System.Collections.Generic.ICollection{T}" />.
-        /// </summary>
+        /// <summary>Gets the number of elements contained in the <see cref="System.Collections.Generic.ICollection{T}" />.</summary>
         public int Count
         {
             get
@@ -53,9 +51,7 @@ namespace GW2DotNET.V1.Core.Common
             }
         }
 
-        /// <summary>
-        ///     Gets a value indicating whether the <see cref="System.Collections.Generic.ICollection{T}" /> is read-only.
-        /// </summary>
+        /// <summary>Gets a value indicating whether the <see cref="System.Collections.Generic.ICollection{T}" /> is read-only.</summary>
         public bool IsReadOnly
         {
             get
@@ -65,8 +61,8 @@ namespace GW2DotNET.V1.Core.Common
         }
 
         /// <summary>
-        ///     Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the keys of the
-        ///     <see cref="JsonDictionary{TKey, TValue}" />.
+        /// Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the keys of the
+        /// <see cref="JsonDictionary{TKey, TValue}" />.
         /// </summary>
         public ICollection<TKey> Keys
         {
@@ -77,8 +73,7 @@ namespace GW2DotNET.V1.Core.Common
         }
 
         /// <summary>
-        ///     Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the values in the
-        ///     <see cref="JsonDictionary{TKey, TValue}" />.
+        /// Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the values in the <see cref="JsonDictionary{TKey, TValue}" />.
         /// </summary>
         public ICollection<TValue> Values
         {
@@ -119,9 +114,7 @@ namespace GW2DotNET.V1.Core.Common
             this.innerDictionary.Add(item);
         }
 
-        /// <summary>
-        ///     Removes all items from the <see cref="System.Collections.Generic.ICollection{T}" />.
-        /// </summary>
+        /// <summary>Removes all items from the <see cref="System.Collections.Generic.ICollection{T}" />.</summary>
         public void Clear()
         {
             this.innerDictionary.Clear();
@@ -144,17 +137,14 @@ namespace GW2DotNET.V1.Core.Common
         }
 
         /// <summary>Copies the elements of the <see cref="System.Collections.Generic.ICollection{T}"/> to an<see cref="System.Array"/>, starting at a particular <see cref="System.Array"/> index.</summary>
-        /// <param name="array">The one-dimensional <see cref="System.Array"/> that is the destination of the elements copied from<see cref="System.Collections.Generic.ICollection{T}"/>. The <see cref="System.Array"/> must have zero-based
-        ///     indexing.</param>
+        /// <param name="array">The one-dimensional <see cref="System.Array"/> that is the destination of the elements copied from<see cref="System.Collections.Generic.ICollection{T}"/>. The <see cref="System.Array"/> must have zero-based indexing.</param>
         /// <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
         public void CopyTo(KeyValuePair<TKey, TValue>[] array, int arrayIndex)
         {
             this.innerDictionary.CopyTo(array, arrayIndex);
         }
 
-        /// <summary>
-        ///     Returns an enumerator that iterates through the collection.
-        /// </summary>
+        /// <summary>Returns an enumerator that iterates through the collection.</summary>
         /// <returns>A <see cref="System.Collections.Generic.IEnumerator{T}" /> that can be used to iterate through the collection.</returns>
         public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
         {
@@ -170,7 +160,7 @@ namespace GW2DotNET.V1.Core.Common
         }
 
         /// <summary>Removes the first occurrence of a specific object from the <see cref="System.Collections.Generic.ICollection{T}"/>
-        ///     .</summary>
+        /// .</summary>
         /// <param name="item">The object to remove from the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
         /// <returns>true if item was successfully removed from the <see cref="System.Collections.Generic.ICollection{T}"/>; otherwise, false. This method also returns false if item is not found in the original <see cref="System.Collections.Generic.ICollection{T}"/>.</returns>
         public bool Remove(KeyValuePair<TKey, TValue> item)
@@ -187,9 +177,7 @@ namespace GW2DotNET.V1.Core.Common
             return this.innerDictionary.TryGetValue(key, out value);
         }
 
-        /// <summary>
-        ///     Returns an enumerator that iterates through the collection.
-        /// </summary>
+        /// <summary>Returns an enumerator that iterates through the collection.</summary>
         /// <returns>A <see cref="System.Collections.Generic.IEnumerator{T}" /> that can be used to iterate through the collection.</returns>
         IEnumerator IEnumerable.GetEnumerator()
         {

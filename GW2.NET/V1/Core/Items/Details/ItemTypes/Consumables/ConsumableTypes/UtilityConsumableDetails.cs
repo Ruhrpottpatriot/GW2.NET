@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a utility consumable item.
-    /// </summary>
+    /// <summary>Represents detailed information about a utility consumable item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UtilityConsumableDetails : ConsumableDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UtilityConsumableDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UtilityConsumableDetails" /> class.</summary>
         public UtilityConsumableDetails()
             : base(ConsumableType.Utility)
         {

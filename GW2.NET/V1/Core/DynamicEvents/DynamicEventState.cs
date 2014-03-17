@@ -10,9 +10,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents
 {
     using System.Runtime.Serialization;
 
-    /// <summary>
-    ///     Enumerates the known states of a dynamic event.
-    /// </summary>
+    /// <summary>Enumerates the known states of a dynamic event.</summary>
     public enum DynamicEventState
     {
         /// <summary>The event state is unknown.</summary>
@@ -39,10 +37,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents
         [EnumMember(Value = "Warmup")]
         Warmup = 1 << 4, 
 
-        /// <summary>
-        ///     The criteria for the event to start have been met, but certain activities (such as an NPC dialogue) have not
-        ///     completed yet. After the activities have been completed, the event will become Active.
-        /// </summary>
+        /// <summary>The criteria for the event to start have been met, but certain activities (such as an NPC dialogue) have not completed yet. After the activities have been completed, the event will become Active.</summary>
         [EnumMember(Value = "Preparation")]
         Preparation = 1 << 5
     }

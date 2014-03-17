@@ -13,9 +13,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates the possible types of gathering equipment.
-    /// </summary>
+    /// <summary>Enumerates the possible types of gathering equipment.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum GatheringToolType
     {

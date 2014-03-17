@@ -16,52 +16,34 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a World versus World match.
-    /// </summary>
+    /// <summary>Represents detailed information about a World versus World match.</summary>
     public class MatchDetails : JsonObject, IEquatable<MatchDetails>, IComparable<MatchDetails>
     {
-        /// <summary>
-        ///     Gets or sets the list of maps.
-        /// </summary>
+        /// <summary>Gets or sets the list of maps.</summary>
         [JsonProperty("maps", Order = 2)]
         public CompetitiveMapCollection Maps { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the match's ID.
-        /// </summary>
+        /// <summary>Gets or sets the match's ID.</summary>
         [JsonProperty("match_id", Order = 0)]
         public string MatchId { get; set; }
 
-        /// <summary>
-        ///     Gets or sets the total scores.
-        /// </summary>
+        /// <summary>Gets or sets the total scores.</summary>
         [JsonProperty("scores", Order = 1)]
         public Scoreboard Scores { get; set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(MatchDetails left, MatchDetails right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(MatchDetails left, MatchDetails right)
         {
             return !object.Equals(left, right);
@@ -121,12 +103,8 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details
             return this.Equals((MatchDetails)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.MatchId != null ? this.MatchId.GetHashCode() : 0;

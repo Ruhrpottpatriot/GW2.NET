@@ -18,20 +18,14 @@ namespace GW2DotNET.V1.Core.Recipes.Details
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>
-    ///     Converts an instance of a class that extends <see cref="Recipe" /> from its <see cref="System.String" />
-    ///     representation.
-    /// </summary>
+    /// <summary>Converts an instance of a class that extends <see cref="Recipe" /> from its <see cref="System.String" />
+    /// representation.</summary>
     public class RecipeConverter : ContentBasedTypeCreationConverter
     {
-        /// <summary>
-        ///     Backing field. Holds a dictionary of known JSON values and their corresponding type.
-        /// </summary>
+        /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
         private static readonly IDictionary<RecipeType, Type> KnownTypes = new Dictionary<RecipeType, Type>();
 
-        /// <summary>
-        ///     Initializes static members of the <see cref="RecipeConverter" /> class.
-        /// </summary>
+        /// <summary>Initializes static members of the <see cref="RecipeConverter" /> class.</summary>
         static RecipeConverter()
         {
             KnownTypes.Add(RecipeType.Unknown, typeof(UnknownRecipe));

@@ -16,9 +16,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Converts a <see cref="Color" /> to and from its <see cref="System.String" /> representation.
-    /// </summary>
+    /// <summary>Converts a <see cref="Color" /> to and from its <see cref="System.String" /> representation.</summary>
     public class JsonColorConverter : JsonConverter
     {
         /// <summary>Determines whether this instance can convert the specified object type.</summary>

@@ -15,9 +15,7 @@ namespace GW2DotNET.V1.Core.Recipes.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Enumerates the possible crafting disciplines.
-    /// </summary>
+    /// <summary>Enumerates the possible crafting disciplines.</summary>
     [Flags]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum CraftingDisciplines

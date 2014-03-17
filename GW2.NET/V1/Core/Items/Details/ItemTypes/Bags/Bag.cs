@@ -12,26 +12,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a bag.
-    /// </summary>
+    /// <summary>Represents a bag.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Bag : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
         private BagDetails details;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Bag" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="Bag" /> class.</summary>
         public Bag()
             : base(ItemType.Bag)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the item details.
-        /// </summary>
+        /// <summary>Gets or sets the item details.</summary>
         [JsonProperty("bag", Order = 100)]
         public BagDetails Details
         {

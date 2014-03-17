@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
     /// <summary>Represents a request for commonly requested in-game assets. The returned information can be used with the render service to retrieve assets.</summary>
     public class FilesRequest : ServiceRequest
     {
-        /// <summary>Initializes a new instance of the <see cref="FilesRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FilesRequest" /> class.</summary>
         public FilesRequest()
             : base(Services.Files)
         {

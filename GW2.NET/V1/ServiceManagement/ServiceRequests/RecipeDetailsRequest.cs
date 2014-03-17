@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private int? recipeId;
 
-        /// <summary>Initializes a new instance of the <see cref="RecipeDetailsRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="RecipeDetailsRequest" /> class.</summary>
         public RecipeDetailsRequest()
             : base(Services.RecipeDetails)
         {

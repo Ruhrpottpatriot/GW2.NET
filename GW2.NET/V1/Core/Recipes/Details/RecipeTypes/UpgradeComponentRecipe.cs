@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about an upgrade component crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about an upgrade component crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UpgradeComponentRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UpgradeComponentRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UpgradeComponentRecipe" /> class.</summary>
         public UpgradeComponentRecipe()
             : base(RecipeType.UpgradeComponent)
         {

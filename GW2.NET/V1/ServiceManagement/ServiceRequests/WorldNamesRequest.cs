@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
     /// <summary>Represents a request for a list of worlds and their localized name.</summary>
     public class WorldNamesRequest : ServiceRequest
     {
-        /// <summary>Initializes a new instance of the <see cref="WorldNamesRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="WorldNamesRequest" /> class.</summary>
         public WorldNamesRequest()
             : base(Services.WorldNames)
         {

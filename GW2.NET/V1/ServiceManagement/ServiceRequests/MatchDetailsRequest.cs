@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private string matchId;
 
-        /// <summary>Initializes a new instance of the <see cref="MatchDetailsRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MatchDetailsRequest" /> class.</summary>
         public MatchDetailsRequest()
             : base(Services.MatchDetails)
         {

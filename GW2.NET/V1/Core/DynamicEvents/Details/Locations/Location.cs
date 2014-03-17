@@ -16,9 +16,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents the location of an event on the map.
-    /// </summary>
+    /// <summary>Represents the location of an event on the map.</summary>
     [JsonConverter(typeof(LocationConverter))]
     public abstract class Location : JsonObject, IEquatable<Location>
     {
@@ -29,9 +27,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
             this.Type = locationType;
         }
 
-        /// <summary>
-        ///     Gets or sets the center coordinates.
-        /// </summary>
+        /// <summary>Gets or sets the center coordinates.</summary>
         [JsonProperty("center", Order = 1)]
         [JsonConverter(typeof(JsonPoint3DConverter))]
         public Point3D Center { get; set; }
@@ -39,35 +35,23 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
         /// <summary>Gets or sets the dynamic event details.</summary>
         public DynamicEventDetails DynamicEventDetails { get; set; }
 
-        /// <summary>
-        ///     Gets the shape of the location.
-        /// </summary>
+        /// <summary>Gets the shape of the location.</summary>
         [JsonProperty("type", Order = 0)]
         public LocationType Type { get; private set; }
 
-        /// <summary>
-        ///     Indicates whether an object is equal to another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise,
-        ///     false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator ==(Location left, Location right)
         {
             return object.Equals(left, right);
         }
 
-        /// <summary>
-        ///     Indicates whether an object differs from another object of the same type.
-        /// </summary>
+        /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
-        /// <returns>
-        ///     true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter;
-        ///     otherwise, false.
-        /// </returns>
+        /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
         public static bool operator !=(Location left, Location right)
         {
             return !object.Equals(left, right);
@@ -114,12 +98,8 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
             return this.Equals((Location)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             return this.Center.GetHashCode();

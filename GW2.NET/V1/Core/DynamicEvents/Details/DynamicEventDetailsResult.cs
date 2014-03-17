@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Wraps a collection of dynamic events and their details.
-    /// </summary>
+    /// <summary>Wraps a collection of dynamic events and their details.</summary>
     public class DynamicEventDetailsResult : JsonObject
     {
-        /// <summary>
-        ///     Gets or sets a list of details about dynamic events.
-        /// </summary>
+        /// <summary>Gets or sets a list of details about dynamic events.</summary>
         [JsonProperty("events")]
         public DynamicEventDetailsCollection EventDetails { get; set; }
     }

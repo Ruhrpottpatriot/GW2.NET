@@ -13,9 +13,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Common
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>
-    ///     Enumerates all possible team colors.
-    /// </summary>
+    /// <summary>Enumerates all possible team colors.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum TeamColor
     {

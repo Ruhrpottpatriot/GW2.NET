@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a gloves crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a gloves crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class GlovesRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="GlovesRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="GlovesRecipe" /> class.</summary>
         public GlovesRecipe()
             : base(RecipeType.Gloves)
         {

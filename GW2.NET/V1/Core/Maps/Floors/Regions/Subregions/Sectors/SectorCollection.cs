@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Sectors
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of areas within a map.
-    /// </summary>
+    /// <summary>Represents a collection of areas within a map.</summary>
     public class SectorCollection : JsonList<Sector>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="SectorCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="SectorCollection" /> class.</summary>
         public SectorCollection()
         {
         }

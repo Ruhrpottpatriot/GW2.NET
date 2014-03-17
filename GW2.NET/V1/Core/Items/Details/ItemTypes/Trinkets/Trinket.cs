@@ -12,26 +12,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents a trinket.
-    /// </summary>
+    /// <summary>Represents a trinket.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Trinket : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
         private TrinketDetails details;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="Trinket" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="Trinket" /> class.</summary>
         public Trinket()
             : base(ItemType.Trinket)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the item details.
-        /// </summary>
+        /// <summary>Gets or sets the item details.</summary>
         [JsonProperty("trinket", Order = 100)]
         public TrinketDetails Details
         {

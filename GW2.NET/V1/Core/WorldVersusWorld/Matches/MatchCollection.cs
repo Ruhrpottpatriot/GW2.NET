@@ -12,14 +12,10 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches
 
     using GW2DotNET.V1.Core.Common;
 
-    /// <summary>
-    ///     Represents a collection of World versus World matches.
-    /// </summary>
+    /// <summary>Represents a collection of World versus World matches.</summary>
     public class MatchCollection : JsonList<Match>
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="MatchCollection" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="MatchCollection" /> class.</summary>
         public MatchCollection()
         {
         }

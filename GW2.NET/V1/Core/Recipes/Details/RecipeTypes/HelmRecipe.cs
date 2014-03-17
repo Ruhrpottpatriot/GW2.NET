@@ -12,15 +12,11 @@ namespace GW2DotNET.V1.Core.Recipes.Details.RecipeTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a helm crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a helm crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class HelmRecipe : Recipe
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="HelmRecipe" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="HelmRecipe" /> class.</summary>
         public HelmRecipe()
             : base(RecipeType.Helm)
         {

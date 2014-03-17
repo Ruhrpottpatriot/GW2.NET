@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
     /// <summary>Represents a request for a list of events and their localized name.</summary>
     public class DynamicEventNamesRequest : ServiceRequest
     {
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventNamesRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventNamesRequest" /> class.</summary>
         public DynamicEventNamesRequest()
             : base(Services.EventNames)
         {

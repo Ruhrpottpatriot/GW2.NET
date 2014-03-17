@@ -12,26 +12,20 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents an upgrade component.
-    /// </summary>
+    /// <summary>Represents an upgrade component.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class UpgradeComponent : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
         private UpgradeComponentDetails details;
 
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="UpgradeComponent" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="UpgradeComponent" /> class.</summary>
         public UpgradeComponent()
             : base(ItemType.UpgradeComponent)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the item details.
-        /// </summary>
+        /// <summary>Gets or sets the item details.</summary>
         [JsonProperty("upgrade_component", Order = 100)]
         public UpgradeComponentDetails Details
         {

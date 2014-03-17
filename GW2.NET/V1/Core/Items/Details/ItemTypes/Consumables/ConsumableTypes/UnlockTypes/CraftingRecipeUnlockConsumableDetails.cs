@@ -12,23 +12,17 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.
 
     using Newtonsoft.Json;
 
-    /// <summary>
-    ///     Represents detailed information about a crafting recipe.
-    /// </summary>
+    /// <summary>Represents detailed information about a crafting recipe.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class CraftingRecipeUnlockConsumableDetails : UnlockConsumableDetails
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableDetails" /> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="CraftingRecipeUnlockConsumableDetails" /> class.</summary>
         public CraftingRecipeUnlockConsumableDetails()
             : base(UnlockType.CraftingRecipe)
         {
         }
 
-        /// <summary>
-        ///     Gets or sets the crafting recipe's ID.
-        /// </summary>
+        /// <summary>Gets or sets the crafting recipe's ID.</summary>
         [JsonProperty("recipe_id", Order = 102)]
         public int RecipeId { get; set; }
     }
