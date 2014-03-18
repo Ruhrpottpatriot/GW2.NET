@@ -15,7 +15,6 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
     using GW2DotNET.V1.Core.Common.Converters;
     using GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes;
 
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an instance of a class that extends <see cref="Location" /> from its <see cref="System.String" />
@@ -53,11 +52,18 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
                 return typeof(UnknownLocation);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<LocationType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            LocationType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownLocation);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownLocation);
             }

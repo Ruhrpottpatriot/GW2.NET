@@ -53,11 +53,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
                 return typeof(UnknownGizmoDetails);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<GizmoType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            GizmoType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownGizmoDetails);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownGizmoDetails);
             }

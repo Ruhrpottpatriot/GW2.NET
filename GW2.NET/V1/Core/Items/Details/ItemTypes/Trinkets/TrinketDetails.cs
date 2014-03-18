@@ -18,19 +18,28 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
     [JsonConverter(typeof(TrinketDetailsConverter))]
     public abstract class TrinketDetails : EquipmentDetails, IEquatable<TrinketDetails>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly TrinketType type;
+
         /// <summary>Initializes a new instance of the <see cref="TrinketDetails"/> class.</summary>
         /// <param name="trinketType">The trinket's type.</param>
         protected TrinketDetails(TrinketType trinketType)
         {
-            this.Type = trinketType;
+            this.type = trinketType;
         }
 
         /// <summary>Gets or sets the trinket.</summary>
         public Trinket Trinket { get; set; }
 
-        /// <summary>Gets or sets the trinket's type.</summary>
+        /// <summary>Gets the trinket's type.</summary>
         [JsonProperty("type", Order = 0)]
-        public TrinketType Type { get; set; }
+        public TrinketType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

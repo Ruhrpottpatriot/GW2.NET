@@ -52,11 +52,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
                 return typeof(UnknownContainerDetails);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<ContainerType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            ContainerType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownContainerDetails);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownContainerDetails);
             }

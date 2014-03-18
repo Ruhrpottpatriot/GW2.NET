@@ -60,11 +60,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
                 return typeof(UnknownConsumableDetails);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<ConsumableType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            ConsumableType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownConsumableDetails);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownConsumableDetails);
             }

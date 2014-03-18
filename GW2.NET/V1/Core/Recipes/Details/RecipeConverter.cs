@@ -94,11 +94,18 @@ namespace GW2DotNET.V1.Core.Recipes.Details
                 return typeof(UnknownRecipe);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<RecipeType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            RecipeType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownRecipe);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownRecipe);
             }

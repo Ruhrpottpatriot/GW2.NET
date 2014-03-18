@@ -18,11 +18,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
     [JsonConverter(typeof(ToolDetailsConverter))]
     public abstract class ToolDetails : JsonObject, IEquatable<ToolDetails>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly ToolType type;
+
         /// <summary>Initializes a new instance of the <see cref="ToolDetails"/> class.</summary>
         /// <param name="toolType">The tool's type.</param>
         protected ToolDetails(ToolType toolType)
         {
-            this.Type = toolType;
+            this.type = toolType;
         }
 
         /// <summary>Gets or sets the tool's charges.</summary>
@@ -32,9 +35,15 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
         /// <summary>Gets or sets the tool.</summary>
         public Tool Tool { get; set; }
 
-        /// <summary>Gets or sets the tool's type.</summary>
+        /// <summary>Gets the tool's type.</summary>
         [JsonProperty("type", Order = 0)]
-        public ToolType Type { get; set; }
+        public ToolType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

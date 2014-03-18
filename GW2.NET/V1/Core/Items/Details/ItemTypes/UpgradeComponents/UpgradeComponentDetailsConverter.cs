@@ -54,11 +54,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
                 return typeof(UnknownUpgradeComponentDetails);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<UpgradeComponentType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            UpgradeComponentType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownUpgradeComponentDetails);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownUpgradeComponentDetails);
             }

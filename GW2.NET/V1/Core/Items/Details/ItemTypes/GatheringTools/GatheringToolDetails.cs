@@ -18,19 +18,28 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools
     [JsonConverter(typeof(GatheringToolDetailsConverter))]
     public abstract class GatheringToolDetails : JsonObject, IEquatable<GatheringToolDetails>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly GatheringToolType type;
+
         /// <summary>Initializes a new instance of the <see cref="GatheringToolDetails"/> class.</summary>
         /// <param name="gatheringToolType">The gathering tool type.</param>
         protected GatheringToolDetails(GatheringToolType gatheringToolType)
         {
-            this.ToolType = gatheringToolType;
+            this.type = gatheringToolType;
         }
 
         /// <summary>Gets or sets the gathering tool.</summary>
         public GatheringTool GatheringTool { get; set; }
 
-        /// <summary>Gets or sets the gathering equipment's type.</summary>
+        /// <summary>Gets the gathering tool's type.</summary>
         [JsonProperty("type", Order = 0)]
-        public GatheringToolType ToolType { get; set; }
+        public GatheringToolType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

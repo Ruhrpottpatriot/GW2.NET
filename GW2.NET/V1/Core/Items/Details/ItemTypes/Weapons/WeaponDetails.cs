@@ -18,11 +18,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
     [JsonConverter(typeof(WeaponDetailsConverter))]
     public abstract class WeaponDetails : EquipmentDetails, IEquatable<WeaponDetails>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly WeaponType type;
+
         /// <summary>Initializes a new instance of the <see cref="WeaponDetails"/> class.</summary>
         /// <param name="weaponType">The weapon's type.</param>
         protected WeaponDetails(WeaponType weaponType)
         {
-            this.Type = weaponType;
+            this.type = weaponType;
         }
 
         /// <summary>Gets or sets the weapon's damage type.</summary>
@@ -41,9 +44,15 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
         [JsonProperty("min_power", Order = 2)]
         public int MinimumPower { get; set; }
 
-        /// <summary>Gets or sets the weapon's type.</summary>
+        /// <summary>Gets the weapon's type.</summary>
         [JsonProperty("type", Order = 0)]
-        public WeaponType Type { get; set; }
+        public WeaponType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Gets or sets the weapon.</summary>
         public Weapon Weapon { get; set; }

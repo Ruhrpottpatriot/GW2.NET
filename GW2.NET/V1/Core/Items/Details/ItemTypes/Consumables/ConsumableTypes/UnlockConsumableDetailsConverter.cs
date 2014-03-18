@@ -15,7 +15,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
     using GW2DotNET.V1.Core.Common.Converters;
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.UnlockTypes;
 
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an instance of a class that extends <see cref="UnlockConsumableDetails" /> from its
@@ -54,11 +53,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
                 return typeof(UnknownUnlockConsumableDetails);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<UnlockType>(content["unlock_type"].CreateReader());
+            var jsonValue = content["unlock_type"].Value<string>();
+
+            UnlockType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownUnlockConsumableDetails);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownUnlockConsumableDetails);
             }

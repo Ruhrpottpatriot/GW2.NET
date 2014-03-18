@@ -53,11 +53,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
                 return typeof(UnknownTrinketDetails);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<TrinketType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            TrinketType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownTrinketDetails);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownTrinketDetails);
             }

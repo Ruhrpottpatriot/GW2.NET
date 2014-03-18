@@ -18,19 +18,28 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
     [JsonConverter(typeof(GizmoDetailsConverter))]
     public abstract class GizmoDetails : JsonObject, IEquatable<GizmoDetails>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly GizmoType type;
+
         /// <summary>Initializes a new instance of the <see cref="GizmoDetails"/> class.</summary>
         /// <param name="gizmoType">The gizmo type.</param>
         protected GizmoDetails(GizmoType gizmoType)
         {
-            this.Type = gizmoType;
+            this.type = gizmoType;
         }
 
         /// <summary>Gets or sets the gizmo.</summary>
         public Gizmo Gizmo { get; set; }
 
-        /// <summary>Gets or sets the gizmo's type.</summary>
+        /// <summary>Gets the gizmo's type.</summary>
         [JsonProperty("type", Order = 0)]
-        public GizmoType Type { get; set; }
+        public GizmoType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

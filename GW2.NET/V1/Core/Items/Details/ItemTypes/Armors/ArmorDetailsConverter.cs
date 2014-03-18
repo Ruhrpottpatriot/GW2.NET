@@ -15,7 +15,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
     using GW2DotNET.V1.Core.Common.Converters;
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors.ArmorTypes;
 
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an instance of a class that extends <see cref="ArmorDetails" /> from its <see cref="System.String" />
@@ -57,11 +56,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
                 return typeof(UnknownArmorDetails);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<ArmorType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            ArmorType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownArmorDetails);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownArmorDetails);
             }

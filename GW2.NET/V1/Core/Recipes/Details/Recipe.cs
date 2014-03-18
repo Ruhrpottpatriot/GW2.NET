@@ -20,11 +20,14 @@ namespace GW2DotNET.V1.Core.Recipes.Details
     [JsonConverter(typeof(RecipeConverter))]
     public abstract class Recipe : JsonObject, IEquatable<Recipe>, IComparable<Recipe>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly RecipeType type;
+
         /// <summary>Initializes a new instance of the <see cref="Recipe"/> class.</summary>
         /// <param name="recipeType">The recipe's type.</param>
         protected Recipe(RecipeType recipeType)
         {
-            this.Type = recipeType;
+            this.type = recipeType;
         }
 
         /// <summary>Gets or sets the crafting disciplines that can use the recipe.</summary>
@@ -60,9 +63,15 @@ namespace GW2DotNET.V1.Core.Recipes.Details
         [JsonConverter(typeof(JsonTimespanConverter))]
         public TimeSpan TimeToCraft { get; set; }
 
-        /// <summary>Gets or sets the type of the output item.</summary>
+        /// <summary>Gets the type of the output item.</summary>
         [JsonProperty("type", Order = 1)]
-        public RecipeType Type { get; set; }
+        public RecipeType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

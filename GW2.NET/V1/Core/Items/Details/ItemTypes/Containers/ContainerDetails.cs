@@ -18,19 +18,28 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
     [JsonConverter(typeof(ContainerDetailsConverter))]
     public abstract class ContainerDetails : JsonObject, IEquatable<ContainerDetails>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly ContainerType type;
+
         /// <summary>Initializes a new instance of the <see cref="ContainerDetails"/> class.</summary>
         /// <param name="containerType">The container type.</param>
         protected ContainerDetails(ContainerType containerType)
         {
-            this.Type = containerType;
+            this.type = containerType;
         }
 
         /// <summary>Gets or sets the container.</summary>
         public Container Container { get; set; }
 
-        /// <summary>Gets or sets the container's type.</summary>
+        /// <summary>Gets the container's type.</summary>
         [JsonProperty("type", Order = 0)]
-        public ContainerType Type { get; set; }
+        public ContainerType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

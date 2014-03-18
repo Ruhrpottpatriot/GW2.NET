@@ -19,11 +19,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
     [JsonConverter(typeof(UpgradeComponentDetailsConverter))]
     public abstract class UpgradeComponentDetails : JsonObject, IEquatable<UpgradeComponentDetails>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly UpgradeComponentType type;
+
         /// <summary>Initializes a new instance of the <see cref="UpgradeComponentDetails"/> class.</summary>
         /// <param name="upgradeComponentType">The upgrade component's type.</param>
         protected UpgradeComponentDetails(UpgradeComponentType upgradeComponentType)
         {
-            this.Type = upgradeComponentType;
+            this.type = upgradeComponentType;
         }
 
         /// <summary>Gets or sets the upgrade component's bonuses.</summary>
@@ -46,9 +49,15 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
         [JsonProperty("suffix", Order = 5, NullValueHandling = NullValueHandling.Ignore)]
         public string Suffix { get; set; }
 
-        /// <summary>Gets or sets the upgrade component's type.</summary>
+        /// <summary>Gets the upgrade component's type.</summary>
         [JsonProperty("type", Order = 0)]
-        public UpgradeComponentType Type { get; set; }
+        public UpgradeComponentType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Gets or sets the upgrade component.</summary>
         public UpgradeComponent UpgradeComponent { get; set; }

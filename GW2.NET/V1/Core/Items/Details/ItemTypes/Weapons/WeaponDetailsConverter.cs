@@ -72,11 +72,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
                 return typeof(UnknownWeaponDetails);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<WeaponType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            WeaponType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownWeaponDetails);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownWeaponDetails);
             }

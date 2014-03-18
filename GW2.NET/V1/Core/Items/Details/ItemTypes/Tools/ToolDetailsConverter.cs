@@ -51,11 +51,18 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
                 return typeof(UnknownToolDetails);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<ToolType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            ToolType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownToolDetails);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownToolDetails);
             }

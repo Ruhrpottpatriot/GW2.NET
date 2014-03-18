@@ -18,11 +18,14 @@ namespace GW2DotNET.V1.Core.Items.Details
     [JsonConverter(typeof(ItemConverter))]
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly ItemType type;
+
         /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>
         /// <param name="type">The item's type.</param>
         protected Item(ItemType type)
         {
-            this.Type = type;
+            this.type = type;
         }
 
         /// <summary>Gets or sets the item's description.</summary>
@@ -65,9 +68,15 @@ namespace GW2DotNET.V1.Core.Items.Details
         [JsonProperty("restrictions", Order = 11)]
         public ItemRestrictions Restrictions { get; set; }
 
-        /// <summary>Gets or sets the item's type.</summary>
+        /// <summary>Gets the item's type.</summary>
         [JsonProperty("type", Order = 3)]
-        public ItemType Type { get; set; }
+        public ItemType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Gets or sets the item's vendor value.</summary>
         [JsonProperty("vendor_value", Order = 6)]

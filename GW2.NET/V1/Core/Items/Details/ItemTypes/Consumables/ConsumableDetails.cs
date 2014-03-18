@@ -18,19 +18,28 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
     [JsonConverter(typeof(ConsumableDetailsConverter))]
     public abstract class ConsumableDetails : JsonObject, IEquatable<ConsumableDetails>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly ConsumableType type;
+
         /// <summary>Initializes a new instance of the <see cref="ConsumableDetails"/> class.</summary>
         /// <param name="type">The consumable's type.</param>
         protected ConsumableDetails(ConsumableType type)
         {
-            this.Type = type;
+            this.type = type;
         }
 
         /// <summary>Gets or sets the consumable.</summary>
         public Consumable Consumable { get; set; }
 
-        /// <summary>Gets or sets the consumable's type.</summary>
+        /// <summary>Gets the consumable's type.</summary>
         [JsonProperty("type", Order = 0)]
-        public ConsumableType Type { get; set; }
+        public ConsumableType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

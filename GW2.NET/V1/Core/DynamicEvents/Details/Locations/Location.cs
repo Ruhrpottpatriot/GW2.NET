@@ -20,11 +20,14 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
     [JsonConverter(typeof(LocationConverter))]
     public abstract class Location : JsonObject, IEquatable<Location>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly LocationType type;
+
         /// <summary>Initializes a new instance of the <see cref="Location"/> class.</summary>
         /// <param name="locationType">The location's type.</param>
         protected Location(LocationType locationType)
         {
-            this.Type = locationType;
+            this.type = locationType;
         }
 
         /// <summary>Gets or sets the center coordinates.</summary>
@@ -37,7 +40,13 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
 
         /// <summary>Gets the shape of the location.</summary>
         [JsonProperty("type", Order = 0)]
-        public LocationType Type { get; private set; }
+        public LocationType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

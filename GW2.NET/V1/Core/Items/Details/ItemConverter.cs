@@ -29,7 +29,6 @@ namespace GW2DotNET.V1.Core.Items.Details
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents;
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons;
 
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an instance of a class that extends <see cref="Item" /> from its <see cref="System.String" />
@@ -78,11 +77,18 @@ namespace GW2DotNET.V1.Core.Items.Details
                 return typeof(UnknownItem);
             }
 
-            var jsonValue = JsonSerializer.Create().Deserialize<ItemType>(content["type"].CreateReader());
+            var jsonValue = content["type"].Value<string>();
+
+            ItemType type;
+
+            if (!Enum.TryParse(jsonValue, true, out type))
+            {
+                return typeof(UnknownItem);
+            }
 
             Type targetType;
 
-            if (!KnownTypes.TryGetValue(jsonValue, out targetType))
+            if (!KnownTypes.TryGetValue(type, out targetType))
             {
                 return typeof(UnknownItem);
             }

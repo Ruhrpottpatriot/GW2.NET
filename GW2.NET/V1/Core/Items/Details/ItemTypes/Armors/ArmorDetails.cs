@@ -18,25 +18,34 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
     [JsonConverter(typeof(ArmorDetailsConverter))]
     public abstract class ArmorDetails : EquipmentDetails, IEquatable<ArmorDetails>
     {
+        /// <summary>Infrastructure. Stores type information.</summary>
+        private readonly ArmorType type;
+
         /// <summary>Initializes a new instance of the <see cref="ArmorDetails"/> class.</summary>
         /// <param name="armorType">The armor type.</param>
         protected ArmorDetails(ArmorType armorType)
         {
-            this.Type = armorType;
+            this.type = armorType;
         }
 
         /// <summary>Gets or sets the armor.</summary>
         public Armor Armor { get; set; }
 
-        /// <summary>Gets or sets the armor piece's defense stat.</summary>
+        /// <summary>Gets or sets the armor's defense stat.</summary>
         [JsonProperty("defense", Order = 2)]
         public int Defense { get; set; }
 
-        /// <summary>Gets or sets the armor piece's type.</summary>
+        /// <summary>Gets the armor's type.</summary>
         [JsonProperty("type", Order = 0)]
-        public ArmorType Type { get; set; }
+        public ArmorType Type
+        {
+            get
+            {
+                return this.type;
+            }
+        }
 
-        /// <summary>Gets or sets the armor piece's weight class.</summary>
+        /// <summary>Gets or sets the armor's weight class.</summary>
         [JsonProperty("weight_class", Order = 1)]
         public ArmorWeightClass WeightClass { get; set; }
 
