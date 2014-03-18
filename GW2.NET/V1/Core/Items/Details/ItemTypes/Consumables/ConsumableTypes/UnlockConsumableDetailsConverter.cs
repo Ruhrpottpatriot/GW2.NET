@@ -15,6 +15,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
     using GW2DotNET.V1.Core.Common.Converters;
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.UnlockTypes;
 
+    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an instance of a class that extends <see cref="UnlockConsumableDetails" /> from its
@@ -48,28 +49,41 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
         /// <returns>Returns the target type.</returns>
         public override Type GetTargetType(Type objectType, JObject content)
         {
-            if (content["unlock_type"] == null)
+            var jsonToken = content["unlock_type"];
+
+            if (jsonToken == null)
             {
                 return typeof(UnknownUnlockConsumableDetails);
             }
 
-            var jsonValue = content["unlock_type"].Value<string>();
+            var jsonValue = jsonToken.Value<string>();
 
-            UnlockType type;
+            try
+            {
+                UnlockType type;
 
-            if (!Enum.TryParse(jsonValue, true, out type))
+                if (!Enum.TryParse(jsonValue, true, out type))
+                {
+                    type = JsonSerializer.Create().Deserialize<UnlockType>(jsonToken.CreateReader());
+                }
+
+                Type targetType;
+
+                if (!KnownTypes.TryGetValue(type, out targetType))
+                {
+                    return typeof(UnknownUnlockConsumableDetails);
+                }
+
+                return targetType;
+            }
+            catch (JsonSerializationException)
             {
                 return typeof(UnknownUnlockConsumableDetails);
             }
-
-            Type targetType;
-
-            if (!KnownTypes.TryGetValue(type, out targetType))
+            finally
             {
-                return typeof(UnknownUnlockConsumableDetails);
+                content.Remove("type");
             }
-
-            return targetType;
         }
     }
 }

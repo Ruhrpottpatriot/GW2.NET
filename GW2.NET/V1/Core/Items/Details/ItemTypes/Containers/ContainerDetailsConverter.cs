@@ -47,28 +47,41 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
         /// <returns>Returns the target type.</returns>
         public override Type GetTargetType(Type objectType, JObject content)
         {
-            if (content["type"] == null)
+            var jsonToken = content["type"];
+
+            if (jsonToken == null)
             {
                 return typeof(UnknownContainerDetails);
             }
 
-            var jsonValue = content["type"].Value<string>();
+            var jsonValue = jsonToken.Value<string>();
 
-            ContainerType type;
+            try
+            {
+                ContainerType type;
 
-            if (!Enum.TryParse(jsonValue, true, out type))
+                if (!Enum.TryParse(jsonValue, true, out type))
+                {
+                    type = JsonSerializer.Create().Deserialize<ContainerType>(jsonToken.CreateReader());
+                }
+
+                Type targetType;
+
+                if (!KnownTypes.TryGetValue(type, out targetType))
+                {
+                    return typeof(UnknownContainerDetails);
+                }
+
+                return targetType;
+            }
+            catch (JsonSerializationException)
             {
                 return typeof(UnknownContainerDetails);
             }
-
-            Type targetType;
-
-            if (!KnownTypes.TryGetValue(type, out targetType))
+            finally
             {
-                return typeof(UnknownContainerDetails);
+                content.Remove("type");
             }
-
-            return targetType;
         }
     }
 }

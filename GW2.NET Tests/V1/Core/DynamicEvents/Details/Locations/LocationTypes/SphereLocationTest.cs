@@ -26,7 +26,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
         public void Initialize()
         {
             const string input = "{\"type\":\"sphere\",\"center\":[],\"radius\":0,\"rotation\":0}";
-            this.sphereLocation = JsonConvert.DeserializeObject<SphereLocation>(input);
+            this.sphereLocation = (SphereLocation)JsonConvert.DeserializeObject<Location>(input);
         }
 
         /// <summary>The sphere location_ center reflects input.</summary>

@@ -89,28 +89,41 @@ namespace GW2DotNET.V1.Core.Recipes.Details
         /// <returns>Returns the target type.</returns>
         public override Type GetTargetType(Type objectType, JObject content)
         {
-            if (content["type"] == null)
+            var jsonToken = content["type"];
+
+            if (jsonToken == null)
             {
                 return typeof(UnknownRecipe);
             }
 
-            var jsonValue = content["type"].Value<string>();
+            var jsonValue = jsonToken.Value<string>();
 
-            RecipeType type;
+            try
+            {
+                RecipeType type;
 
-            if (!Enum.TryParse(jsonValue, true, out type))
+                if (!Enum.TryParse(jsonValue, true, out type))
+                {
+                    type = JsonSerializer.Create().Deserialize<RecipeType>(jsonToken.CreateReader());
+                }
+
+                Type targetType;
+
+                if (!KnownTypes.TryGetValue(type, out targetType))
+                {
+                    return typeof(UnknownRecipe);
+                }
+
+                return targetType;
+            }
+            catch (JsonSerializationException)
             {
                 return typeof(UnknownRecipe);
             }
-
-            Type targetType;
-
-            if (!KnownTypes.TryGetValue(type, out targetType))
+            finally
             {
-                return typeof(UnknownRecipe);
+                content.Remove("type");
             }
-
-            return targetType;
         }
     }
 }

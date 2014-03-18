@@ -46,28 +46,41 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
         /// <returns>Returns the target type.</returns>
         public override Type GetTargetType(Type objectType, JObject content)
         {
-            if (content["type"] == null)
+            var jsonToken = content["type"];
+
+            if (jsonToken == null)
             {
                 return typeof(UnknownToolDetails);
             }
 
-            var jsonValue = content["type"].Value<string>();
+            var jsonValue = jsonToken.Value<string>();
 
-            ToolType type;
+            try
+            {
+                ToolType type;
 
-            if (!Enum.TryParse(jsonValue, true, out type))
+                if (!Enum.TryParse(jsonValue, true, out type))
+                {
+                    type = JsonSerializer.Create().Deserialize<ToolType>(jsonToken.CreateReader());
+                }
+
+                Type targetType;
+
+                if (!KnownTypes.TryGetValue(type, out targetType))
+                {
+                    return typeof(UnknownToolDetails);
+                }
+
+                return targetType;
+            }
+            catch (JsonSerializationException)
             {
                 return typeof(UnknownToolDetails);
             }
-
-            Type targetType;
-
-            if (!KnownTypes.TryGetValue(type, out targetType))
+            finally
             {
-                return typeof(UnknownToolDetails);
+                content.Remove("type");
             }
-
-            return targetType;
         }
     }
 }

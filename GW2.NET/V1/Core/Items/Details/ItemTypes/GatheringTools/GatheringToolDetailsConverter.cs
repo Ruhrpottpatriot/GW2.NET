@@ -48,28 +48,41 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools
         /// <returns>Returns the target type.</returns>
         public override Type GetTargetType(Type objectType, JObject content)
         {
-            if (content["type"] == null)
+            var jsonToken = content["type"];
+
+            if (jsonToken == null)
             {
                 return typeof(UnknownToolDetails);
             }
 
-            var jsonValue = content["type"].Value<string>();
+            var jsonValue = jsonToken.Value<string>();
 
-            GatheringToolType type;
+            try
+            {
+                GatheringToolType type;
 
-            if (!Enum.TryParse(jsonValue, true, out type))
+                if (!Enum.TryParse(jsonValue, true, out type))
+                {
+                    type = JsonSerializer.Create().Deserialize<GatheringToolType>(jsonToken.CreateReader());
+                }
+
+                Type targetType;
+
+                if (!KnownTypes.TryGetValue(type, out targetType))
+                {
+                    return typeof(UnknownToolDetails);
+                }
+
+                return targetType;
+            }
+            catch (JsonSerializationException)
             {
                 return typeof(UnknownToolDetails);
             }
-
-            Type targetType;
-
-            if (!KnownTypes.TryGetValue(type, out targetType))
+            finally
             {
-                return typeof(UnknownToolDetails);
+                content.Remove("type");
             }
-
-            return targetType;
         }
     }
 }

@@ -13,8 +13,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
     using System.Collections.Generic;
 
     using GW2DotNET.V1.Core.Common.Converters;
+    using GW2DotNET.V1.Core.DynamicEvents.Details.Locations;
+    using GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes;
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors.ArmorTypes;
 
+    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an instance of a class that extends <see cref="ArmorDetails" /> from its <see cref="System.String" />
@@ -51,28 +54,41 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         /// <returns>Returns the target type.</returns>
         public override Type GetTargetType(Type objectType, JObject content)
         {
-            if (content["type"] == null)
+            var jsonToken = content["type"];
+
+            if (jsonToken == null)
             {
                 return typeof(UnknownArmorDetails);
             }
 
-            var jsonValue = content["type"].Value<string>();
+            var jsonValue = jsonToken.Value<string>();
 
-            ArmorType type;
+            try
+            {
+                ArmorType type;
 
-            if (!Enum.TryParse(jsonValue, true, out type))
+                if (!Enum.TryParse(jsonValue, true, out type))
+                {
+                    type = JsonSerializer.Create().Deserialize<ArmorType>(jsonToken.CreateReader());
+                }
+
+                Type targetType;
+
+                if (!KnownTypes.TryGetValue(type, out targetType))
+                {
+                    return typeof(UnknownArmorDetails);
+                }
+
+                return targetType;
+            }
+            catch (JsonSerializationException)
             {
                 return typeof(UnknownArmorDetails);
             }
-
-            Type targetType;
-
-            if (!KnownTypes.TryGetValue(type, out targetType))
+            finally
             {
-                return typeof(UnknownArmorDetails);
+                content.Remove("type");
             }
-
-            return targetType;
         }
     }
 }

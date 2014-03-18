@@ -90,7 +90,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
         public void Initialize()
         {
             const string input = "{\"type\":\"cylinder\",\"center\":[],\"height\":0,\"radius\":0,\"rotation\":0}";
-            this.cylinderLocation = JsonConvert.DeserializeObject<CylinderLocation>(input);
+            this.cylinderLocation = (CylinderLocation)JsonConvert.DeserializeObject<Location>(input);
         }
     }
 }

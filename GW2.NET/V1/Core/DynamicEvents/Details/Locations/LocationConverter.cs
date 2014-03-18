@@ -15,6 +15,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
     using GW2DotNET.V1.Core.Common.Converters;
     using GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes;
 
+    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an instance of a class that extends <see cref="Location" /> from its <see cref="System.String" />
@@ -47,28 +48,41 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
         /// <returns>Returns the target type.</returns>
         public override Type GetTargetType(Type objectType, JObject content)
         {
-            if (content["type"] == null)
+            var jsonToken = content["type"];
+
+            if (jsonToken == null)
             {
                 return typeof(UnknownLocation);
             }
 
-            var jsonValue = content["type"].Value<string>();
+            var jsonValue = jsonToken.Value<string>();
 
-            LocationType type;
+            try
+            {
+                LocationType type;
 
-            if (!Enum.TryParse(jsonValue, true, out type))
+                if (!Enum.TryParse(jsonValue, true, out type))
+                {
+                    type = JsonSerializer.Create().Deserialize<LocationType>(jsonToken.CreateReader());
+                }
+
+                Type targetType;
+
+                if (!KnownTypes.TryGetValue(type, out targetType))
+                {
+                    return typeof(UnknownLocation);
+                }
+
+                return targetType;
+            }
+            catch (JsonSerializationException)
             {
                 return typeof(UnknownLocation);
             }
-
-            Type targetType;
-
-            if (!KnownTypes.TryGetValue(type, out targetType))
+            finally
             {
-                return typeof(UnknownLocation);
+                content.Remove("type");
             }
-
-            return targetType;
         }
     }
 }

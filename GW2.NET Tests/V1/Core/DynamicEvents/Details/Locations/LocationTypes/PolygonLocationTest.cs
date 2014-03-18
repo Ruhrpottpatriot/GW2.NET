@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
         public void Initialize()
         {
             const string input = "{\"type\":\"poly\",\"center\":[],\"z_range\":[],\"points\":[]}";
-            this.polygonLocation = JsonConvert.DeserializeObject<PolygonLocation>(input);
+            this.polygonLocation = (PolygonLocation)JsonConvert.DeserializeObject<Location>(input);
         }
 
         /// <summary>The polygon location_ center reflects input.</summary>

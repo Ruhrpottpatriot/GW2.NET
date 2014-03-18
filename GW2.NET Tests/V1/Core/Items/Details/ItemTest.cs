@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input =
                 "{\"item_id\":\"0\",\"name\":\"\",\"description\":\"\",\"type\":\"Unknown\",\"level\":\"0\",\"rarity\":\"Unknown\",\"vendor_value\":\"0\",\"icon_file_id\":\"0\",\"icon_file_signature\":\"\",\"game_types\":[],\"flags\":[],\"restrictions\":[]}";
-            this.item = JsonConvert.DeserializeObject<UnknownItem>(input);
+            this.item = JsonConvert.DeserializeObject<Item>(input);
         }
 
         /// <summary>The item_ description reflects input.</summary>
