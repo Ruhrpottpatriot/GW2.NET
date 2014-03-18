@@ -370,6 +370,10 @@
     <Compile Include="V1\Core\WorldVersusWorld\Matches\MatchesResult.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveName.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveNameCollection.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceResponses\ErrorResponse.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceResponses\ImageResponse.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceResponses\JsonResponse.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceResponses\TextResponse.cs" />
     <Compile Include="V1\ServiceManager.cs" />
     <Compile Include="V1\ServiceManagement\ServiceRequests\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\ServiceManagement\ServiceRequests\BuildRequest.cs" />

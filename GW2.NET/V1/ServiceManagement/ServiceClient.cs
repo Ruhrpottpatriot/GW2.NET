@@ -9,12 +9,15 @@
 namespace GW2DotNET.V1.ServiceManagement
 {
     using System;
+    using System.Drawing;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Core;
+    using GW2DotNET.V1.Core.Common;
+    using GW2DotNET.V1.ServiceManagement.ServiceResponses;
 
     /// <summary>Provides a plain .NET implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
@@ -118,15 +121,33 @@ namespace GW2DotNET.V1.ServiceManagement
                         {
                             // catch WebException exception
                             var exception = task.Exception.GetBaseException() as WebException;
-                            if (exception != null)
+                            if (exception != null && exception.Status == WebExceptionStatus.ProtocolError)
                             {
                                 response = (HttpWebResponse)exception.Response;
-                                return new ServiceResponse<TResult>(response);
+                                var serviceResponse = new ErrorResponse(response);
+
+                                throw new ServiceException(serviceResponse.Deserialize(), exception);
                             }
                         }
 
                         // unhandled exceptions at this point (if any) are propagated back to the calling thread automatically
                         response = (HttpWebResponse)task.Result;
+
+                        if (typeof(JsonObject).IsAssignableFrom(typeof(TResult)))
+                        {
+                            return new JsonResponse<TResult>(response);
+                        }
+
+                        if (typeof(Image).IsAssignableFrom(typeof(TResult)))
+                        {
+                            return (IServiceResponse<TResult>)new ImageResponse(response);
+                        }
+
+                        if (typeof(string) == typeof(TResult))
+                        {
+                            return (IServiceResponse<TResult>)new TextResponse(response);
+                        }
+
                         return new ServiceResponse<TResult>(response);
                     }, 
                 cancellationToken);
@@ -143,12 +164,35 @@ namespace GW2DotNET.V1.ServiceManagement
             try
             {
                 var response = (HttpWebResponse)request.GetResponse();
+
+                if (typeof(JsonObject).IsAssignableFrom(typeof(TResult)))
+                {
+                    return new JsonResponse<TResult>(response);
+                }
+
+                if (typeof(Image).IsAssignableFrom(typeof(TResult)))
+                {
+                    return (IServiceResponse<TResult>)new ImageResponse(response);
+                }
+
+                if (typeof(string) == typeof(TResult))
+                {
+                    return (IServiceResponse<TResult>)new TextResponse(response);
+                }
+
                 return new ServiceResponse<TResult>(response);
             }
             catch (WebException exception)
             {
+                if (exception.Status != WebExceptionStatus.ProtocolError)
+                {
+                    throw;
+                }
+
                 var response = (HttpWebResponse)exception.Response;
-                return new ServiceResponse<TResult>(response, exception);
+                var serviceResponse = new ErrorResponse(response);
+
+                throw new ServiceException(serviceResponse.Deserialize(), exception);
             }
         }
     }

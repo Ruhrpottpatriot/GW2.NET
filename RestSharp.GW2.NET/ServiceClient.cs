@@ -9,6 +9,8 @@
 namespace RestSharp.GW2DotNET
 {
     using System;
+    using System.Drawing;
+    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -17,6 +19,10 @@ namespace RestSharp.GW2DotNET
     using global::GW2DotNET.V1;
 
     using global::GW2DotNET.V1.Core;
+
+    using global::GW2DotNET.V1.Core.Common;
+
+    using RestSharp.GW2DotNET.ServiceResponses;
 
     /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
@@ -112,9 +118,40 @@ namespace RestSharp.GW2DotNET
             where TResult : class
         {
             var request = this.CreateRestRequest(serviceRequest);
-            return
-                this.innerRestClient.ExecuteTaskAsync(request, cancellationToken)
-                    .ContinueWith<IServiceResponse<TResult>>(task => new ServiceResponse<TResult>(task.Result), cancellationToken);
+            return this.innerRestClient.ExecuteTaskAsync(request, cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+
+                        if (response.ResponseStatus != ResponseStatus.Completed)
+                        {
+                            throw response.ErrorException;
+                        }
+
+                        if (response.StatusCode != HttpStatusCode.OK)
+                        {
+                            var serviceResponse = new ErrorResponse(response);
+                            throw new ServiceException(serviceResponse.Deserialize(), response.ErrorException);
+                        }
+
+                        if (typeof(JsonObject).IsAssignableFrom(typeof(TResult)))
+                        {
+                            return new JsonResponse<TResult>(response);
+                        }
+
+                        if (typeof(Image).IsAssignableFrom(typeof(TResult)))
+                        {
+                            return (IServiceResponse<TResult>)new ImageResponse(response);
+                        }
+
+                        if (typeof(string) == typeof(TResult))
+                        {
+                            return (IServiceResponse<TResult>)new TextResponse(response);
+                        }
+
+                        return new ServiceResponse<TResult>(response);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Infrastructure. Implementation details for 'Send'.</summary>
@@ -125,6 +162,32 @@ namespace RestSharp.GW2DotNET
         {
             var request = this.CreateRestRequest(serviceRequest);
             var response = this.innerRestClient.Execute(request);
+
+            if (response.ResponseStatus != ResponseStatus.Completed)
+            {
+                throw response.ErrorException;
+            }
+
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                var serviceResponse = new ErrorResponse(response);
+                throw new ServiceException(serviceResponse.Deserialize(), response.ErrorException);
+            }
+
+            if (typeof(JsonObject).IsAssignableFrom(typeof(TResult)))
+            {
+                return new JsonResponse<TResult>(response);
+            }
+
+            if (typeof(Image).IsAssignableFrom(typeof(TResult)))
+            {
+                return (IServiceResponse<TResult>)new ImageResponse(response);
+            }
+
+            if (typeof(string) == typeof(TResult))
+            {
+                return (IServiceResponse<TResult>)new TextResponse(response);
+            }
 
             return new ServiceResponse<TResult>(response);
         }

@@ -9,7 +9,6 @@
 namespace GW2DotNET.V1.ServiceManagement
 {
     using System;
-    using System.Drawing;
     using System.IO;
     using System.IO.Compression;
     using System.Net;
@@ -17,31 +16,27 @@ namespace GW2DotNET.V1.ServiceManagement
 
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Core;
-    using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Errors;
-
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.ServiceManagement.ServiceResponses;
 
     /// <summary>Provides a plain .NET implementation of the <see cref="IServiceResponse{TResult}"/> interface.</summary>
     /// <typeparam name="TResult">The type of the response content.</typeparam>
     public class ServiceResponse<TResult> : IServiceResponse<TResult>, IDisposable
         where TResult : class
     {
-        /// <summary>Infrastructure. Stores a JSON result.</summary>
-        private ErrorResult errorResult;
+        /// <summary>Infrastructure. Stores the inner <see cref="HttpWebResponse" />.</summary>
+        private readonly HttpWebResponse webResponse;
 
-        /// <summary>Infrastructure. Stores a JSON result.</summary>
+        /// <summary>Infrastructure. Stores a response's result.</summary>
         private TResult result;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceResponse{TResult}"/> class.</summary>
-        /// <param name="webResponse">The <see cref="System.Net.HttpWebResponse"/></param>
-        /// <param name="webException">The <see cref="System.Net.WebException"/>.</param>
-        public ServiceResponse(HttpWebResponse webResponse, WebException webException = null)
+        /// <param name="webResponse">The <see cref="System.Net.HttpWebResponse"/>.</param>
+        public ServiceResponse(HttpWebResponse webResponse)
         {
             Preconditions.EnsureNotNull(paramName: "webResponse", value: webResponse);
 
-            this.WebResponse = webResponse;
-            this.WebException = webException;
+            this.webResponse = webResponse;
         }
 
         /// <summary>Gets a value indicating the Internet media type of the message content.</summary>
@@ -49,7 +44,12 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             get
             {
-                return string.IsNullOrEmpty(this.WebResponse.ContentType) ? null : new ContentType(this.WebResponse.ContentType);
+                if (string.IsNullOrEmpty(this.webResponse.ContentType))
+                {
+                    return null;
+                }
+
+                return new ContentType(this.webResponse.ContentType);
             }
         }
 
@@ -96,76 +96,43 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             get
             {
-                return this.WebResponse.StatusCode;
+                return this.webResponse.StatusCode;
             }
         }
 
-        /// <summary>Gets or sets the web exception.</summary>
-        private WebException WebException { get; set; }
-
-        /// <summary>Gets or sets the web response.</summary>
-        private HttpWebResponse WebResponse { get; set; }
-
-        /// <summary>Gets the response content as an object of the specified type.</summary>
-        /// <returns>Returns the response as an instance of the specified type.</returns>
+        /// <summary>Gets the response content as an instance of the specified type.</summary>
+        /// <returns>The response content.</returns>
         public TResult Deserialize()
         {
-            if (!this.IsSuccessStatusCode)
+            if (this.result != null)
             {
-                // if the service returned an error code
-                throw new InvalidOperationException("Unable to deserialize the response content: the service returned an error code.");
+                return this.result;
             }
 
-            if (typeof(JsonObject).IsAssignableFrom(typeof(TResult)))
+            Stream stream;
+
+            using (stream = this.webResponse.GetResponseStream() ?? new MemoryStream())
             {
-                // if the expected result is a JSON object
-                if (!this.IsJsonResponse)
+                if (this.webResponse.Headers[HttpResponseHeader.ContentEncoding] == "gzip")
                 {
-                    // if the service didn't include a JSON result object
-                    throw new InvalidOperationException("Unable to deserialize the response content: the service did not return a JSON result.");
+                    stream = new GZipStream(stream, CompressionMode.Decompress, false);
                 }
 
-                return this.result ?? (this.result = DeserializeJson<TResult>(this.WebResponse));
+                return this.result = this.Deserialize(stream);
             }
-
-            if (typeof(Image).IsAssignableFrom(typeof(TResult)))
-            {
-                // if the expected result is an image
-                if (!this.IsImageResponse)
-                {
-                    // if the service didn't include an image result
-                    throw new InvalidOperationException("Unable to deserialize the response content: the service did not return an image result.");
-                }
-
-                return this.result ?? (this.result = DeserializeImage(this.WebResponse));
-            }
-
-            throw new NotSupportedException("Unable to deserialize the response content: the type of 'TResult' is unsupported.");
         }
 
         /// <summary>Gets the error result if the request was unsuccessful.</summary>
         /// <returns>Return the error response as an instance of the <see cref="ErrorResult" /> class.</returns>
         public ErrorResult DeserializeError()
         {
-            if (this.IsSuccessStatusCode)
-            {
-                // if the service returned a success code
-                throw new InvalidOperationException();
-            }
-
-            if (!this.IsJsonResponse)
-            {
-                // if the service didn't include a JSON result object
-                return this.errorResult ?? (this.errorResult = new ErrorResult { Text = this.WebException.Message });
-            }
-
-            return this.errorResult ?? (this.errorResult = DeserializeJson<ErrorResult>(this.WebResponse));
+            throw new NotSupportedException();
         }
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>
         public void Dispose()
         {
-            this.WebResponse.Close();
+            this.webResponse.Close();
         }
 
         /// <summary>Throws an exception if the service did not return a success code.</summary>
@@ -177,45 +144,16 @@ namespace GW2DotNET.V1.ServiceManagement
                 return this;
             }
 
-            throw new ServiceException(this.DeserializeError(), this.WebException);
+            var errorResponse = new ErrorResponse(this.webResponse);
+            throw new ServiceException(errorResponse.Deserialize());
         }
 
-        /// <summary>Infrastructure. Gets the response content.</summary>
-        /// <param name="webResponse">The web response.</param>
+        /// <summary>Gets the response content as an instance of the specified type.</summary>
+        /// <param name="stream">The response stream.</param>
         /// <returns>The response content.</returns>
-        private static TResult DeserializeImage(WebResponse webResponse)
+        protected virtual TResult Deserialize(Stream stream)
         {
-            var stream = webResponse.GetResponseStream() ?? new MemoryStream();
-
-            if (webResponse.Headers[HttpResponseHeader.ContentEncoding] == "gzip")
-            {
-                stream = new GZipStream(stream, CompressionMode.Decompress, false);
-            }
-
-            return (TResult)(object)Image.FromStream(stream);
-        }
-
-        /// <summary>Infrastructure. Gets the response content.</summary>
-        /// <param name="webResponse">The web response.</param>
-        /// <typeparam name="T">The type of the response content.</typeparam>
-        /// <returns>The response content.</returns>
-        private static T DeserializeJson<T>(WebResponse webResponse)
-        {
-            var stream = webResponse.GetResponseStream() ?? new MemoryStream();
-
-            if (webResponse.Headers[HttpResponseHeader.ContentEncoding] == "gzip")
-            {
-                stream = new GZipStream(stream, CompressionMode.Decompress, false);
-            }
-
-            using (var streamReader = new StreamReader(stream))
-            {
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    var serializer = JsonSerializer.Create();
-                    return serializer.Deserialize<T>(jsonReader);
-                }
-            }
+            throw new NotSupportedException("Unable to deserialize the response content: the type of 'TResult' is unsupported.");
         }
     }
 }

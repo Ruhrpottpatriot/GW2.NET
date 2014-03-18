@@ -11,8 +11,6 @@ namespace GW2DotNET.V1.Core
     using System.Net;
     using System.Net.Mime;
 
-    using GW2DotNET.V1.Core.Errors;
-
     /// <summary>Provides the base interface for HTTP responses originating from the Guild Wars 2 API.</summary>
     /// <typeparam name="TResult">The type of the response content.</typeparam>
     public interface IServiceResponse<out TResult>
@@ -33,13 +31,9 @@ namespace GW2DotNET.V1.Core
         /// <summary>Gets the status code.</summary>
         HttpStatusCode StatusCode { get; }
 
-        /// <summary>Gets the response content as an object of the specified type.</summary>
-        /// <returns>Returns the response as an instance of the specified type.</returns>
+        /// <summary>Gets the response content as an instance of the specified type.</summary>
+        /// <returns>The response content.</returns>
         TResult Deserialize();
-
-        /// <summary>Gets the error result if the request was unsuccessful.</summary>
-        /// <returns>Return the error response as an instance of the <see cref="ErrorResult" /> class.</returns>
-        ErrorResult DeserializeError();
 
         /// <summary>Throws an exception if the request did not return a success status code.</summary>
         /// <returns>Returns the current instance.</returns>
