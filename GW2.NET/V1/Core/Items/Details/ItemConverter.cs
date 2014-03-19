@@ -71,7 +71,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>
         /// <returns>Returns the target type.</returns>
-        public override Type GetTargetType(Type objectType, JObject content)
+        protected override Type GetTargetType(Type objectType, JObject content)
         {
             var jsonToken = content["type"];
 

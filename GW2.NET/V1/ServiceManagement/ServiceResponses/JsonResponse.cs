@@ -6,7 +6,6 @@
 //   Represents a JSON-object response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.ServiceManagement.ServiceResponses
 {
     using System;

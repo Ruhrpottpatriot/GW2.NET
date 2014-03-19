@@ -6,7 +6,6 @@
 //   Represents a JSON-object response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace RestSharp.GW2DotNET.ServiceResponses
 {
     using System;

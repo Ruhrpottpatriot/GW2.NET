@@ -13,8 +13,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
     using System.Collections.Generic;
 
     using GW2DotNET.V1.Core.Common.Converters;
-    using GW2DotNET.V1.Core.DynamicEvents.Details.Locations;
-    using GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes;
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors.ArmorTypes;
 
     using Newtonsoft.Json;
@@ -52,7 +50,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         /// <param name="objectType">The type of the object.</param>
         /// <param name="content">The JSON content.</param>
         /// <returns>Returns the target type.</returns>
-        public override Type GetTargetType(Type objectType, JObject content)
+        protected override Type GetTargetType(Type objectType, JObject content)
         {
             var jsonToken = content["type"];
 

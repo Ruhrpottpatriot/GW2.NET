@@ -28,12 +28,6 @@ namespace GW2DotNET.V1.Core.Common.Converters
             }
         }
 
-        /// <summary>Gets the object type that will be used by the serializer.</summary>
-        /// <param name="objectType">The type of the object.</param>
-        /// <param name="content">The JSON content.</param>
-        /// <returns>Returns the target type.</returns>
-        public abstract Type GetTargetType(Type objectType, JObject content);
-
         /// <summary>Reads the JSON representation of the object.</summary>
         /// <param name="reader">The <see cref="JsonReader"/> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
@@ -62,5 +56,11 @@ namespace GW2DotNET.V1.Core.Common.Converters
         {
             throw new NotSupportedException();
         }
+
+        /// <summary>Gets the object type that will be used by the serializer.</summary>
+        /// <param name="objectType">The type of the object.</param>
+        /// <param name="content">The JSON content.</param>
+        /// <returns>Returns the target type.</returns>
+        protected abstract Type GetTargetType(Type objectType, JObject content);
     }
 }

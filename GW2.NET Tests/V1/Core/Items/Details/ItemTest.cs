@@ -8,8 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details
 {
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes;
-
     using Newtonsoft.Json;
 
     using NUnit.Framework;
