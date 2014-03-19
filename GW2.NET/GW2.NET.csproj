@@ -153,27 +153,27 @@
       <DependentUpon>ConsumableDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableType.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\AppearanceChangeConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\BoozeConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\ContractNpcConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\FoodConsumableDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\AppearanceChangeDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\BoozeDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\ContractNpcDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\FoodDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\GenericConsumableDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\HalloweenConsumableDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\ImmediateConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\TransmutationConsumableDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\TransmutationDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnknownConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockConsumableDetailsConverter.cs">
-      <DependentUpon>UnlockConsumableDetails.cs</DependentUpon>
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockDetailsConverter.cs">
+      <DependentUpon>UnlockDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockType.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BagSlotUnlockConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BankTabUnlockConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\ContentUnlockConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CraftingRecipeUnlockConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\DyeUnlockConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\UnknownUnlockConsumableDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UtilityConsumableDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BagSlotUnlockDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BankTabUnlockDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\ContentUnlockDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CraftingRecipeUnlockDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\DyeUnlockDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\UnknownUnlockDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UtilityDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\Container.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerDetailsConverter.cs">

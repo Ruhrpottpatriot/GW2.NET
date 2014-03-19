@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="FoodConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="FoodDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -16,10 +16,10 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 
     /// <summary>Represents detailed information about an edible item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class FoodConsumableDetails : ConsumableDetails
+    public class FoodDetails : ConsumableDetails
     {
-        /// <summary>Initializes a new instance of the <see cref="FoodConsumableDetails" /> class.</summary>
-        public FoodConsumableDetails()
+        /// <summary>Initializes a new instance of the <see cref="FoodDetails" /> class.</summary>
+        public FoodDetails()
             : base(ConsumableType.Food)
         {
         }

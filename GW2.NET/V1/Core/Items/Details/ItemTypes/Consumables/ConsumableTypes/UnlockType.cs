@@ -35,7 +35,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 
         /// <summary>The 'Dye' unlock type.</summary>
         [EnumMember(Value = "Dye")]
-        Dye = 1 << 3,
+        Dye = 1 << 3, 
 
         /// <summary>The 'Content' unlock type.</summary>
         [EnumMember(Value = "Content")]

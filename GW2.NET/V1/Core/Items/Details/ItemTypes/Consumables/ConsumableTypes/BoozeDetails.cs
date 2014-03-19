@@ -1,24 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="BankTabUnlockConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="BoozeDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about a bank tab unlock item.
+//   Represents detailed information about a drink.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
+namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 {
     using GW2DotNET.V1.Core.Common.Converters;
 
     using Newtonsoft.Json;
 
-    /// <summary>Represents detailed information about a bank tab unlock item.</summary>
+    /// <summary>Represents detailed information about a drink.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class BankTabUnlockConsumableDetails : UnlockConsumableDetails
+    public class BoozeDetails : ConsumableDetails
     {
-        /// <summary>Initializes a new instance of the <see cref="BankTabUnlockConsumableDetails" /> class.</summary>
-        public BankTabUnlockConsumableDetails()
-            : base(UnlockType.BankTab)
+        /// <summary>Initializes a new instance of the <see cref="BoozeDetails" /> class.</summary>
+        public BoozeDetails()
+            : base(ConsumableType.Booze)
         {
         }
     }

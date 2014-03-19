@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContractNpcConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="TransmutationDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about an appearance changing consumable item.
+//   Represents detailed information about a transmutation consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
@@ -12,13 +12,13 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 
     using Newtonsoft.Json;
 
-    /// <summary>Represents detailed information about an appearance changing consumable item.</summary>
+    /// <summary>Represents detailed information about a transmutation consumable item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class ContractNpcConsumableDetails : ConsumableDetails
+    public class TransmutationDetails : ConsumableDetails
     {
-        /// <summary>Initializes a new instance of the <see cref="ContractNpcConsumableDetails" /> class.</summary>
-        public ContractNpcConsumableDetails()
-            : base(ConsumableType.ContractNpc)
+        /// <summary>Initializes a new instance of the <see cref="TransmutationDetails" /> class.</summary>
+        public TransmutationDetails()
+            : base(ConsumableType.Transmutation)
         {
         }
     }

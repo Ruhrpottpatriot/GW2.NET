@@ -1,24 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContentUnlockConsumableDetails.cs" company="GW2.Net Coding Team">
+// <copyright file="AppearanceChangeDetails.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about a content unlock item.
+//   Represents detailed information about an appearance changing consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
+namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 {
     using GW2DotNET.V1.Core.Common.Converters;
 
     using Newtonsoft.Json;
 
-    /// <summary>Represents detailed information about a content unlock item.</summary>
+    /// <summary>Represents detailed information about an appearance changing consumable item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class ContentUnlockConsumableDetails : UnlockConsumableDetails
+    public class AppearanceChangeDetails : ConsumableDetails
     {
-        /// <summary>Initializes a new instance of the <see cref="ContentUnlockConsumableDetails" /> class.</summary>
-        public ContentUnlockConsumableDetails()
-            : base(UnlockType.Content)
+        /// <summary>Initializes a new instance of the <see cref="AppearanceChangeDetails" /> class.</summary>
+        public AppearanceChangeDetails()
+            : base(ConsumableType.AppearanceChange)
         {
         }
     }

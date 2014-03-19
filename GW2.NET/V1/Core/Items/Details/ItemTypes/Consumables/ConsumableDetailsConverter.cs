@@ -29,16 +29,16 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
         static ConsumableDetailsConverter()
         {
             KnownTypes.Add(ConsumableType.Unknown, typeof(UnknownConsumableDetails));
-            KnownTypes.Add(ConsumableType.AppearanceChange, typeof(AppearanceChangeConsumableDetails));
-            KnownTypes.Add(ConsumableType.Booze, typeof(BoozeConsumableDetails));
-            KnownTypes.Add(ConsumableType.ContractNpc, typeof(ContractNpcConsumableDetails));
-            KnownTypes.Add(ConsumableType.Food, typeof(FoodConsumableDetails));
+            KnownTypes.Add(ConsumableType.AppearanceChange, typeof(AppearanceChangeDetails));
+            KnownTypes.Add(ConsumableType.Booze, typeof(BoozeDetails));
+            KnownTypes.Add(ConsumableType.ContractNpc, typeof(ContractNpcDetails));
+            KnownTypes.Add(ConsumableType.Food, typeof(FoodDetails));
             KnownTypes.Add(ConsumableType.Generic, typeof(GenericConsumableDetails));
             KnownTypes.Add(ConsumableType.Halloween, typeof(HalloweenConsumableDetails));
             KnownTypes.Add(ConsumableType.Immediate, typeof(ImmediateConsumableDetails));
-            KnownTypes.Add(ConsumableType.Transmutation, typeof(TransmutationConsumableDetails));
-            KnownTypes.Add(ConsumableType.Unlock, typeof(UnlockConsumableDetails));
-            KnownTypes.Add(ConsumableType.Utility, typeof(UtilityConsumableDetails));
+            KnownTypes.Add(ConsumableType.Transmutation, typeof(TransmutationDetails));
+            KnownTypes.Add(ConsumableType.Unlock, typeof(UnlockDetails));
+            KnownTypes.Add(ConsumableType.Utility, typeof(UtilityDetails));
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>

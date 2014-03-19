@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UnlockConsumableDetailsConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="UnlockDetailsConverter.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -18,22 +18,22 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of a class that extends <see cref="UnlockConsumableDetails" /> from its
+    /// <summary>Converts an instance of a class that extends <see cref="UnlockDetails" /> from its
     /// <see cref="System.String" /> representation.</summary>
-    public class UnlockConsumableDetailsConverter : ContentBasedTypeCreationConverter
+    public class UnlockDetailsConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>Backing field. Holds a dictionary of in-game unlock item types and their corresponding .NET class.</summary>
         private static readonly IDictionary<UnlockType, Type> KnownTypes = new Dictionary<UnlockType, Type>();
 
-        /// <summary>Initializes static members of the <see cref="UnlockConsumableDetailsConverter" /> class.</summary>
-        static UnlockConsumableDetailsConverter()
+        /// <summary>Initializes static members of the <see cref="UnlockDetailsConverter" /> class.</summary>
+        static UnlockDetailsConverter()
         {
-            KnownTypes.Add(UnlockType.Unknown, typeof(UnknownUnlockConsumableDetails));
-            KnownTypes.Add(UnlockType.BagSlot, typeof(BagSlotUnlockConsumableDetails));
-            KnownTypes.Add(UnlockType.BankTab, typeof(BankTabUnlockConsumableDetails));
-            KnownTypes.Add(UnlockType.CraftingRecipe, typeof(CraftingRecipeUnlockConsumableDetails));
-            KnownTypes.Add(UnlockType.Dye, typeof(DyeUnlockConsumableDetails));
-            KnownTypes.Add(UnlockType.Content, typeof(ContentUnlockConsumableDetails));
+            KnownTypes.Add(UnlockType.Unknown, typeof(UnknownUnlockDetails));
+            KnownTypes.Add(UnlockType.BagSlot, typeof(BagSlotUnlockDetails));
+            KnownTypes.Add(UnlockType.BankTab, typeof(BankTabUnlockDetails));
+            KnownTypes.Add(UnlockType.CraftingRecipe, typeof(CraftingRecipeUnlockDetails));
+            KnownTypes.Add(UnlockType.Dye, typeof(DyeUnlockDetails));
+            KnownTypes.Add(UnlockType.Content, typeof(ContentUnlockDetails));
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
@@ -54,7 +54,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 
             if (jsonToken == null)
             {
-                return typeof(UnknownUnlockConsumableDetails);
+                return typeof(UnknownUnlockDetails);
             }
 
             var jsonValue = jsonToken.Value<string>();
@@ -72,14 +72,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 
                 if (!KnownTypes.TryGetValue(type, out targetType))
                 {
-                    return typeof(UnknownUnlockConsumableDetails);
+                    return typeof(UnknownUnlockDetails);
                 }
 
                 return targetType;
             }
             catch (JsonSerializationException)
             {
-                return typeof(UnknownUnlockConsumableDetails);
+                return typeof(UnknownUnlockDetails);
             }
             finally
             {
