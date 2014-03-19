@@ -33,6 +33,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
             KnownTypes.Add(UnlockType.BankTab, typeof(BankTabUnlockConsumableDetails));
             KnownTypes.Add(UnlockType.CraftingRecipe, typeof(CraftingRecipeUnlockConsumableDetails));
             KnownTypes.Add(UnlockType.Dye, typeof(DyeUnlockConsumableDetails));
+            KnownTypes.Add(UnlockType.Content, typeof(ContentUnlockConsumableDetails));
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
@@ -82,7 +83,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
             }
             finally
             {
-                content.Remove("type");
+                content.Remove("unlock_type");
             }
         }
     }

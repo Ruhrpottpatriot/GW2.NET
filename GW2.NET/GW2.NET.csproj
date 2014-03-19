@@ -169,6 +169,7 @@
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockType.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BagSlotUnlockConsumableDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BankTabUnlockConsumableDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\ContentUnlockConsumableDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CraftingRecipeUnlockConsumableDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\DyeUnlockConsumableDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\UnknownUnlockConsumableDetails.cs" />
