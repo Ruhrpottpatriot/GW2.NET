@@ -181,7 +181,7 @@
     </Compile>
     <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerType.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerTypes\DefaultContainerDetails.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerTypes\GiftBoxContainerDetails.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerTypes\GiftBoxDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerTypes\UnknownContainerDetails.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\CraftingMaterials\CraftingMaterial.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\GatheringTools\GatheringTool.cs" />

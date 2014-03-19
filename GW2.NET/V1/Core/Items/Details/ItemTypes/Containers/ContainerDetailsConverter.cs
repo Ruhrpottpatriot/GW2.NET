@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
         {
             KnownTypes.Add(ContainerType.Unknown, typeof(UnknownContainerDetails));
             KnownTypes.Add(ContainerType.Default, typeof(DefaultContainerDetails));
-            KnownTypes.Add(ContainerType.GiftBox, typeof(GiftBoxContainerDetails));
+            KnownTypes.Add(ContainerType.GiftBox, typeof(GiftBoxDetails));
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
