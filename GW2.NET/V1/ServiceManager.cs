@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides a plain .NET implementation of the Guild Wars 2 service.
+//   Provides the default implementation of the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1
@@ -13,7 +13,6 @@ namespace GW2DotNET.V1
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.Globalization;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -27,12 +26,10 @@ namespace GW2DotNET.V1
     using GW2DotNET.V1.Core.DynamicEvents.Names;
     using GW2DotNET.V1.Core.Files;
     using GW2DotNET.V1.Core.Guilds.Details;
-    using GW2DotNET.V1.Core.Items;
     using GW2DotNET.V1.Core.Items.Details;
     using GW2DotNET.V1.Core.Maps;
     using GW2DotNET.V1.Core.Maps.Floors;
     using GW2DotNET.V1.Core.Maps.Names;
-    using GW2DotNET.V1.Core.Recipes;
     using GW2DotNET.V1.Core.Recipes.Details;
     using GW2DotNET.V1.Core.Worlds.Names;
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches;
@@ -43,7 +40,7 @@ namespace GW2DotNET.V1
 
     using ColorPalette = GW2DotNET.V1.Core.Colors.ColorPalette;
 
-    /// <summary>Provides a plain .NET implementation of the Guild Wars 2 service.</summary>
+    /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IServiceManager
     {
         /// <summary>Infrastructure. Stores a service client.</summary>
@@ -162,7 +159,7 @@ namespace GW2DotNET.V1
         public Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken? cancellationToken = null)
         {
             var request = new ContinentsRequest();
-            Task<ContinentsResult> response = this.GetAsync<ContinentsResult>(request, cancellationToken);
+            var response = this.GetAsync<ContinentsResult>(request, cancellationToken);
 
             return this.Select(response, result => (IEnumerable<Continent>)result.Continents.Values);
         }
@@ -186,10 +183,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
 
-            var request = new DynamicEventDetailsRequest { EventId = dynamicEventName.Id, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            var response = this.Get<DynamicEventDetailsResult>(request);
-
-            return response.EventDetails.Values;
+            return this.GetDynamicEventDetails(dynamicEventName.Id);
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
@@ -209,14 +203,13 @@ namespace GW2DotNET.V1
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(DynamicEventName dynamicEventName, CancellationToken? cancellationToken = null)
+        public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(
+            DynamicEventName dynamicEventName, 
+            CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
 
-            var request = new DynamicEventDetailsRequest { EventId = dynamicEventName.Id, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            var response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
-
-            return this.Select(response, result => (IEnumerable<DynamicEventDetails>)result.EventDetails.Values);
+            return this.GetDynamicEventDetailsAsync(dynamicEventName.Id, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
@@ -324,10 +317,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
-            var request = new DynamicEventRequest { EventId = eventId, WorldId = worldName.Id };
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
+            return this.GetDynamicEventsById(eventId, worldName.Id);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -367,10 +357,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
-            var request = new DynamicEventRequest { EventId = eventId, WorldId = worldName.Id };
-            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
-
-            return this.Select(response, result => (IEnumerable<DynamicEvent>)result.Events);
+            return this.GetDynamicEventsByIdAsync(eventId, worldName.Id, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -406,10 +393,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
 
-            var request = new DynamicEventRequest { MapId = mapName.Id, };
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
+            return this.GetDynamicEventsByMap(mapName.Id);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -422,10 +406,7 @@ namespace GW2DotNET.V1
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
-            var request = new DynamicEventRequest { MapId = mapName.Id, WorldId = worldName.Id };
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
+            return this.GetDynamicEventsByMap(mapName.Id, worldName.Id);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -464,10 +445,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
 
-            var request = new DynamicEventRequest { MapId = mapName.Id };
-            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
-
-            return this.Select(response, result => (IEnumerable<DynamicEvent>)result.Events);
+            return this.GetDynamicEventsByMapAsync(mapName.Id, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -481,10 +459,7 @@ namespace GW2DotNET.V1
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
-            var request = new DynamicEventRequest { MapId = mapName.Id, WorldId = worldName.Id };
-            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
-
-            return this.Select(response, result => (IEnumerable<DynamicEvent>)result.Events);
+            return this.GetDynamicEventsByMapAsync(mapName.Id, worldName.Id, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -507,10 +482,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
-            var request = new DynamicEventRequest { WorldId = worldName.Id };
-            var response = this.Get<DynamicEventsResult>(request);
-
-            return response.Events;
+            return this.GetDynamicEventsByWorld(worldName.Id);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -535,10 +507,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "worldName", value: worldName);
 
-            var request = new DynamicEventRequest { WorldId = worldName.Id };
-            var response = this.GetAsync<DynamicEventsResult>(request, cancellationToken);
-
-            return this.Select(response, result => (IEnumerable<DynamicEvent>)result.Events);
+            return this.GetDynamicEventsByWorldAsync(worldName.Id, cancellationToken);
         }
 
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
@@ -614,6 +583,33 @@ namespace GW2DotNET.V1
             return response;
         }
 
+        /// <summary>Renders an image.</summary>
+        /// <param name="file">The file.</param>
+        /// <param name="imageFormat">The image Format.</param>
+        /// <returns>The <see cref="Image"/>.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
+        public Image GetImage(IRenderable file, ImageFormat imageFormat)
+        {
+            var request = new RenderFileRequest(file, imageFormat);
+            var response = this.Get<Image>(this.renderService, request);
+
+            return response;
+        }
+
+        /// <summary>Renders an image.</summary>
+        /// <param name="file">The file.</param>
+        /// <param name="imageFormat">The image format.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The <see cref="Image"/>.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
+        public Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null)
+        {
+            var request = new RenderFileRequest(file, imageFormat);
+            var response = this.GetAsync<Image>(this.renderService, request, cancellationToken);
+
+            return response;
+        }
+
         /// <summary>Gets an item and its details.</summary>
         /// <param name="itemId">The item's ID.</param>
         /// <returns>An item and its details.</returns>
@@ -671,10 +667,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "continent", value: continent);
 
-            var request = new MapFloorRequest { ContinentId = continent.ContinentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            var response = this.Get<Floor>(request);
-
-            return response;
+            return this.GetMapFloor(continent.ContinentId, floor);
         }
 
         /// <summary>Gets a map floor and its details.</summary>
@@ -700,10 +693,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "continent", value: continent);
 
-            var request = new MapFloorRequest { ContinentId = continent.ContinentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<Floor> response = this.GetAsync<Floor>(request, cancellationToken);
-
-            return response;
+            return this.GetMapFloorAsync(continent.ContinentId, floor, cancellationToken);
         }
 
         /// <summary>Gets a map floor and its details.</summary>
@@ -762,10 +752,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
 
-            var request = new MapDetailsRequest { MapId = mapName.Id, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            var response = this.Get<MapsResult>(request);
-
-            return response.Maps.Values;
+            return this.GetMaps(mapName.Id);
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -801,10 +788,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
 
-            var request = new MapDetailsRequest { MapId = mapName.Id, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<MapsResult> response = this.GetAsync<MapsResult>(request, cancellationToken);
-
-            return this.Select(response, result => (IEnumerable<Map>)result.Maps.Values);
+            return this.GetMapsAsync(mapName.Id, cancellationToken);
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -899,10 +883,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
 
-            var request = new RecipeDetailsRequest { RecipeId = recipe.RecipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            var response = this.Get<Recipe>(request);
-
-            return response;
+            return this.GetRecipeDetails(recipe.RecipeId);
         }
 
         /// <summary>Gets a recipe and its details.</summary>
@@ -926,10 +907,7 @@ namespace GW2DotNET.V1
         {
             Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
 
-            var request = new RecipeDetailsRequest { RecipeId = recipe.RecipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<Recipe> response = this.GetAsync<Recipe>(request, cancellationToken);
-
-            return response;
+            return this.GetRecipeDetailsAsync(recipe.RecipeId, cancellationToken);
         }
 
         /// <summary>Gets a recipe and its details.</summary>
@@ -991,33 +969,6 @@ namespace GW2DotNET.V1
             return this.Select(response, result => (IEnumerable<WorldName>)result);
         }
 
-        /// <summary>Renders an image.</summary>
-        /// <param name="file">The file.</param>
-        /// <param name="imageFormat">The image Format.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Image GetImage(IRenderable file, ImageFormat imageFormat)
-        {
-            var request = new RenderFileRequest(file, imageFormat);
-            var response = this.Get<Image>(this.renderService, request);
-
-            return response;
-        }
-
-        /// <summary>Renders an image.</summary>
-        /// <param name="file">The file.</param>
-        /// <param name="imageFormat">The image format.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null)
-        {
-            var request = new RenderFileRequest(file, imageFormat);
-            var response = this.GetAsync<Image>(this.renderService, request, cancellationToken);
-
-            return response;
-        }
-
         /// <summary>Infrastructure. Sends a request and gets the response.</summary>
         /// <param name="serviceRequest">The service request.</param>
         /// <typeparam name="TResult">The type of the response content</typeparam>
@@ -1074,23 +1025,23 @@ namespace GW2DotNET.V1
 
             return request.GetResponseAsync<TResult>(service, token).ContinueWith(
                 task =>
-                {
-                    IServiceResponse<TResult> serviceResponse = null;
-                    try
                     {
-                        serviceResponse = task.Result;
-                        return serviceResponse.EnsureSuccessStatusCode().Deserialize();
-                    }
-                    finally
-                    {
-                        // clean up if necessary
-                        var disposable = serviceResponse as IDisposable;
-                        if (disposable != null)
+                        IServiceResponse<TResult> serviceResponse = null;
+                        try
                         {
-                            disposable.Dispose();
+                            serviceResponse = task.Result;
+                            return serviceResponse.EnsureSuccessStatusCode().Deserialize();
                         }
-                    }
-                },
+                        finally
+                        {
+                            // clean up if necessary
+                            var disposable = serviceResponse as IDisposable;
+                            if (disposable != null)
+                            {
+                                disposable.Dispose();
+                            }
+                        }
+                    }, 
                 token);
         }
 
