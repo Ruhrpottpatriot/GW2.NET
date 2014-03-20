@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.ServiceManagement.ServiceRequests
     using System.Drawing.Imaging;
 
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Core;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Represents a request for an in-game asset.</summary>
     public class RenderFileRequest : ServiceRequest

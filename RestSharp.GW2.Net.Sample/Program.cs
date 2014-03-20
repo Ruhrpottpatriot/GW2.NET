@@ -13,11 +13,11 @@ namespace RestSharp.GW2DotNET.Sample
 
     using global::GW2DotNET.V1;
 
-    using global::GW2DotNET.V1.Core;
-
     using global::GW2DotNET.V1.Core.DynamicEvents;
 
     using global::GW2DotNET.V1.Core.Errors;
+
+    using global::GW2DotNET.V1.ServiceManagement;
 
     /// <summary>The program.</summary>
     internal class Program
@@ -27,8 +27,8 @@ namespace RestSharp.GW2DotNET.Sample
         {
             Console.BufferWidth = Console.BufferHeight = short.MaxValue - 1;
 
-            var dataService = ServiceClient.DataServiceClient();
-            var renderService = ServiceClient.RenderServiceClient();
+            var dataService = global::RestSharp.GW2DotNET.ServiceClient.DataServiceClient();
+            var renderService = global::RestSharp.GW2DotNET.ServiceClient.RenderServiceClient();
             var serviceManager = new ServiceManager(dataService, renderService);
 
             PrintBanner(serviceManager);

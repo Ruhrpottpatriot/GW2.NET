@@ -6,7 +6,7 @@
 //   Represents an API error.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Core
+namespace GW2DotNET.V1.ServiceManagement
 {
     using System;
 

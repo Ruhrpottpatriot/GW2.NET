@@ -16,7 +16,6 @@ namespace GW2DotNET.V1
     using System.Threading.Tasks;
 
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Core;
     using GW2DotNET.V1.Core.Builds;
     using GW2DotNET.V1.Core.Colors;
     using GW2DotNET.V1.Core.Common;

@@ -6,7 +6,7 @@
 //   Provides the base interface for HTTP requests targeting the Guild Wars 2 API.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Core
+namespace GW2DotNET.V1.ServiceManagement
 {
     using System;
     using System.Collections.Generic;

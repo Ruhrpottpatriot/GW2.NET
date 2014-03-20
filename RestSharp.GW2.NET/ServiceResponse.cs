@@ -15,9 +15,9 @@ namespace RestSharp.GW2DotNET
 
     using global::GW2DotNET.Utilities;
 
-    using global::GW2DotNET.V1.Core;
-
     using global::GW2DotNET.V1.Core.Errors;
+
+    using global::GW2DotNET.V1.ServiceManagement;
 
     using RestSharp.GW2DotNET.ServiceResponses;
 

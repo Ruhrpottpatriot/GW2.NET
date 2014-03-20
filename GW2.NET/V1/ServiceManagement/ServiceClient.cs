@@ -15,7 +15,6 @@ namespace GW2DotNET.V1.ServiceManagement
     using System.Threading.Tasks;
 
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Core;
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.ServiceManagement.ServiceResponses;
 

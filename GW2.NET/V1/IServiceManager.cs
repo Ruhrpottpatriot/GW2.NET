@@ -6,7 +6,7 @@
 //   Provides the interface for service managers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Core
+namespace GW2DotNET.V1
 {
     using System;
     using System.Drawing;
@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.Core
 
     using GW2DotNET.V1.Core.Builds;
     using GW2DotNET.V1.Core.Colors;
+    using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Continents;
     using GW2DotNET.V1.Core.DynamicEvents;
     using GW2DotNET.V1.Core.DynamicEvents.Details;

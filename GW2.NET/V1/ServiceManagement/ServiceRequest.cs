@@ -16,7 +16,6 @@ namespace GW2DotNET.V1.ServiceManagement
     using System.Threading.Tasks;
 
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Core;
 
     /// <summary>Provides the base class for service requests.</summary>
     public abstract class ServiceRequest : IServiceRequest

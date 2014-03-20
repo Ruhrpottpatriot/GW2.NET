@@ -18,9 +18,9 @@ namespace RestSharp.GW2DotNET
 
     using global::GW2DotNET.V1;
 
-    using global::GW2DotNET.V1.Core;
-
     using global::GW2DotNET.V1.Core.Common;
+
+    using global::GW2DotNET.V1.ServiceManagement;
 
     using RestSharp.GW2DotNET.ServiceResponses;
 

@@ -74,6 +74,7 @@
     <Compile Include="V1\Core\Common\Converters\JsonTimespanConverter.cs" />
     <Compile Include="V1\Core\Common\Converters\StringEnumFlagsConverter.cs" />
     <Compile Include="V1\Core\Common\Drawing\Point3D.cs" />
+    <Compile Include="V1\Core\Common\IRenderable.cs" />
     <Compile Include="V1\Core\Common\JsonDictionary.cs" />
     <Compile Include="V1\Core\Common\JsonList.cs" />
     <Compile Include="V1\Core\Common\JsonObject.cs" />
@@ -107,8 +108,6 @@
     <Compile Include="V1\Core\Guilds\Details\Emblems\Emblem.cs" />
     <Compile Include="V1\Core\Guilds\Details\Emblems\EmblemTransformations.cs" />
     <Compile Include="V1\Core\Guilds\Details\Guild.cs" />
-    <Compile Include="V1\Core\IRenderable.cs" />
-    <Compile Include="V1\Core\IServiceManager.cs" />
     <Compile Include="V1\Core\Items\Details\GameRestrictions.cs" />
     <Compile Include="V1\Core\Items\Details\Item.cs" />
     <Compile Include="V1\Core\Items\Details\ItemConverter.cs">
@@ -346,10 +345,6 @@
     <Compile Include="V1\Core\Recipes\Details\RecipeTypes\WarHornRecipe.cs" />
     <Compile Include="V1\Core\Recipes\Details\RecipeUnlockTypes.cs" />
     <Compile Include="V1\Core\Recipes\RecipeCollection.cs" />
-    <Compile Include="V1\Core\ServiceException.cs" />
-    <Compile Include="V1\Core\IServiceClient.cs" />
-    <Compile Include="V1\Core\IServiceRequest.cs" />
-    <Compile Include="V1\Core\IServiceResponse.cs" />
     <Compile Include="V1\Core\Worlds\Names\WorldName.cs" />
     <Compile Include="V1\Core\Worlds\Names\WorldNameCollection.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Matches\Details\Common\Scoreboard.cs" />
@@ -371,6 +366,11 @@
     <Compile Include="V1\Core\WorldVersusWorld\Matches\MatchesResult.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveName.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveNameCollection.cs" />
+    <Compile Include="V1\IServiceManager.cs" />
+    <Compile Include="V1\ServiceManagement\IServiceClient.cs" />
+    <Compile Include="V1\ServiceManagement\IServiceRequest.cs" />
+    <Compile Include="V1\ServiceManagement\IServiceResponse.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceException.cs" />
     <Compile Include="V1\ServiceManagement\ServiceResponses\ErrorResponse.cs" />
     <Compile Include="V1\ServiceManagement\ServiceResponses\ImageResponse.cs" />
     <Compile Include="V1\ServiceManagement\ServiceResponses\JsonResponse.cs" />
