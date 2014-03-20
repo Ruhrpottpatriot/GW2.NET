@@ -366,6 +366,9 @@
     <Compile Include="V1\Core\WorldVersusWorld\Matches\MatchesResult.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveName.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveNameCollection.cs" />
+    <Compile Include="V1\ServiceManagement\ICachedServiceManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="V1\ServiceManagement\IServiceClient.cs" />
     <Compile Include="V1\ServiceManagement\IServiceManager.cs" />
     <Compile Include="V1\ServiceManagement\IServiceRequest.cs" />
