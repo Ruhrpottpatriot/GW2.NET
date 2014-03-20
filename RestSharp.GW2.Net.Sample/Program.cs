@@ -9,6 +9,7 @@
 namespace RestSharp.GW2DotNET.Sample
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using global::GW2DotNET.V1;
@@ -145,7 +146,7 @@ namespace RestSharp.GW2DotNET.Sample
         {
             var table = new ConsoleTable("ID", "Name", "Color");
 
-            foreach (var color in serviceManager.GetColors().Values.OrderByDescending(x => x))
+            foreach (var color in serviceManager.GetColors().OrderByDescending(x => x))
             {
                 table.AddRow(color.ColorId, color.Name, color.Cloth.Rgb);
             }
@@ -174,9 +175,9 @@ namespace RestSharp.GW2DotNET.Sample
         {
             var table = new ConsoleTable("ID", "Event ID", "Name");
 
-            var collection = serviceManager.GetDynamicEventNames();
+            var collection = serviceManager.GetDynamicEventNames().ToList();
 
-            for (int i = 0; i < collection.Count; i++)
+            for (int i = 0; i < collection.Count(); i++)
             {
                 table.AddRow(i, collection[i].Id, collection[i].Name);
             }
@@ -200,7 +201,7 @@ namespace RestSharp.GW2DotNET.Sample
 
             int? worldId = this.GetInt("Pick a world ID []: ");
 
-            DynamicEventCollection collection;
+            IEnumerable<DynamicEvent> collection;
 
             if (mapId.HasValue)
             {
@@ -231,7 +232,7 @@ namespace RestSharp.GW2DotNET.Sample
         {
             var table = new ConsoleTable("Name", "ID", "Signature");
 
-            foreach (var file in serviceManager.GetFiles().Values)
+            foreach (var file in serviceManager.GetFiles())
             {
                 table.AddRow(file.FileName, file.FileId, file.FileSignature);
             }
