@@ -366,16 +366,21 @@
     <Compile Include="V1\Core\WorldVersusWorld\Matches\MatchesResult.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveName.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveNameCollection.cs" />
-    <Compile Include="V1\IServiceManager.cs" />
     <Compile Include="V1\ServiceManagement\IServiceClient.cs" />
+    <Compile Include="V1\ServiceManagement\IServiceManager.cs" />
     <Compile Include="V1\ServiceManagement\IServiceRequest.cs" />
     <Compile Include="V1\ServiceManagement\IServiceResponse.cs" />
     <Compile Include="V1\ServiceManagement\ServiceException.cs" />
+    <Compile Include="V1\ServiceManagement\ServiceManager.cs" />
     <Compile Include="V1\ServiceManagement\ServiceResponses\ErrorResponse.cs" />
     <Compile Include="V1\ServiceManagement\ServiceResponses\ImageResponse.cs" />
     <Compile Include="V1\ServiceManagement\ServiceResponses\JsonResponse.cs" />
     <Compile Include="V1\ServiceManagement\ServiceResponses\TextResponse.cs" />
-    <Compile Include="V1\ServiceManager.cs" />
+    <Compile Include="V1\ServiceManagement\Services.Designer.cs">
+      <DependentUpon>Services.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="V1\ServiceManagement\ServiceRequests\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\ServiceManagement\ServiceRequests\BuildRequest.cs" />
     <Compile Include="V1\ServiceManagement\ServiceRequests\ContinentsRequest.cs" />
@@ -399,18 +404,13 @@
     <Compile Include="V1\ServiceManagement\ServiceClient.cs" />
     <Compile Include="V1\ServiceManagement\ServiceRequest.cs" />
     <Compile Include="V1\ServiceManagement\ServiceResponse.cs" />
-    <Compile Include="V1\Services.Designer.cs">
-      <DependentUpon>Services.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="V1\Services.resx">
+    <EmbeddedResource Include="V1\ServiceManagement\Services.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Services.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>

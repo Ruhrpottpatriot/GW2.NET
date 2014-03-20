@@ -6,7 +6,7 @@
 //   Provides the default implementation of the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1
+namespace GW2DotNET.V1.ServiceManagement
 {
     using System;
     using System.Collections.Generic;
@@ -35,7 +35,6 @@ namespace GW2DotNET.V1
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches;
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details;
     using GW2DotNET.V1.Core.WorldVersusWorld.Objectives.Names;
-    using GW2DotNET.V1.ServiceManagement;
     using GW2DotNET.V1.ServiceManagement.ServiceRequests;
 
     using ColorPalette = GW2DotNET.V1.Core.Colors.ColorPalette;
