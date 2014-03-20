@@ -484,19 +484,19 @@ namespace GW2DotNET.V1
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         Task<IEnumerable<WorldName>> GetWorldNamesAsync(CancellationToken? cancellationToken = null);
 
-        /// <summary>Renders an image.</summary>
+        /// <summary>Gets an image.</summary>
         /// <param name="file">The file.</param>
         /// <param name="imageFormat">The image Format.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        Image Render(IRenderable file, ImageFormat imageFormat);
+        Image GetImage(IRenderable file, ImageFormat imageFormat);
 
-        /// <summary>Renders an image.</summary>
+        /// <summary>Gets an image.</summary>
         /// <param name="file">The file.</param>
         /// <param name="imageFormat">The image format.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        Task<Image> RenderAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null);
+        Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null);
     }
 }

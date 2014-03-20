@@ -996,7 +996,7 @@ namespace GW2DotNET.V1
         /// <param name="imageFormat">The image Format.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Image Render(IRenderable file, ImageFormat imageFormat)
+        public Image GetImage(IRenderable file, ImageFormat imageFormat)
         {
             var request = new RenderFileRequest(file, imageFormat);
             var response = this.Get<Image>(this.renderService, request);
@@ -1010,7 +1010,7 @@ namespace GW2DotNET.V1
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> RenderAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null)
+        public Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null)
         {
             var request = new RenderFileRequest(file, imageFormat);
             var response = this.GetAsync<Image>(this.renderService, request, cancellationToken);
