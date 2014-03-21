@@ -36,7 +36,7 @@ namespace GW2DotNET.V1.ServiceManagement
     using ColorPalette = GW2DotNET.V1.Core.Colors.ColorPalette;
 
     /// <summary>Provides the interface for service managers that are backed up by a cache.</summary>
-    internal interface ICachedServiceManager : IServiceManager
+    public interface ICachedServiceManager : IServiceManager
     {
         /// <summary>Gets the current game build.</summary>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
