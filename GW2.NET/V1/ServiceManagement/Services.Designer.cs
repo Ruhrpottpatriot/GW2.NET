@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace GW2DotNET.V1 {
+namespace GW2DotNET.V1.ServiceManagement {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace GW2DotNET.V1 {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GW2DotNET.V1.Services", typeof(Services).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("GW2DotNET.V1.ServiceManagement.Services", typeof(Services).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
