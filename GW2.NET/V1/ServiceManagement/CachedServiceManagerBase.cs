@@ -53,7 +53,18 @@ namespace GW2DotNET.V1.ServiceManagement
         }
 
         /// <summary>Gets or sets the preferred language.</summary>
-        public abstract CultureInfo PreferredLanguageInfo { get; set; }
+        public virtual CultureInfo PreferredLanguageInfo
+        {
+            get
+            {
+                return this.fallbackServiceManager.PreferredLanguageInfo;
+            }
+
+            set
+            {
+                this.fallbackServiceManager.PreferredLanguageInfo = value;
+            }
+        }
 
         /// <summary>Gets the fallback service manager.</summary>
         protected IServiceManager FallbackServiceManager
