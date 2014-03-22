@@ -679,6 +679,9 @@ namespace GW2DotNET.V1.ServiceManagement
             var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<Floor>(request);
 
+            response.ContinentId = continentId;
+            response.FloorNumber = floor;
+
             return response;
         }
 
