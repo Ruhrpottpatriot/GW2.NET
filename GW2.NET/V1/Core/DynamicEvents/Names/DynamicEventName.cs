@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Names
     public class DynamicEventName : JsonObject, IEquatable<DynamicEventName>, IComparable<DynamicEventName>
     {
         /// <summary>Gets or sets the event ID.</summary>
-        [JsonProperty("ID", Order = 0)]
+        [JsonProperty("id", Order = 0)]
         public Guid Id { get; set; }
 
         /// <summary>Gets or sets the localized event name.</summary>
