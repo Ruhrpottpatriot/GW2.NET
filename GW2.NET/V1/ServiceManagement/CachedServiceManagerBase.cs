@@ -80,7 +80,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public virtual Build GetBuild()
         {
-            return this.GetBuild(true);
+            try
+            {
+                return this.GetBuild(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetBuild();
+            }
         }
 
         /// <summary>Gets the current game build.</summary>
@@ -95,7 +102,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public virtual Task<Build> GetBuildAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetBuildAsync(true, cancellationToken);
+            try
+            {
+                return this.GetBuildAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetBuildAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the current build.</summary>
@@ -110,7 +124,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public virtual IEnumerable<ColorPalette> GetColors()
         {
-            return this.GetColors(true);
+            try
+            {
+                return this.GetColors(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetColors();
+            }
         }
 
         /// <summary>Gets the collection of colors in the game.</summary>
@@ -125,7 +146,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<ColorPalette>> GetColorsAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetColorsAsync(true, cancellationToken);
+            try
+            {
+                return this.GetColorsAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetColorsAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the collection of colors in the game.</summary>
@@ -140,7 +168,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public virtual IEnumerable<Continent> GetContinents()
         {
-            return this.GetContinents(true);
+            try
+            {
+                return this.GetContinents(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetContinents();
+            }
         }
 
         /// <summary>Gets the collection of continents in the game.</summary>
@@ -155,7 +190,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetContinentsAsync(true, cancellationToken);
+            try
+            {
+                return this.GetContinentsAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetContinentsAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the collection of continents in the game.</summary>
@@ -170,7 +212,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public virtual IEnumerable<DynamicEventDetails> GetDynamicEventDetails()
         {
-            return this.GetDynamicEventDetails(true);
+            try
+            {
+                return this.GetDynamicEventDetails(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventDetails();
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
@@ -179,7 +228,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public virtual IEnumerable<DynamicEventDetails> GetDynamicEventDetails(Guid eventId)
         {
-            return this.GetDynamicEventDetails(eventId, true);
+            try
+            {
+                return this.GetDynamicEventDetails(eventId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventDetails(eventId);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
@@ -202,7 +258,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken? cancellationToken = null)
         {
-            return this.GetDynamicEventDetailsAsync(eventId, true, cancellationToken);
+            try
+            {
+                return this.GetDynamicEventDetailsAsync(eventId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventDetailsAsync(eventId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
@@ -211,7 +274,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetDynamicEventDetailsAsync(true, cancellationToken);
+            try
+            {
+                return this.GetDynamicEventDetailsAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventDetailsAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
@@ -220,10 +290,7 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public abstract Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(
-            Guid eventId, 
-            bool allowCache, 
-            CancellationToken? cancellationToken = null);
+        public abstract Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(Guid eventId, bool allowCache, CancellationToken? cancellationToken = null);
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
@@ -237,7 +304,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public virtual IEnumerable<DynamicEventName> GetDynamicEventNames()
         {
-            return this.GetDynamicEventNames(true);
+            try
+            {
+                return this.GetDynamicEventNames(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventNames();
+            }
         }
 
         /// <summary>Gets the collection of dynamic events and their localized name.</summary>
@@ -252,7 +326,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetDynamicEventNamesAsync(true, cancellationToken);
+            try
+            {
+                return this.GetDynamicEventNamesAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventNamesAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the collection of dynamic events and their localized name.</summary>
@@ -267,7 +348,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual IEnumerable<DynamicEvent> GetDynamicEvents()
         {
-            return this.GetDynamicEvents(true);
+            try
+            {
+                return this.GetDynamicEvents(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEvents();
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -282,7 +370,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<DynamicEvent>> GetDynamicEventsAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetDynamicEventsAsync(true, cancellationToken);
+            try
+            {
+                return this.GetDynamicEventsAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -298,7 +393,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual IEnumerable<DynamicEvent> GetDynamicEventsById(Guid eventId)
         {
-            return this.GetDynamicEventsById(eventId, true);
+            try
+            {
+                return this.GetDynamicEventsById(eventId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsById(eventId);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -308,7 +410,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual IEnumerable<DynamicEvent> GetDynamicEventsById(Guid eventId, int worldId)
         {
-            return this.GetDynamicEventsById(eventId, worldId, true);
+            try
+            {
+                return this.GetDynamicEventsById(eventId, worldId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsById(eventId, worldId);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -333,7 +442,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<DynamicEvent>> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken? cancellationToken = null)
         {
-            return this.GetDynamicEventsByIdAsync(eventId, true, cancellationToken);
+            try
+            {
+                return this.GetDynamicEventsByIdAsync(eventId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsByIdAsync(eventId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -344,7 +460,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<DynamicEvent>> GetDynamicEventsByIdAsync(Guid eventId, int worldId, CancellationToken? cancellationToken = null)
         {
-            return this.GetDynamicEventsByIdAsync(eventId, worldId, true, cancellationToken);
+            try
+            {
+                return this.GetDynamicEventsByIdAsync(eventId, worldId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsByIdAsync(eventId, worldId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -362,11 +485,7 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public abstract Task<IEnumerable<DynamicEvent>> GetDynamicEventsByIdAsync(
-            Guid eventId, 
-            int worldId, 
-            bool allowCache, 
-            CancellationToken? cancellationToken = null);
+        public abstract Task<IEnumerable<DynamicEvent>> GetDynamicEventsByIdAsync(Guid eventId, int worldId, bool allowCache, CancellationToken? cancellationToken = null);
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="mapId">The map filter.</param>
@@ -374,7 +493,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual IEnumerable<DynamicEvent> GetDynamicEventsByMap(int mapId)
         {
-            return this.GetDynamicEventsByMap(mapId, true);
+            try
+            {
+                return this.GetDynamicEventsByMap(mapId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsByMap(mapId);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -384,7 +510,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual IEnumerable<DynamicEvent> GetDynamicEventsByMap(int mapId, int worldId)
         {
-            return this.GetDynamicEventsByMap(mapId, worldId, true);
+            try
+            {
+                return this.GetDynamicEventsByMap(mapId, worldId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsByMap(mapId, worldId);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -409,7 +542,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId, CancellationToken? cancellationToken = null)
         {
-            return this.GetDynamicEventsByMapAsync(mapId, true, cancellationToken);
+            try
+            {
+                return this.GetDynamicEventsByMapAsync(mapId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsByMapAsync(mapId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -420,7 +560,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken? cancellationToken = null)
         {
-            return this.GetDynamicEventsByMapAsync(mapId, worldId, true, cancellationToken);
+            try
+            {
+                return this.GetDynamicEventsByMapAsync(mapId, worldId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsByMapAsync(mapId, worldId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -438,11 +585,7 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public abstract Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(
-            int mapId, 
-            int worldId, 
-            bool allowCache, 
-            CancellationToken? cancellationToken = null);
+        public abstract Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId, int worldId, bool allowCache, CancellationToken? cancellationToken = null);
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="worldId">The world filter.</param>
@@ -450,7 +593,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual IEnumerable<DynamicEvent> GetDynamicEventsByWorld(int worldId)
         {
-            return this.GetDynamicEventsByWorld(worldId, true);
+            try
+            {
+                return this.GetDynamicEventsByWorld(worldId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsByWorld(worldId);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -467,7 +617,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<DynamicEvent>> GetDynamicEventsByWorldAsync(int worldId, CancellationToken? cancellationToken = null)
         {
-            return this.GetDynamicEventsByWorldAsync(worldId, true, cancellationToken);
+            try
+            {
+                return this.GetDynamicEventsByWorldAsync(worldId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetDynamicEventsByWorldAsync(worldId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -483,7 +640,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
         public virtual IEnumerable<Asset> GetFiles()
         {
-            return this.GetFiles(true);
+            try
+            {
+                return this.GetFiles(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetFiles();
+            }
         }
 
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
@@ -498,7 +662,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<Asset>> GetFilesAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetFilesAsync(true, cancellationToken);
+            try
+            {
+                return this.GetFilesAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetFilesAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
@@ -514,7 +685,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public virtual Guild GetGuildDetails(Guid guildId)
         {
-            return this.GetGuildDetails(guildId, true);
+            try
+            {
+                return this.GetGuildDetails(guildId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetGuildDetails(guildId);
+            }
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -523,7 +701,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public virtual Guild GetGuildDetails(string guildName)
         {
-            return this.GetGuildDetails(guildName, true);
+            try
+            {
+                return this.GetGuildDetails(guildName, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetGuildDetails(guildName);
+            }
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -547,7 +732,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public virtual Task<Guild> GetGuildDetailsAsync(Guid guildId, CancellationToken? cancellationToken = null)
         {
-            return this.GetGuildDetailsAsync(guildId, true, cancellationToken);
+            try
+            {
+                return this.GetGuildDetailsAsync(guildId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetGuildDetailsAsync(guildId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -557,7 +749,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public virtual Task<Guild> GetGuildDetailsAsync(string guildName, CancellationToken? cancellationToken = null)
         {
-            return this.GetGuildDetailsAsync(guildName, true, cancellationToken);
+            try
+            {
+                return this.GetGuildDetailsAsync(guildName, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetGuildDetailsAsync(guildName, cancellationToken);
+            }
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -583,7 +782,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
         public virtual Image GetImage(IRenderable file, ImageFormat imageFormat)
         {
-            return this.GetImage(file, imageFormat, true);
+            try
+            {
+                return this.GetImage(file, imageFormat, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetImage(file, imageFormat);
+            }
         }
 
         /// <summary>Gets an image.</summary>
@@ -602,7 +808,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
         public virtual Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat, CancellationToken? cancellationToken = null)
         {
-            return this.GetImageAsync(file, imageFormat, true, cancellationToken);
+            try
+            {
+                return this.GetImageAsync(file, imageFormat, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetImageAsync(file, imageFormat, cancellationToken);
+            }
         }
 
         /// <summary>Gets an image.</summary>
@@ -620,7 +833,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public virtual Item GetItemDetails(int itemId)
         {
-            return this.GetItemDetails(itemId, true);
+            try
+            {
+                return this.GetItemDetails(itemId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetItemDetails(itemId);
+            }
         }
 
         /// <summary>Gets an item and its details.</summary>
@@ -637,7 +857,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public virtual Task<Item> GetItemDetailsAsync(int itemId, CancellationToken? cancellationToken = null)
         {
-            return this.GetItemDetailsAsync(itemId, true, cancellationToken);
+            try
+            {
+                return this.GetItemDetailsAsync(itemId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetItemDetailsAsync(itemId, cancellationToken);
+            }
         }
 
         /// <summary>Gets an item and its details.</summary>
@@ -653,7 +880,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public virtual IEnumerable<int> GetItems()
         {
-            return this.GetItems(true);
+            try
+            {
+                return this.GetItems(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetItems();
+            }
         }
 
         /// <summary>Gets the collection of discovered items.</summary>
@@ -668,7 +902,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<int>> GetItemsAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetItemsAsync(true, cancellationToken);
+            try
+            {
+                return this.GetItemsAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetItemsAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the collection of discovered items.</summary>
@@ -685,7 +926,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public virtual Floor GetMapFloor(int continentId, int floor)
         {
-            return this.GetMapFloor(continentId, floor, true);
+            try
+            {
+                return this.GetMapFloor(continentId, floor, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMapFloor(continentId, floor);
+            }
         }
 
         /// <summary>Gets a map floor and its details.</summary>
@@ -704,7 +952,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public virtual Task<Floor> GetMapFloorAsync(int continentId, int floor, CancellationToken? cancellationToken = null)
         {
-            return this.GetMapFloorAsync(continentId, floor, true, cancellationToken);
+            try
+            {
+                return this.GetMapFloorAsync(continentId, floor, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMapFloorAsync(continentId, floor, cancellationToken);
+            }
         }
 
         /// <summary>Gets a map floor and its details.</summary>
@@ -721,7 +976,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public virtual IEnumerable<MapName> GetMapNames()
         {
-            return this.GetMapNames(true);
+            try
+            {
+                return this.GetMapNames(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMapNames();
+            }
         }
 
         /// <summary>Gets the collection of maps and their localized name.</summary>
@@ -736,7 +998,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<MapName>> GetMapNamesAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetMapNamesAsync(true, cancellationToken);
+            try
+            {
+                return this.GetMapNamesAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMapNamesAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the collection of maps and their localized name.</summary>
@@ -751,7 +1020,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public virtual IEnumerable<Map> GetMaps()
         {
-            return this.GetMaps(true);
+            try
+            {
+                return this.GetMaps(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMaps();
+            }
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -760,7 +1036,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public virtual IEnumerable<Map> GetMaps(int mapId)
         {
-            return this.GetMaps(mapId, true);
+            try
+            {
+                return this.GetMaps(mapId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMaps(mapId);
+            }
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -783,7 +1066,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<Map>> GetMapsAsync(int mapId, CancellationToken? cancellationToken = null)
         {
-            return this.GetMapsAsync(mapId, true, cancellationToken);
+            try
+            {
+                return this.GetMapsAsync(mapId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMapsAsync(mapId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -792,7 +1082,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<Map>> GetMapsAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetMapsAsync(true, cancellationToken);
+            try
+            {
+                return this.GetMapsAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMapsAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -816,7 +1113,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
         public virtual MatchDetails GetMatchDetails(string matchId)
         {
-            return this.GetMatchDetails(matchId, true);
+            try
+            {
+                return this.GetMatchDetails(matchId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMatchDetails(matchId);
+            }
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
@@ -833,7 +1137,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
         public virtual Task<MatchDetails> GetMatchDetailsAsync(string matchId, CancellationToken? cancellationToken = null)
         {
-            return this.GetMatchDetailsAsync(matchId, true, cancellationToken);
+            try
+            {
+                return this.GetMatchDetailsAsync(matchId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMatchDetailsAsync(matchId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
@@ -849,7 +1160,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
         public virtual IEnumerable<Match> GetMatches()
         {
-            return this.GetMatches(true);
+            try
+            {
+                return this.GetMatches(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMatches();
+            }
         }
 
         /// <summary>Gets the collection of currently running World versus World matches.</summary>
@@ -864,7 +1182,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<Match>> GetMatchesAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetMatchesAsync(true, cancellationToken);
+            try
+            {
+                return this.GetMatchesAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetMatchesAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the collection of currently running World versus World matches.</summary>
@@ -879,7 +1204,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public virtual IEnumerable<ObjectiveName> GetObjectiveNames()
         {
-            return this.GetObjectiveNames(true);
+            try
+            {
+                return this.GetObjectiveNames(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetObjectiveNames();
+            }
         }
 
         /// <summary>Gets the collection of World versus World objectives and their localized name.</summary>
@@ -894,7 +1226,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetObjectiveNamesAsync(true, cancellationToken);
+            try
+            {
+                return this.GetObjectiveNamesAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetObjectiveNamesAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the collection of World versus World objectives and their localized name.</summary>
@@ -910,7 +1249,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public virtual Recipe GetRecipeDetails(int recipeId)
         {
-            return this.GetRecipeDetails(recipeId, true);
+            try
+            {
+                return this.GetRecipeDetails(recipeId, true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetRecipeDetails(recipeId);
+            }
         }
 
         /// <summary>Gets a recipe and its details.</summary>
@@ -927,7 +1273,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public virtual Task<Recipe> GetRecipeDetailsAsync(int recipeId, CancellationToken? cancellationToken = null)
         {
-            return this.GetRecipeDetailsAsync(recipeId, true, cancellationToken);
+            try
+            {
+                return this.GetRecipeDetailsAsync(recipeId, true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetRecipeDetailsAsync(recipeId, cancellationToken);
+            }
         }
 
         /// <summary>Gets a recipe and its details.</summary>
@@ -943,7 +1296,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
         public virtual IEnumerable<int> GetRecipes()
         {
-            return this.GetRecipes(true);
+            try
+            {
+                return this.GetRecipes(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetRecipes();
+            }
         }
 
         /// <summary>Gets the collection of discovered recipes.</summary>
@@ -958,7 +1318,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<int>> GetRecipesAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetRecipesAsync(true, cancellationToken);
+            try
+            {
+                return this.GetRecipesAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetRecipesAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the collection of discovered recipes.</summary>
@@ -973,7 +1340,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public virtual IEnumerable<WorldName> GetWorldNames()
         {
-            return this.GetWorldNames(true);
+            try
+            {
+                return this.GetWorldNames(true);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetWorldNames();
+            }
         }
 
         /// <summary>Gets the collection of worlds and their localized name.</summary>
@@ -988,7 +1362,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public virtual Task<IEnumerable<WorldName>> GetWorldNamesAsync(CancellationToken? cancellationToken = null)
         {
-            return this.GetWorldNamesAsync(true, cancellationToken);
+            try
+            {
+                return this.GetWorldNamesAsync(true, cancellationToken);
+            }
+            catch
+            {
+                return this.FallbackServiceManager.GetWorldNamesAsync(cancellationToken);
+            }
         }
 
         /// <summary>Gets the collection of worlds and their localized name.</summary>
