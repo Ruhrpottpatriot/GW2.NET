@@ -36,6 +36,11 @@ namespace RestSharp.GW2DotNET.ServiceResponses
                 throw new InvalidOperationException();
             }
 
+            if (!this.IsJsonResponse)
+            {
+                return new ErrorResult { Text = this.StatusDescription };
+            }
+
             using (var streamReader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(streamReader))
             {

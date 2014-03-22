@@ -15,7 +15,6 @@ namespace GW2DotNET.V1.ServiceManagement
     using System.Net.Mime;
 
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Core.Errors;
     using GW2DotNET.V1.ServiceManagement.ServiceResponses;
 
     /// <summary>Provides a plain .NET implementation of the <see cref="IServiceResponse{TResult}"/> interface.</summary>
@@ -99,6 +98,15 @@ namespace GW2DotNET.V1.ServiceManagement
             }
         }
 
+        /// <summary>Gets the status description.</summary>
+        public string StatusDescription
+        {
+            get
+            {
+                return this.webResponse.StatusDescription;
+            }
+        }
+
         /// <summary>Gets the response content as an instance of the specified type.</summary>
         /// <returns>The response content.</returns>
         public TResult Deserialize()
@@ -119,13 +127,6 @@ namespace GW2DotNET.V1.ServiceManagement
 
                 return this.result = this.Deserialize(stream);
             }
-        }
-
-        /// <summary>Gets the error result if the request was unsuccessful.</summary>
-        /// <returns>Return the error response as an instance of the <see cref="ErrorResult" /> class.</returns>
-        public ErrorResult DeserializeError()
-        {
-            throw new NotSupportedException();
         }
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

@@ -31,6 +31,9 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <summary>Gets the status code.</summary>
         HttpStatusCode StatusCode { get; }
 
+        /// <summary>Gets the status description.</summary>
+        string StatusDescription { get; }
+
         /// <summary>Gets the response content as an instance of the specified type.</summary>
         /// <returns>The response content.</returns>
         TResult Deserialize();

@@ -102,6 +102,15 @@ namespace RestSharp.GW2DotNET
             }
         }
 
+        /// <summary>Gets the status description.</summary>
+        public string StatusDescription
+        {
+            get
+            {
+                return this.restResponse.StatusDescription;
+            }
+        }
+
         /// <summary>Gets the response content as an instance of the specified type.</summary>
         /// <returns>The response content.</returns>
         public TResult Deserialize()

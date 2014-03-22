@@ -32,9 +32,19 @@ namespace RestSharp.GW2DotNET.Sample
             var renderService = global::RestSharp.GW2DotNET.ServiceClient.RenderServiceClient();
             var serviceManager = new ServiceManager(dataService, renderService);
 
-            PrintBanner(serviceManager);
-
-            new Program().Main(serviceManager);
+            try
+            {
+                PrintBanner(serviceManager);
+                new Program().Main(serviceManager);
+            }
+            catch (ServiceException exception)
+            {
+                Console.WriteLine();
+                using (new Pen(ConsoleColor.Red))
+                {
+                    Console.WriteLine(exception.Details.Text);
+                }
+            }
         }
 
         /// <summary>TODO The print banner.</summary>
@@ -52,7 +62,10 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine();
             Console.Write(@" The current game build is... ");
             var build = serviceManager.GetBuild();
-            Console.WriteLine(build.BuildId);
+            using (new Pen(ConsoleColor.Cyan))
+            {
+                Console.WriteLine(build.BuildId);
+            }
             Console.WriteLine();
             Console.WriteLine(@"+--------------------------------------------+");
         }
@@ -134,7 +147,10 @@ namespace RestSharp.GW2DotNET.Sample
                 }
                 catch (ServiceException exception)
                 {
-                    this.PrintError(exception.Details);
+                    using (new Pen(ConsoleColor.DarkRed))
+                    {
+                        this.PrintError(exception.Details);
+                    }
                 }
             }
             while (true);
