@@ -758,11 +758,16 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Floor GetMapFloor(int continentId, int floor)
         {
-            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = languageInfo };
             var response = this.Get<Floor>(request);
 
+            // patch missing floor information
             response.ContinentId = continentId;
             response.FloorNumber = floor;
+
+            // patch missing language information
+            response.Language = languageInfo;
 
             return response;
         }
@@ -788,14 +793,20 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CancellationToken? cancellationToken = null)
         {
-            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = languageInfo };
             var response = this.GetAsync<Floor>(request, cancellationToken);
             response.ContinueWith(
                 task =>
                 {
                     var mapFloor = task.Result;
+
+                    // patch missing floor information
                     mapFloor.ContinentId = continentId;
                     mapFloor.FloorNumber = floor;
+
+                    // patch missing language information
+                    mapFloor.Language = languageInfo;
                 });
 
             return response;

@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Maps.Floors
 {
     using System.Drawing;
+    using System.Globalization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -43,5 +44,9 @@ namespace GW2DotNET.V1.Core.Maps.Floors
         [JsonProperty("texture_dims", Order = 2)]
         [JsonConverter(typeof(JsonSizeConverter))]
         public Size TextureDimensions { get; set; }
+
+        /// <summary>Gets or sets the language info.</summary>
+        [JsonProperty("lang", Order = 5)]
+        public CultureInfo Language { get; set; }
     }
 }
