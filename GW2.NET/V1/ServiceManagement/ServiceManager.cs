@@ -138,8 +138,15 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public IEnumerable<ColorPalette> GetColors()
         {
-            var request = new ColorsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new ColorsRequest { PreferredLanguageInfo = languageInfo };
             var response = this.Get<ColorsResult>(request);
+
+            foreach (var colorPalette in response.Colors.Values)
+            {
+                // patch missing language information
+                colorPalette.Language = languageInfo;
+            }
 
             return response.Colors.Values;
         }
@@ -150,8 +157,19 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ColorPalette>> GetColorsAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new ColorsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new ColorsRequest { PreferredLanguageInfo = languageInfo };
             var response = this.GetAsync<ColorsResult>(request, cancellationToken);
+
+            response.ContinueWith(
+                task =>
+                {
+                    foreach (var colorPalette in task.Result.Colors.Values)
+                    {
+                        // patch missing language information
+                        colorPalette.Language = languageInfo;
+                    }
+                });
 
             return this.Select(response, result => (IEnumerable<ColorPalette>)result.Colors.Values);
         }
