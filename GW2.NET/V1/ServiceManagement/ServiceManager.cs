@@ -86,18 +86,24 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             get
             {
-                return this.preferredLanguageInfo ?? CultureInfo.CurrentUICulture.GetValueOrDefaultIfNotSupported();
+                return this.preferredLanguageInfo ?? CultureInfo.CurrentUICulture.GetLanguageInfoOrDefault();
             }
 
             set
             {
-                if (value != null && !this.preferredLanguageInfo.IsSupported())
+                if (value == null)
+                {
+                    this.preferredLanguageInfo = null;
+                    return;
+                }
+
+                if (!this.preferredLanguageInfo.IsSupported())
                 {
                     // if a language is specified but is not one of the supported languages
                     throw new NotSupportedException("The specified language is not supported");
                 }
 
-                this.preferredLanguageInfo = value;
+                this.preferredLanguageInfo = value.ToLanguageInfo();
             }
         }
 

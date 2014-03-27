@@ -33,10 +33,10 @@ namespace GW2DotNET.Extensions
         /// <param name="instance">The instance.</param>
         /// <param name="name">The name of the culture info.</param>
         /// <returns>The culture info.</returns>
-        public static CultureInfo GetValueOrDefaultIfNotSupported(this CultureInfo instance, string name = "en")
+        public static CultureInfo GetLanguageInfoOrDefault(this CultureInfo instance, string name = "en")
         {
             Preconditions.EnsureNotNull(instance);
-            return IsSupported(instance) ? instance : new CultureInfo(name);
+            return IsSupported(instance) ? instance.ToLanguageInfo() : new CultureInfo(name);
         }
 
         /// <summary>
@@ -48,6 +48,17 @@ namespace GW2DotNET.Extensions
         {
             Preconditions.EnsureNotNull(instance);
             return SupportedCultureInfos.Contains(instance);
+        }
+
+        /// <summary>
+        /// To the language information.
+        /// </summary>
+        /// <param name="instance">The instance.</param>
+        /// <returns>The language info</returns>
+        public static CultureInfo ToLanguageInfo(this CultureInfo instance)
+        {
+            Preconditions.EnsureNotNull(instance);
+            return new CultureInfo(instance.TwoLetterISOLanguageName);
         }
     }
 }
