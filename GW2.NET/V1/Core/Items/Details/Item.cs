@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details
 {
     using System;
+    using System.Globalization;
 
     using GW2DotNET.V1.Core.Common;
 
@@ -67,6 +68,10 @@ namespace GW2DotNET.V1.Core.Items.Details
         /// <summary>Gets or sets the item's restrictions.</summary>
         [JsonProperty("restrictions", Order = 11)]
         public ItemRestrictions Restrictions { get; set; }
+
+        /// <summary>Gets or sets the language info.</summary>
+        [JsonProperty("lang", Order = 12)]
+        public CultureInfo Language { get; set; }
 
         /// <summary>Gets the item's type.</summary>
         [JsonProperty("type", Order = 3)]
