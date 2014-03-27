@@ -184,8 +184,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEventDetails> GetDynamicEventDetails()
         {
-            var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = languageInfo };
             var response = this.Get<DynamicEventDetailsResult>(request);
+
+            foreach (var dynamicEventDetails in response.EventDetails.Values)
+            {
+                dynamicEventDetails.Language = languageInfo;
+            }
 
             return response.EventDetails.Values;
         }
@@ -207,8 +213,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEventDetails> GetDynamicEventDetails(Guid eventId)
         {
-            var request = new DynamicEventDetailsRequest { EventId = eventId, PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new DynamicEventDetailsRequest { EventId = eventId, PreferredLanguageInfo = languageInfo };
             var response = this.Get<DynamicEventDetailsResult>(request);
+
+            foreach (var dynamicEventDetails in response.EventDetails.Values)
+            {
+                dynamicEventDetails.Language = languageInfo;
+            }
 
             return response.EventDetails.Values;
         }
@@ -234,8 +246,18 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventDetailsRequest { EventId = eventId, PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new DynamicEventDetailsRequest { EventId = eventId, PreferredLanguageInfo = languageInfo };
             var response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
+
+            response.ContinueWith(
+                task =>
+                {
+                    foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
+                    {
+                        dynamicEventDetails.Language = languageInfo;
+                    }
+                });
 
             return this.Select(response, result => (IEnumerable<DynamicEventDetails>)result.EventDetails.Values);
         }
@@ -246,8 +268,18 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = languageInfo };
             var response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
+
+            response.ContinueWith(
+                task =>
+                {
+                    foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
+                    {
+                        dynamicEventDetails.Language = languageInfo;
+                    }
+                });
 
             return this.Select(response, result => (IEnumerable<DynamicEventDetails>)result.EventDetails.Values);
         }
@@ -282,13 +314,13 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
+                {
+                    foreach (var eventName in task.Result)
                     {
-                        foreach (var eventName in task.Result)
-                        {
-                            // patch missing language information
-                            eventName.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        eventName.Language = languageInfo;
+                    }
+                });
 
             return this.Select(response, result => (IEnumerable<DynamicEventName>)result);
         }
@@ -744,11 +776,11 @@ namespace GW2DotNET.V1.ServiceManagement
             var response = this.GetAsync<Floor>(request, cancellationToken);
             response.ContinueWith(
                 task =>
-                    {
-                        var mapFloor = task.Result;
-                        mapFloor.ContinentId = continentId;
-                        mapFloor.FloorNumber = floor;
-                    });
+                {
+                    var mapFloor = task.Result;
+                    mapFloor.ContinentId = continentId;
+                    mapFloor.FloorNumber = floor;
+                });
 
             return response;
         }
@@ -782,12 +814,12 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
+                {
+                    foreach (var mapName in task.Result)
                     {
-                        foreach (var mapName in task.Result)
-                        {
-                            mapName.Language = languageInfo;
-                        }
-                    });
+                        mapName.Language = languageInfo;
+                    }
+                });
 
             return this.Select(response, result => (IEnumerable<MapName>)result);
         }
@@ -1034,12 +1066,12 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
+                {
+                    foreach (var worldName in task.Result)
                     {
-                        foreach (var worldName in task.Result)
-                        {
-                            worldName.Language = languageInfo;
-                        }
-                    });
+                        worldName.Language = languageInfo;
+                    }
+                });
 
             return this.Select(response, result => (IEnumerable<WorldName>)result);
         }
@@ -1100,23 +1132,23 @@ namespace GW2DotNET.V1.ServiceManagement
 
             return request.GetResponseAsync<TResult>(service, token).ContinueWith(
                 task =>
+                {
+                    IServiceResponse<TResult> serviceResponse = null;
+                    try
                     {
-                        IServiceResponse<TResult> serviceResponse = null;
-                        try
+                        serviceResponse = task.Result;
+                        return serviceResponse.EnsureSuccessStatusCode().Deserialize();
+                    }
+                    finally
+                    {
+                        // clean up if necessary
+                        var disposable = serviceResponse as IDisposable;
+                        if (disposable != null)
                         {
-                            serviceResponse = task.Result;
-                            return serviceResponse.EnsureSuccessStatusCode().Deserialize();
+                            disposable.Dispose();
                         }
-                        finally
-                        {
-                            // clean up if necessary
-                            var disposable = serviceResponse as IDisposable;
-                            if (disposable != null)
-                            {
-                                disposable.Dispose();
-                            }
-                        }
-                    },
+                    }
+                },
                 token);
         }
 
