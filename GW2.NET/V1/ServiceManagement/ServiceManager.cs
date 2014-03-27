@@ -758,8 +758,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public IEnumerable<MapName> GetMapNames()
         {
-            var request = new MapNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new MapNamesRequest { PreferredLanguageInfo = languageInfo };
             var response = this.Get<MapNameCollection>(request);
+
+            foreach (var mapName in response)
+            {
+                mapName.Language = languageInfo;
+            }
 
             return response;
         }
@@ -770,8 +776,18 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<MapName>> GetMapNamesAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new MapNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new MapNamesRequest { PreferredLanguageInfo = languageInfo };
             var response = this.GetAsync<MapNameCollection>(request, cancellationToken);
+
+            response.ContinueWith(
+                task =>
+                    {
+                        foreach (var mapName in task.Result)
+                        {
+                            mapName.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<MapName>)result);
         }
