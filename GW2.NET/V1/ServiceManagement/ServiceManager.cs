@@ -203,7 +203,7 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <returns>A collection of dynamic events.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(
-            DynamicEventName dynamicEventName, 
+            DynamicEventName dynamicEventName,
             CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
@@ -707,7 +707,14 @@ namespace GW2DotNET.V1.ServiceManagement
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CancellationToken? cancellationToken = null)
         {
             var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<Floor> response = this.GetAsync<Floor>(request, cancellationToken);
+            var response = this.GetAsync<Floor>(request, cancellationToken);
+            response.ContinueWith(
+                task =>
+                {
+                    var mapFloor = task.Result;
+                    mapFloor.ContinentId = continentId;
+                    mapFloor.FloorNumber = floor;
+                });
 
             return response;
         }
@@ -1027,23 +1034,23 @@ namespace GW2DotNET.V1.ServiceManagement
 
             return request.GetResponseAsync<TResult>(service, token).ContinueWith(
                 task =>
+                {
+                    IServiceResponse<TResult> serviceResponse = null;
+                    try
                     {
-                        IServiceResponse<TResult> serviceResponse = null;
-                        try
+                        serviceResponse = task.Result;
+                        return serviceResponse.EnsureSuccessStatusCode().Deserialize();
+                    }
+                    finally
+                    {
+                        // clean up if necessary
+                        var disposable = serviceResponse as IDisposable;
+                        if (disposable != null)
                         {
-                            serviceResponse = task.Result;
-                            return serviceResponse.EnsureSuccessStatusCode().Deserialize();
+                            disposable.Dispose();
                         }
-                        finally
-                        {
-                            // clean up if necessary
-                            var disposable = serviceResponse as IDisposable;
-                            if (disposable != null)
-                            {
-                                disposable.Dispose();
-                            }
-                        }
-                    }, 
+                    }
+                },
                 token);
         }
 
