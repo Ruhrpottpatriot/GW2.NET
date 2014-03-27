@@ -6,6 +6,7 @@
 //   Provides the default implementation of the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.ServiceManagement
 {
     using System;
@@ -97,13 +98,15 @@ namespace GW2DotNET.V1.ServiceManagement
                     return;
                 }
 
-                if (!this.preferredLanguageInfo.IsSupported())
+                var languageInfo = value.ToLanguageInfo();
+
+                if (!languageInfo.IsSupported())
                 {
                     // if a language is specified but is not one of the supported languages
                     throw new NotSupportedException("The specified language is not supported");
                 }
 
-                this.preferredLanguageInfo = value.ToLanguageInfo();
+                this.preferredLanguageInfo = languageInfo;
             }
         }
 
@@ -257,6 +260,12 @@ namespace GW2DotNET.V1.ServiceManagement
             var request = new DynamicEventNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.Get<DynamicEventNameCollection>(request);
 
+            foreach (var eventName in response)
+            {
+                // patch missing language information
+                eventName.Language = this.PreferredLanguageInfo;
+            }
+
             return response;
         }
 
@@ -268,6 +277,16 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var request = new DynamicEventNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
             var response = this.GetAsync<DynamicEventNameCollection>(request, cancellationToken);
+
+            response.ContinueWith(
+                task =>
+                    {
+                        foreach (var eventName in task.Result)
+                        {
+                            // patch missing language information
+                            eventName.Language = this.PreferredLanguageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<DynamicEventName>)result);
         }
@@ -723,11 +742,11 @@ namespace GW2DotNET.V1.ServiceManagement
             var response = this.GetAsync<Floor>(request, cancellationToken);
             response.ContinueWith(
                 task =>
-                {
-                    var mapFloor = task.Result;
-                    mapFloor.ContinentId = continentId;
-                    mapFloor.FloorNumber = floor;
-                });
+                    {
+                        var mapFloor = task.Result;
+                        mapFloor.ContinentId = continentId;
+                        mapFloor.FloorNumber = floor;
+                    });
 
             return response;
         }
@@ -1047,23 +1066,23 @@ namespace GW2DotNET.V1.ServiceManagement
 
             return request.GetResponseAsync<TResult>(service, token).ContinueWith(
                 task =>
-                {
-                    IServiceResponse<TResult> serviceResponse = null;
-                    try
                     {
-                        serviceResponse = task.Result;
-                        return serviceResponse.EnsureSuccessStatusCode().Deserialize();
-                    }
-                    finally
-                    {
-                        // clean up if necessary
-                        var disposable = serviceResponse as IDisposable;
-                        if (disposable != null)
+                        IServiceResponse<TResult> serviceResponse = null;
+                        try
                         {
-                            disposable.Dispose();
+                            serviceResponse = task.Result;
+                            return serviceResponse.EnsureSuccessStatusCode().Deserialize();
                         }
-                    }
-                },
+                        finally
+                        {
+                            // clean up if necessary
+                            var disposable = serviceResponse as IDisposable;
+                            if (disposable != null)
+                            {
+                                disposable.Dispose();
+                            }
+                        }
+                    },
                 token);
         }
 

@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.DynamicEvents.Names
 {
     using System;
+    using System.Globalization;
 
     using GW2DotNET.V1.Core.Common;
 
@@ -24,6 +25,10 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Names
         /// <summary>Gets or sets the localized event name.</summary>
         [JsonProperty("name", Order = 1)]
         public string Name { get; set; }
+
+        /// <summary>Gets or sets the language info.</summary>
+        [JsonProperty("lang", Order = 2)]
+        public CultureInfo Language { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
