@@ -1010,8 +1010,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public IEnumerable<WorldName> GetWorldNames()
         {
-            var request = new WorldNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new WorldNamesRequest { PreferredLanguageInfo = languageInfo };
             var response = this.Get<WorldNameCollection>(request);
+
+            foreach (var worldName in response)
+            {
+                worldName.Language = languageInfo;
+            }
 
             return response;
         }
@@ -1022,8 +1028,18 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new WorldNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new WorldNamesRequest { PreferredLanguageInfo = languageInfo };
             var response = this.GetAsync<WorldNameCollection>(request, cancellationToken);
+
+            response.ContinueWith(
+                task =>
+                    {
+                        foreach (var worldName in task.Result)
+                        {
+                            worldName.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<WorldName>)result);
         }
