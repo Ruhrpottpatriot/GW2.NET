@@ -1001,8 +1001,12 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(int recipeId)
         {
-            var request = new RecipeDetailsRequest { RecipeId = recipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new RecipeDetailsRequest { RecipeId = recipeId, PreferredLanguageInfo = languageInfo };
             var response = this.Get<Recipe>(request);
+
+            // patch missing language information
+            response.Language = languageInfo;
 
             return response;
         }
@@ -1026,8 +1030,16 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CancellationToken? cancellationToken = null)
         {
-            var request = new RecipeDetailsRequest { RecipeId = recipeId, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            Task<Recipe> response = this.GetAsync<Recipe>(request, cancellationToken);
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new RecipeDetailsRequest { RecipeId = recipeId, PreferredLanguageInfo = languageInfo };
+            var response = this.GetAsync<Recipe>(request, cancellationToken);
+
+            response.ContinueWith(
+                task =>
+                    {
+                        // patch missing language information
+                        task.Result.Language = languageInfo;
+                    });
 
             return response;
         }

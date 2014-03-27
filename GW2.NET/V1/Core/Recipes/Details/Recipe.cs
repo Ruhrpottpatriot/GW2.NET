@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Recipes.Details
 {
     using System;
+    using System.Globalization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -72,6 +73,10 @@ namespace GW2DotNET.V1.Core.Recipes.Details
                 return this.type;
             }
         }
+
+        /// <summary>Gets or sets the language info.</summary>
+        [JsonProperty("lang", Order = 9)]
+        public CultureInfo Language { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
