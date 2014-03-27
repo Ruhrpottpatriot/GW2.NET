@@ -1013,8 +1013,15 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public IEnumerable<ObjectiveName> GetObjectiveNames()
         {
-            var request = new ObjectiveNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new ObjectiveNamesRequest { PreferredLanguageInfo = languageInfo };
             var response = this.Get<ObjectiveNameCollection>(request);
+
+            foreach (var objectiveName in response)
+            {
+                // patch missing language information
+                objectiveName.Language = languageInfo;
+            }
 
             return response;
         }
@@ -1025,8 +1032,19 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new ObjectiveNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new ObjectiveNamesRequest { PreferredLanguageInfo = languageInfo };
             var response = this.GetAsync<ObjectiveNameCollection>(request, cancellationToken);
+
+            response.ContinueWith(
+                task =>
+                {
+                    foreach (var objectiveName in task.Result)
+                    {
+                        // patch missing language information
+                        objectiveName.Language = languageInfo;
+                    }
+                });
 
             return this.Select(response, result => (IEnumerable<ObjectiveName>)result);
         }
