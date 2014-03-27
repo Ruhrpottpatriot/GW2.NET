@@ -257,13 +257,14 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEventName> GetDynamicEventNames()
         {
-            var request = new DynamicEventNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new DynamicEventNamesRequest { PreferredLanguageInfo = languageInfo };
             var response = this.Get<DynamicEventNameCollection>(request);
 
             foreach (var eventName in response)
             {
                 // patch missing language information
-                eventName.Language = this.PreferredLanguageInfo;
+                eventName.Language = languageInfo;
             }
 
             return response;
@@ -275,7 +276,8 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CancellationToken? cancellationToken = null)
         {
-            var request = new DynamicEventNamesRequest { PreferredLanguageInfo = this.PreferredLanguageInfo };
+            var languageInfo = this.PreferredLanguageInfo;
+            var request = new DynamicEventNamesRequest { PreferredLanguageInfo = languageInfo };
             var response = this.GetAsync<DynamicEventNameCollection>(request, cancellationToken);
 
             response.ContinueWith(
@@ -284,7 +286,7 @@ namespace GW2DotNET.V1.ServiceManagement
                         foreach (var eventName in task.Result)
                         {
                             // patch missing language information
-                            eventName.Language = this.PreferredLanguageInfo;
+                            eventName.Language = languageInfo;
                         }
                     });
 
