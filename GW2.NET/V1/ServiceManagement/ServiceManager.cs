@@ -16,6 +16,7 @@ namespace GW2DotNET.V1.ServiceManagement
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Extensions;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Core.Builds;
     using GW2DotNET.V1.Core.Colors;
@@ -85,11 +86,17 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             get
             {
-                return this.preferredLanguageInfo ?? CultureInfo.CurrentUICulture;
+                return this.preferredLanguageInfo ?? CultureInfo.CurrentUICulture.GetValueOrDefaultIfNotSupported();
             }
 
             set
             {
+                if (value != null && !this.preferredLanguageInfo.IsSupported())
+                {
+                    // if a language is specified but is not one of the supported languages
+                    throw new NotSupportedException("The specified language is not supported");
+                }
+
                 this.preferredLanguageInfo = value;
             }
         }
