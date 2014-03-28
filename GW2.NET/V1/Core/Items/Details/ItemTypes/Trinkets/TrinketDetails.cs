@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Common;
 
@@ -32,7 +33,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
         public Trinket Trinket { get; set; }
 
         /// <summary>Gets the trinket's type.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public TrinketType Type
         {
             get
@@ -77,7 +78,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets
             return object.Equals(this.Trinket, other.Trinket);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

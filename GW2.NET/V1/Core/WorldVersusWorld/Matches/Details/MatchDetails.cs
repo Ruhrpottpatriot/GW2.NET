@@ -9,26 +9,25 @@
 namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Common;
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a World versus World match.</summary>
     public class MatchDetails : JsonObject, IEquatable<MatchDetails>, IComparable<MatchDetails>
     {
         /// <summary>Gets or sets the list of maps.</summary>
-        [JsonProperty("maps", Order = 2)]
+        [DataMember(Name = "maps", Order = 2)]
         public CompetitiveMapCollection Maps { get; set; }
 
         /// <summary>Gets or sets the match's ID.</summary>
-        [JsonProperty("match_id", Order = 0)]
+        [DataMember(Name = "match_id", Order = 0)]
         public string MatchId { get; set; }
 
         /// <summary>Gets or sets the total scores.</summary>
-        [JsonProperty("scores", Order = 1)]
+        [DataMember(Name = "scores", Order = 1)]
         public Scoreboard Scores { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -50,7 +49,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(MatchDetails other)
         {
@@ -80,7 +79,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details
             return string.Equals(this.MatchId, other.MatchId);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

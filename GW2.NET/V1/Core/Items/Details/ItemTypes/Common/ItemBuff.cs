@@ -8,19 +8,19 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 {
-    using GW2DotNET.V1.Core.Common;
+    using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Represents an item buff.</summary>
     public class ItemBuff : JsonObject
     {
         /// <summary>Gets or sets the buff's description.</summary>
-        [JsonProperty("description", Order = 1)]
+        [DataMember(Name = "description", Order = 1)]
         public string Description { get; set; }
 
         /// <summary>Gets or sets the buff's skill ID.</summary>
-        [JsonProperty("skill_id", Order = 0)]
+        [DataMember(Name = "skill_id", Order = 0)]
         public string SkillId { get; set; }
     }
 }

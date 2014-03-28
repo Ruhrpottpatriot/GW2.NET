@@ -8,19 +8,19 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Recipes.Details.Ingredients
 {
-    using GW2DotNET.V1.Core.Common;
+    using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Represents one of a recipe's ingredients.</summary>
     public class CraftingIngredient : JsonObject
     {
         /// <summary>Gets or sets the number of items required.</summary>
-        [JsonProperty("count", Order = 1)]
+        [DataMember(Name = "count", Order = 1)]
         public int Count { get; set; }
 
         /// <summary>Gets or sets the required item.</summary>
-        [JsonProperty("item_id", Order = 0)]
+        [DataMember(Name = "item_id", Order = 0)]
         public int ItemId { get; set; }
     }
 }

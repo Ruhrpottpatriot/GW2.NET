@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -22,12 +23,12 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
         public Bag Bag { get; set; }
 
         /// <summary>Gets or sets a value indicating whether this is an invisible bag.</summary>
-        [JsonProperty("no_sell_or_sort", Order = 0)]
+        [DataMember(Name = "no_sell_or_sort", Order = 0)]
         [JsonConverter(typeof(JsonBooleanConverter))]
         public bool NoSellOrSort { get; set; }
 
         /// <summary>Gets or sets the bag's capacity.</summary>
-        [JsonProperty("size", Order = 1)]
+        [DataMember(Name = "size", Order = 1)]
         public int Size { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -66,7 +67,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
             return object.Equals(this.Bag, other.Bag);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The object to compare with the current object. </param>
         public override bool Equals(object obj)

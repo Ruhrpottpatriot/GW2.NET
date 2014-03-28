@@ -6,7 +6,6 @@
 //   Provides the default implementation of the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.ServiceManagement
 {
     using System;
@@ -158,13 +157,13 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    foreach (var colorPalette in task.Result.Colors.Values)
                     {
-                        // patch missing language information
-                        colorPalette.Language = languageInfo;
-                    }
-                });
+                        foreach (var colorPalette in task.Result.Colors.Values)
+                        {
+                            // patch missing language information
+                            colorPalette.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<ColorPalette>)result.Colors.Values);
         }
@@ -211,17 +210,6 @@ namespace GW2DotNET.V1.ServiceManagement
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
-        /// <param name="dynamicEventName">The dynamic event filter.</param>
-        /// <returns>A collection of dynamic events.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventDetails> GetDynamicEventDetails(DynamicEventName dynamicEventName)
-        {
-            Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
-
-            return this.GetDynamicEventDetails(dynamicEventName.Id);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
@@ -242,16 +230,13 @@ namespace GW2DotNET.V1.ServiceManagement
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="dynamicEventName">The dynamic event filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(
-            DynamicEventName dynamicEventName,
-            CancellationToken? cancellationToken = null)
+        public IEnumerable<DynamicEventDetails> GetDynamicEventDetails(DynamicEventName dynamicEventName)
         {
             Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
 
-            return this.GetDynamicEventDetailsAsync(dynamicEventName.Id, cancellationToken);
+            return this.GetDynamicEventDetails(dynamicEventName.Id);
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
@@ -267,13 +252,13 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
                     {
-                        // patch missing language information
-                        dynamicEventDetails.Language = languageInfo;
-                    }
-                });
+                        foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
+                        {
+                            // patch missing language information
+                            dynamicEventDetails.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<DynamicEventDetails>)result.EventDetails.Values);
         }
@@ -290,15 +275,29 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
                     {
-                        // patch missing language information
-                        dynamicEventDetails.Language = languageInfo;
-                    }
-                });
+                        foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
+                        {
+                            // patch missing language information
+                            dynamicEventDetails.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<DynamicEventDetails>)result.EventDetails.Values);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their details.</summary>
+        /// <param name="dynamicEventName">The dynamic event filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(
+            DynamicEventName dynamicEventName, 
+            CancellationToken? cancellationToken = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
+
+            return this.GetDynamicEventDetailsAsync(dynamicEventName.Id, cancellationToken);
         }
 
         /// <summary>Gets the collection of dynamic events and their localized name.</summary>
@@ -331,13 +330,13 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    foreach (var eventName in task.Result)
                     {
-                        // patch missing language information
-                        eventName.Language = languageInfo;
-                    }
-                });
+                        foreach (var eventName in task.Result)
+                        {
+                            // patch missing language information
+                            eventName.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<DynamicEventName>)result);
         }
@@ -721,10 +720,10 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    // patch missing language information
-                    task.Result.Language = languageInfo;
-                });
+                    {
+                        // patch missing language information
+                        task.Result.Language = languageInfo;
+                    });
 
             return response;
         }
@@ -753,18 +752,6 @@ namespace GW2DotNET.V1.ServiceManagement
         }
 
         /// <summary>Gets a map floor and its details.</summary>
-        /// <param name="continent">The continent.</param>
-        /// <param name="floor">The map floor.</param>
-        /// <returns>A map floor and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Floor GetMapFloor(Continent continent, int floor)
-        {
-            Preconditions.EnsureNotNull(paramName: "continent", value: continent);
-
-            return this.GetMapFloor(continent.ContinentId, floor);
-        }
-
-        /// <summary>Gets a map floor and its details.</summary>
         /// <param name="continentId">The continent.</param>
         /// <param name="floor">The map floor.</param>
         /// <returns>A map floor and its details.</returns>
@@ -788,14 +775,13 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <summary>Gets a map floor and its details.</summary>
         /// <param name="continent">The continent.</param>
         /// <param name="floor">The map floor.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CancellationToken? cancellationToken = null)
+        public Floor GetMapFloor(Continent continent, int floor)
         {
             Preconditions.EnsureNotNull(paramName: "continent", value: continent);
 
-            return this.GetMapFloorAsync(continent.ContinentId, floor, cancellationToken);
+            return this.GetMapFloor(continent.ContinentId, floor);
         }
 
         /// <summary>Gets a map floor and its details.</summary>
@@ -811,18 +797,31 @@ namespace GW2DotNET.V1.ServiceManagement
             var response = this.GetAsync<Floor>(request, cancellationToken);
             response.ContinueWith(
                 task =>
-                {
-                    var mapFloor = task.Result;
+                    {
+                        var mapFloor = task.Result;
 
-                    // patch missing floor information
-                    mapFloor.ContinentId = continentId;
-                    mapFloor.FloorNumber = floor;
+                        // patch missing floor information
+                        mapFloor.ContinentId = continentId;
+                        mapFloor.FloorNumber = floor;
 
-                    // patch missing language information
-                    mapFloor.Language = languageInfo;
-                });
+                        // patch missing language information
+                        mapFloor.Language = languageInfo;
+                    });
 
             return response;
+        }
+
+        /// <summary>Gets a map floor and its details.</summary>
+        /// <param name="continent">The continent.</param>
+        /// <param name="floor">The map floor.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A map floor and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
+        public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CancellationToken? cancellationToken = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "continent", value: continent);
+
+            return this.GetMapFloorAsync(continent.ContinentId, floor, cancellationToken);
         }
 
         /// <summary>Gets the collection of maps and their localized name.</summary>
@@ -855,13 +854,13 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    foreach (var mapName in task.Result)
                     {
-                        // patch missing language information
-                        mapName.Language = languageInfo;
-                    }
-                });
+                        foreach (var mapName in task.Result)
+                        {
+                            // patch missing language information
+                            mapName.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<MapName>)result);
         }
@@ -885,17 +884,6 @@ namespace GW2DotNET.V1.ServiceManagement
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
-        /// <param name="mapName">The map filter.</param>
-        /// <returns>A collection of maps and their details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public IEnumerable<Map> GetMaps(MapName mapName)
-        {
-            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
-
-            return this.GetMaps(mapName.Id);
-        }
-
-        /// <summary>Gets a collection of maps and their details.</summary>
         /// <param name="mapId">The map filter.</param>
         /// <returns>A collection of maps and their details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
@@ -915,6 +903,17 @@ namespace GW2DotNET.V1.ServiceManagement
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <returns>A collection of maps and their details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
+        public IEnumerable<Map> GetMaps(MapName mapName)
+        {
+            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
+
+            return this.GetMaps(mapName.Id);
+        }
+
+        /// <summary>Gets a collection of maps and their details.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
@@ -926,27 +925,15 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    foreach (var map in task.Result.Maps.Values)
                     {
-                        // patch missing language information
-                        map.Language = languageInfo;
-                    }
-                });
+                        foreach (var map in task.Result.Maps.Values)
+                        {
+                            // patch missing language information
+                            map.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<Map>)result.Maps.Values);
-        }
-
-        /// <summary>Gets a collection of maps and their details.</summary>
-        /// <param name="mapName">The map filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of maps and their details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Map>> GetMapsAsync(MapName mapName, CancellationToken? cancellationToken = null)
-        {
-            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
-
-            return this.GetMapsAsync(mapName.Id, cancellationToken);
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -962,15 +949,27 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    foreach (var map in task.Result.Maps.Values)
                     {
-                        // patch missing language information
-                        map.Language = languageInfo;
-                    }
-                });
+                        foreach (var map in task.Result.Maps.Values)
+                        {
+                            // patch missing language information
+                            map.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<Map>)result.Maps.Values);
+        }
+
+        /// <summary>Gets a collection of maps and their details.</summary>
+        /// <param name="mapName">The map filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of maps and their details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<Map>> GetMapsAsync(MapName mapName, CancellationToken? cancellationToken = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "mapName", value: mapName);
+
+            return this.GetMapsAsync(mapName.Id, cancellationToken);
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
@@ -1051,26 +1050,15 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    foreach (var objectiveName in task.Result)
                     {
-                        // patch missing language information
-                        objectiveName.Language = languageInfo;
-                    }
-                });
+                        foreach (var objectiveName in task.Result)
+                        {
+                            // patch missing language information
+                            objectiveName.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<ObjectiveName>)result);
-        }
-
-        /// <summary>Gets a recipe and its details.</summary>
-        /// <param name="recipe">The recipe.</param>
-        /// <returns>A recipe and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Recipe GetRecipeDetails(Recipe recipe)
-        {
-            Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
-
-            return this.GetRecipeDetails(recipe.RecipeId);
         }
 
         /// <summary>Gets a recipe and its details.</summary>
@@ -1091,14 +1079,13 @@ namespace GW2DotNET.V1.ServiceManagement
 
         /// <summary>Gets a recipe and its details.</summary>
         /// <param name="recipe">The recipe.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CancellationToken? cancellationToken = null)
+        public Recipe GetRecipeDetails(Recipe recipe)
         {
             Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
 
-            return this.GetRecipeDetailsAsync(recipe.RecipeId, cancellationToken);
+            return this.GetRecipeDetails(recipe.RecipeId);
         }
 
         /// <summary>Gets a recipe and its details.</summary>
@@ -1114,12 +1101,24 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    // patch missing language information
-                    task.Result.Language = languageInfo;
-                });
+                    {
+                        // patch missing language information
+                        task.Result.Language = languageInfo;
+                    });
 
             return response;
+        }
+
+        /// <summary>Gets a recipe and its details.</summary>
+        /// <param name="recipe">The recipe.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A recipe and its details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
+        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CancellationToken? cancellationToken = null)
+        {
+            Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
+
+            return this.GetRecipeDetailsAsync(recipe.RecipeId, cancellationToken);
         }
 
         /// <summary>Gets the collection of discovered recipes.</summary>
@@ -1175,13 +1174,13 @@ namespace GW2DotNET.V1.ServiceManagement
 
             response.ContinueWith(
                 task =>
-                {
-                    foreach (var worldName in task.Result)
                     {
-                        // patch missing language information
-                        worldName.Language = languageInfo;
-                    }
-                });
+                        foreach (var worldName in task.Result)
+                        {
+                            // patch missing language information
+                            worldName.Language = languageInfo;
+                        }
+                    });
 
             return this.Select(response, result => (IEnumerable<WorldName>)result);
         }
@@ -1242,23 +1241,23 @@ namespace GW2DotNET.V1.ServiceManagement
 
             return request.GetResponseAsync<TResult>(service, token).ContinueWith(
                 task =>
-                {
-                    IServiceResponse<TResult> serviceResponse = null;
-                    try
                     {
-                        serviceResponse = task.Result;
-                        return serviceResponse.EnsureSuccessStatusCode().Deserialize();
-                    }
-                    finally
-                    {
-                        // clean up if necessary
-                        var disposable = serviceResponse as IDisposable;
-                        if (disposable != null)
+                        IServiceResponse<TResult> serviceResponse = null;
+                        try
                         {
-                            disposable.Dispose();
+                            serviceResponse = task.Result;
+                            return serviceResponse.EnsureSuccessStatusCode().Deserialize();
                         }
-                    }
-                },
+                        finally
+                        {
+                            // clean up if necessary
+                            var disposable = serviceResponse as IDisposable;
+                            if (disposable != null)
+                            {
+                                disposable.Dispose();
+                            }
+                        }
+                    }, 
                 token);
         }
 

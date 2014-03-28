@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
 
@@ -32,7 +33,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
         public Gizmo Gizmo { get; set; }
 
         /// <summary>Gets the gizmo's type.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public GizmoType Type
         {
             get
@@ -77,7 +78,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos
             return object.Equals(this.Gizmo, other.Gizmo);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

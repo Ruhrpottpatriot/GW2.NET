@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common.Converters;
 
     using Newtonsoft.Json;
@@ -26,7 +28,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
         }
 
         /// <summary>Gets or sets the item details.</summary>
-        [JsonProperty("consumable", Order = 100)]
+        [DataMember(Name = "consumable", Order = 100)]
         public ConsumableDetails Details
         {
             get

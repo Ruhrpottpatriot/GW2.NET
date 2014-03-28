@@ -60,10 +60,8 @@ namespace GW2DotNET.V1.Core.Common
             }
         }
 
-        /// <summary>
-        /// Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the keys of the
-        /// <see cref="JsonDictionary{TKey, TValue}" />.
-        /// </summary>
+        /// <summary>Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the keys of the
+        /// <see cref="JsonDictionary{TKey, TValue}" />.</summary>
         public ICollection<TKey> Keys
         {
             get
@@ -72,9 +70,8 @@ namespace GW2DotNET.V1.Core.Common
             }
         }
 
-        /// <summary>
-        /// Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the values in the <see cref="JsonDictionary{TKey, TValue}" />.
-        /// </summary>
+        /// <summary>Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the values in the
+        /// <see cref="JsonDictionary{TKey, TValue}" />.</summary>
         public ICollection<TValue> Values
         {
             get
@@ -162,7 +159,7 @@ namespace GW2DotNET.V1.Core.Common
         /// <summary>Removes the first occurrence of a specific object from the <see cref="System.Collections.Generic.ICollection{T}"/>
         /// .</summary>
         /// <param name="item">The object to remove from the <see cref="System.Collections.Generic.ICollection{T}"/>.</param>
-        /// <returns>true if item was successfully removed from the <see cref="System.Collections.Generic.ICollection{T}"/>; otherwise, false. This method also returns false if item is not found in the original <see cref="System.Collections.Generic.ICollection{T}"/>.</returns>
+        /// <returns>true if item was successfully removed from the <see cref="System.Collections.Generic.ICollection{T}"/>; otherwise, false. This method also returns false if item is not found in the original<see cref="System.Collections.Generic.ICollection{T}"/>.</returns>
         public bool Remove(KeyValuePair<TKey, TValue> item)
         {
             return this.innerDictionary.Remove(item);

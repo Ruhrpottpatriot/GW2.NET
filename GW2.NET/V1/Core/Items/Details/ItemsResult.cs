@@ -8,15 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details
 {
-    using GW2DotNET.V1.Core.Common;
+    using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Wraps a collection of item IDs.</summary>
     public class ItemsResult : JsonObject
     {
         /// <summary>Gets or sets a collection of item IDs.</summary>
-        [JsonProperty("items")]
+        [DataMember(Name = "items")]
         public ItemCollection Items { get; set; }
     }
 }

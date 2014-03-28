@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.PointsOfInterest
 {
     using System;
     using System.Drawing;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -21,24 +22,24 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.PointsOfInterest
     public class PointOfInterest : JsonObject, IEquatable<PointOfInterest>, IComparable<PointOfInterest>
     {
         /// <summary>Gets or sets the Point of Interest's coordinates.</summary>
-        [JsonProperty("coord", Order = 4)]
+        [DataMember(Name = "coord", Order = 4)]
         [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>Gets or sets the Point of Interest's floor.</summary>
-        [JsonProperty("floor", Order = 3)]
+        [DataMember(Name = "floor", Order = 3)]
         public int Floor { get; set; }
 
         /// <summary>Gets or sets the Point of Interest's name.</summary>
-        [JsonProperty("name", Order = 1)]
+        [DataMember(Name = "name", Order = 1)]
         public string Name { get; set; }
 
         /// <summary>Gets or sets the Point of Interest's ID.</summary>
-        [JsonProperty("poi_id", Order = 0)]
+        [DataMember(Name = "poi_id", Order = 0)]
         public int PointOfInterestId { get; set; }
 
         /// <summary>Gets or sets the Point of Interest's type.</summary>
-        [JsonProperty("type", Order = 2)]
+        [DataMember(Name = "type", Order = 2)]
         [JsonConverter(typeof(StringEnumConverter))]
         public PointOfInterestType Type { get; set; }
 
@@ -61,7 +62,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.PointsOfInterest
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(PointOfInterest other)
         {
@@ -91,7 +92,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.PointsOfInterest
             return this.PointOfInterestId == other.PointOfInterestId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

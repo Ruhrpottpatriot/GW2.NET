@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common.Converters;
 
     using Newtonsoft.Json;
@@ -26,7 +28,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
         }
 
         /// <summary>Gets or sets the item details.</summary>
-        [JsonProperty("back", Order = 100)]
+        [DataMember(Name = "back", Order = 100)]
         public BackDetails Details
         {
             get

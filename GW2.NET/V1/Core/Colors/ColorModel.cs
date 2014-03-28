@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Core.Colors
 {
     using System;
     using System.Drawing;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -20,31 +21,31 @@ namespace GW2DotNET.V1.Core.Colors
     public class ColorModel : JsonObject, IEquatable<ColorModel>
     {
         /// <summary>Gets or sets the brightness.</summary>
-        [JsonProperty("brightness", Order = 0)]
+        [DataMember(Name = "brightness", Order = 0)]
         public int Brightness { get; set; }
 
         /// <summary>Gets or sets the color palette.</summary>
         public ColorPalette ColorPalette { get; set; }
 
         /// <summary>Gets or sets the contrast.</summary>
-        [JsonProperty("contrast", Order = 1)]
+        [DataMember(Name = "contrast", Order = 1)]
         public double Contrast { get; set; }
 
         /// <summary>Gets or sets the hue in the HSL color space.</summary>
-        [JsonProperty("hue", Order = 2)]
+        [DataMember(Name = "hue", Order = 2)]
         public int Hue { get; set; }
 
         /// <summary>Gets or sets the lightness in the HSL color space.</summary>
-        [JsonProperty("lightness", Order = 4)]
+        [DataMember(Name = "lightness", Order = 4)]
         public double Lightness { get; set; }
 
         /// <summary>Gets or sets the color.</summary>
-        [JsonProperty("rgb", Order = 5)]
+        [DataMember(Name = "rgb", Order = 5)]
         [JsonConverter(typeof(JsonColorConverter))]
         public Color Rgb { get; set; }
 
         /// <summary>Gets or sets the saturation in the HSL color space.</summary>
-        [JsonProperty("saturation", Order = 3)]
+        [DataMember(Name = "saturation", Order = 3)]
         public double Saturation { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

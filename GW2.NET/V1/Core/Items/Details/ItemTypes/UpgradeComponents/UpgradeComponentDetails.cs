@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Common;
@@ -30,27 +31,28 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
         }
 
         /// <summary>Gets or sets the upgrade component's bonuses.</summary>
-        [JsonProperty(PropertyName = "bonuses", Order = 3)]
+        [DataMember(Name = "bonuses", Order = 3)]
         public UpgradeBonusCollection Bonuses { get; set; }
 
         /// <summary>Gets or sets the upgrade component's flags.</summary>
-        [JsonProperty("flags", Order = 1)]
+        [DataMember(Name = "flags", Order = 1)]
         public UpgradeComponentFlags Flags { get; set; }
 
         /// <summary>Gets or sets the upgrade component's infix upgrade.</summary>
-        [JsonProperty("infix_upgrade", Order = 4)]
+        [DataMember(Name = "infix_upgrade", Order = 4)]
         public InfixUpgrade InfixUpgrade { get; set; }
 
         /// <summary>Gets or sets the upgrade component's infusion upgrades.</summary>
-        [JsonProperty("infusion_upgrade_flags", Order = 2)]
+        [DataMember(Name = "infusion_upgrade_flags", Order = 2)]
         public InfusionSlotTypes InfusionUpgradeFlags { get; set; }
 
         /// <summary>Gets or sets the upgrade component's suffix.</summary>
-        [JsonProperty("suffix", Order = 5, NullValueHandling = NullValueHandling.Ignore)]
+        [DataMember(Name = "suffix", Order = 5)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string Suffix { get; set; }
 
         /// <summary>Gets the upgrade component's type.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public UpgradeComponentType Type
         {
             get
@@ -98,7 +100,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
             return object.Equals(this.UpgradeComponent, other.UpgradeComponent);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

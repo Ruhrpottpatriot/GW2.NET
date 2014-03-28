@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common.Converters;
 
     using Newtonsoft.Json;
@@ -26,7 +28,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents
         }
 
         /// <summary>Gets or sets the item details.</summary>
-        [JsonProperty("upgrade_component", Order = 100)]
+        [DataMember(Name = "upgrade_component", Order = 100)]
         public UpgradeComponentDetails Details
         {
             get

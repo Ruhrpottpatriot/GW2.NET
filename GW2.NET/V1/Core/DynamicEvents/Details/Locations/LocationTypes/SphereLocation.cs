@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common.Converters;
 
     using Newtonsoft.Json;
@@ -23,11 +25,11 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
         }
 
         /// <summary>Gets or sets the location's radius.</summary>
-        [JsonProperty("radius", Order = 4)]
+        [DataMember(Name = "radius", Order = 4)]
         public double Radius { get; set; }
 
         /// <summary>Gets or sets the location's rotation.</summary>
-        [JsonProperty("rotation", Order = 5)]
+        [DataMember(Name = "rotation", Order = 5)]
         public double Rotation { get; set; }
     }
 }

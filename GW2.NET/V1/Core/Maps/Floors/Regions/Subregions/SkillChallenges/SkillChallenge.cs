@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.SkillChallenges
 {
     using System;
     using System.Drawing;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -20,7 +21,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.SkillChallenges
     public class SkillChallenge : JsonObject, IEquatable<SkillChallenge>
     {
         /// <summary>Gets or sets the skill challenge's coordinates.</summary>
-        [JsonProperty("coord", Order = 0)]
+        [DataMember(Name = "coord", Order = 0)]
         [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
@@ -60,7 +61,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.SkillChallenges
             return this.Coordinates.Equals(other.Coordinates);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

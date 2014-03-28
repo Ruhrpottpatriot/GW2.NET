@@ -8,15 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Recipes.Details
 {
-    using GW2DotNET.V1.Core.Common;
+    using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Wraps a collection of recipe IDs.</summary>
     public class RecipesResult : JsonObject
     {
         /// <summary>Gets or sets a collection of recipes.</summary>
-        [JsonProperty("recipes", Order = 0)]
+        [DataMember(Name = "recipes", Order = 0)]
         public RecipeCollection Recipes { get; set; }
     }
 }

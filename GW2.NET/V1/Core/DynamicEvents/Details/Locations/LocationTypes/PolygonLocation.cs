@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
 {
     using System.Drawing;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common.Converters;
 
@@ -25,11 +26,11 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
         }
 
         /// <summary>Gets or sets the series of points in the polygon.</summary>
-        [JsonProperty("points", Order = 5)]
+        [DataMember(Name = "points", Order = 5)]
         public PointCollection PointCollection { get; set; }
 
         /// <summary>Gets or sets the location's range on the z-axis.</summary>
-        [JsonProperty("z_range", Order = 4)]
+        [DataMember(Name = "z_range", Order = 4)]
         [JsonConverter(typeof(JsonPointConverter))]
         public Point ZRange { get; set; }
     }

@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Core.Recipes.Details
 {
     using System;
     using System.Globalization;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -32,40 +33,44 @@ namespace GW2DotNET.V1.Core.Recipes.Details
         }
 
         /// <summary>Gets or sets the crafting disciplines that can use the recipe.</summary>
-        [JsonProperty("disciplines", Order = 6)]
+        [DataMember(Name = "disciplines", Order = 6)]
         public CraftingDisciplines CraftingDisciplines { get; set; }
 
         /// <summary>Gets or sets the recipe's unlock type(s).</summary>
-        [JsonProperty("flags", Order = 7)]
+        [DataMember(Name = "flags", Order = 7)]
         public RecipeUnlockTypes Flags { get; set; }
 
         /// <summary>Gets or sets a collection of the required ingredients.</summary>
-        [JsonProperty("ingredients", Order = 8)]
+        [DataMember(Name = "ingredients", Order = 8)]
         public CraftingIngredientCollection Ingredients { get; set; }
 
+        /// <summary>Gets or sets the language info.</summary>
+        [DataMember(Name = "lang", Order = 9)]
+        public CultureInfo Language { get; set; }
+
         /// <summary>Gets or sets the recipe's minimum rating.</summary>
-        [JsonProperty("min_rating", Order = 4)]
+        [DataMember(Name = "min_rating", Order = 4)]
         public int MinimumRating { get; set; }
 
         /// <summary>Gets or sets the amount of items produced.</summary>
-        [JsonProperty("output_item_count", Order = 3)]
+        [DataMember(Name = "output_item_count", Order = 3)]
         public int OutputItemCount { get; set; }
 
         /// <summary>Gets or sets the output item's ID.</summary>
-        [JsonProperty("output_item_id", Order = 2)]
+        [DataMember(Name = "output_item_id", Order = 2)]
         public int OutputItemId { get; set; }
 
         /// <summary>Gets or sets the recipe's ID.</summary>
-        [JsonProperty("recipe_id", Order = 0)]
+        [DataMember(Name = "recipe_id", Order = 0)]
         public int RecipeId { get; set; }
 
         /// <summary>Gets or sets the time it takes to craft the recipe.</summary>
-        [JsonProperty("time_to_craft_ms", Order = 5)]
+        [DataMember(Name = "time_to_craft_ms", Order = 5)]
         [JsonConverter(typeof(JsonTimespanConverter))]
         public TimeSpan TimeToCraft { get; set; }
 
         /// <summary>Gets the type of the output item.</summary>
-        [JsonProperty("type", Order = 1)]
+        [DataMember(Name = "type", Order = 1)]
         public RecipeType Type
         {
             get
@@ -73,10 +78,6 @@ namespace GW2DotNET.V1.Core.Recipes.Details
                 return this.type;
             }
         }
-
-        /// <summary>Gets or sets the language info.</summary>
-        [JsonProperty("lang", Order = 9)]
-        public CultureInfo Language { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -97,7 +98,7 @@ namespace GW2DotNET.V1.Core.Recipes.Details
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(Recipe other)
         {
@@ -127,7 +128,7 @@ namespace GW2DotNET.V1.Core.Recipes.Details
             return this.RecipeId == other.RecipeId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

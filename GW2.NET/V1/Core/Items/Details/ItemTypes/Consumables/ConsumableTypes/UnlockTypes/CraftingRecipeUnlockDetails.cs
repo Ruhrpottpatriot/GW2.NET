@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common.Converters;
 
     using Newtonsoft.Json;
@@ -23,7 +25,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.
         }
 
         /// <summary>Gets or sets the crafting recipe's ID.</summary>
-        [JsonProperty("recipe_id", Order = 102)]
+        [DataMember(Name = "recipe_id", Order = 102)]
         public int RecipeId { get; set; }
     }
 }

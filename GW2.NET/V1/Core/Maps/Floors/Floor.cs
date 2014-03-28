@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors
 {
     using System.Drawing;
     using System.Globalization;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -22,31 +23,35 @@ namespace GW2DotNET.V1.Core.Maps.Floors
     public class Floor : JsonObject
     {
         /// <summary>Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available on the tile server.</summary>
-        [JsonProperty("clamped_view", Order = 3)]
+        [DataMember(Name = "clamped_view", Order = 3)]
         [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle? ClampedView { get; set; }
 
         /// <summary>Gets or sets the floor's continent.</summary>
-        /// <remarks>See <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>.</remarks>
-        [JsonProperty("continent_id", Order = 0)]
+        /// <remarks>See
+        /// <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>
+        /// .</remarks>
+        [DataMember(Name = "continent_id", Order = 0)]
         public int ContinentId { get; set; }
 
         /// <summary>Gets or sets the floor's number.</summary>
-        /// <remarks>See <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>.</remarks>
-        [JsonProperty("floor", Order = 1)]
+        /// <remarks>See
+        /// <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>
+        /// .</remarks>
+        [DataMember(Name = "floor", Order = 1)]
         public int FloorNumber { get; set; }
 
+        /// <summary>Gets or sets the language info.</summary>
+        [DataMember(Name = "lang", Order = 5)]
+        public CultureInfo Language { get; set; }
+
         /// <summary>Gets or sets the collection of regions.</summary>
-        [JsonProperty("regions", Order = 4)]
+        [DataMember(Name = "regions", Order = 4)]
         public RegionCollection Regions { get; set; }
 
         /// <summary>Gets or sets the texture's dimensions.</summary>
-        [JsonProperty("texture_dims", Order = 2)]
+        [DataMember(Name = "texture_dims", Order = 2)]
         [JsonConverter(typeof(JsonSizeConverter))]
         public Size TextureDimensions { get; set; }
-
-        /// <summary>Gets or sets the language info.</summary>
-        [JsonProperty("lang", Order = 5)]
-        public CultureInfo Language { get; set; }
     }
 }

@@ -10,25 +10,24 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Names
 {
     using System;
     using System.Globalization;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a dynamic event and its localized name.</summary>
     public class DynamicEventName : JsonObject, IEquatable<DynamicEventName>, IComparable<DynamicEventName>
     {
         /// <summary>Gets or sets the event ID.</summary>
-        [JsonProperty("id", Order = 0)]
+        [DataMember(Name = "id", Order = 0)]
         public Guid Id { get; set; }
 
-        /// <summary>Gets or sets the localized event name.</summary>
-        [JsonProperty("name", Order = 1)]
-        public string Name { get; set; }
-
         /// <summary>Gets or sets the language info.</summary>
-        [JsonProperty("lang", Order = 2)]
+        [DataMember(Name = "lang", Order = 2)]
         public CultureInfo Language { get; set; }
+
+        /// <summary>Gets or sets the localized event name.</summary>
+        [DataMember(Name = "name", Order = 1)]
+        public string Name { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -49,7 +48,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Names
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(DynamicEventName other)
         {
@@ -79,7 +78,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Names
             return this.Id.Equals(other.Id);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

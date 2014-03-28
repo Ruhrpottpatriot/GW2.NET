@@ -8,32 +8,32 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Errors
 {
-    using GW2DotNET.V1.Core.Common;
+    using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Represents the result that is returned when an error occurs.</summary>
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1" /> for more information.</remarks>
     public class ErrorResult : JsonObject
     {
         /// <summary>Gets or sets a number that indicates the error kind.</summary>
-        [JsonProperty(PropertyName = "error", Order = 0)]
+        [DataMember(Name = "error", Order = 0)]
         public int Error { get; set; }
 
         /// <summary>Gets or sets the line number on which the error occurred.</summary>
-        [JsonProperty(PropertyName = "line", Order = 3)]
+        [DataMember(Name = "line", Order = 3)]
         public int Line { get; set; }
 
         /// <summary>Gets or sets a number that represents the module in which the error occurred.</summary>
-        [JsonProperty(PropertyName = "module", Order = 2)]
+        [DataMember(Name = "module", Order = 2)]
         public int Module { get; set; }
 
         /// <summary>Gets or sets a number that represents the product in which the error occurred.</summary>
-        [JsonProperty(PropertyName = "product", Order = 1)]
+        [DataMember(Name = "product", Order = 1)]
         public int Product { get; set; }
 
         /// <summary>Gets or sets the error message.</summary>
-        [JsonProperty(PropertyName = "text", Order = 4)]
+        [DataMember(Name = "text", Order = 4)]
         public string Text { get; set; }
     }
 }

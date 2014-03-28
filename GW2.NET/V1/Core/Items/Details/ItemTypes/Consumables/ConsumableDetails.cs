@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
 
@@ -32,7 +33,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
         public Consumable Consumable { get; set; }
 
         /// <summary>Gets the consumable's type.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public ConsumableType Type
         {
             get
@@ -77,7 +78,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
             return object.Equals(this.Consumable, other.Consumable);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The object to compare with the current object. </param>
         public override bool Equals(object obj)

@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Common;
 
@@ -29,23 +30,23 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
         }
 
         /// <summary>Gets or sets the weapon's damage type.</summary>
-        [JsonProperty("damage_type", Order = 1)]
+        [DataMember(Name = "damage_type", Order = 1)]
         public WeaponDamageType DamageType { get; set; }
 
         /// <summary>Gets or sets the weapon's defense.</summary>
-        [JsonProperty("defense", Order = 4)]
+        [DataMember(Name = "defense", Order = 4)]
         public int Defense { get; set; }
 
         /// <summary>Gets or sets the weapon's maximum power.</summary>
-        [JsonProperty("max_power", Order = 3)]
+        [DataMember(Name = "max_power", Order = 3)]
         public int MaximumPower { get; set; }
 
         /// <summary>Gets or sets the weapon's minimum power.</summary>
-        [JsonProperty("min_power", Order = 2)]
+        [DataMember(Name = "min_power", Order = 2)]
         public int MinimumPower { get; set; }
 
         /// <summary>Gets the weapon's type.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public WeaponType Type
         {
             get
@@ -93,7 +94,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons
             return object.Equals(this.Weapon, other.Weapon);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 {
     using System.ComponentModel;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
 
@@ -18,11 +19,12 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
     public class InfusionSlot : JsonObject
     {
         /// <summary>Gets or sets the infusion slot's type(s).</summary>
-        [JsonProperty("flags", Order = 0)]
+        [DataMember(Name = "flags", Order = 0)]
         public InfusionSlotTypes Flags { get; set; }
 
         /// <summary>Gets or sets the infusion slot's item. Reserved for future use.</summary>
-        [JsonProperty("item", Order = 1, NullValueHandling = NullValueHandling.Ignore)]
+        [DataMember(Name = "item", Order = 1)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Item { get; set; }
     }

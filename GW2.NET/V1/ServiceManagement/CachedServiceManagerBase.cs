@@ -290,7 +290,10 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public abstract Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(Guid eventId, bool allowCache, CancellationToken? cancellationToken = null);
+        public abstract Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(
+            Guid eventId, 
+            bool allowCache, 
+            CancellationToken? cancellationToken = null);
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
@@ -485,7 +488,11 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public abstract Task<IEnumerable<DynamicEvent>> GetDynamicEventsByIdAsync(Guid eventId, int worldId, bool allowCache, CancellationToken? cancellationToken = null);
+        public abstract Task<IEnumerable<DynamicEvent>> GetDynamicEventsByIdAsync(
+            Guid eventId, 
+            int worldId, 
+            bool allowCache, 
+            CancellationToken? cancellationToken = null);
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="mapId">The map filter.</param>
@@ -585,7 +592,11 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public abstract Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId, int worldId, bool allowCache, CancellationToken? cancellationToken = null);
+        public abstract Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(
+            int mapId, 
+            int worldId, 
+            bool allowCache, 
+            CancellationToken? cancellationToken = null);
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="worldId">The world filter.</param>

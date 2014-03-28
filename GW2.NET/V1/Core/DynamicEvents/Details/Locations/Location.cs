@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -31,7 +32,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
         }
 
         /// <summary>Gets or sets the center coordinates.</summary>
-        [JsonProperty("center", Order = 1)]
+        [DataMember(Name = "center", Order = 1)]
         [JsonConverter(typeof(JsonPoint3DConverter))]
         public Point3D Center { get; set; }
 
@@ -39,7 +40,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
         public DynamicEventDetails DynamicEventDetails { get; set; }
 
         /// <summary>Gets the shape of the location.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public LocationType Type
         {
             get
@@ -84,7 +85,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
             return this.Center.Equals(other.Center);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

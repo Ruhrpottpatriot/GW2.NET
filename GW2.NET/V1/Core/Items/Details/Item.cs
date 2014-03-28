@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Core.Items.Details
 {
     using System;
     using System.Globalization;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
 
@@ -30,51 +31,51 @@ namespace GW2DotNET.V1.Core.Items.Details
         }
 
         /// <summary>Gets or sets the item's description.</summary>
-        [JsonProperty("description", Order = 2)]
+        [DataMember(Name = "description", Order = 2)]
         public string Description { get; set; }
 
         /// <summary>Gets or sets the item's icon ID for use with the render service.</summary>
-        [JsonProperty("icon_file_id", Order = 7)]
+        [DataMember(Name = "icon_file_id", Order = 7)]
         public int FileId { get; set; }
 
         /// <summary>Gets or sets the item's icon signature for use with the render service.</summary>
-        [JsonProperty("icon_file_signature", Order = 8)]
+        [DataMember(Name = "icon_file_signature", Order = 8)]
         public string FileSignature { get; set; }
 
         /// <summary>Gets or sets the item's additional flags.</summary>
-        [JsonProperty("flags", Order = 10)]
+        [DataMember(Name = "flags", Order = 10)]
         public ItemFlags Flags { get; set; }
 
         /// <summary>Gets or sets the item's game types.</summary>
-        [JsonProperty("game_types", Order = 9)]
+        [DataMember(Name = "game_types", Order = 9)]
         public GameRestrictions GameTypes { get; set; }
 
         /// <summary>Gets or sets the item's ID.</summary>
-        [JsonProperty("item_id", Order = 0)]
+        [DataMember(Name = "item_id", Order = 0)]
         public int ItemId { get; set; }
 
+        /// <summary>Gets or sets the language info.</summary>
+        [DataMember(Name = "lang", Order = 12)]
+        public CultureInfo Language { get; set; }
+
         /// <summary>Gets or sets the item's level.</summary>
-        [JsonProperty("level", Order = 4)]
+        [DataMember(Name = "level", Order = 4)]
         public int Level { get; set; }
 
         /// <summary>Gets or sets the item's name.</summary>
-        [JsonProperty("name", Order = 1)]
+        [DataMember(Name = "name", Order = 1)]
         public string Name { get; set; }
 
         /// <summary>Gets or sets the item's rarity.</summary>
-        [JsonProperty("rarity", Order = 5)]
+        [DataMember(Name = "rarity", Order = 5)]
         public ItemRarity Rarity { get; set; }
 
         /// <summary>Gets or sets the item's restrictions.</summary>
-        [JsonProperty("restrictions", Order = 11)]
+        [DataMember(Name = "restrictions", Order = 11)]
         public ItemRestrictions Restrictions { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
-        [JsonProperty("lang", Order = 12)]
-        public CultureInfo Language { get; set; }
-
         /// <summary>Gets the item's type.</summary>
-        [JsonProperty("type", Order = 3)]
+        [DataMember(Name = "type", Order = 3)]
         public ItemType Type
         {
             get
@@ -84,7 +85,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         }
 
         /// <summary>Gets or sets the item's vendor value.</summary>
-        [JsonProperty("vendor_value", Order = 6)]
+        [DataMember(Name = "vendor_value", Order = 6)]
         public int VendorValue { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -106,7 +107,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(Item other)
         {
@@ -136,7 +137,7 @@ namespace GW2DotNET.V1.Core.Items.Details
             return this.ItemId == other.ItemId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

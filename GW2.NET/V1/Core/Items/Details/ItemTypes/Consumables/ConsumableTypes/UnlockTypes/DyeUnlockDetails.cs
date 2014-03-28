@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common.Converters;
 
     using Newtonsoft.Json;
@@ -23,7 +25,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes.
         }
 
         /// <summary>Gets or sets the dye's color ID.</summary>
-        [JsonProperty("color_id", Order = 101)]
+        [DataMember(Name = "color_id", Order = 101)]
         public int ColorId { get; set; }
     }
 }

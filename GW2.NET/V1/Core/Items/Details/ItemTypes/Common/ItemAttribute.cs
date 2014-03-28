@@ -8,19 +8,19 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 {
-    using GW2DotNET.V1.Core.Common;
+    using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Represents one of an item's attributes.</summary>
     public class ItemAttribute : JsonObject
     {
         /// <summary>Gets or sets the attribute's modifier.</summary>
-        [JsonProperty("modifier", Order = 1)]
+        [DataMember(Name = "modifier", Order = 1)]
         public int Modifier { get; set; }
 
         /// <summary>Gets or sets the attribute's type.</summary>
-        [JsonProperty("attribute", Order = 0)]
+        [DataMember(Name = "attribute", Order = 0)]
         public ItemAttributeType Type { get; set; }
     }
 }

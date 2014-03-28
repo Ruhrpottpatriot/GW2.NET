@@ -9,11 +9,10 @@
 namespace GW2DotNET.V1.Core.Guilds.Details
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Guilds.Details.Emblems;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a guild and its details.</summary>
     public class Guild : JsonObject, IEquatable<Guild>, IComparable<Guild>
@@ -22,7 +21,7 @@ namespace GW2DotNET.V1.Core.Guilds.Details
         private Emblem emblem;
 
         /// <summary>Gets or sets detailed information about the guild's emblem, if any.</summary>
-        [JsonProperty("emblem", Order = 3)]
+        [DataMember(Name = "emblem", Order = 3)]
         public Emblem Emblem
         {
             get
@@ -38,15 +37,15 @@ namespace GW2DotNET.V1.Core.Guilds.Details
         }
 
         /// <summary>Gets or sets the guild's ID.</summary>
-        [JsonProperty("guild_id", Order = 0)]
+        [DataMember(Name = "guild_id", Order = 0)]
         public Guid GuildId { get; set; }
 
         /// <summary>Gets or sets the guild's name.</summary>
-        [JsonProperty("guild_name", Order = 1)]
+        [DataMember(Name = "guild_name", Order = 1)]
         public string Name { get; set; }
 
         /// <summary>Gets or sets the guild's tag.</summary>
-        [JsonProperty("tag", Order = 2)]
+        [DataMember(Name = "tag", Order = 2)]
         public string Tag { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -68,7 +67,7 @@ namespace GW2DotNET.V1.Core.Guilds.Details
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(Guild other)
         {
@@ -98,7 +97,7 @@ namespace GW2DotNET.V1.Core.Guilds.Details
             return this.GuildId.Equals(other.GuildId);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

@@ -8,15 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches
 {
-    using GW2DotNET.V1.Core.Common;
+    using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Wraps a collection of matches.</summary>
     public class MatchesResult : JsonObject
     {
         /// <summary>Gets or sets a collection of matches.</summary>
-        [JsonProperty("wvw_matches", Order = 0)]
+        [DataMember(Name = "wvw_matches", Order = 0)]
         public MatchCollection Matches { get; set; }
     }
 }

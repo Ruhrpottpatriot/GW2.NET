@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
 
@@ -29,14 +30,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
         }
 
         /// <summary>Gets or sets the tool's charges.</summary>
-        [JsonProperty("charges", Order = 1)]
+        [DataMember(Name = "charges", Order = 1)]
         public int Charges { get; set; }
 
         /// <summary>Gets or sets the tool.</summary>
         public Tool Tool { get; set; }
 
         /// <summary>Gets the tool's type.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public ToolType Type
         {
             get
@@ -81,7 +82,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
             return object.Equals(this.Tool, other.Tool);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

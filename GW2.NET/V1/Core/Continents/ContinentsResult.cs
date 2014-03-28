@@ -8,15 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Continents
 {
-    using GW2DotNET.V1.Core.Common;
+    using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Wraps a collection of continents.</summary>
     public class ContinentsResult : JsonObject
     {
         /// <summary>Gets or sets a collection of continents.</summary>
-        [JsonProperty("continents", Order = 0)]
+        [DataMember(Name = "continents", Order = 0)]
         public ContinentCollection Continents { get; set; }
     }
 }

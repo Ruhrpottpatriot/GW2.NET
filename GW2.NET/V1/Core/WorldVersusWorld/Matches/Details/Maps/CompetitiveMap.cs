@@ -8,30 +8,30 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Common;
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Bonuses;
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Objectives;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents a World versus World map.</summary>
     public class CompetitiveMap : JsonObject
     {
         /// <summary>Gets or sets the map's bonuses.</summary>
-        [JsonProperty("bonuses", Order = 3)]
+        [DataMember(Name = "bonuses", Order = 3)]
         public MapBonusCollection Bonuses { get; set; }
 
         /// <summary>Gets or sets the map's objectives.</summary>
-        [JsonProperty("objectives", Order = 2)]
+        [DataMember(Name = "objectives", Order = 2)]
         public ObjectiveCollection Objectives { get; set; }
 
         /// <summary>Gets or sets the map's scoreboard.</summary>
-        [JsonProperty("scores", Order = 1)]
+        [DataMember(Name = "scores", Order = 1)]
         public Scoreboard Scores { get; set; }
 
         /// <summary>Gets or sets the map's type.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public CompetitiveMapType Type { get; set; }
     }
 }

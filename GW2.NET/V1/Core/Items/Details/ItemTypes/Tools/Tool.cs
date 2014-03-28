@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common.Converters;
 
     using Newtonsoft.Json;
@@ -26,7 +28,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools
         }
 
         /// <summary>Gets or sets the item details.</summary>
-        [JsonProperty("tool", Order = 100)]
+        [DataMember(Name = "tool", Order = 100)]
         public ToolDetails Detail
         {
             get

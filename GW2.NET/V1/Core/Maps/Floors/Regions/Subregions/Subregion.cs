@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions
 {
     using System;
     using System.Drawing;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -24,49 +25,49 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions
     public class Subregion : JsonObject, IEquatable<Subregion>, IComparable<Subregion>
     {
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
-        [JsonProperty("continent_rect", Order = 6)]
+        [DataMember(Name = "continent_rect", Order = 6)]
         [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle ContinentRectangle { get; set; }
 
         /// <summary>Gets or sets the default floor of this map.</summary>
-        [JsonProperty("default_floor", Order = 4)]
+        [DataMember(Name = "default_floor", Order = 4)]
         public int DefaultFloor { get; set; }
 
         /// <summary>Gets or sets the map's ID.</summary>
-        [JsonProperty("map_id", Order = 0)]
+        [DataMember(Name = "map_id", Order = 0)]
         public int MapId { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
-        [JsonProperty("map_rect", Order = 5)]
+        [DataMember(Name = "map_rect", Order = 5)]
         [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle MapRectangle { get; set; }
 
         /// <summary>Gets or sets the maximum level of this map.</summary>
-        [JsonProperty("max_level", Order = 3)]
+        [DataMember(Name = "max_level", Order = 3)]
         public int MaximumLevel { get; set; }
 
         /// <summary>Gets or sets the minimum level of this map.</summary>
-        [JsonProperty("min_level", Order = 2)]
+        [DataMember(Name = "min_level", Order = 2)]
         public int MinimumLevel { get; set; }
 
         /// <summary>Gets or sets the map's name.</summary>
-        [JsonProperty("name", Order = 1)]
+        [DataMember(Name = "name", Order = 1)]
         public string Name { get; set; }
 
         /// <summary>Gets or sets a collection of Points of Interest locations.</summary>
-        [JsonProperty("points_of_interest", Order = 7)]
+        [DataMember(Name = "points_of_interest", Order = 7)]
         public PointOfInterestCollection PointsOfInterest { get; set; }
 
         /// <summary>Gets or sets a collection of areas within the map.</summary>
-        [JsonProperty("sectors", Order = 10)]
+        [DataMember(Name = "sectors", Order = 10)]
         public SectorCollection Sectors { get; set; }
 
         /// <summary>Gets or sets a collection of skill challenge locations.</summary>
-        [JsonProperty("skill_challenges", Order = 9)]
+        [DataMember(Name = "skill_challenges", Order = 9)]
         public SkillChallengeCollection SkillChallenges { get; set; }
 
         /// <summary>Gets or sets a collection of renown heart locations.</summary>
-        [JsonProperty("tasks", Order = 8)]
+        [DataMember(Name = "tasks", Order = 8)]
         public RenownTaskCollection Tasks { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -88,7 +89,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(Subregion other)
         {
@@ -118,7 +119,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions
             return this.MapId == other.MapId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

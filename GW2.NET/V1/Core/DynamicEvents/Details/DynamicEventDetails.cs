@@ -10,11 +10,10 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
 {
     using System;
     using System.Globalization;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.DynamicEvents.Details.Locations;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents details about a specific dynamic event.</summary>
     public class DynamicEventDetails : JsonObject, IEquatable<DynamicEventDetails>, IComparable<DynamicEventDetails>
@@ -23,19 +22,23 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
         private Location location;
 
         /// <summary>Gets or sets the event's ID.</summary>
-        [JsonProperty("event_id", Order = 0)]
+        [DataMember(Name = "event_id", Order = 0)]
         public Guid EventId { get; set; }
 
         /// <summary>Gets or sets additional flags.</summary>
-        [JsonProperty("flags", Order = 4)]
+        [DataMember(Name = "flags", Order = 4)]
         public DynamicEventFlags Flags { get; set; }
 
+        /// <summary>Gets or sets the language info.</summary>
+        [DataMember(Name = "lang", Order = 6)]
+        public CultureInfo Language { get; set; }
+
         /// <summary>Gets or sets the event level.</summary>
-        [JsonProperty("level", Order = 2)]
+        [DataMember(Name = "level", Order = 2)]
         public int Level { get; set; }
 
         /// <summary>Gets or sets the location of the event.</summary>
-        [JsonProperty("location", Order = 5)]
+        [DataMember(Name = "location", Order = 5)]
         public Location Location
         {
             get
@@ -51,16 +54,12 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
         }
 
         /// <summary>Gets or sets the map where the event takes place.</summary>
-        [JsonProperty("map_id", Order = 3)]
+        [DataMember(Name = "map_id", Order = 3)]
         public int MapId { get; set; }
 
         /// <summary>Gets or sets the name of the event.</summary>
-        [JsonProperty("name", Order = 1)]
+        [DataMember(Name = "name", Order = 1)]
         public string Name { get; set; }
-
-        /// <summary>Gets or sets the language info.</summary>
-        [JsonProperty("lang", Order = 6)]
-        public CultureInfo Language { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -81,7 +80,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(DynamicEventDetails other)
         {

@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common;
 
     using Newtonsoft.Json;
@@ -16,15 +18,16 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Common
     public abstract class EquipmentDetails : JsonObject
     {
         /// <summary>Gets or sets the item's infix upgrade.</summary>
-        [JsonProperty(PropertyName = "infix_upgrade", Order = 101, NullValueHandling = NullValueHandling.Ignore)]
+        [DataMember(Name = "infix_upgrade", Order = 101)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public InfixUpgrade InfixUpgrade { get; set; }
 
         /// <summary>Gets or sets the item's infusion slots.</summary>
-        [JsonProperty(PropertyName = "infusion_slots", Order = 100)]
+        [DataMember(Name = "infusion_slots", Order = 100)]
         public InfusionSlotCollection InfusionSlots { get; set; }
 
         /// <summary>Gets or sets the item's suffix item's ID.</summary>
-        [JsonProperty(PropertyName = "suffix_item_id", Order = 102)]
+        [DataMember(Name = "suffix_item_id", Order = 102)]
         public int? SuffixItemId { get; set; }
     }
 }

@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common.Converters;
 
@@ -25,12 +26,14 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables.ConsumableTypes
         }
 
         /// <summary>Gets or sets the food's effect description.</summary>
-        [JsonProperty("description", Order = 101, NullValueHandling = NullValueHandling.Ignore)]
+        [DataMember(Name = "description", Order = 101)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string Description { get; set; }
 
         /// <summary>Gets or sets the food's effect duration.</summary>
-        [JsonProperty("duration_ms", Order = 100, NullValueHandling = NullValueHandling.Ignore)]
+        [DataMember(Name = "duration_ms", Order = 100)]
         [JsonConverter(typeof(JsonTimespanConverter))]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public TimeSpan? Duration { get; set; }
     }
 }

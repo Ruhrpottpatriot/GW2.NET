@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Objectives
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Common;
@@ -19,15 +20,16 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Objectives
     public class Objective : JsonObject, IEquatable<Objective>, IComparable<Objective>
     {
         /// <summary>Gets or sets the objective's ID.</summary>
-        [JsonProperty("id", Order = 0)]
+        [DataMember(Name = "id", Order = 0)]
         public int Id { get; set; }
 
         /// <summary>Gets or sets the objective's owner.</summary>
-        [JsonProperty("owner", Order = 1)]
+        [DataMember(Name = "owner", Order = 1)]
         public TeamColor Owner { get; set; }
 
         /// <summary>Gets or sets the guild ID of the guild currently claiming the objective.</summary>
-        [JsonProperty("owner_guild", Order = 2, NullValueHandling = NullValueHandling.Ignore)]
+        [DataMember(Name = "owner_guild", Order = 2)]
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Guid? OwnerGuild { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -49,7 +51,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Objectives
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(Objective other)
         {
@@ -79,7 +81,7 @@ namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Objectives
             return this.Id == other.Id;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

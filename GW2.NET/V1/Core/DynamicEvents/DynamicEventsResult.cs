@@ -8,15 +8,15 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.DynamicEvents
 {
-    using GW2DotNET.V1.Core.Common;
+    using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
+    using GW2DotNET.V1.Core.Common;
 
     /// <summary>Wraps a collection of dynamic events.</summary>
     public class DynamicEventsResult : JsonObject
     {
         /// <summary>Gets or sets a list of event details.</summary>
-        [JsonProperty("events", Order = 0)]
+        [DataMember(Name = "events", Order = 0)]
         public DynamicEventCollection Events { get; set; }
     }
 }

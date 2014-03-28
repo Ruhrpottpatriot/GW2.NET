@@ -9,36 +9,35 @@
 namespace GW2DotNET.V1.Core.Guilds.Details.Emblems
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a guild's emblem.</summary>
     public class Emblem : JsonObject, IEquatable<Emblem>
     {
         /// <summary>Gets or sets the background color ID.</summary>
-        [JsonProperty("background_color_id", Order = 3)]
+        [DataMember(Name = "background_color_id", Order = 3)]
         public int BackgroundColorId { get; set; }
 
         /// <summary>Gets or sets the background image ID.</summary>
-        [JsonProperty("background_id", Order = 0)]
+        [DataMember(Name = "background_id", Order = 0)]
         public int BackgroundId { get; set; }
 
         /// <summary>Gets or sets the image transformations, if any.</summary>
-        [JsonProperty("flags", Order = 2)]
+        [DataMember(Name = "flags", Order = 2)]
         public EmblemTransformations Flags { get; set; }
 
         /// <summary>Gets or sets the foreground image ID.</summary>
-        [JsonProperty("foreground_id", Order = 1)]
+        [DataMember(Name = "foreground_id", Order = 1)]
         public int ForegroundId { get; set; }
 
         /// <summary>Gets or sets the primary foreground color ID.</summary>
-        [JsonProperty("foreground_primary_color_id", Order = 4)]
+        [DataMember(Name = "foreground_primary_color_id", Order = 4)]
         public int ForegroundPrimaryColorId { get; set; }
 
         /// <summary>Gets or sets the secondary foreground color ID.</summary>
-        [JsonProperty("foreground_secondary_color_id", Order = 5)]
+        [DataMember(Name = "foreground_secondary_color_id", Order = 5)]
         public int ForegroundSecondaryColorId { get; set; }
 
         /// <summary>Gets or sets the guild.</summary>
@@ -82,7 +81,7 @@ namespace GW2DotNET.V1.Core.Guilds.Details.Emblems
                    && this.ForegroundSecondaryColorId == other.ForegroundSecondaryColorId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

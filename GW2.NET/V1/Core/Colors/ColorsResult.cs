@@ -9,16 +9,15 @@
 namespace GW2DotNET.V1.Core.Colors
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
-
-    using Newtonsoft.Json;
 
     /// <summary>Wraps a collection of colors in the game.</summary>
     public class ColorsResult : JsonObject, IEquatable<ColorsResult>
     {
         /// <summary>Gets or sets a collection of colors in the game.</summary>
-        [JsonProperty("colors", Order = 0)]
+        [DataMember(Name = "colors", Order = 0)]
         public ColorCollection Colors { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

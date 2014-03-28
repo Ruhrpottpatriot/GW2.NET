@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Sectors
 {
     using System;
     using System.Drawing;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -20,20 +21,20 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Sectors
     public class Sector : JsonObject, IEquatable<Sector>, IComparable<Sector>
     {
         /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
-        [JsonProperty("coord", Order = 3)]
+        [DataMember(Name = "coord", Order = 3)]
         [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>Gets or sets the sector's level.</summary>
-        [JsonProperty("level", Order = 2)]
+        [DataMember(Name = "level", Order = 2)]
         public int Level { get; set; }
 
         /// <summary>Gets or sets the sector's name.</summary>
-        [JsonProperty("name", Order = 1)]
+        [DataMember(Name = "name", Order = 1)]
         public string Name { get; set; }
 
         /// <summary>Gets or sets the sector's ID.</summary>
-        [JsonProperty("sector_id", Order = 0)]
+        [DataMember(Name = "sector_id", Order = 0)]
         public int SectorId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -55,7 +56,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Sectors
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(Sector other)
         {
@@ -85,7 +86,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Sectors
             return this.SectorId == other.SectorId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Items.Details.ItemTypes.Common;
 
@@ -32,11 +33,11 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         public Armor Armor { get; set; }
 
         /// <summary>Gets or sets the armor's defense stat.</summary>
-        [JsonProperty("defense", Order = 2)]
+        [DataMember(Name = "defense", Order = 2)]
         public int Defense { get; set; }
 
         /// <summary>Gets the armor's type.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public ArmorType Type
         {
             get
@@ -46,7 +47,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         }
 
         /// <summary>Gets or sets the armor's weight class.</summary>
-        [JsonProperty("weight_class", Order = 1)]
+        [DataMember(Name = "weight_class", Order = 1)]
         public ArmorWeightClass WeightClass { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -85,7 +86,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
             return object.Equals(this.Armor, other.Armor);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Core.Maps
     using System;
     using System.Drawing;
     using System.Globalization;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -23,58 +24,58 @@ namespace GW2DotNET.V1.Core.Maps
     public class Map : JsonObject, IEquatable<Map>, IComparable<Map>
     {
         /// <summary>Gets or sets the ID of the continent this map belongs to.</summary>
-        [JsonProperty("continent_id", Order = 8)]
+        [DataMember(Name = "continent_id", Order = 8)]
         public int ContinentId { get; set; }
 
         /// <summary>Gets or sets the name of the continent this map belongs to.</summary>
-        [JsonProperty("continent_name", Order = 9)]
+        [DataMember(Name = "continent_name", Order = 9)]
         public string ContinentName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
-        [JsonProperty("continent_rect", Order = 11)]
+        [DataMember(Name = "continent_rect", Order = 11)]
         [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle ContinentRectangle { get; set; }
 
         /// <summary>Gets or sets the default floor of this map.</summary>
-        [JsonProperty("default_floor", Order = 4)]
+        [DataMember(Name = "default_floor", Order = 4)]
         public int DefaultFloor { get; set; }
 
         /// <summary>Gets or sets a list of available floors for this map.</summary>
-        [JsonProperty("floors", Order = 5)]
+        [DataMember(Name = "floors", Order = 5)]
         public FloorCollection Floors { get; set; }
 
+        /// <summary>Gets or sets the language info.</summary>
+        [DataMember(Name = "lang", Order = 12)]
+        public CultureInfo Language { get; set; }
+
         /// <summary>Gets or sets the map's ID.</summary>
-        [JsonProperty("map_id", Order = 0)]
+        [DataMember(Name = "map_id", Order = 0)]
         public int MapId { get; set; }
 
         /// <summary>Gets or sets the map name.</summary>
-        [JsonProperty("map_name", Order = 1)]
+        [DataMember(Name = "map_name", Order = 1)]
         public string MapName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
-        [JsonProperty("map_rect", Order = 10)]
+        [DataMember(Name = "map_rect", Order = 10)]
         [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle MapRectangle { get; set; }
 
         /// <summary>Gets or sets the maximum level of this map.</summary>
-        [JsonProperty("max_level", Order = 3)]
+        [DataMember(Name = "max_level", Order = 3)]
         public int MaximumLevel { get; set; }
 
         /// <summary>Gets or sets the minimum level of this map.</summary>
-        [JsonProperty("min_level", Order = 2)]
+        [DataMember(Name = "min_level", Order = 2)]
         public int MinimumLevel { get; set; }
 
         /// <summary>Gets or sets the ID of the region this map belongs to.</summary>
-        [JsonProperty("region_id", Order = 6)]
+        [DataMember(Name = "region_id", Order = 6)]
         public int RegionId { get; set; }
 
         /// <summary>Gets or sets the name of the region this map belongs to.</summary>
-        [JsonProperty("region_name", Order = 7)]
+        [DataMember(Name = "region_name", Order = 7)]
         public string RegionName { get; set; }
-
-        /// <summary>Gets or sets the language info.</summary>
-        [JsonProperty("lang", Order = 12)]
-        public CultureInfo Language { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -95,7 +96,7 @@ namespace GW2DotNET.V1.Core.Maps
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>.</returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(Map other)
         {

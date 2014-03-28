@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Core.DynamicEvents
 {
     using System;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
 
@@ -19,20 +20,20 @@ namespace GW2DotNET.V1.Core.DynamicEvents
     public class DynamicEvent : JsonObject, IEquatable<DynamicEvent>, IComparable<DynamicEvent>
     {
         /// <summary>Gets or sets the <see cref="Guid" /> identifying the event.</summary>
-        [JsonProperty("event_id", Order = 2)]
+        [DataMember(Name = "event_id", Order = 2)]
         public Guid EventId { get; set; }
 
         /// <summary>Gets or sets the map on which the event is running.</summary>
-        [JsonProperty("map_id", Order = 1)]
+        [DataMember(Name = "map_id", Order = 1)]
         public int MapId { get; set; }
 
         /// <summary>Gets or sets the current state of the event.</summary>
-        [JsonProperty("state", Order = 3)]
+        [DataMember(Name = "state", Order = 3)]
         [JsonConverter(typeof(StringEnumConverter))]
         public DynamicEventState State { get; set; }
 
         /// <summary>Gets or sets the world on which the event is running.</summary>
-        [JsonProperty("world_id", Order = 0)]
+        [DataMember(Name = "world_id", Order = 0)]
         public int WorldId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -54,7 +55,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(DynamicEvent other)
         {
@@ -84,7 +85,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents
             return this.WorldId == other.WorldId && this.EventId.Equals(other.EventId);
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

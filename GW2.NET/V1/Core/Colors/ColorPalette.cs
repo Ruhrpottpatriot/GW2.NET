@@ -11,6 +11,7 @@ namespace GW2DotNET.V1.Core.Colors
     using System;
     using System.Drawing;
     using System.Globalization;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.Common.Converters;
@@ -30,12 +31,12 @@ namespace GW2DotNET.V1.Core.Colors
         private ColorModel metal;
 
         /// <summary>Gets or sets the base RGB values.</summary>
-        [JsonProperty("base_rgb", Order = 2)]
+        [DataMember(Name = "base_rgb", Order = 2)]
         [JsonConverter(typeof(JsonColorConverter))]
         public Color BaseRgb { get; set; }
 
         /// <summary>Gets or sets detailed information on the color's appearance when applied to cloth armor.</summary>
-        [JsonProperty("cloth", Order = 3)]
+        [DataMember(Name = "cloth", Order = 3)]
         public ColorModel Cloth
         {
             get
@@ -51,11 +52,15 @@ namespace GW2DotNET.V1.Core.Colors
         }
 
         /// <summary>Gets or sets the color's ID.</summary>
-        [JsonProperty("color_id", Order = 0)]
+        [DataMember(Name = "color_id", Order = 0)]
         public int ColorId { get; set; }
 
+        /// <summary>Gets or sets the language info.</summary>
+        [DataMember(Name = "lang", Order = 6)]
+        public CultureInfo Language { get; set; }
+
         /// <summary>Gets or sets detailed information on the color's appearance when applied to leather armor.</summary>
-        [JsonProperty("leather", Order = 4)]
+        [DataMember(Name = "leather", Order = 4)]
         public ColorModel Leather
         {
             get
@@ -71,7 +76,7 @@ namespace GW2DotNET.V1.Core.Colors
         }
 
         /// <summary>Gets or sets detailed information on the color's appearance when applied to metal armor.</summary>
-        [JsonProperty("metal", Order = 5)]
+        [DataMember(Name = "metal", Order = 5)]
         public ColorModel Metal
         {
             get
@@ -87,12 +92,8 @@ namespace GW2DotNET.V1.Core.Colors
         }
 
         /// <summary>Gets or sets the name of the dye.</summary>
-        [JsonProperty("name", Order = 1)]
+        [DataMember(Name = "name", Order = 1)]
         public string Name { get; set; }
-
-        /// <summary>Gets or sets the language info.</summary>
-        [JsonProperty("lang", Order = 6)]
-        public CultureInfo Language { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -113,7 +114,7 @@ namespace GW2DotNET.V1.Core.Colors
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than <paramref name="other"/>. </returns>
+        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
         public int CompareTo(ColorPalette other)
         {
@@ -143,7 +144,7 @@ namespace GW2DotNET.V1.Core.Colors
             return this.ColorId == other.ColorId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)

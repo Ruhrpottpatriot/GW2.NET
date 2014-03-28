@@ -8,20 +8,20 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Maps.Bonuses
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Core.Common;
     using GW2DotNET.V1.Core.WorldVersusWorld.Matches.Details.Common;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a World versus World map's bonus.</summary>
     public class MapBonus : JsonObject
     {
         /// <summary>Gets or sets the team that holds the bonus.</summary>
-        [JsonProperty("owner", Order = 1)]
+        [DataMember(Name = "owner", Order = 1)]
         public TeamColor Owner { get; set; }
 
         /// <summary>Gets or sets the bonus type.</summary>
-        [JsonProperty("type", Order = 0)]
+        [DataMember(Name = "type", Order = 0)]
         public MapBonusType Type { get; set; }
     }
 }
