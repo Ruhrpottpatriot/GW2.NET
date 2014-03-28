@@ -36,7 +36,7 @@ namespace GW2DotNET.Extensions
         public static CultureInfo GetLanguageInfoOrDefault(this CultureInfo instance, string name = "en")
         {
             Preconditions.EnsureNotNull(instance);
-            return IsSupported(instance) ? instance.ToLanguageInfo() : new CultureInfo(name);
+            return IsSupported(instance) ? instance.ToLanguageInfo() : new CultureInfo(name).ToLanguageInfo();
         }
 
         /// <summary>

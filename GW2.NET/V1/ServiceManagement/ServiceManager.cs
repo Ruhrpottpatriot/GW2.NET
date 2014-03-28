@@ -79,7 +79,7 @@ namespace GW2DotNET.V1.ServiceManagement
 
             this.dataService = dataService;
             this.renderService = renderService;
-            this.PreferredLanguageInfo = preferredLanguageInfo;
+            this.PreferredLanguageInfo = preferredLanguageInfo ?? CultureInfo.CurrentUICulture.GetLanguageInfoOrDefault();
         }
 
         /// <summary>Gets or sets the preferred language.</summary>
@@ -87,26 +87,21 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             get
             {
-                return this.preferredLanguageInfo ?? CultureInfo.CurrentUICulture.GetLanguageInfoOrDefault();
+                return this.preferredLanguageInfo;
             }
 
             set
             {
-                if (value == null)
-                {
-                    this.preferredLanguageInfo = null;
-                    return;
-                }
-
+                Preconditions.EnsureNotNull(paramName: "value", value: value);
                 var languageInfo = value.ToLanguageInfo();
 
                 if (!languageInfo.IsSupported())
                 {
                     // if a language is specified but is not one of the supported languages
-                    throw new NotSupportedException("The specified language is not supported");
+                    throw new NotSupportedException("The specified language is not supported.");
                 }
 
-                this.preferredLanguageInfo = languageInfo;
+                this.preferredLanguageInfo = CultureInfo.ReadOnly(languageInfo);
             }
         }
 
