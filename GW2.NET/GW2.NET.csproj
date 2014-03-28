@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
@@ -368,6 +369,7 @@
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveName.cs" />
     <Compile Include="V1\Core\WorldVersusWorld\Objectives\Names\ObjectiveNameCollection.cs" />
     <Compile Include="V1\ServiceManagement\CachedServiceManagerBase.cs" />
+    <Compile Include="V1\ServiceManagement\Caching\ServiceMemoryCache.cs" />
     <Compile Include="V1\ServiceManagement\ICachedServiceManager.cs">
       <SubType>Code</SubType>
     </Compile>
