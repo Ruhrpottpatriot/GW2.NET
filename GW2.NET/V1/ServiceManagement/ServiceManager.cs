@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.ServiceManagement
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.Globalization;
+    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -153,19 +154,20 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new ColorsRequest { PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<ColorsResult>(request, cancellationToken);
+            var t1 = this.GetAsync<ColorsResult>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
+            t1 = Patch(
+                t1,
+                result =>
+                {
+                    foreach (var colorPalette in result.Colors.Values)
                     {
-                        foreach (var colorPalette in task.Result.Colors.Values)
-                        {
-                            // patch missing language information
-                            colorPalette.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        colorPalette.Language = languageInfo;
+                    }
+                });
 
-            return this.Select(response, result => (IEnumerable<ColorPalette>)result.Colors.Values);
+            return this.Select(t1, result => (IEnumerable<ColorPalette>)result.Colors.Values);
         }
 
         /// <summary>Gets the collection of continents in the game.</summary>
@@ -248,19 +250,20 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new DynamicEventDetailsRequest { EventId = eventId, PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
+            var t1 = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
+            t1 = Patch(
+                t1,
+                result =>
+                {
+                    foreach (var dynamicEventDetails in result.EventDetails.Values)
                     {
-                        foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
-                        {
-                            // patch missing language information
-                            dynamicEventDetails.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        dynamicEventDetails.Language = languageInfo;
+                    }
+                });
 
-            return this.Select(response, result => (IEnumerable<DynamicEventDetails>)result.EventDetails.Values);
+            return this.Select(t1, result => (IEnumerable<DynamicEventDetails>)result.EventDetails.Values);
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
@@ -271,19 +274,20 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new DynamicEventDetailsRequest { PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
+            var t1 = this.GetAsync<DynamicEventDetailsResult>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
+            t1 = Patch(
+                t1,
+                result =>
+                {
+                    foreach (var dynamicEventDetails in result.EventDetails.Values)
                     {
-                        foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
-                        {
-                            // patch missing language information
-                            dynamicEventDetails.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        dynamicEventDetails.Language = languageInfo;
+                    }
+                });
 
-            return this.Select(response, result => (IEnumerable<DynamicEventDetails>)result.EventDetails.Values);
+            return this.Select(t1, result => (IEnumerable<DynamicEventDetails>)result.EventDetails.Values);
         }
 
         /// <summary>Gets a collection of dynamic events and their details.</summary>
@@ -292,7 +296,7 @@ namespace GW2DotNET.V1.ServiceManagement
         /// <returns>A collection of dynamic events.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(
-            DynamicEventName dynamicEventName, 
+            DynamicEventName dynamicEventName,
             CancellationToken? cancellationToken = null)
         {
             Preconditions.EnsureNotNull(paramName: "dynamicEventName", value: dynamicEventName);
@@ -326,19 +330,20 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new DynamicEventNamesRequest { PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<DynamicEventNameCollection>(request, cancellationToken);
+            var t1 = this.GetAsync<DynamicEventNameCollection>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
+            t1 = Patch(
+                t1,
+                collection =>
+                {
+                    foreach (var eventName in collection)
                     {
-                        foreach (var eventName in task.Result)
-                        {
-                            // patch missing language information
-                            eventName.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        eventName.Language = languageInfo;
+                    }
+                });
 
-            return this.Select(response, result => (IEnumerable<DynamicEventName>)result);
+            return this.Select(t1, result => (IEnumerable<DynamicEventName>)result);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -716,16 +721,13 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new ItemDetailsRequest { ItemId = itemId, PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<Item>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
-                    {
-                        // patch missing language information
-                        task.Result.Language = languageInfo;
-                    });
+            var t1 = this.GetAsync<Item>(request, cancellationToken);
 
-            return response;
+            // patch missing language information
+            t1 = Patch(t1, item => item.Language = languageInfo);
+
+            return t1;
         }
 
         /// <summary>Gets the collection of discovered items.</summary>
@@ -794,21 +796,21 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<Floor>(request, cancellationToken);
-            response.ContinueWith(
-                task =>
-                    {
-                        var mapFloor = task.Result;
+            var t1 = this.GetAsync<Floor>(request, cancellationToken);
 
-                        // patch missing floor information
-                        mapFloor.ContinentId = continentId;
-                        mapFloor.FloorNumber = floor;
+            t1 = Patch(
+                t1,
+                mapFloor =>
+                {
+                    // patch missing floor information
+                    mapFloor.ContinentId = continentId;
+                    mapFloor.FloorNumber = floor;
 
-                        // patch missing language information
-                        mapFloor.Language = languageInfo;
-                    });
+                    // patch missing language information
+                    mapFloor.Language = languageInfo;
+                });
 
-            return response;
+            return t1;
         }
 
         /// <summary>Gets a map floor and its details.</summary>
@@ -850,19 +852,20 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new MapNamesRequest { PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<MapNameCollection>(request, cancellationToken);
+            var t1 = this.GetAsync<MapNameCollection>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
+            t1 = Patch(
+                t1,
+                collection =>
+                {
+                    foreach (var mapName in collection)
                     {
-                        foreach (var mapName in task.Result)
-                        {
-                            // patch missing language information
-                            mapName.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        mapName.Language = languageInfo;
+                    }
+                });
 
-            return this.Select(response, result => (IEnumerable<MapName>)result);
+            return this.Select(t1, result => (IEnumerable<MapName>)result);
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -921,19 +924,20 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new MapDetailsRequest { PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<MapsResult>(request, cancellationToken);
+            var t1 = this.GetAsync<MapsResult>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
+            t1 = Patch(
+                t1,
+                result =>
+                {
+                    foreach (var map in result.Maps.Values)
                     {
-                        foreach (var map in task.Result.Maps.Values)
-                        {
-                            // patch missing language information
-                            map.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        map.Language = languageInfo;
+                    }
+                });
 
-            return this.Select(response, result => (IEnumerable<Map>)result.Maps.Values);
+            return this.Select(t1, result => (IEnumerable<Map>)result.Maps.Values);
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -945,19 +949,20 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new MapDetailsRequest { MapId = mapId, PreferredLanguageInfo = this.PreferredLanguageInfo };
-            var response = this.GetAsync<MapsResult>(request, cancellationToken);
+            var t1 = this.GetAsync<MapsResult>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
+            t1 = Patch(
+                t1,
+                result =>
+                {
+                    foreach (var map in result.Maps.Values)
                     {
-                        foreach (var map in task.Result.Maps.Values)
-                        {
-                            // patch missing language information
-                            map.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        map.Language = languageInfo;
+                    }
+                });
 
-            return this.Select(response, result => (IEnumerable<Map>)result.Maps.Values);
+            return this.Select(t1, result => (IEnumerable<Map>)result.Maps.Values);
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -1046,19 +1051,20 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new ObjectiveNamesRequest { PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<ObjectiveNameCollection>(request, cancellationToken);
+            var t1 = this.GetAsync<ObjectiveNameCollection>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
+            t1 = Patch(
+                t1,
+                collection =>
+                {
+                    foreach (var objectiveName in collection)
                     {
-                        foreach (var objectiveName in task.Result)
-                        {
-                            // patch missing language information
-                            objectiveName.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        objectiveName.Language = languageInfo;
+                    }
+                });
 
-            return this.Select(response, result => (IEnumerable<ObjectiveName>)result);
+            return this.Select(t1, result => (IEnumerable<ObjectiveName>)result);
         }
 
         /// <summary>Gets a recipe and its details.</summary>
@@ -1097,16 +1103,12 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new RecipeDetailsRequest { RecipeId = recipeId, PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<Recipe>(request, cancellationToken);
+            var t1 = this.GetAsync<Recipe>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
-                    {
-                        // patch missing language information
-                        task.Result.Language = languageInfo;
-                    });
+            // patch missing language information
+            t1 = Patch(t1, recipe => recipe.Language = languageInfo);
 
-            return response;
+            return t1;
         }
 
         /// <summary>Gets a recipe and its details.</summary>
@@ -1170,19 +1172,31 @@ namespace GW2DotNET.V1.ServiceManagement
         {
             var languageInfo = this.PreferredLanguageInfo;
             var request = new WorldNamesRequest { PreferredLanguageInfo = languageInfo };
-            var response = this.GetAsync<WorldNameCollection>(request, cancellationToken);
+            var t1 = this.GetAsync<WorldNameCollection>(request, cancellationToken);
 
-            response.ContinueWith(
-                task =>
+            t1 = Patch(
+                t1,
+                collection =>
+                {
+                    foreach (var worldName in collection)
                     {
-                        foreach (var worldName in task.Result)
-                        {
-                            // patch missing language information
-                            worldName.Language = languageInfo;
-                        }
-                    });
+                        // patch missing language information
+                        worldName.Language = languageInfo;
+                    }
+                });
 
-            return this.Select(response, result => (IEnumerable<WorldName>)result);
+            return this.Select(t1, result => (IEnumerable<WorldName>)result);
+        }
+
+        /// <summary>Patches the specified task.</summary>
+        /// <typeparam name="T">The type of the result</typeparam>
+        /// <param name="task">The task.</param>
+        /// <param name="patcher">The patcher.</param>
+        /// <returns>The <see cref="Task"/>.</returns>
+        private static Task<T> Patch<T>(Task<T> task, Action<T> patcher)
+        {
+            patcher(task.Result);
+            return task;
         }
 
         /// <summary>Infrastructure. Sends a request and gets the response.</summary>
@@ -1241,23 +1255,23 @@ namespace GW2DotNET.V1.ServiceManagement
 
             return request.GetResponseAsync<TResult>(service, token).ContinueWith(
                 task =>
+                {
+                    IServiceResponse<TResult> serviceResponse = null;
+                    try
                     {
-                        IServiceResponse<TResult> serviceResponse = null;
-                        try
+                        serviceResponse = task.Result;
+                        return serviceResponse.EnsureSuccessStatusCode().Deserialize();
+                    }
+                    finally
+                    {
+                        // clean up if necessary
+                        var disposable = serviceResponse as IDisposable;
+                        if (disposable != null)
                         {
-                            serviceResponse = task.Result;
-                            return serviceResponse.EnsureSuccessStatusCode().Deserialize();
+                            disposable.Dispose();
                         }
-                        finally
-                        {
-                            // clean up if necessary
-                            var disposable = serviceResponse as IDisposable;
-                            if (disposable != null)
-                            {
-                                disposable.Dispose();
-                            }
-                        }
-                    }, 
+                    }
+                },
                 token);
         }
 
