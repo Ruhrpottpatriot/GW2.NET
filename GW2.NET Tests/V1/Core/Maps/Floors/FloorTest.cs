@@ -11,6 +11,8 @@ namespace GW2DotNET.V1.Core.Maps.Floors
     using System.Drawing;
 
     using GW2DotNET.V1.Core.Maps.Floors.Regions;
+    using GW2DotNET.V1.MapsFloors.Types;
+    using GW2DotNET.V1.MapsFloors.Types.Regions;
 
     using Newtonsoft.Json;
 

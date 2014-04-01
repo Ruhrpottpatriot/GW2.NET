@@ -11,7 +11,7 @@ namespace RestSharp.GW2DotNET.ServiceResponses
     using System;
     using System.IO;
 
-    using global::GW2DotNET.V1.Core.Errors;
+    using global::GW2DotNET.V1.Errors;
 
     using Newtonsoft.Json;
 

@@ -10,6 +10,8 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Names
 {
     using System;
 
+    using GW2DotNET.V1.DynamicEventsNames.Types;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

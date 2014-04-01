@@ -14,10 +14,8 @@ namespace RestSharp.GW2DotNET
     using System.Net.Mime;
 
     using global::GW2DotNET.Utilities;
-
-    using global::GW2DotNET.V1.Core.Errors;
-
-    using global::GW2DotNET.V1.ServiceManagement;
+    using global::GW2DotNET.V1.Common;
+    using global::GW2DotNET.V1.Errors;
 
     using RestSharp.GW2DotNET.ServiceResponses;
 

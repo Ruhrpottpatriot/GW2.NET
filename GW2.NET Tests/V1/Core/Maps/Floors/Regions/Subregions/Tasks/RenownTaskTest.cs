@@ -10,6 +10,8 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Tasks
 {
     using System.Drawing;
 
+    using GW2DotNET.V1.MapsFloors.Types.Regions.Subregions.Tasks;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

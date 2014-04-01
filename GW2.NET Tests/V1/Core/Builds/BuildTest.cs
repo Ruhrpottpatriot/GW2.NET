@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Builds
 {
+    using GW2DotNET.V1.Builds.Types;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.DynamicEvents.Details
 {
+    using GW2DotNET.V1.DynamicEventsDetails.Types;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

@@ -10,6 +10,8 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.SkillChallenges
 {
     using System.Drawing;
 
+    using GW2DotNET.V1.MapsFloors.Types.Regions.Subregions.SkillChallenges;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

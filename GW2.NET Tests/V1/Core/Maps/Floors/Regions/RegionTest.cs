@@ -11,10 +11,13 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions
     using System.Drawing;
 
     using GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions;
+    using GW2DotNET.V1.MapsFloors.Types.Regions.Subregions;
 
     using Newtonsoft.Json;
 
     using NUnit.Framework;
+
+    using Region = GW2DotNET.V1.MapsFloors.Types.Regions.Region;
 
     /// <summary>The region test.</summary>
     [TestFixture]

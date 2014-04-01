@@ -16,13 +16,11 @@ namespace RestSharp.GW2DotNET
 
     using global::GW2DotNET.Utilities;
 
-    using global::GW2DotNET.V1;
-
-    using global::GW2DotNET.V1.Core.Common;
-
-    using global::GW2DotNET.V1.ServiceManagement;
+    using global::GW2DotNET.V1.Common;
 
     using RestSharp.GW2DotNET.ServiceResponses;
+
+    using JsonObject = global::GW2DotNET.V1.Common.Types.JsonObject;
 
     /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient

@@ -10,10 +10,11 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions
 {
     using System.Drawing;
 
-    using GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.PointsOfInterest;
-    using GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Sectors;
-    using GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.SkillChallenges;
-    using GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Tasks;
+    using GW2DotNET.V1.MapsFloors.Types.Regions.Subregions;
+    using GW2DotNET.V1.MapsFloors.Types.Regions.Subregions.PointsOfInterest;
+    using GW2DotNET.V1.MapsFloors.Types.Regions.Subregions.Sectors;
+    using GW2DotNET.V1.MapsFloors.Types.Regions.Subregions.SkillChallenges;
+    using GW2DotNET.V1.MapsFloors.Types.Regions.Subregions.Tasks;
 
     using Newtonsoft.Json;
 

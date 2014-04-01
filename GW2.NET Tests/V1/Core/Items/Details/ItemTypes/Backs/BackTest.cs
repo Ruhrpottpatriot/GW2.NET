@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
 {
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Backs;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

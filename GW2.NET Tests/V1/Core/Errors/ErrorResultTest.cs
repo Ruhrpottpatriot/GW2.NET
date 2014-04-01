@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Errors
 {
+    using GW2DotNET.V1.Errors;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

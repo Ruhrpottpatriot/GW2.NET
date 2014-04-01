@@ -8,20 +8,21 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details
 {
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.CraftingMaterials;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.GatheringTools;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Gizmos;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.MiniPets;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Tools;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Trinkets;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Trophies;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.UpgradeComponents;
-    using GW2DotNET.V1.Core.Items.Details.ItemTypes.Weapons;
+    using GW2DotNET.V1.ItemsDetails.Types;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Armors;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Backs;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Bags;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Consumables;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Containers;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.CraftingMaterials;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.GatheringTools;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Gizmos;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.MiniPets;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Tools;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Trinkets;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Trophies;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.UpgradeComponents;
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Weapons;
 
     using Newtonsoft.Json;
 

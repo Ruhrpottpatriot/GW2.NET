@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Maps.Names
 {
+    using GW2DotNET.V1.MapsNames.Types;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

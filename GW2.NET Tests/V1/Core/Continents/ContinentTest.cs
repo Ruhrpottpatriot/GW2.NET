@@ -10,6 +10,8 @@ namespace GW2DotNET.V1.Core.Continents
 {
     using System.Drawing;
 
+    using GW2DotNET.V1.Continents.Types;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

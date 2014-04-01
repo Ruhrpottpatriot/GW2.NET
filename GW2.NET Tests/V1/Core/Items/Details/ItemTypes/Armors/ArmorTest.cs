@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
 {
+    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Armors;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

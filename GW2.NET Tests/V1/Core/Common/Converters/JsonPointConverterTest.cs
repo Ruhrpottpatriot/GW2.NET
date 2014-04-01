@@ -10,6 +10,8 @@ namespace GW2DotNET.V1.Core.Common.Converters
 {
     using System.Drawing;
 
+    using GW2DotNET.V1.Common.Converters;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;

@@ -13,12 +13,9 @@ namespace RestSharp.GW2DotNET.Sample
     using System.Linq;
 
     using global::GW2DotNET.V1;
-
-    using global::GW2DotNET.V1.Core.DynamicEvents;
-
-    using global::GW2DotNET.V1.Core.Errors;
-
-    using global::GW2DotNET.V1.ServiceManagement;
+    using global::GW2DotNET.V1.Common;
+    using global::GW2DotNET.V1.DynamicEvents.Types;
+    using global::GW2DotNET.V1.Errors;
 
     /// <summary>The program.</summary>
     internal class Program
@@ -26,7 +23,8 @@ namespace RestSharp.GW2DotNET.Sample
         /// <summary>main.</summary>
         private static void Main()
         {
-            Console.BufferWidth = Console.BufferHeight = short.MaxValue - 1;
+            Console.BufferWidth = 200;
+            Console.BufferHeight = 2000;
 
             var dataService = global::RestSharp.GW2DotNET.ServiceClient.DataServiceClient();
             var renderService = global::RestSharp.GW2DotNET.ServiceClient.RenderServiceClient();
@@ -49,7 +47,7 @@ namespace RestSharp.GW2DotNET.Sample
 
         /// <summary>TODO The print banner.</summary>
         /// <param name="serviceManager">TODO The service provider.</param>
-        private static void PrintBanner(IServiceManager serviceManager)
+        private static void PrintBanner(ServiceManager serviceManager)
         {
             Console.WriteLine(@"+--------------------------------------------+");
             Console.WriteLine(@"| Welcome to the GW2.NET sample application! |");
@@ -92,7 +90,7 @@ namespace RestSharp.GW2DotNET.Sample
 
         /// <summary>TODO The main.</summary>
         /// <param name="serviceManager">TODO The service provider.</param>
-        private void Main(IServiceManager serviceManager)
+        private void Main(ServiceManager serviceManager)
         {
             do
             {
@@ -158,7 +156,7 @@ namespace RestSharp.GW2DotNET.Sample
 
         /// <summary>TODO The print colors.</summary>
         /// <param name="serviceManager">TODO The service provider.</param>
-        private void PrintColors(IServiceManager serviceManager)
+        private void PrintColors(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "Name", "Color");
 
@@ -187,7 +185,7 @@ namespace RestSharp.GW2DotNET.Sample
 
         /// <summary>TODO The print event names.</summary>
         /// <param name="serviceManager">TODO The service provider.</param>
-        private void PrintEventNames(IServiceManager serviceManager)
+        private void PrintEventNames(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "Event ID", "Name");
 
@@ -205,7 +203,7 @@ namespace RestSharp.GW2DotNET.Sample
 
         /// <summary>TODO The print events.</summary>
         /// <param name="serviceManager">TODO The service provider.</param>
-        private void PrintEvents(IServiceManager serviceManager)
+        private void PrintEvents(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("Name", "ID", "State");
 
@@ -244,7 +242,7 @@ namespace RestSharp.GW2DotNET.Sample
 
         /// <summary>TODO The print files.</summary>
         /// <param name="serviceManager">TODO The service provider.</param>
-        private void PrintFiles(IServiceManager serviceManager)
+        private void PrintFiles(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("Name", "ID", "Signature");
 
@@ -260,7 +258,7 @@ namespace RestSharp.GW2DotNET.Sample
 
         /// <summary>TODO The print map names.</summary>
         /// <param name="serviceManager">TODO The service provider.</param>
-        private void PrintMapNames(IServiceManager serviceManager)
+        private void PrintMapNames(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "Map");
 
@@ -276,7 +274,7 @@ namespace RestSharp.GW2DotNET.Sample
 
         /// <summary>TODO The print world names.</summary>
         /// <param name="serviceManager">TODO The service provider.</param>
-        private void PrintWorldNames(IServiceManager serviceManager)
+        private void PrintWorldNames(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "World");
 
