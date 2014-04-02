@@ -54,15 +54,7 @@ namespace GW2DotNET.V1.Common
 
             set
             {
-                if (value == null)
-                {
-                    if (this.Query.Remove("lang"))
-                    {
-                        this.language = null;
-                    }
-
-                    return;
-                }
+                Preconditions.EnsureNotNull(paramName: "value", value: value);
 
                 if (!SupportedLanguages.Contains(value.TwoLetterISOLanguageName))
                 {
