@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.ObjectiveNames
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.WorldVersusWorld.ObjectiveNames.Types;
 
@@ -47,6 +48,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.ObjectiveNames
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public IEnumerable<ObjectiveName> GetObjectiveNames(CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new ObjectiveNamesRequest { Language = language };
             var result = this.Request<ObjectiveNameCollection>(serviceRequest);
 
@@ -92,6 +94,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.ObjectiveNames
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new ObjectiveNamesRequest { Language = language };
             var t1 = this.RequestAsync<ObjectiveNameCollection>(serviceRequest, cancellationToken).ContinueWith(
                 task =>

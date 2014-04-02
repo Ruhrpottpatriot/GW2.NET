@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Rendering
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Rendering.Types;
 
@@ -40,6 +41,8 @@ namespace GW2DotNET.V1.Rendering
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
         public Image GetImage(IRenderable file, ImageFormat imageFormat)
         {
+            Preconditions.EnsureNotNull(paramName: "file", value: file);
+            Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
             return this.Request<Image>(new RenderFileRequest(file, imageFormat));
         }
 
@@ -61,6 +64,8 @@ namespace GW2DotNET.V1.Rendering
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
         public Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "file", value: file);
+            Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
             return this.RequestAsync<Image>(new RenderFileRequest(file, imageFormat), cancellationToken);
         }
     }

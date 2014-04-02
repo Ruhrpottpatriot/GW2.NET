@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.ItemsDetails
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.ItemsDetails.Types;
 
@@ -48,6 +49,7 @@ namespace GW2DotNET.V1.ItemsDetails
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(int itemId, CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new ItemDetailsRequest { ItemId = itemId, Language = language };
             var result = this.Request<Item>(serviceRequest);
 
@@ -94,6 +96,7 @@ namespace GW2DotNET.V1.ItemsDetails
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new ItemDetailsRequest { ItemId = itemId, Language = language };
             var t1 = this.RequestAsync<Item>(serviceRequest, cancellationToken).ContinueWith(
                 task =>

@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.WorldNames
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.WorldNames.Types;
 
@@ -47,6 +48,7 @@ namespace GW2DotNET.V1.WorldNames
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public IEnumerable<WorldName> GetWorldNames(CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new WorldNamesRequest { Language = language };
             var result = this.Request<WorldNameCollection>(serviceRequest);
 
@@ -92,6 +94,7 @@ namespace GW2DotNET.V1.WorldNames
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var worldNamesRequest = new WorldNamesRequest { Language = language };
             var t1 = this.RequestAsync<WorldNameCollection>(worldNamesRequest, cancellationToken).ContinueWith(
                 task =>

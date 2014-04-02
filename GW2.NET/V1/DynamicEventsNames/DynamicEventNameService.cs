@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.DynamicEventsNames
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.DynamicEventsNames.Types;
 
@@ -47,6 +48,7 @@ namespace GW2DotNET.V1.DynamicEventsNames
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEventName> GetDynamicEventNames(CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventNamesRequest { Language = language };
             var result = this.Request<DynamicEventNameCollection>(serviceRequest);
 
@@ -92,6 +94,7 @@ namespace GW2DotNET.V1.DynamicEventsNames
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventNamesRequest { Language = language };
             var t1 = this.RequestAsync<DynamicEventNameCollection>(serviceRequest, cancellationToken);
 

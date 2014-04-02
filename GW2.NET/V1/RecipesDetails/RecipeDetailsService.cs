@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.RecipesDetails
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.RecipesDetails.Types;
 
@@ -48,6 +49,7 @@ namespace GW2DotNET.V1.RecipesDetails
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(int recipeId, CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new RecipeDetailsRequest { RecipeId = recipeId, Language = language };
             var result = this.Request<Recipe>(serviceRequest);
 
@@ -94,6 +96,7 @@ namespace GW2DotNET.V1.RecipesDetails
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new RecipeDetailsRequest { RecipeId = recipeId, Language = language };
             var t1 = this.RequestAsync<Recipe>(serviceRequest, cancellationToken).ContinueWith(
                 task =>

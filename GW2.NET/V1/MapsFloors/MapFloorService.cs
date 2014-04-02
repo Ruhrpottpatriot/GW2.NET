@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.MapsFloors
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.MapsFloors.Types;
 
@@ -50,6 +51,7 @@ namespace GW2DotNET.V1.MapsFloors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Floor GetMapFloor(int continentId, int floor, CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new MapFloorRequest { ContinentId = continentId, Floor = floor, Language = language };
             var result = this.Request<Floor>(serviceRequest);
 
@@ -104,6 +106,7 @@ namespace GW2DotNET.V1.MapsFloors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new MapFloorRequest { ContinentId = continentId, Floor = floor, Language = language };
             var t1 = this.RequestAsync<Floor>(serviceRequest, cancellationToken).ContinueWith(
                 task =>

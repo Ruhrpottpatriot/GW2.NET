@@ -15,6 +15,7 @@ namespace GW2DotNET.V1.DynamicEventsDetails
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.DynamicEventsDetails.Types;
 
@@ -48,6 +49,7 @@ namespace GW2DotNET.V1.DynamicEventsDetails
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEventDetails> GetDynamicEventDetails(CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventDetailsRequest { Language = language };
             var result = this.Request<DynamicEventDetailsResult>(serviceRequest);
 
@@ -76,6 +78,7 @@ namespace GW2DotNET.V1.DynamicEventsDetails
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public DynamicEventDetails GetDynamicEventDetails(Guid eventId, CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventDetailsRequest { Language = language, EventId = eventId };
             var result = this.Request<DynamicEventDetailsResult>(serviceRequest);
 
@@ -121,6 +124,7 @@ namespace GW2DotNET.V1.DynamicEventsDetails
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventDetailsRequest { Language = language };
             var t1 = this.RequestAsync<DynamicEventDetailsResult>(serviceRequest, cancellationToken);
 
@@ -177,6 +181,7 @@ namespace GW2DotNET.V1.DynamicEventsDetails
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEventDetails> GetDynamicEventDetailsAsync(Guid eventId, CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventDetailsRequest { Language = language, EventId = eventId };
             var t1 = this.RequestAsync<DynamicEventDetailsResult>(serviceRequest, cancellationToken);
 

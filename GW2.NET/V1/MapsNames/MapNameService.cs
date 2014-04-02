@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.MapsNames
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.MapsNames.Types;
 
@@ -47,6 +48,7 @@ namespace GW2DotNET.V1.MapsNames
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public IEnumerable<MapName> GetMapNames(CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new MapNamesRequest { Language = language };
             var result = this.Request<MapNameCollection>(serviceRequest);
 
@@ -92,6 +94,7 @@ namespace GW2DotNET.V1.MapsNames
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new MapNamesRequest { Language = language };
             var t1 = this.RequestAsync<MapNameCollection>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
