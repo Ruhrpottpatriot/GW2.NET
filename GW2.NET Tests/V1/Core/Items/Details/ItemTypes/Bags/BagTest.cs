@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
 {
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Bags;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Bags;
 
     using Newtonsoft.Json;
 

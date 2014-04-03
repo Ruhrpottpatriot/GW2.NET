@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
 {
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Consumables;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Consumables;
 
     using Newtonsoft.Json;
 

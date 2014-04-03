@@ -9,8 +9,8 @@
 namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations
 {
     using GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes;
-    using GW2DotNET.V1.DynamicEventsDetails.Types.Locations;
-    using GW2DotNET.V1.DynamicEventsDetails.Types.Locations.LocationTypes;
+    using GW2DotNET.V1.DynamicEvents.Details.Types.Locations;
+    using GW2DotNET.V1.DynamicEvents.Details.Types.Locations.LocationTypes;
 
     using Newtonsoft.Json;
 

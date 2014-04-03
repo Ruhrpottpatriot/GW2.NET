@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.DynamicEvents.Details
 {
-    using GW2DotNET.V1.DynamicEventsDetails.Types;
+    using GW2DotNET.V1.DynamicEvents.Details.Types;
 
     using Newtonsoft.Json;
 

@@ -10,8 +10,8 @@ namespace GW2DotNET.V1.Core.Guilds
 {
     using System;
 
-    using GW2DotNET.V1.GuildsDetails.Details.Types;
-    using GW2DotNET.V1.GuildsDetails.Details.Types.Emblems;
+    using GW2DotNET.V1.Guilds.Details.Types;
+    using GW2DotNET.V1.Guilds.Details.Types.Emblems;
 
     using Newtonsoft.Json;
 

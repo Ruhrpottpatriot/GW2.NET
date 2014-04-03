@@ -8,21 +8,21 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details
 {
-    using GW2DotNET.V1.ItemsDetails.Types;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Armors;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Backs;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Bags;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Consumables;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Containers;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.CraftingMaterials;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.GatheringTools;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Gizmos;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.MiniPets;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Tools;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Trinkets;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Trophies;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.UpgradeComponents;
-    using GW2DotNET.V1.ItemsDetails.Types.ItemTypes.Weapons;
+    using GW2DotNET.V1.Items.Details.Types;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Armors;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Backs;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Bags;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Consumables;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Containers;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.CraftingMaterials;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.GatheringTools;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Gizmos;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.MiniPets;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Tools;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Trinkets;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Trophies;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.UpgradeComponents;
+    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Weapons;
 
     using Newtonsoft.Json;
 
