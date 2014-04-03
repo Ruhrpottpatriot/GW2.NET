@@ -70,6 +70,8 @@
     <Compile Include="V1\Colors\Types\ColorModel.cs" />
     <Compile Include="V1\Colors\Types\ColorPalette.cs" />
     <Compile Include="V1\Colors\Types\ColorsResult.cs" />
+    <Compile Include="V1\Common\Caching\CacheItemParameters.cs" />
+    <Compile Include="V1\Common\Caching\ServiceObjectCache.cs" />
     <Compile Include="V1\Common\Converters\ContentBasedTypeCreationConverter.cs" />
     <Compile Include="V1\Common\Converters\DefaultJsonConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonBooleanConverter.cs" />
