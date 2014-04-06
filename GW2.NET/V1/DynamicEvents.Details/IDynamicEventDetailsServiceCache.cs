@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.DynamicEvents.Details.Types;
 
     /// <summary>Provides the interface for an event details service cache.</summary>
@@ -111,5 +112,11 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         /// <param name="dynamicEventDetails">A collection of dynamic events and their localized details.</param>
         /// <param name="language">The language.</param>
         void SetDynamicEventDetails(IEnumerable<DynamicEventDetails> dynamicEventDetails, CultureInfo language);
+
+        /// <summary>Sets a collection of dynamic events and their localized details.</summary>
+        /// <param name="dynamicEventDetails">A collection of dynamic events and their localized details.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetDynamicEventDetails(IEnumerable<DynamicEventDetails> dynamicEventDetails, CultureInfo language, CacheItemParameters parameters);
     }
 }

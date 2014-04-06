@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Continents
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.Continents.Types;
 
     /// <summary>Provides the interface for a continents service cache.</summary>
@@ -39,5 +40,10 @@ namespace GW2DotNET.V1.Continents
         /// <summary>Sets a collection of continents.</summary>
         /// <param name="continents">A collection of continents.</param>
         void SetContinents(IEnumerable<Continent> continents);
+
+        /// <summary>Sets a collection of continents.</summary>
+        /// <param name="continents">A collection of continents.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetContinents(IEnumerable<Continent> continents, CacheItemParameters parameters);
     }
 }

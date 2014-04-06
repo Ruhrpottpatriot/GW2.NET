@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.DynamicEvents.Names.Types;
 
     /// <summary>Provides the interface for an event names service cache.</summary>
@@ -63,5 +64,11 @@ namespace GW2DotNET.V1.DynamicEvents.Names
         /// <param name="dynamicEventNames">A collection of dynamic events and their localized name.</param>
         /// <param name="language">The language.</param>
         void SetDynamicEventNames(IEnumerable<DynamicEventName> dynamicEventNames, CultureInfo language);
+
+        /// <summary>Sets a collection of dynamic events and their localized name.</summary>
+        /// <param name="dynamicEventNames">A collection of dynamic events and their localized name.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetDynamicEventNames(IEnumerable<DynamicEventName> dynamicEventNames, CultureInfo language, CacheItemParameters parameters);
     }
 }

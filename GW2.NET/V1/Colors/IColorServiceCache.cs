@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Colors
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Colors.Types;
+    using GW2DotNET.V1.Common.Caching;
 
     /// <summary>Provides the interface for a colors service cache.</summary>
     public interface IColorServiceCache : IColorService
@@ -63,5 +64,11 @@ namespace GW2DotNET.V1.Colors
         /// <param name="colors">A collection of colors.</param>
         /// <param name="language">The language.</param>
         void SetColors(IEnumerable<ColorPalette> colors, CultureInfo language);
+
+        /// <summary>Sets a collection of colors.</summary>
+        /// <param name="colors">A collection of colors.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetColors(IEnumerable<ColorPalette> colors, CultureInfo language, CacheItemParameters parameters);
     }
 }

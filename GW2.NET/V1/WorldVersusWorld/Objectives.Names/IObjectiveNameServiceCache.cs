@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Types;
 
     /// <summary>Provides the interface for an objective names service cache.</summary>
@@ -63,5 +64,11 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <param name="objectiveNames">A collection of World versus World objectives and their localized name.</param>
         /// <param name="language">The language.</param>
         void SetObjectiveNames(IEnumerable<ObjectiveName> objectiveNames, CultureInfo language);
+
+        /// <summary>Sets a collection of World versus World objectives and their localized name.</summary>
+        /// <param name="objectiveNames">A collection of World versus World objectives and their localized name.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetObjectiveNames(IEnumerable<ObjectiveName> objectiveNames, CultureInfo language, CacheItemParameters parameters);
     }
 }

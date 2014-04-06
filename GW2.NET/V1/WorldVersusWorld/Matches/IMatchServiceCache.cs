@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Types;
 
     /// <summary>Provides the interface for a matches service cache.</summary>
@@ -39,5 +40,10 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
         /// <summary>Sets a collection of currently running World versus World matches.</summary>
         /// <param name="matches">A collection of currently running World versus World matches.</param>
         void SetMatches(IEnumerable<Match> matches);
+
+        /// <summary>Sets a collection of currently running World versus World matches.</summary>
+        /// <param name="matches">A collection of currently running World versus World matches.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetMatches(IEnumerable<Match> matches, CacheItemParameters parameters);
     }
 }

@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Maps
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.Maps.Types;
 
     /// <summary>Provides the interface for a maps service cache.</summary>
@@ -110,5 +111,11 @@ namespace GW2DotNET.V1.Maps
         /// <param name="maps">A collection of maps and their localized details.</param>
         /// <param name="language">The language.</param>
         void SetMaps(IEnumerable<Map> maps, CultureInfo language);
+
+        /// <summary>Sets a collection of maps and their localized details.</summary>
+        /// <param name="maps">A collection of maps and their localized details.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetMaps(IEnumerable<Map> maps, CultureInfo language, CacheItemParameters parameters);
     }
 }

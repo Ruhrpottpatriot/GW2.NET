@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Recipes.Details
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.Recipes.Details.Types;
 
     /// <summary>Provides the interface for a recipe details service cache.</summary>
@@ -68,5 +69,11 @@ namespace GW2DotNET.V1.Recipes.Details
         /// <param name="recipe">A recipe.</param>
         /// <param name="language">The language.</param>
         void SetRecipeDetails(Recipe recipe, CultureInfo language);
+
+        /// <summary>Sets a recipe and its localized details.</summary>
+        /// <param name="recipe">A recipe.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetRecipeDetails(Recipe recipe, CultureInfo language, CacheItemParameters parameters);
     }
 }

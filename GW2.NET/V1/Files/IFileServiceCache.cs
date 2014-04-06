@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Files
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.Files.Types;
 
     /// <summary>Provides the interface for a files service cache.</summary>
@@ -39,5 +40,10 @@ namespace GW2DotNET.V1.Files
         /// <summary>Sets a collection of commonly requested in-game assets.</summary>
         /// <param name="files">A collection of commonly requested in-game assets.</param>
         void SetFiles(IEnumerable<Asset> files);
+
+        /// <summary>Sets a collection of commonly requested in-game assets.</summary>
+        /// <param name="files">A collection of commonly requested in-game assets.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetFiles(IEnumerable<Asset> files, CacheItemParameters parameters);
     }
 }

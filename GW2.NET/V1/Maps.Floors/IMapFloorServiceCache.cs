@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Maps.Floors
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.Maps.Floors.Types;
 
     /// <summary>Provides the interface for a map floor service cache.</summary>
@@ -74,5 +75,11 @@ namespace GW2DotNET.V1.Maps.Floors
         /// <param name="floor">A map floor and its localized details.</param>
         /// <param name="language">The language.</param>
         void SetMapFloor(Floor floor, CultureInfo language);
+
+        /// <summary>Sets a map floor and its localized details.</summary>
+        /// <param name="floor">A map floor and its localized details.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetMapFloor(Floor floor, CultureInfo language, CacheItemParameters parameters);
     }
 }

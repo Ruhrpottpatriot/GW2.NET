@@ -11,6 +11,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Types;
 
     /// <summary>Provides the interface for a match details service cache.</summary>
@@ -41,5 +42,10 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
         /// <summary>Sets a World versus World match and its details.</summary>
         /// <param name="matchDetails">A World versus World match and its details.</param>
         void SetMatchDetails(MatchDetails matchDetails);
+
+        /// <summary>Sets a World versus World match and its details.</summary>
+        /// <param name="matchDetails">A World versus World match and its details.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetMatchDetails(MatchDetails matchDetails, CacheItemParameters parameters);
     }
 }

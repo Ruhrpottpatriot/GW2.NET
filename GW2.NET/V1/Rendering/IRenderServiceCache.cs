@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Rendering
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.Rendering.Types;
 
     /// <summary>Provides the interface for a render service cache.</summary>
@@ -47,5 +48,11 @@ namespace GW2DotNET.V1.Rendering
         /// <param name="file">The file.</param>
         /// <param name="image">The image.</param>
         void SetImage(IRenderable file, Image image);
+
+        /// <summary>Sets an image.</summary>
+        /// <param name="file">The file.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetImage(IRenderable file, Image image, CacheItemParameters parameters);
     }
 }

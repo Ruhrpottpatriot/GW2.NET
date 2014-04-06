@@ -12,6 +12,8 @@ namespace GW2DotNET.V1.Items
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
+
     /// <summary>Provides the interface for an items service cache.</summary>
     public interface IItemServiceCache : IItemService
     {
@@ -37,5 +39,10 @@ namespace GW2DotNET.V1.Items
         /// <summary>Sets a collection of discovered items.</summary>
         /// <param name="items">A collection of discovered items.</param>
         void SetItems(IEnumerable<int> items);
+
+        /// <summary>Sets a collection of discovered items.</summary>
+        /// <param name="items">A collection of discovered items.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetItems(IEnumerable<int> items, CacheItemParameters parameters);
     }
 }

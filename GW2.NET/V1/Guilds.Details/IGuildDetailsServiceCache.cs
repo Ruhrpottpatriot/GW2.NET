@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Guilds.Details
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.Guilds.Details.Types;
 
     /// <summary>Provides the interface for a guild details service cache.</summary>
@@ -64,5 +65,10 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <summary>Sets a guild and its details.</summary>
         /// <param name="guild">The guild.</param>
         void SetGuildDetails(Guild guild);
+
+        /// <summary>Sets a guild and its details.</summary>
+        /// <param name="guild">The guild.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetGuildDetails(Guild guild, CacheItemParameters parameters);
     }
 }

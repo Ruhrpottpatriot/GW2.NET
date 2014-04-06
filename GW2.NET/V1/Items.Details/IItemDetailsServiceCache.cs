@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Items.Details
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.Items.Details.Types;
 
     /// <summary>Provides the interface for an item details service cache.</summary>
@@ -68,5 +69,11 @@ namespace GW2DotNET.V1.Items.Details
         /// <param name="item">An item and its localized details.</param>
         /// <param name="language">The language.</param>
         void SetItemDetails(Item item, CultureInfo language);
+
+        /// <summary>Sets an item and its localized details.</summary>
+        /// <param name="item">An item and its localized details.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetItemDetails(Item item, CultureInfo language, CacheItemParameters parameters);
     }
 }

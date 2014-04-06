@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Worlds.Names
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.Worlds.Names.Types;
 
     /// <summary>Provides the interface for a world names service cache.</summary>
@@ -63,5 +64,11 @@ namespace GW2DotNET.V1.Worlds.Names
         /// <param name="worldNames">A collection of worlds and their localized name.</param>
         /// <param name="language">The language.</param>
         void SetWorldNames(IEnumerable<WorldName> worldNames, CultureInfo language);
+
+        /// <summary>Sets a collection of worlds and their localized name.</summary>
+        /// <param name="worldNames">A collection of worlds and their localized name.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetWorldNames(IEnumerable<WorldName> worldNames, CultureInfo language, CacheItemParameters parameters);
     }
 }

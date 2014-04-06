@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
     using GW2DotNET.V1.DynamicEvents.Types;
 
     /// <summary>Provides the interface for an events service cache.</summary>
@@ -156,5 +157,10 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Sets a collection of dynamic events and their status.</summary>
         /// <param name="dynamicEvents">A collection of dynamic events and their status.</param>
         void SetDynamicEvents(IEnumerable<DynamicEvent> dynamicEvents);
+
+        /// <summary>Sets a collection of dynamic events and their status.</summary>
+        /// <param name="dynamicEvents">A collection of dynamic events and their status.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetDynamicEvents(IEnumerable<DynamicEvent> dynamicEvents, CacheItemParameters parameters);
     }
 }

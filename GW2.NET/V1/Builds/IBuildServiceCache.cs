@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Builds
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Builds.Types;
+    using GW2DotNET.V1.Common.Caching;
 
     /// <summary>Provides the interface for a build service cache.</summary>
     public interface IBuildServiceCache : IBuildService
@@ -38,5 +39,10 @@ namespace GW2DotNET.V1.Builds
         /// <summary>Sets the current game build.</summary>
         /// <param name="build">The build.</param>
         void SetBuild(Build build);
+
+        /// <summary>Sets the current game build.</summary>
+        /// <param name="build">The build.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetBuild(Build build, CacheItemParameters parameters);
     }
 }

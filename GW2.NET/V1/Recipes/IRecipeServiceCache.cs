@@ -12,6 +12,8 @@ namespace GW2DotNET.V1.Recipes
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.V1.Common.Caching;
+
     /// <summary>Provides the interface for a recipes service cache.</summary>
     public interface IRecipeServiceCache : IRecipeService
     {
@@ -37,5 +39,10 @@ namespace GW2DotNET.V1.Recipes
         /// <summary>Sets a collection of discovered recipes.</summary>
         /// <param name="recipes">A collection of discovered recipes.</param>
         void SetRecipes(IEnumerable<int> recipes);
+
+        /// <summary>Sets a collection of discovered recipes.</summary>
+        /// <param name="recipes">A collection of discovered recipes.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetRecipes(IEnumerable<int> recipes, CacheItemParameters parameters);
     }
 }
