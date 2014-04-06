@@ -56,13 +56,17 @@
     <Compile Include="Extensions\CultureInfoExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\Int32Extensions.cs" />
+    <Compile Include="Extensions\TaskFactoryExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Preconditions.cs" />
     <Compile Include="V1\Builds\BuildRequest.cs" />
     <Compile Include="V1\Builds\BuildService.cs" />
+    <Compile Include="V1\Builds\BuildServiceCache.cs" />
+    <Compile Include="V1\Builds\IBuildServiceCache.cs" />
     <Compile Include="V1\Builds\IBuildService.cs" />
     <Compile Include="V1\Builds\Types\Build.cs" />
+    <Compile Include="V1\Colors\ColorServiceCache.cs" />
     <Compile Include="V1\Colors\ColorService.cs" />
     <Compile Include="V1\Colors\ColorsRequest.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />
@@ -106,6 +110,7 @@
     <Compile Include="V1\Common\Types\JsonList.cs" />
     <Compile Include="V1\Common\Types\JsonObject.cs" />
     <Compile Include="V1\Continents\ContinentService.cs" />
+    <Compile Include="V1\Continents\ContinentServiceCache.cs" />
     <Compile Include="V1\Continents\ContinentsRequest.cs" />
     <Compile Include="V1\Continents\IContinentService.cs" />
     <Compile Include="V1\Continents\IContinentServiceCache.cs" />
@@ -130,6 +135,7 @@
     <Compile Include="V1\DynamicEvents.Details\Types\Locations\LocationTypes\SphereLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details\Types\Locations\LocationTypes\UnknownLocation.cs" />
     <Compile Include="V1\DynamicEvents.Names\DynamicEventNameService.cs" />
+    <Compile Include="V1\DynamicEvents.Names\DynamicEventNameServiceCache.cs" />
     <Compile Include="V1\DynamicEvents.Names\DynamicEventNamesRequest.cs" />
     <Compile Include="V1\DynamicEvents.Names\IDynamicEventNameService.cs" />
     <Compile Include="V1\DynamicEvents.Names\IDynamicEventNameServiceCache.cs" />
