@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Recipes.Details
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">The recipe.</param>
+        /// <param name="recipeId">A recipe.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(int recipeId)
@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.Recipes.Details
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">The recipe.</param>
+        /// <param name="recipeId">A recipe.</param>
         /// <param name="language">The language.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
@@ -60,7 +60,7 @@ namespace GW2DotNET.V1.Recipes.Details
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">The recipe.</param>
+        /// <param name="recipeId">A recipe.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId)
@@ -69,7 +69,7 @@ namespace GW2DotNET.V1.Recipes.Details
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">The recipe.</param>
+        /// <param name="recipeId">A recipe.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
@@ -79,7 +79,7 @@ namespace GW2DotNET.V1.Recipes.Details
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">The recipe.</param>
+        /// <param name="recipeId">A recipe.</param>
         /// <param name="language">The language.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
@@ -89,7 +89,7 @@ namespace GW2DotNET.V1.Recipes.Details
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">The recipe.</param>
+        /// <param name="recipeId">A recipe.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its localized details.</returns>

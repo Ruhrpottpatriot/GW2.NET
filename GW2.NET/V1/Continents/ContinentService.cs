@@ -32,8 +32,8 @@ namespace GW2DotNET.V1.Continents
         {
         }
 
-        /// <summary>Gets the collection of continents in the game.</summary>
-        /// <returns>The collection of continents.</returns>
+        /// <summary>Gets a collection of continents and their details.</summary>
+        /// <returns>A collection of continents.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public IEnumerable<Continent> GetContinents()
         {
@@ -43,17 +43,17 @@ namespace GW2DotNET.V1.Continents
             return result.Continents.Values;
         }
 
-        /// <summary>Gets the collection of continents in the game.</summary>
-        /// <returns>The collection of continents.</returns>
+        /// <summary>Gets a collection of continents and their details.</summary>
+        /// <returns>A collection of continents.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Continent>> GetContinentsAsync()
         {
             return this.GetContinentsAsync(CancellationToken.None);
         }
 
-        /// <summary>Gets the collection of continents in the game.</summary>
+        /// <summary>Gets a collection of continents and their details.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The collection of continents.</returns>
+        /// <returns>A collection of continents.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {

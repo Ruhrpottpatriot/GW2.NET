@@ -18,38 +18,38 @@ namespace GW2DotNET.V1.Colors
     /// <summary>Provides the interface for the colors service.</summary>
     public interface IColorService
     {
-        /// <summary>Gets the collection of colors in the game.</summary>
-        /// <returns>The collection of colors.</returns>
+        /// <summary>Gets a collection of colors and their localized details.</summary>
+        /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         IEnumerable<ColorPalette> GetColors();
 
-        /// <summary>Gets the collection of colors in the game.</summary>
+        /// <summary>Gets a collection of colors and their localized details.</summary>
         /// <param name="language">The language.</param>
-        /// <returns>The collection of colors.</returns>
+        /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         IEnumerable<ColorPalette> GetColors(CultureInfo language);
 
-        /// <summary>Gets the collection of colors in the game.</summary>
-        /// <returns>The collection of colors.</returns>
+        /// <summary>Gets a collection of colors and their localized details.</summary>
+        /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         Task<IEnumerable<ColorPalette>> GetColorsAsync();
 
-        /// <summary>Gets the collection of colors in the game.</summary>
+        /// <summary>Gets a collection of colors and their localized details.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The collection of colors.</returns>
+        /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         Task<IEnumerable<ColorPalette>> GetColorsAsync(CancellationToken cancellationToken);
 
-        /// <summary>Gets the collection of colors in the game.</summary>
+        /// <summary>Gets a collection of colors and their localized details.</summary>
         /// <param name="language">The language.</param>
-        /// <returns>The collection of colors.</returns>
+        /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         Task<IEnumerable<ColorPalette>> GetColorsAsync(CultureInfo language);
 
-        /// <summary>Gets the collection of colors in the game.</summary>
+        /// <summary>Gets a collection of colors and their localized details.</summary>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The collection of colors.</returns>
+        /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         Task<IEnumerable<ColorPalette>> GetColorsAsync(CultureInfo language, CancellationToken cancellationToken);
     }

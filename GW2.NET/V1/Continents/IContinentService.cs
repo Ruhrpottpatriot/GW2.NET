@@ -17,19 +17,19 @@ namespace GW2DotNET.V1.Continents
     /// <summary>Provides the interface for the continents service.</summary>
     public interface IContinentService
     {
-        /// <summary>Gets the collection of continents in the game.</summary>
-        /// <returns>The collection of continents.</returns>
+        /// <summary>Gets a collection of continents and their details.</summary>
+        /// <returns>A collection of continents.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         IEnumerable<Continent> GetContinents();
 
-        /// <summary>Gets the collection of continents in the game.</summary>
-        /// <returns>The collection of continents.</returns>
+        /// <summary>Gets a collection of continents and their details.</summary>
+        /// <returns>A collection of continents.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         Task<IEnumerable<Continent>> GetContinentsAsync();
 
-        /// <summary>Gets the collection of continents in the game.</summary>
+        /// <summary>Gets a collection of continents and their details.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The collection of continents.</returns>
+        /// <returns>A collection of continents.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken cancellationToken);
     }
