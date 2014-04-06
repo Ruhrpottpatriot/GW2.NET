@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="Program.cs" company="">
-//   
+//
 // </copyright>
 // <summary>
 //   The program.
@@ -11,11 +11,15 @@ namespace RestSharp.GW2DotNET.Sample
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
 
     using global::GW2DotNET.V1;
+    using global::GW2DotNET.V1.Colors;
     using global::GW2DotNET.V1.Common;
     using global::GW2DotNET.V1.DynamicEvents.Types;
     using global::GW2DotNET.V1.Errors;
+
+    using Ninject;
 
     /// <summary>The program.</summary>
     internal class Program
@@ -26,10 +30,9 @@ namespace RestSharp.GW2DotNET.Sample
             Console.BufferWidth = 200;
             Console.BufferHeight = 2000;
 
-            var dataService = global::RestSharp.GW2DotNET.ServiceClient.DataServiceClient();
-            var renderService = global::RestSharp.GW2DotNET.ServiceClient.RenderServiceClient();
-            var serviceManager = new ServiceManager(dataService, renderService);
+            var serviceManager = GetServiceManager();
 
+            // run the actual program
             try
             {
                 PrintBanner(serviceManager);
@@ -45,8 +48,18 @@ namespace RestSharp.GW2DotNET.Sample
             }
         }
 
-        /// <summary>TODO The print banner.</summary>
-        /// <param name="serviceManager">TODO The service provider.</param>
+        private static ServiceManager GetServiceManager()
+        {
+            // create a default Ninject kernel
+            var kernel = new StandardKernel();
+
+            // load all custom Ninject modules in the sample's assembly
+            kernel.Load(Assembly.GetExecutingAssembly());
+
+            // create a service manager whose dependencies were configured in the custom Ninject modules
+            return kernel.Get<ServiceManager>();
+        }
+
         private static void PrintBanner(ServiceManager serviceManager)
         {
             Console.WriteLine(@"+--------------------------------------------+");
@@ -68,9 +81,6 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine(@"+--------------------------------------------+");
         }
 
-        /// <summary>TODO The get int.</summary>
-        /// <param name="prompt">TODO The prompt.</param>
-        /// <returns>The <see cref="int"/>.</returns>
         private int? GetInt(string prompt = null)
         {
             string rawInput = default(string);
@@ -88,10 +98,10 @@ namespace RestSharp.GW2DotNET.Sample
             return input;
         }
 
-        /// <summary>TODO The main.</summary>
-        /// <param name="serviceManager">TODO The service provider.</param>
         private void Main(ServiceManager serviceManager)
         {
+            var colorService = ColorServiceCache.Default;
+
             do
             {
                 Console.WriteLine();
@@ -114,30 +124,37 @@ namespace RestSharp.GW2DotNET.Sample
                     {
                         case ConsoleKey.NumPad1:
                         case ConsoleKey.D1:
-                            this.PrintColors(serviceManager);
+                            this.PrintColors(colorService);
                             break;
+
                         case ConsoleKey.NumPad2:
                         case ConsoleKey.D2:
                             this.PrintFiles(serviceManager);
                             break;
+
                         case ConsoleKey.NumPad3:
                         case ConsoleKey.D3:
                             this.PrintWorldNames(serviceManager);
                             break;
+
                         case ConsoleKey.NumPad4:
                         case ConsoleKey.D4:
                             this.PrintMapNames(serviceManager);
                             break;
+
                         case ConsoleKey.NumPad5:
                         case ConsoleKey.D5:
                             this.PrintEventNames(serviceManager);
                             break;
+
                         case ConsoleKey.NumPad6:
                         case ConsoleKey.D6:
                             this.PrintEvents(serviceManager);
                             break;
+
                         case ConsoleKey.Q:
                             return;
+
                         default:
                             Console.WriteLine();
                             break;
@@ -154,13 +171,11 @@ namespace RestSharp.GW2DotNET.Sample
             while (true);
         }
 
-        /// <summary>TODO The print colors.</summary>
-        /// <param name="serviceManager">TODO The service provider.</param>
-        private void PrintColors(ServiceManager serviceManager)
+        private void PrintColors(IColorService service)
         {
             var table = new ConsoleTable("ID", "Name", "Color");
 
-            foreach (var color in serviceManager.GetColors().OrderByDescending(x => x))
+            foreach (var color in service.GetColors().OrderByDescending(x => x))
             {
                 table.AddRow(color.ColorId, color.Name, color.Cloth.Rgb);
             }
@@ -170,8 +185,6 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine();
         }
 
-        /// <summary>TODO The print error.</summary>
-        /// <param name="errorResult">TODO The error result.</param>
         private void PrintError(ErrorResult errorResult)
         {
             var table = new ConsoleTable("Error", "Message");
@@ -183,8 +196,6 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine();
         }
 
-        /// <summary>TODO The print event names.</summary>
-        /// <param name="serviceManager">TODO The service provider.</param>
         private void PrintEventNames(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "Event ID", "Name");
@@ -201,8 +212,6 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine();
         }
 
-        /// <summary>TODO The print events.</summary>
-        /// <param name="serviceManager">TODO The service provider.</param>
         private void PrintEvents(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("Name", "ID", "State");
@@ -228,7 +237,7 @@ namespace RestSharp.GW2DotNET.Sample
                 collection = worldId.HasValue ? serviceManager.GetDynamicEventsByWorld(worldId.Value) : serviceManager.GetDynamicEvents();
             }
 
-            var dynamicEventNames = serviceManager.GetDynamicEventNames();
+            var dynamicEventNames = serviceManager.GetDynamicEventNames().ToList();
 
             foreach (var dynamicEvent in collection)
             {
@@ -240,8 +249,6 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine();
         }
 
-        /// <summary>TODO The print files.</summary>
-        /// <param name="serviceManager">TODO The service provider.</param>
         private void PrintFiles(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("Name", "ID", "Signature");
@@ -256,8 +263,6 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine();
         }
 
-        /// <summary>TODO The print map names.</summary>
-        /// <param name="serviceManager">TODO The service provider.</param>
         private void PrintMapNames(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "Map");
@@ -272,8 +277,6 @@ namespace RestSharp.GW2DotNET.Sample
             Console.WriteLine();
         }
 
-        /// <summary>TODO The print world names.</summary>
-        /// <param name="serviceManager">TODO The service provider.</param>
         private void PrintWorldNames(ServiceManager serviceManager)
         {
             var table = new ConsoleTable("ID", "World");

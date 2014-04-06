@@ -17,24 +17,16 @@ namespace RestSharp.GW2DotNET.Sample
     /// <summary>Copyright (c) 2013 Khalid Abuhakmeh https://github.com/khalidabuhakmeh/ConsoleTables</summary>
     public class ConsoleTable
     {
-        /// <summary>Initializes a new instance of the <see cref="ConsoleTable"/> class.</summary>
-        /// <param name="columns">TODO The columns.</param>
         public ConsoleTable(params string[] columns)
         {
             this.Columns = new List<string>(columns);
             this.Rows = new List<object[]>();
         }
 
-        /// <summary>Gets or sets the columns.</summary>
         public IList<string> Columns { get; protected set; }
 
-        /// <summary>Gets or sets the rows.</summary>
         public IList<object[]> Rows { get; protected set; }
 
-        /// <summary>TODO The from.</summary>
-        /// <param name="values">TODO The values.</param>
-        /// <typeparam name="T"></typeparam>
-        /// <returns>The <see cref="ConsoleTable"/>.</returns>
         public static ConsoleTable From<T>(IEnumerable<T> values)
         {
             var table = new ConsoleTable();
@@ -50,9 +42,6 @@ namespace RestSharp.GW2DotNET.Sample
             return table;
         }
 
-        /// <summary>TODO The add column.</summary>
-        /// <param name="names">TODO The names.</param>
-        /// <returns>The <see cref="ConsoleTable"/>.</returns>
         public ConsoleTable AddColumn(string[] names)
         {
             foreach (var name in names)
@@ -63,11 +52,6 @@ namespace RestSharp.GW2DotNET.Sample
             return this;
         }
 
-        /// <summary>TODO The add row.</summary>
-        /// <param name="values">TODO The values.</param>
-        /// <returns>The <see cref="ConsoleTable"/>.</returns>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="Exception"></exception>
         public ConsoleTable AddRow(params object[] values)
         {
             if (values == null)
@@ -89,10 +73,13 @@ namespace RestSharp.GW2DotNET.Sample
             return this;
         }
 
-        /// <summary>TODO The to string.</summary>
-        /// <returns>The <see cref="string" />.</returns>
         public override string ToString()
         {
+            if (!this.Rows.Any())
+            {
+                return "\nCount: 0";
+            }
+
             var builder = new StringBuilder();
 
             // find the longest column by searching each row
@@ -126,13 +113,12 @@ namespace RestSharp.GW2DotNET.Sample
             }
 
             builder.AppendLine(line);
-            builder.AppendLine(string.Empty);
-            builder.AppendFormat(" Count: {0}", this.Rows.Count);
+            builder.AppendLine();
+            builder.AppendFormat("Count: {0}", this.Rows.Count);
 
             return builder.ToString();
         }
 
-        /// <summary>TODO The write.</summary>
         public void Write()
         {
             Console.WriteLine(this.ToString());

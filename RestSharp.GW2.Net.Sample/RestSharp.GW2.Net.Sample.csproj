@@ -41,6 +41,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ninject">
+      <HintPath>..\packages\Ninject.3.2.2.0\lib\net40\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -50,6 +53,19 @@
     <Compile Include="Pen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBindings\MatchServiceBindings.cs" />
+    <Compile Include="ServiceBindings\WorldServiceBindings.cs" />
+    <Compile Include="ServiceBindings\RenderServiceBindings.cs" />
+    <Compile Include="ServiceBindings\RecipeServiceBindings.cs" />
+    <Compile Include="ServiceBindings\MapServiceBindings.cs" />
+    <Compile Include="ServiceBindings\ItemServiceBindings.cs" />
+    <Compile Include="ServiceBindings\GuildServiceBindings.cs" />
+    <Compile Include="ServiceBindings\FileServiceBindings.cs" />
+    <Compile Include="ServiceBindings\DynamicEventServiceBindings.cs" />
+    <Compile Include="ServiceBindings\ContinentServiceBindings.cs" />
+    <Compile Include="ServiceBindings\ColorServiceBindings.cs" />
+    <Compile Include="ServiceBindings\BuildServiceBindings.cs" />
+    <Compile Include="ServiceBindings\ServiceClientBindings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
