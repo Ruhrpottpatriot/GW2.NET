@@ -30,6 +30,42 @@ namespace GW2DotNET.V1.Builds.Types
             return object.Equals(left, right);
         }
 
+        /// <summary>Indicates whether a build is greater than another.</summary>
+        /// <param name="left">The build on the left side.</param>
+        /// <param name="right">The build on the right side.</param>
+        /// <returns>true if the <paramref name="left"/> build is greater than the <paramref name="right"/> build; otherwise, false</returns>
+        public static bool operator >(Build left, Build right)
+        {
+            if (left == null)
+            {
+                return false;
+            }
+            else if (right == null)
+            {
+                return true;
+            }
+
+            return left.BuildId > right.BuildId;
+        }
+
+        /// <summary>Indicates whether a build is greater or equal to another.</summary>
+        /// <param name="left">The build on the left side.</param>
+        /// <param name="right">The build on the right side.</param>
+        /// <returns>true if the <paramref name="left"/> build is greater or equal to the <paramref name="right"/> build; otherwise, false</returns>
+        public static bool operator >=(Build left, Build right)
+        {
+            if (left == null)
+            {
+                return false;
+            }
+            else if (right == null)
+            {
+                return true;
+            }
+
+            return left.BuildId >= right.BuildId;
+        }
+
         /// <summary>Indicates whether an object differs from another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
@@ -57,24 +93,6 @@ namespace GW2DotNET.V1.Builds.Types
             return left.BuildId < right.BuildId;
         }
 
-        /// <summary>Indicates whether a build is greater than another.</summary>
-        /// <param name="left">The build on the left side.</param>
-        /// <param name="right">The build on the right side.</param>
-        /// <returns>true if the <paramref name="left"/> build is greater than the <paramref name="right"/> build; otherwise, false</returns>
-        public static bool operator >(Build left, Build right)
-        {
-            if (left == null)
-            {
-                return false;
-            }
-            else if (right == null)
-            {
-                return true;
-            }
-
-            return left.BuildId > right.BuildId;
-        }
-
         /// <summary>Indicates whether a build is smaller or equal to another.</summary>
         /// <param name="left">The build on the left side.</param>
         /// <param name="right">The build on the right side.</param>
@@ -91,24 +109,6 @@ namespace GW2DotNET.V1.Builds.Types
             }
 
             return left.BuildId <= right.BuildId;
-        }
-
-        /// <summary>Indicates whether a build is greater or equal to another.</summary>
-        /// <param name="left">The build on the left side.</param>
-        /// <param name="right">The build on the right side.</param>
-        /// <returns>true if the <paramref name="left"/> build is greater or equal to the <paramref name="right"/> build; otherwise, false</returns>
-        public static bool operator >=(Build left, Build right)
-        {
-            if (left == null)
-            {
-                return false;
-            }
-            else if (right == null)
-            {
-                return true;
-            }
-
-            return left.BuildId >= right.BuildId;
         }
 
         /// <summary>Compares the current object with another object of the same type.</summary>
