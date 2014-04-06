@@ -140,6 +140,71 @@ namespace GW2DotNET.V1
         private readonly IWorldNameService worldNameService;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
+        /// <param name="buildService">The build service.</param>
+        /// <param name="colorService">The color service.</param>
+        /// <param name="continentService">The continent service.</param>
+        /// <param name="dynamicEventDetailsService">The dynamic event details service.</param>
+        /// <param name="dynamicEventNameService">The dynamic event name service.</param>
+        /// <param name="dynamicEventService">The dynamic event service.</param>
+        /// <param name="fileService">The file service.</param>
+        /// <param name="guildDetailsService">The guild details service.</param>
+        /// <param name="itemDetailsService">The item details service.</param>
+        /// <param name="itemService">The item service.</param>
+        /// <param name="mapFloorService">The map floor service.</param>
+        /// <param name="mapNameService">The map name service.</param>
+        /// <param name="mapService">The map service.</param>
+        /// <param name="matchDetailsService">The match details service.</param>
+        /// <param name="matchService">The match service.</param>
+        /// <param name="objectiveNameService">The objective name service.</param>
+        /// <param name="recipeDetailsService">The recipe details service.</param>
+        /// <param name="recipeService">The recipe service.</param>
+        /// <param name="renderService">The render service.</param>
+        /// <param name="worldNameService">The world name service.</param>
+        public ServiceManager(
+            IBuildService buildService, 
+            IColorService colorService, 
+            IContinentService continentService, 
+            IDynamicEventDetailsService dynamicEventDetailsService, 
+            IDynamicEventNameService dynamicEventNameService, 
+            IDynamicEventService dynamicEventService, 
+            IFileService fileService, 
+            IGuildDetailsService guildDetailsService, 
+            IItemDetailsService itemDetailsService, 
+            IItemService itemService, 
+            IMapFloorService mapFloorService, 
+            IMapNameService mapNameService, 
+            IMapService mapService, 
+            IMatchDetailsService matchDetailsService, 
+            IMatchService matchService, 
+            IObjectiveNameService objectiveNameService, 
+            IRecipeDetailsService recipeDetailsService, 
+            IRecipeService recipeService, 
+            IRenderService renderService, 
+            IWorldNameService worldNameService)
+        {
+            this.buildService = buildService;
+            this.colorService = colorService;
+            this.continentService = continentService;
+            this.dynamicEventDetailsService = dynamicEventDetailsService;
+            this.dynamicEventNameService = dynamicEventNameService;
+            this.dynamicEventService = dynamicEventService;
+            this.fileService = fileService;
+            this.guildDetailsService = guildDetailsService;
+            this.itemDetailsService = itemDetailsService;
+            this.itemService = itemService;
+            this.mapFloorService = mapFloorService;
+            this.mapNameService = mapNameService;
+            this.mapService = mapService;
+            this.matchDetailsService = matchDetailsService;
+            this.matchService = matchService;
+            this.objectiveNameService = objectiveNameService;
+            this.recipeDetailsService = recipeDetailsService;
+            this.recipeService = recipeService;
+            this.renderService = renderService;
+            this.worldNameService = worldNameService;
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         public ServiceManager()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)), new ServiceClient(new Uri(Services.RenderServiceUrl)))
         {
