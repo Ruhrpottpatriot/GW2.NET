@@ -118,6 +118,7 @@
     <Compile Include="V1\Continents\Types\ContinentCollection.cs" />
     <Compile Include="V1\Continents\Types\ContinentFloorCollection.cs" />
     <Compile Include="V1\Continents\Types\ContinentsResult.cs" />
+    <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsServiceCache.cs" />
     <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsService.cs" />
     <Compile Include="V1\DynamicEvents.Details\IDynamicEventDetailsService.cs" />

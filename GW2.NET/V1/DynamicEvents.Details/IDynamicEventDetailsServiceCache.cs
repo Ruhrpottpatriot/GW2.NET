@@ -118,5 +118,16 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         /// <param name="language">The language.</param>
         /// <param name="parameters">The eviction and expiration details.</param>
         void SetDynamicEventDetails(IEnumerable<DynamicEventDetails> dynamicEventDetails, CultureInfo language, CacheItemParameters parameters);
+
+        /// <summary>Sets a dynamic event and its localized details.</summary>
+        /// <param name="dynamicEventDetails">A dynamic event and its localized details.</param>
+        /// <param name="language">The language.</param>
+        void SetDynamicEventDetails(DynamicEventDetails dynamicEventDetails, CultureInfo language);
+
+        /// <summary>Sets a dynamic event and its localized details.</summary>
+        /// <param name="dynamicEventDetails">A dynamic event and its localized details.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="parameters">The eviction and expiration details.</param>
+        void SetDynamicEventDetails(DynamicEventDetails dynamicEventDetails, CultureInfo language, CacheItemParameters parameters);
     }
 }
