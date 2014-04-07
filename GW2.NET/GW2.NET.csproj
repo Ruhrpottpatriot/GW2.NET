@@ -144,6 +144,7 @@
     <Compile Include="V1\DynamicEvents.Names\Types\DynamicEventNameCollection.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventService.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventServiceCache.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventServiceCache.cs" />
     <Compile Include="V1\DynamicEvents\Types\DynamicEvent.cs" />

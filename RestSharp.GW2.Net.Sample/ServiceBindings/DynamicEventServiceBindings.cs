@@ -25,7 +25,8 @@ namespace RestSharp.GW2DotNET.Sample.ServiceBindings
         /// </summary>
         public override void Load()
         {
-            this.Bind<IDynamicEventService>().To<DynamicEventService>();
+            this.Bind<IDynamicEventService>().To<DynamicEventService>().WhenInjectedInto<IDynamicEventServiceCache>();
+            this.Bind<IDynamicEventService>().To<DynamicEventServiceCache>();
             this.Bind<IDynamicEventNameService>().To<DynamicEventNameService>().WhenInjectedInto<IDynamicEventNameServiceCache>();
             this.Bind<IDynamicEventNameService>().To<DynamicEventNameServiceCache>();
             this.Bind<IDynamicEventDetailsService>().To<DynamicEventDetailsService>().WhenInjectedInto<IDynamicEventDetailsServiceCache>();
