@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MatchesResult.cs" company="GW2.Net Coding Team">
+// <copyright file="MatchCollectionResult.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Types
     using GW2DotNET.V1.Common.Types;
 
     /// <summary>Wraps a collection of matches.</summary>
-    public class MatchesResult : JsonObject
+    public class MatchCollectionResult : JsonObject
     {
         /// <summary>Gets or sets a collection of matches.</summary>
         [DataMember(Name = "wvw_matches", Order = 0)]

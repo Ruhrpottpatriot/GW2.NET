@@ -468,7 +468,7 @@
     <Compile Include="V1\WorldVersusWorld\Matches\MatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\Types\Match.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\Types\MatchCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches\Types\MatchesResult.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\Types\MatchCollectionResult.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\IObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\IObjectiveNameServiceCache.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameService.cs" />
