@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.DynamicEvents.Details.Types;
+    using GW2DotNET.V1.DynamicEvents.Details.Contracts;
 
     /// <summary>Provides the interface for the event details service.</summary>
     public interface IDynamicEventDetailsService

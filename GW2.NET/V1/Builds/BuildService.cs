@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Builds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Builds.Types;
+    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Common;
 
     /// <summary>Provides the default implementation of the build service.</summary>

@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Maps.Names
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Maps.Names.Types;
+    using GW2DotNET.V1.Maps.Names.Contracts;
 
     /// <summary>Provides the interface for the map names service.</summary>
     public interface IMapNameService

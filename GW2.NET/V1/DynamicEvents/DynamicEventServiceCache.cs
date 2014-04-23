@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.DynamicEvents.Types;
+    using GW2DotNET.V1.DynamicEvents.Contracts;
 
     /// <summary>Provides an implementation of the dynamic events service, backed up by a caching provider.</summary>
     public class DynamicEventServiceCache : ServiceObjectCache, IDynamicEventServiceCache

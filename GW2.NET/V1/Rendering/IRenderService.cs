@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Rendering
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Rendering.Types;
+    using GW2DotNET.V1.Rendering.Contracts;
 
     /// <summary>Provides the interface for the render service.</summary>
     public interface IRenderService

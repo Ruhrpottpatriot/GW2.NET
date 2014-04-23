@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Maps.Names
 {
-    using GW2DotNET.V1.Maps.Names.Types;
+    using GW2DotNET.V1.Maps.Names.Contracts;
 
     using Newtonsoft.Json;
 

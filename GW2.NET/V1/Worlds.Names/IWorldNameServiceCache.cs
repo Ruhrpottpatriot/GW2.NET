@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Worlds.Names
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Worlds.Names.Types;
+    using GW2DotNET.V1.Worlds.Names.Contracts;
 
     /// <summary>Provides the interface for a world names service cache.</summary>
     public interface IWorldNameServiceCache : IWorldNameService

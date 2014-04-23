@@ -16,7 +16,7 @@ namespace RestSharp.GW2DotNET.Sample
     using global::GW2DotNET.V1;
     using global::GW2DotNET.V1.Colors;
     using global::GW2DotNET.V1.Common;
-    using global::GW2DotNET.V1.DynamicEvents.Types;
+    using global::GW2DotNET.V1.DynamicEvents.Contracts;
     using global::GW2DotNET.V1.Errors;
 
     using Ninject;

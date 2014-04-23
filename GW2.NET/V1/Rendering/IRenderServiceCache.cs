@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Rendering
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Rendering.Types;
+    using GW2DotNET.V1.Rendering.Contracts;
 
     /// <summary>Provides the interface for a render service cache.</summary>
     public interface IRenderServiceCache : IRenderService

@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Recipes.Details
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Recipes.Details.Types;
+    using GW2DotNET.V1.Recipes.Details.Contracts;
 
     /// <summary>Provides the interface for a recipe details service cache.</summary>
     public interface IRecipeDetailsServiceCache : IRecipeDetailsService

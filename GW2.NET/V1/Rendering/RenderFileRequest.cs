@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Rendering
 
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
-    using GW2DotNET.V1.Rendering.Types;
+    using GW2DotNET.V1.Rendering.Contracts;
 
     /// <summary>Represents a request for an in-game asset.</summary>
     public class RenderFileRequest : ServiceRequest

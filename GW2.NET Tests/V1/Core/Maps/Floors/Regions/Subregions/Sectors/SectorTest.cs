@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.Sectors
 {
     using System.Drawing;
 
-    using GW2DotNET.V1.Maps.Floors.Types.Regions.Subregions.Sectors;
+    using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors;
 
     using Newtonsoft.Json;
 

@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Maps
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Maps.Types;
+    using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the interface for a maps service cache.</summary>
     public interface IMapServiceCache : IMapService

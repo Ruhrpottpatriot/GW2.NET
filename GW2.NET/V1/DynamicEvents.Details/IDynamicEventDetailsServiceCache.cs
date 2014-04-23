@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.DynamicEvents.Details.Types;
+    using GW2DotNET.V1.DynamicEvents.Details.Contracts;
 
     /// <summary>Provides the interface for an event details service cache.</summary>
     public interface IDynamicEventDetailsServiceCache : IDynamicEventDetailsService

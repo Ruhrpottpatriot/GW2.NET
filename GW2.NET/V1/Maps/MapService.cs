@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Maps
 
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
-    using GW2DotNET.V1.Maps.Types;
+    using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the default implementation of the maps service.</summary>
     public class MapService : ServiceBase, IMapService

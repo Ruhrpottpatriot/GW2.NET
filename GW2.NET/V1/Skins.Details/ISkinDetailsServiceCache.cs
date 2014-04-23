@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Skins.Details
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Skins.Details.Types;
+    using GW2DotNET.V1.Skins.Details.Contracts;
 
     /// <summary>Provides the interface for a skin details service cache.</summary>
     public interface ISkinDetailsServiceCache : ISkinDetailsService

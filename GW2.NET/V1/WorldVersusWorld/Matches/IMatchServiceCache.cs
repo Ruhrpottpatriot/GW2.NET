@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Types;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts;
 
     /// <summary>Provides the interface for a matches service cache.</summary>
     public interface IMatchServiceCache : IMatchService

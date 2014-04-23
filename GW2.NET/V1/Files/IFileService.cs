@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Files
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Files.Types;
+    using GW2DotNET.V1.Files.Contracts;
 
     /// <summary>Provides the interface for the files service.</summary>
     public interface IFileService

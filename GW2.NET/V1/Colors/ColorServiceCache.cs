@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Colors
     using GW2DotNET.Extensions;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Builds;
-    using GW2DotNET.V1.Colors.Types;
+    using GW2DotNET.V1.Colors.Contracts;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Common.Caching;
 

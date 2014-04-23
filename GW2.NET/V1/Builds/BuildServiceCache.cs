@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Builds
 
     using GW2DotNET.Extensions;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Builds.Types;
+    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Common.Caching;
 

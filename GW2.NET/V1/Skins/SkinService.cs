@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Skins
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common;
-    using GW2DotNET.V1.Skins.Types;
+    using GW2DotNET.V1.Skins.Contracts;
 
     /// <summary>Provides the default implementation of the skins service.</summary>
     public class SkinService : ServiceBase, ISkinService

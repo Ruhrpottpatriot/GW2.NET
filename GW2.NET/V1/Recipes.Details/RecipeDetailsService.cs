@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Recipes.Details
 
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
-    using GW2DotNET.V1.Recipes.Details.Types;
+    using GW2DotNET.V1.Recipes.Details.Contracts;
 
     /// <summary>Provides the default implementation of the recipe details service.</summary>
     public class RecipeDetailsService : ServiceBase, IRecipeDetailsService

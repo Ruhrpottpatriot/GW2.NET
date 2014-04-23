@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Maps.Floors
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Maps.Floors.Types;
+    using GW2DotNET.V1.Maps.Floors.Contracts;
 
     /// <summary>Provides the interface for a map floor service cache.</summary>
     public interface IMapFloorServiceCache : IMapFloorService

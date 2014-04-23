@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items.Details
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Items.Details.Types;
+    using GW2DotNET.V1.Items.Details.Contracts;
 
     /// <summary>Provides the interface for an item details service cache.</summary>
     public interface IItemDetailsServiceCache : IItemDetailsService

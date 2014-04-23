@@ -8,21 +8,21 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details
 {
-    using GW2DotNET.V1.Items.Details.Types;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Armors;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Backs;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Bags;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Consumables;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Containers;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.CraftingMaterials;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.GatheringTools;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Gizmos;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.MiniPets;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Tools;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Trinkets;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Trophies;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.UpgradeComponents;
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Weapons;
+    using GW2DotNET.V1.Items.Details.Contracts;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.CraftingMaterials;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.MiniPets;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trophies;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons;
 
     using Newtonsoft.Json;
 

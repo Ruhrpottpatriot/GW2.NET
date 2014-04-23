@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
 
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
-    using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Types;
+    using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts;
 
     /// <summary>Provides the default implementation of the objective names service.</summary>
     public class ObjectiveNameService : ServiceBase, IObjectiveNameService

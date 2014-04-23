@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Core.Guilds
 {
     using System;
 
-    using GW2DotNET.V1.Guilds.Details.Types;
+    using GW2DotNET.V1.Guilds.Details.Contracts;
 
     using Newtonsoft.Json;
 

@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.PointsOfInterest
 {
     using System.Drawing;
 
-    using GW2DotNET.V1.Maps.Floors.Types.Regions.Subregions.PointsOfInterest;
+    using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest;
 
     using Newtonsoft.Json;
 

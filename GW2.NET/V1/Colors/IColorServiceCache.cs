@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Colors
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Colors.Types;
+    using GW2DotNET.V1.Colors.Contracts;
     using GW2DotNET.V1.Common.Caching;
 
     /// <summary>Provides the interface for a colors service cache.</summary>

@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Colors
     using System.Threading.Tasks;
 
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Colors.Types;
+    using GW2DotNET.V1.Colors.Contracts;
     using GW2DotNET.V1.Common;
 
     /// <summary>Provides the default implementation of the colors service.</summary>

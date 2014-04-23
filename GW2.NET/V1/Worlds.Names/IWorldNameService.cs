@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Worlds.Names
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Worlds.Names.Types;
+    using GW2DotNET.V1.Worlds.Names.Contracts;
 
     /// <summary>Provides the interface for the world names service.</summary>
     public interface IWorldNameService

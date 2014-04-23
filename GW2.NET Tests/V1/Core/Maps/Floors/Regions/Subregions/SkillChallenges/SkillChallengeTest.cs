@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Core.Maps.Floors.Regions.Subregions.SkillChallenges
 {
     using System.Drawing;
 
-    using GW2DotNET.V1.Maps.Floors.Types.Regions.Subregions.SkillChallenges;
+    using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.SkillChallenges;
 
     using Newtonsoft.Json;
 

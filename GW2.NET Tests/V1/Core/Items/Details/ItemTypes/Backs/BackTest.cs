@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
 {
-    using GW2DotNET.V1.Items.Details.Types.ItemTypes.Backs;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs;
 
     using Newtonsoft.Json;
 

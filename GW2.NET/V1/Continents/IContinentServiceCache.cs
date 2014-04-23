@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Continents
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Continents.Types;
+    using GW2DotNET.V1.Continents.Contracts;
 
     /// <summary>Provides the interface for a continents service cache.</summary>
     public interface IContinentServiceCache : IContinentService

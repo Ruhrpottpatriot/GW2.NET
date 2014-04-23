@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Guilds.Details
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Guilds.Details.Types;
+    using GW2DotNET.V1.Guilds.Details.Contracts;
 
     /// <summary>Provides the interface for a guild details service cache.</summary>
     public interface IGuildDetailsServiceCache : IGuildDetailsService

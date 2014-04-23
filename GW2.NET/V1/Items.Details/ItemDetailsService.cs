@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Items.Details
 
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
-    using GW2DotNET.V1.Items.Details.Types;
+    using GW2DotNET.V1.Items.Details.Contracts;
 
     /// <summary>Provides the default implementation of the item details service.</summary>
     public class ItemDetailsService : ServiceBase, IItemDetailsService

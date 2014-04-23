@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.DynamicEvents.Names.Types;
+    using GW2DotNET.V1.DynamicEvents.Names.Contracts;
 
     /// <summary>Provides the interface for an event names service cache.</summary>
     public interface IDynamicEventNameServiceCache : IDynamicEventNameService

@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Core.Colors
 {
     using System.Drawing;
 
-    using GW2DotNET.V1.Colors.Types;
+    using GW2DotNET.V1.Colors.Contracts;
 
     using Newtonsoft.Json;
 

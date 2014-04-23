@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Continents
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Continents.Types;
+    using GW2DotNET.V1.Continents.Contracts;
 
     /// <summary>Provides an implementation of the continents service, backed up by a caching provider.</summary>
     public class ContinentServiceCache : ServiceObjectCache, IContinentServiceCache

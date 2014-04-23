@@ -17,48 +17,48 @@ namespace GW2DotNET.V1
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Builds;
-    using GW2DotNET.V1.Builds.Types;
+    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Colors;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Continents;
-    using GW2DotNET.V1.Continents.Types;
+    using GW2DotNET.V1.Continents.Contracts;
     using GW2DotNET.V1.DynamicEvents;
+    using GW2DotNET.V1.DynamicEvents.Contracts;
     using GW2DotNET.V1.DynamicEvents.Details;
-    using GW2DotNET.V1.DynamicEvents.Details.Types;
+    using GW2DotNET.V1.DynamicEvents.Details.Contracts;
     using GW2DotNET.V1.DynamicEvents.Names;
-    using GW2DotNET.V1.DynamicEvents.Names.Types;
-    using GW2DotNET.V1.DynamicEvents.Types;
+    using GW2DotNET.V1.DynamicEvents.Names.Contracts;
     using GW2DotNET.V1.Files;
-    using GW2DotNET.V1.Files.Types;
+    using GW2DotNET.V1.Files.Contracts;
     using GW2DotNET.V1.Guilds.Details;
-    using GW2DotNET.V1.Guilds.Details.Types;
+    using GW2DotNET.V1.Guilds.Details.Contracts;
     using GW2DotNET.V1.Items;
     using GW2DotNET.V1.Items.Details;
-    using GW2DotNET.V1.Items.Details.Types;
+    using GW2DotNET.V1.Items.Details.Contracts;
     using GW2DotNET.V1.Maps;
+    using GW2DotNET.V1.Maps.Contracts;
     using GW2DotNET.V1.Maps.Floors;
-    using GW2DotNET.V1.Maps.Floors.Types;
+    using GW2DotNET.V1.Maps.Floors.Contracts;
     using GW2DotNET.V1.Maps.Names;
-    using GW2DotNET.V1.Maps.Names.Types;
-    using GW2DotNET.V1.Maps.Types;
+    using GW2DotNET.V1.Maps.Names.Contracts;
     using GW2DotNET.V1.Recipes;
     using GW2DotNET.V1.Recipes.Details;
-    using GW2DotNET.V1.Recipes.Details.Types;
+    using GW2DotNET.V1.Recipes.Details.Contracts;
     using GW2DotNET.V1.Rendering;
-    using GW2DotNET.V1.Rendering.Types;
+    using GW2DotNET.V1.Rendering.Contracts;
     using GW2DotNET.V1.Skins;
     using GW2DotNET.V1.Skins.Details;
-    using GW2DotNET.V1.Skins.Details.Types;
+    using GW2DotNET.V1.Skins.Details.Contracts;
     using GW2DotNET.V1.Worlds.Names;
-    using GW2DotNET.V1.Worlds.Names.Types;
+    using GW2DotNET.V1.Worlds.Names.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Matches;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Types;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Types;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Names;
-    using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Types;
+    using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts;
 
-    using ColorPalette = GW2DotNET.V1.Colors.Types.ColorPalette;
+    using ColorPalette = GW2DotNET.V1.Colors.Contracts.ColorPalette;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
@@ -80,8 +80,9 @@ namespace GW2DotNET.V1
                                   IWorldNameService, 
                                   IMatchService, 
                                   IMatchDetailsService, 
-                                  IObjectiveNameService,
-        ISkinService, ISkinDetailsService
+                                  IObjectiveNameService, 
+                                  ISkinService, 
+                                  ISkinDetailsService
     {
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IBuildService buildService;
@@ -141,13 +142,13 @@ namespace GW2DotNET.V1
         private readonly IRenderService renderService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IWorldNameService worldNameService;
+        private readonly ISkinDetailsService skinDetailsService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly ISkinService skinService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly ISkinDetailsService skinDetailsService;
+        private readonly IWorldNameService worldNameService;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="buildService">The build service.</param>
@@ -192,8 +193,8 @@ namespace GW2DotNET.V1
             IRecipeDetailsService recipeDetailsService, 
             IRecipeService recipeService, 
             IRenderService renderService, 
-            IWorldNameService worldNameService,
-            ISkinService skinService,
+            IWorldNameService worldNameService, 
+            ISkinService skinService, 
             ISkinDetailsService skinDetailsService)
         {
             this.buildService = buildService;
@@ -1310,84 +1311,6 @@ namespace GW2DotNET.V1
             return this.recipeService.GetRecipesAsync(cancellationToken);
         }
 
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public IEnumerable<WorldName> GetWorldNames()
-        {
-            return this.worldNameService.GetWorldNames();
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public IEnumerable<WorldName> GetWorldNames(CultureInfo language)
-        {
-            return this.worldNameService.GetWorldNames(language);
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<WorldName>> GetWorldNamesAsync()
-        {
-            return this.worldNameService.GetWorldNamesAsync();
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CancellationToken cancellationToken)
-        {
-            return this.worldNameService.GetWorldNamesAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CultureInfo language)
-        {
-            return this.worldNameService.GetWorldNamesAsync(language);
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
-        {
-            return this.worldNameService.GetWorldNamesAsync(language, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of skin identifiers.</summary>
-        /// <returns>A collection of skin identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public IEnumerable<int> GetSkins()
-        {
-            return this.skinService.GetSkins();
-        }
-
-        /// <summary>Gets a collection of skin identifiers.</summary>
-        /// <returns>A collection of skin identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetSkinsAsync()
-        {
-            return this.skinService.GetSkinsAsync();
-        }
-
-        /// <summary>Gets a collection of skin identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of skin identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetSkinsAsync(CancellationToken cancellationToken)
-        {
-            return this.skinService.GetSkinsAsync(cancellationToken);
-        }
-
         /// <summary>Gets a skin and its localized details.</summary>
         /// <param name="skinId">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
@@ -1445,6 +1368,84 @@ namespace GW2DotNET.V1
         public Task<Skin> GetSkinDetailsAsync(int skinId, CultureInfo language, CancellationToken cancellationToken)
         {
             return this.skinDetailsService.GetSkinDetailsAsync(skinId, language, cancellationToken);
+        }
+
+        /// <summary>Gets a collection of skin identifiers.</summary>
+        /// <returns>A collection of skin identifiers.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
+        public IEnumerable<int> GetSkins()
+        {
+            return this.skinService.GetSkins();
+        }
+
+        /// <summary>Gets a collection of skin identifiers.</summary>
+        /// <returns>A collection of skin identifiers.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<int>> GetSkinsAsync()
+        {
+            return this.skinService.GetSkinsAsync();
+        }
+
+        /// <summary>Gets a collection of skin identifiers.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of skin identifiers.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<int>> GetSkinsAsync(CancellationToken cancellationToken)
+        {
+            return this.skinService.GetSkinsAsync(cancellationToken);
+        }
+
+        /// <summary>Gets a collection of worlds and their localized name.</summary>
+        /// <returns>A collection of worlds and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
+        public IEnumerable<WorldName> GetWorldNames()
+        {
+            return this.worldNameService.GetWorldNames();
+        }
+
+        /// <summary>Gets a collection of worlds and their localized name.</summary>
+        /// <param name="language">The language.</param>
+        /// <returns>A collection of worlds and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
+        public IEnumerable<WorldName> GetWorldNames(CultureInfo language)
+        {
+            return this.worldNameService.GetWorldNames(language);
+        }
+
+        /// <summary>Gets a collection of worlds and their localized name.</summary>
+        /// <returns>A collection of worlds and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<WorldName>> GetWorldNamesAsync()
+        {
+            return this.worldNameService.GetWorldNamesAsync();
+        }
+
+        /// <summary>Gets a collection of worlds and their localized name.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of worlds and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CancellationToken cancellationToken)
+        {
+            return this.worldNameService.GetWorldNamesAsync(cancellationToken);
+        }
+
+        /// <summary>Gets a collection of worlds and their localized name.</summary>
+        /// <param name="language">The language.</param>
+        /// <returns>A collection of worlds and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CultureInfo language)
+        {
+            return this.worldNameService.GetWorldNamesAsync(language);
+        }
+
+        /// <summary>Gets a collection of worlds and their localized name.</summary>
+        /// <param name="language">The language.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of worlds and their localized name.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        {
+            return this.worldNameService.GetWorldNamesAsync(language, cancellationToken);
         }
     }
 }

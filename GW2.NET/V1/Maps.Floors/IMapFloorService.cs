@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Maps.Floors
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Maps.Floors.Types;
+    using GW2DotNET.V1.Maps.Floors.Contracts;
 
     /// <summary>Provides the interface for the map floor service.</summary>
     public interface IMapFloorService

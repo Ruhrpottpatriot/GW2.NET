@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.DynamicEvents.Names.Types;
+    using GW2DotNET.V1.DynamicEvents.Names.Contracts;
 
     /// <summary>Provides the interface for the event names service.</summary>
     public interface IDynamicEventNameService

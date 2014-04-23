@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Colors
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Colors.Types;
+    using GW2DotNET.V1.Colors.Contracts;
 
     /// <summary>Provides the interface for the colors service.</summary>
     public interface IColorService

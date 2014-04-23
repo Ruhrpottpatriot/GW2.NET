@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Types;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts;
 
     /// <summary>Provides the default implementation of the matches service.</summary>
     public class MatchService : ServiceBase, IMatchService

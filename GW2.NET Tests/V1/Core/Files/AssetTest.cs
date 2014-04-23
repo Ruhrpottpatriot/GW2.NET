@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Files
 {
-    using GW2DotNET.V1.Files.Types;
+    using GW2DotNET.V1.Files.Contracts;
 
     using Newtonsoft.Json;
 

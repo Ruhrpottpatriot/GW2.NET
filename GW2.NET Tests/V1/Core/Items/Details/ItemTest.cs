@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Items.Details
 {
-    using GW2DotNET.V1.Items.Details.Types;
+    using GW2DotNET.V1.Items.Details.Contracts;
 
     using Newtonsoft.Json;
 

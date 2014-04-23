@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common;
-    using GW2DotNET.V1.DynamicEvents.Types;
+    using GW2DotNET.V1.DynamicEvents.Contracts;
 
     /// <summary>Provides the default implementation of the events service.</summary>
     public class DynamicEventService : ServiceBase, IDynamicEventService

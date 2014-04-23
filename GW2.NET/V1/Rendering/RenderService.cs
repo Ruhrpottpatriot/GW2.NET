@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Rendering
 
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common;
-    using GW2DotNET.V1.Rendering.Types;
+    using GW2DotNET.V1.Rendering.Contracts;
 
     /// <summary>Provides the default implementation of the render service.</summary>
     public class RenderService : ServiceBase, IRenderService

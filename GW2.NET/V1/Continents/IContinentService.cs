@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Continents
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Continents.Types;
+    using GW2DotNET.V1.Continents.Contracts;
 
     /// <summary>Provides the interface for the continents service.</summary>
     public interface IContinentService

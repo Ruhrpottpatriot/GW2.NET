@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Files
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Common.Caching;
-    using GW2DotNET.V1.Files.Types;
+    using GW2DotNET.V1.Files.Contracts;
 
     /// <summary>Provides the interface for a files service cache.</summary>
     public interface IFileServiceCache : IFileService
