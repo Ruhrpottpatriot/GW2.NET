@@ -35,13 +35,17 @@ namespace GW2DotNET.V1.Items.Details.Types
         [DataMember(Name = "description", Order = 2)]
         public string Description { get; set; }
 
-        /// <summary>Gets or sets the item's icon ID for use with the render service.</summary>
+        /// <summary>Gets or sets the item's icon identifier for use with the render service.</summary>
         [DataMember(Name = "icon_file_id", Order = 7)]
         public int FileId { get; set; }
 
         /// <summary>Gets or sets the item's icon signature for use with the render service.</summary>
         [DataMember(Name = "icon_file_signature", Order = 8)]
         public string FileSignature { get; set; }
+
+        /// <summary>Gets or sets the item's default skin identifier.</summary>
+        [DataMember(Name = "default_skin", Order = 9)]
+        public int? DefaultSkin { get; set; }
 
         /// <summary>Gets or sets the item's additional flags.</summary>
         [DataMember(Name = "flags", Order = 10)]
@@ -51,7 +55,7 @@ namespace GW2DotNET.V1.Items.Details.Types
         [DataMember(Name = "game_types", Order = 9)]
         public GameRestrictions GameTypes { get; set; }
 
-        /// <summary>Gets or sets the item's ID.</summary>
+        /// <summary>Gets or sets the item's identifier.</summary>
         [DataMember(Name = "item_id", Order = 0)]
         public int ItemId { get; set; }
 
