@@ -38,7 +38,7 @@ namespace GW2DotNET.V1.Continents
         public IEnumerable<Continent> GetContinents()
         {
             var serviceRequest = new ContinentsRequest();
-            var result = this.Request<ContinentsResult>(serviceRequest);
+            var result = this.Request<ContinentCollectionResult>(serviceRequest);
 
             return result.Continents.Values;
         }
@@ -58,7 +58,7 @@ namespace GW2DotNET.V1.Continents
         public Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {
             var serviceRequest = new ContinentsRequest();
-            var t1 = this.RequestAsync<ContinentsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<ContinentCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Continent>>(task => task.Result.Continents.Values, cancellationToken);
 
             return t2;
