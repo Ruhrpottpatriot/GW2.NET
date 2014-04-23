@@ -332,6 +332,7 @@
     <Compile Include="V1\Items\IItemServiceCache.cs" />
     <Compile Include="V1\Items\ItemService.cs" />
     <Compile Include="V1\Items\ItemsRequest.cs" />
+    <Compile Include="V1\Items\Types\ItemCollectionResult.cs" />
     <Compile Include="V1\Items\Types\ItemCollection.cs" />
     <Compile Include="V1\Maps.Floors\IMapFloorService.cs" />
     <Compile Include="V1\Maps.Floors\IMapFloorServiceCache.cs" />

@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a collection of item IDs.
+//   Represents a collection of item identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Types
@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Items.Types
 
     using GW2DotNET.V1.Common.Types;
 
-    /// <summary>Represents a collection of item IDs.</summary>
+    /// <summary>Represents a collection of item identifiers.</summary>
     public class ItemCollection : JsonList<int>
     {
         /// <summary>Initializes a new instance of the <see cref="ItemCollection" /> class.</summary>
