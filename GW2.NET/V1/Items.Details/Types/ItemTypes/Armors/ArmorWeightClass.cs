@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Enumerates the possible armor piece weight classes.
+//   Enumerates the known armor weight classes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Types.ItemTypes.Armors
@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items.Details.Types.ItemTypes.Armors
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
-    /// <summary>Enumerates the known armor piece weight classes.</summary>
+    /// <summary>Enumerates the known armor weight classes.</summary>
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ArmorWeightClass
     {

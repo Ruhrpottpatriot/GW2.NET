@@ -10,6 +10,7 @@
 namespace RestSharp.GW2DotNET.Sample.ServiceBindings
 {
     using global::GW2DotNET.V1.Skins;
+    using global::GW2DotNET.V1.Skins.Details;
 
     using Ninject.Modules;
 
@@ -22,6 +23,7 @@ namespace RestSharp.GW2DotNET.Sample.ServiceBindings
         public override void Load()
         {
             this.Bind<ISkinService>().To<SkinService>();
+            this.Bind<ISkinDetailsService>().To<SkinDetailsService>();
         }
     }
 }

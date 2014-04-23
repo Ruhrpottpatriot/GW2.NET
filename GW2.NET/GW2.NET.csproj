@@ -165,6 +165,22 @@
     <Compile Include="V1\Guilds.Details\Types\Emblem.cs" />
     <Compile Include="V1\Guilds.Details\Types\EmblemTransformations.cs" />
     <Compile Include="V1\Guilds.Details\Types\Guild.cs" />
+    <Compile Include="V1\Skins.Details\ISkinDetailsServiceCache.cs" />
+    <Compile Include="V1\Skins.Details\ISkinDetailsService.cs" />
+    <Compile Include="V1\Skins.Details\SkinDetailsService.cs" />
+    <Compile Include="V1\Skins.Details\SkinDetailsRequest.cs" />
+    <Compile Include="V1\Skins.Details\Types\SkinFlags.cs" />
+    <Compile Include="V1\Skins.Details\Types\SkinType.cs" />
+    <Compile Include="V1\Skins.Details\Types\Skin.cs" />
+    <Compile Include="V1\Skins.Details\Types\SkinConverter.cs">
+      <DependentUpon>Skin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\Skins.Details\Types\SkinTypes\Armors\ArmorSkinDetails.cs" />
+    <Compile Include="V1\Skins.Details\Types\SkinTypes\Armors\ArmorSkin.cs" />
+    <Compile Include="V1\Skins.Details\Types\SkinTypes\Backs\BackSkin.cs" />
+    <Compile Include="V1\Skins.Details\Types\SkinTypes\UnknownSkin.cs" />
+    <Compile Include="V1\Skins.Details\Types\SkinTypes\Weapons\WeaponSkinDetails.cs" />
+    <Compile Include="V1\Skins.Details\Types\SkinTypes\Weapons\WeaponSkin.cs" />
     <Compile Include="V1\Skins\ISkinService.cs" />
     <Compile Include="V1\Skins\ISkinServiceCache.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
