@@ -165,6 +165,12 @@
     <Compile Include="V1\Guilds.Details\Types\Emblem.cs" />
     <Compile Include="V1\Guilds.Details\Types\EmblemTransformations.cs" />
     <Compile Include="V1\Guilds.Details\Types\Guild.cs" />
+    <Compile Include="V1\Skins\ISkinService.cs" />
+    <Compile Include="V1\Skins\ISkinServiceCache.cs" />
+    <Compile Include="V1\Skins\SkinService.cs" />
+    <Compile Include="V1\Skins\SkinsRequest.cs" />
+    <Compile Include="V1\Skins\Types\SkinCollection.cs" />
+    <Compile Include="V1\Skins\Types\SkinCollectionResult.cs" />
     <Compile Include="V1\Items.Details\IItemDetailsService.cs" />
     <Compile Include="V1\Items.Details\IItemDetailsServiceCache.cs" />
     <Compile Include="V1\Items.Details\ItemDetailsRequest.cs" />

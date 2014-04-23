@@ -53,6 +53,7 @@
     <Compile Include="Pen.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBindings\SkinServiceBindings.cs" />
     <Compile Include="ServiceBindings\MatchServiceBindings.cs" />
     <Compile Include="ServiceBindings\WorldServiceBindings.cs" />
     <Compile Include="ServiceBindings\RenderServiceBindings.cs" />

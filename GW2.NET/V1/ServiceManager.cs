@@ -46,6 +46,7 @@ namespace GW2DotNET.V1
     using GW2DotNET.V1.Recipes.Details.Types;
     using GW2DotNET.V1.Rendering;
     using GW2DotNET.V1.Rendering.Types;
+    using GW2DotNET.V1.Skins;
     using GW2DotNET.V1.Worlds.Names;
     using GW2DotNET.V1.Worlds.Names.Types;
     using GW2DotNET.V1.WorldVersusWorld.Matches;
@@ -77,7 +78,8 @@ namespace GW2DotNET.V1
                                   IWorldNameService, 
                                   IMatchService, 
                                   IMatchDetailsService, 
-                                  IObjectiveNameService
+                                  IObjectiveNameService,
+        ISkinService
     {
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IBuildService buildService;
@@ -139,6 +141,9 @@ namespace GW2DotNET.V1
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IWorldNameService worldNameService;
 
+        /// <summary>Infrastructure. Holds a reference to a service.</summary>
+        private readonly ISkinService skinService;
+
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="buildService">The build service.</param>
         /// <param name="colorService">The color service.</param>
@@ -160,6 +165,7 @@ namespace GW2DotNET.V1
         /// <param name="recipeService">The recipe service.</param>
         /// <param name="renderService">The render service.</param>
         /// <param name="worldNameService">The world name service.</param>
+        /// <param name="skinService">The skin service.</param>
         public ServiceManager(
             IBuildService buildService, 
             IColorService colorService, 
@@ -180,7 +186,8 @@ namespace GW2DotNET.V1
             IRecipeDetailsService recipeDetailsService, 
             IRecipeService recipeService, 
             IRenderService renderService, 
-            IWorldNameService worldNameService)
+            IWorldNameService worldNameService,
+            ISkinService skinService)
         {
             this.buildService = buildService;
             this.colorService = colorService;
@@ -202,6 +209,7 @@ namespace GW2DotNET.V1
             this.recipeService = recipeService;
             this.renderService = renderService;
             this.worldNameService = worldNameService;
+            this.skinService = skinService;
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
@@ -235,6 +243,7 @@ namespace GW2DotNET.V1
             this.recipeService = new RecipeService(dataServiceClient);
             this.renderService = new RenderService(renderServiceClient);
             this.worldNameService = new WorldNameService(dataServiceClient);
+            this.skinService = new SkinService(dataServiceClient);
         }
 
         /// <summary>Gets the current game build.</summary>
@@ -1343,6 +1352,31 @@ namespace GW2DotNET.V1
         public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.worldNameService.GetWorldNamesAsync(language, cancellationToken);
+        }
+
+        /// <summary>Gets a collection of skin identifiers.</summary>
+        /// <returns>A collection of skin identifiers.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
+        public IEnumerable<int> GetSkins()
+        {
+            return this.skinService.GetSkins();
+        }
+
+        /// <summary>Gets a collection of skin identifiers.</summary>
+        /// <returns>A collection of skin identifiers.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<int>> GetSkinsAsync()
+        {
+            return this.skinService.GetSkinsAsync();
+        }
+
+        /// <summary>Gets a collection of skin identifiers.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of skin identifiers.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<int>> GetSkinsAsync(CancellationToken cancellationToken)
+        {
+            return this.skinService.GetSkinsAsync(cancellationToken);
         }
     }
 }

@@ -197,6 +197,14 @@
     <value>https://render.guildwars2.com</value>
     <comment>The base URL for image data endpoints.</comment>
   </data>
+  <data name="SkinDetails" xml:space="preserve">
+    <value>v1/skin_details.json</value>
+    <comment>Returns details about a single skin.</comment>
+  </data>
+  <data name="Skins" xml:space="preserve">
+    <value>v1/skins.json</value>
+    <comment>Returns a list of skins that are available in the game.</comment>
+  </data>
   <data name="WorldNames" xml:space="preserve">
     <value>v1/world_names.json</value>
     <comment>Returns a list of localized world names.</comment>
