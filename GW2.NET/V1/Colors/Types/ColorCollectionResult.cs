@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Colors.Types
     using GW2DotNET.V1.Common.Types;
 
     /// <summary>Wraps a collection of colors in the game.</summary>
-    public class ColorsResult : JsonObject, IEquatable<ColorsResult>
+    public class ColorCollectionResult : JsonObject, IEquatable<ColorCollectionResult>
     {
         /// <summary>Gets or sets a collection of colors in the game.</summary>
         [DataMember(Name = "colors", Order = 0)]
@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Colors.Types
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator ==(ColorsResult left, ColorsResult right)
+        public static bool operator ==(ColorCollectionResult left, ColorCollectionResult right)
         {
             return object.Equals(left, right);
         }
@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Colors.Types
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator !=(ColorsResult left, ColorsResult right)
+        public static bool operator !=(ColorCollectionResult left, ColorCollectionResult right)
         {
             return !object.Equals(left, right);
         }
@@ -41,7 +41,7 @@ namespace GW2DotNET.V1.Colors.Types
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(ColorsResult other)
+        public bool Equals(ColorCollectionResult other)
         {
             if (object.ReferenceEquals(null, other))
             {
@@ -76,7 +76,7 @@ namespace GW2DotNET.V1.Colors.Types
                 return false;
             }
 
-            return this.Equals((ColorsResult)obj);
+            return this.Equals((ColorCollectionResult)obj);
         }
 
         /// <summary>Serves as a hash function for a particular type.</summary>

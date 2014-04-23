@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.Colors
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new ColorsRequest { Language = language };
-            var result = this.Request<ColorsResult>(serviceRequest);
+            var result = this.Request<ColorCollectionResult>(serviceRequest);
 
             foreach (var colorPalette in result.Colors.Values)
             {
@@ -96,7 +96,7 @@ namespace GW2DotNET.V1.Colors
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new ColorsRequest { Language = language };
-            var t1 = this.RequestAsync<ColorsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<ColorCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<ColorPalette>>(
                 task =>
                     {
