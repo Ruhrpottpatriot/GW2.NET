@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventDetailsRequest { Language = language };
-            var result = this.Request<DynamicEventDetailsResult>(serviceRequest);
+            var result = this.Request<DynamicEventDetailsCollectionResult>(serviceRequest);
 
             foreach (var dynamicEventDetails in result.EventDetails.Values)
             {
@@ -80,7 +80,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventDetailsRequest { Language = language, EventId = eventId };
-            var result = this.Request<DynamicEventDetailsResult>(serviceRequest);
+            var result = this.Request<DynamicEventDetailsCollectionResult>(serviceRequest);
 
             foreach (var dynamicEventDetails in result.EventDetails.Values)
             {
@@ -126,7 +126,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventDetailsRequest { Language = language };
-            var t1 = this.RequestAsync<DynamicEventDetailsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
 
             var t2 = t1.ContinueWith<IEnumerable<DynamicEventDetails>>(
                 task =>
@@ -183,7 +183,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new DynamicEventDetailsRequest { Language = language, EventId = eventId };
-            var t1 = this.RequestAsync<DynamicEventDetailsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
 
             var t2 = t1.ContinueWith(
                 task =>

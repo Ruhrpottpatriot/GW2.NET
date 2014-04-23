@@ -125,7 +125,7 @@
     <Compile Include="V1\DynamicEvents.Details\IDynamicEventDetailsServiceCache.cs" />
     <Compile Include="V1\DynamicEvents.Details\Types\DynamicEventDetails.cs" />
     <Compile Include="V1\DynamicEvents.Details\Types\DynamicEventDetailsCollection.cs" />
-    <Compile Include="V1\DynamicEvents.Details\Types\DynamicEventDetailsResult.cs" />
+    <Compile Include="V1\DynamicEvents.Details\Types\DynamicEventDetailsCollectionResult.cs" />
     <Compile Include="V1\DynamicEvents.Details\Types\DynamicEventFlags.cs" />
     <Compile Include="V1\DynamicEvents.Details\Types\Locations\Location.cs" />
     <Compile Include="V1\DynamicEvents.Details\Types\Locations\LocationConverter.cs" />
