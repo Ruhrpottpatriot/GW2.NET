@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Guilds.Details.Types
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Types;
-    using GW2DotNET.V1.Guilds.Details.Types.Emblems;
 
     /// <summary>Represents a guild and its details.</summary>
     public class Guild : JsonObject, IEquatable<Guild>, IComparable<Guild>

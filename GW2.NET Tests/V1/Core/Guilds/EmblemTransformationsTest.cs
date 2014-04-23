@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Core.Guilds
 {
-    using GW2DotNET.V1.Guilds.Details.Types.Emblems;
+    using GW2DotNET.V1.Guilds.Details.Types;
 
     using Newtonsoft.Json;
 

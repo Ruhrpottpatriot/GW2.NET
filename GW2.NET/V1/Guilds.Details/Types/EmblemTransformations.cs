@@ -6,7 +6,7 @@
 //   Enumerates the possible transformations for a guild emblem image.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Guilds.Details.Types.Emblems
+namespace GW2DotNET.V1.Guilds.Details.Types
 {
     using System;
     using System.Runtime.Serialization;

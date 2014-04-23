@@ -6,7 +6,7 @@
 //   Represents a guild's emblem.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Guilds.Details.Types.Emblems
+namespace GW2DotNET.V1.Guilds.Details.Types
 {
     using System;
     using System.Runtime.Serialization;

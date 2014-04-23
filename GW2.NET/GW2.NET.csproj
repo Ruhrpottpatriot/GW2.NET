@@ -162,8 +162,8 @@
     <Compile Include="V1\Guilds.Details\GuildDetailsService.cs" />
     <Compile Include="V1\Guilds.Details\IGuildDetailsService.cs" />
     <Compile Include="V1\Guilds.Details\IGuildDetailsServiceCache.cs" />
-    <Compile Include="V1\Guilds.Details\Types\Emblems\Emblem.cs" />
-    <Compile Include="V1\Guilds.Details\Types\Emblems\EmblemTransformations.cs" />
+    <Compile Include="V1\Guilds.Details\Types\Emblem.cs" />
+    <Compile Include="V1\Guilds.Details\Types\EmblemTransformations.cs" />
     <Compile Include="V1\Guilds.Details\Types\Guild.cs" />
     <Compile Include="V1\Items.Details\IItemDetailsService.cs" />
     <Compile Include="V1\Items.Details\IItemDetailsServiceCache.cs" />
