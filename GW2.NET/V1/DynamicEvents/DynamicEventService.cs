@@ -41,7 +41,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public DynamicEvent GetDynamicEvent(Guid eventId, int worldId)
         {
             var serviceRequest = new DynamicEventRequest { EventId = eventId, WorldId = worldId };
-            var result = this.Request<DynamicEventsResult>(serviceRequest);
+            var result = this.Request<DynamicEventCollectionResult>(serviceRequest);
 
             return result.Events.SingleOrDefault();
         }
@@ -65,7 +65,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<DynamicEvent> GetDynamicEventAsync(Guid eventId, int worldId, CancellationToken cancellationToken)
         {
             var serviceRequest = new DynamicEventRequest { EventId = eventId, WorldId = worldId };
-            var t1 = this.RequestAsync<DynamicEventsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<DynamicEventCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith(task => task.Result.Events.SingleOrDefault(), cancellationToken);
 
             return t2;
@@ -76,7 +76,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEvent> GetDynamicEvents()
         {
-            return this.Request<DynamicEventsResult>(new DynamicEventRequest()).Events;
+            return this.Request<DynamicEventCollectionResult>(new DynamicEventRequest()).Events;
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -94,7 +94,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IEnumerable<DynamicEvent>> GetDynamicEventsAsync(CancellationToken cancellationToken)
         {
             var serviceRequest = new DynamicEventRequest();
-            var t1 = this.RequestAsync<DynamicEventsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<DynamicEventCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<DynamicEvent>>(task => task.Result.Events, cancellationToken);
 
             return t2;
@@ -107,7 +107,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public IEnumerable<DynamicEvent> GetDynamicEventsById(Guid eventId)
         {
             var serviceRequest = new DynamicEventRequest { EventId = eventId };
-            var result = this.Request<DynamicEventsResult>(serviceRequest);
+            var result = this.Request<DynamicEventCollectionResult>(serviceRequest);
 
             return result.Events;
         }
@@ -120,7 +120,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken cancellationToken)
         {
             var serviceRequest = new DynamicEventRequest { EventId = eventId };
-            var t1 = this.RequestAsync<DynamicEventsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<DynamicEventCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<DynamicEvent>>(task => task.Result.Events, cancellationToken);
 
             return t2;
@@ -142,7 +142,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public IEnumerable<DynamicEvent> GetDynamicEventsByMap(int mapId)
         {
             var serviceRequest = new DynamicEventRequest { MapId = mapId };
-            var result = this.Request<DynamicEventsResult>(serviceRequest);
+            var result = this.Request<DynamicEventCollectionResult>(serviceRequest);
 
             return result.Events;
         }
@@ -155,7 +155,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public IEnumerable<DynamicEvent> GetDynamicEventsByMap(int mapId, int worldId)
         {
             var serviceRequest = new DynamicEventRequest { MapId = mapId, WorldId = worldId };
-            var result = this.Request<DynamicEventsResult>(serviceRequest);
+            var result = this.Request<DynamicEventCollectionResult>(serviceRequest);
 
             return result.Events;
         }
@@ -177,7 +177,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId, CancellationToken cancellationToken)
         {
             var serviceRequest = new DynamicEventRequest { MapId = mapId };
-            var t1 = this.RequestAsync<DynamicEventsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<DynamicEventCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<DynamicEvent>>(task => task.Result.Events, cancellationToken);
 
             return t2;
@@ -202,7 +202,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken cancellationToken)
         {
             var serviceRequest = new DynamicEventRequest { MapId = mapId, WorldId = worldId };
-            var t1 = this.RequestAsync<DynamicEventsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<DynamicEventCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<DynamicEvent>>(task => task.Result.Events, cancellationToken);
 
             return t2;
@@ -215,7 +215,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public IEnumerable<DynamicEvent> GetDynamicEventsByWorld(int worldId)
         {
             var serviceRequest = new DynamicEventRequest { WorldId = worldId };
-            var result = this.Request<DynamicEventsResult>(serviceRequest);
+            var result = this.Request<DynamicEventCollectionResult>(serviceRequest);
 
             return result.Events;
         }
@@ -237,7 +237,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByWorldAsync(int worldId, CancellationToken cancellationToken)
         {
             var serviceRequest = new DynamicEventRequest { WorldId = worldId };
-            var t1 = this.RequestAsync<DynamicEventsResult>(serviceRequest, cancellationToken);
+            var t1 = this.RequestAsync<DynamicEventCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<DynamicEvent>>(task => task.Result.Events, cancellationToken);
 
             return t2;

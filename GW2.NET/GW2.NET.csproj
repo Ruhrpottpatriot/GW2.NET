@@ -149,7 +149,7 @@
     <Compile Include="V1\DynamicEvents\IDynamicEventServiceCache.cs" />
     <Compile Include="V1\DynamicEvents\Types\DynamicEvent.cs" />
     <Compile Include="V1\DynamicEvents\Types\DynamicEventCollection.cs" />
-    <Compile Include="V1\DynamicEvents\Types\DynamicEventsResult.cs" />
+    <Compile Include="V1\DynamicEvents\Types\DynamicEventCollectionResult.cs" />
     <Compile Include="V1\DynamicEvents\Types\DynamicEventState.cs" />
     <Compile Include="V1\Errors\ErrorResult.cs" />
     <Compile Include="V1\Files\FileService.cs" />

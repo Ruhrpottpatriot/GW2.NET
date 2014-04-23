@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicEventsResult.cs" company="GW2.Net Coding Team">
+// <copyright file="DynamicEventCollectionResult.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.DynamicEvents.Types
     using GW2DotNET.V1.Common.Types;
 
     /// <summary>Wraps a collection of dynamic events.</summary>
-    public class DynamicEventsResult : JsonObject
+    public class DynamicEventCollectionResult : JsonObject
     {
         /// <summary>Gets or sets a list of event details.</summary>
         [DataMember(Name = "events", Order = 0)]
