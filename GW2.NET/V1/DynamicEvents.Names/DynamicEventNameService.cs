@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names
         public IEnumerable<DynamicEventName> GetDynamicEventNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventNamesRequest { Language = language };
+            var serviceRequest = new DynamicEventNameServiceRequest { Language = language };
             var result = this.Request<DynamicEventNameCollection>(serviceRequest);
 
             foreach (var eventName in result)
@@ -95,7 +95,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names
         public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventNamesRequest { Language = language };
+            var serviceRequest = new DynamicEventNameServiceRequest { Language = language };
             var t1 = this.RequestAsync<DynamicEventNameCollection>(serviceRequest, cancellationToken);
 
             var t2 = t1.ContinueWith<IEnumerable<DynamicEventName>>(

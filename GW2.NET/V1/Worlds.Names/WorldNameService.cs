@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.Worlds.Names
         public IEnumerable<WorldName> GetWorldNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new WorldNamesRequest { Language = language };
+            var serviceRequest = new WorldNameServiceRequest { Language = language };
             var result = this.Request<WorldNameCollection>(serviceRequest);
 
             foreach (var worldName in result)
@@ -95,7 +95,7 @@ namespace GW2DotNET.V1.Worlds.Names
         public Task<IEnumerable<WorldName>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var worldNamesRequest = new WorldNamesRequest { Language = language };
+            var worldNamesRequest = new WorldNameServiceRequest { Language = language };
             var t1 = this.RequestAsync<WorldNameCollection>(worldNamesRequest, cancellationToken).ContinueWith(
                 task =>
                     {

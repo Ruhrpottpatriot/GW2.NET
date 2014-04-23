@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicEventDetailsRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="DynamicEventDetailsServiceRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -13,13 +13,13 @@ namespace GW2DotNET.V1.DynamicEvents.Details
     using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for static details about dynamic events.</summary>
-    public class DynamicEventDetailsRequest : ServiceRequest
+    public class DynamicEventDetailsServiceRequest : ServiceRequest
     {
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private Guid? eventId;
 
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsRequest" /> class.</summary>
-        public DynamicEventDetailsRequest()
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsServiceRequest" /> class.</summary>
+        public DynamicEventDetailsServiceRequest()
             : base(Services.EventDetails)
         {
         }

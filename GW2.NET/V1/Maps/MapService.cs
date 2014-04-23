@@ -52,7 +52,7 @@ namespace GW2DotNET.V1.Maps
         public Map GetMap(int mapId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapsRequest { MapId = mapId, Language = language };
+            var serviceRequest = new MapServiceRequest { MapId = mapId, Language = language };
             var result = this.Request<MapCollectionResult>(serviceRequest).Maps.Values;
 
             foreach (var map in result)
@@ -103,7 +103,7 @@ namespace GW2DotNET.V1.Maps
         public Task<Map> GetMapAsync(int mapId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapsRequest { MapId = mapId, Language = language };
+            var serviceRequest = new MapServiceRequest { MapId = mapId, Language = language };
             var t1 = this.RequestAsync<MapCollectionResult>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
@@ -136,7 +136,7 @@ namespace GW2DotNET.V1.Maps
         public IEnumerable<Map> GetMaps(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapsRequest { Language = language };
+            var serviceRequest = new MapServiceRequest { Language = language };
             var result = this.Request<MapCollectionResult>(serviceRequest).Maps.Values;
 
             foreach (var map in result)
@@ -182,7 +182,7 @@ namespace GW2DotNET.V1.Maps
         public Task<IEnumerable<Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapsRequest { Language = language };
+            var serviceRequest = new MapServiceRequest { Language = language };
             var t1 = this.RequestAsync<MapCollectionResult>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {

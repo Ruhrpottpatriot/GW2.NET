@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.Recipes.Details
         public Recipe GetRecipeDetails(int recipeId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new RecipeDetailsRequest { RecipeId = recipeId, Language = language };
+            var serviceRequest = new RecipeDetailsServiceRequest { RecipeId = recipeId, Language = language };
             var result = this.Request<Recipe>(serviceRequest);
 
             // patch missing language information
@@ -97,7 +97,7 @@ namespace GW2DotNET.V1.Recipes.Details
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new RecipeDetailsRequest { RecipeId = recipeId, Language = language };
+            var serviceRequest = new RecipeDetailsServiceRequest { RecipeId = recipeId, Language = language };
             var t1 = this.RequestAsync<Recipe>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {

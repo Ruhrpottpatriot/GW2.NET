@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
         public IEnumerable<Match> GetMatches()
         {
-            return this.Request<MatchCollection>(new MatchesRequest());
+            return this.Request<MatchCollection>(new MatchServiceRequest());
         }
 
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
@@ -54,7 +54,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Match>> GetMatchesAsync(CancellationToken cancellationToken)
         {
-            var t1 = this.RequestAsync<MatchCollection>(new MatchesRequest(), cancellationToken);
+            var t1 = this.RequestAsync<MatchCollection>(new MatchServiceRequest(), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Match>>(task => task.Result, cancellationToken);
 
             return t2;

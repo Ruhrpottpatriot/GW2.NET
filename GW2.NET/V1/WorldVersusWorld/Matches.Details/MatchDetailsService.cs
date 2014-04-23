@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
         public MatchDetails GetMatchDetails(string matchId)
         {
-            return this.Request<MatchDetails>(new MatchDetailsRequest { MatchId = matchId });
+            return this.Request<MatchDetails>(new MatchDetailsServiceRequest { MatchId = matchId });
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
         public Task<MatchDetails> GetMatchDetailsAsync(string matchId, CancellationToken cancellationToken)
         {
-            return this.RequestAsync<MatchDetails>(new MatchDetailsRequest { MatchId = matchId }, cancellationToken);
+            return this.RequestAsync<MatchDetails>(new MatchDetailsServiceRequest { MatchId = matchId }, cancellationToken);
         }
     }
 }

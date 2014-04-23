@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public Guild GetGuildDetailsById(Guid guildId)
         {
-            return this.Request<Guild>(new GuildDetailsRequest { GuildId = guildId });
+            return this.Request<Guild>(new GuildDetailsServiceRequest { GuildId = guildId });
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public Task<Guild> GetGuildDetailsByIdAsync(Guid guildId, CancellationToken cancellationToken)
         {
-            return this.RequestAsync<Guild>(new GuildDetailsRequest { GuildId = guildId }, cancellationToken);
+            return this.RequestAsync<Guild>(new GuildDetailsServiceRequest { GuildId = guildId }, cancellationToken);
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -65,7 +65,7 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public Guild GetGuildDetailsByName(string guildName)
         {
-            return this.Request<Guild>(new GuildDetailsRequest { GuildName = guildName });
+            return this.Request<Guild>(new GuildDetailsServiceRequest { GuildName = guildName });
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -84,7 +84,7 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public Task<Guild> GetGuildDetailsByNameAsync(string guildName, CancellationToken cancellationToken)
         {
-            return this.RequestAsync<Guild>(new GuildDetailsRequest { GuildName = guildName }, cancellationToken);
+            return this.RequestAsync<Guild>(new GuildDetailsServiceRequest { GuildName = guildName }, cancellationToken);
         }
     }
 }

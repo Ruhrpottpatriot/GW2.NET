@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RenderFileRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="RenderServiceRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -15,12 +15,12 @@ namespace GW2DotNET.V1.Rendering
     using GW2DotNET.V1.Rendering.Contracts;
 
     /// <summary>Represents a request for an in-game asset.</summary>
-    public class RenderFileRequest : ServiceRequest
+    public class RenderServiceRequest : ServiceRequest
     {
-        /// <summary>Initializes a new instance of the <see cref="RenderFileRequest"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="RenderServiceRequest"/> class.</summary>
         /// <param name="file">The file.</param>
         /// <param name="imageFormat">The image Format.</param>
-        public RenderFileRequest(IRenderable file, ImageFormat imageFormat)
+        public RenderServiceRequest(IRenderable file, ImageFormat imageFormat)
             : base(CreateFileResource(file, imageFormat))
         {
         }

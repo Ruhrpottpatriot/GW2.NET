@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GuildDetailsRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="GuildDetailsServiceRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Guilds.Details
     using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for information regarding a specific guild.</summary>
-    public class GuildDetailsRequest : ServiceRequest
+    public class GuildDetailsServiceRequest : ServiceRequest
     {
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private Guid? guildId;
@@ -21,8 +21,8 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private string guildName;
 
-        /// <summary>Initializes a new instance of the <see cref="GuildDetailsRequest" /> class.</summary>
-        public GuildDetailsRequest()
+        /// <summary>Initializes a new instance of the <see cref="GuildDetailsServiceRequest" /> class.</summary>
+        public GuildDetailsServiceRequest()
             : base(Services.GuildDetails)
         {
         }

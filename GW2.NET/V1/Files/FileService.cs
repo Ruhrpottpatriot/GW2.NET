@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Files
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
         public IEnumerable<Asset> GetFiles()
         {
-            var serviceRequest = new FilesRequest();
+            var serviceRequest = new FileServiceRequest();
             var result = this.Request<AssetCollection>(serviceRequest);
 
             return result.Values;
@@ -57,7 +57,7 @@ namespace GW2DotNET.V1.Files
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Asset>> GetFilesAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new FilesRequest();
+            var serviceRequest = new FileServiceRequest();
             var t1 = this.RequestAsync<AssetCollection>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Asset>>(task => task.Result.Values, cancellationToken);
 

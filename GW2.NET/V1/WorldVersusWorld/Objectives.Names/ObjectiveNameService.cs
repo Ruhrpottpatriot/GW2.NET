@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         public IEnumerable<ObjectiveName> GetObjectiveNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ObjectiveNamesRequest { Language = language };
+            var serviceRequest = new ObjectiveNameServiceRequest { Language = language };
             var result = this.Request<ObjectiveNameCollection>(serviceRequest);
 
             foreach (var objectiveName in result)
@@ -95,7 +95,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ObjectiveNamesRequest { Language = language };
+            var serviceRequest = new ObjectiveNameServiceRequest { Language = language };
             var t1 = this.RequestAsync<ObjectiveNameCollection>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {

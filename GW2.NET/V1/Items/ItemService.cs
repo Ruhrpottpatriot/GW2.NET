@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetItems()
         {
-            var serviceRequest = new ItemsRequest();
+            var serviceRequest = new ItemServiceRequest();
             var result = this.Request<ItemCollectionResult>(serviceRequest);
 
             return result.Items;
@@ -57,7 +57,7 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetItemsAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new ItemsRequest();
+            var serviceRequest = new ItemServiceRequest();
             var t1 = this.RequestAsync<ItemCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Items, cancellationToken);
 

@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ItemDetailsRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="ItemDetailsServiceRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -12,13 +12,13 @@ namespace GW2DotNET.V1.Items.Details
     using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for details regarding a specific item.</summary>
-    public class ItemDetailsRequest : ServiceRequest
+    public class ItemDetailsServiceRequest : ServiceRequest
     {
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private int? itemId;
 
-        /// <summary>Initializes a new instance of the <see cref="ItemDetailsRequest" /> class.</summary>
-        public ItemDetailsRequest()
+        /// <summary>Initializes a new instance of the <see cref="ItemDetailsServiceRequest" /> class.</summary>
+        public ItemDetailsServiceRequest()
             : base(Services.ItemDetails)
         {
         }

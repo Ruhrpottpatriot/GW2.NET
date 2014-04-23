@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetSkins()
         {
-            var serviceRequest = new SkinsRequest();
+            var serviceRequest = new SkinServiceRequest();
             var result = this.Request<SkinCollectionResult>(serviceRequest);
 
             return result.Skins;
@@ -57,7 +57,7 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetSkinsAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new SkinsRequest();
+            var serviceRequest = new SkinServiceRequest();
             var t1 = this.RequestAsync<SkinCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Skins, cancellationToken);
 

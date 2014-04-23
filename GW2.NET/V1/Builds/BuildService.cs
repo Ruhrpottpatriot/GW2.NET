@@ -36,7 +36,7 @@ namespace GW2DotNET.V1.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Build GetBuild()
         {
-            return this.Request<Build>(new BuildRequest());
+            return this.Request<Build>(new BuildServiceRequest());
         }
 
         /// <summary>Gets the current build.</summary>
@@ -53,7 +53,7 @@ namespace GW2DotNET.V1.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
-            return this.RequestAsync<Build>(new BuildRequest(), cancellationToken);
+            return this.RequestAsync<Build>(new BuildServiceRequest(), cancellationToken);
         }
     }
 }

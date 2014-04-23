@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public IEnumerable<DynamicEventDetails> GetDynamicEventDetails(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsRequest { Language = language };
+            var serviceRequest = new DynamicEventDetailsServiceRequest { Language = language };
             var result = this.Request<DynamicEventDetailsCollectionResult>(serviceRequest);
 
             foreach (var dynamicEventDetails in result.EventDetails.Values)
@@ -79,7 +79,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public DynamicEventDetails GetDynamicEventDetails(Guid eventId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsRequest { Language = language, EventId = eventId };
+            var serviceRequest = new DynamicEventDetailsServiceRequest { Language = language, EventId = eventId };
             var result = this.Request<DynamicEventDetailsCollectionResult>(serviceRequest);
 
             foreach (var dynamicEventDetails in result.EventDetails.Values)
@@ -125,7 +125,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsRequest { Language = language };
+            var serviceRequest = new DynamicEventDetailsServiceRequest { Language = language };
             var t1 = this.RequestAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
 
             var t2 = t1.ContinueWith<IEnumerable<DynamicEventDetails>>(
@@ -182,7 +182,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public Task<DynamicEventDetails> GetDynamicEventDetailsAsync(Guid eventId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsRequest { Language = language, EventId = eventId };
+            var serviceRequest = new DynamicEventDetailsServiceRequest { Language = language, EventId = eventId };
             var t1 = this.RequestAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
 
             var t2 = t1.ContinueWith(

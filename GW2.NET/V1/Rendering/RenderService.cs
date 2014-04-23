@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.Rendering
         {
             Preconditions.EnsureNotNull(paramName: "file", value: file);
             Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
-            return this.Request<Image>(new RenderFileRequest(file, imageFormat));
+            return this.Request<Image>(new RenderServiceRequest(file, imageFormat));
         }
 
         /// <summary>Gets an image.</summary>
@@ -66,7 +66,7 @@ namespace GW2DotNET.V1.Rendering
         {
             Preconditions.EnsureNotNull(paramName: "file", value: file);
             Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
-            return this.RequestAsync<Image>(new RenderFileRequest(file, imageFormat), cancellationToken);
+            return this.RequestAsync<Image>(new RenderServiceRequest(file, imageFormat), cancellationToken);
         }
     }
 }

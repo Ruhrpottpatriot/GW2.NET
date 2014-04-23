@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicEventRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="DynamicEventServiceRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for a list of events and their status that match the given filters (if any).</summary>
-    public class DynamicEventRequest : ServiceRequest
+    public class DynamicEventServiceRequest : ServiceRequest
     {
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private Guid? eventId;
@@ -25,8 +25,8 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private int? worldId;
 
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventRequest" /> class.</summary>
-        public DynamicEventRequest()
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventServiceRequest" /> class.</summary>
+        public DynamicEventServiceRequest()
             : base(Services.Events)
         {
         }

@@ -52,7 +52,7 @@ namespace GW2DotNET.V1.Maps.Floors
         public Floor GetMapFloor(int continentId, int floor, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapFloorRequest { ContinentId = continentId, Floor = floor, Language = language };
+            var serviceRequest = new MapFloorServiceRequest { ContinentId = continentId, Floor = floor, Language = language };
             var result = this.Request<Floor>(serviceRequest);
 
             // patch missing floor information
@@ -107,7 +107,7 @@ namespace GW2DotNET.V1.Maps.Floors
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapFloorRequest { ContinentId = continentId, Floor = floor, Language = language };
+            var serviceRequest = new MapFloorServiceRequest { ContinentId = continentId, Floor = floor, Language = language };
             var t1 = this.RequestAsync<Floor>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {

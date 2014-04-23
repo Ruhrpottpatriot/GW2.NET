@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.Colors
         public IEnumerable<ColorPalette> GetColors(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ColorsRequest { Language = language };
+            var serviceRequest = new ColorServiceRequest { Language = language };
             var result = this.Request<ColorCollectionResult>(serviceRequest);
 
             foreach (var colorPalette in result.Colors.Values)
@@ -95,7 +95,7 @@ namespace GW2DotNET.V1.Colors
         public Task<IEnumerable<ColorPalette>> GetColorsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ColorsRequest { Language = language };
+            var serviceRequest = new ColorServiceRequest { Language = language };
             var t1 = this.RequestAsync<ColorCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<ColorPalette>>(
                 task =>

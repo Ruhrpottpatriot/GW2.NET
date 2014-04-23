@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.Skins.Details
         public Skin GetSkinDetails(int skinId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new SkinDetailsRequest { SkinId = skinId, Language = language };
+            var serviceRequest = new SkinDetailsServiceRequest { SkinId = skinId, Language = language };
             var result = this.Request<Skin>(serviceRequest);
 
             // patch missing language information
@@ -97,7 +97,7 @@ namespace GW2DotNET.V1.Skins.Details
         public Task<Skin> GetSkinDetailsAsync(int skinId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new SkinDetailsRequest { SkinId = skinId, Language = language };
+            var serviceRequest = new SkinDetailsServiceRequest { SkinId = skinId, Language = language };
             var t1 = this.RequestAsync<Skin>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {

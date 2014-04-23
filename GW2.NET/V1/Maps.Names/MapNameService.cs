@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.Maps.Names
         public IEnumerable<MapName> GetMapNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapNamesRequest { Language = language };
+            var serviceRequest = new MapNameServiceRequest { Language = language };
             var result = this.Request<MapNameCollection>(serviceRequest);
 
             foreach (var mapName in result)
@@ -95,7 +95,7 @@ namespace GW2DotNET.V1.Maps.Names
         public Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapNamesRequest { Language = language };
+            var serviceRequest = new MapNameServiceRequest { Language = language };
             var t1 = this.RequestAsync<MapNameCollection>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {

@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Continents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public IEnumerable<Continent> GetContinents()
         {
-            var serviceRequest = new ContinentsRequest();
+            var serviceRequest = new ContinentServiceRequest();
             var result = this.Request<ContinentCollectionResult>(serviceRequest);
 
             return result.Continents.Values;
@@ -57,7 +57,7 @@ namespace GW2DotNET.V1.Continents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new ContinentsRequest();
+            var serviceRequest = new ContinentServiceRequest();
             var t1 = this.RequestAsync<ContinentCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Continent>>(task => task.Result.Continents.Values, cancellationToken);
 

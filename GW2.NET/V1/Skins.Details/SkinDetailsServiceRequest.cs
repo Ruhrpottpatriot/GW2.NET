@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SkinDetailsRequest.cs" company="GW2.Net Coding Team">
+// <copyright file="SkinDetailsServiceRequest.cs" company="GW2.Net Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -12,13 +12,13 @@ namespace GW2DotNET.V1.Skins.Details
     using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for details regarding a specific skin.</summary>
-    public class SkinDetailsRequest : ServiceRequest
+    public class SkinDetailsServiceRequest : ServiceRequest
     {
         /// <summary>Infrastructure. Stores a parameter.</summary>
         private int? skinId;
 
-        /// <summary>Initializes a new instance of the <see cref="SkinDetailsRequest" /> class.</summary>
-        public SkinDetailsRequest()
+        /// <summary>Initializes a new instance of the <see cref="SkinDetailsServiceRequest" /> class.</summary>
+        public SkinDetailsServiceRequest()
             : base(Services.SkinDetails)
         {
         }

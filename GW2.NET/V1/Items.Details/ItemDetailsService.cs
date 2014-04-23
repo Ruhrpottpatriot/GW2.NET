@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.Items.Details
         public Item GetItemDetails(int itemId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ItemDetailsRequest { ItemId = itemId, Language = language };
+            var serviceRequest = new ItemDetailsServiceRequest { ItemId = itemId, Language = language };
             var result = this.Request<Item>(serviceRequest);
 
             // patch missing language information
@@ -97,7 +97,7 @@ namespace GW2DotNET.V1.Items.Details
         public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ItemDetailsRequest { ItemId = itemId, Language = language };
+            var serviceRequest = new ItemDetailsServiceRequest { ItemId = itemId, Language = language };
             var t1 = this.RequestAsync<Item>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
