@@ -365,7 +365,7 @@
     <Compile Include="V1\Maps\Types\FloorCollection.cs" />
     <Compile Include="V1\Maps\Types\Map.cs" />
     <Compile Include="V1\Maps\Types\MapCollection.cs" />
-    <Compile Include="V1\Maps\Types\MapsResult.cs" />
+    <Compile Include="V1\Maps\Types\MapCollectionResult.cs" />
     <Compile Include="V1\Recipes.Details\IRecipeDetailsService.cs" />
     <Compile Include="V1\Recipes.Details\IRecipeDetailsServiceCache.cs" />
     <Compile Include="V1\Recipes.Details\RecipeDetailsRequest.cs" />

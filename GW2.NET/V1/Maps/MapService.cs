@@ -53,7 +53,7 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new MapsRequest { MapId = mapId, Language = language };
-            var result = this.Request<MapsResult>(serviceRequest).Maps.Values;
+            var result = this.Request<MapCollectionResult>(serviceRequest).Maps.Values;
 
             foreach (var map in result)
             {
@@ -104,7 +104,7 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new MapsRequest { MapId = mapId, Language = language };
-            var t1 = this.RequestAsync<MapsResult>(serviceRequest, cancellationToken).ContinueWith(
+            var t1 = this.RequestAsync<MapCollectionResult>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
                         foreach (var map in task.Result.Maps.Values)
@@ -137,7 +137,7 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new MapsRequest { Language = language };
-            var result = this.Request<MapsResult>(serviceRequest).Maps.Values;
+            var result = this.Request<MapCollectionResult>(serviceRequest).Maps.Values;
 
             foreach (var map in result)
             {
@@ -183,7 +183,7 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var serviceRequest = new MapsRequest { Language = language };
-            var t1 = this.RequestAsync<MapsResult>(serviceRequest, cancellationToken).ContinueWith(
+            var t1 = this.RequestAsync<MapCollectionResult>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
                         foreach (var map in task.Result.Maps.Values)
