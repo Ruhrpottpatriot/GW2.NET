@@ -27,8 +27,12 @@ namespace GW2DotNET.V1.Items.Details.Types.ItemTypes.Backs
         {
         }
 
+        /// <summary>Gets or sets the item's default skin identifier.</summary>
+        [DataMember(Name = "default_skin", Order = 100)]
+        public int DefaultSkin { get; set; }
+
         /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "back", Order = 100)]
+        [DataMember(Name = "back", Order = 101)]
         public BackDetails Details
         {
             get

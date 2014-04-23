@@ -27,8 +27,12 @@ namespace GW2DotNET.V1.Items.Details.Types.ItemTypes.Weapons
         {
         }
 
+        /// <summary>Gets or sets the item's default skin identifier.</summary>
+        [DataMember(Name = "default_skin", Order = 100)]
+        public int DefaultSkin { get; set; }
+
         /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "weapon", Order = 100)]
+        [DataMember(Name = "weapon", Order = 101)]
         public WeaponDetails Details
         {
             get

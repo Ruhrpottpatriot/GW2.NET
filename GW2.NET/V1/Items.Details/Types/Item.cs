@@ -43,10 +43,6 @@ namespace GW2DotNET.V1.Items.Details.Types
         [DataMember(Name = "icon_file_signature", Order = 8)]
         public string FileSignature { get; set; }
 
-        /// <summary>Gets or sets the item's default skin identifier.</summary>
-        [DataMember(Name = "default_skin", Order = 9)]
-        public int? DefaultSkin { get; set; }
-
         /// <summary>Gets or sets the item's additional flags.</summary>
         [DataMember(Name = "flags", Order = 10)]
         public ItemFlags Flags { get; set; }
