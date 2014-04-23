@@ -430,6 +430,7 @@
     <Compile Include="V1\Recipes\IRecipeServiceCache.cs" />
     <Compile Include="V1\Recipes\RecipeService.cs" />
     <Compile Include="V1\Recipes\RecipesRequest.cs" />
+    <Compile Include="V1\Recipes\Types\RecipeCollectionResult.cs" />
     <Compile Include="V1\Recipes\Types\RecipeCollection.cs" />
     <Compile Include="V1\Rendering\IRenderService.cs" />
     <Compile Include="V1\Rendering\IRenderServiceCache.cs" />

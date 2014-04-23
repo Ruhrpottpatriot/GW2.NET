@@ -37,7 +37,10 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetRecipes()
         {
-            return this.Request<RecipeCollection>(new RecipesRequest());
+            var serviceRequest = new RecipesRequest();
+            var result = this.Request<RecipeCollectionResult>(serviceRequest);
+
+            return result.Recipes;
         }
 
         /// <summary>Gets a collection of discovered recipes.</summary>
@@ -54,8 +57,9 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetRecipesAsync(CancellationToken cancellationToken)
         {
-            var t1 = this.RequestAsync<RecipeCollection>(new RecipesRequest(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result, cancellationToken);
+            var serviceRequest = new RecipesRequest();
+            var t1 = this.RequestAsync<RecipeCollectionResult>(serviceRequest, cancellationToken);
+            var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Recipes, cancellationToken);
 
             return t2;
         }
