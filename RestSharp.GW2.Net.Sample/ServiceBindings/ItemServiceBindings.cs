@@ -25,7 +25,8 @@ namespace RestSharp.GW2DotNET.Sample.ServiceBindings
         {
             this.Bind<IItemService>().To<ItemService>().WhenInjectedInto<IItemServiceCache>();
             this.Bind<IItemService>().To<ItemServiceCache>();
-            this.Bind<IItemDetailsService>().To<ItemDetailsService>();
+            this.Bind<IItemDetailsService>().To<ItemDetailsService>().WhenInjectedInto<IItemDetailsServiceCache>();
+            this.Bind<IItemDetailsService>().To<ItemDetailsServiceCache>();
         }
     }
 }
