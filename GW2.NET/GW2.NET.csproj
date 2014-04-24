@@ -326,6 +326,7 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\WarHornDetails.cs" />
     <Compile Include="V1\Items.Contracts\ItemCollection.cs" />
     <Compile Include="V1\Items.Contracts\ItemCollectionResult.cs" />
+    <Compile Include="V1\Items\ItemServiceCache.cs" />
     <Compile Include="V1\Maps.Floors.Contracts\Floor.cs" />
     <Compile Include="V1\Maps.Floors.Contracts\Regions\Region.cs" />
     <Compile Include="V1\Maps.Floors.Contracts\Regions\RegionCollection.cs" />
