@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.DynamicEvents
         }
 
         /// <summary>Initializes a new instance of the <see cref="DynamicEventServiceCache"/> class.</summary>
-        /// <param name="objectCache">The object Cache.</param>
+        /// <param name="objectCache">The object cache.</param>
         public DynamicEventServiceCache(ObjectCache objectCache)
             : this(objectCache, new DynamicEventService())
         {
@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.DynamicEvents
         }
 
         /// <summary>Initializes a new instance of the <see cref="DynamicEventServiceCache"/> class.</summary>
-        /// <param name="objectCache">The object Cache.</param>
+        /// <param name="objectCache">The object cache.</param>
         /// <param name="fallbackService">The fallback Service.</param>
         public DynamicEventServiceCache(ObjectCache objectCache, IDynamicEventService fallbackService)
             : base(objectCache)
