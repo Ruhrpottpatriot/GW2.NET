@@ -42,7 +42,7 @@ namespace GW2DotNET.V1.Builds
         }
 
         /// <summary>Initializes a new instance of the <see cref="BuildServiceCache"/> class.</summary>
-        /// <param name="fallbackService">The fallback Service.</param>
+        /// <param name="fallbackService">The fallback service.</param>
         public BuildServiceCache(IBuildService fallbackService)
             : this(new MemoryCache(Services.Build), fallbackService)
         {
@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.Builds
 
         /// <summary>Initializes a new instance of the <see cref="BuildServiceCache"/> class.</summary>
         /// <param name="objectCache">The object cache.</param>
-        /// <param name="fallbackService">The fallback Service.</param>
+        /// <param name="fallbackService">The fallback service.</param>
         public BuildServiceCache(ObjectCache objectCache, IBuildService fallbackService)
             : base(objectCache)
         {

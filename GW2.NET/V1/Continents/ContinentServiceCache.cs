@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.Continents
         }
 
         /// <summary>Initializes a new instance of the <see cref="ContinentServiceCache"/> class.</summary>
-        /// <param name="fallbackService">The fallback Service.</param>
+        /// <param name="fallbackService">The fallback service.</param>
         public ContinentServiceCache(IContinentService fallbackService)
             : this(new MemoryCache(Services.Continents), fallbackService)
         {
@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.Continents
 
         /// <summary>Initializes a new instance of the <see cref="ContinentServiceCache"/> class.</summary>
         /// <param name="objectCache">The object cache.</param>
-        /// <param name="fallbackService">The fallback Service.</param>
+        /// <param name="fallbackService">The fallback service.</param>
         public ContinentServiceCache(ObjectCache objectCache, IContinentService fallbackService)
             : base(objectCache)
         {

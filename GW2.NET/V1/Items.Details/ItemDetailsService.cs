@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(int itemId)
@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
@@ -60,7 +60,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int itemId)
@@ -69,7 +69,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
@@ -79,7 +79,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
@@ -89,7 +89,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>

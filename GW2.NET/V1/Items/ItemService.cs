@@ -32,8 +32,8 @@ namespace GW2DotNET.V1.Items
         {
         }
 
-        /// <summary>Gets a collection of discovered items.</summary>
-        /// <returns>A collection of discovered items.</returns>
+        /// <summary>Gets a collection of item identifiers.</summary>
+        /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetItems()
         {
@@ -43,17 +43,17 @@ namespace GW2DotNET.V1.Items
             return result.Items;
         }
 
-        /// <summary>Gets a collection of discovered items.</summary>
-        /// <returns>A collection of discovered items.</returns>
+        /// <summary>Gets a collection of item identifiers.</summary>
+        /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetItemsAsync()
         {
             return this.GetItemsAsync(CancellationToken.None);
         }
 
-        /// <summary>Gets a collection of discovered items.</summary>
+        /// <summary>Gets a collection of item identifiers.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered items.</returns>
+        /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetItemsAsync(CancellationToken cancellationToken)
         {

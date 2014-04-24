@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.Items
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemServiceCache"/> class.</summary>
-        /// <param name="fallbackService">The fallback Service.</param>
+        /// <param name="fallbackService">The fallback service.</param>
         public ItemServiceCache(IItemService fallbackService)
             : this(new MemoryCache(Services.Items), fallbackService)
         {
@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.Items
 
         /// <summary>Initializes a new instance of the <see cref="ItemServiceCache"/> class.</summary>
         /// <param name="objectCache">The object cache.</param>
-        /// <param name="fallbackService">The fallback Service.</param>
+        /// <param name="fallbackService">The fallback service.</param>
         public ItemServiceCache(ObjectCache objectCache, IItemService fallbackService)
             : base(objectCache)
         {
@@ -68,17 +68,17 @@ namespace GW2DotNET.V1.Items
             }
         }
 
-        /// <summary>Gets a collection of discovered items.</summary>
-        /// <returns>A collection of discovered items.</returns>
+        /// <summary>Gets a collection of item identifiers.</summary>
+        /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetItems()
         {
             return this.GetItems(true);
         }
 
-        /// <summary>Gets a collection of discovered items.</summary>
+        /// <summary>Gets a collection of item identifiers.</summary>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
-        /// <returns>A collection of discovered items.</returns>
+        /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetItems(bool allowCache)
         {
@@ -97,36 +97,36 @@ namespace GW2DotNET.V1.Items
             return items;
         }
 
-        /// <summary>Gets a collection of discovered items.</summary>
-        /// <returns>A collection of discovered items.</returns>
+        /// <summary>Gets a collection of item identifiers.</summary>
+        /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetItemsAsync()
         {
             return this.GetItemsAsync(CancellationToken.None, true);
         }
 
-        /// <summary>Gets a collection of discovered items.</summary>
+        /// <summary>Gets a collection of item identifiers.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered items.</returns>
+        /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetItemsAsync(CancellationToken cancellationToken)
         {
             return this.GetItemsAsync(cancellationToken, true);
         }
 
-        /// <summary>Gets a collection of discovered items.</summary>
+        /// <summary>Gets a collection of item identifiers.</summary>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
-        /// <returns>A collection of discovered items.</returns>
+        /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetItemsAsync(bool allowCache)
         {
             return this.GetItemsAsync(CancellationToken.None, allowCache);
         }
 
-        /// <summary>Gets a collection of discovered items.</summary>
+        /// <summary>Gets a collection of item identifiers.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
-        /// <returns>A collection of discovered items.</returns>
+        /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetItemsAsync(CancellationToken cancellationToken, bool allowCache)
         {
@@ -153,16 +153,16 @@ namespace GW2DotNET.V1.Items
             return t1;
         }
 
-        /// <summary>Sets a collection of discovered items.</summary>
-        /// <param name="items">A collection of discovered items.</param>
+        /// <summary>Sets a collection of item identifiers.</summary>
+        /// <param name="items">A collection of item identifiers.</param>
         public void SetItems(IEnumerable<int> items)
         {
             var absoluteExpiration = DateTimeOffset.Now.AddHours(1D);
             this.SetItems(items, new CacheItemParameters { AbsoluteExpiration = absoluteExpiration });
         }
 
-        /// <summary>Sets a collection of discovered items.</summary>
-        /// <param name="items">A collection of discovered items.</param>
+        /// <summary>Sets a collection of item identifiers.</summary>
+        /// <param name="items">A collection of item identifiers.</param>
         /// <param name="parameters">The eviction and expiration details.</param>
         public void SetItems(IEnumerable<int> items, CacheItemParameters parameters)
         {

@@ -19,14 +19,14 @@ namespace GW2DotNET.V1.Items.Details
     public interface IItemDetailsServiceCache : IItemDetailsService
     {
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         Item GetItemDetails(int itemId, bool allowCache);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
@@ -34,14 +34,14 @@ namespace GW2DotNET.V1.Items.Details
         Item GetItemDetails(int itemId, CultureInfo language, bool allowCache);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         Task<Item> GetItemDetailsAsync(int itemId, bool allowCache);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.Items.Details
         Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, bool allowCache);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
@@ -57,7 +57,7 @@ namespace GW2DotNET.V1.Items.Details
         Task<Item> GetItemDetailsAsync(int itemId, CancellationToken cancellationToken, bool allowCache);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>

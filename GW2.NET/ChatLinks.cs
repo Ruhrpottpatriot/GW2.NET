@@ -33,7 +33,7 @@ namespace GW2DotNET
 
         /// <summary>Converts an item into a chat link.</summary>
         /// <param name="quantity">The item quantity.</param>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <returns>A chat link representing the item, which is usable in-game.</returns>
         /// <remarks>The item quantity is the amount of items which the user wants to link (e.g. 10 Copper Ore), while the item ID is the ID gained from the API or another location.</remarks>
         public static string ItemChatLink(short quantity, int itemId)

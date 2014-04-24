@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ItemDetailsServiceCache.cs" company="GW2.Net Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// <summary>
+//   Provides an implementation of the item details service, backed up by a caching provider.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.V1.Items.Details
 {
+    using System;
     using System.Globalization;
     using System.Runtime.Caching;
     using System.Threading;
@@ -39,7 +44,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemDetailsServiceCache"/> class.</summary>
-        /// <param name="fallbackService">The fallback Service.</param>
+        /// <param name="fallbackService">The fallback service.</param>
         public ItemDetailsServiceCache(IItemDetailsService fallbackService)
             : this(new MemoryCache(Services.Items), fallbackService)
         {
@@ -47,7 +52,7 @@ namespace GW2DotNET.V1.Items.Details
 
         /// <summary>Initializes a new instance of the <see cref="ItemDetailsServiceCache"/> class.</summary>
         /// <param name="objectCache">The object cache.</param>
-        /// <param name="fallbackService">The fallback Service.</param>
+        /// <param name="fallbackService">The fallback service.</param>
         public ItemDetailsServiceCache(ObjectCache objectCache, IItemDetailsService fallbackService)
             : base(objectCache)
         {
@@ -65,7 +70,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(int itemId)
@@ -74,7 +79,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
@@ -84,47 +89,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId)
-        {
-            return this.GetItemDetailsAsync(itemId, ServiceBase.DefaultLanguage, CancellationToken.None, true);
-        }
-
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
-        /// <param name="language">The language.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language)
-        {
-            return this.GetItemDetailsAsync(itemId, language, CancellationToken.None, true);
-        }
-
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId, CancellationToken cancellationToken)
-        {
-            return this.GetItemDetailsAsync(itemId, ServiceBase.DefaultLanguage, cancellationToken, true);
-        }
-
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, CancellationToken cancellationToken)
-        {
-            return this.GetItemDetailsAsync(itemId, language, cancellationToken, true);
-        }
-
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
@@ -134,7 +99,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
@@ -157,7 +122,47 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
+        /// <returns>An item and its localized details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
+        public Task<Item> GetItemDetailsAsync(int itemId)
+        {
+            return this.GetItemDetailsAsync(itemId, ServiceBase.DefaultLanguage, CancellationToken.None, true);
+        }
+
+        /// <summary>Gets an item and its localized details.</summary>
+        /// <param name="itemId">The item identifier.</param>
+        /// <param name="language">The language.</param>
+        /// <returns>An item and its localized details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
+        public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language)
+        {
+            return this.GetItemDetailsAsync(itemId, language, CancellationToken.None, true);
+        }
+
+        /// <summary>Gets an item and its localized details.</summary>
+        /// <param name="itemId">The item identifier.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>An item and its localized details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
+        public Task<Item> GetItemDetailsAsync(int itemId, CancellationToken cancellationToken)
+        {
+            return this.GetItemDetailsAsync(itemId, ServiceBase.DefaultLanguage, cancellationToken, true);
+        }
+
+        /// <summary>Gets an item and its localized details.</summary>
+        /// <param name="itemId">The item identifier.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>An item and its localized details.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
+        public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, CancellationToken cancellationToken)
+        {
+            return this.GetItemDetailsAsync(itemId, language, cancellationToken, true);
+        }
+
+        /// <summary>Gets an item and its localized details.</summary>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
@@ -167,7 +172,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
@@ -178,7 +183,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
         /// <returns>An item and its localized details.</returns>
@@ -189,7 +194,7 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item ID.</param>
+        /// <param name="itemId">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <param name="allowCache">Indicates whether cached data is preferred.</param>
@@ -211,10 +216,10 @@ namespace GW2DotNET.V1.Items.Details
 
             var t1 = this.fallbackService.GetItemDetailsAsync(itemId, language, cancellationToken).ContinueWith(
                 task =>
-                {
-                    this.SetItemDetails(item = task.Result, language);
-                    return item;
-                },
+                    {
+                        this.SetItemDetails(item = task.Result, language);
+                        return item;
+                    }, 
                 cancellationToken);
 
             return t1;
