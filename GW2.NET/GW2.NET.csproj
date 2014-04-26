@@ -52,7 +52,21 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChatLinks.cs" />
+    <Compile Include="ChatLinks\ChatLink.cs" />
+    <Compile Include="ChatLinks\ChatLinkType.cs" />
+    <Compile Include="ChatLinks\Extensions\SkinExtensions.cs" />
+    <Compile Include="ChatLinks\OutfitChatLink.cs" />
+    <Compile Include="ChatLinks\SkinChatLink.cs" />
+    <Compile Include="ChatLinks\DialogChatLink.cs" />
+    <Compile Include="ChatLinks\TraitChatLink.cs" />
+    <Compile Include="ChatLinks\SkillChatLink.cs" />
+    <Compile Include="ChatLinks\CoinChatLink.cs" />
+    <Compile Include="ChatLinks\Extensions\PointOfInterestExtensions.cs" />
+    <Compile Include="ChatLinks\Extensions\RecipeExtensions.cs" />
+    <Compile Include="ChatLinks\Extensions\ItemExtensions.cs" />
+    <Compile Include="ChatLinks\PointOfInterestChatLink.cs" />
+    <Compile Include="ChatLinks\RecipeChatLink.cs" />
+    <Compile Include="ChatLinks\ItemChatLink.cs" />
     <Compile Include="Extensions\CultureInfoExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\Int32Extensions.cs" />
