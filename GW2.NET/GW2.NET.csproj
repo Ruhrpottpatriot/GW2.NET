@@ -213,6 +213,8 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\BoozeDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\ContractNpcDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\FoodDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnTransmutationDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UpgradeRemovalDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\GenericConsumableDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\HalloweenConsumableDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\ImmediateConsumableDetails.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BagSlotUnlockDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BankTabUnlockDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CollectibleCapacityUnlockDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\ContentUnlockDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CraftingRecipeUnlockDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\DyeUnlockDetails.cs" />

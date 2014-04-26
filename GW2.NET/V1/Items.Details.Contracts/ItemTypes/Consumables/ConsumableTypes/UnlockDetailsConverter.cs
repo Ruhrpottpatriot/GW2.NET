@@ -34,6 +34,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
             KnownTypes.Add(UnlockType.CraftingRecipe, typeof(CraftingRecipeUnlockDetails));
             KnownTypes.Add(UnlockType.Dye, typeof(DyeUnlockDetails));
             KnownTypes.Add(UnlockType.Content, typeof(ContentUnlockDetails));
+            KnownTypes.Add(UnlockType.CollectibleCapacity, typeof(CollectibleCapacityUnlockDetails));
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>

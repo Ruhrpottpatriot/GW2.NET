@@ -35,10 +35,14 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 
         /// <summary>The 'Dye' unlock type.</summary>
         [EnumMember(Value = "Dye")]
-        Dye = 1 << 3, 
+        Dye = 1 << 3,
 
         /// <summary>The 'Content' unlock type.</summary>
         [EnumMember(Value = "Content")]
-        Content = 1 << 4
+        Content = 1 << 4,
+
+        /// <summary>The 'Collectible Capacity' unlock type.</summary>
+        [EnumMember(Value = "CollectibleCapacity")]
+        CollectibleCapacity = 1 << 5
     }
 }

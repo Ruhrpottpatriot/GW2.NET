@@ -37,8 +37,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
             KnownTypes.Add(ConsumableType.Halloween, typeof(HalloweenConsumableDetails));
             KnownTypes.Add(ConsumableType.Immediate, typeof(ImmediateConsumableDetails));
             KnownTypes.Add(ConsumableType.Transmutation, typeof(TransmutationDetails));
+            KnownTypes.Add(ConsumableType.UnTransmutation, typeof(UnTransmutationDetails));
             KnownTypes.Add(ConsumableType.Unlock, typeof(UnlockDetails));
             KnownTypes.Add(ConsumableType.Utility, typeof(UtilityDetails));
+            KnownTypes.Add(ConsumableType.UpgradeRemoval, typeof(UpgradeRemovalDetails));
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
