@@ -8,12 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
-    using System.ComponentModel;
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Types;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents one of an item's infusion slots.</summary>
     public class InfusionSlot : JsonObject
@@ -22,10 +19,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
         [DataMember(Name = "flags", Order = 0)]
         public InfusionSlotTypes Flags { get; set; }
 
-        /// <summary>Gets or sets the infusion slot's item. Reserved for future use.</summary>
-        [DataMember(Name = "item", Order = 1)]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Item { get; set; }
+        /// <summary>Gets or sets the infusion slot's item identifier.</summary>
+        [DataMember(Name = "item_id", Order = 1)]
+        public int? ItemId { get; set; }
     }
 }
