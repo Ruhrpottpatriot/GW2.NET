@@ -6,7 +6,6 @@
 //   Represents a chat link that links to an amount of coins.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks
 {
     using System;

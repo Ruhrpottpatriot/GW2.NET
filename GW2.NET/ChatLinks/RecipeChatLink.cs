@@ -6,7 +6,6 @@
 //   Represents a chat link that links to a recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks
 {
     using System;

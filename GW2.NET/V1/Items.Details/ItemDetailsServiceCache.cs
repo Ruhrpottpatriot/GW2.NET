@@ -6,7 +6,6 @@
 //   Provides an implementation of the item details service, backed up by a caching provider.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details
 {
     using System;

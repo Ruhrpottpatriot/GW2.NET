@@ -6,11 +6,9 @@
 //   Represents a chat link that links to an item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks
 {
     using System;
-    using System.Collections.Generic;
 
     using GW2DotNET.Utilities;
 
@@ -32,15 +30,6 @@ namespace GW2DotNET.ChatLinks
         /// <summary>Gets the item identifier.</summary>
         public int ItemId { get; private set; }
 
-        /// <summary>Gets or sets the upgrade identifier.</summary>
-        public int? SuffixItemId { get; set; }
-
-        /// <summary>Gets or sets the secondary upgrade identifier.</summary>
-        public int? SecondarySuffixItemId { get; set; }
-
-        /// <summary>Gets or sets the skin identifier.</summary>
-        public int? SkinId { get; set; }
-
         /// <summary>Gets or sets the quantity.</summary>
         public int Quantity
         {
@@ -55,6 +44,15 @@ namespace GW2DotNET.ChatLinks
                 this.quantity = value;
             }
         }
+
+        /// <summary>Gets or sets the secondary upgrade identifier.</summary>
+        public int? SecondarySuffixItemId { get; set; }
+
+        /// <summary>Gets or sets the skin identifier.</summary>
+        public int? SkinId { get; set; }
+
+        /// <summary>Gets or sets the upgrade identifier.</summary>
+        public int? SuffixItemId { get; set; }
 
         /// <summary>Gets the bytes.</summary>
         /// <returns>The <see cref="byte"/> array.</returns>
