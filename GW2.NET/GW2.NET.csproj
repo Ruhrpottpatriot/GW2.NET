@@ -217,6 +217,8 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemAttributeCollection.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemAttributeType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemBuff.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\SkinnedItem.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\Consumable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableDetailsConverter.cs">
@@ -226,6 +228,7 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\AppearanceChangeDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\BoozeDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\ContractNpcDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\NourishmentDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\FoodDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnTransmutationDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UpgradeRemovalDetails.cs" />

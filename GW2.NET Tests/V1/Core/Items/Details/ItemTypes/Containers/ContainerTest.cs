@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
         public void Container_DetailsReferencesSourceItem()
         {
             var expected = this.container;
-            var actual = this.container.Details.Container;
+            var actual = this.container.Details.Item;
 
             Assert.AreEqual(expected, actual);
         }

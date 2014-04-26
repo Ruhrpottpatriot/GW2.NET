@@ -11,39 +11,33 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
     /// <summary>Represents a weapon.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class Weapon : Item
+    public class Weapon : SkinnedItem
     {
-        /// <summary>Infrastructure. Stores the item details.</summary>
-        private WeaponDetails details;
-
         /// <summary>Initializes a new instance of the <see cref="Weapon" /> class.</summary>
         public Weapon()
             : base(ItemType.Weapon)
         {
         }
 
-        /// <summary>Gets or sets the item's default skin identifier.</summary>
-        [DataMember(Name = "default_skin", Order = 100)]
-        public int DefaultSkin { get; set; }
-
         /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "weapon", Order = 101)]
-        public WeaponDetails Details
+        [DataMember(Name = "weapon", Order = 1000)]
+        [JsonConverter(typeof(WeaponDetailsConverter))]
+        public override ItemDetails Details
         {
             get
             {
-                return this.details;
+                return base.Details;
             }
 
             set
             {
-                this.details = value;
-                value.Weapon = this;
+                base.Details = value;
             }
         }
     }

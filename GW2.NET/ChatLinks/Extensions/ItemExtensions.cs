@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides static extension methods for the <see cref="Item" /> class.
+//   Provides static extension methods for the  class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks.Extensions
@@ -25,29 +25,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         {
             Preconditions.EnsureNotNull(instance);
             var chatLink = new ItemChatLink(instance.ItemId);
-            EquipmentDetails details = null;
-            var armor = instance as Armor;
-            if (armor != null)
-            {
-                details = armor.Details;
-            }
-            else
-            {
-                var back = instance as Back;
-                if (back != null)
-                {
-                    details = back.Details;
-                }
-                else
-                {
-                    var weapon = instance as Weapon;
-                    if (weapon != null)
-                    {
-                        details = weapon.Details;
-                    }
-                }
-            }
-
+            var details = instance.Details as EquipmentDetails;
             if (details != null)
             {
                 chatLink.SuffixItemId = details.SuffixItemId;

@@ -11,40 +11,41 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
     /// <summary>Represents a back item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class Back : Item
+    public class Back : SkinnedItem
     {
-        /// <summary>Infrastructure. Stores the item details.</summary>
-        private BackDetails details;
-
         /// <summary>Initializes a new instance of the <see cref="Back" /> class.</summary>
         public Back()
             : base(ItemType.Back)
         {
         }
 
-        /// <summary>Gets or sets the item's default skin identifier.</summary>
-        [DataMember(Name = "default_skin", Order = 100)]
-        public int DefaultSkin { get; set; }
-
         /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "back", Order = 101)]
-        public BackDetails Details
+        [DataMember(Name = "back", Order = 1000)]
+        public override ItemDetails Details
         {
             get
             {
-                return this.details;
+                return base.Details;
             }
 
             set
             {
-                this.details = value;
-                value.Back = this;
+                base.Details = value;
             }
+        }
+
+        /// <summary>The method that is called before de-serializing.</summary>
+        /// <param name="context">The streaming context.</param>
+        [OnDeserializing]
+        internal void OnDeserializingMethod(StreamingContext context)
+        {
+            this.Details = new BackDetails();
         }
     }
 }

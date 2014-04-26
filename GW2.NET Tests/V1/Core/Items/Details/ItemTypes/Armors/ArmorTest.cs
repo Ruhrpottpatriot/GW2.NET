@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Armors
         public void Armor_DetailsReferencesSourceItem()
         {
             var expected = this.armor;
-            var actual = this.armor.Details.Armor;
+            var actual = this.armor.Details.Item;
 
             Assert.AreEqual(expected, actual);
         }

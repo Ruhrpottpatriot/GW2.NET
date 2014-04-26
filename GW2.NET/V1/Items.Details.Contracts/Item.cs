@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about an in-game item.
+//   Provides the base class for types that represent an in-game item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts
@@ -13,16 +13,20 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
     using GW2DotNET.V1.Rendering.Contracts;
 
     using Newtonsoft.Json;
 
-    /// <summary>Represents detailed information about an in-game item.</summary>
+    /// <summary>Provides the base class for types that represent an in-game item.</summary>
     [JsonConverter(typeof(ItemConverter))]
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
         /// <summary>Infrastructure. Stores type information.</summary>
         private readonly ItemType type;
+
+        /// <summary>Infrastructure. Stores the item details.</summary>
+        private ItemDetails details;
 
         /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>
         /// <param name="type">The item's type.</param>
@@ -34,6 +38,20 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         /// <summary>Gets or sets the item's description.</summary>
         [DataMember(Name = "description", Order = 2)]
         public string Description { get; set; }
+
+        /// <summary>Gets or sets the item details.</summary>
+        public virtual ItemDetails Details
+        {
+            get
+            {
+                return this.details;
+            }
+
+            set
+            {
+                value.ItemId = ((this.details = value).Item = this).ItemId;
+            }
+        }
 
         /// <summary>Gets or sets the item's icon identifier for use with the render service.</summary>
         [DataMember(Name = "icon_file_id", Order = 7)]

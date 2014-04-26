@@ -17,23 +17,12 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 
     /// <summary>Represents detailed information about an edible item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class FoodDetails : ConsumableDetails
+    public class FoodDetails : NourishmentDetails
     {
         /// <summary>Initializes a new instance of the <see cref="FoodDetails" /> class.</summary>
         public FoodDetails()
             : base(ConsumableType.Food)
         {
         }
-
-        /// <summary>Gets or sets the food's effect description.</summary>
-        [DataMember(Name = "description", Order = 101)]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string Description { get; set; }
-
-        /// <summary>Gets or sets the food's effect duration.</summary>
-        [DataMember(Name = "duration_ms", Order = 100)]
-        [JsonConverter(typeof(JsonTimespanConverter))]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public TimeSpan? Duration { get; set; }
     }
 }

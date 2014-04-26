@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
         public void Consumable_DetailsReferencesSourceItem()
         {
             var expected = this.consumable;
-            var actual = this.consumable.Details.Consumable;
+            var actual = this.consumable.Details.Item;
 
             Assert.AreEqual(expected, actual);
         }

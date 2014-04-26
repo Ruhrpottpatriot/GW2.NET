@@ -10,16 +10,13 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
-
     using Newtonsoft.Json;
 
     /// <summary>Represents detailed information about a piece of combat equipment.</summary>
-    public abstract class EquipmentDetails : JsonObject
+    public abstract class EquipmentDetails : ItemDetails
     {
         /// <summary>Gets or sets the item's infix upgrade.</summary>
         [DataMember(Name = "infix_upgrade", Order = 101)]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public InfixUpgrade InfixUpgrade { get; set; }
 
         /// <summary>Gets or sets the item's infusion slots.</summary>

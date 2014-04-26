@@ -11,6 +11,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
@@ -18,9 +19,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Container : Item
     {
-        /// <summary>Infrastructure. Stores the item details.</summary>
-        private ContainerDetails details;
-
         /// <summary>Initializes a new instance of the <see cref="Container" /> class.</summary>
         public Container()
             : base(ItemType.Container)
@@ -29,17 +27,17 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
 
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "container", Order = 100)]
-        public ContainerDetails Details
+        [JsonConverter(typeof(ContainerDetailsConverter))]
+        public override ItemDetails Details
         {
             get
             {
-                return this.details;
+                return base.Details;
             }
 
             set
             {
-                this.details = value;
-                value.Container = this;
+                base.Details = value;
             }
         }
     }

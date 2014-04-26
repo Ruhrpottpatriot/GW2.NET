@@ -18,8 +18,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of a class that extends <see cref="ArmorDetails" /> from its <see cref="System.String" />
-    /// representation.</summary>
+    /// <summary>Converts an instance of a class that extends <see cref="ArmorDetails" /> from its <see cref="System.String" /> representation.</summary>
     public class ArmorDetailsConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>

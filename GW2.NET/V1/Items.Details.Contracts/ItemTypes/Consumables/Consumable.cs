@@ -11,6 +11,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
@@ -19,7 +20,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
     public class Consumable : Item
     {
         /// <summary>Infrastructure. Stores the item details.</summary>
-        private ConsumableDetails details;
+        private ItemDetails details;
 
         /// <summary>Initializes a new instance of the <see cref="Consumable" /> class.</summary>
         public Consumable()
@@ -29,7 +30,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
 
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "consumable", Order = 100)]
-        public ConsumableDetails Details
+        [JsonConverter(typeof(ConsumableDetailsConverter))]
+        public override ItemDetails Details
         {
             get
             {
@@ -39,7 +41,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
             set
             {
                 this.details = value;
-                value.Consumable = this;
+                value.Item = this;
+                value.ItemId = this.ItemId;
             }
         }
     }

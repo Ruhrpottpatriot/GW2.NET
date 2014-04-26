@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 
     /// <summary>Represents detailed information about a generic consumable item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class GenericConsumableDetails : ConsumableDetails
+    public class GenericConsumableDetails : NourishmentDetails
     {
         /// <summary>Initializes a new instance of the <see cref="GenericConsumableDetails" /> class.</summary>
         public GenericConsumableDetails()

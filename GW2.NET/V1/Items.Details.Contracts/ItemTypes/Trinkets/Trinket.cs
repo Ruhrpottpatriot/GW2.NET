@@ -11,6 +11,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
@@ -18,9 +19,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Trinket : Item
     {
-        /// <summary>Infrastructure. Stores the item details.</summary>
-        private TrinketDetails details;
-
         /// <summary>Initializes a new instance of the <see cref="Trinket" /> class.</summary>
         public Trinket()
             : base(ItemType.Trinket)
@@ -29,17 +27,17 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
 
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "trinket", Order = 100)]
-        public TrinketDetails Details
+        [JsonConverter(typeof(TrinketDetailsConverter))]
+        public override ItemDetails Details
         {
             get
             {
-                return this.details;
+                return base.Details;
             }
 
             set
             {
-                this.details = value;
-                value.Trinket = this;
+                base.Details = value;
             }
         }
     }

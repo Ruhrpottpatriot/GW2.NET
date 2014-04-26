@@ -11,16 +11,14 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
     /// <summary>Represents a gathering tool.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class GatheringTool : Item
+    public class GatheringTool : SkinnedItem
     {
-        /// <summary>Infrastructure. Stores the item details.</summary>
-        private GatheringToolDetails details;
-
         /// <summary>Initializes a new instance of the <see cref="GatheringTool" /> class.</summary>
         public GatheringTool()
             : base(ItemType.Gathering)
@@ -29,17 +27,17 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "gathering", Order = 100)]
-        public GatheringToolDetails Details
+        [JsonConverter(typeof(GatheringToolDetailsConverter))]
+        public override ItemDetails Details
         {
             get
             {
-                return this.details;
+                return base.Details;
             }
 
             set
             {
-                this.details = value;
-                value.GatheringTool = this;
+                base.Details = value;
             }
         }
     }
