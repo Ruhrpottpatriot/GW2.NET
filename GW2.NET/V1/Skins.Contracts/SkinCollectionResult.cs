@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Skins.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Wraps a collection of skin identifiers.</summary>
     public class SkinCollectionResult : JsonObject

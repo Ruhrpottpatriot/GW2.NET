@@ -120,9 +120,9 @@
     <Compile Include="V1\Common\ServiceResponses\ImageResponse.cs" />
     <Compile Include="V1\Common\ServiceResponses\JsonResponse.cs" />
     <Compile Include="V1\Common\ServiceResponses\TextResponse.cs" />
-    <Compile Include="V1\Common\Types\JsonDictionary.cs" />
-    <Compile Include="V1\Common\Types\JsonList.cs" />
-    <Compile Include="V1\Common\Types\JsonObject.cs" />
+    <Compile Include="V1\Common\Contracts\JsonDictionary.cs" />
+    <Compile Include="V1\Common\Contracts\JsonList.cs" />
+    <Compile Include="V1\Common\Contracts\JsonObject.cs" />
     <Compile Include="V1\Continents.Contracts\Continent.cs" />
     <Compile Include="V1\Continents.Contracts\ContinentCollection.cs" />
     <Compile Include="V1\Continents.Contracts\ContinentCollectionResult.cs" />

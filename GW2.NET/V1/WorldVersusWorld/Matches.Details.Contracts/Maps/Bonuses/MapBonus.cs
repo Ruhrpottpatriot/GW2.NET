@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Bonuses
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common;
 
     /// <summary>Represents a World versus World map's bonus.</summary>

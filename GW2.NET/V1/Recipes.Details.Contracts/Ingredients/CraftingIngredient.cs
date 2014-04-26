@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts.Ingredients
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Represents one of a recipe's ingredients.</summary>
     public class CraftingIngredient : JsonObject

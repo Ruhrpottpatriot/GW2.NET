@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
     using System.Globalization;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations;
 
     /// <summary>Represents details about a specific dynamic event.</summary>

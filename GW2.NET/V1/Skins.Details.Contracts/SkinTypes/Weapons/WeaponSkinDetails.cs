@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Weapons
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons;
 
     /// <summary>Represents detailed information about a weapon skin.</summary>

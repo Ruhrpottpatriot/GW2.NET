@@ -12,8 +12,8 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions
     using System.Drawing;
     using System.Runtime.Serialization;
 
+    using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Common.Types;
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions;
 
     using Newtonsoft.Json;

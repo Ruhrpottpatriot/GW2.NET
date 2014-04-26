@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names.Contracts
     using System.Globalization;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Represents a dynamic event and its localized name.</summary>
     public class DynamicEventName : JsonObject, IEquatable<DynamicEventName>, IComparable<DynamicEventName>

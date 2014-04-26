@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Represents a collection of World versus World matches.</summary>
     public class MatchCollection : JsonList<Match>

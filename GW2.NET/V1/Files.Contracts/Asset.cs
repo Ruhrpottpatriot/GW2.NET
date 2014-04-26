@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Files.Contracts
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.Rendering.Contracts;
 
     /// <summary>Represents information about a file that can be retrieved from the render service.</summary>

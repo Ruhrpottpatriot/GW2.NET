@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Represents a collection of dynamic events and their localized name.</summary>
     public class DynamicEventDetailsCollection : JsonDictionary<Guid, DynamicEventDetails>

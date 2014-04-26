@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Maps.Names.Contracts
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Represents a collection of maps and their localized name.</summary>
     public class MapNameCollection : JsonList<MapName>

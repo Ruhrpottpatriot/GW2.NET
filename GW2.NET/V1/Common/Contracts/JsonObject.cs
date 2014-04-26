@@ -6,7 +6,7 @@
 //   Provides the base class for strongly typed JSON objects.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Common.Types
+namespace GW2DotNET.V1.Common.Contracts
 {
     using System;
     using System.Collections.Generic;

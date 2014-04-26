@@ -15,8 +15,8 @@ namespace GW2DotNET.V1.Common
     using System.Threading.Tasks;
 
     using GW2DotNET.Utilities;
+    using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.Common.ServiceResponses;
-    using GW2DotNET.V1.Common.Types;
 
     /// <summary>Provides a plain .NET implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient

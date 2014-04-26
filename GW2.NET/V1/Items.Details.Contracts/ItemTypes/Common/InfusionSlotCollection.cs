@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Represents a collection of infusion slots.</summary>
     public class InfusionSlotCollection : JsonList<InfusionSlot>

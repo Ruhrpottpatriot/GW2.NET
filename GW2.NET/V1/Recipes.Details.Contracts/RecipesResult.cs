@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.Recipes.Contracts;
 
     /// <summary>Wraps a collection of recipe IDs.</summary>

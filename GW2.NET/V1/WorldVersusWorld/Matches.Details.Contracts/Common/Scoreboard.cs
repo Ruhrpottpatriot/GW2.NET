@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common
 {
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
 
     using Newtonsoft.Json;
 

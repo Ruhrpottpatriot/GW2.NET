@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System;
 
-    using GW2DotNET.V1.Common.Types;
+    using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Provides the base class for types that provide detailed information for specific item types.</summary>
     public abstract class ItemDetails : JsonObject, IEquatable<ItemDetails>
