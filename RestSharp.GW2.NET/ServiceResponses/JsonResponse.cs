@@ -39,7 +39,7 @@ namespace RestSharp.GW2DotNET.ServiceResponses
             using (var streamReader = new StreamReader(stream))
             using (var jsonReader = new JsonTextReader(streamReader))
             {
-                var serializer = JsonSerializer.Create();
+                var serializer = JsonSerializer.CreateDefault();
                 return serializer.Deserialize<TResult>(jsonReader);
             }
         }
