@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.Builds
         /// <summary>Infrastructure. Holds a reference to the fallback service.</summary>
         private readonly IBuildService fallbackService;
 
-        /// <summary>Initializes a new instance of the <see cref="BuildServiceCache"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="BuildServiceCache" /> class.</summary>
         public BuildServiceCache()
             : this(new BuildService())
         {

@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
     /// <summary>Provides the default implementation of the objective names service.</summary>
     public class ObjectiveNameService : ServiceBase, IObjectiveNameService
     {
-        /// <summary>Initializes a new instance of the <see cref="ObjectiveNameService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveNameService" /> class.</summary>
         public ObjectiveNameService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

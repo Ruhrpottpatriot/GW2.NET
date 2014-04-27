@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.Maps.Names
     /// <summary>Provides the default implementation of the map names service.</summary>
     public class MapNameService : ServiceBase, IMapNameService
     {
-        /// <summary>Initializes a new instance of the <see cref="MapNameService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MapNameService" /> class.</summary>
         public MapNameService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

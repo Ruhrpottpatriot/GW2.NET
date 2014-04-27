@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
     /// <summary>Provides the default implementation of the match details service.</summary>
     public class MatchDetailsService : ServiceBase, IMatchDetailsService
     {
-        /// <summary>Initializes a new instance of the <see cref="MatchDetailsService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MatchDetailsService" /> class.</summary>
         public MatchDetailsService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

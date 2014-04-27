@@ -11,7 +11,7 @@ namespace GW2DotNET.ChatLinks.Extensions
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Skins.Details.Contracts;
 
-    /// <summary>Provides static extension methods for the <see cref="Skin"/> class.</summary>
+    /// <summary>Provides static extension methods for the <see cref="Skin" /> class.</summary>
     public static class SkinExtensions
     {
         /// <summary>Gets a chat link for the specified skin.</summary>

@@ -25,7 +25,7 @@ namespace GW2DotNET.ChatLinks
         public int SkillId { get; private set; }
 
         /// <summary>Gets the bytes.</summary>
-        /// <returns>The <see cref="byte"/> array.</returns>
+        /// <returns>The <see cref="byte" /> array.</returns>
         protected override byte[] GetBytes()
         {
             var buffer = new byte[5];

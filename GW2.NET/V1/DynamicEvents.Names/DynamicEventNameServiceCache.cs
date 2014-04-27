@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names
         /// <summary>Infrastructure. Holds a reference to the fallback service.</summary>
         private readonly IDynamicEventNameService fallbackService;
 
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventNameServiceCache"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventNameServiceCache" /> class.</summary>
         public DynamicEventNameServiceCache()
             : this(new DynamicEventNameService())
         {

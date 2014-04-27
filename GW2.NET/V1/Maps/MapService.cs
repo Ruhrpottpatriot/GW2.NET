@@ -22,7 +22,7 @@ namespace GW2DotNET.V1.Maps
     /// <summary>Provides the default implementation of the maps service.</summary>
     public class MapService : ServiceBase, IMapService
     {
-        /// <summary>Initializes a new instance of the <see cref="MapService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MapService" /> class.</summary>
         public MapService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

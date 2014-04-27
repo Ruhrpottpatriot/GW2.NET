@@ -80,12 +80,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
             return this.Equals((ItemDetails)obj);
         }
 
-        /// <summary>
-        /// Serves as a hash function for a particular type. 
-        /// </summary>
-        /// <returns>
-        /// A hash code for the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
             unchecked

@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Builds.Contracts
         /// <summary>Indicates whether a build is greater than another.</summary>
         /// <param name="left">The build on the left side.</param>
         /// <param name="right">The build on the right side.</param>
-        /// <returns>true if the <paramref name="left"/> build is greater than the <paramref name="right"/> build; otherwise, false</returns>
+        /// <returns>true if the <paramref name="left" /> build is greater than the <paramref name="right" /> build; otherwise, false</returns>
         public static bool operator >(Build left, Build right)
         {
             if (left == null)
@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.Builds.Contracts
         /// <summary>Indicates whether a build is greater or equal to another.</summary>
         /// <param name="left">The build on the left side.</param>
         /// <param name="right">The build on the right side.</param>
-        /// <returns>true if the <paramref name="left"/> build is greater or equal to the <paramref name="right"/> build; otherwise, false</returns>
+        /// <returns>true if the <paramref name="left" /> build is greater or equal to the <paramref name="right" /> build; otherwise, false</returns>
         public static bool operator >=(Build left, Build right)
         {
             if (left == null)
@@ -78,7 +78,7 @@ namespace GW2DotNET.V1.Builds.Contracts
         /// <summary>Indicates whether a build is greater than another.</summary>
         /// <param name="left">The build on the left side.</param>
         /// <param name="right">The build on the right side.</param>
-        /// <returns>true if the <paramref name="left"/> build is smaller than the <paramref name="right"/> build; otherwise, false</returns>
+        /// <returns>true if the <paramref name="left" /> build is smaller than the <paramref name="right" /> build; otherwise, false</returns>
         public static bool operator <(Build left, Build right)
         {
             if (left == null)
@@ -96,7 +96,7 @@ namespace GW2DotNET.V1.Builds.Contracts
         /// <summary>Indicates whether a build is smaller or equal to another.</summary>
         /// <param name="left">The build on the left side.</param>
         /// <param name="right">The build on the right side.</param>
-        /// <returns>true if the <paramref name="left"/> build is smaller or equal to the <paramref name="right"/> build; otherwise, false</returns>
+        /// <returns>true if the <paramref name="left" /> build is smaller or equal to the <paramref name="right" /> build; otherwise, false</returns>
         public static bool operator <=(Build left, Build right)
         {
             if (left == null)

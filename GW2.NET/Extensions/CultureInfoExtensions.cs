@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides extension methods for the  type.
+//   Provides extension methods for the <see cref="System.Globalization.CultureInfo" /> type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Extensions

@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Maps.Floors
     /// <summary>Provides the default implementation of the map floor service.</summary>
     public class MapFloorService : ServiceBase, IMapFloorService
     {
-        /// <summary>Initializes a new instance of the <see cref="MapFloorService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MapFloorService" /> class.</summary>
         public MapFloorService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

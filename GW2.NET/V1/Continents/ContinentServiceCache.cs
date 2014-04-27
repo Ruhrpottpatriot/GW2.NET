@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Continents
         /// <summary>Infrastructure. Holds a reference to the fallback service.</summary>
         private readonly IContinentService fallbackService;
 
-        /// <summary>Initializes a new instance of the <see cref="ContinentServiceCache"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ContinentServiceCache" /> class.</summary>
         public ContinentServiceCache()
             : this(new ContinentService())
         {

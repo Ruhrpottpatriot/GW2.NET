@@ -24,7 +24,7 @@ namespace GW2DotNET.V1.Common
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes static members of the <see cref="ServiceBase"/> class.</summary>
+        /// <summary>Initializes static members of the <see cref="ServiceBase" /> class.</summary>
         static ServiceBase()
         {
             DefaultLanguage = new CultureInfo("en");

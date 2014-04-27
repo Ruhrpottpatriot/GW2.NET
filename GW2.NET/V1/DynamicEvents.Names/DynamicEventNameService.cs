@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names
     /// <summary>Provides the default implementation of the event names service.</summary>
     public class DynamicEventNameService : ServiceBase, IDynamicEventNameService
     {
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventNameService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventNameService" /> class.</summary>
         public DynamicEventNameService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

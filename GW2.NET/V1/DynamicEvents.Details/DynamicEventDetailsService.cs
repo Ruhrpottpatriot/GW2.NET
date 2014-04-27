@@ -22,7 +22,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
     /// <summary>Provides the default implementation of the event details service.</summary>
     public class DynamicEventDetailsService : ServiceBase, IDynamicEventDetailsService
     {
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsService" /> class.</summary>
         public DynamicEventDetailsService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

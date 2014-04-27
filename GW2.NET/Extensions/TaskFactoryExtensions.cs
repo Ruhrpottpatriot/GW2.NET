@@ -3,14 +3,14 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides extension methods for the  type.
+//   Provides extension methods for the <see cref="System.Threading.Tasks.TaskFactory" /> type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Extensions
 {
     using System.Threading.Tasks;
 
-    /// <summary>Provides extension methods for the <see cref="System.Threading.Tasks.TaskFactory"/> type.</summary>
+    /// <summary>Provides extension methods for the <see cref="System.Threading.Tasks.TaskFactory" /> type.</summary>
     public static class TaskFactoryExtensions
     {
         /// <summary>Creates a <see cref="System.Threading.Tasks.Task{TResult}"/> that's completed successfully with the specified result.</summary>

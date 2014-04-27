@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.Colors
     /// <summary>Provides the default implementation of the colors service.</summary>
     public class ColorService : ServiceBase, IColorService
     {
-        /// <summary>Initializes a new instance of the <see cref="ColorService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ColorService" /> class.</summary>
         public ColorService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

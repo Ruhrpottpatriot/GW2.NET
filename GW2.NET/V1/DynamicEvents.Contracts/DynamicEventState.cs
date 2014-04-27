@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Enumerates the possible states of a dynamic event.
+//   Enumerates the known states of a dynamic event.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents.Contracts

@@ -8,9 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
 {
-    using System;
-    using System.Runtime.Serialization;
-
     using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;

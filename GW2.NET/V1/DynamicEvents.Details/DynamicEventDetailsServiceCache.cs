@@ -31,7 +31,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         /// <summary>Infrastructure. Holds a reference to the fallback service.</summary>
         private readonly IDynamicEventDetailsService fallbackService;
 
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsServiceCache"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsServiceCache" /> class.</summary>
         public DynamicEventDetailsServiceCache()
             : this(new DynamicEventDetailsService())
         {

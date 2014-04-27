@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.Rendering
     /// <summary>Provides the default implementation of the render service.</summary>
     public class RenderService : ServiceBase, IRenderService
     {
-        /// <summary>Initializes a new instance of the <see cref="RenderService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="RenderService" /> class.</summary>
         public RenderService()
             : this(new ServiceClient(new Uri(Services.RenderServiceUrl)))
         {

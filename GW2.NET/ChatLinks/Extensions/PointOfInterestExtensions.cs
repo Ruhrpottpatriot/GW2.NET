@@ -11,7 +11,7 @@ namespace GW2DotNET.ChatLinks.Extensions
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest;
 
-    /// <summary>Provides static extension methods for the <see cref="PointOfInterest"/> class.</summary>
+    /// <summary>Provides static extension methods for the <see cref="PointOfInterest" /> class.</summary>
     public static class PointOfInterestExtensions
     {
         /// <summary>Gets a chat link for the specified point of interest.</summary>

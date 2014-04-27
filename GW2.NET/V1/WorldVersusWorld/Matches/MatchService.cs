@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
     /// <summary>Provides the default implementation of the matches service.</summary>
     public class MatchService : ServiceBase, IMatchService
     {
-        /// <summary>Initializes a new instance of the <see cref="MatchService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MatchService" /> class.</summary>
         public MatchService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

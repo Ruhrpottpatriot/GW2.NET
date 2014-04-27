@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Common.Caching
     /// <summary>Represents a set of eviction and expiration details for a specific cache entry..</summary>
     public class CacheItemParameters
     {
-        /// <summary>Initializes a new instance of the <see cref="CacheItemParameters"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="CacheItemParameters" /> class.</summary>
         public CacheItemParameters()
         {
             this.Updatable = true;
@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Common.Caching
         /// <summary>Gets or sets a value that indicates whether a cache entry should be evicted after a specified duration.</summary>
         public DateTimeOffset AbsoluteExpiration { get; set; }
 
-        /// <summary>Gets a collection of <see cref="ChangeMonitor"/> objects that are associated with a cache entry.</summary>
+        /// <summary>Gets a collection of <see cref="ChangeMonitor" /> objects that are associated with a cache entry.</summary>
         public ICollection<ChangeMonitor> ChangeMonitors { get; private set; }
 
         /// <summary>Gets or sets a value indicating whether to evict a cache entry..</summary>

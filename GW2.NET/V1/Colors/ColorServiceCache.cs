@@ -32,7 +32,7 @@ namespace GW2DotNET.V1.Colors
         /// <summary>Infrastructure. Holds a reference to the fallback service.</summary>
         private readonly IColorService fallbackService;
 
-        /// <summary>Initializes a new instance of the <see cref="ColorServiceCache"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ColorServiceCache" /> class.</summary>
         public ColorServiceCache()
             : this(new ColorService())
         {

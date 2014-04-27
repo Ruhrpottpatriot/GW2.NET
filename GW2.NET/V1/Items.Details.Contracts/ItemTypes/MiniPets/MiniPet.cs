@@ -9,7 +9,6 @@
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.MiniPets
 {
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 

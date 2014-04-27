@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Items.Details
         /// <summary>Infrastructure. Holds a reference to the fallback service.</summary>
         private readonly IItemDetailsService fallbackService;
 
-        /// <summary>Initializes a new instance of the <see cref="ItemDetailsServiceCache"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ItemDetailsServiceCache" /> class.</summary>
         public ItemDetailsServiceCache()
             : this(new ItemDetailsService())
         {

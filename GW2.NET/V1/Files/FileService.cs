@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Files
     /// <summary>Provides the default implementation of the files service.</summary>
     public class FileService : ServiceBase, IFileService
     {
-        /// <summary>Initializes a new instance of the <see cref="FileService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FileService" /> class.</summary>
         public FileService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

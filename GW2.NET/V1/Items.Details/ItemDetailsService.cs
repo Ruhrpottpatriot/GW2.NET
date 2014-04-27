@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Items.Details
     /// <summary>Provides the default implementation of the item details service.</summary>
     public class ItemDetailsService : ServiceBase, IItemDetailsService
     {
-        /// <summary>Initializes a new instance of the <see cref="ItemDetailsService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ItemDetailsService" /> class.</summary>
         public ItemDetailsService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

@@ -3,19 +3,16 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides static extension methods for the  class.
+//   Provides static extension methods for the <see cref="Item" /> class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks.Extensions
 {
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Items.Details.Contracts;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons;
 
-    /// <summary>Provides static extension methods for the <see cref="Item"/> class.</summary>
+    /// <summary>Provides static extension methods for the <see cref="Item" /> class.</summary>
     public static class ItemExtensions
     {
         /// <summary>Gets a chat link for the specified item.</summary>
@@ -25,14 +22,22 @@ namespace GW2DotNET.ChatLinks.Extensions
         {
             Preconditions.EnsureNotNull(instance);
             var chatLink = new ItemChatLink(instance.ItemId);
-            var details = instance.Details as EquipmentDetails;
-            if (details != null)
+            SetSuffixItems(chatLink, instance.Details as EquipmentDetails);
+            return chatLink;
+        }
+
+        /// <summary>Infrastructure. Configures the chat link for equipment with upgrade components.</summary>
+        /// <param name="chatLink">The chat link.</param>
+        /// <param name="equipmentDetails">The equipment details.</param>
+        private static void SetSuffixItems(ItemChatLink chatLink, EquipmentDetails equipmentDetails)
+        {
+            if (equipmentDetails == null)
             {
-                chatLink.SuffixItemId = details.SuffixItemId;
-                chatLink.SecondarySuffixItemId = details.SecondarySuffixItemId;
+                return;
             }
 
-            return chatLink;
+            chatLink.SuffixItemId = equipmentDetails.SuffixItemId;
+            chatLink.SecondarySuffixItemId = equipmentDetails.SecondarySuffixItemId;
         }
     }
 }

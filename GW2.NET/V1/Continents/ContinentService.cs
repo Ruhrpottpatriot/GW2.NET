@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Continents
     /// <summary>Provides the default implementation of the continents service.</summary>
     public class ContinentService : ServiceBase, IContinentService
     {
-        /// <summary>Initializes a new instance of the <see cref="ContinentService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ContinentService" /> class.</summary>
         public ContinentService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

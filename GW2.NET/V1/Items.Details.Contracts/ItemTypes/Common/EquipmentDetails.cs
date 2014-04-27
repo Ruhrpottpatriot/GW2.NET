@@ -10,8 +10,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a piece of combat equipment.</summary>
     public abstract class EquipmentDetails : ItemDetails
     {

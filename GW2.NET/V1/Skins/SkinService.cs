@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Skins
     /// <summary>Provides the default implementation of the skins service.</summary>
     public class SkinService : ServiceBase, ISkinService
     {
-        /// <summary>Initializes a new instance of the <see cref="SkinService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="SkinService" /> class.</summary>
         public SkinService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

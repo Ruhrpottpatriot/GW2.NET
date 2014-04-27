@@ -221,7 +221,7 @@ namespace GW2DotNET.V1
             this.skinDetailsService = skinDetailsService;
         }
 
-        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
         public ServiceManager()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)), new ServiceClient(new Uri(Services.RenderServiceUrl)))
         {

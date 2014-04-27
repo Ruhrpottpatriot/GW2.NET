@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.Worlds.Names
     /// <summary>Provides the default implementation of the world names service.</summary>
     public class WorldNameService : ServiceBase, IWorldNameService
     {
-        /// <summary>Initializes a new instance of the <see cref="WorldNameService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="WorldNameService" /> class.</summary>
         public WorldNameService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

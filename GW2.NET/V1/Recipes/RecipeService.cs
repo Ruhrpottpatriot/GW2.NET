@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Recipes
     /// <summary>Provides the default implementation of the recipes service.</summary>
     public class RecipeService : ServiceBase, IRecipeService
     {
-        /// <summary>Initializes a new instance of the <see cref="RecipeService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="RecipeService" /> class.</summary>
         public RecipeService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

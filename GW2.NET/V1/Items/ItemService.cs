@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Items
     /// <summary>Provides the default implementation of the items service.</summary>
     public class ItemService : ServiceBase, IItemService
     {
-        /// <summary>Initializes a new instance of the <see cref="ItemService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ItemService" /> class.</summary>
         public ItemService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Builds
     /// <summary>Provides the default implementation of the build service.</summary>
     public class BuildService : ServiceBase, IBuildService
     {
-        /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="BuildService" /> class.</summary>
         public BuildService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

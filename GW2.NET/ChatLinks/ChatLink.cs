@@ -23,19 +23,15 @@ namespace GW2DotNET.ChatLinks
         /// <summary>Gets the chat link type.</summary>
         public ChatLinkType Type { get; private set; }
 
-        /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </returns>
+        /// <summary>Returns a <see cref="T:System.String" /> that represents the current <see cref="T:System.Object" />.</summary>
+        /// <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:System.Object" />.</returns>
         public override string ToString()
         {
             return string.Format("[&{0}]", Convert.ToBase64String(this.GetBytes()));
         }
 
         /// <summary>Gets the bytes.</summary>
-        /// <returns>The <see cref="byte"/> array.</returns>
+        /// <returns>The <see cref="byte" /> array.</returns>
         protected abstract byte[] GetBytes();
     }
 }

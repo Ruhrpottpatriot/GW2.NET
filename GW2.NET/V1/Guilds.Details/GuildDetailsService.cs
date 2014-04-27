@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Guilds.Details
     /// <summary>Provides the default implementation of the guild details service.</summary>
     public class GuildDetailsService : ServiceBase, IGuildDetailsService
     {
-        /// <summary>Initializes a new instance of the <see cref="GuildDetailsService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="GuildDetailsService" /> class.</summary>
         public GuildDetailsService()
             : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
         {

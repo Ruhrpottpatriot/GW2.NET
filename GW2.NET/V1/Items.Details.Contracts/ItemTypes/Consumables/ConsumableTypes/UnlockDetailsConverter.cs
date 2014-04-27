@@ -3,8 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of a class that extends  from its
-//   representation.
+//   Converts an instance of a class that extends <see cref="UnlockDetails" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
@@ -18,8 +17,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of a class that extends <see cref="UnlockDetails" /> from its
-    /// <see cref="System.String" /> representation.</summary>
+    /// <summary>Converts an instance of a class that extends <see cref="UnlockDetails" /> from its <see cref="System.String" /> representation.</summary>
     public class UnlockDetailsConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>Backing field. Holds a dictionary of in-game unlock item types and their corresponding .NET class.</summary>
