@@ -3,14 +3,14 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about a piece of combat equipment.
+//   Provides the base class for types that provide detailed information about equipment.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Runtime.Serialization;
 
-    /// <summary>Represents detailed information about a piece of combat equipment.</summary>
+    /// <summary>Provides the base class for types that provide detailed information about equipment.</summary>
     public abstract class EquipmentDetails : ItemDetails
     {
         /// <summary>Gets or sets the item's infix upgrade.</summary>

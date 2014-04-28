@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the base class for types that provide detailed information for specific item types.
+//   Provides the base class for types that provide detailed information about specific items.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 
     using GW2DotNET.V1.Common.Contracts;
 
-    /// <summary>Provides the base class for types that provide detailed information for specific item types.</summary>
+    /// <summary>Provides the base class for types that provide detailed information about specific items.</summary>
     public abstract class ItemDetails : JsonObject, IEquatable<ItemDetails>
     {
         /// <summary>Gets or sets the item.</summary>
