@@ -18,24 +18,15 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
     [JsonConverter(typeof(ContainerDetailsConverter))]
     public abstract class ContainerDetails : ItemDetails
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly ContainerType type;
-
         /// <summary>Initializes a new instance of the <see cref="ContainerDetails"/> class.</summary>
         /// <param name="containerType">The container type.</param>
         protected ContainerDetails(ContainerType containerType)
         {
-            this.type = containerType;
+            this.Type = containerType;
         }
 
         /// <summary>Gets the container's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public ContainerType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public ContainerType Type { get; private set; }
     }
 }

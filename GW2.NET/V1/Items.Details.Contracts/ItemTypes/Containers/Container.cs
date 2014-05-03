@@ -11,7 +11,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
@@ -28,11 +27,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "container", Order = 100)]
         [JsonConverter(typeof(ContainerDetailsConverter))]
-        public override ItemDetails Details
+        public new ContainerDetails Details
         {
             get
             {
-                return base.Details;
+                return base.Details as ContainerDetails;
             }
 
             set
