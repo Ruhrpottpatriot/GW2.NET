@@ -19,9 +19,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
     [JsonConverter(typeof(DefaultJsonConverter))]
     public class Consumable : Item
     {
-        /// <summary>Infrastructure. Stores the item details.</summary>
-        private ItemDetails details;
-
         /// <summary>Initializes a new instance of the <see cref="Consumable" /> class.</summary>
         public Consumable()
             : base(ItemType.Consumable)
@@ -31,18 +28,16 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "consumable", Order = 100)]
         [JsonConverter(typeof(ConsumableDetailsConverter))]
-        public override ItemDetails Details
+        public new ConsumableDetails Details
         {
             get
             {
-                return this.details;
+                return base.Details as ConsumableDetails;
             }
 
             set
             {
-                this.details = value;
-                value.Item = this;
-                value.ItemId = this.ItemId;
+                base.Details = value;
             }
         }
     }

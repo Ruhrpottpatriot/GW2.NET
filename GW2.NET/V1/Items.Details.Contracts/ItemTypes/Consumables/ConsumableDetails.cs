@@ -18,24 +18,15 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
     [JsonConverter(typeof(ConsumableDetailsConverter))]
     public abstract class ConsumableDetails : ItemDetails
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly ConsumableType type;
-
         /// <summary>Initializes a new instance of the <see cref="ConsumableDetails"/> class.</summary>
         /// <param name="type">The consumable's type.</param>
         protected ConsumableDetails(ConsumableType type)
         {
-            this.type = type;
+            this.Type = type;
         }
 
         /// <summary>Gets the consumable's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public ConsumableType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public ConsumableType Type { get; private set; }
     }
 }

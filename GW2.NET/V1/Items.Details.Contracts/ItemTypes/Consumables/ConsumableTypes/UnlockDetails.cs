@@ -16,25 +16,16 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     [JsonConverter(typeof(UnlockDetailsConverter))]
     public abstract class UnlockDetails : ConsumableDetails
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly UnlockType unlockType;
-
         /// <summary>Initializes a new instance of the <see cref="UnlockDetails"/> class.</summary>
         /// <param name="type">The unlock item's unlock type.</param>
         protected UnlockDetails(UnlockType type)
             : base(ConsumableType.Unlock)
         {
-            this.unlockType = type;
+            this.UnlockType = type;
         }
 
         /// <summary>Gets the unlock item's unlock type.</summary>
         [DataMember(Name = "unlock_type", Order = 100)]
-        public UnlockType UnlockType
-        {
-            get
-            {
-                return this.unlockType;
-            }
-        }
+        public UnlockType UnlockType { get; private set; }
     }
 }
