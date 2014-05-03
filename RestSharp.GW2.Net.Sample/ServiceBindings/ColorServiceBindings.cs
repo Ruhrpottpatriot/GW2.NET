@@ -21,8 +21,7 @@ namespace RestSharp.GW2DotNET.Sample.ServiceBindings
         /// </summary>
         public override void Load()
         {
-            this.Bind<IColorService>().To<ColorService>().WhenInjectedInto<IColorServiceCache>();
-            this.Bind<IColorService>().To<ColorServiceCache>();
+            this.Bind<IColorService>().To<ColorService>();
         }
     }
 }

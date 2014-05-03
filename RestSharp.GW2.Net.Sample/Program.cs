@@ -100,8 +100,6 @@ namespace RestSharp.GW2DotNET.Sample
 
         private void Main(ServiceManager serviceManager)
         {
-            var colorService = ColorServiceCache.Default;
-
             do
             {
                 Console.WriteLine();
@@ -124,7 +122,7 @@ namespace RestSharp.GW2DotNET.Sample
                     {
                         case ConsoleKey.NumPad1:
                         case ConsoleKey.D1:
-                            this.PrintColors(colorService);
+                            this.PrintColors(serviceManager);
                             break;
 
                         case ConsoleKey.NumPad2:

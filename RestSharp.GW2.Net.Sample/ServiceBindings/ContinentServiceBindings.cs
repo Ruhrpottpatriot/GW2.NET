@@ -21,8 +21,7 @@ namespace RestSharp.GW2DotNET.Sample.ServiceBindings
         /// </summary>
         public override void Load()
         {
-            this.Bind<IContinentService>().To<ContinentService>().WhenInjectedInto<IContinentServiceCache>();
-            this.Bind<IContinentService>().To<ContinentServiceCache>();
+            this.Bind<IContinentService>().To<ContinentService>();
         }
     }
 }

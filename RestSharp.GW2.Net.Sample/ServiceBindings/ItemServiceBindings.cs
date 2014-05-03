@@ -23,10 +23,8 @@ namespace RestSharp.GW2DotNET.Sample.ServiceBindings
         /// </summary>
         public override void Load()
         {
-            this.Bind<IItemService>().To<ItemService>().WhenInjectedInto<IItemServiceCache>();
-            this.Bind<IItemService>().To<ItemServiceCache>();
-            this.Bind<IItemDetailsService>().To<ItemDetailsService>().WhenInjectedInto<IItemDetailsServiceCache>();
-            this.Bind<IItemDetailsService>().To<ItemDetailsServiceCache>();
+            this.Bind<IItemService>().To<ItemService>();
+            this.Bind<IItemDetailsService>().To<ItemDetailsService>();
         }
     }
 }

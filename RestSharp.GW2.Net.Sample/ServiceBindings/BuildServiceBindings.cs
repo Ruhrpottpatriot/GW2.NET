@@ -21,8 +21,7 @@ namespace RestSharp.GW2DotNET.Sample.ServiceBindings
         /// </summary>
         public override void Load()
         {
-            this.Bind<IBuildService>().To<BuildService>().WhenInjectedInto<IBuildServiceCache>();
-            this.Bind<IBuildService>().To<BuildServiceCache>();
+            this.Bind<IBuildService>().To<BuildService>();
         }
     }
 }
