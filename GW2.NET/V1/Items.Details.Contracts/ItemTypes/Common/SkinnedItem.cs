@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
     {
         /// <summary>Initializes a new instance of the <see cref="SkinnedItem"/> class.</summary>
         /// <param name="type">The item's type.</param>
-        public SkinnedItem(ItemType type)
+        protected SkinnedItem(ItemType type)
             : base(type)
         {
         }
