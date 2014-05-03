@@ -20,6 +20,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum UpgradeComponentFlags
     {
+        /// <summary>Indicates no upgrade component flags.</summary>
+        None = 0, 
+
         /// <summary>The 'Trinket' upgrade component flag.</summary>
         [EnumMember(Value = "Trinket")]
         Trinket = 1 << 0, 
