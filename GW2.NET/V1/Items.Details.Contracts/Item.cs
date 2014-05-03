@@ -22,9 +22,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     [JsonConverter(typeof(ItemConverter))]
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly ItemType type;
-
         /// <summary>Infrastructure. Stores the item details.</summary>
         private ItemDetails details;
 
@@ -32,7 +29,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         /// <param name="type">The item's type.</param>
         protected Item(ItemType type)
         {
-            this.type = type;
+            this.Type = type;
         }
 
         /// <summary>Gets or sets the item's description.</summary>
@@ -95,13 +92,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
 
         /// <summary>Gets the item's type.</summary>
         [DataMember(Name = "type", Order = 3)]
-        public ItemType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public ItemType Type { get; private set; }
 
         /// <summary>Gets or sets the item's vendor value.</summary>
         [DataMember(Name = "vendor_value", Order = 6)]
