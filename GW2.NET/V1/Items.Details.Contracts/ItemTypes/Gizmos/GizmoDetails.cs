@@ -18,24 +18,15 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
     [JsonConverter(typeof(GizmoDetailsConverter))]
     public abstract class GizmoDetails : ItemDetails
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly GizmoType type;
-
         /// <summary>Initializes a new instance of the <see cref="GizmoDetails"/> class.</summary>
         /// <param name="gizmoType">The gizmo type.</param>
         protected GizmoDetails(GizmoType gizmoType)
         {
-            this.type = gizmoType;
+            this.Type = gizmoType;
         }
 
         /// <summary>Gets the gizmo's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public GizmoType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public GizmoType Type { get; private set; }
     }
 }
