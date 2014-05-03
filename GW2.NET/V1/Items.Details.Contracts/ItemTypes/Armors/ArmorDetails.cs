@@ -18,14 +18,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
     [JsonConverter(typeof(ArmorDetailsConverter))]
     public abstract class ArmorDetails : EquipmentDetails
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly ArmorType type;
-
         /// <summary>Initializes a new instance of the <see cref="ArmorDetails"/> class.</summary>
         /// <param name="armorType">The armor type.</param>
         protected ArmorDetails(ArmorType armorType)
         {
-            this.type = armorType;
+            this.Type = armorType;
         }
 
         /// <summary>Gets or sets the armor's defense stat.</summary>
@@ -34,13 +31,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
 
         /// <summary>Gets the armor's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public ArmorType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public ArmorType Type { get; private set; }
 
         /// <summary>Gets or sets the armor's weight class.</summary>
         [DataMember(Name = "weight_class", Order = 1)]
