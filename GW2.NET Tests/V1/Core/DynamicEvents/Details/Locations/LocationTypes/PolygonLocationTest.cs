@@ -59,7 +59,7 @@ namespace GW2DotNET.V1.Core.DynamicEvents.Details.Locations.LocationTypes
         public void PolygonLocation_PointsReflectsInput()
         {
             var expected = new PointCollection();
-            PointCollection actual = this.polygonLocation.PointCollection;
+            PointCollection actual = this.polygonLocation.Points;
 
             Assert.AreEqual(expected, actual);
         }

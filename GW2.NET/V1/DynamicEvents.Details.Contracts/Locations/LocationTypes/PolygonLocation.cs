@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
 
         /// <summary>Gets or sets the series of points in the polygon.</summary>
         [DataMember(Name = "points", Order = 5)]
-        public PointCollection PointCollection { get; set; }
+        public PointCollection Points { get; set; }
 
         /// <summary>Gets or sets the location's range on the z-axis.</summary>
         [DataMember(Name = "z_range", Order = 4)]
