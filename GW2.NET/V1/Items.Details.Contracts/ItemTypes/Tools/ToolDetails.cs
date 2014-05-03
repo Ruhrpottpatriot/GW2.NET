@@ -18,14 +18,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
     [JsonConverter(typeof(ToolDetailsConverter))]
     public abstract class ToolDetails : ItemDetails
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly ToolType type;
-
         /// <summary>Initializes a new instance of the <see cref="ToolDetails"/> class.</summary>
         /// <param name="toolType">The tool's type.</param>
         protected ToolDetails(ToolType toolType)
         {
-            this.type = toolType;
+            this.Type = toolType;
         }
 
         /// <summary>Gets or sets the tool's charges.</summary>
@@ -34,12 +31,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
 
         /// <summary>Gets the tool's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public ToolType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public ToolType Type { get; private set; }
     }
 }

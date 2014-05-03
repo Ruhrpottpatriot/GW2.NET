@@ -11,7 +11,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
@@ -28,11 +27,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "tool", Order = 100)]
         [JsonConverter(typeof(ToolDetailsConverter))]
-        public override ItemDetails Details
+        public new ToolDetails Details
         {
             get
             {
-                return base.Details;
+                return base.Details as ToolDetails;
             }
 
             set
