@@ -11,7 +11,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
@@ -27,25 +26,17 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
 
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "bag", Order = 100)]
-        public override ItemDetails Details
+        public new BagDetails Details
         {
             get
             {
-                return base.Details;
+                return base.Details as BagDetails;
             }
 
             set
             {
                 base.Details = value;
             }
-        }
-
-        /// <summary>The method that is called before de-serializing.</summary>
-        /// <param name="context">The streaming context.</param>
-        [OnDeserializing]
-        internal void OnDeserializingMethod(StreamingContext context)
-        {
-            this.Details = new BagDetails();
         }
     }
 }
