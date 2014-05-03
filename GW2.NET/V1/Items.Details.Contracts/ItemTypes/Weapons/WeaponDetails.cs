@@ -18,14 +18,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
     [JsonConverter(typeof(WeaponDetailsConverter))]
     public abstract class WeaponDetails : EquipmentDetails
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly WeaponType type;
-
         /// <summary>Initializes a new instance of the <see cref="WeaponDetails"/> class.</summary>
         /// <param name="weaponType">The weapon's type.</param>
         protected WeaponDetails(WeaponType weaponType)
         {
-            this.type = weaponType;
+            this.Type = weaponType;
         }
 
         /// <summary>Gets or sets the weapon's damage type.</summary>
@@ -46,12 +43,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 
         /// <summary>Gets the weapon's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public WeaponType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public WeaponType Type { get; private set; }
     }
 }

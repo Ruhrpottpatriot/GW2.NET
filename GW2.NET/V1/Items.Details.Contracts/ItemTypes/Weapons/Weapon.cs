@@ -28,11 +28,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "weapon", Order = 1000)]
         [JsonConverter(typeof(WeaponDetailsConverter))]
-        public override ItemDetails Details
+        public new WeaponDetails Details
         {
             get
             {
-                return base.Details;
+                return base.Details as WeaponDetails;
             }
 
             set
