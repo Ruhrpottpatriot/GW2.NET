@@ -27,25 +27,17 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs
 
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "back", Order = 1000)]
-        public override ItemDetails Details
+        public new BackDetails Details
         {
             get
             {
-                return base.Details;
+                return base.Details as BackDetails;
             }
 
             set
             {
                 base.Details = value;
             }
-        }
-
-        /// <summary>The method that is called before de-serializing.</summary>
-        /// <param name="context">The streaming context.</param>
-        [OnDeserializing]
-        internal void OnDeserializingMethod(StreamingContext context)
-        {
-            this.Details = new BackDetails();
         }
     }
 }
