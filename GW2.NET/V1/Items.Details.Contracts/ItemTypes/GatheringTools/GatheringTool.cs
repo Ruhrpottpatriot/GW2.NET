@@ -28,11 +28,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "gathering", Order = 100)]
         [JsonConverter(typeof(GatheringToolDetailsConverter))]
-        public override ItemDetails Details
+        public new GatheringToolDetails Details
         {
             get
             {
-                return base.Details;
+                return base.Details as GatheringToolDetails;
             }
 
             set

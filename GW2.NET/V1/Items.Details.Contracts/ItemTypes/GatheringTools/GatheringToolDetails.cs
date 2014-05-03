@@ -18,24 +18,15 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
     [JsonConverter(typeof(GatheringToolDetailsConverter))]
     public abstract class GatheringToolDetails : ItemDetails
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly GatheringToolType type;
-
         /// <summary>Initializes a new instance of the <see cref="GatheringToolDetails"/> class.</summary>
         /// <param name="gatheringToolType">The gathering tool type.</param>
         protected GatheringToolDetails(GatheringToolType gatheringToolType)
         {
-            this.type = gatheringToolType;
+            this.Type = gatheringToolType;
         }
 
         /// <summary>Gets the gathering tool's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public GatheringToolType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        public GatheringToolType Type { get; private set; }
     }
 }
