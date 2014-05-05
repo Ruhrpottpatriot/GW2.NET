@@ -489,7 +489,6 @@
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameServiceRequest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
