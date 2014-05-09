@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Builds.Contracts
     {
         /// <summary>Gets or sets the current build ID of the game.</summary>
         [DataMember(Name = "build_id", Order = 0)]
-        public int BuildId { get; set; }
+        public virtual int BuildId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -114,7 +114,7 @@ namespace GW2DotNET.V1.Builds.Contracts
         /// <summary>Compares the current object with another object of the same type.</summary>
         /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Build other)
+        public virtual int CompareTo(Build other)
         {
             return other == null ? 1 : this.BuildId.CompareTo(other.BuildId);
         }
@@ -122,7 +122,7 @@ namespace GW2DotNET.V1.Builds.Contracts
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(Build other)
+        public virtual bool Equals(Build other)
         {
             if (object.ReferenceEquals(null, other))
             {
