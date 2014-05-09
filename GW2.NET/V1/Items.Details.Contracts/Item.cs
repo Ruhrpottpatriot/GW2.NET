@@ -9,9 +9,9 @@
 namespace GW2DotNET.V1.Items.Details.Contracts
 {
     using System;
-    using System.Globalization;
     using System.Runtime.Serialization;
 
+    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
     using GW2DotNET.V1.Rendering.Contracts;
@@ -28,6 +28,13 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         {
             this.Type = type;
         }
+
+        /// <summary>Gets or sets the item's build.</summary>
+        public virtual Build Build { get; set; }
+
+        /// <summary>Gets or sets the item's build number.</summary>
+        [DataMember(Name = "build_id", Order = 13)]
+        public virtual int BuildId { get; set; }
 
         /// <summary>Gets or sets the item's description.</summary>
         [DataMember(Name = "description", Order = 2)]
