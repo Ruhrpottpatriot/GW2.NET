@@ -58,7 +58,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
 
         /// <summary>Gets or sets the language info.</summary>
         [DataMember(Name = "lang", Order = 12)]
-        public virtual CultureInfo Language { get; set; }
+        public virtual string Language { get; set; }
 
         /// <summary>Gets or sets the item's level.</summary>
         [DataMember(Name = "level", Order = 4)]
