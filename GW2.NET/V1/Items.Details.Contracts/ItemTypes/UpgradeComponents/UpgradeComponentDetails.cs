@@ -27,26 +27,26 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
 
         /// <summary>Gets or sets the upgrade component's bonuses.</summary>
         [DataMember(Name = "bonuses", Order = 3)]
-        public UpgradeBonusCollection Bonuses { get; set; }
+        public virtual UpgradeBonusCollection Bonuses { get; set; }
 
         /// <summary>Gets or sets the upgrade component's flags.</summary>
         [DataMember(Name = "flags", Order = 1)]
-        public UpgradeComponentFlags Flags { get; set; }
+        public virtual UpgradeComponentFlags Flags { get; set; }
 
         /// <summary>Gets or sets the upgrade component's infix upgrade.</summary>
         [DataMember(Name = "infix_upgrade", Order = 4)]
-        public InfixUpgrade InfixUpgrade { get; set; }
+        public virtual InfixUpgrade InfixUpgrade { get; set; }
 
         /// <summary>Gets or sets the upgrade component's infusion upgrades.</summary>
         [DataMember(Name = "infusion_upgrade_flags", Order = 2)]
-        public InfusionSlotTypes InfusionUpgradeFlags { get; set; }
+        public virtual InfusionSlotTypes InfusionUpgradeFlags { get; set; }
 
         /// <summary>Gets or sets the upgrade component's suffix.</summary>
         [DataMember(Name = "suffix", Order = 5)]
-        public string Suffix { get; set; }
+        public virtual string Suffix { get; set; }
 
-        /// <summary>Gets the upgrade component's type.</summary>
+        /// <summary>Gets or sets the upgrade component's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public UpgradeComponentType Type { get; private set; }
+        protected UpgradeComponentType Type { get; set; }
     }
 }

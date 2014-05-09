@@ -22,9 +22,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     [JsonConverter(typeof(ItemConverter))]
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
-        /// <summary>Infrastructure. Stores the item details.</summary>
-        private ItemDetails details;
-
         /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>
         /// <param name="type">The item's type.</param>
         protected Item(ItemType type)
@@ -34,69 +31,58 @@ namespace GW2DotNET.V1.Items.Details.Contracts
 
         /// <summary>Gets or sets the item's description.</summary>
         [DataMember(Name = "description", Order = 2)]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         /// <summary>Gets or sets the item details.</summary>
-        public virtual ItemDetails Details
-        {
-            get
-            {
-                return this.details;
-            }
-
-            set
-            {
-                value.ItemId = ((this.details = value).Item = this).ItemId;
-            }
-        }
+        public virtual ItemDetails Details { get; set; }
 
         /// <summary>Gets or sets the item's icon identifier for use with the render service.</summary>
         [DataMember(Name = "icon_file_id", Order = 7)]
-        public int FileId { get; set; }
+        public virtual int FileId { get; set; }
 
         /// <summary>Gets or sets the item's icon signature for use with the render service.</summary>
         [DataMember(Name = "icon_file_signature", Order = 8)]
-        public string FileSignature { get; set; }
+        public virtual string FileSignature { get; set; }
 
         /// <summary>Gets or sets the item's additional flags.</summary>
         [DataMember(Name = "flags", Order = 10)]
-        public ItemFlags Flags { get; set; }
+        public virtual ItemFlags Flags { get; set; }
 
         /// <summary>Gets or sets the item's game types.</summary>
         [DataMember(Name = "game_types", Order = 9)]
-        public GameRestrictions GameTypes { get; set; }
+        public virtual GameRestrictions GameTypes { get; set; }
 
         /// <summary>Gets or sets the item's identifier.</summary>
         [DataMember(Name = "item_id", Order = 0)]
-        public int ItemId { get; set; }
+        public virtual int ItemId { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
         [DataMember(Name = "lang", Order = 12)]
-        public CultureInfo Language { get; set; }
+        public virtual CultureInfo Language { get; set; }
 
         /// <summary>Gets or sets the item's level.</summary>
         [DataMember(Name = "level", Order = 4)]
-        public int Level { get; set; }
+        public virtual int Level { get; set; }
 
         /// <summary>Gets or sets the item's name.</summary>
         [DataMember(Name = "name", Order = 1)]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         /// <summary>Gets or sets the item's rarity.</summary>
         [DataMember(Name = "rarity", Order = 5)]
-        public ItemRarity Rarity { get; set; }
+        public virtual ItemRarity Rarity { get; set; }
 
         /// <summary>Gets or sets the item's restrictions.</summary>
         [DataMember(Name = "restrictions", Order = 11)]
-        public ItemRestrictions Restrictions { get; set; }
-
-        /// <summary>Gets the item's type.</summary>
-        [DataMember(Name = "type", Order = 3)]
-        public ItemType Type { get; private set; }
+        public virtual ItemRestrictions Restrictions { get; set; }
 
         /// <summary>Gets or sets the item's vendor value.</summary>
         [DataMember(Name = "vendor_value", Order = 6)]
-        public int VendorValue { get; set; }
+        public virtual int VendorValue { get; set; }
+
+        /// <summary>Gets or sets the item's type.</summary>
+        [DataMember(Name = "type", Order = 3)]
+        protected ItemType Type { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -119,7 +105,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         /// <summary>Compares the current object with another object of the same type.</summary>
         /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Item other)
+        public virtual int CompareTo(Item other)
         {
             if (other == null)
             {
@@ -132,7 +118,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(Item other)
+        public virtual bool Equals(Item other)
         {
             if (object.ReferenceEquals(null, other))
             {
@@ -175,6 +161,20 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         public override int GetHashCode()
         {
             return this.ItemId;
+        }
+
+        /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>
+        /// <param name="context">The streaming context.</param>
+        [OnDeserialized]
+        private void OnDeserialized(StreamingContext context)
+        {
+            if (this.Details == null)
+            {
+                return;
+            }
+
+            this.Details.Item = this;
+            this.Details.ItemId = this.ItemId;
         }
     }
 }

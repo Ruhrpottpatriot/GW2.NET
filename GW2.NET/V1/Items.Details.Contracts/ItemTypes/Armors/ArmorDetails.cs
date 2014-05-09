@@ -27,14 +27,14 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
 
         /// <summary>Gets or sets the armor's defense stat.</summary>
         [DataMember(Name = "defense", Order = 2)]
-        public int Defense { get; set; }
-
-        /// <summary>Gets the armor's type.</summary>
-        [DataMember(Name = "type", Order = 0)]
-        public ArmorType Type { get; private set; }
+        public virtual int Defense { get; set; }
 
         /// <summary>Gets or sets the armor's weight class.</summary>
         [DataMember(Name = "weight_class", Order = 1)]
-        public ArmorWeightClass WeightClass { get; set; }
+        public virtual ArmorWeightClass WeightClass { get; set; }
+
+        /// <summary>Gets or sets the armor's type.</summary>
+        [DataMember(Name = "type", Order = 0)]
+        protected ArmorType Type { get; set; }
     }
 }

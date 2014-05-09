@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     using GW2DotNET.V1.Items.Contracts;
 
     /// <summary>Wraps a collection of item IDs.</summary>
-    public class ItemsResult : JsonObject
+    public sealed class ItemsResult : JsonObject
     {
         /// <summary>Gets or sets a collection of item IDs.</summary>
         [DataMember(Name = "items")]

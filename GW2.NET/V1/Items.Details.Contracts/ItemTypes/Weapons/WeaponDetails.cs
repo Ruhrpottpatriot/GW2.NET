@@ -27,22 +27,22 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 
         /// <summary>Gets or sets the weapon's damage type.</summary>
         [DataMember(Name = "damage_type", Order = 1)]
-        public WeaponDamageType DamageType { get; set; }
+        public virtual WeaponDamageType DamageType { get; set; }
 
         /// <summary>Gets or sets the weapon's defense.</summary>
         [DataMember(Name = "defense", Order = 4)]
-        public int Defense { get; set; }
+        public virtual int Defense { get; set; }
 
         /// <summary>Gets or sets the weapon's maximum power.</summary>
         [DataMember(Name = "max_power", Order = 3)]
-        public int MaximumPower { get; set; }
+        public virtual int MaximumPower { get; set; }
 
         /// <summary>Gets or sets the weapon's minimum power.</summary>
         [DataMember(Name = "min_power", Order = 2)]
-        public int MinimumPower { get; set; }
+        public virtual int MinimumPower { get; set; }
 
-        /// <summary>Gets the weapon's type.</summary>
+        /// <summary>Gets or sets the weapon's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public WeaponType Type { get; private set; }
+        protected WeaponType Type { get; set; }
     }
 }

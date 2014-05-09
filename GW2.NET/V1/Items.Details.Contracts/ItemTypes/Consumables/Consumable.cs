@@ -11,7 +11,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
@@ -28,7 +27,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "consumable", Order = 100)]
         [JsonConverter(typeof(ConsumableDetailsConverter))]
-        public new ConsumableDetails Details
+        public new virtual ConsumableDetails Details
         {
             get
             {

@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "upgrade_component", Order = 100)]
         [JsonConverter(typeof(UpgradeComponentDetailsConverter))]
-        public new UpgradeComponentDetails Details
+        public new virtual UpgradeComponentDetails Details
         {
             get
             {

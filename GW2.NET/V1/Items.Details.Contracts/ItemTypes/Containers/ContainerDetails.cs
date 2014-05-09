@@ -25,8 +25,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
             this.Type = containerType;
         }
 
-        /// <summary>Gets the container's type.</summary>
+        /// <summary>Gets or sets the container's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public ContainerType Type { get; private set; }
+        protected ContainerType Type { get; set; }
     }
 }

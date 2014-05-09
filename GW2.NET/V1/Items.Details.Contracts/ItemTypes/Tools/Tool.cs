@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "tool", Order = 100)]
         [JsonConverter(typeof(ToolDetailsConverter))]
-        public new ToolDetails Details
+        public new virtual ToolDetails Details
         {
             get
             {

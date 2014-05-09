@@ -27,10 +27,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
 
         /// <summary>Gets or sets the tool's charges.</summary>
         [DataMember(Name = "charges", Order = 1)]
-        public int Charges { get; set; }
+        public virtual int Charges { get; set; }
 
-        /// <summary>Gets the tool's type.</summary>
+        /// <summary>Gets or sets the tool's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public ToolType Type { get; private set; }
+        protected ToolType Type { get; set; }
     }
 }

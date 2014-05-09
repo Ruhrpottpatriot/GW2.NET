@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "armor", Order = 1000)]
         [JsonConverter(typeof(ArmorDetailsConverter))]
-        public new ArmorDetails Details
+        public new virtual ArmorDetails Details
         {
             get
             {

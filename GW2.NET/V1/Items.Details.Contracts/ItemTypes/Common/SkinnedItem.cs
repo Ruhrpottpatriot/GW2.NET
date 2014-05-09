@@ -22,6 +22,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 
         /// <summary>Gets or sets the item's default skin identifier.</summary>
         [DataMember(Name = "default_skin", Order = 100)]
-        public int DefaultSkin { get; set; }
+        public virtual int DefaultSkin { get; set; }
     }
 }

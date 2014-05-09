@@ -12,18 +12,15 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 
     using GW2DotNET.V1.Common.Contracts;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents item stats that are inherent to a specific item.</summary>
     public class InfixUpgrade : JsonObject
     {
         /// <summary>Gets or sets the item's attributes.</summary>
         [DataMember(Name = "attributes", Order = 1)]
-        public ItemAttributeCollection Attributes { get; set; }
+        public virtual ItemAttributeCollection Attributes { get; set; }
 
         /// <summary>Gets or sets the item's buff.</summary>
         [DataMember(Name = "buff", Order = 0)]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public ItemBuff Buff { get; set; }
+        public virtual ItemBuff Buff { get; set; }
     }
 }

@@ -28,12 +28,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 
         /// <summary>Gets or sets the nourishment's effect description.</summary>
         [DataMember(Name = "description", Order = 101)]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         /// <summary>Gets or sets the nourishment's effect duration.</summary>
         [DataMember(Name = "duration_ms", Order = 100)]
         [JsonConverter(typeof(JsonTimespanConverter))]
-        public TimeSpan? Duration { get; set; }
+        public virtual TimeSpan? Duration { get; set; }
     }
 }

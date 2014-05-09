@@ -25,8 +25,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
             this.Type = trinketType;
         }
 
-        /// <summary>Gets the trinket's type.</summary>
+        /// <summary>Gets or sets the trinket's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public TrinketType Type { get; private set; }
+        protected TrinketType Type { get; set; }
     }
 }

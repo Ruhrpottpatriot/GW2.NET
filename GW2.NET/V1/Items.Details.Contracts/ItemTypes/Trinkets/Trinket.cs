@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "trinket", Order = 100)]
         [JsonConverter(typeof(TrinketDetailsConverter))]
-        public new TrinketDetails Details
+        public new virtual TrinketDetails Details
         {
             get
             {

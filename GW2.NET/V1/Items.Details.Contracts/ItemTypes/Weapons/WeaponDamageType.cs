@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
     public enum WeaponDamageType
     {
         /// <summary>The 'Unknown' damage type.</summary>
-        Unknown = 0,
+        Unknown = 0, 
 
         /// <summary>The 'Fire' damage type.</summary>
         [EnumMember(Value = "Fire")]

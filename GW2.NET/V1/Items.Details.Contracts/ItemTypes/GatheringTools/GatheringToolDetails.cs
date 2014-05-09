@@ -25,8 +25,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
             this.Type = gatheringToolType;
         }
 
-        /// <summary>Gets the gathering tool's type.</summary>
+        /// <summary>Gets or sets the gathering tool's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public GatheringToolType Type { get; private set; }
+        protected GatheringToolType Type { get; set; }
     }
 }

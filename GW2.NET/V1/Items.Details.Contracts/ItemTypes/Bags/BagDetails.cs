@@ -21,10 +21,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
         /// <summary>Gets or sets a value indicating whether this is an invisible bag.</summary>
         [DataMember(Name = "no_sell_or_sort", Order = 0)]
         [JsonConverter(typeof(JsonBooleanConverter))]
-        public bool NoSellOrSort { get; set; }
+        public virtual bool NoSellOrSort { get; set; }
 
         /// <summary>Gets or sets the bag's capacity.</summary>
         [DataMember(Name = "size", Order = 1)]
-        public int Size { get; set; }
+        public virtual int Size { get; set; }
     }
 }

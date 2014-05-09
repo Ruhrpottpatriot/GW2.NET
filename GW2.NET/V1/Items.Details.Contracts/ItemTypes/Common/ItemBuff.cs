@@ -17,10 +17,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
     {
         /// <summary>Gets or sets the buff's description.</summary>
         [DataMember(Name = "description", Order = 1)]
-        public string Description { get; set; }
+        public virtual string Description { get; set; }
 
         /// <summary>Gets or sets the buff's skill ID.</summary>
         [DataMember(Name = "skill_id", Order = 0)]
-        public string SkillId { get; set; }
+        public virtual string SkillId { get; set; }
     }
 }

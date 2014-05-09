@@ -26,7 +26,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
 
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "bag", Order = 100)]
-        public new BagDetails Details
+        public new virtual BagDetails Details
         {
             get
             {

@@ -25,8 +25,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
             this.Type = gizmoType;
         }
 
-        /// <summary>Gets the gizmo's type.</summary>
+        /// <summary>Gets or sets the gizmo's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public GizmoType Type { get; private set; }
+        protected GizmoType Type { get; set; }
     }
 }

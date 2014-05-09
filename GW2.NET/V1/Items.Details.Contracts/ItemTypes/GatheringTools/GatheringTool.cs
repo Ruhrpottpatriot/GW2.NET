@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "gathering", Order = 100)]
         [JsonConverter(typeof(GatheringToolDetailsConverter))]
-        public new GatheringToolDetails Details
+        public new virtual GatheringToolDetails Details
         {
             get
             {

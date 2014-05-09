@@ -17,10 +17,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
     {
         /// <summary>Gets or sets the attribute's modifier.</summary>
         [DataMember(Name = "modifier", Order = 1)]
-        public int Modifier { get; set; }
+        public virtual int Modifier { get; set; }
 
         /// <summary>Gets or sets the attribute's type.</summary>
         [DataMember(Name = "attribute", Order = 0)]
-        public ItemAttributeType Type { get; set; }
+        public virtual ItemAttributeType Type { get; set; }
     }
 }

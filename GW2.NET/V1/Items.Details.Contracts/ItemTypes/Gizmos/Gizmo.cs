@@ -11,7 +11,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
@@ -28,7 +27,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "gizmo", Order = 100)]
         [JsonConverter(typeof(GizmoDetailsConverter))]
-        public new GizmoDetails Details
+        public new virtual GizmoDetails Details
         {
             get
             {

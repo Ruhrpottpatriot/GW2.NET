@@ -26,6 +26,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 
         /// <summary>Gets or sets the dye's color ID.</summary>
         [DataMember(Name = "color_id", Order = 101)]
-        public int ColorId { get; set; }
+        public virtual int ColorId { get; set; }
     }
 }

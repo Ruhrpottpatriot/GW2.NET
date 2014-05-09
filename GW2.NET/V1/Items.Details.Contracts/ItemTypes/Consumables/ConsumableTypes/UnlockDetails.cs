@@ -24,8 +24,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
             this.UnlockType = type;
         }
 
-        /// <summary>Gets the unlock item's unlock type.</summary>
+        /// <summary>Gets or sets the unlock item's unlock type.</summary>
         [DataMember(Name = "unlock_type", Order = 100)]
-        public UnlockType UnlockType { get; private set; }
+        protected UnlockType UnlockType { get; set; }
     }
 }

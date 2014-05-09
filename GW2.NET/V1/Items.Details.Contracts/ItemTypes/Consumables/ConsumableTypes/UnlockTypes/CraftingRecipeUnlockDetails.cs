@@ -26,6 +26,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 
         /// <summary>Gets or sets the crafting recipe's ID.</summary>
         [DataMember(Name = "recipe_id", Order = 1000)]
-        public int RecipeId { get; set; }
+        public virtual int RecipeId { get; set; }
     }
 }

@@ -17,10 +17,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
     {
         /// <summary>Gets or sets the infusion slot's type(s).</summary>
         [DataMember(Name = "flags", Order = 0)]
-        public InfusionSlotTypes Flags { get; set; }
+        public virtual InfusionSlotTypes Flags { get; set; }
 
         /// <summary>Gets or sets the infusion slot's item identifier.</summary>
         [DataMember(Name = "item_id", Order = 1)]
-        public int? ItemId { get; set; }
+        public virtual int? ItemId { get; set; }
     }
 }

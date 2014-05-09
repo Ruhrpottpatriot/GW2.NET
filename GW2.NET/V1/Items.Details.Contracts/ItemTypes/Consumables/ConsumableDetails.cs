@@ -25,8 +25,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
             this.Type = type;
         }
 
-        /// <summary>Gets the consumable's type.</summary>
+        /// <summary>Gets or sets the consumable's type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public ConsumableType Type { get; private set; }
+        protected ConsumableType Type { get; set; }
     }
 }

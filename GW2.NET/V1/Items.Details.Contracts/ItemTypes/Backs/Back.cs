@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs
 
         /// <summary>Gets or sets the item details.</summary>
         [DataMember(Name = "back", Order = 1000)]
-        public new BackDetails Details
+        public new virtual BackDetails Details
         {
             get
             {
