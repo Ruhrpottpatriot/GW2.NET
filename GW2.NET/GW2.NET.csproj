@@ -252,7 +252,7 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\ForagingToolDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\LoggingToolDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\MiningToolDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\UnknownToolDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\UnknownGatheringToolDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\Gizmo.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoDetails.cs" />

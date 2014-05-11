@@ -26,7 +26,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
         /// <summary>Initializes static members of the <see cref="GatheringToolDetailsConverter" /> class.</summary>
         static GatheringToolDetailsConverter()
         {
-            KnownTypes.Add(GatheringToolType.Unknown, typeof(UnknownToolDetails));
+            KnownTypes.Add(GatheringToolType.Unknown, typeof(UnknownGatheringToolDetails));
             KnownTypes.Add(GatheringToolType.Foraging, typeof(ForagingToolDetails));
             KnownTypes.Add(GatheringToolType.Logging, typeof(LoggingToolDetails));
             KnownTypes.Add(GatheringToolType.Mining, typeof(MiningToolDetails));
@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 
             if (jsonToken == null)
             {
-                return typeof(UnknownToolDetails);
+                return typeof(UnknownGatheringToolDetails);
             }
 
             var jsonValue = jsonToken.Value<string>();
@@ -68,14 +68,14 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 
                 if (!KnownTypes.TryGetValue(type, out targetType))
                 {
-                    return typeof(UnknownToolDetails);
+                    return typeof(UnknownGatheringToolDetails);
                 }
 
                 return targetType;
             }
             catch (JsonSerializationException)
             {
-                return typeof(UnknownToolDetails);
+                return typeof(UnknownGatheringToolDetails);
             }
             finally
             {
