@@ -39,9 +39,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Armor\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Armor;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Armor>(item);
         }
 
@@ -52,9 +50,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Back\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Back;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Back>(item);
         }
 
@@ -65,9 +61,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Bag\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Bag;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Bag>(item);
         }
 
@@ -78,9 +72,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Consumable\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Consumable;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Consumable>(item);
         }
 
@@ -91,9 +83,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Container\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Container;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Container>(item);
         }
 
@@ -104,9 +94,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"CraftingMaterial\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.CraftingMaterial;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<CraftingMaterial>(item);
         }
 
@@ -117,9 +105,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Gathering\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Gathering;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<GatheringTool>(item);
         }
 
@@ -130,9 +116,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Gizmo\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Gizmo;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Gizmo>(item);
         }
 
@@ -143,9 +127,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"MiniPet\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.MiniPet;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<MiniPet>(item);
         }
 
@@ -156,9 +138,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Tool\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Tool;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Tool>(item);
         }
 
@@ -169,9 +149,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Trinket\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Trinket;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Trinket>(item);
         }
 
@@ -182,9 +160,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Trophy\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Trophy;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Trophy>(item);
         }
 
@@ -195,9 +171,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"UpgradeComponent\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.UpgradeComponent;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<UpgradeComponent>(item);
         }
 
@@ -208,9 +182,7 @@ namespace GW2DotNET.V1.Core.Items.Details
         {
             const string input = "{\"type\":\"Weapon\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
-            const ItemType expectedItemType = ItemType.Weapon;
 
-            Assert.AreEqual(expectedItemType, item.Type);
             Assert.IsInstanceOf<Weapon>(item);
         }
     }

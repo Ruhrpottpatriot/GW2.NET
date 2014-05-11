@@ -149,17 +149,6 @@ namespace GW2DotNET.V1.Core.Items.Details
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The item_ type reflects input.</summary>
-        [Test]
-        [Category("item_details.json")]
-        public void Item_TypeReflectsInput()
-        {
-            const ItemType expected = default(ItemType);
-            ItemType actual = this.item.Type;
-
-            Assert.AreEqual(expected, actual);
-        }
-
         /// <summary>The item_ vendor value reflects input.</summary>
         [Test]
         [Category("item_details.json")]
