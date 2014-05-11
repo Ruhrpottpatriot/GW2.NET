@@ -28,6 +28,8 @@ namespace GW2DotNET.V1
     using GW2DotNET.V1.DynamicEvents.Details.Contracts;
     using GW2DotNET.V1.DynamicEvents.Names;
     using GW2DotNET.V1.DynamicEvents.Names.Contracts;
+    using GW2DotNET.V1.DynamicEvents.Rotations;
+    using GW2DotNET.V1.DynamicEvents.Rotations.Contracts;
     using GW2DotNET.V1.Files;
     using GW2DotNET.V1.Files.Contracts;
     using GW2DotNET.V1.Guilds.Details;
@@ -67,6 +69,7 @@ namespace GW2DotNET.V1
                                   IDynamicEventService, 
                                   IDynamicEventDetailsService, 
                                   IDynamicEventNameService, 
+                                  IDynamicEventRotationService, 
                                   IFileService, 
                                   IGuildDetailsService, 
                                   IItemService, 
@@ -98,6 +101,9 @@ namespace GW2DotNET.V1
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IDynamicEventNameService dynamicEventNameService;
+
+        /// <summary>Infrastructure. Holds a reference to a service.</summary>
+        private readonly IDynamicEventRotationService dynamicEventRotationService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IDynamicEventService dynamicEventService;
@@ -156,6 +162,7 @@ namespace GW2DotNET.V1
         /// <param name="continentService">The continent service.</param>
         /// <param name="dynamicEventDetailsService">The dynamic event details service.</param>
         /// <param name="dynamicEventNameService">The dynamic event name service.</param>
+        /// <param name="dynamicEventRotationService">The dynamic Event Rotation Service.</param>
         /// <param name="dynamicEventService">The dynamic event service.</param>
         /// <param name="fileService">The file service.</param>
         /// <param name="guildDetailsService">The guild details service.</param>
@@ -179,6 +186,7 @@ namespace GW2DotNET.V1
             IContinentService continentService, 
             IDynamicEventDetailsService dynamicEventDetailsService, 
             IDynamicEventNameService dynamicEventNameService, 
+            IDynamicEventRotationService dynamicEventRotationService, 
             IDynamicEventService dynamicEventService, 
             IFileService fileService, 
             IGuildDetailsService guildDetailsService, 
@@ -202,6 +210,7 @@ namespace GW2DotNET.V1
             this.continentService = continentService;
             this.dynamicEventDetailsService = dynamicEventDetailsService;
             this.dynamicEventNameService = dynamicEventNameService;
+            this.dynamicEventRotationService = dynamicEventRotationService;
             this.dynamicEventService = dynamicEventService;
             this.fileService = fileService;
             this.guildDetailsService = guildDetailsService;
@@ -237,6 +246,7 @@ namespace GW2DotNET.V1
             this.continentService = new ContinentService(dataServiceClient);
             this.dynamicEventDetailsService = new DynamicEventDetailsService(dataServiceClient);
             this.dynamicEventNameService = new DynamicEventNameService(dataServiceClient);
+            this.dynamicEventRotationService = new DynamicEventRotationService();
             this.dynamicEventService = new DynamicEventService(dataServiceClient);
             this.fileService = new FileService(dataServiceClient);
             this.guildDetailsService = new GuildDetailsService(dataServiceClient);
@@ -553,6 +563,13 @@ namespace GW2DotNET.V1
         public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.dynamicEventNameService.GetDynamicEventNamesAsync(language, cancellationToken);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their start times.</summary>
+        /// <returns>A collection of dynamic events and their start times.</returns>
+        public IEnumerable<DynamicEventRotation> GetDynamicEventRotations()
+        {
+            return this.dynamicEventRotationService.GetDynamicEventRotations();
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>

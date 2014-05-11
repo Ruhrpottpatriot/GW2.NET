@@ -50,6 +50,8 @@
     <Reference Include="System.Net" />
     <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatLinks\ChatLink.cs" />
@@ -148,6 +150,10 @@
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventCollection.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventCollectionResult.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventState.cs" />
+    <Compile Include="V1\DynamicEvents.Rotations.Contracts\DynamicEventRotation.cs" />
+    <Compile Include="V1\DynamicEvents.Rotations.Contracts\DynamicEventShifts.cs" />
+    <Compile Include="V1\DynamicEvents.Rotations\DynamicEventRotationService.cs" />
+    <Compile Include="V1\DynamicEvents.Rotations\IDynamicEventRotationService.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventServiceRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventService.cs" />
@@ -498,7 +504,11 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="V1\DynamicEvents.Rotations\Rotations.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

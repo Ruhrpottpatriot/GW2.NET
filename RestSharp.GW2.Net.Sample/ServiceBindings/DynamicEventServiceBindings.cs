@@ -14,6 +14,7 @@ namespace RestSharp.GW2DotNET.Sample.ServiceBindings
     using global::GW2DotNET.V1.DynamicEvents.Details;
 
     using global::GW2DotNET.V1.DynamicEvents.Names;
+    using global::GW2DotNET.V1.DynamicEvents.Rotations;
 
     using Ninject.Modules;
 
@@ -27,6 +28,7 @@ namespace RestSharp.GW2DotNET.Sample.ServiceBindings
         {
             this.Bind<IDynamicEventService>().To<DynamicEventService>();
             this.Bind<IDynamicEventNameService>().To<DynamicEventNameService>();
+            this.Bind<IDynamicEventRotationService>().To<DynamicEventRotationService>();
             this.Bind<IDynamicEventDetailsService>().To<DynamicEventDetailsService>();
         }
     }
