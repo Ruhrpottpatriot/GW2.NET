@@ -25,7 +25,17 @@ namespace GW2DotNET.V1.DynamicEvents.Rotations
             return (from rotationElement in this.LoadConfiguration().Descendants("rotation").Where(element => element.Attributes("event_id").Any())
                     let shiftElements = rotationElement.Descendants("shift")
                     let eventId = Guid.Parse(rotationElement.Attribute("event_id").Value)
-                    let shifts = shiftElements.Select(element => DateTimeOffset.Parse(element.Value))
+                    let shifts = shiftElements.Select(
+                        element =>
+                        {
+                            var shift = DateTimeOffset.Parse(element.Value);
+                            if (shift < DateTime.UtcNow)
+                            {
+                                shift = shift.AddDays(1D);
+                            }
+
+                            return shift;
+                        }).OrderBy(offset => offset.Ticks)
                     select new DynamicEventRotation { EventId = eventId, Shifts = new DynamicEventShifts(shifts) }).ToList();
         }
 
