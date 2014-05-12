@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Common
         /// <summary>Initializes static members of the <see cref="ServiceBase" /> class.</summary>
         static ServiceBase()
         {
-            DefaultLanguage = new CultureInfo("en");
+            DefaultLanguage = CultureInfo.GetCultureInfo("en");
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceBase"/> class.</summary>
@@ -47,8 +47,8 @@ namespace GW2DotNET.V1.Common
             }
         }
 
-        /// <summary>Infrastructure. Sends a serviceRequest and gets the response.</summary>
-        /// <param name="serviceRequest">The service serviceRequest.</param>
+        /// <summary>Infrastructure. Sends a service request and gets the response.</summary>
+        /// <param name="serviceRequest">The service request.</param>
         /// <typeparam name="TResult">The type of the response content</typeparam>
         /// <returns>The response content.</returns>
         protected TResult Request<TResult>(IServiceRequest serviceRequest) where TResult : class
@@ -70,7 +70,7 @@ namespace GW2DotNET.V1.Common
             }
         }
 
-        /// <summary>Infrastructure. Sends a request and gets the response.</summary>
+        /// <summary>Infrastructure. Sends a service request and gets the response.</summary>
         /// <param name="serviceRequest">The service request.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>

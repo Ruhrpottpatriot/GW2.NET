@@ -22,7 +22,7 @@ namespace GW2DotNET.Extensions
         /// <summary>Initializes static members of the <see cref="CultureInfoExtensions" /> class.</summary>
         static CultureInfoExtensions()
         {
-            SupportedCultureInfos = new HashSet<CultureInfo> { new CultureInfo("de"), new CultureInfo("en"), new CultureInfo("es"), new CultureInfo("fr") };
+            SupportedCultureInfos = new HashSet<CultureInfo> { CultureInfo.GetCultureInfo("de"), CultureInfo.GetCultureInfo("en"), CultureInfo.GetCultureInfo("es"), CultureInfo.GetCultureInfo("fr") };
         }
 
         /// <summary>Gets the culture info or a default culture info if not supported.</summary>
@@ -50,7 +50,7 @@ namespace GW2DotNET.Extensions
         public static CultureInfo ToLanguageInfo(this CultureInfo instance)
         {
             Preconditions.EnsureNotNull(instance);
-            return new CultureInfo(instance.TwoLetterISOLanguageName);
+            return CultureInfo.GetCultureInfo(instance.TwoLetterISOLanguageName);
         }
     }
 }
