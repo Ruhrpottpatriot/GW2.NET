@@ -14,19 +14,19 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
     public abstract class EquipmentDetails : ItemDetails
     {
         /// <summary>Gets or sets the item's infix upgrade.</summary>
-        [DataMember(Name = "infix_upgrade", Order = 101)]
+        [DataMember(Name = "infix_upgrade", Order = 10001)]
         public virtual InfixUpgrade InfixUpgrade { get; set; }
 
         /// <summary>Gets or sets the item's infusion slots.</summary>
-        [DataMember(Name = "infusion_slots", Order = 100)]
+        [DataMember(Name = "infusion_slots", Order = 10000)]
         public virtual InfusionSlotCollection InfusionSlots { get; set; }
 
         /// <summary>Gets or sets the item's secondary suffix item's ID.</summary>
-        [DataMember(Name = "secondary_suffix_item_id", Order = 103)]
+        [DataMember(Name = "secondary_suffix_item_id", Order = 10003)]
         public virtual int? SecondarySuffixItemId { get; set; }
 
         /// <summary>Gets or sets the item's suffix item's ID.</summary>
-        [DataMember(Name = "suffix_item_id", Order = 102)]
+        [DataMember(Name = "suffix_item_id", Order = 10002)]
         public virtual int? SuffixItemId { get; set; }
     }
 }

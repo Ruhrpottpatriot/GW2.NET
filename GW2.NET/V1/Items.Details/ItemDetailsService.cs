@@ -55,6 +55,10 @@ namespace GW2DotNET.V1.Items.Details
 
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
+            if (result.Details != null)
+            {
+                result.Details.Language = language.TwoLetterISOLanguageName;
+            }
 
             return result;
         }
@@ -101,10 +105,16 @@ namespace GW2DotNET.V1.Items.Details
             var t1 = this.RequestAsync<Item>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
-                        // patch missing language information
-                        task.Result.Language = language.TwoLetterISOLanguageName;
+                        var result = task.Result;
 
-                        return task.Result;
+                        // patch missing language information
+                        result.Language = language.TwoLetterISOLanguageName;
+                        if (result.Details != null)
+                        {
+                            result.Details.Language = language.TwoLetterISOLanguageName;
+                        }
+
+                        return result;
                     }, 
                 cancellationToken);
 

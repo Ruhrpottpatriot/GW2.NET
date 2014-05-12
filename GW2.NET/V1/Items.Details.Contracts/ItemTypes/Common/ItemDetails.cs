@@ -9,17 +9,31 @@
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System;
+    using System.Runtime.Serialization;
 
+    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Provides the base class for types that provide detailed information about specific items.</summary>
     public abstract class ItemDetails : JsonObject, IEquatable<ItemDetails>
     {
+        /// <summary>Gets or sets the build.</summary>
+        public virtual Build Build { get; set; }
+
+        /// <summary>Gets or sets the build number.</summary>
+        [DataMember(Name = "build_id", Order = 1)]
+        public virtual int BuildId { get; set; }
+
         /// <summary>Gets or sets the item.</summary>
         public virtual Item Item { get; set; }
 
         /// <summary>Gets or sets the item identifier.</summary>
+        [DataMember(Name = "item_id", Order = 0)]
         public virtual int ItemId { get; set; }
+
+        /// <summary>Gets or sets the language.</summary>
+        [DataMember(Name = "lang", Order = 2)]
+        public virtual string Language { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
