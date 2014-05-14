@@ -25,10 +25,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
             this.Type = toolType;
         }
 
-        /// <summary>Gets or sets the tool's charges.</summary>
-        [DataMember(Name = "charges", Order = 101)]
-        public virtual int Charges { get; set; }
-
         /// <summary>Gets or sets the tool's type.</summary>
         [DataMember(Name = "type", Order = 100)]
         protected ToolType Type { get; set; }

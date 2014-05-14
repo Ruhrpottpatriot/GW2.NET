@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
 {
+    using System.Runtime.Serialization;
+
     using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
@@ -21,5 +23,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
             : base(ToolType.Salvage)
         {
         }
+
+        /// <summary>Gets or sets the tool's charges.</summary>
+        [DataMember(Name = "charges", Order = 1000)]
+        public virtual int Charges { get; set; }
     }
 }
