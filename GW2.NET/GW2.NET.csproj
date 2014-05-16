@@ -56,6 +56,7 @@
   <ItemGroup>
     <Compile Include="ChatLinks\ChatLink.cs" />
     <Compile Include="ChatLinks\ChatLinkType.cs" />
+    <Compile Include="ChatLinks\Extensions\ItemBuffExtensions.cs" />
     <Compile Include="ChatLinks\Extensions\SkinExtensions.cs" />
     <Compile Include="ChatLinks\OutfitChatLink.cs" />
     <Compile Include="ChatLinks\SkinChatLink.cs" />
