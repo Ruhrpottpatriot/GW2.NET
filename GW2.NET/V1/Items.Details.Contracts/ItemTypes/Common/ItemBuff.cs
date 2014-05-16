@@ -19,8 +19,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
         [DataMember(Name = "description", Order = 1)]
         public virtual string Description { get; set; }
 
-        /// <summary>Gets or sets the buff's skill ID.</summary>
+        /// <summary>Gets or sets the buff's skill identifier.</summary>
         [DataMember(Name = "skill_id", Order = 0)]
-        public virtual string SkillId { get; set; }
+        public virtual int? SkillId { get; set; }
     }
 }
