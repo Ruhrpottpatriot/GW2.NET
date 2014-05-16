@@ -17,7 +17,7 @@ namespace GW2DotNET.ChatLinks.Extensions
     {
         /// <summary>Gets a chat link for the specified item.</summary>
         /// <param name="instance">The item.</param>
-        /// <returns>The <see cref="ChatLink"/>The chat link.</returns>
+        /// <returns>The <see cref="ChatLink"/>.</returns>
         public static ChatLink GetChatLink(this Item instance)
         {
             Preconditions.EnsureNotNull(instance);
