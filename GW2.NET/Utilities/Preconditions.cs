@@ -23,7 +23,7 @@ namespace GW2DotNET.Utilities
         {
             if (!condition)
             {
-                throw new ArgumentException(message, paramName);
+                throw new ArgumentException(message == null ? null : string.Format(message, paramName), paramName);
             }
 
             return true;
@@ -41,7 +41,7 @@ namespace GW2DotNET.Utilities
         {
             if (!object.Equals(expectedValue, actualValue))
             {
-                throw new ArgumentOutOfRangeException(paramName, actualValue, message);
+                throw new ArgumentOutOfRangeException(paramName, actualValue, message == null ? null : string.Format(message, paramName, actualValue));
             }
 
             return actualValue;
@@ -59,7 +59,7 @@ namespace GW2DotNET.Utilities
         {
             if (value < floor || value > ceiling)
             {
-                throw new ArgumentOutOfRangeException(paramName, value, message);
+                throw new ArgumentOutOfRangeException(paramName, value, message == null ? null : string.Format(message, paramName, value));
             }
 
             return value;
@@ -76,7 +76,7 @@ namespace GW2DotNET.Utilities
         {
             if (value == null)
             {
-                throw new ArgumentNullException(paramName, message);
+                throw new ArgumentNullException(paramName, message == null ? null : string.Format(message, paramName));
             }
 
             return value;
