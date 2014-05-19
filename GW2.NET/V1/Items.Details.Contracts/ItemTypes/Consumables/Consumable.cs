@@ -6,38 +6,27 @@
 //   Represents a consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
-
     using Newtonsoft.Json;
 
     /// <summary>Represents a consumable item.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
-    public class Consumable : Item
+    [JsonConverter(typeof(ConsumableConverter))]
+    public abstract class Consumable : Item
     {
-        /// <summary>Initializes a new instance of the <see cref="Consumable" /> class.</summary>
-        public Consumable()
-            : base(ItemType.Consumable)
+        /// <summary>Initializes a new instance of the <see cref="Consumable"/> class.</summary>
+        /// <param name="consumableType">The consumable's type.</param>
+        protected Consumable(ConsumableType consumableType)
+            : base(ItemType.Consumable, "consumable")
         {
+            this.ConsumableType = consumableType;
         }
 
-        /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "consumable", Order = 100)]
-        [JsonConverter(typeof(ConsumableDetailsConverter))]
-        public new virtual ConsumableDetails Details
-        {
-            get
-            {
-                return base.Details as ConsumableDetails;
-            }
-
-            set
-            {
-                base.Details = value;
-            }
-        }
+        /// <summary>Gets or sets the consumable's type.</summary>
+        [DataMember(Name = "consumable_type")]
+        protected ConsumableType ConsumableType { get; set; }
     }
 }

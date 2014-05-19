@@ -6,6 +6,7 @@
 //   Represents a bag.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
 {
     using System.Runtime.Serialization;
@@ -20,23 +21,17 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
     {
         /// <summary>Initializes a new instance of the <see cref="Bag" /> class.</summary>
         public Bag()
-            : base(ItemType.Bag)
+            : base(ItemType.Bag, "bag")
         {
         }
 
-        /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "bag", Order = 100)]
-        public new virtual BagDetails Details
-        {
-            get
-            {
-                return base.Details as BagDetails;
-            }
+        /// <summary>Gets or sets a value indicating whether this is an invisible bag.</summary>
+        [DataMember(Name = "no_sell_or_sort")]
+        [JsonConverter(typeof(JsonBooleanConverter))]
+        public virtual bool NoSellOrSort { get; set; }
 
-            set
-            {
-                base.Details = value;
-            }
-        }
+        /// <summary>Gets or sets the bag's capacity.</summary>
+        [DataMember(Name = "size")]
+        public virtual int Size { get; set; }
     }
 }

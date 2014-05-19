@@ -6,6 +6,7 @@
 //   Represents a mini pet.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.MiniPets
 {
     using GW2DotNET.V1.Common.Converters;
@@ -18,7 +19,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.MiniPets
     {
         /// <summary>Initializes a new instance of the <see cref="MiniPet" /> class.</summary>
         public MiniPet()
-            : base(ItemType.MiniPet)
+            : base(ItemType.MiniPet, "minipet")
         {
         }
     }

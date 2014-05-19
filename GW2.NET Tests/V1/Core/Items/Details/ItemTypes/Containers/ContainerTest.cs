@@ -21,17 +21,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Containers
         /// <summary>TODO The container.</summary>
         private Container container;
 
-        /// <summary>TODO The container_ details references source item.</summary>
-        [Test]
-        [Category("item_details.json")]
-        public void Container_DetailsReferencesSourceItem()
-        {
-            var expected = this.container;
-            var actual = this.container.Details.Item;
-
-            Assert.AreEqual(expected, actual);
-        }
-
         /// <summary>TODO The container_ extension data is empty.</summary>
         [Test]
         [Category("item_details.json")]

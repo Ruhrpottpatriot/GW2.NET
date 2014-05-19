@@ -6,38 +6,27 @@
 //   Represents a gizmo.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
-
     using Newtonsoft.Json;
 
     /// <summary>Represents a gizmo.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
+    [JsonConverter(typeof(GizmoConverter))]
     public class Gizmo : Item
     {
-        /// <summary>Initializes a new instance of the <see cref="Gizmo" /> class.</summary>
-        public Gizmo()
-            : base(ItemType.Gizmo)
+        /// <summary>Initializes a new instance of the <see cref="Gizmo"/> class.</summary>
+        /// <param name="gizmoType">The gizmo type.</param>
+        public Gizmo(GizmoType gizmoType)
+            : base(ItemType.Gizmo, "gizmo")
         {
+            this.GizmoType = gizmoType;
         }
 
-        /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "gizmo", Order = 100)]
-        [JsonConverter(typeof(GizmoDetailsConverter))]
-        public new virtual GizmoDetails Details
-        {
-            get
-            {
-                return base.Details as GizmoDetails;
-            }
-
-            set
-            {
-                base.Details = value;
-            }
-        }
+        /// <summary>Gets or sets the gizmo's type.</summary>
+        [DataMember(Name = "gizmo_type")]
+        protected GizmoType GizmoType { get; set; }
     }
 }

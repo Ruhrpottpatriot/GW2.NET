@@ -6,6 +6,7 @@
 //   Represents one of an item's infusion slots.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Runtime.Serialization;

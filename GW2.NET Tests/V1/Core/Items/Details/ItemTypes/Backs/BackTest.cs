@@ -21,17 +21,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Backs
         /// <summary>TODO The back.</summary>
         private Back back;
 
-        /// <summary>TODO The back_ details references source item.</summary>
-        [Test]
-        [Category("item_details.json")]
-        public void Back_DetailsReferencesSourceItem()
-        {
-            var expected = this.back;
-            var actual = this.back.Details.Item;
-
-            Assert.AreEqual(expected, actual);
-        }
-
         /// <summary>TODO The back_ extension data is empty.</summary>
         [Test]
         [Category("item_details.json")]

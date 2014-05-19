@@ -6,6 +6,7 @@
 //   Represents item stats that are inherent to a specific item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Runtime.Serialization;

@@ -6,6 +6,7 @@
 //   Enumerates the possible tool types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
 {
     using System.Runtime.Serialization;

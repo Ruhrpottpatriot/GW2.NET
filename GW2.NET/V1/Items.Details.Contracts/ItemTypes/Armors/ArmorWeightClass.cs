@@ -6,6 +6,7 @@
 //   Enumerates the known armor weight classes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
 {
     using System.Runtime.Serialization;

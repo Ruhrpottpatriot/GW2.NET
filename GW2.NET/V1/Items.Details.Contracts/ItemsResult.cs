@@ -6,6 +6,7 @@
 //   Wraps a collection of item IDs.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts
 {
     using System.Runtime.Serialization;

@@ -6,6 +6,7 @@
 //   Represents a back item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs
 {
     using System.Runtime.Serialization;
@@ -17,27 +18,32 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs
 
     /// <summary>Represents a back item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class Back : SkinnedItem
+    public class Back : Item, ISkinnable, IUpgrade, IUpgradable
     {
         /// <summary>Initializes a new instance of the <see cref="Back" /> class.</summary>
         public Back()
-            : base(ItemType.Back)
+            : base(ItemType.Back, "back")
         {
         }
 
-        /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "back", Order = 1000)]
-        public new virtual BackDetails Details
-        {
-            get
-            {
-                return base.Details as BackDetails;
-            }
+        /// <summary>Gets or sets the item's default skin identifier.</summary>
+        [DataMember(Name = "default_skin")]
+        public virtual int DefaultSkin { get; set; }
 
-            set
-            {
-                base.Details = value;
-            }
-        }
+        /// <summary>Gets or sets the item's infix upgrade.</summary>
+        [DataMember(Name = "infix_upgrade")]
+        public virtual InfixUpgrade InfixUpgrade { get; set; }
+
+        /// <summary>Gets or sets the item's infusion slots.</summary>
+        [DataMember(Name = "infusion_slots")]
+        public virtual InfusionSlotCollection InfusionSlots { get; set; }
+
+        /// <summary>Gets or sets the item's secondary suffix item's ID.</summary>
+        [DataMember(Name = "secondary_suffix_item_id")]
+        public virtual int? SecondarySuffixItemId { get; set; }
+
+        /// <summary>Gets or sets the item's suffix item's ID.</summary>
+        [DataMember(Name = "suffix_item_id")]
+        public virtual int? SuffixItemId { get; set; }
     }
 }

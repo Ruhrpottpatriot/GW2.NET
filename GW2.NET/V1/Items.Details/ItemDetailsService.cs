@@ -55,10 +55,6 @@ namespace GW2DotNET.V1.Items.Details
 
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
-            if (result.Details != null)
-            {
-                result.Details.Language = language.TwoLetterISOLanguageName;
-            }
 
             return result;
         }
@@ -109,10 +105,6 @@ namespace GW2DotNET.V1.Items.Details
 
                         // patch missing language information
                         result.Language = language.TwoLetterISOLanguageName;
-                        if (result.Details != null)
-                        {
-                            result.Details.Language = language.TwoLetterISOLanguageName;
-                        }
 
                         return result;
                     }, 

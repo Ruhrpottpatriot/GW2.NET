@@ -21,17 +21,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Consumables
         /// <summary>TODO The consumable.</summary>
         private Consumable consumable;
 
-        /// <summary>TODO The consumable_ details references source item.</summary>
-        [Test]
-        [Category("item_details.json")]
-        public void Consumable_DetailsReferencesSourceItem()
-        {
-            var expected = this.consumable;
-            var actual = this.consumable.Details.Item;
-
-            Assert.AreEqual(expected, actual);
-        }
-
         /// <summary>TODO The consumable_ extension data is empty.</summary>
         [Test]
         [Category("item_details.json")]

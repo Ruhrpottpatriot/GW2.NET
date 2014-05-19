@@ -21,17 +21,6 @@ namespace GW2DotNET.V1.Core.Items.Details.ItemTypes.Bags
         /// <summary>TODO The bag.</summary>
         private Bag bag;
 
-        /// <summary>TODO The bag_ details references source item.</summary>
-        [Test]
-        [Category("item_details.json")]
-        public void Bag_DetailsReferencesSourceItem()
-        {
-            var expected = this.bag;
-            var actual = this.bag.Details.Item;
-
-            Assert.AreEqual(expected, actual);
-        }
-
         /// <summary>TODO The bag_ extension data is empty.</summary>
         [Test]
         [Category("item_details.json")]

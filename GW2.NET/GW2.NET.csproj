@@ -181,160 +181,149 @@
     <Compile Include="V1\Items.Details.Contracts\ItemsResult.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\Armor.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorDetailsConverter.cs">
-      <DependentUpon>ArmorDetails.cs</DependentUpon>
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorConverter.cs">
+      <DependentUpon>Armor.cs</DependentUpon>
     </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\AquaticHelmDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\BootsDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\CoatDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\GlovesDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\HelmDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\LeggingsDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\ShouldersDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\UnknownArmorDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\AquaticHelm.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\Boots.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\Coat.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\Gloves.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\Helm.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\Leggings.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\Shoulders.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\UnknownArmor.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorWeightClass.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Backs\Back.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Backs\BackDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Bags\Bag.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Bags\BagDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\EquipmentDetails.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\InfixUpgrade.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\InfusionSlot.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\InfusionSlotCollection.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\InfusionSlotTypes.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ISkinnable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemAttribute.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemAttributeCollection.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemAttributeType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemBuff.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\SkinnedItem.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\IUpgradable.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\IUpgrade.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableConverter.cs">
+      <DependentUpon>Consumable.cs</DependentUpon>
+    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\Consumable.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableDetailsConverter.cs">
-      <DependentUpon>ConsumableDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\AppearanceChangeDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\BoozeDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\ContractNpcDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\NourishmentDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\FoodDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnTransmutationDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UpgradeRemovalDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\GenericConsumableDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\HalloweenConsumableDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\ImmediateConsumableDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\TransmutationDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnknownConsumableDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockDetailsConverter.cs">
-      <DependentUpon>UnlockDetails.cs</DependentUpon>
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\AppearanceChanger.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Booze.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\ContractNpc.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Nourishment.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Food.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockerConverter.cs">
+      <DependentUpon>Unlocker.cs</DependentUpon>
     </Compile>
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnTransmutation.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UpgradeRemoval.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\GenericConsumable.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\HalloweenConsumable.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\ImmediateConsumable.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Transmutation.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnknownConsumable.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Unlocker.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BagSlotUnlockDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BankTabUnlockDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CollectibleCapacityUnlockDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\ContentUnlockDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CraftingRecipeUnlockDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\DyeUnlockDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\UnknownUnlockDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UtilityDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BagSlotUnlocker.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BankTabUnlocker.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CollectibleCapacityUnlocker.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\ContentUnlocker.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CraftingRecipeUnlocker.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\DyeUnlocker.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\UnknownUnlocker.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Utility.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerConverter.cs">
+      <DependentUpon>Container.cs</DependentUpon>
+    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\Container.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerDetailsConverter.cs">
-      <DependentUpon>ContainerDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\DefaultContainerDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\GiftBoxDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\UnknownContainerDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\DefaultContainer.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\GiftBox.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\UnknownContainer.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\CraftingMaterials\CraftingMaterial.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolConverter.cs">
+      <DependentUpon>GatheringTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringTool.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolDetailsConverter.cs">
-      <DependentUpon>GatheringToolDetails.cs</DependentUpon>
-    </Compile>
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\ForagingToolDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\LoggingToolDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\MiningToolDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\UnknownGatheringToolDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\ForagingTool.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\LoggingTool.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\MiningTool.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\UnknownGatheringTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolType.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoConverter.cs">
+      <DependentUpon>Gizmo.cs</DependentUpon>
+    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\Gizmo.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoDetailsConverter.cs">
-      <DependentUpon>GizmoDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\DefaultGizmoDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\RentableContractNpcDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnknownGizmoDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnlimitedConsumableDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\DefaultGizmo.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\RentableContractNpc.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnknownGizmo.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnlimitedConsumable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\MiniPets\MiniPet.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolConverter.cs">
+      <DependentUpon>Tool.cs</DependentUpon>
+    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\Tool.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolDetailsConverter.cs">
-      <DependentUpon>ToolDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\SalvageToolDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\UnknownToolDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\Trinket.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketDetailsConverter.cs">
-      <DependentUpon>TrinketDetails.cs</DependentUpon>
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\SalvageTool.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\UnknownTool.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketConverter.cs">
+      <DependentUpon>Trinket.cs</DependentUpon>
     </Compile>
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\Trinket.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\AccessoryDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\AmuletDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\RingDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\UnknownTrinketDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Accessory.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Amulet.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Ring.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\UnknownTrinket.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trophies\Trophy.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UnknownItem.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentConverter.cs">
+      <DependentUpon>UpgradeComponent.cs</DependentUpon>
+    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeBonusCollection.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponent.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentDetailsConverter.cs">
-      <DependentUpon>UpgradeComponentDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentFlags.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\DefaultUpgradeComponentDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\GemUpgradeComponentDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\RuneUpgradeComponentDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\SigilUpgradeComponentDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\UnknownUpgradeComponentDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\DefaultUpgradeComponent.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\Gem.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\Rune.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\Sigil.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\UnknownUpgradeComponent.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponConverter.cs">
+      <DependentUpon>Weapon.cs</DependentUpon>
+    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\Weapon.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponDamageType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponDetailsConverter.cs">
-      <DependentUpon>WeaponDetails.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\AxeDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\DaggerDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\FocusDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\GreatSwordDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\HammerDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\HarpoonDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\LargeBundleDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\LongBowDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\MaceDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\PistolDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\RifleDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\ScepterDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\ShieldDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\ShortBowDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\SpearGunDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\StaffDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\SwordDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\TorchDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\ToyDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\TridentDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\TwoHandedToyDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\UnknownWeaponDetails.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\WarHornDetails.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Axe.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Dagger.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Focus.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\GreatSword.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Hammer.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Harpoon.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\LargeBundle.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\LongBow.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Mace.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Pistol.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Rifle.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Scepter.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Shield.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\ShortBow.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\SpearGun.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Staff.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Sword.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Torch.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\ToyWeapon.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Trident.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\TwoHandedToyWeapon.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\UnknownWeapon.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\WarHornWeapon.cs" />
     <Compile Include="V1\Items.Contracts\ItemCollection.cs" />
     <Compile Include="V1\Items.Contracts\ItemCollectionResult.cs" />
     <Compile Include="V1\Maps.Floors.Contracts\Floor.cs" />

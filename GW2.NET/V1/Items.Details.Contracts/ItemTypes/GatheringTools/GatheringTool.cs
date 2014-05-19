@@ -6,39 +6,33 @@
 //   Represents a gathering tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
     /// <summary>Represents a gathering tool.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
-    public class GatheringTool : SkinnedItem
+    [JsonConverter(typeof(GatheringToolConverter))]
+    public class GatheringTool : Item, ISkinnable
     {
-        /// <summary>Initializes a new instance of the <see cref="GatheringTool" /> class.</summary>
-        public GatheringTool()
-            : base(ItemType.Gathering)
+        /// <summary>Initializes a new instance of the <see cref="GatheringTool"/> class.</summary>
+        /// <param name="gatheringToolType">The gathering tool type.</param>
+        public GatheringTool(GatheringToolType gatheringToolType)
+            : base(ItemType.Gathering, "gathering")
         {
+            this.GatheringToolType = gatheringToolType;
         }
 
-        /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "gathering", Order = 100)]
-        [JsonConverter(typeof(GatheringToolDetailsConverter))]
-        public new virtual GatheringToolDetails Details
-        {
-            get
-            {
-                return base.Details as GatheringToolDetails;
-            }
+        /// <summary>Gets or sets the item's default skin identifier.</summary>
+        [DataMember(Name = "default_skin")]
+        public int DefaultSkin { get; set; }
 
-            set
-            {
-                base.Details = value;
-            }
-        }
+        /// <summary>Gets or sets the gathering tool's type.</summary>
+        [DataMember(Name = "gathering_type")]
+        protected GatheringToolType GatheringToolType { get; set; }
     }
 }

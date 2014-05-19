@@ -6,6 +6,7 @@
 //   Represents a collection of infusion slots.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Collections.Generic;

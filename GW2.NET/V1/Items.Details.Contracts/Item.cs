@@ -6,6 +6,7 @@
 //   Provides the base class for types that represent an in-game item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts
 {
     using System;
@@ -13,20 +14,25 @@ namespace GW2DotNET.V1.Items.Details.Contracts
 
     using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Common.Contracts;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
     using GW2DotNET.V1.Rendering.Contracts;
 
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
 
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
     [JsonConverter(typeof(ItemConverter))]
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
+        /// <summary>Infrastructure. Stores the discriminator.</summary>
+        private readonly string discriminator;
+
         /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>
         /// <param name="type">The item's type.</param>
-        protected Item(ItemType type)
+        /// <param name="discriminator">The item's details discriminator.</param>
+        protected Item(ItemType type, string discriminator)
         {
             this.Type = type;
+            this.discriminator = discriminator;
         }
 
         /// <summary>Gets or sets the item's build.</summary>
@@ -39,9 +45,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         /// <summary>Gets or sets the item's description.</summary>
         [DataMember(Name = "description", Order = 5)]
         public virtual string Description { get; set; }
-
-        /// <summary>Gets or sets the item details.</summary>
-        public virtual ItemDetails Details { get; set; }
 
         /// <summary>Gets or sets the item's icon identifier for use with the render service.</summary>
         [DataMember(Name = "icon_file_id", Order = 9)]
@@ -173,15 +176,13 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>
         /// <param name="context">The streaming context.</param>
         [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
+        protected void OnDeserialized(StreamingContext context)
         {
-            if (this.Details == null)
+            object details;
+            if (this.ExtensionData.TryGetValue(this.discriminator, out details) && this.ExtensionData.Remove(this.discriminator))
             {
-                return;
+                JsonSerializer.CreateDefault().Populate(((JObject)details).CreateReader(), this);
             }
-
-            this.Details.Item = this;
-            this.Details.ItemId = this.ItemId;
         }
     }
 }

@@ -6,38 +6,45 @@
 //   Represents a trinket.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
 
     /// <summary>Represents a trinket.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
-    public class Trinket : Item
+    [JsonConverter(typeof(TrinketConverter))]
+    public class Trinket : Item, IUpgrade, IUpgradable
     {
-        /// <summary>Initializes a new instance of the <see cref="Trinket" /> class.</summary>
-        public Trinket()
-            : base(ItemType.Trinket)
+        /// <summary>Initializes a new instance of the <see cref="Trinket"/> class.</summary>
+        /// <param name="trinketType">The trinket's type.</param>
+        public Trinket(TrinketType trinketType)
+            : base(ItemType.Trinket, "trinket")
         {
+            this.TrinketType = trinketType;
         }
 
-        /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "trinket", Order = 100)]
-        [JsonConverter(typeof(TrinketDetailsConverter))]
-        public new virtual TrinketDetails Details
-        {
-            get
-            {
-                return base.Details as TrinketDetails;
-            }
+        /// <summary>Gets or sets the item's infix upgrade.</summary>
+        [DataMember(Name = "infix_upgrade")]
+        public virtual InfixUpgrade InfixUpgrade { get; set; }
 
-            set
-            {
-                base.Details = value;
-            }
-        }
+        /// <summary>Gets or sets the item's infusion slots.</summary>
+        [DataMember(Name = "infusion_slots")]
+        public virtual InfusionSlotCollection InfusionSlots { get; set; }
+
+        /// <summary>Gets or sets the item's secondary suffix item's ID.</summary>
+        [DataMember(Name = "secondary_suffix_item_id")]
+        public virtual int? SecondarySuffixItemId { get; set; }
+
+        /// <summary>Gets or sets the item's suffix item's ID.</summary>
+        [DataMember(Name = "suffix_item_id")]
+        public virtual int? SuffixItemId { get; set; }
+
+        /// <summary>Gets or sets the trinket's type.</summary>
+        [DataMember(Name = "trinket_type", Order = 100)]
+        protected TrinketType TrinketType { get; set; }
     }
 }

@@ -6,38 +6,27 @@
 //   Represents a tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
-
     using Newtonsoft.Json;
 
     /// <summary>Represents a tool.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
+    [JsonConverter(typeof(ToolConverter))]
     public class Tool : Item
     {
-        /// <summary>Initializes a new instance of the <see cref="Tool" /> class.</summary>
-        public Tool()
-            : base(ItemType.Tool)
+        /// <summary>Initializes a new instance of the <see cref="Tool"/> class.</summary>
+        /// <param name="toolType">The tool's type.</param>
+        public Tool(ToolType toolType)
+            : base(ItemType.Tool, "tool")
         {
+            this.ToolType = toolType;
         }
 
-        /// <summary>Gets or sets the item details.</summary>
-        [DataMember(Name = "tool", Order = 100)]
-        [JsonConverter(typeof(ToolDetailsConverter))]
-        public new virtual ToolDetails Details
-        {
-            get
-            {
-                return base.Details as ToolDetails;
-            }
-
-            set
-            {
-                base.Details = value;
-            }
-        }
+        /// <summary>Gets or sets the tool's type.</summary>
+        [DataMember(Name = "tool_type")]
+        protected ToolType ToolType { get; set; }
     }
 }

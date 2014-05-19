@@ -6,6 +6,7 @@
 //   Enumerates the possible weapon damage types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 {
     using System.Runtime.Serialization;
@@ -30,11 +31,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 
         /// <summary>The 'Lightning' damage type.</summary>
         [EnumMember(Value = "Lightning")]
-        Lightning = 1 << 2,
+        Lightning = 1 << 2, 
 
         /// <summary>The 'Physical' damage type.</summary>
         [EnumMember(Value = "Physical")]
-        Physical = 1 << 3,
+        Physical = 1 << 3, 
 
         /// <summary>The 'Choking' damage type.</summary>
         [EnumMember(Value = "Choking")]

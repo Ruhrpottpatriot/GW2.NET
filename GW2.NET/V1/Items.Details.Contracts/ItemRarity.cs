@@ -6,6 +6,7 @@
 //   Enumerates the known item rarities.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items.Details.Contracts
 {
     using System.Runtime.Serialization;
