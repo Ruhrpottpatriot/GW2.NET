@@ -15,11 +15,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
 
     /// <summary>Represents a tool.</summary>
     [JsonConverter(typeof(ToolConverter))]
-    public class Tool : Item
+    public abstract class Tool : Item
     {
         /// <summary>Initializes a new instance of the <see cref="Tool"/> class.</summary>
         /// <param name="toolType">The tool's type.</param>
-        public Tool(ToolType toolType)
+        protected Tool(ToolType toolType)
             : base(ItemType.Tool, "tool")
         {
             this.ToolType = toolType;
