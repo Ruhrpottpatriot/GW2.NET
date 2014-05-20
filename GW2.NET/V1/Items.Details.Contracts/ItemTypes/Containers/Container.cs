@@ -15,11 +15,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
 
     /// <summary>Represents a container.</summary>
     [JsonConverter(typeof(ContainerConverter))]
-    public class Container : Item
+    public abstract class Container : Item
     {
         /// <summary>Initializes a new instance of the <see cref="Container"/> class.</summary>
         /// <param name="containerType">The container type.</param>
-        public Container(ContainerType containerType)
+        protected Container(ContainerType containerType)
             : base(ItemType.Container, "container")
         {
             this.ContainerType = containerType;
