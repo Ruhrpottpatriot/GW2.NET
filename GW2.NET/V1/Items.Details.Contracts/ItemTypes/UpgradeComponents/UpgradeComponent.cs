@@ -17,11 +17,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
 
     /// <summary>Represents an upgrade component.</summary>
     [JsonConverter(typeof(UpgradeComponentConverter))]
-    public class UpgradeComponent : Item, IUpgrade
+    public abstract class UpgradeComponent : Item, IUpgrade
     {
         /// <summary>Initializes a new instance of the <see cref="UpgradeComponent"/> class.</summary>
         /// <param name="upgradeComponentType">The upgrade component's type.</param>
-        public UpgradeComponent(UpgradeComponentType upgradeComponentType)
+        protected UpgradeComponent(UpgradeComponentType upgradeComponentType)
             : base(ItemType.UpgradeComponent, "upgrade_component")
         {
             this.UpgradeComponentType = upgradeComponentType;
