@@ -15,11 +15,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
 
     /// <summary>Represents a gizmo.</summary>
     [JsonConverter(typeof(GizmoConverter))]
-    public class Gizmo : Item
+    public abstract class Gizmo : Item
     {
         /// <summary>Initializes a new instance of the <see cref="Gizmo"/> class.</summary>
         /// <param name="gizmoType">The gizmo type.</param>
-        public Gizmo(GizmoType gizmoType)
+        protected Gizmo(GizmoType gizmoType)
             : base(ItemType.Gizmo, "gizmo")
         {
             this.GizmoType = gizmoType;
