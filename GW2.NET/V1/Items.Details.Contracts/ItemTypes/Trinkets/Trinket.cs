@@ -17,11 +17,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
 
     /// <summary>Represents a trinket.</summary>
     [JsonConverter(typeof(TrinketConverter))]
-    public class Trinket : Item, IUpgrade, IUpgradable
+    public abstract class Trinket : Item, IUpgrade, IUpgradable
     {
         /// <summary>Initializes a new instance of the <see cref="Trinket"/> class.</summary>
         /// <param name="trinketType">The trinket's type.</param>
-        public Trinket(TrinketType trinketType)
+        protected Trinket(TrinketType trinketType)
             : base(ItemType.Trinket, "trinket")
         {
             this.TrinketType = trinketType;
