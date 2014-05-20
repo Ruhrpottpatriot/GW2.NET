@@ -178,7 +178,6 @@
     <Compile Include="V1\Items.Details.Contracts\ItemFlags.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemRarity.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemRestrictions.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemsResult.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\Armor.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorConverter.cs">
