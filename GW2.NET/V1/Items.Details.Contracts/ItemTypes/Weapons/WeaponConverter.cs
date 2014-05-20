@@ -48,7 +48,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
             KnownTypes.Add(WeaponType.Toy, typeof(ToyWeapon));
             KnownTypes.Add(WeaponType.Trident, typeof(Trident));
             KnownTypes.Add(WeaponType.TwoHandedToy, typeof(TwoHandedToyWeapon));
-            KnownTypes.Add(WeaponType.Warhorn, typeof(WarHornWeapon));
+            KnownTypes.Add(WeaponType.Warhorn, typeof(WarHorn));
         }
 
         /// <summary>
