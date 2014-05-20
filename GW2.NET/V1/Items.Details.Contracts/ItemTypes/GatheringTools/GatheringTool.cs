@@ -17,11 +17,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 
     /// <summary>Represents a gathering tool.</summary>
     [JsonConverter(typeof(GatheringToolConverter))]
-    public class GatheringTool : Item, ISkinnable
+    public abstract class GatheringTool : Item, ISkinnable
     {
         /// <summary>Initializes a new instance of the <see cref="GatheringTool"/> class.</summary>
         /// <param name="gatheringToolType">The gathering tool type.</param>
-        public GatheringTool(GatheringToolType gatheringToolType)
+        protected GatheringTool(GatheringToolType gatheringToolType)
             : base(ItemType.Gathering, "gathering")
         {
             this.GatheringToolType = gatheringToolType;
