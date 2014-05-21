@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PointOfInterestExtensions.cs" company="GW2.Net Coding Team">
+// <copyright file="PointOfInterestExtensions.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Provides static extension methods for the <see cref="PointOfInterest" /> class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.ChatLinks.Extensions
 {
     using GW2DotNET.Utilities;

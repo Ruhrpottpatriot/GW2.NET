@@ -18,7 +18,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("RestSharp.GW2.NET.Sample")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("GW2.Net Coding Team")]
+[assembly: AssemblyCompany("GW2.NET Coding Team")]
 [assembly: AssemblyProduct("RestSharp.GW2.NET.Sample")]
 [assembly: AssemblyCopyright("Copyright ©  2013 - 2014")]
 [assembly: AssemblyTrademark("")]

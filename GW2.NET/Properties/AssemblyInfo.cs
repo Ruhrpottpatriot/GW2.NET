@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="AssemblyInfo.cs" company="GW2.Net Coding Team">
+// <copyright file="AssemblyInfo.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("GW2.NET")]
 [assembly: AssemblyDescription("A simple wrapper around the official GW2 API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("GW2.Net Coding Team")]
+[assembly: AssemblyCompany("GW2.NET Coding Team")]
 [assembly: AssemblyProduct("GW2.NET")]
 [assembly: AssemblyCopyright("Copyright ©  2013 - 2014")]
 [assembly: AssemblyTrademark("")]
@@ -37,5 +37,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.9.1.0")]
-[assembly: AssemblyFileVersion("0.9.1.0")]
+[assembly: AssemblyVersion("0.9.2.0")]
+[assembly: AssemblyFileVersion("0.9.2.0")]

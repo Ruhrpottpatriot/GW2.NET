@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="CultureInfoExtensions.cs" company="GW2.Net Coding Team">
+// <copyright file="CultureInfoExtensions.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Provides extension methods for the <see cref="System.Globalization.CultureInfo" /> type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.Extensions
 {
     using System.Collections.Generic;
@@ -22,7 +23,13 @@ namespace GW2DotNET.Extensions
         /// <summary>Initializes static members of the <see cref="CultureInfoExtensions" /> class.</summary>
         static CultureInfoExtensions()
         {
-            SupportedCultureInfos = new HashSet<CultureInfo> { CultureInfo.GetCultureInfo("de"), CultureInfo.GetCultureInfo("en"), CultureInfo.GetCultureInfo("es"), CultureInfo.GetCultureInfo("fr") };
+            SupportedCultureInfos = new HashSet<CultureInfo>
+                                        {
+                                            CultureInfo.GetCultureInfo("de"), 
+                                            CultureInfo.GetCultureInfo("en"), 
+                                            CultureInfo.GetCultureInfo("es"), 
+                                            CultureInfo.GetCultureInfo("fr")
+                                        };
         }
 
         /// <summary>Gets the culture info or a default culture info if not supported.</summary>

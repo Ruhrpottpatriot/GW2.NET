@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicEventRotationService.cs" company="GW2.Net Coding Team">
+// <copyright file="DynamicEventRotationService.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Provides the default implementation of the event rotations service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.DynamicEvents.Rotations
 {
     using System;
@@ -27,15 +28,15 @@ namespace GW2DotNET.V1.DynamicEvents.Rotations
                     let eventId = Guid.Parse(rotationElement.Attribute("event_id").Value)
                     let shifts = shiftElements.Select(
                         element =>
-                        {
-                            var shift = DateTimeOffset.Parse(element.Value);
-                            if (shift < DateTime.UtcNow)
                             {
-                                shift = shift.AddDays(1D);
-                            }
+                                var shift = DateTimeOffset.Parse(element.Value);
+                                if (shift < DateTime.UtcNow)
+                                {
+                                    shift = shift.AddDays(1D);
+                                }
 
-                            return shift;
-                        }).OrderBy(offset => offset.Ticks)
+                                return shift;
+                            }).OrderBy(offset => offset.Ticks)
                     select new DynamicEventRotation { EventId = eventId, Shifts = new DynamicEventShifts(shifts) }).ToList();
         }
 

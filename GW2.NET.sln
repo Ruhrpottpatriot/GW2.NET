@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30110.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET", "GW2.NET\GW2.NET.csproj", "{46C3A3D8-6627-4098-82BA-608F158A8CA5}"
 EndProject
@@ -18,9 +18,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{57002F
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.Entities", "GW2.NET.Entities\GW2.NET.Entities.csproj", "{58F41639-ED4B-43EA-9521-412865BC864C}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -33,9 +35,12 @@ Global
 		SccProjectUniqueName3 = RestSharp.GW2.NET\\RestSharp.GW2.NET.csproj
 		SccProjectName3 = RestSharp.GW2.NET
 		SccLocalPath3 = RestSharp.GW2.NET
-		SccProjectUniqueName4 = RestSharp.GW2.Net.Sample\\RestSharp.GW2.NET.Sample.csproj
+		SccProjectUniqueName4 = RestSharp.GW2.NET.Sample\\RestSharp.GW2.NET.Sample.csproj
 		SccProjectName4 = RestSharp.GW2.NET.Sample
 		SccLocalPath4 = RestSharp.GW2.NET.Sample
+		SccProjectUniqueName5 = GW2.NET.Entities\\GW2.NET.Entities.csproj
+		SccProjectName5 = GW2.NET.Entities
+		SccLocalPath5 = GW2.NET.Entities
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -86,6 +91,14 @@ Global
 		{BC40AB1A-44C8-4DFF-AABB-9A7B7D0B26A8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BC40AB1A-44C8-4DFF-AABB-9A7B7D0B26A8}.Release|x64.ActiveCfg = Release|Any CPU
 		{BC40AB1A-44C8-4DFF-AABB-9A7B7D0B26A8}.Release|x86.ActiveCfg = Release|Any CPU
+		{58F41639-ED4B-43EA-9521-412865BC864C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58F41639-ED4B-43EA-9521-412865BC864C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58F41639-ED4B-43EA-9521-412865BC864C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{58F41639-ED4B-43EA-9521-412865BC864C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{58F41639-ED4B-43EA-9521-412865BC864C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58F41639-ED4B-43EA-9521-412865BC864C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58F41639-ED4B-43EA-9521-412865BC864C}.Release|x64.ActiveCfg = Release|Any CPU
+		{58F41639-ED4B-43EA-9521-412865BC864C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

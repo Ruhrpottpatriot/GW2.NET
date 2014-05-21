@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DefaultJsonConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="DefaultJsonConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Default converter. This converter is useful for use in inheritance trees, where a sub-class would otherwise use the same converter as its base class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Common.Converters
 {
     using System;

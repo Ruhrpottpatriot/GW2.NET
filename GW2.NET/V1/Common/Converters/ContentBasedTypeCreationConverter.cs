@@ -1,11 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContentBasedTypeCreationConverter.cs" company="GW2.Net Coding Team">
+// <copyright file="ContentBasedTypeCreationConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Deserializes an instance of a specific type based on the content. This is useful for complex types with an inheritance tree, where the exact type of the JSON content is not known at compile time.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Common.Converters
 {
     using System;
