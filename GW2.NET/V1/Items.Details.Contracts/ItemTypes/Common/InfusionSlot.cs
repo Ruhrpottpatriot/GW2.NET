@@ -16,6 +16,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
     /// <summary>Represents one of an item's infusion slots.</summary>
     public class InfusionSlot : JsonObject
     {
+        /// <summary>Gets or sets the infusion slot's identifier.</summary>
+        public int? Id { get; set; }
+
         /// <summary>Gets or sets the infusion slot's type(s).</summary>
         [DataMember(Name = "flags", Order = 0)]
         public virtual InfusionSlotTypes Flags { get; set; }
