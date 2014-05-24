@@ -305,6 +305,7 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\GreatSword.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Hammer.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Harpoon.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\SmallBundle.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\LargeBundle.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\LongBow.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\Mace.cs" />

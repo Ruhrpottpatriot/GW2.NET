@@ -34,6 +34,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
             KnownTypes.Add(WeaponType.Hammer, typeof(Hammer));
             KnownTypes.Add(WeaponType.Harpoon, typeof(Harpoon));
             KnownTypes.Add(WeaponType.LargeBundle, typeof(LargeBundle));
+            KnownTypes.Add(WeaponType.SmallBundle, typeof(SmallBundle));
             KnownTypes.Add(WeaponType.LongBow, typeof(LongBow));
             KnownTypes.Add(WeaponType.Mace, typeof(Mace));
             KnownTypes.Add(WeaponType.Pistol, typeof(Pistol));
