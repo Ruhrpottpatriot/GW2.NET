@@ -126,20 +126,8 @@
 		<shift>18:30:00+00:00</shift>
 		<shift>22:00:00+00:00</shift>
 	</rotation>
-	<!-- Crimson Great Jungle Wurm -->
-	<rotation>
-		<shift>03:00:00+00:00</shift>
-		<shift>12:30:00+00:00</shift>
-		<shift>18:00:00+00:00</shift>
-	</rotation>
-	<!-- Amber Great Jungle Wurm -->
-	<rotation>
-		<shift>03:00:00+00:00</shift>
-		<shift>12:30:00+00:00</shift>
-		<shift>18:00:00+00:00</shift>
-	</rotation>
-	<!-- Cobalt Great Jungle Wurm -->
-	<rotation>
+	<!-- Triple Trouble (Crimson, Amber, Cobalt Great Jungle Wurms) -->
+	<rotation event_id="F06787F5-CFC0-499A-954E-EC125FA71C9D">
 		<shift>03:00:00+00:00</shift>
 		<shift>12:30:00+00:00</shift>
 		<shift>18:00:00+00:00</shift>
