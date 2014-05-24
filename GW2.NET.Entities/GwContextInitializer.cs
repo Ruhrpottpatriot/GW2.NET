@@ -18,6 +18,7 @@ namespace GW2DotNET.Entities
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Builds;
+    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Items;
     using GW2DotNET.V1.Items.Details;
     using GW2DotNET.V1.Items.Details.Contracts;
@@ -75,28 +76,50 @@ namespace GW2DotNET.Entities
         private void SeedItems(GwContext context, CultureInfo language)
         {
             var buildService = new BuildService();
+
             var itemService = new ItemService();
-            var itemDetailService = new ItemDetailsService();
 
             var build = buildService.GetBuild();
-            var allItemIds = itemService.GetItems().ToList();
-            var skipItems = context.Items.Where(item => item.Build.BuildId == build.BuildId && item.Language == language.TwoLetterISOLanguageName).Select(item => item.ItemId);
-            var todoItems = allItemIds.Except(skipItems).ToList();
 
-            if (!todoItems.Any())
+            var allItemIds = itemService.GetItems().ToList();
+
+            var knownItems = context.Items.Where(item => item.Language == language.TwoLetterISOLanguageName);
+
+            var outdatedItemIds = knownItems.Where(item => item.BuildId < build.BuildId).Select(item => item.ItemId).ToList();
+
+            if (outdatedItemIds.Any())
             {
-                return;
+                this.SeedItems(context, outdatedItemIds, language, build, true);
             }
 
-            foreach (var partition in Partitioner.Create(0, todoItems.Count, 100).GetDynamicPartitions())
+            var unknownItemIds = allItemIds.Except(knownItems.Select(item => item.ItemId)).ToList();
+
+            if (unknownItemIds.Any())
+            {
+                this.SeedItems(context, unknownItemIds, language, build, false);
+            }
+        }
+
+        /// <summary>Updates or inserts the specified items.</summary>
+        /// <param name="context">Context to be used for updating seed data.</param>
+        /// <param name="itemIds">The item identifiers.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="build">The build.</param>
+        /// <param name="itemsExistsInDatabase">Indicates whether the specified item identifiers exist in the database.</param>
+        private void SeedItems(GwContext context, IList<int> itemIds, CultureInfo language, Build build, bool itemsExistsInDatabase)
+        {
+            var itemDetailService = new ItemDetailsService();
+
+            foreach (var partition in Partitioner.Create(0, itemIds.Count(), 100).GetDynamicPartitions())
             {
                 var tasks = new List<Task<Item>>();
 
                 for (var index = partition.Item1; index < partition.Item2; index++)
                 {
-                    tasks.Add(itemDetailService.GetItemDetailsAsync(todoItems[index], language));
+                    tasks.Add(itemDetailService.GetItemDetailsAsync(itemIds[index], language));
                 }
 
+                // ReSharper disable once CoVariantArrayConversion
                 Task.WaitAll(tasks.ToArray());
 
                 var items = tasks.Where(t => t.IsCompleted).Select(task => task.Result).ToList();
@@ -106,7 +129,7 @@ namespace GW2DotNET.Entities
                     item.BuildId = build.BuildId;
 
                     var upgradedItem = item as IUpgrade;
-                    if (upgradedItem != null)
+                    if (upgradedItem != null && upgradedItem.Attributes.Any())
                     {
                         var collection = new ItemAttributeCollection();
                         foreach (var attribute in upgradedItem.Attributes)
@@ -117,7 +140,7 @@ namespace GW2DotNET.Entities
                         upgradedItem.Attributes = collection;
                     }
 
-                    if (context.Items.Find(item.ItemId, item.Language) != null)
+                    if (itemsExistsInDatabase)
                     {
                         context.Entry(item).State = EntityState.Modified;
                     }

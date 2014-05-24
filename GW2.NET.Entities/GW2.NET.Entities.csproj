@@ -54,24 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\UnknownItemConfiguration.cs" />
-    <Compile Include="Configuration\ArmorConfiguration.cs" />
-    <Compile Include="Configuration\BackConfiguration.cs" />
-    <Compile Include="Configuration\TrophyConfiguration.cs" />
-    <Compile Include="Configuration\MiniPetConfiguration.cs" />
-    <Compile Include="Configuration\CraftingMaterialConfiguration.cs" />
-    <Compile Include="Configuration\BagConfiguration.cs" />
+    <Compile Include="Configuration\EquipmentConfiguration.cs" />
     <Compile Include="Configuration\BuildConfiguration.cs" />
-    <Compile Include="Configuration\ConsumableConfiguration.cs" />
-    <Compile Include="Configuration\ContainerConfiguration.cs" />
-    <Compile Include="Configuration\GatheringToolConfiguration.cs" />
-    <Compile Include="Configuration\GizmoConfiguration.cs" />
     <Compile Include="Configuration\ItemAttributeConfiguration.cs" />
     <Compile Include="Configuration\ItemConfiguration.cs" />
-    <Compile Include="Configuration\ToolConfiguration.cs" />
-    <Compile Include="Configuration\TrinketConfiguration.cs" />
     <Compile Include="Configuration\UpgradeComponentConfiguration.cs" />
-    <Compile Include="Configuration\WeaponConfiguration.cs" />
     <Compile Include="GwContext.cs" />
     <Compile Include="GwContextInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

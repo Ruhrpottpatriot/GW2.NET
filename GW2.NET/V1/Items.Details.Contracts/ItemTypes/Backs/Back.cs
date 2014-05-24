@@ -15,84 +15,19 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
 
     /// <summary>Represents a back item.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class Back : Item, ISkinnable, IUpgrade, IUpgradable
+    public class Back : CombatItem, ISkinnable
     {
-        /// <summary>Backing field.</summary>
-        private ItemAttributeCollection attributes;
-
-        /// <summary>Backing field.</summary>
-        private ItemBuff buff;
-
         /// <summary>Initializes a new instance of the <see cref="Back" /> class.</summary>
         public Back()
             : base(ItemType.Back, "back")
         {
-            this.buff = new ItemBuff();
-            this.attributes = new ItemAttributeCollection();
-        }
-
-        /// <summary>Gets or sets the item's attributes.</summary>
-        [DataMember(Name = "attributes")]
-        public virtual ItemAttributeCollection Attributes
-        {
-            get
-            {
-                return this.attributes;
-            }
-
-            set
-            {
-                this.attributes = value;
-            }
-        }
-
-        /// <summary>Gets or sets the item's buff.</summary>
-        [DataMember(Name = "buff")]
-        public virtual ItemBuff Buff
-        {
-            get
-            {
-                return this.buff;
-            }
-
-            set
-            {
-                this.buff = value;
-            }
         }
 
         /// <summary>Gets or sets the item's default skin identifier.</summary>
         [DataMember(Name = "default_skin")]
         public virtual int DefaultSkin { get; set; }
-
-        /// <summary>Gets or sets the item's infusion slots.</summary>
-        [DataMember(Name = "infusion_slots")]
-        public virtual InfusionSlotCollection InfusionSlots { get; set; }
-
-        /// <summary>Gets or sets the item's secondary suffix item's ID.</summary>
-        [DataMember(Name = "secondary_suffix_item_id")]
-        public virtual int? SecondarySuffixItemId { get; set; }
-
-        /// <summary>Gets or sets the item's suffix item's ID.</summary>
-        [DataMember(Name = "suffix_item_id")]
-        public virtual int? SuffixItemId { get; set; }
-
-        /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>
-        /// <param name="context">The streaming context.</param>
-        [OnDeserialized]
-        protected new void OnDeserialized(StreamingContext context)
-        {
-            base.OnDeserialized(context);
-            const string Key = "infix_upgrade";
-            object infixUpgrade;
-            if (this.ExtensionData.TryGetValue(Key, out infixUpgrade) && this.ExtensionData.Remove(Key))
-            {
-                JsonSerializer.CreateDefault().Populate(((JObject)infixUpgrade).CreateReader(), this);
-            }
-        }
     }
 }

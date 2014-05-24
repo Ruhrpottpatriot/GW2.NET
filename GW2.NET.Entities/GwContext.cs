@@ -16,8 +16,6 @@ namespace GW2DotNET.Entities
     using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes.UnlockTypes;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes;
 
     /// <summary>The Guild Wars database context.</summary>
     public class GwContext : DbContext
@@ -67,26 +65,9 @@ namespace GW2DotNET.Entities
         {
             modelBuilder.Configurations.Add(new BuildConfiguration());
             modelBuilder.Configurations.Add(new ItemConfiguration());
-            modelBuilder.Configurations.Add(new UnknownItemConfiguration());
-            modelBuilder.Configurations.Add(new ArmorConfiguration());
-            modelBuilder.Configurations.Add(new BackConfiguration());
-            modelBuilder.Configurations.Add(new BagConfiguration());
-            modelBuilder.Configurations.Add(new ConsumableConfiguration());
-            modelBuilder.Configurations.Add(new ContainerConfiguration());
-            modelBuilder.Configurations.Add(new CraftingMaterialConfiguration());
-            modelBuilder.Configurations.Add(new GatheringToolConfiguration());
-            modelBuilder.Configurations.Add(new GizmoConfiguration());
-            modelBuilder.Configurations.Add(new MiniPetConfiguration());
-            modelBuilder.Configurations.Add(new ToolConfiguration());
-            modelBuilder.Configurations.Add(new TrinketConfiguration());
-            modelBuilder.Configurations.Add(new TrophyConfiguration());
+            modelBuilder.Configurations.Add(new EquipmentConfiguration());
             modelBuilder.Configurations.Add(new UpgradeComponentConfiguration());
-            modelBuilder.Configurations.Add(new WeaponConfiguration());
             modelBuilder.Configurations.Add(new ItemAttributeConfiguration());
-
-            modelBuilder.Entity<SalvageTool>().Property(details => details.Charges).IsOptional();
-            modelBuilder.Entity<CraftingRecipeUnlocker>().Property(details => details.RecipeId).IsOptional();
-            modelBuilder.Entity<DyeUnlocker>().Property(details => details.ColorId).IsOptional();
         }
     }
 }

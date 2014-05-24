@@ -20,10 +20,7 @@ namespace GW2DotNET.Entities.Configuration
         /// <summary>Initializes a new instance of the <see cref="BuildConfiguration"/> class.</summary>
         public BuildConfiguration()
         {
-            this.HasKey(build => build.BuildId);
-            this.Property(entity => entity.BuildId).HasColumnName("BuildId");
             this.Property(entity => entity.BuildId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            this.ToTable("Builds");
         }
     }
 }

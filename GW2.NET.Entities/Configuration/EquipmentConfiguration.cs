@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UnknownItemConfiguration.cs" company="GW2.NET Coding Team">
+// <copyright file="EquipmentConfiguration.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The unknown item configuration.
+//   The equipment configuration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -11,16 +11,15 @@ namespace GW2DotNET.Entities.Configuration
 {
     using System.Data.Entity.ModelConfiguration;
 
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
-    /// <summary>The unknown item configuration.</summary>
-    public class UnknownItemConfiguration : EntityTypeConfiguration<UnknownItem>
+    /// <summary>The equipment configuration.</summary>
+    public class EquipmentConfiguration : EntityTypeConfiguration<CombatItem>
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownItemConfiguration" /> class.</summary>
-        public UnknownItemConfiguration()
+        /// <summary>Initializes a new instance of the <see cref="EquipmentConfiguration"/> class.</summary>
+        public EquipmentConfiguration()
         {
-            const string TableName = "UnknownItems";
-            this.ToTable(TableName);
+            this.HasMany(item => item.Attributes).WithMany();
         }
     }
 }
