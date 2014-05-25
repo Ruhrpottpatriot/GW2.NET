@@ -9,30 +9,13 @@
 
 namespace GW2DotNET.ChatLinks
 {
-    using System;
+    using System.ComponentModel;
 
     /// <summary>Represents a chat link that links to a point of interest.</summary>
+    [TypeConverter(typeof(PointOfInterestChatLinkConverter))]
     public class PointOfInterestChatLink : ChatLink
     {
-        /// <summary>Initializes a new instance of the <see cref="PointOfInterestChatLink"/> class.</summary>
-        /// <param name="pointOfInterestId">The point of interest identifier.</param>
-        public PointOfInterestChatLink(int pointOfInterestId)
-            : base(ChatLinkType.PointOfInterest)
-        {
-            this.PointOfInterestId = pointOfInterestId;
-        }
-
-        /// <summary>Gets the point of interest identifier.</summary>
-        public int PointOfInterestId { get; private set; }
-
-        /// <summary>Gets the bytes.</summary>
-        /// <returns>The <see cref="byte" /> array.</returns>
-        protected override byte[] GetBytes()
-        {
-            var buffer = new byte[5];
-            Buffer.SetByte(buffer, 0, (byte)this.Type);
-            Buffer.BlockCopy(BitConverter.GetBytes(this.PointOfInterestId), 0, buffer, 1, 4);
-            return buffer;
-        }
+        /// <summary>Gets or sets the point of interest identifier.</summary>
+        public int PointOfInterestId { get; set; }
     }
 }

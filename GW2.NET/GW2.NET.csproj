@@ -55,7 +55,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatLinks\ChatLink.cs" />
-    <Compile Include="ChatLinks\ChatLinkType.cs" />
+    <Compile Include="ChatLinks\ChatLinkConverterBase.cs" />
+    <Compile Include="ChatLinks\ChatLinkFactory.cs" />
+    <Compile Include="ChatLinks\ChatLinkConverter.cs" />
+    <Compile Include="ChatLinks\ChatLinkTypeContext.cs" />
+    <Compile Include="ChatLinks\ItemChatLinkConverter.cs">
+      <DependentUpon>ItemChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\SkinChatLinkConverter.cs">
+      <DependentUpon>SkinChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\TraitChatLinkConverter.cs">
+      <DependentUpon>TraitChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\SkillChatLinkConverter.cs">
+      <DependentUpon>SkillChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\RecipeChatLinkConverter.cs">
+      <DependentUpon>RecipeChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\PointOfInterestChatLinkConverter.cs">
+      <DependentUpon>PointOfInterestChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\OutfitChatLinkConverter.cs">
+      <DependentUpon>OutfitChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\DialogChatLinkConverter.cs">
+      <DependentUpon>DialogChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\CoinChatLinkConverter.cs">
+      <DependentUpon>CoinChatLink.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChatLinks\Extensions\ItemBuffExtensions.cs" />
     <Compile Include="ChatLinks\Extensions\SkinExtensions.cs" />
     <Compile Include="ChatLinks\OutfitChatLink.cs" />

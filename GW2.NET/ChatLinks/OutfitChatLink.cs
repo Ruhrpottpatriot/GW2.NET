@@ -9,30 +9,13 @@
 
 namespace GW2DotNET.ChatLinks
 {
-    using System;
+    using System.ComponentModel;
 
     /// <summary>Represents a chat link that links to an outfit.</summary>
+    [TypeConverter(typeof(OutfitChatLinkConverter))]
     public class OutfitChatLink : ChatLink
     {
-        /// <summary>Initializes a new instance of the <see cref="OutfitChatLink"/> class.</summary>
-        /// <param name="outfitId">The outfit identifier.</param>
-        public OutfitChatLink(int outfitId)
-            : base(ChatLinkType.Outfit)
-        {
-            this.OutfitId = outfitId;
-        }
-
-        /// <summary>Gets the outfit identifier.</summary>
-        public int OutfitId { get; private set; }
-
-        /// <summary>Gets the bytes.</summary>
-        /// <returns>The <see cref="byte" /> array.</returns>
-        protected override byte[] GetBytes()
-        {
-            var buffer = new byte[5];
-            Buffer.SetByte(buffer, 0, (byte)this.Type);
-            Buffer.BlockCopy(BitConverter.GetBytes(this.OutfitId), 0, buffer, 1, 4);
-            return buffer;
-        }
+        /// <summary>Gets or sets the outfit identifier.</summary>
+        public int OutfitId { get; set; }
     }
 }

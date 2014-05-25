@@ -9,30 +9,13 @@
 
 namespace GW2DotNET.ChatLinks
 {
-    using System;
+    using System.ComponentModel;
 
     /// <summary>Represents a chat link that links to an amount of coins.</summary>
+    [TypeConverter(typeof(CoinChatLinkConverter))]
     public class CoinChatLink : ChatLink
     {
-        /// <summary>Initializes a new instance of the <see cref="CoinChatLink"/> class.</summary>
-        /// <param name="quantity">The quantity.</param>
-        public CoinChatLink(int quantity)
-            : base(ChatLinkType.Coin)
-        {
-            this.Quantity = quantity;
-        }
-
-        /// <summary>Gets the quantity.</summary>
-        public int Quantity { get; private set; }
-
-        /// <summary>Gets the bytes.</summary>
-        /// <returns>The <see cref="byte" /> array.</returns>
-        protected override byte[] GetBytes()
-        {
-            var buffer = new byte[5];
-            Buffer.SetByte(buffer, 0, (byte)this.Type);
-            Buffer.BlockCopy(BitConverter.GetBytes(this.Quantity), 0, buffer, 1, 4);
-            return buffer;
-        }
+        /// <summary>Gets or sets the quantity.</summary>
+        public int Quantity { get; set; }
     }
 }

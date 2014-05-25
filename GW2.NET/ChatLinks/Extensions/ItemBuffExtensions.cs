@@ -22,7 +22,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         {
             Preconditions.EnsureNotNull(paramName: "instance", value: instance);
             Preconditions.Ensure(instance.SkillId.HasValue, paramName: "SkillId", message: "The specified item buff is not associated with a skill identifier.");
-            return new SkillChatLink(instance.SkillId.GetValueOrDefault());
+            return new SkillChatLink { SkillId = instance.SkillId.GetValueOrDefault() };
         }
     }
 }

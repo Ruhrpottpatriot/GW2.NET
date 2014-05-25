@@ -21,7 +21,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         public static ChatLink GetChatLink(this Skin instance)
         {
             Preconditions.EnsureNotNull(instance);
-            return new SkinChatLink(instance.SkinId);
+            return new SkinChatLink { SkinId = instance.SkinId };
         }
     }
 }

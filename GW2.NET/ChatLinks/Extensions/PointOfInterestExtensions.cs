@@ -21,7 +21,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         public static ChatLink GetChatLink(this PointOfInterest pointOfInterest)
         {
             Preconditions.EnsureNotNull(pointOfInterest);
-            return new PointOfInterestChatLink(pointOfInterest.PointOfInterestId);
+            return new PointOfInterestChatLink { PointOfInterestId = pointOfInterest.PointOfInterestId };
         }
     }
 }

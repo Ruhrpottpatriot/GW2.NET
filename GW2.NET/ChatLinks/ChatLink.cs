@@ -9,30 +9,28 @@
 
 namespace GW2DotNET.ChatLinks
 {
-    using System;
+    using System.ComponentModel;
 
     /// <summary>Provides the base class for chat links.</summary>
     public abstract class ChatLink
     {
-        /// <summary>Initializes a new instance of the <see cref="ChatLink"/> class.</summary>
-        /// <param name="type">The chat link type.</param>
-        protected ChatLink(ChatLinkType type)
+        /// <summary>Initializes static members of the <see cref="ChatLink"/> class.</summary>
+        static ChatLink()
         {
-            this.Type = type;
+            Factory = new ChatLinkFactory();
         }
 
-        /// <summary>Gets the chat link type.</summary>
-        public ChatLinkType Type { get; private set; }
+        /// <summary>
+        /// Gets a reference to the factory class that provides chat link factory methods.
+        /// </summary>
+        public static ChatLinkFactory Factory { get; private set; }
 
         /// <summary>Returns a <see cref="T:System.String" /> that represents the current <see cref="T:System.Object" />.</summary>
         /// <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:System.Object" />.</returns>
         public override string ToString()
         {
-            return string.Format("[&{0}]", Convert.ToBase64String(this.GetBytes()));
+            var typeConverter = TypeDescriptor.GetConverter(this.GetType());
+            return typeConverter.ConvertToString(this) ?? "[&]";
         }
-
-        /// <summary>Gets the bytes.</summary>
-        /// <returns>The <see cref="byte" /> array.</returns>
-        protected abstract byte[] GetBytes();
     }
 }

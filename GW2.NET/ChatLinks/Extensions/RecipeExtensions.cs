@@ -21,7 +21,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         public static ChatLink GetChatLink(this Recipe instance)
         {
             Preconditions.EnsureNotNull(instance);
-            return new RecipeChatLink(instance.RecipeId);
+            return new RecipeChatLink { RecipeId = instance.RecipeId };
         }
     }
 }

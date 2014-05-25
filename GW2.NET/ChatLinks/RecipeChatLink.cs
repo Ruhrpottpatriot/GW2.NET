@@ -9,30 +9,13 @@
 
 namespace GW2DotNET.ChatLinks
 {
-    using System;
+    using System.ComponentModel;
 
     /// <summary>Represents a chat link that links to a recipe.</summary>
+    [TypeConverter(typeof(RecipeChatLinkConverter))]
     public class RecipeChatLink : ChatLink
     {
-        /// <summary>Initializes a new instance of the <see cref="RecipeChatLink"/> class.</summary>
-        /// <param name="recipeId">The recipe ID.</param>
-        public RecipeChatLink(int recipeId)
-            : base(ChatLinkType.Recipe)
-        {
-            this.RecipeId = recipeId;
-        }
-
-        /// <summary>Gets the recipe ID.</summary>
-        public int RecipeId { get; private set; }
-
-        /// <summary>Gets the bytes.</summary>
-        /// <returns>The <see cref="byte" /> array.</returns>
-        protected override byte[] GetBytes()
-        {
-            var buffer = new byte[5];
-            Buffer.SetByte(buffer, 0, (byte)this.Type);
-            Buffer.BlockCopy(BitConverter.GetBytes(this.RecipeId), 0, buffer, 1, 4);
-            return buffer;
-        }
+        /// <summary>Gets or sets the recipe ID.</summary>
+        public int RecipeId { get; set; }
     }
 }
