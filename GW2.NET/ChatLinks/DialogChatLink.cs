@@ -9,7 +9,6 @@
 
 namespace GW2DotNET.ChatLinks
 {
-    using System;
     using System.ComponentModel;
 
     /// <summary>Represents a chat link that links to a dialog.</summary>
@@ -18,15 +17,5 @@ namespace GW2DotNET.ChatLinks
     {
         /// <summary>Gets or sets the dialog identifier.</summary>
         public int DialogId { get; set; }
-
-        /// <summary>Gets the bytes.</summary>
-        /// <returns>The <see cref="byte" /> array.</returns>
-        public byte[] Encode()
-        {
-            var buffer = new byte[5];
-            Buffer.SetByte(buffer, 0, 0x03);
-            Buffer.BlockCopy(BitConverter.GetBytes(this.DialogId), 0, buffer, 2, 2);
-            return buffer;
-        }
     }
 }
