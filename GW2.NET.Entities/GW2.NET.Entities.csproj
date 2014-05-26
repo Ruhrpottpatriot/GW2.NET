@@ -60,6 +60,7 @@
     <Compile Include="Configuration\ItemConfiguration.cs" />
     <Compile Include="Configuration\UpgradeComponentConfiguration.cs" />
     <Compile Include="GwContext.cs" />
+    <Compile Include="GwContext.Views.cs" />
     <Compile Include="GwContextInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
