@@ -6,7 +6,6 @@
 //   Enumerates the known crafting disciplines.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes.Details.Contracts
 {
     using System;
@@ -22,35 +21,35 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     public enum CraftingDisciplines
     {
         /// <summary>Indicates no crafting disciplines.</summary>
-        None = 0,
+        None = 0, 
 
         /// <summary>The 'Armor smith' crafting discipline.</summary>
         [EnumMember(Value = "Armorsmith")]
-        Armorsmith = 1 << 0,
+        Armorsmith = 1 << 0, 
 
         /// <summary>The 'Artificer' crafting discipline.</summary>
         [EnumMember(Value = "Artificer")]
-        Artificer = 1 << 1,
+        Artificer = 1 << 1, 
 
         /// <summary>The 'Chef' crafting discipline.</summary>
         [EnumMember(Value = "Chef")]
-        Chef = 1 << 2,
+        Chef = 1 << 2, 
 
         /// <summary>The 'Huntsman' crafting discipline.</summary>
         [EnumMember(Value = "Huntsman")]
-        Huntsman = 1 << 3,
+        Huntsman = 1 << 3, 
 
         /// <summary>The 'Jeweler' crafting discipline.</summary>
         [EnumMember(Value = "Jeweler")]
-        Jeweler = 1 << 4,
+        Jeweler = 1 << 4, 
 
         /// <summary>The 'Leatherworker' crafting discipline.</summary>
         [EnumMember(Value = "Leatherworker")]
-        Leatherworker = 1 << 5,
+        Leatherworker = 1 << 5, 
 
         /// <summary>The 'Tailor' crafting discipline.</summary>
         [EnumMember(Value = "Tailor")]
-        Tailor = 1 << 6,
+        Tailor = 1 << 6, 
 
         /// <summary>The 'Weapon smith' crafting discipline.</summary>
         [EnumMember(Value = "Weaponsmith")]

@@ -6,7 +6,6 @@
 //   Provides the default implementation of the recipe details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes.Details
 {
     using System;

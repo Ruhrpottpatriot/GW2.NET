@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum SkinFlags
     {
-        /// <summary> Indicates no additional skin flags.</summary>
+        /// <summary>Indicates no additional skin flags.</summary>
         None = 0, 
 
         /// <summary>The 'Show In Wardrobe' skin flag.</summary>

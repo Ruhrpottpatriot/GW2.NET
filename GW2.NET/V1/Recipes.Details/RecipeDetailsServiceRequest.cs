@@ -6,7 +6,6 @@
 //   Represents a request for information regarding a specific recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes.Details
 {
     using GW2DotNET.Extensions;

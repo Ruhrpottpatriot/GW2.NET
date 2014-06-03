@@ -6,7 +6,6 @@
 //   Provides the interface for the recipe details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes.Details
 {
     using System.Globalization;

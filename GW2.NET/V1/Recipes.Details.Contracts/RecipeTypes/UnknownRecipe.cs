@@ -6,7 +6,6 @@
 //   Represents detailed information about an unknown crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
     using GW2DotNET.V1.Common.Converters;

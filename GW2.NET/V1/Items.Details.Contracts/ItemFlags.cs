@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum ItemFlags
     {
-        /// <summary> Indicates no additional item flags.</summary>
+        /// <summary>Indicates no additional item flags.</summary>
         None = 0, 
 
         /// <summary>The 'Account Bound' item flag.</summary>

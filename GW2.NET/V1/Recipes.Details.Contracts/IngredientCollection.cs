@@ -6,7 +6,6 @@
 //   Represents a collection of crafting ingredients.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes.Details.Contracts
 {
     using System.Collections.Generic;

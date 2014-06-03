@@ -6,7 +6,6 @@
 //   Provides the base class for types that represent a crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes.Details.Contracts
 {
     using System;
@@ -57,6 +56,9 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         [DataMember(Name = "min_rating")]
         public virtual int MinimumRating { get; set; }
 
+        /// <summary>Gets or sets the output item.</summary>
+        public virtual Item OutputItem { get; set; }
+
         /// <summary>Gets or sets the amount of items produced.</summary>
         [DataMember(Name = "output_item_count")]
         public virtual int OutputItemCount { get; set; }
@@ -64,9 +66,6 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         /// <summary>Gets or sets the output item identifier.</summary>
         [DataMember(Name = "output_item_id")]
         public virtual int OutputItemId { get; set; }
-
-        /// <summary>Gets or sets the output item.</summary>
-        public virtual Item OutputItem { get; set; }
 
         /// <summary>Gets or sets the recipe's ID.</summary>
         [DataMember(Name = "recipe_id")]
