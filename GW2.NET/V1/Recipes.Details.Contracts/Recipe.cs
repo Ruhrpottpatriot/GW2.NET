@@ -3,82 +3,83 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about a crafting recipe.
+//   Provides the base class for types that represent a crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2DotNET.V1.Recipes.Details.Contracts
 {
     using System;
-    using System.Globalization;
     using System.Runtime.Serialization;
 
+    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Recipes.Details.Contracts.Ingredients;
+    using GW2DotNET.V1.Items.Details.Contracts;
 
     using Newtonsoft.Json;
 
-    /// <summary>Represents detailed information about a crafting recipe.</summary>
+    /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
     [JsonConverter(typeof(RecipeConverter))]
     public abstract class Recipe : JsonObject, IEquatable<Recipe>, IComparable<Recipe>
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly RecipeType type;
-
         /// <summary>Initializes a new instance of the <see cref="Recipe"/> class.</summary>
         /// <param name="recipeType">The recipe's type.</param>
         protected Recipe(RecipeType recipeType)
         {
-            this.type = recipeType;
+            this.Type = recipeType;
         }
+
+        /// <summary>Gets or sets the recipe's build.</summary>
+        public virtual Build Build { get; set; }
+
+        /// <summary>Gets or sets the recipe's build number.</summary>
+        [DataMember(Name = "build_id", Order = 1)]
+        public virtual int BuildId { get; set; }
 
         /// <summary>Gets or sets the crafting disciplines that can use the recipe.</summary>
-        [DataMember(Name = "disciplines", Order = 6)]
-        public CraftingDisciplines CraftingDisciplines { get; set; }
+        [DataMember(Name = "disciplines")]
+        public virtual CraftingDisciplines CraftingDisciplines { get; set; }
 
         /// <summary>Gets or sets the recipe's unlock type(s).</summary>
-        [DataMember(Name = "flags", Order = 7)]
-        public RecipeUnlockTypes Flags { get; set; }
+        [DataMember(Name = "flags")]
+        public virtual RecipeUnlockTypes Flags { get; set; }
 
         /// <summary>Gets or sets a collection of the required ingredients.</summary>
-        [DataMember(Name = "ingredients", Order = 8)]
-        public CraftingIngredientCollection Ingredients { get; set; }
+        [DataMember(Name = "ingredients")]
+        public virtual IngredientCollection Ingredients { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 9)]
-        public CultureInfo Language { get; set; }
+        [DataMember(Name = "lang")]
+        public virtual string Language { get; set; }
 
         /// <summary>Gets or sets the recipe's minimum rating.</summary>
-        [DataMember(Name = "min_rating", Order = 4)]
-        public int MinimumRating { get; set; }
+        [DataMember(Name = "min_rating")]
+        public virtual int MinimumRating { get; set; }
 
         /// <summary>Gets or sets the amount of items produced.</summary>
-        [DataMember(Name = "output_item_count", Order = 3)]
-        public int OutputItemCount { get; set; }
+        [DataMember(Name = "output_item_count")]
+        public virtual int OutputItemCount { get; set; }
 
-        /// <summary>Gets or sets the output item's ID.</summary>
-        [DataMember(Name = "output_item_id", Order = 2)]
-        public int OutputItemId { get; set; }
+        /// <summary>Gets or sets the output item identifier.</summary>
+        [DataMember(Name = "output_item_id")]
+        public virtual int OutputItemId { get; set; }
+
+        /// <summary>Gets or sets the output item.</summary>
+        public virtual Item OutputItem { get; set; }
 
         /// <summary>Gets or sets the recipe's ID.</summary>
-        [DataMember(Name = "recipe_id", Order = 0)]
-        public int RecipeId { get; set; }
+        [DataMember(Name = "recipe_id")]
+        public virtual int RecipeId { get; set; }
 
         /// <summary>Gets or sets the time it takes to craft the recipe.</summary>
-        [DataMember(Name = "time_to_craft_ms", Order = 5)]
+        [DataMember(Name = "time_to_craft_ms")]
         [JsonConverter(typeof(JsonTimespanConverter))]
-        public TimeSpan TimeToCraft { get; set; }
+        public virtual TimeSpan TimeToCraft { get; set; }
 
-        /// <summary>Gets the type of the output item.</summary>
-        [DataMember(Name = "type", Order = 1)]
-        public RecipeType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
+        /// <summary>Gets or sets the type of the output item.</summary>
+        [DataMember(Name = "type")]
+        protected RecipeType Type { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

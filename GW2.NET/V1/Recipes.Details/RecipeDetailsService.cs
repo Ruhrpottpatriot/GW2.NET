@@ -55,7 +55,7 @@ namespace GW2DotNET.V1.Recipes.Details
             var result = this.Request<Recipe>(serviceRequest);
 
             // patch missing language information
-            result.Language = language;
+            result.Language = language.TwoLetterISOLanguageName;
 
             return result;
         }
@@ -103,7 +103,7 @@ namespace GW2DotNET.V1.Recipes.Details
                 task =>
                     {
                         // patch missing language information
-                        task.Result.Language = language;
+                        task.Result.Language = language.TwoLetterISOLanguageName;
 
                         return task.Result;
                     }, 

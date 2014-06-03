@@ -377,13 +377,12 @@
     <Compile Include="V1\Maps.Contracts\MapCollection.cs" />
     <Compile Include="V1\Maps.Contracts\MapCollectionResult.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\CraftingDisciplines.cs" />
-    <Compile Include="V1\Recipes.Details.Contracts\Ingredients\CraftingIngredient.cs" />
-    <Compile Include="V1\Recipes.Details.Contracts\Ingredients\CraftingIngredientCollection.cs" />
+    <Compile Include="V1\Recipes.Details.Contracts\IngredientCollection.cs" />
+    <Compile Include="V1\Recipes.Details.Contracts\Portion.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\Recipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeConverter.cs">
       <DependentUpon>Recipe.cs</DependentUpon>
     </Compile>
-    <Compile Include="V1\Recipes.Details.Contracts\RecipesResult.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeType.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\AmuletRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\AxeRecipe.cs" />
