@@ -28,9 +28,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 
         /// <summary>Initializes a new instance of the <see cref="CombatItem"/> class.</summary>
         /// <param name="type">The item's type.</param>
-        /// <param name="discriminator">The item's details discriminator.</param>
-        protected CombatItem(ItemType type, string discriminator)
-            : base(type, discriminator)
+        protected CombatItem(ItemType type)
+            : base(type)
         {
             this.buff = new ItemBuff();
             this.attributes = new ItemAttributeCollection();
@@ -68,6 +67,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
         }
 
         /// <summary>Gets or sets the item's infusion slots.</summary>
+        [DataMember(Name = "infusion_slots")]
         public virtual InfusionSlotCollection InfusionSlots
         {
             get
@@ -82,9 +82,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
         }
 
         /// <summary>Gets or sets the item's secondary suffix item's ID.</summary>
+        [DataMember(Name = "secondary_suffix_item_id")]
         public int? SecondarySuffixItemId { get; set; }
 
         /// <summary>Gets or sets the item's suffix item's ID.</summary>
+        [DataMember(Name = "suffix_item_id")]
         public int? SuffixItemId { get; set; }
 
         /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>

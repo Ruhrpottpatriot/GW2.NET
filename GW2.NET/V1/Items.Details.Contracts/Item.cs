@@ -6,7 +6,6 @@
 //   Provides the base class for types that represent an in-game item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts
 {
     using System;
@@ -23,16 +22,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     [JsonConverter(typeof(ItemConverter))]
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
-        /// <summary>Infrastructure. Stores the discriminator.</summary>
-        private readonly string discriminator;
-
         /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>
         /// <param name="type">The item's type.</param>
-        /// <param name="discriminator">The item's details discriminator.</param>
-        protected Item(ItemType type, string discriminator)
+        protected Item(ItemType type)
         {
             this.Type = type;
-            this.discriminator = discriminator;
         }
 
         /// <summary>Gets or sets the item's build.</summary>
@@ -173,13 +167,33 @@ namespace GW2DotNET.V1.Items.Details.Contracts
             return this.ItemId;
         }
 
+        /// <summary>Gets the name of the property that provides additional information.</summary>
+        /// <returns>The name of the property.</returns>
+        protected virtual string GetTypeKey()
+        {
+            return null;
+        }
+
         /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>
         /// <param name="context">The streaming context.</param>
         [OnDeserialized]
         protected void OnDeserialized(StreamingContext context)
         {
+            // Remove empty descriptions
+            if (this.Description == string.Empty)
+            {
+                this.Description = null;
+            }
+
+            // Populate type-specific properties
+            var key = this.GetTypeKey();
+            if (string.IsNullOrEmpty(key))
+            {
+                return;
+            }
+
             object details;
-            if (this.ExtensionData.TryGetValue(this.discriminator, out details) && this.ExtensionData.Remove(this.discriminator))
+            if (this.ExtensionData.TryGetValue(key, out details) && this.ExtensionData.Remove(key))
             {
                 JsonSerializer.CreateDefault().Populate(((JObject)details).CreateReader(), this);
             }

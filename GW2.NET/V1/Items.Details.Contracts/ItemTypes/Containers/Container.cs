@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
         /// <summary>Initializes a new instance of the <see cref="Container"/> class.</summary>
         /// <param name="containerType">The container type.</param>
         protected Container(ContainerType containerType)
-            : base(ItemType.Container, "container")
+            : base(ItemType.Container)
         {
             this.ContainerType = containerType;
         }
@@ -28,5 +28,12 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
         /// <summary>Gets or sets the container's type.</summary>
         [DataMember(Name = "container_type")]
         protected ContainerType ContainerType { get; set; }
+
+        /// <summary>Gets the name of the property that provides additional information.</summary>
+        /// <returns>The name of the property.</returns>
+        protected override string GetTypeKey()
+        {
+            return "container";
+        }
     }
 }

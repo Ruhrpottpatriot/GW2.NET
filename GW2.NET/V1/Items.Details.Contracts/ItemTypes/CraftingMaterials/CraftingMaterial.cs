@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.CraftingMaterials
     {
         /// <summary>Initializes a new instance of the <see cref="CraftingMaterial" /> class.</summary>
         public CraftingMaterial()
-            : base(ItemType.CraftingMaterial, "crafting_material")
+            : base(ItemType.CraftingMaterial)
         {
         }
     }

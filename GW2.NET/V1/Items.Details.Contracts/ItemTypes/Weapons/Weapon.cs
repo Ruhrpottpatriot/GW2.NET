@@ -22,7 +22,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
         /// <summary>Initializes a new instance of the <see cref="Weapon"/> class.</summary>
         /// <param name="weaponType">The weapon's type.</param>
         protected Weapon(WeaponType weaponType)
-            : base(ItemType.Weapon, "weapon")
+            : base(ItemType.Weapon)
         {
             this.WeaponType = weaponType;
         }
@@ -50,5 +50,12 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
         /// <summary>Gets or sets the weapon's type.</summary>
         [DataMember(Name = "weapon_type")]
         protected WeaponType WeaponType { get; set; }
+
+        /// <summary>Gets the name of the property that provides additional information.</summary>
+        /// <returns>The name of the property.</returns>
+        protected override string GetTypeKey()
+        {
+            return "weapon";
+        }
     }
 }

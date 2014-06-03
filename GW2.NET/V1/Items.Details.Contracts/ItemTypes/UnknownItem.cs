@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes
     {
         /// <summary>Initializes a new instance of the <see cref="UnknownItem" /> class.</summary>
         public UnknownItem()
-            : base(ItemType.Unknown, "unknown")
+            : base(ItemType.Unknown)
         {
         }
     }

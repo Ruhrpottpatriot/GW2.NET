@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
         /// <summary>Initializes a new instance of the <see cref="UpgradeComponent"/> class.</summary>
         /// <param name="upgradeComponentType">The upgrade component's type.</param>
         protected UpgradeComponent(UpgradeComponentType upgradeComponentType)
-            : base(ItemType.UpgradeComponent, "upgrade_component")
+            : base(ItemType.UpgradeComponent)
         {
             this.UpgradeComponentType = upgradeComponentType;
             this.buff = new ItemBuff();
@@ -98,6 +98,13 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
             {
                 JsonSerializer.CreateDefault().Populate(((JObject)infixUpgrade).CreateReader(), this);
             }
+        }
+
+        /// <summary>Gets the name of the property that provides additional information.</summary>
+        /// <returns>The name of the property.</returns>
+        protected override string GetTypeKey()
+        {
+            return "upgrade_component";
         }
     }
 }

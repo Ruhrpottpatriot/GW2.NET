@@ -22,7 +22,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
         /// <summary>Initializes a new instance of the <see cref="GatheringTool"/> class.</summary>
         /// <param name="gatheringToolType">The gathering tool type.</param>
         protected GatheringTool(GatheringToolType gatheringToolType)
-            : base(ItemType.Gathering, "gathering")
+            : base(ItemType.Gathering)
         {
             this.GatheringToolType = gatheringToolType;
         }
@@ -34,5 +34,12 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
         /// <summary>Gets or sets the gathering tool's type.</summary>
         [DataMember(Name = "gathering_type")]
         protected GatheringToolType GatheringToolType { get; set; }
+
+        /// <summary>Gets the name of the property that provides additional information.</summary>
+        /// <returns>The name of the property.</returns>
+        protected override string GetTypeKey()
+        {
+            return "gathering";
+        }
     }
 }

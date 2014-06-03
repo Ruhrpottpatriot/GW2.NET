@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
     {
         /// <summary>Initializes a new instance of the <see cref="Bag" /> class.</summary>
         public Bag()
-            : base(ItemType.Bag, "bag")
+            : base(ItemType.Bag)
         {
         }
 
@@ -33,5 +33,12 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
         /// <summary>Gets or sets the bag's capacity.</summary>
         [DataMember(Name = "size")]
         public virtual int Size { get; set; }
+
+        /// <summary>Gets the name of the property that provides additional information.</summary>
+        /// <returns>The name of the property.</returns>
+        protected override string GetTypeKey()
+        {
+            return "bag";
+        }
     }
 }

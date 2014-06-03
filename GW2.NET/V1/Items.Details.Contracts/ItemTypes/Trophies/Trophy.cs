@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trophies
     {
         /// <summary>Initializes a new instance of the <see cref="Trophy" /> class.</summary>
         public Trophy()
-            : base(ItemType.Trophy, "trophy")
+            : base(ItemType.Trophy)
         {
         }
     }

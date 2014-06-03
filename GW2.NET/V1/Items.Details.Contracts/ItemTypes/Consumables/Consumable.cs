@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
         /// <summary>Initializes a new instance of the <see cref="Consumable"/> class.</summary>
         /// <param name="consumableType">The consumable's type.</param>
         protected Consumable(ConsumableType consumableType)
-            : base(ItemType.Consumable, "consumable")
+            : base(ItemType.Consumable)
         {
             this.ConsumableType = consumableType;
         }
@@ -28,5 +28,12 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
         /// <summary>Gets or sets the consumable's type.</summary>
         [DataMember(Name = "consumable_type")]
         protected ConsumableType ConsumableType { get; set; }
+
+        /// <summary>Gets the name of the property that provides additional information.</summary>
+        /// <returns>The name of the property.</returns>
+        protected override string GetTypeKey()
+        {
+            return "consumable";
+        }
     }
 }
