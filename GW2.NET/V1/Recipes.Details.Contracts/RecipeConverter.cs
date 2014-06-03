@@ -70,6 +70,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
             KnownTypes.Add(RecipeType.Bag, typeof(BagRecipe));
             KnownTypes.Add(RecipeType.Inscription, typeof(InscriptionRecipe));
             KnownTypes.Add(RecipeType.Component, typeof(ComponentRecipe));
+            KnownTypes.Add(RecipeType.Consumable, typeof(ConsumableRecipe));
             KnownTypes.Add(RecipeType.Refinement, typeof(RefinementRecipe));
             KnownTypes.Add(RecipeType.UpgradeComponent, typeof(UpgradeComponentRecipe));
             KnownTypes.Add(RecipeType.Bulk, typeof(BulkRecipe));
