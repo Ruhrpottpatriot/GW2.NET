@@ -1,13 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Back.cs" company="GW2.NET Coding Team">
+// <copyright file="Backpack.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a back item.
+//   Represents a backpack.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backpacks
 {
     using System.Runtime.Serialization;
 
@@ -16,12 +15,12 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs
 
     using Newtonsoft.Json;
 
-    /// <summary>Represents a back item.</summary>
+    /// <summary>Represents a backpack.</summary>
     [JsonConverter(typeof(DefaultJsonConverter))]
-    public class Back : CombatItem, ISkinnable
+    public class Backpack : CombatItem, ISkinnable
     {
-        /// <summary>Initializes a new instance of the <see cref="Back" /> class.</summary>
-        public Back()
+        /// <summary>Initializes a new instance of the <see cref="Backpack" /> class.</summary>
+        public Backpack()
             : base(ItemType.Back)
         {
         }

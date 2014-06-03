@@ -93,7 +93,7 @@
     <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerTest.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTest.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypes\Bags\BagTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Backs\BackTest.cs" />
+    <Compile Include="V1\Core\Items\Details\ItemTypes\Backs\BackpackTest.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTypeTest.cs" />
     <Compile Include="V1\Core\Items\Details\ItemTest.cs" />
     <Compile Include="V1\Core\Maps\Floors\FloorTest.cs" />

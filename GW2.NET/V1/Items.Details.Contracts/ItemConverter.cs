@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backpacks;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers;
@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         {
             KnownTypes.Add(ItemType.Unknown, typeof(UnknownItem));
             KnownTypes.Add(ItemType.Armor, typeof(Armor));
-            KnownTypes.Add(ItemType.Back, typeof(Back));
+            KnownTypes.Add(ItemType.Back, typeof(Backpack));
             KnownTypes.Add(ItemType.Bag, typeof(Bag));
             KnownTypes.Add(ItemType.Consumable, typeof(Consumable));
             KnownTypes.Add(ItemType.Container, typeof(Container));

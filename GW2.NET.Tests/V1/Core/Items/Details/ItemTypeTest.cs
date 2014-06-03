@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Core.Items.Details
 {
     using GW2DotNET.V1.Items.Details.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backs;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backpacks;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers;
@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.Core.Items.Details
             const string input = "{\"type\":\"Back\"}";
             var item = JsonConvert.DeserializeObject<Item>(input);
 
-            Assert.IsInstanceOf<Back>(item);
+            Assert.IsInstanceOf<Backpack>(item);
         }
 
         /// <summary>The item type_ bag_ type reflects input.</summary>
