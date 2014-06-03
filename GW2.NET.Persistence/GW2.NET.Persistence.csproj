@@ -7,8 +7,8 @@
     <ProjectGuid>{58F41639-ED4B-43EA-9521-412865BC864C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GW2DotNET.Entities</RootNamespace>
-    <AssemblyName>GW2.NET.Entities</AssemblyName>
+    <RootNamespace>GW2DotNET.Persistence</RootNamespace>
+    <AssemblyName>GW2.NET.Persistence</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
