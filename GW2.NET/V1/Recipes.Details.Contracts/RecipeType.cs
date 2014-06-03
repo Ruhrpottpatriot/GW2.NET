@@ -199,6 +199,10 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 
         /// <summary>The 'Bulk' recipe type.</summary>
         [EnumMember(Value = "Bulk")]
-        Bulk
+        Bulk,
+
+        /// <summary>The 'Backpack' recipe type.</summary>
+        [EnumMember(Value = "Backpack")]
+        Backpack
     }
 }

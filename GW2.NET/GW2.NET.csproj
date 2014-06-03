@@ -384,6 +384,7 @@
       <DependentUpon>Recipe.cs</DependentUpon>
     </Compile>
     <Compile Include="V1\Recipes.Details.Contracts\RecipeType.cs" />
+    <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\BackpackRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\AmuletRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\AxeRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\BagRecipe.cs" />
