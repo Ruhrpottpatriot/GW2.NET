@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.Entities
+namespace GW2DotNET.Persistence
 {
     using System.Collections.Concurrent;
     using System.Collections.Generic;

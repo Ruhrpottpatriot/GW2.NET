@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.Entities.Configuration
+namespace GW2DotNET.Persistence.Configuration
 {
     using System.Data.Entity.ModelConfiguration;
 

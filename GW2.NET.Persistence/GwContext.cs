@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.Entities
+namespace GW2DotNET.Persistence
 {
     using System.Data.Common;
     using System.Data.Entity;
 
-    using GW2DotNET.Entities.Configuration;
+    using GW2DotNET.Persistence.Configuration;
     using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;

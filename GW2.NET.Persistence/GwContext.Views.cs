@@ -9,15 +9,18 @@
 
 using System.Data.Entity.Infrastructure.MappingViews;
 
-[assembly: DbMappingViewCacheTypeAttribute(
-    typeof(GW2DotNET.Entities.GwContext),
-    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets5ebd04812973d98cf73cce73b6ab28591860cdfb49cf31502a7fb697564ac2cc))]
+using GW2DotNET.Persistence;
 
-namespace Edm_EntityMappingGeneratedViews
+[assembly: DbMappingViewCacheType(
+    typeof(GwContext),
+    typeof(ViewsForBaseEntitySets5ebd04812973d98cf73cce73b6ab28591860cdfb49cf31502a7fb697564ac2cc))]
+
+namespace GW2DotNET.Persistence
 {
     using System;
     using System.CodeDom.Compiler;
     using System.Data.Entity.Core.Metadata.Edm;
+    using System.Data.Entity.Infrastructure.MappingViews;
 
     /// <summary>
     /// Implements a mapping view cache.
