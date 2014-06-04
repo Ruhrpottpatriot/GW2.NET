@@ -394,6 +394,8 @@
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\ComponentRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\ConsumableRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\CookingIngredientRecipe.cs" />
+    <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\RefinementObsidianRecipe.cs" />
+    <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\RefinementEctoplasmRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\DaggerRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\DessertRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\DyeRecipe.cs" />

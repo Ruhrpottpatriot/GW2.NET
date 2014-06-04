@@ -75,6 +75,8 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
             KnownTypes.Add(RecipeType.UpgradeComponent, typeof(UpgradeComponentRecipe));
             KnownTypes.Add(RecipeType.Bulk, typeof(BulkRecipe));
             KnownTypes.Add(RecipeType.Backpack, typeof(BackpackRecipe));
+            KnownTypes.Add(RecipeType.RefinementEctoplasm, typeof(RefinementEctoplasmRecipe));
+            KnownTypes.Add(RecipeType.RefinementObsidian, typeof(RefinementObsidianRecipe));
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>

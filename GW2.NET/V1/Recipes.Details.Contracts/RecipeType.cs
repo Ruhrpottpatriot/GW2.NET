@@ -203,6 +203,14 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 
         /// <summary>The 'Backpack' recipe type.</summary>
         [EnumMember(Value = "Backpack")]
-        Backpack
+        Backpack,
+
+        /// <summary>The 'Ectoplasm Refinement' recipe type.</summary>
+        [EnumMember(Value = "RefinementEctoplasm")]
+        RefinementEctoplasm,
+
+        /// <summary>The 'Obsidian Refinement' recipe type.</summary>
+        [EnumMember(Value = "RefinementObsidianRecipe")]
+        RefinementObsidian
     }
 }
