@@ -40,7 +40,8 @@ namespace GW2DotNET.V1.Builds.Contracts
             {
                 return false;
             }
-            else if (right == null)
+            
+            if (right == null)
             {
                 return true;
             }
@@ -58,7 +59,8 @@ namespace GW2DotNET.V1.Builds.Contracts
             {
                 return false;
             }
-            else if (right == null)
+
+            if (right == null)
             {
                 return true;
             }
@@ -85,7 +87,8 @@ namespace GW2DotNET.V1.Builds.Contracts
             {
                 return true;
             }
-            else if (right == null)
+
+            if (right == null)
             {
                 return false;
             }
@@ -103,7 +106,8 @@ namespace GW2DotNET.V1.Builds.Contracts
             {
                 return true;
             }
-            else if (right == null)
+
+            if (right == null)
             {
                 return false;
             }

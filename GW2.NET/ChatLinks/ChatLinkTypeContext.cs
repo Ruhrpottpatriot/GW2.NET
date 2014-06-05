@@ -19,6 +19,8 @@ namespace GW2DotNET.ChatLinks
         public ChatLinkTypeContext(string input)
         {
             this.Instance = input;
+            this.Container = null;
+            this.PropertyDescriptor = null;
         }
 
         /// <summary>

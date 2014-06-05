@@ -49,7 +49,6 @@ namespace GW2DotNET.ChatLinks
             if ((modifiers & 0x20) == 0x20)
             {
                 chatLink.SecondarySuffixItemId = BitConverter.ToInt32(bytes, index);
-                index += 4;
             }
 
             return chatLink;

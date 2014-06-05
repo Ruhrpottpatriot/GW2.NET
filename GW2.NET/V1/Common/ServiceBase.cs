@@ -38,15 +38,6 @@ namespace GW2DotNET.V1.Common
             this.serviceClient = serviceClient;
         }
 
-        /// <summary>Gets the service client.</summary>
-        private IServiceClient ServiceClient
-        {
-            get
-            {
-                return this.serviceClient;
-            }
-        }
-
         /// <summary>Infrastructure. Sends a service request and gets the response.</summary>
         /// <param name="serviceRequest">The service request.</param>
         /// <typeparam name="TResult">The type of the response content</typeparam>
