@@ -6,7 +6,6 @@
 //   Converts a JSON array of scores to and from a <see cref="Scoreboard" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common
 {
     using System;

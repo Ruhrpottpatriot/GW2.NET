@@ -6,7 +6,6 @@
 //   Represents a request for information regarding a specific guild.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Guilds.Details
 {
     using System;

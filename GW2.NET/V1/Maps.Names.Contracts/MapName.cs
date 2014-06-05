@@ -6,7 +6,6 @@
 //   Represents a map and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Names.Contracts
 {
     using System;

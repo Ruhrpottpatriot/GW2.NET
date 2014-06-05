@@ -6,7 +6,6 @@
 //   Represents a request for the current build ID of the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Builds
 {
     using GW2DotNET.V1.Common;

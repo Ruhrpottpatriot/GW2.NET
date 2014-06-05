@@ -6,7 +6,6 @@
 //   Represents detailed information about shoulder protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes
 {
     using GW2DotNET.V1.Common.Converters;

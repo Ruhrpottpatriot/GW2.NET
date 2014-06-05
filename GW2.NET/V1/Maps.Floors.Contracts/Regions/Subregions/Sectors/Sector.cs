@@ -6,7 +6,6 @@
 //   Represents an area within a map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
 {
     using System;

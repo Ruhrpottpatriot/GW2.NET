@@ -6,7 +6,6 @@
 //   Represents a bag.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
 {
     using System.Runtime.Serialization;

@@ -6,7 +6,6 @@
 //   Converts a <see cref="System.Boolean" /> to and from its numeric <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common.Converters
 {
     using System;

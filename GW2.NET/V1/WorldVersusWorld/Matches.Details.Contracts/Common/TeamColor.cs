@@ -6,7 +6,6 @@
 //   Enumerates all possible team colors.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common
 {
     using System.Runtime.Serialization;

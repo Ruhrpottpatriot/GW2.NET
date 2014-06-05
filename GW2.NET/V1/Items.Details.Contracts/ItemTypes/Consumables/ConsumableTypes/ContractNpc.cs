@@ -6,7 +6,6 @@
 //   Represents detailed information about an appearance changing consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
 {
     using GW2DotNET.V1.Common.Converters;

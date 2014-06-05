@@ -6,7 +6,6 @@
 //   Provides the default implementation of the objective names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
 {
     using System;

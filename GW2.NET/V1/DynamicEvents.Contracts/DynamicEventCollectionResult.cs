@@ -6,7 +6,6 @@
 //   Wraps a collection of dynamic events.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System.Runtime.Serialization;

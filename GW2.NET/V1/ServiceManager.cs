@@ -6,7 +6,6 @@
 //   Provides the default implementation of the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1
 {
     using System;

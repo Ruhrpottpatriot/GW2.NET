@@ -6,7 +6,6 @@
 //   Wraps a collection of recipe identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes.Contracts
 {
     using System.Runtime.Serialization;

@@ -6,7 +6,6 @@
 //   Represents a request for a list of events and their status that match the given filters (if any).
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents
 {
     using System;

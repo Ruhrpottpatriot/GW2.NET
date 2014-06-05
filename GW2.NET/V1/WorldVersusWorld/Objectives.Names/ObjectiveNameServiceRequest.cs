@@ -6,7 +6,6 @@
 //   Represents a request for a list of objectives and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
 {
     using GW2DotNET.V1.Common;

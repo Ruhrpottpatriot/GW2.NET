@@ -6,7 +6,6 @@
 //   Provides utility methods for the <see cref="System.Type" /> class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Extensions
 {
     using System;

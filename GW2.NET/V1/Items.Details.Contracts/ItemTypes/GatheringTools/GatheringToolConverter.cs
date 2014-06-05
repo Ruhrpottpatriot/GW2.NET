@@ -6,7 +6,6 @@
 //   Converts an instance of <see cref="GatheringTool" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 {
     using System;

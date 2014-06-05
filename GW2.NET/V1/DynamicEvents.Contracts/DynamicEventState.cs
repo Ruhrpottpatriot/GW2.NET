@@ -6,7 +6,6 @@
 //   Enumerates the known states of a dynamic event.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System.Runtime.Serialization;

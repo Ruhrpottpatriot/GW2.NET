@@ -6,7 +6,6 @@
 //   Represents detailed information about an accessory.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes
 {
     using GW2DotNET.V1.Common.Converters;

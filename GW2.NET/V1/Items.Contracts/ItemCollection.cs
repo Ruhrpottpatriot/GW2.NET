@@ -6,7 +6,6 @@
 //   Represents a collection of item identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Collections.Generic;

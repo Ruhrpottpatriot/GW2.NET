@@ -6,7 +6,6 @@
 //   Wraps a collection of matches.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
 {
     using System.Runtime.Serialization;

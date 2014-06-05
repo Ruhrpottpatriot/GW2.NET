@@ -6,7 +6,6 @@
 //   Represents a request for information regarding colors in the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Colors
 {
     using GW2DotNET.V1.Common;

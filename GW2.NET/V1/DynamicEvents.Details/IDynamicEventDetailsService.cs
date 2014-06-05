@@ -6,7 +6,6 @@
 //   Provides the interface for the event details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Details
 {
     using System;

@@ -6,7 +6,6 @@
 //   Provides the interface for objects for which a graphical representation exists.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Rendering.Contracts
 {
     /// <summary>Provides the interface for objects for which a graphical representation exists.</summary>

@@ -207,6 +207,17 @@ namespace GW2DotNET.V1.Common
             return this.innerDictionary.Remove(key);
         }
 
+        /// <summary>
+        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+        /// </returns>
+        public override string ToString()
+        {
+            return this.GetQueryString();
+        }
+
         /// <summary>Gets the value associated with the specified key.</summary>
         /// <returns>true if the object that implements <see cref="T:System.Collections.Generic.IDictionary`2"/> contains an element with the specified key; otherwise, false.</returns>
         /// <param name="key">The key whose value to get.</param>
@@ -237,17 +248,6 @@ namespace GW2DotNET.V1.Common
             var value = Uri.EscapeUriString(keyValuePair.Value);
 
             return string.Concat(name, "=", value);
-        }
-
-        /// <summary>
-        /// Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </summary>
-        /// <returns>
-        /// A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
-        /// </returns>
-        public override string ToString()
-        {
-            return this.GetQueryString();
         }
     }
 }

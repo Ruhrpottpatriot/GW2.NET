@@ -6,7 +6,6 @@
 //   Provides the default implementation of the skins service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins
 {
     using System;

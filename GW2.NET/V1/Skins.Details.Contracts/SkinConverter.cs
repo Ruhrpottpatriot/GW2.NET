@@ -6,7 +6,6 @@
 //   Converts an instance of a class that extends <see cref="Skin" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details.Contracts
 {
     using System;

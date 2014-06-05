@@ -6,7 +6,6 @@
 //   Provides the default implementation of the continents service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Continents
 {
     using System;

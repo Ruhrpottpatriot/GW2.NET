@@ -6,7 +6,6 @@
 //   Represents a skill challenge location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.SkillChallenges
 {
     using System;

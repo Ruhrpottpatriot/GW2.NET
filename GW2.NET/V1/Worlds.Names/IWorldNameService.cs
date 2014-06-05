@@ -6,7 +6,6 @@
 //   Provides the interface for the world names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Worlds.Names
 {
     using System.Collections.Generic;

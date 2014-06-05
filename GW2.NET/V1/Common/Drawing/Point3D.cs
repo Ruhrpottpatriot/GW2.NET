@@ -6,7 +6,6 @@
 //   Represents an x-, y-, and z-coordinate point in 3-D space.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common.Drawing
 {
     using System;

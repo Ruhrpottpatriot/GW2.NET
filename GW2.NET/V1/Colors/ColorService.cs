@@ -6,7 +6,6 @@
 //   Provides the default implementation of the colors service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Colors
 {
     using System;

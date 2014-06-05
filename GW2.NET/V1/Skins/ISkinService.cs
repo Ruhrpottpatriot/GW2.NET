@@ -6,7 +6,6 @@
 //   Provides the interface for the skins service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins
 {
     using System.Collections.Generic;

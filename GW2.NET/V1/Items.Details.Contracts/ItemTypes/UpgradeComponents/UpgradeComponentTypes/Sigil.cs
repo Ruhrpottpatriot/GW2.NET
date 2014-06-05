@@ -6,7 +6,6 @@
 //   Represents detailed information about a sigil upgrade component.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents.UpgradeComponentTypes
 {
     using GW2DotNET.V1.Common.Converters;

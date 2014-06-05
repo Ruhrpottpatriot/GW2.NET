@@ -6,7 +6,6 @@
 //   Represents detailed information about an unknown container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTypes
 {
     using GW2DotNET.V1.Common.Converters;

@@ -6,7 +6,6 @@
 //   Utility class. Provides static methods for validating arguments.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Utilities
 {
     using System;

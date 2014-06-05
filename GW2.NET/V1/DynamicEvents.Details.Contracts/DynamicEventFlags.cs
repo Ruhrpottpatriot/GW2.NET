@@ -6,7 +6,6 @@
 //   Enumerates the possible flags for events.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
 {
     using System;

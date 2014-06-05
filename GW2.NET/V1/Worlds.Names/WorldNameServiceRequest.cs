@@ -6,7 +6,6 @@
 //   Represents a request for a list of worlds and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Worlds.Names
 {
     using GW2DotNET.V1.Common;

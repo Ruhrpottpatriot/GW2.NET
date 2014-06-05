@@ -6,7 +6,6 @@
 //   Represents a back skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Backs
 {
     using GW2DotNET.V1.Common.Converters;

@@ -6,7 +6,6 @@
 //   Converts an instance of <see cref="Container" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
 {
     using System;

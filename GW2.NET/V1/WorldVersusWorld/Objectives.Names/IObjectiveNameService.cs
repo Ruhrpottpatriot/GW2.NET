@@ -6,7 +6,6 @@
 //   Provides the interface for the objective names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
 {
     using System.Collections.Generic;

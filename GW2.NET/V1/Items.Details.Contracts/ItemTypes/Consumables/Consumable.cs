@@ -6,7 +6,6 @@
 //   Represents a consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
 {
     using System.Runtime.Serialization;

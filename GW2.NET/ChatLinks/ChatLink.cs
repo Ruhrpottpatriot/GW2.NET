@@ -6,7 +6,6 @@
 //   Provides the base class for chat links.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks
 {
     using System.ComponentModel;

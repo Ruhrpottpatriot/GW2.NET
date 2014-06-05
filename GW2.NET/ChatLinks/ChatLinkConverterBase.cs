@@ -6,7 +6,6 @@
 //   Provides the base class for type converters that convert string objects to and from chat link representations.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks
 {
     using System;
@@ -21,9 +20,7 @@ namespace GW2DotNET.ChatLinks
         /// <summary>Infrastructure. The regular expression that is used to parse chat links.</summary>
         private static readonly Regex Pattern = new Regex(@"^\[&(?<base64>(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)??)\]$");
 
-        /// <summary>
-        /// Gets a byte array for the specified chat link.
-        /// </summary>
+        /// <summary>Gets a byte array for the specified chat link.</summary>
         /// <param name="input">A chat link.</param>
         /// <returns>A byte array.</returns>
         protected byte[] GetBytes(string input)
@@ -37,9 +34,7 @@ namespace GW2DotNET.ChatLinks
             return Convert.FromBase64String(base64);
         }
 
-        /// <summary>
-        /// Gets the header byte for the specified chat link.
-        /// </summary>
+        /// <summary>Gets the header byte for the specified chat link.</summary>
         /// <param name="input">A chat link.</param>
         /// <returns>The header byte.</returns>
         protected byte GetHeader(string input)

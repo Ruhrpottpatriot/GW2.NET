@@ -6,7 +6,6 @@
 //   Represents detailed information about an unknown gathering tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.GatheringToolsTypes
 {
     using GW2DotNET.V1.Common.Converters;

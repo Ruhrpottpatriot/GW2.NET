@@ -6,7 +6,6 @@
 //   Some IEnumerable extensions.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Extensions
 {
     using System.Collections.Generic;

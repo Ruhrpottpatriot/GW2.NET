@@ -6,7 +6,6 @@
 //   Represents a request for details regarding a specific item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details
 {
     using GW2DotNET.Extensions;

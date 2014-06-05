@@ -6,7 +6,6 @@
 //   Provides the interface for the recipes service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes
 {
     using System.Collections.Generic;

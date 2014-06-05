@@ -6,7 +6,6 @@
 //   Represents the result that is returned when an error occurs.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Errors
 {
     using System;

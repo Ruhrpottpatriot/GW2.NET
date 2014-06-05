@@ -6,7 +6,6 @@
 //   Represents a guild and its details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Guilds.Details.Contracts
 {
     using System;

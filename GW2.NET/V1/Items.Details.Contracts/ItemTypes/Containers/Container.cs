@@ -6,7 +6,6 @@
 //   Represents a container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
 {
     using System.Runtime.Serialization;

@@ -6,7 +6,6 @@
 //   Represents a collection of map floors.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Collections.Generic;

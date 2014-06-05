@@ -6,7 +6,6 @@
 //   Represents a collection of World versus World matches.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
 {
     using System.Collections.Generic;

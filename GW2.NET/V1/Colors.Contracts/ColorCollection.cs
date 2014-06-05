@@ -6,7 +6,6 @@
 //   Represents a collection of color palettes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Colors.Contracts
 {
     using System.Collections.Generic;

@@ -6,7 +6,6 @@
 //   Provides the default implementation of the guild details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Guilds.Details
 {
     using System;

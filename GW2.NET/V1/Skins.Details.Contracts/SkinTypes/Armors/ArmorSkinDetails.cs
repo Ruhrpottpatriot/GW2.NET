@@ -6,7 +6,6 @@
 //   Represents detailed information about an armor skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Armors
 {
     using System;

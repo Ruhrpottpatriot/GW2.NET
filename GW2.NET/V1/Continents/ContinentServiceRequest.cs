@@ -6,7 +6,6 @@
 //   Represents a request for static information about the continents.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Continents
 {
     using GW2DotNET.V1.Common;

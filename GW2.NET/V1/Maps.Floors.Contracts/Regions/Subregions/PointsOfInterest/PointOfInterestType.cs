@@ -6,7 +6,6 @@
 //   Enumerates the known types of POI.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest
 {
     using System.Runtime.Serialization;

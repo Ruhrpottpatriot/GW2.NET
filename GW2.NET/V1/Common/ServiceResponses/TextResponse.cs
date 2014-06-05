@@ -6,7 +6,6 @@
 //   Represents a plain text response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common.ServiceResponses
 {
     using System.IO;

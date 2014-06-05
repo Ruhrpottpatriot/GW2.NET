@@ -6,7 +6,6 @@
 //   Represents a weapon skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Weapons
 {
     using System.Runtime.Serialization;

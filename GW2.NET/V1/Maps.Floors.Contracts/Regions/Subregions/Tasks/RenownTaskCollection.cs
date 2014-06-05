@@ -6,7 +6,6 @@
 //   Represents a collection of renown heart locations.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Tasks
 {
     using System.Collections.Generic;

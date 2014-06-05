@@ -6,7 +6,6 @@
 //   Provides the interface for the build service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Builds
 {
     using System.Threading;

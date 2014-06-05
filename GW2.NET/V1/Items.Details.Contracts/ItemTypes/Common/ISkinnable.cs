@@ -6,7 +6,6 @@
 //   Provides the interface for items that have a visual appearance in the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     /// <summary>Provides the interface for items that have a visual appearance in the game.</summary>

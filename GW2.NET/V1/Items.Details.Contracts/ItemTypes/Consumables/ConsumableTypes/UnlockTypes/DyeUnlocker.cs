@@ -6,7 +6,6 @@
 //   Represents detailed information about a dye.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
 {
     using System.Runtime.Serialization;

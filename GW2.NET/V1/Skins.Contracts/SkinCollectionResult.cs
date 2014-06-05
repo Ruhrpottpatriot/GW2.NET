@@ -6,7 +6,6 @@
 //   Wraps a collection of skin identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Contracts
 {
     using System.Runtime.Serialization;

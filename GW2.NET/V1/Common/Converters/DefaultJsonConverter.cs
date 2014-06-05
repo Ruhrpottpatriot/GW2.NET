@@ -6,7 +6,6 @@
 //   Default converter. This converter is useful for use in inheritance trees, where a sub-class would otherwise use the same converter as its base class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common.Converters
 {
     using System;

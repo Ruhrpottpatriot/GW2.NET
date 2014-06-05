@@ -6,7 +6,6 @@
 //   Represents an unknown skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes
 {
     using GW2DotNET.V1.Common.Converters;

@@ -6,7 +6,6 @@
 //   Represents the current build of the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Builds.Contracts
 {
     using System;

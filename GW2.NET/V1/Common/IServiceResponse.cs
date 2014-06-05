@@ -6,7 +6,6 @@
 //   Provides the base interface for HTTP responses originating from the Guild Wars 2 API.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common
 {
     using System.Net;

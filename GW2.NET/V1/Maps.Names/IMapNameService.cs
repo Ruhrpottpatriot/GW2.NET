@@ -6,7 +6,6 @@
 //   Provides the interface for the map names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Names
 {
     using System.Collections.Generic;

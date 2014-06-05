@@ -6,7 +6,6 @@
 //   Provides the default implementation of the event names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Names
 {
     using System;

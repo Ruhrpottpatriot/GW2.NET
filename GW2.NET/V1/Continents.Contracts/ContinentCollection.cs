@@ -6,7 +6,6 @@
 //   Represents a collection of continents.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Continents.Contracts
 {
     using System.Collections.Generic;

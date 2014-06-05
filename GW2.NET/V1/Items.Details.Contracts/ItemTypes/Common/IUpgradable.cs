@@ -6,7 +6,6 @@
 //   Provides the interface for items that can be upgraded.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     /// <summary>Provides the interface for items that can be upgraded.</summary>

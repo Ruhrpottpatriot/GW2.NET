@@ -6,7 +6,6 @@
 //   Represents a request for a list of localized map names.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Names
 {
     using GW2DotNET.V1.Common;

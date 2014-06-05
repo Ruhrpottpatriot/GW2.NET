@@ -6,7 +6,6 @@
 //   Provides the interface for the item details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details
 {
     using System.Globalization;

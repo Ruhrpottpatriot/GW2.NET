@@ -6,7 +6,6 @@
 //   Represents an error response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common.ServiceResponses
 {
     using System;

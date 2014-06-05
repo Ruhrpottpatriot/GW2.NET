@@ -6,7 +6,6 @@
 //   Provides the interface for the colors service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Colors
 {
     using System.Collections.Generic;

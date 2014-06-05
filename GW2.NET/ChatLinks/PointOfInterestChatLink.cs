@@ -6,7 +6,6 @@
 //   Represents a chat link that links to a point of interest.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks
 {
     using System.ComponentModel;

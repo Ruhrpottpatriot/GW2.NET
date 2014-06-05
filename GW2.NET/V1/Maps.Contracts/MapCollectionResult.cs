@@ -6,7 +6,6 @@
 //   Wraps a collection of maps and their details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Runtime.Serialization;

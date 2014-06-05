@@ -6,7 +6,6 @@
 //   Factory class. Provides access to factory methods for creating <see cref="ChatLink" /> instances.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks
 {
     using System.ComponentModel;

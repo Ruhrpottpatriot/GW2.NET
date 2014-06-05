@@ -6,7 +6,6 @@
 //   Enumerates the possible trinket types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
 {
     using System.Runtime.Serialization;

@@ -6,7 +6,6 @@
 //   Represents an unknown location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
 {
     using GW2DotNET.V1.Common.Converters;

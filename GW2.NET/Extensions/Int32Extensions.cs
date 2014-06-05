@@ -6,7 +6,6 @@
 //   Provides extension methods for the <see cref="T:System.Int32" /> type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Extensions
 {
     using System.Globalization;

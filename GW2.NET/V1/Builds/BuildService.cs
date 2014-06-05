@@ -6,7 +6,6 @@
 //   Provides the default implementation of the build service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Builds
 {
     using System;

@@ -6,7 +6,6 @@
 //   Represents a trinket.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
 {
     using System.Runtime.Serialization;

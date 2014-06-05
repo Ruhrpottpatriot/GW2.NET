@@ -6,7 +6,6 @@
 //   Represents a collection of world boss shifts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Rotations.Contracts
 {
     using System;

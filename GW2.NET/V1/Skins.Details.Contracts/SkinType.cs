@@ -6,7 +6,6 @@
 //   Enumerates the possible skin types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details.Contracts
 {
     using System.Runtime.Serialization;

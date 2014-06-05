@@ -6,7 +6,6 @@
 //   Wraps a collection of colors in the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Colors.Contracts
 {
     using System;

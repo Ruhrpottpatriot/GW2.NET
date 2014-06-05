@@ -6,7 +6,6 @@
 //   Represents a World versus World match.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
 {
     using System;

@@ -6,7 +6,6 @@
 //   Provides a plain .NET implementation of the <see cref="IServiceResponse{TResult}" /> interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common
 {
     using System;

@@ -6,7 +6,6 @@
 //   Enumerates all possible bonus types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Bonuses
 {
     using System.Runtime.Serialization;

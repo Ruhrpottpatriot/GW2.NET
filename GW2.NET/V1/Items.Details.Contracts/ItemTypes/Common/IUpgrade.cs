@@ -6,7 +6,6 @@
 //   Provides the interface for items that provide a bonus when equipped.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Runtime.Serialization;

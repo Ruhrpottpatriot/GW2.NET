@@ -6,7 +6,6 @@
 //   Provides the interface for the matches service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches
 {
     using System.Collections.Generic;

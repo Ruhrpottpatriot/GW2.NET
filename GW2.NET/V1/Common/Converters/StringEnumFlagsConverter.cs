@@ -6,7 +6,6 @@
 //   Converts a bit flag <see cref="Enum" /> to and from a string array of flag names.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common.Converters
 {
     using System;

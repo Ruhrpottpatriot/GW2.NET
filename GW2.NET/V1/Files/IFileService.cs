@@ -6,7 +6,6 @@
 //   Provides the interface for the files service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Files
 {
     using System.Collections.Generic;

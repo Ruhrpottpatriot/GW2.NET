@@ -6,7 +6,6 @@
 //   Converts a timespan to and from its <see cref="System.String" /> representation in milliseconds.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common.Converters
 {
     using System;

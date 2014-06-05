@@ -6,7 +6,6 @@
 //   Provides the default implementation of the event details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Details
 {
     using System;

@@ -6,12 +6,11 @@
 //   Provides the base class for types that represent an item that can be used in combat.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;  
+    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Provides the base class for types that represent an item that can be used in combat.</summary>

@@ -6,7 +6,6 @@
 //   Provides the interface for the match details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
 {
     using System.Threading;

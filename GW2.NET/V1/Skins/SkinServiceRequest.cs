@@ -6,7 +6,6 @@
 //   Represents a request for a list of skin identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins
 {
     using GW2DotNET.V1.Common;

@@ -6,7 +6,6 @@
 //   Provides the default implementation of the events service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents
 {
     using System;

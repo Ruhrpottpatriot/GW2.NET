@@ -6,7 +6,6 @@
 //   Represents a collection of upgrade bonuses.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
 {
     using System.Collections.Generic;

@@ -6,7 +6,6 @@
 //   Represents a request for static details about dynamic events.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Details
 {
     using System;

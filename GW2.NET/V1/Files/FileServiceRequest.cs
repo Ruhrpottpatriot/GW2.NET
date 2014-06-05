@@ -6,7 +6,6 @@
 //   Represents a request for commonly requested in-game assets. The returned information can be used with the render service to retrieve assets.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Files
 {
     using GW2DotNET.V1.Common;

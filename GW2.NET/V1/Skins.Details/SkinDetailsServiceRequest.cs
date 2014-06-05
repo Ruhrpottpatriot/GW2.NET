@@ -6,7 +6,6 @@
 //   Represents a request for details regarding a specific skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details
 {
     using GW2DotNET.Extensions;

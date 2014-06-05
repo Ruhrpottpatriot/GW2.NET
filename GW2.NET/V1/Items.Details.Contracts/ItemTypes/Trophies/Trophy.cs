@@ -6,7 +6,6 @@
 //   Represents a trophy.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trophies
 {
     using GW2DotNET.V1.Common.Converters;

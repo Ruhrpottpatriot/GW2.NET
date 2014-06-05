@@ -6,7 +6,6 @@
 //   Represents a collection of objectives and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts
 {
     using System.Collections.Generic;

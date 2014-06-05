@@ -6,7 +6,6 @@
 //   Provides a type converter to convert string objects to and from its <see cref="SkillChatLink" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks
 {
     using System;

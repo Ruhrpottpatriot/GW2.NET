@@ -6,7 +6,6 @@
 //   Provides the interface for the render service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Rendering
 {
     using System.Drawing;

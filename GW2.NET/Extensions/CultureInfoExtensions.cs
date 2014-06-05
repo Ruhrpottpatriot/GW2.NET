@@ -6,7 +6,6 @@
 //   Provides extension methods for the <see cref="System.Globalization.CultureInfo" /> type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Extensions
 {
     using System.Collections.Generic;

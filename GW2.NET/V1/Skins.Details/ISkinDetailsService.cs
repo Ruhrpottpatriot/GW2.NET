@@ -6,7 +6,6 @@
 //   Provides the interface for the skin details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details
 {
     using System.Globalization;

@@ -6,7 +6,6 @@
 //   Wraps a collection of continents.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Continents.Contracts
 {
     using System.Runtime.Serialization;

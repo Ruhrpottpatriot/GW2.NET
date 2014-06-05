@@ -6,7 +6,6 @@
 //   Represents detailed information about an unknown unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
 {
     using GW2DotNET.V1.Common.Converters;

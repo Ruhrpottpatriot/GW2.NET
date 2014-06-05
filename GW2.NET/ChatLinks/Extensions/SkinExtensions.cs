@@ -6,7 +6,6 @@
 //   Provides static extension methods for the <see cref="Skin" /> class.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks.Extensions
 {
     using GW2DotNET.Utilities;

@@ -6,7 +6,6 @@
 //   Represents a collection of worlds and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Worlds.Names.Contracts
 {
     using System.Collections.Generic;

@@ -6,7 +6,6 @@
 //   Enumerates the known additional skin flags.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details.Contracts
 {
     using System;

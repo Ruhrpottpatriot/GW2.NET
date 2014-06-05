@@ -6,7 +6,6 @@
 //   Represents a World versus World map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps
 {
     using System.Runtime.Serialization;

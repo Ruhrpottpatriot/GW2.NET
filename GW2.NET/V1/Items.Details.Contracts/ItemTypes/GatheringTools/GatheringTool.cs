@@ -6,7 +6,6 @@
 //   Represents a gathering tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 {
     using System.Runtime.Serialization;

@@ -6,7 +6,6 @@
 //   Provides the default implementation of the map floor service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Floors
 {
     using System;

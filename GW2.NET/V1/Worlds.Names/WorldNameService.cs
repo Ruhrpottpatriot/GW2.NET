@@ -6,7 +6,6 @@
 //   Provides the default implementation of the world names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Worlds.Names
 {
     using System;

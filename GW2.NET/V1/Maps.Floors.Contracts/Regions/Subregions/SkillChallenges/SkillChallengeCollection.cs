@@ -6,7 +6,6 @@
 //   Represents a collection of skill challenge locations.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.SkillChallenges
 {
     using System.Collections.Generic;

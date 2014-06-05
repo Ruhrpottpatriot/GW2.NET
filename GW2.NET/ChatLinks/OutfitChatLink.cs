@@ -6,7 +6,6 @@
 //   Represents a chat link that links to an outfit.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.ChatLinks
 {
     using System.ComponentModel;

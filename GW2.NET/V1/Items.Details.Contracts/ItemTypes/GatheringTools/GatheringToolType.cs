@@ -6,7 +6,6 @@
 //   Enumerates the possible types of gathering equipment.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 {
     using System.Runtime.Serialization;

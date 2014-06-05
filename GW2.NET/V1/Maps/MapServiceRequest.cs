@@ -6,7 +6,6 @@
 //   Represents a request for details regarding maps in the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps
 {
     using GW2DotNET.Extensions;

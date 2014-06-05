@@ -6,7 +6,6 @@
 //   Provides the default implementation of the maps service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps
 {
     using System;

@@ -6,7 +6,6 @@
 //   Represents a Point of Interest (POI) location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest
 {
     using System;

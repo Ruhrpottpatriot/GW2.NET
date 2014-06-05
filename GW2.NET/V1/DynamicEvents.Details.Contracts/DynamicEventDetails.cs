@@ -6,7 +6,6 @@
 //   Represents details about a specific dynamic event.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
 {
     using System;

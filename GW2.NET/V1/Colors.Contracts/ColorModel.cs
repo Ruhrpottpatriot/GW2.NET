@@ -6,7 +6,6 @@
 //   Represents a color's component information.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Colors.Contracts
 {
     using System;

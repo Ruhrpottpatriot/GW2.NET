@@ -6,7 +6,6 @@
 //   Represents a collection of World versus World map bonuses.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Bonuses
 {
     using System.Collections.Generic;

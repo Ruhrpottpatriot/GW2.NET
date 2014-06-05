@@ -6,7 +6,6 @@
 //   Provides the interface for the continents service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Continents
 {
     using System.Collections.Generic;

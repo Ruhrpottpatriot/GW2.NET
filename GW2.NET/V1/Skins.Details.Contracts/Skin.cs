@@ -6,7 +6,6 @@
 //   Represents detailed information about an in-game item skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins.Details.Contracts
 {
     using System;
