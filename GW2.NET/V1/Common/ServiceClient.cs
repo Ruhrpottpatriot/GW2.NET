@@ -126,7 +126,7 @@ namespace GW2DotNET.V1.Common
                                 response = (HttpWebResponse)exception.Response;
                                 var serviceResponse = new ErrorResponse(response);
 
-                                throw new ServiceException(serviceResponse.Deserialize(), exception);
+                                throw new ServiceException(null, serviceResponse.Deserialize(), exception);
                             }
                         }
 
@@ -192,7 +192,7 @@ namespace GW2DotNET.V1.Common
                 var response = (HttpWebResponse)exception.Response;
                 var serviceResponse = new ErrorResponse(response);
 
-                throw new ServiceException(serviceResponse.Deserialize(), exception);
+                throw new ServiceException(null, serviceResponse.Deserialize(), exception);
             }
         }
     }

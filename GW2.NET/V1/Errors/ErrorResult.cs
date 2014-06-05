@@ -9,12 +9,14 @@
 
 namespace GW2DotNET.V1.Errors
 {
+    using System;
     using System.Runtime.Serialization;
 
     using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Represents the result that is returned when an error occurs.</summary>
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1" /> for more information.</remarks>
+    [Serializable]
     public class ErrorResult : JsonObject
     {
         /// <summary>Gets or sets a number that indicates the error kind.</summary>

@@ -142,7 +142,7 @@ namespace RestSharp.GW2DotNET
             }
 
             var errorResponse = new ErrorResponse(this.restResponse);
-            throw new ServiceException(errorResponse.Deserialize(), this.restResponse.ErrorException);
+            throw new ServiceException(null, errorResponse.Deserialize(), this.restResponse.ErrorException);
         }
 
         /// <summary>Gets the response content as an instance of the specified type.</summary>

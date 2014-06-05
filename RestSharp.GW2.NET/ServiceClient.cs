@@ -129,7 +129,7 @@ namespace RestSharp.GW2DotNET
                         if (response.StatusCode != HttpStatusCode.OK)
                         {
                             var serviceResponse = new ErrorResponse(response);
-                            throw new ServiceException(serviceResponse.Deserialize(), response.ErrorException);
+                            throw new ServiceException(null, serviceResponse.Deserialize(), response.ErrorException);
                         }
 
                         if (typeof(JsonObject).IsAssignableFrom(typeof(TResult)))
@@ -169,7 +169,7 @@ namespace RestSharp.GW2DotNET
             if (response.StatusCode != HttpStatusCode.OK)
             {
                 var serviceResponse = new ErrorResponse(response);
-                throw new ServiceException(serviceResponse.Deserialize(), response.ErrorException);
+                throw new ServiceException(null, serviceResponse.Deserialize(), response.ErrorException);
             }
 
             if (typeof(JsonObject).IsAssignableFrom(typeof(TResult)))
