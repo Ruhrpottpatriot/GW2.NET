@@ -102,6 +102,7 @@
     <Compile Include="ChatLinks\ItemChatLink.cs" />
     <Compile Include="Extensions\CultureInfoExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Extensions\HttpStatusCodeExtensions.cs" />
     <Compile Include="Extensions\Int32Extensions.cs" />
     <Compile Include="Extensions\TaskFactoryExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />

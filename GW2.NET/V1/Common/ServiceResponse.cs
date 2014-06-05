@@ -15,6 +15,7 @@ namespace GW2DotNET.V1.Common
     using System.Net;
     using System.Net.Mime;
 
+    using GW2DotNET.Extensions;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Common.ServiceResponses;
 
@@ -80,16 +81,6 @@ namespace GW2DotNET.V1.Common
             }
         }
 
-        /// <summary>Gets a value indicating whether the service returned a success status code.</summary>
-        public bool IsSuccessStatusCode
-        {
-            get
-            {
-                var status = this.StatusCode;
-                return status == HttpStatusCode.OK || ((int)status > 200 && (int)status < 300);
-            }
-        }
-
         /// <summary>Gets the status code.</summary>
         public HttpStatusCode StatusCode
         {
@@ -140,7 +131,7 @@ namespace GW2DotNET.V1.Common
         /// <returns>Returns the current instance.</returns>
         public IServiceResponse<TResult> EnsureSuccessStatusCode()
         {
-            if (this.IsSuccessStatusCode)
+            if (this.StatusCode.IsSuccessStatusCode())
             {
                 return this;
             }

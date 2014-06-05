@@ -11,6 +11,7 @@ namespace RestSharp.GW2DotNET.ServiceResponses
     using System;
     using System.IO;
 
+    using global::GW2DotNET.Extensions;
     using global::GW2DotNET.V1.Errors;
 
     using Newtonsoft.Json;
@@ -30,7 +31,7 @@ namespace RestSharp.GW2DotNET.ServiceResponses
         /// <returns>The response content.</returns>
         protected override ErrorResult Deserialize(Stream stream)
         {
-            if (this.IsSuccessStatusCode)
+            if (this.StatusCode.IsSuccessStatusCode())
             {
                 // if the service returned a success code
                 throw new InvalidOperationException();

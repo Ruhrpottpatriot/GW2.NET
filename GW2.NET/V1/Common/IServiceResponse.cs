@@ -26,9 +26,6 @@ namespace GW2DotNET.V1.Common
         /// <summary>Gets a value indicating whether the service returned a JSON response.</summary>
         bool IsJsonResponse { get; }
 
-        /// <summary>Gets a value indicating whether the service returned a success status code.</summary>
-        bool IsSuccessStatusCode { get; }
-
         /// <summary>Gets the status code.</summary>
         HttpStatusCode StatusCode { get; }
 

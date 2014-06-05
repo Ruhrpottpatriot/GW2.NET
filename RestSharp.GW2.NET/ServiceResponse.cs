@@ -13,6 +13,7 @@ namespace RestSharp.GW2DotNET
     using System.Net;
     using System.Net.Mime;
 
+    using global::GW2DotNET.Extensions;
     using global::GW2DotNET.Utilities;
     using global::GW2DotNET.V1.Common;
     using global::GW2DotNET.V1.Errors;
@@ -81,16 +82,6 @@ namespace RestSharp.GW2DotNET
             }
         }
 
-        /// <summary>Gets a value indicating whether the service returned a success status code.</summary>
-        public bool IsSuccessStatusCode
-        {
-            get
-            {
-                var status = this.StatusCode;
-                return status == HttpStatusCode.OK || ((int)status > 200 && (int)status < 300);
-            }
-        }
-
         /// <summary>Gets the status code.</summary>
         public HttpStatusCode StatusCode
         {
@@ -136,7 +127,7 @@ namespace RestSharp.GW2DotNET
         /// <remarks>The current instance is returned to allow chaining method calls.</remarks>
         public IServiceResponse<TResult> EnsureSuccessStatusCode()
         {
-            if (this.IsSuccessStatusCode)
+            if (this.StatusCode.IsSuccessStatusCode())
             {
                 return this;
             }

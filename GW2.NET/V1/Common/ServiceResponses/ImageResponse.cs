@@ -14,6 +14,8 @@ namespace GW2DotNET.V1.Common.ServiceResponses
     using System.IO;
     using System.Net;
 
+    using GW2DotNET.Extensions;
+
     /// <summary>Represents an image response.</summary>
     public class ImageResponse : ServiceResponse<Image>
     {
@@ -29,7 +31,7 @@ namespace GW2DotNET.V1.Common.ServiceResponses
         /// <returns>The response content.</returns>
         protected override Image Deserialize(Stream stream)
         {
-            if (!this.IsSuccessStatusCode)
+            if (!this.StatusCode.IsSuccessStatusCode())
             {
                 // if the service returned an error code
                 throw new InvalidOperationException("Unable to deserialize the response content: the service returned an error code.");

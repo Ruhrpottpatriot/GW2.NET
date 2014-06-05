@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Common.ServiceResponses
     using System.IO;
     using System.Net;
 
+    using GW2DotNET.Extensions;
     using GW2DotNET.V1.Errors;
 
     using Newtonsoft.Json;
@@ -32,7 +33,7 @@ namespace GW2DotNET.V1.Common.ServiceResponses
         /// <returns>The response content.</returns>
         protected override ErrorResult Deserialize(Stream stream)
         {
-            if (this.IsSuccessStatusCode)
+            if (this.StatusCode.IsSuccessStatusCode())
             {
                 // if the service returned a success code
                 throw new InvalidOperationException();
