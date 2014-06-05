@@ -6,7 +6,6 @@
 //   Provides the base class for Guild Wars 2 services.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common
 {
     using System;
@@ -57,7 +56,7 @@ namespace GW2DotNET.V1.Common
             IServiceResponse<TResult> serviceResponse = null;
             try
             {
-                serviceResponse = serviceRequest.GetResponse<TResult>(this.ServiceClient);
+                serviceResponse = this.serviceClient.Send<TResult>(serviceRequest);
                 return serviceResponse.EnsureSuccessStatusCode().Deserialize();
             }
             finally
@@ -78,7 +77,7 @@ namespace GW2DotNET.V1.Common
         /// <returns>The response content.</returns>
         protected Task<TResult> RequestAsync<TResult>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TResult : class
         {
-            return serviceRequest.GetResponseAsync<TResult>(this.ServiceClient, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<TResult>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
                         IServiceResponse<TResult> serviceResponse = null;

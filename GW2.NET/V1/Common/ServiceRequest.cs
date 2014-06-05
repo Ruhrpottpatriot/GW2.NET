@@ -6,15 +6,12 @@
 //   Provides the base class for service requests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
 
     using GW2DotNET.Utilities;
 
@@ -77,35 +74,6 @@ namespace GW2DotNET.V1.Common
         public string GetQueryString()
         {
             return string.Join("&", this.Query.Where(pair => !string.IsNullOrEmpty(pair.Value)).Select(EncodeNameValuePair));
-        }
-
-        /// <summary>Sends the current request and returns a response.</summary>
-        /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceClient">The service client.</param>
-        /// <returns>The response.</returns>
-        public IServiceResponse<TResult> GetResponse<TResult>(IServiceClient serviceClient) where TResult : class
-        {
-            return serviceClient.Send<TResult>(this);
-        }
-
-        /// <summary>Sends the current request and returns a response.</summary>
-        /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceClient">The service client.</param>
-        /// <returns>The response.</returns>
-        public Task<IServiceResponse<TResult>> GetResponseAsync<TResult>(IServiceClient serviceClient) where TResult : class
-        {
-            return serviceClient.SendAsync<TResult>(this);
-        }
-
-        /// <summary>Sends the current request and returns a response.</summary>
-        /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceClient">The service client.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The response.</returns>
-        public Task<IServiceResponse<TResult>> GetResponseAsync<TResult>(IServiceClient serviceClient, CancellationToken cancellationToken)
-            where TResult : class
-        {
-            return serviceClient.SendAsync<TResult>(this, cancellationToken);
         }
 
         /// <summary>Returns a string that represents the current object.</summary>
