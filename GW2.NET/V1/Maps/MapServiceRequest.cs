@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Maps
 
             set
             {
-                this.Query["map_id"] = (this.mapId = value).ToStringInvariant();
+                this.FormData["map_id"] = (this.mapId = value).ToStringInvariant();
             }
         }
     }

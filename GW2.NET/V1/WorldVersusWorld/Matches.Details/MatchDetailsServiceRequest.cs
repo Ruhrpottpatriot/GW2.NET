@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
 
             set
             {
-                this.Query["match_id"] = this.matchId = value;
+                this.FormData["match_id"] = this.matchId = value;
             }
         }
     }

@@ -38,7 +38,7 @@ namespace GW2DotNET.V1.Guilds.Details
 
             set
             {
-                this.Query["guild_id"] = (this.guildId = value).ToString();
+                this.FormData["guild_id"] = (this.guildId = value).ToString();
             }
         }
 
@@ -52,7 +52,7 @@ namespace GW2DotNET.V1.Guilds.Details
 
             set
             {
-                this.Query["guild_name"] = this.guildName = value;
+                this.FormData["guild_name"] = this.guildName = value;
             }
         }
     }

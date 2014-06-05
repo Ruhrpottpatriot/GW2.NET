@@ -42,7 +42,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
             set
             {
-                this.Query["event_id"] = (this.eventId = value).ToString();
+                this.FormData["event_id"] = (this.eventId = value).ToString();
             }
         }
 
@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
             set
             {
-                this.Query["map_id"] = (this.mapId = value).ToStringInvariant();
+                this.FormData["map_id"] = (this.mapId = value).ToStringInvariant();
             }
         }
 
@@ -70,7 +70,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
             set
             {
-                this.Query["world_id"] = (this.worldId = value).ToStringInvariant();
+                this.FormData["world_id"] = (this.worldId = value).ToStringInvariant();
             }
         }
     }

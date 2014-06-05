@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Recipes.Details
 
             set
             {
-                this.Query["recipe_id"] = (this.recipeId = value).ToStringInvariant();
+                this.FormData["recipe_id"] = (this.recipeId = value).ToStringInvariant();
             }
         }
     }

@@ -101,7 +101,7 @@ namespace RestSharp.GW2DotNET
             var uriBuilder = new UriBuilder(this.innerRestClient.BaseUrl)
                                  {
                                      Path = serviceRequest.ResourceUri.ToString(), 
-                                     Query = serviceRequest.GetQueryString()
+                                     Query = serviceRequest.FormData.GetQueryString()
                                  };
 
             return new RestRequest(uriBuilder.Uri.PathAndQuery);

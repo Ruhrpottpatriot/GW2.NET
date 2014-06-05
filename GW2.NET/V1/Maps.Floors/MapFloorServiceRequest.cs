@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Maps.Floors
 
             set
             {
-                this.Query["continent_id"] = (this.continentId = value).ToStringInvariant();
+                this.FormData["continent_id"] = (this.continentId = value).ToStringInvariant();
             }
         }
 
@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.Maps.Floors
 
             set
             {
-                this.Query["floor"] = (this.floor = value).ToStringInvariant();
+                this.FormData["floor"] = (this.floor = value).ToStringInvariant();
             }
         }
     }

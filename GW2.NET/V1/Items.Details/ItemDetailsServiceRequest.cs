@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Items.Details
 
             set
             {
-                this.Query["item_id"] = (this.itemId = value).ToStringInvariant();
+                this.FormData["item_id"] = (this.itemId = value).ToStringInvariant();
             }
         }
     }

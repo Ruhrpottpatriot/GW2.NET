@@ -130,6 +130,7 @@
     <Compile Include="V1\Common\Converters\JsonTimespanConverter.cs" />
     <Compile Include="V1\Common\Converters\StringEnumFlagsConverter.cs" />
     <Compile Include="V1\Common\Drawing\Point3D.cs" />
+    <Compile Include="V1\Common\UrlEncodedForm.cs" />
     <Compile Include="V1\Common\Services.Designer.cs">
       <DependentUpon>Services.resx</DependentUpon>
       <AutoGen>True</AutoGen>

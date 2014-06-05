@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Skins.Details
 
             set
             {
-                this.Query["skin_id"] = (this.skinId = value).ToStringInvariant();
+                this.FormData["skin_id"] = (this.skinId = value).ToStringInvariant();
             }
         }
     }

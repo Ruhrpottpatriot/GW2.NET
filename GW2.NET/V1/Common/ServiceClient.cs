@@ -6,7 +6,6 @@
 //   Provides a plain .NET implementation of the <see cref="IServiceClient" /> interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Common
 {
     using System;
@@ -95,7 +94,7 @@ namespace GW2DotNET.V1.Common
         /// <returns>The <see cref="System.Net.WebRequest"/>.</returns>
         private WebRequest CreateWebRequest(IServiceRequest serviceRequest)
         {
-            var uriBuilder = new UriBuilder(this.BaseUrl) { Path = serviceRequest.ResourceUri.ToString(), Query = serviceRequest.GetQueryString() };
+            var uriBuilder = new UriBuilder(this.BaseUrl) { Path = serviceRequest.ResourceUri.ToString(), Query = serviceRequest.FormData.GetQueryString() };
 
             var request = (HttpWebRequest)WebRequest.Create(uriBuilder.ToString());
             request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");

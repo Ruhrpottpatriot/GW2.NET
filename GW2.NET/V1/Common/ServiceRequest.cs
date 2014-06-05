@@ -9,7 +9,6 @@
 namespace GW2DotNET.V1.Common
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
 
@@ -39,8 +38,11 @@ namespace GW2DotNET.V1.Common
             Preconditions.Ensure(!resource.IsAbsoluteUri, paramName: "resource", message: "'resource' should be a relative path.");
 
             this.ResourceUri = resource;
-            this.Query = new Dictionary<string, string>();
+            this.FormData = new UrlEncodedForm();
         }
+
+        /// <summary>Gets the form data.</summary>
+        public UrlEncodedForm FormData { get; private set; }
 
         /// <summary>Gets or sets the preferred language info.</summary>
         public CultureInfo Language
@@ -59,39 +61,18 @@ namespace GW2DotNET.V1.Common
                     throw new NotSupportedException("The specified language is not supported.");
                 }
 
-                this.Query["lang"] = (this.language = value).TwoLetterISOLanguageName;
+                this.FormData["lang"] = (this.language = value).TwoLetterISOLanguageName;
             }
         }
 
-        /// <summary>Gets the query.</summary>
-        public IDictionary<string, string> Query { get; private set; }
-
         /// <summary>Gets the resource URI.</summary>
         public Uri ResourceUri { get; private set; }
-
-        /// <summary>Gets the query string.</summary>
-        /// <returns>The query <see cref="string" />.</returns>
-        public string GetQueryString()
-        {
-            return string.Join("&", this.Query.Where(pair => !string.IsNullOrEmpty(pair.Value)).Select(EncodeNameValuePair));
-        }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             return this.ResourceUri.ToString();
-        }
-
-        /// <summary>Encodes a key value pair for safe transportation over HTTP.</summary>
-        /// <param name="keyValuePair">The key value pair.</param>
-        /// <returns>The encoded key value pair.</returns>
-        private static string EncodeNameValuePair(KeyValuePair<string, string> keyValuePair)
-        {
-            var name = Uri.EscapeUriString(keyValuePair.Key);
-            var value = Uri.EscapeUriString(keyValuePair.Value);
-
-            return string.Concat(name, "=", value);
         }
     }
 }

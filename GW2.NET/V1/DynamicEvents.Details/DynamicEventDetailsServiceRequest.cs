@@ -35,7 +35,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
 
             set
             {
-                this.Query["event_id"] = (this.eventId = value).ToString();
+                this.FormData["event_id"] = (this.eventId = value).ToString();
             }
         }
     }
