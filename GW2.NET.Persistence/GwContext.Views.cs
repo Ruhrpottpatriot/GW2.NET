@@ -9,31 +9,28 @@
 
 using System.Data.Entity.Infrastructure.MappingViews;
 
-using GW2DotNET.Persistence;
+[assembly: DbMappingViewCacheTypeAttribute(
+    typeof(GW2DotNET.Persistence.GwContext),
+    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets67f090d7e86c8a6a01d1b73dabd3b0adb39a9bbcb69d98b25c4ba7d82eb5ac95))]
 
-[assembly: DbMappingViewCacheType(
-    typeof(GwContext),
-    typeof(ViewsForBaseEntitySets5ebd04812973d98cf73cce73b6ab28591860cdfb49cf31502a7fb697564ac2cc))]
-
-namespace GW2DotNET.Persistence
+namespace Edm_EntityMappingGeneratedViews
 {
     using System;
     using System.CodeDom.Compiler;
     using System.Data.Entity.Core.Metadata.Edm;
-    using System.Data.Entity.Infrastructure.MappingViews;
 
     /// <summary>
     /// Implements a mapping view cache.
     /// </summary>
     [GeneratedCode("Entity Framework Power Tools", "0.9.0.0")]
-    internal sealed class ViewsForBaseEntitySets5ebd04812973d98cf73cce73b6ab28591860cdfb49cf31502a7fb697564ac2cc : DbMappingViewCache
+    internal sealed class ViewsForBaseEntitySets67f090d7e86c8a6a01d1b73dabd3b0adb39a9bbcb69d98b25c4ba7d82eb5ac95 : DbMappingViewCache
     {
         /// <summary>
         /// Gets a hash value computed over the mapping closure.
         /// </summary>
         public override string MappingHashValue
         {
-            get { return "5ebd04812973d98cf73cce73b6ab28591860cdfb49cf31502a7fb697564ac2cc"; }
+            get { return "67f090d7e86c8a6a01d1b73dabd3b0adb39a9bbcb69d98b25c4ba7d82eb5ac95"; }
         }
 
         /// <summary>
@@ -50,17 +47,17 @@ namespace GW2DotNET.Persistence
 
             var extentName = extent.EntityContainer.Name + "." + extent.Name;
 
-            if (extentName == "CodeFirstDatabase.Build")
+            if (extentName == "CodeFirstDatabase.Ingredient")
             {
                 return GetView0();
             }
 
-            if (extentName == "CodeFirstDatabase.ItemAttribute")
+            if (extentName == "CodeFirstDatabase.Item")
             {
                 return GetView1();
             }
 
-            if (extentName == "CodeFirstDatabase.Item")
+            if (extentName == "CodeFirstDatabase.ItemAttribute")
             {
                 return GetView2();
             }
@@ -70,86 +67,90 @@ namespace GW2DotNET.Persistence
                 return GetView3();
             }
 
-            if (extentName == "CodeFirstDatabase.CombatItemItemAttribute")
+            if (extentName == "CodeFirstDatabase.Recipe")
             {
                 return GetView4();
             }
 
-            if (extentName == "CodeFirstDatabase.UpgradeComponentItemAttribute")
+            if (extentName == "CodeFirstDatabase.CombatItemItemAttribute")
             {
                 return GetView5();
             }
 
-            if (extentName == "GwContext.Builds")
+            if (extentName == "CodeFirstDatabase.UpgradeComponentItemAttribute")
             {
                 return GetView6();
             }
 
-            if (extentName == "GwContext.ItemAttributes")
+            if (extentName == "CodeFirstDatabase.RecipeIngredient")
             {
                 return GetView7();
             }
 
-            if (extentName == "GwContext.Items")
+            if (extentName == "GwContext.Ingredients")
             {
                 return GetView8();
             }
 
-            if (extentName == "GwContext.InfusionSlots")
+            if (extentName == "GwContext.Items")
             {
                 return GetView9();
             }
 
-            if (extentName == "GwContext.CombatItem_InfusionSlots")
+            if (extentName == "GwContext.ItemAttributes")
             {
                 return GetView10();
             }
 
-            if (extentName == "GwContext.CombatItem_Attributes")
+            if (extentName == "GwContext.InfusionSlots")
             {
                 return GetView11();
             }
 
-            if (extentName == "GwContext.UpgradeComponent_Attributes")
+            if (extentName == "GwContext.CombatItem_InfusionSlots")
             {
                 return GetView12();
+            }
+
+            if (extentName == "GwContext.Recipes")
+            {
+                return GetView13();
+            }
+
+            if (extentName == "GwContext.CombatItem_Attributes")
+            {
+                return GetView14();
+            }
+
+            if (extentName == "GwContext.UpgradeComponent_Attributes")
+            {
+                return GetView15();
+            }
+
+            if (extentName == "GwContext.Recipe_Ingredients")
+            {
+                return GetView16();
             }
 
             return null;
         }
 
         /// <summary>
-        /// Gets the view for CodeFirstDatabase.Build.
+        /// Gets the view for CodeFirstDatabase.Ingredient.
         /// </summary>
         /// <returns>The mapping view.</returns>
         private static DbMappingView GetView0()
         {
             return new DbMappingView(@"
-    SELECT VALUE -- Constructing Build
-        [CodeFirstDatabaseSchema.Build](T1.Build_BuildId)
+    SELECT VALUE -- Constructing Ingredient
+        [CodeFirstDatabaseSchema.Ingredient](T1.Ingredient_ItemId, T1.Ingredient_Language, T1.Ingredient_Count)
     FROM (
         SELECT 
-            T.BuildId AS Build_BuildId, 
+            T.ItemId AS Ingredient_ItemId, 
+            T.Language AS Ingredient_Language, 
+            T.Count AS Ingredient_Count, 
             True AS _from0
-        FROM GwContext.Builds AS T
-    ) AS T1");
-        }
-
-        /// <summary>
-        /// Gets the view for CodeFirstDatabase.ItemAttribute.
-        /// </summary>
-        /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView1()
-        {
-            return new DbMappingView(@"
-    SELECT VALUE -- Constructing ItemAttribute
-        [CodeFirstDatabaseSchema.ItemAttribute](T1.ItemAttribute_Type, T1.ItemAttribute_Modifier)
-    FROM (
-        SELECT 
-            CAST(T.Type AS [Edm.Int32]) AS ItemAttribute_Type, 
-            T.Modifier AS ItemAttribute_Modifier, 
-            True AS _from0
-        FROM GwContext.ItemAttributes AS T
+        FROM GwContext.Ingredients AS T
     ) AS T1");
         }
 
@@ -157,7 +158,7 @@ namespace GW2DotNET.Persistence
         /// Gets the view for CodeFirstDatabase.Item.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView2()
+        private static DbMappingView GetView1()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Item
@@ -204,15 +205,15 @@ namespace GW2DotNET.Persistence
             T1.[Item.Buff_SkillId1], 
             CASE
                 WHEN T1._from43 THEN N'Bag'
-                WHEN T1._from27 THEN N'AquaticHelm'
-                WHEN T1._from28 THEN N'Boots'
-                WHEN T1._from29 THEN N'Coat'
-                WHEN T1._from30 THEN N'Gloves'
-                WHEN T1._from31 THEN N'Helm'
-                WHEN T1._from32 THEN N'Leggings'
-                WHEN T1._from25 THEN N'Shoulders'
-                WHEN T1._from26 THEN N'UnknownArmor'
-                WHEN T1._from33 THEN N'Back'
+                WHEN T1._from26 THEN N'AquaticHelm'
+                WHEN T1._from27 THEN N'Boots'
+                WHEN T1._from28 THEN N'Coat'
+                WHEN T1._from29 THEN N'Gloves'
+                WHEN T1._from30 THEN N'Helm'
+                WHEN T1._from31 THEN N'Leggings'
+                WHEN T1._from32 THEN N'Shoulders'
+                WHEN T1._from25 THEN N'UnknownArmor'
+                WHEN T1._from33 THEN N'Backpack'
                 WHEN T1._from39 THEN N'Accessory'
                 WHEN T1._from40 THEN N'Amulet'
                 WHEN T1._from41 THEN N'Ring'
@@ -298,115 +299,133 @@ namespace GW2DotNET.Persistence
                 CAST(T.Rarity AS [Edm.Int32]) AS Item_Rarity, 
                 CAST(T.Restrictions AS [Edm.Int32]) AS Item_Restrictions, 
                 T.VendorValue AS Item_VendorValue, 
-                TREAT(T AS [GW2DotNET.Entities.Bag]).NoSellOrSort AS Item_NoSellOrSort, 
-                TREAT(T AS [GW2DotNET.Entities.Bag]).Size AS Item_Size, 
-                TREAT(T AS [GW2DotNET.Entities.CombatItem]).SecondarySuffixItemId AS Item_SecondarySuffixItemId, 
-                TREAT(T AS [GW2DotNET.Entities.CombatItem]).SuffixItemId AS Item_SuffixItemId, 
-                TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff.Description AS [Item.Buff_Description], 
-                TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff.SkillId AS [Item.Buff_SkillId], 
-                TREAT(T AS [GW2DotNET.Entities.Armor]).DefaultSkin AS Item_DefaultSkin, 
-                TREAT(T AS [GW2DotNET.Entities.Armor]).Defense AS Item_Defense, 
-                CAST(TREAT(T AS [GW2DotNET.Entities.Armor]).WeightClass AS [Edm.Int32]) AS Item_WeightClass, 
-                TREAT(T AS [GW2DotNET.Entities.Back]).DefaultSkin AS Item_DefaultSkin1, 
-                CAST(TREAT(T AS [GW2DotNET.Entities.Weapon]).DamageType AS [Edm.Int32]) AS Item_DamageType, 
-                TREAT(T AS [GW2DotNET.Entities.Weapon]).DefaultSkin AS Item_DefaultSkin2, 
-                TREAT(T AS [GW2DotNET.Entities.Weapon]).Defense AS Item_Defense1, 
-                TREAT(T AS [GW2DotNET.Entities.Weapon]).MaximumPower AS Item_MaximumPower, 
-                TREAT(T AS [GW2DotNET.Entities.Weapon]).MinimumPower AS Item_MinimumPower, 
-                TREAT(T AS [GW2DotNET.Entities.Nourishment]).Duration AS Item_Duration, 
-                TREAT(T AS [GW2DotNET.Entities.CraftingRecipeUnlocker]).RecipeId AS Item_RecipeId, 
-                TREAT(T AS [GW2DotNET.Entities.DyeUnlocker]).ColorId AS Item_ColorId, 
-                TREAT(T AS [GW2DotNET.Entities.GatheringTool]).DefaultSkin AS Item_DefaultSkin3, 
-                TREAT(T AS [GW2DotNET.Entities.SalvageTool]).Charges AS Item_Charges, 
-                CAST(TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).InfusionUpgradeFlags AS [Edm.Int32]) AS Item_InfusionUpgradeFlags, 
-                TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).Suffix AS Item_Suffix, 
-                CAST(TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).UpgradeComponentFlags AS [Edm.Int32]) AS Item_UpgradeComponentFlags, 
-                TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).Buff.Description AS [Item.Buff_Description1], 
-                TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).Buff.SkillId AS [Item.Buff_SkillId1], 
+                TREAT(T AS [GW2DotNET.Persistence.Bag]).NoSellOrSort AS Item_NoSellOrSort, 
+                TREAT(T AS [GW2DotNET.Persistence.Bag]).Size AS Item_Size, 
+                TREAT(T AS [GW2DotNET.Persistence.CombatItem]).SecondarySuffixItemId AS Item_SecondarySuffixItemId, 
+                TREAT(T AS [GW2DotNET.Persistence.CombatItem]).SuffixItemId AS Item_SuffixItemId, 
+                TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff.Description AS [Item.Buff_Description], 
+                TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff.SkillId AS [Item.Buff_SkillId], 
+                TREAT(T AS [GW2DotNET.Persistence.Armor]).DefaultSkin AS Item_DefaultSkin, 
+                TREAT(T AS [GW2DotNET.Persistence.Armor]).Defense AS Item_Defense, 
+                CAST(TREAT(T AS [GW2DotNET.Persistence.Armor]).WeightClass AS [Edm.Int32]) AS Item_WeightClass, 
+                TREAT(T AS [GW2DotNET.Persistence.Backpack]).DefaultSkin AS Item_DefaultSkin1, 
+                CAST(TREAT(T AS [GW2DotNET.Persistence.Weapon]).DamageType AS [Edm.Int32]) AS Item_DamageType, 
+                TREAT(T AS [GW2DotNET.Persistence.Weapon]).DefaultSkin AS Item_DefaultSkin2, 
+                TREAT(T AS [GW2DotNET.Persistence.Weapon]).Defense AS Item_Defense1, 
+                TREAT(T AS [GW2DotNET.Persistence.Weapon]).MaximumPower AS Item_MaximumPower, 
+                TREAT(T AS [GW2DotNET.Persistence.Weapon]).MinimumPower AS Item_MinimumPower, 
+                TREAT(T AS [GW2DotNET.Persistence.Nourishment]).Duration AS Item_Duration, 
+                TREAT(T AS [GW2DotNET.Persistence.CraftingRecipeUnlocker]).RecipeId AS Item_RecipeId, 
+                TREAT(T AS [GW2DotNET.Persistence.DyeUnlocker]).ColorId AS Item_ColorId, 
+                TREAT(T AS [GW2DotNET.Persistence.GatheringTool]).DefaultSkin AS Item_DefaultSkin3, 
+                TREAT(T AS [GW2DotNET.Persistence.SalvageTool]).Charges AS Item_Charges, 
+                CAST(TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).InfusionUpgradeFlags AS [Edm.Int32]) AS Item_InfusionUpgradeFlags, 
+                TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).Suffix AS Item_Suffix, 
+                CAST(TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).UpgradeComponentFlags AS [Edm.Int32]) AS Item_UpgradeComponentFlags, 
+                TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).Buff.Description AS [Item.Buff_Description1], 
+                TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).Buff.SkillId AS [Item.Buff_SkillId1], 
                 True AS _from0, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Axe]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from1, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Dagger]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from2, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Focus]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from3, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.GreatSword]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from4, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Hammer]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from5, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Harpoon]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from6, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.LargeBundle]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from7, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.LongBow]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from8, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Mace]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from9, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Pistol]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from10, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Rifle]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from11, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Scepter]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from12, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Shield]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from13, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.ShortBow]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from14, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.SmallBundle]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from15, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.SpearGun]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from16, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Staff]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from17, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Sword]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from18, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Torch]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from19, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.ToyWeapon]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from20, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Trident]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from21, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.TwoHandedToyWeapon]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from22, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.UnknownWeapon]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from23, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.WarHorn]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from24, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Shoulders]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from25, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.UnknownArmor]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from26, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.AquaticHelm]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from27, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Boots]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from28, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Coat]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from29, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Gloves]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from30, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Helm]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from31, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Leggings]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from32, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Back]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from33, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.DefaultUpgradeComponent]) AND TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from34, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Gem]) AND TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from35, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Rune]) AND TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from36, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Sigil]) AND TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from37, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.UnknownUpgradeComponent]) AND TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from38, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Accessory]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from39, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Amulet]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from40, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.Ring]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from41, 
-                CASE WHEN (T IS OF (ONLY [GW2DotNET.Entities.UnknownTrinket]) AND TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) THEN True ELSE False END AS _from42, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.Bag]) THEN True ELSE False END AS _from43, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.Food]) THEN True ELSE False END AS _from44, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.GenericConsumable]) THEN True ELSE False END AS _from45, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.Utility]) THEN True ELSE False END AS _from46, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.CraftingRecipeUnlocker]) THEN True ELSE False END AS _from47, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.DyeUnlocker]) THEN True ELSE False END AS _from48, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.ForagingTool]) THEN True ELSE False END AS _from49, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.LoggingTool]) THEN True ELSE False END AS _from50, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.MiningTool]) THEN True ELSE False END AS _from51, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UnknownGatheringTool]) THEN True ELSE False END AS _from52, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.SalvageTool]) THEN True ELSE False END AS _from53, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.AppearanceChanger]) THEN True ELSE False END AS _from54, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.Booze]) THEN True ELSE False END AS _from55, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.ContractNpc]) THEN True ELSE False END AS _from56, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.HalloweenConsumable]) THEN True ELSE False END AS _from57, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.ImmediateConsumable]) THEN True ELSE False END AS _from58, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.Transmutation]) THEN True ELSE False END AS _from59, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UnknownConsumable]) THEN True ELSE False END AS _from60, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.BagSlotUnlocker]) THEN True ELSE False END AS _from61, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.BankTabUnlocker]) THEN True ELSE False END AS _from62, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.CollectibleCapacityUnlocker]) THEN True ELSE False END AS _from63, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.ContentUnlocker]) THEN True ELSE False END AS _from64, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UnknownUnlocker]) THEN True ELSE False END AS _from65, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UnTransmutation]) THEN True ELSE False END AS _from66, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UpgradeRemoval]) THEN True ELSE False END AS _from67, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.DefaultContainer]) THEN True ELSE False END AS _from68, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.GiftBox]) THEN True ELSE False END AS _from69, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UnknownContainer]) THEN True ELSE False END AS _from70, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.CraftingMaterial]) THEN True ELSE False END AS _from71, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.DefaultGizmo]) THEN True ELSE False END AS _from72, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.RentableContractNpc]) THEN True ELSE False END AS _from73, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UnknownGizmo]) THEN True ELSE False END AS _from74, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UnlimitedConsumable]) THEN True ELSE False END AS _from75, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.MiniPet]) THEN True ELSE False END AS _from76, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UnknownTool]) THEN True ELSE False END AS _from77, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.Trophy]) THEN True ELSE False END AS _from78, 
-                CASE WHEN T IS OF (ONLY [GW2DotNET.Entities.UnknownItem]) THEN True ELSE False END AS _from79
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Axe]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from1, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Dagger]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from2, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Focus]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from3, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.GreatSword]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from4, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Hammer]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from5, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Harpoon]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from6, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.LargeBundle]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from7, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.LongBow]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from8, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Mace]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from9, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Pistol]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from10, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Rifle]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from11, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Scepter]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from12, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Shield]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from13, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.ShortBow]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from14, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.SmallBundle]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from15, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.SpearGun]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from16, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Staff]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from17, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Sword]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from18, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Torch]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from19, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.ToyWeapon]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from20, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Trident]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from21, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.TwoHandedToyWeapon]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from22, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.UnknownWeapon]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from23, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.WarHorn]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from24, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.UnknownArmor]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from25, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.AquaticHelm]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from26, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Boots]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from27, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Coat]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from28, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Gloves]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from29, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Helm]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from30, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Leggings]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from31, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Shoulders]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from32, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Backpack]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from33, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.DefaultUpgradeComponent]) AND TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from34, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Gem]) AND TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from35, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Rune]) AND TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from36, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Sigil]) AND TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from37, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.UnknownUpgradeComponent]) AND TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from38, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Accessory]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from39, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Amulet]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from40, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.Ring]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from41, 
+                CASE WHEN (T IS OF (ONLY [GW2DotNET.Persistence.UnknownTrinket]) AND TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) THEN True ELSE False END AS _from42, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.Bag]) THEN True ELSE False END AS _from43, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.Food]) THEN True ELSE False END AS _from44, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.GenericConsumable]) THEN True ELSE False END AS _from45, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.Utility]) THEN True ELSE False END AS _from46, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.CraftingRecipeUnlocker]) THEN True ELSE False END AS _from47, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.DyeUnlocker]) THEN True ELSE False END AS _from48, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ForagingTool]) THEN True ELSE False END AS _from49, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.LoggingTool]) THEN True ELSE False END AS _from50, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.MiningTool]) THEN True ELSE False END AS _from51, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnknownGatheringTool]) THEN True ELSE False END AS _from52, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.SalvageTool]) THEN True ELSE False END AS _from53, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.AppearanceChanger]) THEN True ELSE False END AS _from54, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.Booze]) THEN True ELSE False END AS _from55, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ContractNpc]) THEN True ELSE False END AS _from56, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.HalloweenConsumable]) THEN True ELSE False END AS _from57, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ImmediateConsumable]) THEN True ELSE False END AS _from58, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.Transmutation]) THEN True ELSE False END AS _from59, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnknownConsumable]) THEN True ELSE False END AS _from60, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.BagSlotUnlocker]) THEN True ELSE False END AS _from61, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.BankTabUnlocker]) THEN True ELSE False END AS _from62, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.CollectibleCapacityUnlocker]) THEN True ELSE False END AS _from63, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ContentUnlocker]) THEN True ELSE False END AS _from64, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnknownUnlocker]) THEN True ELSE False END AS _from65, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnTransmutation]) THEN True ELSE False END AS _from66, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UpgradeRemoval]) THEN True ELSE False END AS _from67, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.DefaultContainer]) THEN True ELSE False END AS _from68, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.GiftBox]) THEN True ELSE False END AS _from69, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnknownContainer]) THEN True ELSE False END AS _from70, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.CraftingMaterial]) THEN True ELSE False END AS _from71, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.DefaultGizmo]) THEN True ELSE False END AS _from72, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.RentableContractNpc]) THEN True ELSE False END AS _from73, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnknownGizmo]) THEN True ELSE False END AS _from74, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnlimitedConsumable]) THEN True ELSE False END AS _from75, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.MiniPet]) THEN True ELSE False END AS _from76, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnknownTool]) THEN True ELSE False END AS _from77, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.Trophy]) THEN True ELSE False END AS _from78, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnknownItem]) THEN True ELSE False END AS _from79
             FROM GwContext.Items AS T
-            WHERE (((T IS OF (ONLY [GW2DotNET.Entities.Bag]) OR T IS OF (ONLY [GW2DotNET.Entities.AppearanceChanger]) OR T IS OF (ONLY [GW2DotNET.Entities.Booze]) OR T IS OF (ONLY [GW2DotNET.Entities.ContractNpc]) OR T IS OF (ONLY [GW2DotNET.Entities.HalloweenConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.ImmediateConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.Food]) OR T IS OF (ONLY [GW2DotNET.Entities.GenericConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.Utility]) OR T IS OF (ONLY [GW2DotNET.Entities.Transmutation]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.BagSlotUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.BankTabUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.CollectibleCapacityUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.ContentUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.CraftingRecipeUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.DyeUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.UnTransmutation]) OR T IS OF (ONLY [GW2DotNET.Entities.UpgradeRemoval]) OR T IS OF (ONLY [GW2DotNET.Entities.DefaultContainer]) OR T IS OF (ONLY [GW2DotNET.Entities.GiftBox]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownContainer]) OR T IS OF (ONLY [GW2DotNET.Entities.CraftingMaterial]) OR T IS OF (ONLY [GW2DotNET.Entities.ForagingTool]) OR T IS OF (ONLY [GW2DotNET.Entities.LoggingTool]) OR T IS OF (ONLY [GW2DotNET.Entities.MiningTool]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownGatheringTool]) OR T IS OF (ONLY [GW2DotNET.Entities.DefaultGizmo]) OR T IS OF (ONLY [GW2DotNET.Entities.RentableContractNpc]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownGizmo]) OR T IS OF (ONLY [GW2DotNET.Entities.UnlimitedConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.MiniPet]) OR T IS OF (ONLY [GW2DotNET.Entities.SalvageTool]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownTool]) OR T IS OF (ONLY [GW2DotNET.Entities.Trophy]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownItem]) OR T IS OF (ONLY [GW2DotNET.Entities.DefaultUpgradeComponent]) OR T IS OF (ONLY [GW2DotNET.Entities.Gem]) OR T IS OF (ONLY [GW2DotNET.Entities.Rune]) OR T IS OF (ONLY [GW2DotNET.Entities.Sigil]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownUpgradeComponent])) OR TREAT(T AS [GW2DotNET.Entities.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])) AND ((T IS OF (ONLY [GW2DotNET.Entities.Bag]) OR T IS OF (ONLY [GW2DotNET.Entities.AquaticHelm]) OR T IS OF (ONLY [GW2DotNET.Entities.Boots]) OR T IS OF (ONLY [GW2DotNET.Entities.Coat]) OR T IS OF (ONLY [GW2DotNET.Entities.Gloves]) OR T IS OF (ONLY [GW2DotNET.Entities.Helm]) OR T IS OF (ONLY [GW2DotNET.Entities.Leggings]) OR T IS OF (ONLY [GW2DotNET.Entities.Shoulders]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownArmor]) OR T IS OF (ONLY [GW2DotNET.Entities.Back]) OR T IS OF (ONLY [GW2DotNET.Entities.Accessory]) OR T IS OF (ONLY [GW2DotNET.Entities.Amulet]) OR T IS OF (ONLY [GW2DotNET.Entities.Ring]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownTrinket]) OR T IS OF (ONLY [GW2DotNET.Entities.Axe]) OR T IS OF (ONLY [GW2DotNET.Entities.Dagger]) OR T IS OF (ONLY [GW2DotNET.Entities.Focus]) OR T IS OF (ONLY [GW2DotNET.Entities.GreatSword]) OR T IS OF (ONLY [GW2DotNET.Entities.Hammer]) OR T IS OF (ONLY [GW2DotNET.Entities.Harpoon]) OR T IS OF (ONLY [GW2DotNET.Entities.LargeBundle]) OR T IS OF (ONLY [GW2DotNET.Entities.LongBow]) OR T IS OF (ONLY [GW2DotNET.Entities.Mace]) OR T IS OF (ONLY [GW2DotNET.Entities.Pistol]) OR T IS OF (ONLY [GW2DotNET.Entities.Rifle]) OR T IS OF (ONLY [GW2DotNET.Entities.Scepter]) OR T IS OF (ONLY [GW2DotNET.Entities.Shield]) OR T IS OF (ONLY [GW2DotNET.Entities.ShortBow]) OR T IS OF (ONLY [GW2DotNET.Entities.SmallBundle]) OR T IS OF (ONLY [GW2DotNET.Entities.SpearGun]) OR T IS OF (ONLY [GW2DotNET.Entities.Staff]) OR T IS OF (ONLY [GW2DotNET.Entities.Sword]) OR T IS OF (ONLY [GW2DotNET.Entities.Torch]) OR T IS OF (ONLY [GW2DotNET.Entities.ToyWeapon]) OR T IS OF (ONLY [GW2DotNET.Entities.Trident]) OR T IS OF (ONLY [GW2DotNET.Entities.TwoHandedToyWeapon]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownWeapon]) OR T IS OF (ONLY [GW2DotNET.Entities.WarHorn]) OR T IS OF (ONLY [GW2DotNET.Entities.AppearanceChanger]) OR T IS OF (ONLY [GW2DotNET.Entities.Booze]) OR T IS OF (ONLY [GW2DotNET.Entities.ContractNpc]) OR T IS OF (ONLY [GW2DotNET.Entities.HalloweenConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.ImmediateConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.Food]) OR T IS OF (ONLY [GW2DotNET.Entities.GenericConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.Utility]) OR T IS OF (ONLY [GW2DotNET.Entities.Transmutation]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.BagSlotUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.BankTabUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.CollectibleCapacityUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.ContentUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.CraftingRecipeUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.DyeUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownUnlocker]) OR T IS OF (ONLY [GW2DotNET.Entities.UnTransmutation]) OR T IS OF (ONLY [GW2DotNET.Entities.UpgradeRemoval]) OR T IS OF (ONLY [GW2DotNET.Entities.DefaultContainer]) OR T IS OF (ONLY [GW2DotNET.Entities.GiftBox]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownContainer]) OR T IS OF (ONLY [GW2DotNET.Entities.CraftingMaterial]) OR T IS OF (ONLY [GW2DotNET.Entities.ForagingTool]) OR T IS OF (ONLY [GW2DotNET.Entities.LoggingTool]) OR T IS OF (ONLY [GW2DotNET.Entities.MiningTool]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownGatheringTool]) OR T IS OF (ONLY [GW2DotNET.Entities.DefaultGizmo]) OR T IS OF (ONLY [GW2DotNET.Entities.RentableContractNpc]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownGizmo]) OR T IS OF (ONLY [GW2DotNET.Entities.UnlimitedConsumable]) OR T IS OF (ONLY [GW2DotNET.Entities.MiniPet]) OR T IS OF (ONLY [GW2DotNET.Entities.SalvageTool]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownTool]) OR T IS OF (ONLY [GW2DotNET.Entities.Trophy]) OR T IS OF (ONLY [GW2DotNET.Entities.UnknownItem])) OR TREAT(T AS [GW2DotNET.Entities.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Entities.ItemBuff])))
+            WHERE (((T IS OF (ONLY [GW2DotNET.Persistence.Bag]) OR T IS OF (ONLY [GW2DotNET.Persistence.AppearanceChanger]) OR T IS OF (ONLY [GW2DotNET.Persistence.Booze]) OR T IS OF (ONLY [GW2DotNET.Persistence.ContractNpc]) OR T IS OF (ONLY [GW2DotNET.Persistence.HalloweenConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.ImmediateConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.Food]) OR T IS OF (ONLY [GW2DotNET.Persistence.GenericConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.Utility]) OR T IS OF (ONLY [GW2DotNET.Persistence.Transmutation]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.BagSlotUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.BankTabUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.CollectibleCapacityUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.ContentUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.CraftingRecipeUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.DyeUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnTransmutation]) OR T IS OF (ONLY [GW2DotNET.Persistence.UpgradeRemoval]) OR T IS OF (ONLY [GW2DotNET.Persistence.DefaultContainer]) OR T IS OF (ONLY [GW2DotNET.Persistence.GiftBox]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownContainer]) OR T IS OF (ONLY [GW2DotNET.Persistence.CraftingMaterial]) OR T IS OF (ONLY [GW2DotNET.Persistence.ForagingTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.LoggingTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.MiningTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownGatheringTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.DefaultGizmo]) OR T IS OF (ONLY [GW2DotNET.Persistence.RentableContractNpc]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownGizmo]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnlimitedConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.MiniPet]) OR T IS OF (ONLY [GW2DotNET.Persistence.SalvageTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.Trophy]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownItem]) OR T IS OF (ONLY [GW2DotNET.Persistence.DefaultUpgradeComponent]) OR T IS OF (ONLY [GW2DotNET.Persistence.Gem]) OR T IS OF (ONLY [GW2DotNET.Persistence.Rune]) OR T IS OF (ONLY [GW2DotNET.Persistence.Sigil]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownUpgradeComponent])) OR TREAT(T AS [GW2DotNET.Persistence.CombatItem]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])) AND ((T IS OF (ONLY [GW2DotNET.Persistence.Bag]) OR T IS OF (ONLY [GW2DotNET.Persistence.AquaticHelm]) OR T IS OF (ONLY [GW2DotNET.Persistence.Boots]) OR T IS OF (ONLY [GW2DotNET.Persistence.Coat]) OR T IS OF (ONLY [GW2DotNET.Persistence.Gloves]) OR T IS OF (ONLY [GW2DotNET.Persistence.Helm]) OR T IS OF (ONLY [GW2DotNET.Persistence.Leggings]) OR T IS OF (ONLY [GW2DotNET.Persistence.Shoulders]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownArmor]) OR T IS OF (ONLY [GW2DotNET.Persistence.Backpack]) OR T IS OF (ONLY [GW2DotNET.Persistence.Accessory]) OR T IS OF (ONLY [GW2DotNET.Persistence.Amulet]) OR T IS OF (ONLY [GW2DotNET.Persistence.Ring]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownTrinket]) OR T IS OF (ONLY [GW2DotNET.Persistence.Axe]) OR T IS OF (ONLY [GW2DotNET.Persistence.Dagger]) OR T IS OF (ONLY [GW2DotNET.Persistence.Focus]) OR T IS OF (ONLY [GW2DotNET.Persistence.GreatSword]) OR T IS OF (ONLY [GW2DotNET.Persistence.Hammer]) OR T IS OF (ONLY [GW2DotNET.Persistence.Harpoon]) OR T IS OF (ONLY [GW2DotNET.Persistence.LargeBundle]) OR T IS OF (ONLY [GW2DotNET.Persistence.LongBow]) OR T IS OF (ONLY [GW2DotNET.Persistence.Mace]) OR T IS OF (ONLY [GW2DotNET.Persistence.Pistol]) OR T IS OF (ONLY [GW2DotNET.Persistence.Rifle]) OR T IS OF (ONLY [GW2DotNET.Persistence.Scepter]) OR T IS OF (ONLY [GW2DotNET.Persistence.Shield]) OR T IS OF (ONLY [GW2DotNET.Persistence.ShortBow]) OR T IS OF (ONLY [GW2DotNET.Persistence.SmallBundle]) OR T IS OF (ONLY [GW2DotNET.Persistence.SpearGun]) OR T IS OF (ONLY [GW2DotNET.Persistence.Staff]) OR T IS OF (ONLY [GW2DotNET.Persistence.Sword]) OR T IS OF (ONLY [GW2DotNET.Persistence.Torch]) OR T IS OF (ONLY [GW2DotNET.Persistence.ToyWeapon]) OR T IS OF (ONLY [GW2DotNET.Persistence.Trident]) OR T IS OF (ONLY [GW2DotNET.Persistence.TwoHandedToyWeapon]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownWeapon]) OR T IS OF (ONLY [GW2DotNET.Persistence.WarHorn]) OR T IS OF (ONLY [GW2DotNET.Persistence.AppearanceChanger]) OR T IS OF (ONLY [GW2DotNET.Persistence.Booze]) OR T IS OF (ONLY [GW2DotNET.Persistence.ContractNpc]) OR T IS OF (ONLY [GW2DotNET.Persistence.HalloweenConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.ImmediateConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.Food]) OR T IS OF (ONLY [GW2DotNET.Persistence.GenericConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.Utility]) OR T IS OF (ONLY [GW2DotNET.Persistence.Transmutation]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.BagSlotUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.BankTabUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.CollectibleCapacityUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.ContentUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.CraftingRecipeUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.DyeUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownUnlocker]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnTransmutation]) OR T IS OF (ONLY [GW2DotNET.Persistence.UpgradeRemoval]) OR T IS OF (ONLY [GW2DotNET.Persistence.DefaultContainer]) OR T IS OF (ONLY [GW2DotNET.Persistence.GiftBox]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownContainer]) OR T IS OF (ONLY [GW2DotNET.Persistence.CraftingMaterial]) OR T IS OF (ONLY [GW2DotNET.Persistence.ForagingTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.LoggingTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.MiningTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownGatheringTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.DefaultGizmo]) OR T IS OF (ONLY [GW2DotNET.Persistence.RentableContractNpc]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownGizmo]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnlimitedConsumable]) OR T IS OF (ONLY [GW2DotNET.Persistence.MiniPet]) OR T IS OF (ONLY [GW2DotNET.Persistence.SalvageTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownTool]) OR T IS OF (ONLY [GW2DotNET.Persistence.Trophy]) OR T IS OF (ONLY [GW2DotNET.Persistence.UnknownItem])) OR TREAT(T AS [GW2DotNET.Persistence.UpgradeComponent]).Buff IS OF (ONLY [GW2DotNET.Persistence.ItemBuff])))
         ) AS T1
     ) AS T2");
+        }
+
+        /// <summary>
+        /// Gets the view for CodeFirstDatabase.ItemAttribute.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView2()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing ItemAttribute
+        [CodeFirstDatabaseSchema.ItemAttribute](T1.ItemAttribute_Type, T1.ItemAttribute_Modifier)
+    FROM (
+        SELECT 
+            CAST(T.Type AS [Edm.Int32]) AS ItemAttribute_Type, 
+            T.Modifier AS ItemAttribute_Modifier, 
+            True AS _from0
+        FROM GwContext.ItemAttributes AS T
+    ) AS T1");
         }
 
         /// <summary>
@@ -424,24 +443,24 @@ namespace GW2DotNET.Persistence
             T3.InfusionSlot_Flags, 
             T3.InfusionSlot_ItemId, 
             CASE
-                WHEN T3._from1 THEN T3.[InfusionSlot.CombatItem_ItemId]
+                WHEN T3._from0 THEN T3.[InfusionSlot.CombatItem_ItemId]
             END AS [InfusionSlot.CombatItem_ItemId], 
             T3.[InfusionSlot.CombatItem_Language]
         FROM (
-            SELECT T1.InfusionSlot_Id, T1.InfusionSlot_Flags, T1.InfusionSlot_ItemId, T2.[InfusionSlot.CombatItem_ItemId], T2.[InfusionSlot.CombatItem_Language], T1._from0, (T2._from1 AND T2._from1 IS NOT NULL) AS _from1
+            SELECT T1.InfusionSlot_Id, T1.InfusionSlot_Flags, T1.InfusionSlot_ItemId, T2.[InfusionSlot.CombatItem_ItemId], T2.[InfusionSlot.CombatItem_Language], (T2._from0 AND T2._from0 IS NOT NULL) AS _from0, T1._from1
             FROM  (
                 SELECT 
                     T.Id AS InfusionSlot_Id, 
                     CAST(T.Flags AS [Edm.Int32]) AS InfusionSlot_Flags, 
                     T.ItemId AS InfusionSlot_ItemId, 
-                    True AS _from0
+                    True AS _from1
                 FROM GwContext.InfusionSlots AS T) AS T1
                 LEFT OUTER JOIN (
                 SELECT 
                     Key(T.CombatItem_InfusionSlots_Target).Id AS InfusionSlot_Id, 
                     Key(T.CombatItem_InfusionSlots_Source).ItemId AS [InfusionSlot.CombatItem_ItemId], 
                     Key(T.CombatItem_InfusionSlots_Source).Language AS [InfusionSlot.CombatItem_Language], 
-                    True AS _from1
+                    True AS _from0
                 FROM GwContext.CombatItem_InfusionSlots AS T) AS T2
                 ON T1.InfusionSlot_Id = T2.InfusionSlot_Id
         ) AS T3
@@ -449,10 +468,147 @@ namespace GW2DotNET.Persistence
         }
 
         /// <summary>
-        /// Gets the view for CodeFirstDatabase.CombatItemItemAttribute.
+        /// Gets the view for CodeFirstDatabase.Recipe.
         /// </summary>
         /// <returns>The mapping view.</returns>
         private static DbMappingView GetView4()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing Recipe
+        [CodeFirstDatabaseSchema.Recipe](T2.Recipe_RecipeId, T2.Recipe_Language, T2.Recipe_BuildId, T2.Recipe_CraftingDisciplines, T2.Recipe_Flags, T2.Recipe_MinimumRating, T2.Recipe_OutputItemCount, T2.Recipe_OutputItemId, T2.Recipe_TimeToCraft, T2.Recipe_Discriminator)
+    FROM (
+        SELECT -- Constructing Discriminator
+            T1.Recipe_RecipeId, 
+            T1.Recipe_Language, 
+            T1.Recipe_BuildId, 
+            T1.Recipe_CraftingDisciplines, 
+            T1.Recipe_Flags, 
+            T1.Recipe_MinimumRating, 
+            T1.Recipe_OutputItemCount, 
+            T1.Recipe_OutputItemId, 
+            T1.Recipe_TimeToCraft, 
+            CASE
+                WHEN T1._from34 THEN N'AmuletRecipe'
+                WHEN T1._from35 THEN N'AxeRecipe'
+                WHEN T1._from36 THEN N'BackpackRecipe'
+                WHEN T1._from37 THEN N'BagRecipe'
+                WHEN T1._from38 THEN N'BootsRecipe'
+                WHEN T1._from39 THEN N'BulkRecipe'
+                WHEN T1._from40 THEN N'CoatRecipe'
+                WHEN T1._from41 THEN N'ComponentRecipe'
+                WHEN T1._from42 THEN N'ConsumableRecipe'
+                WHEN T1._from43 THEN N'CookingIngredientRecipe'
+                WHEN T1._from44 THEN N'DaggerRecipe'
+                WHEN T1._from45 THEN N'DessertRecipe'
+                WHEN T1._from46 THEN N'DyeRecipe'
+                WHEN T1._from47 THEN N'EarringRecipe'
+                WHEN T1._from48 THEN N'FeastRecipe'
+                WHEN T1._from49 THEN N'FocusRecipe'
+                WHEN T1._from1 THEN N'GlovesRecipe'
+                WHEN T1._from2 THEN N'GreatSwordRecipe'
+                WHEN T1._from3 THEN N'HammerRecipe'
+                WHEN T1._from4 THEN N'HarpoonRecipe'
+                WHEN T1._from5 THEN N'HelmRecipe'
+                WHEN T1._from6 THEN N'InscriptionRecipe'
+                WHEN T1._from7 THEN N'InsigniaRecipe'
+                WHEN T1._from8 THEN N'LeggingsRecipe'
+                WHEN T1._from9 THEN N'LongBowRecipe'
+                WHEN T1._from10 THEN N'MaceRecipe'
+                WHEN T1._from11 THEN N'MealRecipe'
+                WHEN T1._from12 THEN N'PistolRecipe'
+                WHEN T1._from13 THEN N'PotionRecipe'
+                WHEN T1._from14 THEN N'RefinementEctoplasmRecipe'
+                WHEN T1._from15 THEN N'RefinementObsidianRecipe'
+                WHEN T1._from16 THEN N'RefinementRecipe'
+                WHEN T1._from17 THEN N'RifleRecipe'
+                WHEN T1._from18 THEN N'RingRecipe'
+                WHEN T1._from19 THEN N'ScepterRecipe'
+                WHEN T1._from20 THEN N'SeasoningRecipe'
+                WHEN T1._from21 THEN N'ShieldRecipe'
+                WHEN T1._from22 THEN N'ShortBowRecipe'
+                WHEN T1._from23 THEN N'ShouldersRecipe'
+                WHEN T1._from24 THEN N'SnackRecipe'
+                WHEN T1._from25 THEN N'SoupRecipe'
+                WHEN T1._from26 THEN N'SpearGunRecipe'
+                WHEN T1._from27 THEN N'StaffRecipe'
+                WHEN T1._from28 THEN N'SwordRecipe'
+                WHEN T1._from29 THEN N'TorchRecipe'
+                WHEN T1._from30 THEN N'TridentRecipe'
+                WHEN T1._from31 THEN N'UnknownRecipe'
+                WHEN T1._from32 THEN N'UpgradeComponentRecipe'
+                ELSE N'WarHornRecipe'
+            END AS Recipe_Discriminator
+        FROM (
+            SELECT 
+                T.RecipeId AS Recipe_RecipeId, 
+                T.Language AS Recipe_Language, 
+                T.BuildId AS Recipe_BuildId, 
+                CAST(T.CraftingDisciplines AS [Edm.Int32]) AS Recipe_CraftingDisciplines, 
+                CAST(T.Flags AS [Edm.Int32]) AS Recipe_Flags, 
+                T.MinimumRating AS Recipe_MinimumRating, 
+                T.OutputItemCount AS Recipe_OutputItemCount, 
+                T.OutputItemId AS Recipe_OutputItemId, 
+                T.TimeToCraft AS Recipe_TimeToCraft, 
+                True AS _from0, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.GlovesRecipe]) THEN True ELSE False END AS _from1, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.GreatSwordRecipe]) THEN True ELSE False END AS _from2, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.HammerRecipe]) THEN True ELSE False END AS _from3, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.HarpoonRecipe]) THEN True ELSE False END AS _from4, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.HelmRecipe]) THEN True ELSE False END AS _from5, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.InscriptionRecipe]) THEN True ELSE False END AS _from6, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.InsigniaRecipe]) THEN True ELSE False END AS _from7, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.LeggingsRecipe]) THEN True ELSE False END AS _from8, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.LongBowRecipe]) THEN True ELSE False END AS _from9, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.MaceRecipe]) THEN True ELSE False END AS _from10, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.MealRecipe]) THEN True ELSE False END AS _from11, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.PistolRecipe]) THEN True ELSE False END AS _from12, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.PotionRecipe]) THEN True ELSE False END AS _from13, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.RefinementEctoplasmRecipe]) THEN True ELSE False END AS _from14, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.RefinementObsidianRecipe]) THEN True ELSE False END AS _from15, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.RefinementRecipe]) THEN True ELSE False END AS _from16, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.RifleRecipe]) THEN True ELSE False END AS _from17, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.RingRecipe]) THEN True ELSE False END AS _from18, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ScepterRecipe]) THEN True ELSE False END AS _from19, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.SeasoningRecipe]) THEN True ELSE False END AS _from20, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ShieldRecipe]) THEN True ELSE False END AS _from21, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ShortBowRecipe]) THEN True ELSE False END AS _from22, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ShouldersRecipe]) THEN True ELSE False END AS _from23, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.SnackRecipe]) THEN True ELSE False END AS _from24, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.SoupRecipe]) THEN True ELSE False END AS _from25, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.SpearGunRecipe]) THEN True ELSE False END AS _from26, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.StaffRecipe]) THEN True ELSE False END AS _from27, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.SwordRecipe]) THEN True ELSE False END AS _from28, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.TorchRecipe]) THEN True ELSE False END AS _from29, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.TridentRecipe]) THEN True ELSE False END AS _from30, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UnknownRecipe]) THEN True ELSE False END AS _from31, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.UpgradeComponentRecipe]) THEN True ELSE False END AS _from32, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.WarHornRecipe]) THEN True ELSE False END AS _from33, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.AmuletRecipe]) THEN True ELSE False END AS _from34, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.AxeRecipe]) THEN True ELSE False END AS _from35, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.BackpackRecipe]) THEN True ELSE False END AS _from36, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.BagRecipe]) THEN True ELSE False END AS _from37, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.BootsRecipe]) THEN True ELSE False END AS _from38, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.BulkRecipe]) THEN True ELSE False END AS _from39, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.CoatRecipe]) THEN True ELSE False END AS _from40, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ComponentRecipe]) THEN True ELSE False END AS _from41, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.ConsumableRecipe]) THEN True ELSE False END AS _from42, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.CookingIngredientRecipe]) THEN True ELSE False END AS _from43, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.DaggerRecipe]) THEN True ELSE False END AS _from44, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.DessertRecipe]) THEN True ELSE False END AS _from45, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.DyeRecipe]) THEN True ELSE False END AS _from46, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.EarringRecipe]) THEN True ELSE False END AS _from47, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.FeastRecipe]) THEN True ELSE False END AS _from48, 
+                CASE WHEN T IS OF (ONLY [GW2DotNET.Persistence.FocusRecipe]) THEN True ELSE False END AS _from49
+            FROM GwContext.Recipes AS T
+        ) AS T1
+    ) AS T2");
+        }
+
+        /// <summary>
+        /// Gets the view for CodeFirstDatabase.CombatItemItemAttribute.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView5()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing CombatItemItemAttribute
@@ -472,7 +628,7 @@ namespace GW2DotNET.Persistence
         /// Gets the view for CodeFirstDatabase.UpgradeComponentItemAttribute.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView5()
+        private static DbMappingView GetView6()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing UpgradeComponentItemAttribute
@@ -489,37 +645,42 @@ namespace GW2DotNET.Persistence
         }
 
         /// <summary>
-        /// Gets the view for GwContext.Builds.
-        /// </summary>
-        /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView6()
-        {
-            return new DbMappingView(@"
-    SELECT VALUE -- Constructing Builds
-        [GW2DotNET.Entities.Build](T1.Build_BuildId)
-    FROM (
-        SELECT 
-            T.BuildId AS Build_BuildId, 
-            True AS _from0
-        FROM CodeFirstDatabase.Build AS T
-    ) AS T1");
-        }
-
-        /// <summary>
-        /// Gets the view for GwContext.ItemAttributes.
+        /// Gets the view for CodeFirstDatabase.RecipeIngredient.
         /// </summary>
         /// <returns>The mapping view.</returns>
         private static DbMappingView GetView7()
         {
             return new DbMappingView(@"
-    SELECT VALUE -- Constructing ItemAttributes
-        [GW2DotNET.Entities.ItemAttribute](T1.ItemAttribute_Type, T1.ItemAttribute_Modifier)
+    SELECT VALUE -- Constructing RecipeIngredient
+        [CodeFirstDatabaseSchema.RecipeIngredient](T1.[RecipeIngredient.Recipe_RecipeId], T1.[RecipeIngredient.Recipe_Language], T1.[RecipeIngredient.Ingredient_ItemId], T1.[RecipeIngredient.Ingredient_Language], T1.[RecipeIngredient.Ingredient_Count])
     FROM (
         SELECT 
-            CAST(T.Type AS [GW2DotNET.Entities.ItemAttributeType]) AS ItemAttribute_Type, 
-            T.Modifier AS ItemAttribute_Modifier, 
+            Key(T.Recipe_Ingredients_Source).RecipeId AS [RecipeIngredient.Recipe_RecipeId], 
+            Key(T.Recipe_Ingredients_Source).Language AS [RecipeIngredient.Recipe_Language], 
+            Key(T.Recipe_Ingredients_Target).ItemId AS [RecipeIngredient.Ingredient_ItemId], 
+            Key(T.Recipe_Ingredients_Target).Language AS [RecipeIngredient.Ingredient_Language], 
+            Key(T.Recipe_Ingredients_Target).Count AS [RecipeIngredient.Ingredient_Count], 
             True AS _from0
-        FROM CodeFirstDatabase.ItemAttribute AS T
+        FROM GwContext.Recipe_Ingredients AS T
+    ) AS T1");
+        }
+
+        /// <summary>
+        /// Gets the view for GwContext.Ingredients.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView8()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing Ingredients
+        [GW2DotNET.Persistence.Ingredient](T1.Ingredient_ItemId, T1.Ingredient_Language, T1.Ingredient_Count)
+    FROM (
+        SELECT 
+            T.ItemId AS Ingredient_ItemId, 
+            T.Language AS Ingredient_Language, 
+            T.Count AS Ingredient_Count, 
+            True AS _from0
+        FROM CodeFirstDatabase.Ingredient AS T
     ) AS T1");
         }
 
@@ -527,90 +688,90 @@ namespace GW2DotNET.Persistence
         /// Gets the view for GwContext.Items.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView8()
+        private static DbMappingView GetView9()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Items
         CASE
-            WHEN T3._from43 THEN [GW2DotNET.Entities.Bag](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.Bag_NoSellOrSort, T3.Bag_Size)
-            WHEN T3._from27 THEN [GW2DotNET.Entities.AquaticHelm](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
-            WHEN T3._from28 THEN [GW2DotNET.Entities.Boots](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
-            WHEN T3._from29 THEN [GW2DotNET.Entities.Coat](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
-            WHEN T3._from30 THEN [GW2DotNET.Entities.Gloves](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
-            WHEN T3._from31 THEN [GW2DotNET.Entities.Helm](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
-            WHEN T3._from32 THEN [GW2DotNET.Entities.Leggings](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
-            WHEN T3._from25 THEN [GW2DotNET.Entities.Shoulders](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
-            WHEN T3._from26 THEN [GW2DotNET.Entities.UnknownArmor](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
-            WHEN T3._from33 THEN [GW2DotNET.Entities.Back](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Back_DefaultSkin)
-            WHEN T3._from39 THEN [GW2DotNET.Entities.Accessory](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff)
-            WHEN T3._from40 THEN [GW2DotNET.Entities.Amulet](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff)
-            WHEN T3._from41 THEN [GW2DotNET.Entities.Ring](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff)
-            WHEN T3._from42 THEN [GW2DotNET.Entities.UnknownTrinket](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff)
-            WHEN T3._from1 THEN [GW2DotNET.Entities.Axe](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from2 THEN [GW2DotNET.Entities.Dagger](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from3 THEN [GW2DotNET.Entities.Focus](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from4 THEN [GW2DotNET.Entities.GreatSword](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from5 THEN [GW2DotNET.Entities.Hammer](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from6 THEN [GW2DotNET.Entities.Harpoon](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from7 THEN [GW2DotNET.Entities.LargeBundle](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from8 THEN [GW2DotNET.Entities.LongBow](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from9 THEN [GW2DotNET.Entities.Mace](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from10 THEN [GW2DotNET.Entities.Pistol](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from11 THEN [GW2DotNET.Entities.Rifle](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from12 THEN [GW2DotNET.Entities.Scepter](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from13 THEN [GW2DotNET.Entities.Shield](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from14 THEN [GW2DotNET.Entities.ShortBow](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from15 THEN [GW2DotNET.Entities.SmallBundle](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from16 THEN [GW2DotNET.Entities.SpearGun](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from17 THEN [GW2DotNET.Entities.Staff](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from18 THEN [GW2DotNET.Entities.Sword](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from19 THEN [GW2DotNET.Entities.Torch](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from20 THEN [GW2DotNET.Entities.ToyWeapon](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from21 THEN [GW2DotNET.Entities.Trident](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from22 THEN [GW2DotNET.Entities.TwoHandedToyWeapon](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from23 THEN [GW2DotNET.Entities.UnknownWeapon](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from24 THEN [GW2DotNET.Entities.WarHorn](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
-            WHEN T3._from54 THEN [GW2DotNET.Entities.AppearanceChanger](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from55 THEN [GW2DotNET.Entities.Booze](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from56 THEN [GW2DotNET.Entities.ContractNpc](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from57 THEN [GW2DotNET.Entities.HalloweenConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from58 THEN [GW2DotNET.Entities.ImmediateConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from44 THEN [GW2DotNET.Entities.Food](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.Nourishment_Duration)
-            WHEN T3._from45 THEN [GW2DotNET.Entities.GenericConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.Nourishment_Duration)
-            WHEN T3._from46 THEN [GW2DotNET.Entities.Utility](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.Nourishment_Duration)
-            WHEN T3._from59 THEN [GW2DotNET.Entities.Transmutation](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from60 THEN [GW2DotNET.Entities.UnknownConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from61 THEN [GW2DotNET.Entities.BagSlotUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from62 THEN [GW2DotNET.Entities.BankTabUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from63 THEN [GW2DotNET.Entities.CollectibleCapacityUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from64 THEN [GW2DotNET.Entities.ContentUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from47 THEN [GW2DotNET.Entities.CraftingRecipeUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CraftingRecipeUnlocker_RecipeId)
-            WHEN T3._from48 THEN [GW2DotNET.Entities.DyeUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.DyeUnlocker_ColorId)
-            WHEN T3._from65 THEN [GW2DotNET.Entities.UnknownUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from66 THEN [GW2DotNET.Entities.UnTransmutation](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from67 THEN [GW2DotNET.Entities.UpgradeRemoval](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from68 THEN [GW2DotNET.Entities.DefaultContainer](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from69 THEN [GW2DotNET.Entities.GiftBox](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from70 THEN [GW2DotNET.Entities.UnknownContainer](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from71 THEN [GW2DotNET.Entities.CraftingMaterial](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from49 THEN [GW2DotNET.Entities.ForagingTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.GatheringTool_DefaultSkin)
-            WHEN T3._from50 THEN [GW2DotNET.Entities.LoggingTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.GatheringTool_DefaultSkin)
-            WHEN T3._from51 THEN [GW2DotNET.Entities.MiningTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.GatheringTool_DefaultSkin)
-            WHEN T3._from52 THEN [GW2DotNET.Entities.UnknownGatheringTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.GatheringTool_DefaultSkin)
-            WHEN T3._from72 THEN [GW2DotNET.Entities.DefaultGizmo](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from73 THEN [GW2DotNET.Entities.RentableContractNpc](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from74 THEN [GW2DotNET.Entities.UnknownGizmo](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from75 THEN [GW2DotNET.Entities.UnlimitedConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from76 THEN [GW2DotNET.Entities.MiniPet](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from53 THEN [GW2DotNET.Entities.SalvageTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.SalvageTool_Charges)
-            WHEN T3._from77 THEN [GW2DotNET.Entities.UnknownTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from78 THEN [GW2DotNET.Entities.Trophy](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from79 THEN [GW2DotNET.Entities.UnknownItem](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
-            WHEN T3._from34 THEN [GW2DotNET.Entities.DefaultUpgradeComponent](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
-            WHEN T3._from35 THEN [GW2DotNET.Entities.Gem](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
-            WHEN T3._from36 THEN [GW2DotNET.Entities.Rune](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
-            WHEN T3._from37 THEN [GW2DotNET.Entities.Sigil](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
-            ELSE [GW2DotNET.Entities.UnknownUpgradeComponent](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
+            WHEN T3._from43 THEN [GW2DotNET.Persistence.Bag](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.Bag_NoSellOrSort, T3.Bag_Size)
+            WHEN T3._from26 THEN [GW2DotNET.Persistence.AquaticHelm](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
+            WHEN T3._from27 THEN [GW2DotNET.Persistence.Boots](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
+            WHEN T3._from28 THEN [GW2DotNET.Persistence.Coat](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
+            WHEN T3._from29 THEN [GW2DotNET.Persistence.Gloves](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
+            WHEN T3._from30 THEN [GW2DotNET.Persistence.Helm](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
+            WHEN T3._from31 THEN [GW2DotNET.Persistence.Leggings](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
+            WHEN T3._from32 THEN [GW2DotNET.Persistence.Shoulders](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
+            WHEN T3._from25 THEN [GW2DotNET.Persistence.UnknownArmor](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Armor_DefaultSkin, T3.Armor_Defense, T3.Armor_WeightClass)
+            WHEN T3._from33 THEN [GW2DotNET.Persistence.Backpack](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Backpack_DefaultSkin)
+            WHEN T3._from39 THEN [GW2DotNET.Persistence.Accessory](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff)
+            WHEN T3._from40 THEN [GW2DotNET.Persistence.Amulet](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff)
+            WHEN T3._from41 THEN [GW2DotNET.Persistence.Ring](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff)
+            WHEN T3._from42 THEN [GW2DotNET.Persistence.UnknownTrinket](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff)
+            WHEN T3._from1 THEN [GW2DotNET.Persistence.Axe](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from2 THEN [GW2DotNET.Persistence.Dagger](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from3 THEN [GW2DotNET.Persistence.Focus](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from4 THEN [GW2DotNET.Persistence.GreatSword](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from5 THEN [GW2DotNET.Persistence.Hammer](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from6 THEN [GW2DotNET.Persistence.Harpoon](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from7 THEN [GW2DotNET.Persistence.LargeBundle](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from8 THEN [GW2DotNET.Persistence.LongBow](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from9 THEN [GW2DotNET.Persistence.Mace](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from10 THEN [GW2DotNET.Persistence.Pistol](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from11 THEN [GW2DotNET.Persistence.Rifle](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from12 THEN [GW2DotNET.Persistence.Scepter](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from13 THEN [GW2DotNET.Persistence.Shield](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from14 THEN [GW2DotNET.Persistence.ShortBow](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from15 THEN [GW2DotNET.Persistence.SmallBundle](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from16 THEN [GW2DotNET.Persistence.SpearGun](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from17 THEN [GW2DotNET.Persistence.Staff](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from18 THEN [GW2DotNET.Persistence.Sword](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from19 THEN [GW2DotNET.Persistence.Torch](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from20 THEN [GW2DotNET.Persistence.ToyWeapon](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from21 THEN [GW2DotNET.Persistence.Trident](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from22 THEN [GW2DotNET.Persistence.TwoHandedToyWeapon](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from23 THEN [GW2DotNET.Persistence.UnknownWeapon](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from24 THEN [GW2DotNET.Persistence.WarHorn](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CombatItem_SecondarySuffixItemId, T3.CombatItem_SuffixItemId, T3.CombatItem_Buff, T3.Weapon_DamageType, T3.Weapon_DefaultSkin, T3.Weapon_Defense, T3.Weapon_MaximumPower, T3.Weapon_MinimumPower)
+            WHEN T3._from54 THEN [GW2DotNET.Persistence.AppearanceChanger](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from55 THEN [GW2DotNET.Persistence.Booze](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from56 THEN [GW2DotNET.Persistence.ContractNpc](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from57 THEN [GW2DotNET.Persistence.HalloweenConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from58 THEN [GW2DotNET.Persistence.ImmediateConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from44 THEN [GW2DotNET.Persistence.Food](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.Nourishment_Duration)
+            WHEN T3._from45 THEN [GW2DotNET.Persistence.GenericConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.Nourishment_Duration)
+            WHEN T3._from46 THEN [GW2DotNET.Persistence.Utility](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.Nourishment_Duration)
+            WHEN T3._from59 THEN [GW2DotNET.Persistence.Transmutation](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from60 THEN [GW2DotNET.Persistence.UnknownConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from61 THEN [GW2DotNET.Persistence.BagSlotUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from62 THEN [GW2DotNET.Persistence.BankTabUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from63 THEN [GW2DotNET.Persistence.CollectibleCapacityUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from64 THEN [GW2DotNET.Persistence.ContentUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from47 THEN [GW2DotNET.Persistence.CraftingRecipeUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.CraftingRecipeUnlocker_RecipeId)
+            WHEN T3._from48 THEN [GW2DotNET.Persistence.DyeUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.DyeUnlocker_ColorId)
+            WHEN T3._from65 THEN [GW2DotNET.Persistence.UnknownUnlocker](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from66 THEN [GW2DotNET.Persistence.UnTransmutation](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from67 THEN [GW2DotNET.Persistence.UpgradeRemoval](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from68 THEN [GW2DotNET.Persistence.DefaultContainer](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from69 THEN [GW2DotNET.Persistence.GiftBox](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from70 THEN [GW2DotNET.Persistence.UnknownContainer](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from71 THEN [GW2DotNET.Persistence.CraftingMaterial](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from49 THEN [GW2DotNET.Persistence.ForagingTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.GatheringTool_DefaultSkin)
+            WHEN T3._from50 THEN [GW2DotNET.Persistence.LoggingTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.GatheringTool_DefaultSkin)
+            WHEN T3._from51 THEN [GW2DotNET.Persistence.MiningTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.GatheringTool_DefaultSkin)
+            WHEN T3._from52 THEN [GW2DotNET.Persistence.UnknownGatheringTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.GatheringTool_DefaultSkin)
+            WHEN T3._from72 THEN [GW2DotNET.Persistence.DefaultGizmo](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from73 THEN [GW2DotNET.Persistence.RentableContractNpc](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from74 THEN [GW2DotNET.Persistence.UnknownGizmo](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from75 THEN [GW2DotNET.Persistence.UnlimitedConsumable](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from76 THEN [GW2DotNET.Persistence.MiniPet](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from53 THEN [GW2DotNET.Persistence.SalvageTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.SalvageTool_Charges)
+            WHEN T3._from77 THEN [GW2DotNET.Persistence.UnknownTool](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from78 THEN [GW2DotNET.Persistence.Trophy](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from79 THEN [GW2DotNET.Persistence.UnknownItem](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue)
+            WHEN T3._from34 THEN [GW2DotNET.Persistence.DefaultUpgradeComponent](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
+            WHEN T3._from35 THEN [GW2DotNET.Persistence.Gem](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
+            WHEN T3._from36 THEN [GW2DotNET.Persistence.Rune](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
+            WHEN T3._from37 THEN [GW2DotNET.Persistence.Sigil](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
+            ELSE [GW2DotNET.Persistence.UnknownUpgradeComponent](T3.Item_ItemId, T3.Item_Language, T3.Item_BuildId, T3.Item_Description, T3.Item_FileId, T3.Item_FileSignature, T3.Item_Flags, T3.Item_GameTypes, T3.Item_Level, T3.Item_Name, T3.Item_Rarity, T3.Item_Restrictions, T3.Item_VendorValue, T3.UpgradeComponent_InfusionUpgradeFlags, T3.UpgradeComponent_Suffix, T3.UpgradeComponent_UpgradeComponentFlags, T3.UpgradeComponent_Buff)
         END
     FROM (
         SELECT -- Constructing Buff
@@ -632,12 +793,12 @@ namespace GW2DotNET.Persistence
             T2.CombatItem_SecondarySuffixItemId, 
             T2.CombatItem_SuffixItemId, 
             CASE
-                WHEN (T2._from1 OR T2._from2 OR T2._from3 OR T2._from4 OR T2._from5 OR T2._from6 OR T2._from7 OR T2._from8 OR T2._from9 OR T2._from10 OR T2._from11 OR T2._from12 OR T2._from13 OR T2._from14 OR T2._from15 OR T2._from16 OR T2._from17 OR T2._from18 OR T2._from19 OR T2._from20 OR T2._from21 OR T2._from22 OR T2._from23 OR T2._from24 OR T2._from25 OR T2._from26 OR T2._from27 OR T2._from28 OR T2._from29 OR T2._from30 OR T2._from31 OR T2._from32 OR T2._from33 OR T2._from39 OR T2._from40 OR T2._from41 OR T2._from42) THEN [GW2DotNET.Entities.ItemBuff](T2.CombatItem_Buff_Description, T2.CombatItem_Buff_SkillId)
+                WHEN (T2._from1 OR T2._from2 OR T2._from3 OR T2._from4 OR T2._from5 OR T2._from6 OR T2._from7 OR T2._from8 OR T2._from9 OR T2._from10 OR T2._from11 OR T2._from12 OR T2._from13 OR T2._from14 OR T2._from15 OR T2._from16 OR T2._from17 OR T2._from18 OR T2._from19 OR T2._from20 OR T2._from21 OR T2._from22 OR T2._from23 OR T2._from24 OR T2._from25 OR T2._from26 OR T2._from27 OR T2._from28 OR T2._from29 OR T2._from30 OR T2._from31 OR T2._from32 OR T2._from33 OR T2._from39 OR T2._from40 OR T2._from41 OR T2._from42) THEN [GW2DotNET.Persistence.ItemBuff](T2.CombatItem_Buff_Description, T2.CombatItem_Buff_SkillId)
             END AS CombatItem_Buff, 
             T2.Armor_DefaultSkin, 
             T2.Armor_Defense, 
             T2.Armor_WeightClass, 
-            T2.Back_DefaultSkin, 
+            T2.Backpack_DefaultSkin, 
             T2.Weapon_DamageType, 
             T2.Weapon_DefaultSkin, 
             T2.Weapon_Defense, 
@@ -754,7 +915,7 @@ namespace GW2DotNET.Persistence
                 T1.Armor_DefaultSkin, 
                 T1.Armor_Defense, 
                 T1.Armor_WeightClass, 
-                T1.Back_DefaultSkin, 
+                T1.Backpack_DefaultSkin, 
                 T1.Weapon_DamageType, 
                 T1.Weapon_DefaultSkin, 
                 T1.Weapon_Defense, 
@@ -769,7 +930,7 @@ namespace GW2DotNET.Persistence
                 T1.UpgradeComponent_Suffix, 
                 T1.UpgradeComponent_UpgradeComponentFlags, 
                 CASE
-                    WHEN (T1._from34 OR T1._from35 OR T1._from36 OR T1._from37 OR T1._from38) THEN [GW2DotNET.Entities.ItemBuff](T1.UpgradeComponent_Buff_Description, T1.UpgradeComponent_Buff_SkillId)
+                    WHEN (T1._from34 OR T1._from35 OR T1._from36 OR T1._from37 OR T1._from38) THEN [GW2DotNET.Persistence.ItemBuff](T1.UpgradeComponent_Buff_Description, T1.UpgradeComponent_Buff_SkillId)
                 END AS UpgradeComponent_Buff, 
                 T1._from1, 
                 T1._from2, 
@@ -857,12 +1018,12 @@ namespace GW2DotNET.Persistence
                     T.Description AS Item_Description, 
                     T.FileId AS Item_FileId, 
                     T.FileSignature AS Item_FileSignature, 
-                    CAST(T.Flags AS [GW2DotNET.Entities.ItemFlags]) AS Item_Flags, 
-                    CAST(T.GameTypes AS [GW2DotNET.Entities.GameRestrictions]) AS Item_GameTypes, 
+                    CAST(T.Flags AS [GW2DotNET.Persistence.ItemFlags]) AS Item_Flags, 
+                    CAST(T.GameTypes AS [GW2DotNET.Persistence.GameRestrictions]) AS Item_GameTypes, 
                     T.Level AS Item_Level, 
                     T.Name AS Item_Name, 
-                    CAST(T.Rarity AS [GW2DotNET.Entities.ItemRarity]) AS Item_Rarity, 
-                    CAST(T.Restrictions AS [GW2DotNET.Entities.ItemRestrictions]) AS Item_Restrictions, 
+                    CAST(T.Rarity AS [GW2DotNET.Persistence.ItemRarity]) AS Item_Rarity, 
+                    CAST(T.Restrictions AS [GW2DotNET.Persistence.ItemRestrictions]) AS Item_Restrictions, 
                     T.VendorValue AS Item_VendorValue, 
                     T.NoSellOrSort AS Bag_NoSellOrSort, 
                     T.Size AS Bag_Size, 
@@ -872,9 +1033,9 @@ namespace GW2DotNET.Persistence
                     T.Buff_SkillId AS CombatItem_Buff_SkillId, 
                     T.DefaultSkin AS Armor_DefaultSkin, 
                     T.Defense AS Armor_Defense, 
-                    CAST(T.WeightClass AS [GW2DotNET.Entities.ArmorWeightClass]) AS Armor_WeightClass, 
-                    T.DefaultSkin1 AS Back_DefaultSkin, 
-                    CAST(T.DamageType AS [GW2DotNET.Entities.WeaponDamageType]) AS Weapon_DamageType, 
+                    CAST(T.WeightClass AS [GW2DotNET.Persistence.ArmorWeightClass]) AS Armor_WeightClass, 
+                    T.DefaultSkin1 AS Backpack_DefaultSkin, 
+                    CAST(T.DamageType AS [GW2DotNET.Persistence.WeaponDamageType]) AS Weapon_DamageType, 
                     T.DefaultSkin2 AS Weapon_DefaultSkin, 
                     T.Defense1 AS Weapon_Defense, 
                     T.MaximumPower AS Weapon_MaximumPower, 
@@ -884,9 +1045,9 @@ namespace GW2DotNET.Persistence
                     T.ColorId AS DyeUnlocker_ColorId, 
                     T.DefaultSkin3 AS GatheringTool_DefaultSkin, 
                     T.Charges AS SalvageTool_Charges, 
-                    CAST(T.InfusionUpgradeFlags AS [GW2DotNET.Entities.InfusionSlotTypes]) AS UpgradeComponent_InfusionUpgradeFlags, 
+                    CAST(T.InfusionUpgradeFlags AS [GW2DotNET.Persistence.InfusionSlotTypes]) AS UpgradeComponent_InfusionUpgradeFlags, 
                     T.Suffix AS UpgradeComponent_Suffix, 
-                    CAST(T.UpgradeComponentFlags AS [GW2DotNET.Entities.UpgradeComponentFlags]) AS UpgradeComponent_UpgradeComponentFlags, 
+                    CAST(T.UpgradeComponentFlags AS [GW2DotNET.Persistence.UpgradeComponentFlags]) AS UpgradeComponent_UpgradeComponentFlags, 
                     T.Buff_Description1 AS UpgradeComponent_Buff_Description, 
                     T.Buff_SkillId1 AS UpgradeComponent_Buff_SkillId, 
                     True AS _from0, 
@@ -914,15 +1075,15 @@ namespace GW2DotNET.Persistence
                     CASE WHEN T.Discriminator = N'TwoHandedToyWeapon' THEN True ELSE False END AS _from22, 
                     CASE WHEN T.Discriminator = N'UnknownWeapon' THEN True ELSE False END AS _from23, 
                     CASE WHEN T.Discriminator = N'WarHorn' THEN True ELSE False END AS _from24, 
-                    CASE WHEN T.Discriminator = N'Shoulders' THEN True ELSE False END AS _from25, 
-                    CASE WHEN T.Discriminator = N'UnknownArmor' THEN True ELSE False END AS _from26, 
-                    CASE WHEN T.Discriminator = N'AquaticHelm' THEN True ELSE False END AS _from27, 
-                    CASE WHEN T.Discriminator = N'Boots' THEN True ELSE False END AS _from28, 
-                    CASE WHEN T.Discriminator = N'Coat' THEN True ELSE False END AS _from29, 
-                    CASE WHEN T.Discriminator = N'Gloves' THEN True ELSE False END AS _from30, 
-                    CASE WHEN T.Discriminator = N'Helm' THEN True ELSE False END AS _from31, 
-                    CASE WHEN T.Discriminator = N'Leggings' THEN True ELSE False END AS _from32, 
-                    CASE WHEN T.Discriminator = N'Back' THEN True ELSE False END AS _from33, 
+                    CASE WHEN T.Discriminator = N'UnknownArmor' THEN True ELSE False END AS _from25, 
+                    CASE WHEN T.Discriminator = N'AquaticHelm' THEN True ELSE False END AS _from26, 
+                    CASE WHEN T.Discriminator = N'Boots' THEN True ELSE False END AS _from27, 
+                    CASE WHEN T.Discriminator = N'Coat' THEN True ELSE False END AS _from28, 
+                    CASE WHEN T.Discriminator = N'Gloves' THEN True ELSE False END AS _from29, 
+                    CASE WHEN T.Discriminator = N'Helm' THEN True ELSE False END AS _from30, 
+                    CASE WHEN T.Discriminator = N'Leggings' THEN True ELSE False END AS _from31, 
+                    CASE WHEN T.Discriminator = N'Shoulders' THEN True ELSE False END AS _from32, 
+                    CASE WHEN T.Discriminator = N'Backpack' THEN True ELSE False END AS _from33, 
                     CASE WHEN T.Discriminator = N'DefaultUpgradeComponent' THEN True ELSE False END AS _from34, 
                     CASE WHEN T.Discriminator = N'Gem' THEN True ELSE False END AS _from35, 
                     CASE WHEN T.Discriminator = N'Rune' THEN True ELSE False END AS _from36, 
@@ -970,26 +1131,44 @@ namespace GW2DotNET.Persistence
                     CASE WHEN T.Discriminator = N'Trophy' THEN True ELSE False END AS _from78, 
                     CASE WHEN T.Discriminator = N'UnknownItem' THEN True ELSE False END AS _from79
                 FROM CodeFirstDatabase.Item AS T
-                WHERE T.Discriminator IN {N'Bag', N'AquaticHelm', N'Boots', N'Coat', N'Gloves', N'Helm', N'Leggings', N'Shoulders', N'UnknownArmor', N'Back', N'Accessory', N'Amulet', N'Ring', N'UnknownTrinket', N'Axe', N'Dagger', N'Focus', N'GreatSword', N'Hammer', N'Harpoon', N'LargeBundle', N'LongBow', N'Mace', N'Pistol', N'Rifle', N'Scepter', N'Shield', N'ShortBow', N'SmallBundle', N'SpearGun', N'Staff', N'Sword', N'Torch', N'ToyWeapon', N'Trident', N'TwoHandedToyWeapon', N'UnknownWeapon', N'WarHorn', N'AppearanceChanger', N'Booze', N'ContractNpc', N'HalloweenConsumable', N'ImmediateConsumable', N'Food', N'GenericConsumable', N'Utility', N'Transmutation', N'UnknownConsumable', N'BagSlotUnlocker', N'BankTabUnlocker', N'CollectibleCapacityUnlocker', N'ContentUnlocker', N'CraftingRecipeUnlocker', N'DyeUnlocker', N'UnknownUnlocker', N'UnTransmutation', N'UpgradeRemoval', N'DefaultContainer', N'GiftBox', N'UnknownContainer', N'CraftingMaterial', N'ForagingTool', N'LoggingTool', N'MiningTool', N'UnknownGatheringTool', N'DefaultGizmo', N'RentableContractNpc', N'UnknownGizmo', N'UnlimitedConsumable', N'MiniPet', N'SalvageTool', N'UnknownTool', N'Trophy', N'UnknownItem', N'DefaultUpgradeComponent', N'Gem', N'Rune', N'Sigil', N'UnknownUpgradeComponent'}
+                WHERE T.Discriminator IN {N'Bag', N'AquaticHelm', N'Boots', N'Coat', N'Gloves', N'Helm', N'Leggings', N'Shoulders', N'UnknownArmor', N'Backpack', N'Accessory', N'Amulet', N'Ring', N'UnknownTrinket', N'Axe', N'Dagger', N'Focus', N'GreatSword', N'Hammer', N'Harpoon', N'LargeBundle', N'LongBow', N'Mace', N'Pistol', N'Rifle', N'Scepter', N'Shield', N'ShortBow', N'SmallBundle', N'SpearGun', N'Staff', N'Sword', N'Torch', N'ToyWeapon', N'Trident', N'TwoHandedToyWeapon', N'UnknownWeapon', N'WarHorn', N'AppearanceChanger', N'Booze', N'ContractNpc', N'HalloweenConsumable', N'ImmediateConsumable', N'Food', N'GenericConsumable', N'Utility', N'Transmutation', N'UnknownConsumable', N'BagSlotUnlocker', N'BankTabUnlocker', N'CollectibleCapacityUnlocker', N'ContentUnlocker', N'CraftingRecipeUnlocker', N'DyeUnlocker', N'UnknownUnlocker', N'UnTransmutation', N'UpgradeRemoval', N'DefaultContainer', N'GiftBox', N'UnknownContainer', N'CraftingMaterial', N'ForagingTool', N'LoggingTool', N'MiningTool', N'UnknownGatheringTool', N'DefaultGizmo', N'RentableContractNpc', N'UnknownGizmo', N'UnlimitedConsumable', N'MiniPet', N'SalvageTool', N'UnknownTool', N'Trophy', N'UnknownItem', N'DefaultUpgradeComponent', N'Gem', N'Rune', N'Sigil', N'UnknownUpgradeComponent'}
             ) AS T1
         ) AS T2
     ) AS T3");
         }
 
         /// <summary>
+        /// Gets the view for GwContext.ItemAttributes.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView10()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing ItemAttributes
+        [GW2DotNET.Persistence.ItemAttribute](T1.ItemAttribute_Type, T1.ItemAttribute_Modifier)
+    FROM (
+        SELECT 
+            CAST(T.Type AS [GW2DotNET.Persistence.ItemAttributeType]) AS ItemAttribute_Type, 
+            T.Modifier AS ItemAttribute_Modifier, 
+            True AS _from0
+        FROM CodeFirstDatabase.ItemAttribute AS T
+    ) AS T1");
+        }
+
+        /// <summary>
         /// Gets the view for GwContext.InfusionSlots.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView9()
+        private static DbMappingView GetView11()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing InfusionSlots
-        [GW2DotNET.Entities.InfusionSlot](T1.InfusionSlot_Id, T1.InfusionSlot_Flags, T1.InfusionSlot_ItemId) WITH 
-        RELATIONSHIP(CREATEREF(GwContext.Items, ROW(T1.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.ItemId], T1.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.Language]),[GW2DotNET.Entities.CombatItem]),[GW2DotNET.Entities.CombatItem_InfusionSlots],CombatItem_InfusionSlots_Target,CombatItem_InfusionSlots_Source) 
+        [GW2DotNET.Persistence.InfusionSlot](T1.InfusionSlot_Id, T1.InfusionSlot_Flags, T1.InfusionSlot_ItemId) WITH 
+        RELATIONSHIP(CREATEREF(GwContext.Items, ROW(T1.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.ItemId], T1.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.Language]),[GW2DotNET.Persistence.CombatItem]),[GW2DotNET.Persistence.CombatItem_InfusionSlots],CombatItem_InfusionSlots_Target,CombatItem_InfusionSlots_Source) 
     FROM (
         SELECT 
             T.Id AS InfusionSlot_Id, 
-            CAST(T.Flags AS [GW2DotNET.Entities.InfusionSlotTypes]) AS InfusionSlot_Flags, 
+            CAST(T.Flags AS [GW2DotNET.Persistence.InfusionSlotTypes]) AS InfusionSlot_Flags, 
             T.ItemId AS InfusionSlot_ItemId, 
             True AS _from0, 
             T.CombatItem_ItemId AS [CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.ItemId], 
@@ -1002,20 +1181,20 @@ namespace GW2DotNET.Persistence
         /// Gets the view for GwContext.CombatItem_InfusionSlots.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView10()
+        private static DbMappingView GetView12()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing CombatItem_InfusionSlots
-        [GW2DotNET.Entities.CombatItem_InfusionSlots](T3.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source], T3.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Target])
+        [GW2DotNET.Persistence.CombatItem_InfusionSlots](T3.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source], T3.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Target])
     FROM (
         SELECT -- Constructing CombatItem_InfusionSlots_Source
-            CreateRef(GwContext.Items, row(T2.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.ItemId], T2.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.Language]), [GW2DotNET.Entities.CombatItem]) AS [CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source], 
+            CreateRef(GwContext.Items, row(T2.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.ItemId], T2.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.Language]), [GW2DotNET.Persistence.CombatItem]) AS [CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source], 
             T2.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Target]
         FROM (
             SELECT -- Constructing CombatItem_InfusionSlots_Target
                 T1.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.ItemId], 
                 T1.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.Language], 
-                CreateRef(GwContext.InfusionSlots, row(T1.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Target.Id]), [GW2DotNET.Entities.InfusionSlot]) AS [CombatItem_InfusionSlots.CombatItem_InfusionSlots_Target]
+                CreateRef(GwContext.InfusionSlots, row(T1.[CombatItem_InfusionSlots.CombatItem_InfusionSlots_Target.Id]), [GW2DotNET.Persistence.InfusionSlot]) AS [CombatItem_InfusionSlots.CombatItem_InfusionSlots_Target]
             FROM (
                 SELECT 
                     T.CombatItem_ItemId AS [CombatItem_InfusionSlots.CombatItem_InfusionSlots_Source.ItemId], 
@@ -1030,28 +1209,153 @@ namespace GW2DotNET.Persistence
         }
 
         /// <summary>
+        /// Gets the view for GwContext.Recipes.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView13()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing Recipes
+        CASE
+            WHEN T1._from34 THEN [GW2DotNET.Persistence.AmuletRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from35 THEN [GW2DotNET.Persistence.AxeRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from36 THEN [GW2DotNET.Persistence.BackpackRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from37 THEN [GW2DotNET.Persistence.BagRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from38 THEN [GW2DotNET.Persistence.BootsRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from39 THEN [GW2DotNET.Persistence.BulkRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from40 THEN [GW2DotNET.Persistence.CoatRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from41 THEN [GW2DotNET.Persistence.ComponentRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from42 THEN [GW2DotNET.Persistence.ConsumableRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from43 THEN [GW2DotNET.Persistence.CookingIngredientRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from44 THEN [GW2DotNET.Persistence.DaggerRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from45 THEN [GW2DotNET.Persistence.DessertRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from46 THEN [GW2DotNET.Persistence.DyeRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from47 THEN [GW2DotNET.Persistence.EarringRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from48 THEN [GW2DotNET.Persistence.FeastRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from49 THEN [GW2DotNET.Persistence.FocusRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from1 THEN [GW2DotNET.Persistence.GlovesRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from2 THEN [GW2DotNET.Persistence.GreatSwordRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from3 THEN [GW2DotNET.Persistence.HammerRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from4 THEN [GW2DotNET.Persistence.HarpoonRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from5 THEN [GW2DotNET.Persistence.HelmRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from6 THEN [GW2DotNET.Persistence.InscriptionRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from7 THEN [GW2DotNET.Persistence.InsigniaRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from8 THEN [GW2DotNET.Persistence.LeggingsRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from9 THEN [GW2DotNET.Persistence.LongBowRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from10 THEN [GW2DotNET.Persistence.MaceRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from11 THEN [GW2DotNET.Persistence.MealRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from12 THEN [GW2DotNET.Persistence.PistolRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from13 THEN [GW2DotNET.Persistence.PotionRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from14 THEN [GW2DotNET.Persistence.RefinementEctoplasmRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from15 THEN [GW2DotNET.Persistence.RefinementObsidianRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from16 THEN [GW2DotNET.Persistence.RefinementRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from17 THEN [GW2DotNET.Persistence.RifleRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from18 THEN [GW2DotNET.Persistence.RingRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from19 THEN [GW2DotNET.Persistence.ScepterRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from20 THEN [GW2DotNET.Persistence.SeasoningRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from21 THEN [GW2DotNET.Persistence.ShieldRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from22 THEN [GW2DotNET.Persistence.ShortBowRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from23 THEN [GW2DotNET.Persistence.ShouldersRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from24 THEN [GW2DotNET.Persistence.SnackRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from25 THEN [GW2DotNET.Persistence.SoupRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from26 THEN [GW2DotNET.Persistence.SpearGunRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from27 THEN [GW2DotNET.Persistence.StaffRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from28 THEN [GW2DotNET.Persistence.SwordRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from29 THEN [GW2DotNET.Persistence.TorchRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from30 THEN [GW2DotNET.Persistence.TridentRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from31 THEN [GW2DotNET.Persistence.UnknownRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            WHEN T1._from32 THEN [GW2DotNET.Persistence.UpgradeComponentRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+            ELSE [GW2DotNET.Persistence.WarHornRecipe](T1.Recipe_RecipeId, T1.Recipe_Language, T1.Recipe_BuildId, T1.Recipe_CraftingDisciplines, T1.Recipe_Flags, T1.Recipe_MinimumRating, T1.Recipe_OutputItemCount, T1.Recipe_OutputItemId, T1.Recipe_TimeToCraft)
+        END
+    FROM (
+        SELECT 
+            T.RecipeId AS Recipe_RecipeId, 
+            T.Language AS Recipe_Language, 
+            T.BuildId AS Recipe_BuildId, 
+            CAST(T.CraftingDisciplines AS [GW2DotNET.Persistence.CraftingDisciplines]) AS Recipe_CraftingDisciplines, 
+            CAST(T.Flags AS [GW2DotNET.Persistence.RecipeUnlockTypes]) AS Recipe_Flags, 
+            T.MinimumRating AS Recipe_MinimumRating, 
+            T.OutputItemCount AS Recipe_OutputItemCount, 
+            T.OutputItemId AS Recipe_OutputItemId, 
+            T.TimeToCraft AS Recipe_TimeToCraft, 
+            True AS _from0, 
+            CASE WHEN T.Discriminator = N'GlovesRecipe' THEN True ELSE False END AS _from1, 
+            CASE WHEN T.Discriminator = N'GreatSwordRecipe' THEN True ELSE False END AS _from2, 
+            CASE WHEN T.Discriminator = N'HammerRecipe' THEN True ELSE False END AS _from3, 
+            CASE WHEN T.Discriminator = N'HarpoonRecipe' THEN True ELSE False END AS _from4, 
+            CASE WHEN T.Discriminator = N'HelmRecipe' THEN True ELSE False END AS _from5, 
+            CASE WHEN T.Discriminator = N'InscriptionRecipe' THEN True ELSE False END AS _from6, 
+            CASE WHEN T.Discriminator = N'InsigniaRecipe' THEN True ELSE False END AS _from7, 
+            CASE WHEN T.Discriminator = N'LeggingsRecipe' THEN True ELSE False END AS _from8, 
+            CASE WHEN T.Discriminator = N'LongBowRecipe' THEN True ELSE False END AS _from9, 
+            CASE WHEN T.Discriminator = N'MaceRecipe' THEN True ELSE False END AS _from10, 
+            CASE WHEN T.Discriminator = N'MealRecipe' THEN True ELSE False END AS _from11, 
+            CASE WHEN T.Discriminator = N'PistolRecipe' THEN True ELSE False END AS _from12, 
+            CASE WHEN T.Discriminator = N'PotionRecipe' THEN True ELSE False END AS _from13, 
+            CASE WHEN T.Discriminator = N'RefinementEctoplasmRecipe' THEN True ELSE False END AS _from14, 
+            CASE WHEN T.Discriminator = N'RefinementObsidianRecipe' THEN True ELSE False END AS _from15, 
+            CASE WHEN T.Discriminator = N'RefinementRecipe' THEN True ELSE False END AS _from16, 
+            CASE WHEN T.Discriminator = N'RifleRecipe' THEN True ELSE False END AS _from17, 
+            CASE WHEN T.Discriminator = N'RingRecipe' THEN True ELSE False END AS _from18, 
+            CASE WHEN T.Discriminator = N'ScepterRecipe' THEN True ELSE False END AS _from19, 
+            CASE WHEN T.Discriminator = N'SeasoningRecipe' THEN True ELSE False END AS _from20, 
+            CASE WHEN T.Discriminator = N'ShieldRecipe' THEN True ELSE False END AS _from21, 
+            CASE WHEN T.Discriminator = N'ShortBowRecipe' THEN True ELSE False END AS _from22, 
+            CASE WHEN T.Discriminator = N'ShouldersRecipe' THEN True ELSE False END AS _from23, 
+            CASE WHEN T.Discriminator = N'SnackRecipe' THEN True ELSE False END AS _from24, 
+            CASE WHEN T.Discriminator = N'SoupRecipe' THEN True ELSE False END AS _from25, 
+            CASE WHEN T.Discriminator = N'SpearGunRecipe' THEN True ELSE False END AS _from26, 
+            CASE WHEN T.Discriminator = N'StaffRecipe' THEN True ELSE False END AS _from27, 
+            CASE WHEN T.Discriminator = N'SwordRecipe' THEN True ELSE False END AS _from28, 
+            CASE WHEN T.Discriminator = N'TorchRecipe' THEN True ELSE False END AS _from29, 
+            CASE WHEN T.Discriminator = N'TridentRecipe' THEN True ELSE False END AS _from30, 
+            CASE WHEN T.Discriminator = N'UnknownRecipe' THEN True ELSE False END AS _from31, 
+            CASE WHEN T.Discriminator = N'UpgradeComponentRecipe' THEN True ELSE False END AS _from32, 
+            CASE WHEN T.Discriminator = N'WarHornRecipe' THEN True ELSE False END AS _from33, 
+            CASE WHEN T.Discriminator = N'AmuletRecipe' THEN True ELSE False END AS _from34, 
+            CASE WHEN T.Discriminator = N'AxeRecipe' THEN True ELSE False END AS _from35, 
+            CASE WHEN T.Discriminator = N'BackpackRecipe' THEN True ELSE False END AS _from36, 
+            CASE WHEN T.Discriminator = N'BagRecipe' THEN True ELSE False END AS _from37, 
+            CASE WHEN T.Discriminator = N'BootsRecipe' THEN True ELSE False END AS _from38, 
+            CASE WHEN T.Discriminator = N'BulkRecipe' THEN True ELSE False END AS _from39, 
+            CASE WHEN T.Discriminator = N'CoatRecipe' THEN True ELSE False END AS _from40, 
+            CASE WHEN T.Discriminator = N'ComponentRecipe' THEN True ELSE False END AS _from41, 
+            CASE WHEN T.Discriminator = N'ConsumableRecipe' THEN True ELSE False END AS _from42, 
+            CASE WHEN T.Discriminator = N'CookingIngredientRecipe' THEN True ELSE False END AS _from43, 
+            CASE WHEN T.Discriminator = N'DaggerRecipe' THEN True ELSE False END AS _from44, 
+            CASE WHEN T.Discriminator = N'DessertRecipe' THEN True ELSE False END AS _from45, 
+            CASE WHEN T.Discriminator = N'DyeRecipe' THEN True ELSE False END AS _from46, 
+            CASE WHEN T.Discriminator = N'EarringRecipe' THEN True ELSE False END AS _from47, 
+            CASE WHEN T.Discriminator = N'FeastRecipe' THEN True ELSE False END AS _from48, 
+            CASE WHEN T.Discriminator = N'FocusRecipe' THEN True ELSE False END AS _from49
+        FROM CodeFirstDatabase.Recipe AS T
+        WHERE T.Discriminator IN {N'AmuletRecipe', N'AxeRecipe', N'BackpackRecipe', N'BagRecipe', N'BootsRecipe', N'BulkRecipe', N'CoatRecipe', N'ComponentRecipe', N'ConsumableRecipe', N'CookingIngredientRecipe', N'DaggerRecipe', N'DessertRecipe', N'DyeRecipe', N'EarringRecipe', N'FeastRecipe', N'FocusRecipe', N'GlovesRecipe', N'GreatSwordRecipe', N'HammerRecipe', N'HarpoonRecipe', N'HelmRecipe', N'InscriptionRecipe', N'InsigniaRecipe', N'LeggingsRecipe', N'LongBowRecipe', N'MaceRecipe', N'MealRecipe', N'PistolRecipe', N'PotionRecipe', N'RefinementEctoplasmRecipe', N'RefinementObsidianRecipe', N'RefinementRecipe', N'RifleRecipe', N'RingRecipe', N'ScepterRecipe', N'SeasoningRecipe', N'ShieldRecipe', N'ShortBowRecipe', N'ShouldersRecipe', N'SnackRecipe', N'SoupRecipe', N'SpearGunRecipe', N'StaffRecipe', N'SwordRecipe', N'TorchRecipe', N'TridentRecipe', N'UnknownRecipe', N'UpgradeComponentRecipe', N'WarHornRecipe'}
+    ) AS T1");
+        }
+
+        /// <summary>
         /// Gets the view for GwContext.CombatItem_Attributes.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView11()
+        private static DbMappingView GetView14()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing CombatItem_Attributes
-        [GW2DotNET.Entities.CombatItem_Attributes](T3.[CombatItem_Attributes.CombatItem_Attributes_Source], T3.[CombatItem_Attributes.CombatItem_Attributes_Target])
+        [GW2DotNET.Persistence.CombatItem_Attributes](T3.[CombatItem_Attributes.CombatItem_Attributes_Source], T3.[CombatItem_Attributes.CombatItem_Attributes_Target])
     FROM (
         SELECT -- Constructing CombatItem_Attributes_Source
-            CreateRef(GwContext.Items, row(T2.[CombatItem_Attributes.CombatItem_Attributes_Source.ItemId], T2.[CombatItem_Attributes.CombatItem_Attributes_Source.Language]), [GW2DotNET.Entities.CombatItem]) AS [CombatItem_Attributes.CombatItem_Attributes_Source], 
+            CreateRef(GwContext.Items, row(T2.[CombatItem_Attributes.CombatItem_Attributes_Source.ItemId], T2.[CombatItem_Attributes.CombatItem_Attributes_Source.Language]), [GW2DotNET.Persistence.CombatItem]) AS [CombatItem_Attributes.CombatItem_Attributes_Source], 
             T2.[CombatItem_Attributes.CombatItem_Attributes_Target]
         FROM (
             SELECT -- Constructing CombatItem_Attributes_Target
                 T1.[CombatItem_Attributes.CombatItem_Attributes_Source.ItemId], 
                 T1.[CombatItem_Attributes.CombatItem_Attributes_Source.Language], 
-                CreateRef(GwContext.ItemAttributes, row(T1.[CombatItem_Attributes.CombatItem_Attributes_Target.Type], T1.[CombatItem_Attributes.CombatItem_Attributes_Target.Modifier]), [GW2DotNET.Entities.ItemAttribute]) AS [CombatItem_Attributes.CombatItem_Attributes_Target]
+                CreateRef(GwContext.ItemAttributes, row(T1.[CombatItem_Attributes.CombatItem_Attributes_Target.Type], T1.[CombatItem_Attributes.CombatItem_Attributes_Target.Modifier]), [GW2DotNET.Persistence.ItemAttribute]) AS [CombatItem_Attributes.CombatItem_Attributes_Target]
             FROM (
                 SELECT 
                     T.CombatItem_ItemId AS [CombatItem_Attributes.CombatItem_Attributes_Source.ItemId], 
                     T.CombatItem_Language AS [CombatItem_Attributes.CombatItem_Attributes_Source.Language], 
-                    CAST(T.ItemAttribute_Type AS [GW2DotNET.Entities.ItemAttributeType]) AS [CombatItem_Attributes.CombatItem_Attributes_Target.Type], 
+                    CAST(T.ItemAttribute_Type AS [GW2DotNET.Persistence.ItemAttributeType]) AS [CombatItem_Attributes.CombatItem_Attributes_Target.Type], 
                     T.ItemAttribute_Modifier AS [CombatItem_Attributes.CombatItem_Attributes_Target.Modifier], 
                     True AS _from0
                 FROM CodeFirstDatabase.CombatItemItemAttribute AS T
@@ -1064,28 +1368,60 @@ namespace GW2DotNET.Persistence
         /// Gets the view for GwContext.UpgradeComponent_Attributes.
         /// </summary>
         /// <returns>The mapping view.</returns>
-        private static DbMappingView GetView12()
+        private static DbMappingView GetView15()
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing UpgradeComponent_Attributes
-        [GW2DotNET.Entities.UpgradeComponent_Attributes](T3.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source], T3.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target])
+        [GW2DotNET.Persistence.UpgradeComponent_Attributes](T3.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source], T3.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target])
     FROM (
         SELECT -- Constructing UpgradeComponent_Attributes_Source
-            CreateRef(GwContext.Items, row(T2.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source.ItemId], T2.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source.Language]), [GW2DotNET.Entities.UpgradeComponent]) AS [UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source], 
+            CreateRef(GwContext.Items, row(T2.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source.ItemId], T2.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source.Language]), [GW2DotNET.Persistence.UpgradeComponent]) AS [UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source], 
             T2.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target]
         FROM (
             SELECT -- Constructing UpgradeComponent_Attributes_Target
                 T1.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source.ItemId], 
                 T1.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source.Language], 
-                CreateRef(GwContext.ItemAttributes, row(T1.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target.Type], T1.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target.Modifier]), [GW2DotNET.Entities.ItemAttribute]) AS [UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target]
+                CreateRef(GwContext.ItemAttributes, row(T1.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target.Type], T1.[UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target.Modifier]), [GW2DotNET.Persistence.ItemAttribute]) AS [UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target]
             FROM (
                 SELECT 
                     T.UpgradeComponent_ItemId AS [UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source.ItemId], 
                     T.UpgradeComponent_Language AS [UpgradeComponent_Attributes.UpgradeComponent_Attributes_Source.Language], 
-                    CAST(T.ItemAttribute_Type AS [GW2DotNET.Entities.ItemAttributeType]) AS [UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target.Type], 
+                    CAST(T.ItemAttribute_Type AS [GW2DotNET.Persistence.ItemAttributeType]) AS [UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target.Type], 
                     T.ItemAttribute_Modifier AS [UpgradeComponent_Attributes.UpgradeComponent_Attributes_Target.Modifier], 
                     True AS _from0
                 FROM CodeFirstDatabase.UpgradeComponentItemAttribute AS T
+            ) AS T1
+        ) AS T2
+    ) AS T3");
+        }
+
+        /// <summary>
+        /// Gets the view for GwContext.Recipe_Ingredients.
+        /// </summary>
+        /// <returns>The mapping view.</returns>
+        private static DbMappingView GetView16()
+        {
+            return new DbMappingView(@"
+    SELECT VALUE -- Constructing Recipe_Ingredients
+        [GW2DotNET.Persistence.Recipe_Ingredients](T3.[Recipe_Ingredients.Recipe_Ingredients_Source], T3.[Recipe_Ingredients.Recipe_Ingredients_Target])
+    FROM (
+        SELECT -- Constructing Recipe_Ingredients_Source
+            CreateRef(GwContext.Recipes, row(T2.[Recipe_Ingredients.Recipe_Ingredients_Source.RecipeId], T2.[Recipe_Ingredients.Recipe_Ingredients_Source.Language]), [GW2DotNET.Persistence.Recipe]) AS [Recipe_Ingredients.Recipe_Ingredients_Source], 
+            T2.[Recipe_Ingredients.Recipe_Ingredients_Target]
+        FROM (
+            SELECT -- Constructing Recipe_Ingredients_Target
+                T1.[Recipe_Ingredients.Recipe_Ingredients_Source.RecipeId], 
+                T1.[Recipe_Ingredients.Recipe_Ingredients_Source.Language], 
+                CreateRef(GwContext.Ingredients, row(T1.[Recipe_Ingredients.Recipe_Ingredients_Target.ItemId], T1.[Recipe_Ingredients.Recipe_Ingredients_Target.Language], T1.[Recipe_Ingredients.Recipe_Ingredients_Target.Count]), [GW2DotNET.Persistence.Ingredient]) AS [Recipe_Ingredients.Recipe_Ingredients_Target]
+            FROM (
+                SELECT 
+                    T.Recipe_RecipeId AS [Recipe_Ingredients.Recipe_Ingredients_Source.RecipeId], 
+                    T.Recipe_Language AS [Recipe_Ingredients.Recipe_Ingredients_Source.Language], 
+                    T.Ingredient_ItemId AS [Recipe_Ingredients.Recipe_Ingredients_Target.ItemId], 
+                    T.Ingredient_Language AS [Recipe_Ingredients.Recipe_Ingredients_Target.Language], 
+                    T.Ingredient_Count AS [Recipe_Ingredients.Recipe_Ingredients_Target.Count], 
+                    True AS _from0
+                FROM CodeFirstDatabase.RecipeIngredient AS T
             ) AS T1
         ) AS T2
     ) AS T3");

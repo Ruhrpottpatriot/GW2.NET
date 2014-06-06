@@ -11,7 +11,6 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Common.Contracts;
     using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts;
@@ -28,9 +27,6 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         {
             this.Type = recipeType;
         }
-
-        /// <summary>Gets or sets the recipe's build.</summary>
-        public virtual Build Build { get; set; }
 
         /// <summary>Gets or sets the recipe's build number.</summary>
         [DataMember(Name = "build_id", Order = 1)]

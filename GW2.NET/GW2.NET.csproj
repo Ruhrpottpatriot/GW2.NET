@@ -380,7 +380,7 @@
     <Compile Include="V1\Maps.Contracts\MapCollectionResult.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\CraftingDisciplines.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\IngredientCollection.cs" />
-    <Compile Include="V1\Recipes.Details.Contracts\Portion.cs" />
+    <Compile Include="V1\Recipes.Details.Contracts\Ingredient.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\Recipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeConverter.cs">
       <DependentUpon>Recipe.cs</DependentUpon>

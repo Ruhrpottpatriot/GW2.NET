@@ -56,6 +56,11 @@ namespace GW2DotNET.V1.Recipes.Details
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
 
+            foreach (var ingredient in result.Ingredients)
+            {
+                ingredient.Language = language.TwoLetterISOLanguageName;
+            }
+
             return result;
         }
 
@@ -101,10 +106,17 @@ namespace GW2DotNET.V1.Recipes.Details
             var t1 = this.RequestAsync<Recipe>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
-                        // patch missing language information
-                        task.Result.Language = language.TwoLetterISOLanguageName;
+                        var result = task.Result;
 
-                        return task.Result;
+                        // patch missing language information
+                        result.Language = language.TwoLetterISOLanguageName;
+
+                        foreach (var ingredient in result.Ingredients)
+                        {
+                            ingredient.Language = language.TwoLetterISOLanguageName;
+                        }
+
+                        return result;
                     }, 
                 cancellationToken);
 

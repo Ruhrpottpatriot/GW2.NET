@@ -6,16 +6,15 @@
 //   The Guild Wars database context.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Persistence
 {
     using System.Data.Common;
     using System.Data.Entity;
 
     using GW2DotNET.Persistence.Configuration;
-    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
+    using GW2DotNET.V1.Recipes.Details.Contracts;
 
     /// <summary>The Guild Wars database context.</summary>
     public class GwContext : DbContext
@@ -30,6 +29,7 @@ namespace GW2DotNET.Persistence
         public GwContext()
         {
             this.ItemAttributes = this.Set<ItemAttribute>();
+            this.Ingredients = this.Set<Ingredient>();
         }
 
         /// <summary>Initializes a new instance of the <see cref="GwContext"/> class.</summary>
@@ -38,6 +38,7 @@ namespace GW2DotNET.Persistence
             : base(nameOrConnectionString)
         {
             this.ItemAttributes = this.Set<ItemAttribute>();
+            this.Ingredients = this.Set<Ingredient>();
         }
 
         /// <summary>Initializes a new instance of the <see cref="GwContext"/> class. Constructs a new context instance using the existing connection to connect to a database.</summary>
@@ -49,11 +50,14 @@ namespace GW2DotNET.Persistence
             this.ItemAttributes = this.Set<ItemAttribute>();
         }
 
-        /// <summary>Gets or sets the builds.</summary>
-        public DbSet<Build> Builds { get; set; }
-
         /// <summary>Gets or sets the items.</summary>
         public DbSet<Item> Items { get; set; }
+
+        /// <summary>Gets or sets the recipes.</summary>
+        public DbSet<Recipe> Recipes { get; set; }
+
+        /// <summary>Gets or sets the ingredients.</summary>
+        internal DbSet<Ingredient> Ingredients { get; set; }
 
         /// <summary>Gets or sets the item attributes.</summary>
         internal DbSet<ItemAttribute> ItemAttributes { get; set; }
@@ -63,11 +67,12 @@ namespace GW2DotNET.Persistence
         /// <param name="modelBuilder">The builder that defines the model for the context being created.</param>
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Configurations.Add(new BuildConfiguration());
             modelBuilder.Configurations.Add(new ItemConfiguration());
             modelBuilder.Configurations.Add(new EquipmentConfiguration());
             modelBuilder.Configurations.Add(new UpgradeComponentConfiguration());
             modelBuilder.Configurations.Add(new ItemAttributeConfiguration());
+            modelBuilder.Configurations.Add(new RecipeConfiguration());
+            modelBuilder.Configurations.Add(new IngredientConfiguration());
         }
     }
 }

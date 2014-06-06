@@ -6,7 +6,6 @@
 //   The build configuration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Persistence.Configuration
 {
     using System.ComponentModel.DataAnnotations.Schema;

@@ -6,7 +6,6 @@
 //   The item attribute configuration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Persistence.Configuration
 {
     using System.Data.Entity.ModelConfiguration;

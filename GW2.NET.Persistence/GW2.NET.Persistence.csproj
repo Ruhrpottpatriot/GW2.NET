@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\RecipeConfiguration.cs" />
+    <Compile Include="Configuration\IngredientConfiguration.cs" />
     <Compile Include="Configuration\EquipmentConfiguration.cs" />
     <Compile Include="Configuration\BuildConfiguration.cs" />
     <Compile Include="Configuration\ItemAttributeConfiguration.cs" />

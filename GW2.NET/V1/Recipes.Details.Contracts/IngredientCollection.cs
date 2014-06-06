@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     using GW2DotNET.V1.Common.Contracts;
 
     /// <summary>Represents a collection of crafting ingredients.</summary>
-    public class IngredientCollection : JsonList<Portion>
+    public class IngredientCollection : JsonList<Ingredient>
     {
         /// <summary>Initializes a new instance of the <see cref="IngredientCollection" /> class.</summary>
         public IngredientCollection()
@@ -29,7 +29,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 
         /// <summary>Initializes a new instance of the <see cref="IngredientCollection"/> class.</summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public IngredientCollection(IEnumerable<Portion> collection)
+        public IngredientCollection(IEnumerable<Ingredient> collection)
             : base(collection)
         {
         }

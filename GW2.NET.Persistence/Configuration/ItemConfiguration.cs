@@ -6,7 +6,6 @@
 //   The item configuration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Persistence.Configuration
 {
     using System.ComponentModel.DataAnnotations.Schema;
@@ -22,7 +21,6 @@ namespace GW2DotNET.Persistence.Configuration
         {
             this.HasKey(item => new { item.ItemId, item.Language });
             this.Property(item => item.ItemId).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
-            this.HasRequired(item => item.Build).WithMany().HasForeignKey(item => item.BuildId);
         }
     }
 }
