@@ -517,6 +517,7 @@
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\IObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameServiceRequest.cs" />
+    <Compile Include="V2\Common\Contracts\ErrorResult.cs" />
     <Compile Include="V2\Common\IBulkServiceRequest.cs" />
     <Compile Include="V2\Common\ILocalizable.cs" />
     <Compile Include="V2\Common\IPaginatedServiceRequest.cs" />
