@@ -517,6 +517,10 @@
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\IObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameServiceRequest.cs" />
+    <Compile Include="V2\Common\IBulkServiceRequest.cs" />
+    <Compile Include="V2\Common\ILocalizable.cs" />
+    <Compile Include="V2\Common\IPaginatedServiceRequest.cs" />
+    <Compile Include="V2\Common\IServiceRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -533,6 +537,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
