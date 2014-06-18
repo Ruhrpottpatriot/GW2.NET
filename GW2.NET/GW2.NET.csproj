@@ -518,10 +518,11 @@
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameServiceRequest.cs" />
     <Compile Include="V2\Common\Contracts\ErrorResult.cs" />
-    <Compile Include="V2\Common\IBulkServiceRequest.cs" />
+    <Compile Include="V2\Common\IBulkRequest.cs" />
+    <Compile Include="V2\Common\IDetailsRequest.cs" />
     <Compile Include="V2\Common\ILocalizable.cs" />
-    <Compile Include="V2\Common\IPaginatedServiceRequest.cs" />
-    <Compile Include="V2\Common\IServiceRequest.cs" />
+    <Compile Include="V2\Common\IPaginatedRequest.cs" />
+    <Compile Include="V2\Common\IRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
