@@ -521,6 +521,7 @@
     <Compile Include="V2\Common\Contracts\ErrorResult.cs" />
     <Compile Include="V2\Common\DetailsRequest.cs" />
     <Compile Include="V2\Common\IBulkRequest.cs" />
+    <Compile Include="V2\Common\IServiceClient.cs" />
     <Compile Include="V2\Common\IDetailsRequest.cs" />
     <Compile Include="V2\Common\ILocalizable.cs" />
     <Compile Include="V2\Common\IPaginatedRequest.cs" />
