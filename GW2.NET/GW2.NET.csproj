@@ -528,6 +528,7 @@
     <Compile Include="V2\Common\IRequest.cs" />
     <Compile Include="V2\Common\PaginatedRequest.cs" />
     <Compile Include="V2\Common\Request.cs" />
+    <Compile Include="V2\Common\ServiceClient.cs" />
     <Compile Include="V2\ServiceManager.cs" />
   </ItemGroup>
   <ItemGroup>
