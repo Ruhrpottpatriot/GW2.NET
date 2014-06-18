@@ -523,6 +523,7 @@
     <Compile Include="V2\Common\ILocalizable.cs" />
     <Compile Include="V2\Common\IPaginatedRequest.cs" />
     <Compile Include="V2\Common\IRequest.cs" />
+    <Compile Include="V2\ServiceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
