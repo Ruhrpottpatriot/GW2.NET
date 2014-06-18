@@ -6,12 +6,17 @@
 //   Represents a paginated bulk resource details request.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V2.Common
 {
     /// <summary>Represents a paginated bulk resource details request.</summary>
     public class PaginatedRequest : IPaginatedRequest
     {
+        /// <summary>Initializes a new instance of the <see cref="PaginatedRequest"/> class.</summary>
+        public PaginatedRequest()
+        {
+            this.PageSize = 10;
+        }
+
         /// <summary>Gets or sets the page number.</summary>
         public int Page { get; set; }
 
