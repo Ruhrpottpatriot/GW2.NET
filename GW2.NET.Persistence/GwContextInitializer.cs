@@ -6,16 +6,20 @@
 //   The Guild Wars context initializer.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.Persistence
 {
+    using System;
     using System.Collections.Concurrent;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
 
     using GW2DotNET.V1.Builds;
+    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Items;
     using GW2DotNET.V1.Items.Details;
@@ -57,6 +61,104 @@ namespace GW2DotNET.Persistence
             }
         }
 
+        /// <summary>Ensures that the database has an updated index of discovered items.</summary>
+        /// <param name="context">Context to be used for updating seed data.</param>
+        /// <param name="language">The language.</param>
+        private void SeedItems(GwContext context, CultureInfo language)
+        {
+            var buildService = new BuildService();
+
+            var itemService = new ItemService();
+
+            var build = buildService.GetBuild();
+
+            var allItemIds = itemService.GetItems().Take(300).ToList();
+
+            var knownItems = context.Items.Where(item => item.Language == language.TwoLetterISOLanguageName);
+
+            var unknownItemIds = allItemIds.Except(knownItems.Select(item => item.ItemId)).ToList();
+
+            if (unknownItemIds.Any())
+            {
+                this.SeedItems(context, unknownItemIds, language, build, false);
+            }
+
+            var outdatedItemIds = knownItems.Where(item => item.BuildId < build.BuildId).Select(item => item.ItemId).ToList();
+
+            foreach (var partition in Partitioner.Create(0, itemIds.Count(), 100).GetDynamicPartitions())
+            {
+                var tasks = new List<Task<Item>>();
+
+                for (var index = partition.Item1; index < partition.Item2; index++)
+                {
+                    tasks.Add(itemDetailService.GetItemDetailsAsync(itemIds[index], language));
+                }
+
+                // ReSharper disable once CoVariantArrayConversion
+                Task.WaitAll(tasks.ToArray());
+
+                var items = tasks.Where(t => t.IsCompleted).Select(task => task.Result).ToList();
+
+                foreach (var item in items)
+                {
+                    item.BuildId = build.BuildId;
+
+                    if (itemsExistInDatabase)
+                    {
+                        this.Update(item, context);
+                    }
+                    else
+                    {
+                        this.Add(item, context);
+                    }
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        /// <summary>Updates or inserts the specified items.</summary>
+        /// <param name="context">Context to be used for updating seed data.</param>
+        /// <param name="itemIds">The item identifiers.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="build">The build.</param>
+        /// <param name="itemsExistInDatabase">Indicates whether the specified item identifiers exist in the database.</param>
+        private void SeedItems(GwContext context, IList<int> itemIds, CultureInfo language, Build build, bool itemsExistInDatabase)
+        {
+            var itemDetailService = new ItemDetailsService();
+
+            foreach (var partition in Partitioner.Create(0, itemIds.Count(), 100).GetDynamicPartitions())
+            {
+                var tasks = new List<Task<Item>>();
+
+                for (var index = partition.Item1; index < partition.Item2; index++)
+                {
+                    tasks.Add(itemDetailService.GetItemDetailsAsync(itemIds[index], language));
+                }
+
+                // ReSharper disable once CoVariantArrayConversion
+                Task.WaitAll(tasks.ToArray());
+
+                var items = tasks.Where(t => t.IsCompleted).Select(task => task.Result).ToList();
+
+                foreach (var item in items)
+                {
+                    item.BuildId = build.BuildId;
+
+                    if (itemsExistInDatabase)
+                    {
+                        this.Update(item, context);
+                    }
+                    else
+                    {
+                        this.Add(item, context);
+                    }
+                }
+
+                context.SaveChanges();
+            }
+        }
+
         /// <summary>Adds the specified item.</summary>
         /// <param name="item">The item.</param>
         /// <param name="context">The context.</param>
@@ -70,6 +172,24 @@ namespace GW2DotNET.Persistence
             }
 
             return context.Items.Add(item);
+        }
+
+        /// <summary>Updates the specified item.</summary>
+        /// <param name="item">The item.</param>
+        /// <param name="context">The context.</param>
+        /// <returns>The <see cref="Item"/>.</returns>
+        private Item Update(Item item, GwContext context)
+        {
+            var upgradedItem = item as IUpgrade;
+            if (upgradedItem != null && upgradedItem.Attributes.Any())
+            {
+                upgradedItem.Attributes = this.AddOrGetExisting(upgradedItem.Attributes, context);
+            }
+
+            item = context.Items.Attach(item);
+            context.Entry(item).State = EntityState.Modified;
+
+            return item;
         }
 
         /// <summary>Ensures that all entries in the specified collection exist in the database.</summary>
@@ -87,79 +207,6 @@ namespace GW2DotNET.Persistence
             return collection;
         }
 
-        /// <summary>Ensures that the database has an updated index of discovered items.</summary>
-        /// <param name="context">Context to be used for updating seed data.</param>
-        /// <param name="language">The language.</param>
-        private void SeedItems(GwContext context, CultureInfo language)
-        {
-            var buildService = new BuildService();
-
-            var itemService = new ItemService();
-
-            var itemDetailService = new ItemDetailsService();
-
-            var build = buildService.GetBuild();
-
-            var allItemIds = itemService.GetItems().Take(300).ToList();
-
-            var knownItems = context.Items.Where(item => item.Language == language.TwoLetterISOLanguageName);
-
-            var unknownItemIds = allItemIds.Except(knownItems.Select(item => item.ItemId)).ToList();
-
-            if (unknownItemIds.Any())
-            {
-                foreach (var partition in Partitioner.Create(0, unknownItemIds.Count(), 100).GetDynamicPartitions())
-                {
-                    var tasks = new List<Task<Item>>();
-
-                    for (var index = partition.Item1; index < partition.Item2; index++)
-                    {
-                        tasks.Add(itemDetailService.GetItemDetailsAsync(unknownItemIds[index], language));
-                    }
-
-                    // ReSharper disable once CoVariantArrayConversion
-                    Task.WaitAll(tasks.ToArray());
-
-                    var items = tasks.Where(t => t.IsCompleted).Select(task => task.Result).ToList();
-
-                    foreach (var item in items)
-                    {
-                        item.BuildId = build.BuildId;
-                        this.Add(item, context);
-                    }
-
-                    context.SaveChanges();
-                }
-            }
-
-            var outdatedItemIds = knownItems.Where(item => item.BuildId < build.BuildId).ToList();
-
-            if (outdatedItemIds.Any())
-            {
-                foreach (var partition in Partitioner.Create(0, outdatedItemIds.Count(), 100).GetDynamicPartitions())
-                {
-                    var tasks = new List<Task<Item>>();
-
-                    for (var index = partition.Item1; index < partition.Item2; index++)
-                    {
-                        tasks.Add(itemDetailService.GetItemDetailsAsync(outdatedItemIds[index].ItemId, language));
-                    }
-
-                    // ReSharper disable once CoVariantArrayConversion
-                    Task.WaitAll(tasks.ToArray());
-
-                    var items = tasks.Where(t => t.IsCompleted).Select(task => task.Result).ToList();
-
-                    foreach (var item in items)
-                    {
-                        item.BuildId = build.BuildId;
-                        this.Update(item, context);
-                    }
-
-                    context.SaveChanges();
-                }
-            }
-        }
 
         /// <summary>Ensures that the database has an updated index of discovered recipes.</summary>
         /// <param name="context">Context to be used for updating seed data.</param>
@@ -169,10 +216,6 @@ namespace GW2DotNET.Persistence
             var buildService = new BuildService();
 
             var recipeService = new RecipeService();
-
-            var recipeDetailsService = new RecipeDetailsService();
-
-            var itemDetailsService = new ItemDetailsService();
 
             var build = buildService.GetBuild();
 
@@ -184,149 +227,76 @@ namespace GW2DotNET.Persistence
 
             if (unknownRecipeIds.Any())
             {
-                foreach (var partition in Partitioner.Create(0, unknownRecipeIds.Count(), 100).GetDynamicPartitions())
+                this.SeedRecipes(context, unknownRecipeIds, language, build, false);
+            }
+
+            var outdatedRecipeIds = knownRecipes.Where(recipe => recipe.BuildId < build.BuildId).Select(recipe => recipe.RecipeId).ToList();
+
+            if (outdatedRecipeIds.Any())
+            {
+                this.SeedRecipes(context, outdatedRecipeIds, language, build, true);
+            }
+        }
+
+        /// <summary>Updates or inserts the specified items.</summary>
+        /// <param name="context">Context to be used for updating seed data.</param>
+        /// <param name="itemIds">The item identifiers.</param>
+        /// <param name="language">The language.</param>
+        /// <param name="build">The build.</param>
+        /// <param name="recipesExistInDatabase">Indicates whether the specified item identifiers exist in the database.</param>
+        private void SeedRecipes(GwContext context, IList<int> itemIds, CultureInfo language, Build build, bool recipesExistInDatabase)
+        {
+            var recipeDetailsService = new RecipeDetailsService();
+
+            var itemDetailsService = new ItemDetailsService();
+
+            foreach (var partition in Partitioner.Create(0, itemIds.Count(), 100).GetDynamicPartitions())
+            {
+                var tasks = new List<Task<Recipe>>();
+
+                for (var index = partition.Item1; index < partition.Item2; index++)
                 {
-                    var tasks = new List<Task<Recipe>>();
+                    tasks.Add(recipeDetailsService.GetRecipeDetailsAsync(itemIds[index], language));
+                }
 
-                    for (var index = partition.Item1; index < partition.Item2; index++)
+                // ReSharper disable once CoVariantArrayConversion
+                Task.WaitAll(tasks.ToArray());
+
+                var recipes = tasks.Where(t => t.IsCompleted).Select(task => task.Result).ToList();
+
+                foreach (var recipe in recipes)
+                {
+                    recipe.BuildId = build.BuildId;
+
+                    try
                     {
-                        tasks.Add(recipeDetailsService.GetRecipeDetailsAsync(unknownRecipeIds[index], language));
-                    }
+                        recipe.OutputItem = context.Items.Find(recipe.OutputItemId, recipe.Language) ?? this.Add(itemDetailsService.GetItemDetails(recipe.OutputItemId, language), context);
 
-                    // ReSharper disable once CoVariantArrayConversion
-                    Task.WaitAll(tasks.ToArray());
-
-                    var recipes = tasks.Where(t => t.IsCompleted).Select(task => task.Result).ToList();
-
-                    foreach (var recipe in recipes)
-                    {
-                        recipe.BuildId = build.BuildId;
-
-                        try
+                        var ingredients = new IngredientCollection(recipe.Ingredients.Count);
+                        foreach (var ingredient in recipe.Ingredients)
                         {
-                            recipe.OutputItem = context.Items.Find(recipe.OutputItemId, recipe.Language);
-                            if (recipe.OutputItem == null)
-                            {
-                                recipe.OutputItem = itemDetailsService.GetItemDetails(recipe.OutputItemId, language);
-                                recipe.OutputItem.BuildId = build.BuildId;
-                                recipe.OutputItem = this.Add(recipe.OutputItem, context);
-                            }
+                            ingredients.Add(context.Ingredients.Find(ingredient.ItemId, ingredient.Count) ?? context.Ingredients.Add(ingredient));
+                            ingredient.Item = context.Items.Find(ingredient.ItemId, ingredient.Language) ?? this.Add(itemDetailsService.GetItemDetails(ingredient.ItemId, language), context);
+                        }
 
-                            var ingredients = new IngredientCollection(recipe.Ingredients.Count);
-                            foreach (var ingredient in recipe.Ingredients)
-                            {
-                                ingredients.Add(
-                                    context.Ingredients.Find(ingredient.ItemId, ingredient.Language, ingredient.Count) ?? context.Ingredients.Add(ingredient));
-                                ingredient.Item = context.Items.Find(ingredient.ItemId, ingredient.Language);
-                                if (ingredient.Item == null)
-                                {
-                                    ingredient.Item = itemDetailsService.GetItemDetails(ingredient.ItemId, language);
-                                    ingredient.Item.BuildId = build.BuildId;
-                                    ingredient.Item = this.Add(ingredient.Item, context);
-                                }
-                            }
+                        recipe.Ingredients = ingredients;
 
-                            recipe.Ingredients = ingredients;
+                        if (recipesExistInDatabase)
+                        {
+                            context.Entry(recipe).State = EntityState.Modified;
+                        }
+                        else
+                        {
                             context.Recipes.Add(recipe);
                         }
-                        catch (ServiceException)
-                        {
-                        }
                     }
-
-                    context.SaveChanges();
-                }
-            }
-
-            var outdatedRecipes = knownRecipes.Where(recipe => recipe.BuildId < build.BuildId).ToList();
-
-            if (outdatedRecipes.Any())
-            {
-                foreach (var partition in Partitioner.Create(0, outdatedRecipes.Count(), 100).GetDynamicPartitions())
-                {
-                    var tasks = new List<Task<Recipe>>();
-
-                    for (var index = partition.Item1; index < partition.Item2; index++)
+                    catch (ServiceException)
                     {
-                        tasks.Add(recipeDetailsService.GetRecipeDetailsAsync(outdatedRecipes[index].RecipeId, language));
                     }
-
-                    // ReSharper disable once CoVariantArrayConversion
-                    Task.WaitAll(tasks.ToArray());
-
-                    var recipes = tasks.Where(t => t.IsCompleted).Select(task => task.Result).ToList();
-
-                    foreach (var recipe in recipes)
-                    {
-                        recipe.BuildId = build.BuildId;
-
-                        try
-                        {
-                            recipe.OutputItem = context.Items.Find(recipe.OutputItemId, recipe.Language);
-                            if (recipe.OutputItem == null)
-                            {
-                                recipe.OutputItem = itemDetailsService.GetItemDetails(recipe.OutputItemId, language);
-                                recipe.OutputItem.BuildId = build.BuildId;
-                                recipe.OutputItem = this.Add(recipe.OutputItem, context);
-                            }
-
-                            var ingredients = new IngredientCollection(recipe.Ingredients.Count);
-                            foreach (var ingredient in recipe.Ingredients)
-                            {
-                                ingredients.Add(context.Ingredients.Find(ingredient.ItemId, ingredient.Count) ?? context.Ingredients.Add(ingredient));
-                                ingredient.Item = context.Items.Find(ingredient.ItemId, ingredient.Language);
-                                if (ingredient.Item == null)
-                                {
-                                    ingredient.Item = itemDetailsService.GetItemDetails(ingredient.ItemId, language);
-                                    ingredient.Item.BuildId = build.BuildId;
-                                    ingredient.Item = this.Add(ingredient.Item, context);
-                                }
-                            }
-
-                            context.Entry(recipe).Collection(r => r.Ingredients).CurrentValue = ingredients;
-
-                            this.Update(recipe, context);
-                        }
-                        catch (ServiceException)
-                        {
-                        }
-                    }
-
-                    context.SaveChanges();
                 }
+
+                context.SaveChanges();
             }
-        }
-
-        /// <summary>Updates the specified item.</summary>
-        /// <param name="item">The item.</param>
-        /// <param name="context">The context.</param>
-        /// <returns>The <see cref="Item"/>.</returns>
-        private Item Update(Item item, GwContext context)
-        {
-            var original = context.Items.Find(item.ItemId, item.Language);
-
-            var upgradedItem = item as IUpgrade;
-            if (upgradedItem != null && upgradedItem.Attributes.Any())
-            {
-                upgradedItem.Attributes = this.AddOrGetExisting(upgradedItem.Attributes, context);
-            }
-
-            context.Entry(original).CurrentValues.SetValues(item);
-
-            return item;
-        }
-
-        /// <summary>Updates the specified recipe.</summary>
-        /// <param name="recipe">The recipe.</param>
-        /// <param name="context">The context.</param>
-        /// <returns>The <see cref="Recipe"/>.</returns>
-        private Recipe Update(Recipe recipe, GwContext context)
-        {
-            var original = context.Recipes.Find(recipe.RecipeId, recipe.Language);
-
-            context.Entry(original).CurrentValues.SetValues(recipe);
-
-            return recipe;
         }
     }
 }

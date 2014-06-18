@@ -11,7 +11,7 @@ using System.Data.Entity.Infrastructure.MappingViews;
 
 [assembly: DbMappingViewCacheTypeAttribute(
     typeof(GW2DotNET.Persistence.GwContext),
-    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets67f090d7e86c8a6a01d1b73dabd3b0adb39a9bbcb69d98b25c4ba7d82eb5ac95))]
+    typeof(Edm_EntityMappingGeneratedViews.ViewsForBaseEntitySets93b5260869eef44cc52815fbba8e227138a9d12d8cfc2d5a5e81666376f9d4f3))]
 
 namespace Edm_EntityMappingGeneratedViews
 {
@@ -23,14 +23,14 @@ namespace Edm_EntityMappingGeneratedViews
     /// Implements a mapping view cache.
     /// </summary>
     [GeneratedCode("Entity Framework Power Tools", "0.9.0.0")]
-    internal sealed class ViewsForBaseEntitySets67f090d7e86c8a6a01d1b73dabd3b0adb39a9bbcb69d98b25c4ba7d82eb5ac95 : DbMappingViewCache
+    internal sealed class ViewsForBaseEntitySets93b5260869eef44cc52815fbba8e227138a9d12d8cfc2d5a5e81666376f9d4f3 : DbMappingViewCache
     {
         /// <summary>
         /// Gets a hash value computed over the mapping closure.
         /// </summary>
         public override string MappingHashValue
         {
-            get { return "67f090d7e86c8a6a01d1b73dabd3b0adb39a9bbcb69d98b25c4ba7d82eb5ac95"; }
+            get { return "93b5260869eef44cc52815fbba8e227138a9d12d8cfc2d5a5e81666376f9d4f3"; }
         }
 
         /// <summary>
@@ -143,12 +143,12 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Ingredient
-        [CodeFirstDatabaseSchema.Ingredient](T1.Ingredient_ItemId, T1.Ingredient_Language, T1.Ingredient_Count)
+        [CodeFirstDatabaseSchema.Ingredient](T1.Ingredient_ItemId, T1.Ingredient_Count, T1.Ingredient_Language)
     FROM (
         SELECT 
             T.ItemId AS Ingredient_ItemId, 
-            T.Language AS Ingredient_Language, 
             T.Count AS Ingredient_Count, 
+            T.Language AS Ingredient_Language, 
             True AS _from0
         FROM GwContext.Ingredients AS T
     ) AS T1");
@@ -652,13 +652,12 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing RecipeIngredient
-        [CodeFirstDatabaseSchema.RecipeIngredient](T1.[RecipeIngredient.Recipe_RecipeId], T1.[RecipeIngredient.Recipe_Language], T1.[RecipeIngredient.Ingredient_ItemId], T1.[RecipeIngredient.Ingredient_Language], T1.[RecipeIngredient.Ingredient_Count])
+        [CodeFirstDatabaseSchema.RecipeIngredient](T1.[RecipeIngredient.Recipe_RecipeId], T1.[RecipeIngredient.Recipe_Language], T1.[RecipeIngredient.Ingredient_ItemId], T1.[RecipeIngredient.Ingredient_Count])
     FROM (
         SELECT 
             Key(T.Recipe_Ingredients_Source).RecipeId AS [RecipeIngredient.Recipe_RecipeId], 
             Key(T.Recipe_Ingredients_Source).Language AS [RecipeIngredient.Recipe_Language], 
             Key(T.Recipe_Ingredients_Target).ItemId AS [RecipeIngredient.Ingredient_ItemId], 
-            Key(T.Recipe_Ingredients_Target).Language AS [RecipeIngredient.Ingredient_Language], 
             Key(T.Recipe_Ingredients_Target).Count AS [RecipeIngredient.Ingredient_Count], 
             True AS _from0
         FROM GwContext.Recipe_Ingredients AS T
@@ -673,12 +672,12 @@ namespace Edm_EntityMappingGeneratedViews
         {
             return new DbMappingView(@"
     SELECT VALUE -- Constructing Ingredients
-        [GW2DotNET.Persistence.Ingredient](T1.Ingredient_ItemId, T1.Ingredient_Language, T1.Ingredient_Count)
+        [GW2DotNET.Persistence.Ingredient](T1.Ingredient_ItemId, T1.Ingredient_Count, T1.Ingredient_Language)
     FROM (
         SELECT 
             T.ItemId AS Ingredient_ItemId, 
-            T.Language AS Ingredient_Language, 
             T.Count AS Ingredient_Count, 
+            T.Language AS Ingredient_Language, 
             True AS _from0
         FROM CodeFirstDatabase.Ingredient AS T
     ) AS T1");
@@ -1412,13 +1411,12 @@ namespace Edm_EntityMappingGeneratedViews
             SELECT -- Constructing Recipe_Ingredients_Target
                 T1.[Recipe_Ingredients.Recipe_Ingredients_Source.RecipeId], 
                 T1.[Recipe_Ingredients.Recipe_Ingredients_Source.Language], 
-                CreateRef(GwContext.Ingredients, row(T1.[Recipe_Ingredients.Recipe_Ingredients_Target.ItemId], T1.[Recipe_Ingredients.Recipe_Ingredients_Target.Language], T1.[Recipe_Ingredients.Recipe_Ingredients_Target.Count]), [GW2DotNET.Persistence.Ingredient]) AS [Recipe_Ingredients.Recipe_Ingredients_Target]
+                CreateRef(GwContext.Ingredients, row(T1.[Recipe_Ingredients.Recipe_Ingredients_Target.ItemId], T1.[Recipe_Ingredients.Recipe_Ingredients_Target.Count]), [GW2DotNET.Persistence.Ingredient]) AS [Recipe_Ingredients.Recipe_Ingredients_Target]
             FROM (
                 SELECT 
                     T.Recipe_RecipeId AS [Recipe_Ingredients.Recipe_Ingredients_Source.RecipeId], 
                     T.Recipe_Language AS [Recipe_Ingredients.Recipe_Ingredients_Source.Language], 
                     T.Ingredient_ItemId AS [Recipe_Ingredients.Recipe_Ingredients_Target.ItemId], 
-                    T.Ingredient_Language AS [Recipe_Ingredients.Recipe_Ingredients_Target.Language], 
                     T.Ingredient_Count AS [Recipe_Ingredients.Recipe_Ingredients_Target.Count], 
                     True AS _from0
                 FROM CodeFirstDatabase.RecipeIngredient AS T

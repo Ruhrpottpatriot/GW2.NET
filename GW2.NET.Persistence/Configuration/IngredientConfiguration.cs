@@ -6,6 +6,7 @@
 //   The portion configuration.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.Persistence.Configuration
 {
     using System.Data.Entity.ModelConfiguration;
@@ -18,11 +19,8 @@ namespace GW2DotNET.Persistence.Configuration
         /// <summary>Initializes a new instance of the <see cref="IngredientConfiguration"/> class.</summary>
         public IngredientConfiguration()
         {
-            this.HasKey(ingredient => new { ingredient.ItemId, ingredient.Language, ingredient.Count });
-            this.HasRequired(ingredient => ingredient.Item)
-                .WithMany()
-                .HasForeignKey(ingredient => new { ingredient.ItemId, ingredient.Language })
-                .WillCascadeOnDelete(false);
+            this.HasKey(ingredient => new { ingredient.ItemId, ingredient.Count });
+            this.HasRequired(ingredient => ingredient.Item).WithMany().HasForeignKey(ingredient => new { ingredient.ItemId, ingredient.Language });
         }
     }
 }
