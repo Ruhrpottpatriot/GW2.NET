@@ -108,6 +108,7 @@
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Preconditions.cs" />
+    <Compile Include="Utilities\UrlEncodedForm.cs" />
     <Compile Include="V1\Builds.Contracts\Build.cs" />
     <Compile Include="V1\Builds\BuildServiceRequest.cs" />
     <Compile Include="V1\Builds\BuildService.cs" />
@@ -131,7 +132,6 @@
     <Compile Include="V1\Common\Converters\JsonTimespanConverter.cs" />
     <Compile Include="V1\Common\Converters\StringEnumFlagsConverter.cs" />
     <Compile Include="V1\Common\Drawing\Point3D.cs" />
-    <Compile Include="V1\Common\UrlEncodedForm.cs" />
     <Compile Include="V1\Common\Services.Designer.cs">
       <DependentUpon>Services.resx</DependentUpon>
       <AutoGen>True</AutoGen>

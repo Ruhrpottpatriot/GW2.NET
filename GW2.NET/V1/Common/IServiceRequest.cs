@@ -10,6 +10,8 @@ namespace GW2DotNET.V1.Common
 {
     using System;
 
+    using GW2DotNET.Utilities;
+
     /// <summary>Provides the interface for service requests.</summary>
     public interface IServiceRequest
     {
