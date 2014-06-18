@@ -3,14 +3,14 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the base interface for HTTP requests targeting the Guild Wars 2 API.
+//   Provides the interface for service requests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Common
 {
     using System;
 
-    /// <summary>Provides the base interface for HTTP requests targeting the Guild Wars 2 API.</summary>
+    /// <summary>Provides the interface for service requests.</summary>
     public interface IServiceRequest
     {
         /// <summary>Gets the form data.</summary>

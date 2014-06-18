@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the base interface for HTTP responses originating from the Guild Wars 2 API.
+//   Provides the interface for service responses.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Common
@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Common
     using System.Net;
     using System.Net.Mime;
 
-    /// <summary>Provides the base interface for HTTP responses originating from the Guild Wars 2 API.</summary>
+    /// <summary>Provides the interface for service responses.</summary>
     /// <typeparam name="TResult">The type of the response content.</typeparam>
     public interface IServiceResponse<out TResult>
         where TResult : class
