@@ -49,27 +49,39 @@
 	</rotation>
 	<!-- Karka Queen (location 1) -->
 	<rotation event_id="5282B66A-126F-4DA4-8E9D-0D9802227B6D">
-		<shift>01:00:00+00:00</shift>
-		<shift>10:30:00+00:00</shift>
-		<shift>16:00:00+00:00</shift>
+    <shift>02:00:00+00:00</shift>
+    <shift>06:00:00+00:00</shift>
+    <shift>10:30:00+00:00</shift>
+    <shift>15:00:00+00:00</shift>
+    <shift>19:00:00+00:00</shift>
+    <shift>23:00:00+00:00</shift>
 	</rotation>
 	<!-- Karka Queen (location 2) -->
 	<rotation event_id="E1CC6E63-EFFE-4986-A321-95C89EA58C07">
-		<shift>01:00:00+00:00</shift>
-		<shift>10:30:00+00:00</shift>
-		<shift>16:00:00+00:00</shift>
+    <shift>02:00:00+00:00</shift>
+    <shift>06:00:00+00:00</shift>
+    <shift>10:30:00+00:00</shift>
+    <shift>15:00:00+00:00</shift>
+    <shift>19:00:00+00:00</shift>
+    <shift>23:00:00+00:00</shift>
 	</rotation>
 	<!-- Karka Queen (location 3) -->
 	<rotation event_id="4CF7AA6E-4D84-48A6-A3D1-A91B94CCAD56">
-		<shift>01:00:00+00:00</shift>
-		<shift>10:30:00+00:00</shift>
-		<shift>16:00:00+00:00</shift>
+    <shift>02:00:00+00:00</shift>
+    <shift>06:00:00+00:00</shift>
+    <shift>10:30:00+00:00</shift>
+    <shift>15:00:00+00:00</shift>
+    <shift>19:00:00+00:00</shift>
+    <shift>23:00:00+00:00</shift>
 	</rotation>
 	<!-- Karka Queen (location 4) -->
 	<rotation event_id="F479B4CF-2E11-457A-B279-90822511B53B">
-		<shift>01:00:00+00:00</shift>
-		<shift>10:30:00+00:00</shift>
-		<shift>16:00:00+00:00</shift>
+    <shift>02:00:00+00:00</shift>
+    <shift>06:00:00+00:00</shift>
+    <shift>10:30:00+00:00</shift>
+    <shift>15:00:00+00:00</shift>
+    <shift>19:00:00+00:00</shift>
+    <shift>23:00:00+00:00</shift>
 	</rotation>
 	<!-- Jungle Wurm -->
 	<rotation event_id="C5972F64-B894-45B4-BC31-2DEEA6B7C033">
@@ -113,10 +125,13 @@
 	</rotation>
 	<!-- Tequatl -->
 	<rotation event_id="568A30CF-8512-462F-9D67-647D69BEFAED">
-		<shift>02:00:00+00:00</shift>
-		<shift>11:30:00+00:00</shift>
-		<shift>17:00:00+00:00</shift>
-	</rotation>
+    <shift>00:00:00+00:00</shift>
+    <shift>03:00:00+00:00</shift>
+    <shift>07:00:00+00:00</shift>
+    <shift>11:30:00+00:00</shift>
+    <shift>16:00:00+00:00</shift>
+    <shift>20:00:00+00:00</shift>
+  </rotation>
 	<!-- Claw of Jormag -->
 	<rotation event_id="0464CB9E-1848-4AAA-BA31-4779A959DD71">
 		<shift>02:30:00+00:00</shift>
@@ -128,9 +143,12 @@
 	</rotation>
 	<!-- Triple Trouble (Crimson, Amber, Cobalt Great Jungle Wurms) -->
 	<rotation event_id="F06787F5-CFC0-499A-954E-EC125FA71C9D">
-		<shift>03:00:00+00:00</shift>
+    <shift>01:00:00+00:00</shift>
+    <shift>04:00:00+00:00</shift>
+    <shift>08:00:00+00:00</shift>
 		<shift>12:30:00+00:00</shift>
-		<shift>18:00:00+00:00</shift>
+    <shift>17:00:00+00:00</shift>
+    <shift>21:00:00+00:00</shift>
 	</rotation>
 	<!-- Taidha Covington -->
 	<rotation event_id="242BD241-E360-48F1-A8D9-57180E146789">
@@ -147,13 +165,5 @@
 		<shift>14:30:00+00:00</shift>
 		<shift>19:30:00+00:00</shift>
 		<shift>23:00:00+00:00</shift>
-	</rotation>
-	<!-- TBD -->
-	<rotation>
-		<shift>04:30:00+00:00</shift>
-		<shift>10:00:00+00:00</shift>
-		<shift>15:00:00+00:00</shift>
-		<shift>20:00:00+00:00</shift>
-		<shift>23:30:00+00:00</shift>
 	</rotation>
 </rotations>
