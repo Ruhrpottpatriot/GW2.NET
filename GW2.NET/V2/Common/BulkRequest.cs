@@ -13,6 +13,12 @@ namespace GW2DotNET.V2.Common
     /// <summary>Represents a bulk resource details request.</summary>
     public class BulkRequest : IBulkRequest
     {
+        /// <summary>Initializes a new instance of the <see cref="BulkRequest"/> class.</summary>
+        public BulkRequest()
+        {
+            this.Identifiers = new List<int>();
+        }
+
         /// <summary>Gets the collection of resource identifiers.</summary>
         public ICollection<int> Identifiers { get; private set; }
 
