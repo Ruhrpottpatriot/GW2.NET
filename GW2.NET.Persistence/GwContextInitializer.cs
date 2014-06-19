@@ -85,35 +85,9 @@ namespace GW2DotNET.Persistence
 
             var outdatedItemIds = knownItems.Where(item => item.BuildId < build.BuildId).Select(item => item.ItemId).ToList();
 
-            foreach (var partition in Partitioner.Create(0, itemIds.Count(), 100).GetDynamicPartitions())
+            if (outdatedItemIds.Any())
             {
-                var tasks = new List<Task<Item>>();
-
-                for (var index = partition.Item1; index < partition.Item2; index++)
-                {
-                    tasks.Add(itemDetailService.GetItemDetailsAsync(itemIds[index], language));
-                }
-
-                // ReSharper disable once CoVariantArrayConversion
-                Task.WaitAll(tasks.ToArray());
-
-                var items = tasks.Where(t => t.IsCompleted).Select(task => task.Result).ToList();
-
-                foreach (var item in items)
-                {
-                    item.BuildId = build.BuildId;
-
-                    if (itemsExistInDatabase)
-                    {
-                        this.Update(item, context);
-                    }
-                    else
-                    {
-                        this.Add(item, context);
-                    }
-                }
-
-                context.SaveChanges();
+                this.SeedItems(context, outdatedItemIds, language, build, true);
             }
         }
 
