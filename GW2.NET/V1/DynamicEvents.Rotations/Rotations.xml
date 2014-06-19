@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<rotations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!-- The Shatterer -->
+	<rotation event_id="03BF176A-D59F-49CA-A311-39FC6F533F2F">
+		<shift>00:00:00+00:00</shift>
+		<shift>05:00:00+00:00</shift>
+		<shift>07:00:00+00:00</shift>
+		<shift>11:00:00+00:00</shift>
+		<shift>15:30:00+00:00</shift>
+		<shift>20:30:00+00:00</shift>
+	</rotation>
+	<!-- Svanir Shaman -->
+	<rotation event_id="F7D9D427-5E54-4F12-977A-9809B23FBA99">
+		<shift>00:15:00+00:00</shift>
+		<shift>02:15:00+00:00</shift>
+		<shift>04:15:00+00:00</shift>
+		<shift>06:15:00+00:00</shift>
+		<shift>08:15:00+00:00</shift>
+		<shift>10:15:00+00:00</shift>
+		<shift>12:15:00+00:00</shift>
+		<shift>16:15:00+00:00</shift>
+		<shift>18:15:00+00:00</shift>
+		<shift>20:15:00+00:00</shift>
+		<shift>22:15:00+00:00</shift>
+	</rotation>
+	<!-- Modniir Ulgoth -->
+	<rotation event_id="E6872A86-E434-4FC1-B803-89921FF0F6D6">
+		<shift>00:30:00+00:00</shift>
+		<shift>05:30:00+00:00</shift>
+		<shift>07:30:00+00:00</shift>
+		<shift>12:00:00+00:00</shift>
+		<shift>16:30:00+00:00</shift>
+		<shift>21:00:00+00:00</shift>
+	</rotation>
+	<!-- Fire Elemental -->
+	<rotation event_id="33F76E9E-0BB6-46D0-A3A9-BE4CDFC4A3A4">
+		<shift>00:45:00+00:00</shift>
+		<shift>02:45:00+00:00</shift>
+		<shift>04:45:00+00:00</shift>
+		<shift>06:45:00+00:00</shift>
+		<shift>08:45:00+00:00</shift>
+		<shift>10:45:00+00:00</shift>
+		<shift>12:45:00+00:00</shift>
+		<shift>14:45:00+00:00</shift>
+		<shift>16:45:00+00:00</shift>
+		<shift>18:45:00+00:00</shift>
+		<shift>20:45:00+00:00</shift>
+		<shift>22:45:00+00:00</shift>
+	</rotation>
+	<!-- Karka Queen (location 1) -->
+	<rotation event_id="5282B66A-126F-4DA4-8E9D-0D9802227B6D">
+    <shift>02:00:00+00:00</shift>
+    <shift>06:00:00+00:00</shift>
+    <shift>10:30:00+00:00</shift>
+    <shift>15:00:00+00:00</shift>
+    <shift>19:00:00+00:00</shift>
+    <shift>23:00:00+00:00</shift>
+	</rotation>
+	<!-- Karka Queen (location 2) -->
+	<rotation event_id="E1CC6E63-EFFE-4986-A321-95C89EA58C07">
+    <shift>02:00:00+00:00</shift>
+    <shift>06:00:00+00:00</shift>
+    <shift>10:30:00+00:00</shift>
+    <shift>15:00:00+00:00</shift>
+    <shift>19:00:00+00:00</shift>
+    <shift>23:00:00+00:00</shift>
+	</rotation>
+	<!-- Karka Queen (location 3) -->
+	<rotation event_id="4CF7AA6E-4D84-48A6-A3D1-A91B94CCAD56">
+    <shift>02:00:00+00:00</shift>
+    <shift>06:00:00+00:00</shift>
+    <shift>10:30:00+00:00</shift>
+    <shift>15:00:00+00:00</shift>
+    <shift>19:00:00+00:00</shift>
+    <shift>23:00:00+00:00</shift>
+	</rotation>
+	<!-- Karka Queen (location 4) -->
+	<rotation event_id="F479B4CF-2E11-457A-B279-90822511B53B">
+    <shift>02:00:00+00:00</shift>
+    <shift>06:00:00+00:00</shift>
+    <shift>10:30:00+00:00</shift>
+    <shift>15:00:00+00:00</shift>
+    <shift>19:00:00+00:00</shift>
+    <shift>23:00:00+00:00</shift>
+	</rotation>
+	<!-- Jungle Wurm -->
+	<rotation event_id="C5972F64-B894-45B4-BC31-2DEEA6B7C033">
+		<shift>01:15:00+00:00</shift>
+		<shift>03:15:00+00:00</shift>
+		<shift>05:15:00+00:00</shift>
+		<shift>07:15:00+00:00</shift>
+		<shift>09:15:00+00:00</shift>
+		<shift>11:15:00+00:00</shift>
+		<shift>13:15:00+00:00</shift>
+		<shift>14:15:00+00:00</shift>
+		<shift>15:15:00+00:00</shift>
+		<shift>17:15:00+00:00</shift>
+		<shift>19:15:00+00:00</shift>
+		<shift>21:15:00+00:00</shift>
+		<shift>23:15:00+00:00</shift>
+	</rotation>
+	<!-- Golem Mark II -->
+	<rotation event_id="9AA133DC-F630-4A0E-BB5D-EE34A2B306C2">
+		<shift>01:30:00+00:00</shift>
+		<shift>06:00:00+00:00</shift>
+		<shift>08:00:00+00:00</shift>
+		<shift>13:00:00+00:00</shift>
+		<shift>17:30:00+00:00</shift>
+		<shift>21:30:00+00:00</shift>
+	</rotation>
+	<!-- Shadow Behemoth -->
+	<rotation event_id="31CEBA08-E44D-472F-81B0-7143D73797F5">
+		<shift>01:45:00+00:00</shift>
+		<shift>03:45:00+00:00</shift>
+		<shift>05:45:00+00:00</shift>
+		<shift>07:45:00+00:00</shift>
+		<shift>09:45:00+00:00</shift>
+		<shift>11:45:00+00:00</shift>
+		<shift>13:45:00+00:00</shift>
+		<shift>15:45:00+00:00</shift>
+		<shift>17:45:00+00:00</shift>
+		<shift>19:45:00+00:00</shift>
+		<shift>21:45:00+00:00</shift>
+		<shift>23:45:00+00:00</shift>
+	</rotation>
+	<!-- Tequatl -->
+	<rotation event_id="568A30CF-8512-462F-9D67-647D69BEFAED">
+    <shift>00:00:00+00:00</shift>
+    <shift>03:00:00+00:00</shift>
+    <shift>07:00:00+00:00</shift>
+    <shift>11:30:00+00:00</shift>
+    <shift>16:00:00+00:00</shift>
+    <shift>20:00:00+00:00</shift>
+  </rotation>
+	<!-- Claw of Jormag -->
+	<rotation event_id="0464CB9E-1848-4AAA-BA31-4779A959DD71">
+		<shift>02:30:00+00:00</shift>
+		<shift>06:30:00+00:00</shift>
+		<shift>08:30:00+00:00</shift>
+		<shift>13:30:00+00:00</shift>
+		<shift>18:30:00+00:00</shift>
+		<shift>22:00:00+00:00</shift>
+	</rotation>
+	<!-- Triple Trouble (Crimson, Amber, Cobalt Great Jungle Wurms) -->
+	<rotation event_id="F06787F5-CFC0-499A-954E-EC125FA71C9D">
+    <shift>01:00:00+00:00</shift>
+    <shift>04:00:00+00:00</shift>
+    <shift>08:00:00+00:00</shift>
+		<shift>12:30:00+00:00</shift>
+    <shift>17:00:00+00:00</shift>
+    <shift>21:00:00+00:00</shift>
+	</rotation>
+	<!-- Taidha Covington -->
+	<rotation event_id="242BD241-E360-48F1-A8D9-57180E146789">
+		<shift>03:30:00+00:00</shift>
+		<shift>09:00:00+00:00</shift>
+		<shift>14:00:00+00:00</shift>
+		<shift>19:00:00+00:00</shift>
+		<shift>22:30:00+00:00</shift>
+	</rotation>
+	<!-- Megadestroyer -->
+	<rotation event_id="C876757A-EF3E-4FBE-A484-07FF790D9B05">
+		<shift>04:00:00+00:00</shift>
+		<shift>09:30:00+00:00</shift>
+		<shift>14:30:00+00:00</shift>
+		<shift>19:30:00+00:00</shift>
+		<shift>23:00:00+00:00</shift>
+	</rotation>
+</rotations>
