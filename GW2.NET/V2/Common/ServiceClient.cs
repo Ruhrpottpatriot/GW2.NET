@@ -11,6 +11,7 @@ namespace GW2DotNET.V2.Common
     using System;
     using System.Globalization;
     using System.IO;
+    using System.IO.Compression;
     using System.Linq;
     using System.Net;
 
@@ -28,37 +29,15 @@ namespace GW2DotNET.V2.Common
         /// <returns>A collection of the specified type.</returns>
         public TResult Send<TResult>(IRequest request)
         {
-            var uriBuilder = new UriBuilder { Scheme = "https", Host = "api.guildwars2.com", Path = string.Concat("/v2/", request.Resource) };
-            var webRequest = (HttpWebRequest)WebRequest.Create(uriBuilder.ToString());
-            webRequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");
-            try
-            {
-                var response = (HttpWebResponse)webRequest.GetResponse();
-                using (var stream = response.GetResponseStream())
-                using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    var serializer = JsonSerializer.CreateDefault();
-                    return serializer.Deserialize<TResult>(jsonReader);
-                }
-            }
-            catch (WebException exception)
-            {
-                // Rethrow in case of transport errors
-                if (exception.Status != WebExceptionStatus.ProtocolError)
-                {
-                    throw;
-                }
+            // Build the resource URI
+            var uriBuilder = BuildUriBuilder();
+            uriBuilder.Path = string.Concat("/v2/", request.Resource);
 
-                var response = exception.Response;
-                using (var stream = response.GetResponseStream())
-                using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    var serializer = JsonSerializer.CreateDefault();
-                    var errorResult = serializer.Deserialize<ErrorResult>(jsonReader);
-                    throw new ServiceException(null, errorResult, exception);
-                }
+            // Handle the request
+            var httpWebRequest = CreateHttpWebRequest(uriBuilder.Uri);
+            using (var response = GetHttpWebResponse(httpWebRequest))
+            {
+                return DeserializeResponse<TResult>(response);
             }
         }
 
@@ -69,48 +48,25 @@ namespace GW2DotNET.V2.Common
         /// <returns>An instance of the specified type.</returns>
         public TResult Send<TResult>(IDetailsRequest request, CultureInfo culture = null)
         {
-            var uriBuilder = new UriBuilder
-                                 {
-                                     Scheme = "https",
-                                     Host = "api.guildwars2.com",
-                                     Path = string.Format("/v2/{0}/{1}", request.Resource, request.Identifier)
-                                 };
+            // Translate the request to form data
+            var formData = new UrlEncodedForm();
+
+            // Set the 'lang' parameter
             if (culture != null)
             {
-                var formData = new UrlEncodedForm { { "lang", culture.TwoLetterISOLanguageName } };
-                uriBuilder.Query = formData.GetQueryString();
+                formData["lang"] = culture.TwoLetterISOLanguageName;
             }
 
-            var webRequest = (HttpWebRequest)WebRequest.Create(uriBuilder.ToString());
-            webRequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");
-            try
-            {
-                var response = (HttpWebResponse)webRequest.GetResponse();
-                using (var stream = response.GetResponseStream())
-                using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    var serializer = JsonSerializer.CreateDefault();
-                    return serializer.Deserialize<TResult>(jsonReader);
-                }
-            }
-            catch (WebException exception)
-            {
-                // Rethrow in case of transport errors
-                if (exception.Status != WebExceptionStatus.ProtocolError)
-                {
-                    throw;
-                }
+            // Build the resource URI
+            var uriBuilder = BuildUriBuilder();
+            uriBuilder.Path = string.Format("/v2/{0}/{1}", request.Resource, request.Identifier);
+            uriBuilder.Query = formData.GetQueryString();
 
-                var response = exception.Response;
-                using (var stream = response.GetResponseStream())
-                using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    var serializer = JsonSerializer.CreateDefault();
-                    var errorResult = serializer.Deserialize<ErrorResult>(jsonReader);
-                    throw new ServiceException(null, errorResult, exception);
-                }
+            // Handle the request
+            var httpWebRequest = CreateHttpWebRequest(uriBuilder.Uri);
+            using (var response = GetHttpWebResponse(httpWebRequest))
+            {
+                return DeserializeResponse<TResult>(response);
             }
         }
 
@@ -121,44 +77,35 @@ namespace GW2DotNET.V2.Common
         /// <returns>A collection of the specified type.</returns>
         public TResult Send<TResult>(IBulkRequest request, CultureInfo culture = null)
         {
-            var uriBuilder = new UriBuilder { Scheme = "https", Host = "api.guildwars2.com", Path = string.Concat("/v2/", request.Resource) };
-            var formData = new UrlEncodedForm { { "ids", request.Identifiers.Any() ? string.Join(",", request.Identifiers) : "all" } };
+            // Translate the request to form data
+            var formData = new UrlEncodedForm();
+
+            // Set the 'ids' parameter
+            if (request.Identifiers.Any())
+            {
+                formData["ids"] = string.Join(",", request.Identifiers);
+            }
+            else
+            {
+                formData["ids"] = "all";
+            }
+
+            // Set the 'lang' parameter
             if (culture != null)
             {
-                formData.Add("lang", culture.TwoLetterISOLanguageName);
+                formData["lang"] = culture.TwoLetterISOLanguageName;
             }
 
+            // Build the resource URI
+            var uriBuilder = BuildUriBuilder();
+            uriBuilder.Path = string.Concat("/v2/", request.Resource);
             uriBuilder.Query = formData.GetQueryString();
-            var webRequest = (HttpWebRequest)WebRequest.Create(uriBuilder.ToString());
-            webRequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");
-            try
-            {
-                var response = (HttpWebResponse)webRequest.GetResponse();
-                using (var stream = response.GetResponseStream())
-                using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    var serializer = JsonSerializer.CreateDefault();
-                    return serializer.Deserialize<TResult>(jsonReader);
-                }
-            }
-            catch (WebException exception)
-            {
-                // Rethrow in case of transport errors
-                if (exception.Status != WebExceptionStatus.ProtocolError)
-                {
-                    throw;
-                }
 
-                var response = exception.Response;
-                using (var stream = response.GetResponseStream())
-                using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    var serializer = JsonSerializer.CreateDefault();
-                    var errorResult = serializer.Deserialize<ErrorResult>(jsonReader);
-                    throw new ServiceException(null, errorResult, exception);
-                }
+            // Handle the request
+            var httpWebRequest = CreateHttpWebRequest(uriBuilder.Uri);
+            using (var response = GetHttpWebResponse(httpWebRequest))
+            {
+                return DeserializeResponse<TResult>(response);
             }
         }
 
@@ -169,46 +116,102 @@ namespace GW2DotNET.V2.Common
         /// <returns>A collection of the specified type.</returns>
         public TResult Send<TResult>(IPaginatedRequest request, CultureInfo culture = null)
         {
-            var uriBuilder = new UriBuilder { Scheme = "https", Host = "api.guildwars2.com", Path = string.Concat("/v2/", request.Resource) };
+            // Translate the request to form data
             var formData = new UrlEncodedForm();
+
+            // Set the 'page' parameter
             if (request.Page > 0)
             {
                 formData.Add("page", request.Page.ToString(NumberFormatInfo.InvariantInfo));
             }
 
-            if (request.Page != 10)
+            // Set the 'page_size' parameter
+            if (request.PageSize != 10)
             {
                 formData.Add("page_size", request.PageSize.ToString(NumberFormatInfo.InvariantInfo));
             }
 
+            // Set the 'lang' parameter
             if (culture != null)
             {
                 formData.Add("lang", culture.TwoLetterISOLanguageName);
             }
 
+            // Build the resource URI
+            var uriBuilder = BuildUriBuilder();
+            uriBuilder.Path = string.Concat("/v2/", request.Resource);
             uriBuilder.Query = formData.GetQueryString();
-            var webRequest = (HttpWebRequest)WebRequest.Create(uriBuilder.ToString());
-            webRequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");
+
+            // Handle the request
+            var httpWebRequest = CreateHttpWebRequest(uriBuilder.Uri);
+            using (var response = GetHttpWebResponse(httpWebRequest))
+            {
+                return DeserializeResponse<TResult>(response);
+            }
+        }
+
+        /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="UriBuilder"/> class.</summary>
+        /// <returns>The <see cref="UriBuilder"/>.</returns>
+        private static UriBuilder BuildUriBuilder()
+        {
+            return new UriBuilder { Scheme = "https", Host = "api.guildwars2.com" };
+        }
+
+        /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="HttpWebRequest"/> class.</summary>
+        /// <param name="uri">The resource <see cref="Uri"/>.</param>
+        /// <returns>The <see cref="HttpWebRequest"/>.</returns>
+        private static HttpWebRequest CreateHttpWebRequest(Uri uri)
+        {
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(uri);
+            httpWebRequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");
+            return httpWebRequest;
+        }
+
+        /// <summary>Infrastructure. Deserializes the response stream.</summary>
+        /// <param name="response">The response.</param>
+        /// <typeparam name="TResult">The type of the response content.</typeparam>
+        /// <returns>An instance of the specified type.</returns>
+        private static TResult DeserializeResponse<TResult>(HttpWebResponse response)
+        {
+            var stream = response.GetResponseStream();
+
+            // Ensure that we are operating on decompressed data
+            var compressed = response.Headers[HttpResponseHeader.ContentEncoding].Equals("gzip", StringComparison.OrdinalIgnoreCase);
+            if (compressed)
+            {
+                stream = new GZipStream(stream, CompressionMode.Decompress);
+            }
+
+            // Deserialize the response content
+            using (stream)
+            using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
+            using (var jsonReader = new JsonTextReader(streamReader))
+            {
+                var serializer = JsonSerializer.CreateDefault();
+                return serializer.Deserialize<TResult>(jsonReader);
+            }
+        }
+
+        /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
+        /// <param name="webRequest">The <see cref="HttpWebRequest"/>.</param>
+        /// <returns>The <see cref="HttpWebResponse"/>.</returns>
+        /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
+        private static HttpWebResponse GetHttpWebResponse(HttpWebRequest webRequest)
+        {
             try
             {
-                var response = (HttpWebResponse)webRequest.GetResponse();
-                using (var stream = response.GetResponseStream())
-                using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
-                using (var jsonReader = new JsonTextReader(streamReader))
-                {
-                    var serializer = JsonSerializer.CreateDefault();
-                    return serializer.Deserialize<TResult>(jsonReader);
-                }
+                return (HttpWebResponse)webRequest.GetResponse();
             }
             catch (WebException exception)
             {
-                // Rethrow in case of transport errors
+                // Simply rethrow in case of transport errors (e.g. timeout)
                 if (exception.Status != WebExceptionStatus.ProtocolError)
                 {
                     throw;
                 }
 
-                var response = exception.Response;
+                // Wrap the exception in a ServiceException, then throw
+                using (var response = exception.Response)
                 using (var stream = response.GetResponseStream())
                 using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
                 using (var jsonReader = new JsonTextReader(streamReader))
