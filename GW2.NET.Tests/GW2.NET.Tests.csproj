@@ -65,46 +65,9 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="V1\Core\Builds\BuildTest.cs" />
-    <Compile Include="V1\Core\Colors\ColorPaletteTest.cs" />
-    <Compile Include="V1\Core\Colors\ColorModelTest.cs" />
-    <Compile Include="V1\Core\Common\Converters\JsonPointConverterTest.cs" />
-    <Compile Include="V1\Core\Common\Converters\JsonPointFConverterTest.cs" />
-    <Compile Include="V1\Core\Common\Converters\JsonSizeConverterTest.cs" />
-    <Compile Include="V1\Core\Continents\ContinentTest.cs" />
-    <Compile Include="V1\Core\DynamicEvents\Details\DynamicEventDetailsTest.cs" />
-    <Compile Include="V1\Core\DynamicEvents\Details\DynamicEventFlagsTest.cs" />
-    <Compile Include="V1\Core\DynamicEvents\Details\Locations\LocationTypeTest.cs" />
-    <Compile Include="V1\Core\DynamicEvents\Details\Locations\LocationTypes\CylinderLocationTest.cs" />
-    <Compile Include="V1\Core\DynamicEvents\Details\Locations\LocationTypes\PolygonLocationTest.cs" />
-    <Compile Include="V1\Core\DynamicEvents\Details\Locations\LocationTypes\SphereLocationTest.cs" />
-    <Compile Include="V1\Core\DynamicEvents\DynamicEventStateTest.cs" />
-    <Compile Include="V1\Core\DynamicEvents\DynamicEventTest.cs" />
-    <Compile Include="V1\Core\DynamicEvents\Names\DynamicEventNameTest.cs" />
-    <Compile Include="V1\Core\Errors\ErrorResultTest.cs" />
-    <Compile Include="V1\Core\Files\AssetTest.cs" />
-    <Compile Include="V1\Core\Guilds\EmblemTest.cs" />
-    <Compile Include="V1\Core\Guilds\EmblemTransformationsTest.cs" />
-    <Compile Include="V1\Core\Guilds\GuildTest.cs" />
-    <Compile Include="V1\Core\Items\Details\GameRestrictionsTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemFlagsTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemRestrictionsTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Armors\ArmorTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Containers\ContainerTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Consumables\ConsumableTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Bags\BagTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypes\Backs\BackpackTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTypeTest.cs" />
-    <Compile Include="V1\Core\Items\Details\ItemTest.cs" />
-    <Compile Include="V1\Core\Maps\Floors\FloorTest.cs" />
-    <Compile Include="V1\Core\Maps\Floors\Regions\RegionTest.cs" />
-    <Compile Include="V1\Core\Maps\Floors\Regions\Subregions\PointsOfInterest\PointOfInterestTest.cs" />
-    <Compile Include="V1\Core\Maps\Floors\Regions\Subregions\Sectors\SectorTest.cs" />
-    <Compile Include="V1\Core\Maps\Floors\Regions\Subregions\SkillChallenges\SkillChallengeTest.cs" />
-    <Compile Include="V1\Core\Maps\Floors\Regions\Subregions\SubregionTest.cs" />
-    <Compile Include="V1\Core\Maps\Floors\Regions\Subregions\Tasks\RenownTaskTest.cs" />
-    <Compile Include="V1\Core\Maps\MapTest.cs" />
-    <Compile Include="V1\Core\Maps\Names\MapNameTest.cs" />
+    <Compile Include="V1\Common\Converters\JsonPointConverterTest.cs" />
+    <Compile Include="V1\Common\Converters\JsonPointFConverterTest.cs" />
+    <Compile Include="V1\Common\Converters\JsonSizeConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

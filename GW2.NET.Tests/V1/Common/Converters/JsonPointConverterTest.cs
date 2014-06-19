@@ -1,29 +1,17 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="JsonPointConverterTest.cs" company="">
-//   
-// </copyright>
-// <summary>
-//   The json point converter test.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Core.Common.Converters
+﻿namespace GW2DotNET.V1.Common.Converters
 {
     using System.Drawing;
-
-    using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
 
     using NUnit.Framework;
 
-    /// <summary>The json point converter test.</summary>
     [TestFixture]
     public class JsonPointConverterTest
     {
-        /// <summary>The json point converter_ read both nil_ returns default.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadBothNil_ReturnsDefault()
+        public void Read_BothNil_ReturnsDefault()
         {
             const string input = "[0,0]";
             Point expected = default(Point);
@@ -32,10 +20,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ read empty array_ returns default.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadEmptyArray_ReturnsDefault()
+        public void Read_EmptyArray_ReturnsDefault()
         {
             const string input = "[]";
             Point expected = default(Point);
@@ -44,20 +31,18 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ read empty_ exception is thrown for value type.</summary>
         [Test]
         [Category("Converters")]
         [ExpectedException(typeof(JsonSerializationException))]
-        public void JsonPointConverter_ReadEmpty_ExceptionIsThrownForValueType()
+        public void Read_Empty_ExceptionIsThrownForValueType()
         {
             string input = string.Empty;
             JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
         }
 
-        /// <summary>The json point converter_ read empty_ returns null for nullable type.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadEmpty_ReturnsNullForNullableType()
+        public void Read_Empty_ReturnsNullForNullableType()
         {
             string input = string.Empty;
             var output = JsonConvert.DeserializeObject<Point?>(input, new JsonPointConverter());
@@ -65,20 +50,18 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.IsNull(output);
         }
 
-        /// <summary>The json point converter_ read more than two values_ converter throws json serialization exception.</summary>
         [Test]
         [Category("Converters")]
         [ExpectedException(typeof(JsonSerializationException))]
-        public void JsonPointConverter_ReadMoreThanTwoValues_ConverterThrowsJsonSerializationException()
+        public void Read_MoreThanTwoValues_ConverterThrowsJsonSerializationException()
         {
             const string input = "[1,2,3]";
             JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
         }
 
-        /// <summary>The json point converter_ read negative extremes_ point reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadNegativeExtremes_PointReflectsInput()
+        public void Read_NegativeExtremes_PointReflectsInput()
         {
             const string input = "[-2147483648,-2147483648]";
             var expected = new Point(int.MinValue, int.MinValue);
@@ -87,10 +70,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ read negative values_ point refects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadNegativeValues_PointRefectsInput()
+        public void Read_NegativeValues_PointRefectsInput()
         {
             const string input = "[-1,-2]";
             var expected = new Point(-1, -2);
@@ -99,10 +81,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ read null_ returns default for value type.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadNull_ReturnsDefaultForValueType()
+        public void Read_Null_ReturnsDefaultForValueType()
         {
             const string input = "null";
             Point expected = default(Point);
@@ -111,10 +92,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ read null_ returns null for nullable type.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadNull_ReturnsNullForNullableType()
+        public void Read_Null_ReturnsNullForNullableType()
         {
             const string input = "null";
             var output = JsonConvert.DeserializeObject<Point?>(input, new JsonPointConverter());
@@ -122,10 +102,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.IsNull(output);
         }
 
-        /// <summary>The json point converter_ read positive extremes_ point reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadPositiveExtremes_PointReflectsInput()
+        public void Read_PositiveExtremes_PointReflectsInput()
         {
             const string input = "[2147483647,2147483647]";
             var expected = new Point(int.MaxValue, int.MaxValue);
@@ -134,10 +113,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ read positive values_ point refects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadPositiveValues_PointRefectsInput()
+        public void Read_PositiveValues_PointRefectsInput()
         {
             const string input = "[1,2]";
             var expected = new Point(1, 2);
@@ -146,10 +124,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ read single nil_ returns default.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadSingleNil_ReturnsDefault()
+        public void Read_SingleNil_ReturnsDefault()
         {
             const string input = "[0]";
             Point expected = default(Point);
@@ -158,10 +135,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ read single value_ converter assumes value is x.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_ReadSingleValue_ConverterAssumesValueIsX()
+        public void Read_SingleValue_ConverterAssumesValueIsX()
         {
             const string input = "[1]";
             var expected = new Point(1, 0);
@@ -170,10 +146,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ write default point_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_WriteDefaultPoint_JsonReflectsInput()
+        public void Write_DefaultPoint_JsonReflectsInput()
         {
             const string expected = "[0,0]";
             Point input = default(Point);
@@ -182,10 +157,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ write negative extremes_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_WriteNegativeExtremes_JsonReflectsInput()
+        public void Write_NegativeExtremes_JsonReflectsInput()
         {
             const string expected = "[-2147483648,-2147483648]";
             var input = new Point(int.MinValue, int.MinValue);
@@ -194,10 +168,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ write negative values_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_WriteNegativeValues_JsonReflectsInput()
+        public void Write_NegativeValues_JsonReflectsInput()
         {
             const string expected = "[-1,-2]";
             var input = new Point(-1, -2);
@@ -206,10 +179,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ write positive extremes_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_WritePositiveExtremes_JsonReflectsInput()
+        public void Write_PositiveExtremes_JsonReflectsInput()
         {
             const string expected = "[2147483647,2147483647]";
             var input = new Point(int.MaxValue, int.MaxValue);
@@ -218,10 +190,9 @@ namespace GW2DotNET.V1.Core.Common.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point converter_ write positive values_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonPointConverter_WritePositiveValues_JsonReflectsInput()
+        public void Write_PositiveValues_JsonReflectsInput()
         {
             const string expected = "[1,2]";
             var input = new Point(1, 2);

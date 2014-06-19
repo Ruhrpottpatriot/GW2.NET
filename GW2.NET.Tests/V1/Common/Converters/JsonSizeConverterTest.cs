@@ -6,11 +6,9 @@
 //   The json size converter test.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Core.Common.Converters
+namespace GW2DotNET.V1.Common.Converters
 {
     using System.Drawing;
-
-    using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
 
@@ -23,7 +21,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read both nil_ returns default.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadBothNil_ReturnsDefault()
+        public void Read_BothNil_ReturnsDefault()
         {
             const string input = "[0,0]";
             Size expected = default(Size);
@@ -35,7 +33,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read empty array_ returns default.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadEmptyArray_ReturnsDefault()
+        public void Read_EmptyArray_ReturnsDefault()
         {
             const string input = "[]";
             Size expected = default(Size);
@@ -48,7 +46,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         [Test]
         [Category("Converters")]
         [ExpectedException(typeof(JsonSerializationException))]
-        public void JsonSizeConverter_ReadEmpty_ExceptionIsThrownForValueType()
+        public void Read_Empty_ExceptionIsThrownForValueType()
         {
             string input = string.Empty;
             JsonConvert.DeserializeObject<Size>(input, new JsonSizeConverter());
@@ -57,7 +55,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read empty_ returns null for nullable type.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadEmpty_ReturnsNullForNullableType()
+        public void Read_Empty_ReturnsNullForNullableType()
         {
             string input = string.Empty;
             var output = JsonConvert.DeserializeObject<Size?>(input, new JsonSizeConverter());
@@ -69,7 +67,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         [Test]
         [Category("Converters")]
         [ExpectedException(typeof(JsonSerializationException))]
-        public void JsonSizeConverter_ReadMoreThanTwoValues_ConverterThrowsJsonSerializationException()
+        public void Read_MoreThanTwoValues_ConverterThrowsJsonSerializationException()
         {
             const string input = "[1,2,3]";
             JsonConvert.DeserializeObject<Size>(input, new JsonSizeConverter());
@@ -78,7 +76,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read negative extremes_ size reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadNegativeExtremes_SizeReflectsInput()
+        public void Read_NegativeExtremes_SizeReflectsInput()
         {
             const string input = "[-2147483648,-2147483648]";
             var expected = new Size(int.MinValue, int.MinValue);
@@ -90,7 +88,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read negative values_ size refects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadNegativeValues_SizeRefectsInput()
+        public void Read_NegativeValues_SizeRefectsInput()
         {
             const string input = "[-1,-2]";
             var expected = new Size(-1, -2);
@@ -102,7 +100,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read null_ returns default for value type.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadNull_ReturnsDefaultForValueType()
+        public void Read_Null_ReturnsDefaultForValueType()
         {
             const string input = "null";
             Size expected = default(Size);
@@ -114,7 +112,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read null_ returns null for nullable type.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadNull_ReturnsNullForNullableType()
+        public void Read_Null_ReturnsNullForNullableType()
         {
             const string input = "null";
             var output = JsonConvert.DeserializeObject<Size?>(input, new JsonSizeConverter());
@@ -125,7 +123,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read positive extremes_ size reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadPositiveExtremes_SizeReflectsInput()
+        public void Read_PositiveExtremes_SizeReflectsInput()
         {
             const string input = "[2147483647,2147483647]";
             var expected = new Size(int.MaxValue, int.MaxValue);
@@ -137,7 +135,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read positive values_ size refects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadPositiveValues_SizeRefectsInput()
+        public void Read_PositiveValues_SizeRefectsInput()
         {
             const string input = "[1,2]";
             var expected = new Size(1, 2);
@@ -149,7 +147,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read single nil_ returns default.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadSingleNil_ReturnsDefault()
+        public void Read_SingleNil_ReturnsDefault()
         {
             const string input = "[0]";
             Size expected = default(Size);
@@ -161,7 +159,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ read single value_ converter assumes x equals y.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_ReadSingleValue_ConverterAssumesXEqualsY()
+        public void Read_SingleValue_ConverterAssumesXEqualsY()
         {
             const string input = "[1]";
             var expected = new Size(1, 1);
@@ -173,7 +171,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ write default size_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_WriteDefaultSize_JsonReflectsInput()
+        public void Write_DefaultSize_JsonReflectsInput()
         {
             const string expected = "[0,0]";
             Size input = default(Size);
@@ -185,7 +183,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ write negative extremes_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_WriteNegativeExtremes_JsonReflectsInput()
+        public void Write_NegativeExtremes_JsonReflectsInput()
         {
             const string expected = "[-2147483648,-2147483648]";
             var input = new Size(int.MinValue, int.MinValue);
@@ -197,7 +195,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ write negative values_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_WriteNegativeValues_JsonReflectsInput()
+        public void Write_NegativeValues_JsonReflectsInput()
         {
             const string expected = "[-1,-2]";
             var input = new Size(-1, -2);
@@ -209,7 +207,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ write positive extremes_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_WritePositiveExtremes_JsonReflectsInput()
+        public void Write_PositiveExtremes_JsonReflectsInput()
         {
             const string expected = "[2147483647,2147483647]";
             var input = new Size(int.MaxValue, int.MaxValue);
@@ -221,7 +219,7 @@ namespace GW2DotNET.V1.Core.Common.Converters
         /// <summary>The json size converter_ write positive values_ json reflects input.</summary>
         [Test]
         [Category("Converters")]
-        public void JsonSizeConverter_WritePositiveValues_JsonReflectsInput()
+        public void Write_PositiveValues_JsonReflectsInput()
         {
             const string expected = "[1,2]";
             var input = new Size(1, 2);
