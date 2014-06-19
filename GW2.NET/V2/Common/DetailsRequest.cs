@@ -12,7 +12,7 @@ namespace GW2DotNET.V2.Common
     public class DetailsRequest : IDetailsRequest
     {
         /// <summary>Gets or sets the resource identifier.</summary>
-        public int? Identifier { get; set; }
+        public int Identifier { get; set; }
 
         /// <summary>Gets or sets the resource path.</summary>
         public string Resource { get; set; }

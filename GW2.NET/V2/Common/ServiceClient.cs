@@ -69,12 +69,11 @@ namespace GW2DotNET.V2.Common
         /// <returns>An instance of the specified type.</returns>
         public TResult Send<TResult>(IDetailsRequest request, CultureInfo culture = null)
         {
-            var pathTemplate = request.Identifier.HasValue ? "/v2/{0}/{1}" : "/v2/{0}";
             var uriBuilder = new UriBuilder
                                  {
-                                     Scheme = "https", 
-                                     Host = "api.guildwars2.com", 
-                                     Path = string.Format(pathTemplate, request.Resource, request.Identifier)
+                                     Scheme = "https",
+                                     Host = "api.guildwars2.com",
+                                     Path = string.Format("/v2/{0}/{1}", request.Resource, request.Identifier)
                                  };
             if (culture != null)
             {
