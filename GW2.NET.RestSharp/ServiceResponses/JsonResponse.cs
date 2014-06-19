@@ -6,14 +6,16 @@
 //   Represents a JSON-object response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace RestSharp.GW2DotNET.ServiceResponses
+namespace GW2DotNET.RestSharp.ServiceResponses
 {
     using System;
     using System.IO;
 
-    using global::GW2DotNET.Extensions;
+    using GW2DotNET.Extensions;
 
     using Newtonsoft.Json;
+
+    using global::RestSharp;
 
     /// <summary>Represents a JSON-object response.</summary>
     /// <typeparam name="TResult">The type of the response content.</typeparam>

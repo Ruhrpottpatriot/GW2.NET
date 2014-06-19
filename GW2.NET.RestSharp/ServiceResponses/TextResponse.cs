@@ -6,10 +6,12 @@
 //   Represents a plain text response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace RestSharp.GW2DotNET.ServiceResponses
+namespace GW2DotNET.RestSharp.ServiceResponses
 {
     using System.IO;
     using System.Text;
+
+    using global::RestSharp;
 
     /// <summary>Represents a plain text response.</summary>
     public class TextResponse : ServiceResponse<string>

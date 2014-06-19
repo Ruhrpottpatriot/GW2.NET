@@ -6,15 +6,17 @@
 //   Represents an error response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace RestSharp.GW2DotNET.ServiceResponses
+namespace GW2DotNET.RestSharp.ServiceResponses
 {
     using System;
     using System.IO;
 
-    using global::GW2DotNET.Extensions;
-    using global::GW2DotNET.V1.Errors;
+    using GW2DotNET.Extensions;
+    using GW2DotNET.V1.Errors;
 
     using Newtonsoft.Json;
+
+    using global::RestSharp;
 
     /// <summary>Represents an error response.</summary>
     public class ErrorResponse : ServiceResponse<ErrorResult>

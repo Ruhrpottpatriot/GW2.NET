@@ -6,7 +6,7 @@
 //   Provides a RestSharp-specific implementation of the  interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace RestSharp.GW2DotNET
+namespace GW2DotNET.RestSharp
 {
     using System;
     using System.Drawing;
@@ -14,13 +14,11 @@ namespace RestSharp.GW2DotNET
     using System.Threading;
     using System.Threading.Tasks;
 
-    using global::GW2DotNET.Utilities;
+    using GW2DotNET.RestSharp.ServiceResponses;
+    using GW2DotNET.Utilities;
+    using GW2DotNET.V1.Common;
 
-    using global::GW2DotNET.V1.Common;
-
-    using RestSharp.GW2DotNET.ServiceResponses;
-
-    using JsonObject = global::GW2DotNET.V1.Common.Contracts.JsonObject;
+    using global::RestSharp;
 
     /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
@@ -132,7 +130,7 @@ namespace RestSharp.GW2DotNET
                             throw new ServiceException(null, serviceResponse.Deserialize(), response.ErrorException);
                         }
 
-                        if (typeof(JsonObject).IsAssignableFrom(typeof(TResult)))
+                        if (typeof(global::GW2DotNET.V1.Common.Contracts.JsonObject).IsAssignableFrom(typeof(TResult)))
                         {
                             return new JsonResponse<TResult>(response);
                         }
@@ -172,7 +170,7 @@ namespace RestSharp.GW2DotNET
                 throw new ServiceException(null, serviceResponse.Deserialize(), response.ErrorException);
             }
 
-            if (typeof(JsonObject).IsAssignableFrom(typeof(TResult)))
+            if (typeof(global::GW2DotNET.V1.Common.Contracts.JsonObject).IsAssignableFrom(typeof(TResult)))
             {
                 return new JsonResponse<TResult>(response);
             }

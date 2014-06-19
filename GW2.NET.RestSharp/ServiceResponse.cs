@@ -6,19 +6,20 @@
 //   Provides a RestSharp-specific implementation of the  interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace RestSharp.GW2DotNET
+namespace GW2DotNET.RestSharp
 {
     using System;
     using System.IO;
     using System.Net;
     using System.Net.Mime;
 
-    using global::GW2DotNET.Extensions;
-    using global::GW2DotNET.Utilities;
-    using global::GW2DotNET.V1.Common;
-    using global::GW2DotNET.V1.Errors;
+    using GW2DotNET.Extensions;
+    using GW2DotNET.RestSharp.ServiceResponses;
+    using GW2DotNET.Utilities;
+    using GW2DotNET.V1.Common;
+    using GW2DotNET.V1.Errors;
 
-    using RestSharp.GW2DotNET.ServiceResponses;
+    using global::RestSharp;
 
     /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceResponse{TResult}"/> interface.</summary>
     /// <typeparam name="TResult">The type of the response content.</typeparam>

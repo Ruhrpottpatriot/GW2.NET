@@ -6,13 +6,15 @@
 //   Represents an image response.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace RestSharp.GW2DotNET.ServiceResponses
+namespace GW2DotNET.RestSharp.ServiceResponses
 {
     using System;
     using System.Drawing;
     using System.IO;
 
     using global::GW2DotNET.Extensions;
+
+    using global::RestSharp;
 
     /// <summary>Represents an image response.</summary>
     public class ImageResponse : ServiceResponse<Image>
