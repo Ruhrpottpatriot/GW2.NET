@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents one of an item's infusion slots.</summary>
     public class InfusionSlot : JsonObject

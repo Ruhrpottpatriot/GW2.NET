@@ -20,19 +20,22 @@ namespace GW2DotNET.V1.DynamicEvents.Details
     using GW2DotNET.V1.DynamicEvents.Details.Contracts;
 
     /// <summary>Provides the default implementation of the event details service.</summary>
-    public class DynamicEventDetailsService : ServiceBase, IDynamicEventDetailsService
+    public class DynamicEventDetailsService : IDynamicEventDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsService" /> class.</summary>
         public DynamicEventDetailsService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public DynamicEventDetailsService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -40,7 +43,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEventDetails> GetDynamicEventDetails()
         {
-            return this.GetDynamicEventDetails(ServiceBase.DefaultLanguage);
+            return this.GetDynamicEventDetails(CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -50,12 +53,12 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public IEnumerable<DynamicEventDetails> GetDynamicEventDetails(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsServiceRequest { Language = language };
-            var result = this.Request<DynamicEventDetailsCollectionResult>(serviceRequest);
+            var serviceRequest = new DynamicEventDetailsRequest { Culture = language };
+            var result = this.serviceClient.Send<DynamicEventDetailsCollectionResult>(serviceRequest);
 
+            // patch missing language information
             foreach (var dynamicEventDetails in result.EventDetails.Values)
             {
-                // patch missing language information
                 dynamicEventDetails.Language = language;
             }
 
@@ -68,7 +71,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public DynamicEventDetails GetDynamicEventDetails(Guid eventId)
         {
-            return this.GetDynamicEventDetails(eventId, ServiceBase.DefaultLanguage);
+            return this.GetDynamicEventDetails(eventId, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -79,12 +82,12 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public DynamicEventDetails GetDynamicEventDetails(Guid eventId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsServiceRequest { Language = language, EventId = eventId };
-            var result = this.Request<DynamicEventDetailsCollectionResult>(serviceRequest);
+            var serviceRequest = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
+            var result = this.serviceClient.Send<DynamicEventDetailsCollectionResult>(serviceRequest);
 
+            // patch missing language information
             foreach (var dynamicEventDetails in result.EventDetails.Values)
             {
-                // patch missing language information
                 dynamicEventDetails.Language = language;
             }
 
@@ -96,7 +99,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync()
         {
-            return this.GetDynamicEventDetailsAsync(ServiceBase.DefaultLanguage);
+            return this.GetDynamicEventDetailsAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -105,7 +108,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(CancellationToken cancellationToken)
         {
-            return this.GetDynamicEventDetailsAsync(ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetDynamicEventDetailsAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -125,19 +128,20 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsServiceRequest { Language = language };
-            var t1 = this.RequestAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
-
+            var serviceRequest = new DynamicEventDetailsRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<DynamicEventDetails>>(
                 task =>
                     {
-                        foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
+                        var result = task.Result;
+
+                        // patch missing language information
+                        foreach (var dynamicEventDetails in result.EventDetails.Values)
                         {
-                            // patch missing language information
                             dynamicEventDetails.Language = language;
                         }
 
-                        return task.Result.EventDetails.Values;
+                        return result.EventDetails.Values;
                     }, 
                 cancellationToken);
 
@@ -150,7 +154,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEventDetails> GetDynamicEventDetailsAsync(Guid eventId)
         {
-            return this.GetDynamicEventDetailsAsync(eventId, ServiceBase.DefaultLanguage);
+            return this.GetDynamicEventDetailsAsync(eventId, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -160,7 +164,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEventDetails> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken cancellationToken)
         {
-            return this.GetDynamicEventDetailsAsync(eventId, ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetDynamicEventDetailsAsync(eventId, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -182,19 +186,20 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public Task<DynamicEventDetails> GetDynamicEventDetailsAsync(Guid eventId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsServiceRequest { Language = language, EventId = eventId };
-            var t1 = this.RequestAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
-
+            var serviceRequest = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
+            var t1 = this.serviceClient.SendAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith(
                 task =>
                     {
-                        foreach (var dynamicEventDetails in task.Result.EventDetails.Values)
+                        var result = task.Result;
+
+                        // patch missing language information
+                        foreach (var dynamicEventDetails in result.EventDetails.Values)
                         {
-                            // patch missing language information
                             dynamicEventDetails.Language = language;
                         }
 
-                        return task.Result.EventDetails.Values.SingleOrDefault();
+                        return result.EventDetails.Values.SingleOrDefault();
                     }, 
                 cancellationToken);
 

@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of areas within a map.</summary>
     public class SectorCollection : JsonList<Sector>

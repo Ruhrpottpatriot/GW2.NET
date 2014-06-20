@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of Point of Interest (POI) locations.</summary>
     public class PointOfInterestCollection : JsonList<PointOfInterest>

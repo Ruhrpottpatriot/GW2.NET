@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Skins.Details
 {
-    using System;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -18,19 +17,22 @@ namespace GW2DotNET.V1.Skins.Details
     using GW2DotNET.V1.Skins.Details.Contracts;
 
     /// <summary>Provides the default implementation of the skin details service.</summary>
-    public class SkinDetailsService : ServiceBase, ISkinDetailsService
+    public class SkinDetailsService : ISkinDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="SkinDetailsService" /> class.</summary>
         public SkinDetailsService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="SkinDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public SkinDetailsService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -39,7 +41,7 @@ namespace GW2DotNET.V1.Skins.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Skin GetSkinDetails(int skinId)
         {
-            return this.GetSkinDetails(skinId, ServiceBase.DefaultLanguage);
+            return this.GetSkinDetails(skinId, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -50,8 +52,8 @@ namespace GW2DotNET.V1.Skins.Details
         public Skin GetSkinDetails(int skinId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new SkinDetailsServiceRequest { SkinId = skinId, Language = language };
-            var result = this.Request<Skin>(serviceRequest);
+            var serviceRequest = new SkinDetailsRequest { SkinId = skinId, Culture = language };
+            var result = this.serviceClient.Send<Skin>(serviceRequest);
 
             // patch missing language information
             result.Language = language;
@@ -65,7 +67,7 @@ namespace GW2DotNET.V1.Skins.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(int skinId)
         {
-            return this.GetSkinDetailsAsync(skinId, ServiceBase.DefaultLanguage, CancellationToken.None);
+            return this.GetSkinDetailsAsync(skinId, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -85,7 +87,7 @@ namespace GW2DotNET.V1.Skins.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(int skinId, CancellationToken cancellationToken)
         {
-            return this.GetSkinDetailsAsync(skinId, ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetSkinDetailsAsync(skinId, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -97,14 +99,16 @@ namespace GW2DotNET.V1.Skins.Details
         public Task<Skin> GetSkinDetailsAsync(int skinId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new SkinDetailsServiceRequest { SkinId = skinId, Language = language };
-            var t1 = this.RequestAsync<Skin>(serviceRequest, cancellationToken).ContinueWith(
+            var serviceRequest = new SkinDetailsRequest { SkinId = skinId, Culture = language };
+            var t1 = this.serviceClient.SendAsync<Skin>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
-                        // patch missing language information
-                        task.Result.Language = language;
+                        var result = task.Result;
 
-                        return task.Result;
+                        // patch missing language information
+                        result.Language = language;
+
+                        return result;
                     }, 
                 cancellationToken);
 

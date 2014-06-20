@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Builds
 {
-    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -16,19 +15,22 @@ namespace GW2DotNET.V1.Builds
     using GW2DotNET.V1.Common;
 
     /// <summary>Provides the default implementation of the build service.</summary>
-    public class BuildService : ServiceBase, IBuildService
+    public class BuildService : IBuildService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="BuildService" /> class.</summary>
         public BuildService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public BuildService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets the current game build.</summary>
@@ -36,7 +38,7 @@ namespace GW2DotNET.V1.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Build GetBuild()
         {
-            return this.Request<Build>(new BuildServiceRequest());
+            return this.serviceClient.Send<Build>(new BuildRequest());
         }
 
         /// <summary>Gets the current build.</summary>
@@ -53,7 +55,7 @@ namespace GW2DotNET.V1.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
-            return this.RequestAsync<Build>(new BuildServiceRequest(), cancellationToken);
+            return this.serviceClient.SendAsync<Build>(new BuildRequest(), cancellationToken);
         }
     }
 }

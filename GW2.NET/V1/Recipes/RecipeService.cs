@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -17,19 +16,22 @@ namespace GW2DotNET.V1.Recipes
     using GW2DotNET.V1.Recipes.Contracts;
 
     /// <summary>Provides the default implementation of the recipes service.</summary>
-    public class RecipeService : ServiceBase, IRecipeService
+    public class RecipeService : IRecipeService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="RecipeService" /> class.</summary>
         public RecipeService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="RecipeService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public RecipeService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a collection of discovered recipes.</summary>
@@ -37,8 +39,8 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetRecipes()
         {
-            var serviceRequest = new RecipeServiceRequest();
-            var result = this.Request<RecipeCollectionResult>(serviceRequest);
+            var serviceRequest = new RecipeRequest();
+            var result = this.serviceClient.Send<RecipeCollectionResult>(serviceRequest);
 
             return result.Recipes;
         }
@@ -57,8 +59,8 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetRecipesAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new RecipeServiceRequest();
-            var t1 = this.RequestAsync<RecipeCollectionResult>(serviceRequest, cancellationToken);
+            var serviceRequest = new RecipeRequest();
+            var t1 = this.serviceClient.SendAsync<RecipeCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Recipes, cancellationToken);
 
             return t2;

@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
     using System.Collections.Generic;
     using System.Drawing;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;

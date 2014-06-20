@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Armors
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
 
     /// <summary>Represents detailed information about an armor skin.</summary>

@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Skins
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -17,19 +16,22 @@ namespace GW2DotNET.V1.Skins
     using GW2DotNET.V1.Skins.Contracts;
 
     /// <summary>Provides the default implementation of the skins service.</summary>
-    public class SkinService : ServiceBase, ISkinService
+    public class SkinService : ISkinService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="SkinService" /> class.</summary>
         public SkinService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="SkinService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public SkinService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a collection of skin identifiers.</summary>
@@ -37,8 +39,8 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetSkins()
         {
-            var serviceRequest = new SkinServiceRequest();
-            var result = this.Request<SkinCollectionResult>(serviceRequest);
+            var serviceRequest = new SkinRequest();
+            var result = this.serviceClient.Send<SkinCollectionResult>(serviceRequest);
 
             return result.Skins;
         }
@@ -57,8 +59,8 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetSkinsAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new SkinServiceRequest();
-            var t1 = this.RequestAsync<SkinCollectionResult>(serviceRequest, cancellationToken);
+            var serviceRequest = new SkinRequest();
+            var t1 = this.serviceClient.SendAsync<SkinCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Skins, cancellationToken);
 
             return t2;

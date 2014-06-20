@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Colors.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of color palettes.</summary>
     public class ColorCollection : JsonDictionary<int, ColorPalette>

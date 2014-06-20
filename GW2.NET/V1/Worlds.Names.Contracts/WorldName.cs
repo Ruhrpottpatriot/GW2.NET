@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Worlds.Names.Contracts
     using System.Globalization;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a world and its localized name.</summary>
     public class WorldName : JsonObject, IEquatable<WorldName>, IComparable<WorldName>

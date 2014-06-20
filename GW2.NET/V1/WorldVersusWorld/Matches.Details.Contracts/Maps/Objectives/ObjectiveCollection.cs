@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Objective
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of a World versus World map objectives.</summary>
     public class ObjectiveCollection : JsonList<Objective>

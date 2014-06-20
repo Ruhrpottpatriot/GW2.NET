@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Colors.Contracts
     using System.Drawing;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;

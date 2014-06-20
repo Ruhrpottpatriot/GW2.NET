@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;

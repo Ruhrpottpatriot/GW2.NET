@@ -11,7 +11,6 @@ namespace GW2DotNET.V1
     using System;
     using System.Collections.Generic;
     using System.Drawing;
-    using System.Drawing.Imaging;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -19,6 +18,7 @@ namespace GW2DotNET.V1
     using GW2DotNET.V1.Builds;
     using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Colors;
+    using GW2DotNET.V1.Colors.Contracts;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Continents;
     using GW2DotNET.V1.Continents.Contracts;
@@ -59,8 +59,6 @@ namespace GW2DotNET.V1
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Names;
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts;
-
-    using ColorPalette = GW2DotNET.V1.Colors.Contracts.ColorPalette;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
@@ -232,38 +230,38 @@ namespace GW2DotNET.V1
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
         public ServiceManager()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)), new ServiceClient(new Uri(Services.RenderServiceUrl)))
+            : this(new ServiceClient(), new RenderServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
-        /// <param name="dataServiceClient">The data service client.</param>
+        /// <param name="serviceClient">The service client.</param>
         /// <param name="renderServiceClient">The render service client.</param>
-        public ServiceManager(IServiceClient dataServiceClient, IServiceClient renderServiceClient)
+        public ServiceManager(IServiceClient serviceClient, IRenderServiceClient renderServiceClient)
         {
-            this.buildService = new BuildService(dataServiceClient);
-            this.colorService = new ColorService(dataServiceClient);
-            this.continentService = new ContinentService(dataServiceClient);
-            this.dynamicEventDetailsService = new DynamicEventDetailsService(dataServiceClient);
-            this.dynamicEventNameService = new DynamicEventNameService(dataServiceClient);
+            this.buildService = new BuildService(serviceClient);
+            this.colorService = new ColorService(serviceClient);
+            this.continentService = new ContinentService(serviceClient);
+            this.dynamicEventDetailsService = new DynamicEventDetailsService(serviceClient);
+            this.dynamicEventNameService = new DynamicEventNameService(serviceClient);
             this.dynamicEventRotationService = new DynamicEventRotationService();
-            this.dynamicEventService = new DynamicEventService(dataServiceClient);
-            this.fileService = new FileService(dataServiceClient);
-            this.guildDetailsService = new GuildDetailsService(dataServiceClient);
-            this.itemDetailsService = new ItemDetailsService(dataServiceClient);
-            this.itemService = new ItemService(dataServiceClient);
-            this.mapFloorService = new MapFloorService(dataServiceClient);
-            this.mapNameService = new MapNameService(dataServiceClient);
-            this.mapService = new MapService();
-            this.matchDetailsService = new MatchDetailsService(dataServiceClient);
-            this.matchService = new MatchService(dataServiceClient);
-            this.objectiveNameService = new ObjectiveNameService(dataServiceClient);
-            this.recipeDetailsService = new RecipeDetailsService(dataServiceClient);
-            this.recipeService = new RecipeService(dataServiceClient);
-            this.renderService = new RenderService(renderServiceClient);
-            this.worldNameService = new WorldNameService(dataServiceClient);
-            this.skinService = new SkinService(dataServiceClient);
-            this.skinDetailsService = new SkinDetailsService(dataServiceClient);
+            this.dynamicEventService = new DynamicEventService(serviceClient);
+            this.fileService = new FileService(serviceClient);
+            this.guildDetailsService = new GuildDetailsService(serviceClient);
+            this.itemDetailsService = new ItemDetailsService(serviceClient);
+            this.itemService = new ItemService(serviceClient);
+            this.mapFloorService = new MapFloorService(serviceClient);
+            this.mapNameService = new MapNameService(serviceClient);
+            this.mapService = new MapService(serviceClient);
+            this.matchDetailsService = new MatchDetailsService(serviceClient);
+            this.matchService = new MatchService(serviceClient);
+            this.objectiveNameService = new ObjectiveNameService(serviceClient);
+            this.recipeDetailsService = new RecipeDetailsService(serviceClient);
+            this.recipeService = new RecipeService(serviceClient);
+            this.renderService = new RenderService();
+            this.worldNameService = new WorldNameService(serviceClient);
+            this.skinService = new SkinService(serviceClient);
+            this.skinDetailsService = new SkinDetailsService(serviceClient);
         }
 
         /// <summary>Gets the current game build.</summary>
@@ -798,7 +796,7 @@ namespace GW2DotNET.V1
         /// <param name="imageFormat">The image Format.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Image GetImage(IRenderable file, ImageFormat imageFormat)
+        public Image GetImage(IRenderable file, string imageFormat)
         {
             return this.renderService.GetImage(file, imageFormat);
         }
@@ -808,9 +806,9 @@ namespace GW2DotNET.V1
         /// <param name="imageFormat">The image format.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat)
+        public Task<Image> GetImageAsync(IRenderable file, string imageFormat)
         {
-            return this.renderService.GetImageAsync(file, imageFormat);
+            return this.renderService.GetImageAsync(file, imageFormat, CancellationToken.None);
         }
 
         /// <summary>Gets an image.</summary>
@@ -819,7 +817,7 @@ namespace GW2DotNET.V1
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat, CancellationToken cancellationToken)
+        public Task<Image> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
             return this.renderService.GetImageAsync(file, imageFormat, cancellationToken);
         }

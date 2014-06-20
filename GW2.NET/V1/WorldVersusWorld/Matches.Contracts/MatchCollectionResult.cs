@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of matches.</summary>
     public class MatchCollectionResult : JsonObject

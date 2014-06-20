@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names.Contracts
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of dynamic events and their localized name.</summary>
     public class DynamicEventNameCollection : JsonList<DynamicEventName>

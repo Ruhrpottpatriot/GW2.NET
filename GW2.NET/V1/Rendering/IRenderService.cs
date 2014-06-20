@@ -9,7 +9,6 @@
 namespace GW2DotNET.V1.Rendering
 {
     using System.Drawing;
-    using System.Drawing.Imaging;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -21,23 +20,23 @@ namespace GW2DotNET.V1.Rendering
         /// <summary>Gets an image.</summary>
         /// <param name="file">The file.</param>
         /// <param name="imageFormat">The image Format.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
+        /// <returns>An instance of <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        Image GetImage(IRenderable file, ImageFormat imageFormat);
+        Image GetImage(IRenderable file, string imageFormat);
 
         /// <summary>Gets an image.</summary>
         /// <param name="file">The file.</param>
         /// <param name="imageFormat">The image format.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
+        /// <returns>An instance of <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat);
+        Task<Image> GetImageAsync(IRenderable file, string imageFormat);
 
         /// <summary>Gets an image.</summary>
         /// <param name="file">The file.</param>
         /// <param name="imageFormat">The image format.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
+        /// <returns>An instance of <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat, CancellationToken cancellationToken);
+        Task<Image> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken);
     }
 }
