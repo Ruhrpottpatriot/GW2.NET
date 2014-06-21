@@ -6,12 +6,10 @@
 //   Provides the interface for service clients.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Common
+namespace GW2DotNET.Common
 {
     using System.Threading;
     using System.Threading.Tasks;
-
-    using GW2DotNET.Common;
 
     /// <summary>Provides the interface for service clients.</summary>
     public interface IServiceClient
@@ -21,7 +19,7 @@ namespace GW2DotNET.V1.Common
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
         TResult Send<TResult>(IRequest request);
-        
+
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>

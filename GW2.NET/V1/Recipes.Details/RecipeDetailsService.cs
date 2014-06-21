@@ -12,8 +12,8 @@ namespace GW2DotNET.V1.Recipes.Details
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Common;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Recipes.Details.Contracts;
 
     /// <summary>Provides the default implementation of the recipe details service.</summary>

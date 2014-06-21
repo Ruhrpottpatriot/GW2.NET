@@ -13,8 +13,8 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Common;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Common;
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts;
 
     /// <summary>Provides the default implementation of the objective names service.</summary>

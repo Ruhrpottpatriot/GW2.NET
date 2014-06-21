@@ -108,6 +108,8 @@
     <Compile Include="Common\Contracts\JsonObject.cs" />
     <Compile Include="Common\ILocalizable.cs" />
     <Compile Include="Common\IRequest.cs" />
+    <Compile Include="Common\IServiceClient.cs" />
+    <Compile Include="Common\ServiceClient.cs" />
     <Compile Include="Common\ServiceException.cs" />
     <Compile Include="Extensions\HttpStatusCodeExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
@@ -122,7 +124,6 @@
     <Compile Include="V1\Colors.Contracts\ColorCollectionResult.cs" />
     <Compile Include="V1\Colors.Contracts\ColorModel.cs" />
     <Compile Include="V1\Colors.Contracts\ColorPalette.cs" />
-    <Compile Include="V1\Common\IServiceClient.cs" />
     <Compile Include="V1\Common\ISkinRequest.cs" />
     <Compile Include="V1\Common\IRecipeRequest.cs" />
     <Compile Include="V1\Common\IMatchRequest.cs" />
@@ -131,7 +132,6 @@
     <Compile Include="V1\Common\IGuildRequest.cs" />
     <Compile Include="V1\Common\IItemRequest.cs" />
     <Compile Include="V1\Common\IMapRequest.cs" />
-    <Compile Include="V1\Common\ServiceClient.cs" />
     <Compile Include="V1\Colors\ColorService.cs" />
     <Compile Include="V1\Colors\ColorRequest.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />

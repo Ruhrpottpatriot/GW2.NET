@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Common;
+    using GW2DotNET.Common;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts;
 
     /// <summary>Provides the default implementation of the match details service.</summary>

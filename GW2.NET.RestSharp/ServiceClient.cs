@@ -15,7 +15,6 @@ namespace GW2DotNET.RestSharp
     using GW2DotNET.Common;
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.Extensions;
-    using GW2DotNET.V1.Common;
 
     using Newtonsoft.Json;
 

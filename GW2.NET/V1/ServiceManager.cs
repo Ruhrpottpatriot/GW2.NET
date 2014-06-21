@@ -15,11 +15,11 @@ namespace GW2DotNET.V1
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Builds;
     using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Colors;
     using GW2DotNET.V1.Colors.Contracts;
-    using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Continents;
     using GW2DotNET.V1.Continents.Contracts;
     using GW2DotNET.V1.DynamicEvents;
