@@ -110,7 +110,6 @@
     <Compile Include="Common\IRequest.cs" />
     <Compile Include="Common\ServiceException.cs" />
     <Compile Include="Extensions\HttpStatusCodeExtensions.cs" />
-    <Compile Include="Extensions\Int32Extensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Preconditions.cs" />
