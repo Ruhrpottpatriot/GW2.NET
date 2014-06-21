@@ -14,9 +14,9 @@ namespace GW2DotNET.V2.Common
     public interface IPaginatedRequest : IRequest
     {
         /// <summary>Gets or sets the page number.</summary>
-        int Page { get; set; }
+        int? Page { get; set; }
 
         /// <summary>Gets or sets the number of entries per page.</summary>
-        int PageSize { get; set; }
+        int? PageSize { get; set; }
     }
 }
