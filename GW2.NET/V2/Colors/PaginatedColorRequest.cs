@@ -21,7 +21,7 @@ namespace GW2DotNET.V2.Colors
         public CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets the page number.</summary>
-        public override int? Page { get; set; }
+        public override int Page { get; set; }
 
         /// <summary>Gets or sets the number of entries per page.</summary>
         public override int? PageSize { get; set; }

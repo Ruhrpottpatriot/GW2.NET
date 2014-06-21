@@ -16,7 +16,7 @@ namespace GW2DotNET.V2.Common
     public abstract class PaginatedRequest : IPaginatedRequest
     {
         /// <summary>Gets or sets the page number.</summary>
-        public abstract int? Page { get; set; }
+        public abstract int Page { get; set; }
 
         /// <summary>Gets or sets the number of entries per page.</summary>
         public abstract int? PageSize { get; set; }
@@ -29,11 +29,7 @@ namespace GW2DotNET.V2.Common
         public virtual IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
             // Get the 'page' parameter
-            var page = this.Page;
-            if (page.HasValue)
-            {
-                yield return new KeyValuePair<string, string>("page", page.Value.ToString(NumberFormatInfo.InvariantInfo));
-            }
+            yield return new KeyValuePair<string, string>("page", this.Page.ToString(NumberFormatInfo.InvariantInfo));
 
             // Get the 'page_size' parameter
             var pageSize = this.PageSize;
