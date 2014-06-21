@@ -15,7 +15,7 @@ namespace GW2DotNET.V2.Common
     /// <summary>Provides the interface for bulk resource details requests.</summary>
     public interface IBulkRequest : IRequest
     {
-        /// <summary>Gets the collection of resource identifiers.</summary>
-        ICollection<int> Identifiers { get; }
+        /// <summary>Gets or sets the collection of resource identifiers.</summary>
+        ICollection<int> Identifiers { get; set; }
     }
 }
