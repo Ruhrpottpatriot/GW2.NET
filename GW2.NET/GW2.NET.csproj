@@ -523,6 +523,9 @@
     <Compile Include="V2\Builds\BuildRequest.cs" />
     <Compile Include="V2\Builds\BuildService.cs" />
     <Compile Include="V2\Builds\IBuildService.cs" />
+    <Compile Include="V2\Colors\BulkColorRequest.cs" />
+    <Compile Include="V2\Colors\PaginatedColorRequest.cs" />
+    <Compile Include="V2\Colors\ColorRequest.cs" />
     <Compile Include="V2\Common\BulkRequest.cs" />
     <Compile Include="V2\Common\IBulkRequest.cs" />
     <Compile Include="V2\Common\IDetailsRequest.cs" />
