@@ -22,7 +22,7 @@ namespace GW2DotNET.V2.Common
 
         /// <summary>Gets the request parameters.</summary>
         /// <returns>A collection of parameters.</returns>
-        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        public virtual IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
             // Get the 'ids' parameter
             var identifiers = this.Identifiers;
