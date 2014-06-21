@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Maps
 {
+    using System.Collections.Generic;
     using System.Globalization;
 
     using GW2DotNET.Common;
@@ -28,6 +29,17 @@ namespace GW2DotNET.V1.Maps
             get
             {
                 return Services.Maps;
+            }
+        }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            // Get the 'lang' parameter
+            if (this.Culture != null)
+            {
+                yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
             }
         }
     }

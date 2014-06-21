@@ -8,10 +8,16 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common
 {
+    using System.Collections.Generic;
+
     /// <summary>Provides the interface for service requests.</summary>
     public interface IRequest
     {
         /// <summary>Gets the resource path.</summary>
         string Resource { get; }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        IEnumerable<KeyValuePair<string, string>> GetParameters();
     }
 }

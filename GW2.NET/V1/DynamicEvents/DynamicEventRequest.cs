@@ -9,6 +9,8 @@
 namespace GW2DotNET.V1.DynamicEvents
 {
     using System;
+    using System.Collections.Generic;
+    using System.Globalization;
 
     using GW2DotNET.V1.Common;
 
@@ -32,5 +34,28 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Gets or sets the world identifier.</summary>
         public int? WorldId { get; set; }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            // Get the 'world_id' parameter
+            if (this.WorldId.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("world_id", this.WorldId.Value.ToString(NumberFormatInfo.InvariantInfo));
+            }
+
+            // Get the 'map_id' parameter
+            if (this.MapId.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("map_id", this.MapId.Value.ToString(NumberFormatInfo.InvariantInfo));
+            }
+
+            // Get the 'event_id' parameter
+            if (this.EventId.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("event_id", this.EventId.Value.ToString());
+            }
+        }
     }
 }

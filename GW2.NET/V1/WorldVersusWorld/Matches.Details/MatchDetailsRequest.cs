@@ -8,6 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
 {
+    using System.Collections.Generic;
+
     using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for details regarding the specified match, including the total score and further details for each map.</summary>
@@ -22,6 +24,17 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
             get
             {
                 return Services.MatchDetails;
+            }
+        }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            // Get the 'match_id' parameter
+            if (this.MatchId != null)
+            {
+                yield return new KeyValuePair<string, string>("match_id", this.MatchId);
             }
         }
     }

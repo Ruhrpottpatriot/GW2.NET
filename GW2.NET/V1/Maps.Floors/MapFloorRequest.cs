@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Maps.Floors
 {
+    using System.Collections.Generic;
     using System.Globalization;
 
     using GW2DotNET.Common;
@@ -31,6 +32,29 @@ namespace GW2DotNET.V1.Maps.Floors
             get
             {
                 return Services.MapFloor;
+            }
+        }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            // Get the 'continent_id' parameter
+            if (this.ContinentId.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("continent_id", this.ContinentId.Value.ToString(NumberFormatInfo.InvariantInfo));
+            }
+
+            // Get the 'floor' parameter
+            if (this.Floor.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("floor", this.Floor.Value.ToString(NumberFormatInfo.InvariantInfo));
+            }
+
+            // Get the 'lang' parameter
+            if (this.Culture != null)
+            {
+                yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
             }
         }
     }

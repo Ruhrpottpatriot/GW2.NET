@@ -8,6 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Files
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     using GW2DotNET.Common;
     using GW2DotNET.V1.Common;
 
@@ -21,6 +24,13 @@ namespace GW2DotNET.V1.Files
             {
                 return Services.Files;
             }
+        }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            return Enumerable.Empty<KeyValuePair<string, string>>();
         }
     }
 }

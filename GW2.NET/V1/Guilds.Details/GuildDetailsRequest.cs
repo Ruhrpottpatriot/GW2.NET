@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Guilds.Details
 {
     using System;
+    using System.Collections.Generic;
 
     using GW2DotNET.V1.Common;
 
@@ -27,6 +28,23 @@ namespace GW2DotNET.V1.Guilds.Details
             get
             {
                 return Services.GuildDetails;
+            }
+        }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            // Get the 'guild_id' parameter
+            if (this.GuildId.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("guild_id", this.GuildId.Value.ToString());
+            }
+
+            // Get the 'guild_name' parameter
+            if (this.GuildName != null)
+            {
+                yield return new KeyValuePair<string, string>("guild_name", this.GuildName);
             }
         }
     }

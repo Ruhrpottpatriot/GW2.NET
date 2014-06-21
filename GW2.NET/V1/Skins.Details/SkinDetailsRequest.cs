@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Skins.Details
 {
+    using System.Collections.Generic;
     using System.Globalization;
 
     using GW2DotNET.Common;
@@ -30,5 +31,22 @@ namespace GW2DotNET.V1.Skins.Details
 
         /// <summary>Gets or sets the skin identifier.</summary>
         public int? SkinId { get; set; }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            // Get the 'skin_id' parameter
+            if (this.SkinId.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("skin_id", this.SkinId.Value.ToString(NumberFormatInfo.InvariantInfo));
+            }
+
+            // Get the 'lang' parameter
+            if (this.Culture != null)
+            {
+                yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
+            }
+        }
     }
 }

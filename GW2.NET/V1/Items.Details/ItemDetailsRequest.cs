@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details
 {
+    using System.Collections.Generic;
     using System.Globalization;
 
     using GW2DotNET.Common;
@@ -28,6 +29,23 @@ namespace GW2DotNET.V1.Items.Details
             get
             {
                 return Services.ItemDetails;
+            }
+        }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            // Get the 'item_id' parameter
+            if (this.ItemId.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("item_id", this.ItemId.Value.ToString(NumberFormatInfo.InvariantInfo));
+            }
+
+            // Get the 'lang' parameter
+            if (this.Culture != null)
+            {
+                yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
             }
         }
     }

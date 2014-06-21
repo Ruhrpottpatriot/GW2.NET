@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details
 {
+    using System.Collections.Generic;
     using System.Globalization;
 
     using GW2DotNET.Common;
@@ -28,6 +29,23 @@ namespace GW2DotNET.V1.Recipes.Details
             get
             {
                 return Services.RecipeDetails;
+            }
+        }
+
+        /// <summary>Gets the request parameters.</summary>
+        /// <returns>A collection of parameters.</returns>
+        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        {
+            // Get the 'recipe_id' parameter
+            if (this.RecipeId.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("recipe_id", this.RecipeId.Value.ToString(NumberFormatInfo.InvariantInfo));
+            }
+
+            // Get the 'lang' parameter
+            if (this.Culture != null)
+            {
+                yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
             }
         }
     }
