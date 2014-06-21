@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
@@ -19,19 +18,22 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts;
 
     /// <summary>Provides the default implementation of the objective names service.</summary>
-    public class ObjectiveNameService : ServiceBase, IObjectiveNameService
+    public class ObjectiveNameService : IObjectiveNameService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="ObjectiveNameService" /> class.</summary>
         public ObjectiveNameService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ObjectiveNameService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ObjectiveNameService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -39,7 +41,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public IEnumerable<ObjectiveName> GetObjectiveNames()
         {
-            return this.GetObjectiveNames(ServiceBase.DefaultLanguage);
+            return this.GetObjectiveNames(CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -49,12 +51,12 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         public IEnumerable<ObjectiveName> GetObjectiveNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ObjectiveNameServiceRequest { Language = language };
-            var result = this.Request<ObjectiveNameCollection>(serviceRequest);
+            var serviceRequest = new ObjectiveNameRequest { Culture = language };
+            var result = this.serviceClient.Send<ObjectiveNameCollection>(serviceRequest);
 
+            // patch missing language information
             foreach (var objectiveName in result)
             {
-                // patch missing language information
                 objectiveName.Language = language;
             }
 
@@ -66,7 +68,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync()
         {
-            return this.GetObjectiveNamesAsync(CancellationToken.None);
+            return this.GetObjectiveNamesAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -75,7 +77,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
         {
-            return this.GetObjectiveNamesAsync(ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetObjectiveNamesAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -95,17 +97,19 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ObjectiveNameServiceRequest { Language = language };
-            var t1 = this.RequestAsync<ObjectiveNameCollection>(serviceRequest, cancellationToken).ContinueWith(
+            var serviceRequest = new ObjectiveNameRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync<ObjectiveNameCollection>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
-                        foreach (var objectiveName in task.Result)
+                        var result = task.Result;
+
+                        // patch missing language information
+                        foreach (var objectiveName in result)
                         {
-                            // patch missing language information
                             objectiveName.Language = language;
                         }
 
-                        return task.Result;
+                        return result;
                     }, 
                 cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<ObjectiveName>>(task => task.Result, cancellationToken);

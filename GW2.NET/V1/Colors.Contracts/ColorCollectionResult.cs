@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Colors.Contracts
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of colors in the game.</summary>
     public class ColorCollectionResult : JsonObject, IEquatable<ColorCollectionResult>

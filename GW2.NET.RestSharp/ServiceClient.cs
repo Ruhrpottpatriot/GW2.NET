@@ -3,20 +3,21 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides a RestSharp-specific implementation of the  interface.
+//   Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.RestSharp
 {
-    using System;
-    using System.Drawing;
-    using System.Net;
+    using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.RestSharp.ServiceResponses;
-    using GW2DotNET.Utilities;
+    using GW2DotNET.Common;
+    using GW2DotNET.Common.Contracts;
+    using GW2DotNET.Extensions;
     using GW2DotNET.V1.Common;
+
+    using Newtonsoft.Json;
 
     using global::RestSharp;
 
@@ -24,168 +25,141 @@ namespace GW2DotNET.RestSharp
     public class ServiceClient : IServiceClient
     {
         /// <summary>Infrastructure. Stores the inner <see cref="IRestClient" />.</summary>
-        private readonly IRestClient innerRestClient;
+        private static readonly IRestClient RestClient;
 
-        /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
-        /// <param name="baseUrl">An absolute URI that represents the base URL for all API endpoints.</param>
-        public ServiceClient(Uri baseUrl)
+        /// <summary>Initializes static members of the <see cref="ServiceClient"/> class.</summary>
+        static ServiceClient()
         {
-            Preconditions.EnsureNotNull(paramName: "baseUrl", value: baseUrl);
-            Preconditions.Ensure(baseUrl.IsAbsoluteUri, paramName: "baseUrl", message: "'baseUrl' cannot be a relative URI.");
-
-            this.innerRestClient = new RestClient(baseUrl.ToString());
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
-        /// <param name="restClient">The inner <see cref="IRestClient"/>.</param>
-        public ServiceClient(IRestClient restClient)
-        {
-            Preconditions.EnsureNotNull(paramName: "restClient", value: restClient);
-
-            this.innerRestClient = restClient;
-        }
-
-        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.</summary>
-        /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
-        public static IServiceClient DataServiceClient()
-        {
-            return new ServiceClient(new Uri(Services.DataServiceUrl));
-        }
-
-        /// <summary>Factory method. Creates a new instance of the <see cref="ServiceClient" /> class.</summary>
-        /// <returns>A new instance of the <see cref="ServiceClient" /> class.</returns>
-        public static IServiceClient RenderServiceClient()
-        {
-            return new ServiceClient(new Uri(Services.RenderServiceUrl));
+            RestClient = new RestClient("https://api.guildwars2.com");
         }
 
         /// <summary>Sends a request and returns the response.</summary>
+        /// <param name="request">The service request.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceRequest">The service request.</param>
-        /// <returns>The response.</returns>
-        public IServiceResponse<TResult> Send<TResult>(IServiceRequest serviceRequest) where TResult : class
+        /// <returns>An instance of the specified type.</returns>
+        public TResult Send<TResult>(IRequest request)
         {
-            Preconditions.EnsureNotNull(paramName: "serviceRequest", value: serviceRequest);
+            var restRequest = new RestRequest(request.Resource);
 
-            return this.SendImplementation<TResult>(serviceRequest);
+            // Translate the request to form data
+            foreach (var parameter in request.GetParameters())
+            {
+                restRequest.AddParameter(parameter.Key, parameter.Value);
+            }
+
+            // Handle the request
+            var restResponse = GetRestResponse(restRequest);
+            return DeserializeResponse<TResult>(restResponse);
         }
 
         /// <summary>Sends a request and returns the response.</summary>
+        /// <param name="request">The service request.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceRequest">The service request.</param>
-        /// <returns>The response.</returns>
-        public Task<IServiceResponse<TResult>> SendAsync<TResult>(IServiceRequest serviceRequest) where TResult : class
+        /// <returns>An instance of the specified type.</returns>
+        public Task<TResult> SendAsync<TResult>(IRequest request)
         {
-            return this.SendAsync<TResult>(serviceRequest, CancellationToken.None);
+            return this.SendAsync<TResult>(request, CancellationToken.None);
         }
 
         /// <summary>Sends a request and returns the response.</summary>
-        /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceRequest">The service request.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The response.</returns>
-        public Task<IServiceResponse<TResult>> SendAsync<TResult>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TResult : class
-        {
-            Preconditions.EnsureNotNull(paramName: "serviceRequest", value: serviceRequest);
-
-            return this.SendAsyncImplementation<TResult>(serviceRequest, cancellationToken);
-        }
-
-        /// <summary>Infrastructure. Creates a new instance of the <see cref="RestRequest"/> class.</summary>
-        /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
-        /// <returns>The <see cref="RestRequest"/>.</returns>
-        private RestRequest CreateRestRequest(IServiceRequest serviceRequest)
-        {
-            var uriBuilder = new UriBuilder(this.innerRestClient.BaseUrl)
-                                 {
-                                     Path = serviceRequest.ResourceUri.ToString(), 
-                                     Query = serviceRequest.FormData.GetQueryString()
-                                 };
-
-            return new RestRequest(uriBuilder.Uri.PathAndQuery);
-        }
-
-        /// <summary>Infrastructure. Implementation details for 'SendAsync'.</summary>
-        /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
+        /// <param name="request">The service request.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <returns>The <see cref="IServiceResponse{TResult}"/>.</returns>
-        private Task<IServiceResponse<TResult>> SendAsyncImplementation<TResult>(IServiceRequest serviceRequest, CancellationToken cancellationToken)
-            where TResult : class
+        /// <returns>An instance of the specified type.</returns>
+        public Task<TResult> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
         {
-            var request = this.CreateRestRequest(serviceRequest);
-            return this.innerRestClient.ExecuteTaskAsync(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
+            var restRequest = new RestRequest(request.Resource);
 
-                        if (response.ResponseStatus != ResponseStatus.Completed)
-                        {
-                            throw response.ErrorException;
-                        }
+            // Translate the request to form data
+            foreach (var parameter in request.GetParameters())
+            {
+                restRequest.AddParameter(parameter.Key, parameter.Value);
+            }
 
-                        if (response.StatusCode != HttpStatusCode.OK)
-                        {
-                            var serviceResponse = new ErrorResponse(response);
-                            throw new ServiceException(null, serviceResponse.Deserialize(), response.ErrorException);
-                        }
+            // Handle the request
+            var t1 = GetRestResponseAsync(restRequest, cancellationToken);
+            var t2 = t1.ContinueWith(task => DeserializeResponse<TResult>(task.Result), cancellationToken);
 
-                        if (typeof(global::GW2DotNET.V1.Common.Contracts.JsonObject).IsAssignableFrom(typeof(TResult)))
-                        {
-                            return new JsonResponse<TResult>(response);
-                        }
-
-                        if (typeof(Image).IsAssignableFrom(typeof(TResult)))
-                        {
-                            return (IServiceResponse<TResult>)new ImageResponse(response);
-                        }
-
-                        if (typeof(string) == typeof(TResult))
-                        {
-                            return (IServiceResponse<TResult>)new TextResponse(response);
-                        }
-
-                        return new ServiceResponse<TResult>(response);
-                    }, 
-                cancellationToken);
+            return t2;
         }
 
-        /// <summary>Infrastructure. Implementation details for 'Send'.</summary>
-        /// <param name="serviceRequest">The <see cref="IServiceRequest"/>.</param>
+        /// <summary>Infrastructure. Deserializes the response stream.</summary>
+        /// <param name="response">The response.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <returns>The <see cref="IServiceResponse{TResult}"/>.</returns>
-        private IServiceResponse<TResult> SendImplementation<TResult>(IServiceRequest serviceRequest) where TResult : class
+        /// <returns>An instance of the specified type.</returns>
+        private static TResult DeserializeResponse<TResult>(IRestResponse response)
         {
-            var request = this.CreateRestRequest(serviceRequest);
-            var response = this.innerRestClient.Execute(request);
+            // Deserialize the response content
+            using (var stream = new MemoryStream(response.RawBytes))
+            using (var streamReader = new StreamReader(stream))
+            using (var jsonReader = new JsonTextReader(streamReader))
+            {
+                return JsonSerializer.CreateDefault().Deserialize<TResult>(jsonReader);
+            }
+        }
 
-            if (response.ResponseStatus != ResponseStatus.Completed)
+        /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
+        /// <param name="request">The <see cref="IRestRequest"/>.</param>
+        /// <returns>The <see cref="IRestResponse"/>.</returns>
+        /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
+        private static IRestResponse GetRestResponse(IRestRequest request)
+        {
+            var response = RestClient.Execute(request);
+
+            if (response.StatusCode.IsSuccessStatusCode())
+            {
+                return response;
+            }
+
+            // Simply rethrow in case of transport errors (e.g. timeout)
+            if (response.ResponseStatus == ResponseStatus.Error)
             {
                 throw response.ErrorException;
             }
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            // Wrap protocol exceptions in a ServiceException, then throw
+            using (var stream = new MemoryStream(response.RawBytes))
+            using (var streamReader = new StreamReader(stream))
+            using (var jsonReader = new JsonTextReader(streamReader))
             {
-                var serviceResponse = new ErrorResponse(response);
-                throw new ServiceException(null, serviceResponse.Deserialize(), response.ErrorException);
+                var errorResult = JsonSerializer.CreateDefault().Deserialize<ErrorResult>(jsonReader);
+                throw new ServiceException(null, errorResult);
             }
+        }
 
-            if (typeof(global::GW2DotNET.V1.Common.Contracts.JsonObject).IsAssignableFrom(typeof(TResult)))
-            {
-                return new JsonResponse<TResult>(response);
-            }
+        /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
+        /// <param name="request">The <see cref="IRestRequest"/>.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The <see cref="IRestResponse"/>.</returns>
+        /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
+        private static Task<IRestResponse> GetRestResponseAsync(IRestRequest request, CancellationToken cancellationToken)
+        {
+            return RestClient.ExecuteTaskAsync(request, cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
 
-            if (typeof(Image).IsAssignableFrom(typeof(TResult)))
-            {
-                return (IServiceResponse<TResult>)new ImageResponse(response);
-            }
+                        if (response.StatusCode.IsSuccessStatusCode())
+                        {
+                            return response;
+                        }
 
-            if (typeof(string) == typeof(TResult))
-            {
-                return (IServiceResponse<TResult>)new TextResponse(response);
-            }
+                        // Simply rethrow in case of transport errors (e.g. timeout)
+                        if (response.ResponseStatus == ResponseStatus.Error)
+                        {
+                            throw response.ErrorException;
+                        }
 
-            return new ServiceResponse<TResult>(response);
+                        // Wrap protocol exceptions in a ServiceException, then throw
+                        using (var stream = new MemoryStream(response.RawBytes))
+                        using (var streamReader = new StreamReader(stream))
+                        using (var jsonReader = new JsonTextReader(streamReader))
+                        {
+                            var errorResult = JsonSerializer.CreateDefault().Deserialize<ErrorResult>(jsonReader);
+                            throw new ServiceException(null, errorResult);
+                        }
+                    }, 
+                cancellationToken);
         }
     }
 }

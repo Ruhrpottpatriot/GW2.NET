@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the base interface for HTTP clients targeting the Guild Wars 2 API.
+//   Provides the interface for service clients.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Common
@@ -11,26 +11,28 @@ namespace GW2DotNET.V1.Common
     using System.Threading;
     using System.Threading.Tasks;
 
-    /// <summary>Provides the base interface for HTTP clients targeting the Guild Wars 2 API.</summary>
+    using GW2DotNET.Common;
+
+    /// <summary>Provides the interface for service clients.</summary>
     public interface IServiceClient
     {
         /// <summary>Sends a request and returns the response.</summary>
+        /// <param name="request">The service request.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceRequest">The service request.</param>
-        /// <returns>The response.</returns>
-        IServiceResponse<TResult> Send<TResult>(IServiceRequest serviceRequest) where TResult : class;
+        /// <returns>An instance of the specified type.</returns>
+        TResult Send<TResult>(IRequest request);
+        
+        /// <summary>Sends a request and returns the response.</summary>
+        /// <param name="request">The service request.</param>
+        /// <typeparam name="TResult">The type of the response content.</typeparam>
+        /// <returns>An instance of the specified type.</returns>
+        Task<TResult> SendAsync<TResult>(IRequest request);
 
         /// <summary>Sends a request and returns the response.</summary>
-        /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceRequest">The service request.</param>
-        /// <returns>The response.</returns>
-        Task<IServiceResponse<TResult>> SendAsync<TResult>(IServiceRequest serviceRequest) where TResult : class;
-
-        /// <summary>Sends a request and returns the response.</summary>
-        /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <param name="serviceRequest">The service request.</param>
+        /// <param name="request">The service request.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The response.</returns>
-        Task<IServiceResponse<TResult>> SendAsync<TResult>(IServiceRequest serviceRequest, CancellationToken cancellationToken) where TResult : class;
+        /// <typeparam name="TResult">The type of the response content.</typeparam>
+        /// <returns>An instance of the specified type.</returns>
+        Task<TResult> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken);
     }
 }

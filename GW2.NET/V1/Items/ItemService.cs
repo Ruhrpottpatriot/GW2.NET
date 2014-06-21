@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -17,19 +16,22 @@ namespace GW2DotNET.V1.Items
     using GW2DotNET.V1.Items.Contracts;
 
     /// <summary>Provides the default implementation of the items service.</summary>
-    public class ItemService : ServiceBase, IItemService
+    public class ItemService : IItemService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="ItemService" /> class.</summary>
         public ItemService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ItemService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a collection of item identifiers.</summary>
@@ -37,8 +39,8 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetItems()
         {
-            var serviceRequest = new ItemServiceRequest();
-            var result = this.Request<ItemCollectionResult>(serviceRequest);
+            var serviceRequest = new ItemRequest();
+            var result = this.serviceClient.Send<ItemCollectionResult>(serviceRequest);
 
             return result.Items;
         }
@@ -57,8 +59,8 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetItemsAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new ItemServiceRequest();
-            var t1 = this.RequestAsync<ItemCollectionResult>(serviceRequest, cancellationToken);
+            var serviceRequest = new ItemRequest();
+            var t1 = this.serviceClient.SendAsync<ItemCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Items, cancellationToken);
 
             return t2;

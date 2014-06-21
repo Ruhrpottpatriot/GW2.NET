@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.DynamicEvents.Rotations.Contracts
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of world boss shifts.</summary>
     public class DynamicEventShifts : JsonList<DateTimeOffset>

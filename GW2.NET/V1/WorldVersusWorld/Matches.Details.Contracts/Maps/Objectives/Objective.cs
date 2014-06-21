@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Objective
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common;
 
     using Newtonsoft.Json;

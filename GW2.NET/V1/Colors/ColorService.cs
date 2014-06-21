@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Colors
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
@@ -19,19 +18,22 @@ namespace GW2DotNET.V1.Colors
     using GW2DotNET.V1.Common;
 
     /// <summary>Provides the default implementation of the colors service.</summary>
-    public class ColorService : ServiceBase, IColorService
+    public class ColorService : IColorService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="ColorService" /> class.</summary>
         public ColorService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ColorService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ColorService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a collection of colors and their localized details.</summary>
@@ -39,7 +41,7 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public IEnumerable<ColorPalette> GetColors()
         {
-            return this.GetColors(ServiceBase.DefaultLanguage);
+            return this.GetColors(CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a collection of colors and their localized details.</summary>
@@ -49,12 +51,12 @@ namespace GW2DotNET.V1.Colors
         public IEnumerable<ColorPalette> GetColors(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ColorServiceRequest { Language = language };
-            var result = this.Request<ColorCollectionResult>(serviceRequest);
+            var serviceRequest = new ColorRequest { Culture = language };
+            var result = this.serviceClient.Send<ColorCollectionResult>(serviceRequest);
 
+            // patch missing language information
             foreach (var colorPalette in result.Colors.Values)
             {
-                // patch missing language information
                 colorPalette.Language = language;
             }
 
@@ -75,7 +77,7 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ColorPalette>> GetColorsAsync(CancellationToken cancellationToken)
         {
-            return this.GetColorsAsync(ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetColorsAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a collection of colors and their localized details.</summary>
@@ -95,18 +97,20 @@ namespace GW2DotNET.V1.Colors
         public Task<IEnumerable<ColorPalette>> GetColorsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ColorServiceRequest { Language = language };
-            var t1 = this.RequestAsync<ColorCollectionResult>(serviceRequest, cancellationToken);
+            var serviceRequest = new ColorRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync<ColorCollectionResult>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<ColorPalette>>(
                 task =>
                     {
-                        foreach (var colorPalette in task.Result.Colors.Values)
+                        var result = task.Result;
+
+                        // patch missing language information
+                        foreach (var colorPalette in result.Colors.Values)
                         {
-                            // patch missing language information
                             colorPalette.Language = language;
                         }
 
-                        return task.Result.Colors.Values;
+                        return result.Colors.Values;
                     }, 
                 cancellationToken);
 

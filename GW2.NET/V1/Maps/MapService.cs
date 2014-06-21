@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Maps
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
@@ -20,19 +19,22 @@ namespace GW2DotNET.V1.Maps
     using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the default implementation of the maps service.</summary>
-    public class MapService : ServiceBase, IMapService
+    public class MapService : IMapService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="MapService" /> class.</summary>
         public MapService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="MapService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public MapService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -41,7 +43,7 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Map GetMap(int mapId)
         {
-            return this.GetMap(mapId, ServiceBase.DefaultLanguage);
+            return this.GetMap(mapId, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -52,12 +54,12 @@ namespace GW2DotNET.V1.Maps
         public Map GetMap(int mapId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapServiceRequest { MapId = mapId, Language = language };
-            var result = this.Request<MapCollectionResult>(serviceRequest).Maps.Values;
+            var serviceRequest = new MapRequest { MapId = mapId, Culture = language };
+            var result = this.serviceClient.Send<MapCollectionResult>(serviceRequest).Maps.Values;
 
+            // patch missing language information
             foreach (var map in result)
             {
-                // patch missing language information
                 map.Language = language;
             }
 
@@ -70,7 +72,7 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int mapId)
         {
-            return this.GetMapAsync(mapId, CancellationToken.None);
+            return this.GetMapAsync(mapId, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -80,7 +82,7 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int mapId, CancellationToken cancellationToken)
         {
-            return this.GetMapAsync(mapId, ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetMapAsync(mapId, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -103,17 +105,19 @@ namespace GW2DotNET.V1.Maps
         public Task<Map> GetMapAsync(int mapId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapServiceRequest { MapId = mapId, Language = language };
-            var t1 = this.RequestAsync<MapCollectionResult>(serviceRequest, cancellationToken).ContinueWith(
+            var serviceRequest = new MapRequest { MapId = mapId, Culture = language };
+            var t1 = this.serviceClient.SendAsync<MapCollectionResult>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
-                        foreach (var map in task.Result.Maps.Values)
+                        var result = task.Result;
+
+                        // patch missing language information
+                        foreach (var map in result.Maps.Values)
                         {
-                            // patch missing language information
                             map.Language = language;
                         }
 
-                        return task.Result;
+                        return result;
                     }, 
                 cancellationToken);
             var t2 = t1.ContinueWith(task => task.Result.Maps.Values.SingleOrDefault(), cancellationToken);
@@ -126,7 +130,7 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public IEnumerable<Map> GetMaps()
         {
-            return this.GetMaps(ServiceBase.DefaultLanguage);
+            return this.GetMaps(CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a collection of maps and their details.</summary>
@@ -136,12 +140,12 @@ namespace GW2DotNET.V1.Maps
         public IEnumerable<Map> GetMaps(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapServiceRequest { Language = language };
-            var result = this.Request<MapCollectionResult>(serviceRequest).Maps.Values;
+            var serviceRequest = new MapRequest { Culture = language };
+            var result = this.serviceClient.Send<MapCollectionResult>(serviceRequest).Maps.Values;
 
+            // patch missing language information
             foreach (var map in result)
             {
-                // patch missing language information
                 map.Language = language;
             }
 
@@ -153,7 +157,7 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Map>> GetMapsAsync()
         {
-            return this.GetMapsAsync(CancellationToken.None);
+            return this.GetMapsAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -162,7 +166,7 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Map>> GetMapsAsync(CancellationToken cancellationToken)
         {
-            return this.GetMapsAsync(ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetMapsAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -182,17 +186,19 @@ namespace GW2DotNET.V1.Maps
         public Task<IEnumerable<Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapServiceRequest { Language = language };
-            var t1 = this.RequestAsync<MapCollectionResult>(serviceRequest, cancellationToken).ContinueWith(
+            var serviceRequest = new MapRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync<MapCollectionResult>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
-                        foreach (var map in task.Result.Maps.Values)
+                        var result = task.Result;
+
+                        // patch missing language information
+                        foreach (var map in result.Maps.Values)
                         {
-                            // patch missing language information
                             map.Language = language;
                         }
 
-                        return task.Result;
+                        return result;
                     }, 
                 cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Map>>(task => task.Result.Maps.Values, cancellationToken);

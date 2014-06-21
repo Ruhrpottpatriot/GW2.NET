@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.DynamicEvents.Rotations.Contracts
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a dynamic event and its rotation.</summary>
     public class DynamicEventRotation : JsonObject

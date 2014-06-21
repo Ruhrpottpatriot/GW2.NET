@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a World versus World match.</summary>
     public class Match : JsonObject, IEquatable<Match>, IComparable<Match>

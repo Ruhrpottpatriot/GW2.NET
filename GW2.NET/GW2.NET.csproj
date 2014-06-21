@@ -102,25 +102,38 @@
     <Compile Include="ChatLinks\PointOfInterestChatLink.cs" />
     <Compile Include="ChatLinks\RecipeChatLink.cs" />
     <Compile Include="ChatLinks\ItemChatLink.cs" />
-    <Compile Include="Extensions\CultureInfoExtensions.cs" />
-    <Compile Include="Extensions\EnumerableExtensions.cs" />
+    <Compile Include="Common\Contracts\ErrorResult.cs" />
+    <Compile Include="Common\Contracts\JsonDictionary.cs" />
+    <Compile Include="Common\Contracts\JsonList.cs" />
+    <Compile Include="Common\Contracts\JsonObject.cs" />
+    <Compile Include="Common\ILocalizable.cs" />
+    <Compile Include="Common\IRequest.cs" />
+    <Compile Include="Common\ServiceException.cs" />
     <Compile Include="Extensions\HttpStatusCodeExtensions.cs" />
-    <Compile Include="Extensions\Int32Extensions.cs" />
-    <Compile Include="Extensions\TaskFactoryExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Preconditions.cs" />
     <Compile Include="Utilities\UrlEncodedForm.cs" />
     <Compile Include="V1\Builds.Contracts\Build.cs" />
-    <Compile Include="V1\Builds\BuildServiceRequest.cs" />
+    <Compile Include="V1\Builds\BuildRequest.cs" />
     <Compile Include="V1\Builds\BuildService.cs" />
     <Compile Include="V1\Builds\IBuildService.cs" />
     <Compile Include="V1\Colors.Contracts\ColorCollection.cs" />
     <Compile Include="V1\Colors.Contracts\ColorCollectionResult.cs" />
     <Compile Include="V1\Colors.Contracts\ColorModel.cs" />
     <Compile Include="V1\Colors.Contracts\ColorPalette.cs" />
+    <Compile Include="V1\Common\IServiceClient.cs" />
+    <Compile Include="V1\Common\ISkinRequest.cs" />
+    <Compile Include="V1\Common\IRecipeRequest.cs" />
+    <Compile Include="V1\Common\IMatchRequest.cs" />
+    <Compile Include="V1\Common\IFloorRequest.cs" />
+    <Compile Include="V1\Common\IDynamicEventRequest.cs" />
+    <Compile Include="V1\Common\IGuildRequest.cs" />
+    <Compile Include="V1\Common\IItemRequest.cs" />
+    <Compile Include="V1\Common\IMapRequest.cs" />
+    <Compile Include="V1\Common\ServiceClient.cs" />
     <Compile Include="V1\Colors\ColorService.cs" />
-    <Compile Include="V1\Colors\ColorServiceRequest.cs" />
+    <Compile Include="V1\Colors\ColorRequest.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />
     <Compile Include="V1\Common\Converters\ContentBasedTypeCreationConverter.cs" />
     <Compile Include="V1\Common\Converters\DefaultJsonConverter.cs" />
@@ -139,27 +152,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="V1\Common\IServiceClient.cs" />
-    <Compile Include="V1\Common\IServiceRequest.cs" />
-    <Compile Include="V1\Common\IServiceResponse.cs" />
-    <Compile Include="V1\Common\ServiceBase.cs" />
-    <Compile Include="V1\Common\ServiceClient.cs" />
-    <Compile Include="V1\Common\ServiceException.cs" />
-    <Compile Include="V1\Common\ServiceRequest.cs" />
-    <Compile Include="V1\Common\ServiceResponse.cs" />
-    <Compile Include="V1\Common\ServiceResponses\ErrorResponse.cs" />
-    <Compile Include="V1\Common\ServiceResponses\ImageResponse.cs" />
-    <Compile Include="V1\Common\ServiceResponses\JsonResponse.cs" />
-    <Compile Include="V1\Common\ServiceResponses\TextResponse.cs" />
-    <Compile Include="V1\Common\Contracts\JsonDictionary.cs" />
-    <Compile Include="V1\Common\Contracts\JsonList.cs" />
-    <Compile Include="V1\Common\Contracts\JsonObject.cs" />
     <Compile Include="V1\Continents.Contracts\Continent.cs" />
     <Compile Include="V1\Continents.Contracts\ContinentCollection.cs" />
     <Compile Include="V1\Continents.Contracts\ContinentCollectionResult.cs" />
     <Compile Include="V1\Continents.Contracts\ContinentFloorCollection.cs" />
     <Compile Include="V1\Continents\ContinentService.cs" />
-    <Compile Include="V1\Continents\ContinentServiceRequest.cs" />
+    <Compile Include="V1\Continents\ContinentRequest.cs" />
     <Compile Include="V1\Continents\IContinentService.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventDetails.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventDetailsCollection.cs" />
@@ -173,13 +171,13 @@
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\PolygonLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\SphereLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\UnknownLocation.cs" />
-    <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsServiceRequest.cs" />
+    <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsService.cs" />
     <Compile Include="V1\DynamicEvents.Details\IDynamicEventDetailsService.cs" />
     <Compile Include="V1\DynamicEvents.Names.Contracts\DynamicEventName.cs" />
     <Compile Include="V1\DynamicEvents.Names.Contracts\DynamicEventNameCollection.cs" />
     <Compile Include="V1\DynamicEvents.Names\DynamicEventNameService.cs" />
-    <Compile Include="V1\DynamicEvents.Names\DynamicEventNameServiceRequest.cs" />
+    <Compile Include="V1\DynamicEvents.Names\DynamicEventNameRequest.cs" />
     <Compile Include="V1\DynamicEvents.Names\IDynamicEventNameService.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEvent.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventCollection.cs" />
@@ -189,19 +187,18 @@
     <Compile Include="V1\DynamicEvents.Rotations.Contracts\DynamicEventShifts.cs" />
     <Compile Include="V1\DynamicEvents.Rotations\DynamicEventRotationService.cs" />
     <Compile Include="V1\DynamicEvents.Rotations\IDynamicEventRotationService.cs" />
-    <Compile Include="V1\DynamicEvents\DynamicEventServiceRequest.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventService.cs" />
-    <Compile Include="V1\Errors\ErrorResult.cs" />
     <Compile Include="V1\Files.Contracts\Asset.cs" />
     <Compile Include="V1\Files.Contracts\AssetCollection.cs" />
     <Compile Include="V1\Files\FileService.cs" />
-    <Compile Include="V1\Files\FileServiceRequest.cs" />
+    <Compile Include="V1\Files\FileRequest.cs" />
     <Compile Include="V1\Files\IFileService.cs" />
     <Compile Include="V1\Guilds.Details.Contracts\Emblem.cs" />
     <Compile Include="V1\Guilds.Details.Contracts\EmblemTransformations.cs" />
     <Compile Include="V1\Guilds.Details.Contracts\Guild.cs" />
-    <Compile Include="V1\Guilds.Details\GuildDetailsServiceRequest.cs" />
+    <Compile Include="V1\Guilds.Details\GuildDetailsRequest.cs" />
     <Compile Include="V1\Guilds.Details\GuildDetailsService.cs" />
     <Compile Include="V1\Guilds.Details\IGuildDetailsService.cs" />
     <Compile Include="V1\Items.Details.Contracts\GameRestrictions.cs" />
@@ -441,6 +438,12 @@
     <Compile Include="V1\Recipes.Contracts\RecipeCollection.cs" />
     <Compile Include="V1\Recipes.Contracts\RecipeCollectionResult.cs" />
     <Compile Include="V1\Rendering.Contracts\IRenderable.cs" />
+    <Compile Include="V1\Rendering\IRenderService.cs" />
+    <Compile Include="V1\Rendering\IRenderServiceClient.cs" />
+    <Compile Include="V1\Rendering\IRenderRequest.cs" />
+    <Compile Include="V1\Rendering\RenderService.cs" />
+    <Compile Include="V1\Rendering\RenderServiceClient.cs" />
+    <Compile Include="V1\Rendering\RenderRequest.cs" />
     <Compile Include="V1\Skins.Contracts\SkinCollection.cs" />
     <Compile Include="V1\Skins.Contracts\SkinCollectionResult.cs" />
     <Compile Include="V1\Skins.Details.Contracts\Skin.cs" />
@@ -457,40 +460,37 @@
     <Compile Include="V1\Skins.Details.Contracts\SkinTypes\Weapons\WeaponSkinDetails.cs" />
     <Compile Include="V1\Skins.Details\ISkinDetailsService.cs" />
     <Compile Include="V1\Skins.Details\SkinDetailsService.cs" />
-    <Compile Include="V1\Skins.Details\SkinDetailsServiceRequest.cs" />
+    <Compile Include="V1\Skins.Details\SkinDetailsRequest.cs" />
     <Compile Include="V1\Skins\ISkinService.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
-    <Compile Include="V1\Skins\SkinServiceRequest.cs" />
+    <Compile Include="V1\Skins\SkinRequest.cs" />
     <Compile Include="V1\Items.Details\IItemDetailsService.cs" />
-    <Compile Include="V1\Items.Details\ItemDetailsServiceRequest.cs" />
+    <Compile Include="V1\Items.Details\ItemDetailsRequest.cs" />
     <Compile Include="V1\Items.Details\ItemDetailsService.cs" />
     <Compile Include="V1\Items\IItemService.cs" />
     <Compile Include="V1\Items\ItemService.cs" />
-    <Compile Include="V1\Items\ItemServiceRequest.cs" />
+    <Compile Include="V1\Items\ItemRequest.cs" />
     <Compile Include="V1\Maps.Floors\IMapFloorService.cs" />
-    <Compile Include="V1\Maps.Floors\MapFloorServiceRequest.cs" />
+    <Compile Include="V1\Maps.Floors\MapFloorRequest.cs" />
     <Compile Include="V1\Maps.Floors\MapFloorService.cs" />
     <Compile Include="V1\Maps.Names\IMapNameService.cs" />
     <Compile Include="V1\Maps.Names\MapNameService.cs" />
-    <Compile Include="V1\Maps.Names\MapNameServiceRequest.cs" />
+    <Compile Include="V1\Maps.Names\MapNameRequest.cs" />
     <Compile Include="V1\Maps\IMapService.cs" />
     <Compile Include="V1\Maps\MapService.cs" />
-    <Compile Include="V1\Maps\MapServiceRequest.cs" />
+    <Compile Include="V1\Maps\MapRequest.cs" />
     <Compile Include="V1\Recipes.Details\IRecipeDetailsService.cs" />
-    <Compile Include="V1\Recipes.Details\RecipeDetailsServiceRequest.cs" />
+    <Compile Include="V1\Recipes.Details\RecipeDetailsRequest.cs" />
     <Compile Include="V1\Recipes.Details\RecipeDetailsService.cs" />
     <Compile Include="V1\Recipes\IRecipeService.cs" />
     <Compile Include="V1\Recipes\RecipeService.cs" />
-    <Compile Include="V1\Recipes\RecipeServiceRequest.cs" />
-    <Compile Include="V1\Rendering\IRenderService.cs" />
-    <Compile Include="V1\Rendering\RenderServiceRequest.cs" />
-    <Compile Include="V1\Rendering\RenderService.cs" />
+    <Compile Include="V1\Recipes\RecipeRequest.cs" />
     <Compile Include="V1\ServiceManager.cs" />
     <Compile Include="V1\Worlds.Names.Contracts\WorldName.cs" />
     <Compile Include="V1\Worlds.Names.Contracts\WorldNameCollection.cs" />
     <Compile Include="V1\Worlds.Names\IWorldNameService.cs" />
     <Compile Include="V1\Worlds.Names\WorldNameService.cs" />
-    <Compile Include="V1\Worlds.Names\WorldNameServiceRequest.cs" />
+    <Compile Include="V1\Worlds.Names\WorldNameRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Match.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Contracts\MatchCollection.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Contracts\MatchCollectionResult.cs" />
@@ -509,16 +509,16 @@
     <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Maps\Objectives\ObjectiveCollection.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\MatchDetails.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Details\IMatchDetailsService.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details\MatchDetailsServiceRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Details\MatchDetailsRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Details\MatchDetailsService.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\IMatchService.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches\MatchServiceRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\MatchRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\MatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names.Contracts\ObjectiveName.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names.Contracts\ObjectiveNameCollection.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\IObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameService.cs" />
-    <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameServiceRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -529,8 +529,6 @@
       <LastGenOutput>Services.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="V1\DynamicEvents.Rotations\Rotations.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

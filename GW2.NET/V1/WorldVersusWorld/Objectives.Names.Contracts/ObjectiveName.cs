@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts
     using System.Globalization;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents an objective and its localized name.</summary>
     public class ObjectiveName : JsonObject, IEquatable<ObjectiveName>, IComparable<ObjectiveName>

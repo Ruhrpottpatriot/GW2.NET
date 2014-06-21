@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.SkillChallenges
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of skill challenge locations.</summary>
     public class SkillChallengeCollection : JsonList<SkillChallenge>

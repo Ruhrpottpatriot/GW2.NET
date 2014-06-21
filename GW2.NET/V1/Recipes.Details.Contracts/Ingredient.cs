@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts;
 
     /// <summary>Represents a portion of crafting ingredients.</summary>

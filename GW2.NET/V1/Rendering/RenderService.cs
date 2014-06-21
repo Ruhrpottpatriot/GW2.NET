@@ -8,30 +8,31 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Rendering
 {
-    using System;
     using System.Drawing;
-    using System.Drawing.Imaging;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Rendering.Contracts;
 
     /// <summary>Provides the default implementation of the render service.</summary>
-    public class RenderService : ServiceBase, IRenderService
+    public class RenderService : IRenderService
     {
-        /// <summary>Initializes a new instance of the <see cref="RenderService" /> class.</summary>
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IRenderServiceClient serviceClient;
+
+        /// <summary>Initializes a new instance of the <see cref="RenderService"/> class.</summary>
         public RenderService()
-            : this(new ServiceClient(new Uri(Services.RenderServiceUrl)))
+            : this(new RenderServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="RenderService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public RenderService(IServiceClient serviceClient)
-            : base(serviceClient)
+        public RenderService(IRenderServiceClient serviceClient)
         {
+            Preconditions.EnsureNotNull(paramName: "ServiceClientOld", value: serviceClient);
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets an image.</summary>
@@ -39,11 +40,12 @@ namespace GW2DotNET.V1.Rendering
         /// <param name="imageFormat">The image Format.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Image GetImage(IRenderable file, ImageFormat imageFormat)
+        public Image GetImage(IRenderable file, string imageFormat)
         {
             Preconditions.EnsureNotNull(paramName: "file", value: file);
             Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
-            return this.Request<Image>(new RenderServiceRequest(file, imageFormat));
+            var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
+            return this.serviceClient.Send(request);
         }
 
         /// <summary>Gets an image.</summary>
@@ -51,7 +53,7 @@ namespace GW2DotNET.V1.Rendering
         /// <param name="imageFormat">The image format.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat)
+        public Task<Image> GetImageAsync(IRenderable file, string imageFormat)
         {
             return this.GetImageAsync(file, imageFormat, CancellationToken.None);
         }
@@ -62,11 +64,12 @@ namespace GW2DotNET.V1.Rendering
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The <see cref="Image"/>.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> GetImageAsync(IRenderable file, ImageFormat imageFormat, CancellationToken cancellationToken)
+        public Task<Image> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "file", value: file);
             Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
-            return this.RequestAsync<Image>(new RenderServiceRequest(file, imageFormat), cancellationToken);
+            var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
+            return this.serviceClient.SendAsync(request, cancellationToken);
         }
     }
 }

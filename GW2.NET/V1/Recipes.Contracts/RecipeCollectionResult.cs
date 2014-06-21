@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Recipes.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of recipe identifiers.</summary>
     public class RecipeCollectionResult : JsonObject

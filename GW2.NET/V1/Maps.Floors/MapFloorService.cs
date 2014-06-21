@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Maps.Floors
 {
-    using System;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -18,19 +17,22 @@ namespace GW2DotNET.V1.Maps.Floors
     using GW2DotNET.V1.Maps.Floors.Contracts;
 
     /// <summary>Provides the default implementation of the map floor service.</summary>
-    public class MapFloorService : ServiceBase, IMapFloorService
+    public class MapFloorService : IMapFloorService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="MapFloorService" /> class.</summary>
         public MapFloorService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="MapFloorService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public MapFloorService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -40,7 +42,7 @@ namespace GW2DotNET.V1.Maps.Floors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Floor GetMapFloor(int continentId, int floor)
         {
-            return this.GetMapFloor(continentId, floor, ServiceBase.DefaultLanguage);
+            return this.GetMapFloor(continentId, floor, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -52,8 +54,8 @@ namespace GW2DotNET.V1.Maps.Floors
         public Floor GetMapFloor(int continentId, int floor, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapFloorServiceRequest { ContinentId = continentId, Floor = floor, Language = language };
-            var result = this.Request<Floor>(serviceRequest);
+            var serviceRequest = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
+            var result = this.serviceClient.Send<Floor>(serviceRequest);
 
             // patch missing floor information
             result.ContinentId = continentId;
@@ -72,7 +74,7 @@ namespace GW2DotNET.V1.Maps.Floors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continentId, int floor)
         {
-            return this.GetMapFloorAsync(continentId, floor, CancellationToken.None);
+            return this.GetMapFloorAsync(continentId, floor, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -83,7 +85,7 @@ namespace GW2DotNET.V1.Maps.Floors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CancellationToken cancellationToken)
         {
-            return this.GetMapFloorAsync(continentId, floor, ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetMapFloorAsync(continentId, floor, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -107,18 +109,20 @@ namespace GW2DotNET.V1.Maps.Floors
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapFloorServiceRequest { ContinentId = continentId, Floor = floor, Language = language };
-            var t1 = this.RequestAsync<Floor>(serviceRequest, cancellationToken).ContinueWith(
+            var serviceRequest = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
+            var t1 = this.serviceClient.SendAsync<Floor>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
+                        var result = task.Result;
+
                         // patch missing floor information
-                        task.Result.ContinentId = continentId;
-                        task.Result.FloorNumber = floor;
+                        result.ContinentId = continentId;
+                        result.FloorNumber = floor;
 
                         // patch missing language information
-                        task.Result.Language = language;
+                        result.Language = language;
 
-                        return task.Result;
+                        return result;
                     }, 
                 cancellationToken);
 

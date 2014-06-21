@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Builds.Contracts
     using System;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Contracts;
+    using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents the current build of the game.</summary>
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.</remarks>
@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Builds.Contracts
             {
                 return false;
             }
-            
+
             if (right == null)
             {
                 return true;

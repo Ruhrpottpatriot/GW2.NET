@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details
 {
-    using System;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -18,19 +17,22 @@ namespace GW2DotNET.V1.Items.Details
     using GW2DotNET.V1.Items.Details.Contracts;
 
     /// <summary>Provides the default implementation of the item details service.</summary>
-    public class ItemDetailsService : ServiceBase, IItemDetailsService
+    public class ItemDetailsService : IItemDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="ItemDetailsService" /> class.</summary>
         public ItemDetailsService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ItemDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ItemDetailsService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -39,7 +41,7 @@ namespace GW2DotNET.V1.Items.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(int itemId)
         {
-            return this.GetItemDetails(itemId, ServiceBase.DefaultLanguage);
+            return this.GetItemDetails(itemId, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -50,8 +52,8 @@ namespace GW2DotNET.V1.Items.Details
         public Item GetItemDetails(int itemId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ItemDetailsServiceRequest { ItemId = itemId, Language = language };
-            var result = this.Request<Item>(serviceRequest);
+            var serviceRequest = new ItemDetailsRequest { ItemId = itemId, Culture = language };
+            var result = this.serviceClient.Send<Item>(serviceRequest);
 
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
@@ -65,7 +67,7 @@ namespace GW2DotNET.V1.Items.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int itemId)
         {
-            return this.GetItemDetailsAsync(itemId, CancellationToken.None);
+            return this.GetItemDetailsAsync(itemId, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -85,7 +87,7 @@ namespace GW2DotNET.V1.Items.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int itemId, CancellationToken cancellationToken)
         {
-            return this.GetItemDetailsAsync(itemId, ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetItemDetailsAsync(itemId, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -97,8 +99,8 @@ namespace GW2DotNET.V1.Items.Details
         public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ItemDetailsServiceRequest { ItemId = itemId, Language = language };
-            var t1 = this.RequestAsync<Item>(serviceRequest, cancellationToken).ContinueWith(
+            var serviceRequest = new ItemDetailsRequest { ItemId = itemId, Culture = language };
+            var t1 = this.serviceClient.SendAsync<Item>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

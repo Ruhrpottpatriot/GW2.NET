@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Files
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -17,19 +16,22 @@ namespace GW2DotNET.V1.Files
     using GW2DotNET.V1.Files.Contracts;
 
     /// <summary>Provides the default implementation of the files service.</summary>
-    public class FileService : ServiceBase, IFileService
+    public class FileService : IFileService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="FileService" /> class.</summary>
         public FileService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="FileService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public FileService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
@@ -37,8 +39,8 @@ namespace GW2DotNET.V1.Files
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
         public IEnumerable<Asset> GetFiles()
         {
-            var serviceRequest = new FileServiceRequest();
-            var result = this.Request<AssetCollection>(serviceRequest);
+            var serviceRequest = new FileRequest();
+            var result = this.serviceClient.Send<AssetCollection>(serviceRequest);
 
             return result.Values;
         }
@@ -48,7 +50,7 @@ namespace GW2DotNET.V1.Files
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Asset>> GetFilesAsync()
         {
-            return this.GetFilesAsync(new CancellationTokenSource().Token);
+            return this.GetFilesAsync(CancellationToken.None);
         }
 
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
@@ -57,8 +59,8 @@ namespace GW2DotNET.V1.Files
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Asset>> GetFilesAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new FileServiceRequest();
-            var t1 = this.RequestAsync<AssetCollection>(serviceRequest, cancellationToken);
+            var serviceRequest = new FileRequest();
+            var t1 = this.serviceClient.SendAsync<AssetCollection>(serviceRequest, cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Asset>>(task => task.Result.Values, cancellationToken);
 
             return t2;

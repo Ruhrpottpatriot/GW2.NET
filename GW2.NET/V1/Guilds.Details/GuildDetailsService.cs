@@ -16,19 +16,22 @@ namespace GW2DotNET.V1.Guilds.Details
     using GW2DotNET.V1.Guilds.Details.Contracts;
 
     /// <summary>Provides the default implementation of the guild details service.</summary>
-    public class GuildDetailsService : ServiceBase, IGuildDetailsService
+    public class GuildDetailsService : IGuildDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="GuildDetailsService" /> class.</summary>
         public GuildDetailsService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="GuildDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public GuildDetailsService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -37,7 +40,7 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public Guild GetGuildDetailsById(Guid guildId)
         {
-            return this.Request<Guild>(new GuildDetailsServiceRequest { GuildId = guildId });
+            return this.serviceClient.Send<Guild>(new GuildDetailsRequest { GuildId = guildId });
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -56,7 +59,7 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public Task<Guild> GetGuildDetailsByIdAsync(Guid guildId, CancellationToken cancellationToken)
         {
-            return this.RequestAsync<Guild>(new GuildDetailsServiceRequest { GuildId = guildId }, cancellationToken);
+            return this.serviceClient.SendAsync<Guild>(new GuildDetailsRequest { GuildId = guildId }, cancellationToken);
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -65,7 +68,7 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public Guild GetGuildDetailsByName(string guildName)
         {
-            return this.Request<Guild>(new GuildDetailsServiceRequest { GuildName = guildName });
+            return this.serviceClient.Send<Guild>(new GuildDetailsRequest { GuildName = guildName });
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -84,7 +87,7 @@ namespace GW2DotNET.V1.Guilds.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         public Task<Guild> GetGuildDetailsByNameAsync(string guildName, CancellationToken cancellationToken)
         {
-            return this.RequestAsync<Guild>(new GuildDetailsServiceRequest { GuildName = guildName }, cancellationToken);
+            return this.serviceClient.SendAsync<Guild>(new GuildDetailsRequest { GuildName = guildName }, cancellationToken);
         }
     }
 }

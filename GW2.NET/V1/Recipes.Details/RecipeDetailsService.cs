@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details
 {
-    using System;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -18,19 +17,22 @@ namespace GW2DotNET.V1.Recipes.Details
     using GW2DotNET.V1.Recipes.Details.Contracts;
 
     /// <summary>Provides the default implementation of the recipe details service.</summary>
-    public class RecipeDetailsService : ServiceBase, IRecipeDetailsService
+    public class RecipeDetailsService : IRecipeDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="RecipeDetailsService" /> class.</summary>
         public RecipeDetailsService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="RecipeDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public RecipeDetailsService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -39,7 +41,7 @@ namespace GW2DotNET.V1.Recipes.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(int recipeId)
         {
-            return this.GetRecipeDetails(recipeId, ServiceBase.DefaultLanguage);
+            return this.GetRecipeDetails(recipeId, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -50,12 +52,11 @@ namespace GW2DotNET.V1.Recipes.Details
         public Recipe GetRecipeDetails(int recipeId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new RecipeDetailsServiceRequest { RecipeId = recipeId, Language = language };
-            var result = this.Request<Recipe>(serviceRequest);
+            var serviceRequest = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
+            var result = this.serviceClient.Send<Recipe>(serviceRequest);
 
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
-
             foreach (var ingredient in result.Ingredients)
             {
                 ingredient.Language = language.TwoLetterISOLanguageName;
@@ -70,7 +71,7 @@ namespace GW2DotNET.V1.Recipes.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId)
         {
-            return this.GetRecipeDetailsAsync(recipeId, CancellationToken.None);
+            return this.GetRecipeDetailsAsync(recipeId, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -80,7 +81,7 @@ namespace GW2DotNET.V1.Recipes.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CancellationToken cancellationToken)
         {
-            return this.GetRecipeDetailsAsync(recipeId, ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetRecipeDetailsAsync(recipeId, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -102,15 +103,14 @@ namespace GW2DotNET.V1.Recipes.Details
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new RecipeDetailsServiceRequest { RecipeId = recipeId, Language = language };
-            var t1 = this.RequestAsync<Recipe>(serviceRequest, cancellationToken).ContinueWith(
+            var serviceRequest = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
+            var t1 = this.serviceClient.SendAsync<Recipe>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;
 
                         // patch missing language information
                         result.Language = language.TwoLetterISOLanguageName;
-
                         foreach (var ingredient in result.Ingredients)
                         {
                             ingredient.Language = language.TwoLetterISOLanguageName;

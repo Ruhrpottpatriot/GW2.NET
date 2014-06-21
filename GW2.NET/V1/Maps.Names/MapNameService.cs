@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Maps.Names
 {
-    using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
@@ -19,19 +18,22 @@ namespace GW2DotNET.V1.Maps.Names
     using GW2DotNET.V1.Maps.Names.Contracts;
 
     /// <summary>Provides the default implementation of the map names service.</summary>
-    public class MapNameService : ServiceBase, IMapNameService
+    public class MapNameService : IMapNameService
     {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
         /// <summary>Initializes a new instance of the <see cref="MapNameService" /> class.</summary>
         public MapNameService()
-            : this(new ServiceClient(new Uri(Services.DataServiceUrl)))
+            : this(new ServiceClient())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="MapNameService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public MapNameService(IServiceClient serviceClient)
-            : base(serviceClient)
         {
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
@@ -39,7 +41,7 @@ namespace GW2DotNET.V1.Maps.Names
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public IEnumerable<MapName> GetMapNames()
         {
-            return this.GetMapNames(ServiceBase.DefaultLanguage);
+            return this.GetMapNames(CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
@@ -49,12 +51,12 @@ namespace GW2DotNET.V1.Maps.Names
         public IEnumerable<MapName> GetMapNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapNameServiceRequest { Language = language };
-            var result = this.Request<MapNameCollection>(serviceRequest);
+            var serviceRequest = new MapNameRequest { Culture = language };
+            var result = this.serviceClient.Send<MapNameCollection>(serviceRequest);
 
+            // patch missing language information
             foreach (var mapName in result)
             {
-                // patch missing language information
                 mapName.Language = language;
             }
 
@@ -66,7 +68,7 @@ namespace GW2DotNET.V1.Maps.Names
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<MapName>> GetMapNamesAsync()
         {
-            return this.GetMapNamesAsync(CancellationToken.None);
+            return this.GetMapNamesAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
@@ -75,7 +77,7 @@ namespace GW2DotNET.V1.Maps.Names
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<MapName>> GetMapNamesAsync(CancellationToken cancellationToken)
         {
-            return this.GetMapNamesAsync(ServiceBase.DefaultLanguage, cancellationToken);
+            return this.GetMapNamesAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
@@ -95,17 +97,19 @@ namespace GW2DotNET.V1.Maps.Names
         public Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapNameServiceRequest { Language = language };
-            var t1 = this.RequestAsync<MapNameCollection>(serviceRequest, cancellationToken).ContinueWith(
+            var serviceRequest = new MapNameRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync<MapNameCollection>(serviceRequest, cancellationToken).ContinueWith(
                 task =>
                     {
-                        foreach (var mapName in task.Result)
+                        var result = task.Result;
+
+                        // patch missing language information
+                        foreach (var mapName in result)
                         {
-                            // patch missing language information
                             mapName.Language = language;
                         }
 
-                        return task.Result;
+                        return result;
                     }, 
                 cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<MapName>>(task => task.Result, cancellationToken);
