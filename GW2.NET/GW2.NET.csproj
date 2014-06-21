@@ -109,7 +109,6 @@
     <Compile Include="Common\ILocalizable.cs" />
     <Compile Include="Common\IRequest.cs" />
     <Compile Include="Common\ServiceException.cs" />
-    <Compile Include="Extensions\CultureInfoExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\HttpStatusCodeExtensions.cs" />
     <Compile Include="Extensions\Int32Extensions.cs" />
