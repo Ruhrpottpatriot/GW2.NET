@@ -19,7 +19,7 @@ namespace GW2DotNET.Common
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
         TResult Send<TResult>(IRequest request);
-        
+
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>

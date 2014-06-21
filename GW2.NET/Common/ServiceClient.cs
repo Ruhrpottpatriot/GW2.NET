@@ -6,7 +6,7 @@
 //   Provides a default implementation for the <see cref="IServiceClient" /> interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Common
+namespace GW2DotNET.Common
 {
     using System;
     using System.IO;
@@ -15,7 +15,6 @@ namespace GW2DotNET.V1.Common
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.Utilities;
 

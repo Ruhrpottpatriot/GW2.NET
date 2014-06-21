@@ -14,7 +14,6 @@ namespace GW2DotNET.V1.Skins.Details
 
     using GW2DotNET.Common;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Skins.Details.Contracts;
 
     /// <summary>Provides the default implementation of the skin details service.</summary>

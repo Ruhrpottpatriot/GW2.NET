@@ -36,6 +36,9 @@ namespace GW2DotNET.V1.DynamicEvents.Names
             }
         }
 
+        /// <summary>Gets or sets the world identifier.</summary>
+        public int? WorldId { get; set; }
+
         /// <summary>Gets the request parameters.</summary>
         /// <returns>A collection of parameters.</returns>
         public IEnumerable<KeyValuePair<string, string>> GetParameters()
@@ -64,8 +67,5 @@ namespace GW2DotNET.V1.DynamicEvents.Names
                 yield return new KeyValuePair<string, string>("lang", this.Culture.TwoLetterISOLanguageName);
             }
         }
-
-        /// <summary>Gets or sets the world identifier.</summary>
-        public int? WorldId { get; set; }
     }
 }

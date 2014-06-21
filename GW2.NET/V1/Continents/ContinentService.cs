@@ -13,7 +13,6 @@ namespace GW2DotNET.V1.Continents
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
     using GW2DotNET.V1.Continents.Contracts;
 
     /// <summary>Provides the default implementation of the continents service.</summary>
