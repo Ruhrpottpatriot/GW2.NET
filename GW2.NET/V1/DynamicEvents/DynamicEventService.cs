@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Common;
     using GW2DotNET.V1.DynamicEvents.Contracts;
 

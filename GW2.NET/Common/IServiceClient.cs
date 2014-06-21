@@ -6,12 +6,10 @@
 //   Provides the interface for service clients.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Common
+namespace GW2DotNET.Common
 {
     using System.Threading;
     using System.Threading.Tasks;
-
-    using GW2DotNET.Common;
 
     /// <summary>Provides the interface for service clients.</summary>
     public interface IServiceClient
