@@ -11,8 +11,8 @@ namespace GW2DotNET.V1.Files.Contracts
     using System;
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Rendering.Contracts;
 
     /// <summary>Represents information about a file that can be retrieved from the render service.</summary>
     public class Asset : JsonObject, IEquatable<Asset>, IComparable<Asset>, IRenderable

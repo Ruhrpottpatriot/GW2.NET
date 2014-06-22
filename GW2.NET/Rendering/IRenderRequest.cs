@@ -6,19 +6,13 @@
 //   Provides the interface for render service requests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Rendering
+namespace GW2DotNET.Rendering
 {
     using GW2DotNET.Common;
 
     /// <summary>Provides the interface for render service requests.</summary>
-    public interface IRenderRequest : IRequest
+    public interface IRenderRequest : IRequest, IRenderable
     {
-        /// <summary>Gets or sets the file identifier.</summary>
-        int FileId { get; set; }
-
-        /// <summary>Gets or sets the file signature.</summary>
-        string FileSignature { get; set; }
-
         /// <summary>Gets or sets the image format.</summary>
         string ImageFormat { get; set; }
     }
