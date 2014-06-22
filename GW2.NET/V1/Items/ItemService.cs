@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Items
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.V1.Items.Contracts;
 
     /// <summary>Provides the default implementation of the items service.</summary>
@@ -20,12 +21,6 @@ namespace GW2DotNET.V1.Items
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="ItemService" /> class.</summary>
-        public ItemService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="ItemService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -39,8 +34,8 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetItems()
         {
-            var serviceRequest = new ItemRequest();
-            var result = this.serviceClient.Send<ItemCollectionResult>(serviceRequest);
+            var request = new ItemRequest();
+            var result = this.serviceClient.Send(request, new JsonSerializer<ItemCollectionResult>());
 
             return result.Items;
         }
@@ -59,8 +54,8 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetItemsAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new ItemRequest();
-            var t1 = this.serviceClient.SendAsync<ItemCollectionResult>(serviceRequest, cancellationToken);
+            var request = new ItemRequest();
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ItemCollectionResult>(), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Items, cancellationToken);
 
             return t2;

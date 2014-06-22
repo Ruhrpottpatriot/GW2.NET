@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts;
 
     /// <summary>Provides the default implementation of the match details service.</summary>
@@ -19,12 +20,6 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="MatchDetailsService" /> class.</summary>
-        public MatchDetailsService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="MatchDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -39,7 +34,8 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
         public MatchDetails GetMatchDetails(string matchId)
         {
-            return this.serviceClient.Send<MatchDetails>(new MatchDetailsRequest { MatchId = matchId });
+            var request = new MatchDetailsRequest { MatchId = matchId };
+            return this.serviceClient.Send(request, new JsonSerializer<MatchDetails>());
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
@@ -58,7 +54,8 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
         public Task<MatchDetails> GetMatchDetailsAsync(string matchId, CancellationToken cancellationToken)
         {
-            return this.serviceClient.SendAsync<MatchDetails>(new MatchDetailsRequest { MatchId = matchId }, cancellationToken);
+            var request = new MatchDetailsRequest { MatchId = matchId };
+            return this.serviceClient.SendAsync(request, new JsonSerializer<MatchDetails>(), cancellationToken);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts;
 
@@ -22,12 +23,6 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="ObjectiveNameService" /> class.</summary>
-        public ObjectiveNameService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="ObjectiveNameService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -51,8 +46,8 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         public IEnumerable<ObjectiveName> GetObjectiveNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ObjectiveNameRequest { Culture = language };
-            var result = this.serviceClient.Send<ObjectiveNameCollection>(serviceRequest);
+            var request = new ObjectiveNameRequest { Culture = language };
+            var result = this.serviceClient.Send(request, new JsonSerializer<ObjectiveNameCollection>());
 
             // patch missing language information
             foreach (var objectiveName in result)
@@ -97,8 +92,8 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ObjectiveNameRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync<ObjectiveNameCollection>(serviceRequest, cancellationToken).ContinueWith(
+            var request = new ObjectiveNameRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ObjectiveNameCollection>(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

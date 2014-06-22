@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Colors
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Colors.Contracts;
 
@@ -22,12 +23,6 @@ namespace GW2DotNET.V1.Colors
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="ColorService" /> class.</summary>
-        public ColorService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="ColorService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -51,8 +46,8 @@ namespace GW2DotNET.V1.Colors
         public IEnumerable<ColorPalette> GetColors(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ColorRequest { Culture = language };
-            var result = this.serviceClient.Send<ColorCollectionResult>(serviceRequest);
+            var request = new ColorRequest { Culture = language };
+            var result = this.serviceClient.Send(request, new JsonSerializer<ColorCollectionResult>());
 
             // patch missing language information
             foreach (var colorPalette in result.Colors.Values)
@@ -97,8 +92,8 @@ namespace GW2DotNET.V1.Colors
         public Task<IEnumerable<ColorPalette>> GetColorsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ColorRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync<ColorCollectionResult>(serviceRequest, cancellationToken);
+            var request = new ColorRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ColorCollectionResult>(), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<ColorPalette>>(
                 task =>
                     {

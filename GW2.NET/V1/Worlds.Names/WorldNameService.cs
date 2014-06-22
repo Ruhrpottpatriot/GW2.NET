@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Worlds.Names
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Worlds.Names.Contracts;
 
@@ -22,12 +23,6 @@ namespace GW2DotNET.V1.Worlds.Names
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="WorldNameService" /> class.</summary>
-        public WorldNameService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="WorldNameService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -51,8 +46,8 @@ namespace GW2DotNET.V1.Worlds.Names
         public IEnumerable<WorldName> GetWorldNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new WorldNameRequest { Culture = language };
-            var result = this.serviceClient.Send<WorldNameCollection>(serviceRequest);
+            var request = new WorldNameRequest { Culture = language };
+            var result = this.serviceClient.Send(request, new JsonSerializer<WorldNameCollection>());
 
             // patch missing language information
             foreach (var worldName in result)
@@ -98,7 +93,7 @@ namespace GW2DotNET.V1.Worlds.Names
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var worldNamesRequest = new WorldNameRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync<WorldNameCollection>(worldNamesRequest, cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(worldNamesRequest, new JsonSerializer<WorldNameCollection>(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

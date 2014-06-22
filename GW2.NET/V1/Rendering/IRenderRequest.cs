@@ -8,8 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Rendering
 {
+    using GW2DotNET.Common;
+
     /// <summary>Provides the interface for render service requests.</summary>
-    public interface IRenderRequest
+    public interface IRenderRequest : IRequest
     {
         /// <summary>Gets or sets the file identifier.</summary>
         int FileId { get; set; }

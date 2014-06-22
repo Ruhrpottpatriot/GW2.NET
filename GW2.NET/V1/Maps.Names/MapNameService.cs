@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Maps.Names
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Maps.Names.Contracts;
 
@@ -22,12 +23,6 @@ namespace GW2DotNET.V1.Maps.Names
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="MapNameService" /> class.</summary>
-        public MapNameService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="MapNameService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -51,8 +46,8 @@ namespace GW2DotNET.V1.Maps.Names
         public IEnumerable<MapName> GetMapNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapNameRequest { Culture = language };
-            var result = this.serviceClient.Send<MapNameCollection>(serviceRequest);
+            var request = new MapNameRequest { Culture = language };
+            var result = this.serviceClient.Send(request, new JsonSerializer<MapNameCollection>());
 
             // patch missing language information
             foreach (var mapName in result)
@@ -97,8 +92,8 @@ namespace GW2DotNET.V1.Maps.Names
         public Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapNameRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync<MapNameCollection>(serviceRequest, cancellationToken).ContinueWith(
+            var request = new MapNameRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapNameCollection>(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;
