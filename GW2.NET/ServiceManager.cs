@@ -6,11 +6,10 @@
 //   Provides the default implementation of the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1
+namespace GW2DotNET
 {
     using System;
     using System.Collections.Generic;
-    using System.Drawing;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -46,8 +45,6 @@ namespace GW2DotNET.V1
     using GW2DotNET.V1.Recipes;
     using GW2DotNET.V1.Recipes.Details;
     using GW2DotNET.V1.Recipes.Details.Contracts;
-    using GW2DotNET.V1.Rendering;
-    using GW2DotNET.V1.Rendering.Contracts;
     using GW2DotNET.V1.Skins;
     using GW2DotNET.V1.Skins.Details;
     using GW2DotNET.V1.Skins.Details.Contracts;
@@ -77,7 +74,6 @@ namespace GW2DotNET.V1
                                   IMapNameService, 
                                   IRecipeService, 
                                   IRecipeDetailsService, 
-                                  IRenderService, 
                                   IWorldNameService, 
                                   IMatchService, 
                                   IMatchDetailsService, 
@@ -143,9 +139,6 @@ namespace GW2DotNET.V1
         private readonly IRecipeService recipeService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IRenderService renderService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly ISkinDetailsService skinDetailsService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
@@ -174,7 +167,6 @@ namespace GW2DotNET.V1
         /// <param name="objectiveNameService">The objective name service.</param>
         /// <param name="recipeDetailsService">The recipe details service.</param>
         /// <param name="recipeService">The recipe service.</param>
-        /// <param name="renderService">The render service.</param>
         /// <param name="worldNameService">The world name service.</param>
         /// <param name="skinService">The skin service.</param>
         /// <param name="skinDetailsService">The skin details Service.</param>
@@ -198,7 +190,6 @@ namespace GW2DotNET.V1
             IObjectiveNameService objectiveNameService, 
             IRecipeDetailsService recipeDetailsService, 
             IRecipeService recipeService, 
-            IRenderService renderService, 
             IWorldNameService worldNameService, 
             ISkinService skinService, 
             ISkinDetailsService skinDetailsService)
@@ -222,7 +213,6 @@ namespace GW2DotNET.V1
             this.objectiveNameService = objectiveNameService;
             this.recipeDetailsService = recipeDetailsService;
             this.recipeService = recipeService;
-            this.renderService = renderService;
             this.worldNameService = worldNameService;
             this.skinService = skinService;
             this.skinDetailsService = skinDetailsService;
@@ -230,14 +220,13 @@ namespace GW2DotNET.V1
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
         public ServiceManager()
-            : this(new ServiceClient(new Uri("https://api.guildwars2.com")), new ServiceClient(new Uri("https://render.guildwars2.com")))
+            : this(new ServiceClient(new Uri("https://api.guildwars2.com")))
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        /// <param name="renderServiceClient">The render service client.</param>
-        public ServiceManager(IServiceClient serviceClient, IServiceClient renderServiceClient)
+        public ServiceManager(IServiceClient serviceClient)
         {
             this.buildService = new BuildService(serviceClient);
             this.colorService = new ColorService(serviceClient);
@@ -258,7 +247,6 @@ namespace GW2DotNET.V1
             this.objectiveNameService = new ObjectiveNameService(serviceClient);
             this.recipeDetailsService = new RecipeDetailsService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
-            this.renderService = new RenderService(renderServiceClient);
             this.worldNameService = new WorldNameService(serviceClient);
             this.skinService = new SkinService(serviceClient);
             this.skinDetailsService = new SkinDetailsService(serviceClient);
@@ -789,37 +777,6 @@ namespace GW2DotNET.V1
         public Task<Guild> GetGuildDetailsByNameAsync(string guildName, CancellationToken cancellationToken)
         {
             return this.guildDetailsService.GetGuildDetailsByNameAsync(guildName, cancellationToken);
-        }
-
-        /// <summary>Gets an image.</summary>
-        /// <param name="file">The file.</param>
-        /// <param name="imageFormat">The image Format.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Image GetImage(IRenderable file, string imageFormat)
-        {
-            return this.renderService.GetImage(file, imageFormat);
-        }
-
-        /// <summary>Gets an image.</summary>
-        /// <param name="file">The file.</param>
-        /// <param name="imageFormat">The image format.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> GetImageAsync(IRenderable file, string imageFormat)
-        {
-            return this.renderService.GetImageAsync(file, imageFormat, CancellationToken.None);
-        }
-
-        /// <summary>Gets an image.</summary>
-        /// <param name="file">The file.</param>
-        /// <param name="imageFormat">The image format.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
-        {
-            return this.renderService.GetImageAsync(file, imageFormat, cancellationToken);
         }
 
         /// <summary>Gets an item and its localized details.</summary>

@@ -6,13 +6,13 @@
 //   Provides the interface for the render service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Rendering
+namespace GW2DotNET.Rendering
 {
     using System.Drawing;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Rendering.Contracts;
+    using GW2DotNET.Common;
 
     /// <summary>Provides the interface for the render service.</summary>
     public interface IRenderService

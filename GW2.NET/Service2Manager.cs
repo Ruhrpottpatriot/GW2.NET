@@ -1,12 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ServiceManager.cs" company="GW2.NET Coding Team">
+// <copyright file="Service2Manager.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Provides access to the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2
+namespace GW2DotNET
 {
     using System;
     using System.Threading;
@@ -17,20 +17,20 @@ namespace GW2DotNET.V2
     using GW2DotNET.V2.Builds.Contracts;
 
     /// <summary>Provides access to the Guild Wars 2 service.</summary>
-    public class ServiceManager : IBuildService
+    public class Service2Manager : IBuildService
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="Service2Manager"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ServiceManager(IServiceClient serviceClient)
+        public Service2Manager(IServiceClient serviceClient)
         {
             this.serviceClient = serviceClient;
         }
 
-        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
-        public ServiceManager()
+        /// <summary>Initializes a new instance of the <see cref="Service2Manager"/> class.</summary>
+        public Service2Manager()
             : this(new ServiceClient(new Uri("https://api.guildwars2.com")))
         {
         }
