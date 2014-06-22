@@ -16,6 +16,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.DynamicEvents.Details.Contracts;
 
@@ -24,12 +25,6 @@ namespace GW2DotNET.V1.DynamicEvents.Details
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsService" /> class.</summary>
-        public DynamicEventDetailsService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -53,8 +48,8 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public IEnumerable<DynamicEventDetails> GetDynamicEventDetails(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsRequest { Culture = language };
-            var result = this.serviceClient.Send<DynamicEventDetailsCollectionResult>(serviceRequest);
+            var request = new DynamicEventDetailsRequest { Culture = language };
+            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventDetailsCollectionResult>());
 
             // patch missing language information
             foreach (var dynamicEventDetails in result.EventDetails.Values)
@@ -82,8 +77,8 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public DynamicEventDetails GetDynamicEventDetails(Guid eventId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            var result = this.serviceClient.Send<DynamicEventDetailsCollectionResult>(serviceRequest);
+            var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
+            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventDetailsCollectionResult>());
 
             // patch missing language information
             foreach (var dynamicEventDetails in result.EventDetails.Values)
@@ -128,8 +123,8 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public Task<IEnumerable<DynamicEventDetails>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
+            var request = new DynamicEventDetailsRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventDetailsCollectionResult>(), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<DynamicEventDetails>>(
                 task =>
                     {
@@ -186,8 +181,8 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public Task<DynamicEventDetails> GetDynamicEventDetailsAsync(Guid eventId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            var t1 = this.serviceClient.SendAsync<DynamicEventDetailsCollectionResult>(serviceRequest, cancellationToken);
+            var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventDetailsCollectionResult>(), cancellationToken);
             var t2 = t1.ContinueWith(
                 task =>
                     {

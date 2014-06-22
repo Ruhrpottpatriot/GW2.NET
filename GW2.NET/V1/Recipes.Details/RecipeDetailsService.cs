@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Recipes.Details
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Recipes.Details.Contracts;
 
@@ -21,12 +22,6 @@ namespace GW2DotNET.V1.Recipes.Details
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="RecipeDetailsService" /> class.</summary>
-        public RecipeDetailsService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="RecipeDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -52,8 +47,8 @@ namespace GW2DotNET.V1.Recipes.Details
         public Recipe GetRecipeDetails(int recipeId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
-            var result = this.serviceClient.Send<Recipe>(serviceRequest);
+            var request = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
+            var result = this.serviceClient.Send(request, new JsonSerializer<Recipe>());
 
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
@@ -103,8 +98,8 @@ namespace GW2DotNET.V1.Recipes.Details
         public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
-            var t1 = this.serviceClient.SendAsync<Recipe>(serviceRequest, cancellationToken).ContinueWith(
+            var request = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Recipe>(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

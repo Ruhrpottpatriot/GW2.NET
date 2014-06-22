@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Items.Details
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Items.Details.Contracts;
 
@@ -21,12 +22,6 @@ namespace GW2DotNET.V1.Items.Details
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="ItemDetailsService" /> class.</summary>
-        public ItemDetailsService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="ItemDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -52,8 +47,8 @@ namespace GW2DotNET.V1.Items.Details
         public Item GetItemDetails(int itemId, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ItemDetailsRequest { ItemId = itemId, Culture = language };
-            var result = this.serviceClient.Send<Item>(serviceRequest);
+            var request = new ItemDetailsRequest { ItemId = itemId, Culture = language };
+            var result = this.serviceClient.Send(request, new JsonSerializer<Item>());
 
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
@@ -99,8 +94,8 @@ namespace GW2DotNET.V1.Items.Details
         public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new ItemDetailsRequest { ItemId = itemId, Culture = language };
-            var t1 = this.serviceClient.SendAsync<Item>(serviceRequest, cancellationToken).ContinueWith(
+            var request = new ItemDetailsRequest { ItemId = itemId, Culture = language };
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Item>(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

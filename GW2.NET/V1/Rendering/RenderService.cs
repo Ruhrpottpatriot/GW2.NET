@@ -12,6 +12,8 @@ namespace GW2DotNET.V1.Rendering
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Rendering.Contracts;
 
@@ -19,19 +21,13 @@ namespace GW2DotNET.V1.Rendering
     public class RenderService : IRenderService
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
-        private readonly IRenderServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="RenderService"/> class.</summary>
-        public RenderService()
-            : this(new RenderServiceClient())
-        {
-        }
+        private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="RenderService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public RenderService(IRenderServiceClient serviceClient)
+        public RenderService(IServiceClient serviceClient)
         {
-            Preconditions.EnsureNotNull(paramName: "ServiceClientOld", value: serviceClient);
+            Preconditions.EnsureNotNull(paramName: "serviceClient", value: serviceClient);
             this.serviceClient = serviceClient;
         }
 
@@ -45,7 +41,7 @@ namespace GW2DotNET.V1.Rendering
             Preconditions.EnsureNotNull(paramName: "file", value: file);
             Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
-            return this.serviceClient.Send(request);
+            return this.serviceClient.Send(request, new ImageSerializer());
         }
 
         /// <summary>Gets an image.</summary>
@@ -69,7 +65,7 @@ namespace GW2DotNET.V1.Rendering
             Preconditions.EnsureNotNull(paramName: "file", value: file);
             Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
-            return this.serviceClient.SendAsync(request, cancellationToken);
+            return this.serviceClient.SendAsync(request, new ImageSerializer(), cancellationToken);
         }
     }
 }

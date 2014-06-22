@@ -16,18 +16,30 @@ namespace GW2DotNET.Common
     using System.Threading.Tasks;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
-
-    using Newtonsoft.Json;
 
     /// <summary>Provides a default implementation for the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
     {
+        /// <summary>Infrastructure. Holds a reference to the base URI.</summary>
+        private readonly Uri baseUri;
+
+        /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
+        /// <param name="baseUri">The base URI.</param>
+        public ServiceClient(Uri baseUri)
+        {
+            Preconditions.EnsureNotNull(paramName: "baseUri", value: baseUri);
+            Preconditions.Ensure(baseUri.IsAbsoluteUri, "baseUri", "Parameter '{0}' must be an absolute URI.");
+            this.baseUri = baseUri;
+        }
+
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
+        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <returns>A collection of the specified type.</returns>
-        public TResult Send<TResult>(IRequest request)
+        /// <returns>An instance of the specified type.</returns>
+        public TResult Send<TResult>(IRequest request, ISerializer<TResult> serializer)
         {
             // Translate the request to form data
             var formData = new UrlEncodedForm();
@@ -37,31 +49,33 @@ namespace GW2DotNET.Common
             }
 
             // Build the resource URI
-            var uri = BuildUri(request.Resource, formData);
+            var uri = BuildUri(this.baseUri, request.Resource, formData);
 
             // Handle the request
             var httpWebRequest = CreateHttpWebRequest(uri);
             using (var response = GetHttpWebResponse(httpWebRequest))
             {
-                return DeserializeResponse<TResult>(response);
+                return DeserializeResponse(serializer, response);
             }
         }
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
+        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<TResult> SendAsync<TResult>(IRequest request)
+        public Task<TResult> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer)
         {
-            return this.SendAsync<TResult>(request, CancellationToken.None);
+            return this.SendAsync(request, serializer, CancellationToken.None);
         }
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
+        /// <param name="serializer">The serialization engine.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<TResult> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
+        public Task<TResult> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer, CancellationToken cancellationToken)
         {
             // Translate the request to form data
             var formData = new UrlEncodedForm();
@@ -71,7 +85,7 @@ namespace GW2DotNET.Common
             }
 
             // Build the resource URI
-            var uri = BuildUri(request.Resource, formData);
+            var uri = BuildUri(this.baseUri, request.Resource, formData);
 
             // Handle the request
             var httpWebRequest = CreateHttpWebRequest(uri);
@@ -80,19 +94,20 @@ namespace GW2DotNET.Common
                     {
                         using (var response = task.Result)
                         {
-                            return DeserializeResponse<TResult>(response);
+                            return DeserializeResponse(serializer, response);
                         }
                     }, 
                 cancellationToken);
         }
 
         /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="UriBuilder"/> class.</summary>
+        /// <param name="baseUri">The base URI.</param>
         /// <param name="resource">The resource name.</param>
         /// <param name="formData">The form data.</param>
         /// <returns>The <see cref="Uri"/>.</returns>
-        private static Uri BuildUri(string resource, UrlEncodedForm formData)
+        private static Uri BuildUri(Uri baseUri, string resource, UrlEncodedForm formData)
         {
-            var uriBuilder = new UriBuilder { Scheme = "https", Host = "api.guildwars2.com", Path = resource, Query = formData.GetQueryString() };
+            var uriBuilder = new UriBuilder(baseUri) { Path = resource, Query = formData.GetQueryString() };
             return uriBuilder.Uri;
         }
 
@@ -107,10 +122,11 @@ namespace GW2DotNET.Common
         }
 
         /// <summary>Infrastructure. Deserializes the response stream.</summary>
+        /// <param name="serializer">The serialization engine.</param>
         /// <param name="response">The response.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        private static TResult DeserializeResponse<TResult>(HttpWebResponse response)
+        private static TResult DeserializeResponse<TResult>(ISerializer<TResult> serializer, HttpWebResponse response)
         {
             var stream = response.GetResponseStream() ?? new MemoryStream();
 
@@ -127,10 +143,8 @@ namespace GW2DotNET.Common
 
             // Deserialize the response content
             using (stream)
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
             {
-                return JsonSerializer.CreateDefault().Deserialize<TResult>(jsonReader);
+                return serializer.Deserialize(stream);
             }
         }
 
@@ -155,10 +169,8 @@ namespace GW2DotNET.Common
                 // Wrap the exception in a ServiceException, then throw
                 using (var response = exception.Response)
                 using (var stream = response.GetResponseStream())
-                using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
-                using (var jsonReader = new JsonTextReader(streamReader))
                 {
-                    var errorResult = JsonSerializer.CreateDefault().Deserialize<ErrorResult>(jsonReader);
+                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(stream);
                     throw new ServiceException(null, errorResult, exception);
                 }
             }
@@ -184,10 +196,8 @@ namespace GW2DotNET.Common
                                 // Wrap the exception in a ServiceException, then throw
                                 using (var response = exception.Response)
                                 using (var stream = response.GetResponseStream())
-                                using (var streamReader = new StreamReader(stream ?? new MemoryStream()))
-                                using (var jsonReader = new JsonTextReader(streamReader))
                                 {
-                                    var errorResult = JsonSerializer.CreateDefault().Deserialize<ErrorResult>(jsonReader);
+                                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(stream);
                                     throw new ServiceException(null, errorResult, exception);
                                 }
                             }

@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.DynamicEvents.Names.Contracts;
 
@@ -22,12 +23,6 @@ namespace GW2DotNET.V1.DynamicEvents.Names
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="DynamicEventNameService" /> class.</summary>
-        public DynamicEventNameService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="DynamicEventNameService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -51,8 +46,8 @@ namespace GW2DotNET.V1.DynamicEvents.Names
         public IEnumerable<DynamicEventName> GetDynamicEventNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventNameRequest { Culture = language };
-            var result = this.serviceClient.Send<DynamicEventNameCollection>(serviceRequest);
+            var request = new DynamicEventNameRequest { Culture = language };
+            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventNameCollection>());
 
             // patch missing language information
             foreach (var eventName in result)
@@ -97,8 +92,8 @@ namespace GW2DotNET.V1.DynamicEvents.Names
         public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new DynamicEventNameRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync<DynamicEventNameCollection>(serviceRequest, cancellationToken);
+            var request = new DynamicEventNameRequest { Culture = language };
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventNameCollection>(), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<DynamicEventName>>(
                 task =>
                     {

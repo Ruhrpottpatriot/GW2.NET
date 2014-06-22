@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Skins
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.V1.Skins.Contracts;
 
     /// <summary>Provides the default implementation of the skins service.</summary>
@@ -20,12 +21,6 @@ namespace GW2DotNET.V1.Skins
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="SkinService" /> class.</summary>
-        public SkinService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="SkinService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -39,8 +34,8 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
         public IEnumerable<int> GetSkins()
         {
-            var serviceRequest = new SkinRequest();
-            var result = this.serviceClient.Send<SkinCollectionResult>(serviceRequest);
+            var request = new SkinRequest();
+            var result = this.serviceClient.Send(request, new JsonSerializer<SkinCollectionResult>());
 
             return result.Skins;
         }
@@ -59,8 +54,8 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
         public Task<IEnumerable<int>> GetSkinsAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new SkinRequest();
-            var t1 = this.serviceClient.SendAsync<SkinCollectionResult>(serviceRequest, cancellationToken);
+            var request = new SkinRequest();
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<SkinCollectionResult>(), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Skins, cancellationToken);
 
             return t2;

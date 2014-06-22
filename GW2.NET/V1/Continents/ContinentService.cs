@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Continents
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.V1.Continents.Contracts;
 
     /// <summary>Provides the default implementation of the continents service.</summary>
@@ -20,12 +21,6 @@ namespace GW2DotNET.V1.Continents
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="ContinentService" /> class.</summary>
-        public ContinentService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="ContinentService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -39,8 +34,8 @@ namespace GW2DotNET.V1.Continents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public IEnumerable<Continent> GetContinents()
         {
-            var serviceRequest = new ContinentRequest();
-            var result = this.serviceClient.Send<ContinentCollectionResult>(serviceRequest);
+            var request = new ContinentRequest();
+            var result = this.serviceClient.Send(request, new JsonSerializer<ContinentCollectionResult>());
 
             return result.Continents.Values;
         }
@@ -59,8 +54,8 @@ namespace GW2DotNET.V1.Continents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {
-            var serviceRequest = new ContinentRequest();
-            var t1 = this.serviceClient.SendAsync<ContinentCollectionResult>(serviceRequest, cancellationToken);
+            var request = new ContinentRequest();
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ContinentCollectionResult>(), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Continent>>(task => task.Result.Continents.Values, cancellationToken);
 
             return t2;

@@ -13,6 +13,7 @@ namespace GW2DotNET.V1.Maps.Floors
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Maps.Floors.Contracts;
 
@@ -21,12 +22,6 @@ namespace GW2DotNET.V1.Maps.Floors
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="MapFloorService" /> class.</summary>
-        public MapFloorService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="MapFloorService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -54,8 +49,8 @@ namespace GW2DotNET.V1.Maps.Floors
         public Floor GetMapFloor(int continentId, int floor, CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
-            var result = this.serviceClient.Send<Floor>(serviceRequest);
+            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
+            var result = this.serviceClient.Send(request, new JsonSerializer<Floor>());
 
             // patch missing floor information
             result.ContinentId = continentId;
@@ -109,8 +104,8 @@ namespace GW2DotNET.V1.Maps.Floors
         public Task<Floor> GetMapFloorAsync(int continentId, int floor, CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var serviceRequest = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
-            var t1 = this.serviceClient.SendAsync<Floor>(serviceRequest, cancellationToken).ContinueWith(
+            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Floor>(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

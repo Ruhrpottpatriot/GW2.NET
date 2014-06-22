@@ -12,6 +12,7 @@ namespace GW2DotNET.V2.Builds
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.V2.Builds.Contracts;
 
     /// <summary>Provides the default implementation of the build service.</summary>
@@ -19,12 +20,6 @@ namespace GW2DotNET.V2.Builds
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
-
-        /// <summary>Initializes a new instance of the <see cref="BuildService" /> class.</summary>
-        public BuildService()
-            : this(new ServiceClient())
-        {
-        }
 
         /// <summary>Initializes a new instance of the <see cref="BuildService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
@@ -38,7 +33,7 @@ namespace GW2DotNET.V2.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Build GetBuild()
         {
-            return this.serviceClient.Send<Build>(new BuildRequest());
+            return this.serviceClient.Send(new BuildRequest(), new JsonSerializer<Build>());
         }
 
         /// <summary>Gets the current build.</summary>
@@ -55,7 +50,7 @@ namespace GW2DotNET.V2.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
-            return this.serviceClient.SendAsync<Build>(new BuildRequest(), cancellationToken);
+            return this.serviceClient.SendAsync(new BuildRequest(), new JsonSerializer<Build>(), cancellationToken);
         }
     }
 }

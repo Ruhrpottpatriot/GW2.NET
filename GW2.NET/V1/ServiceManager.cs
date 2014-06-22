@@ -230,14 +230,14 @@ namespace GW2DotNET.V1
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
         public ServiceManager()
-            : this(new ServiceClient(), new RenderServiceClient())
+            : this(new ServiceClient(new Uri("https://api.guildwars2.com")), new ServiceClient(new Uri("https://render.guildwars2.com")))
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="renderServiceClient">The render service client.</param>
-        public ServiceManager(IServiceClient serviceClient, IRenderServiceClient renderServiceClient)
+        public ServiceManager(IServiceClient serviceClient, IServiceClient renderServiceClient)
         {
             this.buildService = new BuildService(serviceClient);
             this.colorService = new ColorService(serviceClient);
@@ -258,7 +258,7 @@ namespace GW2DotNET.V1
             this.objectiveNameService = new ObjectiveNameService(serviceClient);
             this.recipeDetailsService = new RecipeDetailsService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
-            this.renderService = new RenderService();
+            this.renderService = new RenderService(renderServiceClient);
             this.worldNameService = new WorldNameService(serviceClient);
             this.skinService = new SkinService(serviceClient);
             this.skinDetailsService = new SkinDetailsService(serviceClient);
