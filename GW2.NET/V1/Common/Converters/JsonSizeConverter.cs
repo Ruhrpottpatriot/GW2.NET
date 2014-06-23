@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Common.Converters
     using System.Drawing;
 
     using GW2DotNET.Extensions;
-    using GW2DotNET.Utilities;
 
     using Newtonsoft.Json;
 
@@ -41,18 +40,12 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var values = serializer.Deserialize<int[]>(reader);
-            try
+            if (values.Length != 2)
             {
-                Preconditions.EnsureExact(2, values.Length);
-            }
-            catch (ArgumentOutOfRangeException exception)
-            {
-                throw new JsonSerializationException("Invalid distance specifiers.", exception);
+                throw new JsonSerializationException("Invalid distance specifiers.");
             }
 
-            var width  = values[0];
-            var height = values[1];
-            return new Size(width, height);
+            return new Size(width: values[0], height: values[1]);
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>

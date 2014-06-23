@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Common.Converters
     using System.Drawing;
 
     using GW2DotNET.Extensions;
-    using GW2DotNET.Utilities;
 
     using Newtonsoft.Json;
 
@@ -41,19 +40,12 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var values = serializer.Deserialize<int[]>(reader);
-            try
+            if (values.Length != 3)
             {
-                Preconditions.EnsureExact(3, values.Length);
-            }
-            catch (ArgumentOutOfRangeException exception)
-            {
-                throw new JsonSerializationException("Invalid color channels.", exception);
+                throw new JsonSerializationException("Invalid color channels.");
             }
 
-            var red   = values[0];
-            var green = values[1];
-            var blue  = values[2];
-            return Color.FromArgb(red, green, blue);
+            return Color.FromArgb(red: values[0], green: values[1], blue: values[2]);
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>

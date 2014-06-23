@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Common.Converters
     using System.Drawing;
 
     using GW2DotNET.Extensions;
-    using GW2DotNET.Utilities;
 
     using Newtonsoft.Json;
 
@@ -41,15 +40,9 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var values = serializer.Deserialize<int[][]>(reader);
-            try
+            if (values.Length != 2 || values[0].Length != 2 || values[1].Length != 2)
             {
-                Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 2);
-                Preconditions.EnsureExact(actualValue: values[0].Length, expectedValue: 2);
-                Preconditions.EnsureExact(actualValue: values[1].Length, expectedValue: 2);
-            }
-            catch (ArgumentOutOfRangeException exception)
-            {
-                throw new JsonSerializationException("Invalid rectangle edge locations.", exception);
+                throw new JsonSerializationException("Invalid rectangle edge locations.");
             }
 
             var top    = values[0][0];

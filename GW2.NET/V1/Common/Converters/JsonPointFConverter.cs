@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Common.Converters
     using System.Drawing;
 
     using GW2DotNET.Extensions;
-    using GW2DotNET.Utilities;
 
     using Newtonsoft.Json;
 
@@ -41,18 +40,12 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var values = serializer.Deserialize<float[]>(reader);
-            try
+            if (values.Length != 2)
             {
-                Preconditions.EnsureExact(2, values.Length);
-            }
-            catch (ArgumentOutOfRangeException exception)
-            {
-                throw new JsonSerializationException("Invalid point coordinates.", exception);
+                throw new JsonSerializationException("Invalid point coordinates.");
             }
 
-            var x = values[0];
-            var y = values[1];
-            return new PointF(x, y);
+            return new PointF(x: values[0], y: values[1]);
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>
