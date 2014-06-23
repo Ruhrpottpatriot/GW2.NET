@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about leg protection.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class Leggings : Armor
     {
         /// <summary>Initializes a new instance of the <see cref="Leggings" /> class</summary>

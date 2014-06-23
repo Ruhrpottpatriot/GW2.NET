@@ -16,7 +16,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
     using Newtonsoft.Json.Linq;
 
     /// <summary>Represents an upgrade component.</summary>
-    [JsonConverter(typeof(UpgradeComponentConverter))]
     public abstract class UpgradeComponent : Item, IUpgrade
     {
         /// <summary>Backing field.</summary>

@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents an unknown location.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownLocation : Location
     {
         /// <summary>Initializes a new instance of the <see cref="UnknownLocation" /> class.</summary>

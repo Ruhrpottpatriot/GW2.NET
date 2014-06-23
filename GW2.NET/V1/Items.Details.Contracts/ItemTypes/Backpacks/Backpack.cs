@@ -10,13 +10,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backpacks
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents a backpack.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class Backpack : CombatItem, ISkinnable
     {
         /// <summary>Initializes a new instance of the <see cref="Backpack" /> class.</summary>

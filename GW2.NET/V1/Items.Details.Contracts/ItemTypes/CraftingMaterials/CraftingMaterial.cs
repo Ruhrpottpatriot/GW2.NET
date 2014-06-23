@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.CraftingMaterials
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents a crafting material.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class CraftingMaterial : Item
     {
         /// <summary>Initializes a new instance of the <see cref="CraftingMaterial" /> class.</summary>

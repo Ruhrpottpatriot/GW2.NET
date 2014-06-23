@@ -10,12 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a salvaging tool.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class SalvageTool : Tool
     {
         /// <summary>Initializes a new instance of the <see cref="SalvageTool" /> class.</summary>

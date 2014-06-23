@@ -1,34 +1,38 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GizmoConverter.cs" company="GW2.NET Coding Team">
+// <copyright file="UnlockerConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="Gizmo" /> from its <see cref="System.String" /> representation.
+//   Converts an instance of <see cref="Unlocker" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes.UnlockTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="Gizmo" /> from its <see cref="System.String" /> representation.</summary>
-    public class GizmoConverter : JsonConverter
+    /// <summary>Converts an instance of <see cref="Unlocker" /> from its <see cref="System.String" /> representation.</summary>
+    public class UnlockerConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<GizmoType, Type> KnownTypes = new Dictionary<GizmoType, Type>();
+        private static readonly IDictionary<UnlockType, Type> KnownTypes = new Dictionary<UnlockType, Type>();
 
-        /// <summary>Initializes static members of the <see cref="GizmoConverter" /> class.</summary>
-        static GizmoConverter()
+        /// <summary>Initializes static members of the <see cref="UnlockerConverter"/> class.</summary>
+        static UnlockerConverter()
         {
-            KnownTypes.Add(GizmoType.Unknown, typeof(UnknownGizmo));
-            KnownTypes.Add(GizmoType.Default, typeof(DefaultGizmo));
-            KnownTypes.Add(GizmoType.RentableContractNpc, typeof(RentableContractNpc));
-            KnownTypes.Add(GizmoType.UnlimitedConsumable, typeof(UnlimitedConsumable));
+            KnownTypes.Add(UnlockType.Unknown, typeof(UnknownUnlocker));
+            KnownTypes.Add(UnlockType.BagSlot, typeof(BagSlotUnlocker));
+            KnownTypes.Add(UnlockType.BankTab, typeof(BankTabUnlocker));
+            KnownTypes.Add(UnlockType.CraftingRecipe, typeof(CraftingRecipeUnlocker));
+            KnownTypes.Add(UnlockType.Dye, typeof(DyeUnlocker));
+            KnownTypes.Add(UnlockType.Content, typeof(ContentUnlocker));
+            KnownTypes.Add(UnlockType.CollectibleCapacity, typeof(CollectibleCapacityUnlocker));
         }
 
         /// <summary>
@@ -50,7 +54,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Gizmo).IsAssignableFrom(objectType);
+            return typeof(Unlocker) == objectType;
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
@@ -63,9 +67,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("gizmo");
+            var details = content.Property("consumable");
 
-            var detailsType = details == null ? content.Property("gizmo_type") : ((JObject)details.Value).Property("type");
+            var detailsType = details == null ? content.Property("unlock_type") : ((JObject)details.Value).Property("unlock_type");
 
             var type = detailsType.Value.Value<string>();
 
@@ -73,21 +77,21 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
 
             try
             {
-                GizmoType gizmoType;
+                UnlockType unlockType;
 
-                if (!Enum.TryParse(type, true, out gizmoType))
+                if (!Enum.TryParse(type, true, out unlockType))
                 {
-                    gizmoType = JsonSerializer.Create().Deserialize<GizmoType>(detailsType.CreateReader());
+                    unlockType = JsonSerializer.Create().Deserialize<UnlockType>(detailsType.CreateReader());
                 }
 
-                if (!KnownTypes.TryGetValue(gizmoType, out itemType))
+                if (!KnownTypes.TryGetValue(unlockType, out itemType))
                 {
-                    itemType = typeof(UnknownGizmo);
+                    itemType = typeof(UnknownUnlocker);
                 }
             }
             catch (JsonSerializationException)
             {
-                itemType = typeof(UnknownGizmo);
+                itemType = typeof(UnknownUnlocker);
             }
             finally
             {

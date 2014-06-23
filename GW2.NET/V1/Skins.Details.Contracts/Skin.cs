@@ -16,10 +16,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about an in-game item skin.</summary>
-    [JsonConverter(typeof(SkinConverter))]
     public abstract class Skin : JsonObject, IEquatable<Skin>, IComparable<Skin>, IRenderable
     {
         /// <summary>Infrastructure. Stores type information.</summary>

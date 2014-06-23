@@ -16,7 +16,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     using Newtonsoft.Json;
 
     /// <summary>Provides the base class for nourishment details.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public abstract class Nourishment : Consumable
     {
         /// <summary>Initializes a new instance of the <see cref="Nourishment"/> class.</summary>

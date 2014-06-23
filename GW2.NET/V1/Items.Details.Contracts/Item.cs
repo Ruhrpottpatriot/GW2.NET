@@ -18,7 +18,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     using Newtonsoft.Json.Linq;
 
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
-    [JsonConverter(typeof(ItemConverter))]
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
         /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>

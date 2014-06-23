@@ -1,34 +1,36 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GatheringToolConverter.cs" company="GW2.NET Coding Team">
+// <copyright file="UpgradeComponentConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="GatheringTool" /> from its <see cref="System.String" /> representation.
+//   Converts an instance of <see cref="UpgradeComponent" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.GatheringToolsTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents.UpgradeComponentTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="GatheringTool" /> from its <see cref="System.String" /> representation.</summary>
-    public class GatheringToolConverter : JsonConverter
+    /// <summary>Converts an instance of <see cref="UpgradeComponent" /> from its <see cref="System.String" /> representation.</summary>
+    public class UpgradeComponentConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<GatheringToolType, Type> KnownTypes = new Dictionary<GatheringToolType, Type>();
+        private static readonly IDictionary<UpgradeComponentType, Type> KnownTypes = new Dictionary<UpgradeComponentType, Type>();
 
-        /// <summary>Initializes static members of the <see cref="GatheringToolConverter" /> class.</summary>
-        static GatheringToolConverter()
+        /// <summary>Initializes static members of the <see cref="UpgradeComponentConverter" /> class.</summary>
+        static UpgradeComponentConverter()
         {
-            KnownTypes.Add(GatheringToolType.Unknown, typeof(UnknownGatheringTool));
-            KnownTypes.Add(GatheringToolType.Foraging, typeof(ForagingTool));
-            KnownTypes.Add(GatheringToolType.Logging, typeof(LoggingTool));
-            KnownTypes.Add(GatheringToolType.Mining, typeof(MiningTool));
+            KnownTypes.Add(UpgradeComponentType.Unknown, typeof(UnknownUpgradeComponent));
+            KnownTypes.Add(UpgradeComponentType.Default, typeof(DefaultUpgradeComponent));
+            KnownTypes.Add(UpgradeComponentType.Gem, typeof(Gem));
+            KnownTypes.Add(UpgradeComponentType.Rune, typeof(Rune));
+            KnownTypes.Add(UpgradeComponentType.Sigil, typeof(Sigil));
         }
 
         /// <summary>
@@ -50,7 +52,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(GatheringTool).IsAssignableFrom(objectType);
+            return typeof(UpgradeComponent) == objectType;
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
@@ -63,9 +65,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("gathering");
+            var details = content["upgrade_component"] as JObject;
 
-            var detailsType = details == null ? content.Property("gathering_type") : ((JObject)details.Value).Property("type");
+            var detailsType = details == null ? content.Property("upgrade_component_type") : details.Property("type");
 
             var type = detailsType.Value.Value<string>();
 
@@ -73,30 +75,34 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 
             try
             {
-                GatheringToolType gatheringToolType;
+                UpgradeComponentType upgradeComponentType;
 
-                if (!Enum.TryParse(type, true, out gatheringToolType))
+                if (!Enum.TryParse(type, true, out upgradeComponentType))
                 {
-                    gatheringToolType = JsonSerializer.Create().Deserialize<GatheringToolType>(detailsType.CreateReader());
+                    upgradeComponentType = JsonSerializer.Create().Deserialize<UpgradeComponentType>(detailsType.CreateReader());
                 }
 
-                if (!KnownTypes.TryGetValue(gatheringToolType, out itemType))
+                if (!KnownTypes.TryGetValue(upgradeComponentType, out itemType))
                 {
-                    itemType = typeof(UnknownGatheringTool);
+                    itemType = typeof(UnknownUpgradeComponent);
                 }
             }
             catch (JsonSerializationException)
             {
-                itemType = typeof(UnknownGatheringTool);
+                itemType = typeof(UnknownUpgradeComponent);
             }
             finally
             {
                 detailsType.Remove();
             }
 
-            var item = serializer.Deserialize(content.CreateReader(), itemType);
+            if (details != null)
+            {
+                // patch duplicate property
+                details.Property("flags").Replace(new JProperty("upgrade_component_flags", details.Property("flags").Value));
+            }
 
-            return item;
+            return serializer.Deserialize(content.CreateReader(), itemType);
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>

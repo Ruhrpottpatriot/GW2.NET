@@ -148,7 +148,6 @@
     <Compile Include="V1\Colors\ColorRequest.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />
     <Compile Include="V1\Common\Converters\ContentBasedTypeCreationConverter.cs" />
-    <Compile Include="V1\Common\Converters\DefaultJsonConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonBooleanConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonColorConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonPoint3DConverter.cs" />
@@ -176,16 +175,17 @@
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventDetailsCollectionResult.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventFlags.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\Location.cs" />
-    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationConverter.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationType.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\CylinderLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\PointCollection.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\PolygonLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\SphereLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\UnknownLocation.cs" />
+    <Compile Include="V1\DynamicEvents.Details\Converters\LocationConverter.cs" />
     <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsService.cs" />
     <Compile Include="V1\DynamicEvents.Details\IDynamicEventDetailsService.cs" />
+    <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsSerializerSettings.cs" />
     <Compile Include="V1\DynamicEvents.Names.Contracts\DynamicEventName.cs" />
     <Compile Include="V1\DynamicEvents.Names.Contracts\DynamicEventNameCollection.cs" />
     <Compile Include="V1\DynamicEvents.Names\DynamicEventNameService.cs" />
@@ -215,17 +215,11 @@
     <Compile Include="V1\Guilds.Details\IGuildDetailsService.cs" />
     <Compile Include="V1\Items.Details.Contracts\GameRestrictions.cs" />
     <Compile Include="V1\Items.Details.Contracts\Item.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemConverter.cs">
-      <DependentUpon>Item.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemFlags.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemRarity.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemRestrictions.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\Armor.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorConverter.cs">
-      <DependentUpon>Armor.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\AquaticHelm.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorTypes\Boots.cs" />
@@ -249,9 +243,6 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\ItemBuff.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\IUpgradable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\IUpgrade.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableConverter.cs">
-      <DependentUpon>Consumable.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\Consumable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\AppearanceChanger.cs" />
@@ -259,9 +250,6 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\ContractNpc.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Nourishment.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Food.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockerConverter.cs">
-      <DependentUpon>Unlocker.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnTransmutation.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UpgradeRemoval.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\GenericConsumable.cs" />
@@ -279,27 +267,18 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\DyeUnlocker.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\UnknownUnlocker.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Utility.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerConverter.cs">
-      <DependentUpon>Container.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\Container.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\DefaultContainer.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\GiftBox.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\UnknownContainer.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\CraftingMaterials\CraftingMaterial.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolConverter.cs">
-      <DependentUpon>GatheringTool.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\ForagingTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\LoggingTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\MiningTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\UnknownGatheringTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolType.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoConverter.cs">
-      <DependentUpon>Gizmo.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\Gizmo.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\DefaultGizmo.cs" />
@@ -307,16 +286,10 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnknownGizmo.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnlimitedConsumable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\MiniPets\MiniPet.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolConverter.cs">
-      <DependentUpon>Tool.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\Tool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\SalvageTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\UnknownTool.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketConverter.cs">
-      <DependentUpon>Trinket.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\Trinket.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Accessory.cs" />
@@ -325,9 +298,6 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\UnknownTrinket.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trophies\Trophy.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UnknownItem.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentConverter.cs">
-      <DependentUpon>UpgradeComponent.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeBonusCollection.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponent.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentFlags.cs" />
@@ -337,9 +307,6 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\Rune.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\Sigil.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeComponentTypes\UnknownUpgradeComponent.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponConverter.cs">
-      <DependentUpon>Weapon.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\Weapon.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponDamageType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponType.cs" />
@@ -369,6 +336,18 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Weapons\WeaponTypes\WarHorn.cs" />
     <Compile Include="V1\Items.Contracts\ItemCollection.cs" />
     <Compile Include="V1\Items.Contracts\ItemCollectionResult.cs" />
+    <Compile Include="V1\Items.Details\Converters\ArmorConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\ConsumableConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\ContainerConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\GatheringToolConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\GizmoConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\ItemConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\ToolConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\TrinketConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\UnlockerConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\UpgradeComponentConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\WeaponConverter.cs" />
+    <Compile Include="V1\Items.Details\ItemSerializerSettings.cs" />
     <Compile Include="V1\Maps.Floors.Contracts\Floor.cs" />
     <Compile Include="V1\Maps.Floors.Contracts\Regions\Region.cs" />
     <Compile Include="V1\Maps.Floors.Contracts\Regions\RegionCollection.cs" />
@@ -393,9 +372,6 @@
     <Compile Include="V1\Recipes.Details.Contracts\IngredientCollection.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\Ingredient.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\Recipe.cs" />
-    <Compile Include="V1\Recipes.Details.Contracts\RecipeConverter.cs">
-      <DependentUpon>Recipe.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Recipes.Details.Contracts\RecipeType.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\BackpackRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\AmuletRecipe.cs" />
@@ -449,12 +425,11 @@
     <Compile Include="V1\Recipes.Details.Contracts\RecipeUnlockTypes.cs" />
     <Compile Include="V1\Recipes.Contracts\RecipeCollection.cs" />
     <Compile Include="V1\Recipes.Contracts\RecipeCollectionResult.cs" />
+    <Compile Include="V1\Recipes.Details\Converters\RecipeConverter.cs" />
+    <Compile Include="V1\Recipes.Details\RecipeSerializerSettings.cs" />
     <Compile Include="V1\Skins.Contracts\SkinCollection.cs" />
     <Compile Include="V1\Skins.Contracts\SkinCollectionResult.cs" />
     <Compile Include="V1\Skins.Details.Contracts\Skin.cs" />
-    <Compile Include="V1\Skins.Details.Contracts\SkinConverter.cs">
-      <DependentUpon>Skin.cs</DependentUpon>
-    </Compile>
     <Compile Include="V1\Skins.Details.Contracts\SkinFlags.cs" />
     <Compile Include="V1\Skins.Details.Contracts\SkinType.cs" />
     <Compile Include="V1\Skins.Details.Contracts\SkinTypes\Armors\ArmorSkin.cs" />
@@ -463,7 +438,9 @@
     <Compile Include="V1\Skins.Details.Contracts\SkinTypes\UnknownSkin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\SkinTypes\Weapons\WeaponSkin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\SkinTypes\Weapons\WeaponSkinDetails.cs" />
+    <Compile Include="V1\Skins.Details\Converters\SkinConverter.cs" />
     <Compile Include="V1\Skins.Details\ISkinDetailsService.cs" />
+    <Compile Include="V1\Skins.Details\SkinSerializerSettings.cs" />
     <Compile Include="V1\Skins.Details\SkinDetailsService.cs" />
     <Compile Include="V1\Skins.Details\SkinDetailsRequest.cs" />
     <Compile Include="V1\Skins\ISkinService.cs" />

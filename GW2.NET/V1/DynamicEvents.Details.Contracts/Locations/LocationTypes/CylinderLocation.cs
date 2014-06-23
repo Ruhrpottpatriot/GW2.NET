@@ -10,12 +10,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents a cylindrical location of an event on the map.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class CylinderLocation : Location
     {
         /// <summary>Initializes a new instance of the <see cref="CylinderLocation" /> class.</summary>

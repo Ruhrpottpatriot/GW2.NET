@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents an unknown item..</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownItem : Item
     {
         /// <summary>Initializes a new instance of the <see cref="UnknownItem" /> class.</summary>

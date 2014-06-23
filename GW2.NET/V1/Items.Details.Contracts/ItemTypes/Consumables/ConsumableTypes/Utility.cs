@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a utility consumable item.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class Utility : Nourishment
     {
         /// <summary>Initializes a new instance of the <see cref="Utility" /> class.</summary>

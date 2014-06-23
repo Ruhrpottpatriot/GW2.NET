@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a collectible capacity unlock item.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class CollectibleCapacityUnlocker : Unlocker
     {
         /// <summary>Initializes a new instance of the <see cref="CollectibleCapacityUnlocker" /> class.</summary>

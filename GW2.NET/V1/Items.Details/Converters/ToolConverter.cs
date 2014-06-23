@@ -6,11 +6,12 @@
 //   Converts an instance of <see cref="Tool" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes;
 
     using Newtonsoft.Json;
@@ -48,7 +49,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Tool).IsAssignableFrom(objectType);
+            return typeof(Tool) == objectType;
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>

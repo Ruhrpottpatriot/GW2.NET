@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about an amulet.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class Amulet : Trinket
     {
         /// <summary>Initializes a new instance of the <see cref="Amulet" /> class.</summary>

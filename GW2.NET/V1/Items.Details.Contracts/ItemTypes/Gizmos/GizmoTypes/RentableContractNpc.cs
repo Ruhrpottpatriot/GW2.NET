@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a rentable contract NPC.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class RentableContractNpc : Gizmo
     {
         /// <summary>Initializes a new instance of the <see cref="RentableContractNpc" /> class.</summary>

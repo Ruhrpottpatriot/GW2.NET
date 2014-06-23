@@ -10,12 +10,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents a spherical location of an event on the map.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class SphereLocation : Location
     {
         /// <summary>Initializes a new instance of the <see cref="SphereLocation" /> class.</summary>

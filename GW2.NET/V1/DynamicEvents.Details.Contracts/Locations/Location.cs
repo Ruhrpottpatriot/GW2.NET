@@ -18,7 +18,6 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
     using Newtonsoft.Json;
 
     /// <summary>Represents the location of an event on the map.</summary>
-    [JsonConverter(typeof(LocationConverter))]
     public abstract class Location : JsonObject, IEquatable<Location>
     {
         /// <summary>Infrastructure. Stores type information.</summary>

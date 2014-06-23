@@ -18,7 +18,6 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     using Newtonsoft.Json;
 
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
-    [JsonConverter(typeof(RecipeConverter))]
     public abstract class Recipe : JsonObject, IEquatable<Recipe>, IComparable<Recipe>
     {
         /// <summary>Initializes a new instance of the <see cref="Recipe"/> class.</summary>

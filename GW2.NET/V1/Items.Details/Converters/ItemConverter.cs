@@ -7,12 +7,13 @@
 //   representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
     using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Items.Details.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backpacks;
@@ -64,7 +65,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return KnownTypes.Values.Contains(objectType);
+            return typeof(Item) == objectType;
         }
 
         /// <summary>Gets the object type that will be used by the serializer.</summary>

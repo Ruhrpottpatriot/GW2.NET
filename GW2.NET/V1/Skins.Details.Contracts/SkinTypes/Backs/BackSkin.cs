@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Backs
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents a back skin.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class BackSkin : Skin
     {
         /// <summary>Initializes a new instance of the <see cref="BackSkin" /> class.</summary>

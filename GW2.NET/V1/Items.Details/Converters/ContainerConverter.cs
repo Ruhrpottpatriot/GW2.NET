@@ -1,48 +1,34 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="TrinketConverter.cs" company="GW2.NET Coding Team">
+// <copyright file="ContainerConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="Trinket" /> from its <see cref="System.String" /> representation.
+//   Converts an instance of <see cref="Container" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="Trinket" /> from its <see cref="System.String" /> representation.</summary>
-    public class TrinketConverter : JsonConverter
+    /// <summary>Converts an instance of <see cref="Container" /> from its <see cref="System.String" /> representation.</summary>
+    public class ContainerConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<TrinketType, Type> KnownTypes = new Dictionary<TrinketType, Type>();
+        private static readonly IDictionary<ContainerType, Type> KnownTypes = new Dictionary<ContainerType, Type>();
 
-        /// <summary>Initializes static members of the <see cref="TrinketConverter" /> class.</summary>
-        static TrinketConverter()
+        /// <summary>Initializes static members of the <see cref="ContainerConverter" /> class.</summary>
+        static ContainerConverter()
         {
-            KnownTypes.Add(TrinketType.Unknown, typeof(UnknownTrinket));
-            KnownTypes.Add(TrinketType.Accessory, typeof(Accessory));
-            KnownTypes.Add(TrinketType.Amulet, typeof(Amulet));
-            KnownTypes.Add(TrinketType.Ring, typeof(Ring));
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
-        /// </value>
-        public override bool CanWrite
-        {
-            get
-            {
-                return false;
-            }
+            KnownTypes.Add(ContainerType.Unknown, typeof(UnknownContainer));
+            KnownTypes.Add(ContainerType.Default, typeof(DefaultContainer));
+            KnownTypes.Add(ContainerType.GiftBox, typeof(GiftBox));
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
@@ -50,7 +36,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Trinket).IsAssignableFrom(objectType);
+            return typeof(Container) == objectType;
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
@@ -63,9 +49,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("trinket");
+            var details = content.Property("container");
 
-            var detailsType = details == null ? content.Property("trinket_type") : ((JObject)details.Value).Property("type");
+            var detailsType = details == null ? content.Property("container_type") : ((JObject)details.Value).Property("type");
 
             var type = detailsType.Value.Value<string>();
 
@@ -73,28 +59,30 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
 
             try
             {
-                TrinketType trinketType;
+                ContainerType containerType;
 
-                if (!Enum.TryParse(type, true, out trinketType))
+                if (!Enum.TryParse(type, true, out containerType))
                 {
-                    trinketType = JsonSerializer.Create().Deserialize<TrinketType>(detailsType.CreateReader());
+                    containerType = JsonSerializer.Create().Deserialize<ContainerType>(detailsType.CreateReader());
                 }
 
-                if (!KnownTypes.TryGetValue(trinketType, out itemType))
+                if (!KnownTypes.TryGetValue(containerType, out itemType))
                 {
-                    itemType = typeof(UnknownTrinket);
+                    itemType = typeof(UnknownContainer);
                 }
             }
             catch (JsonSerializationException)
             {
-                itemType = typeof(UnknownTrinket);
+                itemType = typeof(UnknownContainer);
             }
             finally
             {
                 detailsType.Remove();
             }
 
-            return serializer.Deserialize(content.CreateReader(), itemType);
+            var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            return item;
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>

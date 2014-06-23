@@ -12,10 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
 
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents a trinket.</summary>
-    [JsonConverter(typeof(TrinketConverter))]
     public abstract class Trinket : CombatItem
     {
         /// <summary>Initializes a new instance of the <see cref="Trinket"/> class.</summary>

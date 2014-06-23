@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a mace.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class Mace : Weapon
     {
         /// <summary>Initializes a new instance of the <see cref="Mace" /> class.</summary>

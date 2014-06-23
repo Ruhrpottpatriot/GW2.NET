@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a great sword crafting recipe.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class GreatSwordRecipe : Recipe
     {
         /// <summary>Initializes a new instance of the <see cref="GreatSwordRecipe" /> class.</summary>

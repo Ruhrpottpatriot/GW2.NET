@@ -10,10 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
 {
     using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents a gizmo.</summary>
-    [JsonConverter(typeof(GizmoConverter))]
     public abstract class Gizmo : Item
     {
         /// <summary>Initializes a new instance of the <see cref="Gizmo"/> class.</summary>

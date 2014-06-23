@@ -10,12 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a dye.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class DyeUnlocker : Unlocker
     {
         /// <summary>Initializes a new instance of the <see cref="DyeUnlocker" /> class.</summary>

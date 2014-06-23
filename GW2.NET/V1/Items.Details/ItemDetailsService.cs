@@ -20,6 +20,9 @@ namespace GW2DotNET.V1.Items.Details
     /// <summary>Provides the default implementation of the item details service.</summary>
     public class ItemDetailsService : IItemDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly ItemSerializerSettings Settings = new ItemSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -48,7 +51,7 @@ namespace GW2DotNET.V1.Items.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ItemDetailsRequest { ItemId = itemId, Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<Item>());
+            var result = this.serviceClient.Send(request, new JsonSerializer<Item>(Settings));
 
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
@@ -95,7 +98,7 @@ namespace GW2DotNET.V1.Items.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ItemDetailsRequest { ItemId = itemId, Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Item>(), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Item>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

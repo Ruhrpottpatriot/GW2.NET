@@ -1,38 +1,35 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ArmorConverter.cs" company="GW2.NET Coding Team">
+// <copyright file="GizmoConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="Armor" /> from its <see cref="System.String" /> representation.
+//   Converts an instance of <see cref="Gizmo" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="Armor" /> from its <see cref="System.String" /> representation.</summary>
-    public class ArmorConverter : JsonConverter
+    /// <summary>Converts an instance of <see cref="Gizmo" /> from its <see cref="System.String" /> representation.</summary>
+    public class GizmoConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<ArmorType, Type> KnownTypes = new Dictionary<ArmorType, Type>();
+        private static readonly IDictionary<GizmoType, Type> KnownTypes = new Dictionary<GizmoType, Type>();
 
-        /// <summary>Initializes static members of the <see cref="ArmorConverter" /> class.</summary>
-        static ArmorConverter()
+        /// <summary>Initializes static members of the <see cref="GizmoConverter" /> class.</summary>
+        static GizmoConverter()
         {
-            KnownTypes.Add(ArmorType.Unknown, typeof(UnknownArmor));
-            KnownTypes.Add(ArmorType.Boots, typeof(Boots));
-            KnownTypes.Add(ArmorType.Coat, typeof(Coat));
-            KnownTypes.Add(ArmorType.Gloves, typeof(Gloves));
-            KnownTypes.Add(ArmorType.Helm, typeof(Helm));
-            KnownTypes.Add(ArmorType.HelmAquatic, typeof(AquaticHelm));
-            KnownTypes.Add(ArmorType.Leggings, typeof(Leggings));
-            KnownTypes.Add(ArmorType.Shoulders, typeof(Shoulders));
+            KnownTypes.Add(GizmoType.Unknown, typeof(UnknownGizmo));
+            KnownTypes.Add(GizmoType.Default, typeof(DefaultGizmo));
+            KnownTypes.Add(GizmoType.RentableContractNpc, typeof(RentableContractNpc));
+            KnownTypes.Add(GizmoType.UnlimitedConsumable, typeof(UnlimitedConsumable));
         }
 
         /// <summary>
@@ -54,7 +51,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Armor).IsAssignableFrom(objectType);
+            return typeof(Gizmo) == objectType;
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
@@ -67,9 +64,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("armor");
+            var details = content.Property("gizmo");
 
-            var detailsType = details == null ? content.Property("armor_type") : ((JObject)details.Value).Property("type");
+            var detailsType = details == null ? content.Property("gizmo_type") : ((JObject)details.Value).Property("type");
 
             var type = detailsType.Value.Value<string>();
 
@@ -77,21 +74,21 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
 
             try
             {
-                ArmorType armorType;
+                GizmoType gizmoType;
 
-                if (!Enum.TryParse(type, true, out armorType))
+                if (!Enum.TryParse(type, true, out gizmoType))
                 {
-                    armorType = JsonSerializer.Create().Deserialize<ArmorType>(detailsType.CreateReader());
+                    gizmoType = JsonSerializer.Create().Deserialize<GizmoType>(detailsType.CreateReader());
                 }
 
-                if (!KnownTypes.TryGetValue(armorType, out itemType))
+                if (!KnownTypes.TryGetValue(gizmoType, out itemType))
                 {
-                    itemType = typeof(UnknownArmor);
+                    itemType = typeof(UnknownGizmo);
                 }
             }
             catch (JsonSerializationException)
             {
-                itemType = typeof(UnknownArmor);
+                itemType = typeof(UnknownGizmo);
             }
             finally
             {

@@ -20,6 +20,9 @@ namespace GW2DotNET.V1.Skins.Details
     /// <summary>Provides the default implementation of the skin details service.</summary>
     public class SkinDetailsService : ISkinDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly SkinSerializerSettings Settings = new SkinSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -48,7 +51,7 @@ namespace GW2DotNET.V1.Skins.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new SkinDetailsRequest { SkinId = skinId, Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<Skin>());
+            var result = this.serviceClient.Send(request, new JsonSerializer<Skin>(Settings));
 
             // patch missing language information
             result.Language = language;
@@ -95,7 +98,7 @@ namespace GW2DotNET.V1.Skins.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new SkinDetailsRequest { SkinId = skinId, Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Skin>(), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Skin>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

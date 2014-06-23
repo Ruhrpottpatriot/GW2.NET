@@ -1,35 +1,55 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UpgradeComponentConverter.cs" company="GW2.NET Coding Team">
+// <copyright file="WeaponConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="UpgradeComponent" /> from its <see cref="System.String" /> representation.
+//   Converts an instance of <see cref="Weapon" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents.UpgradeComponentTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="UpgradeComponent" /> from its <see cref="System.String" /> representation.</summary>
-    public class UpgradeComponentConverter : JsonConverter
+    /// <summary>Converts an instance of <see cref="Weapon" /> from its <see cref="System.String" /> representation.</summary>
+    public class WeaponConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<UpgradeComponentType, Type> KnownTypes = new Dictionary<UpgradeComponentType, Type>();
+        private static readonly IDictionary<WeaponType, Type> KnownTypes = new Dictionary<WeaponType, Type>();
 
-        /// <summary>Initializes static members of the <see cref="UpgradeComponentConverter" /> class.</summary>
-        static UpgradeComponentConverter()
+        /// <summary>Initializes static members of the <see cref="WeaponConverter" /> class.</summary>
+        static WeaponConverter()
         {
-            KnownTypes.Add(UpgradeComponentType.Unknown, typeof(UnknownUpgradeComponent));
-            KnownTypes.Add(UpgradeComponentType.Default, typeof(DefaultUpgradeComponent));
-            KnownTypes.Add(UpgradeComponentType.Gem, typeof(Gem));
-            KnownTypes.Add(UpgradeComponentType.Rune, typeof(Rune));
-            KnownTypes.Add(UpgradeComponentType.Sigil, typeof(Sigil));
+            KnownTypes.Add(WeaponType.Unknown, typeof(UnknownWeapon));
+            KnownTypes.Add(WeaponType.Axe, typeof(Axe));
+            KnownTypes.Add(WeaponType.Dagger, typeof(Dagger));
+            KnownTypes.Add(WeaponType.Focus, typeof(Focus));
+            KnownTypes.Add(WeaponType.GreatSword, typeof(GreatSword));
+            KnownTypes.Add(WeaponType.Hammer, typeof(Hammer));
+            KnownTypes.Add(WeaponType.Harpoon, typeof(Harpoon));
+            KnownTypes.Add(WeaponType.LargeBundle, typeof(LargeBundle));
+            KnownTypes.Add(WeaponType.SmallBundle, typeof(SmallBundle));
+            KnownTypes.Add(WeaponType.LongBow, typeof(LongBow));
+            KnownTypes.Add(WeaponType.Mace, typeof(Mace));
+            KnownTypes.Add(WeaponType.Pistol, typeof(Pistol));
+            KnownTypes.Add(WeaponType.Rifle, typeof(Rifle));
+            KnownTypes.Add(WeaponType.Scepter, typeof(Scepter));
+            KnownTypes.Add(WeaponType.Shield, typeof(Shield));
+            KnownTypes.Add(WeaponType.ShortBow, typeof(ShortBow));
+            KnownTypes.Add(WeaponType.SpearGun, typeof(SpearGun));
+            KnownTypes.Add(WeaponType.Staff, typeof(Staff));
+            KnownTypes.Add(WeaponType.Sword, typeof(Sword));
+            KnownTypes.Add(WeaponType.Torch, typeof(Torch));
+            KnownTypes.Add(WeaponType.Toy, typeof(ToyWeapon));
+            KnownTypes.Add(WeaponType.Trident, typeof(Trident));
+            KnownTypes.Add(WeaponType.TwoHandedToy, typeof(TwoHandedToyWeapon));
+            KnownTypes.Add(WeaponType.Warhorn, typeof(WarHorn));
         }
 
         /// <summary>
@@ -51,7 +71,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(UpgradeComponent).IsAssignableFrom(objectType);
+            return typeof(Weapon) == objectType;
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
@@ -64,9 +84,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
         {
             var content = JObject.Load(reader);
 
-            var details = content["upgrade_component"] as JObject;
+            var details = content.Property("weapon");
 
-            var detailsType = details == null ? content.Property("upgrade_component_type") : details.Property("type");
+            var detailsType = details == null ? content.Property("weapon_type") : ((JObject)details.Value).Property("type");
 
             var type = detailsType.Value.Value<string>();
 
@@ -74,31 +94,25 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
 
             try
             {
-                UpgradeComponentType upgradeComponentType;
+                WeaponType weaponType;
 
-                if (!Enum.TryParse(type, true, out upgradeComponentType))
+                if (!Enum.TryParse(type, true, out weaponType))
                 {
-                    upgradeComponentType = JsonSerializer.Create().Deserialize<UpgradeComponentType>(detailsType.CreateReader());
+                    weaponType = JsonSerializer.Create().Deserialize<WeaponType>(detailsType.CreateReader());
                 }
 
-                if (!KnownTypes.TryGetValue(upgradeComponentType, out itemType))
+                if (!KnownTypes.TryGetValue(weaponType, out itemType))
                 {
-                    itemType = typeof(UnknownUpgradeComponent);
+                    itemType = typeof(UnknownWeapon);
                 }
             }
             catch (JsonSerializationException)
             {
-                itemType = typeof(UnknownUpgradeComponent);
+                itemType = typeof(UnknownWeapon);
             }
             finally
             {
                 detailsType.Remove();
-            }
-
-            if (details != null)
-            {
-                // patch duplicate property
-                details.Property("flags").Replace(new JProperty("upgrade_component_flags", details.Property("flags").Value));
             }
 
             return serializer.Deserialize(content.CreateReader(), itemType);

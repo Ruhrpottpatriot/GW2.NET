@@ -10,10 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
 {
     using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents a tool.</summary>
-    [JsonConverter(typeof(ToolConverter))]
     public abstract class Tool : Item
     {
         /// <summary>Initializes a new instance of the <see cref="Tool"/> class.</summary>

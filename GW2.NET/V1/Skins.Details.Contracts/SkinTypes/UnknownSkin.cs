@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents an unknown skin.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownSkin : Skin
     {
         /// <summary>Initializes a new instance of the <see cref="UnknownSkin" /> class.</summary>

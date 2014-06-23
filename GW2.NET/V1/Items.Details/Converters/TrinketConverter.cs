@@ -1,43 +1,35 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConsumableConverter.cs" company="GW2.NET Coding Team">
+// <copyright file="TrinketConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="Consumable" /> from its <see cref="System.String" /> representation.
+//   Converts an instance of <see cref="Trinket" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="Consumable" /> from its <see cref="System.String" /> representation.</summary>
-    public class ConsumableConverter : JsonConverter
+    /// <summary>Converts an instance of <see cref="Trinket" /> from its <see cref="System.String" /> representation.</summary>
+    public class TrinketConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<ConsumableType, Type> KnownTypes = new Dictionary<ConsumableType, Type>();
+        private static readonly IDictionary<TrinketType, Type> KnownTypes = new Dictionary<TrinketType, Type>();
 
-        /// <summary>Initializes static members of the <see cref="ConsumableConverter"/> class.</summary>
-        static ConsumableConverter()
+        /// <summary>Initializes static members of the <see cref="TrinketConverter" /> class.</summary>
+        static TrinketConverter()
         {
-            KnownTypes.Add(ConsumableType.Unknown, typeof(UnknownConsumable));
-            KnownTypes.Add(ConsumableType.AppearanceChange, typeof(AppearanceChanger));
-            KnownTypes.Add(ConsumableType.Booze, typeof(Booze));
-            KnownTypes.Add(ConsumableType.ContractNpc, typeof(ContractNpc));
-            KnownTypes.Add(ConsumableType.Food, typeof(Food));
-            KnownTypes.Add(ConsumableType.Generic, typeof(GenericConsumable));
-            KnownTypes.Add(ConsumableType.Halloween, typeof(HalloweenConsumable));
-            KnownTypes.Add(ConsumableType.Immediate, typeof(ImmediateConsumable));
-            KnownTypes.Add(ConsumableType.Transmutation, typeof(Transmutation));
-            KnownTypes.Add(ConsumableType.UnTransmutation, typeof(UnTransmutation));
-            KnownTypes.Add(ConsumableType.Unlock, typeof(Unlocker));
-            KnownTypes.Add(ConsumableType.Utility, typeof(Utility));
-            KnownTypes.Add(ConsumableType.UpgradeRemoval, typeof(UpgradeRemoval));
+            KnownTypes.Add(TrinketType.Unknown, typeof(UnknownTrinket));
+            KnownTypes.Add(TrinketType.Accessory, typeof(Accessory));
+            KnownTypes.Add(TrinketType.Amulet, typeof(Amulet));
+            KnownTypes.Add(TrinketType.Ring, typeof(Ring));
         }
 
         /// <summary>
@@ -59,7 +51,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Consumable).IsAssignableFrom(objectType);
+            return typeof(Trinket) == objectType;
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
@@ -72,9 +64,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("consumable");
+            var details = content.Property("trinket");
 
-            var detailsType = details == null ? content.Property("consumable_type") : ((JObject)details.Value).Property("type");
+            var detailsType = details == null ? content.Property("trinket_type") : ((JObject)details.Value).Property("type");
 
             var type = detailsType.Value.Value<string>();
 
@@ -82,30 +74,28 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
 
             try
             {
-                ConsumableType consumableType;
+                TrinketType trinketType;
 
-                if (!Enum.TryParse(type, true, out consumableType))
+                if (!Enum.TryParse(type, true, out trinketType))
                 {
-                    consumableType = JsonSerializer.Create().Deserialize<ConsumableType>(detailsType.CreateReader());
+                    trinketType = JsonSerializer.Create().Deserialize<TrinketType>(detailsType.CreateReader());
                 }
 
-                if (!KnownTypes.TryGetValue(consumableType, out itemType))
+                if (!KnownTypes.TryGetValue(trinketType, out itemType))
                 {
-                    itemType = typeof(UnknownConsumable);
+                    itemType = typeof(UnknownTrinket);
                 }
             }
             catch (JsonSerializationException)
             {
-                itemType = typeof(UnknownConsumable);
+                itemType = typeof(UnknownTrinket);
             }
             finally
             {
                 detailsType.Remove();
             }
 
-            var item = serializer.Deserialize(content.CreateReader(), itemType);
-
-            return item;
+            return serializer.Deserialize(content.CreateReader(), itemType);
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>

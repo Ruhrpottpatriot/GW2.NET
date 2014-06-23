@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about an unknown tool.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnknownTool : Tool
     {
         /// <summary>Initializes a new instance of the <see cref="UnknownTool" /> class.</summary>

@@ -23,6 +23,9 @@ namespace GW2DotNET.V1.DynamicEvents.Details
     /// <summary>Provides the default implementation of the event details service.</summary>
     public class DynamicEventDetailsService : IDynamicEventDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly DynamicEventDetailsSerializerSettings Settings = new DynamicEventDetailsSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -49,7 +52,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new DynamicEventDetailsRequest { Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventDetailsCollectionResult>());
+            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventDetailsCollectionResult>(Settings));
 
             // patch missing language information
             foreach (var dynamicEventDetails in result.EventDetails.Values)
@@ -78,7 +81,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventDetailsCollectionResult>());
+            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventDetailsCollectionResult>(Settings));
 
             // patch missing language information
             foreach (var dynamicEventDetails in result.EventDetails.Values)
@@ -124,7 +127,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new DynamicEventDetailsRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventDetailsCollectionResult>(), cancellationToken);
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventDetailsCollectionResult>(Settings), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<DynamicEventDetails>>(
                 task =>
                     {
@@ -182,7 +185,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventDetailsCollectionResult>(), cancellationToken);
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventDetailsCollectionResult>(Settings), cancellationToken);
             var t2 = t1.ContinueWith(
                 task =>
                     {

@@ -10,12 +10,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Weapons
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents a weapon skin.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class WeaponSkin : Skin
     {
         /// <summary>Infrastructure. Stores the skin details.</summary>

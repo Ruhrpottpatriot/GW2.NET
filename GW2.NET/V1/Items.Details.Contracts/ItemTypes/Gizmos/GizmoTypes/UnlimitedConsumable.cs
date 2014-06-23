@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about an unlimited consumable gizmo.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class UnlimitedConsumable : Gizmo
     {
         /// <summary>Initializes a new instance of the <see cref="UnlimitedConsumable" /> class.</summary>

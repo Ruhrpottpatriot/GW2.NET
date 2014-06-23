@@ -1,54 +1,35 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WeaponConverter.cs" company="GW2.NET Coding Team">
+// <copyright file="GatheringToolConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="Weapon" /> from its <see cref="System.String" /> representation.
+//   Converts an instance of <see cref="GatheringTool" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.GatheringToolsTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="Weapon" /> from its <see cref="System.String" /> representation.</summary>
-    public class WeaponConverter : JsonConverter
+    /// <summary>Converts an instance of <see cref="GatheringTool" /> from its <see cref="System.String" /> representation.</summary>
+    public class GatheringToolConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<WeaponType, Type> KnownTypes = new Dictionary<WeaponType, Type>();
+        private static readonly IDictionary<GatheringToolType, Type> KnownTypes = new Dictionary<GatheringToolType, Type>();
 
-        /// <summary>Initializes static members of the <see cref="WeaponConverter" /> class.</summary>
-        static WeaponConverter()
+        /// <summary>Initializes static members of the <see cref="GatheringToolConverter" /> class.</summary>
+        static GatheringToolConverter()
         {
-            KnownTypes.Add(WeaponType.Unknown, typeof(UnknownWeapon));
-            KnownTypes.Add(WeaponType.Axe, typeof(Axe));
-            KnownTypes.Add(WeaponType.Dagger, typeof(Dagger));
-            KnownTypes.Add(WeaponType.Focus, typeof(Focus));
-            KnownTypes.Add(WeaponType.GreatSword, typeof(GreatSword));
-            KnownTypes.Add(WeaponType.Hammer, typeof(Hammer));
-            KnownTypes.Add(WeaponType.Harpoon, typeof(Harpoon));
-            KnownTypes.Add(WeaponType.LargeBundle, typeof(LargeBundle));
-            KnownTypes.Add(WeaponType.SmallBundle, typeof(SmallBundle));
-            KnownTypes.Add(WeaponType.LongBow, typeof(LongBow));
-            KnownTypes.Add(WeaponType.Mace, typeof(Mace));
-            KnownTypes.Add(WeaponType.Pistol, typeof(Pistol));
-            KnownTypes.Add(WeaponType.Rifle, typeof(Rifle));
-            KnownTypes.Add(WeaponType.Scepter, typeof(Scepter));
-            KnownTypes.Add(WeaponType.Shield, typeof(Shield));
-            KnownTypes.Add(WeaponType.ShortBow, typeof(ShortBow));
-            KnownTypes.Add(WeaponType.SpearGun, typeof(SpearGun));
-            KnownTypes.Add(WeaponType.Staff, typeof(Staff));
-            KnownTypes.Add(WeaponType.Sword, typeof(Sword));
-            KnownTypes.Add(WeaponType.Torch, typeof(Torch));
-            KnownTypes.Add(WeaponType.Toy, typeof(ToyWeapon));
-            KnownTypes.Add(WeaponType.Trident, typeof(Trident));
-            KnownTypes.Add(WeaponType.TwoHandedToy, typeof(TwoHandedToyWeapon));
-            KnownTypes.Add(WeaponType.Warhorn, typeof(WarHorn));
+            KnownTypes.Add(GatheringToolType.Unknown, typeof(UnknownGatheringTool));
+            KnownTypes.Add(GatheringToolType.Foraging, typeof(ForagingTool));
+            KnownTypes.Add(GatheringToolType.Logging, typeof(LoggingTool));
+            KnownTypes.Add(GatheringToolType.Mining, typeof(MiningTool));
         }
 
         /// <summary>
@@ -70,7 +51,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Weapon).IsAssignableFrom(objectType);
+            return typeof(GatheringTool) == objectType;
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
@@ -83,9 +64,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("weapon");
+            var details = content.Property("gathering");
 
-            var detailsType = details == null ? content.Property("weapon_type") : ((JObject)details.Value).Property("type");
+            var detailsType = details == null ? content.Property("gathering_type") : ((JObject)details.Value).Property("type");
 
             var type = detailsType.Value.Value<string>();
 
@@ -93,28 +74,30 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 
             try
             {
-                WeaponType weaponType;
+                GatheringToolType gatheringToolType;
 
-                if (!Enum.TryParse(type, true, out weaponType))
+                if (!Enum.TryParse(type, true, out gatheringToolType))
                 {
-                    weaponType = JsonSerializer.Create().Deserialize<WeaponType>(detailsType.CreateReader());
+                    gatheringToolType = JsonSerializer.Create().Deserialize<GatheringToolType>(detailsType.CreateReader());
                 }
 
-                if (!KnownTypes.TryGetValue(weaponType, out itemType))
+                if (!KnownTypes.TryGetValue(gatheringToolType, out itemType))
                 {
-                    itemType = typeof(UnknownWeapon);
+                    itemType = typeof(UnknownGatheringTool);
                 }
             }
             catch (JsonSerializationException)
             {
-                itemType = typeof(UnknownWeapon);
+                itemType = typeof(UnknownGatheringTool);
             }
             finally
             {
                 detailsType.Remove();
             }
 
-            return serializer.Deserialize(content.CreateReader(), itemType);
+            var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            return item;
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>

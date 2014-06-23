@@ -10,10 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 {
     using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about an unlock item.</summary>
-    [JsonConverter(typeof(UnlockerConverter))]
     public abstract class Unlocker : Consumable
     {
         /// <summary>Initializes a new instance of the <see cref="Unlocker"/> class.</summary>

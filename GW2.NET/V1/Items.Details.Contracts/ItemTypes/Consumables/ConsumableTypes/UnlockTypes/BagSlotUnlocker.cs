@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
 {
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
-
     /// <summary>Represents detailed information about a bag slot unlock item.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class BagSlotUnlocker : Unlocker
     {
         /// <summary>Initializes a new instance of the <see cref="BagSlotUnlocker" /> class.</summary>

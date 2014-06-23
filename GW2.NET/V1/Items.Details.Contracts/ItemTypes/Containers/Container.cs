@@ -10,10 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
 {
     using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents a container.</summary>
-    [JsonConverter(typeof(ContainerConverter))]
     public abstract class Container : Item
     {
         /// <summary>Initializes a new instance of the <see cref="Container"/> class.</summary>

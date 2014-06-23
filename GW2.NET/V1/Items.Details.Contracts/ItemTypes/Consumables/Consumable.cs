@@ -10,10 +10,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
 {
     using System.Runtime.Serialization;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents a consumable item.</summary>
-    [JsonConverter(typeof(ConsumableConverter))]
     public abstract class Consumable : Item
     {
         /// <summary>Initializes a new instance of the <see cref="Consumable"/> class.</summary>

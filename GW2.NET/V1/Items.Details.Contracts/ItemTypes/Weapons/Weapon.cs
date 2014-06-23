@@ -12,10 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents a weapon.</summary>
-    [JsonConverter(typeof(WeaponConverter))]
     public abstract class Weapon : CombatItem, ISkinnable
     {
         /// <summary>Initializes a new instance of the <see cref="Weapon"/> class.</summary>

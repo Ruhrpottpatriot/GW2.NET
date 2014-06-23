@@ -20,6 +20,9 @@ namespace GW2DotNET.V1.Recipes.Details
     /// <summary>Provides the default implementation of the recipe details service.</summary>
     public class RecipeDetailsService : IRecipeDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly RecipeSerializerSettings Settings = new RecipeSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -48,7 +51,7 @@ namespace GW2DotNET.V1.Recipes.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<Recipe>());
+            var result = this.serviceClient.Send(request, new JsonSerializer<Recipe>(Settings));
 
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
@@ -99,7 +102,7 @@ namespace GW2DotNET.V1.Recipes.Details
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Recipe>(), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Recipe>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

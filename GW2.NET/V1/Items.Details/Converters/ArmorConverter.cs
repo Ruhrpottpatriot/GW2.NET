@@ -1,33 +1,53 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContainerConverter.cs" company="GW2.NET Coding Team">
+// <copyright file="ArmorConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="Container" /> from its <see cref="System.String" /> representation.
+//   Converts an instance of <see cref="Armor" /> from its <see cref="System.String" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
+namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTypes;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="Container" /> from its <see cref="System.String" /> representation.</summary>
-    public class ContainerConverter : JsonConverter
+    /// <summary>Converts an instance of <see cref="Armor" /> from its <see cref="System.String" /> representation.</summary>
+    public class ArmorConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<ContainerType, Type> KnownTypes = new Dictionary<ContainerType, Type>();
+        private static readonly IDictionary<ArmorType, Type> KnownTypes = new Dictionary<ArmorType, Type>();
 
-        /// <summary>Initializes static members of the <see cref="ContainerConverter" /> class.</summary>
-        static ContainerConverter()
+        /// <summary>Initializes static members of the <see cref="ArmorConverter" /> class.</summary>
+        static ArmorConverter()
         {
-            KnownTypes.Add(ContainerType.Unknown, typeof(UnknownContainer));
-            KnownTypes.Add(ContainerType.Default, typeof(DefaultContainer));
-            KnownTypes.Add(ContainerType.GiftBox, typeof(GiftBox));
+            KnownTypes.Add(ArmorType.Unknown, typeof(UnknownArmor));
+            KnownTypes.Add(ArmorType.Boots, typeof(Boots));
+            KnownTypes.Add(ArmorType.Coat, typeof(Coat));
+            KnownTypes.Add(ArmorType.Gloves, typeof(Gloves));
+            KnownTypes.Add(ArmorType.Helm, typeof(Helm));
+            KnownTypes.Add(ArmorType.HelmAquatic, typeof(AquaticHelm));
+            KnownTypes.Add(ArmorType.Leggings, typeof(Leggings));
+            KnownTypes.Add(ArmorType.Shoulders, typeof(Shoulders));
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
+        /// </value>
+        public override bool CanWrite
+        {
+            get
+            {
+                return false;
+            }
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
@@ -35,7 +55,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return typeof(Container).IsAssignableFrom(objectType);
+            return typeof(Armor) == objectType;
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
@@ -48,9 +68,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("container");
+            var details = content.Property("armor");
 
-            var detailsType = details == null ? content.Property("container_type") : ((JObject)details.Value).Property("type");
+            var detailsType = details == null ? content.Property("armor_type") : ((JObject)details.Value).Property("type");
 
             var type = detailsType.Value.Value<string>();
 
@@ -58,21 +78,21 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
 
             try
             {
-                ContainerType containerType;
+                ArmorType armorType;
 
-                if (!Enum.TryParse(type, true, out containerType))
+                if (!Enum.TryParse(type, true, out armorType))
                 {
-                    containerType = JsonSerializer.Create().Deserialize<ContainerType>(detailsType.CreateReader());
+                    armorType = JsonSerializer.Create().Deserialize<ArmorType>(detailsType.CreateReader());
                 }
 
-                if (!KnownTypes.TryGetValue(containerType, out itemType))
+                if (!KnownTypes.TryGetValue(armorType, out itemType))
                 {
-                    itemType = typeof(UnknownContainer);
+                    itemType = typeof(UnknownArmor);
                 }
             }
             catch (JsonSerializationException)
             {
-                itemType = typeof(UnknownContainer);
+                itemType = typeof(UnknownArmor);
             }
             finally
             {

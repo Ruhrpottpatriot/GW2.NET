@@ -45,10 +45,10 @@ namespace GW2DotNET.V1.Common.Converters
                 throw new JsonSerializationException("Invalid rectangle edge locations.");
             }
 
-            var top    = values[0][0];
-            var left   = values[0][1];
+            var top = values[0][0];
+            var left = values[0][1];
             var bottom = values[1][0];
-            var right  = values[1][1];
+            var right = values[1][1];
             return Rectangle.FromLTRB(left, top, right, bottom);
         }
 

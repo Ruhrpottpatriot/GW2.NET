@@ -12,10 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
 
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents an armor piece.</summary>
-    [JsonConverter(typeof(ArmorConverter))]
     public abstract class Armor : CombatItem, ISkinnable
     {
         /// <summary>Initializes a new instance of the <see cref="Armor"/> class.</summary>

@@ -15,7 +15,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
     using Newtonsoft.Json;
 
     /// <summary>Represents a bag.</summary>
-    [JsonConverter(typeof(DefaultJsonConverter))]
     public class Bag : Item
     {
         /// <summary>Initializes a new instance of the <see cref="Bag" /> class.</summary>

@@ -12,10 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
-    using Newtonsoft.Json;
-
     /// <summary>Represents a gathering tool.</summary>
-    [JsonConverter(typeof(GatheringToolConverter))]
     public abstract class GatheringTool : Item, ISkinnable
     {
         /// <summary>Initializes a new instance of the <see cref="GatheringTool"/> class.</summary>
