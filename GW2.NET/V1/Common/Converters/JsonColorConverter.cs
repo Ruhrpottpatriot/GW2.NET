@@ -41,29 +41,19 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var values = serializer.Deserialize<int[]>(reader);
-
             try
             {
-                Preconditions.EnsureInRange(values.Length, 0, 4);
+                Preconditions.EnsureExact(3, values.Length);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("The input specifies more than 4 values.", exception);
+                throw new JsonSerializationException("Invalid color channels.", exception);
             }
 
-            switch (values.Length)
-            {
-                case 1:
-                    return Color.FromArgb(values[0], 0, 0);
-                case 2:
-                    return Color.FromArgb(values[0], values[1], 0);
-                case 3:
-                    return Color.FromArgb(values[0], values[1], values[2]);
-                case 4:
-                    return Color.FromArgb(values[0], values[1], values[2], values[3]);
-                default:
-                    return default(Color);
-            }
+            var red   = values[0];
+            var green = values[1];
+            var blue  = values[2];
+            return Color.FromArgb(red, green, blue);
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>
@@ -73,21 +63,10 @@ namespace GW2DotNET.V1.Common.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var color = (Color)value;
-
             writer.WriteStartArray();
-            {
-                if (color.A != byte.MaxValue)
-                {
-                    writer.WriteValue(color.A);
-                }
-
-                writer.WriteValue(color.R);
-
-                writer.WriteValue(color.G);
-
-                writer.WriteValue(color.B);
-            }
-
+            writer.WriteValue(color.R);
+            writer.WriteValue(color.G);
+            writer.WriteValue(color.B);
             writer.WriteEndArray();
         }
     }

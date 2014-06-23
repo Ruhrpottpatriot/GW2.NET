@@ -39,7 +39,6 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var milliseconds = serializer.Deserialize<double>(reader);
-
             return TimeSpan.FromMilliseconds(milliseconds);
         }
 
@@ -50,7 +49,6 @@ namespace GW2DotNET.V1.Common.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var timeSpan = (TimeSpan)value;
-
             serializer.Serialize(writer, timeSpan.TotalMilliseconds);
         }
     }

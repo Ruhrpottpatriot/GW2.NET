@@ -22,13 +22,11 @@
 
         [Test]
         [Category("Converters")]
-        public void Read_EmptyArray_ReturnsDefault()
+        [ExpectedException(typeof(JsonSerializationException))]
+        public void Read_EmptyArray_ConverterThrowsJsonSerializationException()
         {
             const string input = "[]";
-            Point expected = default(Point);
-            var actual = JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
+            JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
         }
 
         [Test]
@@ -126,24 +124,11 @@
 
         [Test]
         [Category("Converters")]
-        public void Read_SingleNil_ReturnsDefault()
-        {
-            const string input = "[0]";
-            Point expected = default(Point);
-            var actual = JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("Converters")]
-        public void Read_SingleValue_ConverterAssumesValueIsX()
+        [ExpectedException(typeof(JsonSerializationException))]
+        public void Read_LessThanTwoValues_ConverterThrowsJsonSerializationException()
         {
             const string input = "[1]";
-            var expected = new Point(1, 0);
-            var actual = JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
+            JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
         }
 
         [Test]

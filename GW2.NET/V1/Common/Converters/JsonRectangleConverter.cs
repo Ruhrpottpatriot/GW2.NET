@@ -41,48 +41,21 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var values = serializer.Deserialize<int[][]>(reader);
-
             try
             {
                 Preconditions.EnsureExact(actualValue: values.Length, expectedValue: 2);
-                Preconditions.EnsureInRange(values[0].Length, 0, 2);
-                Preconditions.EnsureInRange(values[1].Length, 0, 2);
+                Preconditions.EnsureExact(actualValue: values[0].Length, expectedValue: 2);
+                Preconditions.EnsureExact(actualValue: values[1].Length, expectedValue: 2);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("Bad coordinates.", exception);
+                throw new JsonSerializationException("Invalid rectangle edge locations.", exception);
             }
 
-            int top, left, bottom, right;
-
-            switch (values[0].Length)
-            {
-                case 2:
-                    top = values[0][0];
-                    left = values[0][1];
-                    break;
-                case 1:
-                    top = left = values[0][0];
-                    break;
-                default:
-                    top = left = default(int);
-                    break;
-            }
-
-            switch (values[1].Length)
-            {
-                case 2:
-                    bottom = values[1][0];
-                    right = values[1][1];
-                    break;
-                case 1:
-                    bottom = right = values[1][0];
-                    break;
-                default:
-                    bottom = right = default(int);
-                    break;
-            }
-
+            var top    = values[0][0];
+            var left   = values[0][1];
+            var bottom = values[1][0];
+            var right  = values[1][1];
             return Rectangle.FromLTRB(left, top, right, bottom);
         }
 
@@ -93,28 +66,15 @@ namespace GW2DotNET.V1.Common.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var rectangle = (Rectangle)value;
-
             writer.WriteStartArray();
-            {
-                writer.WriteStartArray();
-                {
-                    serializer.Serialize(writer, rectangle.Top);
-
-                    serializer.Serialize(writer, rectangle.Left);
-                }
-
-                writer.WriteEndArray();
-
-                writer.WriteStartArray();
-                {
-                    serializer.Serialize(writer, rectangle.Bottom);
-
-                    serializer.Serialize(writer, rectangle.Right);
-                }
-
-                writer.WriteEndArray();
-            }
-
+            writer.WriteStartArray();
+            serializer.Serialize(writer, rectangle.Top);
+            serializer.Serialize(writer, rectangle.Left);
+            writer.WriteEndArray();
+            writer.WriteStartArray();
+            serializer.Serialize(writer, rectangle.Bottom);
+            serializer.Serialize(writer, rectangle.Right);
+            writer.WriteEndArray();
             writer.WriteEndArray();
         }
     }

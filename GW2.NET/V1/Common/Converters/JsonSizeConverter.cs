@@ -41,25 +41,18 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var values = serializer.Deserialize<int[]>(reader);
-
             try
             {
-                Preconditions.EnsureInRange(values.Length, 0, 2);
+                Preconditions.EnsureExact(2, values.Length);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
+                throw new JsonSerializationException("Invalid distance specifiers.", exception);
             }
 
-            switch (values.Length)
-            {
-                case 0:
-                    return default(Size);
-                case 1:
-                    return new Size(values[0], values[0]);
-                default:
-                    return new Size(values[0], values[1]);
-            }
+            var width  = values[0];
+            var height = values[1];
+            return new Size(width, height);
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>
@@ -69,14 +62,9 @@ namespace GW2DotNET.V1.Common.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var size = (Size)value;
-
             writer.WriteStartArray();
-            {
-                writer.WriteValue(size.Width);
-
-                writer.WriteValue(size.Height);
-            }
-
+            writer.WriteValue(size.Width);
+            writer.WriteValue(size.Height);
             writer.WriteEndArray();
         }
     }

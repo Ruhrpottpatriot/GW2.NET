@@ -25,13 +25,11 @@
         /// <summary>The json point f converter_ Read_ empty array_ returns default.</summary>
         [Test]
         [Category("Converters")]
-        public void Read_EmptyArray_ReturnsDefault()
+        [ExpectedException(typeof(JsonSerializationException))]
+        public void Read_EmptyArray_ConverterThrowsJsonSerializationException()
         {
             const string input = "[]";
-            PointF expected = default(PointF);
-            var actual = JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
+            JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
         }
 
         /// <summary>The json point f converter_ read empty_ exception is thrown for value type.</summary>
@@ -136,28 +134,14 @@
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point f converter_ read single nil_ returns default.</summary>
-        [Test]
-        [Category("Converters")]
-        public void Read_SingleNil_ReturnsDefault()
-        {
-            const string input = "[0.0]";
-            PointF expected = default(PointF);
-            var actual = JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
         /// <summary>The json point f converter_ read single value_ converter assumes value is x.</summary>
         [Test]
         [Category("Converters")]
-        public void Read_SingleValue_ConverterAssumesValueIsX()
+        [ExpectedException(typeof(JsonSerializationException))]
+        public void Read_LessThanTwoValues_ConverterThrowsJsonSerializationException()
         {
             const string input = "[1.2]";
-            var expected = new PointF(1.2F, 0F);
             var actual = JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
         }
 
         /// <summary>The json point f converter_ write default point f_ json reflects input.</summary>

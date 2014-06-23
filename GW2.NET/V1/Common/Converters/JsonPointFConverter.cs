@@ -41,29 +41,18 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var values = serializer.Deserialize<float[]>(reader);
-
             try
             {
-                Preconditions.EnsureInRange(values.Length, 0, 2);
+                Preconditions.EnsureExact(2, values.Length);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("The input specifies more than two dimensions.", exception);
+                throw new JsonSerializationException("Invalid point coordinates.", exception);
             }
 
-            var y = default(float);
-
-            switch (values.Length)
-            {
-                case 2:
-                    y = values[1];
-                    goto case 1;
-                case 1:
-                    var x = values[0];
-                    return new PointF(x, y);
-                default:
-                    return default(PointF);
-            }
+            var x = values[0];
+            var y = values[1];
+            return new PointF(x, y);
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>
@@ -73,14 +62,9 @@ namespace GW2DotNET.V1.Common.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var point = (PointF)value;
-
             writer.WriteStartArray();
-            {
-                serializer.Serialize(writer, Math.Truncate(point.X * 100000) / 100000);
-
-                serializer.Serialize(writer, Math.Truncate(point.Y * 100000) / 100000);
-            }
-
+            serializer.Serialize(writer, Math.Round(point.X, 2));
+            serializer.Serialize(writer, Math.Round(point.Y, 2));
             writer.WriteEndArray();
         }
     }

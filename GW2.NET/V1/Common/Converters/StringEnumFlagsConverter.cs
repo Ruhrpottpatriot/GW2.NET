@@ -41,7 +41,6 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var individualFlags = new Stack<string>();
-
             do
             {
                 if (reader.TokenType == JsonToken.String)
@@ -53,12 +52,9 @@ namespace GW2DotNET.V1.Common.Converters
 
             if (individualFlags.Any())
             {
-                string flags = string.Join(",", individualFlags);
-
-                JValue jsonFlags = JValue.CreateString(flags);
-
-                JsonReader valueReader = jsonFlags.CreateReader();
-
+                var flags = string.Join(",", individualFlags);
+                var jsonFlags = JValue.CreateString(flags);
+                var valueReader = jsonFlags.CreateReader();
                 if (valueReader.Read())
                 {
                     return base.ReadJson(valueReader, objectType, existingValue, serializer);
@@ -76,18 +72,14 @@ namespace GW2DotNET.V1.Common.Converters
         {
             if (value == null || (int)value == 0)
             {
-                this.WriteEmptyArray(writer);
-
+                WriteEmptyArray(writer);
                 return;
             }
 
-            Type enumType = value.GetType();
-
-            string[] values = value.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
-
+            var enumType = value.GetType();
+            var values = value.ToString().Split(new[] { ',', ' ' }, StringSplitOptions.RemoveEmptyEntries);
             writer.WriteStartArray();
-
-            foreach (string item in values)
+            foreach (var item in values)
             {
                 base.WriteJson(writer, Enum.Parse(enumType, item, true), serializer);
             }
@@ -97,10 +89,9 @@ namespace GW2DotNET.V1.Common.Converters
 
         /// <summary>Writes an opening and closing bracket.</summary>
         /// <param name="writer">The <see cref="JsonWriter"/> to write to.</param>
-        private void WriteEmptyArray(JsonWriter writer)
+        private static void WriteEmptyArray(JsonWriter writer)
         {
             writer.WriteStartArray();
-
             writer.WriteEndArray();
         }
     }

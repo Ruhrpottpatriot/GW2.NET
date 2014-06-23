@@ -41,32 +41,19 @@ namespace GW2DotNET.V1.Common.Converters
             }
 
             var values = serializer.Deserialize<double[]>(reader);
-
             try
             {
-                Preconditions.EnsureInRange(values.Length, 0, 3);
+                Preconditions.EnsureExact(3, values.Length);
             }
             catch (ArgumentOutOfRangeException exception)
             {
-                throw new JsonSerializationException("The input specifies more than 3 values.", exception);
+                throw new JsonSerializationException("Invalid point coordinates.", exception);
             }
 
-            double y = default(double), z = default(double);
-
-            switch (values.Length)
-            {
-                case 3:
-                    z = values[2];
-                    goto case 2;
-                case 2:
-                    y = values[1];
-                    goto case 1;
-                case 1:
-                    double x = values[0];
-                    return new Point3D(x, y, z);
-                default:
-                    return default(Point3D);
-            }
+            var x = values[0];
+            var y = values[1];
+            var z = values[2];
+            return new Point3D(x, y, z);
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>
@@ -76,16 +63,10 @@ namespace GW2DotNET.V1.Common.Converters
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var point3D = (Point3D)value;
-
             writer.WriteStartArray();
-            {
-                serializer.Serialize(writer, point3D.X);
-
-                serializer.Serialize(writer, point3D.Y);
-
-                serializer.Serialize(writer, point3D.Z);
-            }
-
+            serializer.Serialize(writer, point3D.X);
+            serializer.Serialize(writer, point3D.Y);
+            serializer.Serialize(writer, point3D.Z);
             writer.WriteEndArray();
         }
     }
