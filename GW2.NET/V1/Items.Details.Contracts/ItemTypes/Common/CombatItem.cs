@@ -91,9 +91,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
         /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>
         /// <param name="context">The streaming context.</param>
         [OnDeserialized]
-        protected new void OnDeserialized(StreamingContext context)
+        private void OnDeserialized(StreamingContext context)
         {
-            base.OnDeserialized(context);
             const string Key = "infix_upgrade";
             object infixUpgrade;
             if (this.ExtensionData.TryGetValue(Key, out infixUpgrade) && this.ExtensionData.Remove(Key))

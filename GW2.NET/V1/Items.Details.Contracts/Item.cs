@@ -173,7 +173,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>
         /// <param name="context">The streaming context.</param>
         [OnDeserialized]
-        protected void OnDeserialized(StreamingContext context)
+        private void OnDeserialized(StreamingContext context)
         {
             // Remove empty descriptions
             if (this.Description == string.Empty)

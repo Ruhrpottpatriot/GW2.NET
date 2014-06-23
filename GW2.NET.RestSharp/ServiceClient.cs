@@ -97,10 +97,7 @@ namespace GW2DotNET.RestSharp
         private static TResult DeserializeResponse<TResult>(ISerializer<TResult> serializer, IRestResponse response)
         {
             // Deserialize the response content
-            using (var stream = new MemoryStream(response.RawBytes))
-            {
-                return serializer.Deserialize(stream);
-            }
+            return serializer.Deserialize(new MemoryStream(response.RawBytes));
         }
 
         /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
@@ -124,11 +121,8 @@ namespace GW2DotNET.RestSharp
             }
 
             // Wrap protocol exceptions in a ServiceException, then throw
-            using (var stream = new MemoryStream(response.RawBytes))
-            {
-                var errorResult = new JsonSerializer<ErrorResult>().Deserialize(stream);
-                throw new ServiceException(null, errorResult);
-            }
+            var errorResult = new JsonSerializer<ErrorResult>().Deserialize(new MemoryStream(response.RawBytes));
+            throw new ServiceException(null, errorResult);
         }
 
         /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
@@ -141,27 +135,24 @@ namespace GW2DotNET.RestSharp
         {
             return restClient.ExecuteTaskAsync(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-
-                    if (response.StatusCode.IsSuccessStatusCode())
                     {
-                        return response;
-                    }
+                        var response = task.Result;
 
-                    // Simply rethrow in case of transport errors (e.g. timeout)
-                    if (response.ResponseStatus == ResponseStatus.Error)
-                    {
-                        throw response.ErrorException;
-                    }
+                        if (response.StatusCode.IsSuccessStatusCode())
+                        {
+                            return response;
+                        }
 
-                    // Wrap protocol exceptions in a ServiceException, then throw
-                    using (var stream = new MemoryStream(response.RawBytes))
-                    {
-                        var errorResult = new JsonSerializer<ErrorResult>().Deserialize(stream);
+                        // Simply rethrow in case of transport errors (e.g. timeout)
+                        if (response.ResponseStatus == ResponseStatus.Error)
+                        {
+                            throw response.ErrorException;
+                        }
+
+                        // Wrap protocol exceptions in a ServiceException, then throw
+                        var errorResult = new JsonSerializer<ErrorResult>().Deserialize(new MemoryStream(response.RawBytes));
                         throw new ServiceException(null, errorResult);
-                    }
-                },
+                    }, 
                 cancellationToken);
         }
     }

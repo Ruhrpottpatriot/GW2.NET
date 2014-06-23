@@ -142,10 +142,7 @@ namespace GW2DotNET.Common
             }
 
             // Deserialize the response content
-            using (stream)
-            {
-                return serializer.Deserialize(stream);
-            }
+            return serializer.Deserialize(stream);
         }
 
         /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
@@ -168,9 +165,8 @@ namespace GW2DotNET.Common
 
                 // Wrap the exception in a ServiceException, then throw
                 using (var response = exception.Response)
-                using (var stream = response.GetResponseStream())
                 {
-                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(stream);
+                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
                     throw new ServiceException(null, errorResult, exception);
                 }
             }
@@ -195,9 +191,8 @@ namespace GW2DotNET.Common
                             {
                                 // Wrap the exception in a ServiceException, then throw
                                 using (var response = exception.Response)
-                                using (var stream = response.GetResponseStream())
                                 {
-                                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(stream);
+                                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
                                     throw new ServiceException(null, errorResult, exception);
                                 }
                             }
