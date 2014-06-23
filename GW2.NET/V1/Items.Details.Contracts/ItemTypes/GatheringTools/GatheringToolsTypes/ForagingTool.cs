@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.Gatherin
     /// <summary>Represents detailed information about a foraging tool.</summary>
     public class ForagingTool : GatheringTool
     {
-        /// <summary>Initializes a new instance of the <see cref="ForagingTool" /> class.</summary>
-        public ForagingTool()
-            : base(GatheringToolType.Foraging)
-        {
-        }
     }
 }

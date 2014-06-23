@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes
     /// <summary>Represents detailed information about a rentable contract NPC.</summary>
     public class RentableContractNpc : Gizmo
     {
-        /// <summary>Initializes a new instance of the <see cref="RentableContractNpc" /> class.</summary>
-        public RentableContractNpc()
-            : base(GizmoType.RentableContractNpc)
-        {
-        }
     }
 }

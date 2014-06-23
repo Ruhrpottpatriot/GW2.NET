@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents.Upgra
     /// <summary>Represents detailed information about a default upgrade component.</summary>
     public class DefaultUpgradeComponent : UpgradeComponent
     {
-        /// <summary>Initializes a new instance of the <see cref="DefaultUpgradeComponent" /> class.</summary>
-        public DefaultUpgradeComponent()
-            : base(UpgradeComponentType.Default)
-        {
-        }
     }
 }

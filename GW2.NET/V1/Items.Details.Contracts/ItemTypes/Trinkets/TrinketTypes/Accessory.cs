@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes
     /// <summary>Represents detailed information about an accessory.</summary>
     public class Accessory : Trinket
     {
-        /// <summary>Initializes a new instance of the <see cref="Accessory" /> class.</summary>
-        public Accessory()
-            : base(TrinketType.Accessory)
-        {
-        }
     }
 }

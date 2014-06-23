@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes
     /// <summary>Represents an unknown item..</summary>
     public class UnknownItem : Item
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownItem" /> class.</summary>
-        public UnknownItem()
-            : base(ItemType.Unknown)
-        {
-        }
     }
 }

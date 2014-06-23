@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about a drink.</summary>
     public class Booze : Consumable
     {
-        /// <summary>Initializes a new instance of the <see cref="Booze" /> class.</summary>
-        public Booze()
-            : base(ConsumableType.Booze)
-        {
-        }
     }
 }

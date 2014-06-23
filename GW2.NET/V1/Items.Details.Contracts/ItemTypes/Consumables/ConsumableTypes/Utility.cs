@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about a utility consumable item.</summary>
     public class Utility : Nourishment
     {
-        /// <summary>Initializes a new instance of the <see cref="Utility" /> class.</summary>
-        public Utility()
-            : base(ConsumableType.Utility)
-        {
-        }
     }
 }

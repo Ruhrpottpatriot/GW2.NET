@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.Gatherin
     /// <summary>Represents detailed information about an unknown gathering tool.</summary>
     public class UnknownGatheringTool : GatheringTool
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownGatheringTool" /> class.</summary>
-        public UnknownGatheringTool()
-            : base(GatheringToolType.Unknown)
-        {
-        }
     }
 }

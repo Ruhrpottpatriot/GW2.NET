@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about an appearance changing consumable item.</summary>
     public class AppearanceChanger : Consumable
     {
-        /// <summary>Initializes a new instance of the <see cref="AppearanceChanger" /> class.</summary>
-        public AppearanceChanger()
-            : base(ConsumableType.AppearanceChange)
-        {
-        }
     }
 }

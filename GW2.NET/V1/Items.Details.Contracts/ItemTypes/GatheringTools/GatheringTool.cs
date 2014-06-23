@@ -15,21 +15,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
     /// <summary>Represents a gathering tool.</summary>
     public abstract class GatheringTool : Item, ISkinnable
     {
-        /// <summary>Initializes a new instance of the <see cref="GatheringTool"/> class.</summary>
-        /// <param name="gatheringToolType">The gathering tool type.</param>
-        protected GatheringTool(GatheringToolType gatheringToolType)
-            : base(ItemType.Gathering)
-        {
-            this.GatheringToolType = gatheringToolType;
-        }
-
         /// <summary>Gets or sets the item's default skin identifier.</summary>
         [DataMember(Name = "default_skin")]
         public int DefaultSkin { get; set; }
-
-        /// <summary>Gets or sets the gathering tool's type.</summary>
-        [DataMember(Name = "gathering_type")]
-        protected GatheringToolType GatheringToolType { get; set; }
 
         /// <summary>Gets the name of the property that provides additional information.</summary>
         /// <returns>The name of the property.</returns>

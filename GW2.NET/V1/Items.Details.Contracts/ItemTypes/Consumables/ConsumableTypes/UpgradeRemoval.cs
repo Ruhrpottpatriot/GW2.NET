@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about an upgrade removal item.</summary>
     public class UpgradeRemoval : Consumable
     {
-        /// <summary>Initializes a new instance of the <see cref="UpgradeRemoval" /> class.</summary>
-        public UpgradeRemoval()
-            : base(ConsumableType.UpgradeRemoval)
-        {
-        }
     }
 }

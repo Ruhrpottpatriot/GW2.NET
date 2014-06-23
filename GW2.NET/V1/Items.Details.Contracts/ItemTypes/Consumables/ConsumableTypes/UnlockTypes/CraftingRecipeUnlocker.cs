@@ -13,12 +13,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about a crafting recipe.</summary>
     public class CraftingRecipeUnlocker : Unlocker
     {
-        /// <summary>Initializes a new instance of the <see cref="CraftingRecipeUnlocker" /> class.</summary>
-        public CraftingRecipeUnlocker()
-            : base(UnlockType.CraftingRecipe)
-        {
-        }
-
         /// <summary>Gets or sets the crafting recipe's ID.</summary>
         [DataMember(Name = "recipe_id", Order = 10000)]
         public virtual int RecipeId { get; set; }

@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes
     /// <summary>Represents detailed information about an unknown armor piece.</summary>
     public class UnknownArmor : Armor
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownArmor" /> class</summary>
-        public UnknownArmor()
-            : base(ArmorType.Unknown)
-        {
-        }
     }
 }

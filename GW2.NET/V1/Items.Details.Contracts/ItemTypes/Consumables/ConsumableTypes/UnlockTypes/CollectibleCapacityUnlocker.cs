@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about a collectible capacity unlock item.</summary>
     public class CollectibleCapacityUnlocker : Unlocker
     {
-        /// <summary>Initializes a new instance of the <see cref="CollectibleCapacityUnlocker" /> class.</summary>
-        public CollectibleCapacityUnlocker()
-            : base(UnlockType.CollectibleCapacity)
-        {
-        }
     }
 }

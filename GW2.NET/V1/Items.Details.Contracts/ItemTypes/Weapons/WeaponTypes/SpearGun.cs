@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a spear gun.</summary>
     public class SpearGun : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="SpearGun" /> class.</summary>
-        public SpearGun()
-            : base(WeaponType.SpearGun)
-        {
-        }
     }
 }

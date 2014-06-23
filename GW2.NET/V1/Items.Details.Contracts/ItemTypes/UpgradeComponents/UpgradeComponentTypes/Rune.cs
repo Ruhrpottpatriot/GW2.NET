@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents.Upgra
     /// <summary>Represents detailed information about a rune upgrade component.</summary>
     public class Rune : UpgradeComponent
     {
-        /// <summary>Initializes a new instance of the <see cref="Rune" /> class.</summary>
-        public Rune()
-            : base(UpgradeComponentType.Rune)
-        {
-        }
     }
 }

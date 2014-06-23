@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a pistol.</summary>
     public class Pistol : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="Pistol" /> class.</summary>
-        public Pistol()
-            : base(WeaponType.Pistol)
-        {
-        }
     }
 }

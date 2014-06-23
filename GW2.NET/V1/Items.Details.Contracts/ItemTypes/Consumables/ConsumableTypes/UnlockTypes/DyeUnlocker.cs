@@ -13,12 +13,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about a dye.</summary>
     public class DyeUnlocker : Unlocker
     {
-        /// <summary>Initializes a new instance of the <see cref="DyeUnlocker" /> class.</summary>
-        public DyeUnlocker()
-            : base(UnlockType.Dye)
-        {
-        }
-
         /// <summary>Gets or sets the dye's color ID.</summary>
         [DataMember(Name = "color_id", Order = 10000)]
         public virtual int ColorId { get; set; }

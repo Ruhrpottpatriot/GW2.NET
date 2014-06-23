@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTyp
     /// <summary>Represents detailed information about an unknown container.</summary>
     public class UnknownContainer : Container
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownContainer" /> class.</summary>
-        public UnknownContainer()
-            : base(ContainerType.Unknown)
-        {
-        }
     }
 }

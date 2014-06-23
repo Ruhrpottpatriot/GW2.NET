@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a shield.</summary>
     public class Shield : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="Shield" /> class.</summary>
-        public Shield()
-            : base(WeaponType.Shield)
-        {
-        }
     }
 }

@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes
     /// <summary>Represents detailed information about an amulet.</summary>
     public class Amulet : Trinket
     {
-        /// <summary>Initializes a new instance of the <see cref="Amulet" /> class.</summary>
-        public Amulet()
-            : base(TrinketType.Amulet)
-        {
-        }
     }
 }

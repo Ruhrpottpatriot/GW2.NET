@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes
     /// <summary>Represents detailed information about leg protection.</summary>
     public class Leggings : Armor
     {
-        /// <summary>Initializes a new instance of the <see cref="Leggings" /> class</summary>
-        public Leggings()
-            : base(ArmorType.Leggings)
-        {
-        }
     }
 }

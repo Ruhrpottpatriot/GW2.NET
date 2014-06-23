@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents.Upgra
     /// <summary>Represents detailed information about a sigil upgrade component.</summary>
     public class Sigil : UpgradeComponent
     {
-        /// <summary>Initializes a new instance of the <see cref="Sigil" /> class.</summary>
-        public Sigil()
-            : base(UpgradeComponentType.Sigil)
-        {
-        }
     }
 }

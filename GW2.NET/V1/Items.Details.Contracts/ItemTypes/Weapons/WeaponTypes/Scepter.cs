@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a scepter.</summary>
     public class Scepter : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="Scepter" /> class.</summary>
-        public Scepter()
-            : base(WeaponType.Scepter)
-        {
-        }
     }
 }

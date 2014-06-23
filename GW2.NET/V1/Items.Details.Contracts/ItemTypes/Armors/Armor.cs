@@ -15,14 +15,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors
     /// <summary>Represents an armor piece.</summary>
     public abstract class Armor : CombatItem, ISkinnable
     {
-        /// <summary>Initializes a new instance of the <see cref="Armor"/> class.</summary>
-        /// <param name="armorType">The armor type.</param>
-        protected Armor(ArmorType armorType)
-            : base(ItemType.Armor)
-        {
-            this.ArmorType = armorType;
-        }
-
         /// <summary>Gets or sets the item's default skin identifier.</summary>
         [DataMember(Name = "default_skin")]
         public virtual int DefaultSkin { get; set; }

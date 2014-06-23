@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a short bow.</summary>
     public class ShortBow : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="ShortBow" /> class.</summary>
-        public ShortBow()
-            : base(WeaponType.ShortBow)
-        {
-        }
     }
 }

@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about an unknown weapon.</summary>
     public class UnknownWeapon : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownWeapon" /> class.</summary>
-        public UnknownWeapon()
-            : base(WeaponType.Unknown)
-        {
-        }
     }
 }

@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a large bundle.</summary>
     public class LargeBundle : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="LargeBundle" /> class.</summary>
-        public LargeBundle()
-            : base(WeaponType.LargeBundle)
-        {
-        }
     }
 }

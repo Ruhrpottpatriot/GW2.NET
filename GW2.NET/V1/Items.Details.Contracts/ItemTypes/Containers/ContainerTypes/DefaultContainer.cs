@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTyp
     /// <summary>Represents detailed information about a default container.</summary>
     public class DefaultContainer : Container
     {
-        /// <summary>Initializes a new instance of the <see cref="DefaultContainer" /> class.</summary>
-        public DefaultContainer()
-            : base(ContainerType.Default)
-        {
-        }
     }
 }

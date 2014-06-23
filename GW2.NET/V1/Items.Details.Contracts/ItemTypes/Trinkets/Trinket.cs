@@ -15,18 +15,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
     /// <summary>Represents a trinket.</summary>
     public abstract class Trinket : CombatItem
     {
-        /// <summary>Initializes a new instance of the <see cref="Trinket"/> class.</summary>
-        /// <param name="trinketType">The trinket's type.</param>
-        protected Trinket(TrinketType trinketType)
-            : base(ItemType.Trinket)
-        {
-            this.TrinketType = trinketType;
-        }
-
-        /// <summary>Gets or sets the trinket's type.</summary>
-        [DataMember(Name = "trinket_type")]
-        protected TrinketType TrinketType { get; set; }
-
         /// <summary>Gets the name of the property that provides additional information.</summary>
         /// <returns>The name of the property.</returns>
         protected override string GetTypeKey()

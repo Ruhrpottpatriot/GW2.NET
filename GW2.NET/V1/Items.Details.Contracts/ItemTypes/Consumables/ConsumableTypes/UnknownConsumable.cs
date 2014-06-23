@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about an unknown consumable item.</summary>
     public class UnknownConsumable : Consumable
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownConsumable" /> class.</summary>
-        public UnknownConsumable()
-            : base(ConsumableType.Unknown)
-        {
-        }
     }
 }

@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.Gatherin
     /// <summary>Represents detailed information about a logging tool.</summary>
     public class LoggingTool : GatheringTool
     {
-        /// <summary>Initializes a new instance of the <see cref="LoggingTool" /> class.</summary>
-        public LoggingTool()
-            : base(GatheringToolType.Logging)
-        {
-        }
     }
 }

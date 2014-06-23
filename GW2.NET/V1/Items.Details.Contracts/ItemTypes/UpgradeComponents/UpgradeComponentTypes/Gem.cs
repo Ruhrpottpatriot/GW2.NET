@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents.Upgra
     /// <summary>Represents detailed information about a gem upgrade component.</summary>
     public class Gem : UpgradeComponent
     {
-        /// <summary>Initializes a new instance of the <see cref="Gem" /> class.</summary>
-        public Gem()
-            : base(UpgradeComponentType.Gem)
-        {
-        }
     }
 }

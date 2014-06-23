@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes
     /// <summary>Represents detailed information about shoulder protection.</summary>
     public class Shoulders : Armor
     {
-        /// <summary>Initializes a new instance of the <see cref="Shoulders" /> class</summary>
-        public Shoulders()
-            : base(ArmorType.Shoulders)
-        {
-        }
     }
 }

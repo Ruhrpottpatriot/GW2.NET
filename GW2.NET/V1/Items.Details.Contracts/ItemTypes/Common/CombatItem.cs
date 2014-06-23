@@ -26,9 +26,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common
         private InfusionSlotCollection infusionSlots;
 
         /// <summary>Initializes a new instance of the <see cref="CombatItem"/> class.</summary>
-        /// <param name="type">The item's type.</param>
-        protected CombatItem(ItemType type)
-            : base(type)
+        protected CombatItem()
         {
             this.buff = new ItemBuff();
             this.attributes = new ItemAttributeCollection();

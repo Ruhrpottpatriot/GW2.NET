@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a trident.</summary>
     public class Trident : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="Trident" /> class.</summary>
-        public Trident()
-            : base(WeaponType.Trident)
-        {
-        }
     }
 }

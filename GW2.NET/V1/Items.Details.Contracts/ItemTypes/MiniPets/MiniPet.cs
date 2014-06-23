@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.MiniPets
     /// <summary>Represents a mini pet.</summary>
     public class MiniPet : Item
     {
-        /// <summary>Initializes a new instance of the <see cref="MiniPet" /> class.</summary>
-        public MiniPet()
-            : base(ItemType.MiniPet)
-        {
-        }
     }
 }

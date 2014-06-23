@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes
     /// <summary>Represents detailed information about a ring.</summary>
     public class Ring : Trinket
     {
-        /// <summary>Initializes a new instance of the <see cref="Ring" /> class.</summary>
-        public Ring()
-            : base(TrinketType.Ring)
-        {
-        }
     }
 }

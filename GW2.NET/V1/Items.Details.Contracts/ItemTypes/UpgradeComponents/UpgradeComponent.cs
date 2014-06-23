@@ -25,11 +25,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
         private ItemBuff buff;
 
         /// <summary>Initializes a new instance of the <see cref="UpgradeComponent"/> class.</summary>
-        /// <param name="upgradeComponentType">The upgrade component's type.</param>
-        protected UpgradeComponent(UpgradeComponentType upgradeComponentType)
-            : base(ItemType.UpgradeComponent)
+        protected UpgradeComponent()
         {
-            this.UpgradeComponentType = upgradeComponentType;
             this.buff = new ItemBuff();
             this.attributes = new ItemAttributeCollection();
         }

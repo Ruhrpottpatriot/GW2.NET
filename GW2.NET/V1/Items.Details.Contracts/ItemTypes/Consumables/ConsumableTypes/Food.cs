@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about an edible item.</summary>
     public class Food : Nourishment
     {
-        /// <summary>Initializes a new instance of the <see cref="Food" /> class.</summary>
-        public Food()
-            : base(ConsumableType.Food)
-        {
-        }
     }
 }

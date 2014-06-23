@@ -17,12 +17,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
     /// <summary>Represents a bag.</summary>
     public class Bag : Item
     {
-        /// <summary>Initializes a new instance of the <see cref="Bag" /> class.</summary>
-        public Bag()
-            : base(ItemType.Bag)
-        {
-        }
-
         /// <summary>Gets or sets a value indicating whether this is an invisible bag.</summary>
         [DataMember(Name = "no_sell_or_sort")]
         [JsonConverter(typeof(JsonBooleanConverter))]

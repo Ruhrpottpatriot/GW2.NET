@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes
     /// <summary>Represents detailed information about an unknown gizmo.</summary>
     public class UnknownGizmo : Gizmo
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownGizmo" /> class.</summary>
-        public UnknownGizmo()
-            : base(GizmoType.Unknown)
-        {
-        }
     }
 }

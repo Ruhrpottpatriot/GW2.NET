@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about a generic consumable item.</summary>
     public class GenericConsumable : Nourishment
     {
-        /// <summary>Initializes a new instance of the <see cref="GenericConsumable" /> class.</summary>
-        public GenericConsumable()
-            : base(ConsumableType.Generic)
-        {
-        }
     }
 }

@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a focus.</summary>
     public class Dagger : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="Dagger" /> class.</summary>
-        public Dagger()
-            : base(WeaponType.Dagger)
-        {
-        }
     }
 }

@@ -15,12 +15,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backpacks
     /// <summary>Represents a backpack.</summary>
     public class Backpack : CombatItem, ISkinnable
     {
-        /// <summary>Initializes a new instance of the <see cref="Backpack" /> class.</summary>
-        public Backpack()
-            : base(ItemType.Back)
-        {
-        }
-
         /// <summary>Gets or sets the item's default skin identifier.</summary>
         [DataMember(Name = "default_skin")]
         public virtual int DefaultSkin { get; set; }

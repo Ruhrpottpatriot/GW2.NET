@@ -18,13 +18,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Provides the base class for nourishment details.</summary>
     public abstract class Nourishment : Consumable
     {
-        /// <summary>Initializes a new instance of the <see cref="Nourishment"/> class.</summary>
-        /// <param name="type">The consumable's type.</param>
-        protected Nourishment(ConsumableType type)
-            : base(type)
-        {
-        }
-
         /// <summary>Gets or sets the nourishment's effect duration.</summary>
         [DataMember(Name = "duration_ms")]
         [JsonConverter(typeof(JsonTimespanConverter))]

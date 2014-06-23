@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a harpoon.</summary>
     public class Harpoon : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="Harpoon" /> class.</summary>
-        public Harpoon()
-            : base(WeaponType.Harpoon)
-        {
-        }
     }
 }

@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about a halloween consumable item.</summary>
     public class HalloweenConsumable : Consumable
     {
-        /// <summary>Initializes a new instance of the <see cref="HalloweenConsumable" /> class.</summary>
-        public HalloweenConsumable()
-            : base(ConsumableType.Halloween)
-        {
-        }
     }
 }

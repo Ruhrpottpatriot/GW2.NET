@@ -8,23 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
 {
-    using System.Runtime.Serialization;
-
     /// <summary>Represents a tool.</summary>
     public abstract class Tool : Item
     {
-        /// <summary>Initializes a new instance of the <see cref="Tool"/> class.</summary>
-        /// <param name="toolType">The tool's type.</param>
-        protected Tool(ToolType toolType)
-            : base(ItemType.Tool)
-        {
-            this.ToolType = toolType;
-        }
-
-        /// <summary>Gets or sets the tool's type.</summary>
-        [DataMember(Name = "tool_type")]
-        protected ToolType ToolType { get; set; }
-
         /// <summary>Gets the name of the property that provides additional information.</summary>
         /// <returns>The name of the property.</returns>
         protected override string GetTypeKey()

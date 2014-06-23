@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a staff.</summary>
     public class Staff : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="Staff" /> class.</summary>
-        public Staff()
-            : base(WeaponType.Staff)
-        {
-        }
     }
 }

@@ -8,13 +8,19 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
 {
+    using System;
+    using System.Runtime.Serialization;
+
+    using GW2DotNET.V1.Common.Converters;
+
+    using Newtonsoft.Json;
+
     /// <summary>Represents detailed information about an immediate consumable item.</summary>
     public class ImmediateConsumable : Consumable
     {
-        /// <summary>Initializes a new instance of the <see cref="ImmediateConsumable" /> class.</summary>
-        public ImmediateConsumable()
-            : base(ConsumableType.Immediate)
-        {
-        }
+        /// <summary>Gets or sets the consumable's effect duration.</summary>
+        [DataMember(Name = "duration_ms")]
+        [JsonConverter(typeof(JsonTimespanConverter))]
+        public virtual TimeSpan? Duration { get; set; }
     }
 }

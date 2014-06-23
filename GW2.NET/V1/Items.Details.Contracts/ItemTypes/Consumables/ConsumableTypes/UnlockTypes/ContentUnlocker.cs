@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
     /// <summary>Represents detailed information about a content unlock item.</summary>
     public class ContentUnlocker : Unlocker
     {
-        /// <summary>Initializes a new instance of the <see cref="ContentUnlocker" /> class.</summary>
-        public ContentUnlocker()
-            : base(UnlockType.Content)
-        {
-        }
     }
 }

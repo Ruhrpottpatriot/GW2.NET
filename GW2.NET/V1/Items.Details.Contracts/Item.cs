@@ -20,13 +20,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
-        /// <summary>Initializes a new instance of the <see cref="Item"/> class.</summary>
-        /// <param name="type">The item's type.</param>
-        protected Item(ItemType type)
-        {
-            this.Type = type;
-        }
-
         /// <summary>Gets or sets the item's build number.</summary>
         [DataMember(Name = "build_id", Order = 1)]
         public virtual int BuildId { get; set; }
@@ -78,10 +71,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         /// <summary>Gets or sets the item's vendor value.</summary>
         [DataMember(Name = "vendor_value", Order = 8)]
         public virtual int VendorValue { get; set; }
-
-        /// <summary>Gets or sets the item's type.</summary>
-        [DataMember(Name = "type", Order = 3)]
-        protected ItemType Type { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

@@ -15,14 +15,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
     /// <summary>Represents a weapon.</summary>
     public abstract class Weapon : CombatItem, ISkinnable
     {
-        /// <summary>Initializes a new instance of the <see cref="Weapon"/> class.</summary>
-        /// <param name="weaponType">The weapon's type.</param>
-        protected Weapon(WeaponType weaponType)
-            : base(ItemType.Weapon)
-        {
-            this.WeaponType = weaponType;
-        }
-
         /// <summary>Gets or sets the weapon's damage type.</summary>
         [DataMember(Name = "damage_type")]
         public virtual WeaponDamageType DamageType { get; set; }

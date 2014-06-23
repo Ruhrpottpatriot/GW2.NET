@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTyp
     /// <summary>Represents detailed information about a gift box container.</summary>
     public class GiftBox : Container
     {
-        /// <summary>Initializes a new instance of the <see cref="GiftBox" /> class.</summary>
-        public GiftBox()
-            : base(ContainerType.GiftBox)
-        {
-        }
     }
 }

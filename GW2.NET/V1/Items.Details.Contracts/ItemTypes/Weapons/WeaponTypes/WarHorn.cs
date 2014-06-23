@@ -11,10 +11,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
     /// <summary>Represents detailed information about a war horn.</summary>
     public class WarHorn : Weapon
     {
-        /// <summary>Initializes a new instance of the <see cref="WarHorn" /> class.</summary>
-        public WarHorn()
-            : base(WeaponType.Warhorn)
-        {
-        }
     }
 }
