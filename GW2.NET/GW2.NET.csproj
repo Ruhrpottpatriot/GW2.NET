@@ -429,7 +429,6 @@
     <Compile Include="V1\Skins.Details.Contracts\Backs\BackpackSkin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\Skin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\SkinFlags.cs" />
-    <Compile Include="V1\Skins.Details.Contracts\SkinType.cs" />
     <Compile Include="V1\Skins.Details.Contracts\UnknownSkin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\Weapons\AxeSkin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\Weapons\DaggerSkin.cs" />
