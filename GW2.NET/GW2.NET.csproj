@@ -175,7 +175,6 @@
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventDetailsCollectionResult.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventFlags.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\Location.cs" />
-    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationType.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\CylinderLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\PointCollection.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\PolygonLocation.cs" />
