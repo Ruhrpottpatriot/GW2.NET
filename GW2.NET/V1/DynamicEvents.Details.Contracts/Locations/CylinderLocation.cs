@@ -6,7 +6,7 @@
 //   Represents a cylindrical location of an event on the map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
+namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
 {
     using System.Runtime.Serialization;
 

@@ -14,7 +14,6 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Converters
 
     using GW2DotNET.Common;
     using GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations;
-    using GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

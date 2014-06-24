@@ -174,12 +174,12 @@
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventDetailsCollection.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventDetailsCollectionResult.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventFlags.cs" />
+    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\CylinderLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\Location.cs" />
-    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\CylinderLocation.cs" />
-    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\PointCollection.cs" />
-    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\PolygonLocation.cs" />
-    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\SphereLocation.cs" />
-    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\LocationTypes\UnknownLocation.cs" />
+    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\PointCollection.cs" />
+    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\PolygonLocation.cs" />
+    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\SphereLocation.cs" />
+    <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\UnknownLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details\Converters\LocationConverter.cs" />
     <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsService.cs" />
