@@ -20,24 +20,16 @@ namespace GW2DotNET.ChatLinks.Extensions
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public static ChatLink GetChatLink(this Item instance)
         {
-            if (instance is CombatItem)
+            Preconditions.EnsureNotNull(instance);
+            var chatLink = new ItemChatLink { ItemId = instance.ItemId };
+            var upgradable = instance as IUpgradable;
+            if (upgradable != null)
             {
-                return GetChatLink(instance as CombatItem);
+                chatLink.SuffixItemId = upgradable.SuffixItemId;
+                chatLink.SecondarySuffixItemId = upgradable.SecondarySuffixItemId;
             }
 
-            Preconditions.EnsureNotNull(instance);
-
-            return new ItemChatLink { ItemId = instance.ItemId };
-        }
-
-        /// <summary>Gets a chat link for the specified item.</summary>
-        /// <param name="instance">The item.</param>
-        /// <returns>The <see cref="ChatLink"/>.</returns>
-        public static ChatLink GetChatLink(this CombatItem instance)
-        {
-            Preconditions.EnsureNotNull(instance);
-
-            return new ItemChatLink { ItemId = instance.ItemId, SuffixItemId = instance.SuffixItemId, SecondarySuffixItemId = instance.SecondarySuffixItemId };
+            return chatLink;
         }
     }
 }

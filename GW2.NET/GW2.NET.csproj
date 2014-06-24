@@ -233,7 +233,6 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Armors\ArmorWeightClass.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Backpacks\Backpack.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Bags\Bag.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\CombatItem.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\InfusionSlot.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\InfusionSlotCollection.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\InfusionSlotTypes.cs" />

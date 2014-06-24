@@ -74,11 +74,19 @@ namespace GW2DotNET.V1.Items.Details.Converters
 
             var detailsProperty = content.Property("back");
 
-            detailsProperty.Remove();
+            var infixProperty = detailsProperty.Value.Value<JObject>().Property("infix_upgrade");
 
             var item = new Backpack();
 
+            detailsProperty.Remove();
+
             serializer.Populate(content.CreateReader(), item);
+
+            if (infixProperty != null)
+            {
+                infixProperty.Remove();
+                serializer.Populate(infixProperty.Value.CreateReader(), item);
+            }
 
             serializer.Populate(detailsProperty.Value.CreateReader(), item);
 

@@ -15,8 +15,55 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 
     /// <summary>Represents a weapon.</summary>
     [TypeDiscriminator(Value = "Weapon", BaseType = typeof(Item))]
-    public abstract class Weapon : CombatItem, ISkinnable
+    public abstract class Weapon : Item, IUpgradable, IUpgrade, ISkinnable
     {
+        /// <summary>Backing field.</summary>
+        private ItemAttributeCollection attributes;
+
+        /// <summary>Backing field.</summary>
+        private ItemBuff buff;
+
+        /// <summary>Backing field.</summary>
+        private InfusionSlotCollection infusionSlots;
+
+        /// <summary>Initializes a new instance of the <see cref="Weapon"/> class.</summary>
+        protected Weapon()
+        {
+            this.buff = new ItemBuff();
+            this.attributes = new ItemAttributeCollection();
+            this.infusionSlots = new InfusionSlotCollection();
+        }
+
+        /// <summary>Gets or sets the item's attributes.</summary>
+        [DataMember(Name = "attributes")]
+        public virtual ItemAttributeCollection Attributes
+        {
+            get
+            {
+                return this.attributes;
+            }
+
+            set
+            {
+                this.attributes = value;
+            }
+        }
+
+        /// <summary>Gets or sets the item's buff.</summary>
+        [DataMember(Name = "buff")]
+        public virtual ItemBuff Buff
+        {
+            get
+            {
+                return this.buff;
+            }
+
+            set
+            {
+                this.buff = value;
+            }
+        }
+
         /// <summary>Gets or sets the weapon's damage type.</summary>
         [DataMember(Name = "damage_type")]
         public virtual WeaponDamageType DamageType { get; set; }
@@ -29,6 +76,21 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
         [DataMember(Name = "defense")]
         public virtual int Defense { get; set; }
 
+        /// <summary>Gets or sets the item's infusion slots.</summary>
+        [DataMember(Name = "infusion_slots")]
+        public virtual InfusionSlotCollection InfusionSlots
+        {
+            get
+            {
+                return this.infusionSlots;
+            }
+
+            set
+            {
+                this.infusionSlots = value;
+            }
+        }
+
         /// <summary>Gets or sets the weapon's maximum power.</summary>
         [DataMember(Name = "max_power")]
         public virtual int MaximumPower { get; set; }
@@ -36,5 +98,13 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
         /// <summary>Gets or sets the weapon's minimum power.</summary>
         [DataMember(Name = "min_power")]
         public virtual int MinimumPower { get; set; }
+
+        /// <summary>Gets or sets the item's secondary suffix item's ID.</summary>
+        [DataMember(Name = "secondary_suffix_item_id")]
+        public int? SecondarySuffixItemId { get; set; }
+
+        /// <summary>Gets or sets the item's suffix item's ID.</summary>
+        [DataMember(Name = "suffix_item_id")]
+        public int? SuffixItemId { get; set; }
     }
 }

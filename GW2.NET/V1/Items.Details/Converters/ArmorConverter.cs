@@ -92,7 +92,15 @@ namespace GW2DotNET.V1.Items.Details.Converters
 
             detailsProperty.Remove();
 
+            var infixProperty = detailsProperty.Value.Value<JObject>().Property("infix_upgrade");
+
             var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            if (infixProperty != null)
+            {
+                infixProperty.Remove();
+                serializer.Populate(infixProperty.Value.CreateReader(), item);
+            }
 
             serializer.Populate(detailsProperty.Value.CreateReader(), item);
 
