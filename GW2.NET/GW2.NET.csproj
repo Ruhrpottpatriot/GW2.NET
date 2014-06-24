@@ -280,11 +280,11 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\SalvageTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\Tool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\UnknownTool.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\Accessory.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\Amulet.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\Ring.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\Trinket.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Accessory.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Amulet.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Ring.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\UnknownTrinket.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\UnknownTrinket.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trophies\Trophy.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UnknownItem.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\UpgradeComponents\UpgradeBonusCollection.cs" />

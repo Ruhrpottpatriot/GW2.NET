@@ -6,7 +6,7 @@
 //   Represents an amulet.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
 {
     using GW2DotNET.Common;
 
