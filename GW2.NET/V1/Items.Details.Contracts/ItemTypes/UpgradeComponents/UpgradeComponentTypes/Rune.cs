@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents.UpgradeComponentTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a rune upgrade component.</summary>
+    [TypeDiscriminator(Value = "Rune", BaseType = typeof(UpgradeComponent))]
     public class Rune : UpgradeComponent
     {
     }

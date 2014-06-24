@@ -8,14 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents a gizmo.</summary>
+    [TypeDiscriminator(Value = "Gizmo", BaseType = typeof(Item))]
     public abstract class Gizmo : Item
     {
-        /// <summary>Gets the name of the property that provides additional information.</summary>
-        /// <returns>The name of the property.</returns>
-        protected override string GetTypeKey()
-        {
-            return "gizmo";
-        }
     }
 }

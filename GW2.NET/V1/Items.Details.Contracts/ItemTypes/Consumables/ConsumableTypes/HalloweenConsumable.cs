@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a halloween consumable item.</summary>
+    [TypeDiscriminator(Value = "Halloween", BaseType = typeof(Consumable))]
     public class HalloweenConsumable : Consumable
     {
     }

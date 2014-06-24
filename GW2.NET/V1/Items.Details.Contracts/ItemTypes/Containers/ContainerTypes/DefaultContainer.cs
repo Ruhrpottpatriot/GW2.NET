@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a default container.</summary>
+    [TypeDiscriminator(Value = "Default", BaseType = typeof(Container))]
     public class DefaultContainer : Container
     {
     }

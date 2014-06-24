@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.CraftingMaterials
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents a crafting material.</summary>
+    [TypeDiscriminator(Value = "CraftingMaterial", BaseType = typeof(Item))]
     public class CraftingMaterial : Item
     {
     }

@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents an unknown item..</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Item))]
     public class UnknownItem : Item
     {
     }

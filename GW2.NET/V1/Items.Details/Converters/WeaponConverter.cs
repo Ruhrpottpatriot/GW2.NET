@@ -10,7 +10,9 @@ namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes;
 
@@ -21,35 +23,22 @@ namespace GW2DotNET.V1.Items.Details.Converters
     public class WeaponConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<WeaponType, Type> KnownTypes = new Dictionary<WeaponType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="WeaponConverter" /> class.</summary>
         static WeaponConverter()
         {
-            KnownTypes.Add(WeaponType.Unknown, typeof(UnknownWeapon));
-            KnownTypes.Add(WeaponType.Axe, typeof(Axe));
-            KnownTypes.Add(WeaponType.Dagger, typeof(Dagger));
-            KnownTypes.Add(WeaponType.Focus, typeof(Focus));
-            KnownTypes.Add(WeaponType.GreatSword, typeof(GreatSword));
-            KnownTypes.Add(WeaponType.Hammer, typeof(Hammer));
-            KnownTypes.Add(WeaponType.Harpoon, typeof(Harpoon));
-            KnownTypes.Add(WeaponType.LargeBundle, typeof(LargeBundle));
-            KnownTypes.Add(WeaponType.SmallBundle, typeof(SmallBundle));
-            KnownTypes.Add(WeaponType.LongBow, typeof(LongBow));
-            KnownTypes.Add(WeaponType.Mace, typeof(Mace));
-            KnownTypes.Add(WeaponType.Pistol, typeof(Pistol));
-            KnownTypes.Add(WeaponType.Rifle, typeof(Rifle));
-            KnownTypes.Add(WeaponType.Scepter, typeof(Scepter));
-            KnownTypes.Add(WeaponType.Shield, typeof(Shield));
-            KnownTypes.Add(WeaponType.ShortBow, typeof(ShortBow));
-            KnownTypes.Add(WeaponType.SpearGun, typeof(SpearGun));
-            KnownTypes.Add(WeaponType.Staff, typeof(Staff));
-            KnownTypes.Add(WeaponType.Sword, typeof(Sword));
-            KnownTypes.Add(WeaponType.Torch, typeof(Torch));
-            KnownTypes.Add(WeaponType.Toy, typeof(ToyWeapon));
-            KnownTypes.Add(WeaponType.Trident, typeof(Trident));
-            KnownTypes.Add(WeaponType.TwoHandedToy, typeof(TwoHandedToyWeapon));
-            KnownTypes.Add(WeaponType.Warhorn, typeof(WarHorn));
+            var baseType = typeof(Weapon);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
         }
 
         /// <summary>
@@ -84,38 +73,30 @@ namespace GW2DotNET.V1.Items.Details.Converters
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("weapon");
+            var detailsProperty = content.Property("weapon");
 
-            var detailsType = details == null ? content.Property("weapon_type") : ((JObject)details.Value).Property("type");
+            var typeProperty = detailsProperty.Value.Value<JObject>().Property("type");
 
-            var type = detailsType.Value.Value<string>();
+            var type = typeProperty.Value.ToString();
+
+            typeProperty.Remove();
 
             Type itemType;
 
-            try
-            {
-                WeaponType weaponType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownWeapon);
 
-                if (!Enum.TryParse(type, true, out weaponType))
-                {
-                    weaponType = JsonSerializer.Create().Deserialize<WeaponType>(detailsType.CreateReader());
-                }
-
-                if (!KnownTypes.TryGetValue(weaponType, out itemType))
-                {
-                    itemType = typeof(UnknownWeapon);
-                }
-            }
-            catch (JsonSerializationException)
+            if (serializer.Converters.Any(converter => converter.CanConvert(itemType)))
             {
-                itemType = typeof(UnknownWeapon);
-            }
-            finally
-            {
-                detailsType.Remove();
+                return serializer.Deserialize(content.CreateReader(), itemType);
             }
 
-            return serializer.Deserialize(content.CreateReader(), itemType);
+            detailsProperty.Remove();
+
+            var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            serializer.Populate(detailsProperty.Value.CreateReader(), item);
+
+            return item;
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>

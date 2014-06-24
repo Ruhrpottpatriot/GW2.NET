@@ -10,11 +10,13 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
 
     /// <summary>Represents a bag.</summary>
+    [TypeDiscriminator(Value = "Bag", BaseType = typeof(Item))]
     public class Bag : Item
     {
         /// <summary>Gets or sets a value indicating whether this is an invisible bag.</summary>
@@ -25,12 +27,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags
         /// <summary>Gets or sets the bag's capacity.</summary>
         [DataMember(Name = "size")]
         public virtual int Size { get; set; }
-
-        /// <summary>Gets the name of the property that provides additional information.</summary>
-        /// <returns>The name of the property.</returns>
-        protected override string GetTypeKey()
-        {
-            return "bag";
-        }
     }
 }

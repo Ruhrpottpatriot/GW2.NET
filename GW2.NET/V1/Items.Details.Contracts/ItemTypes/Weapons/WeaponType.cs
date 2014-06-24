@@ -106,7 +106,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
         TwoHandedToy = 1 << 20, 
 
         /// <summary>The 'War horn' weapon type.</summary>
-        [EnumMember(Value = "WarHorn")]
+        [EnumMember(Value = "Warhorn")]
         Warhorn = 1 << 21, 
 
         /// <summary>The 'Small Bundle' weapon type.</summary>

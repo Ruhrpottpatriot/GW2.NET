@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an unlock item.</summary>
+    [TypeDiscriminator(Value = "Unlock", BaseType = typeof(Consumable))]
     public abstract class Unlocker : Consumable
     {
     }

@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a war horn.</summary>
+    [TypeDiscriminator(Value = "Warhorn", BaseType = typeof(Weapon))]
     public class WarHorn : Weapon
     {
     }

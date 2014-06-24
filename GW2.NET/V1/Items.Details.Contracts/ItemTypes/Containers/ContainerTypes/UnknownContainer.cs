@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an unknown container.</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Container))]
     public class UnknownContainer : Container
     {
     }

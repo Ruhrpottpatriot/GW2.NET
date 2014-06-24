@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an unlimited consumable gizmo.</summary>
+    [TypeDiscriminator(Value = "UnlimitedConsumable", BaseType = typeof(Gizmo))]
     public class UnlimitedConsumable : Gizmo
     {
     }

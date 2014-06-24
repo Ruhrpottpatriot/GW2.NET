@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an unknown gizmo.</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Gizmo))]
     public class UnknownGizmo : Gizmo
     {
     }

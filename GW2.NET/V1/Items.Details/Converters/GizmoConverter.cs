@@ -10,7 +10,9 @@ namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes;
 
@@ -21,15 +23,22 @@ namespace GW2DotNET.V1.Items.Details.Converters
     public class GizmoConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<GizmoType, Type> KnownTypes = new Dictionary<GizmoType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="GizmoConverter" /> class.</summary>
         static GizmoConverter()
         {
-            KnownTypes.Add(GizmoType.Unknown, typeof(UnknownGizmo));
-            KnownTypes.Add(GizmoType.Default, typeof(DefaultGizmo));
-            KnownTypes.Add(GizmoType.RentableContractNpc, typeof(RentableContractNpc));
-            KnownTypes.Add(GizmoType.UnlimitedConsumable, typeof(UnlimitedConsumable));
+            var baseType = typeof(Gizmo);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
         }
 
         /// <summary>
@@ -64,38 +73,28 @@ namespace GW2DotNET.V1.Items.Details.Converters
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("gizmo");
+            var detailsProperty = content.Property("gizmo");
 
-            var detailsType = details == null ? content.Property("gizmo_type") : ((JObject)details.Value).Property("type");
+            var typeProperty = detailsProperty.Value.Value<JObject>().Property("type");
 
-            var type = detailsType.Value.Value<string>();
+            var type = typeProperty.Value.ToString();
+
+            typeProperty.Remove();
 
             Type itemType;
 
-            try
-            {
-                GizmoType gizmoType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownGizmo);
 
-                if (!Enum.TryParse(type, true, out gizmoType))
-                {
-                    gizmoType = JsonSerializer.Create().Deserialize<GizmoType>(detailsType.CreateReader());
-                }
+            if (serializer.Converters.Any(converter => converter.CanConvert(itemType)))
+            {
+                return serializer.Deserialize(content.CreateReader(), itemType);
+            }
 
-                if (!KnownTypes.TryGetValue(gizmoType, out itemType))
-                {
-                    itemType = typeof(UnknownGizmo);
-                }
-            }
-            catch (JsonSerializationException)
-            {
-                itemType = typeof(UnknownGizmo);
-            }
-            finally
-            {
-                detailsType.Remove();
-            }
+            detailsProperty.Remove();
 
             var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            serializer.Populate(detailsProperty.Value.CreateReader(), item);
 
             return item;
         }

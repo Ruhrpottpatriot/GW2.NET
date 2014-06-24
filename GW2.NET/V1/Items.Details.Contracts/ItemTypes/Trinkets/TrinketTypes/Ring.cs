@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a ring.</summary>
+    [TypeDiscriminator(Value = "Ring", BaseType = typeof(Trinket))]
     public class Ring : Trinket
     {
     }

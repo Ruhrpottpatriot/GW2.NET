@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets.TrinketTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an unknown trinket.</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Trinket))]
     public class UnknownTrinket : Trinket
     {
     }

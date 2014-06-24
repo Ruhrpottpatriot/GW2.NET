@@ -10,7 +10,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a salvaging tool.</summary>
+    [TypeDiscriminator(Value = "Salvage", BaseType = typeof(Tool))]
     public class SalvageTool : Tool
     {
         /// <summary>Gets or sets the tool's charges.</summary>

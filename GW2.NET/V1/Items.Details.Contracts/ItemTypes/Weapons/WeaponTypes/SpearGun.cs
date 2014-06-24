@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a spear gun.</summary>
+    [TypeDiscriminator(Value = "Speargun", BaseType = typeof(Weapon))]
     public class SpearGun : Weapon
     {
     }

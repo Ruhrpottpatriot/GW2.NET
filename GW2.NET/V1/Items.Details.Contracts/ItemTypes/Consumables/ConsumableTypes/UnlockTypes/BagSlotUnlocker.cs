@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a bag slot unlock item.</summary>
+    [TypeDiscriminator(Value = "BagSlot", BaseType = typeof(Unlocker))]
     public class BagSlotUnlocker : Unlocker
     {
     }

@@ -8,14 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents a tool.</summary>
+    [TypeDiscriminator(Value = "Tool", BaseType = typeof(Item))]
     public abstract class Tool : Item
     {
-        /// <summary>Gets the name of the property that provides additional information.</summary>
-        /// <returns>The name of the property.</returns>
-        protected override string GetTypeKey()
-        {
-            return "tool";
-        }
     }
 }

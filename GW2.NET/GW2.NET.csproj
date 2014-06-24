@@ -117,6 +117,7 @@
     <Compile Include="Common\IServiceClient.cs" />
     <Compile Include="Common\ServiceClient.cs" />
     <Compile Include="Common\ServiceException.cs" />
+    <Compile Include="Common\TypeDiscriminatorAttribute.cs" />
     <Compile Include="Extensions\HttpStatusCodeExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -244,7 +245,6 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\IUpgradable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Common\IUpgrade.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\Consumable.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\AppearanceChanger.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Booze.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\ContractNpc.cs" />
@@ -258,7 +258,6 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Transmutation.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnknownConsumable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Unlocker.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BagSlotUnlocker.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\BankTabUnlocker.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\CollectibleCapacityUnlocker.cs" />
@@ -268,7 +267,6 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\UnlockTypes\UnknownUnlocker.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\ConsumableTypes\Utility.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\Container.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\DefaultContainer.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\GiftBox.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\UnknownContainer.cs" />
@@ -278,20 +276,16 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\LoggingTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\MiningTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\UnknownGatheringTool.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\Gizmo.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\DefaultGizmo.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\RentableContractNpc.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnknownGizmo.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnlimitedConsumable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\MiniPets\MiniPet.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\Tool.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\SalvageTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\UnknownTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\Trinket.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketType.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Accessory.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Amulet.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Ring.cs" />
@@ -339,6 +333,8 @@
     <Compile Include="V1\Items.Details\Converters\ArmorConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\ConsumableConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\ContainerConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\BagConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\BackpackConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\GatheringToolConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\GizmoConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\ItemConverter.cs" />

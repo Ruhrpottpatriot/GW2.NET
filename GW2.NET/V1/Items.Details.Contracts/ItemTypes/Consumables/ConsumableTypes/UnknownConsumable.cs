@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an unknown consumable item.</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Consumable))]
     public class UnknownConsumable : Consumable
     {
     }

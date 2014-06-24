@@ -10,7 +10,9 @@ namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTypes;
 
@@ -21,14 +23,22 @@ namespace GW2DotNET.V1.Items.Details.Converters
     public class ContainerConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<ContainerType, Type> KnownTypes = new Dictionary<ContainerType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="ContainerConverter" /> class.</summary>
         static ContainerConverter()
         {
-            KnownTypes.Add(ContainerType.Unknown, typeof(UnknownContainer));
-            KnownTypes.Add(ContainerType.Default, typeof(DefaultContainer));
-            KnownTypes.Add(ContainerType.GiftBox, typeof(GiftBox));
+            var baseType = typeof(Container);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
@@ -49,38 +59,28 @@ namespace GW2DotNET.V1.Items.Details.Converters
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("container");
+            var detailsProperty = content.Property("container");
 
-            var detailsType = details == null ? content.Property("container_type") : ((JObject)details.Value).Property("type");
+            var typeProperty = detailsProperty.Value.Value<JObject>().Property("type");
 
-            var type = detailsType.Value.Value<string>();
+            var type = typeProperty.Value.ToString();
+
+            typeProperty.Remove();
 
             Type itemType;
 
-            try
-            {
-                ContainerType containerType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownContainer);
 
-                if (!Enum.TryParse(type, true, out containerType))
-                {
-                    containerType = JsonSerializer.Create().Deserialize<ContainerType>(detailsType.CreateReader());
-                }
+            if (serializer.Converters.Any(converter => converter.CanConvert(itemType)))
+            {
+                return serializer.Deserialize(content.CreateReader(), itemType);
+            }
 
-                if (!KnownTypes.TryGetValue(containerType, out itemType))
-                {
-                    itemType = typeof(UnknownContainer);
-                }
-            }
-            catch (JsonSerializationException)
-            {
-                itemType = typeof(UnknownContainer);
-            }
-            finally
-            {
-                detailsType.Remove();
-            }
+            detailsProperty.Remove();
 
             var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            serializer.Populate(detailsProperty.Value.CreateReader(), item);
 
             return item;
         }

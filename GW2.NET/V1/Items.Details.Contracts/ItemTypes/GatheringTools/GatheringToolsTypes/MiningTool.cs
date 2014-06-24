@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.GatheringToolsTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a mining tool.</summary>
+    [TypeDiscriminator(Value = "Mining", BaseType = typeof(GatheringTool))]
     public class MiningTool : GatheringTool
     {
     }

@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an appearance changing consumable item.</summary>
+    [TypeDiscriminator(Value = "AppearanceChange", BaseType = typeof(Consumable))]
     public class AppearanceChanger : Consumable
     {
     }

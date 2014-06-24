@@ -10,7 +10,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a dye.</summary>
+    [TypeDiscriminator(Value = "Dye", BaseType = typeof(Unlocker))]
     public class DyeUnlocker : Unlocker
     {
         /// <summary>Gets or sets the dye's color ID.</summary>

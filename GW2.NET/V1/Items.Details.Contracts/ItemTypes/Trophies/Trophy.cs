@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trophies
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents a trophy.</summary>
+    [TypeDiscriminator(Value = "Trophy", BaseType = typeof(Item))]
     public class Trophy : Item
     {
     }

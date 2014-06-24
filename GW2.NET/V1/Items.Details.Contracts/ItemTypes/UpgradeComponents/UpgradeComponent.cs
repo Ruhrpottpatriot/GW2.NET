@@ -10,12 +10,14 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Represents an upgrade component.</summary>
+    [TypeDiscriminator(Value = "UpgradeComponent", BaseType = typeof(Item))]
     public abstract class UpgradeComponent : Item, IUpgrade
     {
         /// <summary>Backing field.</summary>
@@ -76,17 +78,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents
         /// <summary>Gets or sets the upgrade component's flags.</summary>
         [DataMember(Name = "upgrade_component_flags", Order = 101)]
         public virtual UpgradeComponentFlags UpgradeComponentFlags { get; set; }
-
-        /// <summary>Gets or sets the upgrade component's type.</summary>
-        [DataMember(Name = "upgrade_component_type", Order = 100)]
-        protected UpgradeComponentType UpgradeComponentType { get; set; }
-
-        /// <summary>Gets the name of the property that provides additional information.</summary>
-        /// <returns>The name of the property.</returns>
-        protected override string GetTypeKey()
-        {
-            return "upgrade_component";
-        }
 
         /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>
         /// <param name="context">The streaming context.</param>

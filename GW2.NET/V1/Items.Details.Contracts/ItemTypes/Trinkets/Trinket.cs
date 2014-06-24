@@ -8,18 +8,12 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets
 {
-    using System.Runtime.Serialization;
-
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     /// <summary>Represents a trinket.</summary>
+    [TypeDiscriminator(Value = "Trinket", BaseType = typeof(Item))]
     public abstract class Trinket : CombatItem
     {
-        /// <summary>Gets the name of the property that provides additional information.</summary>
-        /// <returns>The name of the property.</returns>
-        protected override string GetTypeKey()
-        {
-            return "trinket";
-        }
     }
 }

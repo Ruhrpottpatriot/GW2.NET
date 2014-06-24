@@ -10,9 +10,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     /// <summary>Represents a weapon.</summary>
+    [TypeDiscriminator(Value = "Weapon", BaseType = typeof(Item))]
     public abstract class Weapon : CombatItem, ISkinnable
     {
         /// <summary>Gets or sets the weapon's damage type.</summary>
@@ -34,16 +36,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
         /// <summary>Gets or sets the weapon's minimum power.</summary>
         [DataMember(Name = "min_power")]
         public virtual int MinimumPower { get; set; }
-
-        /// <summary>Gets or sets the weapon's type.</summary>
-        [DataMember(Name = "weapon_type")]
-        protected WeaponType WeaponType { get; set; }
-
-        /// <summary>Gets the name of the property that provides additional information.</summary>
-        /// <returns>The name of the property.</returns>
-        protected override string GetTypeKey()
-        {
-            return "weapon";
-        }
     }
 }

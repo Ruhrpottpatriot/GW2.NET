@@ -10,7 +10,9 @@ namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes;
 
@@ -21,13 +23,22 @@ namespace GW2DotNET.V1.Items.Details.Converters
     public class ToolConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<ToolType, Type> KnownTypes = new Dictionary<ToolType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="ToolConverter" /> class.</summary>
         static ToolConverter()
         {
-            KnownTypes.Add(ToolType.Unknown, typeof(UnknownTool));
-            KnownTypes.Add(ToolType.Salvage, typeof(SalvageTool));
+            var baseType = typeof(Tool);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
         }
 
         /// <summary>
@@ -62,38 +73,28 @@ namespace GW2DotNET.V1.Items.Details.Converters
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("tool");
+            var detailsProperty = content.Property("tool");
 
-            var detailsType = details == null ? content.Property("tool_type") : ((JObject)details.Value).Property("type");
+            var typeProperty = detailsProperty.Value.Value<JObject>().Property("type");
 
-            var type = detailsType.Value.Value<string>();
+            var type = typeProperty.Value.ToString();
+
+            typeProperty.Remove();
 
             Type itemType;
 
-            try
-            {
-                ToolType toolType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownTool);
 
-                if (!Enum.TryParse(type, true, out toolType))
-                {
-                    toolType = JsonSerializer.Create().Deserialize<ToolType>(detailsType.CreateReader());
-                }
+            if (serializer.Converters.Any(converter => converter.CanConvert(itemType)))
+            {
+                return serializer.Deserialize(content.CreateReader(), itemType);
+            }
 
-                if (!KnownTypes.TryGetValue(toolType, out itemType))
-                {
-                    itemType = typeof(UnknownTool);
-                }
-            }
-            catch (JsonSerializationException)
-            {
-                itemType = typeof(UnknownTool);
-            }
-            finally
-            {
-                detailsType.Remove();
-            }
+            detailsProperty.Remove();
 
             var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            serializer.Populate(detailsProperty.Value.CreateReader(), item);
 
             return item;
         }

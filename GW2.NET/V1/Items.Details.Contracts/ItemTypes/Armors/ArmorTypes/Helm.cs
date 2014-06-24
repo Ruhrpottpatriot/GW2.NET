@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about head protection.</summary>
+    [TypeDiscriminator(Value = "Helm", BaseType = typeof(Armor))]
     public class Helm : Armor
     {
     }

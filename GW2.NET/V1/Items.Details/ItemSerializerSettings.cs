@@ -21,6 +21,8 @@ namespace GW2DotNET.V1.Items.Details
             this.Converters.Add(new ItemConverter());
             this.Converters.Add(new UpgradeComponentConverter());
             this.Converters.Add(new ArmorConverter());
+            this.Converters.Add(new BackpackConverter());
+            this.Converters.Add(new BagConverter());
             this.Converters.Add(new ConsumableConverter());
             this.Converters.Add(new UnlockerConverter());
             this.Converters.Add(new ContainerConverter());

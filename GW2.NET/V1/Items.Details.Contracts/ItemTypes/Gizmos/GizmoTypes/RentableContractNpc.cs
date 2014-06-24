@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a rentable contract NPC.</summary>
+    [TypeDiscriminator(Value = "RentableContractNpc", BaseType = typeof(Gizmo))]
     public class RentableContractNpc : Gizmo
     {
     }

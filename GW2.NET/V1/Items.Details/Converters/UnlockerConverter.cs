@@ -10,7 +10,9 @@ namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes.UnlockTypes;
 
@@ -21,18 +23,22 @@ namespace GW2DotNET.V1.Items.Details.Converters
     public class UnlockerConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<UnlockType, Type> KnownTypes = new Dictionary<UnlockType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="UnlockerConverter"/> class.</summary>
         static UnlockerConverter()
         {
-            KnownTypes.Add(UnlockType.Unknown, typeof(UnknownUnlocker));
-            KnownTypes.Add(UnlockType.BagSlot, typeof(BagSlotUnlocker));
-            KnownTypes.Add(UnlockType.BankTab, typeof(BankTabUnlocker));
-            KnownTypes.Add(UnlockType.CraftingRecipe, typeof(CraftingRecipeUnlocker));
-            KnownTypes.Add(UnlockType.Dye, typeof(DyeUnlocker));
-            KnownTypes.Add(UnlockType.Content, typeof(ContentUnlocker));
-            KnownTypes.Add(UnlockType.CollectibleCapacity, typeof(CollectibleCapacityUnlocker));
+            var baseType = typeof(Unlocker);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
         }
 
         /// <summary>
@@ -67,38 +73,28 @@ namespace GW2DotNET.V1.Items.Details.Converters
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("consumable");
+            var detailsProperty = content.Property("consumable");
 
-            var detailsType = details == null ? content.Property("unlock_type") : ((JObject)details.Value).Property("unlock_type");
+            var typeProperty = detailsProperty.Value.Value<JObject>().Property("unlock_type");
 
-            var type = detailsType.Value.Value<string>();
+            var type = typeProperty.Value.ToString();
+
+            typeProperty.Remove();
 
             Type itemType;
 
-            try
-            {
-                UnlockType unlockType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownUnlocker);
 
-                if (!Enum.TryParse(type, true, out unlockType))
-                {
-                    unlockType = JsonSerializer.Create().Deserialize<UnlockType>(detailsType.CreateReader());
-                }
+            if (serializer.Converters.Any(converter => converter.CanConvert(itemType)))
+            {
+                return serializer.Deserialize(content.CreateReader(), itemType);
+            }
 
-                if (!KnownTypes.TryGetValue(unlockType, out itemType))
-                {
-                    itemType = typeof(UnknownUnlocker);
-                }
-            }
-            catch (JsonSerializationException)
-            {
-                itemType = typeof(UnknownUnlocker);
-            }
-            finally
-            {
-                detailsType.Remove();
-            }
+            detailsProperty.Remove();
 
             var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            serializer.Populate(detailsProperty.Value.CreateReader(), item);
 
             return item;
         }

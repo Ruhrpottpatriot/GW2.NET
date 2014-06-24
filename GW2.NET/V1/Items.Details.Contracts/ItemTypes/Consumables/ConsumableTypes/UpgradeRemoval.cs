@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an upgrade removal item.</summary>
+    [TypeDiscriminator(Value = "UpgradeRemoval", BaseType = typeof(Consumable))]
     public class UpgradeRemoval : Consumable
     {
     }

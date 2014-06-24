@@ -10,7 +10,9 @@ namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes;
 
@@ -21,24 +23,22 @@ namespace GW2DotNET.V1.Items.Details.Converters
     public class ConsumableConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<ConsumableType, Type> KnownTypes = new Dictionary<ConsumableType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="ConsumableConverter"/> class.</summary>
         static ConsumableConverter()
         {
-            KnownTypes.Add(ConsumableType.Unknown, typeof(UnknownConsumable));
-            KnownTypes.Add(ConsumableType.AppearanceChange, typeof(AppearanceChanger));
-            KnownTypes.Add(ConsumableType.Booze, typeof(Booze));
-            KnownTypes.Add(ConsumableType.ContractNpc, typeof(ContractNpc));
-            KnownTypes.Add(ConsumableType.Food, typeof(Food));
-            KnownTypes.Add(ConsumableType.Generic, typeof(GenericConsumable));
-            KnownTypes.Add(ConsumableType.Halloween, typeof(HalloweenConsumable));
-            KnownTypes.Add(ConsumableType.Immediate, typeof(ImmediateConsumable));
-            KnownTypes.Add(ConsumableType.Transmutation, typeof(Transmutation));
-            KnownTypes.Add(ConsumableType.UnTransmutation, typeof(UnTransmutation));
-            KnownTypes.Add(ConsumableType.Unlock, typeof(Unlocker));
-            KnownTypes.Add(ConsumableType.Utility, typeof(Utility));
-            KnownTypes.Add(ConsumableType.UpgradeRemoval, typeof(UpgradeRemoval));
+            var baseType = typeof(Consumable);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
         }
 
         /// <summary>
@@ -73,38 +73,28 @@ namespace GW2DotNET.V1.Items.Details.Converters
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("consumable");
+            var detailsProperty = content.Property("consumable");
 
-            var detailsType = details == null ? content.Property("consumable_type") : ((JObject)details.Value).Property("type");
+            var typeProperty = detailsProperty.Value.Value<JObject>().Property("type");
 
-            var type = detailsType.Value.Value<string>();
+            var type = typeProperty.Value.ToString();
+
+            typeProperty.Remove();
 
             Type itemType;
 
-            try
-            {
-                ConsumableType consumableType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownConsumable);
 
-                if (!Enum.TryParse(type, true, out consumableType))
-                {
-                    consumableType = JsonSerializer.Create().Deserialize<ConsumableType>(detailsType.CreateReader());
-                }
+            if (serializer.Converters.Any(converter => converter.CanConvert(itemType)))
+            {
+                return serializer.Deserialize(content.CreateReader(), itemType);
+            }
 
-                if (!KnownTypes.TryGetValue(consumableType, out itemType))
-                {
-                    itemType = typeof(UnknownConsumable);
-                }
-            }
-            catch (JsonSerializationException)
-            {
-                itemType = typeof(UnknownConsumable);
-            }
-            finally
-            {
-                detailsType.Remove();
-            }
+            detailsProperty.Remove();
 
             var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            serializer.Populate(detailsProperty.Value.CreateReader(), item);
 
             return item;
         }

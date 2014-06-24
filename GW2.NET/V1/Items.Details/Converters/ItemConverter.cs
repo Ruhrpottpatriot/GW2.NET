@@ -11,53 +11,36 @@ namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
-    using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backpacks;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Bags;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.CraftingMaterials;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.MiniPets;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trinkets;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Trophies;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an instance of a class that extends <see cref="Item" /> from its <see cref="System.String" />
     /// representation.</summary>
-    public class ItemConverter : ContentBasedTypeCreationConverter
+    public class ItemConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<ItemType, Type> KnownTypes = new Dictionary<ItemType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="ItemConverter" /> class.</summary>
         static ItemConverter()
         {
-            KnownTypes.Add(ItemType.Unknown, typeof(UnknownItem));
-            KnownTypes.Add(ItemType.Armor, typeof(Armor));
-            KnownTypes.Add(ItemType.Back, typeof(Backpack));
-            KnownTypes.Add(ItemType.Bag, typeof(Bag));
-            KnownTypes.Add(ItemType.Consumable, typeof(Consumable));
-            KnownTypes.Add(ItemType.Container, typeof(Container));
-            KnownTypes.Add(ItemType.CraftingMaterial, typeof(CraftingMaterial));
-            KnownTypes.Add(ItemType.Gathering, typeof(GatheringTool));
-            KnownTypes.Add(ItemType.Gizmo, typeof(Gizmo));
-            KnownTypes.Add(ItemType.MiniPet, typeof(MiniPet));
-            KnownTypes.Add(ItemType.Tool, typeof(Tool));
-            KnownTypes.Add(ItemType.Trinket, typeof(Trinket));
-            KnownTypes.Add(ItemType.Trophy, typeof(Trophy));
-            KnownTypes.Add(ItemType.UpgradeComponent, typeof(UpgradeComponent));
-            KnownTypes.Add(ItemType.Weapon, typeof(Weapon));
+            var baseType = typeof(Item);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
@@ -68,47 +51,36 @@ namespace GW2DotNET.V1.Items.Details.Converters
             return typeof(Item) == objectType;
         }
 
-        /// <summary>Gets the object type that will be used by the serializer.</summary>
-        /// <param name="objectType">The type of the object.</param>
-        /// <param name="content">The JSON content.</param>
-        /// <returns>Returns the target type.</returns>
-        protected override Type GetTargetType(Type objectType, JObject content)
+        /// <summary>Reads the JSON representation of the object.</summary>
+        /// <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+        /// <param name="objectType">Type of the object.</param>
+        /// <param name="existingValue">The existing value of object being read.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        /// <returns>The object value.</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var jsonToken = content["type"];
+            var content = JObject.Load(reader);
 
-            if (jsonToken == null)
-            {
-                return typeof(UnknownItem);
-            }
+            var typeProperty = content.Property("type");
 
-            var jsonValue = jsonToken.Value<string>();
+            var type = typeProperty.Value.ToString();
 
-            try
-            {
-                ItemType type;
+            typeProperty.Remove();
 
-                if (!Enum.TryParse(jsonValue, true, out type))
-                {
-                    type = JsonSerializer.Create().Deserialize<ItemType>(jsonToken.CreateReader());
-                }
+            Type itemType;
 
-                Type targetType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownItem);
 
-                if (!KnownTypes.TryGetValue(type, out targetType))
-                {
-                    return typeof(UnknownItem);
-                }
+            return serializer.Deserialize(content.CreateReader(), itemType);
+        }
 
-                return targetType;
-            }
-            catch (JsonSerializationException)
-            {
-                return typeof(UnknownItem);
-            }
-            finally
-            {
-                content.Remove("type");
-            }
+        /// <summary>Writes the JSON representation of the object.</summary>
+        /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            throw new InvalidOperationException();
         }
     }
 }

@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.GatheringToolsTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an unknown gathering tool.</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(GatheringTool))]
     public class UnknownGatheringTool : GatheringTool
     {
     }

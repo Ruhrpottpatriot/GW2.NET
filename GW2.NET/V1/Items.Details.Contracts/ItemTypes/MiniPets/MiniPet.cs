@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.MiniPets
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents a mini pet.</summary>
+    [TypeDiscriminator(Value = "MiniPet", BaseType = typeof(Item))]
     public class MiniPet : Item
     {
     }

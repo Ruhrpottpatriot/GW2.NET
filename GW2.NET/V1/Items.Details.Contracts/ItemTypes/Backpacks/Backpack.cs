@@ -10,20 +10,15 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Backpacks
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
 
     /// <summary>Represents a backpack.</summary>
+    [TypeDiscriminator(Value = "Back", BaseType = typeof(Item))]
     public class Backpack : CombatItem, ISkinnable
     {
         /// <summary>Gets or sets the item's default skin identifier.</summary>
         [DataMember(Name = "default_skin")]
         public virtual int DefaultSkin { get; set; }
-
-        /// <summary>Gets the name of the property that provides additional information.</summary>
-        /// <returns>The name of the property.</returns>
-        protected override string GetTypeKey()
-        {
-            return "back";
-        }
     }
 }

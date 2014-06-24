@@ -10,7 +10,9 @@ namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes;
 
@@ -21,19 +23,22 @@ namespace GW2DotNET.V1.Items.Details.Converters
     public class ArmorConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<ArmorType, Type> KnownTypes = new Dictionary<ArmorType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="ArmorConverter" /> class.</summary>
         static ArmorConverter()
         {
-            KnownTypes.Add(ArmorType.Unknown, typeof(UnknownArmor));
-            KnownTypes.Add(ArmorType.Boots, typeof(Boots));
-            KnownTypes.Add(ArmorType.Coat, typeof(Coat));
-            KnownTypes.Add(ArmorType.Gloves, typeof(Gloves));
-            KnownTypes.Add(ArmorType.Helm, typeof(Helm));
-            KnownTypes.Add(ArmorType.HelmAquatic, typeof(AquaticHelm));
-            KnownTypes.Add(ArmorType.Leggings, typeof(Leggings));
-            KnownTypes.Add(ArmorType.Shoulders, typeof(Shoulders));
+            var baseType = typeof(Armor);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
         }
 
         /// <summary>
@@ -68,38 +73,28 @@ namespace GW2DotNET.V1.Items.Details.Converters
         {
             var content = JObject.Load(reader);
 
-            var details = content.Property("armor");
+            var detailsProperty = content.Property("armor");
 
-            var detailsType = details == null ? content.Property("armor_type") : ((JObject)details.Value).Property("type");
+            var typeProperty = detailsProperty.Value.Value<JObject>().Property("type");
 
-            var type = detailsType.Value.Value<string>();
+            var type = typeProperty.Value.ToString();
+
+            typeProperty.Remove();
 
             Type itemType;
 
-            try
-            {
-                ArmorType armorType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownArmor);
 
-                if (!Enum.TryParse(type, true, out armorType))
-                {
-                    armorType = JsonSerializer.Create().Deserialize<ArmorType>(detailsType.CreateReader());
-                }
+            if (serializer.Converters.Any(converter => converter.CanConvert(itemType)))
+            {
+                return serializer.Deserialize(content.CreateReader(), itemType);
+            }
 
-                if (!KnownTypes.TryGetValue(armorType, out itemType))
-                {
-                    itemType = typeof(UnknownArmor);
-                }
-            }
-            catch (JsonSerializationException)
-            {
-                itemType = typeof(UnknownArmor);
-            }
-            finally
-            {
-                detailsType.Remove();
-            }
+            detailsProperty.Remove();
 
             var item = serializer.Deserialize(content.CreateReader(), itemType);
+
+            serializer.Populate(detailsProperty.Value.CreateReader(), item);
 
             return item;
         }

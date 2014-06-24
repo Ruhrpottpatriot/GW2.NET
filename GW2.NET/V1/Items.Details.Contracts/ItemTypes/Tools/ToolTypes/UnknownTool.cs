@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an unknown tool.</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Tool))]
     public class UnknownTool : Tool
     {
     }

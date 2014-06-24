@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors.ArmorTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about chest protection.</summary>
+    [TypeDiscriminator(Value = "Coat", BaseType = typeof(Armor))]
     public class Coat : Armor
     {
     }

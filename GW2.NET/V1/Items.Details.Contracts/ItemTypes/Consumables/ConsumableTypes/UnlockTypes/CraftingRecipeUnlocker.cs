@@ -10,7 +10,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about a crafting recipe.</summary>
+    [TypeDiscriminator(Value = "CraftingRecipe", BaseType = typeof(Unlocker))]
     public class CraftingRecipeUnlocker : Unlocker
     {
         /// <summary>Gets or sets the crafting recipe's ID.</summary>

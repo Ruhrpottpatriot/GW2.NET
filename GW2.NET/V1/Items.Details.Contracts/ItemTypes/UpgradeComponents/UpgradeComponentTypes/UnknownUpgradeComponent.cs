@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.UpgradeComponents.UpgradeComponentTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents detailed information about an unknown upgrade component.</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(UpgradeComponent))]
     public class UnknownUpgradeComponent : UpgradeComponent
     {
     }

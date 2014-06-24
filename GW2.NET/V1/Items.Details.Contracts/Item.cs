@@ -14,9 +14,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     using GW2DotNET.Common;
     using GW2DotNET.Common.Contracts;
 
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
-
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
@@ -149,38 +146,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         public override int GetHashCode()
         {
             return this.ItemId;
-        }
-
-        /// <summary>Gets the name of the property that provides additional information.</summary>
-        /// <returns>The name of the property.</returns>
-        protected virtual string GetTypeKey()
-        {
-            return null;
-        }
-
-        /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>
-        /// <param name="context">The streaming context.</param>
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            // Remove empty descriptions
-            if (this.Description == string.Empty)
-            {
-                this.Description = null;
-            }
-
-            // Populate type-specific properties
-            var key = this.GetTypeKey();
-            if (string.IsNullOrEmpty(key))
-            {
-                return;
-            }
-
-            object details;
-            if (this.ExtensionData.TryGetValue(key, out details) && this.ExtensionData.Remove(key))
-            {
-                JsonSerializer.CreateDefault().Populate(((JObject)details).CreateReader(), this);
-            }
         }
     }
 }
