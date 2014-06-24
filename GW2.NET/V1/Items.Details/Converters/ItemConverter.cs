@@ -20,8 +20,7 @@ namespace GW2DotNET.V1.Items.Details.Converters
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of a class that extends <see cref="Item" /> from its <see cref="System.String" />
-    /// representation.</summary>
+    /// <summary>Converts an object to and/or from JSON.</summary>
     public class ItemConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
@@ -40,6 +39,20 @@ namespace GW2DotNET.V1.Items.Details.Converters
                 {
                     KnownTypes.Add(typeDiscriminator.Value, itemType);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
+        /// </value>
+        public override bool CanWrite
+        {
+            get
+            {
+                return false;
             }
         }
 

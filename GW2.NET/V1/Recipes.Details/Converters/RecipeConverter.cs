@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an object to and from JSON.
+//   Converts an object to and/or from JSON.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Converters
@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Recipes.Details.Converters
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an object to and from JSON.</summary>
+    /// <summary>Converts an object to and/or from JSON.</summary>
     public class RecipeConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>

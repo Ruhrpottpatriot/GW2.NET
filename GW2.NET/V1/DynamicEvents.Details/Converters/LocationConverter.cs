@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Converters
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of a class that extends <see cref="Location" /> from its <see cref="System.String" /> representation.</summary>
+    /// <summary>Converts an object to and/or from JSON.</summary>
     public class LocationConverter : ContentBasedTypeCreationConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>

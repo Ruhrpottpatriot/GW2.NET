@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="Container" /> from its <see cref="System.String" /> representation.
+//   Converts an object to and/or from JSON.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Converters
@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Items.Details.Converters
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="Container" /> from its <see cref="System.String" /> representation.</summary>
+    /// <summary>Converts an object to and/or from JSON.</summary>
     public class ContainerConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
@@ -38,6 +38,20 @@ namespace GW2DotNET.V1.Items.Details.Converters
                 {
                     KnownTypes.Add(typeDiscriminator.Value, itemType);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
+        /// </value>
+        public override bool CanWrite
+        {
+            get
+            {
+                return false;
             }
         }
 

@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Items.Details.Converters
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of <see cref="Unlocker" /> from its <see cref="System.String" /> representation.</summary>
+    /// <summary>Converts an object to and/or from JSON.</summary>
     public class UnlockerConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>

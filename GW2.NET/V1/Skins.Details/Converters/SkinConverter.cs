@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Skins.Details.Converters
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an object to and from JSON.</summary>
+    /// <summary>Converts an object to and/or from JSON.</summary>
     public class SkinConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
