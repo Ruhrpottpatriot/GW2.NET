@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
         /// <summary>Infrastructure. Stores an emblem.</summary>
         private Emblem emblem;
 
-        /// <summary>Gets or sets detailed information about the guild's emblem, if any.</summary>
+        /// <summary>Gets or sets the guild's emblem, if any.</summary>
         [DataMember(Name = "emblem", Order = 3)]
         public Emblem Emblem
         {

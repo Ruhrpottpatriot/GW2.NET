@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about a dye.
+//   Represents a dye.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes.UnlockTypes
@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableT
 
     using GW2DotNET.Common;
 
-    /// <summary>Represents detailed information about a dye.</summary>
+    /// <summary>Represents a dye.</summary>
     [TypeDiscriminator(Value = "Dye", BaseType = typeof(Unlocker))]
     public class DyeUnlocker : Unlocker
     {

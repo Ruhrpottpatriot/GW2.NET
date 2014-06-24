@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about a salvaging tool.
+//   Represents a salvaging tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
 
     using GW2DotNET.Common;
 
-    /// <summary>Represents detailed information about a salvaging tool.</summary>
+    /// <summary>Represents a salvaging tool.</summary>
     [TypeDiscriminator(Value = "Salvage", BaseType = typeof(Tool))]
     public class SalvageTool : Tool
     {

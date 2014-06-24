@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about an in-game item skin.
+//   Represents an in-game item skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Skins.Details.Contracts
@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Items.Details.Contracts;
 
-    /// <summary>Represents detailed information about an in-game item skin.</summary>
+    /// <summary>Represents an in-game item skin.</summary>
     public abstract class Skin : JsonObject, IEquatable<Skin>, IComparable<Skin>, IRenderable
     {
         /// <summary>Gets or sets the skin's description.</summary>

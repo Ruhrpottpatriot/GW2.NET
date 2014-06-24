@@ -3,14 +3,14 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about an unknown tool.
+//   Represents an unknown tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
 {
     using GW2DotNET.Common;
 
-    /// <summary>Represents detailed information about an unknown tool.</summary>
+    /// <summary>Represents an unknown tool.</summary>
     [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Tool))]
     public class UnknownTool : Tool
     {

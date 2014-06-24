@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about a World versus World match.
+//   Represents a World versus World match.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts
@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps;
 
-    /// <summary>Represents detailed information about a World versus World match.</summary>
+    /// <summary>Represents a World versus World match.</summary>
     public class MatchDetails : JsonObject, IEquatable<MatchDetails>, IComparable<MatchDetails>
     {
         /// <summary>Gets or sets the list of maps.</summary>

@@ -3,14 +3,14 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents detailed information about an unknown gathering tool.
+//   Represents an unknown gathering tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.GatheringToolsTypes
 {
     using GW2DotNET.Common;
 
-    /// <summary>Represents detailed information about an unknown gathering tool.</summary>
+    /// <summary>Represents an unknown gathering tool.</summary>
     [TypeDiscriminator(Value = "Unknown", BaseType = typeof(GatheringTool))]
     public class UnknownGatheringTool : GatheringTool
     {
