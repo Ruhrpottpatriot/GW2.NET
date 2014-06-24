@@ -6,7 +6,7 @@
 //   Represents a head protection skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Armors.ArmorTypes
+namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Armors
 {
     using GW2DotNET.Common;
 
