@@ -1,18 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Mace.cs" company="GW2.NET Coding Team">
+// <copyright file="Focus.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a mace.
+//   Represents a focus.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 {
     using GW2DotNET.Common;
 
-    /// <summary>Represents a mace.</summary>
-    [TypeDiscriminator(Value = "Mace", BaseType = typeof(Weapon))]
-    public class Mace : Weapon
+    /// <summary>Represents a focus.</summary>
+    [TypeDiscriminator(Value = "Focus", BaseType = typeof(Weapon))]
+    public class Focus : Weapon
     {
     }
 }

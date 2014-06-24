@@ -6,7 +6,7 @@
 //   Represents a short bow.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons.WeaponTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons
 {
     using GW2DotNET.Common;
 
