@@ -268,6 +268,7 @@
     <Compile Include="V1\Items.Details.Contracts\GatheringTools\LoggingTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\GatheringTools\MiningTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\GatheringTools\UnknownGatheringTool.cs" />
+    <Compile Include="V1\Items.Details.Contracts\Gizmos\ContainerKey.cs" />
     <Compile Include="V1\Items.Details.Contracts\Gizmos\DefaultGizmo.cs" />
     <Compile Include="V1\Items.Details.Contracts\Gizmos\Gizmo.cs" />
     <Compile Include="V1\Items.Details.Contracts\Gizmos\RentableContractNpc.cs" />
