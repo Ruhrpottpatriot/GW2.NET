@@ -14,7 +14,6 @@ namespace GW2DotNET.V1.Recipes.Details.Converters
 
     using GW2DotNET.Common;
     using GW2DotNET.V1.Recipes.Details.Contracts;
-    using GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
