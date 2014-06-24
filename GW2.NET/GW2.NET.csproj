@@ -148,7 +148,6 @@
     <Compile Include="V1\Colors\ColorService.cs" />
     <Compile Include="V1\Colors\ColorRequest.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />
-    <Compile Include="V1\Common\Converters\ContentBasedTypeCreationConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonBooleanConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonColorConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonPoint3DConverter.cs" />
