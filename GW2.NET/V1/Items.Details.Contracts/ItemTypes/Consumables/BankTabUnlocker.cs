@@ -1,18 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UpgradeRemoval.cs" company="GW2.NET Coding Team">
+// <copyright file="BankTabUnlocker.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents an upgrade removal item.
+//   Represents a bank tab unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
 {
     using GW2DotNET.Common;
 
-    /// <summary>Represents an upgrade removal item.</summary>
-    [TypeDiscriminator(Value = "UpgradeRemoval", BaseType = typeof(Consumable))]
-    public class UpgradeRemoval : Consumable
+    /// <summary>Represents a bank tab unlock item.</summary>
+    [TypeDiscriminator(Value = "BankTab", BaseType = typeof(Unlocker))]
+    public class BankTabUnlocker : Unlocker
     {
     }
 }

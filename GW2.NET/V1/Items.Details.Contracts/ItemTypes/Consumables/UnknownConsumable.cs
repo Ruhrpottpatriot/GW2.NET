@@ -1,18 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GenericConsumable.cs" company="GW2.NET Coding Team">
+// <copyright file="UnknownConsumable.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a generic consumable item.
+//   Represents an unknown consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
 {
     using GW2DotNET.Common;
 
-    /// <summary>Represents a generic consumable item.</summary>
-    [TypeDiscriminator(Value = "Generic", BaseType = typeof(Consumable))]
-    public class GenericConsumable : Nourishment
+    /// <summary>Represents an unknown consumable item.</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Consumable))]
+    public class UnknownConsumable : Consumable
     {
     }
 }

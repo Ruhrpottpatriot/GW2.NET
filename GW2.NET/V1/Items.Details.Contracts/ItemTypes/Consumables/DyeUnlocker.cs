@@ -6,7 +6,7 @@
 //   Represents a dye.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables.ConsumableTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Consumables
 {
     using System.Runtime.Serialization;
 
