@@ -257,6 +257,7 @@
     <Compile Include="V1\Items.Details.Contracts\Consumables\UpgradeRemoval.cs" />
     <Compile Include="V1\Items.Details.Contracts\Consumables\Utility.cs" />
     <Compile Include="V1\Items.Details.Contracts\Containers\Container.cs" />
+    <Compile Include="V1\Items.Details.Contracts\Containers\OpenUiContainer.cs" />
     <Compile Include="V1\Items.Details.Contracts\Containers\DefaultContainer.cs" />
     <Compile Include="V1\Items.Details.Contracts\Containers\GiftBox.cs" />
     <Compile Include="V1\Items.Details.Contracts\Containers\UnknownContainer.cs" />
