@@ -11,19 +11,15 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
     using System.Drawing;
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
 
     /// <summary>Represents a polygonal location of an event on the map.</summary>
+    [TypeDiscriminator(Value = "poly", BaseType = typeof(Location))]
     public class PolygonLocation : Location
     {
-        /// <summary>Initializes a new instance of the <see cref="PolygonLocation" /> class.</summary>
-        public PolygonLocation()
-            : base(LocationType.Polygon)
-        {
-        }
-
         /// <summary>Gets or sets the series of points in the polygon.</summary>
         [DataMember(Name = "points", Order = 5)]
         public PointCollection Points { get; set; }

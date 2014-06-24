@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents an unknown location.</summary>
+    [TypeDiscriminator(Value = "unknown", BaseType = typeof(Location))]
     public class UnknownLocation : Location
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownLocation" /> class.</summary>
-        public UnknownLocation()
-            : base(LocationType.Unknown)
-        {
-        }
     }
 }

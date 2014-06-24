@@ -20,16 +20,6 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
     /// <summary>Represents the location of an event on the map.</summary>
     public abstract class Location : JsonObject, IEquatable<Location>
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly LocationType type;
-
-        /// <summary>Initializes a new instance of the <see cref="Location"/> class.</summary>
-        /// <param name="locationType">The location's type.</param>
-        protected Location(LocationType locationType)
-        {
-            this.type = locationType;
-        }
-
         /// <summary>Gets or sets the center coordinates.</summary>
         [DataMember(Name = "center", Order = 1)]
         [JsonConverter(typeof(JsonPoint3DConverter))]
@@ -37,16 +27,6 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
 
         /// <summary>Gets or sets the dynamic event details.</summary>
         public DynamicEventDetails DynamicEventDetails { get; set; }
-
-        /// <summary>Gets the shape of the location.</summary>
-        [DataMember(Name = "type", Order = 0)]
-        public LocationType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

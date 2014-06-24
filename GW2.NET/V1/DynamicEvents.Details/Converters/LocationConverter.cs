@@ -3,15 +3,16 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of a class that extends <see cref="Location" /> from its <see cref="System.String" /> representation.
+//   Converts an object to and/or from JSON.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
-    using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.Common;
     using GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations;
     using GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes;
 
@@ -19,18 +20,35 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Converters
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an object to and/or from JSON.</summary>
-    public class LocationConverter : ContentBasedTypeCreationConverter
+    public class LocationConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<LocationType, Type> KnownTypes = new Dictionary<LocationType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="LocationConverter" /> class.</summary>
         static LocationConverter()
         {
-            KnownTypes.Add(LocationType.Unknown, typeof(UnknownLocation));
-            KnownTypes.Add(LocationType.Sphere, typeof(SphereLocation));
-            KnownTypes.Add(LocationType.Cylinder, typeof(CylinderLocation));
-            KnownTypes.Add(LocationType.Polygon, typeof(PolygonLocation));
+            var baseType = typeof(Location);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
+        }
+
+        /// <summary>Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.</summary>
+        /// <value><c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.</value>
+        public override bool CanWrite
+        {
+            get
+            {
+                return false;
+            }
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
@@ -41,47 +59,36 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Converters
             return typeof(Location) == objectType;
         }
 
-        /// <summary>Gets the object type that will be used by the serializer.</summary>
-        /// <param name="objectType">The type of the object.</param>
-        /// <param name="content">The JSON content.</param>
-        /// <returns>Returns the target type.</returns>
-        protected override Type GetTargetType(Type objectType, JObject content)
+        /// <summary>Reads the JSON representation of the object.</summary>
+        /// <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+        /// <param name="objectType">Type of the object.</param>
+        /// <param name="existingValue">The existing value of object being read.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        /// <returns>The object value.</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var jsonToken = content["type"];
+            var content = JObject.Load(reader);
 
-            if (jsonToken == null)
-            {
-                return typeof(UnknownLocation);
-            }
+            var typeProperty = content.Property("type");
 
-            var jsonValue = jsonToken.Value<string>();
+            var type = typeProperty.Value.ToString();
 
-            try
-            {
-                LocationType type;
+            typeProperty.Remove();
 
-                if (!Enum.TryParse(jsonValue, true, out type))
-                {
-                    type = JsonSerializer.Create().Deserialize<LocationType>(jsonToken.CreateReader());
-                }
+            Type itemType;
 
-                Type targetType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownLocation);
 
-                if (!KnownTypes.TryGetValue(type, out targetType))
-                {
-                    return typeof(UnknownLocation);
-                }
+            return serializer.Deserialize(content.CreateReader(), itemType);
+        }
 
-                return targetType;
-            }
-            catch (JsonSerializationException)
-            {
-                return typeof(UnknownLocation);
-            }
-            finally
-            {
-                content.Remove("type");
-            }
+        /// <summary>Writes the JSON representation of the object.</summary>
+        /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            throw new InvalidOperationException();
         }
     }
 }

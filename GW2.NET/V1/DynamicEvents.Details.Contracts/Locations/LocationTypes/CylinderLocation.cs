@@ -10,15 +10,12 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations.LocationTypes
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
+
     /// <summary>Represents a cylindrical location of an event on the map.</summary>
+    [TypeDiscriminator(Value = "cylinder", BaseType = typeof(Location))]
     public class CylinderLocation : Location
     {
-        /// <summary>Initializes a new instance of the <see cref="CylinderLocation" /> class.</summary>
-        public CylinderLocation()
-            : base(LocationType.Cylinder)
-        {
-        }
-
         /// <summary>Gets or sets the location's height.</summary>
         [DataMember(Name = "height", Order = 3)]
         public double Height { get; set; }
