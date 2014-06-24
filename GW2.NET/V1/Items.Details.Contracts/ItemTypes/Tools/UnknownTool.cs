@@ -6,7 +6,7 @@
 //   Represents an unknown tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools.ToolTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Tools
 {
     using GW2DotNET.Common;
 

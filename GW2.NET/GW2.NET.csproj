@@ -277,9 +277,9 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\UnknownGizmo.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\UnlimitedConsumable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\MiniPets\MiniPet.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\SalvageTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\Tool.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\SalvageTool.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\UnknownTool.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\UnknownTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\Trinket.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Accessory.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Trinkets\TrinketTypes\Amulet.cs" />
