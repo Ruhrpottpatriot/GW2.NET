@@ -6,7 +6,7 @@
 //   Represents a focus skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Weapons.WeaponTypes
+namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Weapons
 {
     using GW2DotNET.Common;
 
