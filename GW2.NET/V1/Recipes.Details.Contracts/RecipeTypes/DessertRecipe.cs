@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents a dessert crafting recipe.</summary>
+    [TypeDiscriminator(Value = "Dessert", BaseType = typeof(Recipe))]
     public class DessertRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="DessertRecipe" /> class.</summary>
-        public DessertRecipe()
-            : base(RecipeType.Dessert)
-        {
-        }
     }
 }

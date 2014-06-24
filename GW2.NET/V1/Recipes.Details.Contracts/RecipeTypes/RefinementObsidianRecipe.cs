@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents an obsidian refinement crafting recipe.</summary>
+    [TypeDiscriminator(Value = "RefinementObsidian", BaseType = typeof(Recipe))]
     public class RefinementObsidianRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="RefinementObsidianRecipe" /> class.</summary>
-        public RefinementObsidianRecipe()
-            : base(RecipeType.RefinementObsidian)
-        {
-        }
     }
 }

@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents a bulk crafting recipe.</summary>
+    [TypeDiscriminator(Value = "Bulk", BaseType = typeof(Recipe))]
     public class BulkRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="BulkRecipe" /> class.</summary>
-        public BulkRecipe()
-            : base(RecipeType.Bulk)
-        {
-        }
     }
 }

@@ -363,7 +363,6 @@
     <Compile Include="V1\Recipes.Details.Contracts\IngredientCollection.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\Ingredient.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\Recipe.cs" />
-    <Compile Include="V1\Recipes.Details.Contracts\RecipeType.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\BackpackRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\AmuletRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\RecipeTypes\AxeRecipe.cs" />

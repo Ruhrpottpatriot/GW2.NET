@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents a dye crafting recipe.</summary>
+    [TypeDiscriminator(Value = "Dye", BaseType = typeof(Recipe))]
     public class DyeRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="DyeRecipe" /> class.</summary>
-        public DyeRecipe()
-            : base(RecipeType.Dye)
-        {
-        }
     }
 }

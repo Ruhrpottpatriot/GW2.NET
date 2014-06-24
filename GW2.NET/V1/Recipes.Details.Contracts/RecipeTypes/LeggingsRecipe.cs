@@ -3,18 +3,16 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a leggings crafting recipe.
+//   Represents a leg protection crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
-    /// <summary>Represents a leggings crafting recipe.</summary>
+    using GW2DotNET.Common;
+
+    /// <summary>Represents a leg protection crafting recipe.</summary>
+    [TypeDiscriminator(Value = "Leggings", BaseType = typeof(Recipe))]
     public class LeggingsRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="LeggingsRecipe" /> class.</summary>
-        public LeggingsRecipe()
-            : base(RecipeType.Leggings)
-        {
-        }
     }
 }

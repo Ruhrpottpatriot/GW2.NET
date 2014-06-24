@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents an unknown crafting recipe.</summary>
+    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Recipe))]
     public class UnknownRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="UnknownRecipe" /> class.</summary>
-        public UnknownRecipe()
-            : base(RecipeType.Unknown)
-        {
-        }
     }
 }

@@ -3,18 +3,16 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a boots crafting recipe.
+//   Represents a footwear crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
-    /// <summary>Represents a boots crafting recipe.</summary>
+    using GW2DotNET.Common;
+
+    /// <summary>Represents a foot protection crafting recipe.</summary>
+    [TypeDiscriminator(Value = "Boots", BaseType = typeof(Recipe))]
     public class BootsRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="BootsRecipe" /> class.</summary>
-        public BootsRecipe()
-            : base(RecipeType.Boots)
-        {
-        }
     }
 }

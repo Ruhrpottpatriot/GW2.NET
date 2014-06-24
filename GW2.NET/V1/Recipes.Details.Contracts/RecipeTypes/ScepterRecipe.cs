@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents a scepter crafting recipe.</summary>
+    [TypeDiscriminator(Value = "Scepter", BaseType = typeof(Recipe))]
     public class ScepterRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="ScepterRecipe" /> class.</summary>
-        public ScepterRecipe()
-            : base(RecipeType.Scepter)
-        {
-        }
     }
 }

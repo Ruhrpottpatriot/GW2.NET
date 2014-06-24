@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents an upgrade component crafting recipe.</summary>
+    [TypeDiscriminator(Value = "UpgradeComponent", BaseType = typeof(Recipe))]
     public class UpgradeComponentRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="UpgradeComponentRecipe" /> class.</summary>
-        public UpgradeComponentRecipe()
-            : base(RecipeType.UpgradeComponent)
-        {
-        }
     }
 }

@@ -20,13 +20,6 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
     public abstract class Recipe : JsonObject, IEquatable<Recipe>, IComparable<Recipe>
     {
-        /// <summary>Initializes a new instance of the <see cref="Recipe"/> class.</summary>
-        /// <param name="recipeType">The recipe's type.</param>
-        protected Recipe(RecipeType recipeType)
-        {
-            this.Type = recipeType;
-        }
-
         /// <summary>Gets or sets the recipe's build number.</summary>
         [DataMember(Name = "build_id", Order = 1)]
         public virtual int BuildId { get; set; }
@@ -70,10 +63,6 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         [DataMember(Name = "time_to_craft_ms")]
         [JsonConverter(typeof(JsonTimespanConverter))]
         public virtual TimeSpan TimeToCraft { get; set; }
-
-        /// <summary>Gets or sets the type of the output item.</summary>
-        [DataMember(Name = "type")]
-        protected RecipeType Type { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

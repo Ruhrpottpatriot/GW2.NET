@@ -3,81 +3,56 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of a class that extends <see cref="Recipe" /> from its <see cref="System.String" />
-//   representation.
+//   Converts an object to and from JSON.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
-    using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.Common;
     using GW2DotNET.V1.Recipes.Details.Contracts;
     using GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
-    /// <summary>Converts an instance of a class that extends <see cref="Recipe" /> from its <see cref="System.String" />
-    /// representation.</summary>
-    public class RecipeConverter : ContentBasedTypeCreationConverter
+    /// <summary>Converts an object to and from JSON.</summary>
+    public class RecipeConverter : JsonConverter
     {
         /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<RecipeType, Type> KnownTypes = new Dictionary<RecipeType, Type>();
+        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes static members of the <see cref="RecipeConverter" /> class.</summary>
         static RecipeConverter()
         {
-            KnownTypes.Add(RecipeType.Unknown, typeof(UnknownRecipe));
-            KnownTypes.Add(RecipeType.Axe, typeof(AxeRecipe));
-            KnownTypes.Add(RecipeType.Dagger, typeof(DaggerRecipe));
-            KnownTypes.Add(RecipeType.Hammer, typeof(HammerRecipe));
-            KnownTypes.Add(RecipeType.GreatSword, typeof(GreatSwordRecipe));
-            KnownTypes.Add(RecipeType.Mace, typeof(MaceRecipe));
-            KnownTypes.Add(RecipeType.Shield, typeof(ShieldRecipe));
-            KnownTypes.Add(RecipeType.Sword, typeof(SwordRecipe));
-            KnownTypes.Add(RecipeType.Harpoon, typeof(HarpoonRecipe));
-            KnownTypes.Add(RecipeType.LongBow, typeof(LongBowRecipe));
-            KnownTypes.Add(RecipeType.Pistol, typeof(PistolRecipe));
-            KnownTypes.Add(RecipeType.Rifle, typeof(RifleRecipe));
-            KnownTypes.Add(RecipeType.ShortBow, typeof(ShortBowRecipe));
-            KnownTypes.Add(RecipeType.SpearGun, typeof(SpearGunRecipe));
-            KnownTypes.Add(RecipeType.Torch, typeof(TorchRecipe));
-            KnownTypes.Add(RecipeType.WarHorn, typeof(WarHornRecipe));
-            KnownTypes.Add(RecipeType.Focus, typeof(FocusRecipe));
-            KnownTypes.Add(RecipeType.Potion, typeof(PotionRecipe));
-            KnownTypes.Add(RecipeType.Scepter, typeof(ScepterRecipe));
-            KnownTypes.Add(RecipeType.Staff, typeof(StaffRecipe));
-            KnownTypes.Add(RecipeType.Trident, typeof(TridentRecipe));
-            KnownTypes.Add(RecipeType.Dessert, typeof(DessertRecipe));
-            KnownTypes.Add(RecipeType.Dye, typeof(DyeRecipe));
-            KnownTypes.Add(RecipeType.Feast, typeof(FeastRecipe));
-            KnownTypes.Add(RecipeType.IngredientCooking, typeof(CookingIngredientRecipe));
-            KnownTypes.Add(RecipeType.Meal, typeof(MealRecipe));
-            KnownTypes.Add(RecipeType.Snack, typeof(SnackRecipe));
-            KnownTypes.Add(RecipeType.Soup, typeof(SoupRecipe));
-            KnownTypes.Add(RecipeType.Seasoning, typeof(SeasoningRecipe));
-            KnownTypes.Add(RecipeType.Amulet, typeof(AmuletRecipe));
-            KnownTypes.Add(RecipeType.Earring, typeof(EarringRecipe));
-            KnownTypes.Add(RecipeType.Ring, typeof(RingRecipe));
-            KnownTypes.Add(RecipeType.Boots, typeof(BootsRecipe));
-            KnownTypes.Add(RecipeType.Coat, typeof(CoatRecipe));
-            KnownTypes.Add(RecipeType.Gloves, typeof(GlovesRecipe));
-            KnownTypes.Add(RecipeType.Helm, typeof(HelmRecipe));
-            KnownTypes.Add(RecipeType.Insignia, typeof(InsigniaRecipe));
-            KnownTypes.Add(RecipeType.Leggings, typeof(LeggingsRecipe));
-            KnownTypes.Add(RecipeType.Shoulders, typeof(ShouldersRecipe));
-            KnownTypes.Add(RecipeType.Bag, typeof(BagRecipe));
-            KnownTypes.Add(RecipeType.Inscription, typeof(InscriptionRecipe));
-            KnownTypes.Add(RecipeType.Component, typeof(ComponentRecipe));
-            KnownTypes.Add(RecipeType.Consumable, typeof(ConsumableRecipe));
-            KnownTypes.Add(RecipeType.Refinement, typeof(RefinementRecipe));
-            KnownTypes.Add(RecipeType.UpgradeComponent, typeof(UpgradeComponentRecipe));
-            KnownTypes.Add(RecipeType.Bulk, typeof(BulkRecipe));
-            KnownTypes.Add(RecipeType.Backpack, typeof(BackpackRecipe));
-            KnownTypes.Add(RecipeType.RefinementEctoplasm, typeof(RefinementEctoplasmRecipe));
-            KnownTypes.Add(RecipeType.RefinementObsidian, typeof(RefinementObsidianRecipe));
+            var baseType = typeof(Recipe);
+            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
+            foreach (var itemType in itemTypes)
+            {
+                var typeDiscriminator =
+                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
+                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
+                {
+                    KnownTypes.Add(typeDiscriminator.Value, itemType);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
+        /// </value>
+        public override bool CanWrite
+        {
+            get
+            {
+                return false;
+            }
         }
 
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
@@ -88,47 +63,36 @@ namespace GW2DotNET.V1.Recipes.Details.Converters
             return typeof(Recipe) == objectType;
         }
 
-        /// <summary>Gets the object type that will be used by the serializer.</summary>
-        /// <param name="objectType">The type of the object.</param>
-        /// <param name="content">The JSON content.</param>
-        /// <returns>Returns the target type.</returns>
-        protected override Type GetTargetType(Type objectType, JObject content)
+        /// <summary>Reads the JSON representation of the object.</summary>
+        /// <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
+        /// <param name="objectType">Type of the object.</param>
+        /// <param name="existingValue">The existing value of object being read.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        /// <returns>The object value.</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            var jsonToken = content["type"];
+            var content = JObject.Load(reader);
 
-            if (jsonToken == null)
-            {
-                return typeof(UnknownRecipe);
-            }
+            var typeProperty = content.Property("type");
 
-            var jsonValue = jsonToken.Value<string>();
+            var type = typeProperty.Value.ToString();
 
-            try
-            {
-                RecipeType type;
+            typeProperty.Remove();
 
-                if (!Enum.TryParse(jsonValue, true, out type))
-                {
-                    type = JsonSerializer.Create().Deserialize<RecipeType>(jsonToken.CreateReader());
-                }
+            Type itemType;
 
-                Type targetType;
+            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownRecipe);
 
-                if (!KnownTypes.TryGetValue(type, out targetType))
-                {
-                    return typeof(UnknownRecipe);
-                }
+            return serializer.Deserialize(content.CreateReader(), itemType);
+        }
 
-                return targetType;
-            }
-            catch (JsonSerializationException)
-            {
-                return typeof(UnknownRecipe);
-            }
-            finally
-            {
-                content.Remove("type");
-            }
+        /// <summary>Writes the JSON representation of the object.</summary>
+        /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="serializer">The calling serializer.</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            throw new InvalidOperationException();
         }
     }
 }

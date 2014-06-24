@@ -8,13 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details.Contracts.RecipeTypes
 {
+    using GW2DotNET.Common;
+
     /// <summary>Represents an ectoplasm refinement crafting recipe.</summary>
+    [TypeDiscriminator(Value = "RefinementEctoplasm", BaseType = typeof(Recipe))]
     public class RefinementEctoplasmRecipe : Recipe
     {
-        /// <summary>Initializes a new instance of the <see cref="RefinementEctoplasmRecipe" /> class.</summary>
-        public RefinementEctoplasmRecipe()
-            : base(RecipeType.RefinementEctoplasm)
-        {
-        }
     }
 }
