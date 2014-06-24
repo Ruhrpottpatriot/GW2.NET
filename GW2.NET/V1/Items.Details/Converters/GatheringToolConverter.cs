@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items.Details.Converters
     using System.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools;
+    using GW2DotNET.V1.Items.Details.Contracts.GatheringTools;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

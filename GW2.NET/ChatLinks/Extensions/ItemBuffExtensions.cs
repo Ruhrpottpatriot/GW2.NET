@@ -9,7 +9,7 @@
 namespace GW2DotNET.ChatLinks.Extensions
 {
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Common;
+    using GW2DotNET.V1.Items.Details.Contracts.Common;
 
     /// <summary>Provides static extension methods for the <see cref="ItemBuff" /> class.</summary>
     public static class ItemBuffExtensions

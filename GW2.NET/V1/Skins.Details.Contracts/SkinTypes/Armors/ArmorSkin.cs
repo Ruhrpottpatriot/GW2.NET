@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Armors
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
+    using GW2DotNET.V1.Items.Details.Contracts.Armors;
 
     /// <summary>Represents an armor skin.</summary>
     [TypeDiscriminator(Value = "Armor", BaseType = typeof(Skin))]
