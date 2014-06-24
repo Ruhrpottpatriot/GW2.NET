@@ -14,7 +14,6 @@ namespace GW2DotNET.V1.Items.Details.Converters
 
     using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers;
-    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTypes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

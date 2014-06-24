@@ -262,9 +262,9 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\UpgradeRemoval.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Consumables\Utility.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\Container.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\DefaultContainer.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\GiftBox.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\ContainerTypes\UnknownContainer.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\DefaultContainer.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\GiftBox.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Containers\UnknownContainer.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\CraftingMaterials\CraftingMaterial.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\GatheringToolsTypes\ForagingTool.cs" />

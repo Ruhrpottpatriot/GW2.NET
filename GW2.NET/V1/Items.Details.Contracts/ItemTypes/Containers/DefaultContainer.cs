@@ -6,7 +6,7 @@
 //   Represents a default container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers.ContainerTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Containers
 {
     using GW2DotNET.Common;
 
