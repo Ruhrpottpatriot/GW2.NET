@@ -6,7 +6,7 @@
 //   Represents a foraging tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.GatheringToolsTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 {
     using GW2DotNET.Common;
 

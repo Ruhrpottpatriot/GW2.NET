@@ -1,18 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="LoggingTool.cs" company="GW2.NET Coding Team">
+// <copyright file="MiningTool.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a logging tool.
+//   Represents a mining tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.GatheringToolsTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 {
     using GW2DotNET.Common;
 
-    /// <summary>Represents a logging tool.</summary>
-    [TypeDiscriminator(Value = "Logging", BaseType = typeof(GatheringTool))]
-    public class LoggingTool : GatheringTool
+    /// <summary>Represents a mining tool.</summary>
+    [TypeDiscriminator(Value = "Mining", BaseType = typeof(GatheringTool))]
+    public class MiningTool : GatheringTool
     {
     }
 }

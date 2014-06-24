@@ -1,18 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UnknownGatheringTool.cs" company="GW2.NET Coding Team">
+// <copyright file="LoggingTool.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents an unknown gathering tool.
+//   Represents a logging tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools.GatheringToolsTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.GatheringTools
 {
     using GW2DotNET.Common;
 
-    /// <summary>Represents an unknown gathering tool.</summary>
-    [TypeDiscriminator(Value = "Unknown", BaseType = typeof(GatheringTool))]
-    public class UnknownGatheringTool : GatheringTool
+    /// <summary>Represents a logging tool.</summary>
+    [TypeDiscriminator(Value = "Logging", BaseType = typeof(GatheringTool))]
+    public class LoggingTool : GatheringTool
     {
     }
 }
