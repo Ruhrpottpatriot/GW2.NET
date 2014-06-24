@@ -19,16 +19,6 @@ namespace GW2DotNET.V1.Skins.Details.Contracts
     /// <summary>Represents detailed information about an in-game item skin.</summary>
     public abstract class Skin : JsonObject, IEquatable<Skin>, IComparable<Skin>, IRenderable
     {
-        /// <summary>Infrastructure. Stores type information.</summary>
-        private readonly SkinType type;
-
-        /// <summary>Initializes a new instance of the <see cref="Skin"/> class.</summary>
-        /// <param name="type">The item's type.</param>
-        protected Skin(SkinType type)
-        {
-            this.type = type;
-        }
-
         /// <summary>Gets or sets the skin's description.</summary>
         [DataMember(Name = "description", Order = 7)]
         public string Description { get; set; }
@@ -60,16 +50,6 @@ namespace GW2DotNET.V1.Skins.Details.Contracts
         /// <summary>Gets or sets the skin's identifier.</summary>
         [DataMember(Name = "skin_id", Order = 0)]
         public int SkinId { get; set; }
-
-        /// <summary>Gets the skin's type.</summary>
-        [DataMember(Name = "type", Order = 2)]
-        public SkinType Type
-        {
-            get
-            {
-                return this.type;
-            }
-        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

@@ -10,32 +10,15 @@ namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Armors
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Armors;
+
     /// <summary>Represents an armor skin.</summary>
-    public class ArmorSkin : Skin
+    [TypeDiscriminator(Value = "Armor", BaseType = typeof(Skin))]
+    public abstract class ArmorSkin : Skin
     {
-        /// <summary>Infrastructure. Stores the skin details.</summary>
-        private ArmorSkinDetails details;
-
-        /// <summary>Initializes a new instance of the <see cref="ArmorSkin" /> class.</summary>
-        public ArmorSkin()
-            : base(SkinType.Armor)
-        {
-        }
-
-        /// <summary>Gets or sets the skin details.</summary>
-        [DataMember(Name = "armor", Order = 100)]
-        public ArmorSkinDetails Details
-        {
-            get
-            {
-                return this.details;
-            }
-
-            set
-            {
-                this.details = value;
-                value.ArmorSkin = this;
-            }
-        }
+        /// <summary>Gets or sets the armor skin's weight class.</summary>
+        [DataMember(Name = "weight_class")]
+        public ArmorWeightClass WeightClass { get; set; }
     }
 }

@@ -19,6 +19,8 @@ namespace GW2DotNET.V1.Skins.Details
         public SkinSerializerSettings()
         {
             this.Converters.Add(new SkinConverter());
+            this.Converters.Add(new ArmorSkinConverter());
+            this.Converters.Add(new WeaponSkinConverter());
         }
     }
 }

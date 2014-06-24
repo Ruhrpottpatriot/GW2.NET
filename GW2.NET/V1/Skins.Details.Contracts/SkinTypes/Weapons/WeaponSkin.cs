@@ -10,32 +10,15 @@ namespace GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Weapons
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common;
+    using GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Weapons;
+
     /// <summary>Represents a weapon skin.</summary>
-    public class WeaponSkin : Skin
+    [TypeDiscriminator(Value = "Weapon", BaseType = typeof(Skin))]
+    public abstract class WeaponSkin : Skin
     {
-        /// <summary>Infrastructure. Stores the skin details.</summary>
-        private WeaponSkinDetails details;
-
-        /// <summary>Initializes a new instance of the <see cref="WeaponSkin" /> class.</summary>
-        public WeaponSkin()
-            : base(SkinType.Weapon)
-        {
-        }
-
-        /// <summary>Gets or sets the skin details.</summary>
-        [DataMember(Name = "weapon", Order = 100)]
-        public WeaponSkinDetails Details
-        {
-            get
-            {
-                return this.details;
-            }
-
-            set
-            {
-                this.details = value;
-                value.WeaponSkin = this;
-            }
-        }
+        /// <summary>Gets or sets the weapon's damage type.</summary>
+        [DataMember(Name = "damage_type", Order = 1)]
+        public WeaponDamageType DamageType { get; set; }
     }
 }
