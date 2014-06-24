@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Skins.Details.Converters
     using System.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Skins.Details.Contracts.SkinTypes.Armors;
+    using GW2DotNET.V1.Skins.Details.Contracts.Armors;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
