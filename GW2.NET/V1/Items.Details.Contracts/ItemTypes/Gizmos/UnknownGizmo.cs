@@ -6,7 +6,7 @@
 //   Represents an unknown gizmo.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
 {
     using GW2DotNET.Common;
 

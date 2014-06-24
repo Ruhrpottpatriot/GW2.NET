@@ -1,18 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UnlimitedConsumable.cs" company="GW2.NET Coding Team">
+// <copyright file="RentableContractNpc.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents an unlimited consumable gizmo.
+//   Represents a rentable contract NPC.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos.GizmoTypes
+namespace GW2DotNET.V1.Items.Details.Contracts.ItemTypes.Gizmos
 {
     using GW2DotNET.Common;
 
-    /// <summary>Represents an unlimited consumable gizmo.</summary>
-    [TypeDiscriminator(Value = "UnlimitedConsumable", BaseType = typeof(Gizmo))]
-    public class UnlimitedConsumable : Gizmo
+    /// <summary>Represents a rentable contract NPC.</summary>
+    [TypeDiscriminator(Value = "RentableContractNpc", BaseType = typeof(Gizmo))]
+    public class RentableContractNpc : Gizmo
     {
     }
 }

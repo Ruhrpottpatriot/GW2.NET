@@ -271,11 +271,11 @@
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\LoggingTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\MiningTool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\GatheringTools\UnknownGatheringTool.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\DefaultGizmo.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\Gizmo.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\DefaultGizmo.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\RentableContractNpc.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnknownGizmo.cs" />
-    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\GizmoTypes\UnlimitedConsumable.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\RentableContractNpc.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\UnknownGizmo.cs" />
+    <Compile Include="V1\Items.Details.Contracts\ItemTypes\Gizmos\UnlimitedConsumable.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\MiniPets\MiniPet.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\Tool.cs" />
     <Compile Include="V1\Items.Details.Contracts\ItemTypes\Tools\ToolTypes\SalvageTool.cs" />
