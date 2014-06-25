@@ -36,7 +36,7 @@ namespace GW2DotNET.V1.Colors.Contracts
 
         /// <summary>Gets or sets the language info.</summary>
         [DataMember(Name = "lang")]
-        public CultureInfo Language { get; set; }
+        public string Language { get; set; }
 
         /// <summary>Gets or sets the color model for leather armor.</summary>
         [DataMember(Name = "leather")]

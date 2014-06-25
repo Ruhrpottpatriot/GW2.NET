@@ -52,7 +52,7 @@ namespace GW2DotNET.V1.Colors
             // patch missing language information
             foreach (var colorPalette in result.Colors.Values)
             {
-                colorPalette.Language = language;
+                colorPalette.Language = language.TwoLetterISOLanguageName;
             }
 
             return result.Colors.Values;
@@ -102,7 +102,7 @@ namespace GW2DotNET.V1.Colors
                         // patch missing language information
                         foreach (var colorPalette in result.Colors.Values)
                         {
-                            colorPalette.Language = language;
+                            colorPalette.Language = language.TwoLetterISOLanguageName;
                         }
 
                         return result.Colors.Values;
