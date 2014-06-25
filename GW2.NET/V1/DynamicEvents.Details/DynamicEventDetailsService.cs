@@ -57,7 +57,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
             // patch missing language information
             foreach (var dynamicEventDetails in result.EventDetails.Values)
             {
-                dynamicEventDetails.Language = language;
+                dynamicEventDetails.Language = language.TwoLetterISOLanguageName;
             }
 
             return result.EventDetails.Values;
@@ -86,7 +86,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
             // patch missing language information
             foreach (var dynamicEventDetails in result.EventDetails.Values)
             {
-                dynamicEventDetails.Language = language;
+                dynamicEventDetails.Language = language.TwoLetterISOLanguageName;
             }
 
             return result.EventDetails.Values.SingleOrDefault();
@@ -136,7 +136,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
                         // patch missing language information
                         foreach (var dynamicEventDetails in result.EventDetails.Values)
                         {
-                            dynamicEventDetails.Language = language;
+                            dynamicEventDetails.Language = language.TwoLetterISOLanguageName;
                         }
 
                         return result.EventDetails.Values;
@@ -194,7 +194,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
                         // patch missing language information
                         foreach (var dynamicEventDetails in result.EventDetails.Values)
                         {
-                            dynamicEventDetails.Language = language;
+                            dynamicEventDetails.Language = language.TwoLetterISOLanguageName;
                         }
 
                         return result.EventDetails.Values.SingleOrDefault();

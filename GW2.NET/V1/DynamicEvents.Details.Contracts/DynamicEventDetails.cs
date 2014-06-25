@@ -3,19 +3,18 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents details about a specific dynamic event.
+//   Represents a dynamic event and its localized details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
 {
     using System;
-    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations;
 
-    /// <summary>Represents details about a specific dynamic event.</summary>
+    /// <summary>Represents a dynamic event and its localized details.</summary>
     public class DynamicEventDetails : JsonObject, IEquatable<DynamicEventDetails>, IComparable<DynamicEventDetails>
     {
         /// <summary>Gets or sets the event identifier.</summary>
@@ -26,9 +25,9 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
         [DataMember(Name = "flags")]
         public DynamicEventFlags Flags { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
-        public CultureInfo Language { get; set; }
+        public string Language { get; set; }
 
         /// <summary>Gets or sets the event level.</summary>
         [DataMember(Name = "level")]
