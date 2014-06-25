@@ -31,6 +31,7 @@ namespace GW2DotNET.V1.Items.Details
             this.Converters.Add(new ToolConverter());
             this.Converters.Add(new TrinketConverter());
             this.Converters.Add(new WeaponConverter());
+            this.Converters.Add(new JsonBooleanConverter());
         }
     }
 }

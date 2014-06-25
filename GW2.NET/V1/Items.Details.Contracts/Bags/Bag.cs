@@ -11,9 +11,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Bags
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a bag.</summary>
     [TypeDiscriminator(Value = "Bag", BaseType = typeof(Item))]
@@ -21,7 +18,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Bags
     {
         /// <summary>Gets or sets a value indicating whether this is an invisible bag.</summary>
         [DataMember(Name = "no_sell_or_sort")]
-        [JsonConverter(typeof(JsonBooleanConverter))]
         public virtual bool NoSellOrSort { get; set; }
 
         /// <summary>Gets or sets the bag's capacity.</summary>

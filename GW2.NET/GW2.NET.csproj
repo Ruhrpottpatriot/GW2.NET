@@ -151,7 +151,6 @@
     <Compile Include="V1\Colors\ColorService.cs" />
     <Compile Include="V1\Colors\ColorRequest.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />
-    <Compile Include="V1\Common\Converters\JsonBooleanConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonPoint3DConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonPointConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonPointFConverter.cs" />
@@ -335,6 +334,7 @@
     <Compile Include="V1\Items.Details\Converters\GatheringToolConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\GizmoConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\ItemConverter.cs" />
+    <Compile Include="V1\Items.Details\Converters\JsonBooleanConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\ToolConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\TrinketConverter.cs" />
     <Compile Include="V1\Items.Details\Converters\UnlockerConverter.cs" />
