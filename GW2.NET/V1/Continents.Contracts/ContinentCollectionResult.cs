@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Continents.Contracts
     public class ContinentCollectionResult : JsonObject
     {
         /// <summary>Gets or sets a collection of continents.</summary>
-        [DataMember(Name = "continents", Order = 0)]
+        [DataMember(Name = "continents")]
         public ContinentCollection Continents { get; set; }
     }
 }

@@ -17,27 +17,27 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
     public class Emblem : JsonObject, IEquatable<Emblem>
     {
         /// <summary>Gets or sets the background color ID.</summary>
-        [DataMember(Name = "background_color_id", Order = 3)]
+        [DataMember(Name = "background_color_id")]
         public int BackgroundColorId { get; set; }
 
         /// <summary>Gets or sets the background image ID.</summary>
-        [DataMember(Name = "background_id", Order = 0)]
+        [DataMember(Name = "background_id")]
         public int BackgroundId { get; set; }
 
         /// <summary>Gets or sets the image transformations, if any.</summary>
-        [DataMember(Name = "flags", Order = 2)]
+        [DataMember(Name = "flags")]
         public EmblemTransformations Flags { get; set; }
 
         /// <summary>Gets or sets the foreground image ID.</summary>
-        [DataMember(Name = "foreground_id", Order = 1)]
+        [DataMember(Name = "foreground_id")]
         public int ForegroundId { get; set; }
 
         /// <summary>Gets or sets the primary foreground color ID.</summary>
-        [DataMember(Name = "foreground_primary_color_id", Order = 4)]
+        [DataMember(Name = "foreground_primary_color_id")]
         public int ForegroundPrimaryColorId { get; set; }
 
         /// <summary>Gets or sets the secondary foreground color ID.</summary>
-        [DataMember(Name = "foreground_secondary_color_id", Order = 5)]
+        [DataMember(Name = "foreground_secondary_color_id")]
         public int ForegroundSecondaryColorId { get; set; }
 
         /// <summary>Gets or sets the guild.</summary>

@@ -13,44 +13,36 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a map floor, used to populate a world map. All coordinates are map coordinates.</summary>
     /// <remarks>The returned data only contains static content. Dynamic content, such as vendors, is not currently available.</remarks>
     public class Floor : JsonObject
     {
         /// <summary>Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available on the tile server.</summary>
-        [DataMember(Name = "clamped_view", Order = 3)]
+        [DataMember(Name = "clamped_view")]
         public Rectangle? ClampedView { get; set; }
 
         /// <summary>Gets or sets the floor's continent.</summary>
-        /// <remarks>See
-        /// <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>
-        /// .</remarks>
-        [DataMember(Name = "continent_id", Order = 0)]
+        /// <remarks>See <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>.</remarks>
+        [DataMember(Name = "continent_id")]
         public int ContinentId { get; set; }
 
         /// <summary>Gets or sets the floor's number.</summary>
-        /// <remarks>See
-        /// <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>
-        /// .</remarks>
-        [DataMember(Name = "floor", Order = 1)]
+        /// <remarks>See <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>.</remarks>
+        [DataMember(Name = "floor")]
         public int FloorNumber { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 5)]
+        [DataMember(Name = "lang")]
         public CultureInfo Language { get; set; }
 
         /// <summary>Gets or sets the collection of regions.</summary>
-        [DataMember(Name = "regions", Order = 4)]
+        [DataMember(Name = "regions")]
         public RegionCollection Regions { get; set; }
 
         /// <summary>Gets or sets the texture's dimensions.</summary>
-        [DataMember(Name = "texture_dims", Order = 2)]
-        [JsonConverter(typeof(JsonSizeConverter))]
+        [DataMember(Name = "texture_dims")]
         public Size TextureDimensions { get; set; }
     }
 }

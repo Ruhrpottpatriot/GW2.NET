@@ -21,23 +21,23 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest
     public class PointOfInterest : JsonObject, IEquatable<PointOfInterest>, IComparable<PointOfInterest>
     {
         /// <summary>Gets or sets the Point of Interest's coordinates.</summary>
-        [DataMember(Name = "coord", Order = 4)]
+        [DataMember(Name = "coord")]
         public PointF Coordinates { get; set; }
 
         /// <summary>Gets or sets the Point of Interest's floor.</summary>
-        [DataMember(Name = "floor", Order = 3)]
+        [DataMember(Name = "floor")]
         public int Floor { get; set; }
 
         /// <summary>Gets or sets the Point of Interest's name.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>Gets or sets the Point of Interest's ID.</summary>
-        [DataMember(Name = "poi_id", Order = 0)]
+        [DataMember(Name = "poi_id")]
         public int PointOfInterestId { get; set; }
 
         /// <summary>Gets or sets the Point of Interest's type.</summary>
-        [DataMember(Name = "type", Order = 2)]
+        [DataMember(Name = "type")]
         [JsonConverter(typeof(StringEnumConverter))]
         public PointOfInterestType Type { get; set; }
 

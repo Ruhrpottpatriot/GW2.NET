@@ -17,27 +17,27 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
     public class Match : JsonObject, IEquatable<Match>, IComparable<Match>
     {
         /// <summary>Gets or sets the blue world's ID.</summary>
-        [DataMember(Name = "blue_world_id", Order = 2)]
+        [DataMember(Name = "blue_world_id")]
         public int BlueWorldId { get; set; }
 
         /// <summary>Gets or sets the timestamp (UTC) of when the match ends.</summary>
-        [DataMember(Name = "end_time", Order = 5)]
+        [DataMember(Name = "end_time")]
         public DateTimeOffset EndTime { get; set; }
 
         /// <summary>Gets or sets the green world's ID.</summary>
-        [DataMember(Name = "green_world_id", Order = 3)]
+        [DataMember(Name = "green_world_id")]
         public int GreenWorldId { get; set; }
 
         /// <summary>Gets or sets the match's ID.</summary>
-        [DataMember(Name = "wvw_match_id", Order = 0)]
+        [DataMember(Name = "wvw_match_id")]
         public string MatchId { get; set; }
 
         /// <summary>Gets or sets the red world's ID.</summary>
-        [DataMember(Name = "red_world_id", Order = 1)]
+        [DataMember(Name = "red_world_id")]
         public int RedWorldId { get; set; }
 
         /// <summary>Gets or sets the timestamp (UTC) of when the match started.</summary>
-        [DataMember(Name = "start_time", Order = 4)]
+        [DataMember(Name = "start_time")]
         public DateTimeOffset StartTime { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

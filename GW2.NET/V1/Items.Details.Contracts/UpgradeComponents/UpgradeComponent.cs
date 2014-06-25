@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
         }
 
         /// <summary>Gets or sets the upgrade component's bonuses.</summary>
-        [DataMember(Name = "bonuses", Order = 103)]
+        [DataMember(Name = "bonuses"03)]
         public virtual UpgradeBonusCollection Bonuses { get; set; }
 
         /// <summary>Gets or sets the item's buff.</summary>
@@ -68,15 +68,15 @@ namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
         }
 
         /// <summary>Gets or sets the upgrade component's infusion upgrades.</summary>
-        [DataMember(Name = "infusion_upgrade_flags", Order = 102)]
+        [DataMember(Name = "infusion_upgrade_flags"02)]
         public virtual InfusionSlotTypes InfusionUpgradeFlags { get; set; }
 
         /// <summary>Gets or sets the upgrade component's suffix.</summary>
-        [DataMember(Name = "suffix", Order = 105)]
+        [DataMember(Name = "suffix"05)]
         public virtual string Suffix { get; set; }
 
         /// <summary>Gets or sets the upgrade component's flags.</summary>
-        [DataMember(Name = "upgrade_component_flags", Order = 101)]
+        [DataMember(Name = "upgrade_component_flags"01)]
         public virtual UpgradeComponentFlags UpgradeComponentFlags { get; set; }
     }
 }

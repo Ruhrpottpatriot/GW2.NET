@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
     public abstract class Location : JsonObject
     {
         /// <summary>Gets or sets the center coordinates.</summary>
-        [DataMember(Name = "center", Order = 1)]
+        [DataMember(Name = "center")]
         public Point3D Center { get; set; }
     }
 }

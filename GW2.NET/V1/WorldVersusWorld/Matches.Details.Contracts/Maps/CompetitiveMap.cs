@@ -19,19 +19,19 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps
     public class CompetitiveMap : JsonObject
     {
         /// <summary>Gets or sets the map's bonuses.</summary>
-        [DataMember(Name = "bonuses", Order = 3)]
+        [DataMember(Name = "bonuses")]
         public MapBonusCollection Bonuses { get; set; }
 
         /// <summary>Gets or sets the map's objectives.</summary>
-        [DataMember(Name = "objectives", Order = 2)]
+        [DataMember(Name = "objectives")]
         public ObjectiveCollection Objectives { get; set; }
 
         /// <summary>Gets or sets the map's scoreboard.</summary>
-        [DataMember(Name = "scores", Order = 1)]
+        [DataMember(Name = "scores")]
         public Scoreboard Scores { get; set; }
 
         /// <summary>Gets or sets the map's type.</summary>
-        [DataMember(Name = "type", Order = 0)]
+        [DataMember(Name = "type")]
         public CompetitiveMapType Type { get; set; }
     }
 }

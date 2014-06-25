@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Builds.Contracts
     public class Build : JsonObject, IEquatable<Build>, IComparable<Build>
     {
         /// <summary>Gets or sets the current build ID of the game.</summary>
-        [DataMember(Name = "build_id", Order = 0)]
+        [DataMember(Name = "build_id")]
         public virtual int BuildId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

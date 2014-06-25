@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Maps.Contracts
     public class MapCollectionResult : JsonObject
     {
         /// <summary>Gets or sets a collection of maps and their details.</summary>
-        [DataMember(Name = "maps", Order = 0)]
+        [DataMember(Name = "maps")]
         public MapCollection Maps { get; set; }
     }
 }

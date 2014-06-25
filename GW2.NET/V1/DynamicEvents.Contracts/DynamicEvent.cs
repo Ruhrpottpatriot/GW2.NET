@@ -20,20 +20,20 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     public class DynamicEvent : JsonObject, IEquatable<DynamicEvent>, IComparable<DynamicEvent>
     {
         /// <summary>Gets or sets the <see cref="Guid" /> identifying the event.</summary>
-        [DataMember(Name = "event_id", Order = 2)]
+        [DataMember(Name = "event_id")]
         public Guid EventId { get; set; }
 
         /// <summary>Gets or sets the map on which the event is running.</summary>
-        [DataMember(Name = "map_id", Order = 1)]
+        [DataMember(Name = "map_id")]
         public int MapId { get; set; }
 
         /// <summary>Gets or sets the current state of the event.</summary>
-        [DataMember(Name = "state", Order = 3)]
+        [DataMember(Name = "state")]
         [JsonConverter(typeof(StringEnumConverter))]
         public DynamicEventState State { get; set; }
 
         /// <summary>Gets or sets the world on which the event is running.</summary>
-        [DataMember(Name = "world_id", Order = 0)]
+        [DataMember(Name = "world_id")]
         public int WorldId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

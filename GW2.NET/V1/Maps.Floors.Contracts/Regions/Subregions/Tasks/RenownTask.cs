@@ -18,19 +18,19 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Tasks
     public class RenownTask : JsonObject, IEquatable<RenownTask>, IComparable<RenownTask>
     {
         /// <summary>Gets or sets the task's coordinates.</summary>
-        [DataMember(Name = "coord", Order = 3)]
+        [DataMember(Name = "coord")]
         public PointF Coordinates { get; set; }
 
         /// <summary>Gets or sets the level.</summary>
-        [DataMember(Name = "level", Order = 2)]
+        [DataMember(Name = "level")]
         public int Level { get; set; }
 
         /// <summary>Gets or sets the name or objective.</summary>
-        [DataMember(Name = "objective", Order = 1)]
+        [DataMember(Name = "objective")]
         public string Objective { get; set; }
 
         /// <summary>Gets or sets the renown heart ID.</summary>
-        [DataMember(Name = "task_id", Order = 0)]
+        [DataMember(Name = "task_id")]
         public int TaskId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

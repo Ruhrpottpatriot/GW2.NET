@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Tools
     public class SalvageTool : Tool
     {
         /// <summary>Gets or sets the tool's charges.</summary>
-        [DataMember(Name = "charges", Order = 1000)]
+        [DataMember(Name = "charges"000)]
         public virtual int Charges { get; set; }
     }
 }

@@ -17,11 +17,11 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Bonuses
     public class MapBonus : JsonObject
     {
         /// <summary>Gets or sets the team that holds the bonus.</summary>
-        [DataMember(Name = "owner", Order = 1)]
+        [DataMember(Name = "owner")]
         public TeamColor Owner { get; set; }
 
         /// <summary>Gets or sets the bonus type.</summary>
-        [DataMember(Name = "type", Order = 0)]
+        [DataMember(Name = "type")]
         public MapBonusType Type { get; set; }
     }
 }

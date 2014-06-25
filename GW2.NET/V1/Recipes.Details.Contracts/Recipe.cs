@@ -21,7 +21,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     public abstract class Recipe : JsonObject, IEquatable<Recipe>, IComparable<Recipe>
     {
         /// <summary>Gets or sets the recipe's build number.</summary>
-        [DataMember(Name = "build_id", Order = 1)]
+        [DataMember(Name = "build_id")]
         public virtual int BuildId { get; set; }
 
         /// <summary>Gets or sets the crafting disciplines that can use the recipe.</summary>

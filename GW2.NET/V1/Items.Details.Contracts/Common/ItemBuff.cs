@@ -16,11 +16,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
     public class ItemBuff : JsonObject
     {
         /// <summary>Gets or sets the buff's description.</summary>
-        [DataMember(Name = "description", Order = 1)]
+        [DataMember(Name = "description")]
         public virtual string Description { get; set; }
 
         /// <summary>Gets or sets the buff's skill identifier.</summary>
-        [DataMember(Name = "skill_id", Order = 0)]
+        [DataMember(Name = "skill_id")]
         public virtual int? SkillId { get; set; }
     }
 }

@@ -19,6 +19,9 @@ namespace GW2DotNET.V1.Continents
     /// <summary>Provides the default implementation of the continents service.</summary>
     public class ContinentService : IContinentService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly ContinentSerializerSettings Settings = new ContinentSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -35,7 +38,7 @@ namespace GW2DotNET.V1.Continents
         public IEnumerable<Continent> GetContinents()
         {
             var request = new ContinentRequest();
-            var result = this.serviceClient.Send(request, new JsonSerializer<ContinentCollectionResult>());
+            var result = this.serviceClient.Send(request, new JsonSerializer<ContinentCollectionResult>(Settings));
 
             return result.Continents.Values;
         }
@@ -55,7 +58,7 @@ namespace GW2DotNET.V1.Continents
         public Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {
             var request = new ContinentRequest();
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ContinentCollectionResult>(), cancellationToken);
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ContinentCollectionResult>(Settings), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Continent>>(task => task.Result.Continents.Values, cancellationToken);
 
             return t2;

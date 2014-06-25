@@ -17,11 +17,11 @@ namespace GW2DotNET.V1.DynamicEvents.Rotations.Contracts
     public class DynamicEventRotation : JsonObject
     {
         /// <summary>Gets or sets the event identifier.</summary>
-        [DataMember(Name = "event_id", Order = 0)]
+        [DataMember(Name = "event_id")]
         public Guid EventId { get; set; }
 
         /// <summary>Gets or sets the event shifts.</summary>
-        [DataMember(Name = "shifts", Order = 1)]
+        [DataMember(Name = "shifts")]
         public DynamicEventShifts Shifts { get; set; }
     }
 }

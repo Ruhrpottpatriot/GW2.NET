@@ -20,15 +20,15 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Objective
     public class Objective : JsonObject, IEquatable<Objective>, IComparable<Objective>
     {
         /// <summary>Gets or sets the objective's ID.</summary>
-        [DataMember(Name = "id", Order = 0)]
+        [DataMember(Name = "id")]
         public int Id { get; set; }
 
         /// <summary>Gets or sets the objective's owner.</summary>
-        [DataMember(Name = "owner", Order = 1)]
+        [DataMember(Name = "owner")]
         public TeamColor Owner { get; set; }
 
         /// <summary>Gets or sets the guild ID of the guild currently claiming the objective.</summary>
-        [DataMember(Name = "owner_guild", Order = 2)]
+        [DataMember(Name = "owner_guild")]
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public Guid? OwnerGuild { get; set; }
 

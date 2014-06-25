@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Recipes.Contracts
     public class RecipeCollectionResult : JsonObject
     {
         /// <summary>Gets or sets a collection of recipe identifiers.</summary>
-        [DataMember(Name = "recipes", Order = 0)]
+        [DataMember(Name = "recipes")]
         public RecipeCollection Recipes { get; set; }
     }
 }

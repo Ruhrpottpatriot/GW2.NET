@@ -16,11 +16,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
     public class ItemAttribute : JsonObject
     {
         /// <summary>Gets or sets the attribute's modifier.</summary>
-        [DataMember(Name = "modifier", Order = 1)]
+        [DataMember(Name = "modifier")]
         public virtual int Modifier { get; set; }
 
         /// <summary>Gets or sets the attribute's type.</summary>
-        [DataMember(Name = "attribute", Order = 0)]
+        [DataMember(Name = "attribute")]
         public virtual ItemAttributeType Type { get; set; }
     }
 }

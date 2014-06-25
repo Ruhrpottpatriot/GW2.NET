@@ -18,11 +18,11 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
     public class PolygonLocation : Location
     {
         /// <summary>Gets or sets the series of points in the polygon.</summary>
-        [DataMember(Name = "points", Order = 5)]
+        [DataMember(Name = "points")]
         public PointCollection Points { get; set; }
 
         /// <summary>Gets or sets the location's range on the z-axis.</summary>
-        [DataMember(Name = "z_range", Order = 4)]
+        [DataMember(Name = "z_range")]
         public Point ZRange { get; set; }
     }
 }

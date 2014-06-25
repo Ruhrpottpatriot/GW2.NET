@@ -18,55 +18,55 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
     {
         /// <summary>Gets or sets the item's build number.</summary>
-        [DataMember(Name = "build_id", Order = 1)]
+        [DataMember(Name = "build_id")]
         public virtual int BuildId { get; set; }
 
         /// <summary>Gets or sets the item's description.</summary>
-        [DataMember(Name = "description", Order = 5)]
+        [DataMember(Name = "description")]
         public virtual string Description { get; set; }
 
         /// <summary>Gets or sets the item's icon identifier for use with the render service.</summary>
-        [DataMember(Name = "icon_file_id", Order = 9)]
+        [DataMember(Name = "icon_file_id")]
         public virtual int FileId { get; set; }
 
         /// <summary>Gets or sets the item's icon signature for use with the render service.</summary>
-        [DataMember(Name = "icon_file_signature", Order = 10)]
+        [DataMember(Name = "icon_file_signature"0)]
         public virtual string FileSignature { get; set; }
 
         /// <summary>Gets or sets the item's additional flags.</summary>
-        [DataMember(Name = "flags", Order = 12)]
+        [DataMember(Name = "flags"2)]
         public virtual ItemFlags Flags { get; set; }
 
         /// <summary>Gets or sets the item's game types.</summary>
-        [DataMember(Name = "game_types", Order = 11)]
+        [DataMember(Name = "game_types"1)]
         public virtual GameRestrictions GameTypes { get; set; }
 
         /// <summary>Gets or sets the item's identifier.</summary>
-        [DataMember(Name = "item_id", Order = 0)]
+        [DataMember(Name = "item_id")]
         public virtual int ItemId { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 2)]
+        [DataMember(Name = "lang")]
         public virtual string Language { get; set; }
 
         /// <summary>Gets or sets the item's level.</summary>
-        [DataMember(Name = "level", Order = 6)]
+        [DataMember(Name = "level")]
         public virtual int Level { get; set; }
 
         /// <summary>Gets or sets the item's name.</summary>
-        [DataMember(Name = "name", Order = 4)]
+        [DataMember(Name = "name")]
         public virtual string Name { get; set; }
 
         /// <summary>Gets or sets the item's rarity.</summary>
-        [DataMember(Name = "rarity", Order = 7)]
+        [DataMember(Name = "rarity")]
         public virtual ItemRarity Rarity { get; set; }
 
         /// <summary>Gets or sets the item's restrictions.</summary>
-        [DataMember(Name = "restrictions", Order = 13)]
+        [DataMember(Name = "restrictions"3)]
         public virtual ItemRestrictions Restrictions { get; set; }
 
         /// <summary>Gets or sets the item's vendor value.</summary>
-        [DataMember(Name = "vendor_value", Order = 8)]
+        [DataMember(Name = "vendor_value")]
         public virtual int VendorValue { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

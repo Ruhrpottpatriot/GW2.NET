@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Skins.Contracts
     public class SkinCollectionResult : JsonObject
     {
         /// <summary>Gets or sets a collection of skin identifiers.</summary>
-        [DataMember(Name = "skins", Order = 0)]
+        [DataMember(Name = "skins")]
         public SkinCollection Skins { get; set; }
     }
 }

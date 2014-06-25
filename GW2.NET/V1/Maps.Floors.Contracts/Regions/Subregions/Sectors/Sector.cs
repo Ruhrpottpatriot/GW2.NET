@@ -18,19 +18,19 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
     public class Sector : JsonObject, IEquatable<Sector>, IComparable<Sector>
     {
         /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
-        [DataMember(Name = "coord", Order = 3)]
+        [DataMember(Name = "coord")]
         public PointF Coordinates { get; set; }
 
         /// <summary>Gets or sets the sector's level.</summary>
-        [DataMember(Name = "level", Order = 2)]
+        [DataMember(Name = "level")]
         public int Level { get; set; }
 
         /// <summary>Gets or sets the sector's name.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>Gets or sets the sector's ID.</summary>
-        [DataMember(Name = "sector_id", Order = 0)]
+        [DataMember(Name = "sector_id")]
         public int SectorId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

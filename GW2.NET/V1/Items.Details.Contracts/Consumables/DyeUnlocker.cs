@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Consumables
     public class DyeUnlocker : Unlocker
     {
         /// <summary>Gets or sets the dye's color ID.</summary>
-        [DataMember(Name = "color_id", Order = 10000)]
+        [DataMember(Name = "color_id"0000)]
         public virtual int ColorId { get; set; }
     }
 }

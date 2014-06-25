@@ -19,15 +19,15 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts
     public class MatchDetails : JsonObject, IEquatable<MatchDetails>, IComparable<MatchDetails>
     {
         /// <summary>Gets or sets the list of maps.</summary>
-        [DataMember(Name = "maps", Order = 2)]
+        [DataMember(Name = "maps")]
         public CompetitiveMapCollection Maps { get; set; }
 
         /// <summary>Gets or sets the match's ID.</summary>
-        [DataMember(Name = "match_id", Order = 0)]
+        [DataMember(Name = "match_id")]
         public string MatchId { get; set; }
 
         /// <summary>Gets or sets the total scores.</summary>
-        [DataMember(Name = "scores", Order = 1)]
+        [DataMember(Name = "scores")]
         public Scoreboard Scores { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

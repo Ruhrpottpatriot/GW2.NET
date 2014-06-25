@@ -19,55 +19,55 @@ namespace GW2DotNET.V1.Maps.Contracts
     public class Map : JsonObject, IEquatable<Map>, IComparable<Map>
     {
         /// <summary>Gets or sets the ID of the continent this map belongs to.</summary>
-        [DataMember(Name = "continent_id", Order = 8)]
+        [DataMember(Name = "continent_id")]
         public int ContinentId { get; set; }
 
         /// <summary>Gets or sets the name of the continent this map belongs to.</summary>
-        [DataMember(Name = "continent_name", Order = 9)]
+        [DataMember(Name = "continent_name")]
         public string ContinentName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
-        [DataMember(Name = "continent_rect", Order = 11)]
+        [DataMember(Name = "continent_rect"1)]
         public Rectangle ContinentRectangle { get; set; }
 
         /// <summary>Gets or sets the default floor of this map.</summary>
-        [DataMember(Name = "default_floor", Order = 4)]
+        [DataMember(Name = "default_floor")]
         public int DefaultFloor { get; set; }
 
         /// <summary>Gets or sets a list of available floors for this map.</summary>
-        [DataMember(Name = "floors", Order = 5)]
+        [DataMember(Name = "floors")]
         public FloorCollection Floors { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 12)]
+        [DataMember(Name = "lang"2)]
         public CultureInfo Language { get; set; }
 
         /// <summary>Gets or sets the map's ID.</summary>
-        [DataMember(Name = "map_id", Order = 0)]
+        [DataMember(Name = "map_id")]
         public int MapId { get; set; }
 
         /// <summary>Gets or sets the map name.</summary>
-        [DataMember(Name = "map_name", Order = 1)]
+        [DataMember(Name = "map_name")]
         public string MapName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
-        [DataMember(Name = "map_rect", Order = 10)]
+        [DataMember(Name = "map_rect"0)]
         public Rectangle MapRectangle { get; set; }
 
         /// <summary>Gets or sets the maximum level of this map.</summary>
-        [DataMember(Name = "max_level", Order = 3)]
+        [DataMember(Name = "max_level")]
         public int MaximumLevel { get; set; }
 
         /// <summary>Gets or sets the minimum level of this map.</summary>
-        [DataMember(Name = "min_level", Order = 2)]
+        [DataMember(Name = "min_level")]
         public int MinimumLevel { get; set; }
 
         /// <summary>Gets or sets the ID of the region this map belongs to.</summary>
-        [DataMember(Name = "region_id", Order = 6)]
+        [DataMember(Name = "region_id")]
         public int RegionId { get; set; }
 
         /// <summary>Gets or sets the name of the region this map belongs to.</summary>
-        [DataMember(Name = "region_name", Order = 7)]
+        [DataMember(Name = "region_name")]
         public string RegionName { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

@@ -17,23 +17,23 @@ namespace GW2DotNET.Common.Contracts
     public class ErrorResult : JsonObject
     {
         /// <summary>Gets or sets a number that indicates the error kind.</summary>
-        [DataMember(Name = "error", Order = 0)]
+        [DataMember(Name = "error")]
         public int? Error { get; set; }
 
         /// <summary>Gets or sets the line number on which the error occurred.</summary>
-        [DataMember(Name = "line", Order = 3)]
+        [DataMember(Name = "line")]
         public int? Line { get; set; }
 
         /// <summary>Gets or sets a number that represents the module in which the error occurred.</summary>
-        [DataMember(Name = "module", Order = 2)]
+        [DataMember(Name = "module")]
         public int? Module { get; set; }
 
         /// <summary>Gets or sets a number that represents the product in which the error occurred.</summary>
-        [DataMember(Name = "product", Order = 1)]
+        [DataMember(Name = "product")]
         public int? Product { get; set; }
 
         /// <summary>Gets or sets the error message.</summary>
-        [DataMember(Name = "text", Order = 4)]
+        [DataMember(Name = "text")]
         public string Text { get; set; }
     }
 }

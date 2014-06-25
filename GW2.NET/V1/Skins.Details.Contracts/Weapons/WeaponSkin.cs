@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts.Weapons
     public abstract class WeaponSkin : Skin
     {
         /// <summary>Gets or sets the weapon's damage type.</summary>
-        [DataMember(Name = "damage_type", Order = 1)]
+        [DataMember(Name = "damage_type")]
         public WeaponDamageType DamageType { get; set; }
     }
 }

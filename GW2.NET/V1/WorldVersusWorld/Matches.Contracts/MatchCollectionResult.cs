@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
     public class MatchCollectionResult : JsonObject
     {
         /// <summary>Gets or sets a collection of matches.</summary>
-        [DataMember(Name = "wvw_matches", Order = 0)]
+        [DataMember(Name = "wvw_matches")]
         public MatchCollection Matches { get; set; }
     }
 }

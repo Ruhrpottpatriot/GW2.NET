@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.SkillChallenges
     public class SkillChallenge : JsonObject, IEquatable<SkillChallenge>
     {
         /// <summary>Gets or sets the skill challenge's coordinates.</summary>
-        [DataMember(Name = "coord", Order = 0)]
+        [DataMember(Name = "coord")]
         public PointF Coordinates { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

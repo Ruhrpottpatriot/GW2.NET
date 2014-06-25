@@ -17,15 +17,15 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
     public class CylinderLocation : Location
     {
         /// <summary>Gets or sets the location's height.</summary>
-        [DataMember(Name = "height", Order = 3)]
+        [DataMember(Name = "height")]
         public double Height { get; set; }
 
         /// <summary>Gets or sets the location's radius.</summary>
-        [DataMember(Name = "radius", Order = 4)]
+        [DataMember(Name = "radius")]
         public double Radius { get; set; }
 
         /// <summary>Gets or sets the location's rotation.</summary>
-        [DataMember(Name = "rotation", Order = 5)]
+        [DataMember(Name = "rotation")]
         public double Rotation { get; set; }
     }
 }

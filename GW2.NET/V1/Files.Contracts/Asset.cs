@@ -18,15 +18,15 @@ namespace GW2DotNET.V1.Files.Contracts
     public class Asset : JsonObject, IEquatable<Asset>, IComparable<Asset>, IRenderable
     {
         /// <summary>Gets or sets the file ID to be used with the render service.</summary>
-        [DataMember(Name = "file_id", Order = 0)]
+        [DataMember(Name = "file_id")]
         public int FileId { get; set; }
 
         /// <summary>Gets or sets the file name.</summary>
-        [DataMember(Name = "file_name", Order = 2)]
+        [DataMember(Name = "file_name")]
         public string FileName { get; set; }
 
         /// <summary>Gets or sets file signature to be used with the render service.</summary>
-        [DataMember(Name = "signature", Order = 1)]
+        [DataMember(Name = "signature")]
         public string FileSignature { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

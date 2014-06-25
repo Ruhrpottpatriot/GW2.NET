@@ -19,19 +19,19 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions
     public class Region : JsonObject, IEquatable<Region>, IComparable<Region>
     {
         /// <summary>Gets or sets the coordinates of the region label.</summary>
-        [DataMember(Name = "label_coord", Order = 2)]
+        [DataMember(Name = "label_coord")]
         public PointF LabelCoordinates { get; set; }
 
         /// <summary>Gets or sets a collection of maps and their details.</summary>
-        [DataMember(Name = "maps", Order = 3)]
+        [DataMember(Name = "maps")]
         public SubregionCollection Maps { get; set; }
 
         /// <summary>Gets or sets the region's name.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>Gets or sets the region's ID.</summary>
-        [DataMember(Name = "region_id", Order = 0)]
+        [DataMember(Name = "region_id")]
         public int RegionId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

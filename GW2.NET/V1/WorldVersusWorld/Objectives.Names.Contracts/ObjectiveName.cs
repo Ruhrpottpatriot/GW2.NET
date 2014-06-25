@@ -18,15 +18,15 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts
     public class ObjectiveName : JsonObject, IEquatable<ObjectiveName>, IComparable<ObjectiveName>
     {
         /// <summary>Gets or sets the objective's ID.</summary>
-        [DataMember(Name = "id", Order = 0)]
+        [DataMember(Name = "id")]
         public int Id { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 2)]
+        [DataMember(Name = "lang")]
         public CultureInfo Language { get; set; }
 
         /// <summary>Gets or sets the objective's name.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

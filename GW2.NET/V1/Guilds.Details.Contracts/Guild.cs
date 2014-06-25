@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
         private Emblem emblem;
 
         /// <summary>Gets or sets the guild's emblem, if any.</summary>
-        [DataMember(Name = "emblem", Order = 3)]
+        [DataMember(Name = "emblem")]
         public Emblem Emblem
         {
             get
@@ -36,15 +36,15 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
         }
 
         /// <summary>Gets or sets the guild's ID.</summary>
-        [DataMember(Name = "guild_id", Order = 0)]
+        [DataMember(Name = "guild_id")]
         public Guid GuildId { get; set; }
 
         /// <summary>Gets or sets the guild's name.</summary>
-        [DataMember(Name = "guild_name", Order = 1)]
+        [DataMember(Name = "guild_name")]
         public string Name { get; set; }
 
         /// <summary>Gets or sets the guild's tag.</summary>
-        [DataMember(Name = "tag", Order = 2)]
+        [DataMember(Name = "tag")]
         public string Tag { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

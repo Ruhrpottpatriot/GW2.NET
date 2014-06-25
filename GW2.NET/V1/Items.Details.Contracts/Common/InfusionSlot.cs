@@ -16,14 +16,14 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
     public class InfusionSlot : JsonObject
     {
         /// <summary>Gets or sets the infusion slot's type(s).</summary>
-        [DataMember(Name = "flags", Order = 0)]
+        [DataMember(Name = "flags")]
         public virtual InfusionSlotTypes Flags { get; set; }
 
         /// <summary>Gets or sets the infusion slot's identifier.</summary>
         public int? Id { get; set; }
 
         /// <summary>Gets or sets the infusion slot's item identifier.</summary>
-        [DataMember(Name = "item_id", Order = 1)]
+        [DataMember(Name = "item_id")]
         public virtual int? ItemId { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Colors.Contracts
     public class ColorCollectionResult : JsonObject, IEquatable<ColorCollectionResult>
     {
         /// <summary>Gets or sets a collection of colors in the game.</summary>
-        [DataMember(Name = "colors", Order = 0)]
+        [DataMember(Name = "colors")]
         public ColorCollection Colors { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

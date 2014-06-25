@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Items.Contracts
     public class ItemCollectionResult : JsonObject
     {
         /// <summary>Gets or sets a collection of item identifiers.</summary>
-        [DataMember(Name = "items", Order = 0)]
+        [DataMember(Name = "items")]
         public ItemCollection Items { get; set; }
     }
 }

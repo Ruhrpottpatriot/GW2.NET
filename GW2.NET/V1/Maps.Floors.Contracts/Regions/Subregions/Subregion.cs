@@ -22,47 +22,47 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions
     public class Subregion : JsonObject, IEquatable<Subregion>, IComparable<Subregion>
     {
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
-        [DataMember(Name = "continent_rect", Order = 6)]
+        [DataMember(Name = "continent_rect")]
         public Rectangle ContinentRectangle { get; set; }
 
         /// <summary>Gets or sets the default floor of this map.</summary>
-        [DataMember(Name = "default_floor", Order = 4)]
+        [DataMember(Name = "default_floor")]
         public int DefaultFloor { get; set; }
 
         /// <summary>Gets or sets the map's ID.</summary>
-        [DataMember(Name = "map_id", Order = 0)]
+        [DataMember(Name = "map_id")]
         public int MapId { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
-        [DataMember(Name = "map_rect", Order = 5)]
+        [DataMember(Name = "map_rect")]
         public Rectangle MapRectangle { get; set; }
 
         /// <summary>Gets or sets the maximum level of this map.</summary>
-        [DataMember(Name = "max_level", Order = 3)]
+        [DataMember(Name = "max_level")]
         public int MaximumLevel { get; set; }
 
         /// <summary>Gets or sets the minimum level of this map.</summary>
-        [DataMember(Name = "min_level", Order = 2)]
+        [DataMember(Name = "min_level")]
         public int MinimumLevel { get; set; }
 
         /// <summary>Gets or sets the map's name.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>Gets or sets a collection of Points of Interest locations.</summary>
-        [DataMember(Name = "points_of_interest", Order = 7)]
+        [DataMember(Name = "points_of_interest")]
         public PointOfInterestCollection PointsOfInterest { get; set; }
 
         /// <summary>Gets or sets a collection of areas within the map.</summary>
-        [DataMember(Name = "sectors", Order = 10)]
+        [DataMember(Name = "sectors"0)]
         public SectorCollection Sectors { get; set; }
 
         /// <summary>Gets or sets a collection of skill challenge locations.</summary>
-        [DataMember(Name = "skill_challenges", Order = 9)]
+        [DataMember(Name = "skill_challenges")]
         public SkillChallengeCollection SkillChallenges { get; set; }
 
         /// <summary>Gets or sets a collection of renown heart locations.</summary>
-        [DataMember(Name = "tasks", Order = 8)]
+        [DataMember(Name = "tasks")]
         public RenownTaskCollection Tasks { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

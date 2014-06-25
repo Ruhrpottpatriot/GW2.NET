@@ -17,14 +17,14 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     public class Ingredient : JsonObject
     {
         /// <summary>Gets or sets the number of ingredients.</summary>
-        [DataMember(Name = "count", Order = 1)]
+        [DataMember(Name = "count")]
         public virtual int Count { get; set; }
 
         /// <summary>Gets or sets the ingredient.</summary>
         public virtual Item Item { get; set; }
 
         /// <summary>Gets or sets the ingredient's identifier.</summary>
-        [DataMember(Name = "item_id", Order = 0)]
+        [DataMember(Name = "item_id")]
         public virtual int ItemId { get; set; }
     }
 }

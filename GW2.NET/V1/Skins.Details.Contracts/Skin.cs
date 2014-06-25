@@ -20,35 +20,35 @@ namespace GW2DotNET.V1.Skins.Details.Contracts
     public abstract class Skin : JsonObject, IEquatable<Skin>, IComparable<Skin>, IRenderable
     {
         /// <summary>Gets or sets the skin's description.</summary>
-        [DataMember(Name = "description", Order = 7)]
+        [DataMember(Name = "description")]
         public string Description { get; set; }
 
         /// <summary>Gets or sets the skin's icon identifier for use with the render service.</summary>
-        [DataMember(Name = "icon_file_id", Order = 5)]
+        [DataMember(Name = "icon_file_id")]
         public int FileId { get; set; }
 
         /// <summary>Gets or sets the skin's icon signature for use with the render service.</summary>
-        [DataMember(Name = "icon_file_signature", Order = 6)]
+        [DataMember(Name = "icon_file_signature")]
         public string FileSignature { get; set; }
 
         /// <summary>Gets or sets the skin's additional flags.</summary>
-        [DataMember(Name = "flags", Order = 3)]
+        [DataMember(Name = "flags")]
         public SkinFlags Flags { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 8)]
+        [DataMember(Name = "lang")]
         public CultureInfo Language { get; set; }
 
         /// <summary>Gets or sets the skin's name.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>Gets or sets the skin's restrictions.</summary>
-        [DataMember(Name = "restrictions", Order = 4)]
+        [DataMember(Name = "restrictions")]
         public ItemRestrictions Restrictions { get; set; }
 
         /// <summary>Gets or sets the skin's identifier.</summary>
-        [DataMember(Name = "skin_id", Order = 0)]
+        [DataMember(Name = "skin_id")]
         public int SkinId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
