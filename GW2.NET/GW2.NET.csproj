@@ -368,7 +368,7 @@
     <Compile Include="V1\Recipes.Details.Contracts\CoatRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\ComponentRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\ConsumableRecipe.cs" />
-    <Compile Include="V1\Recipes.Details.Contracts\CookingIngredientRecipe.cs" />
+    <Compile Include="V1\Recipes.Details.Contracts\IngredientCookingRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\CraftingDisciplines.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\DaggerRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\DessertRecipe.cs" />

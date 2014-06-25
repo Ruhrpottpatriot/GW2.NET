@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 
     /// <summary>Represents a cooking ingredient recipe.</summary>
     [TypeDiscriminator(Value = "IngredientCooking", BaseType = typeof(Recipe))]
-    public class CookingIngredientRecipe : Recipe
+    public class IngredientCookingRecipe : Recipe
     {
     }
 }
