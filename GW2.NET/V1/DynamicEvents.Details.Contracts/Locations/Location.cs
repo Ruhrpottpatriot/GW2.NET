@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
 {
-    using System;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
@@ -20,8 +19,5 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
         /// <summary>Gets or sets the center coordinates.</summary>
         [DataMember(Name = "center", Order = 1)]
         public Point3D Center { get; set; }
-
-        /// <summary>Gets or sets the dynamic event details.</summary>
-        public DynamicEventDetails DynamicEventDetails { get; set; }
     }
 }

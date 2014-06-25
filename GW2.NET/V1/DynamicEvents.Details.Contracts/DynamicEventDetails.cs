@@ -18,47 +18,32 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
     /// <summary>Represents details about a specific dynamic event.</summary>
     public class DynamicEventDetails : JsonObject, IEquatable<DynamicEventDetails>, IComparable<DynamicEventDetails>
     {
-        /// <summary>Infrastructure. Stores the location.</summary>
-        private Location location;
-
-        /// <summary>Gets or sets the event's ID.</summary>
-        [DataMember(Name = "event_id", Order = 0)]
+        /// <summary>Gets or sets the event identifier.</summary>
+        [DataMember(Name = "event_id")]
         public Guid EventId { get; set; }
 
         /// <summary>Gets or sets additional flags.</summary>
-        [DataMember(Name = "flags", Order = 4)]
+        [DataMember(Name = "flags")]
         public DynamicEventFlags Flags { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 6)]
+        [DataMember(Name = "lang")]
         public CultureInfo Language { get; set; }
 
         /// <summary>Gets or sets the event level.</summary>
-        [DataMember(Name = "level", Order = 2)]
+        [DataMember(Name = "level")]
         public int Level { get; set; }
 
         /// <summary>Gets or sets the location of the event.</summary>
-        [DataMember(Name = "location", Order = 5)]
-        public Location Location
-        {
-            get
-            {
-                return this.location;
-            }
+        [DataMember(Name = "location")]
+        public Location Location { get; set; }
 
-            set
-            {
-                this.location = value;
-                value.DynamicEventDetails = this;
-            }
-        }
-
-        /// <summary>Gets or sets the map where the event takes place.</summary>
-        [DataMember(Name = "map_id", Order = 3)]
+        /// <summary>Gets or sets the map identifier.</summary>
+        [DataMember(Name = "map_id")]
         public int MapId { get; set; }
 
         /// <summary>Gets or sets the name of the event.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
