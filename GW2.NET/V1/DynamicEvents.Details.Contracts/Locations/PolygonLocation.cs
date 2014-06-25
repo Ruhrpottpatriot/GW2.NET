@@ -12,9 +12,6 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a polygonal location of an event on the map.</summary>
     [TypeDiscriminator(Value = "poly", BaseType = typeof(Location))]
@@ -26,7 +23,6 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
 
         /// <summary>Gets or sets the location's range on the z-axis.</summary>
         [DataMember(Name = "z_range", Order = 4)]
-        [JsonConverter(typeof(JsonPointConverter))]
         public Point ZRange { get; set; }
     }
 }

@@ -151,7 +151,6 @@
     <Compile Include="V1\Colors\ColorService.cs" />
     <Compile Include="V1\Colors\ColorRequest.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />
-    <Compile Include="V1\Common\Converters\JsonPointConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonPointFConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonRectangleConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonSizeConverter.cs" />
@@ -181,6 +180,7 @@
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\SphereLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\Locations\UnknownLocation.cs" />
     <Compile Include="V1\DynamicEvents.Details\Converters\JsonPoint3DConverter.cs" />
+    <Compile Include="V1\DynamicEvents.Details\Converters\JsonPointConverter.cs" />
     <Compile Include="V1\DynamicEvents.Details\Converters\LocationConverter.cs" />
     <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\DynamicEvents.Details\DynamicEventDetailsService.cs" />
