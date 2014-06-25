@@ -36,6 +36,12 @@ namespace GW2DotNET.V1.Maps
         /// <returns>A collection of parameters.</returns>
         public IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
+            // Get the 'map_id' parameter
+            if (this.MapId.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("map_id", this.MapId.Value.ToString(NumberFormatInfo.InvariantInfo));
+            }
+
             // Get the 'lang' parameter
             if (this.Culture != null)
             {
