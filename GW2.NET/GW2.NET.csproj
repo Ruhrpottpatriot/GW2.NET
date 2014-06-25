@@ -118,6 +118,7 @@
     <Compile Include="Common\ServiceClient.cs" />
     <Compile Include="Common\ServiceException.cs" />
     <Compile Include="Common\TypeDiscriminatorAttribute.cs" />
+    <Compile Include="Common\TypeDiscriminatorConverter.cs" />
     <Compile Include="Extensions\HttpStatusCodeExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

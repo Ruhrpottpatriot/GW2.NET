@@ -3,49 +3,37 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts an instance of <see cref="Backpack" /> from its <see cref="System.String" /> representation.
+//   Converts an object to and/or from JSON.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Converters
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
 
-    using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.Backpacks;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an object to and/or from JSON.</summary>
-    public class BackpackConverter : JsonConverter
+    public sealed class BackpackConverter : JsonConverter
     {
-        /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
-
-        /// <summary>Initializes static members of the <see cref="BackpackConverter" /> class.</summary>
-        static BackpackConverter()
+        /// <summary>
+        /// Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can read JSON.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can read JSON; otherwise, <c>false</c>.
+        /// </value>
+        public override bool CanRead
         {
-            var baseType = typeof(Backpack);
-            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
-            foreach (var itemType in itemTypes)
+            get
             {
-                var typeDiscriminator =
-                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
-                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
-                {
-                    KnownTypes.Add(typeDiscriminator.Value, itemType);
-                }
+                return true;
             }
         }
 
-        /// <summary>
-        /// Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
-        /// </value>
+        /// <summary>Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.</summary>
+        /// <value><c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.</value>
         public override bool CanWrite
         {
             get
@@ -70,27 +58,31 @@ namespace GW2DotNET.V1.Items.Details.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            var result = new Backpack();
+
+            // Read the entire JSON object into memory
             var content = JObject.Load(reader);
 
+            // Flatten the 'back' values
             var detailsProperty = content.Property("back");
-
-            var infixProperty = detailsProperty.Value.Value<JObject>().Property("infix_upgrade");
-
-            var item = new Backpack();
-
             detailsProperty.Remove();
 
-            serializer.Populate(content.CreateReader(), item);
-
+            // Flatten the 'infix_upgrade' values (if any)
+            var infixProperty = detailsProperty.Value.Value<JObject>().Property("infix_upgrade");
             if (infixProperty != null)
             {
                 infixProperty.Remove();
-                serializer.Populate(infixProperty.Value.CreateReader(), item);
             }
 
-            serializer.Populate(detailsProperty.Value.CreateReader(), item);
+            // Deserialize the result
+            serializer.Populate(content.CreateReader(), result);
+            serializer.Populate(detailsProperty.Value.CreateReader(), result);
+            if (infixProperty != null)
+            {
+                serializer.Populate(infixProperty.Value.CreateReader(), result);
+            }
 
-            return item;
+            return result;
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>

@@ -19,49 +19,8 @@ namespace GW2DotNET.V1.Items.Details.Converters
     using Newtonsoft.Json.Linq;
 
     /// <summary>Converts an object to and/or from JSON.</summary>
-    public class TrinketConverter : JsonConverter
+    public class TrinketConverter : TypeDiscriminatorConverter<Trinket>
     {
-        /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
-        private static readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
-
-        /// <summary>Initializes static members of the <see cref="TrinketConverter" /> class.</summary>
-        static TrinketConverter()
-        {
-            var baseType = typeof(Trinket);
-            var itemTypes = baseType.Assembly.GetTypes().Where(type => type.IsSubclassOf(baseType)).AsEnumerable();
-            foreach (var itemType in itemTypes)
-            {
-                var typeDiscriminator =
-                    itemType.GetCustomAttributes(typeof(TypeDiscriminatorAttribute), false).Cast<TypeDiscriminatorAttribute>().SingleOrDefault();
-                if (typeDiscriminator != null && typeDiscriminator.BaseType == baseType)
-                {
-                    KnownTypes.Add(typeDiscriminator.Value, itemType);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.
-        /// </summary>
-        /// <value>
-        /// <c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.
-        /// </value>
-        public override bool CanWrite
-        {
-            get
-            {
-                return false;
-            }
-        }
-
-        /// <summary>Determines whether this instance can convert the specified object type.</summary>
-        /// <param name="objectType">Type of the object.</param>
-        /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
-        public override bool CanConvert(Type objectType)
-        {
-            return typeof(Trinket) == objectType;
-        }
-
         /// <summary>Reads the JSON representation of the object.</summary>
         /// <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
@@ -70,49 +29,48 @@ namespace GW2DotNET.V1.Items.Details.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
+            // Read the entire JSON object into memory
             var content = JObject.Load(reader);
 
+            // Get the type discriminator
             var detailsProperty = content.Property("trinket");
-
             var typeProperty = detailsProperty.Value.Value<JObject>().Property("type");
+            var discriminator = typeProperty.Value.ToString();
 
-            var type = typeProperty.Value.ToString();
-
+            // Remove the type discriminator from the JSON object
             typeProperty.Remove();
 
-            Type itemType;
+            // Get a corresponding System.Type
+            Type type;
+            type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownTrinket);
 
-            itemType = KnownTypes.TryGetValue(type, out itemType) ? itemType : typeof(UnknownTrinket);
-
-            if (serializer.Converters.Any(converter => converter.CanConvert(itemType)))
+            // Try to hand over execution to a more specific converter
+            var converter = serializer.Converters.FirstOrDefault(jsonConverter => jsonConverter.CanConvert(type));
+            if (converter != null)
             {
-                return serializer.Deserialize(content.CreateReader(), itemType);
+                // Let the other converter deserialize the result
+                return converter.ReadJson(content.CreateReader(), type, existingValue, serializer);
             }
 
+            // Flatten the 'trinket' values
             detailsProperty.Remove();
 
+            // Flatten the 'infix_upgrade' values (if any)
             var infixProperty = detailsProperty.Value.Value<JObject>().Property("infix_upgrade");
-
-            var item = serializer.Deserialize(content.CreateReader(), itemType);
-
             if (infixProperty != null)
             {
                 infixProperty.Remove();
-                serializer.Populate(infixProperty.Value.CreateReader(), item);
             }
 
-            serializer.Populate(detailsProperty.Value.CreateReader(), item);
+            // Deserialize the result
+            var result = serializer.Deserialize(content.CreateReader(), type);
+            serializer.Populate(detailsProperty.Value.CreateReader(), result);
+            if (infixProperty != null)
+            {
+                serializer.Populate(infixProperty.Value.CreateReader(), result);
+            }
 
-            return item;
-        }
-
-        /// <summary>Writes the JSON representation of the object.</summary>
-        /// <param name="writer">The <see cref="T:Newtonsoft.Json.JsonWriter"/> to write to.</param>
-        /// <param name="value">The value.</param>
-        /// <param name="serializer">The calling serializer.</param>
-        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-        {
-            throw new InvalidOperationException();
+            return result;
         }
     }
 }

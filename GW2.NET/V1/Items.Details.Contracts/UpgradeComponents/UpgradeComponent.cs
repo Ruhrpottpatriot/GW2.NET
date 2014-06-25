@@ -78,18 +78,5 @@ namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
         /// <summary>Gets or sets the upgrade component's flags.</summary>
         [DataMember(Name = "upgrade_component_flags", Order = 101)]
         public virtual UpgradeComponentFlags UpgradeComponentFlags { get; set; }
-
-        /// <summary>Infrastructure. The method that is called immediately after deserialization of the object.</summary>
-        /// <param name="context">The streaming context.</param>
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            const string Key = "infix_upgrade";
-            object infixUpgrade;
-            if (this.ExtensionData.TryGetValue(Key, out infixUpgrade) && this.ExtensionData.Remove(Key))
-            {
-                JsonSerializer.CreateDefault().Populate(((JObject)infixUpgrade).CreateReader(), this);
-            }
-        }
     }
 }
