@@ -19,6 +19,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         public DynamicEventDetailsSerializerSettings()
         {
             this.Converters.Add(new LocationConverter());
+            this.Converters.Add(new JsonPoint3DConverter());
         }
     }
 }
