@@ -55,10 +55,6 @@ namespace GW2DotNET.V1.Recipes.Details
 
             // patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
-            foreach (var ingredient in result.Ingredients)
-            {
-                ingredient.Language = language.TwoLetterISOLanguageName;
-            }
 
             return result;
         }
@@ -109,10 +105,6 @@ namespace GW2DotNET.V1.Recipes.Details
 
                         // patch missing language information
                         result.Language = language.TwoLetterISOLanguageName;
-                        foreach (var ingredient in result.Ingredients)
-                        {
-                            ingredient.Language = language.TwoLetterISOLanguageName;
-                        }
 
                         return result;
                     }, 

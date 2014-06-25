@@ -26,9 +26,5 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         /// <summary>Gets or sets the ingredient's identifier.</summary>
         [DataMember(Name = "item_id", Order = 0)]
         public virtual int ItemId { get; set; }
-
-        /// <summary>Gets or sets the ingredient's language.</summary>
-        [DataMember(Name = "lang", Order = 2)]
-        public virtual string Language { get; set; }
     }
 }

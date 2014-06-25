@@ -55,7 +55,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         [DataMember(Name = "output_item_id")]
         public virtual int OutputItemId { get; set; }
 
-        /// <summary>Gets or sets the recipe's ID.</summary>
+        /// <summary>Gets or sets the recipe's identifier.</summary>
         [DataMember(Name = "recipe_id")]
         public virtual int RecipeId { get; set; }
 
