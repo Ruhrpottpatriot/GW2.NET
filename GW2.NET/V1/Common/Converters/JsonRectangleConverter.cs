@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Common.Converters
     using Newtonsoft.Json;
 
     /// <summary>Converts an object to and/or from JSON.</summary>
-    public class JsonRectangleConverter : JsonConverter
+    public sealed class JsonRectangleConverter : JsonConverter
     {
         /// <summary>Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can read JSON.</summary>
         /// <value><c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can read JSON; otherwise, <c>false</c>.</value>
