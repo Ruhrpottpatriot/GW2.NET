@@ -13,16 +13,12 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.SkillChallenges
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a skill challenge location.</summary>
     public class SkillChallenge : JsonObject, IEquatable<SkillChallenge>
     {
         /// <summary>Gets or sets the skill challenge's coordinates.</summary>
         [DataMember(Name = "coord", Order = 0)]
-        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>

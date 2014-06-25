@@ -13,16 +13,12 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Tasks
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a renown heart location.</summary>
     public class RenownTask : JsonObject, IEquatable<RenownTask>, IComparable<RenownTask>
     {
         /// <summary>Gets or sets the task's coordinates.</summary>
         [DataMember(Name = "coord", Order = 3)]
-        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>Gets or sets the level.</summary>

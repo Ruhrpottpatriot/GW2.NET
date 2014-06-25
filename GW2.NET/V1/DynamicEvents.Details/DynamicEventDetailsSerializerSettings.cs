@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents.Details
 {
+    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.DynamicEvents.Details.Converters;
 
     using Newtonsoft.Json;
@@ -20,6 +21,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details
         {
             this.Converters.Add(new LocationConverter());
             this.Converters.Add(new JsonPointConverter());
+            this.Converters.Add(new JsonPointFConverter());
             this.Converters.Add(new JsonPoint3DConverter());
         }
     }

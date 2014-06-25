@@ -13,16 +13,12 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents an area within a map.</summary>
     public class Sector : JsonObject, IEquatable<Sector>, IComparable<Sector>
     {
         /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
         [DataMember(Name = "coord", Order = 3)]
-        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>Gets or sets the sector's level.</summary>

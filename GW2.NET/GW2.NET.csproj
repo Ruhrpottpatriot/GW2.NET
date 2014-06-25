@@ -355,6 +355,7 @@
     <Compile Include="V1\Maps.Floors.Contracts\Regions\Subregions\SubregionCollection.cs" />
     <Compile Include="V1\Maps.Floors.Contracts\Regions\Subregions\Tasks\RenownTask.cs" />
     <Compile Include="V1\Maps.Floors.Contracts\Regions\Subregions\Tasks\RenownTaskCollection.cs" />
+    <Compile Include="V1\Maps.Floors\MapFloorSerializerSettings.cs" />
     <Compile Include="V1\Maps.Names.Contracts\MapName.cs" />
     <Compile Include="V1\Maps.Names.Contracts\MapNameCollection.cs" />
     <Compile Include="V1\Maps.Contracts\FloorCollection.cs" />

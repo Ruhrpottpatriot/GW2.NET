@@ -13,17 +13,13 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a region on the map.</summary>
     public class Region : JsonObject, IEquatable<Region>, IComparable<Region>
     {
         /// <summary>Gets or sets the coordinates of the region label.</summary>
         [DataMember(Name = "label_coord", Order = 2)]
-        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF LabelCoordinates { get; set; }
 
         /// <summary>Gets or sets a collection of maps and their details.</summary>

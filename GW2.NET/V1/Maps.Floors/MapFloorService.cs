@@ -20,6 +20,9 @@ namespace GW2DotNET.V1.Maps.Floors
     /// <summary>Provides the default implementation of the map floor service.</summary>
     public class MapFloorService : IMapFloorService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly MapFloorSerializerSettings Settings = new MapFloorSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -50,7 +53,7 @@ namespace GW2DotNET.V1.Maps.Floors
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<Floor>());
+            var result = this.serviceClient.Send(request, new JsonSerializer<Floor>(Settings));
 
             // patch missing floor information
             result.ContinentId = continentId;
@@ -105,7 +108,7 @@ namespace GW2DotNET.V1.Maps.Floors
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Floor>(), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Floor>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

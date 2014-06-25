@@ -12,12 +12,8 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
     using System.Drawing;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a collection of points.</summary>
-    [JsonArray(ItemConverterType = typeof(JsonPointFConverter))]
     public class PointCollection : JsonList<PointF>
     {
         /// <summary>Initializes a new instance of the <see cref="PointCollection" /> class.</summary>

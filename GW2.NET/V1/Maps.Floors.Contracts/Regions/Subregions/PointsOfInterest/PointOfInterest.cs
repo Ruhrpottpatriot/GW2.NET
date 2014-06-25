@@ -13,7 +13,6 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
@@ -23,7 +22,6 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest
     {
         /// <summary>Gets or sets the Point of Interest's coordinates.</summary>
         [DataMember(Name = "coord", Order = 4)]
-        [JsonConverter(typeof(JsonPointFConverter))]
         public PointF Coordinates { get; set; }
 
         /// <summary>Gets or sets the Point of Interest's floor.</summary>
