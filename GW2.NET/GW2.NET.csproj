@@ -168,6 +168,7 @@
     <Compile Include="V1\Continents.Contracts\ContinentFloorCollection.cs" />
     <Compile Include="V1\Continents\ContinentService.cs" />
     <Compile Include="V1\Continents\ContinentRequest.cs" />
+    <Compile Include="V1\Continents\ContinentSerializerSettings.cs" />
     <Compile Include="V1\Continents\IContinentService.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventDetails.cs" />
     <Compile Include="V1\DynamicEvents.Details.Contracts\DynamicEventDetailsCollection.cs" />

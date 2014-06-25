@@ -13,36 +13,32 @@ namespace GW2DotNET.V1.Continents.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a continent.</summary>
     public class Continent : JsonObject, IEquatable<Continent>, IComparable<Continent>
     {
         /// <summary>Gets or sets the dimensions of the continent.</summary>
-        [DataMember(Name = "continent_dims", Order = 2)]
-        [JsonConverter(typeof(JsonSizeConverter))]
+        [DataMember(Name = "continent_dims")]
         public Size ContinentDimensions { get; set; }
 
         /// <summary>Gets or sets the ID of the continent.</summary>
-        [DataMember(Name = "continent_id", Order = 0)]
+        [DataMember(Name = "continent_id")]
         public int ContinentId { get; set; }
 
         /// <summary>Gets or sets the name of the continent.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        [DataMember(Name = "name")]
         public string ContinentName { get; set; }
 
         /// <summary>Gets or sets a collection of floors available for this continent.</summary>
-        [DataMember(Name = "floors", Order = 5)]
+        [DataMember(Name = "floors")]
         public ContinentFloorCollection Floors { get; set; }
 
         /// <summary>Gets or sets the maximum zoom level for use with the map tile service.</summary>
-        [DataMember(Name = "max_zoom", Order = 4)]
+        [DataMember(Name = "max_zoom")]
         public int MaximumZoom { get; set; }
 
         /// <summary>Gets or sets the minimum zoom level for use with the map tile service.</summary>
-        [DataMember(Name = "min_zoom", Order = 3)]
+        [DataMember(Name = "min_zoom")]
         public int MinimumZoom { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
