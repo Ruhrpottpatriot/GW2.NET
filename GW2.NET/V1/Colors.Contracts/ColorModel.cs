@@ -20,31 +20,28 @@ namespace GW2DotNET.V1.Colors.Contracts
     public class ColorModel : JsonObject
     {
         /// <summary>Gets or sets the brightness.</summary>
-        [DataMember(Name = "brightness", Order = 0)]
+        [DataMember(Name = "brightness")]
         public int Brightness { get; set; }
 
-        /// <summary>Gets or sets the color palette.</summary>
-        public ColorPalette ColorPalette { get; set; }
-
         /// <summary>Gets or sets the contrast.</summary>
-        [DataMember(Name = "contrast", Order = 1)]
+        [DataMember(Name = "contrast")]
         public double Contrast { get; set; }
 
         /// <summary>Gets or sets the hue in the HSL color space.</summary>
-        [DataMember(Name = "hue", Order = 2)]
+        [DataMember(Name = "hue")]
         public int Hue { get; set; }
 
         /// <summary>Gets or sets the lightness in the HSL color space.</summary>
-        [DataMember(Name = "lightness", Order = 4)]
+        [DataMember(Name = "lightness")]
         public double Lightness { get; set; }
 
         /// <summary>Gets or sets the color.</summary>
-        [DataMember(Name = "rgb", Order = 5)]
+        [DataMember(Name = "rgb")]
         [JsonConverter(typeof(JsonColorConverter))]
         public Color Rgb { get; set; }
 
         /// <summary>Gets or sets the saturation in the HSL color space.</summary>
-        [DataMember(Name = "saturation", Order = 3)]
+        [DataMember(Name = "saturation")]
         public double Saturation { get; set; }
     }
 }

@@ -21,78 +21,33 @@ namespace GW2DotNET.V1.Colors.Contracts
     /// <summary>Represents a named color and its color component information for cloth, leather and metal materials.</summary>
     public class ColorPalette : JsonObject, IEquatable<ColorPalette>, IComparable<ColorPalette>
     {
-        /// <summary>Infrastructure. Stores a color model.</summary>
-        private ColorModel cloth;
-
-        /// <summary>Infrastructure. Stores a color model.</summary>
-        private ColorModel leather;
-
-        /// <summary>Infrastructure. Stores a color model.</summary>
-        private ColorModel metal;
-
         /// <summary>Gets or sets the base RGB values.</summary>
-        [DataMember(Name = "base_rgb", Order = 2)]
+        [DataMember(Name = "base_rgb")]
         [JsonConverter(typeof(JsonColorConverter))]
         public Color BaseRgb { get; set; }
 
-        /// <summary>Gets or sets detailed information on the color's appearance when applied to cloth armor.</summary>
-        [DataMember(Name = "cloth", Order = 3)]
-        public ColorModel Cloth
-        {
-            get
-            {
-                return this.cloth;
-            }
-
-            set
-            {
-                this.cloth = value;
-                value.ColorPalette = this;
-            }
-        }
+        /// <summary>Gets or sets the color model for cloth armor.</summary>
+        [DataMember(Name = "cloth")]
+        public ColorModel Cloth { get; set; }
 
         /// <summary>Gets or sets the color's ID.</summary>
-        [DataMember(Name = "color_id", Order = 0)]
+        [DataMember(Name = "color_id")]
         public int ColorId { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 6)]
+        [DataMember(Name = "lang")]
         public CultureInfo Language { get; set; }
 
-        /// <summary>Gets or sets detailed information on the color's appearance when applied to leather armor.</summary>
-        [DataMember(Name = "leather", Order = 4)]
-        public ColorModel Leather
-        {
-            get
-            {
-                return this.leather;
-            }
+        /// <summary>Gets or sets the color model for leather armor.</summary>
+        [DataMember(Name = "leather")]
+        public ColorModel Leather { get; set; }
 
-            set
-            {
-                this.leather = value;
-                value.ColorPalette = this;
-            }
-        }
+        /// <summary>Gets or sets the color model for metal armor.</summary>
+        [DataMember(Name = "metal")]
+        public ColorModel Metal { get; set; }
 
-        /// <summary>Gets or sets detailed information on the color's appearance when applied to metal armor.</summary>
-        [DataMember(Name = "metal", Order = 5)]
-        public ColorModel Metal
-        {
-            get
-            {
-                return this.metal;
-            }
-
-            set
-            {
-                this.metal = value;
-                value.ColorPalette = this;
-            }
-        }
-
-        /// <summary>Gets or sets the name of the dye.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        /// <summary>Gets or sets the name of the color.</summary>
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
