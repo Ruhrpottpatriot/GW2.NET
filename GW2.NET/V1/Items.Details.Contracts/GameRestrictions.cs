@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
 
     /// <summary>Enumerates the known game type restrictions.</summary>
     [Flags]
+    [DataContract]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum GameRestrictions
     {

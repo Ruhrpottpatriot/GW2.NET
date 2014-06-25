@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
 
     /// <summary>Enumerates the possible transformations for a guild emblem image.</summary>
     [Flags]
+    [DataContract]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum EmblemTransformations
     {

@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 
     /// <summary>Enumerates known crafting disciplines.</summary>
     [Flags]
+    [DataContract]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum CraftingDisciplines
     {

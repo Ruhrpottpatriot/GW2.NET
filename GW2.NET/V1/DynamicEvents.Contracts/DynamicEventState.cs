@@ -11,6 +11,7 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     using System.Runtime.Serialization;
 
     /// <summary>Enumerates the known states of a dynamic event.</summary>
+    [DataContract]
     public enum DynamicEventState
     {
         /// <summary>The event state is unknown.</summary>

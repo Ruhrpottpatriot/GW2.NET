@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps
     using Newtonsoft.Json.Converters;
 
     /// <summary>Enumerates all possible map types.</summary>
+    [DataContract]
     [JsonConverter(typeof(StringEnumConverter))]
     public enum CompetitiveMapType
     {

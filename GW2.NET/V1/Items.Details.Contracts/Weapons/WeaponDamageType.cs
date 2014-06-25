@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Weapons
     using Newtonsoft.Json.Converters;
 
     /// <summary>Enumerates the possible weapon damage types.</summary>
+    [DataContract]
     [JsonConverter(typeof(StringEnumConverter))]
     public enum WeaponDamageType
     {

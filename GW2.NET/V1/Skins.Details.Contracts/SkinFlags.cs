@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts
 
     /// <summary>Enumerates the known additional skin flags.</summary>
     [Flags]
+    [DataContract]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum SkinFlags
     {

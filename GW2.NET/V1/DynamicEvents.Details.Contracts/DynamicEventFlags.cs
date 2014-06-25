@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
 
     /// <summary>Enumerates the possible flags for events.</summary>
     [Flags]
+    [DataContract]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum DynamicEventFlags
     {

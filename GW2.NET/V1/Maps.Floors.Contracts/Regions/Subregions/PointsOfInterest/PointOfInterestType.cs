@@ -11,6 +11,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest
     using System.Runtime.Serialization;
 
     /// <summary>Enumerates the known types of POI.</summary>
+    [DataContract]
     public enum PointOfInterestType
     {
         /// <summary>The 'unknown' POI.</summary>

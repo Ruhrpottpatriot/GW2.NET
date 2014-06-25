@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
     using Newtonsoft.Json.Converters;
 
     /// <summary>Enumerates the possible attribute types.</summary>
+    [DataContract]
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ItemAttributeType
     {

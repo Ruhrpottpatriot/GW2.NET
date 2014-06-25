@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Armors
     using Newtonsoft.Json.Converters;
 
     /// <summary>Enumerates the known armor weight classes.</summary>
+    [DataContract]
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ArmorWeightClass
     {

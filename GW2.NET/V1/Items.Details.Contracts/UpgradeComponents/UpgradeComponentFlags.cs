@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
 
     /// <summary>Enumerates the possible upgrade component flags.</summary>
     [Flags]
+    [DataContract]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum UpgradeComponentFlags
     {

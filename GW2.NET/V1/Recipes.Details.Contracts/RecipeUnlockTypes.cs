@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 
     /// <summary>Enumerates known ways to unlock a recipe.</summary>
     [Flags]
+    [DataContract]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum RecipeUnlockTypes
     {

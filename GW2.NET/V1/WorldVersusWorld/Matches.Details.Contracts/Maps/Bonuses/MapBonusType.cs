@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Bonuses
     using Newtonsoft.Json.Converters;
 
     /// <summary>Enumerates all possible bonus types.</summary>
+    [DataContract]
     [JsonConverter(typeof(StringEnumConverter))]
     public enum MapBonusType
     {

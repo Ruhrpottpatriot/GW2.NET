@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     using Newtonsoft.Json.Converters;
 
     /// <summary>Enumerates the known item rarities.</summary>
+    [DataContract]
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ItemRarity
     {

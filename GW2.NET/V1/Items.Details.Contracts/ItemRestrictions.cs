@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
 
     /// <summary>Enumerates the known item restrictions.</summary>
     [Flags]
+    [DataContract]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum ItemRestrictions
     {

@@ -17,6 +17,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
 
     /// <summary>Enumerates the known infusion slot types.</summary>
     [Flags]
+    [DataContract]
     [JsonConverter(typeof(StringEnumFlagsConverter))]
     public enum InfusionSlotTypes
     {
