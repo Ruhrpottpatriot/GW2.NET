@@ -12,9 +12,6 @@ namespace GW2DotNET.V1.Colors.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a color's component information.</summary>
     public class ColorModel : JsonObject
@@ -37,7 +34,6 @@ namespace GW2DotNET.V1.Colors.Contracts
 
         /// <summary>Gets or sets the color.</summary>
         [DataMember(Name = "rgb")]
-        [JsonConverter(typeof(JsonColorConverter))]
         public Color Rgb { get; set; }
 
         /// <summary>Gets or sets the saturation in the HSL color space.</summary>

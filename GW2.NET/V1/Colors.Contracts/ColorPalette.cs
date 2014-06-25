@@ -10,31 +10,26 @@ namespace GW2DotNET.V1.Colors.Contracts
 {
     using System;
     using System.Drawing;
-    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a named color and its color component information for cloth, leather and metal materials.</summary>
     public class ColorPalette : JsonObject, IEquatable<ColorPalette>, IComparable<ColorPalette>
     {
         /// <summary>Gets or sets the base RGB values.</summary>
         [DataMember(Name = "base_rgb")]
-        [JsonConverter(typeof(JsonColorConverter))]
         public Color BaseRgb { get; set; }
 
         /// <summary>Gets or sets the color model for cloth armor.</summary>
         [DataMember(Name = "cloth")]
         public ColorModel Cloth { get; set; }
 
-        /// <summary>Gets or sets the color's ID.</summary>
+        /// <summary>Gets or sets the color identifier.</summary>
         [DataMember(Name = "color_id")]
         public int ColorId { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
         public string Language { get; set; }
 

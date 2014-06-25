@@ -138,6 +138,8 @@
     <Compile Include="V1\Colors.Contracts\ColorCollectionResult.cs" />
     <Compile Include="V1\Colors.Contracts\ColorModel.cs" />
     <Compile Include="V1\Colors.Contracts\ColorPalette.cs" />
+    <Compile Include="V1\Colors\ColorSerializerSettings.cs" />
+    <Compile Include="V1\Colors\Converters\JsonColorConverter.cs" />
     <Compile Include="V1\Common\ISkinRequest.cs" />
     <Compile Include="V1\Common\IRecipeRequest.cs" />
     <Compile Include="V1\Common\IMatchRequest.cs" />
@@ -150,7 +152,6 @@
     <Compile Include="V1\Colors\ColorRequest.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />
     <Compile Include="V1\Common\Converters\JsonBooleanConverter.cs" />
-    <Compile Include="V1\Common\Converters\JsonColorConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonPoint3DConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonPointConverter.cs" />
     <Compile Include="V1\Common\Converters\JsonPointFConverter.cs" />
