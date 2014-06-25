@@ -54,7 +54,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions
         public PointOfInterestCollection PointsOfInterest { get; set; }
 
         /// <summary>Gets or sets a collection of areas within the map.</summary>
-        [DataMember(Name = "sectors"0)]
+        [DataMember(Name = "sectors")]
         public SectorCollection Sectors { get; set; }
 
         /// <summary>Gets or sets a collection of skill challenge locations.</summary>

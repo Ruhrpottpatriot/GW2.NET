@@ -30,15 +30,15 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         public virtual int FileId { get; set; }
 
         /// <summary>Gets or sets the item's icon signature for use with the render service.</summary>
-        [DataMember(Name = "icon_file_signature"0)]
+        [DataMember(Name = "icon_file_signature")]
         public virtual string FileSignature { get; set; }
 
         /// <summary>Gets or sets the item's additional flags.</summary>
-        [DataMember(Name = "flags"2)]
+        [DataMember(Name = "flags")]
         public virtual ItemFlags Flags { get; set; }
 
         /// <summary>Gets or sets the item's game types.</summary>
-        [DataMember(Name = "game_types"1)]
+        [DataMember(Name = "game_types")]
         public virtual GameRestrictions GameTypes { get; set; }
 
         /// <summary>Gets or sets the item's identifier.</summary>
@@ -62,7 +62,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         public virtual ItemRarity Rarity { get; set; }
 
         /// <summary>Gets or sets the item's restrictions.</summary>
-        [DataMember(Name = "restrictions"3)]
+        [DataMember(Name = "restrictions")]
         public virtual ItemRestrictions Restrictions { get; set; }
 
         /// <summary>Gets or sets the item's vendor value.</summary>

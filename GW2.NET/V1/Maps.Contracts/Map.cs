@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Maps.Contracts
         public string ContinentName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
-        [DataMember(Name = "continent_rect"1)]
+        [DataMember(Name = "continent_rect")]
         public Rectangle ContinentRectangle { get; set; }
 
         /// <summary>Gets or sets the default floor of this map.</summary>
@@ -39,7 +39,7 @@ namespace GW2DotNET.V1.Maps.Contracts
         public FloorCollection Floors { get; set; }
 
         /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang"2)]
+        [DataMember(Name = "lang")]
         public CultureInfo Language { get; set; }
 
         /// <summary>Gets or sets the map's ID.</summary>
@@ -51,7 +51,7 @@ namespace GW2DotNET.V1.Maps.Contracts
         public string MapName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
-        [DataMember(Name = "map_rect"0)]
+        [DataMember(Name = "map_rect")]
         public Rectangle MapRectangle { get; set; }
 
         /// <summary>Gets or sets the maximum level of this map.</summary>

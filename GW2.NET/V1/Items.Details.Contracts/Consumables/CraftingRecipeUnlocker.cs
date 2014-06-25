@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Consumables
     public class CraftingRecipeUnlocker : Unlocker
     {
         /// <summary>Gets or sets the crafting recipe's ID.</summary>
-        [DataMember(Name = "recipe_id"0000)]
+        [DataMember(Name = "recipe_id")]
         public virtual int RecipeId { get; set; }
     }
 }
