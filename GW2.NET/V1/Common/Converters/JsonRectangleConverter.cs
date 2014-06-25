@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts a <see cref="Rectangle" /> to and from its <see cref="System.String" /> representation.
+//   Converts an object to and/or from JSON.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Common.Converters
@@ -15,9 +15,29 @@ namespace GW2DotNET.V1.Common.Converters
 
     using Newtonsoft.Json;
 
-    /// <summary>Converts a <see cref="Rectangle" /> to and from its <see cref="System.String" /> representation.</summary>
+    /// <summary>Converts an object to and/or from JSON.</summary>
     public class JsonRectangleConverter : JsonConverter
     {
+        /// <summary>Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can read JSON.</summary>
+        /// <value><c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can read JSON; otherwise, <c>false</c>.</value>
+        public override bool CanRead
+        {
+            get
+            {
+                return true;
+            }
+        }
+
+        /// <summary>Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON.</summary>
+        /// <value><c>true</c> if this <see cref="T:Newtonsoft.Json.JsonConverter"/> can write JSON; otherwise, <c>false</c>.</value>
+        public override bool CanWrite
+        {
+            get
+            {
+                return false;
+            }
+        }
+
         /// <summary>Determines whether this instance can convert the specified object type.</summary>
         /// <param name="objectType">Type of the object.</param>
         /// <returns>Returns <c>true</c> if this instance can convert the specified object type; otherwise <c>false</c>.</returns>
@@ -58,17 +78,7 @@ namespace GW2DotNET.V1.Common.Converters
         /// <param name="serializer">The calling serializer.</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            var rectangle = (Rectangle)value;
-            writer.WriteStartArray();
-            writer.WriteStartArray();
-            serializer.Serialize(writer, rectangle.Top);
-            serializer.Serialize(writer, rectangle.Left);
-            writer.WriteEndArray();
-            writer.WriteStartArray();
-            serializer.Serialize(writer, rectangle.Bottom);
-            serializer.Serialize(writer, rectangle.Right);
-            writer.WriteEndArray();
-            writer.WriteEndArray();
+            throw new InvalidOperationException();
         }
     }
 }

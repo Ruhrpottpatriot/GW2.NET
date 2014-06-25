@@ -1,24 +1,23 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapFloorSerializerSettings.cs" company="GW2.NET Coding Team">
+// <copyright file="MapSerializerSettings.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The map floor serializer settings.
+//   The map serializer settings.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors
+namespace GW2DotNET.V1.Maps
 {
     using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
 
-    /// <summary>The map floor serializer settings.</summary>
-    public class MapFloorSerializerSettings : JsonSerializerSettings
+    /// <summary>The map serializer settings.</summary>
+    public class MapSerializerSettings : JsonSerializerSettings
     {
-        /// <summary>Initializes a new instance of the <see cref="MapFloorSerializerSettings"/> class.</summary>
-        public MapFloorSerializerSettings()
+        /// <summary>Initializes a new instance of the <see cref="MapSerializerSettings"/> class.</summary>
+        public MapSerializerSettings()
         {
-            this.Converters.Add(new JsonPointFConverter());
             this.Converters.Add(new JsonRectangleConverter());
         }
     }

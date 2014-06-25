@@ -14,9 +14,6 @@ namespace GW2DotNET.V1.Maps.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
     public class Map : JsonObject, IEquatable<Map>, IComparable<Map>
@@ -31,7 +28,6 @@ namespace GW2DotNET.V1.Maps.Contracts
 
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
         [DataMember(Name = "continent_rect", Order = 11)]
-        [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle ContinentRectangle { get; set; }
 
         /// <summary>Gets or sets the default floor of this map.</summary>
@@ -56,7 +52,6 @@ namespace GW2DotNET.V1.Maps.Contracts
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
         [DataMember(Name = "map_rect", Order = 10)]
-        [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle MapRectangle { get; set; }
 
         /// <summary>Gets or sets the maximum level of this map.</summary>

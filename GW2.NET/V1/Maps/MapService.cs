@@ -22,6 +22,9 @@ namespace GW2DotNET.V1.Maps
     /// <summary>Provides the default implementation of the maps service.</summary>
     public class MapService : IMapService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly MapSerializerSettings Settings = new MapSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -50,7 +53,7 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { MapId = mapId, Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>()).Maps.Values;
+            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>(Settings)).Maps.Values;
 
             // patch missing language information
             foreach (var map in result)
@@ -101,7 +104,7 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { MapId = mapId, Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;
@@ -136,7 +139,7 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>()).Maps.Values;
+            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>(Settings)).Maps.Values;
 
             // patch missing language information
             foreach (var map in result)
@@ -182,7 +185,7 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;

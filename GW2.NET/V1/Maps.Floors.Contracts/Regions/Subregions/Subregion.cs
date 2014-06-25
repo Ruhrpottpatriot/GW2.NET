@@ -13,20 +13,16 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest;
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors;
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.SkillChallenges;
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Tasks;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a map and its details.</summary>
     public class Subregion : JsonObject, IEquatable<Subregion>, IComparable<Subregion>
     {
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
         [DataMember(Name = "continent_rect", Order = 6)]
-        [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle ContinentRectangle { get; set; }
 
         /// <summary>Gets or sets the default floor of this map.</summary>
@@ -39,7 +35,6 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
         [DataMember(Name = "map_rect", Order = 5)]
-        [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle MapRectangle { get; set; }
 
         /// <summary>Gets or sets the maximum level of this map.</summary>

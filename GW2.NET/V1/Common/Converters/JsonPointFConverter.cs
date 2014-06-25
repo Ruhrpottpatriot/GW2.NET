@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Common.Converters
 
     using Newtonsoft.Json;
 
-    /// <summary>Converts a <see cref="PointF" /> to and from its <see cref="System.String" /> representation.</summary>
+    /// <summary>Converts an object to and/or from JSON.</summary>
     public sealed class JsonPointFConverter : JsonConverter
     {
         /// <summary>Gets a value indicating whether this <see cref="T:Newtonsoft.Json.JsonConverter"/> can read JSON.</summary>

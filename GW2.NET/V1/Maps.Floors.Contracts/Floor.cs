@@ -24,7 +24,6 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts
     {
         /// <summary>Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available on the tile server.</summary>
         [DataMember(Name = "clamped_view", Order = 3)]
-        [JsonConverter(typeof(JsonRectangleConverter))]
         public Rectangle? ClampedView { get; set; }
 
         /// <summary>Gets or sets the floor's continent.</summary>

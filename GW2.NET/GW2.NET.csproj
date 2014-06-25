@@ -362,6 +362,7 @@
     <Compile Include="V1\Maps.Contracts\Map.cs" />
     <Compile Include="V1\Maps.Contracts\MapCollection.cs" />
     <Compile Include="V1\Maps.Contracts\MapCollectionResult.cs" />
+    <Compile Include="V1\Maps\MapSerializerSettings.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\AmuletRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\AxeRecipe.cs" />
     <Compile Include="V1\Recipes.Details.Contracts\BackpackRecipe.cs" />
