@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Colors.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a named color and its color component information for cloth, leather and metal materials.</summary>
-    public class ColorPalette : JsonObject, IEquatable<ColorPalette>, IComparable<ColorPalette>
+    public class ColorPalette : JsonObject, IEquatable<ColorPalette>
     {
         /// <summary>Gets or sets the base RGB values.</summary>
         [DataMember(Name = "base_rgb")]
@@ -63,19 +63,6 @@ namespace GW2DotNET.V1.Colors.Contracts
             return !object.Equals(left, right);
         }
 
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(ColorPalette other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.ColorId.CompareTo(other.ColorId);
-        }
-
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
@@ -94,9 +81,9 @@ namespace GW2DotNET.V1.Colors.Contracts
             return this.ColorId == other.ColorId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
-        /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
+        /// <param name="obj">The object to compare with the current object. </param>
         public override bool Equals(object obj)
         {
             if (object.ReferenceEquals(null, obj))
@@ -117,8 +104,12 @@ namespace GW2DotNET.V1.Colors.Contracts
             return this.Equals((ColorPalette)obj);
         }
 
-        /// <summary>Serves as a hash function for a particular type.</summary>
-        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
+        /// <summary>
+        /// Serves as a hash function for a particular type. 
+        /// </summary>
+        /// <returns>
+        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// </returns>
         public override int GetHashCode()
         {
             return this.ColorId;
