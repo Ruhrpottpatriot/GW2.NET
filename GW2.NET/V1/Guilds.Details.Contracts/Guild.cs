@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a guild and its details.</summary>
-    public class Guild : JsonObject, IEquatable<Guild>, IComparable<Guild>
+    public class Guild : JsonObject, IEquatable<Guild>
     {
         /// <summary>Gets or sets the guild's emblem, if any.</summary>
         [DataMember(Name = "emblem")]
@@ -48,19 +48,6 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
         public static bool operator !=(Guild left, Guild right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Guild other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.GuildId.CompareTo(other.GuildId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
