@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
-    public abstract class Item : JsonObject, IEquatable<Item>, IComparable<Item>, IRenderable
+    public abstract class Item : JsonObject, IRenderable, IEquatable<Item>
     {
         /// <summary>Gets or sets the item's build number.</summary>
         [DataMember(Name = "build_id")]
@@ -85,19 +85,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts
         public static bool operator !=(Item left, Item right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public virtual int CompareTo(Item other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.ItemId.CompareTo(other.ItemId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
