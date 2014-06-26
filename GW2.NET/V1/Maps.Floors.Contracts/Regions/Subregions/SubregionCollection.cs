@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of maps and their details.</summary>
-    public class SubregionCollection : JsonDictionary<int, Subregion>
+    public class SubregionCollection : ServiceContractDictionary<int, Subregion>
     {
         /// <summary>Initializes a new instance of the <see cref="SubregionCollection" /> class.</summary>
         public SubregionCollection()

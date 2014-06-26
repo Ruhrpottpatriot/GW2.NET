@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="JsonDictionary.cs" company="GW2.NET Coding Team">
+// <copyright file="ServiceContractDictionary.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the base class for strongly typed JSON dictionaries.
+//   Provides the base class for dictionaries of service contracts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common.Contracts
@@ -12,32 +12,32 @@ namespace GW2DotNET.Common.Contracts
     using System.Collections;
     using System.Collections.Generic;
 
-    /// <summary>Provides the base class for strongly typed JSON dictionaries.</summary>
+    /// <summary>Provides the base class for dictionaries of service contracts.</summary>
     /// <typeparam name="TKey">The type of the keys.</typeparam>
     /// <typeparam name="TValue">The type of the values.</typeparam>
     [Serializable]
-    public abstract class JsonDictionary<TKey, TValue> : ServiceContract, IDictionary<TKey, TValue>
+    public abstract class ServiceContractDictionary<TKey, TValue> : ServiceContract, IDictionary<TKey, TValue>
         where TValue : ServiceContract
     {
         /// <summary>Infrastructure. This class acts as a proxy for the dictionary stored in this field.</summary>
         private readonly IDictionary<TKey, TValue> innerDictionary;
 
-        /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}" /> class.</summary>
-        protected JsonDictionary()
+        /// <summary>Initializes a new instance of the <see cref="ServiceContractDictionary{TKey,TValue}" /> class.</summary>
+        protected ServiceContractDictionary()
         {
             this.innerDictionary = new Dictionary<TKey, TValue>();
         }
 
-        /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceContractDictionary{TKey,TValue}"/> class.</summary>
         /// <param name="capacity">The initial number of elements that the new dictionary can contain.</param>
-        protected JsonDictionary(int capacity)
+        protected ServiceContractDictionary(int capacity)
         {
             this.innerDictionary = new Dictionary<TKey, TValue>(capacity);
         }
 
-        /// <summary>Initializes a new instance of the <see cref="JsonDictionary{TKey,TValue}"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceContractDictionary{TKey,TValue}"/> class.</summary>
         /// <param name="dictionary">The dictionary whose values are copied to the new dictionary.</param>
-        protected JsonDictionary(IDictionary<TKey, TValue> dictionary)
+        protected ServiceContractDictionary(IDictionary<TKey, TValue> dictionary)
         {
             this.innerDictionary = new Dictionary<TKey, TValue>(dictionary);
         }
@@ -61,7 +61,7 @@ namespace GW2DotNET.Common.Contracts
         }
 
         /// <summary>Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the keys of the
-        /// <see cref="JsonDictionary{TKey, TValue}" />.</summary>
+        /// <see cref="ServiceContractDictionary{TKey,TValue}" />.</summary>
         public ICollection<TKey> Keys
         {
             get
@@ -71,7 +71,7 @@ namespace GW2DotNET.Common.Contracts
         }
 
         /// <summary>Gets an <see cref="System.Collections.Generic.ICollection{T}" /> containing the values in the
-        /// <see cref="JsonDictionary{TKey, TValue}" />.</summary>
+        /// <see cref="ServiceContractDictionary{TKey,TValue}" />.</summary>
         public ICollection<TValue> Values
         {
             get
@@ -96,7 +96,7 @@ namespace GW2DotNET.Common.Contracts
             }
         }
 
-        /// <summary>Adds an element with the provided key and value to the <see cref="JsonDictionary{TKey, TValue}"/>.</summary>
+        /// <summary>Adds an element with the provided key and value to the <see cref="ServiceContractDictionary{TKey,TValue}"/>.</summary>
         /// <param name="key">The text to use as the key of the element to add.</param>
         /// <param name="value">The object to use as the value of the element to add.</param>
         public void Add(TKey key, TValue value)
@@ -125,9 +125,9 @@ namespace GW2DotNET.Common.Contracts
             return this.innerDictionary.Contains(item);
         }
 
-        /// <summary>Determines whether the <see cref="JsonDictionary{TKey, TValue}"/> contains an element with the specified key.</summary>
-        /// <param name="key">The key to locate in the <see cref="JsonDictionary{TKey, TValue}"/>.</param>
-        /// <returns>true if the <see cref="JsonDictionary{TKey, TValue}"/> contains an element with the key; otherwise, false.</returns>
+        /// <summary>Determines whether the <see cref="ServiceContractDictionary{TKey,TValue}"/> contains an element with the specified key.</summary>
+        /// <param name="key">The key to locate in the <see cref="ServiceContractDictionary{TKey,TValue}"/>.</param>
+        /// <returns>true if the <see cref="ServiceContractDictionary{TKey,TValue}"/> contains an element with the key; otherwise, false.</returns>
         public bool ContainsKey(TKey key)
         {
             return this.innerDictionary.ContainsKey(key);
@@ -148,9 +148,9 @@ namespace GW2DotNET.Common.Contracts
             return this.innerDictionary.GetEnumerator();
         }
 
-        /// <summary>Removes the element with the specified key from the <see cref="JsonDictionary{TKey, TValue}"/>.</summary>
+        /// <summary>Removes the element with the specified key from the <see cref="ServiceContractDictionary{TKey,TValue}"/>.</summary>
         /// <param name="key">The key of the element to remove.</param>
-        /// <returns>true if the element is successfully removed; otherwise, false. This method also returns false if key was not found in the <see cref="JsonDictionary{TKey, TValue}"/>.</returns>
+        /// <returns>true if the element is successfully removed; otherwise, false. This method also returns false if key was not found in the <see cref="ServiceContractDictionary{TKey,TValue}"/>.</returns>
         public bool Remove(TKey key)
         {
             return this.innerDictionary.Remove(key);
@@ -168,7 +168,7 @@ namespace GW2DotNET.Common.Contracts
         /// <summary>Gets the value associated with the specified key.</summary>
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the value parameter. This parameter is passed uninitialized.</param>
-        /// <returns>true if the <see cref="JsonDictionary{TKey, TValue}"/> contains an element with the specified key; otherwise, false.</returns>
+        /// <returns>true if the <see cref="ServiceContractDictionary{TKey,TValue}"/> contains an element with the specified key; otherwise, false.</returns>
         public bool TryGetValue(TKey key, out TValue value)
         {
             return this.innerDictionary.TryGetValue(key, out value);

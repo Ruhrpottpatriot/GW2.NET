@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Files.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of named assets.</summary>
-    public class AssetCollection : JsonDictionary<string, Asset>
+    public class AssetCollection : ServiceContractDictionary<string, Asset>
     {
         /// <summary>Initializes a new instance of the <see cref="AssetCollection" /> class.</summary>
         public AssetCollection()

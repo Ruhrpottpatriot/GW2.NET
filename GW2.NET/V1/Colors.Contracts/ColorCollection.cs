@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Colors.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of color palettes.</summary>
-    public class ColorCollection : JsonDictionary<int, ColorPalette>
+    public class ColorCollection : ServiceContractDictionary<int, ColorPalette>
     {
         /// <summary>Initializes a new instance of the <see cref="ColorCollection" /> class.</summary>
         public ColorCollection()

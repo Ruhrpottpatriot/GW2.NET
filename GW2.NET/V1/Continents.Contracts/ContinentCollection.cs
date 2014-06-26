@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Continents.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of continents.</summary>
-    public class ContinentCollection : JsonDictionary<int, Continent>
+    public class ContinentCollection : ServiceContractDictionary<int, Continent>
     {
         /// <summary>Initializes a new instance of the <see cref="ContinentCollection" /> class.</summary>
         public ContinentCollection()

@@ -103,7 +103,7 @@
     <Compile Include="ChatLinks\RecipeChatLink.cs" />
     <Compile Include="ChatLinks\ItemChatLink.cs" />
     <Compile Include="Common\Contracts\ErrorResult.cs" />
-    <Compile Include="Common\Contracts\JsonDictionary.cs" />
+    <Compile Include="Common\Contracts\ServiceContractDictionary.cs" />
     <Compile Include="Common\Contracts\JsonList.cs" />
     <Compile Include="Common\Contracts\ServiceContract.cs" />
     <Compile Include="Common\IRenderable.cs" />

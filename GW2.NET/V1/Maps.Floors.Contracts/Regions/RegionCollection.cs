@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of regions on the map.</summary>
-    public class RegionCollection : JsonDictionary<int, Region>
+    public class RegionCollection : ServiceContractDictionary<int, Region>
     {
         /// <summary>Initializes a new instance of the <see cref="RegionCollection" /> class.</summary>
         public RegionCollection()

@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of dynamic events and their localized name.</summary>
-    public class DynamicEventDetailsCollection : JsonDictionary<Guid, DynamicEventDetails>
+    public class DynamicEventDetailsCollection : ServiceContractDictionary<Guid, DynamicEventDetails>
     {
         /// <summary>Initializes a new instance of the <see cref="DynamicEventDetailsCollection" /> class.</summary>
         public DynamicEventDetailsCollection()
