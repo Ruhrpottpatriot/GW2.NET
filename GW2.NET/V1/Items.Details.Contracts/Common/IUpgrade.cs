@@ -10,6 +10,8 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
 {
     using System.Runtime.Serialization;
 
+    using GW2DotNET.V1.Items.Details.Contracts.Common.Attributes;
+
     /// <summary>Provides the interface for items that provide a bonus when equipped.</summary>
     public interface IUpgrade
     {

@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Armors
 
     using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.Common;
+    using GW2DotNET.V1.Items.Details.Contracts.Common.Attributes;
 
     /// <summary>Represents an armor piece.</summary>
     [TypeDiscriminator(Value = "Armor", BaseType = typeof(Item))]

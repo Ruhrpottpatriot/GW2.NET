@@ -3,24 +3,20 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents one of an item's attributes.
+//   Provides the base class for item attributes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.Common
+namespace GW2DotNET.V1.Items.Details.Contracts.Common.Attributes
 {
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
 
-    /// <summary>Represents one of an item's attributes.</summary>
-    public class ItemAttribute : JsonObject
+    /// <summary>Provides the base class for item attributes.</summary>
+    public abstract class ItemAttribute : JsonObject
     {
         /// <summary>Gets or sets the attribute's modifier.</summary>
         [DataMember(Name = "modifier")]
         public virtual int Modifier { get; set; }
-
-        /// <summary>Gets or sets the attribute's type.</summary>
-        [DataMember(Name = "attribute")]
-        public virtual ItemAttributeType Type { get; set; }
     }
 }

@@ -6,7 +6,7 @@
 //   Represents a collection of item attributes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Details.Contracts.Common
+namespace GW2DotNET.V1.Items.Details.Contracts.Common.Attributes
 {
     using System.Collections.Generic;
 

@@ -19,6 +19,7 @@ namespace GW2DotNET.V1.Items.Details
         public ItemSerializerSettings()
         {
             this.Converters.Add(new ItemConverter());
+            this.Converters.Add(new ItemAttributeConverter());
             this.Converters.Add(new UpgradeComponentConverter());
             this.Converters.Add(new ArmorConverter());
             this.Converters.Add(new BackpackConverter());

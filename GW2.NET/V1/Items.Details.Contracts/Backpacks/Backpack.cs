@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Backpacks
 
     using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.Common;
+    using GW2DotNET.V1.Items.Details.Contracts.Common.Attributes;
 
     /// <summary>Represents a backpack.</summary>
     [TypeDiscriminator(Value = "Back", BaseType = typeof(Item))]

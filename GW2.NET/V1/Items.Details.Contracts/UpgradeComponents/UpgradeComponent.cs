@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
 
     using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.Common;
+    using GW2DotNET.V1.Items.Details.Contracts.Common.Attributes;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

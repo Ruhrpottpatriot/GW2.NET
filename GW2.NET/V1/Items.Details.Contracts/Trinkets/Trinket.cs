@@ -12,6 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Trinkets
 
     using GW2DotNET.Common;
     using GW2DotNET.V1.Items.Details.Contracts.Common;
+    using GW2DotNET.V1.Items.Details.Contracts.Common.Attributes;
 
     /// <summary>Represents a trinket.</summary>
     [TypeDiscriminator(Value = "Trinket", BaseType = typeof(Item))]
