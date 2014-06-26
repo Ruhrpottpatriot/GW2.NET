@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of objectives and their localized name.</summary>
-    public class ObjectiveNameCollection : JsonList<ObjectiveName>
+    public class ObjectiveNameCollection : ServiceContractList<ObjectiveName>
     {
         /// <summary>Initializes a new instance of the <see cref="ObjectiveNameCollection" /> class.</summary>
         public ObjectiveNameCollection()

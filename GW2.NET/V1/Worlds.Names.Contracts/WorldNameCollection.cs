@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Worlds.Names.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of worlds and their localized name.</summary>
-    public class WorldNameCollection : JsonList<WorldName>
+    public class WorldNameCollection : ServiceContractList<WorldName>
     {
         /// <summary>Initializes a new instance of the <see cref="WorldNameCollection" /> class.</summary>
         public WorldNameCollection()

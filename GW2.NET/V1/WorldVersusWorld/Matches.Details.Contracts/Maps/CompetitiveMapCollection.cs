@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of World versus World maps.</summary>
-    public class CompetitiveMapCollection : JsonList<CompetitiveMap>
+    public class CompetitiveMapCollection : ServiceContractList<CompetitiveMap>
     {
         /// <summary>Initializes a new instance of the <see cref="CompetitiveMapCollection" /> class.</summary>
         public CompetitiveMapCollection()

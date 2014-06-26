@@ -1,41 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="JsonList.cs" company="GW2.NET Coding Team">
+// <copyright file="ServiceContractList.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the base class for strongly typed JSON lists.
+//   Provides the base class for lists of service contracts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common.Contracts
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
 
-    /// <summary>Provides the base class for strongly typed JSON lists.</summary>
+    /// <summary>Provides the base class for lists of service contracts.</summary>
     /// <typeparam name="T">The type of the values.</typeparam>
-    [Serializable]
-    public abstract class JsonList<T> : ServiceContract, IList<T>
+    public abstract class ServiceContractList<T> : ServiceContract, IList<T>
     {
         /// <summary>Infrastructure. This class acts as a proxy for the list stored in this field.</summary>
         private readonly IList<T> innerList;
 
-        /// <summary>Initializes a new instance of the <see cref="JsonList{T}" /> class.</summary>
-        protected JsonList()
+        /// <summary>Initializes a new instance of the <see cref="ServiceContractList{T}" /> class.</summary>
+        protected ServiceContractList()
         {
             this.innerList = new List<T>();
         }
 
-        /// <summary>Initializes a new instance of the <see cref="JsonList{T}"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceContractList{T}"/> class.</summary>
         /// <param name="capacity">The number of elements that the new list can initially store.</param>
-        protected JsonList(int capacity)
+        protected ServiceContractList(int capacity)
         {
             this.innerList = new List<T>(capacity);
         }
 
-        /// <summary>Initializes a new instance of the <see cref="JsonList{T}"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ServiceContractList{T}"/> class.</summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        protected JsonList(IEnumerable<T> collection)
+        protected ServiceContractList(IEnumerable<T> collection)
         {
             this.innerList = new List<T>(collection);
         }
@@ -81,8 +79,8 @@ namespace GW2DotNET.Common.Contracts
             this.innerList.Add(item);
         }
 
-        /// <summary>Adds the elements of the specified collection to the end of the <see cref="JsonList{T}"/>.</summary>
-        /// <param name="collection">The collection whose elements should be added to the end of the <see cref="JsonList{T}"/>. The collection itself cannot be null, but it can contain elements that are null, if type <typeparamref name="T"/>
+        /// <summary>Adds the elements of the specified collection to the end of the <see cref="ServiceContractList{T}"/>.</summary>
+        /// <param name="collection">The collection whose elements should be added to the end of the <see cref="ServiceContractList{T}"/>. The collection itself cannot be null, but it can contain elements that are null, if type <typeparamref name="T"/>
         /// is a reference type.</param>
         /// <exception cref="System.ArgumentNullException">The collection is null.</exception>
         public virtual void AddRange(IEnumerable<T> collection)

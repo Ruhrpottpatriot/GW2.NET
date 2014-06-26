@@ -104,7 +104,7 @@
     <Compile Include="ChatLinks\ItemChatLink.cs" />
     <Compile Include="Common\Contracts\ErrorResult.cs" />
     <Compile Include="Common\Contracts\ServiceContractDictionary.cs" />
-    <Compile Include="Common\Contracts\JsonList.cs" />
+    <Compile Include="Common\Contracts\ServiceContractList.cs" />
     <Compile Include="Common\Contracts\ServiceContract.cs" />
     <Compile Include="Common\IRenderable.cs" />
     <Compile Include="Common\Serializers\ImageSerializer.cs">

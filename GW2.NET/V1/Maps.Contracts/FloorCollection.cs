@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Maps.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of map floors.</summary>
-    public class FloorCollection : JsonList<int>
+    public class FloorCollection : ServiceContractList<int>
     {
         /// <summary>Initializes a new instance of the <see cref="FloorCollection" /> class.</summary>
         public FloorCollection()

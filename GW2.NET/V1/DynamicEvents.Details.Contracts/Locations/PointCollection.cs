@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of points.</summary>
-    public class PointCollection : JsonList<PointF>
+    public class PointCollection : ServiceContractList<PointF>
     {
         /// <summary>Initializes a new instance of the <see cref="PointCollection" /> class.</summary>
         public PointCollection()

@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Objective
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of a World versus World map objectives.</summary>
-    public class ObjectiveCollection : JsonList<Objective>
+    public class ObjectiveCollection : ServiceContractList<Objective>
     {
         /// <summary>Initializes a new instance of the <see cref="ObjectiveCollection" /> class.</summary>
         public ObjectiveCollection()

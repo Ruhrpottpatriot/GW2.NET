@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of dynamic events and their status.</summary>
-    public class DynamicEventCollection : JsonList<DynamicEvent>
+    public class DynamicEventCollection : ServiceContractList<DynamicEvent>
     {
         /// <summary>Initializes a new instance of the <see cref="DynamicEventCollection" /> class.</summary>
         public DynamicEventCollection()

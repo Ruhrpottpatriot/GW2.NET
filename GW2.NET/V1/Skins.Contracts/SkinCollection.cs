@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Skins.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of skin identifiers.</summary>
-    public class SkinCollection : JsonList<int>
+    public class SkinCollection : ServiceContractList<int>
     {
         /// <summary>Initializes a new instance of the <see cref="SkinCollection" /> class.</summary>
         public SkinCollection()

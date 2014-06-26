@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common.Attributes
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of item attributes.</summary>
-    public class ItemAttributeCollection : JsonList<ItemAttribute>
+    public class ItemAttributeCollection : ServiceContractList<ItemAttribute>
     {
         /// <summary>Initializes a new instance of the <see cref="ItemAttributeCollection" /> class.</summary>
         public ItemAttributeCollection()

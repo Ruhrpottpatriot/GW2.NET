@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Maps.Names.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of maps and their localized name.</summary>
-    public class MapNameCollection : JsonList<MapName>
+    public class MapNameCollection : ServiceContractList<MapName>
     {
         /// <summary>Initializes a new instance of the <see cref="MapNameCollection" /> class.</summary>
         public MapNameCollection()

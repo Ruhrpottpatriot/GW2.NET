@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of World versus World matches.</summary>
-    public class MatchCollection : JsonList<Match>
+    public class MatchCollection : ServiceContractList<Match>
     {
         /// <summary>Initializes a new instance of the <see cref="MatchCollection" /> class.</summary>
         public MatchCollection()

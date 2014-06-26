@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of upgrade bonuses.</summary>
-    public class UpgradeBonusCollection : JsonList<string>
+    public class UpgradeBonusCollection : ServiceContractList<string>
     {
         /// <summary>Initializes a new instance of the <see cref="UpgradeBonusCollection" /> class.</summary>
         public UpgradeBonusCollection()

@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of infusion slots.</summary>
-    public class InfusionSlotCollection : JsonList<InfusionSlot>
+    public class InfusionSlotCollection : ServiceContractList<InfusionSlot>
     {
         /// <summary>Initializes a new instance of the <see cref="InfusionSlotCollection" /> class.</summary>
         public InfusionSlotCollection()

@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Tasks
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of renown heart locations.</summary>
-    public class RenownTaskCollection : JsonList<RenownTask>
+    public class RenownTaskCollection : ServiceContractList<RenownTask>
     {
         /// <summary>Initializes a new instance of the <see cref="RenownTaskCollection" /> class.</summary>
         public RenownTaskCollection()

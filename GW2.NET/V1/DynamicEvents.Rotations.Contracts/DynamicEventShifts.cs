@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents.Rotations.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of world boss shifts.</summary>
-    public class DynamicEventShifts : JsonList<DateTimeOffset>
+    public class DynamicEventShifts : ServiceContractList<DateTimeOffset>
     {
         /// <summary>Initializes a new instance of the <see cref="DynamicEventShifts" /> class.</summary>
         public DynamicEventShifts()

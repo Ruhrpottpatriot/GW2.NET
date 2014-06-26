@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Bonuses
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of World versus World map bonuses.</summary>
-    public class MapBonusCollection : JsonList<MapBonus>
+    public class MapBonusCollection : ServiceContractList<MapBonus>
     {
         /// <summary>Initializes a new instance of the <see cref="MapBonusCollection" /> class.</summary>
         public MapBonusCollection()

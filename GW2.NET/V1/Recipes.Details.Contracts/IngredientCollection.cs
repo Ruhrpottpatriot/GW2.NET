@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of crafting ingredients.</summary>
-    public class IngredientCollection : JsonList<Ingredient>
+    public class IngredientCollection : ServiceContractList<Ingredient>
     {
         /// <summary>Initializes a new instance of the <see cref="IngredientCollection" /> class.</summary>
         public IngredientCollection()
