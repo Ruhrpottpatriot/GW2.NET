@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a dynamic event and its localized name.</summary>
-    public class DynamicEventName : JsonObject, IEquatable<DynamicEventName>, IComparable<DynamicEventName>
+    public class DynamicEventName : JsonObject, IEquatable<DynamicEventName>
     {
         /// <summary>Gets or sets the event ID.</summary>
         [DataMember(Name = "id")]
@@ -45,19 +45,6 @@ namespace GW2DotNET.V1.DynamicEvents.Names.Contracts
         public static bool operator !=(DynamicEventName left, DynamicEventName right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(DynamicEventName other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.Id.CompareTo(other.Id);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
