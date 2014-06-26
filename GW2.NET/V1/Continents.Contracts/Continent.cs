@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Continents.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a continent.</summary>
-    public class Continent : JsonObject, IEquatable<Continent>, IComparable<Continent>
+    public class Continent : JsonObject, IEquatable<Continent>
     {
         /// <summary>Gets or sets the dimensions of the continent.</summary>
         [DataMember(Name = "continent_dims")]
@@ -59,19 +59,6 @@ namespace GW2DotNET.V1.Continents.Contracts
             return !object.Equals(left, right);
         }
 
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Continent other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.ContinentId.CompareTo(other.ContinentId);
-        }
-
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
@@ -90,7 +77,7 @@ namespace GW2DotNET.V1.Continents.Contracts
             return this.ContinentId == other.ContinentId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
         /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)
