@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Maps.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
-    public class Map : JsonObject, IEquatable<Map>, IComparable<Map>
+    public class Map : ServiceContract, IEquatable<Map>, IComparable<Map>
     {
         /// <summary>Gets or sets the ID of the continent this map belongs to.</summary>
         [DataMember(Name = "continent_id")]

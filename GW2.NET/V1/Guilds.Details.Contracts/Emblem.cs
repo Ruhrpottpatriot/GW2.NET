@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
     using GW2DotNET.V1.Colors.Contracts;
 
     /// <summary>Represents a guild's emblem.</summary>
-    public class Emblem : JsonObject
+    public class Emblem : ServiceContract
     {
         /// <summary>Gets or sets the background color.</summary>
         public ColorPalette BackgroundColor { get; set; }

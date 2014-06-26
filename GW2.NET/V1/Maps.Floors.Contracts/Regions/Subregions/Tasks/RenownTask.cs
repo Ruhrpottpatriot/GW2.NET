@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Tasks
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a renown heart location.</summary>
-    public class RenownTask : JsonObject, IEquatable<RenownTask>, IComparable<RenownTask>
+    public class RenownTask : ServiceContract, IEquatable<RenownTask>, IComparable<RenownTask>
     {
         /// <summary>Gets or sets the task's coordinates.</summary>
         [DataMember(Name = "coord")]

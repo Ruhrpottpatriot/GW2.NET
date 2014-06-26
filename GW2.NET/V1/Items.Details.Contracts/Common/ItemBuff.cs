@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents an item buff.</summary>
-    public class ItemBuff : JsonObject
+    public class ItemBuff : ServiceContract
     {
         /// <summary>Gets or sets the buff's description.</summary>
         [DataMember(Name = "description")]

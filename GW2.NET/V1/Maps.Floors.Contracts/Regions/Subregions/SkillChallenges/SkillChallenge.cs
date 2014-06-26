@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.SkillChallenges
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a skill challenge location.</summary>
-    public class SkillChallenge : JsonObject, IEquatable<SkillChallenge>
+    public class SkillChallenge : ServiceContract, IEquatable<SkillChallenge>
     {
         /// <summary>Gets or sets the skill challenge's coordinates.</summary>
         [DataMember(Name = "coord")]

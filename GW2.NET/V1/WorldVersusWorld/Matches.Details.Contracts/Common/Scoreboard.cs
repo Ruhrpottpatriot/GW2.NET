@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common
 
     /// <summary>Represents a World versus World scoreboard.</summary>
     [JsonConverter(typeof(ScoreboardConverter))]
-    public class Scoreboard : JsonObject
+    public class Scoreboard : ServiceContract
     {
         /// <summary>Gets or sets the blue team's score.</summary>
         public int Blue { get; set; }

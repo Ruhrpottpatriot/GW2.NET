@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps;
 
     /// <summary>Represents a World versus World match.</summary>
-    public class MatchDetails : JsonObject, IEquatable<MatchDetails>, IComparable<MatchDetails>
+    public class MatchDetails : ServiceContract, IEquatable<MatchDetails>, IComparable<MatchDetails>
     {
         /// <summary>Gets or sets the list of maps.</summary>
         [DataMember(Name = "maps")]

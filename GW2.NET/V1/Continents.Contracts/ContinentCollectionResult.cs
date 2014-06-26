@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Continents.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of continents.</summary>
-    public class ContinentCollectionResult : JsonObject
+    public class ContinentCollectionResult : ServiceContract
     {
         /// <summary>Gets or sets a collection of continents.</summary>
         [DataMember(Name = "continents")]

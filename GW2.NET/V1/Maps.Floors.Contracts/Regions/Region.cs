@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions;
 
     /// <summary>Represents a region on the map.</summary>
-    public class Region : JsonObject, IEquatable<Region>, IComparable<Region>
+    public class Region : ServiceContract, IEquatable<Region>, IComparable<Region>
     {
         /// <summary>Gets or sets the coordinates of the region label.</summary>
         [DataMember(Name = "label_coord")]

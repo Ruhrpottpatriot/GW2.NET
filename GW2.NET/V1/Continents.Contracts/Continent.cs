@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Continents.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a continent.</summary>
-    public class Continent : JsonObject, IEquatable<Continent>
+    public class Continent : ServiceContract, IEquatable<Continent>
     {
         /// <summary>Gets or sets the dimensions of the continent.</summary>
         [DataMember(Name = "continent_dims")]

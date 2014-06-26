@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Bonuses
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common;
 
     /// <summary>Represents a World versus World map's bonus.</summary>
-    public class MapBonus : JsonObject
+    public class MapBonus : ServiceContract
     {
         /// <summary>Gets or sets the team that holds the bonus.</summary>
         [DataMember(Name = "owner")]

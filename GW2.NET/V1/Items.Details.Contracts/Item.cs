@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
-    public abstract class Item : JsonObject, IRenderable, IEquatable<Item>
+    public abstract class Item : ServiceContract, IRenderable, IEquatable<Item>
     {
         /// <summary>Gets or sets the item's build number.</summary>
         [DataMember(Name = "build_id")]

@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common.Attributes
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Provides the base class for item attributes.</summary>
-    public abstract class ItemAttribute : JsonObject
+    public abstract class ItemAttribute : ServiceContract
     {
         /// <summary>Gets or sets the attribute's modifier.</summary>
         [DataMember(Name = "modifier")]

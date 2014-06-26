@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     using GW2DotNET.V1.Items.Details.Contracts;
 
     /// <summary>Represents a portion of crafting ingredients.</summary>
-    public class Ingredient : JsonObject
+    public class Ingredient : ServiceContract
     {
         /// <summary>Gets or sets the number of ingredients.</summary>
         [DataMember(Name = "count")]

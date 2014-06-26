@@ -105,7 +105,7 @@
     <Compile Include="Common\Contracts\ErrorResult.cs" />
     <Compile Include="Common\Contracts\JsonDictionary.cs" />
     <Compile Include="Common\Contracts\JsonList.cs" />
-    <Compile Include="Common\Contracts\JsonObject.cs" />
+    <Compile Include="Common\Contracts\ServiceContract.cs" />
     <Compile Include="Common\IRenderable.cs" />
     <Compile Include="Common\Serializers\ImageSerializer.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>

@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Colors.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of colors in the game.</summary>
-    public class ColorCollectionResult : JsonObject, IEquatable<ColorCollectionResult>
+    public class ColorCollectionResult : ServiceContract, IEquatable<ColorCollectionResult>
     {
         /// <summary>Gets or sets a collection of colors in the game.</summary>
         [DataMember(Name = "colors")]

@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of dynamic events.</summary>
-    public class DynamicEventCollectionResult : JsonObject
+    public class DynamicEventCollectionResult : ServiceContract
     {
         /// <summary>Gets or sets a list of event details.</summary>
         [DataMember(Name = "events")]

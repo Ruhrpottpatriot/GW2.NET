@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts
     using GW2DotNET.V1.Items.Details.Contracts;
 
     /// <summary>Represents an in-game item skin.</summary>
-    public abstract class Skin : JsonObject, IEquatable<Skin>, IComparable<Skin>, IRenderable
+    public abstract class Skin : ServiceContract, IEquatable<Skin>, IComparable<Skin>, IRenderable
     {
         /// <summary>Gets or sets the skin's description.</summary>
         [DataMember(Name = "description")]

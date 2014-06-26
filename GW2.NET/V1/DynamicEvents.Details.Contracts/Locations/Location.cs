@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
     using GW2DotNET.V1.Common.Drawing;
 
     /// <summary>Represents the location of an event on the map.</summary>
-    public abstract class Location : JsonObject
+    public abstract class Location : ServiceContract
     {
         /// <summary>Gets or sets the center coordinates.</summary>
         [DataMember(Name = "center")]

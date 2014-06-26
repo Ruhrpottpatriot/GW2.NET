@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Objectives;
 
     /// <summary>Represents a World versus World map.</summary>
-    public class CompetitiveMap : JsonObject
+    public class CompetitiveMap : ServiceContract
     {
         /// <summary>Gets or sets the map's bonuses.</summary>
         [DataMember(Name = "bonuses")]

@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest
     using Newtonsoft.Json.Converters;
 
     /// <summary>Represents a Point of Interest (POI) location.</summary>
-    public class PointOfInterest : JsonObject, IEquatable<PointOfInterest>, IComparable<PointOfInterest>
+    public class PointOfInterest : ServiceContract, IEquatable<PointOfInterest>, IComparable<PointOfInterest>
     {
         /// <summary>Gets or sets the Point of Interest's coordinates.</summary>
         [DataMember(Name = "coord")]

@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a guild and its details.</summary>
-    public class Guild : JsonObject, IEquatable<Guild>
+    public class Guild : ServiceContract, IEquatable<Guild>
     {
         /// <summary>Gets or sets the guild's emblem, if any.</summary>
         [DataMember(Name = "emblem")]

@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Colors.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a color's component information.</summary>
-    public class ColorModel : JsonObject
+    public class ColorModel : ServiceContract
     {
         /// <summary>Gets or sets the brightness.</summary>
         [DataMember(Name = "brightness")]

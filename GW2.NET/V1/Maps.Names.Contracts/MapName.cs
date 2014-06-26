@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Maps.Names.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a map and its localized name.</summary>
-    public class MapName : JsonObject, IEquatable<MapName>, IComparable<MapName>
+    public class MapName : ServiceContract, IEquatable<MapName>, IComparable<MapName>
     {
         /// <summary>Gets or sets the map's ID.</summary>
         [DataMember(Name = "id")]

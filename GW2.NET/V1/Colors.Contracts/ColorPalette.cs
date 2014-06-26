@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Colors.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a named color and its color component information for cloth, leather and metal materials.</summary>
-    public class ColorPalette : JsonObject, IEquatable<ColorPalette>
+    public class ColorPalette : ServiceContract, IEquatable<ColorPalette>
     {
         /// <summary>Gets or sets the base RGB values.</summary>
         [DataMember(Name = "base_rgb")]

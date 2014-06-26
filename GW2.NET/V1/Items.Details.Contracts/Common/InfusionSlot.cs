@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents one of an item's infusion slots.</summary>
-    public class InfusionSlot : JsonObject
+    public class InfusionSlot : ServiceContract
     {
         /// <summary>Gets or sets the infusion slot's type(s).</summary>
         [DataMember(Name = "flags")]

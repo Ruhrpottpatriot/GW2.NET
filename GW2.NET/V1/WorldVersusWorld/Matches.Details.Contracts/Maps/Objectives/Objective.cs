@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Objective
     using Newtonsoft.Json;
 
     /// <summary>Represents one of a World versus World map's objectives.</summary>
-    public class Objective : JsonObject, IEquatable<Objective>, IComparable<Objective>
+    public class Objective : ServiceContract, IEquatable<Objective>, IComparable<Objective>
     {
         /// <summary>Gets or sets the objective's ID.</summary>
         [DataMember(Name = "id")]

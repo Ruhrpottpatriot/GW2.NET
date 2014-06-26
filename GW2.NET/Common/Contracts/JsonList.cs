@@ -15,7 +15,7 @@ namespace GW2DotNET.Common.Contracts
     /// <summary>Provides the base class for strongly typed JSON lists.</summary>
     /// <typeparam name="T">The type of the values.</typeparam>
     [Serializable]
-    public abstract class JsonList<T> : JsonObject, IList<T>
+    public abstract class JsonList<T> : ServiceContract, IList<T>
     {
         /// <summary>Infrastructure. This class acts as a proxy for the list stored in this field.</summary>
         private readonly IList<T> innerList;

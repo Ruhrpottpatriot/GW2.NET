@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Skins.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of skin identifiers.</summary>
-    public class SkinCollectionResult : JsonObject
+    public class SkinCollectionResult : ServiceContract
     {
         /// <summary>Gets or sets a collection of skin identifiers.</summary>
         [DataMember(Name = "skins")]

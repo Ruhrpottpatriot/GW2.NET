@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
     using GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations;
 
     /// <summary>Represents a dynamic event and its localized details.</summary>
-    public class DynamicEventDetails : JsonObject, IEquatable<DynamicEventDetails>
+    public class DynamicEventDetails : ServiceContract, IEquatable<DynamicEventDetails>
     {
         /// <summary>Gets or sets the event identifier.</summary>
         [DataMember(Name = "event_id")]

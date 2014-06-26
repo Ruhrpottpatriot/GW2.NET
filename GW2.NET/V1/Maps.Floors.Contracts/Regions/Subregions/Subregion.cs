@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions
     using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Tasks;
 
     /// <summary>Represents a map and its details.</summary>
-    public class Subregion : JsonObject, IEquatable<Subregion>, IComparable<Subregion>
+    public class Subregion : ServiceContract, IEquatable<Subregion>, IComparable<Subregion>
     {
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
         [DataMember(Name = "continent_rect")]

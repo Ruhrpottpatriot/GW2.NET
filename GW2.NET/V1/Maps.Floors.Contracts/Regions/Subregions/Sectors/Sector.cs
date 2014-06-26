@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents an area within a map.</summary>
-    public class Sector : JsonObject, IEquatable<Sector>, IComparable<Sector>
+    public class Sector : ServiceContract, IEquatable<Sector>, IComparable<Sector>
     {
         /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
         [DataMember(Name = "coord")]

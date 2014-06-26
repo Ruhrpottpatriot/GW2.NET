@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Worlds.Names.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a world and its localized name.</summary>
-    public class WorldName : JsonObject, IEquatable<WorldName>, IComparable<WorldName>
+    public class WorldName : ServiceContract, IEquatable<WorldName>, IComparable<WorldName>
     {
         /// <summary>Gets or sets the world's ID.</summary>
         [DataMember(Name = "id")]

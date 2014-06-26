@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     using Newtonsoft.Json;
 
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
-    public abstract class Recipe : JsonObject, IEquatable<Recipe>, IComparable<Recipe>
+    public abstract class Recipe : ServiceContract, IEquatable<Recipe>, IComparable<Recipe>
     {
         /// <summary>Gets or sets the recipe's build number.</summary>
         [DataMember(Name = "build_id")]

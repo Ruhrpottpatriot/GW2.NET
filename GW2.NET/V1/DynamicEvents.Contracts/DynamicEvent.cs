@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     using Newtonsoft.Json.Converters;
 
     /// <summary>Represents a dynamic event and its status.</summary>
-    public class DynamicEvent : JsonObject, IEquatable<DynamicEvent>
+    public class DynamicEvent : ServiceContract, IEquatable<DynamicEvent>
     {
         /// <summary>Gets or sets the <see cref="Guid" /> identifying the event.</summary>
         [DataMember(Name = "event_id")]

@@ -16,8 +16,8 @@ namespace GW2DotNET.Common.Contracts
     /// <typeparam name="TKey">The type of the keys.</typeparam>
     /// <typeparam name="TValue">The type of the values.</typeparam>
     [Serializable]
-    public abstract class JsonDictionary<TKey, TValue> : JsonObject, IDictionary<TKey, TValue>
-        where TValue : JsonObject
+    public abstract class JsonDictionary<TKey, TValue> : ServiceContract, IDictionary<TKey, TValue>
+        where TValue : ServiceContract
     {
         /// <summary>Infrastructure. This class acts as a proxy for the dictionary stored in this field.</summary>
         private readonly IDictionary<TKey, TValue> innerDictionary;

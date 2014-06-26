@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents an objective and its localized name.</summary>
-    public class ObjectiveName : JsonObject, IEquatable<ObjectiveName>, IComparable<ObjectiveName>
+    public class ObjectiveName : ServiceContract, IEquatable<ObjectiveName>, IComparable<ObjectiveName>
     {
         /// <summary>Gets or sets the objective's ID.</summary>
         [DataMember(Name = "id")]

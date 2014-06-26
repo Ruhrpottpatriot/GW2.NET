@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a World versus World match.</summary>
-    public class Match : JsonObject, IEquatable<Match>, IComparable<Match>
+    public class Match : ServiceContract, IEquatable<Match>, IComparable<Match>
     {
         /// <summary>Gets or sets the blue world's ID.</summary>
         [DataMember(Name = "blue_world_id")]

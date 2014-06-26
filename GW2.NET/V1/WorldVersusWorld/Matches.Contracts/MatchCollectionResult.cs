@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of matches.</summary>
-    public class MatchCollectionResult : JsonObject
+    public class MatchCollectionResult : ServiceContract
     {
         /// <summary>Gets or sets a collection of matches.</summary>
         [DataMember(Name = "wvw_matches")]

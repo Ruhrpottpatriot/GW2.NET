@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents.Rotations.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a dynamic event and its rotation.</summary>
-    public class DynamicEventRotation : JsonObject, IEquatable<DynamicEventRotation>
+    public class DynamicEventRotation : ServiceContract, IEquatable<DynamicEventRotation>
     {
         /// <summary>Gets or sets the event identifier.</summary>
         [DataMember(Name = "event_id")]
