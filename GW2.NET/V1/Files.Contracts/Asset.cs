@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Files.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents information about a file that can be retrieved from the render service.</summary>
-    public class Asset : JsonObject, IEquatable<Asset>, IComparable<Asset>, IRenderable
+    public class Asset : JsonObject, IRenderable, IEquatable<Asset>
     {
         /// <summary>Gets or sets the file ID to be used with the render service.</summary>
         [DataMember(Name = "file_id")]
@@ -45,19 +45,6 @@ namespace GW2DotNET.V1.Files.Contracts
         public static bool operator !=(Asset left, Asset right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Asset other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.FileId.CompareTo(other.FileId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
