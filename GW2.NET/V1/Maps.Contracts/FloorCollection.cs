@@ -9,11 +9,11 @@
 namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Collections.Generic;
-
-    using GW2DotNET.Common.Contracts;
+    using System.Runtime.Serialization;
 
     /// <summary>Represents a collection of map floors.</summary>
-    public class FloorCollection : ServiceContractList<int>
+    [CollectionDataContract]
+    public class FloorCollection : List<int>
     {
         /// <summary>Initializes a new instance of the <see cref="FloorCollection" /> class.</summary>
         public FloorCollection()

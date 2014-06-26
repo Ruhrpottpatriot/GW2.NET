@@ -10,11 +10,11 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
 {
     using System.Collections.Generic;
     using System.Drawing;
-
-    using GW2DotNET.Common.Contracts;
+    using System.Runtime.Serialization;
 
     /// <summary>Represents a collection of points.</summary>
-    public class PointCollection : ServiceContractList<PointF>
+    [CollectionDataContract]
+    public class PointCollection : List<PointF>
     {
         /// <summary>Initializes a new instance of the <see cref="PointCollection" /> class.</summary>
         public PointCollection()

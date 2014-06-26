@@ -9,11 +9,11 @@
 namespace GW2DotNET.V1.Continents.Contracts
 {
     using System.Collections.Generic;
-
-    using GW2DotNET.Common.Contracts;
+    using System.Runtime.Serialization;
 
     /// <summary>Represents a collection of continent floors.</summary>
-    public class ContinentFloorCollection : ServiceContractList<int>
+    [CollectionDataContract]
+    public class ContinentFloorCollection : List<int>
     {
         /// <summary>Initializes a new instance of the <see cref="ContinentFloorCollection" /> class.</summary>
         public ContinentFloorCollection()

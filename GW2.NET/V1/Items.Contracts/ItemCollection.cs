@@ -9,11 +9,11 @@
 namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Collections.Generic;
-
-    using GW2DotNET.Common.Contracts;
+    using System.Runtime.Serialization;
 
     /// <summary>Represents a collection of item identifiers.</summary>
-    public class ItemCollection : ServiceContractList<int>
+    [CollectionDataContract]
+    public class ItemCollection : List<int>
     {
         /// <summary>Initializes a new instance of the <see cref="ItemCollection" /> class.</summary>
         public ItemCollection()

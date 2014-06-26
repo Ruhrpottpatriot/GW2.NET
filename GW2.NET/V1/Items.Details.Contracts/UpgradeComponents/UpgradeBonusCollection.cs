@@ -9,11 +9,11 @@
 namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
 {
     using System.Collections.Generic;
-
-    using GW2DotNET.Common.Contracts;
+    using System.Runtime.Serialization;
 
     /// <summary>Represents a collection of upgrade bonuses.</summary>
-    public class UpgradeBonusCollection : ServiceContractList<string>
+    [CollectionDataContract]
+    public class UpgradeBonusCollection : List<string>
     {
         /// <summary>Initializes a new instance of the <see cref="UpgradeBonusCollection" /> class.</summary>
         public UpgradeBonusCollection()

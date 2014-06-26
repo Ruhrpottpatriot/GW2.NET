@@ -9,11 +9,11 @@
 namespace GW2DotNET.V1.Skins.Contracts
 {
     using System.Collections.Generic;
-
-    using GW2DotNET.Common.Contracts;
+    using System.Runtime.Serialization;
 
     /// <summary>Represents a collection of skin identifiers.</summary>
-    public class SkinCollection : ServiceContractList<int>
+    [CollectionDataContract]
+    public class SkinCollection : List<int>
     {
         /// <summary>Initializes a new instance of the <see cref="SkinCollection" /> class.</summary>
         public SkinCollection()

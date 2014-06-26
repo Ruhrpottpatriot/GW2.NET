@@ -10,11 +10,11 @@ namespace GW2DotNET.V1.DynamicEvents.Rotations.Contracts
 {
     using System;
     using System.Collections.Generic;
-
-    using GW2DotNET.Common.Contracts;
+    using System.Runtime.Serialization;
 
     /// <summary>Represents a collection of world boss shifts.</summary>
-    public class DynamicEventShifts : ServiceContractList<DateTimeOffset>
+    [CollectionDataContract]
+    public class DynamicEventShifts : List<DateTimeOffset>
     {
         /// <summary>Initializes a new instance of the <see cref="DynamicEventShifts" /> class.</summary>
         public DynamicEventShifts()

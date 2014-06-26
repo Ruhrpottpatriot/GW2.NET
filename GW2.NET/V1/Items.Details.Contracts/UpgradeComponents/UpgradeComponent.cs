@@ -14,9 +14,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
     using GW2DotNET.V1.Items.Details.Contracts.Common;
     using GW2DotNET.V1.Items.Details.Contracts.Common.Attributes;
 
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
-
     /// <summary>Represents an upgrade component.</summary>
     [TypeDiscriminator(Value = "UpgradeComponent", BaseType = typeof(Item))]
     public abstract class UpgradeComponent : Item, IUpgrade
