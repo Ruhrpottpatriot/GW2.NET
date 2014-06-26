@@ -40,9 +40,6 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
         [DataMember(Name = "foreground_secondary_color_id")]
         public int ForegroundSecondaryColorId { get; set; }
 
-        /// <summary>Gets or sets the guild.</summary>
-        public Guild Guild { get; set; }
-
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>

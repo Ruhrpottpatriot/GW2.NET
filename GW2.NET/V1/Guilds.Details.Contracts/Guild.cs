@@ -16,24 +16,9 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
     /// <summary>Represents a guild and its details.</summary>
     public class Guild : JsonObject, IEquatable<Guild>, IComparable<Guild>
     {
-        /// <summary>Infrastructure. Stores an emblem.</summary>
-        private Emblem emblem;
-
         /// <summary>Gets or sets the guild's emblem, if any.</summary>
         [DataMember(Name = "emblem")]
-        public Emblem Emblem
-        {
-            get
-            {
-                return this.emblem;
-            }
-
-            set
-            {
-                this.emblem = value;
-                value.Guild = this;
-            }
-        }
+        public Emblem Emblem { get; set; }
 
         /// <summary>Gets or sets the guild's ID.</summary>
         [DataMember(Name = "guild_id")]
