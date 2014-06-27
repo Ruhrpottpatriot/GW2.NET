@@ -19,12 +19,12 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
         [DataMember(Name = "flags")]
         public virtual InfusionSlotTypes Flags { get; set; }
 
+        /// <summary>Gets or sets the infusion slot's item.</summary>
+        public virtual Item Item { get; set; }
+
         /// <summary>Gets or sets the infusion slot's item identifier.</summary>
         [DataMember(Name = "item_id")]
         public virtual int? ItemId { get; set; }
-
-        /// <summary>Gets or sets the infusion slot's item.</summary>
-        public virtual Item Item { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
