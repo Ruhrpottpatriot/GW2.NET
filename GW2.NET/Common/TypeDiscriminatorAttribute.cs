@@ -12,7 +12,7 @@ namespace GW2DotNET.Common
 
     /// <summary>The type discriminator attribute.</summary>
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
-    public class TypeDiscriminatorAttribute : Attribute
+    public sealed class TypeDiscriminatorAttribute : Attribute
     {
         /// <summary>Gets or sets the base type.</summary>
         public Type BaseType { get; set; }
