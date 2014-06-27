@@ -6,7 +6,7 @@
 //   Provides the default implementation of the objective names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
+namespace GW2DotNET.V1.WorldVersusWorld.Objectives
 {
     using System.Collections.Generic;
     using System.Globalization;
@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts;
+    using GW2DotNET.V1.WorldVersusWorld.Objectives.Contracts;
 
     /// <summary>Provides the default implementation of the objective names service.</summary>
     public class ObjectiveNameService : IObjectiveNameService
@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public IEnumerable<ObjectiveName> GetObjectiveNames()
+        public IEnumerable<Objective> GetObjectiveNames()
         {
             return this.GetObjectiveNames(CultureInfo.GetCultureInfo("en"));
         }
@@ -43,11 +43,11 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <param name="language">The language.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public IEnumerable<ObjectiveName> GetObjectiveNames(CultureInfo language)
+        public IEnumerable<Objective> GetObjectiveNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ObjectiveNameRequest { Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<ObjectiveNameCollection>());
+            var result = this.serviceClient.Send(request, new JsonSerializer<ObjectiveCollection>());
 
             // patch missing language information
             foreach (var objectiveName in result)
@@ -61,7 +61,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync()
+        public Task<IEnumerable<Objective>> GetObjectiveNamesAsync()
         {
             return this.GetObjectiveNamesAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
@@ -70,7 +70,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<Objective>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
         {
             return this.GetObjectiveNamesAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
@@ -79,7 +79,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <param name="language">The language.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language)
+        public Task<IEnumerable<Objective>> GetObjectiveNamesAsync(CultureInfo language)
         {
             return this.GetObjectiveNamesAsync(language, CancellationToken.None);
         }
@@ -89,11 +89,11 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IEnumerable<Objective>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ObjectiveNameRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ObjectiveNameCollection>(), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ObjectiveCollection>(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;
@@ -107,7 +107,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
                         return result;
                     }, 
                 cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<ObjectiveName>>(task => task.Result, cancellationToken);
+            var t2 = t1.ContinueWith<IEnumerable<Objective>>(task => task.Result, cancellationToken);
 
             return t2;
         }

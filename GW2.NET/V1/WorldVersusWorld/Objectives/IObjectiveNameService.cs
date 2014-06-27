@@ -6,14 +6,14 @@
 //   Provides the interface for the objective names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
+namespace GW2DotNET.V1.WorldVersusWorld.Objectives
 {
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts;
+    using GW2DotNET.V1.WorldVersusWorld.Objectives.Contracts;
 
     /// <summary>Provides the interface for the objective names service.</summary>
     public interface IObjectiveNameService
@@ -21,36 +21,36 @@ namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Names
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        IEnumerable<ObjectiveName> GetObjectiveNames();
+        IEnumerable<Objective> GetObjectiveNames();
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        IEnumerable<ObjectiveName> GetObjectiveNames(CultureInfo language);
+        IEnumerable<Objective> GetObjectiveNames(CultureInfo language);
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync();
+        Task<IEnumerable<Objective>> GetObjectiveNamesAsync();
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken);
+        Task<IEnumerable<Objective>> GetObjectiveNamesAsync(CancellationToken cancellationToken);
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language);
+        Task<IEnumerable<Objective>> GetObjectiveNamesAsync(CultureInfo language);
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken);
+        Task<IEnumerable<Objective>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken);
     }
 }

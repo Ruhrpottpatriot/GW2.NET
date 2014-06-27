@@ -531,11 +531,11 @@
     <Compile Include="V1\WorldVersusWorld\Matches\MatchDetailsService.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\MatchRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\MatchService.cs" />
-    <Compile Include="V1\WorldVersusWorld\Objectives.Names.Contracts\ObjectiveName.cs" />
-    <Compile Include="V1\WorldVersusWorld\Objectives.Names.Contracts\ObjectiveNameCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld\Objectives.Names\IObjectiveNameService.cs" />
-    <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameService.cs" />
-    <Compile Include="V1\WorldVersusWorld\Objectives.Names\ObjectiveNameRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\Objectives.Contracts\Objective.cs" />
+    <Compile Include="V1\WorldVersusWorld\Objectives.Contracts\ObjectiveCollection.cs" />
+    <Compile Include="V1\WorldVersusWorld\Objectives\IObjectiveNameService.cs" />
+    <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveNameService.cs" />
+    <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveNameRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
