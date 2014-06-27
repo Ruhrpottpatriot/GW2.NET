@@ -11,9 +11,15 @@ namespace GW2DotNET.V1.Recipes.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
+    using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Recipes.Details.Contracts;
+
+    using Newtonsoft.Json;
+
     /// <summary>Represents a collection of recipe identifiers.</summary>
     [CollectionDataContract]
-    public class RecipeCollection : List<int>
+    [JsonArray(ItemConverterType = typeof(UnknownRecipeConverter))]
+    public class RecipeCollection : List<Recipe>
     {
         /// <summary>Initializes a new instance of the <see cref="RecipeCollection" /> class.</summary>
         public RecipeCollection()
@@ -29,7 +35,7 @@ namespace GW2DotNET.V1.Recipes.Contracts
 
         /// <summary>Initializes a new instance of the <see cref="RecipeCollection"/> class.</summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public RecipeCollection(IEnumerable<int> collection)
+        public RecipeCollection(IEnumerable<Recipe> collection)
             : base(collection)
         {
         }

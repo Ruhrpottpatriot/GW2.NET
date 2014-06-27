@@ -15,6 +15,7 @@ namespace GW2DotNET.V1.Recipes
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.V1.Recipes.Contracts;
+    using GW2DotNET.V1.Recipes.Details.Contracts;
 
     /// <summary>Provides the default implementation of the recipes service.</summary>
     public class RecipeService : IRecipeService
@@ -32,7 +33,7 @@ namespace GW2DotNET.V1.Recipes
         /// <summary>Gets a collection of discovered recipes.</summary>
         /// <returns>A collection of discovered recipes.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public IEnumerable<int> GetRecipes()
+        public IEnumerable<Recipe> GetRecipes()
         {
             var request = new RecipeRequest();
             var result = this.serviceClient.Send(request, new JsonSerializer<RecipeCollectionResult>());
@@ -43,7 +44,7 @@ namespace GW2DotNET.V1.Recipes
         /// <summary>Gets a collection of discovered recipes.</summary>
         /// <returns>A collection of discovered recipes.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetRecipesAsync()
+        public Task<IEnumerable<Recipe>> GetRecipesAsync()
         {
             return this.GetRecipesAsync(CancellationToken.None);
         }
@@ -52,11 +53,11 @@ namespace GW2DotNET.V1.Recipes
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of discovered recipes.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetRecipesAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<Recipe>> GetRecipesAsync(CancellationToken cancellationToken)
         {
             var request = new RecipeRequest();
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<RecipeCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Recipes, cancellationToken);
+            var t2 = t1.ContinueWith<IEnumerable<Recipe>>(task => task.Result.Recipes, cancellationToken);
 
             return t2;
         }

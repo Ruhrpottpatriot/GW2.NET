@@ -34,23 +34,24 @@ namespace GW2DotNET.V1.Recipes.Details
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">A recipe.</param>
+        /// <param name="recipe">The recipe identifier.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Recipe GetRecipeDetails(int recipeId)
+        public Recipe GetRecipeDetails(Recipe recipe)
         {
-            return this.GetRecipeDetails(recipeId, CultureInfo.GetCultureInfo("en"));
+            return this.GetRecipeDetails(recipe, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">A recipe.</param>
+        /// <param name="recipe">The recipe identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Recipe GetRecipeDetails(int recipeId, CultureInfo language)
+        public Recipe GetRecipeDetails(Recipe recipe, CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
+            var request = new RecipeDetailsRequest { RecipeId = recipe.RecipeId, Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<Recipe>(Settings));
 
             // patch missing language information
@@ -60,44 +61,45 @@ namespace GW2DotNET.V1.Recipes.Details
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">A recipe.</param>
+        /// <param name="recipe">The recipe identifier.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(int recipeId)
+        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe)
         {
-            return this.GetRecipeDetailsAsync(recipeId, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            return this.GetRecipeDetailsAsync(recipe, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">A recipe.</param>
+        /// <param name="recipe">The recipe identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CancellationToken cancellationToken)
+        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CancellationToken cancellationToken)
         {
-            return this.GetRecipeDetailsAsync(recipeId, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            return this.GetRecipeDetailsAsync(recipe, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">A recipe.</param>
+        /// <param name="recipe">The recipe identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CultureInfo language)
+        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CultureInfo language)
         {
-            return this.GetRecipeDetailsAsync(recipeId, language, CancellationToken.None);
+            return this.GetRecipeDetailsAsync(recipe, language, CancellationToken.None);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipeId">A recipe.</param>
+        /// <param name="recipe">The recipe identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(int recipeId, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "recipe", value: recipe);
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new RecipeDetailsRequest { RecipeId = recipeId, Culture = language };
+            var request = new RecipeDetailsRequest { RecipeId = recipe.RecipeId, Culture = language };
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Recipe>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {
