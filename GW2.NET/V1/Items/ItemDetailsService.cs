@@ -54,8 +54,14 @@ namespace GW2DotNET.V1.Items
             var request = new ItemDetailsRequest { ItemId = item.ItemId, Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<Item>(Settings));
 
-            // patch missing language information
+            // Patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
+
+            // Patch empty descriptions
+            if (result.Description != null && result.Description == string.Empty)
+            {
+                result.Description = null;
+            }
 
             return result;
         }
@@ -105,8 +111,14 @@ namespace GW2DotNET.V1.Items
                     {
                         var result = task.Result;
 
-                        // patch missing language information
+                        // Patch missing language information
                         result.Language = language.TwoLetterISOLanguageName;
+
+                        // Patch empty descriptions
+                        if (result.Description != null && result.Description == string.Empty)
+                        {
+                            result.Description = null;
+                        }
 
                         return result;
                     }, 
