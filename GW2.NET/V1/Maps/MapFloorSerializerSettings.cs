@@ -6,7 +6,7 @@
 //   The map floor serializer settings.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors
+namespace GW2DotNET.V1.Maps
 {
     using GW2DotNET.V1.Common.Converters;
 

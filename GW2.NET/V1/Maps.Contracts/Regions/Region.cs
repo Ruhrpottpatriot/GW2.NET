@@ -6,14 +6,14 @@
 //   Represents a region on the map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions
+namespace GW2DotNET.V1.Maps.Contracts.Regions
 {
     using System;
     using System.Drawing;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions;
+    using GW2DotNET.V1.Maps.Contracts.Regions.Subregions;
 
     /// <summary>Represents a region on the map.</summary>
     public class Region : ServiceContract, IEquatable<Region>, IComparable<Region>

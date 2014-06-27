@@ -37,8 +37,6 @@ namespace GW2DotNET
     using GW2DotNET.V1.Items.Contracts;
     using GW2DotNET.V1.Maps;
     using GW2DotNET.V1.Maps.Contracts;
-    using GW2DotNET.V1.Maps.Floors;
-    using GW2DotNET.V1.Maps.Floors.Contracts;
     using GW2DotNET.V1.Maps.Names;
     using GW2DotNET.V1.Maps.Names.Contracts;
     using GW2DotNET.V1.Recipes;

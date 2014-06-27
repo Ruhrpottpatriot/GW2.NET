@@ -6,7 +6,7 @@
 //   Represents a renown heart location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Tasks
+namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Tasks
 {
     using System;
     using System.Drawing;

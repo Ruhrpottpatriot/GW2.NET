@@ -6,13 +6,13 @@
 //   Provides the interface for the map floor service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors
+namespace GW2DotNET.V1.Maps
 {
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Maps.Floors.Contracts;
+    using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the interface for the map floor service.</summary>
     public interface IMapFloorService

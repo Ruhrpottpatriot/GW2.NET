@@ -1,12 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Sector.cs" company="GW2.NET Coding Team">
+// <copyright file="SkillChallenge.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents an area within a map.
+//   Represents a skill challenge location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
+namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.SkillChallenges
 {
     using System;
     using System.Drawing;
@@ -14,30 +14,18 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
 
     using GW2DotNET.Common.Contracts;
 
-    /// <summary>Represents an area within a map.</summary>
-    public class Sector : ServiceContract, IEquatable<Sector>, IComparable<Sector>
+    /// <summary>Represents a skill challenge location.</summary>
+    public class SkillChallenge : ServiceContract, IEquatable<SkillChallenge>
     {
-        /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
+        /// <summary>Gets or sets the skill challenge's coordinates.</summary>
         [DataMember(Name = "coord")]
         public PointF Coordinates { get; set; }
-
-        /// <summary>Gets or sets the sector's level.</summary>
-        [DataMember(Name = "level")]
-        public int Level { get; set; }
-
-        /// <summary>Gets or sets the sector's name.</summary>
-        [DataMember(Name = "name")]
-        public string Name { get; set; }
-
-        /// <summary>Gets or sets the sector's ID.</summary>
-        [DataMember(Name = "sector_id")]
-        public int SectorId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator ==(Sector left, Sector right)
+        public static bool operator ==(SkillChallenge left, SkillChallenge right)
         {
             return object.Equals(left, right);
         }
@@ -46,28 +34,15 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator !=(Sector left, Sector right)
+        public static bool operator !=(SkillChallenge left, SkillChallenge right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Sector other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.SectorId.CompareTo(other.SectorId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(Sector other)
+        public bool Equals(SkillChallenge other)
         {
             if (object.ReferenceEquals(null, other))
             {
@@ -79,7 +54,7 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
                 return true;
             }
 
-            return this.SectorId == other.SectorId;
+            return this.Coordinates.Equals(other.Coordinates);
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
@@ -102,14 +77,14 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.Sectors
                 return false;
             }
 
-            return this.Equals((Sector)obj);
+            return this.Equals((SkillChallenge)obj);
         }
 
         /// <summary>Serves as a hash function for a particular type.</summary>
         /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
-            return this.SectorId;
+            return this.Coordinates.GetHashCode();
         }
     }
 }

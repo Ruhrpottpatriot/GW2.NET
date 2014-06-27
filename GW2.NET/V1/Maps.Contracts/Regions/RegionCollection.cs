@@ -6,7 +6,7 @@
 //   Represents a collection of regions on the map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions
+namespace GW2DotNET.V1.Maps.Contracts.Regions
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

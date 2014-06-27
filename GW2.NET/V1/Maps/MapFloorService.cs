@@ -6,7 +6,7 @@
 //   Provides the default implementation of the map floor service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors
+namespace GW2DotNET.V1.Maps
 {
     using System.Globalization;
     using System.Threading;
@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Maps.Floors
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Maps.Floors.Contracts;
+    using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the default implementation of the map floor service.</summary>
     public class MapFloorService : IMapFloorService
@@ -55,12 +55,12 @@ namespace GW2DotNET.V1.Maps.Floors
             var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<Floor>(Settings));
 
-            // patch missing floor information
+            // Patch missing language information
+            result.Language = language;
+
+            // Patch missing floor information
             result.ContinentId = continentId;
             result.FloorNumber = floor;
-
-            // patch missing language information
-            result.Language = language;
 
             return result;
         }
@@ -113,12 +113,12 @@ namespace GW2DotNET.V1.Maps.Floors
                     {
                         var result = task.Result;
 
-                        // patch missing floor information
+                        // Patch missing language information
+                        result.Language = language;
+
+                        // Patch missing floor information
                         result.ContinentId = continentId;
                         result.FloorNumber = floor;
-
-                        // patch missing language information
-                        result.Language = language;
 
                         return result;
                     }, 

@@ -6,14 +6,14 @@
 //   Represents a map floor, used to populate a world map. All coordinates are map coordinates.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors.Contracts
+namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Drawing;
     using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Maps.Floors.Contracts.Regions;
+    using GW2DotNET.V1.Maps.Contracts.Regions;
 
     /// <summary>Represents a map floor, used to populate a world map. All coordinates are map coordinates.</summary>
     /// <remarks>The returned data only contains static content. Dynamic content, such as vendors, is not currently available.</remarks>

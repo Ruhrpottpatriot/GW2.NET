@@ -6,7 +6,7 @@
 //   Represents a request for details regarding a map floor, used to populate a world map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors
+namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Globalization;

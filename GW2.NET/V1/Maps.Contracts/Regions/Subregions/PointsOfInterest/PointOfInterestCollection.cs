@@ -6,7 +6,7 @@
 //   Represents a collection of Point of Interest (POI) locations.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest
+namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
 {
     using System.Collections.Generic;
 

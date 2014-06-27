@@ -13,7 +13,6 @@ namespace GW2DotNET.V1.Maps.Contracts
 
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Maps.Floors.Contracts;
 
     using Newtonsoft.Json;
 
