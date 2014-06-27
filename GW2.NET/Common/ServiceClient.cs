@@ -91,12 +91,12 @@ namespace GW2DotNET.Common
             var httpWebRequest = CreateHttpWebRequest(uri);
             return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
                 task =>
+                {
+                    using (var response = task.Result)
                     {
-                        using (var response = task.Result)
-                        {
-                            return DeserializeResponse(serializer, response);
-                        }
-                    }, 
+                        return DeserializeResponse(serializer, response);
+                    }
+                },
                 cancellationToken);
         }
 
@@ -128,7 +128,14 @@ namespace GW2DotNET.Common
         /// <returns>An instance of the specified type.</returns>
         private static TResult DeserializeResponse<TResult>(ISerializer<TResult> serializer, HttpWebResponse response)
         {
-            var stream = response.GetResponseStream() ?? new MemoryStream();
+            // Get the response content
+            var stream = response.GetResponseStream();
+
+            // Ensure that there is response content
+            if (stream == null)
+            {
+                return default(TResult);
+            }
 
             // Ensure that we are operating on decompressed data
             var contentEncoding = response.Headers[HttpResponseHeader.ContentEncoding];
@@ -181,26 +188,26 @@ namespace GW2DotNET.Common
         {
             return Task.Factory.FromAsync<WebResponse>(webRequest.BeginGetResponse, webRequest.EndGetResponse, null).ContinueWith(
                 task =>
+                {
+                    if (task.IsFaulted && task.Exception != null)
                     {
-                        if (task.IsFaulted && task.Exception != null)
-                        {
-                            var exception = task.Exception.GetBaseException() as WebException;
+                        var exception = task.Exception.GetBaseException() as WebException;
 
-                            // Handle only protocol errors
-                            if (exception != null && exception.Status == WebExceptionStatus.ProtocolError)
+                        // Handle only protocol errors
+                        if (exception != null && exception.Status == WebExceptionStatus.ProtocolError)
+                        {
+                            // Wrap the exception in a ServiceException, then throw
+                            using (var response = exception.Response)
                             {
-                                // Wrap the exception in a ServiceException, then throw
-                                using (var response = exception.Response)
-                                {
-                                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
-                                    throw new ServiceException(null, errorResult, exception);
-                                }
+                                var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
+                                throw new ServiceException(null, errorResult, exception);
                             }
                         }
+                    }
 
-                        // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
-                        return (HttpWebResponse)task.Result;
-                    }, 
+                    // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
+                    return (HttpWebResponse)task.Result;
+                },
                 cancellationToken);
         }
     }
