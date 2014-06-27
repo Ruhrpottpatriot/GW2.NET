@@ -14,7 +14,7 @@ namespace GW2DotNET.Common.Contracts
     /// <summary>Represents the result that is returned when an error occurs.</summary>
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1" /> for more information.</remarks>
     [Serializable]
-    public class ErrorResult : ServiceContract
+    public sealed class ErrorResult : ServiceContract
     {
         /// <summary>Gets or sets a number that indicates the error kind.</summary>
         [DataMember(Name = "error")]
