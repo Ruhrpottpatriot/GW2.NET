@@ -35,16 +35,5 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
             : base(capacity)
         {
         }
-
-        /// <summary>Sets each value's ID property to its corresponding key.</summary>
-        /// <param name="context">The streaming context.</param>
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            foreach (var kvp in this)
-            {
-                kvp.Value.EventId = kvp.Key;
-            }
-        }
     }
 }
