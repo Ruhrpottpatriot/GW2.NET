@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Tasks
 {
     using System;
     using System.Drawing;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
@@ -97,6 +98,19 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Tasks
         public override int GetHashCode()
         {
             return this.TaskId;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Objective;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.TaskId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }
