@@ -10,8 +10,7 @@ namespace GW2DotNET.V1.Common.Converters
 {
     using System;
 
-    using GW2DotNET.V1.Recipes.Details.Contracts;
-    using GW2DotNET.V1.Skins.Details.Contracts;
+    using GW2DotNET.V1.Recipes.Contracts;
 
     using Newtonsoft.Json;
 
@@ -43,7 +42,7 @@ namespace GW2DotNET.V1.Common.Converters
         /// <returns><c>true</c> if this instance can convert the specified object type; otherwise, <c>false</c>.</returns>
         public override bool CanConvert(Type objectType)
         {
-            return objectType == typeof(Skin);
+            return objectType == typeof(Recipe);
         }
 
         /// <summary>Reads the JSON representation of the object.</summary>
