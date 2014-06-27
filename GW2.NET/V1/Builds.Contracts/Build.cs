@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Builds.Contracts
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
@@ -172,6 +173,14 @@ namespace GW2DotNET.V1.Builds.Contracts
         public override int GetHashCode()
         {
             return this.BuildId;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            return this.BuildId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }
