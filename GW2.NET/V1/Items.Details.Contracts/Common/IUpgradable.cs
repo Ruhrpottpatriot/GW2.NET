@@ -14,10 +14,16 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
         /// <summary>Gets or sets the item's infusion slots.</summary>
         InfusionSlotCollection InfusionSlots { get; set; }
 
-        /// <summary>Gets or sets the item's secondary suffix item's ID.</summary>
+        /// <summary>Gets or sets the item's secondary suffix item.</summary>
+        Item SecondarySuffixItem { get; set; }
+
+        /// <summary>Gets or sets the item's secondary suffix item identifier.</summary>
         int? SecondarySuffixItemId { get; set; }
 
-        /// <summary>Gets or sets the item's suffix item's ID.</summary>
+        /// <summary>Gets or sets the item's suffix item.</summary>
+        Item SuffixItem { get; set; }
+
+        /// <summary>Gets or sets the item's suffix item identifier.</summary>
         int? SuffixItemId { get; set; }
     }
 }

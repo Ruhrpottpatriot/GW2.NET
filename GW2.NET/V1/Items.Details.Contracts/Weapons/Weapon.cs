@@ -32,7 +32,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Weapons
 
         /// <summary>Gets or sets the item's default skin identifier.</summary>
         [DataMember(Name = "default_skin")]
-        public int DefaultSkin { get; set; }
+        public virtual int DefaultSkin { get; set; }
 
         /// <summary>Gets or sets the weapon's defense.</summary>
         [DataMember(Name = "defense")]
@@ -50,12 +50,18 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Weapons
         [DataMember(Name = "min_power")]
         public virtual int MinimumPower { get; set; }
 
-        /// <summary>Gets or sets the item's secondary suffix item's ID.</summary>
-        [DataMember(Name = "secondary_suffix_item_id")]
-        public int? SecondarySuffixItemId { get; set; }
+        /// <summary>Gets or sets the item's secondary suffix item.</summary>
+        public virtual Item SecondarySuffixItem { get; set; }
 
-        /// <summary>Gets or sets the item's suffix item's ID.</summary>
+        /// <summary>Gets or sets the item's secondary suffix item identifier.</summary>
+        [DataMember(Name = "secondary_suffix_item_id")]
+        public virtual int? SecondarySuffixItemId { get; set; }
+
+        /// <summary>Gets or sets the item's suffix item.</summary>
+        public virtual Item SuffixItem { get; set; }
+
+        /// <summary>Gets or sets the item's suffix item identifier.</summary>
         [DataMember(Name = "suffix_item_id")]
-        public int? SuffixItemId { get; set; }
+        public virtual int? SuffixItemId { get; set; }
     }
 }
