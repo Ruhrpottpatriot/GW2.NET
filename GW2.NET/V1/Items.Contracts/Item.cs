@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Items.Contracts
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
@@ -139,7 +140,13 @@ namespace GW2DotNET.V1.Items.Contracts
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            return this.Name;
+            var name = this.Name;
+            if (!string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
+            return this.ItemId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }
