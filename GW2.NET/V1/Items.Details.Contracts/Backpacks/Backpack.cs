@@ -18,52 +18,13 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Backpacks
     [TypeDiscriminator(Value = "Back", BaseType = typeof(Item))]
     public class Backpack : Item, IUpgrade, IUpgradable, ISkinnable
     {
-        /// <summary>Backing field.</summary>
-        private ItemAttributeCollection attributes;
-
-        /// <summary>Backing field.</summary>
-        private ItemBuff buff;
-
-        /// <summary>Backing field.</summary>
-        private InfusionSlotCollection infusionSlots;
-
-        /// <summary>Initializes a new instance of the <see cref="Backpack"/> class.</summary>
-        public Backpack()
-        {
-            this.buff = new ItemBuff();
-            this.attributes = new ItemAttributeCollection();
-            this.infusionSlots = new InfusionSlotCollection();
-        }
-
         /// <summary>Gets or sets the item's attributes.</summary>
         [DataMember(Name = "attributes")]
-        public virtual ItemAttributeCollection Attributes
-        {
-            get
-            {
-                return this.attributes;
-            }
-
-            set
-            {
-                this.attributes = value;
-            }
-        }
+        public virtual ItemAttributeCollection Attributes { get; set; }
 
         /// <summary>Gets or sets the item's buff.</summary>
         [DataMember(Name = "buff")]
-        public virtual ItemBuff Buff
-        {
-            get
-            {
-                return this.buff;
-            }
-
-            set
-            {
-                this.buff = value;
-            }
-        }
+        public virtual ItemBuff Buff { get; set; }
 
         /// <summary>Gets or sets the item's default skin identifier.</summary>
         [DataMember(Name = "default_skin")]
@@ -71,18 +32,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Backpacks
 
         /// <summary>Gets or sets the item's infusion slots.</summary>
         [DataMember(Name = "infusion_slots")]
-        public virtual InfusionSlotCollection InfusionSlots
-        {
-            get
-            {
-                return this.infusionSlots;
-            }
-
-            set
-            {
-                this.infusionSlots = value;
-            }
-        }
+        public virtual InfusionSlotCollection InfusionSlots { get; set; }
 
         /// <summary>Gets or sets the item's secondary suffix item's ID.</summary>
         [DataMember(Name = "secondary_suffix_item_id")]

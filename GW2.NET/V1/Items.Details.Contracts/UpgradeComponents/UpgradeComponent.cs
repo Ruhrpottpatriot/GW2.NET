@@ -18,33 +18,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
     [TypeDiscriminator(Value = "UpgradeComponent", BaseType = typeof(Item))]
     public abstract class UpgradeComponent : Item, IUpgrade
     {
-        /// <summary>Backing field.</summary>
-        private ItemAttributeCollection attributes;
-
-        /// <summary>Backing field.</summary>
-        private ItemBuff buff;
-
-        /// <summary>Initializes a new instance of the <see cref="UpgradeComponent"/> class.</summary>
-        protected UpgradeComponent()
-        {
-            this.buff = new ItemBuff();
-            this.attributes = new ItemAttributeCollection();
-        }
-
         /// <summary>Gets or sets the item's attributes.</summary>
         [DataMember(Name = "attributes")]
-        public virtual ItemAttributeCollection Attributes
-        {
-            get
-            {
-                return this.attributes;
-            }
-
-            set
-            {
-                this.attributes = value;
-            }
-        }
+        public virtual ItemAttributeCollection Attributes { get; set; }
 
         /// <summary>Gets or sets the upgrade component's bonuses.</summary>
         [DataMember(Name = "bonuses")]
@@ -52,18 +28,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.UpgradeComponents
 
         /// <summary>Gets or sets the item's buff.</summary>
         [DataMember(Name = "buff")]
-        public virtual ItemBuff Buff
-        {
-            get
-            {
-                return this.buff;
-            }
-
-            set
-            {
-                this.buff = value;
-            }
-        }
+        public virtual ItemBuff Buff { get; set; }
 
         /// <summary>Gets or sets the upgrade component's infusion upgrades.</summary>
         [DataMember(Name = "infusion_upgrade_flags")]
