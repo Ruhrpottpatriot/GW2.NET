@@ -53,7 +53,13 @@ namespace GW2DotNET.V1.Common.Converters
         /// <returns>The object value.</returns>
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            return new UnknownItem { ItemId = serializer.Deserialize<int>(reader) };
+            var itemId = serializer.Deserialize<int?>(reader);
+            if (!itemId.HasValue)
+            {
+                return null;
+            }
+
+            return new UnknownItem { ItemId = itemId.Value };
         }
 
         /// <summary>Writes the JSON representation of the object.</summary>
