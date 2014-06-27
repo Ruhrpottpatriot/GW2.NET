@@ -32,7 +32,7 @@ namespace GW2DotNET.V1.Skins
         /// <summary>Gets a collection of skin identifiers.</summary>
         /// <returns>A collection of skin identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public IEnumerable<int> GetSkins()
+        public IEnumerable<Skin> GetSkins()
         {
             var request = new SkinRequest();
             var result = this.serviceClient.Send(request, new JsonSerializer<SkinCollectionResult>());
@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.Skins
         /// <summary>Gets a collection of skin identifiers.</summary>
         /// <returns>A collection of skin identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetSkinsAsync()
+        public Task<IEnumerable<Skin>> GetSkinsAsync()
         {
             return this.GetSkinsAsync(CancellationToken.None);
         }
@@ -52,11 +52,11 @@ namespace GW2DotNET.V1.Skins
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of skin identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetSkinsAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<Skin>> GetSkinsAsync(CancellationToken cancellationToken)
         {
             var request = new SkinRequest();
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<SkinCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Skins, cancellationToken);
+            var t2 = t1.ContinueWith<IEnumerable<Skin>>(task => task.Result.Skins, cancellationToken);
 
             return t2;
         }

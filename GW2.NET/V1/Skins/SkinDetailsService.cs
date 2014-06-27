@@ -34,23 +34,24 @@ namespace GW2DotNET.V1.Skins
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Skin GetSkinDetails(int skinId)
+        public Skin GetSkinDetails(Skin skin)
         {
-            return this.GetSkinDetails(skinId, CultureInfo.GetCultureInfo("en"));
+            return this.GetSkinDetails(skin, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Skin GetSkinDetails(int skinId, CultureInfo language)
+        public Skin GetSkinDetails(Skin skin, CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "skin", value: skin);
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new SkinDetailsRequest { SkinId = skinId, Culture = language };
+            var request = new SkinDetailsRequest { SkinId = skin.SkinId, Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<Skin>(Settings));
 
             // patch missing language information
@@ -60,44 +61,45 @@ namespace GW2DotNET.V1.Skins
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skinId)
+        public Task<Skin> GetSkinDetailsAsync(Skin skin)
         {
-            return this.GetSkinDetailsAsync(skinId, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            return this.GetSkinDetailsAsync(skin, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skinId, CultureInfo language)
+        public Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language)
         {
-            return this.GetSkinDetailsAsync(skinId, language, CancellationToken.None);
+            return this.GetSkinDetailsAsync(skin, language, CancellationToken.None);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skinId, CancellationToken cancellationToken)
+        public Task<Skin> GetSkinDetailsAsync(Skin skin, CancellationToken cancellationToken)
         {
-            return this.GetSkinDetailsAsync(skinId, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            return this.GetSkinDetailsAsync(skin, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skinId, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "skin", value: skin);
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new SkinDetailsRequest { SkinId = skinId, Culture = language };
+            var request = new SkinDetailsRequest { SkinId = skin.SkinId, Culture = language };
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Skin>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {

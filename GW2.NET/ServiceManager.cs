@@ -1302,68 +1302,68 @@ namespace GW2DotNET
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Skin GetSkinDetails(int skinId)
+        public Skin GetSkinDetails(Skin skin)
         {
-            return this.skinDetailsService.GetSkinDetails(skinId);
+            return this.skinDetailsService.GetSkinDetails(skin);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Skin GetSkinDetails(int skinId, CultureInfo language)
+        public Skin GetSkinDetails(Skin skin, CultureInfo language)
         {
-            return this.skinDetailsService.GetSkinDetails(skinId, language);
+            return this.skinDetailsService.GetSkinDetails(skin, language);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skinId)
+        public Task<Skin> GetSkinDetailsAsync(Skin skin)
         {
-            return this.skinDetailsService.GetSkinDetailsAsync(skinId);
+            return this.skinDetailsService.GetSkinDetailsAsync(skin);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skinId, CultureInfo language)
+        public Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language)
         {
-            return this.skinDetailsService.GetSkinDetailsAsync(skinId, language);
+            return this.skinDetailsService.GetSkinDetailsAsync(skin, language);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skinId, CancellationToken cancellationToken)
+        public Task<Skin> GetSkinDetailsAsync(Skin skin, CancellationToken cancellationToken)
         {
-            return this.skinDetailsService.GetSkinDetailsAsync(skinId, cancellationToken);
+            return this.skinDetailsService.GetSkinDetailsAsync(skin, cancellationToken);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skinId">The skin identifier.</param>
+        /// <param name="skin">The skin identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skinId, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.skinDetailsService.GetSkinDetailsAsync(skinId, language, cancellationToken);
+            return this.skinDetailsService.GetSkinDetailsAsync(skin, language, cancellationToken);
         }
 
         /// <summary>Gets a collection of skin identifiers.</summary>
         /// <returns>A collection of skin identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public IEnumerable<int> GetSkins()
+        public IEnumerable<Skin> GetSkins()
         {
             return this.skinService.GetSkins();
         }
@@ -1371,7 +1371,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of skin identifiers.</summary>
         /// <returns>A collection of skin identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetSkinsAsync()
+        public Task<IEnumerable<Skin>> GetSkinsAsync()
         {
             return this.skinService.GetSkinsAsync();
         }
@@ -1380,7 +1380,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of skin identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetSkinsAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<Skin>> GetSkinsAsync(CancellationToken cancellationToken)
         {
             return this.skinService.GetSkinsAsync(cancellationToken);
         }
