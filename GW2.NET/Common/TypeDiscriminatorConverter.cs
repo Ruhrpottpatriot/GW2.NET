@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the base class for converters that can read specific types based on a discriminator.
+//   Provides the base class for converters that can convert types based on a discriminator.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common
@@ -14,11 +14,11 @@ namespace GW2DotNET.Common
 
     using Newtonsoft.Json;
 
-    /// <summary>Provides the base class for converters that can read specific types based on a discriminator.</summary>
+    /// <summary>Provides the base class for converters that can convert types based on a discriminator.</summary>
     /// <typeparam name="T">The base type.</typeparam>
     public abstract class TypeDiscriminatorConverter<T> : JsonConverter
     {
-        /// <summary>Backing field. Holds a dictionary of known JSON values and their corresponding type.</summary>
+        /// <summary>Represents a dictionary of discriminators and their corresponding System.Type.</summary>
         protected readonly IDictionary<string, Type> KnownTypes = new Dictionary<string, Type>();
 
         /// <summary>Initializes a new instance of the <see cref="TypeDiscriminatorConverter{T}"/> class.</summary>

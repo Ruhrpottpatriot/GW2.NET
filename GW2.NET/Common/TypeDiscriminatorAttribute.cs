@@ -6,7 +6,6 @@
 //   The type discriminator attribute.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Common
 {
     using System;
@@ -15,10 +14,10 @@ namespace GW2DotNET.Common
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
     public class TypeDiscriminatorAttribute : Attribute
     {
-        /// <summary>Gets or sets the name.</summary>
-        public string Value { get; set; }
-
         /// <summary>Gets or sets the base type.</summary>
         public Type BaseType { get; set; }
+
+        /// <summary>Gets or sets the discriminator.</summary>
+        public string Value { get; set; }
     }
 }
