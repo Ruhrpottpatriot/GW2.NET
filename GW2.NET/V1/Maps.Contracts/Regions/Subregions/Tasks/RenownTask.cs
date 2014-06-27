@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Tasks
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a renown heart location.</summary>
-    public class RenownTask : ServiceContract, IEquatable<RenownTask>, IComparable<RenownTask>
+    public class RenownTask : ServiceContract, IEquatable<RenownTask>
     {
         /// <summary>Gets or sets the task's coordinates.</summary>
         [DataMember(Name = "coord")]
@@ -49,19 +49,6 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Tasks
         public static bool operator !=(RenownTask left, RenownTask right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(RenownTask other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.TaskId.CompareTo(other.TaskId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
