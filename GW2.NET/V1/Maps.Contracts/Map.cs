@@ -135,5 +135,19 @@ namespace GW2DotNET.V1.Maps.Contracts
         {
             return this.MapId;
         }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            var name = this.MapName;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.MapId.ToString(NumberFormatInfo.InvariantInfo);
+        }
     }
 }
