@@ -138,5 +138,18 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         {
             return this.RecipeId;
         }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var outputItem = this.OutputItem;
+            if (outputItem != null)
+            {
+                return outputItem.Name;
+            }
+
+            return base.ToString();
+        }
     }
 }
