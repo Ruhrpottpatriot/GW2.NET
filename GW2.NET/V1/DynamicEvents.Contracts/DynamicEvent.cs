@@ -1,21 +1,21 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="DynamicEventDetails.cs" company="GW2.NET Coding Team">
+// <copyright file="DynamicEvent.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Represents a dynamic event and its localized details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
+namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations;
+    using GW2DotNET.V1.DynamicEvents.Contracts.Locations;
 
     /// <summary>Represents a dynamic event and its localized details.</summary>
-    public class DynamicEventDetails : ServiceContract, IEquatable<DynamicEventDetails>
+    public class DynamicEvent : ServiceContract, IEquatable<DynamicEvent>
     {
         /// <summary>Gets or sets the event identifier.</summary>
         [DataMember(Name = "event_id")]
@@ -49,7 +49,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator ==(DynamicEventDetails left, DynamicEventDetails right)
+        public static bool operator ==(DynamicEvent left, DynamicEvent right)
         {
             return object.Equals(left, right);
         }
@@ -58,7 +58,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator !=(DynamicEventDetails left, DynamicEventDetails right)
+        public static bool operator !=(DynamicEvent left, DynamicEvent right)
         {
             return !object.Equals(left, right);
         }
@@ -66,7 +66,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(DynamicEventDetails other)
+        public bool Equals(DynamicEvent other)
         {
             if (object.ReferenceEquals(null, other))
             {
@@ -101,7 +101,7 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
                 return false;
             }
 
-            return this.Equals((DynamicEventDetails)obj);
+            return this.Equals((DynamicEvent)obj);
         }
 
         /// <summary>Serves as a hash function for a particular type.</summary>
@@ -109,6 +109,19 @@ namespace GW2DotNET.V1.DynamicEvents.Details.Contracts
         public override int GetHashCode()
         {
             return this.EventId.GetHashCode();
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.EventId.ToString();
         }
     }
 }

@@ -6,13 +6,13 @@
 //   Converts an object to and/or from JSON.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Details.Converters
+namespace GW2DotNET.V1.DynamicEvents.Converters
 {
     using System;
     using System.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations;
+    using GW2DotNET.V1.DynamicEvents.Contracts.Locations;
 
     using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;

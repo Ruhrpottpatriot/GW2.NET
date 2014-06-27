@@ -6,10 +6,10 @@
 //   The dynamic event details serializer settings.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Details
+namespace GW2DotNET.V1.DynamicEvents
 {
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.DynamicEvents.Details.Converters;
+    using GW2DotNET.V1.DynamicEvents.Converters;
 
     using Newtonsoft.Json;
 

@@ -6,7 +6,7 @@
 //   Represents a collection of points.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Details.Contracts.Locations
+namespace GW2DotNET.V1.DynamicEvents.Contracts.Locations
 {
     using System.Collections.Generic;
     using System.Drawing;

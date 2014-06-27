@@ -2,7 +2,7 @@
 {
     using System.Drawing;
 
-    using GW2DotNET.V1.DynamicEvents.Details.Converters;
+    using GW2DotNET.V1.DynamicEvents.Converters;
 
     using Newtonsoft.Json;
 
