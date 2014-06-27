@@ -42,8 +42,7 @@ namespace GW2DotNET
     using GW2DotNET.V1.Maps.Names;
     using GW2DotNET.V1.Maps.Names.Contracts;
     using GW2DotNET.V1.Recipes;
-    using GW2DotNET.V1.Recipes.Details;
-    using GW2DotNET.V1.Recipes.Details.Contracts;
+    using GW2DotNET.V1.Recipes.Contracts;
     using GW2DotNET.V1.Skins;
     using GW2DotNET.V1.Skins.Details;
     using GW2DotNET.V1.Skins.Details.Contracts;
