@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         public override string ToString()
         {
             var item = this.Item;
-            if (item == null)
+            if (item != null)
             {
                 return string.Format("{0}x {1}", this.Count, item);
             }
