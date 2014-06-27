@@ -6,7 +6,7 @@
 //   Represents a request for static information about the continents.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Continents
+namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Linq;

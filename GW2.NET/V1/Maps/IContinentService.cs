@@ -6,13 +6,13 @@
 //   Provides the interface for the continents service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Continents
+namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Continents.Contracts;
+    using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the interface for the continents service.</summary>
     public interface IContinentService

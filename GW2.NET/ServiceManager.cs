@@ -19,8 +19,6 @@ namespace GW2DotNET
     using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Colors;
     using GW2DotNET.V1.Colors.Contracts;
-    using GW2DotNET.V1.Continents;
-    using GW2DotNET.V1.Continents.Contracts;
     using GW2DotNET.V1.DynamicEvents;
     using GW2DotNET.V1.DynamicEvents.Contracts;
     using GW2DotNET.V1.Files;

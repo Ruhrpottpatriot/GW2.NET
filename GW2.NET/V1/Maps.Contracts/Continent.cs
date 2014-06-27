@@ -6,7 +6,7 @@
 //   Represents a continent.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Continents.Contracts
+namespace GW2DotNET.V1.Maps.Contracts
 {
     using System;
     using System.Drawing;
@@ -32,7 +32,7 @@ namespace GW2DotNET.V1.Continents.Contracts
 
         /// <summary>Gets or sets a collection of floors available for this continent.</summary>
         [DataMember(Name = "floors")]
-        public ContinentFloorCollection Floors { get; set; }
+        public FloorCollection Floors { get; set; }
 
         /// <summary>Gets or sets the maximum zoom level for use with the map tile service.</summary>
         [DataMember(Name = "max_zoom")]

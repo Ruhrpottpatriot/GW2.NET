@@ -6,7 +6,7 @@
 //   Provides the default implementation of the continents service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Continents
+namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Threading;
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Continents
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.V1.Continents.Contracts;
+    using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the default implementation of the continents service.</summary>
     public class ContinentService : IContinentService
@@ -41,9 +41,13 @@ namespace GW2DotNET.V1.Continents
             var result = this.serviceClient.Send(request, new JsonSerializer<ContinentCollectionResult>(Settings));
 
             // Patch missing continent identifiers
-            foreach (var kvp in result.Continents)
+            foreach (var continent in result.Continents)
             {
-                kvp.Value.ContinentId = kvp.Key;
+                continent.Value.ContinentId = continent.Key;
+                foreach (var floor in continent.Value.Floors)
+                {
+                    floor.ContinentId = continent.Key;
+                }
             }
 
             return result.Continents.Values;
@@ -71,9 +75,13 @@ namespace GW2DotNET.V1.Continents
                         var result = task.Result;
 
                         // Patch missing continent identifiers
-                        foreach (var kvp in result.Continents)
+                        foreach (var continent in result.Continents)
                         {
-                            kvp.Value.ContinentId = kvp.Key;
+                            continent.Value.ContinentId = continent.Key;
+                            foreach (var floor in continent.Value.Floors)
+                            {
+                                floor.ContinentId = continent.Key;
+                            }
                         }
 
                         return result.Continents.Values;

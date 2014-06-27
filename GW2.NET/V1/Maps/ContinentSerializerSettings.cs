@@ -6,7 +6,7 @@
 //   The dynamic event details serializer settings.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Continents
+namespace GW2DotNET.V1.Maps
 {
     using GW2DotNET.V1.Common.Converters;
 
