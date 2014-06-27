@@ -8,10 +8,12 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.Common
 {
+    using GW2DotNET.V1.Skins.Details.Contracts;
+
     /// <summary>Provides the interface for items that have a visual appearance in the game.</summary>
     public interface ISkinnable
     {
-        /// <summary>Gets or sets the item's default skin identifier.</summary>
-        int DefaultSkin { get; set; }
+        /// <summary>Gets or sets the item's default skin.</summary>
+        Skin DefaultSkin { get; set; }
     }
 }

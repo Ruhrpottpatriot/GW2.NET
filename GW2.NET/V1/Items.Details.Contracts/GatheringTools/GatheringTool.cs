@@ -11,14 +11,19 @@ namespace GW2DotNET.V1.Items.Details.Contracts.GatheringTools
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
+    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts.Common;
+    using GW2DotNET.V1.Skins.Details.Contracts;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents a gathering tool.</summary>
     [TypeDiscriminator(Value = "Gathering", BaseType = typeof(Item))]
     public abstract class GatheringTool : Item, ISkinnable
     {
-        /// <summary>Gets or sets the item's default skin identifier.</summary>
+        /// <summary>Gets or sets the item's default skin.</summary>
         [DataMember(Name = "default_skin")]
-        public int DefaultSkin { get; set; }
+        [JsonConverter(typeof(UnknownSkinConverter))]
+        public virtual Skin DefaultSkin { get; set; }
     }
 }

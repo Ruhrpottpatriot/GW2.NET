@@ -14,6 +14,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Weapons
     using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts.Common;
     using GW2DotNET.V1.Items.Details.Contracts.Common.Attributes;
+    using GW2DotNET.V1.Skins.Details.Contracts;
 
     using Newtonsoft.Json;
 
@@ -33,9 +34,10 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Weapons
         [DataMember(Name = "damage_type")]
         public virtual WeaponDamageType DamageType { get; set; }
 
-        /// <summary>Gets or sets the item's default skin identifier.</summary>
+        /// <summary>Gets or sets the item's default skin.</summary>
         [DataMember(Name = "default_skin")]
-        public virtual int DefaultSkin { get; set; }
+        [JsonConverter(typeof(UnknownSkinConverter))]
+        public virtual Skin DefaultSkin { get; set; }
 
         /// <summary>Gets or sets the weapon's defense.</summary>
         [DataMember(Name = "defense")]

@@ -8,11 +8,25 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Skins.Details.Contracts
 {
+    using System.Globalization;
+
     using GW2DotNET.Common;
 
     /// <summary>Represents an unknown skin.</summary>
     [TypeDiscriminator(Value = "Unknown", BaseType = typeof(Skin))]
     public class UnknownSkin : Skin
     {
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (!string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
+            return this.SkinId.ToString(NumberFormatInfo.InvariantInfo);
+        }
     }
 }
