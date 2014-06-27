@@ -6,14 +6,14 @@
 //   Provides the interface for the map names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Names
+namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Maps.Names.Contracts;
+    using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the interface for the map names service.</summary>
     public interface IMapNameService

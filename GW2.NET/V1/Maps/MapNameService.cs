@@ -6,7 +6,7 @@
 //   Provides the default implementation of the map names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Names
+namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Globalization;
@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Maps.Names
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Maps.Names.Contracts;
+    using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the default implementation of the map names service.</summary>
     public class MapNameService : IMapNameService

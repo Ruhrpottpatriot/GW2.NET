@@ -6,7 +6,7 @@
 //   Represents a collection of maps and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Names.Contracts
+namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Collections.Generic;
 
