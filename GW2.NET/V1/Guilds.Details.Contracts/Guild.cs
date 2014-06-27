@@ -97,5 +97,18 @@ namespace GW2DotNET.V1.Guilds.Details.Contracts
         {
             return this.GuildId.GetHashCode();
         }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.GuildId.ToString();
+        }
     }
 }
