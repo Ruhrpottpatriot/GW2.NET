@@ -510,11 +510,11 @@
     <Compile Include="V1\Recipes\IRecipeService.cs" />
     <Compile Include="V1\Recipes\RecipeService.cs" />
     <Compile Include="V1\Recipes\RecipeRequest.cs" />
-    <Compile Include="V1\Worlds.Names.Contracts\WorldName.cs" />
-    <Compile Include="V1\Worlds.Names.Contracts\WorldNameCollection.cs" />
-    <Compile Include="V1\Worlds.Names\IWorldNameService.cs" />
-    <Compile Include="V1\Worlds.Names\WorldNameService.cs" />
-    <Compile Include="V1\Worlds.Names\WorldNameRequest.cs" />
+    <Compile Include="V1\Worlds.Contracts\World.cs" />
+    <Compile Include="V1\Worlds.Contracts\WorldCollection.cs" />
+    <Compile Include="V1\Worlds\IWorldNameService.cs" />
+    <Compile Include="V1\Worlds\WorldNameService.cs" />
+    <Compile Include="V1\Worlds\WorldNameRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Match.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Contracts\MatchCollection.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Contracts\MatchCollectionResult.cs" />

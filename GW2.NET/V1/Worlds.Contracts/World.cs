@@ -1,12 +1,12 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WorldName.cs" company="GW2.NET Coding Team">
+// <copyright file="World.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
 //   Represents a world and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Worlds.Names.Contracts
+namespace GW2DotNET.V1.Worlds.Contracts
 {
     using System;
     using System.Globalization;
@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Worlds.Names.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a world and its localized name.</summary>
-    public class WorldName : ServiceContract, IEquatable<WorldName>, IComparable<WorldName>
+    public class World : ServiceContract, IEquatable<World>
     {
         /// <summary>Gets or sets the world's ID.</summary>
         [DataMember(Name = "id")]
@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Worlds.Names.Contracts
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator ==(WorldName left, WorldName right)
+        public static bool operator ==(World left, World right)
         {
             return object.Equals(left, right);
         }
@@ -42,28 +42,15 @@ namespace GW2DotNET.V1.Worlds.Names.Contracts
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator !=(WorldName left, WorldName right)
+        public static bool operator !=(World left, World right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(WorldName other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.Id.CompareTo(other.Id);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(WorldName other)
+        public bool Equals(World other)
         {
             if (object.ReferenceEquals(null, other))
             {
@@ -98,7 +85,7 @@ namespace GW2DotNET.V1.Worlds.Names.Contracts
                 return false;
             }
 
-            return this.Equals((WorldName)obj);
+            return this.Equals((World)obj);
         }
 
         /// <summary>Serves as a hash function for a particular type.</summary>
@@ -106,6 +93,19 @@ namespace GW2DotNET.V1.Worlds.Names.Contracts
         public override int GetHashCode()
         {
             return this.Id;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.Id.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }
