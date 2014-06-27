@@ -26,5 +26,18 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         /// <summary>Gets or sets the ingredient's identifier.</summary>
         [DataMember(Name = "item_id")]
         public virtual int ItemId { get; set; }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var item = this.Item;
+            if (item != null)
+            {
+                return string.Format("{0}x {1}", this.Count, item.Name);
+            }
+
+            return base.ToString();
+        }
     }
 }
