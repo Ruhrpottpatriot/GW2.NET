@@ -31,8 +31,8 @@ namespace GW2DotNET
     using GW2DotNET.V1.DynamicEvents.Rotations.Contracts;
     using GW2DotNET.V1.Files;
     using GW2DotNET.V1.Files.Contracts;
-    using GW2DotNET.V1.Guilds.Details;
-    using GW2DotNET.V1.Guilds.Details.Contracts;
+    using GW2DotNET.V1.Guilds;
+    using GW2DotNET.V1.Guilds.Contracts;
     using GW2DotNET.V1.Items;
     using GW2DotNET.V1.Items.Contracts;
     using GW2DotNET.V1.Maps;

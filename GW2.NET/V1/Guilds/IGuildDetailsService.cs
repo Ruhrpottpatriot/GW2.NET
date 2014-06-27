@@ -6,13 +6,13 @@
 //   Provides the interface for the guild details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Guilds.Details
+namespace GW2DotNET.V1.Guilds
 {
     using System;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Guilds.Details.Contracts;
+    using GW2DotNET.V1.Guilds.Contracts;
 
     /// <summary>Provides the interface for the guild details service.</summary>
     public interface IGuildDetailsService

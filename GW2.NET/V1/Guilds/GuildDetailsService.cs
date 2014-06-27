@@ -6,7 +6,7 @@
 //   Provides the default implementation of the guild details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Guilds.Details
+namespace GW2DotNET.V1.Guilds
 {
     using System;
     using System.Threading;
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Guilds.Details
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.V1.Guilds.Details.Contracts;
+    using GW2DotNET.V1.Guilds.Contracts;
 
     /// <summary>Provides the default implementation of the guild details service.</summary>
     public class GuildDetailsService : IGuildDetailsService
