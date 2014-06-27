@@ -34,8 +34,7 @@ namespace GW2DotNET
     using GW2DotNET.V1.Guilds.Details;
     using GW2DotNET.V1.Guilds.Details.Contracts;
     using GW2DotNET.V1.Items;
-    using GW2DotNET.V1.Items.Details;
-    using GW2DotNET.V1.Items.Details.Contracts;
+    using GW2DotNET.V1.Items.Contracts;
     using GW2DotNET.V1.Maps;
     using GW2DotNET.V1.Maps.Contracts;
     using GW2DotNET.V1.Maps.Floors;

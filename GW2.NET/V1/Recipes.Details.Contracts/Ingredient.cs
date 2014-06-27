@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Common.Converters;
-    using GW2DotNET.V1.Items.Details.Contracts;
+    using GW2DotNET.V1.Items.Contracts;
 
     using Newtonsoft.Json;
 

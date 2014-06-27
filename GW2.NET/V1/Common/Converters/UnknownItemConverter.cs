@@ -10,7 +10,7 @@ namespace GW2DotNET.V1.Common.Converters
 {
     using System;
 
-    using GW2DotNET.V1.Items.Details.Contracts;
+    using GW2DotNET.V1.Items.Contracts;
 
     using Newtonsoft.Json;
 

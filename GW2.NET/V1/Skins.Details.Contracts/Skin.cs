@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Skins.Details.Contracts
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Items.Details.Contracts;
+    using GW2DotNET.V1.Items.Contracts;
 
     /// <summary>Represents an in-game item skin.</summary>
     public abstract class Skin : ServiceContract, IEquatable<Skin>, IComparable<Skin>, IRenderable

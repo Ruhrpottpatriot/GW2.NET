@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Items
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Items.Details.Contracts;
+    using GW2DotNET.V1.Items.Contracts;
 
     /// <summary>Provides the interface for the items service.</summary>
     public interface IItemService
