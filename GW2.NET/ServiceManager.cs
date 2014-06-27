@@ -1216,10 +1216,10 @@ namespace GW2DotNET
         public Recipe GetRecipeDetails(int recipeId, CultureInfo language)
         {
             var recipe = this.recipeDetailsService.GetRecipeDetails(recipeId, language);
-            recipe.OutputItem = this.GetItemDetails(recipe.OutputItemId, language);
+            recipe.OutputItem = this.GetItemDetails(recipe.OutputItem.ItemId, language);
             foreach (var ingredient in recipe.Ingredients)
             {
-                ingredient.Item = this.GetItemDetails(ingredient.ItemId, language);
+                ingredient.Item = this.GetItemDetails(ingredient.Item.ItemId, language);
             }
 
             return recipe;
@@ -1272,7 +1272,7 @@ namespace GW2DotNET
                         recipe.Ingredients,
                         ingredient =>
                             {
-                                ingredient.Item = this.GetItemDetailsAsync(ingredient.ItemId, language, cancellationToken).Result;
+                                ingredient.Item = this.GetItemDetailsAsync(ingredient.Item.ItemId, language, cancellationToken).Result;
                             });
 
                     return recipe;

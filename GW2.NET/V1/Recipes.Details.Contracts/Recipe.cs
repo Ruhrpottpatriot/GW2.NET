@@ -12,7 +12,10 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts;
+
+    using Newtonsoft.Json;
 
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
     public abstract class Recipe : ServiceContract, IEquatable<Recipe>, IComparable<Recipe>
@@ -42,15 +45,13 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         public virtual int MinimumRating { get; set; }
 
         /// <summary>Gets or sets the output item.</summary>
+        [DataMember(Name = "output_item_id")]
+        [JsonConverter(typeof(UnknownItemConverter))]
         public virtual Item OutputItem { get; set; }
 
         /// <summary>Gets or sets the amount of items produced.</summary>
         [DataMember(Name = "output_item_count")]
         public virtual int OutputItemCount { get; set; }
-
-        /// <summary>Gets or sets the output item identifier.</summary>
-        [DataMember(Name = "output_item_id")]
-        public virtual int OutputItemId { get; set; }
 
         /// <summary>Gets or sets the recipe's identifier.</summary>
         [DataMember(Name = "recipe_id")]
@@ -146,7 +147,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
             var outputItem = this.OutputItem;
             if (outputItem != null)
             {
-                return string.Format("{0}x {1}", this.OutputItemCount, outputItem.Name);
+                return string.Format("{0}x {1}", this.OutputItemCount, outputItem);
             }
 
             return base.ToString();

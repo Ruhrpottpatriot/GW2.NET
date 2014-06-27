@@ -11,7 +11,10 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents a portion of crafting ingredients.</summary>
     public class Ingredient : ServiceContract
@@ -21,20 +24,18 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
         public virtual int Count { get; set; }
 
         /// <summary>Gets or sets the ingredient.</summary>
-        public virtual Item Item { get; set; }
-
-        /// <summary>Gets or sets the ingredient's identifier.</summary>
         [DataMember(Name = "item_id")]
-        public virtual int ItemId { get; set; }
+        [JsonConverter(typeof(UnknownItemConverter))]
+        public virtual Item Item { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
             var item = this.Item;
-            if (item != null)
+            if (item == null)
             {
-                return string.Format("{0}x {1}", this.Count, item.Name);
+                return string.Format("{0}x {1}", this.Count, item);
             }
 
             return base.ToString();
