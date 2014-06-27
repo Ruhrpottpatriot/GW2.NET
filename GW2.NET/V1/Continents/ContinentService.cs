@@ -40,6 +40,12 @@ namespace GW2DotNET.V1.Continents
             var request = new ContinentRequest();
             var result = this.serviceClient.Send(request, new JsonSerializer<ContinentCollectionResult>(Settings));
 
+            // Patch missing continent identifiers
+            foreach (var kvp in result.Continents)
+            {
+                kvp.Value.ContinentId = kvp.Key;
+            }
+
             return result.Continents.Values;
         }
 
@@ -59,7 +65,20 @@ namespace GW2DotNET.V1.Continents
         {
             var request = new ContinentRequest();
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ContinentCollectionResult>(Settings), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<Continent>>(task => task.Result.Continents.Values, cancellationToken);
+            var t2 = t1.ContinueWith<IEnumerable<Continent>>(
+                task =>
+                    {
+                        var result = task.Result;
+
+                        // Patch missing continent identifiers
+                        foreach (var kvp in result.Continents)
+                        {
+                            kvp.Value.ContinentId = kvp.Key;
+                        }
+
+                        return result.Continents.Values;
+                    }, 
+                cancellationToken);
 
             return t2;
         }
