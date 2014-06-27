@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Recipes.Details.Contracts
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
@@ -150,7 +151,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
                 return string.Format("{0}x {1}", this.OutputItemCount, outputItem);
             }
 
-            return base.ToString();
+            return this.RecipeId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }
