@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
 {
     using System;
     using System.Drawing;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
@@ -59,9 +60,15 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
             return !object.Equals(left, right);
         }
 
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
+        /// <summary>
+        /// Compares the current object with another object of the same type.
+        /// </summary>
+        /// <returns>
+        /// A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.
+        /// </returns>
+        /// <param name="other">
+        /// An object to compare with this object.
+        /// </param>
         public int CompareTo(PointOfInterest other)
         {
             if (other == null)
@@ -72,9 +79,15 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
             return this.PointOfInterestId.CompareTo(other.PointOfInterestId);
         }
 
-        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
-        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
-        /// <param name="other">An object to compare with this object.</param>
+        /// <summary>
+        /// Indicates whether the current object is equal to another object of the same type.
+        /// </summary>
+        /// <returns>
+        /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
+        /// </returns>
+        /// <param name="other">
+        /// An object to compare with this object.
+        /// </param>
         public bool Equals(PointOfInterest other)
         {
             if (object.ReferenceEquals(null, other))
@@ -90,9 +103,15 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
             return this.PointOfInterestId == other.PointOfInterestId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
-        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
-        /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
+        /// <summary>
+        /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.
+        /// </summary>
+        /// <returns>
+        /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
+        /// </returns>
+        /// <param name="obj">
+        /// The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. 
+        /// </param>
         public override bool Equals(object obj)
         {
             if (object.ReferenceEquals(null, obj))
@@ -118,6 +137,19 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
         public override int GetHashCode()
         {
             return this.PointOfInterestId;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.PointOfInterestId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }
