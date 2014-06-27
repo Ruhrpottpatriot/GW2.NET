@@ -6,11 +6,11 @@
 //   Provides the interface for the event rotations service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Rotations
+namespace GW2DotNET.V1.DynamicEvents
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.DynamicEvents.Rotations.Contracts;
+    using GW2DotNET.V1.DynamicEvents.Contracts;
 
     /// <summary>Provides the interface for the event rotations service.</summary>
     public interface IDynamicEventRotationService

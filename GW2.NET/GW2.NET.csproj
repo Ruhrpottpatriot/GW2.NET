@@ -181,6 +181,8 @@
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventFlags.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventName.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventNameCollection.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventRotation.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventShifts.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\Locations\CylinderLocation.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\Locations\Location.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\Locations\PointCollection.cs" />
@@ -194,13 +196,11 @@
     <Compile Include="V1\DynamicEvents\DynamicEventDetailsService.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventNameRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventNameService.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventRotationService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventDetailsService.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventDetailsSerializerSettings.cs" />
-    <Compile Include="V1\DynamicEvents.Rotations.Contracts\DynamicEventRotation.cs" />
-    <Compile Include="V1\DynamicEvents.Rotations.Contracts\DynamicEventShifts.cs" />
-    <Compile Include="V1\DynamicEvents.Rotations\DynamicEventRotationService.cs" />
-    <Compile Include="V1\DynamicEvents.Rotations\IDynamicEventRotationService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventNameService.cs" />
+    <Compile Include="V1\DynamicEvents\IDynamicEventRotationService.cs" />
     <Compile Include="V1\Files.Contracts\Asset.cs" />
     <Compile Include="V1\Files.Contracts\AssetCollection.cs" />
     <Compile Include="V1\Files\FileService.cs" />
@@ -546,11 +546,12 @@
       <LastGenOutput>Services.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="V1\DynamicEvents.Rotations\Rotations.xml">
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="V1\DynamicEvents\Rotations.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

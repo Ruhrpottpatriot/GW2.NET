@@ -6,7 +6,7 @@
 //   Represents a dynamic event and its rotation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Rotations.Contracts
+namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System;
     using System.Runtime.Serialization;
