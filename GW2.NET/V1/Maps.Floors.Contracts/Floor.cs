@@ -44,5 +44,12 @@ namespace GW2DotNET.V1.Maps.Floors.Contracts
         /// <summary>Gets or sets the texture's dimensions.</summary>
         [DataMember(Name = "texture_dims")]
         public Size TextureDimensions { get; set; }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return this.FloorNumber.ToString(NumberFormatInfo.InvariantInfo);
+        }
     }
 }
