@@ -6,13 +6,13 @@
 //   Represents one of a World versus World map's objectives.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Objectives
+namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Objectives
 {
     using System;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common;
 
     using Newtonsoft.Json;
 

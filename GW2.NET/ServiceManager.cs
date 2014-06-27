@@ -39,7 +39,6 @@ namespace GW2DotNET
     using GW2DotNET.V1.Worlds.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Matches;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Details;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Names;
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Names.Contracts;

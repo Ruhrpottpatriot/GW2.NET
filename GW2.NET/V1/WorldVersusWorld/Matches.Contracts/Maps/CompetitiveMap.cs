@@ -6,14 +6,14 @@
 //   Represents a World versus World map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps
+namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps
 {
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Bonuses;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps.Objectives;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Bonuses;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Objectives;
 
     /// <summary>Represents a World versus World map.</summary>
     public class CompetitiveMap : ServiceContract

@@ -6,7 +6,7 @@
 //   Enumerates all possible map types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps
+namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps
 {
     using System.Runtime.Serialization;
 

@@ -6,7 +6,7 @@
 //   Represents a World versus World scoreboard.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common
+namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common
 {
     using GW2DotNET.Common.Contracts;
 

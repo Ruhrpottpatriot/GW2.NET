@@ -6,12 +6,12 @@
 //   Provides the interface for the match details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details
+namespace GW2DotNET.V1.WorldVersusWorld.Matches
 {
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts;
 
     /// <summary>Provides the interface for the match details service.</summary>
     public interface IMatchDetailsService

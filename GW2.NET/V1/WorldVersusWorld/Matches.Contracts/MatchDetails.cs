@@ -6,14 +6,14 @@
 //   Represents a World versus World match.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts
+namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
 {
     using System;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Common;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Details.Contracts.Maps;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps;
 
     /// <summary>Represents a World versus World match.</summary>
     public class MatchDetails : ServiceContract, IEquatable<MatchDetails>, IComparable<MatchDetails>

@@ -508,27 +508,27 @@
     <Compile Include="V1\Worlds\IWorldNameService.cs" />
     <Compile Include="V1\Worlds\WorldNameService.cs" />
     <Compile Include="V1\Worlds\WorldNameRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Common\Scoreboard.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Common\ScoreboardConverter.cs">
+      <DependentUpon>Scoreboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Common\TeamColor.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Maps\Bonuses\MapBonus.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Maps\Bonuses\MapBonusCollection.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Maps\Bonuses\MapBonusType.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Maps\CompetitiveMap.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Maps\CompetitiveMapCollection.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Maps\CompetitiveMapType.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Maps\Objectives\Objective.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Maps\Objectives\ObjectiveCollection.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Contracts\Match.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Contracts\MatchCollection.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches.Contracts\MatchCollectionResult.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Common\Scoreboard.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Common\ScoreboardConverter.cs">
-      <DependentUpon>Scoreboard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Common\TeamColor.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Maps\Bonuses\MapBonus.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Maps\Bonuses\MapBonusCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Maps\Bonuses\MapBonusType.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Maps\CompetitiveMap.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Maps\CompetitiveMapCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Maps\CompetitiveMapType.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Maps\Objectives\Objective.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\Maps\Objectives\ObjectiveCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details.Contracts\MatchDetails.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details\IMatchDetailsService.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details\MatchDetailsRequest.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches.Details\MatchDetailsService.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches.Contracts\MatchDetails.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\IMatchDetailsService.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\IMatchService.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\MatchDetailsRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\MatchDetailsService.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\MatchRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\MatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Names.Contracts\ObjectiveName.cs" />
