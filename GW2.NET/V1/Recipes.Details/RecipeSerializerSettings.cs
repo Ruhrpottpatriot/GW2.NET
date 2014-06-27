@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes.Details
 {
+    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Recipes.Details.Converters;
 
     using Newtonsoft.Json;
@@ -19,6 +20,7 @@ namespace GW2DotNET.V1.Recipes.Details
         public RecipeSerializerSettings()
         {
             this.Converters.Add(new RecipeConverter());
+            this.Converters.Add(new JsonTimespanConverter());
         }
     }
 }

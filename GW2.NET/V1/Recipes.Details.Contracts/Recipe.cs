@@ -12,10 +12,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts;
-
-    using Newtonsoft.Json;
 
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
     public abstract class Recipe : ServiceContract, IEquatable<Recipe>, IComparable<Recipe>
@@ -61,7 +58,6 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
 
         /// <summary>Gets or sets the time it takes to craft the recipe.</summary>
         [DataMember(Name = "time_to_craft_ms")]
-        [JsonConverter(typeof(JsonTimespanConverter))]
         public virtual TimeSpan TimeToCraft { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
