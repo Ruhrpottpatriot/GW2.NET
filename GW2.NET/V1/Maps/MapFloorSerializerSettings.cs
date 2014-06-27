@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Maps
 {
     using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Maps.Converters;
 
     using Newtonsoft.Json;
 
@@ -18,6 +19,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Initializes a new instance of the <see cref="MapFloorSerializerSettings"/> class.</summary>
         public MapFloorSerializerSettings()
         {
+            this.Converters.Add(new PointOfInterestConverter());
             this.Converters.Add(new JsonPointFConverter());
             this.Converters.Add(new JsonRectangleConverter());
             this.Converters.Add(new JsonSizeConverter());

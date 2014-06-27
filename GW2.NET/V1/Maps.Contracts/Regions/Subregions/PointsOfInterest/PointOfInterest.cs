@@ -14,33 +14,29 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
 
     /// <summary>Represents a Point of Interest (POI) location.</summary>
-    public class PointOfInterest : ServiceContract, IEquatable<PointOfInterest>, IComparable<PointOfInterest>
+    public class PointOfInterest : ServiceContract, IEquatable<PointOfInterest>
     {
-        /// <summary>Gets or sets the Point of Interest's coordinates.</summary>
+        /// <summary>Gets or sets the coordinates of this Point of Interest.</summary>
         [DataMember(Name = "coord")]
         public PointF Coordinates { get; set; }
 
-        /// <summary>Gets or sets the Point of Interest's floor.</summary>
+        /// <summary>Gets or sets the floor of this Point of Interest.</summary>
         [DataMember(Name = "floor")]
-        public int Floor { get; set; }
+        [JsonConverter(typeof(UnknownFloorConverter))]
+        public Floor Floor { get; set; }
 
-        /// <summary>Gets or sets the Point of Interest's name.</summary>
+        /// <summary>Gets or sets the name of this Point of Interest.</summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
-        /// <summary>Gets or sets the Point of Interest's ID.</summary>
+        /// <summary>Gets or sets the Point of Interest identifier.</summary>
         [DataMember(Name = "poi_id")]
         public int PointOfInterestId { get; set; }
-
-        /// <summary>Gets or sets the Point of Interest's type.</summary>
-        [DataMember(Name = "type")]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public PointOfInterestType Type { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -60,34 +56,9 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
             return !object.Equals(left, right);
         }
 
-        /// <summary>
-        /// Compares the current object with another object of the same type.
-        /// </summary>
-        /// <returns>
-        /// A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.
-        /// </returns>
-        /// <param name="other">
-        /// An object to compare with this object.
-        /// </param>
-        public int CompareTo(PointOfInterest other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.PointOfInterestId.CompareTo(other.PointOfInterestId);
-        }
-
-        /// <summary>
-        /// Indicates whether the current object is equal to another object of the same type.
-        /// </summary>
-        /// <returns>
-        /// true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.
-        /// </returns>
-        /// <param name="other">
-        /// An object to compare with this object.
-        /// </param>
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
         public bool Equals(PointOfInterest other)
         {
             if (object.ReferenceEquals(null, other))
@@ -103,15 +74,9 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
             return this.PointOfInterestId == other.PointOfInterestId;
         }
 
-        /// <summary>
-        /// Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.
-        /// </summary>
-        /// <returns>
-        /// true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.
-        /// </returns>
-        /// <param name="obj">
-        /// The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. 
-        /// </param>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
+        /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
+        /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
         public override bool Equals(object obj)
         {
             if (object.ReferenceEquals(null, obj))

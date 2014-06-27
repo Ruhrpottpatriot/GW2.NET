@@ -360,9 +360,13 @@
     <Compile Include="V1\Maps.Contracts\Floor.cs" />
     <Compile Include="V1\Maps.Contracts\Regions\Region.cs" />
     <Compile Include="V1\Maps.Contracts\Regions\RegionCollection.cs" />
+    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\Dungeon.cs" />
+    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\UnknownPointOfInterest.cs" />
+    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\Waypoint.cs" />
+    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\Vista.cs" />
+    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\Landmark.cs" />
     <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\PointOfInterest.cs" />
     <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\PointOfInterestCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\PointOfInterestType.cs" />
     <Compile Include="V1\Maps.Contracts\Regions\Subregions\Sectors\Sector.cs" />
     <Compile Include="V1\Maps.Contracts\Regions\Subregions\Sectors\SectorCollection.cs" />
     <Compile Include="V1\Maps.Contracts\Regions\Subregions\SkillChallenges\SkillChallenge.cs" />
@@ -377,6 +381,7 @@
     <Compile Include="V1\Maps.Contracts\Map.cs" />
     <Compile Include="V1\Maps.Contracts\MapCollection.cs" />
     <Compile Include="V1\Maps.Contracts\MapCollectionResult.cs" />
+    <Compile Include="V1\Maps\Converters\PointOfInterestConverter.cs" />
     <Compile Include="V1\Maps\IMapFloorService.cs" />
     <Compile Include="V1\Maps\MapFloorRequest.cs" />
     <Compile Include="V1\Maps\MapFloorSerializerSettings.cs" />
