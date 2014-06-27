@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Colors.Contracts
 {
     using System;
     using System.Drawing;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
@@ -113,6 +114,19 @@ namespace GW2DotNET.V1.Colors.Contracts
         public override int GetHashCode()
         {
             return this.ColorId;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.ColorId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }
