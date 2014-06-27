@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Items.Contracts.Backpacks
     using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Contracts.Common;
     using GW2DotNET.V1.Items.Contracts.Common.Attributes;
-    using GW2DotNET.V1.Skins.Details.Contracts;
+    using GW2DotNET.V1.Skins.Contracts;
 
     using Newtonsoft.Json;
 

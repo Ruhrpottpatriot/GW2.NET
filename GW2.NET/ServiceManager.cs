@@ -44,8 +44,7 @@ namespace GW2DotNET
     using GW2DotNET.V1.Recipes;
     using GW2DotNET.V1.Recipes.Contracts;
     using GW2DotNET.V1.Skins;
-    using GW2DotNET.V1.Skins.Details;
-    using GW2DotNET.V1.Skins.Details.Contracts;
+    using GW2DotNET.V1.Skins.Contracts;
     using GW2DotNET.V1.Worlds.Names;
     using GW2DotNET.V1.Worlds.Names.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Matches;

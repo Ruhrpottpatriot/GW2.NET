@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Contracts.Common
 {
-    using GW2DotNET.V1.Skins.Details.Contracts;
+    using GW2DotNET.V1.Skins.Contracts;
 
     /// <summary>Provides the interface for items that have a visual appearance in the game.</summary>
     public interface ISkinnable
