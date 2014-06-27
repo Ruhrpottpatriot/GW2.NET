@@ -25,5 +25,12 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
         /// <summary>Gets or sets the infusion slot's item identifier.</summary>
         [DataMember(Name = "item_id")]
         public virtual int? ItemId { get; set; }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return this.Flags.ToString();
+        }
     }
 }
