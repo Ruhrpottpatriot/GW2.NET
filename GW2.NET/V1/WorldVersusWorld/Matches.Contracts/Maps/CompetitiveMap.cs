@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a World versus World map.
+//   Provides the base class for World versus World maps.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps
@@ -15,23 +15,19 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps
     using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Bonuses;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Objectives;
 
-    /// <summary>Represents a World versus World map.</summary>
-    public class CompetitiveMap : ServiceContract
+    /// <summary>Provides the base class for World versus World maps.</summary>
+    public abstract class CompetitiveMap : ServiceContract
     {
         /// <summary>Gets or sets the map's bonuses.</summary>
         [DataMember(Name = "bonuses")]
-        public MapBonusCollection Bonuses { get; set; }
+        public virtual MapBonusCollection Bonuses { get; set; }
 
         /// <summary>Gets or sets the map's objectives.</summary>
         [DataMember(Name = "objectives")]
-        public ObjectiveCollection Objectives { get; set; }
+        public virtual ObjectiveCollection Objectives { get; set; }
 
         /// <summary>Gets or sets the map's scoreboard.</summary>
         [DataMember(Name = "scores")]
-        public Scoreboard Scores { get; set; }
-
-        /// <summary>Gets or sets the map's type.</summary>
-        [DataMember(Name = "type")]
-        public CompetitiveMapType Type { get; set; }
+        public virtual Scoreboard Scores { get; set; }
     }
 }

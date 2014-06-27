@@ -32,15 +32,18 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public IEnumerable<Match> GetMatches()
+        public IEnumerable<Matchup> GetMatches()
         {
-            return this.serviceClient.Send(new MatchRequest(), new JsonSerializer<MatchCollection>());
+            var request = new MatchRequest();
+            var result = this.serviceClient.Send(request, new JsonSerializer<MatchupCollectionResult>());
+
+            return result.Matchups;
         }
 
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Match>> GetMatchesAsync()
+        public Task<IEnumerable<Matchup>> GetMatchesAsync()
         {
             return this.GetMatchesAsync(CancellationToken.None);
         }
@@ -49,10 +52,10 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Match>> GetMatchesAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<Matchup>> GetMatchesAsync(CancellationToken cancellationToken)
         {
-            var t1 = this.serviceClient.SendAsync(new MatchRequest(), new JsonSerializer<MatchCollection>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<Match>>(task => task.Result, cancellationToken);
+            var t1 = this.serviceClient.SendAsync(new MatchRequest(), new JsonSerializer<MatchupCollectionResult>(), cancellationToken);
+            var t2 = t1.ContinueWith<IEnumerable<Matchup>>(task => task.Result.Matchups, cancellationToken);
 
             return t2;
         }

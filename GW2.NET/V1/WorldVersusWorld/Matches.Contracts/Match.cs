@@ -12,33 +12,23 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common;
+    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps;
 
     /// <summary>Represents a World versus World match.</summary>
-    public class Match : ServiceContract, IEquatable<Match>, IComparable<Match>
+    public class Match : ServiceContract, IEquatable<Match>
     {
-        /// <summary>Gets or sets the blue world's ID.</summary>
-        [DataMember(Name = "blue_world_id")]
-        public int BlueWorldId { get; set; }
-
-        /// <summary>Gets or sets the timestamp (UTC) of when the match ends.</summary>
-        [DataMember(Name = "end_time")]
-        public DateTimeOffset EndTime { get; set; }
-
-        /// <summary>Gets or sets the green world's ID.</summary>
-        [DataMember(Name = "green_world_id")]
-        public int GreenWorldId { get; set; }
+        /// <summary>Gets or sets the list of maps.</summary>
+        [DataMember(Name = "maps")]
+        public CompetitiveMapCollection Maps { get; set; }
 
         /// <summary>Gets or sets the match's ID.</summary>
-        [DataMember(Name = "wvw_match_id")]
+        [DataMember(Name = "match_id")]
         public string MatchId { get; set; }
 
-        /// <summary>Gets or sets the red world's ID.</summary>
-        [DataMember(Name = "red_world_id")]
-        public int RedWorldId { get; set; }
-
-        /// <summary>Gets or sets the timestamp (UTC) of when the match started.</summary>
-        [DataMember(Name = "start_time")]
-        public DateTimeOffset StartTime { get; set; }
+        /// <summary>Gets or sets the total scores.</summary>
+        [DataMember(Name = "scores")]
+        public Scoreboard Scores { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -58,19 +48,6 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
             return !object.Equals(left, right);
         }
 
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Match other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return string.Compare(this.MatchId, other.MatchId, StringComparison.Ordinal);
-        }
-
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
@@ -86,7 +63,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
                 return true;
             }
 
-            return this.StartTime.Equals(other.StartTime) && string.Equals(this.MatchId, other.MatchId);
+            return string.Equals(this.MatchId, other.MatchId);
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
@@ -116,10 +93,14 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
         /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
-            unchecked
-            {
-                return (this.StartTime.GetHashCode() * 397) ^ (this.MatchId != null ? this.MatchId.GetHashCode() : 0);
-            }
+            return this.MatchId != null ? this.MatchId.GetHashCode() : 0;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return this.MatchId;
         }
     }
 }

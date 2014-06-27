@@ -903,7 +903,7 @@ namespace GW2DotNET
         /// <param name="matchId">The match.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public MatchDetails GetMatchDetails(string matchId)
+        public Match GetMatchDetails(string matchId)
         {
             return this.matchDetailsService.GetMatchDetails(matchId);
         }
@@ -912,7 +912,7 @@ namespace GW2DotNET
         /// <param name="matchId">The match.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<MatchDetails> GetMatchDetailsAsync(string matchId)
+        public Task<Match> GetMatchDetailsAsync(string matchId)
         {
             return this.matchDetailsService.GetMatchDetailsAsync(matchId);
         }
@@ -922,7 +922,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<MatchDetails> GetMatchDetailsAsync(string matchId, CancellationToken cancellationToken)
+        public Task<Match> GetMatchDetailsAsync(string matchId, CancellationToken cancellationToken)
         {
             return this.matchDetailsService.GetMatchDetailsAsync(matchId, cancellationToken);
         }
@@ -930,7 +930,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public IEnumerable<Match> GetMatches()
+        public IEnumerable<Matchup> GetMatches()
         {
             return this.matchService.GetMatches();
         }
@@ -938,7 +938,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Match>> GetMatchesAsync()
+        public Task<IEnumerable<Matchup>> GetMatchesAsync()
         {
             return this.matchService.GetMatchesAsync();
         }
@@ -947,7 +947,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Match>> GetMatchesAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<Matchup>> GetMatchesAsync(CancellationToken cancellationToken)
         {
             return this.matchService.GetMatchesAsync(cancellationToken);
         }
@@ -955,7 +955,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public IEnumerable<Objective> GetObjectiveNames()
+        public IEnumerable<ObjectiveName> GetObjectiveNames()
         {
             return this.objectiveNameService.GetObjectiveNames();
         }
@@ -964,7 +964,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public IEnumerable<Objective> GetObjectiveNames(CultureInfo language)
+        public IEnumerable<ObjectiveName> GetObjectiveNames(CultureInfo language)
         {
             return this.objectiveNameService.GetObjectiveNames(language);
         }
@@ -972,7 +972,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Objective>> GetObjectiveNamesAsync()
+        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync()
         {
             return this.objectiveNameService.GetObjectiveNamesAsync();
         }
@@ -981,7 +981,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Objective>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
         {
             return this.objectiveNameService.GetObjectiveNamesAsync(cancellationToken);
         }
@@ -990,7 +990,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Objective>> GetObjectiveNamesAsync(CultureInfo language)
+        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language)
         {
             return this.objectiveNameService.GetObjectiveNamesAsync(language);
         }
@@ -1000,7 +1000,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Objective>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.objectiveNameService.GetObjectiveNamesAsync(language, cancellationToken);
         }

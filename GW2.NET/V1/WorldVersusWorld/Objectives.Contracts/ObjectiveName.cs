@@ -1,40 +1,39 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MatchDetails.cs" company="GW2.NET Coding Team">
+// <copyright file="ObjectiveName.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a World versus World match.
+//   Represents an objective and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
+namespace GW2DotNET.V1.WorldVersusWorld.Objectives.Contracts
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps;
 
-    /// <summary>Represents a World versus World match.</summary>
-    public class MatchDetails : ServiceContract, IEquatable<MatchDetails>, IComparable<MatchDetails>
+    /// <summary>Represents an objective and its localized name.</summary>
+    public class ObjectiveName : ServiceContract, IEquatable<ObjectiveName>
     {
-        /// <summary>Gets or sets the list of maps.</summary>
-        [DataMember(Name = "maps")]
-        public CompetitiveMapCollection Maps { get; set; }
+        /// <summary>Gets or sets the objective's ID.</summary>
+        [DataMember(Name = "id")]
+        public int Id { get; set; }
 
-        /// <summary>Gets or sets the match's ID.</summary>
-        [DataMember(Name = "match_id")]
-        public string MatchId { get; set; }
+        /// <summary>Gets or sets the language info.</summary>
+        [DataMember(Name = "lang")]
+        public CultureInfo Language { get; set; }
 
-        /// <summary>Gets or sets the total scores.</summary>
-        [DataMember(Name = "scores")]
-        public Scoreboard Scores { get; set; }
+        /// <summary>Gets or sets the objective's name.</summary>
+        [DataMember(Name = "name")]
+        public string Name { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter is equal to the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator ==(MatchDetails left, MatchDetails right)
+        public static bool operator ==(ObjectiveName left, ObjectiveName right)
         {
             return object.Equals(left, right);
         }
@@ -43,28 +42,15 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
         /// <returns>true if the <paramref name="left" /> parameter differs from the <paramref name="right" /> parameter; otherwise, false.</returns>
-        public static bool operator !=(MatchDetails left, MatchDetails right)
+        public static bool operator !=(ObjectiveName left, ObjectiveName right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(MatchDetails other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return string.Compare(this.MatchId, other.MatchId, StringComparison.Ordinal);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
-        public bool Equals(MatchDetails other)
+        public bool Equals(ObjectiveName other)
         {
             if (object.ReferenceEquals(null, other))
             {
@@ -76,7 +62,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
                 return true;
             }
 
-            return string.Equals(this.MatchId, other.MatchId);
+            return this.Id == other.Id;
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
@@ -99,14 +85,27 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
                 return false;
             }
 
-            return this.Equals((MatchDetails)obj);
+            return this.Equals((ObjectiveName)obj);
         }
 
         /// <summary>Serves as a hash function for a particular type.</summary>
         /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
-            return this.MatchId != null ? this.MatchId.GetHashCode() : 0;
+            return this.Id;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.Id.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }

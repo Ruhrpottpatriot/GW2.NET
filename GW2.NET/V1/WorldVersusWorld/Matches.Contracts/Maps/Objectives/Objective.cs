@@ -9,28 +9,34 @@
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Objectives
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Guilds.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common;
 
     using Newtonsoft.Json;
 
     /// <summary>Represents one of a World versus World map's objectives.</summary>
-    public class Objective : ServiceContract, IEquatable<Objective>, IComparable<Objective>
+    public class Objective : ServiceContract, IEquatable<Objective>
     {
-        /// <summary>Gets or sets the objective's ID.</summary>
+        /// <summary>Gets or sets the objective identifier.</summary>
         [DataMember(Name = "id")]
         public int Id { get; set; }
 
-        /// <summary>Gets or sets the objective's owner.</summary>
+        /// <summary>Gets or sets the name of the objective.</summary>
+        public string Name { get; set; }
+
+        /// <summary>Gets or sets the current owner.</summary>
         [DataMember(Name = "owner")]
         public TeamColor Owner { get; set; }
 
-        /// <summary>Gets or sets the guild ID of the guild currently claiming the objective.</summary>
+        /// <summary>Gets or sets the guild currently claiming the objective.</summary>
         [DataMember(Name = "owner_guild")]
-        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-        public Guid? OwnerGuild { get; set; }
+        [JsonConverter(typeof(UnknownGuildConverter))]
+        public Guild OwnerGuild { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -48,19 +54,6 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Objectives
         public static bool operator !=(Objective left, Objective right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Objective other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.Id.CompareTo(other.Id);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
@@ -109,6 +102,19 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Objectives
         public override int GetHashCode()
         {
             return this.Id;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.Id.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }

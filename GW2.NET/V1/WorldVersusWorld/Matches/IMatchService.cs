@@ -20,17 +20,17 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        IEnumerable<Match> GetMatches();
+        IEnumerable<Matchup> GetMatches();
 
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Match>> GetMatchesAsync();
+        Task<IEnumerable<Matchup>> GetMatchesAsync();
 
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Match>> GetMatchesAsync(CancellationToken cancellationToken);
+        Task<IEnumerable<Matchup>> GetMatchesAsync(CancellationToken cancellationToken);
     }
 }

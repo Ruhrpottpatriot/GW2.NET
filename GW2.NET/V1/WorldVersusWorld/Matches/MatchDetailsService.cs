@@ -18,6 +18,9 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
     /// <summary>Provides the default implementation of the match details service.</summary>
     public class MatchDetailsService : IMatchDetailsService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly MatchDetailsSerializerSettings Settings = new MatchDetailsSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -32,17 +35,17 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
         /// <param name="matchId">The match.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public MatchDetails GetMatchDetails(string matchId)
+        public Match GetMatchDetails(string matchId)
         {
             var request = new MatchDetailsRequest { MatchId = matchId };
-            return this.serviceClient.Send(request, new JsonSerializer<MatchDetails>());
+            return this.serviceClient.Send(request, new JsonSerializer<Match>(Settings));
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
         /// <param name="matchId">The match.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<MatchDetails> GetMatchDetailsAsync(string matchId)
+        public Task<Match> GetMatchDetailsAsync(string matchId)
         {
             return this.GetMatchDetailsAsync(matchId, CancellationToken.None);
         }
@@ -52,10 +55,10 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<MatchDetails> GetMatchDetailsAsync(string matchId, CancellationToken cancellationToken)
+        public Task<Match> GetMatchDetailsAsync(string matchId, CancellationToken cancellationToken)
         {
             var request = new MatchDetailsRequest { MatchId = matchId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<MatchDetails>(), cancellationToken);
+            return this.serviceClient.SendAsync(request, new JsonSerializer<Match>(Settings), cancellationToken);
         }
     }
 }

@@ -20,19 +20,19 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches
         /// <param name="matchId">The match.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        MatchDetails GetMatchDetails(string matchId);
+        Match GetMatchDetails(string matchId);
 
         /// <summary>Gets a World versus World match and its details.</summary>
         /// <param name="matchId">The match.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        Task<MatchDetails> GetMatchDetailsAsync(string matchId);
+        Task<Match> GetMatchDetailsAsync(string matchId);
 
         /// <summary>Gets a World versus World match and its details.</summary>
         /// <param name="matchId">The match.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        Task<MatchDetails> GetMatchDetailsAsync(string matchId, CancellationToken cancellationToken);
+        Task<Match> GetMatchDetailsAsync(string matchId, CancellationToken cancellationToken);
     }
 }
