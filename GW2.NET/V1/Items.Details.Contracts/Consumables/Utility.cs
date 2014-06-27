@@ -8,11 +8,17 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details.Contracts.Consumables
 {
+    using System;
+    using System.Runtime.Serialization;
+
     using GW2DotNET.Common;
 
     /// <summary>Represents a utility consumable item.</summary>
     [TypeDiscriminator(Value = "Utility", BaseType = typeof(Consumable))]
-    public class Utility : Nourishment
+    public class Utility : Consumable
     {
+        /// <summary>Gets or sets the consumable's effect duration.</summary>
+        [DataMember(Name = "duration_ms")]
+        public virtual TimeSpan? Duration { get; set; }
     }
 }

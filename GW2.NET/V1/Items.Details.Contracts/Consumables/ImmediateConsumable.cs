@@ -12,9 +12,7 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Consumables
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common.Converters;
 
-    using Newtonsoft.Json;
 
     /// <summary>Represents an immediate consumable item.</summary>
     [TypeDiscriminator(Value = "Immediate", BaseType = typeof(Consumable))]
@@ -22,7 +20,6 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Consumables
     {
         /// <summary>Gets or sets the consumable's effect duration.</summary>
         [DataMember(Name = "duration_ms")]
-        [JsonConverter(typeof(JsonTimespanConverter))]
         public virtual TimeSpan? Duration { get; set; }
     }
 }

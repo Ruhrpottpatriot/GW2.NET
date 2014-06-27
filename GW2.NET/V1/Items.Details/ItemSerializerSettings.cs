@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items.Details
 {
+    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Converters;
 
     using Newtonsoft.Json;
@@ -33,6 +34,7 @@ namespace GW2DotNET.V1.Items.Details
             this.Converters.Add(new TrinketConverter());
             this.Converters.Add(new WeaponConverter());
             this.Converters.Add(new JsonBooleanConverter());
+            this.Converters.Add(new JsonTimespanConverter());
         }
     }
 }
