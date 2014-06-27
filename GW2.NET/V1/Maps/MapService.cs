@@ -53,15 +53,25 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { MapId = mapId, Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>(Settings)).Maps.Values;
+            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>(Settings));
 
-            // patch missing language information
-            foreach (var map in result)
+            // Apply patches
+            foreach (var map in result.Maps)
             {
-                map.Language = language;
+                // Patch missing map identifier
+                map.Value.MapId = map.Key;
+
+                // Patch missing language information
+                map.Value.Language = language;
+
+                // Patch missing continent identifiers
+                foreach (var floor in map.Value.Floors)
+                {
+                    floor.ContinentId = map.Value.ContinentId;
+                }
             }
 
-            return result.SingleOrDefault();
+            return result.Maps.Values.SingleOrDefault();
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -104,21 +114,31 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { MapId = mapId, Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(Settings), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(Settings), cancellationToken);
+            var t2 = t1.ContinueWith(
                 task =>
+                {
+                    var result = task.Result;
+
+                    // Apply patches
+                    foreach (var map in result.Maps)
                     {
-                        var result = task.Result;
+                        // Patch missing map identifiers
+                        map.Value.MapId = map.Key;
 
-                        // patch missing language information
-                        foreach (var map in result.Maps.Values)
+                        // Patch missing language information
+                        map.Value.Language = language;
+
+                        // Patch missing continent identifiers
+                        foreach (var floor in map.Value.Floors)
                         {
-                            map.Language = language;
+                            floor.ContinentId = map.Value.ContinentId;
                         }
+                    }
 
-                        return result;
-                    }, 
+                    return result.Maps.Values.SingleOrDefault();
+                },
                 cancellationToken);
-            var t2 = t1.ContinueWith(task => task.Result.Maps.Values.SingleOrDefault(), cancellationToken);
 
             return t2;
         }
@@ -139,15 +159,25 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>(Settings)).Maps.Values;
+            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>(Settings));
 
-            // patch missing language information
-            foreach (var map in result)
+            // Apply patches
+            foreach (var map in result.Maps)
             {
-                map.Language = language;
+                // Patch missing map identifiers
+                map.Value.MapId = map.Key;
+
+                // Patch missing language information
+                map.Value.Language = language;
+
+                // Patch missing continent identifiers
+                foreach (var floor in map.Value.Floors)
+                {
+                    floor.ContinentId = map.Value.ContinentId;
+                }
             }
 
-            return result;
+            return result.Maps.Values;
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -187,17 +217,27 @@ namespace GW2DotNET.V1.Maps
             var request = new MapRequest { Culture = language };
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(Settings), cancellationToken).ContinueWith(
                 task =>
+                {
+                    var result = task.Result;
+
+                    // Apply patches
+                    foreach (var map in result.Maps)
                     {
-                        var result = task.Result;
+                        // Patch missing map identifiers
+                        map.Value.MapId = map.Key;
 
-                        // patch missing language information
-                        foreach (var map in result.Maps.Values)
+                        // Patch missing language information
+                        map.Value.Language = language;
+
+                        // Patch missing continent identifiers
+                        foreach (var floor in map.Value.Floors)
                         {
-                            map.Language = language;
+                            floor.ContinentId = map.Value.ContinentId;
                         }
+                    }
 
-                        return result;
-                    }, 
+                    return result;
+                },
                 cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Map>>(task => task.Result.Maps.Values, cancellationToken);
 

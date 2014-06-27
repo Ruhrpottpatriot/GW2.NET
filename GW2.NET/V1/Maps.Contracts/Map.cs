@@ -14,6 +14,10 @@ namespace GW2DotNET.V1.Maps.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Maps.Floors.Contracts;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
     public class Map : ServiceContract, IEquatable<Map>
@@ -32,7 +36,8 @@ namespace GW2DotNET.V1.Maps.Contracts
 
         /// <summary>Gets or sets the default floor of this map.</summary>
         [DataMember(Name = "default_floor")]
-        public int DefaultFloor { get; set; }
+        [JsonConverter(typeof(UnknownFloorConverter))]
+        public Floor DefaultFloor { get; set; }
 
         /// <summary>Gets or sets a list of available floors for this map.</summary>
         [DataMember(Name = "floors")]
