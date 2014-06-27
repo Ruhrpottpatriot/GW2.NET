@@ -146,7 +146,7 @@ namespace GW2DotNET.V1.Recipes.Details.Contracts
             var outputItem = this.OutputItem;
             if (outputItem != null)
             {
-                return outputItem.Name;
+                return string.Format("{0}x {1}", this.OutputItemCount, outputItem.Name);
             }
 
             return base.ToString();
