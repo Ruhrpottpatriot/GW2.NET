@@ -140,6 +140,7 @@
     <Compile Include="V1\Colors.Contracts\ColorPalette.cs" />
     <Compile Include="V1\Colors\ColorSerializerSettings.cs" />
     <Compile Include="V1\Colors\Converters\JsonColorConverter.cs" />
+    <Compile Include="V1\Common\Converters\UnknownRecipeConverter.cs" />
     <Compile Include="V1\Common\Converters\UnknownSkinConverter.cs" />
     <Compile Include="V1\Common\Converters\UnknownItemConverter.cs" />
     <Compile Include="V1\Common\ISkinRequest.cs" />
