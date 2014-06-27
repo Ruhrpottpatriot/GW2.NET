@@ -34,23 +34,24 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Item GetItemDetails(int itemId)
+        public Item GetItemDetails(Item item)
         {
-            return this.GetItemDetails(itemId, CultureInfo.GetCultureInfo("en"));
+            return this.GetItemDetails(item, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Item GetItemDetails(int itemId, CultureInfo language)
+        public Item GetItemDetails(Item item, CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "item", value: item);
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new ItemDetailsRequest { ItemId = itemId, Culture = language };
+            var request = new ItemDetailsRequest { ItemId = item.ItemId, Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<Item>(Settings));
 
             // patch missing language information
@@ -60,44 +61,45 @@ namespace GW2DotNET.V1.Items.Details
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId)
+        public Task<Item> GetItemDetailsAsync(Item item)
         {
-            return this.GetItemDetailsAsync(itemId, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            return this.GetItemDetailsAsync(item, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language)
+        public Task<Item> GetItemDetailsAsync(Item item, CultureInfo language)
         {
-            return this.GetItemDetailsAsync(itemId, language, CancellationToken.None);
+            return this.GetItemDetailsAsync(item, language, CancellationToken.None);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId, CancellationToken cancellationToken)
+        public Task<Item> GetItemDetailsAsync(Item item, CancellationToken cancellationToken)
         {
-            return this.GetItemDetailsAsync(itemId, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            return this.GetItemDetailsAsync(item, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Item> GetItemDetailsAsync(Item item, CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "item", value: item);
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new ItemDetailsRequest { ItemId = itemId, Culture = language };
+            var request = new ItemDetailsRequest { ItemId = item.ItemId, Culture = language };
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Item>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {

@@ -18,44 +18,44 @@ namespace GW2DotNET.V1.Items.Details
     public interface IItemDetailsService
     {
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Item GetItemDetails(int itemId);
+        Item GetItemDetails(Item item);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Item GetItemDetails(int itemId, CultureInfo language);
+        Item GetItemDetails(Item item, CultureInfo language);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Task<Item> GetItemDetailsAsync(int itemId);
+        Task<Item> GetItemDetailsAsync(Item item);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language);
+        Task<Item> GetItemDetailsAsync(Item item, CultureInfo language);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Task<Item> GetItemDetailsAsync(int itemId, CancellationToken cancellationToken);
+        Task<Item> GetItemDetailsAsync(Item item, CancellationToken cancellationToken);
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, CancellationToken cancellationToken);
+        Task<Item> GetItemDetailsAsync(Item item, CultureInfo language, CancellationToken cancellationToken);
     }
 }

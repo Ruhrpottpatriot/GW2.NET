@@ -15,6 +15,7 @@ namespace GW2DotNET.V1.Items
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.V1.Items.Contracts;
+    using GW2DotNET.V1.Items.Details.Contracts;
 
     /// <summary>Provides the default implementation of the items service.</summary>
     public class ItemService : IItemService
@@ -32,7 +33,7 @@ namespace GW2DotNET.V1.Items
         /// <summary>Gets a collection of item identifiers.</summary>
         /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public IEnumerable<int> GetItems()
+        public IEnumerable<Item> GetItems()
         {
             var request = new ItemRequest();
             var result = this.serviceClient.Send(request, new JsonSerializer<ItemCollectionResult>());
@@ -43,7 +44,7 @@ namespace GW2DotNET.V1.Items
         /// <summary>Gets a collection of item identifiers.</summary>
         /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetItemsAsync()
+        public Task<IEnumerable<Item>> GetItemsAsync()
         {
             return this.GetItemsAsync(CancellationToken.None);
         }
@@ -52,11 +53,11 @@ namespace GW2DotNET.V1.Items
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetItemsAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<Item>> GetItemsAsync(CancellationToken cancellationToken)
         {
             var request = new ItemRequest();
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ItemCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<int>>(task => task.Result.Items, cancellationToken);
+            var t2 = t1.ContinueWith<IEnumerable<Item>>(task => task.Result.Items, cancellationToken);
 
             return t2;
         }

@@ -780,68 +780,68 @@ namespace GW2DotNET
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Item GetItemDetails(int itemId)
+        public Item GetItemDetails(Item item)
         {
-            return this.itemDetailsService.GetItemDetails(itemId);
+            return this.itemDetailsService.GetItemDetails(item);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Item GetItemDetails(int itemId, CultureInfo language)
+        public Item GetItemDetails(Item item, CultureInfo language)
         {
-            return this.itemDetailsService.GetItemDetails(itemId, language);
+            return this.itemDetailsService.GetItemDetails(item, language);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId)
+        public Task<Item> GetItemDetailsAsync(Item item)
         {
-            return this.itemDetailsService.GetItemDetailsAsync(itemId);
+            return this.itemDetailsService.GetItemDetailsAsync(item);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language)
+        public Task<Item> GetItemDetailsAsync(Item item, CultureInfo language)
         {
-            return this.itemDetailsService.GetItemDetailsAsync(itemId, language);
+            return this.itemDetailsService.GetItemDetailsAsync(item, language);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId, CancellationToken cancellationToken)
+        public Task<Item> GetItemDetailsAsync(Item item, CancellationToken cancellationToken)
         {
-            return this.itemDetailsService.GetItemDetailsAsync(itemId, cancellationToken);
+            return this.itemDetailsService.GetItemDetailsAsync(item, cancellationToken);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="itemId">The item identifier.</param>
+        /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int itemId, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Item> GetItemDetailsAsync(Item item, CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.itemDetailsService.GetItemDetailsAsync(itemId, language, cancellationToken);
+            return this.itemDetailsService.GetItemDetailsAsync(item, language, cancellationToken);
         }
 
         /// <summary>Gets a collection of item identifiers.</summary>
         /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public IEnumerable<int> GetItems()
+        public IEnumerable<Item> GetItems()
         {
             return this.itemService.GetItems();
         }
@@ -849,7 +849,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of item identifiers.</summary>
         /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetItemsAsync()
+        public Task<IEnumerable<Item>> GetItemsAsync()
         {
             return this.itemService.GetItemsAsync();
         }
@@ -858,7 +858,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<int>> GetItemsAsync(CancellationToken cancellationToken)
+        public Task<IEnumerable<Item>> GetItemsAsync(CancellationToken cancellationToken)
         {
             return this.itemService.GetItemsAsync(cancellationToken);
         }
@@ -1216,10 +1216,10 @@ namespace GW2DotNET
         public Recipe GetRecipeDetails(int recipeId, CultureInfo language)
         {
             var recipe = this.recipeDetailsService.GetRecipeDetails(recipeId, language);
-            recipe.OutputItem = this.GetItemDetails(recipe.OutputItem.ItemId, language);
+            recipe.OutputItem = this.GetItemDetails(recipe.OutputItem, language);
             foreach (var ingredient in recipe.Ingredients)
             {
-                ingredient.Item = this.GetItemDetails(ingredient.Item.ItemId, language);
+                ingredient.Item = this.GetItemDetails(ingredient.Item, language);
             }
 
             return recipe;
@@ -1267,12 +1267,12 @@ namespace GW2DotNET
                 task =>
                 {
                     var recipe = task.Result;
-                    recipe.OutputItem = this.GetItemDetailsAsync(recipeId, language, cancellationToken).Result;
+                    recipe.OutputItem = this.GetItemDetailsAsync(recipe.OutputItem, language, cancellationToken).Result;
                     Parallel.ForEach(
                         recipe.Ingredients,
                         ingredient =>
                             {
-                                ingredient.Item = this.GetItemDetailsAsync(ingredient.Item.ItemId, language, cancellationToken).Result;
+                                ingredient.Item = this.GetItemDetailsAsync(ingredient.Item, language, cancellationToken).Result;
                             });
 
                     return recipe;
