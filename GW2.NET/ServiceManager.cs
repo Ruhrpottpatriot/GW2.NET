@@ -22,7 +22,6 @@ namespace GW2DotNET
     using GW2DotNET.V1.Continents;
     using GW2DotNET.V1.Continents.Contracts;
     using GW2DotNET.V1.DynamicEvents;
-    using GW2DotNET.V1.DynamicEvents.Contracts;
     using GW2DotNET.V1.DynamicEvents.Details;
     using GW2DotNET.V1.DynamicEvents.Details.Contracts;
     using GW2DotNET.V1.DynamicEvents.Names;
@@ -54,7 +53,6 @@ namespace GW2DotNET
     public class ServiceManager : IBuildService, 
                                   IColorService, 
                                   IContinentService, 
-                                  IDynamicEventService, 
                                   IDynamicEventDetailsService, 
                                   IDynamicEventNameService, 
                                   IDynamicEventRotationService, 
@@ -91,9 +89,6 @@ namespace GW2DotNET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IDynamicEventRotationService dynamicEventRotationService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IDynamicEventService dynamicEventService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IFileService fileService;
@@ -147,7 +142,6 @@ namespace GW2DotNET
         /// <param name="dynamicEventDetailsService">The dynamic event details service.</param>
         /// <param name="dynamicEventNameService">The dynamic event name service.</param>
         /// <param name="dynamicEventRotationService">The dynamic Event Rotation Service.</param>
-        /// <param name="dynamicEventService">The dynamic event service.</param>
         /// <param name="fileService">The file service.</param>
         /// <param name="guildDetailsService">The guild details service.</param>
         /// <param name="itemDetailsService">The item details service.</param>
@@ -170,7 +164,6 @@ namespace GW2DotNET
             IDynamicEventDetailsService dynamicEventDetailsService, 
             IDynamicEventNameService dynamicEventNameService, 
             IDynamicEventRotationService dynamicEventRotationService, 
-            IDynamicEventService dynamicEventService, 
             IFileService fileService, 
             IGuildDetailsService guildDetailsService, 
             IItemDetailsService itemDetailsService, 
@@ -193,7 +186,6 @@ namespace GW2DotNET
             this.dynamicEventDetailsService = dynamicEventDetailsService;
             this.dynamicEventNameService = dynamicEventNameService;
             this.dynamicEventRotationService = dynamicEventRotationService;
-            this.dynamicEventService = dynamicEventService;
             this.fileService = fileService;
             this.guildDetailsService = guildDetailsService;
             this.itemDetailsService = itemDetailsService;
@@ -227,7 +219,6 @@ namespace GW2DotNET
             this.dynamicEventDetailsService = new DynamicEventDetailsService(serviceClient);
             this.dynamicEventNameService = new DynamicEventNameService(serviceClient);
             this.dynamicEventRotationService = new DynamicEventRotationService();
-            this.dynamicEventService = new DynamicEventService(serviceClient);
             this.fileService = new FileService(serviceClient);
             this.guildDetailsService = new GuildDetailsService(serviceClient);
             this.itemDetailsService = new ItemDetailsService(serviceClient);
@@ -346,37 +337,6 @@ namespace GW2DotNET
         public Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {
             return this.continentService.GetContinentsAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a dynamic event and its status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A dynamic event and its status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public DynamicEvent GetDynamicEvent(Guid eventId, int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEvent(eventId, worldId);
-        }
-
-        /// <summary>Gets a dynamic event and its status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A dynamic event and its status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<DynamicEvent> GetDynamicEventAsync(Guid eventId, int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventAsync(eventId, worldId);
-        }
-
-        /// <summary>Gets a dynamic event and its status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A dynamic event and its status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<DynamicEvent> GetDynamicEventAsync(Guid eventId, int worldId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventAsync(eventId, worldId, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -549,146 +509,6 @@ namespace GW2DotNET
         public IEnumerable<DynamicEventRotation> GetDynamicEventRotations()
         {
             return this.dynamicEventRotationService.GetDynamicEventRotations();
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEvent> GetDynamicEvents()
-        {
-            return this.dynamicEventService.GetDynamicEvents();
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsAsync()
-        {
-            return this.dynamicEventService.GetDynamicEventsAsync();
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsAsync(CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEvent> GetDynamicEventsById(Guid eventId)
-        {
-            return this.dynamicEventService.GetDynamicEventsById(eventId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByIdAsync(Guid eventId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByIdAsync(eventId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsByIdAsync(eventId, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEvent> GetDynamicEventsByMap(int mapId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMap(mapId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEvent> GetDynamicEventsByMap(int mapId, int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMap(mapId, worldId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId, int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId, worldId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId, worldId, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEvent> GetDynamicEventsByWorld(int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByWorld(worldId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByWorldAsync(int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="worldId">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventsByWorldAsync(int worldId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId, cancellationToken);
         }
 
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>

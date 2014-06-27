@@ -197,17 +197,10 @@
     <Compile Include="V1\DynamicEvents.Names\DynamicEventNameService.cs" />
     <Compile Include="V1\DynamicEvents.Names\DynamicEventNameRequest.cs" />
     <Compile Include="V1\DynamicEvents.Names\IDynamicEventNameService.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEvent.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventCollection.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventCollectionResult.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventState.cs" />
     <Compile Include="V1\DynamicEvents.Rotations.Contracts\DynamicEventRotation.cs" />
     <Compile Include="V1\DynamicEvents.Rotations.Contracts\DynamicEventShifts.cs" />
     <Compile Include="V1\DynamicEvents.Rotations\DynamicEventRotationService.cs" />
     <Compile Include="V1\DynamicEvents.Rotations\IDynamicEventRotationService.cs" />
-    <Compile Include="V1\DynamicEvents\DynamicEventRequest.cs" />
-    <Compile Include="V1\DynamicEvents\DynamicEventService.cs" />
-    <Compile Include="V1\DynamicEvents\IDynamicEventService.cs" />
     <Compile Include="V1\Files.Contracts\Asset.cs" />
     <Compile Include="V1\Files.Contracts\AssetCollection.cs" />
     <Compile Include="V1\Files\FileService.cs" />
