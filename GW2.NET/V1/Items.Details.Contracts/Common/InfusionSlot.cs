@@ -11,6 +11,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents one of an item's infusion slots.</summary>
     public class InfusionSlot : ServiceContract
@@ -20,11 +23,9 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Common
         public virtual InfusionSlotTypes Flags { get; set; }
 
         /// <summary>Gets or sets the infusion slot's item.</summary>
-        public virtual Item Item { get; set; }
-
-        /// <summary>Gets or sets the infusion slot's item identifier.</summary>
         [DataMember(Name = "item_id")]
-        public virtual int? ItemId { get; set; }
+        [JsonConverter(typeof(UnknownItemConverter))]
+        public virtual Item Item { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
