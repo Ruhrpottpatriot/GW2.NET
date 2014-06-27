@@ -62,6 +62,18 @@ namespace GW2DotNET.V1.Maps
             result.ContinentId = continentId;
             result.FloorNumber = floor;
 
+            // Patch missing region identifiers
+            foreach (var region in result.Regions)
+            {
+                region.Value.RegionId = region.Key;
+
+                // Patch missing subregion identifiers
+                foreach (var map in region.Value.Maps)
+                {
+                    map.Value.MapId = map.Key;
+                }
+            }
+
             return result;
         }
 
@@ -119,6 +131,18 @@ namespace GW2DotNET.V1.Maps
                         // Patch missing floor information
                         result.ContinentId = continentId;
                         result.FloorNumber = floor;
+
+                        // Patch missing region identifiers
+                        foreach (var region in result.Regions)
+                        {
+                            region.Value.RegionId = region.Key;
+
+                            // Patch missing subregion identifiers
+                            foreach (var map in region.Value.Maps)
+                            {
+                                map.Value.MapId = map.Key;
+                            }
+                        }
 
                         return result;
                     }, 

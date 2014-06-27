@@ -14,10 +14,13 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest;
     using GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Sectors;
     using GW2DotNET.V1.Maps.Contracts.Regions.Subregions.SkillChallenges;
     using GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Tasks;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents a map and its details.</summary>
     public class Subregion : ServiceContract, IEquatable<Subregion>, IComparable<Subregion>
@@ -28,7 +31,8 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions
 
         /// <summary>Gets or sets the default floor of this map.</summary>
         [DataMember(Name = "default_floor")]
-        public int DefaultFloor { get; set; }
+        [JsonConverter(typeof(UnknownFloorConverter))]
+        public Floor DefaultFloor { get; set; }
 
         /// <summary>Gets or sets the map's ID.</summary>
         [DataMember(Name = "map_id")]
