@@ -25,8 +25,15 @@ namespace GW2DotNET.ChatLinks.Extensions
             var upgradable = instance as IUpgradable;
             if (upgradable != null)
             {
-                chatLink.SuffixItemId = upgradable.SuffixItemId;
-                chatLink.SecondarySuffixItemId = upgradable.SecondarySuffixItemId;
+                if (upgradable.SuffixItem != null)
+                {
+                    chatLink.SuffixItemId = upgradable.SuffixItem.ItemId;
+                }
+
+                if (upgradable.SecondarySuffixItem != null)
+                {
+                    chatLink.SecondarySuffixItemId = upgradable.SecondarySuffixItem.ItemId;
+                }
             }
 
             return chatLink;

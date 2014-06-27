@@ -11,8 +11,11 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Backpacks
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
+    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Items.Details.Contracts.Common;
     using GW2DotNET.V1.Items.Details.Contracts.Common.Attributes;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents a backpack.</summary>
     [TypeDiscriminator(Value = "Back", BaseType = typeof(Item))]
@@ -35,17 +38,13 @@ namespace GW2DotNET.V1.Items.Details.Contracts.Backpacks
         public virtual InfusionSlotCollection InfusionSlots { get; set; }
 
         /// <summary>Gets or sets the item's secondary suffix item.</summary>
+        [DataMember(Name = "secondary_suffix_item_id")]
+        [JsonConverter(typeof(UnknownItemConverter))]
         public virtual Item SecondarySuffixItem { get; set; }
 
-        /// <summary>Gets or sets the item's secondary suffix item identifier.</summary>
-        [DataMember(Name = "secondary_suffix_item_id")]
-        public virtual int? SecondarySuffixItemId { get; set; }
-
         /// <summary>Gets or sets the item's suffix item.</summary>
-        public virtual Item SuffixItem { get; set; }
-
-        /// <summary>Gets or sets the item's suffix item identifier.</summary>
         [DataMember(Name = "suffix_item_id")]
-        public virtual int? SuffixItemId { get; set; }
+        [JsonConverter(typeof(UnknownItemConverter))]
+        public virtual Item SuffixItem { get; set; }
     }
 }
