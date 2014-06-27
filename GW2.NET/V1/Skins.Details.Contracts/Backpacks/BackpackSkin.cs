@@ -6,7 +6,7 @@
 //   Represents a backpack skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins.Details.Contracts.Backs
+namespace GW2DotNET.V1.Skins.Details.Contracts.Backpacks
 {
     using GW2DotNET.Common;
 

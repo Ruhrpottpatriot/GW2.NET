@@ -441,7 +441,7 @@
     <Compile Include="V1\Skins.Details.Contracts\Armors\LeggingsSkin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\Armors\ShouldersSkin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\Armors\UnknownArmorSkin.cs" />
-    <Compile Include="V1\Skins.Details.Contracts\Backs\BackpackSkin.cs" />
+    <Compile Include="V1\Skins.Details.Contracts\Backpacks\BackpackSkin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\Skin.cs" />
     <Compile Include="V1\Skins.Details.Contracts\SkinFlags.cs" />
     <Compile Include="V1\Skins.Details.Contracts\UnknownSkin.cs" />
