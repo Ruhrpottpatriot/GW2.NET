@@ -21,6 +21,9 @@ namespace GW2DotNET.V1.Builds.Contracts
         [DataMember(Name = "build_id")]
         public virtual int BuildId { get; set; }
 
+        /// <summary>Gets or sets a timestamp for this build.</summary>
+        public virtual DateTimeOffset Timestamp { get; set; }
+
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
         /// <param name="right">The object on the right side.</param>
