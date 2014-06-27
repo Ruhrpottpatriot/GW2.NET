@@ -6,7 +6,7 @@
 //   Represents a dynamic event and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Names.Contracts
+namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System;
     using System.Globalization;

@@ -6,7 +6,7 @@
 //   Represents a request for a list of events and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Names
+namespace GW2DotNET.V1.DynamicEvents
 {
     using System;
     using System.Collections.Generic;

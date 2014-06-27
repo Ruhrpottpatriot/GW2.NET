@@ -23,8 +23,6 @@ namespace GW2DotNET
     using GW2DotNET.V1.Continents.Contracts;
     using GW2DotNET.V1.DynamicEvents;
     using GW2DotNET.V1.DynamicEvents.Contracts;
-    using GW2DotNET.V1.DynamicEvents.Names;
-    using GW2DotNET.V1.DynamicEvents.Names.Contracts;
     using GW2DotNET.V1.DynamicEvents.Rotations;
     using GW2DotNET.V1.DynamicEvents.Rotations.Contracts;
     using GW2DotNET.V1.Files;

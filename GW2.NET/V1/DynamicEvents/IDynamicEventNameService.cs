@@ -6,14 +6,14 @@
 //   Provides the interface for the event names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Names
+namespace GW2DotNET.V1.DynamicEvents
 {
     using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.DynamicEvents.Names.Contracts;
+    using GW2DotNET.V1.DynamicEvents.Contracts;
 
     /// <summary>Provides the interface for the event names service.</summary>
     public interface IDynamicEventNameService

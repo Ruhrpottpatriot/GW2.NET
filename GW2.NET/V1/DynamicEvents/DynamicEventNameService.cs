@@ -6,7 +6,7 @@
 //   Provides the default implementation of the event names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Names
+namespace GW2DotNET.V1.DynamicEvents
 {
     using System.Collections.Generic;
     using System.Globalization;
@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.DynamicEvents.Names
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.DynamicEvents.Names.Contracts;
+    using GW2DotNET.V1.DynamicEvents.Contracts;
 
     /// <summary>Provides the default implementation of the event names service.</summary>
     public class DynamicEventNameService : IDynamicEventNameService

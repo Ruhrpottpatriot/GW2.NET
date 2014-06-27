@@ -6,7 +6,7 @@
 //   Represents a collection of dynamic events and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Names.Contracts
+namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System.Collections.Generic;
 
