@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.Maps.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a map and its localized name.</summary>
-    public class MapName : ServiceContract, IEquatable<MapName>, IComparable<MapName>
+    public class MapName : ServiceContract, IEquatable<MapName>
     {
         /// <summary>Gets or sets the map's ID.</summary>
         [DataMember(Name = "id")]
@@ -45,19 +45,6 @@ namespace GW2DotNET.V1.Maps.Contracts
         public static bool operator !=(MapName left, MapName right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(MapName other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.Id.CompareTo(other.Id);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
