@@ -41,26 +41,24 @@ namespace GW2DotNET
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Contracts;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
-    public class ServiceManager : IBuildService,
-                                  IColorService,
-                                  IContinentService,
-                                  IDynamicEventDetailsService,
-                                  IDynamicEventNameService,
-                                  IDynamicEventRotationService,
-                                  IFileService,
-                                  IGuildDetailsService,
-                                  IItemService,
-                                  IMapService,
-                                  IMapFloorService,
-                                  IMapNameService,
-                                  IRecipeDiscoveryService,
-                                  IRecipeDetailsService,
-                                  IWorldNameService,
-                                  IMatchService,
-                                  IMatchDetailsService,
-                                  IObjectiveNameService,
-                                  ISkinService,
-                                  ISkinDetailsService
+    public class ServiceManager : IBuildService, 
+                                  IColorService, 
+                                  IContinentService, 
+                                  IDynamicEventDetailsService, 
+                                  IDynamicEventNameService, 
+                                  IDynamicEventRotationService, 
+                                  IFileService, 
+                                  IGuildDetailsService, 
+                                  IItemService, 
+                                  IMapService, 
+                                  IMapFloorService, 
+                                  IMapNameService, 
+                                  IRecipeService, 
+                                  IWorldNameService, 
+                                  IMatchService, 
+                                  IMatchDetailsService, 
+                                  IObjectiveNameService, 
+                                  ISkinService
     {
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IBuildService buildService;
@@ -111,9 +109,6 @@ namespace GW2DotNET
         private readonly IRecipeService recipeService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly ISkinDetailsService skinDetailsService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly ISkinService skinService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
@@ -135,31 +130,28 @@ namespace GW2DotNET
         /// <param name="matchDetailsService">The match details service.</param>
         /// <param name="matchService">The match service.</param>
         /// <param name="objectiveNameService">The objective name service.</param>
-        /// <param name="recipeDetailsService">The recipe details service.</param>
         /// <param name="recipeService">The recipe service.</param>
         /// <param name="worldNameService">The world name service.</param>
         /// <param name="skinService">The skin service.</param>
-        /// <param name="skinDetailsService">The skin details Service.</param>
         public ServiceManager(
-            IBuildService buildService,
-            IColorService colorService,
-            IContinentService continentService,
-            IDynamicEventDetailsService dynamicEventDetailsService,
-            IDynamicEventNameService dynamicEventNameService,
-            IDynamicEventRotationService dynamicEventRotationService,
-            IFileService fileService,
-            IGuildDetailsService guildDetailsService,
-            IItemService itemService,
-            IMapFloorService mapFloorService,
-            IMapNameService mapNameService,
-            IMapService mapService,
-            IMatchDetailsService matchDetailsService,
-            IMatchService matchService,
-            IObjectiveNameService objectiveNameService,
-            IRecipeService recipeService,
-            IWorldNameService worldNameService,
-            ISkinService skinService,
-            ISkinDetailsService skinDetailsService)
+            IBuildService buildService, 
+            IColorService colorService, 
+            IContinentService continentService, 
+            IDynamicEventDetailsService dynamicEventDetailsService, 
+            IDynamicEventNameService dynamicEventNameService, 
+            IDynamicEventRotationService dynamicEventRotationService, 
+            IFileService fileService, 
+            IGuildDetailsService guildDetailsService, 
+            IItemService itemService, 
+            IMapFloorService mapFloorService, 
+            IMapNameService mapNameService, 
+            IMapService mapService, 
+            IMatchDetailsService matchDetailsService, 
+            IMatchService matchService, 
+            IObjectiveNameService objectiveNameService, 
+            IRecipeService recipeService, 
+            IWorldNameService worldNameService, 
+            ISkinService skinService)
         {
             this.buildService = buildService;
             this.colorService = colorService;
@@ -179,7 +171,6 @@ namespace GW2DotNET
             this.recipeService = recipeService;
             this.worldNameService = worldNameService;
             this.skinService = skinService;
-            this.skinDetailsService = skinDetailsService;
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
@@ -210,7 +201,6 @@ namespace GW2DotNET
             this.recipeService = new RecipeService(serviceClient);
             this.worldNameService = new WorldNameService(serviceClient);
             this.skinService = new SkinService(serviceClient);
-            this.skinDetailsService = new SkinDetailsService(serviceClient);
         }
 
         /// <summary>Gets the current game build.</summary>
@@ -1055,15 +1045,15 @@ namespace GW2DotNET
             var t1 = this.recipeService.GetRecipeDetailsAsync(recipe, language, cancellationToken);
             var t2 = t1.ContinueWith(
                 task =>
-                {
-                    recipe = task.Result;
-                    recipe.OutputItem = this.GetItemDetailsAsync(recipe.OutputItem, language, cancellationToken).Result;
-                    Parallel.ForEach(
-                        recipe.Ingredients,
-                        ingredient => { ingredient.Item = this.GetItemDetailsAsync(ingredient.Item, language, cancellationToken).Result; });
+                    {
+                        recipe = task.Result;
+                        recipe.OutputItem = this.GetItemDetailsAsync(recipe.OutputItem, language, cancellationToken).Result;
+                        Parallel.ForEach(
+                            recipe.Ingredients, 
+                            ingredient => { ingredient.Item = this.GetItemDetailsAsync(ingredient.Item, language, cancellationToken).Result; });
 
-                    return recipe;
-                },
+                        return recipe;
+                    }, 
                 cancellationToken);
 
             return t2;
@@ -1100,7 +1090,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Skin GetSkinDetails(Skin skin)
         {
-            return this.skinDetailsService.GetSkinDetails(skin);
+            return this.skinService.GetSkinDetails(skin);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -1110,7 +1100,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Skin GetSkinDetails(Skin skin, CultureInfo language)
         {
-            return this.skinDetailsService.GetSkinDetails(skin, language);
+            return this.skinService.GetSkinDetails(skin, language);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -1119,7 +1109,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(Skin skin)
         {
-            return this.skinDetailsService.GetSkinDetailsAsync(skin);
+            return this.skinService.GetSkinDetailsAsync(skin);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -1129,7 +1119,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language)
         {
-            return this.skinDetailsService.GetSkinDetailsAsync(skin, language);
+            return this.skinService.GetSkinDetailsAsync(skin, language);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -1139,7 +1129,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(Skin skin, CancellationToken cancellationToken)
         {
-            return this.skinDetailsService.GetSkinDetailsAsync(skin, cancellationToken);
+            return this.skinService.GetSkinDetailsAsync(skin, cancellationToken);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -1150,7 +1140,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.skinDetailsService.GetSkinDetailsAsync(skin, language, cancellationToken);
+            return this.skinService.GetSkinDetailsAsync(skin, language, cancellationToken);
         }
 
         /// <summary>Gets a collection of skin identifiers.</summary>

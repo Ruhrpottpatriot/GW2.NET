@@ -490,8 +490,8 @@
     <Compile Include="V1\Skins\Converters\WeaponSkinConverter.cs" />
     <Compile Include="V1\Skins\ISkinDetailsService.cs" />
     <Compile Include="V1\Skins\ISkinService.cs" />
+    <Compile Include="V1\Skins\ISkinDiscoveryService.cs" />
     <Compile Include="V1\Skins\SkinDetailsRequest.cs" />
-    <Compile Include="V1\Skins\SkinDetailsService.cs" />
     <Compile Include="V1\Skins\SkinSerializerSettings.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
     <Compile Include="V1\Skins\SkinRequest.cs" />
