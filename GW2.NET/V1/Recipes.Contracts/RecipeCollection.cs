@@ -11,6 +11,7 @@ namespace GW2DotNET.V1.Recipes.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
@@ -18,7 +19,7 @@ namespace GW2DotNET.V1.Recipes.Contracts
     /// <summary>Represents a collection of recipe identifiers.</summary>
     [CollectionDataContract]
     [JsonArray(ItemConverterType = typeof(UnknownRecipeConverter))]
-    public class RecipeCollection : List<Recipe>
+    public class RecipeCollection : ServiceContractList<Recipe>
     {
         /// <summary>Initializes a new instance of the <see cref="RecipeCollection" /> class.</summary>
         public RecipeCollection()
