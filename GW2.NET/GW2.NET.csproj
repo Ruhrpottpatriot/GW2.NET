@@ -442,8 +442,8 @@
     <Compile Include="V1\Recipes.Contracts\RecipeCollectionResult.cs" />
     <Compile Include="V1\Recipes\Converters\RecipeConverter.cs" />
     <Compile Include="V1\Recipes\IRecipeDetailsService.cs" />
+    <Compile Include="V1\Recipes\IRecipeService.cs" />
     <Compile Include="V1\Recipes\RecipeDetailsRequest.cs" />
-    <Compile Include="V1\Recipes\RecipeDetailsService.cs" />
     <Compile Include="V1\Recipes\RecipeSerializerSettings.cs" />
     <Compile Include="V1\Skins.Contracts\Armors\AquaticHelmSkin.cs" />
     <Compile Include="V1\Skins.Contracts\Armors\ArmorSkin.cs" />
@@ -501,7 +501,7 @@
     <Compile Include="V1\Maps\IMapService.cs" />
     <Compile Include="V1\Maps\MapService.cs" />
     <Compile Include="V1\Maps\MapRequest.cs" />
-    <Compile Include="V1\Recipes\IRecipeService.cs" />
+    <Compile Include="V1\Recipes\IRecipeDiscoveryService.cs" />
     <Compile Include="V1\Recipes\RecipeService.cs" />
     <Compile Include="V1\Recipes\RecipeRequest.cs" />
     <Compile Include="V1\Worlds.Contracts\World.cs" />

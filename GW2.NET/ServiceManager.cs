@@ -53,7 +53,7 @@ namespace GW2DotNET
                                   IMapService,
                                   IMapFloorService,
                                   IMapNameService,
-                                  IRecipeService,
+                                  IRecipeDiscoveryService,
                                   IRecipeDetailsService,
                                   IWorldNameService,
                                   IMatchService,
@@ -108,9 +108,6 @@ namespace GW2DotNET
         private readonly IObjectiveNameService objectiveNameService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IRecipeDetailsService recipeDetailsService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IRecipeService recipeService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
@@ -159,7 +156,6 @@ namespace GW2DotNET
             IMatchDetailsService matchDetailsService,
             IMatchService matchService,
             IObjectiveNameService objectiveNameService,
-            IRecipeDetailsService recipeDetailsService,
             IRecipeService recipeService,
             IWorldNameService worldNameService,
             ISkinService skinService,
@@ -180,7 +176,6 @@ namespace GW2DotNET
             this.matchDetailsService = matchDetailsService;
             this.matchService = matchService;
             this.objectiveNameService = objectiveNameService;
-            this.recipeDetailsService = recipeDetailsService;
             this.recipeService = recipeService;
             this.worldNameService = worldNameService;
             this.skinService = skinService;
@@ -212,7 +207,6 @@ namespace GW2DotNET
             this.matchDetailsService = new MatchDetailsService(serviceClient);
             this.matchService = new MatchService(serviceClient);
             this.objectiveNameService = new ObjectiveNameService(serviceClient);
-            this.recipeDetailsService = new RecipeDetailsService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
             this.worldNameService = new WorldNameService(serviceClient);
             this.skinService = new SkinService(serviceClient);
@@ -1011,7 +1005,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(Recipe recipe, CultureInfo language)
         {
-            recipe = this.recipeDetailsService.GetRecipeDetails(recipe, language);
+            recipe = this.recipeService.GetRecipeDetails(recipe, language);
             recipe.OutputItem = this.GetItemDetails(recipe.OutputItem, language);
             foreach (var ingredient in recipe.Ingredients)
             {
@@ -1058,7 +1052,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CultureInfo language, CancellationToken cancellationToken)
         {
-            var t1 = this.recipeDetailsService.GetRecipeDetailsAsync(recipe, language, cancellationToken);
+            var t1 = this.recipeService.GetRecipeDetailsAsync(recipe, language, cancellationToken);
             var t2 = t1.ContinueWith(
                 task =>
                 {
