@@ -11,6 +11,7 @@ namespace GW2DotNET.V1.Items.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
+    using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
@@ -18,7 +19,7 @@ namespace GW2DotNET.V1.Items.Contracts
     /// <summary>Represents a collection of item identifiers.</summary>
     [CollectionDataContract]
     [JsonArray(ItemConverterType = typeof(UnknownItemConverter))]
-    public class ItemCollection : List<Item>
+    public class ItemCollection : ServiceContractList<Item>
     {
         /// <summary>Initializes a new instance of the <see cref="ItemCollection" /> class.</summary>
         public ItemCollection()
