@@ -6,7 +6,6 @@
 //   Provides the interface for the items service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Items
 {
     /// <summary>Provides the interface for the items service.</summary>

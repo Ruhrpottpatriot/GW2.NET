@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the default implementation of the recipes service.
+//   Provides the default implementation of the recipe service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes
@@ -33,39 +33,6 @@ namespace GW2DotNET.V1.Recipes
         {
             this.serviceClient = serviceClient;
         }
-
-        /// <summary>Gets a collection of discovered recipes.</summary>
-        /// <returns>A collection of discovered recipes.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public IEnumerable<Recipe> GetRecipes()
-        {
-            var request = new RecipeRequest();
-            var result = this.serviceClient.Send(request, new JsonSerializer<RecipeCollectionResult>());
-
-            return result.Recipes;
-        }
-
-        /// <summary>Gets a collection of discovered recipes.</summary>
-        /// <returns>A collection of discovered recipes.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Recipe>> GetRecipesAsync()
-        {
-            return this.GetRecipesAsync(CancellationToken.None);
-        }
-
-        /// <summary>Gets a collection of discovered recipes.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered recipes.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Recipe>> GetRecipesAsync(CancellationToken cancellationToken)
-        {
-            var request = new RecipeRequest();
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<RecipeCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<Recipe>>(task => task.Result.Recipes, cancellationToken);
-
-            return t2;
-        }
-
 
         /// <summary>Gets a recipe and its localized details.</summary>
         /// <param name="recipe">The recipe identifier.</param>
@@ -136,17 +103,49 @@ namespace GW2DotNET.V1.Recipes
             var request = new RecipeDetailsRequest { RecipeId = recipe.RecipeId, Culture = language };
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Recipe>(Settings), cancellationToken).ContinueWith(
                 task =>
-                {
-                    var result = task.Result;
+                    {
+                        var result = task.Result;
 
-                    // patch missing language information
-                    result.Language = language.TwoLetterISOLanguageName;
+                        // patch missing language information
+                        result.Language = language.TwoLetterISOLanguageName;
 
-                    return result;
-                },
+                        return result;
+                    }, 
                 cancellationToken);
 
             return t1;
+        }
+
+        /// <summary>Gets a collection of discovered recipes.</summary>
+        /// <returns>A collection of discovered recipes.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
+        public IEnumerable<Recipe> GetRecipes()
+        {
+            var request = new RecipeRequest();
+            var result = this.serviceClient.Send(request, new JsonSerializer<RecipeCollectionResult>());
+
+            return result.Recipes;
+        }
+
+        /// <summary>Gets a collection of discovered recipes.</summary>
+        /// <returns>A collection of discovered recipes.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<Recipe>> GetRecipesAsync()
+        {
+            return this.GetRecipesAsync(CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of discovered recipes.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of discovered recipes.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
+        public Task<IEnumerable<Recipe>> GetRecipesAsync(CancellationToken cancellationToken)
+        {
+            var request = new RecipeRequest();
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<RecipeCollectionResult>(), cancellationToken);
+            var t2 = t1.ContinueWith<IEnumerable<Recipe>>(task => task.Result.Recipes, cancellationToken);
+
+            return t2;
         }
     }
 }

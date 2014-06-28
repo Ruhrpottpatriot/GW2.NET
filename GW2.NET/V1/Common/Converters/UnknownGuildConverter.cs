@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="UnknownSkinConverter.cs" company="GW2.NET Coding Team">
+// <copyright file="UnknownGuildConverter.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -11,7 +11,6 @@ namespace GW2DotNET.V1.Common.Converters
     using System;
 
     using GW2DotNET.V1.Guilds.Contracts;
-    using GW2DotNET.V1.Worlds.Contracts;
 
     using Newtonsoft.Json;
 

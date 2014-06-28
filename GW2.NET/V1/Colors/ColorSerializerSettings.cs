@@ -6,11 +6,9 @@
 //   The color serializer settings.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Colors
 {
     using GW2DotNET.V1.Colors.Converters;
-    using GW2DotNET.V1.Common.Converters;
 
     using Newtonsoft.Json;
 

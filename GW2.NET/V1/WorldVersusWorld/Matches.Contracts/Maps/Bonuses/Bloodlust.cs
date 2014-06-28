@@ -6,7 +6,6 @@
 //   The Bloodlust bonus.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Bonuses
 {
     using GW2DotNET.Common;

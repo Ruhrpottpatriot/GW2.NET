@@ -10,7 +10,6 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
 

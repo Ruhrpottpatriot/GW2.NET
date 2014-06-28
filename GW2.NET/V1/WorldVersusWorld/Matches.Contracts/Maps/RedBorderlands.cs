@@ -6,7 +6,6 @@
 //   Represents the red team's borderlands.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps
 {
     using GW2DotNET.Common;

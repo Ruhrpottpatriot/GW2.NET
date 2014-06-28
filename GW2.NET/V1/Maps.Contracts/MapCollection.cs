@@ -9,7 +9,6 @@
 namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
 

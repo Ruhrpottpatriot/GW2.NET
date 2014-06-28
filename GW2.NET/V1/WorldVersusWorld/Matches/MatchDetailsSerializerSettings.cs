@@ -6,7 +6,6 @@
 //   The match details serializer settings.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld.Matches
 {
     using GW2DotNET.V1.WorldVersusWorld.Matches.Converters;

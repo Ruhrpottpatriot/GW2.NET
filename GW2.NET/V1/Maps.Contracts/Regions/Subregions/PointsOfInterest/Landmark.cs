@@ -6,7 +6,6 @@
 //   Represents a landmark.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest
 {
     using GW2DotNET.Common;

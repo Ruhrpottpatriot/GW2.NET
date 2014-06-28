@@ -9,7 +9,6 @@
 namespace GW2DotNET.Common
 {
     using System;
-    using System.IO;
     using System.IO.Compression;
     using System.Net;
     using System.Threading;
@@ -91,12 +90,12 @@ namespace GW2DotNET.Common
             var httpWebRequest = CreateHttpWebRequest(uri);
             return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
                 task =>
-                {
-                    using (var response = task.Result)
                     {
-                        return DeserializeResponse(serializer, response);
-                    }
-                },
+                        using (var response = task.Result)
+                        {
+                            return DeserializeResponse(serializer, response);
+                        }
+                    }, 
                 cancellationToken);
         }
 
@@ -188,26 +187,26 @@ namespace GW2DotNET.Common
         {
             return Task.Factory.FromAsync<WebResponse>(webRequest.BeginGetResponse, webRequest.EndGetResponse, null).ContinueWith(
                 task =>
-                {
-                    if (task.IsFaulted && task.Exception != null)
                     {
-                        var exception = task.Exception.GetBaseException() as WebException;
-
-                        // Handle only protocol errors
-                        if (exception != null && exception.Status == WebExceptionStatus.ProtocolError)
+                        if (task.IsFaulted && task.Exception != null)
                         {
-                            // Wrap the exception in a ServiceException, then throw
-                            using (var response = exception.Response)
+                            var exception = task.Exception.GetBaseException() as WebException;
+
+                            // Handle only protocol errors
+                            if (exception != null && exception.Status == WebExceptionStatus.ProtocolError)
                             {
-                                var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
-                                throw new ServiceException(null, errorResult, exception);
+                                // Wrap the exception in a ServiceException, then throw
+                                using (var response = exception.Response)
+                                {
+                                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
+                                    throw new ServiceException(null, errorResult, exception);
+                                }
                             }
                         }
-                    }
 
-                    // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
-                    return (HttpWebResponse)task.Result;
-                },
+                        // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
+                        return (HttpWebResponse)task.Result;
+                    }, 
                 cancellationToken);
         }
     }

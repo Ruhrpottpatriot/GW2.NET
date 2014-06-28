@@ -117,27 +117,27 @@ namespace GW2DotNET.V1.Maps
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(Settings), cancellationToken);
             var t2 = t1.ContinueWith(
                 task =>
-                {
-                    var result = task.Result;
-
-                    // Apply patches
-                    foreach (var map in result.Maps)
                     {
-                        // Patch missing map identifiers
-                        map.Value.MapId = map.Key;
+                        var result = task.Result;
 
-                        // Patch missing language information
-                        map.Value.Language = language;
-
-                        // Patch missing continent identifiers
-                        foreach (var floor in map.Value.Floors)
+                        // Apply patches
+                        foreach (var map in result.Maps)
                         {
-                            floor.ContinentId = map.Value.ContinentId;
-                        }
-                    }
+                            // Patch missing map identifiers
+                            map.Value.MapId = map.Key;
 
-                    return result.Maps.Values.SingleOrDefault();
-                },
+                            // Patch missing language information
+                            map.Value.Language = language;
+
+                            // Patch missing continent identifiers
+                            foreach (var floor in map.Value.Floors)
+                            {
+                                floor.ContinentId = map.Value.ContinentId;
+                            }
+                        }
+
+                        return result.Maps.Values.SingleOrDefault();
+                    }, 
                 cancellationToken);
 
             return t2;
@@ -217,27 +217,27 @@ namespace GW2DotNET.V1.Maps
             var request = new MapRequest { Culture = language };
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(Settings), cancellationToken).ContinueWith(
                 task =>
-                {
-                    var result = task.Result;
-
-                    // Apply patches
-                    foreach (var map in result.Maps)
                     {
-                        // Patch missing map identifiers
-                        map.Value.MapId = map.Key;
+                        var result = task.Result;
 
-                        // Patch missing language information
-                        map.Value.Language = language;
-
-                        // Patch missing continent identifiers
-                        foreach (var floor in map.Value.Floors)
+                        // Apply patches
+                        foreach (var map in result.Maps)
                         {
-                            floor.ContinentId = map.Value.ContinentId;
-                        }
-                    }
+                            // Patch missing map identifiers
+                            map.Value.MapId = map.Key;
 
-                    return result;
-                },
+                            // Patch missing language information
+                            map.Value.Language = language;
+
+                            // Patch missing continent identifiers
+                            foreach (var floor in map.Value.Floors)
+                            {
+                                floor.ContinentId = map.Value.ContinentId;
+                            }
+                        }
+
+                        return result;
+                    }, 
                 cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<Map>>(task => task.Result.Maps.Values, cancellationToken);
 
