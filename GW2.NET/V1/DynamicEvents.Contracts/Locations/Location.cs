@@ -19,5 +19,12 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts.Locations
         /// <summary>Gets or sets the center coordinates.</summary>
         [DataMember(Name = "center")]
         public Point3D Center { get; set; }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return this.Center.ToString();
+        }
     }
 }
