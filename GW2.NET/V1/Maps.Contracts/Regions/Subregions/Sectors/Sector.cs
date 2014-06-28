@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Sectors
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents an area within a map.</summary>
-    public class Sector : ServiceContract, IEquatable<Sector>, IComparable<Sector>
+    public class Sector : ServiceContract, IEquatable<Sector>
     {
         /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
         [DataMember(Name = "coord")]
@@ -50,19 +50,6 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Sectors
         public static bool operator !=(Sector left, Sector right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Sector other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.SectorId.CompareTo(other.SectorId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
