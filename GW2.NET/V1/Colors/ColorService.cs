@@ -52,10 +52,14 @@ namespace GW2DotNET.V1.Colors
             var request = new ColorRequest { Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<ColorCollectionResult>(Settings));
 
-            // patch missing language information
-            foreach (var colorPalette in result.Colors.Values)
+            // Apply patches
+            foreach (var colorPalette in result.Colors)
             {
-                colorPalette.Language = language.TwoLetterISOLanguageName;
+                // Patch missing color identifier
+                colorPalette.Value.ColorId = colorPalette.Key;
+
+                // Patch missing language information
+                colorPalette.Value.Language = language.TwoLetterISOLanguageName;
             }
 
             return result.Colors.Values;
@@ -102,10 +106,14 @@ namespace GW2DotNET.V1.Colors
                     {
                         var result = task.Result;
 
-                        // patch missing language information
-                        foreach (var colorPalette in result.Colors.Values)
+                        // Apply patches
+                        foreach (var colorPalette in result.Colors)
                         {
-                            colorPalette.Language = language.TwoLetterISOLanguageName;
+                            // Patch missing color identifier
+                            colorPalette.Value.ColorId = colorPalette.Key;
+
+                            // Patch missing language information
+                            colorPalette.Value.Language = language.TwoLetterISOLanguageName;
                         }
 
                         return result.Colors.Values;
