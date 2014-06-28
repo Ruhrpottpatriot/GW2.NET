@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Recipes.Contracts
     using Newtonsoft.Json;
 
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
-    public abstract class Recipe : ServiceContract, IEquatable<Recipe>, IComparable<Recipe>
+    public abstract class Recipe : ServiceContract, IEquatable<Recipe>
     {
         /// <summary>Gets or sets the recipe's build number.</summary>
         [DataMember(Name = "build_id")]
@@ -78,19 +78,6 @@ namespace GW2DotNET.V1.Recipes.Contracts
         public static bool operator !=(Recipe left, Recipe right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Recipe other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.RecipeId.CompareTo(other.RecipeId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
