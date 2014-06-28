@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions
     using GW2DotNET.V1.Maps.Contracts.Regions.Subregions;
 
     /// <summary>Represents a region on the map.</summary>
-    public class Region : ServiceContract, IEquatable<Region>, IComparable<Region>
+    public class Region : ServiceContract, IEquatable<Region>
     {
         /// <summary>Gets or sets the coordinates of the region label.</summary>
         [DataMember(Name = "label_coord")]
@@ -51,19 +51,6 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions
         public static bool operator !=(Region left, Region right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Region other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.RegionId.CompareTo(other.RegionId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
