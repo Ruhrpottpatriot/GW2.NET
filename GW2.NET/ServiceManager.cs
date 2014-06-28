@@ -41,26 +41,25 @@ namespace GW2DotNET
     using GW2DotNET.V1.WorldVersusWorld.Objectives.Contracts;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
-    public class ServiceManager : IBuildService, 
-                                  IColorService, 
-                                  IContinentService, 
-                                  IDynamicEventDetailsService, 
-                                  IDynamicEventNameService, 
-                                  IDynamicEventRotationService, 
-                                  IFileService, 
-                                  IGuildDetailsService, 
-                                  IItemService, 
-                                  IItemDetailsService, 
-                                  IMapService, 
-                                  IMapFloorService, 
-                                  IMapNameService, 
-                                  IRecipeService, 
-                                  IRecipeDetailsService, 
-                                  IWorldNameService, 
-                                  IMatchService, 
-                                  IMatchDetailsService, 
-                                  IObjectiveNameService, 
-                                  ISkinService, 
+    public class ServiceManager : IBuildService,
+                                  IColorService,
+                                  IContinentService,
+                                  IDynamicEventDetailsService,
+                                  IDynamicEventNameService,
+                                  IDynamicEventRotationService,
+                                  IFileService,
+                                  IGuildDetailsService,
+                                  IItemService,
+                                  IMapService,
+                                  IMapFloorService,
+                                  IMapNameService,
+                                  IRecipeService,
+                                  IRecipeDetailsService,
+                                  IWorldNameService,
+                                  IMatchService,
+                                  IMatchDetailsService,
+                                  IObjectiveNameService,
+                                  ISkinService,
                                   ISkinDetailsService
     {
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
@@ -86,9 +85,6 @@ namespace GW2DotNET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IGuildDetailsService guildDetailsService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IItemDetailsService itemDetailsService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IItemService itemService;
@@ -135,7 +131,6 @@ namespace GW2DotNET
         /// <param name="dynamicEventRotationService">The dynamic Event Rotation Service.</param>
         /// <param name="fileService">The file service.</param>
         /// <param name="guildDetailsService">The guild details service.</param>
-        /// <param name="itemDetailsService">The item details service.</param>
         /// <param name="itemService">The item service.</param>
         /// <param name="mapFloorService">The map floor service.</param>
         /// <param name="mapNameService">The map name service.</param>
@@ -149,26 +144,25 @@ namespace GW2DotNET
         /// <param name="skinService">The skin service.</param>
         /// <param name="skinDetailsService">The skin details Service.</param>
         public ServiceManager(
-            IBuildService buildService, 
-            IColorService colorService, 
-            IContinentService continentService, 
-            IDynamicEventDetailsService dynamicEventDetailsService, 
-            IDynamicEventNameService dynamicEventNameService, 
-            IDynamicEventRotationService dynamicEventRotationService, 
-            IFileService fileService, 
-            IGuildDetailsService guildDetailsService, 
-            IItemDetailsService itemDetailsService, 
-            IItemService itemService, 
-            IMapFloorService mapFloorService, 
-            IMapNameService mapNameService, 
-            IMapService mapService, 
-            IMatchDetailsService matchDetailsService, 
-            IMatchService matchService, 
-            IObjectiveNameService objectiveNameService, 
-            IRecipeDetailsService recipeDetailsService, 
-            IRecipeService recipeService, 
-            IWorldNameService worldNameService, 
-            ISkinService skinService, 
+            IBuildService buildService,
+            IColorService colorService,
+            IContinentService continentService,
+            IDynamicEventDetailsService dynamicEventDetailsService,
+            IDynamicEventNameService dynamicEventNameService,
+            IDynamicEventRotationService dynamicEventRotationService,
+            IFileService fileService,
+            IGuildDetailsService guildDetailsService,
+            IItemService itemService,
+            IMapFloorService mapFloorService,
+            IMapNameService mapNameService,
+            IMapService mapService,
+            IMatchDetailsService matchDetailsService,
+            IMatchService matchService,
+            IObjectiveNameService objectiveNameService,
+            IRecipeDetailsService recipeDetailsService,
+            IRecipeService recipeService,
+            IWorldNameService worldNameService,
+            ISkinService skinService,
             ISkinDetailsService skinDetailsService)
         {
             this.buildService = buildService;
@@ -179,7 +173,6 @@ namespace GW2DotNET
             this.dynamicEventRotationService = dynamicEventRotationService;
             this.fileService = fileService;
             this.guildDetailsService = guildDetailsService;
-            this.itemDetailsService = itemDetailsService;
             this.itemService = itemService;
             this.mapFloorService = mapFloorService;
             this.mapNameService = mapNameService;
@@ -212,7 +205,6 @@ namespace GW2DotNET
             this.dynamicEventRotationService = new DynamicEventRotationService();
             this.fileService = new FileService(serviceClient);
             this.guildDetailsService = new GuildDetailsService(serviceClient);
-            this.itemDetailsService = new ItemDetailsService(serviceClient);
             this.itemService = new ItemService(serviceClient);
             this.mapFloorService = new MapFloorService(serviceClient);
             this.mapNameService = new MapNameService(serviceClient);
@@ -589,7 +581,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(Item item)
         {
-            return this.itemDetailsService.GetItemDetails(item);
+            return this.itemService.GetItemDetails(item);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -599,7 +591,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(Item item, CultureInfo language)
         {
-            return this.itemDetailsService.GetItemDetails(item, language);
+            return this.itemService.GetItemDetails(item, language);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -608,7 +600,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(Item item)
         {
-            return this.itemDetailsService.GetItemDetailsAsync(item);
+            return this.itemService.GetItemDetailsAsync(item);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -618,7 +610,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(Item item, CultureInfo language)
         {
-            return this.itemDetailsService.GetItemDetailsAsync(item, language);
+            return this.itemService.GetItemDetailsAsync(item, language);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -628,7 +620,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(Item item, CancellationToken cancellationToken)
         {
-            return this.itemDetailsService.GetItemDetailsAsync(item, cancellationToken);
+            return this.itemService.GetItemDetailsAsync(item, cancellationToken);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -639,7 +631,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(Item item, CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.itemDetailsService.GetItemDetailsAsync(item, language, cancellationToken);
+            return this.itemService.GetItemDetailsAsync(item, language, cancellationToken);
         }
 
         /// <summary>Gets a collection of item identifiers.</summary>
@@ -1069,15 +1061,15 @@ namespace GW2DotNET
             var t1 = this.recipeDetailsService.GetRecipeDetailsAsync(recipe, language, cancellationToken);
             var t2 = t1.ContinueWith(
                 task =>
-                    {
-                        recipe = task.Result;
-                        recipe.OutputItem = this.GetItemDetailsAsync(recipe.OutputItem, language, cancellationToken).Result;
-                        Parallel.ForEach(
-                            recipe.Ingredients, 
-                            ingredient => { ingredient.Item = this.GetItemDetailsAsync(ingredient.Item, language, cancellationToken).Result; });
+                {
+                    recipe = task.Result;
+                    recipe.OutputItem = this.GetItemDetailsAsync(recipe.OutputItem, language, cancellationToken).Result;
+                    Parallel.ForEach(
+                        recipe.Ingredients,
+                        ingredient => { ingredient.Item = this.GetItemDetailsAsync(ingredient.Item, language, cancellationToken).Result; });
 
-                        return recipe;
-                    }, 
+                    return recipe;
+                },
                 cancellationToken);
 
             return t2;

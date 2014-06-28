@@ -6,31 +6,11 @@
 //   Provides the interface for the items service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2DotNET.V1.Items
 {
-    using System.Collections.Generic;
-    using System.Threading;
-    using System.Threading.Tasks;
-
-    using GW2DotNET.V1.Items.Contracts;
-
     /// <summary>Provides the interface for the items service.</summary>
-    public interface IItemService
+    public interface IItemService : IItemDiscoveryService, IItemDetailsService
     {
-        /// <summary>Gets a collection of item identifiers.</summary>
-        /// <returns>A collection of item identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        IEnumerable<Item> GetItems();
-
-        /// <summary>Gets a collection of item identifiers.</summary>
-        /// <returns>A collection of item identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Item>> GetItemsAsync();
-
-        /// <summary>Gets a collection of item identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of item identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Item>> GetItemsAsync(CancellationToken cancellationToken);
     }
 }
