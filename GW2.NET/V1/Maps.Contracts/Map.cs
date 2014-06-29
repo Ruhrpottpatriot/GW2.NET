@@ -44,7 +44,7 @@ namespace GW2DotNET.V1.Maps.Contracts
 
         /// <summary>Gets or sets the language info.</summary>
         [DataMember(Name = "lang")]
-        public CultureInfo Language { get; set; }
+        public string Language { get; set; }
 
         /// <summary>Gets or sets the map's ID.</summary>
         [DataMember(Name = "map_id")]

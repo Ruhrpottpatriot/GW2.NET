@@ -62,7 +62,7 @@ namespace GW2DotNET.V1.Maps
                 map.Value.MapId = map.Key;
 
                 // Patch missing language information
-                map.Value.Language = language;
+                map.Value.Language = language.TwoLetterISOLanguageName;
 
                 // Patch missing continent identifiers
                 foreach (var floor in map.Value.Floors)
@@ -127,7 +127,7 @@ namespace GW2DotNET.V1.Maps
                             map.Value.MapId = map.Key;
 
                             // Patch missing language information
-                            map.Value.Language = language;
+                            map.Value.Language = language.TwoLetterISOLanguageName;
 
                             // Patch missing continent identifiers
                             foreach (var floor in map.Value.Floors)
@@ -168,7 +168,7 @@ namespace GW2DotNET.V1.Maps
                 map.Value.MapId = map.Key;
 
                 // Patch missing language information
-                map.Value.Language = language;
+                map.Value.Language = language.TwoLetterISOLanguageName;
 
                 // Patch missing continent identifiers
                 foreach (var floor in map.Value.Floors)
@@ -227,7 +227,7 @@ namespace GW2DotNET.V1.Maps
                             map.Value.MapId = map.Key;
 
                             // Patch missing language information
-                            map.Value.Language = language;
+                            map.Value.Language = language.TwoLetterISOLanguageName;
 
                             // Patch missing continent identifiers
                             foreach (var floor in map.Value.Floors)
