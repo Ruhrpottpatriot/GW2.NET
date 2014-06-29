@@ -93,5 +93,18 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
         {
             return this.Id.GetHashCode();
         }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.Id.ToString();
+        }
     }
 }
