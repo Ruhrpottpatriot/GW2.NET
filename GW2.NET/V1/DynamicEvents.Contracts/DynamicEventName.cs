@@ -9,7 +9,6 @@
 namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System;
-    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
@@ -23,7 +22,7 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
 
         /// <summary>Gets or sets the language info.</summary>
         [DataMember(Name = "lang")]
-        public CultureInfo Language { get; set; }
+        public string Language { get; set; }
 
         /// <summary>Gets or sets the localized event name.</summary>
         [DataMember(Name = "name")]

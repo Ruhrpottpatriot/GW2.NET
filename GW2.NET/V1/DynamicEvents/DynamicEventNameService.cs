@@ -49,10 +49,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventNameRequest { Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventNameCollection>());
 
-            // patch missing language information
+            // Patch missing language information
             foreach (var eventName in result)
             {
-                eventName.Language = language;
+                eventName.Language = language.TwoLetterISOLanguageName;
             }
 
             return result;
@@ -99,10 +99,10 @@ namespace GW2DotNET.V1.DynamicEvents
                     {
                         var result = task.Result;
 
-                        // patch missing language information
+                        // Patch missing language information
                         foreach (var eventName in result)
                         {
-                            eventName.Language = language;
+                            eventName.Language = language.TwoLetterISOLanguageName;
                         }
 
                         return result;
