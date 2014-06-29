@@ -10,7 +10,6 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions
 {
     using System;
     using System.Drawing;
-    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
@@ -34,9 +33,8 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions
         [JsonConverter(typeof(UnknownFloorConverter))]
         public Floor DefaultFloor { get; set; }
 
-        /// <summary>Gets or sets the map identifier.</summary>
-        [DataMember(Name = "map_id")]
-        public int MapId { get; set; }
+        /// <summary>Gets or sets the map.</summary>
+        public Map Map { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
         [DataMember(Name = "map_rect")]
@@ -103,7 +101,7 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions
                 return true;
             }
 
-            return this.MapId == other.MapId;
+            return object.Equals(this.Map, other.Map);
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
@@ -133,20 +131,14 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions
         /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
-            return this.MapId;
+            return this.Map != null ? this.Map.GetHashCode() : 0;
         }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            var name = this.Name;
-            if (name != null)
-            {
-                return name;
-            }
-
-            return this.MapId.ToString(NumberFormatInfo.InvariantInfo);
+            return this.Name;
         }
     }
 }

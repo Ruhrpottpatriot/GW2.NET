@@ -70,7 +70,7 @@ namespace GW2DotNET.V1.Maps
                 // Patch missing subregion identifiers
                 foreach (var map in region.Value.Maps)
                 {
-                    map.Value.MapId = map.Key;
+                    map.Value.Map = new Map { MapId = map.Key };
                 }
             }
 
@@ -140,7 +140,7 @@ namespace GW2DotNET.V1.Maps
                             // Patch missing subregion identifiers
                             foreach (var map in region.Value.Maps)
                             {
-                                map.Value.MapId = map.Key;
+                                map.Value.Map = new Map { MapId = map.Key };
                             }
                         }
 
