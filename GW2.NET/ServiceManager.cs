@@ -35,10 +35,8 @@ namespace GW2DotNET
     using GW2DotNET.V1.Skins.Contracts;
     using GW2DotNET.V1.Worlds;
     using GW2DotNET.V1.Worlds.Contracts;
-    using GW2DotNET.V1.WorldVersusWorld.Matches;
-    using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts;
-    using GW2DotNET.V1.WorldVersusWorld.Objectives;
-    using GW2DotNET.V1.WorldVersusWorld.Objectives.Contracts;
+    using GW2DotNET.V1.WorldVersusWorld;
+    using GW2DotNET.V1.WorldVersusWorld.Contracts;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
@@ -99,9 +97,6 @@ namespace GW2DotNET
         private readonly IMatchService matchService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IObjectiveNameService objectiveNameService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IRecipeService recipeService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
@@ -124,7 +119,6 @@ namespace GW2DotNET
         /// <param name="mapNameService">The map name service.</param>
         /// <param name="mapService">The map service.</param>
         /// <param name="matchService">The match service.</param>
-        /// <param name="objectiveNameService">The objective name service.</param>
         /// <param name="recipeService">The recipe service.</param>
         /// <param name="worldNameService">The world name service.</param>
         /// <param name="skinService">The skin service.</param>
@@ -142,7 +136,6 @@ namespace GW2DotNET
             IMapNameService mapNameService, 
             IMapService mapService, 
             IMatchService matchService, 
-            IObjectiveNameService objectiveNameService, 
             IRecipeService recipeService, 
             IWorldNameService worldNameService, 
             ISkinService skinService)
@@ -160,7 +153,6 @@ namespace GW2DotNET
             this.mapNameService = mapNameService;
             this.mapService = mapService;
             this.matchService = matchService;
-            this.objectiveNameService = objectiveNameService;
             this.recipeService = recipeService;
             this.worldNameService = worldNameService;
             this.skinService = skinService;
@@ -189,7 +181,6 @@ namespace GW2DotNET
             this.mapNameService = new MapNameService(serviceClient);
             this.mapService = new MapService(serviceClient);
             this.matchService = new MatchService(serviceClient);
-            this.objectiveNameService = new ObjectiveNameService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
             this.worldNameService = new WorldNameService(serviceClient);
             this.skinService = new SkinService(serviceClient);
@@ -923,7 +914,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public IEnumerable<ObjectiveName> GetObjectiveNames()
         {
-            return this.objectiveNameService.GetObjectiveNames();
+            return this.matchService.GetObjectiveNames();
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -932,7 +923,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public IEnumerable<ObjectiveName> GetObjectiveNames(CultureInfo language)
         {
-            return this.objectiveNameService.GetObjectiveNames(language);
+            return this.matchService.GetObjectiveNames(language);
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -940,7 +931,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync()
         {
-            return this.objectiveNameService.GetObjectiveNamesAsync();
+            return this.matchService.GetObjectiveNamesAsync();
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -949,7 +940,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
         {
-            return this.objectiveNameService.GetObjectiveNamesAsync(cancellationToken);
+            return this.matchService.GetObjectiveNamesAsync(cancellationToken);
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -958,7 +949,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language)
         {
-            return this.objectiveNameService.GetObjectiveNamesAsync(language);
+            return this.matchService.GetObjectiveNamesAsync(language);
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -968,7 +959,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.objectiveNameService.GetObjectiveNamesAsync(language, cancellationToken);
+            return this.matchService.GetObjectiveNamesAsync(language, cancellationToken);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
