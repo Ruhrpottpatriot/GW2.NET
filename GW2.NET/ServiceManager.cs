@@ -978,14 +978,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(Recipe recipe, CultureInfo language)
         {
-            recipe = this.recipeService.GetRecipeDetails(recipe, language);
-            recipe.OutputItem = this.GetItemDetails(recipe.OutputItem, language);
-            foreach (var ingredient in recipe.Ingredients)
-            {
-                ingredient.Item = this.GetItemDetails(ingredient.Item, language);
-            }
-
-            return recipe;
+            return this.recipeService.GetRecipeDetails(recipe, language);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -1025,21 +1018,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CultureInfo language, CancellationToken cancellationToken)
         {
-            var t1 = this.recipeService.GetRecipeDetailsAsync(recipe, language, cancellationToken);
-            var t2 = t1.ContinueWith(
-                task =>
-                    {
-                        recipe = task.Result;
-                        recipe.OutputItem = this.GetItemDetailsAsync(recipe.OutputItem, language, cancellationToken).Result;
-                        Parallel.ForEach(
-                            recipe.Ingredients, 
-                            ingredient => { ingredient.Item = this.GetItemDetailsAsync(ingredient.Item, language, cancellationToken).Result; });
-
-                        return recipe;
-                    }, 
-                cancellationToken);
-
-            return t2;
+            return this.recipeService.GetRecipeDetailsAsync(recipe, language, cancellationToken);
         }
 
         /// <summary>Gets a collection of discovered recipes.</summary>
