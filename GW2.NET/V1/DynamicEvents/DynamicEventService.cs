@@ -358,7 +358,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
                                 return shift;
                             }).OrderBy(offset => offset.Ticks)
-                    select new DynamicEventRotation { EventId = eventId, Shifts = new DynamicEventShifts(shifts) }).ToList();
+                    select new DynamicEventRotation { Event = new DynamicEvent { EventId = eventId }, Shifts = new DynamicEventShifts(shifts) }).ToList();
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>

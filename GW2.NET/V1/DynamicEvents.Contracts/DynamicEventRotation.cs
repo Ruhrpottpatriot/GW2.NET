@@ -16,9 +16,8 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     /// <summary>Represents a dynamic event and its rotation.</summary>
     public class DynamicEventRotation : ServiceContract, IEquatable<DynamicEventRotation>
     {
-        /// <summary>Gets or sets the event identifier.</summary>
-        [DataMember(Name = "event_id")]
-        public Guid EventId { get; set; }
+        /// <summary>Gets or sets the event.</summary>
+        public DynamicEvent Event { get; set; }
 
         /// <summary>Gets or sets the event shifts.</summary>
         [DataMember(Name = "shifts")]
@@ -57,7 +56,7 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
                 return true;
             }
 
-            return this.EventId.Equals(other.EventId);
+            return object.Equals(this.Event, other.Event);
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
@@ -87,7 +86,7 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
         /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
-            return this.EventId.GetHashCode();
+            return this.Event != null ? this.Event.GetHashCode() : 0;
         }
     }
 }
