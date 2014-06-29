@@ -144,6 +144,7 @@
     <Compile Include="V1\Common\Converters\UnknownFloorConverter.cs" />
     <Compile Include="V1\Common\Converters\UnknownRecipeConverter.cs" />
     <Compile Include="V1\Common\Converters\UnknownGuildConverter.cs" />
+    <Compile Include="V1\Common\Converters\UnknownMapConverter.cs" />
     <Compile Include="V1\Common\Converters\UnknownWorldConverter.cs" />
     <Compile Include="V1\Common\Converters\UnknownSkinConverter.cs" />
     <Compile Include="V1\Common\Converters\UnknownItemConverter.cs" />

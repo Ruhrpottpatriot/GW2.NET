@@ -12,7 +12,11 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.DynamicEvents.Contracts.Locations;
+    using GW2DotNET.V1.Maps.Contracts;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents a dynamic event and its localized details.</summary>
     public class DynamicEvent : ServiceContract, IEquatable<DynamicEvent>
@@ -37,9 +41,10 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
         [DataMember(Name = "location")]
         public Location Location { get; set; }
 
-        /// <summary>Gets or sets the map identifier.</summary>
+        /// <summary>Gets or sets the map.</summary>
         [DataMember(Name = "map_id")]
-        public int MapId { get; set; }
+        [JsonConverter(typeof(UnknownMapConverter))]
+        public Map Map { get; set; }
 
         /// <summary>Gets or sets the name of the event.</summary>
         [DataMember(Name = "name")]
