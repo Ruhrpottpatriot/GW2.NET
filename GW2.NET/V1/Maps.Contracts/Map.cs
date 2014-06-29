@@ -23,7 +23,8 @@ namespace GW2DotNET.V1.Maps.Contracts
     {
         /// <summary>Gets or sets the continent identifier of the continent that this map belongs to.</summary>
         [DataMember(Name = "continent_id")]
-        public int ContinentId { get; set; }
+        [JsonConverter(typeof(UnknownContinentConverter))]
+        public Continent Continent { get; set; }
 
         /// <summary>Gets or sets the name of the continent that this map belongs to.</summary>
         [DataMember(Name = "continent_name")]

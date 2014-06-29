@@ -67,7 +67,7 @@ namespace GW2DotNET.V1.Maps
                 // Patch missing continent identifiers
                 foreach (var floor in map.Value.Floors)
                 {
-                    floor.ContinentId = map.Value.ContinentId;
+                    floor.ContinentId = map.Value.Continent.ContinentId;
                 }
             }
 
@@ -132,7 +132,7 @@ namespace GW2DotNET.V1.Maps
                             // Patch missing continent identifiers
                             foreach (var floor in map.Value.Floors)
                             {
-                                floor.ContinentId = map.Value.ContinentId;
+                                floor.ContinentId  = map.Value.Continent.ContinentId;
                             }
                         }
 
@@ -173,7 +173,7 @@ namespace GW2DotNET.V1.Maps
                 // Patch missing continent identifiers
                 foreach (var floor in map.Value.Floors)
                 {
-                    floor.ContinentId = map.Value.ContinentId;
+                    floor.ContinentId = map.Value.Continent.ContinentId;
                 }
             }
 
@@ -232,7 +232,7 @@ namespace GW2DotNET.V1.Maps
                             // Patch missing continent identifiers
                             foreach (var floor in map.Value.Floors)
                             {
-                                floor.ContinentId = map.Value.ContinentId;
+                                floor.ContinentId = map.Value.Continent.ContinentId;
                             }
                         }
 
