@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Skins.Contracts
 
         /// <summary>Gets or sets the language info.</summary>
         [DataMember(Name = "lang")]
-        public CultureInfo Language { get; set; }
+        public string Language { get; set; }
 
         /// <summary>Gets or sets the skin's name.</summary>
         [DataMember(Name = "name")]

@@ -55,8 +55,8 @@ namespace GW2DotNET.V1.Skins
             var request = new SkinDetailsRequest { SkinId = skin.SkinId, Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<Skin>(Settings));
 
-            // patch missing language information
-            result.Language = language;
+            // Patch missing language information
+            result.Language = language.TwoLetterISOLanguageName;
 
             return result;
         }
@@ -106,8 +106,8 @@ namespace GW2DotNET.V1.Skins
                     {
                         var result = task.Result;
 
-                        // patch missing language information
-                        result.Language = language;
+                        // Patch missing language information
+                        result.Language = language.TwoLetterISOLanguageName;
 
                         return result;
                     }, 
