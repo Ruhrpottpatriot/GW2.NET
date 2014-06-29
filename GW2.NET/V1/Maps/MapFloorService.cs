@@ -34,32 +34,33 @@ namespace GW2DotNET.V1.Maps
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Floor GetMapFloor(int continentId, int floor)
+        public Floor GetMapFloor(Continent continent, int floor)
         {
-            return this.GetMapFloor(continentId, floor, CultureInfo.GetCultureInfo("en"));
+            return this.GetMapFloor(continent, floor, CultureInfo.GetCultureInfo("en"));
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Floor GetMapFloor(int continentId, int floor, CultureInfo language)
+        public Floor GetMapFloor(Continent continent, int floor, CultureInfo language)
         {
+            Preconditions.EnsureNotNull(paramName: "continent", value: continent);
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
+            var request = new MapFloorRequest { ContinentId = continent.ContinentId, Floor = floor, Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<Floor>(Settings));
 
             // Patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
 
             // Patch missing floor information
-            result.Continent = new Continent { ContinentId = continentId };
+            result.Continent = continent;
             result.FloorNumber = floor;
 
             // Patch missing region identifiers
@@ -78,48 +79,49 @@ namespace GW2DotNET.V1.Maps
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Task<Floor> GetMapFloorAsync(int continentId, int floor)
+        public Task<Floor> GetMapFloorAsync(Continent continent, int floor)
         {
-            return this.GetMapFloorAsync(continentId, floor, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            return this.GetMapFloorAsync(continent, floor, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Task<Floor> GetMapFloorAsync(int continentId, int floor, CancellationToken cancellationToken)
+        public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CancellationToken cancellationToken)
         {
-            return this.GetMapFloorAsync(continentId, floor, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            return this.GetMapFloorAsync(continent, floor, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Task<Floor> GetMapFloorAsync(int continentId, int floor, CultureInfo language)
+        public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CultureInfo language)
         {
-            return this.GetMapFloorAsync(continentId, floor, language, CancellationToken.None);
+            return this.GetMapFloorAsync(continent, floor, language, CancellationToken.None);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Task<Floor> GetMapFloorAsync(int continentId, int floor, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CultureInfo language, CancellationToken cancellationToken)
         {
+            Preconditions.EnsureNotNull(paramName: "continent", value: continent);
             Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new MapFloorRequest { ContinentId = continentId, Floor = floor, Culture = language };
+            var request = new MapFloorRequest { ContinentId = continent.ContinentId, Floor = floor, Culture = language };
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Floor>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {
@@ -129,7 +131,7 @@ namespace GW2DotNET.V1.Maps
                         result.Language = language.TwoLetterISOLanguageName;
 
                         // Patch missing floor information
-                        result.Continent = new Continent { ContinentId = continentId };
+                        result.Continent = continent;
                         result.FloorNumber = floor;
 
                         // Patch missing region identifiers

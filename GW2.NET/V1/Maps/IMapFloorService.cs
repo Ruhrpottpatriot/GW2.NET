@@ -18,50 +18,50 @@ namespace GW2DotNET.V1.Maps
     public interface IMapFloorService
     {
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        Floor GetMapFloor(int continentId, int floor);
+        Floor GetMapFloor(Continent continent, int floor);
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        Floor GetMapFloor(int continentId, int floor, CultureInfo language);
+        Floor GetMapFloor(Continent continent, int floor, CultureInfo language);
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        Task<Floor> GetMapFloorAsync(int continentId, int floor);
+        Task<Floor> GetMapFloorAsync(Continent continent, int floor);
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        Task<Floor> GetMapFloorAsync(int continentId, int floor, CancellationToken cancellationToken);
+        Task<Floor> GetMapFloorAsync(Continent continent, int floor, CancellationToken cancellationToken);
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        Task<Floor> GetMapFloorAsync(int continentId, int floor, CultureInfo language);
+        Task<Floor> GetMapFloorAsync(Continent continent, int floor, CultureInfo language);
 
         /// <summary>Gets a map floor and its localized details.</summary>
-        /// <param name="continentId">The continent.</param>
+        /// <param name="continent">The continent identifier.</param>
         /// <param name="floor">The floor number.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        Task<Floor> GetMapFloorAsync(int continentId, int floor, CultureInfo language, CancellationToken cancellationToken);
+        Task<Floor> GetMapFloorAsync(Continent continent, int floor, CultureInfo language, CancellationToken cancellationToken);
     }
 }
