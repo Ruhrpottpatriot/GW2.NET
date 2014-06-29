@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using GW2DotNET.V1.DynamicEvents.Contracts;
 
     /// <summary>Provides the default implementation of the events service.</summary>
-    public class DynamicEventService : IDynamicEventService
+    public class DynamicEventService : IDynamicEventStateService
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
