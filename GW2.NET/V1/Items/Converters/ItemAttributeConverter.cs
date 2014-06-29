@@ -39,8 +39,7 @@ namespace GW2DotNET.V1.Items.Converters
             typeProperty.Remove();
 
             // Get a corresponding System.Type
-            Type type;
-            type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownItemAttribute);
+            Type type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownItemAttribute);
 
             // Try to hand over execution to a more specific converter
             var converter = serializer.Converters.FirstOrDefault(jsonConverter => jsonConverter.CanConvert(type));

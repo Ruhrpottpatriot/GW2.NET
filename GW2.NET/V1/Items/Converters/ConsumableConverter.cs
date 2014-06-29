@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Items.Converters
     /// <summary>Converts an object to and/or from JSON.</summary>
     public class ConsumableConverter : TypeDiscriminatorConverter<Consumable>
     {
-        /// <summary>Reads the JSON representation of the object.</summary>
+        /// <summary>Reads the JSON representation of the object.</summary>B
         /// <param name="reader">The <see cref="T:Newtonsoft.Json.JsonReader"/> to read from.</param>
         /// <param name="objectType">Type of the object.</param>
         /// <param name="existingValue">The existing value of object being read.</param>
@@ -40,8 +40,7 @@ namespace GW2DotNET.V1.Items.Converters
             typeProperty.Remove();
 
             // Get a corresponding System.Type
-            Type type;
-            type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownConsumable);
+            Type type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownConsumable);
 
             // Try to hand over execution to a more specific converter
             var converter = serializer.Converters.FirstOrDefault(jsonConverter => jsonConverter.CanConvert(type));
@@ -53,12 +52,13 @@ namespace GW2DotNET.V1.Items.Converters
 
             // Flatten the 'consumable' values
             detailsProperty.Remove();
+            foreach (var detail in detailsProperty.Value)
+            {
+                content.Add(detail);
+            }
 
             // Deserialize the result
-            var result = serializer.Deserialize(content.CreateReader(), type);
-            serializer.Populate(detailsProperty.Value.CreateReader(), result);
-
-            return result;
+            return serializer.Deserialize(content.CreateReader(), type);
         }
     }
 }

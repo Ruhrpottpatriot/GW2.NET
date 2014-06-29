@@ -40,8 +40,7 @@ namespace GW2DotNET.V1.Maps.Converters
             typeProperty.Remove();
 
             // Get a corresponding System.Type
-            Type type;
-            type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownPointOfInterest);
+            Type type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownPointOfInterest);
 
             // Try to hand over execution to a more specific converter
             var converter = serializer.Converters.FirstOrDefault(jsonConverter => jsonConverter.CanConvert(type));

@@ -40,8 +40,7 @@ namespace GW2DotNET.V1.Items.Converters
             typeProperty.Remove();
 
             // Get a corresponding System.Type
-            Type type;
-            type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownUpgradeComponent);
+            Type type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownUpgradeComponent);
 
             // Try to hand over execution to a more specific converter
             var converter = serializer.Converters.FirstOrDefault(jsonConverter => jsonConverter.CanConvert(type));
@@ -51,30 +50,30 @@ namespace GW2DotNET.V1.Items.Converters
                 return converter.ReadJson(content.CreateReader(), type, existingValue, serializer);
             }
 
+            // Patch duplicate property 'flags' in root object and 'upgrade_component' object
+            var flagsProperty = detailsProperty.Value.Value<JObject>().Property("flags");
+            flagsProperty.Replace(new JProperty("upgrade_component_flags", flagsProperty.Value));
+
             // Flatten the 'upgrade_component' values
             detailsProperty.Remove();
-
-            // Patch duplicate property 'flags' in root object and 'upgrade_component' object
-            detailsProperty.Value.Value<JObject>()
-                           .Property("flags")
-                           .Replace(new JProperty("upgrade_component_flags", detailsProperty.Value.Value<JObject>().Property("flags").Value));
+            foreach (var detail in detailsProperty.Value)
+            {
+                content.Add(detail);
+            }
 
             // Flatten the 'infix_upgrade' values (if any)
-            var infixProperty = detailsProperty.Value.Value<JObject>().Property("infix_upgrade");
+            var infixProperty = content.Property("infix_upgrade");
             if (infixProperty != null)
             {
                 infixProperty.Remove();
+                foreach (var detail in infixProperty.Value)
+                {
+                    content.Add(detail);
+                }
             }
 
             // Deserialize the result
-            var result = serializer.Deserialize(content.CreateReader(), type);
-            serializer.Populate(detailsProperty.Value.CreateReader(), result);
-            if (infixProperty != null)
-            {
-                serializer.Populate(infixProperty.Value.CreateReader(), result);
-            }
-
-            return result;
+            return serializer.Deserialize(content.CreateReader(), type);
         }
     }
 }

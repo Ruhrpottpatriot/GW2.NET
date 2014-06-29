@@ -40,8 +40,7 @@ namespace GW2DotNET.V1.Items.Converters
             typeProperty.Remove();
 
             // Get a corresponding System.Type
-            Type type;
-            type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownWeapon);
+            Type type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownWeapon);
 
             // Try to hand over execution to a more specific converter
             var converter = serializer.Converters.FirstOrDefault(jsonConverter => jsonConverter.CanConvert(type));
@@ -53,23 +52,24 @@ namespace GW2DotNET.V1.Items.Converters
 
             // Flatten the 'weapon' values
             detailsProperty.Remove();
+            foreach (var detail in detailsProperty.Value)
+            {
+                content.Add(detail);
+            }
 
             // Flatten the 'infix_upgrade' values (if any)
-            var infixProperty = detailsProperty.Value.Value<JObject>().Property("infix_upgrade");
+            var infixProperty = content.Property("infix_upgrade");
             if (infixProperty != null)
             {
                 infixProperty.Remove();
+                foreach (var detail in infixProperty.Value)
+                {
+                    content.Add(detail);
+                }
             }
 
             // Deserialize the result
-            var result = serializer.Deserialize(content.CreateReader(), type);
-            serializer.Populate(detailsProperty.Value.CreateReader(), result);
-            if (infixProperty != null)
-            {
-                serializer.Populate(infixProperty.Value.CreateReader(), result);
-            }
-
-            return result;
+            return serializer.Deserialize(content.CreateReader(), type);
         }
     }
 }

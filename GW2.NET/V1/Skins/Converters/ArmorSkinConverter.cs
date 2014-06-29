@@ -40,8 +40,7 @@ namespace GW2DotNET.V1.Skins.Converters
             typeProperty.Remove();
 
             // Get a corresponding System.Type
-            Type type;
-            type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownArmorSkin);
+            Type type = this.KnownTypes.TryGetValue(discriminator, out type) ? type : typeof(UnknownArmorSkin);
 
             // Try to hand over execution to a more specific converter
             var converter = serializer.Converters.FirstOrDefault(jsonConverter => jsonConverter.CanConvert(type));
@@ -53,11 +52,14 @@ namespace GW2DotNET.V1.Skins.Converters
 
             // Flatten the 'armor' values
             detailsProperty.Remove();
+            foreach (var detail in detailsProperty.Value)
+            {
+                content.Add(detail);
+            }
+
 
             // Deserialize the result
-            var item = serializer.Deserialize(content.CreateReader(), type);
-            serializer.Populate(detailsProperty.Value.CreateReader(), item);
-            return item;
+            return serializer.Deserialize(content.CreateReader(), type);
         }
     }
 }

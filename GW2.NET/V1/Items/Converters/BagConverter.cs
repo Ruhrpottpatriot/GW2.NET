@@ -66,14 +66,17 @@ namespace GW2DotNET.V1.Items.Converters
 
             // Read the entire JSON object into memory
             var content = JObject.Load(reader);
+            var detailsProperty = content.Property("bag");
 
             // Flatten the 'bag' values
-            var detailsProperty = content.Property("bag");
             detailsProperty.Remove();
+            foreach (var detail in detailsProperty.Value)
+            {
+                content.Add(detail);
+            }
 
             // Deserialize the result
             serializer.Populate(content.CreateReader(), result);
-            serializer.Populate(detailsProperty.Value.CreateReader(), result);
 
             return result;
         }

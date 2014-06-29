@@ -62,25 +62,28 @@ namespace GW2DotNET.V1.Items.Converters
 
             // Read the entire JSON object into memory
             var content = JObject.Load(reader);
+            var detailsProperty = content.Property("back");
 
             // Flatten the 'back' values
-            var detailsProperty = content.Property("back");
             detailsProperty.Remove();
+            foreach (var detail in detailsProperty.Value)
+            {
+                content.Add(detail);
+            }
 
             // Flatten the 'infix_upgrade' values (if any)
-            var infixProperty = detailsProperty.Value.Value<JObject>().Property("infix_upgrade");
+            var infixProperty = content.Property("infix_upgrade");
             if (infixProperty != null)
             {
                 infixProperty.Remove();
+                foreach (var detail in infixProperty.Value)
+                {
+                    content.Add(detail);
+                }
             }
 
             // Deserialize the result
             serializer.Populate(content.CreateReader(), result);
-            serializer.Populate(detailsProperty.Value.CreateReader(), result);
-            if (infixProperty != null)
-            {
-                serializer.Populate(infixProperty.Value.CreateReader(), result);
-            }
 
             return result;
         }
