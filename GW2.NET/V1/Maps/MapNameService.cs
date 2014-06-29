@@ -49,10 +49,10 @@ namespace GW2DotNET.V1.Maps
             var request = new MapNameRequest { Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<MapNameCollection>());
 
-            // patch missing language information
+            // Patch missing language information
             foreach (var mapName in result)
             {
-                mapName.Language = language;
+                mapName.Language = language.TwoLetterISOLanguageName;
             }
 
             return result;
@@ -98,10 +98,10 @@ namespace GW2DotNET.V1.Maps
                     {
                         var result = task.Result;
 
-                        // patch missing language information
+                        // Patch missing language information
                         foreach (var mapName in result)
                         {
-                            mapName.Language = language;
+                            mapName.Language = language.TwoLetterISOLanguageName;
                         }
 
                         return result;
