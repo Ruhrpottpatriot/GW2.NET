@@ -36,6 +36,14 @@ namespace GW2DotNET.RestSharp
             this.restClient = new RestClient(baseUri.ToString());
         }
 
+        /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
+        /// <param name="restClient">The <see cref="IRestClient"/>.</param>
+        public ServiceClient(IRestClient restClient)
+        {
+            Preconditions.EnsureNotNull(paramName: "restClient", value: restClient);
+            this.restClient = restClient;
+        }
+
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
         /// <param name="serializer">The serialization engine.</param>
