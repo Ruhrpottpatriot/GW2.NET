@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Contracts
         [JsonConverter(typeof(UnknownWorldConverter))]
         public World GreenWorld { get; set; }
 
-        /// <summary>Gets or sets the match's ID.</summary>
+        /// <summary>Gets or sets the match identifier.</summary>
         [DataMember(Name = "wvw_match_id")]
         public string MatchId { get; set; }
 

@@ -26,11 +26,11 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Sectors
         [DataMember(Name = "level")]
         public int Level { get; set; }
 
-        /// <summary>Gets or sets the sector's name.</summary>
+        /// <summary>Gets or sets the name of the sector.</summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
-        /// <summary>Gets or sets the sector's ID.</summary>
+        /// <summary>Gets or sets the sector identifier.</summary>
         [DataMember(Name = "sector_id")]
         public int SectorId { get; set; }
 

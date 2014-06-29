@@ -16,11 +16,11 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     /// <summary>Represents a dynamic event and its localized name.</summary>
     public class DynamicEventName : ServiceContract, IEquatable<DynamicEventName>
     {
-        /// <summary>Gets or sets the event ID.</summary>
+        /// <summary>Gets or sets the event identifier.</summary>
         [DataMember(Name = "id")]
         public Guid Id { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
         public string Language { get; set; }
 

@@ -18,38 +18,38 @@ namespace GW2DotNET.V1.Guilds
     public interface IGuildDetailsService
     {
         /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildId">The guild's ID.</param>
+        /// <param name="guildId">The guild identifier.</param>
         /// <returns>A guild and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         Guild GetGuildDetailsById(Guid guildId);
 
         /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildId">The guild's ID.</param>
+        /// <param name="guildId">The guild identifier.</param>
         /// <returns>A guild and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         Task<Guild> GetGuildDetailsByIdAsync(Guid guildId);
 
         /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildId">The guild's ID.</param>
+        /// <param name="guildId">The guild identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A guild and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         Task<Guild> GetGuildDetailsByIdAsync(Guid guildId, CancellationToken cancellationToken);
 
         /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildName">The guild's name.</param>
+        /// <param name="guildName">The name of the guild.</param>
         /// <returns>A guild and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         Guild GetGuildDetailsByName(string guildName);
 
         /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildName">The guild's name.</param>
+        /// <param name="guildName">The name of the guild.</param>
         /// <returns>A guild and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
         Task<Guild> GetGuildDetailsByNameAsync(string guildName);
 
         /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildName">The guild's name.</param>
+        /// <param name="guildName">The name of the guild.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A guild and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>

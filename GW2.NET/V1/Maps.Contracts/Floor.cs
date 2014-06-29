@@ -33,7 +33,7 @@ namespace GW2DotNET.V1.Maps.Contracts
         [DataMember(Name = "floor")]
         public int FloorNumber { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
         public string Language { get; set; }
 

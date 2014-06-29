@@ -20,11 +20,11 @@ namespace GW2DotNET.V1.Guilds.Contracts
         [DataMember(Name = "emblem")]
         public Emblem Emblem { get; set; }
 
-        /// <summary>Gets or sets the guild's ID.</summary>
+        /// <summary>Gets or sets the guild identifier.</summary>
         [DataMember(Name = "guild_id")]
         public Guid GuildId { get; set; }
 
-        /// <summary>Gets or sets the guild's name.</summary>
+        /// <summary>Gets or sets the name of the guild.</summary>
         [DataMember(Name = "guild_name")]
         public string Name { get; set; }
 

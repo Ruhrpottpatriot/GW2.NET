@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Builds.Contracts
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.</remarks>
     public class Build : ServiceContract, IEquatable<Build>, IComparable<Build>
     {
-        /// <summary>Gets or sets the current build ID of the game.</summary>
+        /// <summary>Gets or sets the current build identifier of the game.</summary>
         [DataMember(Name = "build_id")]
         public virtual int BuildId { get; set; }
 

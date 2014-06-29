@@ -27,11 +27,11 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions
         [DataMember(Name = "maps")]
         public SubregionCollection Maps { get; set; }
 
-        /// <summary>Gets or sets the region's name.</summary>
+        /// <summary>Gets or sets the name of the region.</summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
-        /// <summary>Gets or sets the region's ID.</summary>
+        /// <summary>Gets or sets the region identifier.</summary>
         [DataMember(Name = "region_id")]
         public int RegionId { get; set; }
 

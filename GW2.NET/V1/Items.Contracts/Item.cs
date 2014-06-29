@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.Items.Contracts
         [DataMember(Name = "item_id")]
         public virtual int ItemId { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
         public virtual string Language { get; set; }
 
@@ -54,7 +54,7 @@ namespace GW2DotNET.V1.Items.Contracts
         [DataMember(Name = "level")]
         public virtual int Level { get; set; }
 
-        /// <summary>Gets or sets the item's name.</summary>
+        /// <summary>Gets or sets the name of the item.</summary>
         [DataMember(Name = "name")]
         public virtual string Name { get; set; }
 

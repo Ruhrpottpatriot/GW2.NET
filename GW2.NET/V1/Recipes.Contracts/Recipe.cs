@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Recipes.Contracts
         [DataMember(Name = "ingredients")]
         public virtual IngredientCollection Ingredients { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
         public virtual string Language { get; set; }
 

@@ -21,11 +21,11 @@ namespace GW2DotNET.V1.Maps.Contracts
     /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
     public class Map : ServiceContract, IEquatable<Map>
     {
-        /// <summary>Gets or sets the ID of the continent this map belongs to.</summary>
+        /// <summary>Gets or sets the continent identifier of the continent that this map belongs to.</summary>
         [DataMember(Name = "continent_id")]
         public int ContinentId { get; set; }
 
-        /// <summary>Gets or sets the name of the continent this map belongs to.</summary>
+        /// <summary>Gets or sets the name of the continent that this map belongs to.</summary>
         [DataMember(Name = "continent_name")]
         public string ContinentName { get; set; }
 
@@ -42,15 +42,15 @@ namespace GW2DotNET.V1.Maps.Contracts
         [DataMember(Name = "floors")]
         public FloorCollection Floors { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
         public string Language { get; set; }
 
-        /// <summary>Gets or sets the map's ID.</summary>
+        /// <summary>Gets or sets the map identifier.</summary>
         [DataMember(Name = "map_id")]
         public int MapId { get; set; }
 
-        /// <summary>Gets or sets the map name.</summary>
+        /// <summary>Gets or sets the name of the map.</summary>
         [DataMember(Name = "map_name")]
         public string MapName { get; set; }
 
@@ -66,11 +66,11 @@ namespace GW2DotNET.V1.Maps.Contracts
         [DataMember(Name = "min_level")]
         public int MinimumLevel { get; set; }
 
-        /// <summary>Gets or sets the ID of the region this map belongs to.</summary>
+        /// <summary>Gets or sets the region identifier of the region that this map belongs to.</summary>
         [DataMember(Name = "region_id")]
         public int RegionId { get; set; }
 
-        /// <summary>Gets or sets the name of the region this map belongs to.</summary>
+        /// <summary>Gets or sets the name of the region that this map belongs to.</summary>
         [DataMember(Name = "region_name")]
         public string RegionName { get; set; }
 

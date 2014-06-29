@@ -34,7 +34,7 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions
         [JsonConverter(typeof(UnknownFloorConverter))]
         public Floor DefaultFloor { get; set; }
 
-        /// <summary>Gets or sets the map's ID.</summary>
+        /// <summary>Gets or sets the map identifier.</summary>
         [DataMember(Name = "map_id")]
         public int MapId { get; set; }
 
@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions
         [DataMember(Name = "min_level")]
         public int MinimumLevel { get; set; }
 
-        /// <summary>Gets or sets the map's name.</summary>
+        /// <summary>Gets or sets the name of the map.</summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
 

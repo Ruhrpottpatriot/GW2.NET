@@ -22,7 +22,7 @@ namespace GW2DotNET.V1.Maps.Contracts
         [DataMember(Name = "continent_dims")]
         public Size ContinentDimensions { get; set; }
 
-        /// <summary>Gets or sets the ID of the continent.</summary>
+        /// <summary>Gets or sets the the continent identifier.</summary>
         [DataMember(Name = "continent_id")]
         public int ContinentId { get; set; }
 

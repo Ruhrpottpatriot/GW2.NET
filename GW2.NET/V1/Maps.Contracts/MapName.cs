@@ -17,15 +17,15 @@ namespace GW2DotNET.V1.Maps.Contracts
     /// <summary>Represents a map and its localized name.</summary>
     public class MapName : ServiceContract, IEquatable<MapName>
     {
-        /// <summary>Gets or sets the map's ID.</summary>
+        /// <summary>Gets or sets the map identifier.</summary>
         [DataMember(Name = "id")]
         public int Id { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
         public string Language { get; set; }
 
-        /// <summary>Gets or sets the map's name.</summary>
+        /// <summary>Gets or sets the name of the map.</summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
 

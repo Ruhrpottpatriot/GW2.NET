@@ -14,7 +14,7 @@ namespace GW2DotNET.ChatLinks
     [TypeConverter(typeof(RecipeChatLinkConverter))]
     public class RecipeChatLink : ChatLink
     {
-        /// <summary>Gets or sets the recipe ID.</summary>
+        /// <summary>Gets or sets the recipe identifier.</summary>
         public int RecipeId { get; set; }
     }
 }

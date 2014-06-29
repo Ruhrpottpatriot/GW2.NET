@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Files.Contracts
     /// <summary>Represents information about a file that can be retrieved from the render service.</summary>
     public class Asset : ServiceContract, IRenderable, IEquatable<Asset>
     {
-        /// <summary>Gets or sets the file ID to be used with the render service.</summary>
+        /// <summary>Gets or sets the file identifier to be used with the render service.</summary>
         [DataMember(Name = "file_id")]
         public int FileId { get; set; }
 

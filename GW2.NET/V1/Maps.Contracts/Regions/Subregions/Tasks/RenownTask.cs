@@ -30,7 +30,7 @@ namespace GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Tasks
         [DataMember(Name = "objective")]
         public string Objective { get; set; }
 
-        /// <summary>Gets or sets the renown heart ID.</summary>
+        /// <summary>Gets or sets the renown task identifier.</summary>
         [DataMember(Name = "task_id")]
         public int TaskId { get; set; }
 

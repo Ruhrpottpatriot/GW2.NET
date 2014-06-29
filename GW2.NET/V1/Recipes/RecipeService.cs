@@ -55,7 +55,7 @@ namespace GW2DotNET.V1.Recipes
             var request = new RecipeDetailsRequest { RecipeId = recipe.RecipeId, Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<Recipe>(Settings));
 
-            // patch missing language information
+            // Patch missing language information
             result.Language = language.TwoLetterISOLanguageName;
 
             return result;
@@ -106,7 +106,7 @@ namespace GW2DotNET.V1.Recipes
                     {
                         var result = task.Result;
 
-                        // patch missing language information
+                        // Patch missing language information
                         result.Language = language.TwoLetterISOLanguageName;
 
                         return result;

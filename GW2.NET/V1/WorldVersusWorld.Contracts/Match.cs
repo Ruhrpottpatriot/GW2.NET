@@ -32,7 +32,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Contracts
         [DataMember(Name = "maps")]
         public CompetitiveMapCollection Maps { get; set; }
 
-        /// <summary>Gets or sets the match's ID.</summary>
+        /// <summary>Gets or sets the match identifier.</summary>
         [DataMember(Name = "match_id")]
         public string MatchId { get; set; }
 

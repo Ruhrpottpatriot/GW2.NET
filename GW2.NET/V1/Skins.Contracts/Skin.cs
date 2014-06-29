@@ -35,11 +35,11 @@ namespace GW2DotNET.V1.Skins.Contracts
         [DataMember(Name = "flags")]
         public SkinFlags Flags { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
         public string Language { get; set; }
 
-        /// <summary>Gets or sets the skin's name.</summary>
+        /// <summary>Gets or sets the name of the skin.</summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
