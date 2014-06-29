@@ -16,6 +16,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Objectives
     using GW2DotNET.V1.Common.Converters;
     using GW2DotNET.V1.Guilds.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common;
+    using GW2DotNET.V1.WorldVersusWorld.Objectives.Contracts;
 
     using Newtonsoft.Json;
 
@@ -27,7 +28,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Objectives
         public int Id { get; set; }
 
         /// <summary>Gets or sets the name of the objective.</summary>
-        public string Name { get; set; }
+        public ObjectiveName Name { get; set; }
 
         /// <summary>Gets or sets the current owner.</summary>
         [DataMember(Name = "owner")]
@@ -111,7 +112,7 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps.Objectives
             var name = this.Name;
             if (name != null)
             {
-                return name;
+                return name.ToString();
             }
 
             return this.Id.ToString(NumberFormatInfo.InvariantInfo);
