@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the interface for the events service.
+//   Provides the interface for the event state service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents
@@ -15,7 +15,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
     using GW2DotNET.V1.DynamicEvents.Contracts;
 
-    /// <summary>Provides the interface for the events service.</summary>
+    /// <summary>Provides the interface for the event state service.</summary>
     public interface IDynamicEventStateService
     {
         /// <summary>Gets a dynamic event and its status.</summary>
