@@ -88,5 +88,18 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
         {
             return this.Event != null ? this.Event.GetHashCode() : 0;
         }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var dynamicEvent = this.Event;
+            if (dynamicEvent != null)
+            {
+                return dynamicEvent.ToString();
+            }
+
+            return base.ToString();
+        }
     }
 }
