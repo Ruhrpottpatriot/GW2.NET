@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Files.Contracts
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
@@ -93,6 +94,19 @@ namespace GW2DotNET.V1.Files.Contracts
         public override int GetHashCode()
         {
             return this.FileId;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.FileName;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.FileId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }
