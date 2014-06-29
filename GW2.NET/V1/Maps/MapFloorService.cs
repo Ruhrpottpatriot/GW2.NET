@@ -59,7 +59,7 @@ namespace GW2DotNET.V1.Maps
             result.Language = language.TwoLetterISOLanguageName;
 
             // Patch missing floor information
-            result.ContinentId = continentId;
+            result.Continent = new Continent { ContinentId = continentId };
             result.FloorNumber = floor;
 
             // Patch missing region identifiers
@@ -129,7 +129,7 @@ namespace GW2DotNET.V1.Maps
                         result.Language = language.TwoLetterISOLanguageName;
 
                         // Patch missing floor information
-                        result.ContinentId = continentId;
+                        result.Continent = new Continent { ContinentId = continentId };
                         result.FloorNumber = floor;
 
                         // Patch missing region identifiers

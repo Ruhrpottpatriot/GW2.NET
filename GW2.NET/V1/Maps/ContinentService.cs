@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.Maps
                 continent.Value.ContinentId = continent.Key;
                 foreach (var floor in continent.Value.Floors)
                 {
-                    floor.ContinentId = continent.Key;
+                    floor.Continent = continent.Value;
                 }
             }
 
@@ -80,7 +80,7 @@ namespace GW2DotNET.V1.Maps
                             continent.Value.ContinentId = continent.Key;
                             foreach (var floor in continent.Value.Floors)
                             {
-                                floor.ContinentId = continent.Key;
+                                floor.Continent = continent.Value;
                             }
                         }
 

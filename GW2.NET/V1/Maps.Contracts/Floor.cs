@@ -15,6 +15,7 @@ namespace GW2DotNET.V1.Maps.Contracts
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.V1.Maps.Contracts.Regions;
 
+
     /// <summary>Represents a map floor, used to populate a world map. All coordinates are map coordinates.</summary>
     /// <remarks>The returned data only contains static content. Dynamic content, such as vendors, is not currently available.</remarks>
     public class Floor : ServiceContract
@@ -26,7 +27,7 @@ namespace GW2DotNET.V1.Maps.Contracts
         /// <summary>Gets or sets the floor's continent.</summary>
         /// <remarks>See <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>.</remarks>
         [DataMember(Name = "continent_id")]
-        public int ContinentId { get; set; }
+        public Continent Continent { get; set; }
 
         /// <summary>Gets or sets the floor's number.</summary>
         /// <remarks>See <a href="https://forum-en.guildwars2.com/forum/community/api/API-Suggestion-Reflect-source-in-map-floor/3795765">forums</a>.</remarks>
