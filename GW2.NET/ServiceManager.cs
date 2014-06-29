@@ -67,16 +67,7 @@ namespace GW2DotNET
         private readonly IContinentService continentService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IDynamicEventStateService dynamicEventService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IDynamicEventDetailsService dynamicEventDetailsService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IDynamicEventNameService dynamicEventNameService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IDynamicEventRotationService dynamicEventRotationService;
+        private readonly IDynamicEventService dynamicEventService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IFileService fileService;
@@ -113,9 +104,6 @@ namespace GW2DotNET
         /// <param name="colorService">The color service.</param>
         /// <param name="continentService">The continent service.</param>
         /// <param name="dynamicEventService">The dynamic event service.</param>
-        /// <param name="dynamicEventDetailsService">The dynamic event details service.</param>
-        /// <param name="dynamicEventNameService">The dynamic event name service.</param>
-        /// <param name="dynamicEventRotationService">The dynamic Event Rotation Service.</param>
         /// <param name="fileService">The file service.</param>
         /// <param name="guildDetailsService">The guild details service.</param>
         /// <param name="itemService">The item service.</param>
@@ -130,10 +118,7 @@ namespace GW2DotNET
             IBuildService buildService, 
             IColorService colorService, 
             IContinentService continentService, 
-            IDynamicEventStateService dynamicEventService,
-            IDynamicEventDetailsService dynamicEventDetailsService, 
-            IDynamicEventNameService dynamicEventNameService, 
-            IDynamicEventRotationService dynamicEventRotationService, 
+            IDynamicEventService dynamicEventService,
             IFileService fileService, 
             IGuildDetailsService guildDetailsService, 
             IItemService itemService, 
@@ -149,9 +134,6 @@ namespace GW2DotNET
             this.colorService = colorService;
             this.continentService = continentService;
             this.dynamicEventService = dynamicEventService;
-            this.dynamicEventDetailsService = dynamicEventDetailsService;
-            this.dynamicEventNameService = dynamicEventNameService;
-            this.dynamicEventRotationService = dynamicEventRotationService;
             this.fileService = fileService;
             this.guildDetailsService = guildDetailsService;
             this.itemService = itemService;
@@ -178,9 +160,6 @@ namespace GW2DotNET
             this.colorService = new ColorService(serviceClient);
             this.continentService = new ContinentService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
-            this.dynamicEventDetailsService = new DynamicEventDetailsService(serviceClient);
-            this.dynamicEventNameService = new DynamicEventNameService(serviceClient);
-            this.dynamicEventRotationService = new DynamicEventRotationService();
             this.fileService = new FileService(serviceClient);
             this.guildDetailsService = new GuildDetailsService(serviceClient);
             this.itemService = new ItemService(serviceClient);
@@ -301,7 +280,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEvent> GetDynamicEventDetails()
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetails();
+            return this.dynamicEventService.GetDynamicEventDetails();
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -310,7 +289,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEvent> GetDynamicEventDetails(CultureInfo language)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetails(language);
+            return this.dynamicEventService.GetDynamicEventDetails(language);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -319,7 +298,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public DynamicEvent GetDynamicEventDetails(Guid eventId)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetails(eventId);
+            return this.dynamicEventService.GetDynamicEventDetails(eventId);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -329,7 +308,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public DynamicEvent GetDynamicEventDetails(Guid eventId, CultureInfo language)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetails(eventId, language);
+            return this.dynamicEventService.GetDynamicEventDetails(eventId, language);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -337,7 +316,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync()
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetailsAsync();
+            return this.dynamicEventService.GetDynamicEventDetailsAsync();
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -346,7 +325,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync(CancellationToken cancellationToken)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetailsAsync(cancellationToken);
+            return this.dynamicEventService.GetDynamicEventDetailsAsync(cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -355,7 +334,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetailsAsync(language);
+            return this.dynamicEventService.GetDynamicEventDetailsAsync(language);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -365,7 +344,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetailsAsync(language, cancellationToken);
+            return this.dynamicEventService.GetDynamicEventDetailsAsync(language, cancellationToken);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -374,7 +353,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetailsAsync(eventId);
+            return this.dynamicEventService.GetDynamicEventDetailsAsync(eventId);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -384,7 +363,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken cancellationToken)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetailsAsync(eventId, cancellationToken);
+            return this.dynamicEventService.GetDynamicEventDetailsAsync(eventId, cancellationToken);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -394,7 +373,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId, CultureInfo language)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetailsAsync(eventId, language);
+            return this.dynamicEventService.GetDynamicEventDetailsAsync(eventId, language);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -405,7 +384,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId, CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.dynamicEventDetailsService.GetDynamicEventDetailsAsync(eventId, language, cancellationToken);
+            return this.dynamicEventService.GetDynamicEventDetailsAsync(eventId, language, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
@@ -413,7 +392,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEventName> GetDynamicEventNames()
         {
-            return this.dynamicEventNameService.GetDynamicEventNames();
+            return this.dynamicEventService.GetDynamicEventNames();
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
@@ -422,7 +401,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public IEnumerable<DynamicEventName> GetDynamicEventNames(CultureInfo language)
         {
-            return this.dynamicEventNameService.GetDynamicEventNames(language);
+            return this.dynamicEventService.GetDynamicEventNames(language);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
@@ -430,7 +409,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync()
         {
-            return this.dynamicEventNameService.GetDynamicEventNamesAsync();
+            return this.dynamicEventService.GetDynamicEventNamesAsync();
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
@@ -439,7 +418,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CancellationToken cancellationToken)
         {
-            return this.dynamicEventNameService.GetDynamicEventNamesAsync(cancellationToken);
+            return this.dynamicEventService.GetDynamicEventNamesAsync(cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
@@ -448,7 +427,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language)
         {
-            return this.dynamicEventNameService.GetDynamicEventNamesAsync(language);
+            return this.dynamicEventService.GetDynamicEventNamesAsync(language);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
@@ -458,14 +437,14 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.dynamicEventNameService.GetDynamicEventNamesAsync(language, cancellationToken);
+            return this.dynamicEventService.GetDynamicEventNamesAsync(language, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their start times.</summary>
         /// <returns>A collection of dynamic events and their start times.</returns>
         public IEnumerable<DynamicEventRotation> GetDynamicEventRotations()
         {
-            return this.dynamicEventRotationService.GetDynamicEventRotations();
+            return this.dynamicEventService.GetDynamicEventRotations();
         }
 
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
