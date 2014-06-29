@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.Maps
             var result = this.serviceClient.Send(request, new JsonSerializer<Floor>(Settings));
 
             // Patch missing language information
-            result.Language = language;
+            result.Language = language.TwoLetterISOLanguageName;
 
             // Patch missing floor information
             result.ContinentId = continentId;
@@ -126,7 +126,7 @@ namespace GW2DotNET.V1.Maps
                         var result = task.Result;
 
                         // Patch missing language information
-                        result.Language = language;
+                        result.Language = language.TwoLetterISOLanguageName;
 
                         // Patch missing floor information
                         result.ContinentId = continentId;
