@@ -11,13 +11,18 @@ namespace GW2DotNET.V1.Items.Contracts.Consumables
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
+    using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.Recipes.Contracts;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents a crafting recipe.</summary>
     [TypeDiscriminator(Value = "CraftingRecipe", BaseType = typeof(Unlocker))]
     public class CraftingRecipeUnlocker : Unlocker
     {
-        /// <summary>Gets or sets the crafting recipe's ID.</summary>
+        /// <summary>Gets or sets the recipe.</summary>
         [DataMember(Name = "recipe_id")]
-        public virtual int RecipeId { get; set; }
+        [JsonConverter(typeof(UnknownRecipeConverter))]
+        public virtual Recipe Recipe { get; set; }
     }
 }
