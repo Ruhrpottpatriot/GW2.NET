@@ -533,10 +533,10 @@
     <Compile Include="V1\WorldVersusWorld\Matches\Converters\MapBonusConverter.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\Converters\CompetitiveMapConverter.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\IMatchDetailsService.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\IMatchDiscoveryService.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\IMatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\MatchDetailsRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\MatchDetailsSerializerSettings.cs" />
-    <Compile Include="V1\WorldVersusWorld\Matches\MatchDetailsService.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\MatchRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\MatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives.Contracts\ObjectiveName.cs" />

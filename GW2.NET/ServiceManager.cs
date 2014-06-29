@@ -56,7 +56,6 @@ namespace GW2DotNET
                                   IRecipeService, 
                                   IWorldNameService, 
                                   IMatchService, 
-                                  IMatchDetailsService, 
                                   IObjectiveNameService, 
                                   ISkinService
     {
@@ -97,9 +96,6 @@ namespace GW2DotNET
         private readonly IMapService mapService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IMatchDetailsService matchDetailsService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IMatchService matchService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
@@ -127,7 +123,6 @@ namespace GW2DotNET
         /// <param name="mapFloorService">The map floor service.</param>
         /// <param name="mapNameService">The map name service.</param>
         /// <param name="mapService">The map service.</param>
-        /// <param name="matchDetailsService">The match details service.</param>
         /// <param name="matchService">The match service.</param>
         /// <param name="objectiveNameService">The objective name service.</param>
         /// <param name="recipeService">The recipe service.</param>
@@ -146,7 +141,6 @@ namespace GW2DotNET
             IMapFloorService mapFloorService, 
             IMapNameService mapNameService, 
             IMapService mapService, 
-            IMatchDetailsService matchDetailsService, 
             IMatchService matchService, 
             IObjectiveNameService objectiveNameService, 
             IRecipeService recipeService, 
@@ -165,7 +159,6 @@ namespace GW2DotNET
             this.mapFloorService = mapFloorService;
             this.mapNameService = mapNameService;
             this.mapService = mapService;
-            this.matchDetailsService = matchDetailsService;
             this.matchService = matchService;
             this.objectiveNameService = objectiveNameService;
             this.recipeService = recipeService;
@@ -195,7 +188,6 @@ namespace GW2DotNET
             this.mapFloorService = new MapFloorService(serviceClient);
             this.mapNameService = new MapNameService(serviceClient);
             this.mapService = new MapService(serviceClient);
-            this.matchDetailsService = new MatchDetailsService(serviceClient);
             this.matchService = new MatchService(serviceClient);
             this.objectiveNameService = new ObjectiveNameService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
@@ -874,31 +866,31 @@ namespace GW2DotNET
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
-        /// <param name="matchId">The match.</param>
+        /// <param name="match">The match identifier.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Match GetMatchDetails(string matchId)
+        public Match GetMatchDetails(Matchup match)
         {
-            return this.matchDetailsService.GetMatchDetails(matchId);
+            return this.matchService.GetMatchDetails(match);
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
-        /// <param name="matchId">The match.</param>
+        /// <param name="match">The match identifier.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<Match> GetMatchDetailsAsync(string matchId)
+        public Task<Match> GetMatchDetailsAsync(Matchup match)
         {
-            return this.matchDetailsService.GetMatchDetailsAsync(matchId);
+            return this.matchService.GetMatchDetailsAsync(match);
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
-        /// <param name="matchId">The match.</param>
+        /// <param name="match">The match identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<Match> GetMatchDetailsAsync(string matchId, CancellationToken cancellationToken)
+        public Task<Match> GetMatchDetailsAsync(Matchup match, CancellationToken cancellationToken)
         {
-            return this.matchDetailsService.GetMatchDetailsAsync(matchId, cancellationToken);
+            return this.matchService.GetMatchDetailsAsync(match, cancellationToken);
         }
 
         /// <summary>Gets a collection of currently running World versus World matches.</summary>

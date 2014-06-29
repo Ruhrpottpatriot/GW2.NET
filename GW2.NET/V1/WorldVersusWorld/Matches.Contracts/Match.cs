@@ -12,12 +12,22 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Worlds.Contracts;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common;
     using GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Maps;
 
     /// <summary>Represents a World versus World match.</summary>
     public class Match : ServiceContract, IEquatable<Match>
     {
+        /// <summary>Gets or sets the blue world.</summary>
+        public World BlueWorld { get; set; }
+
+        /// <summary>Gets or sets the timestamp (UTC) of when the match ends.</summary>
+        public DateTimeOffset EndTime { get; set; }
+
+        /// <summary>Gets or sets the green world.</summary>
+        public World GreenWorld { get; set; }
+
         /// <summary>Gets or sets the list of maps.</summary>
         [DataMember(Name = "maps")]
         public CompetitiveMapCollection Maps { get; set; }
@@ -26,9 +36,15 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts
         [DataMember(Name = "match_id")]
         public string MatchId { get; set; }
 
+        /// <summary>Gets or sets the red world.</summary>
+        public World RedWorld { get; set; }
+
         /// <summary>Gets or sets the total scores.</summary>
         [DataMember(Name = "scores")]
         public Scoreboard Scores { get; set; }
+
+        /// <summary>Gets or sets the timestamp (UTC) of when the match started.</summary>
+        public DateTimeOffset StartTime { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

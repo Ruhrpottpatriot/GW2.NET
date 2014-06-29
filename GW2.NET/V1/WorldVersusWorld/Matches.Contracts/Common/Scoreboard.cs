@@ -24,5 +24,12 @@ namespace GW2DotNET.V1.WorldVersusWorld.Matches.Contracts.Common
 
         /// <summary>Gets or sets the red team's score.</summary>
         public int Red { get; set; }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            return string.Format("Red: {0} Green: {1} Blue: {2}", this.Red, this.Green, this.Blue);
+        }
     }
 }
