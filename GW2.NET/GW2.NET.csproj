@@ -180,6 +180,10 @@
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventNameCollection.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventRotation.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\DynamicEventShifts.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventState.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventStateCollection.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventStateCollectionResult.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\EventState.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\Locations\CylinderLocation.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\Locations\Location.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\Locations\PointCollection.cs" />
@@ -193,11 +197,14 @@
     <Compile Include="V1\DynamicEvents\DynamicEventDetailsService.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventNameRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventNameService.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventRotationService.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventDetailsService.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventDetailsSerializerSettings.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventNameService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventRotationService.cs" />
+    <Compile Include="V1\DynamicEvents\IDynamicEventService.cs" />
     <Compile Include="V1\Files.Contracts\Asset.cs" />
     <Compile Include="V1\Files.Contracts\AssetCollection.cs" />
     <Compile Include="V1\Files\FileService.cs" />
