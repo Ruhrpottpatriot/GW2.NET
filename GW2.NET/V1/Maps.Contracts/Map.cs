@@ -18,6 +18,8 @@ namespace GW2DotNET.V1.Maps.Contracts
 
     using Newtonsoft.Json;
 
+    using Region = GW2DotNET.V1.Maps.Contracts.Regions.Region;
+
     /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
     public class Map : ServiceContract, IEquatable<Map>
     {
@@ -69,7 +71,8 @@ namespace GW2DotNET.V1.Maps.Contracts
 
         /// <summary>Gets or sets the region identifier of the region that this map belongs to.</summary>
         [DataMember(Name = "region_id")]
-        public int RegionId { get; set; }
+        [JsonConverter(typeof(UnknownRegionConverter))]
+        public Region Region { get; set; }
 
         /// <summary>Gets or sets the name of the region that this map belongs to.</summary>
         [DataMember(Name = "region_name")]
