@@ -59,14 +59,14 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         Task<Map> GetMapAsync(int mapId, CultureInfo language, CancellationToken cancellationToken);
 
-        /// <summary>Gets a collection of maps and their details.</summary>
-        /// <returns>A collection of maps and their details.</returns>
+        /// <summary>Gets a collection of maps and their localized details.</summary>
+        /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         IEnumerable<Map> GetMaps();
 
-        /// <summary>Gets a collection of maps and their details.</summary>
+        /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="language">The language.</param>
-        /// <returns>A collection of maps and their details.</returns>
+        /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         IEnumerable<Map> GetMaps(CultureInfo language);
 
