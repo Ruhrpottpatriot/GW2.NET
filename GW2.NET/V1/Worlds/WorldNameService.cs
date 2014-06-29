@@ -49,10 +49,10 @@ namespace GW2DotNET.V1.Worlds
             var request = new WorldNameRequest { Culture = language };
             var result = this.serviceClient.Send(request, new JsonSerializer<WorldCollection>());
 
-            // patch missing language information
+            // Patch missing language information
             foreach (var worldName in result)
             {
-                worldName.Language = language;
+                worldName.Language = language.TwoLetterISOLanguageName;
             }
 
             return result;
@@ -98,10 +98,10 @@ namespace GW2DotNET.V1.Worlds
                     {
                         var result = task.Result;
 
-                        // patch missing language information
+                        // Patch missing language information
                         foreach (var worldName in result)
                         {
-                            worldName.Language = language;
+                            worldName.Language = language.TwoLetterISOLanguageName;
                         }
 
                         return result;

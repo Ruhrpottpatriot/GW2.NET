@@ -17,15 +17,15 @@ namespace GW2DotNET.V1.Worlds.Contracts
     /// <summary>Represents a world and its localized name.</summary>
     public class World : ServiceContract, IEquatable<World>
     {
-        /// <summary>Gets or sets the world's ID.</summary>
+        /// <summary>Gets or sets the world identifier.</summary>
         [DataMember(Name = "id")]
         public int Id { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
-        public CultureInfo Language { get; set; }
+        public string Language { get; set; }
 
-        /// <summary>Gets or sets the world's name.</summary>
+        /// <summary>Gets or sets the name of the world.</summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
