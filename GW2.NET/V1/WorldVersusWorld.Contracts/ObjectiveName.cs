@@ -17,15 +17,15 @@ namespace GW2DotNET.V1.WorldVersusWorld.Contracts
     /// <summary>Represents an objective and its localized name.</summary>
     public class ObjectiveName : ServiceContract, IEquatable<ObjectiveName>
     {
-        /// <summary>Gets or sets the objective's ID.</summary>
+        /// <summary>Gets or sets the objective identifier.</summary>
         [DataMember(Name = "id")]
         public int Id { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
+        /// <summary>Gets or sets the language.</summary>
         [DataMember(Name = "lang")]
-        public CultureInfo Language { get; set; }
+        public string Language { get; set; }
 
-        /// <summary>Gets or sets the objective's name.</summary>
+        /// <summary>Gets or sets the name of the objective.</summary>
         [DataMember(Name = "name")]
         public string Name { get; set; }
 

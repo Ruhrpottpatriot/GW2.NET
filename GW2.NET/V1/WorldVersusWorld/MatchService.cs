@@ -144,7 +144,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
             // Patch missing language information
             foreach (var objectiveName in result)
             {
-                objectiveName.Language = language;
+                objectiveName.Language = language.TwoLetterISOLanguageName;
             }
 
             return result;
@@ -193,7 +193,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
                         // Patch missing language information
                         foreach (var objectiveName in result)
                         {
-                            objectiveName.Language = language;
+                            objectiveName.Language = language.TwoLetterISOLanguageName;
                         }
 
                         return result;
