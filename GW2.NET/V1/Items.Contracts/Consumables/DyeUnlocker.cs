@@ -11,13 +11,18 @@ namespace GW2DotNET.V1.Items.Contracts.Consumables
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
+    using GW2DotNET.V1.Colors.Contracts;
+    using GW2DotNET.V1.Common.Converters;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents a dye.</summary>
     [TypeDiscriminator(Value = "Dye", BaseType = typeof(Unlocker))]
     public class DyeUnlocker : Unlocker
     {
-        /// <summary>Gets or sets the dye's color ID.</summary>
+        /// <summary>Gets or sets the dye's color.</summary>
         [DataMember(Name = "color_id")]
-        public virtual int ColorId { get; set; }
+        [JsonConverter(typeof(UnknownColorPaletteConverter))]
+        public virtual ColorPalette Color { get; set; }
     }
 }
