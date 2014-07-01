@@ -50,6 +50,13 @@ namespace GW2DotNET.V1.Items.Converters
                 return converter.ReadJson(content.CreateReader(), type, existingValue, serializer);
             }
 
+            // Patch duplicate property 'description' in root object and 'consumable' object
+            var descriptionProperty = detailsProperty.Value.Value<JObject>().Property("description");
+            if (descriptionProperty != null)
+            {
+                descriptionProperty.Replace(new JProperty("effect", descriptionProperty.Value));
+            }
+
             // Flatten the 'consumable' values
             detailsProperty.Remove();
             foreach (var detail in detailsProperty.Value)

@@ -20,5 +20,9 @@ namespace GW2DotNET.V1.Items.Contracts.Consumables
         /// <summary>Gets or sets the consumable's effect duration.</summary>
         [DataMember(Name = "duration_ms")]
         public virtual TimeSpan? Duration { get; set; }
+
+        /// <summary>Gets or sets the consumable's effect.</summary>
+        [DataMember(Name = "effect")]
+        public virtual string Effect { get; set; }
     }
 }
