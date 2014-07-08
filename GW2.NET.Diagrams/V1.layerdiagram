@@ -1,0 +1,1345 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="4800e4bb-1dc5-4ebb-846f-bb7cad28719b" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <comments>
+    <comment Id="50f270d9-a989-4292-af63-15aeb58eee2e" name="Comment1">
+      <body>Currently, service classes return data contracts as-is. Let's fix that by adding a set of properly designed entity classes, then returning those instead of raw data contracts.</body>
+      <layerElements>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="a4061b43-d085-49f7-a95c-891fcb17f44f" />
+        </linkFromCommentToLayerElement>
+        <linkFromCommentToLayerElement>
+          <layerMoniker Id="8a8a96b2-e8dc-473b-a2b4-d5500746b677" />
+        </linkFromCommentToLayerElement>
+      </layerElements>
+    </comment>
+  </comments>
+  <layers>
+    <layer Id="8a8a96b2-e8dc-473b-a2b4-d5500746b677" name="Service Management">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="09a9bb9c-bedc-4134-8764-0b116bbf118c" direction="Forward">
+          <layerMoniker Id="a4061b43-d085-49f7-a95c-891fcb17f44f" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="9e1b8c90-a7ea-4d07-80b0-969475debe5f" direction="Forward">
+          <layerMoniker Id="dbdbd98e-27d3-4e8d-aae7-c31916f9f649" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="f5aef9d4-943f-4d12-9c7d-ea52560b5f21" name="ServiceManager.cs">
+          <ArtifactNode Label="ServiceManager.cs" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/ServiceManager.cs)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET Type=ServiceManager)" Label="ServiceManager" Category="CodeSchema_Class">
+            <LinkCategory Ref="Contains" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+        <reference Id="3c6a9665-892f-47d4-91cd-470a28decd50" name="RenderServiceManager.cs">
+          <ArtifactNode Label="RenderServiceManager.cs" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/RenderServiceManager.cs)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET Type=RenderServiceManager)" Label="RenderServiceManager" Category="CodeSchema_Class">
+            <LinkCategory Ref="Contains" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="a1092bda-7262-4d58-8313-19c104f92eec" name="V1">
+      <childLayers>
+        <layer Id="a4061b43-d085-49f7-a95c-891fcb17f44f" name="Services">
+          <references>
+            <reference Id="72690d83-2e50-49da-be0e-4659417db1f8" name="Builds">
+              <ArtifactNode Label="Builds" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Builds/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Builds Type=BuildRequest)" Label="BuildRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Builds Type=BuildService)" Label="BuildService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Builds Type=IBuildService)" Label="IBuildService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="7053e790-f7a0-4a9a-8f07-0b9d2f7830c5" name="Colors">
+              <ArtifactNode Label="Colors" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Colors/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Colors Type=ColorRequest)" Label="ColorRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Colors Type=ColorSerializerSettings)" Label="ColorSerializerSettings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Colors Type=ColorService)" Label="ColorService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Colors.Converters Type=JsonColorConverter)" Label="JsonColorConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Colors Type=IColorService)" Label="IColorService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="e55f8e8d-e006-4e5d-86bb-9d5f58216a83" name="DynamicEvents">
+              <ArtifactNode Label="DynamicEvents" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/DynamicEvents/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Converters Type=JsonPoint3DConverter)" Label="JsonPoint3DConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Converters Type=JsonPointConverter)" Label="JsonPointConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Converters Type=LocationConverter)" Label="LocationConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=DynamicEventDetailsRequest)" Label="DynamicEventDetailsRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=DynamicEventDetailsSerializerSettings)" Label="DynamicEventDetailsSerializerSettings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=DynamicEventNameRequest)" Label="DynamicEventNameRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=DynamicEventService)" Label="DynamicEventService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=DynamicEventStateRequest)" Label="DynamicEventStateRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=IDynamicEventDetailsService)" Label="IDynamicEventDetailsService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=IDynamicEventNameService)" Label="IDynamicEventNameService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=IDynamicEventRotationService)" Label="IDynamicEventRotationService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=IDynamicEventService)" Label="IDynamicEventService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents Type=IDynamicEventStateService)" Label="IDynamicEventStateService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="8c1d0a5a-7c0c-4d43-b219-f26880fe4158" name="Files">
+              <ArtifactNode Label="Files" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Files/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Files Type=FileRequest)" Label="FileRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Files Type=FileService)" Label="FileService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Files Type=IFileService)" Label="IFileService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="72d9951c-75bf-4d0d-abc4-c6cdc79e9328" name="Guilds">
+              <ArtifactNode Label="Guilds" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Guilds/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Guilds Type=GuildDetailsRequest)" Label="GuildDetailsRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Guilds Type=GuildDetailsService)" Label="GuildDetailsService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Guilds Type=IGuildDetailsService)" Label="IGuildDetailsService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="27144763-9bf2-4e71-92d4-e78e8f68dc84" name="Items">
+              <ArtifactNode Label="Items" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Items/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=ArmorConverter)" Label="ArmorConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=BackpackConverter)" Label="BackpackConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=BagConverter)" Label="BagConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=ConsumableConverter)" Label="ConsumableConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=ContainerConverter)" Label="ContainerConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=GatheringToolConverter)" Label="GatheringToolConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=GizmoConverter)" Label="GizmoConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=ItemAttributeConverter)" Label="ItemAttributeConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=ItemConverter)" Label="ItemConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=JsonBooleanConverter)" Label="JsonBooleanConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=ToolConverter)" Label="ToolConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=TrinketConverter)" Label="TrinketConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=UnlockerConverter)" Label="UnlockerConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=UpgradeComponentConverter)" Label="UpgradeComponentConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Converters Type=WeaponConverter)" Label="WeaponConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items Type=IItemDetailsService)" Label="IItemDetailsService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items Type=IItemDiscoveryService)" Label="IItemDiscoveryService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items Type=IItemService)" Label="IItemService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items Type=ItemDetailsRequest)" Label="ItemDetailsRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items Type=ItemRequest)" Label="ItemRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items Type=ItemSerializerSettings)" Label="ItemSerializerSettings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items Type=ItemService)" Label="ItemService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="669a590c-f63c-4454-9537-4a0f62443abd" name="Maps">
+              <ArtifactNode Label="Maps" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Maps/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=ContinentRequest)" Label="ContinentRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=ContinentSerializerSettings)" Label="ContinentSerializerSettings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=ContinentService)" Label="ContinentService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Converters Type=PointOfInterestConverter)" Label="PointOfInterestConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=IContinentService)" Label="IContinentService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=IMapFloorService)" Label="IMapFloorService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=IMapNameService)" Label="IMapNameService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=IMapService)" Label="IMapService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=MapFloorRequest)" Label="MapFloorRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=MapFloorSerializerSettings)" Label="MapFloorSerializerSettings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=MapFloorService)" Label="MapFloorService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=MapNameRequest)" Label="MapNameRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=MapNameService)" Label="MapNameService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=MapRequest)" Label="MapRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=MapSerializerSettings)" Label="MapSerializerSettings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps Type=MapService)" Label="MapService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="d8767104-dfd1-4e59-8148-80ea5f10d255" name="Recipes">
+              <ArtifactNode Label="Recipes" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Recipes/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Converters Type=RecipeConverter)" Label="RecipeConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes Type=IRecipeDetailsService)" Label="IRecipeDetailsService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes Type=IRecipeDiscoveryService)" Label="IRecipeDiscoveryService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes Type=IRecipeService)" Label="IRecipeService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes Type=RecipeDetailsRequest)" Label="RecipeDetailsRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes Type=RecipeRequest)" Label="RecipeRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes Type=RecipeSerializerSettings)" Label="RecipeSerializerSettings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes Type=RecipeService)" Label="RecipeService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="60fb7f8a-fd48-4b83-9f1d-848d983753f6" name="Skins">
+              <ArtifactNode Label="Skins" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Skins/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Converters Type=ArmorSkinConverter)" Label="ArmorSkinConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Converters Type=SkinConverter)" Label="SkinConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Converters Type=WeaponSkinConverter)" Label="WeaponSkinConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins Type=ISkinDetailsService)" Label="ISkinDetailsService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins Type=ISkinDiscoveryService)" Label="ISkinDiscoveryService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins Type=ISkinService)" Label="ISkinService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins Type=SkinDetailsRequest)" Label="SkinDetailsRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins Type=SkinRequest)" Label="SkinRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins Type=SkinSerializerSettings)" Label="SkinSerializerSettings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins Type=SkinService)" Label="SkinService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="f96a17ad-1d07-44eb-bf1e-8cd4a401afd9" name="Worlds">
+              <ArtifactNode Label="Worlds" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Worlds/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Worlds Type=IWorldNameService)" Label="IWorldNameService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Worlds Type=WorldNameRequest)" Label="WorldNameRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Worlds Type=WorldNameService)" Label="WorldNameService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="7b01a973-34a0-4ea8-9284-a8008c7ca70a" name="WorldVersusWorld">
+              <ArtifactNode Label="WorldVersusWorld" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/WorldVersusWorld/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Converters Type=CompetitiveMapConverter)" Label="CompetitiveMapConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Converters Type=MapBonusConverter)" Label="MapBonusConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld Type=IMatchDetailsService)" Label="IMatchDetailsService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld Type=IMatchDiscoveryService)" Label="IMatchDiscoveryService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld Type=IMatchService)" Label="IMatchService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld Type=IObjectiveNameService)" Label="IObjectiveNameService" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld Type=MatchDetailsRequest)" Label="MatchDetailsRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld Type=MatchDetailsSerializerSettings)" Label="MatchDetailsSerializerSettings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld Type=MatchRequest)" Label="MatchRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld Type=MatchService)" Label="MatchService" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld Type=ObjectiveNameRequest)" Label="ObjectiveNameRequest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+        <layer Id="dbdbd98e-27d3-4e8d-aae7-c31916f9f649" name="Service Contracts">
+          <dependencyToLayers>
+            <dependencyFromLayerToLayer Id="8db9c9ce-509b-4c88-b507-8d2c00ef1944" direction="Bidirectional">
+              <layerMoniker Id="a4061b43-d085-49f7-a95c-891fcb17f44f" />
+            </dependencyFromLayerToLayer>
+          </dependencyToLayers>
+          <references>
+            <reference Id="9649cbb3-4947-444e-b07f-fd06ac947a1e" name="WorldVersusWorld.Contracts">
+              <ArtifactNode Label="WorldVersusWorld.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/WorldVersusWorld.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Common Type=ScoreboardConverter)" Label="ScoreboardConverter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Common Type=Scoreboard)" Label="Scoreboard" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Common Type=TeamColor)" Label="TeamColor" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps Type=BlueBorderlands)" Label="BlueBorderlands" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps.Bonuses Type=Bloodlust)" Label="Bloodlust" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps.Bonuses Type=MapBonus)" Label="MapBonus" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps.Bonuses Type=MapBonusCollection)" Label="MapBonusCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps.Bonuses Type=UnknownMapBonus)" Label="UnknownMapBonus" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps Type=CompetitiveMap)" Label="CompetitiveMap" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps Type=CompetitiveMapCollection)" Label="CompetitiveMapCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps Type=EternalBattlegrounds)" Label="EternalBattlegrounds" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps Type=GreenBorderlands)" Label="GreenBorderlands" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps.Objectives Type=Objective)" Label="Objective" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps.Objectives Type=ObjectiveCollection)" Label="ObjectiveCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts.Maps Type=RedBorderlands)" Label="RedBorderlands" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts Type=Match)" Label="Match" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts Type=Matchup)" Label="Matchup" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts Type=MatchupCollection)" Label="MatchupCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts Type=MatchupCollectionResult)" Label="MatchupCollectionResult" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts Type=ObjectiveName)" Label="ObjectiveName" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.WorldVersusWorld.Contracts Type=ObjectiveNameCollection)" Label="ObjectiveNameCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="632a0b13-ce2b-4c60-a89f-f49841ab6ff0" name="Worlds.Contracts">
+              <ArtifactNode Label="Worlds.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Worlds.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Worlds.Contracts Type=World)" Label="World" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Worlds.Contracts Type=WorldCollection)" Label="WorldCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="c71086cb-7bb7-4de9-914c-6394bc4cb3c3" name="Skins.Contracts">
+              <ArtifactNode Label="Skins.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Skins.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Armors Type=AquaticHelmSkin)" Label="AquaticHelmSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Armors Type=ArmorSkin)" Label="ArmorSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Armors Type=BootsSkin)" Label="BootsSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Armors Type=CoatSkin)" Label="CoatSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Armors Type=GlovesSkin)" Label="GlovesSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Armors Type=HelmSkin)" Label="HelmSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Armors Type=LeggingsSkin)" Label="LeggingsSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Armors Type=ShouldersSkin)" Label="ShouldersSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Armors Type=UnknownArmorSkin)" Label="UnknownArmorSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Backpacks Type=BackpackSkin)" Label="BackpackSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts Type=Skin)" Label="Skin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts Type=SkinCollection)" Label="SkinCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts Type=SkinCollectionResult)" Label="SkinCollectionResult" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts Type=SkinFlags)" Label="SkinFlags" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts Type=UnknownSkin)" Label="UnknownSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=AxeSkin)" Label="AxeSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=DaggerSkin)" Label="DaggerSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=FocusSkin)" Label="FocusSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=GreatSwordSkin)" Label="GreatSwordSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=HammerSkin)" Label="HammerSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=HarpoonSkin)" Label="HarpoonSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=LargeBundleSkin)" Label="LargeBundleSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=LongBowSkin)" Label="LongBowSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=MaceSkin)" Label="MaceSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=PistolSkin)" Label="PistolSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=RifleSkin)" Label="RifleSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=ScepterSkin)" Label="ScepterSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=ShieldSkin)" Label="ShieldSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=ShortBowSkin)" Label="ShortBowSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=SmallBundleSkin)" Label="SmallBundleSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=SpearGunSkin)" Label="SpearGunSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=StaffSkin)" Label="StaffSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=SwordSkin)" Label="SwordSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=TorchSkin)" Label="TorchSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=ToyWeaponSkin)" Label="ToyWeaponSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=TridentSkin)" Label="TridentSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=TwoHandedToyWeaponSkin)" Label="TwoHandedToyWeaponSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=UnknownWeaponSkin)" Label="UnknownWeaponSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=WarHornSkin)" Label="WarHornSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Skins.Contracts.Weapons Type=WeaponSkin)" Label="WeaponSkin" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="5d656192-7fab-4ffd-8ba5-804606f3b478" name="Recipes.Contracts">
+              <ArtifactNode Label="Recipes.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Recipes.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=AmuletRecipe)" Label="AmuletRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=AxeRecipe)" Label="AxeRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=BackpackRecipe)" Label="BackpackRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=BagRecipe)" Label="BagRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=BootsRecipe)" Label="BootsRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=BulkRecipe)" Label="BulkRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=CoatRecipe)" Label="CoatRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=ComponentRecipe)" Label="ComponentRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=ConsumableRecipe)" Label="ConsumableRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=CraftingDisciplines)" Label="CraftingDisciplines" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=DaggerRecipe)" Label="DaggerRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=DessertRecipe)" Label="DessertRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=DyeRecipe)" Label="DyeRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=EarringRecipe)" Label="EarringRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=FeastRecipe)" Label="FeastRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=FocusRecipe)" Label="FocusRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=GlovesRecipe)" Label="GlovesRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=GreatSwordRecipe)" Label="GreatSwordRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=HammerRecipe)" Label="HammerRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=HarpoonRecipe)" Label="HarpoonRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=HelmRecipe)" Label="HelmRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=Ingredient)" Label="Ingredient" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=IngredientCollection)" Label="IngredientCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=IngredientCookingRecipe)" Label="IngredientCookingRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=InscriptionRecipe)" Label="InscriptionRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=InsigniaRecipe)" Label="InsigniaRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=LeggingsRecipe)" Label="LeggingsRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=LongBowRecipe)" Label="LongBowRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=MaceRecipe)" Label="MaceRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=MealRecipe)" Label="MealRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=PistolRecipe)" Label="PistolRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=PotionRecipe)" Label="PotionRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=Recipe)" Label="Recipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=RecipeCollection)" Label="RecipeCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=RecipeCollectionResult)" Label="RecipeCollectionResult" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=RecipeUnlockTypes)" Label="RecipeUnlockTypes" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=RefinementEctoplasmRecipe)" Label="RefinementEctoplasmRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=RefinementObsidianRecipe)" Label="RefinementObsidianRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=RefinementRecipe)" Label="RefinementRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=RifleRecipe)" Label="RifleRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=RingRecipe)" Label="RingRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=ScepterRecipe)" Label="ScepterRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=SeasoningRecipe)" Label="SeasoningRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=ShieldRecipe)" Label="ShieldRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=ShortBowRecipe)" Label="ShortBowRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=ShouldersRecipe)" Label="ShouldersRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=SnackRecipe)" Label="SnackRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=SoupRecipe)" Label="SoupRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=SpearGunRecipe)" Label="SpearGunRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=StaffRecipe)" Label="StaffRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=SwordRecipe)" Label="SwordRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=TorchRecipe)" Label="TorchRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=TridentRecipe)" Label="TridentRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=UnknownRecipe)" Label="UnknownRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=UpgradeComponentRecipe)" Label="UpgradeComponentRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Recipes.Contracts Type=WarHornRecipe)" Label="WarHornRecipe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="b827f14b-f36f-437e-8b77-acf578884272" name="Maps.Contracts">
+              <ArtifactNode Label="Maps.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Maps.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=Continent)" Label="Continent" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=ContinentCollection)" Label="ContinentCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=ContinentCollectionResult)" Label="ContinentCollectionResult" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=Floor)" Label="Floor" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=FloorCollection)" Label="FloorCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=Map)" Label="Map" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=MapCollection)" Label="MapCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=MapCollectionResult)" Label="MapCollectionResult" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=MapName)" Label="MapName" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts Type=MapNameCollection)" Label="MapNameCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions Type=Region)" Label="Region" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions Type=RegionCollection)" Label="RegionCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest Type=Dungeon)" Label="Dungeon" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest Type=Landmark)" Label="Landmark" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest Type=PointOfInterest)" Label="PointOfInterest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest Type=PointOfInterestCollection)" Label="PointOfInterestCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest Type=UnknownPointOfInterest)" Label="UnknownPointOfInterest" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest Type=Vista)" Label="Vista" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest Type=Waypoint)" Label="Waypoint" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Sectors Type=Sector)" Label="Sector" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Sectors Type=SectorCollection)" Label="SectorCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.SkillChallenges Type=SkillChallenge)" Label="SkillChallenge" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.SkillChallenges Type=SkillChallengeCollection)" Label="SkillChallengeCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions Type=Subregion)" Label="Subregion" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions Type=SubregionCollection)" Label="SubregionCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Tasks Type=RenownTask)" Label="RenownTask" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Maps.Contracts.Regions.Subregions.Tasks Type=RenownTaskCollection)" Label="RenownTaskCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="2964bb56-3a60-4ec3-9af8-ebf06512e98f" name="Items.Contracts">
+              <ArtifactNode Label="Items.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Items.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=AquaticHelm)" Label="AquaticHelm" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=Armor)" Label="Armor" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=ArmorWeightClass)" Label="ArmorWeightClass" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=Boots)" Label="Boots" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=Coat)" Label="Coat" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=Gloves)" Label="Gloves" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=Helm)" Label="Helm" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=Leggings)" Label="Leggings" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=Shoulders)" Label="Shoulders" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Armors Type=UnknownArmor)" Label="UnknownArmor" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Backpacks Type=Backpack)" Label="Backpack" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Bags Type=Bag)" Label="Bag" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=ConditionDamage)" Label="ConditionDamage" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=Ferocity)" Label="Ferocity" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=Healing)" Label="Healing" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=ItemAttribute)" Label="ItemAttribute" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=ItemAttributeCollection)" Label="ItemAttributeCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=Power)" Label="Power" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=Precision)" Label="Precision" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=Toughness)" Label="Toughness" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=UnknownItemAttribute)" Label="UnknownItemAttribute" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common.Attributes Type=Vitality)" Label="Vitality" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common Type=InfusionSlot)" Label="InfusionSlot" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common Type=InfusionSlotCollection)" Label="InfusionSlotCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common Type=InfusionSlotTypes)" Label="InfusionSlotTypes" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common Type=ISkinnable)" Label="ISkinnable" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common Type=ItemBuff)" Label="ItemBuff" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common Type=IUpgradable)" Label="IUpgradable" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Common Type=IUpgrade)" Label="IUpgrade" Category="CodeSchema_Interface">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=AppearanceChanger)" Label="AppearanceChanger" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=BagSlotUnlocker)" Label="BagSlotUnlocker" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=BankTabUnlocker)" Label="BankTabUnlocker" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=Booze)" Label="Booze" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=CollectibleCapacityUnlocker)" Label="CollectibleCapacityUnlocker" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=Consumable)" Label="Consumable" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=ContentUnlocker)" Label="ContentUnlocker" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=ContractNpc)" Label="ContractNpc" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=CraftingRecipeUnlocker)" Label="CraftingRecipeUnlocker" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=DyeUnlocker)" Label="DyeUnlocker" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=Food)" Label="Food" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=GenericConsumable)" Label="GenericConsumable" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=HalloweenConsumable)" Label="HalloweenConsumable" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=ImmediateConsumable)" Label="ImmediateConsumable" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=Transmutation)" Label="Transmutation" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=UnknownConsumable)" Label="UnknownConsumable" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=UnknownUnlocker)" Label="UnknownUnlocker" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=Unlocker)" Label="Unlocker" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=UnTransmutation)" Label="UnTransmutation" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=UpgradeRemoval)" Label="UpgradeRemoval" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Consumables Type=Utility)" Label="Utility" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Containers Type=Container)" Label="Container" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Containers Type=DefaultContainer)" Label="DefaultContainer" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Containers Type=GiftBox)" Label="GiftBox" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Containers Type=OpenUiContainer)" Label="OpenUiContainer" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Containers Type=UnknownContainer)" Label="UnknownContainer" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.CraftingMaterials Type=CraftingMaterial)" Label="CraftingMaterial" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts Type=GameRestrictions)" Label="GameRestrictions" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.GatheringTools Type=ForagingTool)" Label="ForagingTool" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.GatheringTools Type=GatheringTool)" Label="GatheringTool" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.GatheringTools Type=LoggingTool)" Label="LoggingTool" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.GatheringTools Type=MiningTool)" Label="MiningTool" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.GatheringTools Type=UnknownGatheringTool)" Label="UnknownGatheringTool" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Gizmos Type=ContainerKey)" Label="ContainerKey" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Gizmos Type=DefaultGizmo)" Label="DefaultGizmo" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Gizmos Type=Gizmo)" Label="Gizmo" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Gizmos Type=RentableContractNpc)" Label="RentableContractNpc" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Gizmos Type=UnknownGizmo)" Label="UnknownGizmo" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Gizmos Type=UnlimitedConsumable)" Label="UnlimitedConsumable" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts Type=Item)" Label="Item" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts Type=ItemCollection)" Label="ItemCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts Type=ItemCollectionResult)" Label="ItemCollectionResult" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts Type=ItemFlags)" Label="ItemFlags" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts Type=ItemRarity)" Label="ItemRarity" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts Type=ItemRestrictions)" Label="ItemRestrictions" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.MiniPets Type=MiniPet)" Label="MiniPet" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Tools Type=SalvageTool)" Label="SalvageTool" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Tools Type=Tool)" Label="Tool" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Tools Type=UnknownTool)" Label="UnknownTool" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Trinkets Type=Accessory)" Label="Accessory" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Trinkets Type=Amulet)" Label="Amulet" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Trinkets Type=Ring)" Label="Ring" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Trinkets Type=Trinket)" Label="Trinket" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Trinkets Type=UnknownTrinket)" Label="UnknownTrinket" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Trophies Type=Trophy)" Label="Trophy" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts Type=UnknownItem)" Label="UnknownItem" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.UpgradeComponents Type=DefaultUpgradeComponent)" Label="DefaultUpgradeComponent" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.UpgradeComponents Type=Gem)" Label="Gem" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.UpgradeComponents Type=Rune)" Label="Rune" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.UpgradeComponents Type=Sigil)" Label="Sigil" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.UpgradeComponents Type=UnknownUpgradeComponent)" Label="UnknownUpgradeComponent" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.UpgradeComponents Type=UpgradeBonusCollection)" Label="UpgradeBonusCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.UpgradeComponents Type=UpgradeComponent)" Label="UpgradeComponent" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.UpgradeComponents Type=UpgradeComponentFlags)" Label="UpgradeComponentFlags" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Axe)" Label="Axe" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Dagger)" Label="Dagger" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Focus)" Label="Focus" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=GreatSword)" Label="GreatSword" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Hammer)" Label="Hammer" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Harpoon)" Label="Harpoon" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=LargeBundle)" Label="LargeBundle" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=LongBow)" Label="LongBow" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Mace)" Label="Mace" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Pistol)" Label="Pistol" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Rifle)" Label="Rifle" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Scepter)" Label="Scepter" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Shield)" Label="Shield" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=ShortBow)" Label="ShortBow" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=SmallBundle)" Label="SmallBundle" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=SpearGun)" Label="SpearGun" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Staff)" Label="Staff" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Sword)" Label="Sword" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Torch)" Label="Torch" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=ToyWeapon)" Label="ToyWeapon" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Trident)" Label="Trident" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=TwoHandedToyWeapon)" Label="TwoHandedToyWeapon" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=UnknownWeapon)" Label="UnknownWeapon" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=WarHorn)" Label="WarHorn" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=Weapon)" Label="Weapon" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Items.Contracts.Weapons Type=WeaponDamageType)" Label="WeaponDamageType" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="eac0f455-b00d-4706-8fd7-30fd9f628250" name="Guilds.Contracts">
+              <ArtifactNode Label="Guilds.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Guilds.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Guilds.Contracts Type=Emblem)" Label="Emblem" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Guilds.Contracts Type=EmblemTransformations)" Label="EmblemTransformations" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Guilds.Contracts Type=Guild)" Label="Guild" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="40b74dfc-cc29-42b9-837c-20a4bf360377" name="Files.Contracts">
+              <ArtifactNode Label="Files.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Files.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Files.Contracts Type=Asset)" Label="Asset" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Files.Contracts Type=AssetCollection)" Label="AssetCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="f781ee1c-7ab2-4ea9-a418-0908cab02c74" name="DynamicEvents.Contracts">
+              <ArtifactNode Label="DynamicEvents.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/DynamicEvents.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEvent)" Label="DynamicEvent" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventCollection)" Label="DynamicEventCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventCollectionResult)" Label="DynamicEventCollectionResult" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventFlags)" Label="DynamicEventFlags" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventName)" Label="DynamicEventName" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventNameCollection)" Label="DynamicEventNameCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventRotation)" Label="DynamicEventRotation" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventShifts)" Label="DynamicEventShifts" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventState)" Label="DynamicEventState" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventStateCollection)" Label="DynamicEventStateCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=DynamicEventStateCollectionResult)" Label="DynamicEventStateCollectionResult" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts Type=EventState)" Label="EventState" Category="CodeSchema_Enum">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts.Locations Type=CylinderLocation)" Label="CylinderLocation" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts.Locations Type=Location)" Label="Location" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts.Locations Type=PointCollection)" Label="PointCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts.Locations Type=PolygonLocation)" Label="PolygonLocation" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts.Locations Type=SphereLocation)" Label="SphereLocation" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.DynamicEvents.Contracts.Locations Type=UnknownLocation)" Label="UnknownLocation" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="6a81b58b-e7e2-4ffa-bb69-48ac096c8f18" name="Colors.Contracts">
+              <ArtifactNode Label="Colors.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Colors.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Colors.Contracts Type=ColorCollection)" Label="ColorCollection" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Colors.Contracts Type=ColorCollectionResult)" Label="ColorCollectionResult" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Colors.Contracts Type=ColorModel)" Label="ColorModel" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Colors.Contracts Type=ColorPalette)" Label="ColorPalette" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+            <reference Id="a5a1dc6b-6381-4456-bffc-892cf2988a0e" name="Builds.Contracts">
+              <ArtifactNode Label="Builds.Contracts" Category="CodeSchema_ProjectItem" Id="(Assembly=../GW2.NET/GW2.NET.csproj File=../GW2.NET/V1/Builds.Contracts/)">
+                <Category Ref="ProjectFolder" />
+              </ArtifactNode>
+              <ExpandedNode Id="(Assembly=GW2.NET Namespace=GW2DotNET.V1.Builds.Contracts Type=Build)" Label="Build" Category="CodeSchema_Class">
+                <LinkCategory Ref="Represents" />
+              </ExpandedNode>
+            </reference>
+          </references>
+        </layer>
+      </childLayers>
+    </layer>
+  </layers>
+</layerModel>
