@@ -3,6 +3,32 @@
   dslVersion="1.0.0.0"
   Id="1637c632-ac8b-4af1-9335-8baff1c4edac"
   name="GW2.NET" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <ownedCommentsInternal>
+    <comment
+      Id="0a2d7e9b-24b3-403d-9cf4-ff03914c5502">
+      <body>map_id: key of the IDictionary&lt;string, map&gt;
+
+map_rect: array of 2x Integer[2]
+
+continent_rect: array of 2x Integer[2]</body>
+      <annotatedElements>
+        <classMoniker
+          Id="1a2ec4e1-7a76-401d-8334-54831083ebb8"
+          LastKnownName="map"
+          LastKnownLocation="Package_1908.uml" />
+      </annotatedElements>
+    </comment>
+    <comment
+      Id="9e625eb9-1b0b-4f5a-9e13-f74cdb5226d3">
+      <body>name: key of the IDictionary&lt;string, asset&gt;</body>
+      <annotatedElements>
+        <classMoniker
+          Id="59a08a1a-2d0c-4c37-ab2e-d8c27612a8b4"
+          LastKnownName="asset"
+          LastKnownLocation="Package_1858.uml" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <appliedStereotypesInternal>
     <stereotypeInstance
       Id="4ea5c501-db7a-4aa6-acdc-b14a99edb1a8"
@@ -112,6 +138,18 @@
     </packageHasProfileInstances>
   </profileInstances>
   <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="1e7a5975-ed5e-49e4-9f92-095e98c63145"
+        LastKnownName="Builds"
+        LastKnownLocation="Package_1253.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="05326c16-40ac-4483-a38b-895a4ba2b9d0"
+        LastKnownName="Items"
+        LastKnownLocation="Package1_1253.uml" />
+    </packageHasNamedElement>
     <packageHasNamedElement>
       <packageMoniker
         Id="bf9e54ee-8644-4d4e-91a4-bbc7ab43fb46"
