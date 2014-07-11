@@ -257,5 +257,16 @@
       <SubType>Content</SubType>
       <DependentUpon>Layers.layerdiagram</DependentUpon>
     </Validate>
+    <Validate Include="Layers proper design.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="Layers proper design.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers proper design.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="Layers proper design.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers proper design.layerdiagram</DependentUpon>
+    </Validate>
   </ItemGroup>
 </Project>
