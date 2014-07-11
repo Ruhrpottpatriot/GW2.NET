@@ -246,16 +246,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Validate Include="V1.layerdiagram">
+    <Validate Include="Layers.layerdiagram">
       <SubType>Content</SubType>
     </Validate>
-    <Validate Include="V1.layerdiagram.layout">
+    <Validate Include="Layers.layerdiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>V1.layerdiagram</DependentUpon>
+      <DependentUpon>Layers.layerdiagram</DependentUpon>
     </Validate>
-    <Validate Include="V1.layerdiagram.suppressions">
+    <Validate Include="Layers.layerdiagram.suppressions">
       <SubType>Content</SubType>
-      <DependentUpon>V1.layerdiagram</DependentUpon>
+      <DependentUpon>Layers.layerdiagram</DependentUpon>
     </Validate>
   </ItemGroup>
 </Project>
