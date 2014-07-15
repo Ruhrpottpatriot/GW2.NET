@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a dynamic event and its status.
+//   Represents a dynamic event and its localized details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents.Contracts
@@ -12,29 +12,43 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
+    using GW2DotNET.V1.DynamicEvents.Contracts.Locations;
+    using GW2DotNET.V1.Maps.Contracts;
 
     using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
 
-    /// <summary>Represents a dynamic event and its status.</summary>
-    public class DynamicEvent : JsonObject, IEquatable<DynamicEvent>, IComparable<DynamicEvent>
+    /// <summary>Represents a dynamic event and its localized details.</summary>
+    public class DynamicEvent : ServiceContract, IEquatable<DynamicEvent>
     {
-        /// <summary>Gets or sets the <see cref="Guid" /> identifying the event.</summary>
-        [DataMember(Name = "event_id", Order = 2)]
+        /// <summary>Gets or sets the event identifier.</summary>
+        [DataMember(Name = "event_id")]
         public Guid EventId { get; set; }
 
-        /// <summary>Gets or sets the map on which the event is running.</summary>
-        [DataMember(Name = "map_id", Order = 1)]
-        public int MapId { get; set; }
+        /// <summary>Gets or sets additional flags.</summary>
+        [DataMember(Name = "flags")]
+        public DynamicEventFlags Flags { get; set; }
 
-        /// <summary>Gets or sets the current state of the event.</summary>
-        [DataMember(Name = "state", Order = 3)]
-        [JsonConverter(typeof(StringEnumConverter))]
-        public DynamicEventState State { get; set; }
+        /// <summary>Gets or sets the language.</summary>
+        [DataMember(Name = "lang")]
+        public string Language { get; set; }
 
-        /// <summary>Gets or sets the world on which the event is running.</summary>
-        [DataMember(Name = "world_id", Order = 0)]
-        public int WorldId { get; set; }
+        /// <summary>Gets or sets the event level.</summary>
+        [DataMember(Name = "level")]
+        public int Level { get; set; }
+
+        /// <summary>Gets or sets the location of the event.</summary>
+        [DataMember(Name = "location")]
+        public Location Location { get; set; }
+
+        /// <summary>Gets or sets the map.</summary>
+        [DataMember(Name = "map_id")]
+        [JsonConverter(typeof(UnknownMapConverter))]
+        public Map Map { get; set; }
+
+        /// <summary>Gets or sets the name of the event.</summary>
+        [DataMember(Name = "name")]
+        public string Name { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -54,19 +68,6 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
             return !object.Equals(left, right);
         }
 
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(DynamicEvent other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.EventId.CompareTo(other.EventId);
-        }
-
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
@@ -82,7 +83,7 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
                 return true;
             }
 
-            return this.WorldId == other.WorldId && this.EventId.Equals(other.EventId);
+            return this.EventId.Equals(other.EventId);
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
@@ -112,10 +113,20 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
         /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
-            unchecked
+            return this.EventId.GetHashCode();
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
             {
-                return (this.WorldId * 397) ^ this.EventId.GetHashCode();
+                return name;
             }
+
+            return this.EventId.ToString();
         }
     }
 }

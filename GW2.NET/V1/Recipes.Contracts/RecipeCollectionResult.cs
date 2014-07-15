@@ -13,10 +13,10 @@ namespace GW2DotNET.V1.Recipes.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of recipe identifiers.</summary>
-    public class RecipeCollectionResult : JsonObject
+    public class RecipeCollectionResult : ServiceContract
     {
         /// <summary>Gets or sets a collection of recipe identifiers.</summary>
-        [DataMember(Name = "recipes", Order = 0)]
+        [DataMember(Name = "recipes")]
         public RecipeCollection Recipes { get; set; }
     }
 }

@@ -2,6 +2,8 @@
 {
     using System.Drawing;
 
+    using GW2DotNET.V1.DynamicEvents.Converters;
+
     using Newtonsoft.Json;
 
     using NUnit.Framework;
@@ -22,13 +24,11 @@
 
         [Test]
         [Category("Converters")]
-        public void Read_EmptyArray_ReturnsDefault()
+        [ExpectedException(typeof(JsonSerializationException))]
+        public void Read_EmptyArray_ConverterThrowsJsonSerializationException()
         {
             const string input = "[]";
-            Point expected = default(Point);
-            var actual = JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
+            JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
         }
 
         [Test]
@@ -126,79 +126,11 @@
 
         [Test]
         [Category("Converters")]
-        public void Read_SingleNil_ReturnsDefault()
-        {
-            const string input = "[0]";
-            Point expected = default(Point);
-            var actual = JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("Converters")]
-        public void Read_SingleValue_ConverterAssumesValueIsX()
+        [ExpectedException(typeof(JsonSerializationException))]
+        public void Read_LessThanTwoValues_ConverterThrowsJsonSerializationException()
         {
             const string input = "[1]";
-            var expected = new Point(1, 0);
-            var actual = JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("Converters")]
-        public void Write_DefaultPoint_JsonReflectsInput()
-        {
-            const string expected = "[0,0]";
-            Point input = default(Point);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("Converters")]
-        public void Write_NegativeExtremes_JsonReflectsInput()
-        {
-            const string expected = "[-2147483648,-2147483648]";
-            var input = new Point(int.MinValue, int.MinValue);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("Converters")]
-        public void Write_NegativeValues_JsonReflectsInput()
-        {
-            const string expected = "[-1,-2]";
-            var input = new Point(-1, -2);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("Converters")]
-        public void Write_PositiveExtremes_JsonReflectsInput()
-        {
-            const string expected = "[2147483647,2147483647]";
-            var input = new Point(int.MaxValue, int.MaxValue);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        [Test]
-        [Category("Converters")]
-        public void Write_PositiveValues_JsonReflectsInput()
-        {
-            const string expected = "[1,2]";
-            var input = new Point(1, 2);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointConverter());
-
-            Assert.AreEqual(expected, actual);
+            JsonConvert.DeserializeObject<Point>(input, new JsonPointConverter());
         }
     }
 }

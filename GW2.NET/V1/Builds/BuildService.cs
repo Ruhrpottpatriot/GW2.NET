@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Builds
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -33,7 +34,13 @@ namespace GW2DotNET.V1.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Build GetBuild()
         {
-            return this.serviceClient.Send(new BuildRequest(), new JsonSerializer<Build>());
+            var request = new BuildRequest();
+            var result = this.serviceClient.Send(request, new JsonSerializer<Build>());
+
+            // Patch missing timestamp
+            result.Timestamp = DateTimeOffset.UtcNow;
+
+            return result;
         }
 
         /// <summary>Gets the current build.</summary>
@@ -41,7 +48,7 @@ namespace GW2DotNET.V1.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Task<Build> GetBuildAsync()
         {
-            return this.serviceClient.SendAsync(new BuildRequest(), new JsonSerializer<Build>(), CancellationToken.None);
+            return this.GetBuildAsync(CancellationToken.None);
         }
 
         /// <summary>Gets the current build.</summary>
@@ -50,7 +57,21 @@ namespace GW2DotNET.V1.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
-            return this.serviceClient.SendAsync(new BuildRequest(), new JsonSerializer<Build>(), cancellationToken);
+            var request = new BuildRequest();
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Build>(), cancellationToken);
+            var t2 = t1.ContinueWith(
+                task =>
+                    {
+                        var result = task.Result;
+
+                        // Patch missing timestamp
+                        result.Timestamp = DateTimeOffset.UtcNow;
+
+                        return result;
+                    }, 
+                cancellationToken);
+
+            return t2;
         }
     }
 }

@@ -9,7 +9,7 @@
 namespace GW2DotNET.ChatLinks.Extensions
 {
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Maps.Floors.Contracts.Regions.Subregions.PointsOfInterest;
+    using GW2DotNET.V1.Maps.Contracts.Regions.Subregions.PointsOfInterest;
 
     /// <summary>Provides static extension methods for the <see cref="PointOfInterest" /> class.</summary>
     public static class PointOfInterestExtensions

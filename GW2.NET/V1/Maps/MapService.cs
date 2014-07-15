@@ -22,6 +22,9 @@ namespace GW2DotNET.V1.Maps
     /// <summary>Provides the default implementation of the maps service.</summary>
     public class MapService : IMapService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly MapSerializerSettings Settings = new MapSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -50,15 +53,25 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { MapId = mapId, Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>()).Maps.Values;
+            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>(Settings));
 
-            // patch missing language information
-            foreach (var map in result)
+            // Apply patches
+            foreach (var map in result.Maps)
             {
-                map.Language = language;
+                // Patch missing map identifier
+                map.Value.MapId = map.Key;
+
+                // Patch missing language information
+                map.Value.Language = language.TwoLetterISOLanguageName;
+
+                // Patch missing continent identifiers
+                foreach (var floor in map.Value.Floors)
+                {
+                    floor.Continent = map.Value.Continent;
+                }
             }
 
-            return result.SingleOrDefault();
+            return result.Maps.Values.SingleOrDefault();
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -101,50 +114,70 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { MapId = mapId, Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(Settings), cancellationToken);
+            var t2 = t1.ContinueWith(
                 task =>
                     {
                         var result = task.Result;
 
-                        // patch missing language information
-                        foreach (var map in result.Maps.Values)
+                        // Apply patches
+                        foreach (var map in result.Maps)
                         {
-                            map.Language = language;
+                            // Patch missing map identifiers
+                            map.Value.MapId = map.Key;
+
+                            // Patch missing language information
+                            map.Value.Language = language.TwoLetterISOLanguageName;
+
+                            // Patch missing continent identifiers
+                            foreach (var floor in map.Value.Floors)
+                            {
+                                floor.Continent = map.Value.Continent;
+                            }
                         }
 
-                        return result;
+                        return result.Maps.Values.SingleOrDefault();
                     }, 
                 cancellationToken);
-            var t2 = t1.ContinueWith(task => task.Result.Maps.Values.SingleOrDefault(), cancellationToken);
 
             return t2;
         }
 
-        /// <summary>Gets a collection of maps and their details.</summary>
-        /// <returns>A collection of maps and their details.</returns>
+        /// <summary>Gets a collection of maps and their localized details.</summary>
+        /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public IEnumerable<Map> GetMaps()
         {
             return this.GetMaps(CultureInfo.GetCultureInfo("en"));
         }
 
-        /// <summary>Gets a collection of maps and their details.</summary>
+        /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="language">The language.</param>
-        /// <returns>A collection of maps and their details.</returns>
+        /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public IEnumerable<Map> GetMaps(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>()).Maps.Values;
+            var result = this.serviceClient.Send(request, new JsonSerializer<MapCollectionResult>(Settings));
 
-            // patch missing language information
-            foreach (var map in result)
+            // Apply patches
+            foreach (var map in result.Maps)
             {
-                map.Language = language;
+                // Patch missing map identifiers
+                map.Value.MapId = map.Key;
+
+                // Patch missing language information
+                map.Value.Language = language.TwoLetterISOLanguageName;
+
+                // Patch missing continent identifiers
+                foreach (var floor in map.Value.Floors)
+                {
+                    floor.Continent = map.Value.Continent;
+                }
             }
 
-            return result;
+            return result.Maps.Values;
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -182,15 +215,25 @@ namespace GW2DotNET.V1.Maps
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(), cancellationToken).ContinueWith(
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionResult>(Settings), cancellationToken).ContinueWith(
                 task =>
                     {
                         var result = task.Result;
 
-                        // patch missing language information
-                        foreach (var map in result.Maps.Values)
+                        // Apply patches
+                        foreach (var map in result.Maps)
                         {
-                            map.Language = language;
+                            // Patch missing map identifiers
+                            map.Value.MapId = map.Key;
+
+                            // Patch missing language information
+                            map.Value.Language = language.TwoLetterISOLanguageName;
+
+                            // Patch missing continent identifiers
+                            foreach (var floor in map.Value.Floors)
+                            {
+                                floor.Continent = map.Value.Continent;
+                            }
                         }
 
                         return result;

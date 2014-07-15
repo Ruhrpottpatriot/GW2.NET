@@ -9,17 +9,21 @@
 namespace GW2DotNET.V1.Builds.Contracts
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents the current build of the game.</summary>
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.</remarks>
-    public class Build : JsonObject, IEquatable<Build>, IComparable<Build>
+    public class Build : ServiceContract, IEquatable<Build>, IComparable<Build>
     {
-        /// <summary>Gets or sets the current build ID of the game.</summary>
-        [DataMember(Name = "build_id", Order = 0)]
+        /// <summary>Gets or sets the current build identifier of the game.</summary>
+        [DataMember(Name = "build_id")]
         public virtual int BuildId { get; set; }
+
+        /// <summary>Gets or sets a timestamp for this build.</summary>
+        public virtual DateTimeOffset Timestamp { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -169,6 +173,14 @@ namespace GW2DotNET.V1.Builds.Contracts
         public override int GetHashCode()
         {
             return this.BuildId;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            return this.BuildId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }

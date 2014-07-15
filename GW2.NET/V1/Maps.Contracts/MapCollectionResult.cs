@@ -13,10 +13,10 @@ namespace GW2DotNET.V1.Maps.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of maps and their details.</summary>
-    public class MapCollectionResult : JsonObject
+    public class MapCollectionResult : ServiceContract
     {
         /// <summary>Gets or sets a collection of maps and their details.</summary>
-        [DataMember(Name = "maps", Order = 0)]
+        [DataMember(Name = "maps")]
         public MapCollection Maps { get; set; }
     }
 }

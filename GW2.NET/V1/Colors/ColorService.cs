@@ -21,6 +21,9 @@ namespace GW2DotNET.V1.Colors
     /// <summary>Provides the default implementation of the colors service.</summary>
     public class ColorService : IColorService
     {
+        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
+        private static readonly ColorSerializerSettings Settings = new ColorSerializerSettings();
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -47,12 +50,16 @@ namespace GW2DotNET.V1.Colors
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ColorRequest { Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<ColorCollectionResult>());
+            var result = this.serviceClient.Send(request, new JsonSerializer<ColorCollectionResult>(Settings));
 
-            // patch missing language information
-            foreach (var colorPalette in result.Colors.Values)
+            // Apply patches
+            foreach (var colorPalette in result.Colors)
             {
-                colorPalette.Language = language;
+                // Patch missing color identifier
+                colorPalette.Value.ColorId = colorPalette.Key;
+
+                // Patch missing language information
+                colorPalette.Value.Language = language.TwoLetterISOLanguageName;
             }
 
             return result.Colors.Values;
@@ -93,16 +100,20 @@ namespace GW2DotNET.V1.Colors
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ColorRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ColorCollectionResult>(), cancellationToken);
+            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<ColorCollectionResult>(Settings), cancellationToken);
             var t2 = t1.ContinueWith<IEnumerable<ColorPalette>>(
                 task =>
                     {
                         var result = task.Result;
 
-                        // patch missing language information
-                        foreach (var colorPalette in result.Colors.Values)
+                        // Apply patches
+                        foreach (var colorPalette in result.Colors)
                         {
-                            colorPalette.Language = language;
+                            // Patch missing color identifier
+                            colorPalette.Value.ColorId = colorPalette.Key;
+
+                            // Patch missing language information
+                            colorPalette.Value.Language = language.TwoLetterISOLanguageName;
                         }
 
                         return result.Colors.Values;

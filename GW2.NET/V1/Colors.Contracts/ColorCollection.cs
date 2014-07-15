@@ -9,12 +9,11 @@
 namespace GW2DotNET.V1.Colors.Contracts
 {
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of color palettes.</summary>
-    public class ColorCollection : JsonDictionary<int, ColorPalette>
+    public class ColorCollection : ServiceContractDictionary<int, ColorPalette>
     {
         /// <summary>Initializes a new instance of the <see cref="ColorCollection" /> class.</summary>
         public ColorCollection()
@@ -33,17 +32,6 @@ namespace GW2DotNET.V1.Colors.Contracts
         public ColorCollection(IDictionary<int, ColorPalette> dictionary)
             : base(dictionary)
         {
-        }
-
-        /// <summary>Sets each value's ID property to its corresponding key.</summary>
-        /// <param name="context">The streaming context.</param>
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            foreach (var kvp in this)
-            {
-                kvp.Value.ColorId = kvp.Key;
-            }
         }
     }
 }

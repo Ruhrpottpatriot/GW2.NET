@@ -9,7 +9,6 @@
 namespace GW2DotNET.Common
 {
     using System;
-    using System.IO;
     using System.IO.Compression;
     using System.Net;
     using System.Threading;
@@ -128,7 +127,14 @@ namespace GW2DotNET.Common
         /// <returns>An instance of the specified type.</returns>
         private static TResult DeserializeResponse<TResult>(ISerializer<TResult> serializer, HttpWebResponse response)
         {
-            var stream = response.GetResponseStream() ?? new MemoryStream();
+            // Get the response content
+            var stream = response.GetResponseStream();
+
+            // Ensure that there is response content
+            if (stream == null)
+            {
+                return default(TResult);
+            }
 
             // Ensure that we are operating on decompressed data
             var contentEncoding = response.Headers[HttpResponseHeader.ContentEncoding];
@@ -142,10 +148,7 @@ namespace GW2DotNET.Common
             }
 
             // Deserialize the response content
-            using (stream)
-            {
-                return serializer.Deserialize(stream);
-            }
+            return serializer.Deserialize(stream);
         }
 
         /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
@@ -168,9 +171,8 @@ namespace GW2DotNET.Common
 
                 // Wrap the exception in a ServiceException, then throw
                 using (var response = exception.Response)
-                using (var stream = response.GetResponseStream())
                 {
-                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(stream);
+                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
                     throw new ServiceException(null, errorResult, exception);
                 }
             }
@@ -195,9 +197,8 @@ namespace GW2DotNET.Common
                             {
                                 // Wrap the exception in a ServiceException, then throw
                                 using (var response = exception.Response)
-                                using (var stream = response.GetResponseStream())
                                 {
-                                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(stream);
+                                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
                                     throw new ServiceException(null, errorResult, exception);
                                 }
                             }

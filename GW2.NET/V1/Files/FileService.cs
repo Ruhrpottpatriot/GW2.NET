@@ -37,6 +37,12 @@ namespace GW2DotNET.V1.Files
             var request = new FileRequest();
             var result = this.serviceClient.Send(request, new JsonSerializer<AssetCollection>());
 
+            // Patch missing filenames
+            foreach (var file in result)
+            {
+                file.Value.FileName = file.Key;
+            }
+
             return result.Values;
         }
 
@@ -56,7 +62,20 @@ namespace GW2DotNET.V1.Files
         {
             var request = new FileRequest();
             var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<AssetCollection>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<Asset>>(task => task.Result.Values, cancellationToken);
+            var t2 = t1.ContinueWith<IEnumerable<Asset>>(
+                task =>
+                    {
+                        var result = task.Result;
+
+                        // Patch missing filenames
+                        foreach (var file in result)
+                        {
+                            file.Value.FileName = file.Key;
+                        }
+
+                        return result.Values;
+                    }, 
+                cancellationToken);
 
             return t2;
         }

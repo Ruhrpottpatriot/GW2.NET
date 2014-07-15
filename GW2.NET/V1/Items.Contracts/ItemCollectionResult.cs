@@ -13,10 +13,10 @@ namespace GW2DotNET.V1.Items.Contracts
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Wraps a collection of item identifiers.</summary>
-    public class ItemCollectionResult : JsonObject
+    public class ItemCollectionResult : ServiceContract
     {
         /// <summary>Gets or sets a collection of item identifiers.</summary>
-        [DataMember(Name = "items", Order = 0)]
+        [DataMember(Name = "items")]
         public ItemCollection Items { get; set; }
     }
 }

@@ -9,24 +9,25 @@
 namespace GW2DotNET.V1.Files.Contracts
 {
     using System;
+    using System.Globalization;
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents information about a file that can be retrieved from the render service.</summary>
-    public class Asset : JsonObject, IEquatable<Asset>, IComparable<Asset>, IRenderable
+    public class Asset : ServiceContract, IRenderable, IEquatable<Asset>
     {
-        /// <summary>Gets or sets the file ID to be used with the render service.</summary>
-        [DataMember(Name = "file_id", Order = 0)]
+        /// <summary>Gets or sets the file identifier to be used with the render service.</summary>
+        [DataMember(Name = "file_id")]
         public int FileId { get; set; }
 
         /// <summary>Gets or sets the file name.</summary>
-        [DataMember(Name = "file_name", Order = 2)]
+        [DataMember(Name = "file_name")]
         public string FileName { get; set; }
 
         /// <summary>Gets or sets file signature to be used with the render service.</summary>
-        [DataMember(Name = "signature", Order = 1)]
+        [DataMember(Name = "signature")]
         public string FileSignature { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -45,19 +46,6 @@ namespace GW2DotNET.V1.Files.Contracts
         public static bool operator !=(Asset left, Asset right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Asset other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.FileId.CompareTo(other.FileId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
@@ -106,6 +94,19 @@ namespace GW2DotNET.V1.Files.Contracts
         public override int GetHashCode()
         {
             return this.FileId;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.FileName;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.FileId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }

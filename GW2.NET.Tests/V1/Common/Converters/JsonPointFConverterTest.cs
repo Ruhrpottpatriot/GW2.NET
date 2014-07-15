@@ -25,13 +25,11 @@
         /// <summary>The json point f converter_ Read_ empty array_ returns default.</summary>
         [Test]
         [Category("Converters")]
-        public void Read_EmptyArray_ReturnsDefault()
+        [ExpectedException(typeof(JsonSerializationException))]
+        public void Read_EmptyArray_ConverterThrowsJsonSerializationException()
         {
             const string input = "[]";
-            PointF expected = default(PointF);
-            var actual = JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
+            JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
         }
 
         /// <summary>The json point f converter_ read empty_ exception is thrown for value type.</summary>
@@ -136,89 +134,14 @@
             Assert.AreEqual(expected, actual);
         }
 
-        /// <summary>The json point f converter_ read single nil_ returns default.</summary>
-        [Test]
-        [Category("Converters")]
-        public void Read_SingleNil_ReturnsDefault()
-        {
-            const string input = "[0.0]";
-            PointF expected = default(PointF);
-            var actual = JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
         /// <summary>The json point f converter_ read single value_ converter assumes value is x.</summary>
         [Test]
         [Category("Converters")]
-        public void Read_SingleValue_ConverterAssumesValueIsX()
+        [ExpectedException(typeof(JsonSerializationException))]
+        public void Read_LessThanTwoValues_ConverterThrowsJsonSerializationException()
         {
             const string input = "[1.2]";
-            var expected = new PointF(1.2F, 0F);
             var actual = JsonConvert.DeserializeObject<PointF>(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>The json point f converter_ write default point f_ json reflects input.</summary>
-        [Test]
-        [Category("Converters")]
-        public void Write_DefaultPointF_JsonReflectsInput()
-        {
-            const string expected = "[0.0,0.0]";
-            PointF input = default(PointF);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>The json point f converter_ write negative extremes_ json reflects input.</summary>
-        [Test]
-        [Category("Converters")]
-        public void Write_NegativeExtremes_JsonReflectsInput()
-        {
-            const string expected = "[-2147483648.0,-2147483648.0]";
-            var input = new PointF(int.MinValue, int.MinValue);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>The json point f converter_ write negative values_ json reflects input.</summary>
-        [Test]
-        [Category("Converters")]
-        public void Write_NegativeValues_JsonReflectsInput()
-        {
-            const string expected = "[-1.2,-3.4]";
-            var input = new PointF(-1.2F, -3.4F);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>The json point f converter_ write positive extremes_ json reflects input.</summary>
-        [Test]
-        [Category("Converters")]
-        [Ignore("Known bug: this test fails due to loss of accuracy in floating point numbers when working with large numbers.")]
-        public void Write_PositiveExtremes_JsonReflectsInput()
-        {
-            const string expected = "[2147483647.0,2147483647.0]";
-            var input = new PointF(int.MaxValue, int.MaxValue);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
-        }
-
-        /// <summary>The json point f converter_ write positive values_ json reflects input.</summary>
-        [Test]
-        [Category("Converters")]
-        public void Write_PositiveValues_JsonReflectsInput()
-        {
-            const string expected = "[1.2,3.4]";
-            var input = new PointF(1.2F, 3.4F);
-            string actual = JsonConvert.SerializeObject(input, new JsonPointFConverter());
-
-            Assert.AreEqual(expected, actual);
         }
     }
 }

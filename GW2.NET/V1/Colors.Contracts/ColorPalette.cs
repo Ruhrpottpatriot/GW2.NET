@@ -14,85 +14,36 @@ namespace GW2DotNET.V1.Colors.Contracts
     using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
-    using GW2DotNET.V1.Common.Converters;
-
-    using Newtonsoft.Json;
 
     /// <summary>Represents a named color and its color component information for cloth, leather and metal materials.</summary>
-    public class ColorPalette : JsonObject, IEquatable<ColorPalette>, IComparable<ColorPalette>
+    public class ColorPalette : ServiceContract, IEquatable<ColorPalette>
     {
-        /// <summary>Infrastructure. Stores a color model.</summary>
-        private ColorModel cloth;
-
-        /// <summary>Infrastructure. Stores a color model.</summary>
-        private ColorModel leather;
-
-        /// <summary>Infrastructure. Stores a color model.</summary>
-        private ColorModel metal;
-
         /// <summary>Gets or sets the base RGB values.</summary>
-        [DataMember(Name = "base_rgb", Order = 2)]
-        [JsonConverter(typeof(JsonColorConverter))]
+        [DataMember(Name = "base_rgb")]
         public Color BaseRgb { get; set; }
 
-        /// <summary>Gets or sets detailed information on the color's appearance when applied to cloth armor.</summary>
-        [DataMember(Name = "cloth", Order = 3)]
-        public ColorModel Cloth
-        {
-            get
-            {
-                return this.cloth;
-            }
+        /// <summary>Gets or sets the color model for cloth armor.</summary>
+        [DataMember(Name = "cloth")]
+        public ColorModel Cloth { get; set; }
 
-            set
-            {
-                this.cloth = value;
-                value.ColorPalette = this;
-            }
-        }
-
-        /// <summary>Gets or sets the color's ID.</summary>
-        [DataMember(Name = "color_id", Order = 0)]
+        /// <summary>Gets or sets the color identifier.</summary>
+        [DataMember(Name = "color_id")]
         public int ColorId { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 6)]
-        public CultureInfo Language { get; set; }
+        /// <summary>Gets or sets the language.</summary>
+        [DataMember(Name = "lang")]
+        public string Language { get; set; }
 
-        /// <summary>Gets or sets detailed information on the color's appearance when applied to leather armor.</summary>
-        [DataMember(Name = "leather", Order = 4)]
-        public ColorModel Leather
-        {
-            get
-            {
-                return this.leather;
-            }
+        /// <summary>Gets or sets the color model for leather armor.</summary>
+        [DataMember(Name = "leather")]
+        public ColorModel Leather { get; set; }
 
-            set
-            {
-                this.leather = value;
-                value.ColorPalette = this;
-            }
-        }
+        /// <summary>Gets or sets the color model for metal armor.</summary>
+        [DataMember(Name = "metal")]
+        public ColorModel Metal { get; set; }
 
-        /// <summary>Gets or sets detailed information on the color's appearance when applied to metal armor.</summary>
-        [DataMember(Name = "metal", Order = 5)]
-        public ColorModel Metal
-        {
-            get
-            {
-                return this.metal;
-            }
-
-            set
-            {
-                this.metal = value;
-                value.ColorPalette = this;
-            }
-        }
-
-        /// <summary>Gets or sets the name of the dye.</summary>
-        [DataMember(Name = "name", Order = 1)]
+        /// <summary>Gets or sets the name of the color.</summary>
+        [DataMember(Name = "name")]
         public string Name { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -113,19 +64,6 @@ namespace GW2DotNET.V1.Colors.Contracts
             return !object.Equals(left, right);
         }
 
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(ColorPalette other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.ColorId.CompareTo(other.ColorId);
-        }
-
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
         /// <returns>true if the current object is equal to the <paramref name="other"/> parameter; otherwise, false.</returns>
         /// <param name="other">An object to compare with this object.</param>
@@ -144,9 +82,9 @@ namespace GW2DotNET.V1.Colors.Contracts
             return this.ColorId == other.ColorId;
         }
 
-        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
+        /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.</summary>
         /// <returns>true if the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>; otherwise, false.</returns>
-        /// <param name="obj">The <see cref="T:System.Object"/> to compare with the current <see cref="T:System.Object"/>. </param>
+        /// <param name="obj">The object to compare with the current object. </param>
         public override bool Equals(object obj)
         {
             if (object.ReferenceEquals(null, obj))
@@ -167,11 +105,28 @@ namespace GW2DotNET.V1.Colors.Contracts
             return this.Equals((ColorPalette)obj);
         }
 
-        /// <summary>Serves as a hash function for a particular type.</summary>
-        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
+        /// <summary>
+        /// Serves as a hash function for a particular type. 
+        /// </summary>
+        /// <returns>
+        /// A hash code for the current <see cref="T:System.Object"/>.
+        /// </returns>
         public override int GetHashCode()
         {
             return this.ColorId;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.ColorId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }

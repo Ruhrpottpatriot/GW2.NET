@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6f803776-2787-45ca-9be4-10fcb832ff28}</ProjectGuid>
+    <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
+    <Name>GW2.NET.Diagrams</Name>
+    <RootNamespace>ModelingProject1</RootNamespace>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
+  <ItemGroup>
+    <Content Include="ModelDefinition\Package1_1253.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1243.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1253.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1403.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1642.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1811.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1858.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1904.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1908.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1953.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_1959.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2008.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2011.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="ModelDefinition\Package_2023.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Builds\Builds.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Builds\Builds.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Builds\Builds.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Colors\Colors.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Colors\Colors.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Colors\Colors.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\DynamicEvents\Events.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\DynamicEvents\Events.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\DynamicEvents\Events.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Files\Assets.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Files\Assets.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Files\Assets.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Guilds\Guilds.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Guilds\Guilds.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Guilds\Guilds.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\Armors.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\Armors.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\Armors.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\Backpacks.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\Backpacks.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\Backpacks.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\Bags.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\Bags.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\Bags.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\Consumables.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\Consumables.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\Consumables.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\Containers.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\Containers.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\Containers.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\GatheringTools.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\GatheringTools.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\GatheringTools.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\Gizmos.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\Gizmos.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\Gizmos.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\Tools.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\Tools.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\Tools.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\Trinkets.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\Trinkets.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\Trinkets.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\UpgradeComponents.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\UpgradeComponents.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\UpgradeComponents.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Items\Weapons.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Items\Weapons.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Items\Weapons.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Maps\Floors.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Maps\Floors.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Maps\Floors.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Maps\Maps.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Maps\Maps.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Maps\Maps.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Matches\Matches.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Matches\Matches.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Matches\Matches.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Recipes\Recipes.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Recipes\Recipes.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Recipes\Recipes.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Skins\Skins.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Skins\Skins.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Skins\Skins.classdiagram</DependentUpon>
+    </Content>
+    <Content Include="V1\Worlds\Worlds.classdiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="V1\Worlds\Worlds.classdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>V1\Worlds\Worlds.classdiagram</DependentUpon>
+    </Content>
+    <Folder Include="ModelDefinition\" />
+    <Content Include="ModelDefinition\GW2.NET.Diagrams.uml">
+      <SubType>Content</SubType>
+    </Content>
+    <Folder Include="V1" />
+    <Folder Include="V1\Builds\" />
+    <Folder Include="V1\Colors\" />
+    <Folder Include="V1\DynamicEvents\" />
+    <Folder Include="V1\Items\" />
+    <Folder Include="V1\Files" />
+    <Folder Include="V1\Guilds" />
+    <Folder Include="V1\Maps" />
+    <Folder Include="V1\Matches" />
+    <Folder Include="V1\Worlds" />
+    <Folder Include="V1\Skins" />
+    <Folder Include="V1\Recipes" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GW2.NET\GW2.NET.csproj">
+      <Name>GW2.NET</Name>
+      <Project>{46c3a3d8-6627-4098-82ba-608f158a8ca5}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Validate Include="Layers.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="Layers.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="Layers.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="Layers proper design.layerdiagram">
+      <SubType>Content</SubType>
+    </Validate>
+    <Validate Include="Layers proper design.layerdiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers proper design.layerdiagram</DependentUpon>
+    </Validate>
+    <Validate Include="Layers proper design.layerdiagram.suppressions">
+      <SubType>Content</SubType>
+      <DependentUpon>Layers proper design.layerdiagram</DependentUpon>
+    </Validate>
+  </ItemGroup>
+</Project>

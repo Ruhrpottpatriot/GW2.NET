@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET", "GW2.NET\GW2.NET.csproj", "{46C3A3D8-6627-4098-82BA-608F158A8CA5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{57002F16-9BE4-4850-A2B9-24F4147A2ED7}"
@@ -14,9 +16,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.Tests", "GW2.NET.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.RestSharp", "GW2.NET.RestSharp\GW2.NET.RestSharp.csproj", "{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}"
 EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "GW2.NET.Diagrams", "GW2.NET.Diagrams\GW2.NET.Diagrams.modelproj", "{6F803776-2787-45CA-9BE4-10FCB832FF28}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -29,6 +33,9 @@ Global
 		SccProjectUniqueName3 = GW2.NET.RestSharp\\GW2.NET.RestSharp.csproj
 		SccProjectName3 = GW2.NET.RestSharp
 		SccLocalPath3 = GW2.NET.RestSharp
+		SccProjectUniqueName4 = GW2.NET.Diagrams\\GW2.NET.Diagrams.modelproj
+		SccProjectName4 = GW2.NET.Diagrams
+		SccLocalPath4 = GW2.NET.Diagrams
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +74,14 @@ Global
 		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Release|x64.ActiveCfg = Release|Any CPU
 		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Release|x86.ActiveCfg = Release|Any CPU
+		{6F803776-2787-45CA-9BE4-10FCB832FF28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F803776-2787-45CA-9BE4-10FCB832FF28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F803776-2787-45CA-9BE4-10FCB832FF28}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F803776-2787-45CA-9BE4-10FCB832FF28}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6F803776-2787-45CA-9BE4-10FCB832FF28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F803776-2787-45CA-9BE4-10FCB832FF28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F803776-2787-45CA-9BE4-10FCB832FF28}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F803776-2787-45CA-9BE4-10FCB832FF28}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

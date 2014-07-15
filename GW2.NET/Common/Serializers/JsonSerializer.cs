@@ -40,9 +40,7 @@ namespace GW2DotNET.Common.Serializers
         /// <returns>An instance of the specified type.</returns>
         public T Deserialize(Stream stream)
         {
-            using (stream)
-            using (var streamReader = new StreamReader(stream))
-            using (var jsonReader = new JsonTextReader(streamReader))
+            using (var jsonReader = new JsonTextReader(new StreamReader(stream)))
             {
                 return this.jsonSerializer.Deserialize<T>(jsonReader);
             }

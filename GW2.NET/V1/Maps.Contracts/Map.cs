@@ -18,61 +18,64 @@ namespace GW2DotNET.V1.Maps.Contracts
 
     using Newtonsoft.Json;
 
-    /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
-    public class Map : JsonObject, IEquatable<Map>, IComparable<Map>
-    {
-        /// <summary>Gets or sets the ID of the continent this map belongs to.</summary>
-        [DataMember(Name = "continent_id", Order = 8)]
-        public int ContinentId { get; set; }
+    using Region = GW2DotNET.V1.Maps.Contracts.Regions.Region;
 
-        /// <summary>Gets or sets the name of the continent this map belongs to.</summary>
-        [DataMember(Name = "continent_name", Order = 9)]
+    /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
+    public class Map : ServiceContract, IEquatable<Map>
+    {
+        /// <summary>Gets or sets the continent identifier of the continent that this map belongs to.</summary>
+        [DataMember(Name = "continent_id")]
+        [JsonConverter(typeof(UnknownContinentConverter))]
+        public Continent Continent { get; set; }
+
+        /// <summary>Gets or sets the name of the continent that this map belongs to.</summary>
+        [DataMember(Name = "continent_name")]
         public string ContinentName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
-        [DataMember(Name = "continent_rect", Order = 11)]
-        [JsonConverter(typeof(JsonRectangleConverter))]
+        [DataMember(Name = "continent_rect")]
         public Rectangle ContinentRectangle { get; set; }
 
         /// <summary>Gets or sets the default floor of this map.</summary>
-        [DataMember(Name = "default_floor", Order = 4)]
-        public int DefaultFloor { get; set; }
+        [DataMember(Name = "default_floor")]
+        [JsonConverter(typeof(UnknownFloorConverter))]
+        public Floor DefaultFloor { get; set; }
 
         /// <summary>Gets or sets a list of available floors for this map.</summary>
-        [DataMember(Name = "floors", Order = 5)]
+        [DataMember(Name = "floors")]
         public FloorCollection Floors { get; set; }
 
-        /// <summary>Gets or sets the language info.</summary>
-        [DataMember(Name = "lang", Order = 12)]
-        public CultureInfo Language { get; set; }
+        /// <summary>Gets or sets the language.</summary>
+        [DataMember(Name = "lang")]
+        public string Language { get; set; }
 
-        /// <summary>Gets or sets the map's ID.</summary>
-        [DataMember(Name = "map_id", Order = 0)]
+        /// <summary>Gets or sets the map identifier.</summary>
+        [DataMember(Name = "map_id")]
         public int MapId { get; set; }
 
-        /// <summary>Gets or sets the map name.</summary>
-        [DataMember(Name = "map_name", Order = 1)]
+        /// <summary>Gets or sets the name of the map.</summary>
+        [DataMember(Name = "map_name")]
         public string MapName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
-        [DataMember(Name = "map_rect", Order = 10)]
-        [JsonConverter(typeof(JsonRectangleConverter))]
+        [DataMember(Name = "map_rect")]
         public Rectangle MapRectangle { get; set; }
 
         /// <summary>Gets or sets the maximum level of this map.</summary>
-        [DataMember(Name = "max_level", Order = 3)]
+        [DataMember(Name = "max_level")]
         public int MaximumLevel { get; set; }
 
         /// <summary>Gets or sets the minimum level of this map.</summary>
-        [DataMember(Name = "min_level", Order = 2)]
+        [DataMember(Name = "min_level")]
         public int MinimumLevel { get; set; }
 
-        /// <summary>Gets or sets the ID of the region this map belongs to.</summary>
-        [DataMember(Name = "region_id", Order = 6)]
-        public int RegionId { get; set; }
+        /// <summary>Gets or sets the region identifier of the region that this map belongs to.</summary>
+        [DataMember(Name = "region_id")]
+        [JsonConverter(typeof(UnknownRegionConverter))]
+        public Region Region { get; set; }
 
-        /// <summary>Gets or sets the name of the region this map belongs to.</summary>
-        [DataMember(Name = "region_name", Order = 7)]
+        /// <summary>Gets or sets the name of the region that this map belongs to.</summary>
+        [DataMember(Name = "region_name")]
         public string RegionName { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
@@ -91,19 +94,6 @@ namespace GW2DotNET.V1.Maps.Contracts
         public static bool operator !=(Map left, Map right)
         {
             return !object.Equals(left, right);
-        }
-
-        /// <summary>Compares the current object with another object of the same type.</summary>
-        /// <returns>A value that indicates the relative order of the objects being compared. The return value has the following meanings: Value Meaning Less than zero This object is less than the <paramref name="other"/> parameter.Zero This object is equal to <paramref name="other"/>. Greater than zero This object is greater than<paramref name="other"/>.</returns>
-        /// <param name="other">An object to compare with this object.</param>
-        public int CompareTo(Map other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
-
-            return this.MapId.CompareTo(other.MapId);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
@@ -152,6 +142,20 @@ namespace GW2DotNET.V1.Maps.Contracts
         public override int GetHashCode()
         {
             return this.MapId;
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <filterpriority>2</filterpriority>
+        public override string ToString()
+        {
+            var name = this.MapName;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.MapId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }

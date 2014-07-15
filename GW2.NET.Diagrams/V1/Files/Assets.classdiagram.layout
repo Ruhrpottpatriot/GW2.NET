@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Assets">
+  <logicalClassDesignerModelMoniker Id="4b303e7e-7347-462d-8ae6-f25248a32273" />
+  <nestedChildShapes>
+    <commentShape Id="d01f7257-6797-4250-b8c0-d9fbcf2ec5f3" absoluteBounds="6.75, 2.625, 2.75, 0.375" customColor="251, 247, 200">
+      <commentMoniker Id="9f59efc3-d596-4c6d-b2f6-a41503200137" />
+      <relativeChildShapes />
+    </commentShape>
+    <packageShape Id="2f0591af-98e7-406b-850d-5531abf6e7f7" absoluteBounds="3.25, 1.625, 3, 2.625" customColor="255, 249, 230" hideQualifiedName="false">
+      <packageMoniker Id="9445cc4d-f3c5-4147-a69c-020fa1b16fff" LastKnownName="Files" />
+      <nestedChildShapes>
+        <classShape Id="5f057463-bb73-464f-ad6a-f7c59250687b" absoluteBounds="4, 2.5, 1.5, 1.508148109515508" hideQualifiedName="false" increaseHeight="0.18800345897674561" customColor="181, 193, 223">
+          <classMoniker Id="f2cab383-db03-4b08-a2f7-a22380885045" LastKnownName="asset" />
+          <nestedChildShapes>
+            <AttributeElementListCompartment Id="a1434a07-7a39-437e-9e38-b4f1254c4fe5" absoluteBounds="4.015, 3.0153356393178306, 1.4700000000000002, 0.68164060264825832" name="AttributesCompartment" titleTextColor="Black" itemTextColor="Black" />
+            <OperationElementListCompartment Id="0cddb9e6-c55d-4c42-8b73-319d62d0e7b0" absoluteBounds="4.015, 3.706976241966089, 1.4700000000000002, 0.20117186754941963" name="OperationsCompartment" titleTextColor="Black" itemTextColor="Black" />
+          </nestedChildShapes>
+        </classShape>
+      </nestedChildShapes>
+    </packageShape>
+    <commentConnector edgePoints="[(6.75 : 2.8125); (5.5 : 2.8125)]" fixedFrom="Algorithm" fixedTo="Algorithm" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <nodes>
+        <commentShapeMoniker Id="d01f7257-6797-4250-b8c0-d9fbcf2ec5f3" />
+        <classShapeMoniker Id="5f057463-bb73-464f-ad6a-f7c59250687b" />
+      </nodes>
+    </commentConnector>
+  </nestedChildShapes>
+</logicalClassDesignerDiagram>

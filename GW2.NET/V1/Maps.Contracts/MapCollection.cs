@@ -9,12 +9,11 @@
 namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
 
     /// <summary>Represents a collection of maps and their details.</summary>
-    public class MapCollection : JsonDictionary<int, Map>
+    public class MapCollection : ServiceContractDictionary<int, Map>
     {
         /// <summary>Initializes a new instance of the <see cref="MapCollection" /> class.</summary>
         public MapCollection()
@@ -33,17 +32,6 @@ namespace GW2DotNET.V1.Maps.Contracts
         public MapCollection(IDictionary<int, Map> dictionary)
             : base(dictionary)
         {
-        }
-
-        /// <summary>Sets each value's ID property to its corresponding key.</summary>
-        /// <param name="context">The streaming context.</param>
-        [OnDeserialized]
-        private void OnDeserialized(StreamingContext context)
-        {
-            foreach (var kvp in this)
-            {
-                kvp.Value.MapId = kvp.Key;
-            }
         }
     }
 }

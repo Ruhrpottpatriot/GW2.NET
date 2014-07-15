@@ -9,11 +9,17 @@
 namespace GW2DotNET.V1.Skins.Contracts
 {
     using System.Collections.Generic;
+    using System.Runtime.Serialization;
 
     using GW2DotNET.Common.Contracts;
+    using GW2DotNET.V1.Common.Converters;
+
+    using Newtonsoft.Json;
 
     /// <summary>Represents a collection of skin identifiers.</summary>
-    public class SkinCollection : JsonList<int>
+    [CollectionDataContract]
+    [JsonArray(ItemConverterType = typeof(UnknownSkinConverter))]
+    public class SkinCollection : ServiceContractList<Skin>
     {
         /// <summary>Initializes a new instance of the <see cref="SkinCollection" /> class.</summary>
         public SkinCollection()
@@ -22,7 +28,7 @@ namespace GW2DotNET.V1.Skins.Contracts
 
         /// <summary>Initializes a new instance of the <see cref="SkinCollection"/> class.</summary>
         /// <param name="collection">The collection whose elements are copied to the new list.</param>
-        public SkinCollection(IEnumerable<int> collection)
+        public SkinCollection(IEnumerable<Skin> collection)
             : base(collection)
         {
         }
