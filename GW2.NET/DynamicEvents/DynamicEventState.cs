@@ -20,19 +20,19 @@ namespace GW2DotNET.DynamicEvents
         public virtual Guid EventId { get; set; }
 
         /// <summary>Gets or sets the map.</summary>
-        public virtual  Map Map { get; set; }
+        public virtual Map Map { get; set; }
 
         /// <summary>Gets or sets the map identifier.</summary>
-        public virtual  int MapId { get; set; }
+        public virtual int MapId { get; set; }
 
         /// <summary>Gets or sets the current state of the event.</summary>
-        public virtual  EventState State { get; set; }
+        public virtual EventState State { get; set; }
 
         /// <summary>Gets or sets the world.</summary>
         public virtual World World { get; set; }
 
         /// <summary>Gets or sets the world identifier.</summary>
-        public virtual  int WorldId { get; set; }
+        public virtual int WorldId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

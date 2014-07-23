@@ -6,7 +6,7 @@
 //   Represents an axe skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents an axe skin.</summary>
     public class AxeSkin : WeaponSkin

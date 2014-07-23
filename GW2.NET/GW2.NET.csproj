@@ -720,25 +720,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="V1\Items.Contracts\Armors\" />
-    <Folder Include="V1\Items.Contracts\Backpacks\" />
-    <Folder Include="V1\Items.Contracts\Bags\" />
-    <Folder Include="V1\Items.Contracts\Common\Attributes\" />
-    <Folder Include="V1\Items.Contracts\Consumables\" />
-    <Folder Include="V1\Items.Contracts\Containers\" />
-    <Folder Include="V1\Items.Contracts\GatheringTools\" />
-    <Folder Include="V1\Items.Contracts\Gizmos\" />
-    <Folder Include="V1\Items.Contracts\Tools\" />
-    <Folder Include="V1\Items.Contracts\Trinkets\" />
-    <Folder Include="V1\Items.Contracts\UpgradeComponents\" />
-    <Folder Include="V1\Items.Contracts\Weapons\" />
-    <Folder Include="V1\Skins.Contracts\Armors\" />
-    <Folder Include="V1\Skins.Contracts\Backpacks\" />
-    <Folder Include="V1\Skins.Contracts\Weapons\" />
-    <Folder Include="V1\WorldVersusWorld.Contracts\Maps\Bonuses\" />
-    <Folder Include="V1\WorldVersusWorld.Contracts\Maps\Objectives\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

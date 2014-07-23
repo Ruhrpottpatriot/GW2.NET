@@ -6,7 +6,7 @@
 //   Represents a leg protection skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Armors
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a leg protection skin.</summary>
     public class LeggingsSkin : ArmorSkin

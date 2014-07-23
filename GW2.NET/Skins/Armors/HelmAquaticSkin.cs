@@ -6,7 +6,7 @@
 //   Represents an aquatic head protection skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Armors
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents an aquatic head protection skin.</summary>
     public class HelmAquaticSkin : ArmorSkin

@@ -6,7 +6,7 @@
 //   Represents a backpack skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Backpacks
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a backpack skin.</summary>
     public class BackpackSkin : Skin

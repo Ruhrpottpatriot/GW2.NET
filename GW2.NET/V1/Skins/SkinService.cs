@@ -18,9 +18,6 @@ namespace GW2DotNET.V1.Skins
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Items;
     using GW2DotNET.Skins;
-    using GW2DotNET.Skins.Armors;
-    using GW2DotNET.Skins.Backpacks;
-    using GW2DotNET.Skins.Weapons;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Skins.Contracts;
 

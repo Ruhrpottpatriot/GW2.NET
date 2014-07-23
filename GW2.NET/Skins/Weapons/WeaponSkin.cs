@@ -6,7 +6,7 @@
 //   Represents a weapon skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     using GW2DotNET.Items;
 

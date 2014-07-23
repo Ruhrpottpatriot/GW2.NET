@@ -6,7 +6,7 @@
 //   Represents a long bow skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a long bow skin.</summary>
     public class LongBowSkin : WeaponSkin

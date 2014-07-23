@@ -6,7 +6,7 @@
 //   Represents an armor skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Armors
+namespace GW2DotNET.Skins
 {
     using GW2DotNET.Items;
 

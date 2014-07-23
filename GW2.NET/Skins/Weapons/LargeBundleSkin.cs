@@ -6,7 +6,7 @@
 //   Represents a large bundle skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a large bundle skin.</summary>
     public class LargeBundleSkin : WeaponSkin

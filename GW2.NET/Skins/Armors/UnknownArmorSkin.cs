@@ -6,7 +6,7 @@
 //   Represents an unknown armor skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Armors
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents an unknown armor skin.</summary>
     public class UnknownArmorSkin : ArmorSkin

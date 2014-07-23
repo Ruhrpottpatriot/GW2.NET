@@ -6,7 +6,7 @@
 //   Represents a shield skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a shield skin.</summary>
     public class ShieldSkin : WeaponSkin

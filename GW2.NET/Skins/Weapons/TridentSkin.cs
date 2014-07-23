@@ -6,7 +6,7 @@
 //   Represents a trident skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a trident skin.</summary>
     public class TridentSkin : WeaponSkin

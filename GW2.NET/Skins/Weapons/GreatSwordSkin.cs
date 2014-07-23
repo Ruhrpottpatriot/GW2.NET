@@ -6,7 +6,7 @@
 //   Represents a great sword skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a great sword skin.</summary>
     public class GreatSwordSkin : WeaponSkin

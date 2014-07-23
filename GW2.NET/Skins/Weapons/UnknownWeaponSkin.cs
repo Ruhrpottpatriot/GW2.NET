@@ -6,7 +6,7 @@
 //   Represents an unknown weapon skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents an unknown weapon skin.</summary>
     public class UnknownWeaponSkin : WeaponSkin

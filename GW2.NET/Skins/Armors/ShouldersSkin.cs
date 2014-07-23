@@ -6,7 +6,7 @@
 //   Represents a shoulder protection skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Armors
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a shoulder protection skin.</summary>
     public class ShouldersSkin : ArmorSkin

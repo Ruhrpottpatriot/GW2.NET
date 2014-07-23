@@ -6,7 +6,7 @@
 //   Represents a small bundle skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a small bundle skin.</summary>
     public class SmallBundleSkin : WeaponSkin

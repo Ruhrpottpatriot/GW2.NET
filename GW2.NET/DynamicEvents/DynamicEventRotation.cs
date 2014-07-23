@@ -18,10 +18,10 @@ namespace GW2DotNET.DynamicEvents
         public virtual DynamicEvent Event { get; set; }
 
         /// <summary>Gets or sets the event identifier.</summary>
-        public virtual  Guid EventId { get; set; }
+        public virtual Guid EventId { get; set; }
 
         /// <summary>Gets or sets the event shifts.</summary>
-        public virtual  ICollection<DateTimeOffset> Shifts { get; set; }
+        public virtual ICollection<DateTimeOffset> Shifts { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

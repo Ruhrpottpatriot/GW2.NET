@@ -6,7 +6,7 @@
 //   Represents a scepter skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a scepter skin.</summary>
     public class ScepterSkin : WeaponSkin

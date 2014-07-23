@@ -14,14 +14,14 @@ namespace GW2DotNET.WorldVersusWorld
     /// <summary>Represents an objective and its localized name.</summary>
     public class ObjectiveName : IEquatable<ObjectiveName>
     {
-        /// <summary>Gets or sets the objective identifier.</summary>
-        public virtual int ObjectiveId { get; set; }
-
         /// <summary>Gets or sets the language.</summary>
         public virtual string Language { get; set; }
 
         /// <summary>Gets or sets the name of the objective.</summary>
         public virtual string Name { get; set; }
+
+        /// <summary>Gets or sets the objective identifier.</summary>
+        public virtual int ObjectiveId { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

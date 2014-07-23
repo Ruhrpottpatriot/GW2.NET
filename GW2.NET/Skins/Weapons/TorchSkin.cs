@@ -6,7 +6,7 @@
 //   Represents a torch skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a torch skin.</summary>
     public class TorchSkin : WeaponSkin

@@ -6,7 +6,7 @@
 //   Represents a harpoon skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Skins.Weapons
+namespace GW2DotNET.Skins
 {
     /// <summary>Represents a harpoon skin.</summary>
     public class HarpoonSkin : WeaponSkin
