@@ -12,10 +12,9 @@ namespace GW2DotNET.V1.Maps
     using System.Globalization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for details regarding maps in the game.</summary>
-    public class MapRequest : IMapRequest, ILocalizable
+    public class MapRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
@@ -28,7 +27,7 @@ namespace GW2DotNET.V1.Maps
         {
             get
             {
-                return Services.Maps;
+                return "v1/maps.json";
             }
         }
 

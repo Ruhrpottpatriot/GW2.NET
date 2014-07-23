@@ -8,8 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks.Extensions
 {
+    using GW2DotNET.Skins;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Skins.Contracts;
 
     /// <summary>Provides static extension methods for the <see cref="Skin" /> class.</summary>
     public static class SkinExtensions

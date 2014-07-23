@@ -14,35 +14,35 @@ namespace GW2DotNET
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Builds;
+    using GW2DotNET.Colors;
     using GW2DotNET.Common;
+    using GW2DotNET.DynamicEvents;
+    using GW2DotNET.Files;
+    using GW2DotNET.Guilds;
+    using GW2DotNET.Items;
+    using GW2DotNET.Maps;
+    using GW2DotNET.Recipes;
+    using GW2DotNET.Skins;
     using GW2DotNET.V1.Builds;
-    using GW2DotNET.V1.Builds.Contracts;
     using GW2DotNET.V1.Colors;
-    using GW2DotNET.V1.Colors.Contracts;
     using GW2DotNET.V1.DynamicEvents;
-    using GW2DotNET.V1.DynamicEvents.Contracts;
     using GW2DotNET.V1.Files;
-    using GW2DotNET.V1.Files.Contracts;
     using GW2DotNET.V1.Guilds;
-    using GW2DotNET.V1.Guilds.Contracts;
     using GW2DotNET.V1.Items;
-    using GW2DotNET.V1.Items.Contracts;
     using GW2DotNET.V1.Maps;
-    using GW2DotNET.V1.Maps.Contracts;
     using GW2DotNET.V1.Recipes;
-    using GW2DotNET.V1.Recipes.Contracts;
     using GW2DotNET.V1.Skins;
-    using GW2DotNET.V1.Skins.Contracts;
     using GW2DotNET.V1.Worlds;
-    using GW2DotNET.V1.Worlds.Contracts;
     using GW2DotNET.V1.WorldVersusWorld;
-    using GW2DotNET.V1.WorldVersusWorld.Contracts;
+    using GW2DotNET.Worlds;
+    using GW2DotNET.WorldVersusWorld;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
                                   IColorService, 
                                   IContinentService, 
-                                  IDynamicEventStateService,
+                                  IDynamicEventStateService, 
                                   IDynamicEventDetailsService, 
                                   IDynamicEventNameService, 
                                   IDynamicEventRotationService, 
@@ -118,7 +118,7 @@ namespace GW2DotNET
             IBuildService buildService, 
             IColorService colorService, 
             IContinentService continentService, 
-            IDynamicEventService dynamicEventService,
+            IDynamicEventService dynamicEventService, 
             IFileService fileService, 
             IGuildDetailsService guildDetailsService, 
             IItemService itemService, 
@@ -168,7 +168,7 @@ namespace GW2DotNET
             this.mapService = new MapService(serviceClient);
             this.matchService = new MatchService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
-            this.worldNameService = new WorldNameService(serviceClient);
+            this.worldNameService = new WorldService(serviceClient);
             this.skinService = new SkinService(serviceClient);
         }
 
@@ -200,7 +200,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of colors and their localized details.</summary>
         /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public IEnumerable<ColorPalette> GetColors()
+        public IDictionary<int, ColorPalette> GetColors()
         {
             return this.colorService.GetColors();
         }
@@ -209,7 +209,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public IEnumerable<ColorPalette> GetColors(CultureInfo language)
+        public IDictionary<int, ColorPalette> GetColors(CultureInfo language)
         {
             return this.colorService.GetColors(language);
         }
@@ -217,7 +217,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of colors and their localized details.</summary>
         /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ColorPalette>> GetColorsAsync()
+        public Task<IDictionary<int, ColorPalette>> GetColorsAsync()
         {
             return this.colorService.GetColorsAsync();
         }
@@ -226,7 +226,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ColorPalette>> GetColorsAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CancellationToken cancellationToken)
         {
             return this.colorService.GetColorsAsync(cancellationToken);
         }
@@ -235,7 +235,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ColorPalette>> GetColorsAsync(CultureInfo language)
+        public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CultureInfo language)
         {
             return this.colorService.GetColorsAsync(language);
         }
@@ -245,7 +245,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of colors.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ColorPalette>> GetColorsAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.colorService.GetColorsAsync(language, cancellationToken);
         }
@@ -253,7 +253,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of continents and their details.</summary>
         /// <returns>A collection of continents.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
-        public IEnumerable<Continent> GetContinents()
+        public IDictionary<int, Continent> GetContinents()
         {
             return this.continentService.GetContinents();
         }
@@ -261,7 +261,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of continents and their details.</summary>
         /// <returns>A collection of continents.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Continent>> GetContinentsAsync()
+        public Task<IDictionary<int, Continent>> GetContinentsAsync()
         {
             return this.continentService.GetContinentsAsync();
         }
@@ -270,15 +270,49 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of continents.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Continent>> GetContinentsAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<int, Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {
             return this.continentService.GetContinentsAsync(cancellationToken);
+        }
+
+        /// <summary>Gets a dynamic event and its status.</summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A dynamic event and its status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public DynamicEventState GetDynamicEvent(Guid eventId, int worldId)
+        {
+            return this.dynamicEventService.GetDynamicEvent(eventId, worldId);
+        }
+
+        /// <summary>Gets a dynamic event and its status.</summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A dynamic event and its status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<DynamicEventState> GetDynamicEventAsync(Guid eventId, int worldId)
+        {
+            return this.dynamicEventService.GetDynamicEventAsync(eventId, worldId);
+        }
+
+        /// <summary>Gets a dynamic event and its status.</summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A dynamic event and its status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<DynamicEventState> GetDynamicEventAsync(Guid eventId, int worldId, CancellationToken cancellationToken)
+        {
+            return this.dynamicEventService.GetDynamicEventAsync(eventId, worldId, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEvent> GetDynamicEventDetails()
+        public IDictionary<Guid, DynamicEvent> GetDynamicEventDetails()
         {
             return this.dynamicEventService.GetDynamicEventDetails();
         }
@@ -287,7 +321,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEvent> GetDynamicEventDetails(CultureInfo language)
+        public IDictionary<Guid, DynamicEvent> GetDynamicEventDetails(CultureInfo language)
         {
             return this.dynamicEventService.GetDynamicEventDetails(language);
         }
@@ -314,7 +348,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync()
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync()
         {
             return this.dynamicEventService.GetDynamicEventDetailsAsync();
         }
@@ -323,7 +357,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync(CancellationToken cancellationToken)
         {
             return this.dynamicEventService.GetDynamicEventDetailsAsync(cancellationToken);
         }
@@ -332,7 +366,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language)
         {
             return this.dynamicEventService.GetDynamicEventDetailsAsync(language);
         }
@@ -342,7 +376,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.dynamicEventService.GetDynamicEventDetailsAsync(language, cancellationToken);
         }
@@ -390,7 +424,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventName> GetDynamicEventNames()
+        public IDictionary<Guid, DynamicEvent> GetDynamicEventNames()
         {
             return this.dynamicEventService.GetDynamicEventNames();
         }
@@ -399,7 +433,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventName> GetDynamicEventNames(CultureInfo language)
+        public IDictionary<Guid, DynamicEvent> GetDynamicEventNames(CultureInfo language)
         {
             return this.dynamicEventService.GetDynamicEventNames(language);
         }
@@ -407,7 +441,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync()
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync()
         {
             return this.dynamicEventService.GetDynamicEventNamesAsync();
         }
@@ -416,7 +450,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CancellationToken cancellationToken)
         {
             return this.dynamicEventService.GetDynamicEventNamesAsync(cancellationToken);
         }
@@ -425,7 +459,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CultureInfo language)
         {
             return this.dynamicEventService.GetDynamicEventNamesAsync(language);
         }
@@ -435,22 +469,177 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.dynamicEventService.GetDynamicEventNamesAsync(language, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their start times.</summary>
         /// <returns>A collection of dynamic events and their start times.</returns>
-        public IEnumerable<DynamicEventRotation> GetDynamicEventRotations()
+        public IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations()
         {
             return this.dynamicEventService.GetDynamicEventRotations();
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public IDictionary<Guid, DynamicEventState> GetDynamicEvents()
+        {
+            return this.dynamicEventService.GetDynamicEvents();
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsAsync()
+        {
+            return this.dynamicEventService.GetDynamicEventsAsync();
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsAsync(CancellationToken cancellationToken)
+        {
+            return this.dynamicEventService.GetDynamicEventsAsync(cancellationToken);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public IDictionary<Guid, DynamicEventState> GetDynamicEventsById(Guid eventId)
+        {
+            return this.dynamicEventService.GetDynamicEventsById(eventId);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId)
+        {
+            return this.dynamicEventService.GetDynamicEventsByIdAsync(eventId);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="eventId">The dynamic event filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken cancellationToken)
+        {
+            return this.dynamicEventService.GetDynamicEventsByIdAsync(eventId, cancellationToken);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public IDictionary<Guid, DynamicEventState> GetDynamicEventsByMap(int mapId)
+        {
+            return this.dynamicEventService.GetDynamicEventsByMap(mapId);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public IDictionary<Guid, DynamicEventState> GetDynamicEventsByMap(int mapId, int worldId)
+        {
+            return this.dynamicEventService.GetDynamicEventsByMap(mapId, worldId);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId)
+        {
+            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, CancellationToken cancellationToken)
+        {
+            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId, cancellationToken);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId)
+        {
+            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId, worldId);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="mapId">The map filter.</param>
+        /// <param name="worldId">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken cancellationToken)
+        {
+            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId, worldId, cancellationToken);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public IDictionary<Guid, DynamicEventState> GetDynamicEventsByWorld(int worldId)
+        {
+            return this.dynamicEventService.GetDynamicEventsByWorld(worldId);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="worldId">The world filter.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId)
+        {
+            return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId);
+        }
+
+        /// <summary>Gets a collection of dynamic events and their status.</summary>
+        /// <param name="worldId">The world filter.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of dynamic events and their status.</returns>
+        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
+        [Obsolete("events.json disabled", true)]
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId, CancellationToken cancellationToken)
+        {
+            return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId, cancellationToken);
         }
 
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
         /// <returns>A collection of commonly requested in-game assets.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
-        public IEnumerable<Asset> GetFiles()
+        public IDictionary<string, Asset> GetFiles()
         {
             return this.fileService.GetFiles();
         }
@@ -458,7 +647,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
         /// <returns>A collection of commonly requested in-game assets.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Asset>> GetFilesAsync()
+        public Task<IDictionary<string, Asset>> GetFilesAsync()
         {
             return this.fileService.GetFilesAsync();
         }
@@ -467,7 +656,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of commonly requested in-game assets.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Asset>> GetFilesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<string, Asset>> GetFilesAsync(CancellationToken cancellationToken)
         {
             return this.fileService.GetFilesAsync(cancellationToken);
         }
@@ -532,7 +721,7 @@ namespace GW2DotNET
         /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Item GetItemDetails(Item item)
+        public Item GetItemDetails(int item)
         {
             return this.itemService.GetItemDetails(item);
         }
@@ -542,7 +731,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Item GetItemDetails(Item item, CultureInfo language)
+        public Item GetItemDetails(int item, CultureInfo language)
         {
             return this.itemService.GetItemDetails(item, language);
         }
@@ -551,7 +740,7 @@ namespace GW2DotNET
         /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(Item item)
+        public Task<Item> GetItemDetailsAsync(int item)
         {
             return this.itemService.GetItemDetailsAsync(item);
         }
@@ -561,7 +750,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(Item item, CultureInfo language)
+        public Task<Item> GetItemDetailsAsync(int item, CultureInfo language)
         {
             return this.itemService.GetItemDetailsAsync(item, language);
         }
@@ -571,7 +760,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(Item item, CancellationToken cancellationToken)
+        public Task<Item> GetItemDetailsAsync(int item, CancellationToken cancellationToken)
         {
             return this.itemService.GetItemDetailsAsync(item, cancellationToken);
         }
@@ -582,7 +771,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(Item item, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Item> GetItemDetailsAsync(int item, CultureInfo language, CancellationToken cancellationToken)
         {
             return this.itemService.GetItemDetailsAsync(item, language, cancellationToken);
         }
@@ -590,7 +779,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of item identifiers.</summary>
         /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public IEnumerable<Item> GetItems()
+        public ICollection<int> GetItems()
         {
             return this.itemService.GetItems();
         }
@@ -598,7 +787,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of item identifiers.</summary>
         /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Item>> GetItemsAsync()
+        public Task<ICollection<int>> GetItemsAsync()
         {
             return this.itemService.GetItemsAsync();
         }
@@ -607,131 +796,131 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of item identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Item>> GetItemsAsync(CancellationToken cancellationToken)
+        public Task<ICollection<int>> GetItemsAsync(CancellationToken cancellationToken)
         {
             return this.itemService.GetItemsAsync(cancellationToken);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Map GetMap(int mapId)
+        public Map GetMap(int map)
         {
-            return this.mapService.GetMap(mapId);
+            return this.mapService.GetMap(map);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Map GetMap(int mapId, CultureInfo language)
+        public Map GetMap(int map, CultureInfo language)
         {
-            return this.mapService.GetMap(mapId, language);
+            return this.mapService.GetMap(map, language);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Task<Map> GetMapAsync(int mapId)
+        public Task<Map> GetMapAsync(int map)
         {
-            return this.mapService.GetMapAsync(mapId);
+            return this.mapService.GetMapAsync(map);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Task<Map> GetMapAsync(int mapId, CancellationToken cancellationToken)
+        public Task<Map> GetMapAsync(int map, CancellationToken cancellationToken)
         {
-            return this.mapService.GetMapAsync(mapId, cancellationToken);
+            return this.mapService.GetMapAsync(map, cancellationToken);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Task<Map> GetMapAsync(int mapId, CultureInfo language)
+        public Task<Map> GetMapAsync(int map, CultureInfo language)
         {
-            return this.mapService.GetMapAsync(mapId, language);
+            return this.mapService.GetMapAsync(map, language);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Task<Map> GetMapAsync(int mapId, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Map> GetMapAsync(int map, CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.mapService.GetMapAsync(mapId, language, cancellationToken);
+            return this.mapService.GetMapAsync(map, language, cancellationToken);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
         /// <param name="continent">The continent identifier.</param>
-        /// <param name="floor">The floor number.</param>
+        /// <param name="floor">The floor identifier.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Floor GetMapFloor(Continent continent, int floor)
+        public Floor GetMapFloor(int continent, int floor)
         {
             return this.mapFloorService.GetMapFloor(continent, floor);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
         /// <param name="continent">The continent identifier.</param>
-        /// <param name="floor">The floor number.</param>
+        /// <param name="floor">The floor identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Floor GetMapFloor(Continent continent, int floor, CultureInfo language)
+        public Floor GetMapFloor(int continent, int floor, CultureInfo language)
         {
             return this.mapFloorService.GetMapFloor(continent, floor, language);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
         /// <param name="continent">The continent identifier.</param>
-        /// <param name="floor">The floor number.</param>
+        /// <param name="floor">The floor identifier.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Task<Floor> GetMapFloorAsync(Continent continent, int floor)
+        public Task<Floor> GetMapFloorAsync(int continent, int floor)
         {
             return this.mapFloorService.GetMapFloorAsync(continent, floor);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
         /// <param name="continent">The continent identifier.</param>
-        /// <param name="floor">The floor number.</param>
+        /// <param name="floor">The floor identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CancellationToken cancellationToken)
+        public Task<Floor> GetMapFloorAsync(int continent, int floor, CancellationToken cancellationToken)
         {
             return this.mapFloorService.GetMapFloorAsync(continent, floor, cancellationToken);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
         /// <param name="continent">The continent identifier.</param>
-        /// <param name="floor">The floor number.</param>
+        /// <param name="floor">The floor identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CultureInfo language)
+        public Task<Floor> GetMapFloorAsync(int continent, int floor, CultureInfo language)
         {
             return this.mapFloorService.GetMapFloorAsync(continent, floor, language);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
         /// <param name="continent">The continent identifier.</param>
-        /// <param name="floor">The floor number.</param>
+        /// <param name="floor">The floor identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map floor and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
-        public Task<Floor> GetMapFloorAsync(Continent continent, int floor, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Floor> GetMapFloorAsync(int continent, int floor, CultureInfo language, CancellationToken cancellationToken)
         {
             return this.mapFloorService.GetMapFloorAsync(continent, floor, language, cancellationToken);
         }
@@ -739,7 +928,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public IEnumerable<MapName> GetMapNames()
+        public IDictionary<int, Map> GetMapNames()
         {
             return this.mapNameService.GetMapNames();
         }
@@ -748,7 +937,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public IEnumerable<MapName> GetMapNames(CultureInfo language)
+        public IDictionary<int, Map> GetMapNames(CultureInfo language)
         {
             return this.mapNameService.GetMapNames(language);
         }
@@ -756,7 +945,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<MapName>> GetMapNamesAsync()
+        public Task<IDictionary<int, Map>> GetMapNamesAsync()
         {
             return this.mapNameService.GetMapNamesAsync();
         }
@@ -765,7 +954,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<MapName>> GetMapNamesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<int, Map>> GetMapNamesAsync(CancellationToken cancellationToken)
         {
             return this.mapNameService.GetMapNamesAsync(cancellationToken);
         }
@@ -774,7 +963,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language)
+        public Task<IDictionary<int, Map>> GetMapNamesAsync(CultureInfo language)
         {
             return this.mapNameService.GetMapNamesAsync(language);
         }
@@ -784,7 +973,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<int, Map>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.mapNameService.GetMapNamesAsync(language, cancellationToken);
         }
@@ -792,7 +981,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public IEnumerable<Map> GetMaps()
+        public IDictionary<int, Map> GetMaps()
         {
             return this.mapService.GetMaps();
         }
@@ -801,7 +990,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public IEnumerable<Map> GetMaps(CultureInfo language)
+        public IDictionary<int, Map> GetMaps(CultureInfo language)
         {
             return this.mapService.GetMaps(language);
         }
@@ -809,7 +998,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Map>> GetMapsAsync()
+        public Task<IDictionary<int, Map>> GetMapsAsync()
         {
             return this.mapService.GetMapsAsync();
         }
@@ -818,7 +1007,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Map>> GetMapsAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<int, Map>> GetMapsAsync(CancellationToken cancellationToken)
         {
             return this.mapService.GetMapsAsync(cancellationToken);
         }
@@ -827,7 +1016,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Map>> GetMapsAsync(CultureInfo language)
+        public Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language)
         {
             return this.mapService.GetMapsAsync(language);
         }
@@ -837,7 +1026,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.mapService.GetMapsAsync(language, cancellationToken);
         }
@@ -846,7 +1035,7 @@ namespace GW2DotNET
         /// <param name="match">The match identifier.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Match GetMatchDetails(Matchup match)
+        public Match GetMatchDetails(string match)
         {
             return this.matchService.GetMatchDetails(match);
         }
@@ -855,7 +1044,7 @@ namespace GW2DotNET
         /// <param name="match">The match identifier.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<Match> GetMatchDetailsAsync(Matchup match)
+        public Task<Match> GetMatchDetailsAsync(string match)
         {
             return this.matchService.GetMatchDetailsAsync(match);
         }
@@ -865,7 +1054,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<Match> GetMatchDetailsAsync(Matchup match, CancellationToken cancellationToken)
+        public Task<Match> GetMatchDetailsAsync(string match, CancellationToken cancellationToken)
         {
             return this.matchService.GetMatchDetailsAsync(match, cancellationToken);
         }
@@ -873,7 +1062,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public IEnumerable<Matchup> GetMatches()
+        public IDictionary<string, Matchup> GetMatches()
         {
             return this.matchService.GetMatches();
         }
@@ -881,7 +1070,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Matchup>> GetMatchesAsync()
+        public Task<IDictionary<string, Matchup>> GetMatchesAsync()
         {
             return this.matchService.GetMatchesAsync();
         }
@@ -890,7 +1079,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Matchup>> GetMatchesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<string, Matchup>> GetMatchesAsync(CancellationToken cancellationToken)
         {
             return this.matchService.GetMatchesAsync(cancellationToken);
         }
@@ -898,7 +1087,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public IEnumerable<ObjectiveName> GetObjectiveNames()
+        public IDictionary<int, ObjectiveName> GetObjectiveNames()
         {
             return this.matchService.GetObjectiveNames();
         }
@@ -907,7 +1096,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public IEnumerable<ObjectiveName> GetObjectiveNames(CultureInfo language)
+        public IDictionary<int, ObjectiveName> GetObjectiveNames(CultureInfo language)
         {
             return this.matchService.GetObjectiveNames(language);
         }
@@ -915,7 +1104,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync()
+        public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync()
         {
             return this.matchService.GetObjectiveNamesAsync();
         }
@@ -924,7 +1113,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
         {
             return this.matchService.GetObjectiveNamesAsync(cancellationToken);
         }
@@ -933,7 +1122,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language)
+        public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language)
         {
             return this.matchService.GetObjectiveNamesAsync(language);
         }
@@ -943,7 +1132,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of World versus World objectives and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.matchService.GetObjectiveNamesAsync(language, cancellationToken);
         }
@@ -952,7 +1141,7 @@ namespace GW2DotNET
         /// <param name="recipe">The recipe identifier.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Recipe GetRecipeDetails(Recipe recipe)
+        public Recipe GetRecipeDetails(int recipe)
         {
             return this.GetRecipeDetails(recipe, CultureInfo.GetCultureInfo("en"));
         }
@@ -962,7 +1151,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Recipe GetRecipeDetails(Recipe recipe, CultureInfo language)
+        public Recipe GetRecipeDetails(int recipe, CultureInfo language)
         {
             return this.recipeService.GetRecipeDetails(recipe, language);
         }
@@ -971,7 +1160,7 @@ namespace GW2DotNET
         /// <param name="recipe">The recipe identifier.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe)
+        public Task<Recipe> GetRecipeDetailsAsync(int recipe)
         {
             return this.GetRecipeDetailsAsync(recipe, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
@@ -981,7 +1170,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CancellationToken cancellationToken)
+        public Task<Recipe> GetRecipeDetailsAsync(int recipe, CancellationToken cancellationToken)
         {
             return this.GetRecipeDetailsAsync(recipe, CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
@@ -991,7 +1180,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CultureInfo language)
+        public Task<Recipe> GetRecipeDetailsAsync(int recipe, CultureInfo language)
         {
             return this.GetRecipeDetailsAsync(recipe, language, CancellationToken.None);
         }
@@ -1002,7 +1191,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(Recipe recipe, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Recipe> GetRecipeDetailsAsync(int recipe, CultureInfo language, CancellationToken cancellationToken)
         {
             return this.recipeService.GetRecipeDetailsAsync(recipe, language, cancellationToken);
         }
@@ -1010,7 +1199,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of discovered recipes.</summary>
         /// <returns>A collection of discovered recipes.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public IEnumerable<Recipe> GetRecipes()
+        public ICollection<int> GetRecipes()
         {
             return this.recipeService.GetRecipes();
         }
@@ -1018,7 +1207,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of discovered recipes.</summary>
         /// <returns>A collection of discovered recipes.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Recipe>> GetRecipesAsync()
+        public Task<ICollection<int>> GetRecipesAsync()
         {
             return this.recipeService.GetRecipesAsync();
         }
@@ -1027,7 +1216,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of discovered recipes.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Recipe>> GetRecipesAsync(CancellationToken cancellationToken)
+        public Task<ICollection<int>> GetRecipesAsync(CancellationToken cancellationToken)
         {
             return this.recipeService.GetRecipesAsync(cancellationToken);
         }
@@ -1036,7 +1225,7 @@ namespace GW2DotNET
         /// <param name="skin">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Skin GetSkinDetails(Skin skin)
+        public Skin GetSkinDetails(int skin)
         {
             return this.skinService.GetSkinDetails(skin);
         }
@@ -1046,7 +1235,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Skin GetSkinDetails(Skin skin, CultureInfo language)
+        public Skin GetSkinDetails(int skin, CultureInfo language)
         {
             return this.skinService.GetSkinDetails(skin, language);
         }
@@ -1055,7 +1244,7 @@ namespace GW2DotNET
         /// <param name="skin">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(Skin skin)
+        public Task<Skin> GetSkinDetailsAsync(int skin)
         {
             return this.skinService.GetSkinDetailsAsync(skin);
         }
@@ -1065,7 +1254,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language)
+        public Task<Skin> GetSkinDetailsAsync(int skin, CultureInfo language)
         {
             return this.skinService.GetSkinDetailsAsync(skin, language);
         }
@@ -1075,7 +1264,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(Skin skin, CancellationToken cancellationToken)
+        public Task<Skin> GetSkinDetailsAsync(int skin, CancellationToken cancellationToken)
         {
             return this.skinService.GetSkinDetailsAsync(skin, cancellationToken);
         }
@@ -1086,7 +1275,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language, CancellationToken cancellationToken)
+        public Task<Skin> GetSkinDetailsAsync(int skin, CultureInfo language, CancellationToken cancellationToken)
         {
             return this.skinService.GetSkinDetailsAsync(skin, language, cancellationToken);
         }
@@ -1094,7 +1283,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of skin identifiers.</summary>
         /// <returns>A collection of skin identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public IEnumerable<Skin> GetSkins()
+        public ICollection<int> GetSkins()
         {
             return this.skinService.GetSkins();
         }
@@ -1102,7 +1291,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of skin identifiers.</summary>
         /// <returns>A collection of skin identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Skin>> GetSkinsAsync()
+        public Task<ICollection<int>> GetSkinsAsync()
         {
             return this.skinService.GetSkinsAsync();
         }
@@ -1111,7 +1300,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of skin identifiers.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<Skin>> GetSkinsAsync(CancellationToken cancellationToken)
+        public Task<ICollection<int>> GetSkinsAsync(CancellationToken cancellationToken)
         {
             return this.skinService.GetSkinsAsync(cancellationToken);
         }
@@ -1119,7 +1308,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of worlds and their localized name.</summary>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public IEnumerable<World> GetWorldNames()
+        public ICollection<World> GetWorldNames()
         {
             return this.worldNameService.GetWorldNames();
         }
@@ -1128,7 +1317,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public IEnumerable<World> GetWorldNames(CultureInfo language)
+        public ICollection<World> GetWorldNames(CultureInfo language)
         {
             return this.worldNameService.GetWorldNames(language);
         }
@@ -1136,7 +1325,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of worlds and their localized name.</summary>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<World>> GetWorldNamesAsync()
+        public Task<ICollection<World>> GetWorldNamesAsync()
         {
             return this.worldNameService.GetWorldNamesAsync();
         }
@@ -1145,7 +1334,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<World>> GetWorldNamesAsync(CancellationToken cancellationToken)
+        public Task<ICollection<World>> GetWorldNamesAsync(CancellationToken cancellationToken)
         {
             return this.worldNameService.GetWorldNamesAsync(cancellationToken);
         }
@@ -1154,7 +1343,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<World>> GetWorldNamesAsync(CultureInfo language)
+        public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language)
         {
             return this.worldNameService.GetWorldNamesAsync(language);
         }
@@ -1164,198 +1353,9 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.worldNameService.GetWorldNamesAsync(language, cancellationToken);
-        }
-
-        /// <summary>Gets a dynamic event and its status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A dynamic event and its status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public DynamicEventState GetDynamicEvent(Guid eventId, int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEvent(eventId, worldId);
-        }
-
-        /// <summary>Gets a dynamic event and its status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A dynamic event and its status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<DynamicEventState> GetDynamicEventAsync(Guid eventId, int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventAsync(eventId, worldId);
-        }
-
-        /// <summary>Gets a dynamic event and its status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A dynamic event and its status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<DynamicEventState> GetDynamicEventAsync(Guid eventId, int worldId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventAsync(eventId, worldId, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public IEnumerable<DynamicEventState> GetDynamicEvents()
-        {
-            return this.dynamicEventService.GetDynamicEvents();
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsAsync()
-        {
-            return this.dynamicEventService.GetDynamicEventsAsync();
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsAsync(CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public IEnumerable<DynamicEventState> GetDynamicEventsById(Guid eventId)
-        {
-            return this.dynamicEventService.GetDynamicEventsById(eventId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByIdAsync(eventId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="eventId">The dynamic event filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsByIdAsync(eventId, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public IEnumerable<DynamicEventState> GetDynamicEventsByMap(int mapId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMap(mapId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public IEnumerable<DynamicEventState> GetDynamicEventsByMap(int mapId, int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMap(mapId, worldId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByMapAsync(int mapId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId, worldId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="mapId">The map filter.</param>
-        /// <param name="worldId">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsByMapAsync(mapId, worldId, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public IEnumerable<DynamicEventState> GetDynamicEventsByWorld(int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByWorld(worldId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="worldId">The world filter.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId)
-        {
-            return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their status.</summary>
-        /// <param name="worldId">The world filter.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their status.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        [Obsolete("events.json disabled", true)]
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId, cancellationToken);
         }
     }
 }

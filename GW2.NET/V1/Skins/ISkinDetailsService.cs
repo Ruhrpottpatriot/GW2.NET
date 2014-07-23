@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Skins
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Skins.Contracts;
+    using GW2DotNET.Skins;
 
     /// <summary>Provides the interface for the skin details service.</summary>
     public interface ISkinDetailsService
@@ -21,34 +21,34 @@ namespace GW2DotNET.V1.Skins
         /// <param name="skin">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        Skin GetSkinDetails(Skin skin);
+        Skin GetSkinDetails(int skin);
 
         /// <summary>Gets a skin and its localized details.</summary>
         /// <param name="skin">The skin identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        Skin GetSkinDetails(Skin skin, CultureInfo language);
+        Skin GetSkinDetails(int skin, CultureInfo language);
 
         /// <summary>Gets a skin and its localized details.</summary>
         /// <param name="skin">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        Task<Skin> GetSkinDetailsAsync(Skin skin);
+        Task<Skin> GetSkinDetailsAsync(int skin);
 
         /// <summary>Gets a skin and its localized details.</summary>
         /// <param name="skin">The skin identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language);
+        Task<Skin> GetSkinDetailsAsync(int skin, CultureInfo language);
 
         /// <summary>Gets a skin and its localized details.</summary>
         /// <param name="skin">The skin identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        Task<Skin> GetSkinDetailsAsync(Skin skin, CancellationToken cancellationToken);
+        Task<Skin> GetSkinDetailsAsync(int skin, CancellationToken cancellationToken);
 
         /// <summary>Gets a skin and its localized details.</summary>
         /// <param name="skin">The skin identifier.</param>
@@ -56,6 +56,6 @@ namespace GW2DotNET.V1.Skins
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A skin and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        Task<Skin> GetSkinDetailsAsync(Skin skin, CultureInfo language, CancellationToken cancellationToken);
+        Task<Skin> GetSkinDetailsAsync(int skin, CultureInfo language, CancellationToken cancellationToken);
     }
 }

@@ -12,25 +12,23 @@ namespace GW2DotNET.V1.Recipes
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Recipes.Contracts;
-
     /// <summary>Provides the interface for the recipe discovery service.</summary>
     public interface IRecipeDiscoveryService
     {
         /// <summary>Gets a collection of discovered recipes.</summary>
         /// <returns>A collection of discovered recipes.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        IEnumerable<Recipe> GetRecipes();
+        ICollection<int> GetRecipes();
 
         /// <summary>Gets a collection of discovered recipes.</summary>
         /// <returns>A collection of discovered recipes.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Recipe>> GetRecipesAsync();
+        Task<ICollection<int>> GetRecipesAsync();
 
         /// <summary>Gets a collection of discovered recipes.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of discovered recipes.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Recipe>> GetRecipesAsync(CancellationToken cancellationToken);
+        Task<ICollection<int>> GetRecipesAsync(CancellationToken cancellationToken);
     }
 }

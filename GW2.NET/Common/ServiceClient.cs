@@ -38,7 +38,7 @@ namespace GW2DotNET.Common
         /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public TResult Send<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public IResponse<TResult> Send<TResult>(IRequest request, ISerializer<TResult> serializer)
         {
             // Translate the request to form data
             var formData = new UrlEncodedForm();
@@ -54,7 +54,7 @@ namespace GW2DotNET.Common
             var httpWebRequest = CreateHttpWebRequest(uri);
             using (var response = GetHttpWebResponse(httpWebRequest))
             {
-                return DeserializeResponse(serializer, response);
+                return new Response<TResult>(response, DeserializeResponse(serializer, response));
             }
         }
 
@@ -63,7 +63,7 @@ namespace GW2DotNET.Common
         /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<TResult> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer)
         {
             return this.SendAsync(request, serializer, CancellationToken.None);
         }
@@ -74,7 +74,7 @@ namespace GW2DotNET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<TResult> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer, CancellationToken cancellationToken)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer, CancellationToken cancellationToken)
         {
             // Translate the request to form data
             var formData = new UrlEncodedForm();
@@ -88,12 +88,12 @@ namespace GW2DotNET.Common
 
             // Handle the request
             var httpWebRequest = CreateHttpWebRequest(uri);
-            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
+            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith<IResponse<TResult>>(
                 task =>
                     {
                         using (var response = task.Result)
                         {
-                            return DeserializeResponse(serializer, response);
+                            return new Response<TResult>(response, DeserializeResponse(serializer, response));
                         }
                     }, 
                 cancellationToken);
@@ -173,7 +173,7 @@ namespace GW2DotNET.Common
                 using (var response = exception.Response)
                 {
                     var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
-                    throw new ServiceException(null, errorResult, exception);
+                    throw new ServiceException(errorResult.Text, exception);
                 }
             }
         }
@@ -199,7 +199,7 @@ namespace GW2DotNET.Common
                                 using (var response = exception.Response)
                                 {
                                     var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
-                                    throw new ServiceException(null, errorResult, exception);
+                                    throw new ServiceException(errorResult.Text, exception);
                                 }
                             }
                         }

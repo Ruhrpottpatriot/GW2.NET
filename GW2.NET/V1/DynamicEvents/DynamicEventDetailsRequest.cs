@@ -13,10 +13,9 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Globalization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for static details about dynamic events.</summary>
-    public class DynamicEventDetailsRequest : IDynamicEventRequest, ILocalizable
+    public class DynamicEventDetailsRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
@@ -24,37 +23,19 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Gets or sets the event identifier.</summary>
         public Guid? EventId { get; set; }
 
-        /// <summary>Gets or sets the map identifier.</summary>
-        public int? MapId { get; set; }
-
         /// <summary>Gets the resource path.</summary>
         public string Resource
         {
             get
             {
-                return Services.EventDetails;
+                return "v1/event_details.json";
             }
         }
-
-        /// <summary>Gets or sets the world identifier.</summary>
-        public int? WorldId { get; set; }
 
         /// <summary>Gets the request parameters.</summary>
         /// <returns>A collection of parameters.</returns>
         public IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
-            // Get the 'world_id' parameter
-            if (this.WorldId.HasValue)
-            {
-                yield return new KeyValuePair<string, string>("world_id", this.WorldId.Value.ToString(NumberFormatInfo.InvariantInfo));
-            }
-
-            // Get the 'map_id' parameter
-            if (this.MapId.HasValue)
-            {
-                yield return new KeyValuePair<string, string>("map_id", this.MapId.Value.ToString(NumberFormatInfo.InvariantInfo));
-            }
-
             // Get the 'event_id' parameter
             if (this.EventId.HasValue)
             {

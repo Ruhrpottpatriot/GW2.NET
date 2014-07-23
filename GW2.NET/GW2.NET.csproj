@@ -56,6 +56,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Builds\Build.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ChatLinks\ChatLink.cs" />
     <Compile Include="ChatLinks\ChatLinkConverterBase.cs" />
     <Compile Include="ChatLinks\ChatLinkFactory.cs" />
@@ -102,11 +105,16 @@
     <Compile Include="ChatLinks\PointOfInterestChatLink.cs" />
     <Compile Include="ChatLinks\RecipeChatLink.cs" />
     <Compile Include="ChatLinks\ItemChatLink.cs" />
+    <Compile Include="Colors\Color.cs" />
+    <Compile Include="Colors\ColorModel.cs" />
+    <Compile Include="Colors\ColorPalette.cs" />
     <Compile Include="Common\Contracts\ErrorResult.cs" />
-    <Compile Include="Common\Contracts\ServiceContractDictionary.cs" />
-    <Compile Include="Common\Contracts\ServiceContractList.cs" />
     <Compile Include="Common\Contracts\ServiceContract.cs" />
     <Compile Include="Common\IRenderable.cs" />
+    <Compile Include="Common\IResponse.cs" />
+    <Compile Include="Common\Vector2D.cs" />
+    <Compile Include="Common\Rectangle.cs" />
+    <Compile Include="Common\Size2D.cs" />
     <Compile Include="Common\Serializers\ImageSerializer.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
@@ -117,390 +125,543 @@
     <Compile Include="Common\IServiceClient.cs" />
     <Compile Include="Common\ServiceClient.cs" />
     <Compile Include="Common\ServiceException.cs" />
-    <Compile Include="Common\TypeDiscriminatorAttribute.cs" />
-    <Compile Include="Common\TypeDiscriminatorConverter.cs" />
+    <Compile Include="Common\Response.cs" />
+    <Compile Include="Common\Point3D.cs" />
+    <Compile Include="Common\Point2D.cs" />
+    <Compile Include="DynamicEvents\DynamicEvent.cs" />
+    <Compile Include="DynamicEvents\DynamicEventFlags.cs" />
+    <Compile Include="DynamicEvents\DynamicEventRotation.cs" />
+    <Compile Include="DynamicEvents\DynamicEventState.cs" />
+    <Compile Include="DynamicEvents\EventState.cs" />
+    <Compile Include="DynamicEvents\Locations\CylinderLocation.cs" />
+    <Compile Include="DynamicEvents\Locations\Location.cs" />
+    <Compile Include="DynamicEvents\Locations\PolygonLocation.cs" />
+    <Compile Include="DynamicEvents\Locations\SphereLocation.cs" />
+    <Compile Include="DynamicEvents\Locations\UnknownLocation.cs" />
     <Compile Include="Extensions\HttpStatusCodeExtensions.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Files\Asset.cs" />
+    <Compile Include="Guilds\Emblem.cs" />
+    <Compile Include="Guilds\EmblemTransformations.cs" />
+    <Compile Include="Guilds\Guild.cs" />
+    <Compile Include="Items\Armors\HelmAquatic.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Armors\Armor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Armors\ArmorWeightClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Armors\Boots.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Armors\Coat.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Armors\Gloves.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Armors\Helm.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Armors\Leggings.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Armors\Shoulders.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Armors\UnknownArmor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Backpacks\Backpack.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Bags\Bag.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Common\InfusionSlot.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Common\InfusionSlotFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Common\ISkinnable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Common\ItemBuff.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Common\IUpgradable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Common\IUpgrade.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\AppearanceChanger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\BagSlotUnlocker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\BankTabUnlocker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\Alcohol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\CollectibleCapacityUnlocker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\Consumable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\ContentUnlocker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\ContractNpc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\CraftingRecipeUnlocker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\DyeUnlocker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\Food.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\GenericConsumable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\HalloweenConsumable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\ImmediateConsumable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\Transmutation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\UnknownConsumable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\UnknownUnlocker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\Unlocker.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\UnTransmutation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\UpgradeRemoval.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Consumables\Utility.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Containers\Container.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Containers\DefaultContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Containers\GiftBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Containers\OpenUIContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Containers\UnknownContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\CraftingMaterials\CraftingMaterial.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\GameRestrictions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\GatheringTools\ForagingTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\GatheringTools\GatheringTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\GatheringTools\LoggingTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\GatheringTools\MiningTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\GatheringTools\UnknownGatheringTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Gizmos\ContainerKey.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Gizmos\DefaultGizmo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Gizmos\Gizmo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Gizmos\RentableContractNpc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Gizmos\UnknownGizmo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Gizmos\UnlimitedConsumable.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Item.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\ItemFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\ItemRarity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\ItemRestrictions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\MiniPets\MiniPet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Tools\SalvageTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Tools\Tool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Tools\UnknownTool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\TraitGuides\TraitGuide.cs" />
+    <Compile Include="Items\Trinkets\Accessory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Trinkets\Amulet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Trinkets\Ring.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Trinkets\Trinket.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Trinkets\UnknownTrinket.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Trophies\Trophy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\UnknownItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\UpgradeComponents\DefaultUpgradeComponent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\UpgradeComponents\Gem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\UpgradeComponents\Rune.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\UpgradeComponents\Sigil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\UpgradeComponents\UnknownUpgradeComponent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\UpgradeComponents\UpgradeComponent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\UpgradeComponents\UpgradeComponentFlags.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Axe.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Dagger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Focus.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\GreatSword.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Hammer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Harpoon.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\LargeBundle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\LongBow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Mace.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Pistol.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Rifle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Scepter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Shield.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\ShortBow.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\SmallBundle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\SpearGun.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Staff.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Sword.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Torch.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Toy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Trident.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\TwoHandedToy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\UnknownWeapon.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\WarHorn.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\Weapon.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Items\Weapons\WeaponDamageType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Maps\Continent.cs" />
+    <Compile Include="Maps\PointsOfInterest\Dungeon.cs" />
+    <Compile Include="Maps\Floor.cs" />
+    <Compile Include="Maps\PointsOfInterest\Landmark.cs" />
+    <Compile Include="Maps\Map.cs" />
+    <Compile Include="Maps\PointsOfInterest\PointOfInterest.cs" />
+    <Compile Include="Maps\Region.cs" />
+    <Compile Include="Maps\RenownTask.cs" />
+    <Compile Include="Maps\Sector.cs" />
+    <Compile Include="Maps\SkillChallenge.cs" />
+    <Compile Include="Maps\Subregion.cs" />
+    <Compile Include="Maps\PointsOfInterest\UnknownPointOfInterest.cs" />
+    <Compile Include="Maps\PointsOfInterest\Vista.cs" />
+    <Compile Include="Maps\PointsOfInterest\Waypoint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipes\AmuletRecipe.cs" />
+    <Compile Include="Recipes\AxeRecipe.cs" />
+    <Compile Include="Recipes\BackpackRecipe.cs" />
+    <Compile Include="Recipes\BagRecipe.cs" />
+    <Compile Include="Recipes\BootsRecipe.cs" />
+    <Compile Include="Recipes\BulkRecipe.cs" />
+    <Compile Include="Recipes\CoatRecipe.cs" />
+    <Compile Include="Recipes\ComponentRecipe.cs" />
+    <Compile Include="Recipes\ConsumableRecipe.cs" />
+    <Compile Include="Recipes\CraftingDisciplines.cs" />
+    <Compile Include="Recipes\DaggerRecipe.cs" />
+    <Compile Include="Recipes\DessertRecipe.cs" />
+    <Compile Include="Recipes\DyeRecipe.cs" />
+    <Compile Include="Recipes\EarringRecipe.cs" />
+    <Compile Include="Recipes\FeastRecipe.cs" />
+    <Compile Include="Recipes\FocusRecipe.cs" />
+    <Compile Include="Recipes\GlovesRecipe.cs" />
+    <Compile Include="Recipes\GreatSwordRecipe.cs" />
+    <Compile Include="Recipes\HammerRecipe.cs" />
+    <Compile Include="Recipes\HarpoonRecipe.cs" />
+    <Compile Include="Recipes\HelmRecipe.cs" />
+    <Compile Include="Recipes\Ingredient.cs" />
+    <Compile Include="Recipes\IngredientCookingRecipe.cs" />
+    <Compile Include="Recipes\InscriptionRecipe.cs" />
+    <Compile Include="Recipes\InsigniaRecipe.cs" />
+    <Compile Include="Recipes\LeggingsRecipe.cs" />
+    <Compile Include="Recipes\LongBowRecipe.cs" />
+    <Compile Include="Recipes\MaceRecipe.cs" />
+    <Compile Include="Recipes\MealRecipe.cs" />
+    <Compile Include="Recipes\PistolRecipe.cs" />
+    <Compile Include="Recipes\PotionRecipe.cs" />
+    <Compile Include="Recipes\Recipe.cs" />
+    <Compile Include="Recipes\RecipeFlags.cs" />
+    <Compile Include="Recipes\RefinementEctoplasmRecipe.cs" />
+    <Compile Include="Recipes\RefinementObsidianRecipe.cs" />
+    <Compile Include="Recipes\RefinementRecipe.cs" />
+    <Compile Include="Recipes\RifleRecipe.cs" />
+    <Compile Include="Recipes\RingRecipe.cs" />
+    <Compile Include="Recipes\ScepterRecipe.cs" />
+    <Compile Include="Recipes\SeasoningRecipe.cs" />
+    <Compile Include="Recipes\ShieldRecipe.cs" />
+    <Compile Include="Recipes\ShortBowRecipe.cs" />
+    <Compile Include="Recipes\ShouldersRecipe.cs" />
+    <Compile Include="Recipes\SnackRecipe.cs" />
+    <Compile Include="Recipes\SoupRecipe.cs" />
+    <Compile Include="Recipes\SpearGunRecipe.cs" />
+    <Compile Include="Recipes\StaffRecipe.cs" />
+    <Compile Include="Recipes\SwordRecipe.cs" />
+    <Compile Include="Recipes\TorchRecipe.cs" />
+    <Compile Include="Recipes\TridentRecipe.cs" />
+    <Compile Include="Recipes\UnknownRecipe.cs" />
+    <Compile Include="Recipes\UpgradeComponentRecipe.cs" />
+    <Compile Include="Recipes\WarHornRecipe.cs" />
     <Compile Include="Rendering\IRenderRequest.cs" />
     <Compile Include="Rendering\IRenderService.cs" />
     <Compile Include="Rendering\RenderRequest.cs" />
     <Compile Include="Rendering\RenderService.cs" />
     <Compile Include="RenderServiceManager.cs" />
     <Compile Include="ServiceManager.cs" />
+    <Compile Include="Skins\Armors\HelmAquaticSkin.cs" />
+    <Compile Include="Skins\Armors\ArmorSkin.cs" />
+    <Compile Include="Skins\Armors\BootsSkin.cs" />
+    <Compile Include="Skins\Armors\CoatSkin.cs" />
+    <Compile Include="Skins\Armors\GlovesSkin.cs" />
+    <Compile Include="Skins\Armors\HelmSkin.cs" />
+    <Compile Include="Skins\Armors\LeggingsSkin.cs" />
+    <Compile Include="Skins\Armors\ShouldersSkin.cs" />
+    <Compile Include="Skins\Armors\UnknownArmorSkin.cs" />
+    <Compile Include="Skins\Backpacks\BackpackSkin.cs" />
+    <Compile Include="Skins\Skin.cs" />
+    <Compile Include="Skins\SkinFlags.cs" />
+    <Compile Include="Skins\UnknownSkin.cs" />
+    <Compile Include="Skins\Weapons\AxeSkin.cs" />
+    <Compile Include="Skins\Weapons\DaggerSkin.cs" />
+    <Compile Include="Skins\Weapons\FocusSkin.cs" />
+    <Compile Include="Skins\Weapons\GreatSwordSkin.cs" />
+    <Compile Include="Skins\Weapons\HammerSkin.cs" />
+    <Compile Include="Skins\Weapons\HarpoonSkin.cs" />
+    <Compile Include="Skins\Weapons\LargeBundleSkin.cs" />
+    <Compile Include="Skins\Weapons\LongBowSkin.cs" />
+    <Compile Include="Skins\Weapons\MaceSkin.cs" />
+    <Compile Include="Skins\Weapons\PistolSkin.cs" />
+    <Compile Include="Skins\Weapons\RifleSkin.cs" />
+    <Compile Include="Skins\Weapons\ScepterSkin.cs" />
+    <Compile Include="Skins\Weapons\ShieldSkin.cs" />
+    <Compile Include="Skins\Weapons\ShortBowSkin.cs" />
+    <Compile Include="Skins\Weapons\SmallBundleSkin.cs" />
+    <Compile Include="Skins\Weapons\SpearGunSkin.cs" />
+    <Compile Include="Skins\Weapons\StaffSkin.cs" />
+    <Compile Include="Skins\Weapons\SwordSkin.cs" />
+    <Compile Include="Skins\Weapons\TorchSkin.cs" />
+    <Compile Include="Skins\Weapons\ToyWeaponSkin.cs" />
+    <Compile Include="Skins\Weapons\TridentSkin.cs" />
+    <Compile Include="Skins\Weapons\TwoHandedToyWeaponSkin.cs" />
+    <Compile Include="Skins\Weapons\UnknownWeaponSkin.cs" />
+    <Compile Include="Skins\Weapons\WarHornSkin.cs" />
+    <Compile Include="Skins\Weapons\WeaponSkin.cs" />
     <Compile Include="Utilities\Preconditions.cs" />
     <Compile Include="Utilities\UrlEncodedForm.cs" />
-    <Compile Include="V1\Builds.Contracts\Build.cs" />
+    <Compile Include="V1\Builds.Contracts\BuildContract.cs" />
     <Compile Include="V1\Builds\BuildRequest.cs" />
     <Compile Include="V1\Builds\BuildService.cs" />
     <Compile Include="V1\Builds\IBuildService.cs" />
-    <Compile Include="V1\Colors.Contracts\ColorCollection.cs" />
-    <Compile Include="V1\Colors.Contracts\ColorCollectionResult.cs" />
-    <Compile Include="V1\Colors.Contracts\ColorModel.cs" />
-    <Compile Include="V1\Colors.Contracts\ColorPalette.cs" />
-    <Compile Include="V1\Colors\ColorSerializerSettings.cs" />
-    <Compile Include="V1\Colors\Converters\JsonColorConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownColorPaletteConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownFloorConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownRecipeConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownGuildConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownMapConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownContinentConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownRegionConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownWorldConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownSkinConverter.cs" />
-    <Compile Include="V1\Common\Converters\UnknownItemConverter.cs" />
-    <Compile Include="V1\Common\ISkinRequest.cs" />
-    <Compile Include="V1\Common\IRecipeRequest.cs" />
-    <Compile Include="V1\Common\IMatchRequest.cs" />
-    <Compile Include="V1\Common\IFloorRequest.cs" />
-    <Compile Include="V1\Common\IDynamicEventRequest.cs" />
-    <Compile Include="V1\Common\IGuildRequest.cs" />
-    <Compile Include="V1\Common\IItemRequest.cs" />
-    <Compile Include="V1\Common\IMapRequest.cs" />
+    <Compile Include="V1\Colors.Contracts\ColorCollectionContract.cs" />
+    <Compile Include="V1\Colors.Contracts\ColorModelContract.cs" />
+    <Compile Include="V1\Colors.Contracts\ColorContract.cs" />
     <Compile Include="V1\Colors\ColorService.cs" />
     <Compile Include="V1\Colors\ColorRequest.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />
-    <Compile Include="V1\Common\Converters\JsonPointFConverter.cs" />
-    <Compile Include="V1\Common\Converters\JsonRectangleConverter.cs" />
-    <Compile Include="V1\Common\Converters\JsonSizeConverter.cs" />
-    <Compile Include="V1\Common\Converters\JsonTimespanConverter.cs" />
-    <Compile Include="V1\Common\Converters\StringEnumFlagsConverter.cs" />
-    <Compile Include="V1\Common\Drawing\Point3D.cs" />
-    <Compile Include="V1\Common\Services.Designer.cs">
-      <DependentUpon>Services.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEvent.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventCollection.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventCollectionResult.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventFlags.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventName.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventNameCollection.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventRotation.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventShifts.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventState.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventStateCollection.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\DynamicEventStateCollectionResult.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\EventState.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\Locations\CylinderLocation.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\Locations\Location.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\Locations\PointCollection.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\Locations\PolygonLocation.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\Locations\SphereLocation.cs" />
-    <Compile Include="V1\DynamicEvents.Contracts\Locations\UnknownLocation.cs" />
-    <Compile Include="V1\DynamicEvents\Converters\JsonPoint3DConverter.cs" />
-    <Compile Include="V1\DynamicEvents\Converters\JsonPointConverter.cs" />
-    <Compile Include="V1\DynamicEvents\Converters\LocationConverter.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\EventDetailsContract.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\EventDetailsCollectionContract.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\EventNameContract.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\EventStateContract.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\EventStateCollectionContract.cs" />
+    <Compile Include="V1\DynamicEvents.Contracts\LocationContract.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventDetailsRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventNameRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventStateRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventDetailsService.cs" />
-    <Compile Include="V1\DynamicEvents\DynamicEventDetailsSerializerSettings.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventNameService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventRotationService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventStateService.cs" />
-    <Compile Include="V1\Files.Contracts\Asset.cs" />
-    <Compile Include="V1\Files.Contracts\AssetCollection.cs" />
+    <Compile Include="V1\Files.Contracts\FileContract.cs" />
     <Compile Include="V1\Files\FileService.cs" />
     <Compile Include="V1\Files\FileRequest.cs" />
     <Compile Include="V1\Files\IFileService.cs" />
-    <Compile Include="V1\Guilds.Contracts\Emblem.cs" />
-    <Compile Include="V1\Guilds.Contracts\EmblemTransformations.cs" />
-    <Compile Include="V1\Guilds.Contracts\Guild.cs" />
+    <Compile Include="V1\Guilds.Contracts\EmblemContract.cs" />
+    <Compile Include="V1\Guilds.Contracts\GuildContract.cs" />
     <Compile Include="V1\Guilds\GuildDetailsRequest.cs" />
     <Compile Include="V1\Guilds\GuildDetailsService.cs" />
     <Compile Include="V1\Guilds\IGuildDetailsService.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\AquaticHelm.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\Armor.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\ArmorWeightClass.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\Boots.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\Coat.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\Gloves.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\Helm.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\Leggings.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\Shoulders.cs" />
-    <Compile Include="V1\Items.Contracts\Armors\UnknownArmor.cs" />
-    <Compile Include="V1\Items.Contracts\Backpacks\Backpack.cs" />
-    <Compile Include="V1\Items.Contracts\Bags\Bag.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\ConditionDamage.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\Ferocity.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\Healing.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\ItemAttribute.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\ItemAttributeCollection.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\Power.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\Precision.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\Toughness.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\UnknownItemAttribute.cs" />
-    <Compile Include="V1\Items.Contracts\Common\Attributes\Vitality.cs" />
-    <Compile Include="V1\Items.Contracts\Common\InfusionSlot.cs" />
-    <Compile Include="V1\Items.Contracts\Common\InfusionSlotCollection.cs" />
-    <Compile Include="V1\Items.Contracts\Common\InfusionSlotTypes.cs" />
-    <Compile Include="V1\Items.Contracts\Common\ISkinnable.cs" />
-    <Compile Include="V1\Items.Contracts\Common\ItemBuff.cs" />
-    <Compile Include="V1\Items.Contracts\Common\IUpgradable.cs" />
-    <Compile Include="V1\Items.Contracts\Common\IUpgrade.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\AppearanceChanger.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\BagSlotUnlocker.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\BankTabUnlocker.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\Booze.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\CollectibleCapacityUnlocker.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\Consumable.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\ContentUnlocker.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\ContractNpc.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\CraftingRecipeUnlocker.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\DyeUnlocker.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\Food.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\GenericConsumable.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\HalloweenConsumable.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\ImmediateConsumable.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\Transmutation.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\UnknownConsumable.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\UnknownUnlocker.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\Unlocker.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\UnTransmutation.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\UpgradeRemoval.cs" />
-    <Compile Include="V1\Items.Contracts\Consumables\Utility.cs" />
-    <Compile Include="V1\Items.Contracts\Containers\Container.cs" />
-    <Compile Include="V1\Items.Contracts\Containers\DefaultContainer.cs" />
-    <Compile Include="V1\Items.Contracts\Containers\GiftBox.cs" />
-    <Compile Include="V1\Items.Contracts\Containers\OpenUiContainer.cs" />
-    <Compile Include="V1\Items.Contracts\Containers\UnknownContainer.cs" />
-    <Compile Include="V1\Items.Contracts\CraftingMaterials\CraftingMaterial.cs" />
-    <Compile Include="V1\Items.Contracts\GameRestrictions.cs" />
-    <Compile Include="V1\Items.Contracts\GatheringTools\ForagingTool.cs" />
-    <Compile Include="V1\Items.Contracts\GatheringTools\GatheringTool.cs" />
-    <Compile Include="V1\Items.Contracts\GatheringTools\LoggingTool.cs" />
-    <Compile Include="V1\Items.Contracts\GatheringTools\MiningTool.cs" />
-    <Compile Include="V1\Items.Contracts\GatheringTools\UnknownGatheringTool.cs" />
-    <Compile Include="V1\Items.Contracts\Gizmos\ContainerKey.cs" />
-    <Compile Include="V1\Items.Contracts\Gizmos\DefaultGizmo.cs" />
-    <Compile Include="V1\Items.Contracts\Gizmos\Gizmo.cs" />
-    <Compile Include="V1\Items.Contracts\Gizmos\RentableContractNpc.cs" />
-    <Compile Include="V1\Items.Contracts\Gizmos\UnknownGizmo.cs" />
-    <Compile Include="V1\Items.Contracts\Gizmos\UnlimitedConsumable.cs" />
-    <Compile Include="V1\Items.Contracts\Item.cs" />
-    <Compile Include="V1\Items.Contracts\ItemFlags.cs" />
-    <Compile Include="V1\Items.Contracts\ItemRarity.cs" />
-    <Compile Include="V1\Items.Contracts\ItemRestrictions.cs" />
-    <Compile Include="V1\Items.Contracts\MiniPets\MiniPet.cs" />
-    <Compile Include="V1\Items.Contracts\Tools\SalvageTool.cs" />
-    <Compile Include="V1\Items.Contracts\Tools\Tool.cs" />
-    <Compile Include="V1\Items.Contracts\Tools\UnknownTool.cs" />
-    <Compile Include="V1\Items.Contracts\Trinkets\Accessory.cs" />
-    <Compile Include="V1\Items.Contracts\Trinkets\Amulet.cs" />
-    <Compile Include="V1\Items.Contracts\Trinkets\Ring.cs" />
-    <Compile Include="V1\Items.Contracts\Trinkets\Trinket.cs" />
-    <Compile Include="V1\Items.Contracts\Trinkets\UnknownTrinket.cs" />
-    <Compile Include="V1\Items.Contracts\Trophies\Trophy.cs" />
-    <Compile Include="V1\Items.Contracts\UnknownItem.cs" />
-    <Compile Include="V1\Items.Contracts\UpgradeComponents\DefaultUpgradeComponent.cs" />
-    <Compile Include="V1\Items.Contracts\UpgradeComponents\Gem.cs" />
-    <Compile Include="V1\Items.Contracts\UpgradeComponents\Rune.cs" />
-    <Compile Include="V1\Items.Contracts\UpgradeComponents\Sigil.cs" />
-    <Compile Include="V1\Items.Contracts\UpgradeComponents\UnknownUpgradeComponent.cs" />
-    <Compile Include="V1\Items.Contracts\UpgradeComponents\UpgradeBonusCollection.cs" />
-    <Compile Include="V1\Items.Contracts\UpgradeComponents\UpgradeComponent.cs" />
-    <Compile Include="V1\Items.Contracts\UpgradeComponents\UpgradeComponentFlags.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Axe.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Dagger.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Focus.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\GreatSword.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Hammer.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Harpoon.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\LargeBundle.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\LongBow.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Mace.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Pistol.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Rifle.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Scepter.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Shield.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\ShortBow.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\SmallBundle.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\SpearGun.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Staff.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Sword.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Torch.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\ToyWeapon.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Trident.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\TwoHandedToyWeapon.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\UnknownWeapon.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\WarHorn.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\Weapon.cs" />
-    <Compile Include="V1\Items.Contracts\Weapons\WeaponDamageType.cs" />
-    <Compile Include="V1\Items.Contracts\ItemCollection.cs" />
-    <Compile Include="V1\Items.Contracts\ItemCollectionResult.cs" />
-    <Compile Include="V1\Items\Converters\ArmorConverter.cs" />
-    <Compile Include="V1\Items\Converters\BackpackConverter.cs" />
-    <Compile Include="V1\Items\Converters\BagConverter.cs" />
-    <Compile Include="V1\Items\Converters\ConsumableConverter.cs" />
-    <Compile Include="V1\Items\Converters\ContainerConverter.cs" />
-    <Compile Include="V1\Items\Converters\GatheringToolConverter.cs" />
-    <Compile Include="V1\Items\Converters\GizmoConverter.cs" />
-    <Compile Include="V1\Items\Converters\ItemAttributeConverter.cs" />
-    <Compile Include="V1\Items\Converters\ItemConverter.cs" />
-    <Compile Include="V1\Items\Converters\JsonBooleanConverter.cs" />
-    <Compile Include="V1\Items\Converters\ToolConverter.cs" />
-    <Compile Include="V1\Items\Converters\TrinketConverter.cs" />
-    <Compile Include="V1\Items\Converters\UnlockerConverter.cs" />
-    <Compile Include="V1\Items\Converters\UpgradeComponentConverter.cs" />
-    <Compile Include="V1\Items\Converters\WeaponConverter.cs" />
+    <Compile Include="V1\Items.Contracts\ArmorContract.cs" />
+    <Compile Include="V1\Items.Contracts\BackpackContract.cs" />
+    <Compile Include="V1\Items.Contracts\BagContract.cs" />
+    <Compile Include="V1\Items.Contracts\ItemAttribute.cs" />
+    <Compile Include="V1\Items.Contracts\InfixUpgradeContract.cs" />
+    <Compile Include="V1\Items.Contracts\InfusionSlotContract.cs" />
+    <Compile Include="V1\Items.Contracts\ItemBuffContract.cs" />
+    <Compile Include="V1\Items.Contracts\ConsumableContract.cs" />
+    <Compile Include="V1\Items.Contracts\ContainerContract.cs" />
+    <Compile Include="V1\Items.Contracts\GatheringToolContract.cs" />
+    <Compile Include="V1\Items.Contracts\GizmoContract.cs" />
+    <Compile Include="V1\Items.Contracts\ItemContract.cs" />
+    <Compile Include="V1\Items.Contracts\ToolContract.cs" />
+    <Compile Include="V1\Items.Contracts\TrinketContract.cs" />
+    <Compile Include="V1\Items.Contracts\UpgradeComponentContract.cs" />
+    <Compile Include="V1\Items.Contracts\WeaponContract.cs" />
+    <Compile Include="V1\Items.Contracts\ItemCollectionContract.cs" />
     <Compile Include="V1\Items\IItemDetailsService.cs" />
     <Compile Include="V1\Items\IItemService.cs" />
     <Compile Include="V1\Items\ItemDetailsRequest.cs" />
-    <Compile Include="V1\Items\ItemSerializerSettings.cs" />
-    <Compile Include="V1\Maps.Contracts\Continent.cs" />
-    <Compile Include="V1\Maps.Contracts\ContinentCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\ContinentCollectionResult.cs" />
-    <Compile Include="V1\Maps.Contracts\Floor.cs" />
-    <Compile Include="V1\Maps.Contracts\MapName.cs" />
-    <Compile Include="V1\Maps.Contracts\MapNameCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Region.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\RegionCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\Dungeon.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\UnknownPointOfInterest.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\Waypoint.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\Vista.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\Landmark.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\PointOfInterest.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\PointsOfInterest\PointOfInterestCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\Sectors\Sector.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\Sectors\SectorCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\SkillChallenges\SkillChallenge.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\SkillChallenges\SkillChallengeCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\Subregion.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\SubregionCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\Tasks\RenownTask.cs" />
-    <Compile Include="V1\Maps.Contracts\Regions\Subregions\Tasks\RenownTaskCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\FloorCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\Map.cs" />
-    <Compile Include="V1\Maps.Contracts\MapCollection.cs" />
-    <Compile Include="V1\Maps.Contracts\MapCollectionResult.cs" />
+    <Compile Include="V1\Maps.Contracts\ContinentContract.cs" />
+    <Compile Include="V1\Maps.Contracts\ContinentCollectionContract.cs" />
+    <Compile Include="V1\Maps.Contracts\FloorContract.cs" />
+    <Compile Include="V1\Maps.Contracts\MapNameContract.cs" />
+    <Compile Include="V1\Maps.Contracts\PointOfInterestContract.cs" />
+    <Compile Include="V1\Maps.Contracts\RegionContract.cs" />
+    <Compile Include="V1\Maps.Contracts\MapContract.cs" />
+    <Compile Include="V1\Maps.Contracts\MapCollectionContract.cs" />
+    <Compile Include="V1\Maps.Contracts\RenownTaskContract.cs" />
+    <Compile Include="V1\Maps.Contracts\SectorContract.cs" />
+    <Compile Include="V1\Maps.Contracts\SkillChallengeContract.cs" />
+    <Compile Include="V1\Maps.Contracts\SubregionContract.cs" />
     <Compile Include="V1\Maps\ContinentRequest.cs" />
-    <Compile Include="V1\Maps\ContinentSerializerSettings.cs" />
     <Compile Include="V1\Maps\ContinentService.cs" />
-    <Compile Include="V1\Maps\Converters\PointOfInterestConverter.cs" />
     <Compile Include="V1\Maps\IContinentService.cs" />
     <Compile Include="V1\Maps\IMapFloorService.cs" />
     <Compile Include="V1\Maps\IMapNameService.cs" />
     <Compile Include="V1\Maps\MapFloorRequest.cs" />
-    <Compile Include="V1\Maps\MapFloorSerializerSettings.cs" />
     <Compile Include="V1\Maps\MapFloorService.cs" />
     <Compile Include="V1\Maps\MapNameRequest.cs" />
     <Compile Include="V1\Maps\MapNameService.cs" />
-    <Compile Include="V1\Maps\MapSerializerSettings.cs" />
-    <Compile Include="V1\Recipes.Contracts\AmuletRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\AxeRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\BackpackRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\BagRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\BootsRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\BulkRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\CoatRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\ComponentRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\ConsumableRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\CraftingDisciplines.cs" />
-    <Compile Include="V1\Recipes.Contracts\DaggerRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\DessertRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\DyeRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\EarringRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\FeastRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\FocusRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\GlovesRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\GreatSwordRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\HammerRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\HarpoonRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\HelmRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\Ingredient.cs" />
-    <Compile Include="V1\Recipes.Contracts\IngredientCollection.cs" />
-    <Compile Include="V1\Recipes.Contracts\IngredientCookingRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\InscriptionRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\InsigniaRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\LeggingsRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\LongBowRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\MaceRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\MealRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\PistolRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\PotionRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\Recipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\RecipeUnlockTypes.cs" />
-    <Compile Include="V1\Recipes.Contracts\RefinementEctoplasmRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\RefinementObsidianRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\RefinementRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\RifleRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\RingRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\ScepterRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\SeasoningRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\ShieldRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\ShortBowRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\ShouldersRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\SnackRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\SoupRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\SpearGunRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\StaffRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\SwordRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\TorchRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\TridentRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\UnknownRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\UpgradeComponentRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\WarHornRecipe.cs" />
-    <Compile Include="V1\Recipes.Contracts\RecipeCollection.cs" />
-    <Compile Include="V1\Recipes.Contracts\RecipeCollectionResult.cs" />
-    <Compile Include="V1\Recipes\Converters\RecipeConverter.cs" />
+    <Compile Include="V1\Recipes.Contracts\IngredientContract.cs" />
+    <Compile Include="V1\Recipes.Contracts\RecipeContract.cs" />
+    <Compile Include="V1\Recipes.Contracts\RecipeCollectionContract.cs" />
     <Compile Include="V1\Recipes\IRecipeDetailsService.cs" />
     <Compile Include="V1\Recipes\IRecipeService.cs" />
     <Compile Include="V1\Recipes\RecipeDetailsRequest.cs" />
-    <Compile Include="V1\Recipes\RecipeSerializerSettings.cs" />
-    <Compile Include="V1\Skins.Contracts\Armors\AquaticHelmSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Armors\ArmorSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Armors\BootsSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Armors\CoatSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Armors\GlovesSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Armors\HelmSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Armors\LeggingsSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Armors\ShouldersSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Armors\UnknownArmorSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Backpacks\BackpackSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Skin.cs" />
-    <Compile Include="V1\Skins.Contracts\SkinCollection.cs" />
-    <Compile Include="V1\Skins.Contracts\SkinCollectionResult.cs" />
-    <Compile Include="V1\Skins.Contracts\SkinFlags.cs" />
-    <Compile Include="V1\Skins.Contracts\UnknownSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\AxeSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\DaggerSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\FocusSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\GreatSwordSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\HammerSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\HarpoonSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\LargeBundleSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\LongBowSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\MaceSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\PistolSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\RifleSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\ScepterSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\ShieldSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\ShortBowSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\SmallBundleSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\SpearGunSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\StaffSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\SwordSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\TorchSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\ToyWeaponSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\TridentSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\TwoHandedToyWeaponSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\UnknownWeaponSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\WarHornSkin.cs" />
-    <Compile Include="V1\Skins.Contracts\Weapons\WeaponSkin.cs" />
-    <Compile Include="V1\Skins\Converters\ArmorSkinConverter.cs" />
-    <Compile Include="V1\Skins\Converters\SkinConverter.cs" />
-    <Compile Include="V1\Skins\Converters\WeaponSkinConverter.cs" />
+    <Compile Include="V1\Skins.Contracts\ArmorSkinContract.cs" />
+    <Compile Include="V1\Skins.Contracts\SkinContract.cs" />
+    <Compile Include="V1\Skins.Contracts\SkinCollectionContract.cs" />
+    <Compile Include="V1\Skins.Contracts\WeaponSkinContract.cs" />
     <Compile Include="V1\Skins\ISkinDetailsService.cs" />
     <Compile Include="V1\Skins\ISkinService.cs" />
     <Compile Include="V1\Skins\ISkinDiscoveryService.cs" />
     <Compile Include="V1\Skins\SkinDetailsRequest.cs" />
-    <Compile Include="V1\Skins\SkinSerializerSettings.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
     <Compile Include="V1\Skins\SkinRequest.cs" />
     <Compile Include="V1\Items\IItemDiscoveryService.cs" />
@@ -512,62 +673,72 @@
     <Compile Include="V1\Recipes\IRecipeDiscoveryService.cs" />
     <Compile Include="V1\Recipes\RecipeService.cs" />
     <Compile Include="V1\Recipes\RecipeRequest.cs" />
-    <Compile Include="V1\Worlds.Contracts\World.cs" />
-    <Compile Include="V1\Worlds.Contracts\WorldCollection.cs" />
+    <Compile Include="V1\Worlds.Contracts\WorldNameContract.cs" />
     <Compile Include="V1\Worlds\IWorldNameService.cs" />
-    <Compile Include="V1\Worlds\WorldNameService.cs" />
+    <Compile Include="V1\Worlds\WorldService.cs" />
     <Compile Include="V1\Worlds\WorldNameRequest.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Common\Scoreboard.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Common\ScoreboardConverter.cs">
-      <DependentUpon>Scoreboard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="V1\WorldVersusWorld.Contracts\Common\TeamColor.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\BlueBorderlands.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\Bonuses\Bloodlust.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\Bonuses\MapBonus.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\Bonuses\MapBonusCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\Bonuses\UnknownMapBonus.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\CompetitiveMap.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\CompetitiveMapCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\EternalBattlegrounds.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\GreenBorderlands.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\Objectives\Objective.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\Objectives\ObjectiveCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Maps\RedBorderlands.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Match.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\Matchup.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\MatchupCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\MatchupCollectionResult.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\ObjectiveName.cs" />
-    <Compile Include="V1\WorldVersusWorld.Contracts\ObjectiveNameCollection.cs" />
-    <Compile Include="V1\WorldVersusWorld\Converters\CompetitiveMapConverter.cs" />
-    <Compile Include="V1\WorldVersusWorld\Converters\MapBonusConverter.cs" />
+    <Compile Include="V1\WorldVersusWorld.Contracts\MapBonusContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Contracts\CompetitiveMapContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Contracts\ObjectiveContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Contracts\MatchContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Contracts\MatchupContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Contracts\MatchupCollectionContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Contracts\ObjectiveNameContract.cs" />
     <Compile Include="V1\WorldVersusWorld\IMatchDetailsService.cs" />
     <Compile Include="V1\WorldVersusWorld\IMatchDiscoveryService.cs" />
     <Compile Include="V1\WorldVersusWorld\IMatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\IObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchDetailsRequest.cs" />
-    <Compile Include="V1\WorldVersusWorld\MatchDetailsSerializerSettings.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\ObjectiveNameRequest.cs" />
+    <Compile Include="Worlds\World.cs" />
+    <Compile Include="WorldVersusWorld\Maps\BlueBorderlands.cs" />
+    <Compile Include="WorldVersusWorld\Bonuses\Bloodlust.cs" />
+    <Compile Include="WorldVersusWorld\Bonuses\MapBonus.cs" />
+    <Compile Include="WorldVersusWorld\Bonuses\UnknownMapBonus.cs" />
+    <Compile Include="WorldVersusWorld\Maps\CompetitiveMap.cs" />
+    <Compile Include="WorldVersusWorld\Maps\EternalBattlegrounds.cs" />
+    <Compile Include="WorldVersusWorld\Maps\GreenBorderlands.cs" />
+    <Compile Include="WorldVersusWorld\Match.cs" />
+    <Compile Include="WorldVersusWorld\Matchup.cs" />
+    <Compile Include="WorldVersusWorld\ObjectiveName.cs" />
+    <Compile Include="WorldVersusWorld\Objectives\Objective.cs" />
+    <Compile Include="WorldVersusWorld\Maps\RedBorderlands.cs" />
+    <Compile Include="WorldVersusWorld\Scoreboard.cs" />
+    <Compile Include="WorldVersusWorld\ScoreboardConverter.cs">
+      <DependentUpon>Scoreboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorldVersusWorld\TeamColor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="V1\Common\Services.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Services.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="V1\DynamicEvents\Rotations.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="V1\Items.Contracts\Armors\" />
+    <Folder Include="V1\Items.Contracts\Backpacks\" />
+    <Folder Include="V1\Items.Contracts\Bags\" />
+    <Folder Include="V1\Items.Contracts\Common\Attributes\" />
+    <Folder Include="V1\Items.Contracts\Consumables\" />
+    <Folder Include="V1\Items.Contracts\Containers\" />
+    <Folder Include="V1\Items.Contracts\GatheringTools\" />
+    <Folder Include="V1\Items.Contracts\Gizmos\" />
+    <Folder Include="V1\Items.Contracts\Tools\" />
+    <Folder Include="V1\Items.Contracts\Trinkets\" />
+    <Folder Include="V1\Items.Contracts\UpgradeComponents\" />
+    <Folder Include="V1\Items.Contracts\Weapons\" />
+    <Folder Include="V1\Skins.Contracts\Armors\" />
+    <Folder Include="V1\Skins.Contracts\Backpacks\" />
+    <Folder Include="V1\Skins.Contracts\Weapons\" />
+    <Folder Include="V1\WorldVersusWorld.Contracts\Maps\Bonuses\" />
+    <Folder Include="V1\WorldVersusWorld.Contracts\Maps\Objectives\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

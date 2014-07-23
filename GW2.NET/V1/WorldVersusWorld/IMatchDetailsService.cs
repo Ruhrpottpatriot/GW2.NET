@@ -11,7 +11,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.WorldVersusWorld.Contracts;
+    using GW2DotNET.WorldVersusWorld;
 
     /// <summary>Provides the interface for the match details service.</summary>
     public interface IMatchDetailsService
@@ -20,19 +20,19 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <param name="match">The match identifier.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        Match GetMatchDetails(Matchup match);
+        Match GetMatchDetails(string match);
 
         /// <summary>Gets a World versus World match and its details.</summary>
         /// <param name="match">The match identifier.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        Task<Match> GetMatchDetailsAsync(Matchup match);
+        Task<Match> GetMatchDetailsAsync(string match);
 
         /// <summary>Gets a World versus World match and its details.</summary>
         /// <param name="match">The match identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A World versus World match and its details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        Task<Match> GetMatchDetailsAsync(Matchup match, CancellationToken cancellationToken);
+        Task<Match> GetMatchDetailsAsync(string match, CancellationToken cancellationToken);
     }
 }

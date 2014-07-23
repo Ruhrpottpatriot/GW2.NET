@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks.Extensions
 {
+    using GW2DotNET.Items;
     using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Items.Contracts;
-    using GW2DotNET.V1.Items.Contracts.Common;
 
     /// <summary>Provides static extension methods for the <see cref="Item" /> class.</summary>
     public static class ItemExtensions
@@ -21,21 +20,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         public static ChatLink GetChatLink(this Item instance)
         {
             Preconditions.EnsureNotNull(instance);
-            var chatLink = new ItemChatLink { ItemId = instance.ItemId };
-            var upgradable = instance as IUpgradable;
-            if (upgradable != null)
-            {
-                if (upgradable.SuffixItem != null)
-                {
-                    chatLink.SuffixItemId = upgradable.SuffixItem.ItemId;
-                }
-
-                if (upgradable.SecondarySuffixItem != null)
-                {
-                    chatLink.SecondarySuffixItemId = upgradable.SecondarySuffixItem.ItemId;
-                }
-            }
-
+            var chatLink = new ItemChatLink { ItemId = instance.ItemId, Quantity = 1 };
             return chatLink;
         }
     }

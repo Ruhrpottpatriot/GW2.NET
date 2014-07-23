@@ -40,7 +40,7 @@ namespace GW2DotNET.Rendering
             Preconditions.EnsureNotNull(paramName: "file", value: file);
             Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
-            return this.serviceClient.Send(request, new ImageSerializer());
+            return this.serviceClient.Send(request, new ImageSerializer()).Content;
         }
 
         /// <summary>Gets an image.</summary>
@@ -64,7 +64,7 @@ namespace GW2DotNET.Rendering
             Preconditions.EnsureNotNull(paramName: "file", value: file);
             Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
-            return this.serviceClient.SendAsync(request, new ImageSerializer(), cancellationToken);
+            return this.serviceClient.SendAsync(request, new ImageSerializer(), cancellationToken).ContinueWith(task => task.Result.Content, cancellationToken);
         }
     }
 }

@@ -11,10 +11,10 @@ namespace GW2DotNET.V1.Guilds
     using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common;
+    using GW2DotNET.Common;
 
     /// <summary>Represents a request for information regarding a specific guild.</summary>
-    public class GuildDetailsRequest : IGuildRequest
+    public class GuildDetailsRequest : IRequest
     {
         /// <summary>Gets or sets the guild identifier.</summary>
         public Guid? GuildId { get; set; }
@@ -27,7 +27,7 @@ namespace GW2DotNET.V1.Guilds
         {
             get
             {
-                return Services.GuildDetails;
+                return "v1/guild_details.json";
             }
         }
 

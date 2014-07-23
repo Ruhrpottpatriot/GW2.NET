@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Builds
     using System.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for the current build identifier of the game.</summary>
     public class BuildRequest : IRequest
@@ -22,7 +21,7 @@ namespace GW2DotNET.V1.Builds
         {
             get
             {
-                return Services.Build;
+                return "v1/build.json";
             }
         }
 

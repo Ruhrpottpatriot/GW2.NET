@@ -65,9 +65,6 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="V1\Common\Converters\JsonPointConverterTest.cs" />
-    <Compile Include="V1\Common\Converters\JsonPointFConverterTest.cs" />
-    <Compile Include="V1\Common\Converters\JsonSizeConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Items
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Items.Contracts;
+    using GW2DotNET.Items;
 
     /// <summary>Provides the interface for the item details service.</summary>
     public interface IItemDetailsService
@@ -21,34 +21,34 @@ namespace GW2DotNET.V1.Items
         /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Item GetItemDetails(Item item);
+        Item GetItemDetails(int item);
 
         /// <summary>Gets an item and its localized details.</summary>
         /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Item GetItemDetails(Item item, CultureInfo language);
+        Item GetItemDetails(int item, CultureInfo language);
 
         /// <summary>Gets an item and its localized details.</summary>
         /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Task<Item> GetItemDetailsAsync(Item item);
+        Task<Item> GetItemDetailsAsync(int item);
 
         /// <summary>Gets an item and its localized details.</summary>
         /// <param name="item">The item identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Task<Item> GetItemDetailsAsync(Item item, CultureInfo language);
+        Task<Item> GetItemDetailsAsync(int item, CultureInfo language);
 
         /// <summary>Gets an item and its localized details.</summary>
         /// <param name="item">The item identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Task<Item> GetItemDetailsAsync(Item item, CancellationToken cancellationToken);
+        Task<Item> GetItemDetailsAsync(int item, CancellationToken cancellationToken);
 
         /// <summary>Gets an item and its localized details.</summary>
         /// <param name="item">The item identifier.</param>
@@ -56,6 +56,6 @@ namespace GW2DotNET.V1.Items
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>An item and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        Task<Item> GetItemDetailsAsync(Item item, CultureInfo language, CancellationToken cancellationToken);
+        Task<Item> GetItemDetailsAsync(int item, CultureInfo language, CancellationToken cancellationToken);
     }
 }

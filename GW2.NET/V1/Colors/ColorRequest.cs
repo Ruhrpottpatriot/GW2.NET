@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Colors
     using System.Globalization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for information regarding colors in the game.</summary>
     public class ColorRequest : IRequest, ILocalizable
@@ -25,7 +24,7 @@ namespace GW2DotNET.V1.Colors
         {
             get
             {
-                return Services.Colors;
+                return "v1/colors.json";
             }
         }
 

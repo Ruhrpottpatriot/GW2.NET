@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Maps
     using System.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for static information about the continents.</summary>
     public class ContinentRequest : IRequest
@@ -22,7 +21,7 @@ namespace GW2DotNET.V1.Maps
         {
             get
             {
-                return Services.Continents;
+                return "v1/continents.json";
             }
         }
 

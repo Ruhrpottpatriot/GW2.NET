@@ -10,11 +10,13 @@ namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
+    using GW2DotNET.Maps;
     using GW2DotNET.Utilities;
     using GW2DotNET.V1.Maps.Contracts;
 
@@ -34,7 +36,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public IEnumerable<MapName> GetMapNames()
+        public IDictionary<int, Map> GetMapNames()
         {
             return this.GetMapNames(CultureInfo.GetCultureInfo("en"));
         }
@@ -43,25 +45,18 @@ namespace GW2DotNET.V1.Maps
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public IEnumerable<MapName> GetMapNames(CultureInfo language)
+        public IDictionary<int, Map> GetMapNames(CultureInfo language)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapNameRequest { Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<MapNameCollection>());
-
-            // Patch missing language information
-            foreach (var mapName in result)
-            {
-                mapName.Language = language.TwoLetterISOLanguageName;
-            }
-
-            return result;
+            var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<MapNameContract>>());
+            return MapMapNameContracts(response.Content, language);
         }
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<MapName>> GetMapNamesAsync()
+        public Task<IDictionary<int, Map>> GetMapNamesAsync()
         {
             return this.GetMapNamesAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
         }
@@ -70,7 +65,7 @@ namespace GW2DotNET.V1.Maps
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<MapName>> GetMapNamesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<int, Map>> GetMapNamesAsync(CancellationToken cancellationToken)
         {
             return this.GetMapNamesAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
         }
@@ -79,7 +74,7 @@ namespace GW2DotNET.V1.Maps
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language)
+        public Task<IDictionary<int, Map>> GetMapNamesAsync(CultureInfo language)
         {
             return this.GetMapNamesAsync(language, CancellationToken.None);
         }
@@ -89,27 +84,41 @@ namespace GW2DotNET.V1.Maps
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<int, Map>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapNameRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<MapNameCollection>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<MapNameContract>>(), cancellationToken).ContinueWith(
                 task =>
                     {
-                        var result = task.Result;
-
-                        // Patch missing language information
-                        foreach (var mapName in result)
-                        {
-                            mapName.Language = language.TwoLetterISOLanguageName;
-                        }
-
-                        return result;
+                        var response = task.Result;
+                        return MapMapNameContracts(response.Content, language);
                     }, 
                 cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<MapName>>(task => task.Result, cancellationToken);
+        }
 
-            return t2;
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Map MapMapNameContract(MapNameContract content)
+        {
+            return new Map { MapId = int.Parse(content.Id), MapName = content.Name };
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns>A collection of entities.</returns>
+        private static IDictionary<int, Map> MapMapNameContracts(ICollection<MapNameContract> content, CultureInfo culture)
+        {
+            var values = new Dictionary<int, Map>(content.Count);
+            foreach (var value in content.Select(MapMapNameContract))
+            {
+                value.Language = culture.TwoLetterISOLanguageName;
+                values.Add(value.MapId, value);
+            }
+
+            return values;
         }
     }
 }

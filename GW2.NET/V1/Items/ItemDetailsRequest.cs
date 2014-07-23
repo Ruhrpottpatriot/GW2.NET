@@ -12,10 +12,9 @@ namespace GW2DotNET.V1.Items
     using System.Globalization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for details regarding a specific item.</summary>
-    public class ItemDetailsRequest : IItemRequest, ILocalizable
+    public class ItemDetailsRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
@@ -28,7 +27,7 @@ namespace GW2DotNET.V1.Items
         {
             get
             {
-                return Services.ItemDetails;
+                return "v1/item_details.json";
             }
         }
 

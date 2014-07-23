@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Skins
     using System.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for a list of skin identifiers.</summary>
     public class SkinRequest : IRequest
@@ -22,7 +21,7 @@ namespace GW2DotNET.V1.Skins
         {
             get
             {
-                return Services.Skins;
+                return "v1/skins.json";
             }
         }
 

@@ -12,10 +12,9 @@ namespace GW2DotNET.V1.Recipes
     using System.Globalization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for information regarding a specific recipe.</summary>
-    public class RecipeDetailsRequest : IRecipeRequest, ILocalizable
+    public class RecipeDetailsRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
@@ -28,7 +27,7 @@ namespace GW2DotNET.V1.Recipes
         {
             get
             {
-                return Services.RecipeDetails;
+                return "v1/recipe_details.json";
             }
         }
 

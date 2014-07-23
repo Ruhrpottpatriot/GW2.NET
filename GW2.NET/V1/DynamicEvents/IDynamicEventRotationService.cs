@@ -8,15 +8,16 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.DynamicEvents
 {
+    using System;
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.DynamicEvents.Contracts;
+    using GW2DotNET.DynamicEvents;
 
     /// <summary>Provides the interface for the event rotations service.</summary>
     public interface IDynamicEventRotationService
     {
         /// <summary>Gets a collection of dynamic events and their start times.</summary>
         /// <returns>A collection of dynamic events and their start times.</returns>
-        IEnumerable<DynamicEventRotation> GetDynamicEventRotations();
+        IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations();
     }
 }

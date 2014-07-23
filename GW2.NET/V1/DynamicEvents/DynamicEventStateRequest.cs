@@ -12,10 +12,10 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.V1.Common;
+    using GW2DotNET.Common;
 
     /// <summary>Represents a request for a list of events and their status that match the given filters (if any).</summary>
-    public class DynamicEventStateRequest : IDynamicEventRequest
+    public class DynamicEventStateRequest : IRequest
     {
         /// <summary>Gets or sets the event identifier.</summary>
         public Guid? EventId { get; set; }
@@ -28,7 +28,7 @@ namespace GW2DotNET.V1.DynamicEvents
         {
             get
             {
-                return Services.Events;
+                return "v1/events.json";
             }
         }
 
