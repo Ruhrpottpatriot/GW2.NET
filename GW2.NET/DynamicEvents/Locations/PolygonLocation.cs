@@ -16,7 +16,7 @@ namespace GW2DotNET.DynamicEvents
     public class PolygonLocation : Location
     {
         /// <summary>Gets or sets a collection that contains the vertex points of the polygon.</summary>
-        public virtual IEnumerable<Point2D> Points { get; set; }
+        public virtual ICollection<Point2D> Points { get; set; }
 
         /// <summary>Gets or sets a vector that describes the minimum and maximum Z values.</summary>
         public virtual Vector2D ZRange { get; set; }

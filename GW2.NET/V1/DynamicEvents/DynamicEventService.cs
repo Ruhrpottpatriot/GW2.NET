@@ -647,6 +647,16 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
+        /// <returns>A collection of entities.</returns>
+        private static ICollection<Point2D> MapPoint2DContracts(double[][] content)
+        {
+            var values = new List<Point2D>(content.Length);
+            values.AddRange(content.Select(MapPoint2DContract));
+            return values;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
         private static Point3D MapPoint3DContract(double[] content)
         {
@@ -662,7 +672,7 @@ namespace GW2DotNET.V1.DynamicEvents
                        {
                            Center = MapPoint3DContract(content.Center), 
                            ZRange = MapZRangeContract(content.ZRange), 
-                           Points = content.Points.Select(MapPoint2DContract)
+                           Points = MapPoint2DContracts(content.Points)
                        };
         }
 
