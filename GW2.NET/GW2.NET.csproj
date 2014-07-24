@@ -112,6 +112,7 @@
     <Compile Include="Common\Contracts\ServiceContract.cs" />
     <Compile Include="Common\IRenderable.cs" />
     <Compile Include="Common\IResponse.cs" />
+    <Compile Include="Common\Serializers\StringSerializer.cs" />
     <Compile Include="Common\Vector2D.cs" />
     <Compile Include="Common\Rectangle.cs" />
     <Compile Include="Common\Size2D.cs" />
