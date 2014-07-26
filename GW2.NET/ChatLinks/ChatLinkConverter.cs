@@ -28,23 +28,7 @@ namespace GW2DotNET.ChatLinks
         /// <param name="sourceType">A <see cref="T:System.Type"/> that represents the type you wish to convert from. </param>
         public override sealed bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
-            if (sourceType != typeof(string) && !typeof(T).IsAssignableFrom(sourceType))
-            {
-                return false;
-            }
-
-            if (context == null)
-            {
-                return true;
-            }
-
-            var input = context.Instance as string;
-            if (string.IsNullOrEmpty(input))
-            {
-                return false;
-            }
-
-            return this.GetHeader(input) == this.Header;
+            return sourceType == typeof(string);
         }
 
         /// <summary>Returns whether this converter can convert the object to the specified type, using the specified context.</summary>
@@ -53,7 +37,7 @@ namespace GW2DotNET.ChatLinks
         /// <param name="destinationType">A <see cref="T:System.Type"/> that represents the type you want to convert to. </param>
         public override sealed bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
-            return typeof(T).IsAssignableFrom(destinationType);
+            return destinationType == typeof(string);
         }
 
         /// <summary>Converts the specified value object to a <see cref="T:System.String"/> object.</summary>
@@ -87,6 +71,21 @@ namespace GW2DotNET.ChatLinks
             Buffer.BlockCopy(bytes, 0, buffer, 1, bytes.Length);
             var base64 = Convert.ToBase64String(buffer);
             return string.Format(@"[&{0}]", base64);
+        }
+
+        /// <summary>Returns whether the given value object is valid for this type and for the specified context.</summary>
+        /// <returns>true if the specified value is valid for this object; otherwise, false.</returns>
+        /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
+        /// <param name="value">The <see cref="T:System.Object"/> to test for validity. </param>
+        public override bool IsValid(ITypeDescriptorContext context, object value)
+        {
+            var input = value as string;
+            if (input == null)
+            {
+                return false;
+            }
+
+            return this.GetHeader(input) == this.Header;
         }
 
         /// <summary>Converts the given byte array to the specified chat link type.</summary>

@@ -63,7 +63,6 @@
     <Compile Include="ChatLinks\ChatLinkConverterBase.cs" />
     <Compile Include="ChatLinks\ChatLinkFactory.cs" />
     <Compile Include="ChatLinks\ChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\ChatLinkTypeContext.cs" />
     <Compile Include="ChatLinks\ItemChatLinkConverter.cs">
       <DependentUpon>ItemChatLink.cs</DependentUpon>
     </Compile>
