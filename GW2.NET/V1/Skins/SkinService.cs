@@ -10,7 +10,9 @@ namespace GW2DotNET.V1.Skins
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -18,7 +20,6 @@ namespace GW2DotNET.V1.Skins
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Items;
     using GW2DotNET.Skins;
-    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Skins.Contracts;
 
     /// <summary>Provides the default implementation of the skins service.</summary>
@@ -31,6 +32,7 @@ namespace GW2DotNET.V1.Skins
         /// <param name="serviceClient">The service client.</param>
         public SkinService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -40,7 +42,9 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Skin GetSkinDetails(int skin)
         {
-            return this.GetSkinDetails(skin, CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetSkinDetails(skin, culture);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -50,9 +54,13 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Skin GetSkinDetails(int skin, CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new SkinDetailsRequest { SkinId = skin, Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<SkinContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
+
             var value = MapSkinContract(response.Content);
             value.Language = language.TwoLetterISOLanguageName;
             return value;
@@ -64,7 +72,9 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(int skin)
         {
-            return this.GetSkinDetailsAsync(skin, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetSkinDetailsAsync(skin, culture, CancellationToken.None);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -84,7 +94,9 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(int skin, CancellationToken cancellationToken)
         {
-            return this.GetSkinDetailsAsync(skin, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetSkinDetailsAsync(skin, culture, cancellationToken);
         }
 
         /// <summary>Gets a skin and its localized details.</summary>
@@ -95,16 +107,15 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(int skin, CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new SkinDetailsRequest { SkinId = skin, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<SkinContract>(), cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        var value = MapSkinContract(response.Content);
-                        value.Language = language.TwoLetterISOLanguageName;
-                        return value;
-                    }, 
+                {
+                    var response = task.Result;
+                    var value = MapSkinContract(response.Content);
+                    value.Language = language.TwoLetterISOLanguageName;
+                    return value;
+                },
                 cancellationToken);
         }
 
@@ -115,6 +126,11 @@ namespace GW2DotNET.V1.Skins
         {
             var request = new SkinRequest();
             var response = this.serviceClient.Send(request, new JsonSerializer<SkinCollectionContract>());
+            if (response.Content == null || response.Content.Skins == null)
+            {
+                return new List<int>(0);
+            }
+
             return response.Content.Skins;
         }
 
@@ -135,10 +151,10 @@ namespace GW2DotNET.V1.Skins
             var request = new SkinRequest();
             return this.serviceClient.SendAsync(request, new JsonSerializer<SkinCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return response.Content.Skins;
-                    }, 
+                {
+                    var response = task.Result;
+                    return response.Content.Skins;
+                },
                 cancellationToken);
         }
 
@@ -147,6 +163,8 @@ namespace GW2DotNET.V1.Skins
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetArmorSkinType(ArmorSkinContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Boots":
@@ -163,9 +181,10 @@ namespace GW2DotNET.V1.Skins
                     return typeof(LeggingsSkin);
                 case "HelmAquatic":
                     return typeof(HelmAquaticSkin);
-                default:
-                    return typeof(UnknownArmorSkin);
             }
+
+            return typeof(UnknownArmorSkin);
+
         }
 
         /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
@@ -173,17 +192,29 @@ namespace GW2DotNET.V1.Skins
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetSkinType(SkinContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Armor":
+                    if (content.Armor == null)
+                    {
+                        return typeof(UnknownArmorSkin);
+                    }
+
                     return GetArmorSkinType(content.Armor);
                 case "Back":
                     return typeof(BackpackSkin);
                 case "Weapon":
+                    if (content.Weapon == null)
+                    {
+                        return typeof(UnknownArmorSkin);
+                    }
+
                     return GetWeaponSkinType(content.Weapon);
-                default:
-                    return typeof(UnknownWeaponSkin);
             }
+
+            return typeof(UnknownWeaponSkin);
         }
 
         /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
@@ -191,6 +222,8 @@ namespace GW2DotNET.V1.Skins
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetWeaponSkinType(WeaponSkinContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Axe":
@@ -239,9 +272,9 @@ namespace GW2DotNET.V1.Skins
                     return typeof(SmallBundleSkin);
                 case "LargeBundle":
                     return typeof(LargeBundleSkin);
-                default:
-                    return typeof(UnknownWeaponSkin);
             }
+
+            return typeof(UnknownWeaponSkin);
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -249,7 +282,21 @@ namespace GW2DotNET.V1.Skins
         /// <param name="content">The content.</param>
         private static void MapArmorSkinContract(ArmorSkin skin, ArmorSkinContract content)
         {
-            skin.WeightClass = (ArmorWeightClass)Enum.Parse(typeof(ArmorWeightClass), content.WeightClass, true);
+            Contract.Requires(skin != null);
+            Contract.Requires(content != null);
+            if (content.WeightClass != null)
+            {
+                skin.WeightClass = MapArmorWeightClassContract(content.WeightClass);
+            }
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ArmorWeightClass MapArmorWeightClassContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ArmorWeightClass)Enum.Parse(typeof(ArmorWeightClass), content, true);
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -257,34 +304,49 @@ namespace GW2DotNET.V1.Skins
         /// <returns>An entity.</returns>
         private static Skin MapSkinContract(SkinContract content)
         {
-            // Map type discriminators to .NET types
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Skin>() != null);
+
+            // Create a new skin object
             var value = (Skin)Activator.CreateInstance(GetSkinType(content));
 
-            // Map skin identifier
-            value.SkinId = int.Parse(content.SkinId);
-
-            // Map skin name
-            value.Name = content.Name;
-
-            // Map skin flags
-            foreach (var flag in content.Flags)
+            // Set the skin identifier
+            if (content.SkinId != null)
             {
-                value.Flags |= (SkinFlags)Enum.Parse(typeof(SkinFlags), flag, true);
+                value.SkinId = int.Parse(content.SkinId);
             }
 
-            // Map skin restrictions
-            foreach (var restriction in content.Restrictions)
+            // Set the name of the skin
+            if (content.Name != null)
             {
-                value.Restrictions |= (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), restriction, true);
+                value.Name = content.Name;
             }
 
-            // Map icon file identifier
-            value.FileId = int.Parse(content.IconFileId);
+            // Set the skin flags
+            if (content.Flags != null)
+            {
+                value.Flags = MapSkinFlagsContracts(content.Flags);
+            }
 
-            // Map icon file signature
-            value.FileSignature = content.IconFileSignature;
+            // Set the skin restrictions
+            if (content.Restrictions != null)
+            {
+                value.Restrictions = MapItemRestrictionsContracts(content.Restrictions);
+            }
 
-            // Map type-specific skin contracts (maximum 1 contract per type)
+            // Set the icon file identifier
+            if (content.IconFileId != null)
+            {
+                value.FileId = int.Parse(content.IconFileId);
+            }
+
+            // Set the icon file signature
+            if (content.IconFileSignature != null)
+            {
+                value.FileSignature = content.IconFileSignature;
+            }
+
+            // Set type-specific values (maximum 1 contract per type)
             if (content.Armor != null)
             {
                 MapArmorSkinContract((ArmorSkin)value, content.Armor);
@@ -294,10 +356,50 @@ namespace GW2DotNET.V1.Skins
                 MapWeaponSkinContract((WeaponSkin)value, content.Weapon);
             }
 
-            // Map skin description
-            value.Description = string.IsNullOrEmpty(content.Description) ? null : content.Description;
+            // Set the description
+            if (content.Description != null)
+            {
+                value.Description = content.Description;
+            }
 
+            // Return the skin object
             return value;
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRestrictions MapItemRestrictionsContracts(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags |= MapItemRestrictionsContract(flag));
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRestrictions MapItemRestrictionsContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static SkinFlags MapSkinFlagsContracts(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(SkinFlags.None, (flags, flag) => flags |= MapSkinFlagsContract(flag));
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static SkinFlags MapSkinFlagsContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (SkinFlags)Enum.Parse(typeof(SkinFlags), content, true);
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -305,7 +407,29 @@ namespace GW2DotNET.V1.Skins
         /// <param name="content">The content.</param>
         private static void MapWeaponSkinContract(WeaponSkin skin, WeaponSkinContract content)
         {
-            skin.DamageType = (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content.DamageType, true);
+            Contract.Requires(skin != null);
+            Contract.Requires(content != null);
+
+            // Set the damage type
+            if (content.DamageType != null)
+            {
+                skin.DamageType = MapWeaponDamageTypeContract(content.DamageType);
+            }
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static WeaponDamageType MapWeaponDamageTypeContract(string content)
+        {
+            return (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content, true);
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

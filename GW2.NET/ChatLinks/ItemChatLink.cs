@@ -9,33 +9,23 @@
 namespace GW2DotNET.ChatLinks
 {
     using System.ComponentModel;
-
-    using GW2DotNET.Utilities;
+    using System.Diagnostics.Contracts;
 
     /// <summary>Represents a chat link that links to an item.</summary>
     [TypeConverter(typeof(ItemChatLinkConverter))]
     public class ItemChatLink : ChatLink
     {
-        /// <summary>The quantity.</summary>
-        private int quantity;
+        /// <summary>Initializes a new instance of the <see cref="ItemChatLink"/> class.</summary>
+        public ItemChatLink()
+        {
+            this.Quantity = 1;
+        }
 
         /// <summary>Gets or sets the item identifier.</summary>
         public int ItemId { get; set; }
 
-        /// <summary>Gets or sets the quantity.</summary>
-        public int Quantity
-        {
-            get
-            {
-                return this.quantity;
-            }
-
-            set
-            {
-                Preconditions.EnsureInRange(value, 1, byte.MaxValue);
-                this.quantity = value;
-            }
-        }
+        /// <summary>Gets or sets an item quantity between 1 and 255, both inclusive.</summary>
+        public int Quantity { get; set; }
 
         /// <summary>Gets or sets the secondary upgrade identifier.</summary>
         public int? SecondarySuffixItemId { get; set; }
@@ -45,5 +35,13 @@ namespace GW2DotNET.ChatLinks
 
         /// <summary>Gets or sets the upgrade identifier.</summary>
         public int? SuffixItemId { get; set; }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.Quantity >= 1);
+            Contract.Invariant(this.Quantity <= 255);
+        }
     }
 }

@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Colors
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace GW2DotNET.V1.Colors
     using GW2DotNET.Colors;
 
     /// <summary>Provides the interface for the colors service.</summary>
+    [ContractClass(typeof(ColorServiceContract))]
     public interface IColorService
     {
         /// <summary>Gets a collection of colors and their localized details.</summary>

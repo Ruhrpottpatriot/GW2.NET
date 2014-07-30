@@ -12,7 +12,7 @@ namespace GW2DotNET.Items
 
     /// <summary>Enumerates the known game type restrictions.</summary>
     [Flags]
-    public enum GameRestrictions
+    public enum GameTypes
     {
         /// <summary>Indicates no game type restrictions.</summary>
         None = 0, 

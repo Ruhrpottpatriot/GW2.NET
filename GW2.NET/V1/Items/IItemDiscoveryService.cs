@@ -9,10 +9,12 @@
 namespace GW2DotNET.V1.Items
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for the item discovery service.</summary>
+    [ContractClass(typeof(ItemDiscoveryServiceContract))]
     public interface IItemDiscoveryService
     {
         /// <summary>Gets a collection of item identifiers.</summary>

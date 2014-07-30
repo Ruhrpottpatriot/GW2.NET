@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Rendering
 {
+    using System.Diagnostics.Contracts;
     using System.Drawing;
     using System.Threading;
     using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace GW2DotNET.Rendering
     using GW2DotNET.Common;
 
     /// <summary>Provides the interface for the render service.</summary>
+    [ContractClass(typeof(RenderServiceContracts))]
     public interface IRenderService
     {
         /// <summary>Gets an image.</summary>

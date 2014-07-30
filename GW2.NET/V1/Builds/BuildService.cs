@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Builds
 {
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -26,6 +27,7 @@ namespace GW2DotNET.V1.Builds
         /// <param name="serviceClient">The service client.</param>
         public BuildService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -36,6 +38,11 @@ namespace GW2DotNET.V1.Builds
         {
             var request = new BuildRequest();
             var response = this.serviceClient.Send(request, new JsonSerializer<BuildContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
+            
             var value = MapBuildContract(response.Content);
             value.Timestamp = response.LastModified;
             return value;
@@ -72,7 +79,15 @@ namespace GW2DotNET.V1.Builds
         /// <returns>An entity.</returns>
         private static Build MapBuildContract(BuildContract content)
         {
+            Contract.Requires(content != null);
             return new Build { BuildId = content.BuildId };
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

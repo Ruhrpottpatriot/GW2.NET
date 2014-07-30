@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Guilds
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace GW2DotNET.V1.Guilds
         /// <param name="serviceClient">The service client.</param>
         public GuildDetailsService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -40,6 +42,11 @@ namespace GW2DotNET.V1.Guilds
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
             var response = this.serviceClient.Send(request, new JsonSerializer<GuildContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
+
             return MapGuildContracts(response.Content);
         }
 
@@ -85,6 +92,11 @@ namespace GW2DotNET.V1.Guilds
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
             var response = this.serviceClient.Send(request, new JsonSerializer<GuildContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
+
             return MapGuildContracts(response.Content);
         }
 
@@ -148,6 +160,7 @@ namespace GW2DotNET.V1.Guilds
         /// <returns>The bit flags.</returns>
         private static EmblemTransformations MapEmblemTransformationsContract(string content)
         {
+            Contract.Requires(content != null);
             return (EmblemTransformations)Enum.Parse(typeof(EmblemTransformations), content);
         }
 
@@ -164,7 +177,15 @@ namespace GW2DotNET.V1.Guilds
         /// <returns>An entity.</returns>
         private static Guild MapGuildContracts(GuildContract content)
         {
+            Contract.Requires(content != null);
             return new Guild { GuildId = Guid.Parse(content.GuildId), Name = content.Name, Tag = content.Tag, Emblem = MapEmblemContract(content.Emblem) };
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

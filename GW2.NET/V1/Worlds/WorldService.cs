@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Worlds
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -16,7 +17,6 @@ namespace GW2DotNET.V1.Worlds
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Worlds.Contracts;
     using GW2DotNET.Worlds;
 
@@ -30,6 +30,7 @@ namespace GW2DotNET.V1.Worlds
         /// <param name="serviceClient">The service client.</param>
         public WorldService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -38,7 +39,9 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public ICollection<World> GetWorldNames()
         {
-            return this.GetWorldNames(CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetWorldNames(culture);
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
@@ -47,9 +50,13 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public ICollection<World> GetWorldNames(CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new WorldNameRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<WorldNameContract>>());
+            if (response.Content == null)
+            {
+                return new List<World>(0);
+            }
+
             return MapWorldNameContracts(response.Content, language);
         }
 
@@ -58,7 +65,9 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<ICollection<World>> GetWorldNamesAsync()
         {
-            return this.GetWorldNamesAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetWorldNamesAsync(culture, CancellationToken.None);
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
@@ -67,7 +76,9 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<ICollection<World>> GetWorldNamesAsync(CancellationToken cancellationToken)
         {
-            return this.GetWorldNamesAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetWorldNamesAsync(culture, cancellationToken);
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
@@ -86,7 +97,6 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var worldNamesRequest = new WorldNameRequest { Culture = language };
             return this.serviceClient.SendAsync(worldNamesRequest, new JsonSerializer<ICollection<WorldNameContract>>(), cancellationToken).ContinueWith(
                 task =>
@@ -102,6 +112,8 @@ namespace GW2DotNET.V1.Worlds
         /// <returns>An entity.</returns>
         private static World MapWorldNameContract(WorldNameContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Id != null);
             return new World { WorldId = int.Parse(content.Id), Name = content.Name };
         }
 
@@ -111,10 +123,18 @@ namespace GW2DotNET.V1.Worlds
         /// <returns>A collection of entities.</returns>
         private static ICollection<World> MapWorldNameContracts(ICollection<WorldNameContract> content, CultureInfo culture)
         {
+            Contract.Requires(content != null);
             var values = new List<World>(content.Count);
             values.AddRange(content.Select(MapWorldNameContract));
             values.ForEach(world => world.Language = culture.TwoLetterISOLanguageName);
             return values;
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

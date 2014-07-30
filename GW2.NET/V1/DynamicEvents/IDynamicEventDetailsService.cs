@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using GW2DotNET.DynamicEvents;
 
     /// <summary>Provides the interface for the event details service.</summary>
+    [ContractClass(typeof(DynamicEventDetailsServiceContract))]
     public interface IDynamicEventDetailsService
     {
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>

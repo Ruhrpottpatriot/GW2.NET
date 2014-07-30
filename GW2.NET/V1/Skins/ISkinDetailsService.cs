@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Skins
 {
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace GW2DotNET.V1.Skins
     using GW2DotNET.Skins;
 
     /// <summary>Provides the interface for the skin details service.</summary>
+    [ContractClass(typeof(SkinDetailsServiceContract))]
     public interface ISkinDetailsService
     {
         /// <summary>Gets a skin and its localized details.</summary>

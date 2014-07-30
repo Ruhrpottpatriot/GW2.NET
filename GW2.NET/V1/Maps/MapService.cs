@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -17,7 +18,6 @@ namespace GW2DotNET.V1.Maps
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Maps;
-    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides the default implementation of the maps service.</summary>
@@ -30,6 +30,7 @@ namespace GW2DotNET.V1.Maps
         /// <param name="serviceClient">The service client.</param>
         public MapService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -39,7 +40,9 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Map GetMap(int map)
         {
-            return this.GetMap(map, CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetMap(map, culture);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -49,9 +52,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Map GetMap(int map, CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { MapId = map, Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<MapCollectionContract>());
+            if (response.Content == null || response.Content.Maps == null)
+            {
+                return null;
+            }
+
             return MapMapCollectionContract(response.Content, language).Values.SingleOrDefault();
         }
 
@@ -61,7 +68,9 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int map)
         {
-            return this.GetMapAsync(map, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetMapAsync(map, culture, CancellationToken.None);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -71,7 +80,9 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int map, CancellationToken cancellationToken)
         {
-            return this.GetMapAsync(map, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetMapAsync(map, culture, cancellationToken);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -81,7 +92,6 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int map, CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             return this.GetMapAsync(map, language, CancellationToken.None);
         }
 
@@ -93,14 +103,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int map, CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { MapId = map, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapMapCollectionContract(response.Content, language).Values.SingleOrDefault();
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapMapCollectionContract(response.Content, language).Values.SingleOrDefault();
+                },
                 cancellationToken);
         }
 
@@ -109,7 +118,9 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public IDictionary<int, Map> GetMaps()
         {
-            return this.GetMaps(CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetMaps(culture);
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -118,9 +129,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public IDictionary<int, Map> GetMaps(CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<MapCollectionContract>());
+            if (response.Content == null || response.Content.Maps == null)
+            {
+                return new Dictionary<int, Map>(0);
+            }
+
             return MapMapCollectionContract(response.Content, language);
         }
 
@@ -129,7 +144,9 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Map>> GetMapsAsync()
         {
-            return this.GetMapsAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetMapsAsync(culture, CancellationToken.None);
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -138,7 +155,9 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Map>> GetMapsAsync(CancellationToken cancellationToken)
         {
-            return this.GetMapsAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetMapsAsync(culture, cancellationToken);
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -157,14 +176,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new MapRequest { Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapMapCollectionContract(response.Content, language);
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapMapCollectionContract(response.Content, language);
+                },
                 cancellationToken);
         }
 
@@ -174,9 +192,14 @@ namespace GW2DotNET.V1.Maps
         /// <returns>A collection of entities.</returns>
         private static IDictionary<int, Map> MapMapCollectionContract(MapCollectionContract content, CultureInfo culture)
         {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Maps != null);
+            Contract.Requires(culture != null);
+            Contract.Ensures(Contract.Result<IDictionary<int, Map>>() != null);
             var values = new Dictionary<int, Map>(content.Maps.Count);
             foreach (var value in content.Maps.Select(MapMapContract))
             {
+                Contract.Assume(value != null);
                 value.Language = culture.TwoLetterISOLanguageName;
                 values.Add(value.MapId, value);
             }
@@ -189,21 +212,75 @@ namespace GW2DotNET.V1.Maps
         /// <returns>An entity.</returns>
         private static Map MapMapContract(KeyValuePair<string, MapContract> content)
         {
-            return new Map
-                       {
-                           MapId = int.Parse(content.Key), 
-                           MapName = content.Value.MapName, 
-                           MinimumLevel = content.Value.MinimumLevel, 
-                           MaximumLevel = content.Value.MaximumLevel, 
-                           DefaultFloor = content.Value.DefaultFloor, 
-                           Floors = content.Value.Floors, 
-                           RegionId = content.Value.RegionId, 
-                           RegionName = content.Value.RegionName, 
-                           ContinentId = content.Value.ContinentId, 
-                           ContinentName = content.Value.ContinentName, 
-                           MapRectangle = MapRectangleContract(content.Value.MapRectangle), 
-                           ContinentRectangle = MapRectangleContract(content.Value.ContinentRectangle)
-                       };
+            Contract.Requires(content.Key != null);
+            Contract.Requires(content.Value != null);
+            Contract.Ensures(Contract.Result<Map>() != null);
+
+            // Create a new map object
+            var value = new Map();
+
+            // Set the map identifier
+            if (content.Key != null)
+            {
+                value.MapId = int.Parse(content.Key);
+            }
+
+            // Set the name of the map
+            if (content.Value.MapName != null)
+            {
+                value.MapName = content.Value.MapName;
+            }
+
+            // Set the minimum level
+            value.MinimumLevel = content.Value.MinimumLevel;
+
+            // Set the maximum level
+            value.MaximumLevel = content.Value.MaximumLevel;
+
+            // Set the default floor
+            value.DefaultFloor = content.Value.DefaultFloor;
+
+            // Set the available floors
+            if (content.Value.Floors != null)
+            {
+                value.Floors = content.Value.Floors;
+            }
+
+            // Set the region identifier
+            value.RegionId = content.Value.RegionId;
+
+            // Set the name of the region
+            if (content.Value.RegionName != null)
+            {
+                value.RegionName = content.Value.RegionName;
+            }
+
+            // Set the continent identifier
+            value.ContinentId = content.Value.ContinentId;
+
+            // Set the name of the continent
+            if (content.Value.ContinentName != null)
+            {
+                value.ContinentName = content.Value.ContinentName;
+            }
+
+            // Set the dimensions of the map
+            if (content.Value.MapRectangle != null && content.Value.MapRectangle.Length == 2 && content.Value.MapRectangle[0] != null
+                && content.Value.MapRectangle[0].Length == 2 && content.Value.MapRectangle[1] != null && content.Value.MapRectangle[1].Length == 2)
+            {
+                value.MapRectangle = MapRectangleContract(content.Value.MapRectangle);
+            }
+
+            // Set the dimensions of the continent
+            if (content.Value.ContinentRectangle != null && content.Value.ContinentRectangle.Length == 2 && content.Value.ContinentRectangle[0] != null
+                && content.Value.ContinentRectangle[0].Length == 2 && content.Value.ContinentRectangle[1] != null
+                && content.Value.ContinentRectangle[1].Length == 2)
+            {
+                value.ContinentRectangle = MapRectangleContract(content.Value.ContinentRectangle);
+            }
+
+            // Return the map object
+            return value;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -211,9 +288,19 @@ namespace GW2DotNET.V1.Maps
         /// <returns>An entity.</returns>
         private static Rectangle MapRectangleContract(int[][] content)
         {
+            Contract.Requires(content != null && content.Length == 2);
+            Contract.Requires(content[0] != null && content[0].Length == 2);
+            Contract.Requires(content[1] != null && content[1].Length == 2);
             var nw = new Point2D(content[0][0], content[0][1]);
             var se = new Point2D(content[1][0], content[1][1]);
             return new Rectangle(nw, se);
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

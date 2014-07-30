@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Worlds
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace GW2DotNET.V1.Worlds
     using GW2DotNET.Worlds;
 
     /// <summary>Provides the interface for the world names service.</summary>
+    [ContractClass(typeof(WorldNameServiceContract))]
     public interface IWorldNameService
     {
         /// <summary>Gets a collection of worlds and their localized name.</summary>

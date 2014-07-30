@@ -32,7 +32,7 @@ namespace GW2DotNET.Items
         public virtual ItemFlags Flags { get; set; }
 
         /// <summary>Gets or sets the item's game types.</summary>
-        public virtual GameRestrictions GameTypes { get; set; }
+        public virtual GameTypes GameTypes { get; set; }
 
         /// <summary>Gets or sets the item's identifier.</summary>
         public virtual int ItemId { get; set; }

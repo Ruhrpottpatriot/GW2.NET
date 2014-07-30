@@ -8,7 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks.Extensions
 {
-    using GW2DotNET.Utilities;
+    using System.Diagnostics.Contracts;
+
     using GW2DotNET.V1.Maps.Contracts;
 
     /// <summary>Provides static extension methods for the <see cref="PointOfInterestContract" /> class.</summary>
@@ -19,7 +20,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         /// <returns>The <see cref="ChatLink"/>The chat link.</returns>
         public static ChatLink GetChatLink(this PointOfInterestContract pointOfInterest)
         {
-            Preconditions.EnsureNotNull(pointOfInterest);
+            Contract.Requires(pointOfInterest != null);
             return new PointOfInterestChatLink { PointOfInterestId = pointOfInterest.PointOfInterestId };
         }
     }

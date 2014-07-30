@@ -8,13 +8,13 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Rendering
 {
+    using System.Diagnostics.Contracts;
     using System.Drawing;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Utilities;
 
     /// <summary>Provides the default implementation of the render service.</summary>
     public class RenderService : IRenderService
@@ -26,7 +26,7 @@ namespace GW2DotNET.Rendering
         /// <param name="serviceClient">The service client.</param>
         public RenderService(IServiceClient serviceClient)
         {
-            Preconditions.EnsureNotNull(paramName: "serviceClient", value: serviceClient);
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -37,8 +37,6 @@ namespace GW2DotNET.Rendering
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
         public Image GetImage(IRenderable file, string imageFormat)
         {
-            Preconditions.EnsureNotNull(paramName: "file", value: file);
-            Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
             return this.serviceClient.Send(request, new ImageSerializer()).Content;
         }
@@ -61,10 +59,15 @@ namespace GW2DotNET.Rendering
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
         public Task<Image> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "file", value: file);
-            Preconditions.EnsureNotNull(paramName: "imageFormat", value: imageFormat);
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
             return this.serviceClient.SendAsync(request, new ImageSerializer(), cancellationToken).ContinueWith(task => task.Result.Content, cancellationToken);
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

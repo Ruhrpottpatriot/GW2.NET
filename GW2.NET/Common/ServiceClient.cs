@@ -9,7 +9,11 @@
 namespace GW2DotNET.Common
 {
     using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
+    using System.Globalization;
     using System.IO.Compression;
+    using System.Linq;
     using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
@@ -28,8 +32,9 @@ namespace GW2DotNET.Common
         /// <param name="baseUri">The base URI.</param>
         public ServiceClient(Uri baseUri)
         {
-            Preconditions.EnsureNotNull(paramName: "baseUri", value: baseUri);
-            Preconditions.Ensure(baseUri.IsAbsoluteUri, "baseUri", "Parameter '{0}' must be an absolute URI.");
+            Contract.Requires(baseUri != null);
+            Contract.Requires(baseUri.IsAbsoluteUri);
+            Contract.Ensures(this.baseUri.IsAbsoluteUri);
             this.baseUri = baseUri;
         }
 
@@ -54,8 +59,49 @@ namespace GW2DotNET.Common
             var httpWebRequest = CreateHttpWebRequest(uri);
             using (var response = GetHttpWebResponse(httpWebRequest))
             {
-                return new Response<TResult>(response, DeserializeResponse(serializer, response));
+                return PostProcess(response, serializer);
             }
+        }
+
+        /// <summary>Infrastructure. Post-processes a response object.</summary>
+        /// <param name="response">The raw response.</param>
+        /// <param name="serializer">The response content serializer.</param>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <returns>A processed response object.</returns>
+        private static IResponse<T> PostProcess<T>(HttpWebResponse response, ISerializer<T> serializer)
+        {
+            Contract.Requires(response != null);
+            Contract.Requires(serializer != null);
+            Contract.Ensures(Contract.Result<IResponse<T>>() != null);
+            
+            // Create a new generic response object
+            var value = new Response<T>();
+
+            // Set the deserialized response content
+            value.Content = DeserializeResponse(serializer, response);
+
+            // Set the 'Date' header
+            value.LastModified = response.LastModified;
+
+            // Set the 'Content-Language' header
+            Contract.Assume(response.Headers != null);
+            var contentLanguage = response.Headers["Content-Language"];
+            if (contentLanguage != null)
+            {
+                value.Culture = CultureInfo.GetCultureInfo(contentLanguage);
+            }
+
+            // Set the 'X'-tension headers
+            var extensionData = new Dictionary<string, string>();
+            foreach (var key in response.Headers.AllKeys.Where(key => key.StartsWith("X-", StringComparison.OrdinalIgnoreCase)))
+            {
+                extensionData[key] = response.Headers[key];
+            }
+
+            value.ExtensionData = extensionData;
+
+            // Return the response object
+            return value;
         }
 
         /// <summary>Sends a request and returns the response.</summary>
@@ -88,12 +134,12 @@ namespace GW2DotNET.Common
 
             // Handle the request
             var httpWebRequest = CreateHttpWebRequest(uri);
-            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith<IResponse<TResult>>(
+            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
                 task =>
                     {
                         using (var response = task.Result)
                         {
-                            return new Response<TResult>(response, DeserializeResponse(serializer, response));
+                            return PostProcess(response, serializer);
                         }
                     }, 
                 cancellationToken);
@@ -106,6 +152,8 @@ namespace GW2DotNET.Common
         /// <returns>The <see cref="Uri"/>.</returns>
         private static Uri BuildUri(Uri baseUri, string resource, UrlEncodedForm formData)
         {
+            Contract.Requires(baseUri != null);
+            Contract.Requires(formData != null);
             var uriBuilder = new UriBuilder(baseUri) { Path = resource, Query = formData.GetQueryString() };
             return uriBuilder.Uri;
         }
@@ -115,8 +163,20 @@ namespace GW2DotNET.Common
         /// <returns>The <see cref="HttpWebRequest"/>.</returns>
         private static HttpWebRequest CreateHttpWebRequest(Uri uri)
         {
+            Contract.Requires(uri != null);
+            Contract.Ensures(Contract.Result<HttpWebRequest>() != null);
+
+            // Create a new request object for the specified resource
             var request = (HttpWebRequest)WebRequest.Create(uri);
+
+            // Provide some hints to the static contracts checker
+            Contract.Assume(request != null);
+            Contract.Assume(request.Headers != null);
+
+            // Set 'Accept-Encoding' to 'gzip'
             request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");
+
+            // Return the request object
             return request;
         }
 
@@ -127,6 +187,9 @@ namespace GW2DotNET.Common
         /// <returns>An instance of the specified type.</returns>
         private static TResult DeserializeResponse<TResult>(ISerializer<TResult> serializer, HttpWebResponse response)
         {
+            Contract.Requires(serializer != null);
+            Contract.Requires(response != null);
+
             // Get the response content
             var stream = response.GetResponseStream();
 
@@ -135,6 +198,8 @@ namespace GW2DotNET.Common
             {
                 return default(TResult);
             }
+
+            Contract.Assume(response.Headers != null);
 
             // Ensure that we are operating on decompressed data
             var contentEncoding = response.Headers[HttpResponseHeader.ContentEncoding];
@@ -147,6 +212,8 @@ namespace GW2DotNET.Common
                 }
             }
 
+            Contract.Assume(stream.CanRead);
+
             // Deserialize the response content
             return serializer.Deserialize(stream);
         }
@@ -157,15 +224,25 @@ namespace GW2DotNET.Common
         /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
         private static HttpWebResponse GetHttpWebResponse(HttpWebRequest webRequest)
         {
+            Contract.Requires(webRequest != null);
+            Contract.Ensures(Contract.Result<HttpWebResponse>() != null);
             try
             {
-                return (HttpWebResponse)webRequest.GetResponse();
+                // Get the response
+                var webResponse = webRequest.GetResponse();
+
+                // Provide a hint to the static checker
+                Contract.Assume(webResponse != null);
+
+                // Return the response
+                return (HttpWebResponse)webResponse;
             }
             catch (WebException exception)
             {
                 // Simply rethrow in case of transport errors (e.g. timeout)
                 if (exception.Status != WebExceptionStatus.ProtocolError)
                 {
+                    // TODO: should we wrap timeouts in a System.TimeoutException?
                     throw;
                 }
 
@@ -185,6 +262,7 @@ namespace GW2DotNET.Common
         /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
         private static Task<HttpWebResponse> GetHttpWebResponseAsync(HttpWebRequest webRequest, CancellationToken cancellationToken)
         {
+            Contract.Requires(webRequest != null);
             return Task.Factory.FromAsync<WebResponse>(webRequest.BeginGetResponse, webRequest.EndGetResponse, null).ContinueWith(
                 task =>
                     {
@@ -205,9 +283,17 @@ namespace GW2DotNET.Common
                         }
 
                         // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
+                        // TODO: should we wrap timeouts in a System.TimeoutException?
                         return (HttpWebResponse)task.Result;
                     }, 
                 cancellationToken);
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.baseUri != null);
         }
     }
 }

@@ -8,8 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks.Extensions
 {
+    using System.Diagnostics.Contracts;
+
     using GW2DotNET.Items;
-    using GW2DotNET.Utilities;
 
     /// <summary>Provides static extension methods for the <see cref="Item" /> class.</summary>
     public static class ItemExtensions
@@ -19,7 +20,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public static ChatLink GetChatLink(this Item instance)
         {
-            Preconditions.EnsureNotNull(instance);
+            Contract.Requires(instance != null);
             var chatLink = new ItemChatLink { ItemId = instance.ItemId, Quantity = 1 };
             return chatLink;
         }

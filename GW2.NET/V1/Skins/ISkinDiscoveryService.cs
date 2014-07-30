@@ -9,10 +9,12 @@
 namespace GW2DotNET.V1.Skins
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for the skin discovery service.</summary>
+    [ContractClass(typeof(SkinDiscoveryServiceContract))]
     public interface ISkinDiscoveryService
     {
         /// <summary>Gets a collection of skin identifiers.</summary>

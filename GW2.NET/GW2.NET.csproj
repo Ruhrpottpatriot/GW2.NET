@@ -17,6 +17,7 @@
     <SccProvider>SAK</SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -29,6 +30,45 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DocumentationFile>
     </DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile>
+    </CodeContractsBaseLineFile>
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -40,6 +80,89 @@
     <DocumentationFile>bin\Release\GW2.NET.XML</DocumentationFile>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>True</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CodeAnalysis|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\CodeAnalysis\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>True</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>True</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption>.\SQLEXPRESS</CodeContractsSQLServerOption>
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsFailBuildOnWarnings>True</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>3</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -61,6 +184,7 @@
     </Compile>
     <Compile Include="ChatLinks\ChatLink.cs" />
     <Compile Include="ChatLinks\ChatLinkConverterBase.cs" />
+    <Compile Include="ChatLinks\ChatLinkConverterContracts.cs" />
     <Compile Include="ChatLinks\ChatLinkFactory.cs" />
     <Compile Include="ChatLinks\ChatLinkConverter.cs" />
     <Compile Include="ChatLinks\ItemChatLinkConverter.cs">
@@ -111,7 +235,10 @@
     <Compile Include="Common\Contracts\ServiceContract.cs" />
     <Compile Include="Common\IRenderable.cs" />
     <Compile Include="Common\IResponse.cs" />
+    <Compile Include="Common\RequestContracts.cs" />
+    <Compile Include="Common\Serializers\SerializerContracts.cs" />
     <Compile Include="Common\Serializers\StringSerializer.cs" />
+    <Compile Include="Common\ServiceClientContracts.cs" />
     <Compile Include="Common\Vector2D.cs" />
     <Compile Include="Common\Rectangle.cs" />
     <Compile Include="Common\Size2D.cs" />
@@ -278,7 +405,7 @@
     <Compile Include="Items\CraftingMaterials\CraftingMaterial.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\GameRestrictions.cs">
+    <Compile Include="Items\GameTypes.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Items\GatheringTools\ForagingTool.cs">
@@ -531,6 +658,7 @@
     <Compile Include="Rendering\IRenderService.cs" />
     <Compile Include="Rendering\RenderRequest.cs" />
     <Compile Include="Rendering\RenderService.cs" />
+    <Compile Include="Rendering\RenderServiceContracts.cs" />
     <Compile Include="RenderServiceManager.cs" />
     <Compile Include="ServiceManager.cs" />
     <Compile Include="Skins\Armors\HelmAquaticSkin.cs" />
@@ -571,17 +699,18 @@
     <Compile Include="Skins\Weapons\UnknownWeaponSkin.cs" />
     <Compile Include="Skins\Weapons\WarHornSkin.cs" />
     <Compile Include="Skins\Weapons\WeaponSkin.cs" />
-    <Compile Include="Utilities\Preconditions.cs" />
     <Compile Include="Utilities\UrlEncodedForm.cs" />
     <Compile Include="V1\Builds.Contracts\BuildContract.cs" />
     <Compile Include="V1\Builds\BuildRequest.cs" />
     <Compile Include="V1\Builds\BuildService.cs" />
+    <Compile Include="V1\Builds\BuildServiceContract.cs" />
     <Compile Include="V1\Builds\IBuildService.cs" />
     <Compile Include="V1\Colors.Contracts\ColorCollectionContract.cs" />
     <Compile Include="V1\Colors.Contracts\ColorModelContract.cs" />
     <Compile Include="V1\Colors.Contracts\ColorContract.cs" />
     <Compile Include="V1\Colors\ColorService.cs" />
     <Compile Include="V1\Colors\ColorRequest.cs" />
+    <Compile Include="V1\Colors\ColorServiceContract.cs" />
     <Compile Include="V1\Colors\IColorService.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\EventDetailsContract.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\EventDetailsCollectionContract.cs" />
@@ -590,9 +719,13 @@
     <Compile Include="V1\DynamicEvents.Contracts\EventStateCollectionContract.cs" />
     <Compile Include="V1\DynamicEvents.Contracts\LocationContract.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventDetailsRequest.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventDetailsServiceContract.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventNameRequest.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventNameServiceContract.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventRotationServiceContract.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventStateRequest.cs" />
     <Compile Include="V1\DynamicEvents\DynamicEventService.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventStateServiceContract.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventDetailsService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventNameService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventRotationService.cs" />
@@ -601,11 +734,13 @@
     <Compile Include="V1\Files.Contracts\FileContract.cs" />
     <Compile Include="V1\Files\FileService.cs" />
     <Compile Include="V1\Files\FileRequest.cs" />
+    <Compile Include="V1\Files\FileServiceContract.cs" />
     <Compile Include="V1\Files\IFileService.cs" />
     <Compile Include="V1\Guilds.Contracts\EmblemContract.cs" />
     <Compile Include="V1\Guilds.Contracts\GuildContract.cs" />
     <Compile Include="V1\Guilds\GuildDetailsRequest.cs" />
     <Compile Include="V1\Guilds\GuildDetailsService.cs" />
+    <Compile Include="V1\Guilds\GuildDetailsServiceContract.cs" />
     <Compile Include="V1\Guilds\IGuildDetailsService.cs" />
     <Compile Include="V1\Items.Contracts\ArmorContract.cs" />
     <Compile Include="V1\Items.Contracts\BackpackContract.cs" />
@@ -627,6 +762,8 @@
     <Compile Include="V1\Items\IItemDetailsService.cs" />
     <Compile Include="V1\Items\IItemService.cs" />
     <Compile Include="V1\Items\ItemDetailsRequest.cs" />
+    <Compile Include="V1\Items\ItemDetailsServiceContracts.cs" />
+    <Compile Include="V1\Items\ItemDiscoveryServiceContract.cs" />
     <Compile Include="V1\Maps.Contracts\ContinentContract.cs" />
     <Compile Include="V1\Maps.Contracts\ContinentCollectionContract.cs" />
     <Compile Include="V1\Maps.Contracts\FloorContract.cs" />
@@ -641,19 +778,27 @@
     <Compile Include="V1\Maps.Contracts\SubregionContract.cs" />
     <Compile Include="V1\Maps\ContinentRequest.cs" />
     <Compile Include="V1\Maps\ContinentService.cs" />
+    <Compile Include="V1\Maps\ContinentServiceContract.cs" />
     <Compile Include="V1\Maps\IContinentService.cs" />
     <Compile Include="V1\Maps\IMapFloorService.cs" />
     <Compile Include="V1\Maps\IMapNameService.cs" />
     <Compile Include="V1\Maps\MapFloorRequest.cs" />
     <Compile Include="V1\Maps\MapFloorService.cs" />
+    <Compile Include="V1\Maps\MapFloorServiceContracts.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="V1\Maps\MapNameRequest.cs" />
     <Compile Include="V1\Maps\MapNameService.cs" />
+    <Compile Include="V1\Maps\MapNameServiceContract.cs" />
+    <Compile Include="V1\Maps\MapServiceContract.cs" />
     <Compile Include="V1\Recipes.Contracts\IngredientContract.cs" />
     <Compile Include="V1\Recipes.Contracts\RecipeContract.cs" />
     <Compile Include="V1\Recipes.Contracts\RecipeCollectionContract.cs" />
     <Compile Include="V1\Recipes\IRecipeDetailsService.cs" />
     <Compile Include="V1\Recipes\IRecipeService.cs" />
     <Compile Include="V1\Recipes\RecipeDetailsRequest.cs" />
+    <Compile Include="V1\Recipes\RecipeDetailsServiceContract.cs" />
+    <Compile Include="V1\Recipes\RecipeDiscoveryServiceContract.cs" />
     <Compile Include="V1\Skins.Contracts\ArmorSkinContract.cs" />
     <Compile Include="V1\Skins.Contracts\SkinContract.cs" />
     <Compile Include="V1\Skins.Contracts\SkinCollectionContract.cs" />
@@ -662,6 +807,8 @@
     <Compile Include="V1\Skins\ISkinService.cs" />
     <Compile Include="V1\Skins\ISkinDiscoveryService.cs" />
     <Compile Include="V1\Skins\SkinDetailsRequest.cs" />
+    <Compile Include="V1\Skins\SkinDetailsServiceContracts.cs" />
+    <Compile Include="V1\Skins\SkinDiscoveryServiceContract.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
     <Compile Include="V1\Skins\SkinRequest.cs" />
     <Compile Include="V1\Items\IItemDiscoveryService.cs" />
@@ -675,6 +822,7 @@
     <Compile Include="V1\Recipes\RecipeRequest.cs" />
     <Compile Include="V1\Worlds.Contracts\WorldNameContract.cs" />
     <Compile Include="V1\Worlds\IWorldNameService.cs" />
+    <Compile Include="V1\Worlds\WorldNameServiceContracts.cs" />
     <Compile Include="V1\Worlds\WorldService.cs" />
     <Compile Include="V1\Worlds\WorldNameRequest.cs" />
     <Compile Include="V1\WorldVersusWorld.Contracts\MapBonusContract.cs" />
@@ -689,9 +837,11 @@
     <Compile Include="V1\WorldVersusWorld\IMatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\IObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchDetailsRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\MatchDetailsServiceContract.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\ObjectiveNameRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\ObjectiveNameServiceContract.cs" />
     <Compile Include="Worlds\World.cs" />
     <Compile Include="WorldVersusWorld\Maps\BlueBorderlands.cs" />
     <Compile Include="WorldVersusWorld\Bonuses\Bloodlust.cs" />
@@ -706,9 +856,6 @@
     <Compile Include="WorldVersusWorld\Objectives\Objective.cs" />
     <Compile Include="WorldVersusWorld\Maps\RedBorderlands.cs" />
     <Compile Include="WorldVersusWorld\Scoreboard.cs" />
-    <Compile Include="WorldVersusWorld\ScoreboardConverter.cs">
-      <DependentUpon>Scoreboard.cs</DependentUpon>
-    </Compile>
     <Compile Include="WorldVersusWorld\TeamColor.cs" />
   </ItemGroup>
   <ItemGroup>

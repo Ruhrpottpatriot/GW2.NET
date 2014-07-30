@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items
 {
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace GW2DotNET.V1.Items
     using GW2DotNET.Items;
 
     /// <summary>Provides the interface for the item details service.</summary>
+    [ContractClass(typeof(ItemDetailsServiceContracts))]
     public interface IItemDetailsService
     {
         /// <summary>Gets an item and its localized details.</summary>

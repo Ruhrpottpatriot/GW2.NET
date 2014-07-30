@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Files
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace GW2DotNET.V1.Files
         /// <param name="serviceClient">The service client.</param>
         public FileService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -38,6 +40,11 @@ namespace GW2DotNET.V1.Files
         {
             var request = new FileRequest();
             var response = this.serviceClient.Send(request, new JsonSerializer<IDictionary<string, FileContract>>());
+            if (response.Content == null)
+            {
+                return new Dictionary<string, Asset>(0);
+            }
+
             return MapFileContracts(response.Content);
         }
 
@@ -70,7 +77,24 @@ namespace GW2DotNET.V1.Files
         /// <returns>An entity.</returns>
         private static Asset MapFileContract(KeyValuePair<string, FileContract> content)
         {
-            return new Asset { FileName = content.Key, FileId = content.Value.FileId, FileSignature = content.Value.Signature };
+            Contract.Requires(content.Key != null);
+            Contract.Requires(content.Value != null);
+            Contract.Ensures(Contract.Result<Asset>() != null);
+            
+            // Create a new file object
+            var value = new Asset();
+
+            // Set the file name
+            value.FileName = content.Key;
+
+            // Set the file identifier
+            value.FileId = content.Value.FileId;
+
+            // Set the file signature
+            value.FileSignature = content.Value.Signature;
+
+            // Return the file object
+            return value;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -78,13 +102,24 @@ namespace GW2DotNET.V1.Files
         /// <returns>A collection of entities.</returns>
         private static IDictionary<string, Asset> MapFileContracts(IDictionary<string, FileContract> content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<IDictionary<string, Asset>>() != null);
+
             var values = new Dictionary<string, Asset>(content.Count);
             foreach (var value in content.Select(MapFileContract))
             {
+                Contract.Assume(value != null);
                 values.Add(value.FileName, value);
             }
 
             return values;
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

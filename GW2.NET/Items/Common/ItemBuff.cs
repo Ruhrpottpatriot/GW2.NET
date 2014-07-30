@@ -15,6 +15,6 @@ namespace GW2DotNET.Items
         public virtual string Description { get; set; }
 
         /// <summary>Gets or sets the buff's skill identifier.</summary>
-        public virtual int SkillId { get; set; }
+        public virtual int? SkillId { get; set; }
     }
 }

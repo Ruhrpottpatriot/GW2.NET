@@ -8,12 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.WorldVersusWorld
 {
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.WorldVersusWorld;
 
     /// <summary>Provides the interface for the match details service.</summary>
+    [ContractClass(typeof(MatchDetailsServiceContract))]
     public interface IMatchDetailsService
     {
         /// <summary>Gets a World versus World match and its details.</summary>

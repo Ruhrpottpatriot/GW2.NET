@@ -10,12 +10,12 @@ namespace GW2DotNET.ChatLinks
 {
     using System;
     using System.ComponentModel;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
-
-    using GW2DotNET.Utilities;
 
     /// <summary>Provides a type converter to convert string objects to and from chat link representations.</summary>
     /// <typeparam name="T">The type of chat link.</typeparam>
+    [ContractClass(typeof(ChatLinkConverterContracts<>))]
     internal abstract class ChatLinkConverter<T> : ChatLinkConverterBase
         where T : ChatLink, new()
     {
@@ -46,10 +46,24 @@ namespace GW2DotNET.ChatLinks
         /// <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use. </param>
         /// <param name="value">The <see cref="T:System.Object"/> to convert. </param>
         /// <exception cref="T:System.NotSupportedException">The conversion could not be performed. </exception>
+        [Pure]
         public override sealed object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
-            var buffer = this.GetBytes((string)value);
-            Preconditions.Ensure(Buffer.GetByte(buffer, 0) == this.Header);
+            var input = value as string;
+            if (input == null || !ChatLinkConverterBase.IsValidChatLink(input))
+            {
+                return null;
+            }
+
+            var buffer = this.GetBytes(input);
+
+            // Return a blank instance if only the header byte was set
+            if (buffer.Length == 0)
+            {
+                return new T();
+            }
+
+            // Return a decoded instance
             var bytes = new byte[buffer.Length - 1];
             Buffer.BlockCopy(buffer, 1, bytes, 0, buffer.Length - 1);
             return this.ConvertFromBytes(bytes);
@@ -63,6 +77,7 @@ namespace GW2DotNET.ChatLinks
         /// <param name="destinationType">The <see cref="T:System.Type"/> to convert the <paramref name="value"/> parameter to. </param>
         /// <exception cref="T:System.ArgumentNullException">The <paramref name="destinationType"/> parameter is null. </exception>
         /// <exception cref="T:System.NotSupportedException">The conversion cannot be performed. </exception>
+        [Pure]
         public override sealed object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
             var bytes = this.ConvertToBytes((T)value);
@@ -77,10 +92,11 @@ namespace GW2DotNET.ChatLinks
         /// <returns>true if the specified value is valid for this object; otherwise, false.</returns>
         /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
         /// <param name="value">The <see cref="T:System.Object"/> to test for validity. </param>
+        [Pure]
         public override bool IsValid(ITypeDescriptorContext context, object value)
         {
             var input = value as string;
-            if (input == null)
+            if (input == null || !IsValidChatLink(input))
             {
                 return false;
             }

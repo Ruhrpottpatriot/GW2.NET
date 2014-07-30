@@ -10,12 +10,14 @@ namespace GW2DotNET.V1.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.DynamicEvents;
 
     /// <summary>Provides the interface for the event state service.</summary>
+    [ContractClass(typeof(DynamicEventStateServiceContract))]
     public interface IDynamicEventStateService
     {
         /// <summary>Gets a dynamic event and its status.</summary>

@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Recipes
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -18,7 +19,6 @@ namespace GW2DotNET.V1.Recipes
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Recipes;
-    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Recipes.Contracts;
 
     /// <summary>Provides the default implementation of the recipe service.</summary>
@@ -31,6 +31,7 @@ namespace GW2DotNET.V1.Recipes
         /// <param name="serviceClient">The service client.</param>
         public RecipeService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -40,7 +41,9 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(int recipe)
         {
-            return this.GetRecipeDetails(recipe, CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetRecipeDetails(recipe, culture);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -50,9 +53,13 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(int recipe, CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new RecipeDetailsRequest { RecipeId = recipe, Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<RecipeContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
+
             var value = MapRecipeContracts(response.Content);
             value.Language = language.TwoLetterISOLanguageName;
             return value;
@@ -64,7 +71,9 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipe)
         {
-            return this.GetRecipeDetailsAsync(recipe, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetRecipeDetailsAsync(recipe, culture, CancellationToken.None);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -74,7 +83,9 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipe, CancellationToken cancellationToken)
         {
-            return this.GetRecipeDetailsAsync(recipe, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetRecipeDetailsAsync(recipe, culture, cancellationToken);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -95,7 +106,6 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipe, CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new RecipeDetailsRequest { RecipeId = recipe, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<RecipeContract>(), cancellationToken).ContinueWith(
                 task =>
@@ -113,8 +123,14 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
         public ICollection<int> GetRecipes()
         {
+            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
             var request = new RecipeRequest();
             var response = this.serviceClient.Send(request, new JsonSerializer<RecipeCollectionContract>());
+            if (response.Content == null || response.Content.Recipes == null)
+            {
+                return new int[0];
+            }
+
             return response.Content.Recipes;
         }
 
@@ -147,6 +163,7 @@ namespace GW2DotNET.V1.Recipes
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetRecipeType(RecipeContract content)
         {
+            Contract.Requires(content != null);
             switch (content.Type)
             {
                 case "Amulet":
@@ -255,6 +272,7 @@ namespace GW2DotNET.V1.Recipes
         /// <returns>The bit flags.</returns>
         private static CraftingDisciplines MapCraftingDiscipline(string content)
         {
+            Contract.Requires(content != null);
             return (CraftingDisciplines)Enum.Parse(typeof(CraftingDisciplines), content, true);
         }
 
@@ -271,6 +289,9 @@ namespace GW2DotNET.V1.Recipes
         /// <returns>An entity.</returns>
         private static Ingredient MapIngredientContract(IngredientContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Requires(content.ItemId != null);
+            Contract.Requires(content.Count != null);
             return new Ingredient { ItemId = int.Parse(content.ItemId), Count = int.Parse(content.Count) };
         }
 
@@ -279,6 +300,7 @@ namespace GW2DotNET.V1.Recipes
         /// <returns>A collection of entities.</returns>
         private static ICollection<Ingredient> MapIngredientContracts(ICollection<IngredientContract> content)
         {
+            Contract.Requires(content != null);
             var values = new List<Ingredient>(content.Count);
             values.AddRange(content.Select(MapIngredientContract));
             return values;
@@ -289,32 +311,59 @@ namespace GW2DotNET.V1.Recipes
         /// <returns>An entity.</returns>
         private static Recipe MapRecipeContracts(RecipeContract content)
         {
+            Contract.Requires(content != null);
+
             // Map type discriminators to .NET types
             var value = (Recipe)Activator.CreateInstance(GetRecipeType(content));
 
             // Map recipe identifier
-            value.RecipeId = int.Parse(content.RecipeId);
+            if (content.RecipeId != null)
+            {
+                value.RecipeId = int.Parse(content.RecipeId);
+            }
 
             // Map output item identifier
-            value.OutputItemId = int.Parse(content.OutputItemId);
+            if (content.OutputItemId != null)
+            {
+                value.OutputItemId = int.Parse(content.OutputItemId);
+            }
 
             // Map output item count
-            value.OutputItemCount = int.Parse(content.OutputItemCount);
+            if (content.OutputItemCount != null)
+            {
+                value.OutputItemCount = int.Parse(content.OutputItemCount);
+            }
 
             // Map minimum rating
-            value.MinimumRating = int.Parse(content.MinimumRating);
+            if (content.MinimumRating != null)
+            {
+                value.MinimumRating = int.Parse(content.MinimumRating);
+            }
 
             // Map time to craft
-            value.TimeToCraft = TimeSpan.FromMilliseconds(double.Parse(content.TimeToCraft));
+            if (content.TimeToCraft != null)
+            {
+                value.TimeToCraft = TimeSpan.FromMilliseconds(double.Parse(content.TimeToCraft));
+            }
 
             // Map crafting disciplines
-            value.CraftingDisciplines = MapCraftingDisciplines(content.CraftingDisciplines);
+            if (content.CraftingDisciplines != null)
+            {
+                value.CraftingDisciplines = MapCraftingDisciplines(content.CraftingDisciplines);
+            }
 
             // Map recipe flags
-            value.Flags = MapRecipeFlags(content.Flags);
+            if (content.Flags != null)
+            {
+                value.Flags = MapRecipeFlags(content.Flags);
+            }
 
             // Map ingredients
-            value.Ingredients = MapIngredientContracts(content.Ingredients);
+            if (content.Ingredients != null)
+            {
+                value.Ingredients = MapIngredientContracts(content.Ingredients);
+            }
+
             return value;
         }
 
@@ -323,6 +372,7 @@ namespace GW2DotNET.V1.Recipes
         /// <returns>The bit flags.</returns>
         private static RecipeFlags MapRecipeFlag(string content)
         {
+            Contract.Requires(content != null);
             return (RecipeFlags)Enum.Parse(typeof(RecipeFlags), content, true);
         }
 
@@ -332,6 +382,13 @@ namespace GW2DotNET.V1.Recipes
         private static RecipeFlags MapRecipeFlags(IEnumerable<string> content)
         {
             return content.Aggregate(RecipeFlags.None, (flags, flag) => flags |= MapRecipeFlag(flag));
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

@@ -9,10 +9,12 @@
 namespace GW2DotNET.V1.Recipes
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for the recipe discovery service.</summary>
+    [ContractClass(typeof(RecipeDiscoveryServiceContract))]
     public interface IRecipeDiscoveryService
     {
         /// <summary>Gets a collection of discovered recipes.</summary>

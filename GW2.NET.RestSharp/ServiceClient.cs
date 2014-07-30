@@ -9,6 +9,8 @@
 namespace GW2DotNET.RestSharp
 {
     using System;
+    using System.Diagnostics;
+    using System.Diagnostics.Contracts;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -21,6 +23,13 @@ namespace GW2DotNET.RestSharp
 
     using global::RestSharp;
 
+    class Program
+    {
+        static void Main()
+        {
+            var client = new ServiceClient(baseUri: null);
+        }
+    }
     /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
     {
@@ -31,8 +40,8 @@ namespace GW2DotNET.RestSharp
         /// <param name="baseUri">The base URI.</param>
         public ServiceClient(Uri baseUri)
         {
-            Preconditions.EnsureNotNull(paramName: "baseUri", value: baseUri);
-            Preconditions.Ensure(baseUri.IsAbsoluteUri, "baseUri", "Parameter '{0}' must be an absolute URI.");
+            Contract.Requires(baseUri != null);
+            Contract.Requires(baseUri.IsAbsoluteUri, "Parameter 'baseUri' must be an absolute URI.");
             this.restClient = new RestClient(baseUri.ToString());
         }
 
@@ -40,7 +49,7 @@ namespace GW2DotNET.RestSharp
         /// <param name="restClient">The <see cref="IRestClient"/>.</param>
         public ServiceClient(IRestClient restClient)
         {
-            Preconditions.EnsureNotNull(paramName: "restClient", value: restClient);
+            Contract.Requires(restClient != null);
             this.restClient = restClient;
         }
 

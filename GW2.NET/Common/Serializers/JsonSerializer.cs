@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common.Serializers
 {
+    using System.Diagnostics.Contracts;
     using System.IO;
-
-    using GW2DotNET.Utilities;
 
     using Newtonsoft.Json;
 
@@ -24,15 +23,21 @@ namespace GW2DotNET.Common.Serializers
         /// <summary>Initializes a new instance of the <see cref="JsonSerializer{T}"/> class.</summary>
         public JsonSerializer()
         {
-            this.jsonSerializer = JsonSerializer.CreateDefault();
+            Contract.Ensures(this.jsonSerializer != null);
+            var serializer = JsonSerializer.CreateDefault();
+            Contract.Assume(serializer != null);
+            this.jsonSerializer = serializer;
         }
 
         /// <summary>Initializes a new instance of the <see cref="JsonSerializer{T}"/> class.</summary>
         /// <param name="settings">The settings to be applied to the <see cref="JsonSerializer"/>.</param>
         public JsonSerializer(JsonSerializerSettings settings)
         {
-            Preconditions.EnsureNotNull(paramName: "settings", value: settings);
-            this.jsonSerializer = JsonSerializer.CreateDefault(settings);
+            Contract.Requires(settings != null);
+            Contract.Ensures(this.jsonSerializer != null);
+            var serializer = JsonSerializer.CreateDefault(settings);
+            Contract.Assume(serializer != null);
+            this.jsonSerializer = serializer;
         }
 
         /// <summary>Converts the input stream to the specified type.</summary>
@@ -55,6 +60,13 @@ namespace GW2DotNET.Common.Serializers
             {
                 this.jsonSerializer.Serialize(streamWriter, value, typeof(T));
             }
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.jsonSerializer != null);
         }
     }
 }

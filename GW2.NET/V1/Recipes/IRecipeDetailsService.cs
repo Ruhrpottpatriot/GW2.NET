@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Recipes
 {
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace GW2DotNET.V1.Recipes
     using GW2DotNET.Recipes;
 
     /// <summary>Provides the interface for the recipe details service.</summary>
+    [ContractClass(typeof(RecipeDetailsServiceContract))]
     public interface IRecipeDetailsService
     {
         /// <summary>Gets a recipe and its localized details.</summary>

@@ -10,6 +10,8 @@ namespace GW2DotNET.V1.Items
 {
     using System;
     using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -18,7 +20,6 @@ namespace GW2DotNET.V1.Items
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Items;
-    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Items.Contracts;
 
     /// <summary>Provides the default implementation of the items service.</summary>
@@ -31,6 +32,7 @@ namespace GW2DotNET.V1.Items
         /// <param name="serviceClient">The service client.</param>
         public ItemService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -40,7 +42,9 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(int item)
         {
-            return this.GetItemDetails(item, CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetItemDetails(item, culture);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -50,9 +54,13 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(int item, CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<ItemContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
+
             var value = MapItemContract(response.Content);
             value.Language = language.TwoLetterISOLanguageName;
             return value;
@@ -64,7 +72,9 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int item)
         {
-            return this.GetItemDetailsAsync(item, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetItemDetailsAsync(item, culture, CancellationToken.None);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -84,7 +94,9 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int item, CancellationToken cancellationToken)
         {
-            return this.GetItemDetailsAsync(item, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetItemDetailsAsync(item, culture, cancellationToken);
         }
 
         /// <summary>Gets an item and its localized details.</summary>
@@ -95,16 +107,20 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int item, CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<ItemContract>(), cancellationToken).ContinueWith(
                 task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
                     {
-                        var response = task.Result;
-                        var value = MapItemContract(response.Content);
-                        value.Language = language.TwoLetterISOLanguageName;
-                        return value;
-                    }, 
+                        return null;
+                    }
+
+                    var value = MapItemContract(response.Content);
+                    value.Language = language.TwoLetterISOLanguageName;
+                    return value;
+                },
                 cancellationToken);
         }
 
@@ -113,8 +129,14 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public ICollection<int> GetItems()
         {
+            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
             var request = new ItemRequest();
             var response = this.serviceClient.Send(request, new JsonSerializer<ItemCollectionContract>());
+            if (response.Content == null || response.Content.Items == null)
+            {
+                return new int[0];
+            }
+
             return response.Content.Items;
         }
 
@@ -135,10 +157,10 @@ namespace GW2DotNET.V1.Items
             var request = new ItemRequest();
             return this.serviceClient.SendAsync(request, new JsonSerializer<ItemCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return response.Content.Items;
-                    }, 
+                {
+                    var response = task.Result;
+                    return response.Content.Items;
+                },
                 cancellationToken);
         }
 
@@ -147,6 +169,8 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetArmorType(ArmorContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Boots":
@@ -163,9 +187,9 @@ namespace GW2DotNET.V1.Items
                     return typeof(Leggings);
                 case "HelmAquatic":
                     return typeof(HelmAquatic);
-                default:
-                    return typeof(UnknownArmor);
             }
+
+            return typeof(UnknownArmor);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -173,6 +197,8 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetConsumableType(ConsumableContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "AppearanceChange":
@@ -199,9 +225,9 @@ namespace GW2DotNET.V1.Items
                     return typeof(UpgradeRemoval);
                 case "Utility":
                     return typeof(Utility);
-                default:
-                    return typeof(UnknownConsumable);
             }
+
+            return typeof(UnknownConsumable);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -209,6 +235,8 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetContainerType(ContainerContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Default":
@@ -217,9 +245,9 @@ namespace GW2DotNET.V1.Items
                     return typeof(GiftBox);
                 case "OpenUI":
                     return typeof(OpenUiContainer);
-                default:
-                    return typeof(UnknownContainer);
             }
+
+            return typeof(UnknownContainer);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -227,6 +255,8 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetGatheringToolType(GatheringToolContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Foraging":
@@ -235,9 +265,9 @@ namespace GW2DotNET.V1.Items
                     return typeof(LoggingTool);
                 case "Mining":
                     return typeof(MiningTool);
-                default:
-                    return typeof(UnknownGatheringTool);
             }
+
+            return typeof(UnknownGatheringTool);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -245,6 +275,8 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetGizmoType(GizmoContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Default":
@@ -255,9 +287,9 @@ namespace GW2DotNET.V1.Items
                     return typeof(RentableContractNpc);
                 case "UnlimitedConsumable":
                     return typeof(UnlimitedConsumable);
-                default:
-                    return typeof(UnknownGizmo);
             }
+
+            return typeof(UnknownGizmo);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -265,41 +297,88 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetItemType(ItemContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Armor":
+                    if (content.Armor == null)
+                    {
+                        return typeof(UnknownArmor);
+                    }
+
                     return GetArmorType(content.Armor);
                 case "Back":
                     return typeof(Backpack);
                 case "Bag":
                     return typeof(Bag);
                 case "Consumable":
+                    if (content.Consumable == null)
+                    {
+                        return typeof(UnknownConsumable);
+                    }
+                    
                     return GetConsumableType(content.Consumable);
                 case "Container":
+                    if (content.Container == null)
+                    {
+                        return typeof(UnknownContainer);
+                    }
+
                     return GetContainerType(content.Container);
                 case "CraftingMaterial":
                     return typeof(CraftingMaterial);
                 case "Gathering":
+                    if (content.GatheringTool == null)
+                    {
+                        return typeof(UnknownGatheringTool);
+                    }
+
                     return GetGatheringToolType(content.GatheringTool);
                 case "Gizmo":
+                    if (content.Gizmo == null)
+                    {
+                        return typeof(UnknownGizmo);
+                    }
+
                     return GetGizmoType(content.Gizmo);
                 case "MiniPet":
                     return typeof(MiniPet);
                 case "Tool":
+                    if (content.Tool == null)
+                    {
+                        return typeof(UnknownTool);
+                    }
+
                     return GetToolType(content.Tool);
                 case "Trait":
                     return typeof(TraitGuide);
                 case "Trinket":
+                    if (content.Trinket == null)
+                    {
+                        return typeof(UnknownTrinket);
+                    }
+
                     return GetTrinketType(content.Trinket);
                 case "Trophy":
                     return typeof(Trophy);
                 case "UpgradeComponent":
+                    if (content.UpgradeComponent == null)
+                    {
+                        return typeof(UnknownUpgradeComponent);
+                    }
+
                     return GetUpgradeComponentType(content.UpgradeComponent);
                 case "Weapon":
+                    if (content.Weapon == null)
+                    {
+                        return typeof(UnknownWeapon);
+                    }
+
                     return GetWeaponType(content.Weapon);
-                default:
-                    return typeof(UnknownItem);
             }
+
+            return typeof(UnknownItem);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -307,13 +386,15 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetToolType(ToolContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Salvage":
                     return typeof(SalvageTool);
-                default:
-                    return typeof(UnknownTool);
             }
+
+            return typeof(UnknownTool);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -321,6 +402,8 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetTrinketType(TrinketContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Amulet":
@@ -329,9 +412,9 @@ namespace GW2DotNET.V1.Items
                     return typeof(Accessory);
                 case "Ring":
                     return typeof(Ring);
-                default:
-                    return typeof(UnknownTrinket);
             }
+
+            return typeof(UnknownTrinket);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -339,6 +422,8 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetUnlockConsumableType(ConsumableContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.UnlockType)
             {
                 case "BagSlot":
@@ -353,9 +438,9 @@ namespace GW2DotNET.V1.Items
                     return typeof(CraftingRecipeUnlocker);
                 case "Dye":
                     return typeof(DyeUnlocker);
-                default:
-                    return typeof(UnknownUnlocker);
             }
+
+            return typeof(UnknownUnlocker);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -363,6 +448,8 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetUpgradeComponentType(UpgradeComponentContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Default":
@@ -373,9 +460,9 @@ namespace GW2DotNET.V1.Items
                     return typeof(Sigil);
                 case "Rune":
                     return typeof(Rune);
-                default:
-                    return typeof(UnknownUpgradeComponent);
             }
+
+            return typeof(UnknownUpgradeComponent);
         }
 
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
@@ -383,6 +470,8 @@ namespace GW2DotNET.V1.Items
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
         private static Type GetWeaponType(WeaponContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
             switch (content.Type)
             {
                 case "Axe":
@@ -431,9 +520,9 @@ namespace GW2DotNET.V1.Items
                     return typeof(SmallBundle);
                 case "LargeBundle":
                     return typeof(LargeBundle);
-                default:
-                    return typeof(UnknownWeapon);
             }
+
+            return typeof(UnknownWeapon);
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -441,9 +530,23 @@ namespace GW2DotNET.V1.Items
         /// <param name="content">The content.</param>
         private static void MapArmorContract(Armor item, ArmorContract content)
         {
-            item.WeightClass = (ArmorWeightClass)Enum.Parse(typeof(ArmorWeightClass), content.WeightClass, true);
-            item.Defense = int.Parse(content.Defense);
-            item.InfusionSlots = MapInfusionSlotContracts(content.InfusionSlots);
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.WeightClass != null)
+            {
+                item.WeightClass = MapArmorWeightClassContract(content.WeightClass);
+            }
+
+            if (content.Defense != null)
+            {
+                item.Defense = int.Parse(content.Defense);
+            }
+
+            if (content.InfusionSlots != null)
+            {
+                item.InfusionSlots = MapInfusionSlotContracts(content.InfusionSlots);
+            }
+
             if (content.InfixUpgrade != null)
             {
                 MapInfixUpgradeContract(item, content.InfixUpgrade);
@@ -460,13 +563,25 @@ namespace GW2DotNET.V1.Items
             }
         }
 
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ArmorWeightClass MapArmorWeightClassContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ArmorWeightClass)Enum.Parse(typeof(ArmorWeightClass), content, true);
+        }
+
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <param name="type">The content type.</param>
         /// <returns>An entity.</returns>
-        private static int MapAttributeContract(InfixUpgradeContract content, string type)
+        private static int MapAttributeContract(IEnumerable<ItemAttribute> content, string type)
         {
-            return content.Attributes.Where(attribute => attribute.Attribute == type).Sum(attribute => int.Parse(attribute.Modifier));
+            Contract.Requires(content != null);
+            Contract.Requires(type != null);
+            var attributes = content.Where(attribute => attribute.Attribute == type).ToList();
+            return attributes.Any() ? attributes.Sum(attribute => int.Parse(attribute.Modifier)) : 0;
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -474,7 +589,13 @@ namespace GW2DotNET.V1.Items
         /// <param name="content">The content.</param>
         private static void MapBackpackContract(Backpack item, BackpackContract content)
         {
-            item.InfusionSlots = MapInfusionSlotContracts(content.InfusionSlots);
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.InfusionSlots != null)
+            {
+                item.InfusionSlots = MapInfusionSlotContracts(content.InfusionSlots);
+            }
+
             if (content.InfixUpgrade != null)
             {
                 MapInfixUpgradeContract(item, content.InfixUpgrade);
@@ -496,8 +617,20 @@ namespace GW2DotNET.V1.Items
         /// <param name="content">The content.</param>
         private static void MapBagContract(Bag item, BagContract content)
         {
-            item.NoSellOrSort = content.NoSellOrSort == "1";
-            item.Size = int.Parse(content.Size);
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+
+            // Set the bag visibility flag
+            if (content.NoSellOrSort != null)
+            {
+                item.NoSellOrSort = content.NoSellOrSort == "1";
+            }
+
+            // Set the bag size
+            if (content.Size != null)
+            {
+                item.Size = int.Parse(content.Size);
+            }
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -505,6 +638,7 @@ namespace GW2DotNET.V1.Items
         /// <param name="content">The content.</param>
         private static void MapConsumableContract(Consumable item, ConsumableContract content)
         {
+            Contract.Requires(content != null);
             TimeSpan? duration = null;
             string description = null;
 
@@ -547,13 +681,13 @@ namespace GW2DotNET.V1.Items
             }
 
             var dye = item as DyeUnlocker;
-            if (dye != null)
+            if (dye != null && content.ColorId != null)
             {
                 dye.ColorId = int.Parse(content.ColorId);
             }
 
             var recipe = item as CraftingRecipeUnlocker;
-            if (recipe != null)
+            if (recipe != null && content.RecipeId != null)
             {
                 recipe.RecipeId = int.Parse(content.RecipeId);
             }
@@ -564,14 +698,23 @@ namespace GW2DotNET.V1.Items
         /// <param name="content">The content.</param>
         private static void MapInfixUpgradeContract(IUpgrade item, InfixUpgradeContract content)
         {
-            item.Buff = MapItemBuffContract(content.Buff);
-            item.ConditionDamage = MapAttributeContract(content, "ConditionDamage");
-            item.Ferocity = MapAttributeContract(content, "CritDamage");
-            item.Healing = MapAttributeContract(content, "Healing");
-            item.Power = MapAttributeContract(content, "Power");
-            item.Precision = MapAttributeContract(content, "Precision");
-            item.Toughness = MapAttributeContract(content, "Toughness");
-            item.Vitality = MapAttributeContract(content, "Vitality");
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.Buff != null)
+            {
+                item.Buff = MapItemBuffContract(content.Buff);
+            }
+
+            if (content.Attributes != null)
+            {
+                item.ConditionDamage = MapAttributeContract(content.Attributes, "ConditionDamage");
+                item.Ferocity = MapAttributeContract(content.Attributes, "CritDamage");
+                item.Healing = MapAttributeContract(content.Attributes, "Healing");
+                item.Power = MapAttributeContract(content.Attributes, "Power");
+                item.Precision = MapAttributeContract(content.Attributes, "Precision");
+                item.Toughness = MapAttributeContract(content.Attributes, "Toughness");
+                item.Vitality = MapAttributeContract(content.Attributes, "Vitality");
+            }
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -579,9 +722,10 @@ namespace GW2DotNET.V1.Items
         /// <returns>An entity.</returns>
         private static InfusionSlot MapInfusionSlotContract(InfusionSlotContract content)
         {
+            Contract.Requires(content != null);
             return new InfusionSlot
                        {
-                           Flags = MapInfusionSlotFlags(content.Flags), 
+                           Flags = MapInfusionSlotFlags(content.Flags),
                            ItemId = string.IsNullOrEmpty(content.ItemId) ? (int?)null : int.Parse(content.ItemId)
                        };
         }
@@ -591,6 +735,7 @@ namespace GW2DotNET.V1.Items
         /// <returns>A collection of entities.</returns>
         private static ICollection<InfusionSlot> MapInfusionSlotContracts(ICollection<InfusionSlotContract> content)
         {
+            Contract.Requires(content != null);
             var values = new List<InfusionSlot>(content.Count);
             values.AddRange(content.Select(MapInfusionSlotContract));
             return values;
@@ -601,6 +746,7 @@ namespace GW2DotNET.V1.Items
         /// <returns>The bit flags.</returns>
         private static InfusionSlotFlags MapInfusionSlotFlag(string content)
         {
+            Contract.Requires(content != null);
             return (InfusionSlotFlags)Enum.Parse(typeof(InfusionSlotFlags), content, true);
         }
 
@@ -617,12 +763,26 @@ namespace GW2DotNET.V1.Items
         /// <returns>An entity.</returns>
         private static ItemBuff MapItemBuffContract(ItemBuffContract content)
         {
-            if (content == null)
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<ItemBuff>() != null);
+            
+            // Create a new buff object
+            var value = new ItemBuff();
+
+            // Set the skill identifier
+            if (content.SkillId != null)
             {
-                return null;
+                value.SkillId = int.Parse(content.SkillId);
             }
 
-            return new ItemBuff { SkillId = int.Parse(content.SkillId), Description = string.IsNullOrEmpty(content.Description) ? null : content.Description };
+            // Set the description
+            if (content.Description != null)
+            {
+                value.Description = content.Description;
+            }
+
+            // Return the buff object
+            return value;
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -630,49 +790,70 @@ namespace GW2DotNET.V1.Items
         /// <returns>An entity.</returns>
         private static Item MapItemContract(ItemContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Item>() != null);
+
             // Map type discriminators to .NET types
             var value = (Item)Activator.CreateInstance(GetItemType(content));
 
             // Map item identifier
-            value.ItemId = int.Parse(content.ItemId);
+            if (content.ItemId != null)
+            {
+                value.ItemId = int.Parse(content.ItemId);
+            }
 
             // Map item name
             value.Name = content.Name;
 
             // Map item description
-            value.Description = string.IsNullOrEmpty(content.Description) ? null : content.Description;
+            value.Description = content.Description;
 
             // Map item level
-            value.Level = int.Parse(content.Level);
+            if (content.Level != null)
+            {
+                value.Level = int.Parse(content.Level);
+            }
 
             // Map item rarity
-            value.Rarity = (ItemRarity)Enum.Parse(typeof(ItemRarity), content.Rarity, true);
+            if (content.Rarity != null)
+            {
+                value.Rarity = MapItemRarityContract(content.Rarity);
+            }
 
             // Map vendor value
-            value.VendorValue = int.Parse(content.VendorValue);
+            if (content.VendorValue != null)
+            {
+                value.VendorValue = int.Parse(content.VendorValue);
+            }
 
             // Map icon file identifier
-            value.FileId = int.Parse(content.IconFileId);
+            if (content.IconFileId != null)
+            {
+                value.FileId = int.Parse(content.IconFileId);
+            }
 
             // Map icon file signature
-            value.FileSignature = content.IconFileSignature;
+            if (content.IconFileSignature != null)
+            {
+                value.FileSignature = content.IconFileSignature;
+            }
 
             // Map item game types
-            foreach (var gameType in content.GameTypes)
+            if (content.GameTypes != null)
             {
-                value.GameTypes |= (GameRestrictions)Enum.Parse(typeof(GameRestrictions), gameType, true);
+                value.GameTypes = MapGameTypesContracts(content.GameTypes);
             }
 
             // Map item flags
-            foreach (var flag in content.Flags)
+            if (content.Flags != null)
             {
-                value.Flags |= (ItemFlags)Enum.Parse(typeof(ItemFlags), flag, true);
+                value.Flags = MapItemFlagsContracts(content.Flags);
             }
 
             // Map item restrictions
-            foreach (var restriction in content.Restrictions)
+            if (content.Restrictions != null)
             {
-                value.Restrictions |= (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), restriction, true);
+                value.Restrictions = MapItemRestrictionsContracts(content.Restrictions);
             }
 
             // Map default skin if item is skinnable
@@ -718,13 +899,77 @@ namespace GW2DotNET.V1.Items
             return value;
         }
 
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRarity MapItemRarityContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ItemRarity)Enum.Parse(typeof(ItemRarity), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRestrictions MapItemRestrictionsContracts(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags |= MapItemRestrictionsContract(flag));
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRestrictions MapItemRestrictionsContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemFlags MapItemFlagsContracts(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(ItemFlags.None, (flags, flag) => flags |= MapItemFlagsContract(flag));
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemFlags MapItemFlagsContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ItemFlags)Enum.Parse(typeof(ItemFlags), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static GameTypes MapGameTypesContracts(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(GameTypes.None, (flags, flag) => flags |= MapGameTypesContract(flag));
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static GameTypes MapGameTypesContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (GameTypes)Enum.Parse(typeof(GameTypes), content, true);
+        }
+
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="item">The entity.</param>
         /// <param name="content">The content.</param>
         private static void MapToolContract(Tool item, ToolContract content)
         {
+            Contract.Requires(content != null);
             var salvageTool = item as SalvageTool;
-            if (salvageTool != null)
+            if (salvageTool != null && content.Charges != null)
             {
                 salvageTool.Charges = int.Parse(content.Charges);
             }
@@ -735,7 +980,13 @@ namespace GW2DotNET.V1.Items
         /// <param name="content">The content.</param>
         private static void MapTrinketContract(Trinket item, TrinketContract content)
         {
-            item.InfusionSlots = MapInfusionSlotContracts(content.InfusionSlots);
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.InfusionSlots != null)
+            {
+                item.InfusionSlots = MapInfusionSlotContracts(content.InfusionSlots);
+            }
+
             if (content.InfixUpgrade != null)
             {
                 MapInfixUpgradeContract(item, content.InfixUpgrade);
@@ -757,11 +1008,32 @@ namespace GW2DotNET.V1.Items
         /// <param name="content">The content.</param>
         private static void MapUpgradeComponentContract(UpgradeComponent item, UpgradeComponentContract content)
         {
-            item.UpgradeComponentFlags = MapUpgradeComponentFlags(content.Flags);
-            item.InfusionUpgradeFlags = MapInfusionSlotFlags(content.InfusionUpgradeFlags);
-            item.Bonuses = content.Bonuses;
-            MapInfixUpgradeContract(item, content.InfixUpgrade);
-            item.Suffix = content.Suffix;
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.Flags != null)
+            {
+                item.UpgradeComponentFlags = MapUpgradeComponentFlags(content.Flags);
+            }
+
+            if (content.InfusionUpgradeFlags != null)
+            {
+                item.InfusionUpgradeFlags = MapInfusionSlotFlags(content.InfusionUpgradeFlags);
+            }
+
+            if (content.Bonuses != null)
+            {
+                item.Bonuses = content.Bonuses;
+            }
+
+            if (content.InfixUpgrade != null)
+            {
+                MapInfixUpgradeContract(item, content.InfixUpgrade);
+            }
+
+            if (content.Suffix != null)
+            {
+                item.Suffix = content.Suffix;
+            }
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
@@ -769,6 +1041,7 @@ namespace GW2DotNET.V1.Items
         /// <returns>The bit flags.</returns>
         private static UpgradeComponentFlags MapUpgradeComponentFlag(string content)
         {
+            Contract.Requires(content != null);
             return (UpgradeComponentFlags)Enum.Parse(typeof(UpgradeComponentFlags), content, true);
         }
 
@@ -777,6 +1050,7 @@ namespace GW2DotNET.V1.Items
         /// <returns>The bit flags.</returns>
         private static UpgradeComponentFlags MapUpgradeComponentFlags(IEnumerable<string> content)
         {
+            Contract.Requires(content != null);
             return content.Aggregate(UpgradeComponentFlags.None, (current, flag) => current | MapUpgradeComponentFlag(flag));
         }
 
@@ -785,11 +1059,33 @@ namespace GW2DotNET.V1.Items
         /// <param name="content">The content.</param>
         private static void MapWeaponContract(Weapon item, WeaponContract content)
         {
-            item.DamageType = (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content.DamageType, true);
-            item.MinimumPower = int.Parse(content.MinimumPower);
-            item.MaximumPower = int.Parse(content.MaximumPower);
-            item.Defense = int.Parse(content.Defense);
-            item.InfusionSlots = MapInfusionSlotContracts(content.InfusionSlots);
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.DamageType != null)
+            {
+                item.DamageType = MapWeaponDamageTypeContract(content.DamageType);
+            }
+
+            if (content.MinimumPower != null)
+            {
+                item.MinimumPower = int.Parse(content.MinimumPower);
+            }
+
+            if (content.MaximumPower != null)
+            {
+                item.MaximumPower = int.Parse(content.MaximumPower);
+            }
+
+            if (content.Defense != null)
+            {
+                item.Defense = int.Parse(content.Defense);
+            }
+
+            if (content.InfusionSlots != null)
+            {
+                item.InfusionSlots = MapInfusionSlotContracts(content.InfusionSlots);
+            }
+
             if (content.InfixUpgrade != null)
             {
                 MapInfixUpgradeContract(item, content.InfixUpgrade);
@@ -804,6 +1100,22 @@ namespace GW2DotNET.V1.Items
             {
                 item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
             }
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static WeaponDamageType MapWeaponDamageTypeContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content, true);
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

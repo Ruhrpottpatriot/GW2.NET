@@ -8,8 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks.Extensions
 {
+    using System.Diagnostics.Contracts;
+
     using GW2DotNET.Recipes;
-    using GW2DotNET.Utilities;
 
     /// <summary>Provides static extension methods for the <see cref="Recipe" /> class.</summary>
     public static class RecipeExtensions
@@ -19,7 +20,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         /// <returns>The <see cref="ChatLink"/>The chat link.</returns>
         public static ChatLink GetChatLink(this Recipe instance)
         {
-            Preconditions.EnsureNotNull(instance);
+            Contract.Requires(instance != null);
             return new RecipeChatLink { RecipeId = instance.RecipeId };
         }
     }

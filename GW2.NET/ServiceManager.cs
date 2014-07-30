@@ -10,6 +10,7 @@ namespace GW2DotNET
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -130,6 +131,20 @@ namespace GW2DotNET
             IWorldNameService worldNameService, 
             ISkinService skinService)
         {
+            Contract.Requires(buildService != null);
+            Contract.Requires(colorService != null);
+            Contract.Requires(continentService != null);
+            Contract.Requires(dynamicEventService != null);
+            Contract.Requires(fileService != null);
+            Contract.Requires(guildDetailsService != null);
+            Contract.Requires(itemService != null);
+            Contract.Requires(mapFloorService != null);
+            Contract.Requires(mapNameService != null);
+            Contract.Requires(mapService != null);
+            Contract.Requires(matchService != null);
+            Contract.Requires(recipeService != null);
+            Contract.Requires(worldNameService != null);
+            Contract.Requires(skinService != null);
             this.buildService = buildService;
             this.colorService = colorService;
             this.continentService = continentService;
@@ -148,14 +163,28 @@ namespace GW2DotNET
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
         public ServiceManager()
-            : this(new ServiceClient(new Uri("https://api.guildwars2.com")))
+            : this(new ServiceClient(BaseUri))
         {
+        }
+
+        /// <summary>Gets the base URI.</summary>
+        /// <remarks>This property exists because code contracts cannot be condensed into a single line.</remarks>
+        private static Uri BaseUri
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
+                var baseUri = new Uri("https://api.guildwars2.com", UriKind.Absolute);
+                Contract.Assume(baseUri.IsAbsoluteUri);
+                return baseUri;
+            }
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ServiceManager(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.buildService = new BuildService(serviceClient);
             this.colorService = new ColorService(serviceClient);
             this.continentService = new ContinentService(serviceClient);
@@ -1143,7 +1172,9 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(int recipe)
         {
-            return this.GetRecipeDetails(recipe, CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetRecipeDetails(recipe, culture);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -1162,7 +1193,9 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipe)
         {
-            return this.GetRecipeDetailsAsync(recipe, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetRecipeDetailsAsync(recipe, culture, CancellationToken.None);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -1172,7 +1205,9 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipe, CancellationToken cancellationToken)
         {
-            return this.GetRecipeDetailsAsync(recipe, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetRecipeDetailsAsync(recipe, culture, cancellationToken);
         }
 
         /// <summary>Gets a recipe and its localized details.</summary>
@@ -1356,6 +1391,26 @@ namespace GW2DotNET
         public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.worldNameService.GetWorldNamesAsync(language, cancellationToken);
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.buildService != null);
+            Contract.Invariant(this.colorService != null);
+            Contract.Invariant(this.continentService != null);
+            Contract.Invariant(this.dynamicEventService != null);
+            Contract.Invariant(this.fileService != null);
+            Contract.Invariant(this.guildDetailsService != null);
+            Contract.Invariant(this.itemService != null);
+            Contract.Invariant(this.mapFloorService != null);
+            Contract.Invariant(this.mapNameService != null);
+            Contract.Invariant(this.mapService != null);
+            Contract.Invariant(this.matchService != null);
+            Contract.Invariant(this.recipeService != null);
+            Contract.Invariant(this.worldNameService != null);
+            Contract.Invariant(this.skinService != null);
         }
     }
 }

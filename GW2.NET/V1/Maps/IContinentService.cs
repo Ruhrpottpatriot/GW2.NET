@@ -9,12 +9,14 @@
 namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.Maps;
 
     /// <summary>Provides the interface for the continents service.</summary>
+    [ContractClass(typeof(ContinentServiceContract))]
     public interface IContinentService
     {
         /// <summary>Gets a collection of continents and their details.</summary>

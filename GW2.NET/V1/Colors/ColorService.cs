@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Colors
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -17,7 +18,6 @@ namespace GW2DotNET.V1.Colors
     using GW2DotNET.Colors;
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Utilities;
     using GW2DotNET.V1.Colors.Contracts;
 
     /// <summary>Provides the default implementation of the colors service.</summary>
@@ -30,6 +30,7 @@ namespace GW2DotNET.V1.Colors
         /// <param name="serviceClient">The service client.</param>
         public ColorService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -38,7 +39,9 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public IDictionary<int, ColorPalette> GetColors()
         {
-            return this.GetColors(CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetColors(culture);
         }
 
         /// <summary>Gets a collection of colors and their localized details.</summary>
@@ -47,9 +50,13 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public IDictionary<int, ColorPalette> GetColors(CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ColorRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<ColorCollectionContract>());
+            if (response.Content == null || response.Content.Colors == null)
+            {
+                return new Dictionary<int, ColorPalette>(0);
+            }
+            
             return MapColorCollectionContract(response.Content, language);
         }
 
@@ -67,7 +74,9 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CancellationToken cancellationToken)
         {
-            return this.GetColorsAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetColorsAsync(culture, cancellationToken);
         }
 
         /// <summary>Gets a collection of colors and their localized details.</summary>
@@ -86,7 +95,6 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
             var request = new ColorRequest { Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<ColorCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
@@ -103,9 +111,15 @@ namespace GW2DotNET.V1.Colors
         /// <returns>A collection of entities.</returns>
         private static IDictionary<int, ColorPalette> MapColorCollectionContract(ColorCollectionContract content, CultureInfo culture)
         {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Colors != null);
+            Contract.Requires(culture != null);
+            Contract.Ensures(Contract.Result<IDictionary<int, ColorPalette>>() != null);
             var values = new Dictionary<int, ColorPalette>(content.Colors.Count);
-            foreach (var value in content.Colors.Select(contract => MapColorPaletteContract(contract, culture)))
+            foreach (var value in content.Colors.Select(MapColorPaletteContract))
             {
+                Contract.Assume(value != null);
+                value.Language = culture.TwoLetterISOLanguageName;
                 values.Add(value.ColorId, value);
             }
 
@@ -117,6 +131,8 @@ namespace GW2DotNET.V1.Colors
         /// <returns>An entity.</returns>
         private static Color MapColorContract(int[] content)
         {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 3);
             return new Color(content[0], content[1], content[2]);
         }
 
@@ -125,33 +141,75 @@ namespace GW2DotNET.V1.Colors
         /// <returns>An entity.</returns>
         private static ColorModel MapColorModelContract(ColorModelContract content)
         {
-            return new ColorModel
-                       {
-                           Brightness = content.Brightness, 
-                           Contrast = content.Contrast, 
-                           Hue = content.Hue, 
-                           Saturation = content.Saturation, 
-                           Lightness = content.Lightness, 
-                           Rgb = MapColorContract(content.Rgb)
-                       };
+            Contract.Requires(content != null);
+            var value = new ColorModel();
+            value.Brightness = content.Brightness;
+            value.Contrast = content.Contrast;
+            value.Hue = content.Hue;
+            value.Saturation = content.Saturation;
+            value.Lightness = content.Lightness;
+            if (content.Rgb != null && content.Rgb.Length == 3)
+            {
+                value.Rgb = MapColorContract(content.Rgb);
+            }
+
+            return value;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="culture">The culture.</param>
         /// <returns>An entity.</returns>
-        private static ColorPalette MapColorPaletteContract(KeyValuePair<string, ColorContract> content, CultureInfo culture)
+        private static ColorPalette MapColorPaletteContract(KeyValuePair<string, ColorContract> content)
         {
-            return new ColorPalette
-                       {
-                           ColorId = int.Parse(content.Key), 
-                           Name = content.Value.Name, 
-                           Language = culture.TwoLetterISOLanguageName, 
-                           BaseRgb = MapColorContract(content.Value.BaseRgb), 
-                           Cloth = MapColorModelContract(content.Value.Cloth), 
-                           Leather = MapColorModelContract(content.Value.Leather), 
-                           Metal = MapColorModelContract(content.Value.Metal)
-                       };
+            Contract.Requires(content.Key != null);
+            Contract.Requires(content.Value != null);
+            Contract.Ensures(Contract.Result<ColorPalette>() != null);
+
+            // Create a new color object
+            var value = new ColorPalette();
+
+            // Set the color identifier
+            value.ColorId = int.Parse(content.Key);
+
+            // Set the name of the color
+            if (content.Value.Name != null)
+            {
+                value.Name = content.Value.Name;
+            }
+
+            // Set the base RGB values
+            if (content.Value.BaseRgb != null && content.Value.BaseRgb.Length == 3)
+            {
+                value.BaseRgb = MapColorContract(content.Value.BaseRgb);
+            }
+
+            // Set the color model for cloth
+            if (content.Value.Cloth != null)
+            {
+                value.Cloth = MapColorModelContract(content.Value.Cloth);
+            }
+
+            // Set the color model for leather
+            if (content.Value.Leather != null)
+            {
+                value.Leather = MapColorModelContract(content.Value.Leather);
+            }
+
+            // Set the color model for metal
+            if (content.Value.Metal != null)
+            {
+                value.Metal = MapColorModelContract(content.Value.Metal);
+            }
+
+            // Return the color object
+            return value;
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

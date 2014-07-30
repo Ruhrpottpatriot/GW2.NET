@@ -9,6 +9,7 @@
 namespace GW2DotNET.ChatLinks
 {
     using System.ComponentModel;
+    using System.Diagnostics.Contracts;
 
     /// <summary>Provides the base class for chat links.</summary>
     public abstract class ChatLink
@@ -28,7 +29,8 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:System.Object" />.</returns>
         public override string ToString()
         {
-            var typeConverter = TypeDescriptor.GetConverter(this.GetType());
+            var typeConverter = TypeDescriptor.GetConverter(this);
+            Contract.Assume(typeConverter != null);
             return typeConverter.ConvertToString(this) ?? "[&]";
         }
     }

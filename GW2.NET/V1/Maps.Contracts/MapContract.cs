@@ -25,6 +25,7 @@ namespace GW2DotNET.V1.Maps.Contracts
         public string ContinentName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
+        /// TODO: convert to 'double[][]'
         [DataMember(Name = "continent_rect", Order = 10)]
         public int[][] ContinentRectangle { get; set; }
 
@@ -41,6 +42,7 @@ namespace GW2DotNET.V1.Maps.Contracts
         public string MapName { get; set; }
 
         /// <summary>Gets or sets the dimensions of the map.</summary>
+        /// TODO: convert to 'double[][]'
         [DataMember(Name = "map_rect", Order = 9)]
         public int[][] MapRectangle { get; set; }
 

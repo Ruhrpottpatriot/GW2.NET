@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Maps
 {
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace GW2DotNET.V1.Maps
     using GW2DotNET.Maps;
 
     /// <summary>Provides the interface for the map floor service.</summary>
+    [ContractClass(typeof(MapFloorServiceContract))]
     public interface IMapFloorService
     {
         /// <summary>Gets a map floor and its localized details.</summary>

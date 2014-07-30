@@ -8,12 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common
 {
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.Common.Serializers;
 
     /// <summary>Provides the interface for service clients.</summary>
+    [ContractClass(typeof(ServiceClientContracts))]
     public interface IServiceClient
     {
         /// <summary>Sends a request and returns the response.</summary>

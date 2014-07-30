@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common.Serializers
 {
+    using System.Diagnostics.Contracts;
     using System.IO;
     using System.Text;
 
@@ -27,6 +28,7 @@ namespace GW2DotNET.Common.Serializers
         /// <param name="encoding">The character encoding.</param>
         public StringSerializer(Encoding encoding)
         {
+            Contract.Requires(encoding != null);
             this.encoding = encoding;
         }
 
@@ -50,6 +52,13 @@ namespace GW2DotNET.Common.Serializers
             {
                 streamWriter.Write(value);
             }
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.encoding != null);
         }
     }
 }

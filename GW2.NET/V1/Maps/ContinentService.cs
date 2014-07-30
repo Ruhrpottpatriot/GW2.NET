@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -28,6 +29,7 @@ namespace GW2DotNET.V1.Maps
         /// <param name="serviceClient">The service client.</param>
         public ContinentService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -38,6 +40,11 @@ namespace GW2DotNET.V1.Maps
         {
             var request = new ContinentRequest();
             var response = this.serviceClient.Send(request, new JsonSerializer<ContinentCollectionContract>());
+            if (response.Content == null || response.Content.Continents == null)
+            {
+                return new Dictionary<int, Continent>(0);
+            }
+
             return MapContinentCollectionContract(response.Content);
         }
 
@@ -70,9 +77,13 @@ namespace GW2DotNET.V1.Maps
         /// <returns>A collection of entities.</returns>
         private static IDictionary<int, Continent> MapContinentCollectionContract(ContinentCollectionContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Continents != null);
+            Contract.Ensures(Contract.Result<IDictionary<int, Continent>>() != null);
             var values = new Dictionary<int, Continent>(content.Continents.Count);
-            foreach (var value in content.Continents.Select(MapContinentContract))
+            foreach (var value in content.Continents.Select(MapContinentContract).Where(value => value != null))
             {
+                Contract.Assume(value != null);
                 values.Add(value.ContinentId, value);
             }
 
@@ -84,11 +95,15 @@ namespace GW2DotNET.V1.Maps
         /// <returns>An entity.</returns>
         private static Continent MapContinentContract(KeyValuePair<string, ContinentContract> content)
         {
+            Contract.Requires(content.Key != null);
+            Contract.Requires(content.Value != null);
+            Contract.Requires(content.Value.ContinentDimensions != null);
+            Contract.Requires(content.Value.ContinentDimensions.Length == 2);
             return new Continent
                        {
                            ContinentId = int.Parse(content.Key), 
                            Name = content.Value.Name, 
-                           ContinentDimensions = MapSizeContract(content.Value.ContinentDimensions), 
+                           ContinentDimensions = MapSize2DContract(content.Value.ContinentDimensions), 
                            MinimumZoom = content.Value.MinimumZoom, 
                            MaximumZoom = content.Value.MaximumZoom, 
                            FloorIds = content.Value.Floors
@@ -98,9 +113,18 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Size2D MapSizeContract(int[] content)
+        private static Size2D MapSize2DContract(int[] content)
         {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
             return new Size2D(content[0], content[1]);
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

@@ -9,12 +9,14 @@
 namespace GW2DotNET.V1.Files
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.Files;
 
     /// <summary>Provides the interface for the files service.</summary>
+    [ContractClass(typeof(FileServiceContract))]
     public interface IFileService
     {
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>

@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace GW2DotNET.V1.Maps
     using GW2DotNET.Maps;
 
     /// <summary>Provides the interface for the map names service.</summary>
+    [ContractClass(typeof(MapNameServiceContract))]
     public interface IMapNameService
     {
         /// <summary>Gets a collection of maps and their localized name.</summary>

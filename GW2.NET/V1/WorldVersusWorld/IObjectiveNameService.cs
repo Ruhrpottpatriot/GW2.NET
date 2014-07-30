@@ -9,6 +9,7 @@
 namespace GW2DotNET.V1.WorldVersusWorld
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
     using GW2DotNET.WorldVersusWorld;
 
     /// <summary>Provides the interface for the objective names service.</summary>
+    [ContractClass(typeof(ObjectiveNameServiceContract))]
     public interface IObjectiveNameService
     {
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
