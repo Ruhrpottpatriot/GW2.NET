@@ -36,6 +36,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         Task<IDictionary<string, Matchup>> GetMatchesAsync(CancellationToken cancellationToken);
     }
 
+    /// <summary>TODO The match discovery service contract.</summary>
     [ContractClassFor(typeof(IMatchDiscoveryService))]
     internal abstract class MatchDiscoveryServiceContract : IMatchDiscoveryService
     {

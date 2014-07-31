@@ -6,7 +6,6 @@
 //   The request contracts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Common
 {
     using System.Collections.Generic;

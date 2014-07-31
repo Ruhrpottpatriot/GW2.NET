@@ -312,7 +312,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         private static Match MapMatchContract(MatchContract content)
         {
             Contract.Requires(content != null);
-            
+
             // Create a new match object
             var value = new Match();
 

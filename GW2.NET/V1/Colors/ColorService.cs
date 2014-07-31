@@ -56,7 +56,7 @@ namespace GW2DotNET.V1.Colors
             {
                 return new Dictionary<int, ColorPalette>(0);
             }
-            
+
             return MapColorCollectionContract(response.Content, language);
         }
 

@@ -6,7 +6,6 @@
 //   The file service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Files
 {
     using System.Collections.Generic;

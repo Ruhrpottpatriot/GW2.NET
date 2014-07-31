@@ -6,7 +6,6 @@
 //   The guild details service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Guilds
 {
     using System;

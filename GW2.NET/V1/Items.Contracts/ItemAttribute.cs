@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Items.Contracts
 
     /// <summary>Represents an item attribute.</summary>
     /// TODO: rename to 'ItemAttributeContract'
-    public sealed class ItemAttribute : ServiceContract 
+    public sealed class ItemAttribute : ServiceContract
     {
         /// <summary>Gets or sets the attribute's type.</summary>
         [DataMember(Name = "attribute", Order = 0)]

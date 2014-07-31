@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ItemDetailsServiceContracts.cs" company="GW2.NET Coding Team">
+// <copyright file="ItemDetailsServiceContract.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The item details service contracts.
+//   The item details service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Items
@@ -15,9 +15,9 @@ namespace GW2DotNET.V1.Items
 
     using GW2DotNET.Items;
 
-    /// <summary>The item details service contracts.</summary>
+    /// <summary>The item details service contract.</summary>
     [ContractClassFor(typeof(IItemDetailsService))]
-    internal abstract class ItemDetailsServiceContracts : IItemDetailsService
+    internal abstract class ItemDetailsServiceContract : IItemDetailsService
     {
         /// <summary>Gets an item and its localized details.</summary>
         /// <param name="item">The item identifier.</param>

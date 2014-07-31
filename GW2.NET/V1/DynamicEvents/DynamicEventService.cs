@@ -707,7 +707,7 @@ namespace GW2DotNET.V1.DynamicEvents
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<DynamicEvent>() != null);
-            
+
             // Create a new event object
             var value = new DynamicEvent();
 
@@ -845,6 +845,7 @@ namespace GW2DotNET.V1.DynamicEvents
             {
                 value.Points = MapPoint2DContracts(content.Points);
             }
+
             return value;
         }
 

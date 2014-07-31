@@ -6,7 +6,6 @@
 //   The dynamic event state service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents
 {
     using System;

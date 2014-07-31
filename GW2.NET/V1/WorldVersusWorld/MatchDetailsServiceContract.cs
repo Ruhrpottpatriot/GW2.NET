@@ -6,7 +6,6 @@
 //   The match details service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld
 {
     using System.Diagnostics.Contracts;

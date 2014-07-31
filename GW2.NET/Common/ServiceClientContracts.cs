@@ -6,7 +6,6 @@
 //   The service client contracts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Common
 {
     using System.Diagnostics.Contracts;

@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="RenderServiceContracts.cs" company="GW2.NET Coding Team">
+// <copyright file="RenderServiceContract.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The render service contracts.
+//   The render service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Rendering
@@ -15,9 +15,9 @@ namespace GW2DotNET.Rendering
 
     using GW2DotNET.Common;
 
-    /// <summary>The render service contracts.</summary>
+    /// <summary>The render service contract.</summary>
     [ContractClassFor(typeof(IRenderService))]
-    internal abstract class RenderServiceContracts : IRenderService
+    internal abstract class RenderServiceContract : IRenderService
     {
         /// <summary>Gets an image.</summary>
         /// <param name="file">The file.</param>

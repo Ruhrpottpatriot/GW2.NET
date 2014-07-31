@@ -13,8 +13,6 @@ namespace GW2DotNET.ChatLinks
     using System.Diagnostics.Contracts;
     using System.Linq;
 
-    using GW2DotNET.Utilities;
-
     /// <summary>Factory class. Provides factory methods for creating <see cref="ChatLink"/> instances.</summary>
     public class ChatLinkFactory
     {

@@ -119,7 +119,8 @@ namespace GW2DotNET.Utilities
         /// <summary>Adds an item to the <see cref="T:System.Collections.Generic.ICollection`1"/>.</summary>
         /// <param name="item">The object to add to the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
         /// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.</exception>
-        [SuppressMessage("Microsoft.Contracts", "Ensures", Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
+        [SuppressMessage("Microsoft.Contracts", "Ensures", 
+            Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
         public void Add(KeyValuePair<string, string> item)
         {
             this.innerDictionary.Add(item);
@@ -140,7 +141,8 @@ namespace GW2DotNET.Utilities
         /// Removes all items from the <see cref="T:System.Collections.Generic.ICollection`1"/>.
         /// </summary>
         /// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only. </exception>
-        [SuppressMessage("Microsoft.Contracts", "Ensures", Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
+        [SuppressMessage("Microsoft.Contracts", "Ensures", 
+            Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
         public void Clear()
         {
             this.innerDictionary.Clear();
@@ -149,7 +151,8 @@ namespace GW2DotNET.Utilities
         /// <summary>Determines whether the <see cref="T:System.Collections.Generic.ICollection`1"/> contains a specific value.</summary>
         /// <returns>true if <paramref name="item"/> is found in the <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false.</returns>
         /// <param name="item">The object to locate in the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
-        [SuppressMessage("Microsoft.Contracts", "Ensures", Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
+        [SuppressMessage("Microsoft.Contracts", "Ensures", 
+            Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
         public bool Contains(KeyValuePair<string, string> item)
         {
             return this.innerDictionary.Contains(item);
@@ -159,7 +162,8 @@ namespace GW2DotNET.Utilities
         /// <returns>true if the <see cref="T:System.Collections.Generic.IDictionary`2"/> contains an element with the key; otherwise, false.</returns>
         /// <param name="key">The key to locate in the <see cref="T:System.Collections.Generic.IDictionary`2"/>.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
-        [SuppressMessage("Microsoft.Contracts", "Ensures", Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
+        [SuppressMessage("Microsoft.Contracts", "Ensures", 
+            Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
         public bool ContainsKey(string key)
         {
             return this.innerDictionary.ContainsKey(key);
@@ -171,7 +175,8 @@ namespace GW2DotNET.Utilities
         /// <exception cref="T:System.ArgumentNullException"><paramref name="array"/> is null.</exception>
         /// <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="arrayIndex"/> is less than 0.</exception>
         /// <exception cref="T:System.ArgumentException"><paramref name="array"/> is multidimensional.-or-The number of elements in the source <see cref="T:System.Collections.Generic.ICollection`1"/> is greater than the available space from <paramref name="arrayIndex"/> to the end of the destination <paramref name="array"/>.-or-Type <see cref="string"/> cannot be cast automatically to the type of the destination <paramref name="array"/>.</exception>
-        [SuppressMessage("Microsoft.Contracts", "Requires", Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
+        [SuppressMessage("Microsoft.Contracts", "Requires", 
+            Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
         public void CopyTo(KeyValuePair<string, string>[] array, int arrayIndex)
         {
             this.innerDictionary.CopyTo(array, arrayIndex);
@@ -200,7 +205,8 @@ namespace GW2DotNET.Utilities
         /// <returns>true if <paramref name="item"/> was successfully removed from the <see cref="T:System.Collections.Generic.ICollection`1"/>; otherwise, false. This method also returns false if <paramref name="item"/> is not found in the original <see cref="T:System.Collections.Generic.ICollection`1"/>.</returns>
         /// <param name="item">The object to remove from the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
         /// <exception cref="T:System.NotSupportedException">The <see cref="T:System.Collections.Generic.ICollection`1"/> is read-only.</exception>
-        [SuppressMessage("Microsoft.Contracts", "Ensures", Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
+        [SuppressMessage("Microsoft.Contracts", "Ensures", 
+            Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
         public bool Remove(KeyValuePair<string, string> item)
         {
             return this.innerDictionary.Remove(item);
@@ -228,7 +234,8 @@ namespace GW2DotNET.Utilities
         /// <param name="key">The key whose value to get.</param>
         /// <param name="value">When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <paramref name="value"/> parameter. This parameter is passed uninitialized.</param>
         /// <exception cref="T:System.ArgumentNullException"><paramref name="key"/> is null.</exception>
-        [SuppressMessage("Microsoft.Contracts", "Ensures", Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
+        [SuppressMessage("Microsoft.Contracts", "Ensures", 
+            Justification = "Contracts are already enforced by the inner dictionary. No need to perform additional checks.")]
         public bool TryGetValue(string key, out string value)
         {
             return this.innerDictionary.TryGetValue(key, out value);

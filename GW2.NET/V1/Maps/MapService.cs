@@ -106,10 +106,10 @@ namespace GW2DotNET.V1.Maps
             var request = new MapRequest { MapId = map, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapMapCollectionContract(response.Content, language).Values.SingleOrDefault();
-                },
+                    {
+                        var response = task.Result;
+                        return MapMapCollectionContract(response.Content, language).Values.SingleOrDefault();
+                    }, 
                 cancellationToken);
         }
 
@@ -179,10 +179,10 @@ namespace GW2DotNET.V1.Maps
             var request = new MapRequest { Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapMapCollectionContract(response.Content, language);
-                },
+                    {
+                        var response = task.Result;
+                        return MapMapCollectionContract(response.Content, language);
+                    }, 
                 cancellationToken);
         }
 

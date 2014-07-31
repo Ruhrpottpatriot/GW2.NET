@@ -658,7 +658,7 @@
     <Compile Include="Rendering\IRenderService.cs" />
     <Compile Include="Rendering\RenderRequest.cs" />
     <Compile Include="Rendering\RenderService.cs" />
-    <Compile Include="Rendering\RenderServiceContracts.cs" />
+    <Compile Include="Rendering\RenderServiceContract.cs" />
     <Compile Include="RenderServiceManager.cs" />
     <Compile Include="ServiceManager.cs" />
     <Compile Include="Skins\Armors\HelmAquaticSkin.cs" />
@@ -762,7 +762,7 @@
     <Compile Include="V1\Items\IItemDetailsService.cs" />
     <Compile Include="V1\Items\IItemService.cs" />
     <Compile Include="V1\Items\ItemDetailsRequest.cs" />
-    <Compile Include="V1\Items\ItemDetailsServiceContracts.cs" />
+    <Compile Include="V1\Items\ItemDetailsServiceContract.cs" />
     <Compile Include="V1\Items\ItemDiscoveryServiceContract.cs" />
     <Compile Include="V1\Maps.Contracts\ContinentContract.cs" />
     <Compile Include="V1\Maps.Contracts\ContinentCollectionContract.cs" />
@@ -784,7 +784,7 @@
     <Compile Include="V1\Maps\IMapNameService.cs" />
     <Compile Include="V1\Maps\MapFloorRequest.cs" />
     <Compile Include="V1\Maps\MapFloorService.cs" />
-    <Compile Include="V1\Maps\MapFloorServiceContracts.cs">
+    <Compile Include="V1\Maps\MapFloorServiceContract.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="V1\Maps\MapNameRequest.cs" />
@@ -807,7 +807,7 @@
     <Compile Include="V1\Skins\ISkinService.cs" />
     <Compile Include="V1\Skins\ISkinDiscoveryService.cs" />
     <Compile Include="V1\Skins\SkinDetailsRequest.cs" />
-    <Compile Include="V1\Skins\SkinDetailsServiceContracts.cs" />
+    <Compile Include="V1\Skins\SkinDetailsServiceContract.cs" />
     <Compile Include="V1\Skins\SkinDiscoveryServiceContract.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
     <Compile Include="V1\Skins\SkinRequest.cs" />
@@ -822,7 +822,7 @@
     <Compile Include="V1\Recipes\RecipeRequest.cs" />
     <Compile Include="V1\Worlds.Contracts\WorldNameContract.cs" />
     <Compile Include="V1\Worlds\IWorldNameService.cs" />
-    <Compile Include="V1\Worlds\WorldNameServiceContracts.cs" />
+    <Compile Include="V1\Worlds\WorldNameServiceContract.cs" />
     <Compile Include="V1\Worlds\WorldService.cs" />
     <Compile Include="V1\Worlds\WorldNameRequest.cs" />
     <Compile Include="V1\WorldVersusWorld.Contracts\MapBonusContract.cs" />

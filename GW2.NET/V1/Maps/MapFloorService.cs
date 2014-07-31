@@ -158,7 +158,8 @@ namespace GW2DotNET.V1.Maps
                 value.TextureDimensions = MapSize2DContract(content.TextureDimensions);
             }
 
-            if (content.ClampedView != null && content.ClampedView.Length == 2 && content.ClampedView[0] != null && content.ClampedView[0].Length == 2 && content.ClampedView[1] != null && content.ClampedView[1].Length == 2)
+            if (content.ClampedView != null && content.ClampedView.Length == 2 && content.ClampedView[0] != null && content.ClampedView[0].Length == 2
+                && content.ClampedView[1] != null && content.ClampedView[1].Length == 2)
             {
                 value.ClampedView = MapRectangleContract(content.ClampedView);
             }
@@ -389,13 +390,16 @@ namespace GW2DotNET.V1.Maps
             value.DefaultFloor = content.Value.DefaultFloor;
 
             // Set the map dimensions
-            if (content.Value.MapRectangle != null && content.Value.MapRectangle.Length == 2 && content.Value.MapRectangle[0] != null && content.Value.MapRectangle[0].Length == 2 && content.Value.MapRectangle[1] != null && content.Value.MapRectangle[1].Length == 2)
+            if (content.Value.MapRectangle != null && content.Value.MapRectangle.Length == 2 && content.Value.MapRectangle[0] != null
+                && content.Value.MapRectangle[0].Length == 2 && content.Value.MapRectangle[1] != null && content.Value.MapRectangle[1].Length == 2)
             {
                 value.MapRectangle = MapRectangleContract(content.Value.MapRectangle);
             }
 
             // Set the continent dimensions
-            if (content.Value.ContinentRectangle != null && content.Value.ContinentRectangle.Length == 2 && content.Value.ContinentRectangle[0] != null && content.Value.ContinentRectangle[0].Length == 2 && content.Value.ContinentRectangle[1] != null && content.Value.ContinentRectangle[1].Length == 2)
+            if (content.Value.ContinentRectangle != null && content.Value.ContinentRectangle.Length == 2 && content.Value.ContinentRectangle[0] != null
+                && content.Value.ContinentRectangle[0].Length == 2 && content.Value.ContinentRectangle[1] != null
+                && content.Value.ContinentRectangle[1].Length == 2)
             {
                 value.ContinentRectangle = MapRectangleContract(content.Value.ContinentRectangle);
             }

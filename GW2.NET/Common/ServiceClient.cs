@@ -63,47 +63,6 @@ namespace GW2DotNET.Common
             }
         }
 
-        /// <summary>Infrastructure. Post-processes a response object.</summary>
-        /// <param name="response">The raw response.</param>
-        /// <param name="serializer">The response content serializer.</param>
-        /// <typeparam name="T">The type of the response content.</typeparam>
-        /// <returns>A processed response object.</returns>
-        private static IResponse<T> PostProcess<T>(HttpWebResponse response, ISerializer<T> serializer)
-        {
-            Contract.Requires(response != null);
-            Contract.Requires(serializer != null);
-            Contract.Ensures(Contract.Result<IResponse<T>>() != null);
-            
-            // Create a new generic response object
-            var value = new Response<T>();
-
-            // Set the deserialized response content
-            value.Content = DeserializeResponse(serializer, response);
-
-            // Set the 'Date' header
-            value.LastModified = response.LastModified;
-
-            // Set the 'Content-Language' header
-            Contract.Assume(response.Headers != null);
-            var contentLanguage = response.Headers["Content-Language"];
-            if (contentLanguage != null)
-            {
-                value.Culture = CultureInfo.GetCultureInfo(contentLanguage);
-            }
-
-            // Set the 'X'-tension headers
-            var extensionData = new Dictionary<string, string>();
-            foreach (var key in response.Headers.AllKeys.Where(key => key.StartsWith("X-", StringComparison.OrdinalIgnoreCase)))
-            {
-                extensionData[key] = response.Headers[key];
-            }
-
-            value.ExtensionData = extensionData;
-
-            // Return the response object
-            return value;
-        }
-
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
         /// <param name="serializer">The serialization engine.</param>
@@ -287,6 +246,47 @@ namespace GW2DotNET.Common
                         return (HttpWebResponse)task.Result;
                     }, 
                 cancellationToken);
+        }
+
+        /// <summary>Infrastructure. Post-processes a response object.</summary>
+        /// <param name="response">The raw response.</param>
+        /// <param name="serializer">The response content serializer.</param>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <returns>A processed response object.</returns>
+        private static IResponse<T> PostProcess<T>(HttpWebResponse response, ISerializer<T> serializer)
+        {
+            Contract.Requires(response != null);
+            Contract.Requires(serializer != null);
+            Contract.Ensures(Contract.Result<IResponse<T>>() != null);
+
+            // Create a new generic response object
+            var value = new Response<T>();
+
+            // Set the deserialized response content
+            value.Content = DeserializeResponse(serializer, response);
+
+            // Set the 'Date' header
+            value.LastModified = response.LastModified;
+
+            // Set the 'Content-Language' header
+            Contract.Assume(response.Headers != null);
+            var contentLanguage = response.Headers["Content-Language"];
+            if (contentLanguage != null)
+            {
+                value.Culture = CultureInfo.GetCultureInfo(contentLanguage);
+            }
+
+            // Set the 'X'-tension headers
+            var extensionData = new Dictionary<string, string>();
+            foreach (var key in response.Headers.AllKeys.Where(key => key.StartsWith("X-", StringComparison.OrdinalIgnoreCase)))
+            {
+                extensionData[key] = response.Headers[key];
+            }
+
+            value.ExtensionData = extensionData;
+
+            // Return the response object
+            return value;
         }
 
         /// <summary>The invariant method for this class.</summary>

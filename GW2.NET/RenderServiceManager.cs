@@ -37,6 +37,14 @@ namespace GW2DotNET
         {
         }
 
+        /// <summary>Initializes a new instance of the <see cref="RenderServiceManager"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
+        public RenderServiceManager(IServiceClient serviceClient)
+        {
+            Contract.Requires(serviceClient != null);
+            this.renderService = new RenderService(serviceClient);
+        }
+
         /// <summary>Gets the base URI.</summary>
         /// <remarks>This property exists because code contracts cannot be condensed into a single line.</remarks>
         private static Uri BaseUri
@@ -48,14 +56,6 @@ namespace GW2DotNET
                 Contract.Assume(baseUri.IsAbsoluteUri);
                 return baseUri;
             }
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="RenderServiceManager"/> class.</summary>
-        /// <param name="serviceClient">The service client.</param>
-        public RenderServiceManager(IServiceClient serviceClient)
-        {
-            Contract.Requires(serviceClient != null);
-            this.renderService = new RenderService(serviceClient);
         }
 
         /// <summary>Gets an image.</summary>

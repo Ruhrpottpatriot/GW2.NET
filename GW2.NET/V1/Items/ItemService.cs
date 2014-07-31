@@ -10,7 +10,6 @@ namespace GW2DotNET.V1.Items
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
@@ -110,17 +109,17 @@ namespace GW2DotNET.V1.Items
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<ItemContract>(), cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return null;
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
 
-                    var value = MapItemContract(response.Content);
-                    value.Language = language.TwoLetterISOLanguageName;
-                    return value;
-                },
+                        var value = MapItemContract(response.Content);
+                        value.Language = language.TwoLetterISOLanguageName;
+                        return value;
+                    }, 
                 cancellationToken);
         }
 
@@ -157,10 +156,10 @@ namespace GW2DotNET.V1.Items
             var request = new ItemRequest();
             return this.serviceClient.SendAsync(request, new JsonSerializer<ItemCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return response.Content.Items;
-                },
+                    {
+                        var response = task.Result;
+                        return response.Content.Items;
+                    }, 
                 cancellationToken);
         }
 
@@ -317,7 +316,7 @@ namespace GW2DotNET.V1.Items
                     {
                         return typeof(UnknownConsumable);
                     }
-                    
+
                     return GetConsumableType(content.Consumable);
                 case "Container":
                     if (content.Container == null)
@@ -693,6 +692,24 @@ namespace GW2DotNET.V1.Items
             }
         }
 
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static GameTypes MapGameTypesContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (GameTypes)Enum.Parse(typeof(GameTypes), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static GameTypes MapGameTypesContracts(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(GameTypes.None, (flags, flag) => flags |= MapGameTypesContract(flag));
+        }
+
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="item">The entity.</param>
         /// <param name="content">The content.</param>
@@ -725,7 +742,7 @@ namespace GW2DotNET.V1.Items
             Contract.Requires(content != null);
             return new InfusionSlot
                        {
-                           Flags = MapInfusionSlotFlags(content.Flags),
+                           Flags = MapInfusionSlotFlags(content.Flags), 
                            ItemId = string.IsNullOrEmpty(content.ItemId) ? (int?)null : int.Parse(content.ItemId)
                        };
         }
@@ -765,7 +782,7 @@ namespace GW2DotNET.V1.Items
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<ItemBuff>() != null);
-            
+
             // Create a new buff object
             var value = new ItemBuff();
 
@@ -902,28 +919,10 @@ namespace GW2DotNET.V1.Items
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static ItemRarity MapItemRarityContract(string content)
+        private static ItemFlags MapItemFlagsContract(string content)
         {
             Contract.Requires(content != null);
-            return (ItemRarity)Enum.Parse(typeof(ItemRarity), content, true);
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemRestrictions MapItemRestrictionsContracts(IEnumerable<string> content)
-        {
-            Contract.Requires(content != null);
-            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags |= MapItemRestrictionsContract(flag));
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemRestrictions MapItemRestrictionsContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), content, true);
+            return (ItemFlags)Enum.Parse(typeof(ItemFlags), content, true);
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
@@ -938,28 +937,28 @@ namespace GW2DotNET.V1.Items
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static ItemFlags MapItemFlagsContract(string content)
+        private static ItemRarity MapItemRarityContract(string content)
         {
             Contract.Requires(content != null);
-            return (ItemFlags)Enum.Parse(typeof(ItemFlags), content, true);
+            return (ItemRarity)Enum.Parse(typeof(ItemRarity), content, true);
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static GameTypes MapGameTypesContracts(IEnumerable<string> content)
+        private static ItemRestrictions MapItemRestrictionsContract(string content)
         {
             Contract.Requires(content != null);
-            return content.Aggregate(GameTypes.None, (flags, flag) => flags |= MapGameTypesContract(flag));
+            return (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), content, true);
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static GameTypes MapGameTypesContract(string content)
+        private static ItemRestrictions MapItemRestrictionsContracts(IEnumerable<string> content)
         {
             Contract.Requires(content != null);
-            return (GameTypes)Enum.Parse(typeof(GameTypes), content, true);
+            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags |= MapItemRestrictionsContract(flag));
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>

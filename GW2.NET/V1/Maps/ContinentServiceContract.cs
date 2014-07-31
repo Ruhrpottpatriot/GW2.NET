@@ -6,7 +6,6 @@
 //   The continent service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;

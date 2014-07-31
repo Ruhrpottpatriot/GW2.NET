@@ -80,7 +80,7 @@ namespace GW2DotNET.V1.Files
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
             Contract.Ensures(Contract.Result<Asset>() != null);
-            
+
             // Create a new file object
             var value = new Asset();
 

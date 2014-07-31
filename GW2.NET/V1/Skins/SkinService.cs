@@ -110,12 +110,12 @@ namespace GW2DotNET.V1.Skins
             var request = new SkinDetailsRequest { SkinId = skin, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<SkinContract>(), cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    var value = MapSkinContract(response.Content);
-                    value.Language = language.TwoLetterISOLanguageName;
-                    return value;
-                },
+                    {
+                        var response = task.Result;
+                        var value = MapSkinContract(response.Content);
+                        value.Language = language.TwoLetterISOLanguageName;
+                        return value;
+                    }, 
                 cancellationToken);
         }
 
@@ -151,10 +151,10 @@ namespace GW2DotNET.V1.Skins
             var request = new SkinRequest();
             return this.serviceClient.SendAsync(request, new JsonSerializer<SkinCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return response.Content.Skins;
-                },
+                    {
+                        var response = task.Result;
+                        return response.Content.Skins;
+                    }, 
                 cancellationToken);
         }
 
@@ -184,7 +184,6 @@ namespace GW2DotNET.V1.Skins
             }
 
             return typeof(UnknownArmorSkin);
-
         }
 
         /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
@@ -299,6 +298,24 @@ namespace GW2DotNET.V1.Skins
             return (ArmorWeightClass)Enum.Parse(typeof(ArmorWeightClass), content, true);
         }
 
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRestrictions MapItemRestrictionsContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRestrictions MapItemRestrictionsContracts(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags |= MapItemRestrictionsContract(flag));
+        }
+
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -369,19 +386,10 @@ namespace GW2DotNET.V1.Skins
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static ItemRestrictions MapItemRestrictionsContracts(IEnumerable<string> content)
+        private static SkinFlags MapSkinFlagsContract(string content)
         {
             Contract.Requires(content != null);
-            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags |= MapItemRestrictionsContract(flag));
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemRestrictions MapItemRestrictionsContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), content, true);
+            return (SkinFlags)Enum.Parse(typeof(SkinFlags), content, true);
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
@@ -396,10 +404,9 @@ namespace GW2DotNET.V1.Skins
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static SkinFlags MapSkinFlagsContract(string content)
+        private static WeaponDamageType MapWeaponDamageTypeContract(string content)
         {
-            Contract.Requires(content != null);
-            return (SkinFlags)Enum.Parse(typeof(SkinFlags), content, true);
+            return (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content, true);
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -415,14 +422,6 @@ namespace GW2DotNET.V1.Skins
             {
                 skin.DamageType = MapWeaponDamageTypeContract(content.DamageType);
             }
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static WeaponDamageType MapWeaponDamageTypeContract(string content)
-        {
-            return (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content, true);
         }
 
         /// <summary>The invariant method for this class.</summary>

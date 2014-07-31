@@ -167,19 +167,6 @@ namespace GW2DotNET
         {
         }
 
-        /// <summary>Gets the base URI.</summary>
-        /// <remarks>This property exists because code contracts cannot be condensed into a single line.</remarks>
-        private static Uri BaseUri
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
-                var baseUri = new Uri("https://api.guildwars2.com", UriKind.Absolute);
-                Contract.Assume(baseUri.IsAbsoluteUri);
-                return baseUri;
-            }
-        }
-
         /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ServiceManager(IServiceClient serviceClient)
@@ -199,6 +186,19 @@ namespace GW2DotNET
             this.recipeService = new RecipeService(serviceClient);
             this.worldNameService = new WorldService(serviceClient);
             this.skinService = new SkinService(serviceClient);
+        }
+
+        /// <summary>Gets the base URI.</summary>
+        /// <remarks>This property exists because code contracts cannot be condensed into a single line.</remarks>
+        private static Uri BaseUri
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
+                var baseUri = new Uri("https://api.guildwars2.com", UriKind.Absolute);
+                Contract.Assume(baseUri.IsAbsoluteUri);
+                return baseUri;
+            }
         }
 
         /// <summary>Gets the current game build.</summary>

@@ -42,7 +42,7 @@ namespace GW2DotNET.V1.Builds
             {
                 return null;
             }
-            
+
             var value = MapBuildContract(response.Content);
             value.Timestamp = response.LastModified;
             return value;
