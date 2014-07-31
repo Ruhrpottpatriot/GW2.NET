@@ -131,6 +131,13 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public IDictionary<int, ObjectiveName> GetObjectiveNames(CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new ObjectiveNameRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<ObjectiveNameContract>>());
             if (response.Content == null)
@@ -178,6 +185,13 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new ObjectiveNameRequest { Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<ObjectiveNameContract>>(), cancellationToken).ContinueWith(
                 task =>

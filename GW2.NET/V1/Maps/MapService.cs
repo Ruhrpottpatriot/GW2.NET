@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Maps
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Globalization;
@@ -52,6 +53,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Map GetMap(int map, CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new MapRequest { MapId = map, Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<MapCollectionContract>());
             if (response.Content == null || response.Content.Maps == null)
@@ -103,6 +111,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int map, CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new MapRequest { MapId = map, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
@@ -129,6 +144,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public IDictionary<int, Map> GetMaps(CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new MapRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<MapCollectionContract>());
             if (response.Content == null || response.Content.Maps == null)
@@ -176,6 +198,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new MapRequest { Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionContract>(), cancellationToken).ContinueWith(
                 task =>

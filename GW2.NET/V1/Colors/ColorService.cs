@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Colors
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Globalization;
@@ -50,6 +51,13 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public IDictionary<int, ColorPalette> GetColors(CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new ColorRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<ColorCollectionContract>());
             if (response.Content == null || response.Content.Colors == null)
@@ -95,6 +103,13 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new ColorRequest { Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<ColorCollectionContract>(), cancellationToken).ContinueWith(
                 task =>

@@ -53,6 +53,13 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Recipe GetRecipeDetails(int recipe, CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new RecipeDetailsRequest { RecipeId = recipe, Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<RecipeContract>());
             if (response.Content == null)
@@ -106,6 +113,13 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
         public Task<Recipe> GetRecipeDetailsAsync(int recipe, CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new RecipeDetailsRequest { RecipeId = recipe, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<RecipeContract>(), cancellationToken).ContinueWith(
                 task =>

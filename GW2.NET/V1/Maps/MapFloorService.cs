@@ -55,6 +55,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Floor GetMapFloor(int continent, int floor, CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new MapFloorRequest { ContinentId = continent, Floor = floor, Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<FloorContract>());
             if (response.Content == null)
@@ -110,6 +117,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continent, int floor, CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new MapFloorRequest { ContinentId = continent, Floor = floor, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<FloorContract>(), cancellationToken).ContinueWith(
                 task =>

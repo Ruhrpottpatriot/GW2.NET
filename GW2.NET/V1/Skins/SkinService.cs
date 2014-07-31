@@ -54,6 +54,13 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Skin GetSkinDetails(int skin, CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new SkinDetailsRequest { SkinId = skin, Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<SkinContract>());
             if (response.Content == null)
@@ -107,6 +114,13 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(int skin, CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new SkinDetailsRequest { SkinId = skin, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<SkinContract>(), cancellationToken).ContinueWith(
                 task =>

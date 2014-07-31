@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Worlds
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Globalization;
@@ -50,6 +51,13 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public ICollection<World> GetWorldNames(CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new WorldNameRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<WorldNameContract>>());
             if (response.Content == null)
@@ -97,6 +105,13 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var worldNamesRequest = new WorldNameRequest { Culture = language };
             return this.serviceClient.SendAsync(worldNamesRequest, new JsonSerializer<ICollection<WorldNameContract>>(), cancellationToken).ContinueWith(
                 task =>

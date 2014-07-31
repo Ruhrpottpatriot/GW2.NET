@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Maps
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Globalization;
@@ -50,6 +51,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public IDictionary<int, Map> GetMapNames(CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new MapNameRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<MapNameContract>>());
             if (response.Content == null)
@@ -97,6 +105,13 @@ namespace GW2DotNET.V1.Maps
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Map>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new MapNameRequest { Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<MapNameContract>>(), cancellationToken).ContinueWith(
                 task =>

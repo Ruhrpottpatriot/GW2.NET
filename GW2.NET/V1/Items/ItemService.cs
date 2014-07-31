@@ -53,6 +53,13 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(int item, CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<ItemContract>());
             if (response.Content == null)
@@ -106,6 +113,13 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int item, CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<ItemContract>(), cancellationToken).ContinueWith(
                 task =>

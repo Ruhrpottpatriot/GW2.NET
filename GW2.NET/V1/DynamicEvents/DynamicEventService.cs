@@ -97,6 +97,13 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public IDictionary<Guid, DynamicEvent> GetDynamicEventDetails(CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new DynamicEventDetailsRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<EventDetailsCollectionContract>());
             if (response.Content == null || response.Content.Events == null)
@@ -125,6 +132,13 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public DynamicEvent GetDynamicEventDetails(Guid eventId, CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
             var response = this.serviceClient.Send(request, new JsonSerializer<EventDetailsCollectionContract>());
             if (response.Content == null || response.Content.Events == null)
@@ -172,6 +186,13 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new DynamicEventDetailsRequest { Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<EventDetailsCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
@@ -223,6 +244,13 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId, CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
             return this.serviceClient.SendAsync(request, new JsonSerializer<EventDetailsCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
@@ -249,6 +277,13 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public IDictionary<Guid, DynamicEvent> GetDynamicEventNames(CultureInfo language)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new DynamicEventNameRequest { Culture = language };
             var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<EventNameContract>>());
             if (response.Content == null)
@@ -296,6 +331,13 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new DynamicEventNameRequest { Culture = language };
             return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<EventNameContract>>(), cancellationToken).ContinueWith(
                 task =>
