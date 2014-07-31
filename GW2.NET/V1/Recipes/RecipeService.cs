@@ -281,7 +281,7 @@ namespace GW2DotNET.V1.Recipes
         /// <returns>The bit flags.</returns>
         private static CraftingDisciplines MapCraftingDisciplines(IEnumerable<string> content)
         {
-            return content.Aggregate(CraftingDisciplines.None, (flags, flag) => flags |= MapCraftingDiscipline(flag));
+            return content.Aggregate(CraftingDisciplines.None, (flags, flag) => flags | MapCraftingDiscipline(flag));
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -381,7 +381,7 @@ namespace GW2DotNET.V1.Recipes
         /// <returns>The bit flags.</returns>
         private static RecipeFlags MapRecipeFlags(IEnumerable<string> content)
         {
-            return content.Aggregate(RecipeFlags.None, (flags, flag) => flags |= MapRecipeFlag(flag));
+            return content.Aggregate(RecipeFlags.None, (flags, flag) => flags | MapRecipeFlag(flag));
         }
 
         /// <summary>The invariant method for this class.</summary>

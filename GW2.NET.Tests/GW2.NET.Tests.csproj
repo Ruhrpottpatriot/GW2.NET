@@ -41,7 +41,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CodeAnalysis|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugCC|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\CodeAnalysis\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>

@@ -6,7 +6,6 @@
 //   The skin discovery service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Skins
 {
     using System.Collections.Generic;

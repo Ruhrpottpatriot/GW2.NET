@@ -707,7 +707,7 @@ namespace GW2DotNET.V1.Items
         private static GameTypes MapGameTypesContracts(IEnumerable<string> content)
         {
             Contract.Requires(content != null);
-            return content.Aggregate(GameTypes.None, (flags, flag) => flags |= MapGameTypesContract(flag));
+            return content.Aggregate(GameTypes.None, (flags, flag) => flags | MapGameTypesContract(flag));
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -931,7 +931,7 @@ namespace GW2DotNET.V1.Items
         private static ItemFlags MapItemFlagsContracts(IEnumerable<string> content)
         {
             Contract.Requires(content != null);
-            return content.Aggregate(ItemFlags.None, (flags, flag) => flags |= MapItemFlagsContract(flag));
+            return content.Aggregate(ItemFlags.None, (flags, flag) => flags | MapItemFlagsContract(flag));
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
@@ -958,7 +958,7 @@ namespace GW2DotNET.V1.Items
         private static ItemRestrictions MapItemRestrictionsContracts(IEnumerable<string> content)
         {
             Contract.Requires(content != null);
-            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags |= MapItemRestrictionsContract(flag));
+            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags | MapItemRestrictionsContract(flag));
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>

@@ -3,14 +3,14 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Enumerates the known game type restrictions.
+//   Enumerates known game type restrictions.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Items
 {
     using System;
 
-    /// <summary>Enumerates the known game type restrictions.</summary>
+    /// <summary>Enumerates known game type restrictions.</summary>
     [Flags]
     public enum GameTypes
     {

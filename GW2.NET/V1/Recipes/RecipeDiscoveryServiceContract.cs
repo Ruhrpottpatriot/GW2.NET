@@ -6,7 +6,6 @@
 //   The recipe discovery service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Recipes
 {
     using System.Collections.Generic;

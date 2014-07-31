@@ -313,7 +313,7 @@ namespace GW2DotNET.V1.Skins
         private static ItemRestrictions MapItemRestrictionsContracts(IEnumerable<string> content)
         {
             Contract.Requires(content != null);
-            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags |= MapItemRestrictionsContract(flag));
+            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags | MapItemRestrictionsContract(flag));
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -398,7 +398,7 @@ namespace GW2DotNET.V1.Skins
         private static SkinFlags MapSkinFlagsContracts(IEnumerable<string> content)
         {
             Contract.Requires(content != null);
-            return content.Aggregate(SkinFlags.None, (flags, flag) => flags |= MapSkinFlagsContract(flag));
+            return content.Aggregate(SkinFlags.None, (flags, flag) => flags | MapSkinFlagsContract(flag));
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>

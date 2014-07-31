@@ -28,8 +28,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>
-    </DocumentationFile>
+    <DocumentationFile>bin\Debug\GW2.NET.XML</DocumentationFile>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
     <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
@@ -71,7 +70,7 @@
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -79,7 +78,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\GW2.NET.XML</DocumentationFile>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugSymbols>false</DebugSymbols>
     <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
     <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
     <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
@@ -118,9 +117,9 @@
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'CodeAnalysis|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'DebugCC|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\CodeAnalysis\</OutputPath>
+    <OutputPath>bin\DebugCC\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -163,6 +162,7 @@
     <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>3</CodeContractsAnalysisWarningLevel>
+    <DocumentationFile>bin\DebugCC\GW2.NET.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -784,9 +784,7 @@
     <Compile Include="V1\Maps\IMapNameService.cs" />
     <Compile Include="V1\Maps\MapFloorRequest.cs" />
     <Compile Include="V1\Maps\MapFloorService.cs" />
-    <Compile Include="V1\Maps\MapFloorServiceContract.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="V1\Maps\MapFloorServiceContract.cs" />
     <Compile Include="V1\Maps\MapNameRequest.cs" />
     <Compile Include="V1\Maps\MapNameService.cs" />
     <Compile Include="V1\Maps\MapNameServiceContract.cs" />
@@ -838,6 +836,7 @@
     <Compile Include="V1\WorldVersusWorld\IObjectiveNameService.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchDetailsRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchDetailsServiceContract.cs" />
+    <Compile Include="V1\WorldVersusWorld\MatchDiscoveryServiceContract.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\ObjectiveNameRequest.cs" />

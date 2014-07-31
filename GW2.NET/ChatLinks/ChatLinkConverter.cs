@@ -96,7 +96,7 @@ namespace GW2DotNET.ChatLinks
         public override bool IsValid(ITypeDescriptorContext context, object value)
         {
             var input = value as string;
-            if (input == null || !IsValidChatLink(input))
+            if (input == null || !ChatLinkConverterBase.IsValidChatLink(input))
             {
                 return false;
             }
