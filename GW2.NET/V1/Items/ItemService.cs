@@ -589,7 +589,7 @@ namespace GW2DotNET.V1.Items
         /// <param name="content">The content.</param>
         /// <param name="type">The content type.</param>
         /// <returns>An entity.</returns>
-        private static int MapAttributeContract(IEnumerable<ItemAttribute> content, string type)
+        private static int MapAttributeContract(IEnumerable<ItemAttributeContract> content, string type)
         {
             Contract.Requires(content != null);
             Contract.Requires(type != null);

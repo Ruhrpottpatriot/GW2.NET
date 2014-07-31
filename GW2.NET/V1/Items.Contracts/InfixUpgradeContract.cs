@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Items.Contracts
     {
         /// <summary>Gets or sets the item's attributes.</summary>
         [DataMember(Name = "attributes", Order = 1)]
-        public ICollection<ItemAttribute> Attributes { get; set; }
+        public ICollection<ItemAttributeContract> Attributes { get; set; }
 
         /// <summary>Gets or sets the item's buff.</summary>
         [DataMember(Name = "buff", Order = 0)]

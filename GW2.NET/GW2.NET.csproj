@@ -791,7 +791,7 @@
     <Compile Include="V1\Items.Contracts\ArmorContract.cs" />
     <Compile Include="V1\Items.Contracts\BackpackContract.cs" />
     <Compile Include="V1\Items.Contracts\BagContract.cs" />
-    <Compile Include="V1\Items.Contracts\ItemAttribute.cs" />
+    <Compile Include="V1\Items.Contracts\ItemAttributeContract.cs" />
     <Compile Include="V1\Items.Contracts\InfixUpgradeContract.cs" />
     <Compile Include="V1\Items.Contracts\InfusionSlotContract.cs" />
     <Compile Include="V1\Items.Contracts\ItemBuffContract.cs" />
