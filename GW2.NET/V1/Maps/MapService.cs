@@ -315,7 +315,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Rectangle MapRectangleContract(int[][] content)
+        private static Rectangle MapRectangleContract(double[][] content)
         {
             Contract.Requires(content != null && content.Length == 2);
             Contract.Requires(content[0] != null && content[0].Length == 2);
