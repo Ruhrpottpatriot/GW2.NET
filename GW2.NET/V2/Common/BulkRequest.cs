@@ -15,7 +15,7 @@ namespace GW2DotNET.V2.Common
     public abstract class BulkRequest : IBulkRequest
     {
         /// <summary>Gets or sets the identifiers.</summary>
-        public abstract ICollection<int> Identifiers { get; set; }
+        public abstract ICollection<string> Identifiers { get; set; }
 
         /// <summary>Gets the resource path.</summary>
         public abstract string Resource { get; }

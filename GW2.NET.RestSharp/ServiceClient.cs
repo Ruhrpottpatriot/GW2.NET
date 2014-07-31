@@ -9,7 +9,6 @@
 namespace GW2DotNET.RestSharp
 {
     using System;
-    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Threading;
@@ -19,17 +18,9 @@ namespace GW2DotNET.RestSharp
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Extensions;
-    using GW2DotNET.Utilities;
 
     using global::RestSharp;
 
-    class Program
-    {
-        static void Main()
-        {
-            var client = new ServiceClient(baseUri: null);
-        }
-    }
     /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
     {

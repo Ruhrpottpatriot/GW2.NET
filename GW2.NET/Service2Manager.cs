@@ -9,15 +9,19 @@
 namespace GW2DotNET
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.Builds;
     using GW2DotNET.Common;
+    using GW2DotNET.Quaggans;
     using GW2DotNET.V2.Builds;
+    using GW2DotNET.V2.Common;
+    using GW2DotNET.V2.Quaggans;
 
     /// <summary>Provides access to the Guild Wars 2 service.</summary>
-    public class Service2Manager : IBuildService
+    public class Service2Manager : IBuildService, IQuagganService
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
@@ -58,6 +62,36 @@ namespace GW2DotNET
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
             return new BuildService(this.serviceClient).GetBuildAsync(cancellationToken);
+        }
+
+        /// <summary>Gets a Quaggan.</summary>
+        /// <param name="identifier">An identifier</param>
+        /// <returns>A Quaggan</returns>
+        public Quaggan GetQuaggan(string identifier)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggan(identifier);
+        }
+
+        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <returns>A collection of identifiers.</returns>
+        public ICollection<string> GetQuagganIdentifiers()
+        {
+            return new QuagganService(this.serviceClient).GetQuagganIdentifiers();
+        }
+
+        /// <summary>Gets a collection of Quaggans</summary>
+        /// <returns>A collection of Quaggans.</returns>
+        public BulkResultDictionary<string, Quaggan> GetQuaggans()
+        {
+            return new QuagganService(this.serviceClient).GetQuaggans();
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="identifiers">A collection of identifiers.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public BulkResultDictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggans(identifiers);
         }
     }
 }

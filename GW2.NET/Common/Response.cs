@@ -23,7 +23,7 @@ namespace GW2DotNET.Common
         public CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets a collection of custom response headers.</summary>
-        public IEnumerable<KeyValuePair<string, string>> ExtensionData { get; set; }
+        public IDictionary<string, string> ExtensionData { get; set; }
 
         /// <summary>Gets or sets the <see cref="DateTime"/> at which the message originated..</summary>
         public DateTime LastModified { get; set; }

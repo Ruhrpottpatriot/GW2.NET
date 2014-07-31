@@ -16,6 +16,6 @@ namespace GW2DotNET.V2.Common
     public interface IBulkRequest : IRequest
     {
         /// <summary>Gets or sets the collection of resource identifiers.</summary>
-        ICollection<int> Identifiers { get; set; }
+        ICollection<string> Identifiers { get; set; }
     }
 }

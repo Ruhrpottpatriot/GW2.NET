@@ -21,7 +21,7 @@ namespace GW2DotNET.V2.Colors
         public CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets the identifiers.</summary>
-        public override ICollection<int> Identifiers { get; set; }
+        public override ICollection<string> Identifiers { get; set; }
 
         /// <summary>Gets the resource path.</summary>
         public override string Resource

@@ -895,13 +895,21 @@
     <Compile Include="V2\Colors\BulkColorRequest.cs" />
     <Compile Include="V2\Colors\ColorRequest.cs" />
     <Compile Include="V2\Colors\PaginatedColorRequest.cs" />
+    <Compile Include="V2\Common\BulkResultDictionary.cs" />
     <Compile Include="V2\Common\BulkRequest.cs" />
+    <Compile Include="V2\Common\DetailsRequest.cs" />
     <Compile Include="V2\Common\IBulkRequest.cs" />
     <Compile Include="V2\Common\IDetailsRequest.cs" />
     <Compile Include="V2\Common\IPaginatedRequest.cs" />
     <Compile Include="V2\Common\PaginatedRequest.cs" />
     <Compile Include="V2\Quaggans.Contracts\QuagganContract.cs" />
     <Compile Include="V1\WorldVersusWorld\ObjectiveNameServiceContract.cs" />
+    <Compile Include="V2\Quaggans\IQuagganService.cs" />
+    <Compile Include="V2\Quaggans\QuagganBulkRequest.cs" />
+    <Compile Include="V2\Quaggans\QuagganDetailsRequest.cs" />
+    <Compile Include="V2\Quaggans\QuagganDiscoveryRequest.cs" />
+    <Compile Include="V2\Quaggans\QuagganService.cs" />
+    <Compile Include="V2\Quaggans\QuagganServiceContract.cs" />
     <Compile Include="Worlds\World.cs" />
     <Compile Include="WorldVersusWorld\Maps\BlueBorderlands.cs" />
     <Compile Include="WorldVersusWorld\Bonuses\Bloodlust.cs" />
@@ -926,9 +934,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="V2\Quaggans\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

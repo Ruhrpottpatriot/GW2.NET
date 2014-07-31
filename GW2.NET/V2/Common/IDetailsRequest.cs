@@ -14,6 +14,6 @@ namespace GW2DotNET.V2.Common
     public interface IDetailsRequest : IRequest
     {
         /// <summary>Gets or sets the resource identifier.</summary>
-        int Identifier { get; set; }
+        string Identifier { get; set; }
     }
 }
