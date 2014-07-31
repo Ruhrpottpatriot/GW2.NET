@@ -9,12 +9,14 @@
 namespace GW2DotNET.V1.Guilds
 {
     using System;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Guilds.Contracts;
+    using GW2DotNET.Guilds;
 
     /// <summary>Provides the interface for the guild details service.</summary>
+    [ContractClass(typeof(GuildDetailsServiceContract))]
     public interface IGuildDetailsService
     {
         /// <summary>Gets a guild and its details.</summary>

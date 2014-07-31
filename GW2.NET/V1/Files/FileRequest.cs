@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Files
     using System.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for commonly requested in-game assets. The returned information can be used with the render service to retrieve assets.</summary>
     public class FileRequest : IRequest
@@ -22,7 +21,7 @@ namespace GW2DotNET.V1.Files
         {
             get
             {
-                return Services.Files;
+                return "v1/files.json";
             }
         }
 

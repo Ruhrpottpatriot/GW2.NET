@@ -8,10 +8,12 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common.Serializers
 {
+    using System.Diagnostics.Contracts;
     using System.IO;
 
     /// <summary>Provides the interface for serialization engines.</summary>
     /// <typeparam name="T">The serialization type.</typeparam>
+    [ContractClass(typeof(SerializerContracts<>))]
     public interface ISerializer<T>
     {
         /// <summary>Converts the input stream to the specified type.</summary>

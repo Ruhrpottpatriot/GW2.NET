@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -18,15 +19,12 @@ namespace GW2DotNET.V1.DynamicEvents
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Utilities;
+    using GW2DotNET.DynamicEvents;
     using GW2DotNET.V1.DynamicEvents.Contracts;
 
     /// <summary>Provides the default implementation of the events service.</summary>
     public class DynamicEventService : IDynamicEventService
     {
-        /// <summary>Infrastructure. Holds a reference to the serializer settings.</summary>
-        private static readonly DynamicEventDetailsSerializerSettings Settings = new DynamicEventDetailsSerializerSettings();
-
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -34,6 +32,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="serviceClient">The service client.</param>
         public DynamicEventService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -45,9 +44,13 @@ namespace GW2DotNET.V1.DynamicEvents
         public DynamicEventState GetDynamicEvent(Guid eventId, int worldId)
         {
             var request = new DynamicEventStateRequest { EventId = eventId, WorldId = worldId };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventStateCollectionResult>());
+            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            if (response.Content == null || response.Content.Events == null)
+            {
+                return null;
+            }
 
-            return result.Events.SingleOrDefault();
+            return MapEventStateContracts(response.Content).Values.SingleOrDefault();
         }
 
         /// <summary>Gets a dynamic event and its status.</summary>
@@ -69,41 +72,46 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<DynamicEventState> GetDynamicEventAsync(Guid eventId, int worldId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { EventId = eventId, WorldId = worldId };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventStateCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith(task => task.Result.Events.SingleOrDefault(), cancellationToken);
-
-            return t2;
+            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content).Values.SingleOrDefault();
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEvent> GetDynamicEventDetails()
+        public IDictionary<Guid, DynamicEvent> GetDynamicEventDetails()
         {
-            return this.GetDynamicEventDetails(CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetDynamicEventDetails(culture);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEvent> GetDynamicEventDetails(CultureInfo language)
+        public IDictionary<Guid, DynamicEvent> GetDynamicEventDetails(CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new DynamicEventDetailsRequest { Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventCollectionResult>(Settings));
-
-            // Apply patches
-            foreach (var dynamicEvent in result.Events)
+            if (language == null)
             {
-                // Patch missing event identifier
-                dynamicEvent.Value.EventId = dynamicEvent.Key;
-
-                // Patch missing language information
-                dynamicEvent.Value.Language = language.TwoLetterISOLanguageName;
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
             }
 
-            return result.Events.Values;
+            Contract.EndContractBlock();
+
+            var request = new DynamicEventDetailsRequest { Culture = language };
+            var response = this.serviceClient.Send(request, new JsonSerializer<EventDetailsCollectionContract>());
+            if (response.Content == null || response.Content.Events == null)
+            {
+                return new Dictionary<Guid, DynamicEvent>(0);
+            }
+
+            return MapEventDetailsCollectionContract(response.Content, language);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -112,7 +120,9 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public DynamicEvent GetDynamicEventDetails(Guid eventId)
         {
-            return this.GetDynamicEventDetails(eventId, CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetDynamicEventDetails(eventId, culture);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -122,45 +132,49 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public DynamicEvent GetDynamicEventDetails(Guid eventId, CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventCollectionResult>(Settings));
-
-            // Apply patches
-            foreach (var dynamicEvent in result.Events)
+            if (language == null)
             {
-                // Patch missing event identifier
-                dynamicEvent.Value.EventId = dynamicEvent.Key;
-
-                // Patch missing language information
-                dynamicEvent.Value.Language = language.TwoLetterISOLanguageName;
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
             }
 
-            return result.Events.Values.SingleOrDefault();
+            Contract.EndContractBlock();
+
+            var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
+            var response = this.serviceClient.Send(request, new JsonSerializer<EventDetailsCollectionContract>());
+            if (response.Content == null || response.Content.Events == null)
+            {
+                return null;
+            }
+
+            return MapEventDetailsCollectionContract(response.Content, language).Values.SingleOrDefault();
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync()
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync()
         {
-            return this.GetDynamicEventDetailsAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetDynamicEventDetailsAsync(culture, CancellationToken.None);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync(CancellationToken cancellationToken)
         {
-            return this.GetDynamicEventDetailsAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetDynamicEventDetailsAsync(culture, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language)
         {
             return this.GetDynamicEventDetailsAsync(language, CancellationToken.None);
         }
@@ -170,31 +184,23 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new DynamicEventDetailsRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventCollectionResult>(Settings), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<DynamicEvent>>(
+            return this.serviceClient.SendAsync(request, new JsonSerializer<EventDetailsCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
                     {
-                        var result = task.Result;
-
-                        // Apply patches
-                        foreach (var dynamicEvent in result.Events)
-                        {
-                            // Patch missing event identifier
-                            dynamicEvent.Value.EventId = dynamicEvent.Key;
-
-                            // Patch missing language information
-                            dynamicEvent.Value.Language = language.TwoLetterISOLanguageName;
-                        }
-
-                        return result.Events.Values;
+                        var response = task.Result;
+                        return MapEventDetailsCollectionContract(response.Content, language);
                     }, 
                 cancellationToken);
-
-            return t2;
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -203,7 +209,9 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId)
         {
-            return this.GetDynamicEventDetailsAsync(eventId, CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetDynamicEventDetailsAsync(eventId, culture, CancellationToken.None);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -213,7 +221,9 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken cancellationToken)
         {
-            return this.GetDynamicEventDetailsAsync(eventId, CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetDynamicEventDetailsAsync(eventId, culture, cancellationToken);
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -234,80 +244,82 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId, CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventCollectionResult>(Settings), cancellationToken);
-            var t2 = t1.ContinueWith(
+            return this.serviceClient.SendAsync(request, new JsonSerializer<EventDetailsCollectionContract>(), cancellationToken).ContinueWith(
                 task =>
                     {
-                        var result = task.Result;
-
-                        // Apply patches
-                        foreach (var dynamicEvent in result.Events)
-                        {
-                            // Patch missing event identifier
-                            dynamicEvent.Value.EventId = dynamicEvent.Key;
-
-                            // Patch missing language information
-                            dynamicEvent.Value.Language = language.TwoLetterISOLanguageName;
-                        }
-
-                        return result.Events.Values.SingleOrDefault();
+                        var response = task.Result;
+                        return MapEventDetailsCollectionContract(response.Content, language).Values.SingleOrDefault();
                     }, 
                 cancellationToken);
-
-            return t2;
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventName> GetDynamicEventNames()
+        public IDictionary<Guid, DynamicEvent> GetDynamicEventNames()
         {
-            return this.GetDynamicEventNames(CultureInfo.GetCultureInfo("en"));
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetDynamicEventNames(culture);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventName> GetDynamicEventNames(CultureInfo language)
+        public IDictionary<Guid, DynamicEvent> GetDynamicEventNames(CultureInfo language)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
-            var request = new DynamicEventNameRequest { Culture = language };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventNameCollection>());
-
-            // Patch missing language information
-            foreach (var eventName in result)
+            if (language == null)
             {
-                eventName.Language = language.TwoLetterISOLanguageName;
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
             }
 
-            return result;
+            Contract.EndContractBlock();
+
+            var request = new DynamicEventNameRequest { Culture = language };
+            var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<EventNameContract>>());
+            if (response.Content == null)
+            {
+                return new Dictionary<Guid, DynamicEvent>(0);
+            }
+
+            return MapEventNameContracts(response.Content, language);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync()
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync()
         {
-            return this.GetDynamicEventNamesAsync(CultureInfo.GetCultureInfo("en"), CancellationToken.None);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetDynamicEventNamesAsync(culture, CancellationToken.None);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CancellationToken cancellationToken)
         {
-            return this.GetDynamicEventNamesAsync(CultureInfo.GetCultureInfo("en"), cancellationToken);
+            var culture = CultureInfo.GetCultureInfo("en");
+            Contract.Assume(culture != null);
+            return this.GetDynamicEventNamesAsync(culture, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CultureInfo language)
         {
             return this.GetDynamicEventNamesAsync(language, CancellationToken.None);
         }
@@ -317,65 +329,75 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventName>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            Preconditions.EnsureNotNull(paramName: "language", value: language);
+            if (language == null)
+            {
+                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new DynamicEventNameRequest { Culture = language };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventNameCollection>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<DynamicEventName>>(
+            return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<EventNameContract>>(), cancellationToken).ContinueWith(
                 task =>
                     {
-                        var result = task.Result;
-
-                        // Patch missing language information
-                        foreach (var eventName in result)
-                        {
-                            eventName.Language = language.TwoLetterISOLanguageName;
-                        }
-
-                        return result;
+                        var response = task.Result;
+                        return MapEventNameContracts(response.Content, language);
                     }, 
                 cancellationToken);
-
-            return t2;
         }
 
         /// <summary>Gets a collection of dynamic events and their start times.</summary>
         /// <returns>A collection of dynamic events and their start times.</returns>
-        public IEnumerable<DynamicEventRotation> GetDynamicEventRotations()
+        public IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations()
         {
-            return (from rotationElement in this.LoadConfiguration().Descendants("rotation").Where(element => element.Attributes("event_id").Any())
-                    let shiftElements = rotationElement.Descendants("shift")
-                    let eventId = Guid.Parse(rotationElement.Attribute("event_id").Value)
-                    let shifts = shiftElements.Select(
-                        element =>
+            var configuration = this.LoadConfiguration();
+            var rotationElements = configuration.Descendants("rotation").Where(element => element.Attributes("event_id").Any()).ToList();
+            var values = new Dictionary<Guid, DynamicEventRotation>(rotationElements.Count);
+            foreach (var contract in rotationElements)
+            {
+                Contract.Assume(contract != null);
+                var eventIdAttribute = contract.Attribute("event_id");
+                Contract.Assume(eventIdAttribute != null);
+                var eventId = Guid.Parse(eventIdAttribute.Value);
+                var shifts = contract.Descendants("shift").Select(
+                    element =>
+                        {
+                            var shift = DateTimeOffset.Parse(element.Value);
+                            if (shift < DateTime.UtcNow)
                             {
-                                var shift = DateTimeOffset.Parse(element.Value);
-                                if (shift < DateTime.UtcNow)
-                                {
-                                    shift = shift.AddDays(1D);
-                                }
+                                shift = shift.AddDays(1D);
+                            }
 
-                                return shift;
-                            }).OrderBy(offset => offset.Ticks)
-                    select new DynamicEventRotation { Event = new DynamicEvent { EventId = eventId }, Shifts = new DynamicEventShifts(shifts) }).ToList();
+                            return shift;
+                        }).OrderBy(offset => offset.Ticks);
+
+                values.Add(eventId, new DynamicEventRotation { EventId = eventId, Shifts = new List<DateTimeOffset>(shifts) });
+            }
+
+            return values;
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventState> GetDynamicEvents()
+        public IDictionary<Guid, DynamicEventState> GetDynamicEvents()
         {
             var request = new DynamicEventStateRequest();
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventStateCollectionResult>());
+            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            if (response.Content == null || response.Content.Events == null)
+            {
+                return new Dictionary<Guid, DynamicEventState>(0);
+            }
 
-            return result.Events;
+            return MapEventStateContracts(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsAsync()
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsAsync()
         {
             return this.GetDynamicEventsAsync(CancellationToken.None);
         }
@@ -384,25 +406,32 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsAsync(CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest();
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventStateCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<DynamicEventState>>(task => task.Result.Events, cancellationToken);
-
-            return t2;
+            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventState> GetDynamicEventsById(Guid eventId)
+        public IDictionary<Guid, DynamicEventState> GetDynamicEventsById(Guid eventId)
         {
             var request = new DynamicEventStateRequest { EventId = eventId };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventStateCollectionResult>());
+            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            if (response.Content == null || response.Content.Events == null)
+            {
+                return new Dictionary<Guid, DynamicEventState>(0);
+            }
 
-            return result.Events;
+            return MapEventStateContracts(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -410,20 +439,23 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { EventId = eventId };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventStateCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<DynamicEventState>>(task => task.Result.Events, cancellationToken);
-
-            return t2;
+            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId)
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId)
         {
             return this.GetDynamicEventsByIdAsync(eventId, CancellationToken.None);
         }
@@ -432,12 +464,16 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="mapId">The map filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventState> GetDynamicEventsByMap(int mapId)
+        public IDictionary<Guid, DynamicEventState> GetDynamicEventsByMap(int mapId)
         {
             var request = new DynamicEventStateRequest { MapId = mapId };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventStateCollectionResult>());
+            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            if (response.Content == null || response.Content.Events == null)
+            {
+                return new Dictionary<Guid, DynamicEventState>(0);
+            }
 
-            return result.Events;
+            return MapEventStateContracts(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -445,19 +481,23 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="worldId">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventState> GetDynamicEventsByMap(int mapId, int worldId)
+        public IDictionary<Guid, DynamicEventState> GetDynamicEventsByMap(int mapId, int worldId)
         {
             var request = new DynamicEventStateRequest { MapId = mapId, WorldId = worldId };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventStateCollectionResult>());
+            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            if (response.Content == null || response.Content.Events == null)
+            {
+                return new Dictionary<Guid, DynamicEventState>(0);
+            }
 
-            return result.Events;
+            return MapEventStateContracts(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="mapId">The map filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByMapAsync(int mapId)
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId)
         {
             return this.GetDynamicEventsByMapAsync(mapId, CancellationToken.None);
         }
@@ -467,13 +507,16 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { MapId = mapId };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventStateCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<DynamicEventState>>(task => task.Result.Events, cancellationToken);
-
-            return t2;
+            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -481,7 +524,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="worldId">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId)
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId)
         {
             return this.GetDynamicEventsByMapAsync(mapId, worldId, CancellationToken.None);
         }
@@ -492,32 +535,39 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { MapId = mapId, WorldId = worldId };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventStateCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<DynamicEventState>>(task => task.Result.Events, cancellationToken);
-
-            return t2;
+            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="worldId">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public IEnumerable<DynamicEventState> GetDynamicEventsByWorld(int worldId)
+        public IDictionary<Guid, DynamicEventState> GetDynamicEventsByWorld(int worldId)
         {
             var request = new DynamicEventStateRequest { WorldId = worldId };
-            var result = this.serviceClient.Send(request, new JsonSerializer<DynamicEventStateCollectionResult>());
+            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            if (response.Content == null || response.Content.Events == null)
+            {
+                return new Dictionary<Guid, DynamicEventState>(0);
+            }
 
-            return result.Events;
+            return MapEventStateContracts(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <param name="worldId">The world filter.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId)
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId)
         {
             return this.GetDynamicEventsByWorldAsync(worldId, CancellationToken.None);
         }
@@ -527,24 +577,395 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
-        public Task<IEnumerable<DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId, CancellationToken cancellationToken)
+        public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { WorldId = worldId };
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<DynamicEventStateCollectionResult>(), cancellationToken);
-            var t2 = t1.ContinueWith<IEnumerable<DynamicEventState>>(task => task.Result.Events, cancellationToken);
+            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
+                cancellationToken);
+        }
 
-            return t2;
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static CylinderLocation MapCylinderLocation(LocationContract content)
+        {
+            Contract.Requires(content != null);
+
+            // Create a new location object
+            var value = new CylinderLocation();
+
+            // Set the center coordinates
+            if (content.Center != null && content.Center.Length == 3)
+            {
+                value.Center = MapPoint3DContract(content.Center);
+            }
+
+            // Set the cylinder's height
+            value.Height = content.Height;
+
+            // Set the cylinder's radius
+            value.Radius = content.Radius;
+
+            // Set the cylinder's rotation
+            value.Rotation = content.Rotation;
+
+            // Return the location object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static DynamicEventFlags MapDynamicEventFlags(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            var flags = DynamicEventFlags.None;
+            foreach (var value in content)
+            {
+                switch (value)
+                {
+                    case "group_event":
+                        flags |= DynamicEventFlags.GroupEvent;
+                        break;
+                    case "map_wide":
+                        flags |= DynamicEventFlags.MapWide;
+                        break;
+                    default:
+
+                        // Attempt to parse a previously unknown value, ultimately resulting in an argument exception
+                        flags |= (DynamicEventFlags)Enum.Parse(typeof(DynamicEventFlags), value ?? string.Empty, true);
+                        break;
+                }
+            }
+
+            return flags;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static DynamicEventState MapDynamicEventState(EventStateContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<DynamicEventState>() != null);
+
+            // Create a new event state object
+            var value = new DynamicEventState();
+
+            // Set the event identifier
+            if (content.EventId != null)
+            {
+                value.EventId = Guid.Parse(content.EventId);
+            }
+
+            // Set the map identifier
+            value.MapId = content.MapId;
+
+            // Set the world identifier
+            value.WorldId = content.WorldId;
+
+            // Set the state of the event
+            if (content.State != null)
+            {
+                value.State = MapEventState(content.State);
+            }
+
+            // Return the event state object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns>A collection of entities.</returns>
+        private static IDictionary<Guid, DynamicEvent> MapEventDetailsCollectionContract(EventDetailsCollectionContract content, CultureInfo culture)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Events != null);
+            Contract.Requires(culture != null);
+            Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEvent>>() != null);
+            var values = new Dictionary<Guid, DynamicEvent>(content.Events.Count);
+            foreach (var value in content.Events.Select(MapEventDetailsContract))
+            {
+                Contract.Assume(value != null);
+                value.Language = culture.TwoLetterISOLanguageName;
+                values.Add(value.EventId, value);
+            }
+
+            return values;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static DynamicEvent MapEventDetailsContract(KeyValuePair<string, EventDetailsContract> content)
+        {
+            Contract.Requires(content.Key != null);
+            Contract.Requires(content.Value != null);
+
+            // Create a new event object
+            var value = new DynamicEvent();
+
+            // Set the event identifier
+            value.EventId = Guid.Parse(content.Key);
+
+            // Set the name of the event
+            if (content.Value.Name != null)
+            {
+                value.Name = content.Value.Name;
+            }
+
+            // Set the level
+            value.Level = content.Value.Level;
+
+            // Set the map identifier
+            value.MapId = content.Value.MapId;
+
+            // Set additional flags
+            if (content.Value.Flags != null)
+            {
+                value.Flags = MapDynamicEventFlags(content.Value.Flags);
+            }
+
+            // Set the location
+            if (content.Value.Location != null)
+            {
+                value.Location = MapLocationContract(content.Value.Location);
+            }
+
+            // Return the event object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static DynamicEvent MapEventNameContract(EventNameContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<DynamicEvent>() != null);
+
+            // Create a new event object
+            var value = new DynamicEvent();
+
+            // Set the event identifier
+            if (content.Id != null)
+            {
+                value.EventId = Guid.Parse(content.Id);
+            }
+
+            // Set the name of the event
+            if (content.Name != null)
+            {
+                value.Name = content.Name;
+            }
+
+            // Return the event object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <param name="culture">The culture.</param>
+        /// <returns>A collection of entities.</returns>
+        private static IDictionary<Guid, DynamicEvent> MapEventNameContracts(ICollection<EventNameContract> content, CultureInfo culture)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(culture != null);
+            Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEvent>>() != null);
+            var values = new Dictionary<Guid, DynamicEvent>(content.Count);
+            foreach (var value in content.Select(MapEventNameContract))
+            {
+                Contract.Assume(value != null);
+                value.Language = culture.TwoLetterISOLanguageName;
+                values.Add(value.EventId, value);
+            }
+
+            return values;
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static EventState MapEventState(string content)
+        {
+            Contract.Requires(content != null);
+            return (EventState)Enum.Parse(typeof(EventState), content);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>A collection of entities.</returns>
+        private static IDictionary<Guid, DynamicEventState> MapEventStateContracts(EventStateCollectionContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Events != null);
+            Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEventState>>() != null);
+            var values = new Dictionary<Guid, DynamicEventState>(content.Events.Count);
+            foreach (var value in content.Events.Select(MapDynamicEventState))
+            {
+                Contract.Assume(value != null);
+                values.Add(value.EventId, value);
+            }
+
+            return values;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Location MapLocationContract(LocationContract content)
+        {
+            Contract.Requires(content != null);
+            switch (content.Type)
+            {
+                case "sphere":
+                    return MapSphereLocation(content);
+                case "cylinder":
+                    return MapCylinderLocation(content);
+                case "poly":
+                    return MapPolygonLocation(content);
+            }
+
+            return MapUnknownLocation(content);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Point2D MapPoint2DContract(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
+            return new Point2D(content[0], content[1]);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>A collection of entities.</returns>
+        private static ICollection<Point2D> MapPoint2DContracts(double[][] content)
+        {
+            Contract.Requires(content != null);
+            var values = new List<Point2D>(content.Length);
+            values.AddRange(content.Select(MapPoint2DContract));
+            return values;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Point3D MapPoint3DContract(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 3);
+            return new Point3D(content[0], content[1], content[2]);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static PolygonLocation MapPolygonLocation(LocationContract content)
+        {
+            Contract.Requires(content != null);
+            var value = new PolygonLocation();
+            if (content.Center != null && content.Center.Length == 3)
+            {
+                value.Center = MapPoint3DContract(content.Center);
+            }
+
+            if (content.ZRange != null && content.ZRange.Length == 2)
+            {
+                value.ZRange = MapZRangeContract(content.ZRange);
+            }
+
+            if (content.Points != null)
+            {
+                value.Points = MapPoint2DContracts(content.Points);
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static SphereLocation MapSphereLocation(LocationContract content)
+        {
+            Contract.Requires(content != null);
+
+            // Create a new location object
+            var value = new SphereLocation();
+
+            // Set the center coordinates
+            if (content.Center != null && content.Center.Length == 3)
+            {
+                value.Center = MapPoint3DContract(content.Center);
+            }
+
+            // Set the sphere's radius
+            value.Radius = content.Radius;
+
+            // Set the sphere's rotation
+            value.Rotation = content.Rotation;
+
+            // Return the location object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static UnknownLocation MapUnknownLocation(LocationContract content)
+        {
+            Contract.Requires(content != null);
+
+            // Create a new location object
+            var value = new UnknownLocation();
+
+            // Set the center coordinates
+            if (content.Center != null && content.Center.Length == 3)
+            {
+                value.Center = MapPoint3DContract(content.Center);
+            }
+
+            // Return the location object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Vector2D MapZRangeContract(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
+            return new Vector2D(content[0], content[1]);
         }
 
         /// <summary>Infrastructure. Loads the configuration.</summary>
         /// <returns>The configuration.</returns>
         private XDocument LoadConfiguration()
         {
+            Contract.Ensures(Contract.Result<XDocument>() != null);
             var type = this.GetType();
             using (var stream = type.Assembly.GetManifestResourceStream(type.Namespace + ".Rotations.xml"))
             {
-                return XDocument.Load(stream);
+                var configuration = XDocument.Load(stream);
+                Contract.Assume(configuration != null);
+                return configuration;
             }
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

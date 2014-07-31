@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Recipes
     using System.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for a list of all discovered recipes.</summary>
     public class RecipeRequest : IRequest
@@ -22,7 +21,7 @@ namespace GW2DotNET.V1.Recipes
         {
             get
             {
-                return Services.Recipes;
+                return "v1/recipes.json";
             }
         }
 

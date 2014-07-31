@@ -12,10 +12,9 @@ namespace GW2DotNET.V1.Skins
     using System.Globalization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for details regarding a specific skin.</summary>
-    public class SkinDetailsRequest : ISkinRequest, ILocalizable
+    public class SkinDetailsRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
@@ -25,7 +24,7 @@ namespace GW2DotNET.V1.Skins
         {
             get
             {
-                return Services.SkinDetails;
+                return "v1/skin_details.json";
             }
         }
 

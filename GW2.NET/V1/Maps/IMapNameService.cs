@@ -9,48 +9,50 @@
 namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Maps.Contracts;
+    using GW2DotNET.Maps;
 
     /// <summary>Provides the interface for the map names service.</summary>
+    [ContractClass(typeof(MapNameServiceContract))]
     public interface IMapNameService
     {
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        IEnumerable<MapName> GetMapNames();
+        IDictionary<int, Map> GetMapNames();
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        IEnumerable<MapName> GetMapNames(CultureInfo language);
+        IDictionary<int, Map> GetMapNames(CultureInfo language);
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        Task<IEnumerable<MapName>> GetMapNamesAsync();
+        Task<IDictionary<int, Map>> GetMapNamesAsync();
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        Task<IEnumerable<MapName>> GetMapNamesAsync(CancellationToken cancellationToken);
+        Task<IDictionary<int, Map>> GetMapNamesAsync(CancellationToken cancellationToken);
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language);
+        Task<IDictionary<int, Map>> GetMapNamesAsync(CultureInfo language);
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        Task<IEnumerable<MapName>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken);
+        Task<IDictionary<int, Map>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken);
     }
 }

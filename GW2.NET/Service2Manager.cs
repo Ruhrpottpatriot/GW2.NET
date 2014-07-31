@@ -12,9 +12,9 @@ namespace GW2DotNET
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Builds;
     using GW2DotNET.Common;
     using GW2DotNET.V2.Builds;
-    using GW2DotNET.V2.Builds.Contracts;
 
     /// <summary>Provides access to the Guild Wars 2 service.</summary>
     public class Service2Manager : IBuildService

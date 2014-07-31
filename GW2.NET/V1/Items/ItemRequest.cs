@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Items
     using System.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for a list of all discovered items.</summary>
     public class ItemRequest : IRequest
@@ -22,7 +21,7 @@ namespace GW2DotNET.V1.Items
         {
             get
             {
-                return Services.Items;
+                return "v1/items.json";
             }
         }
 

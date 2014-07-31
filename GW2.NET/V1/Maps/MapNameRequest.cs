@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Maps
     using System.Globalization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for a list of localized map names.</summary>
     public class MapNameRequest : IRequest, ILocalizable
@@ -25,7 +24,7 @@ namespace GW2DotNET.V1.Maps
         {
             get
             {
-                return Services.MapNames;
+                return "v1/map_names.json";
             }
         }
 

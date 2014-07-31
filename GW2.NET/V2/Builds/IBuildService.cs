@@ -11,7 +11,7 @@ namespace GW2DotNET.V2.Builds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V2.Builds.Contracts;
+    using GW2DotNET.Builds;
 
     /// <summary>Provides the interface for the build service.</summary>
     public interface IBuildService

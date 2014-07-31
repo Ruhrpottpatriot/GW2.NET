@@ -8,8 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks.Extensions
 {
-    using GW2DotNET.Utilities;
-    using GW2DotNET.V1.Skins.Contracts;
+    using System.Diagnostics.Contracts;
+
+    using GW2DotNET.Skins;
 
     /// <summary>Provides static extension methods for the <see cref="Skin" /> class.</summary>
     public static class SkinExtensions
@@ -19,7 +20,7 @@ namespace GW2DotNET.ChatLinks.Extensions
         /// <returns>The <see cref="ChatLink"/>The chat link.</returns>
         public static ChatLink GetChatLink(this Skin instance)
         {
-            Preconditions.EnsureNotNull(instance);
+            Contract.Requires(instance != null);
             return new SkinChatLink { SkinId = instance.SkinId };
         }
     }

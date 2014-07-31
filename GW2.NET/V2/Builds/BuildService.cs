@@ -8,9 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V2.Builds
 {
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Builds;
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.V2.Builds.Contracts;
@@ -33,7 +35,16 @@ namespace GW2DotNET.V2.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Build GetBuild()
         {
-            return this.serviceClient.Send(new BuildRequest(), new JsonSerializer<Build>());
+            var request = new BuildRequest();
+            var response = this.serviceClient.Send(request, new JsonSerializer<BuildContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            var value = MapBuildContract(response.Content);
+            value.Timestamp = response.LastModified;
+            return value;
         }
 
         /// <summary>Gets the current build.</summary>
@@ -50,7 +61,39 @@ namespace GW2DotNET.V2.Builds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
-            return this.serviceClient.SendAsync(new BuildRequest(), new JsonSerializer<Build>(), cancellationToken);
+            var request = new BuildRequest();
+            return this.serviceClient.SendAsync(request, new JsonSerializer<BuildContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        var value = MapBuildContract(response.Content);
+                        value.Timestamp = response.LastModified;
+                        return value;
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Build MapBuildContract(BuildContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Build>() != null);
+
+            // Create a new build object
+            var value = new Build();
+
+            // Set the build identifier
+            value.BuildId = content.BuildId;
+
+            // Return the build object
+            return value;
         }
     }
 }

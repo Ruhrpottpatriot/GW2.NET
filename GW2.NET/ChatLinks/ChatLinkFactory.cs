@@ -3,31 +3,51 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Factory class. Provides access to factory methods for creating <see cref="ChatLink" /> instances.
+//   Factory class. Provides factory methods for creating <see cref="ChatLink" /> instances.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks
 {
+    using System;
     using System.ComponentModel;
+    using System.Diagnostics.Contracts;
     using System.Linq;
 
-    using GW2DotNET.Utilities;
-
-    /// <summary>Factory class. Provides access to factory methods for creating <see cref="ChatLink"/> instances.</summary>
+    /// <summary>Factory class. Provides factory methods for creating <see cref="ChatLink"/> instances.</summary>
     public class ChatLinkFactory
     {
-        /// <summary>Decodes the specified chat link.</summary>
-        /// <param name="input">An encoded chat link.</param>
+        /// <summary>Decodes chat links.</summary>
+        /// <param name="input">A chat link.</param>
         /// <returns>A decoded <see cref="ChatLink"/>.</returns>
         public ChatLink Decode(string input)
         {
-            Preconditions.Ensure(!string.IsNullOrEmpty(input), "input", "The specified input is null or empty.");
-            var context = new ChatLinkTypeContext(input);
-            return (from chatLinkType in this.GetType().Assembly.GetTypes().Where(link => link.IsSubclassOf(typeof(ChatLink)))
-                    select TypeDescriptor.GetConverter(chatLinkType)
-                    into typeConverter
-                    where typeConverter.CanConvertFrom(context, typeof(string))
-                    select (ChatLink)typeConverter.ConvertFromString(input)).FirstOrDefault();
+            Contract.Requires(input != null);
+            var baseType = typeof(ChatLink);
+            var chatLinkTypes = this.GetType().Assembly.GetTypes().Where(link => link.IsSubclassOf(baseType));
+            var typeConverter = chatLinkTypes.Select(TypeDescriptor.GetConverter).FirstOrDefault(converter => converter.IsValid(input));
+            if (typeConverter == null)
+            {
+                throw new NotSupportedException("The specified chat link is not supported.");
+            }
+
+            return (ChatLink)typeConverter.ConvertFromString(input);
+        }
+
+        /// <summary>Decodes chat links of the specified type.</summary>
+        /// <param name="input">A chat link.</param>
+        /// <typeparam name="T">The chat link type.</typeparam>
+        /// <returns>A decoded <see cref="ChatLink"/> of the specified type.</returns>
+        public T Decode<T>(string input) where T : ChatLink
+        {
+            Contract.Requires(input != null);
+            var typeConverter = TypeDescriptor.GetConverter(typeof(T));
+            Contract.Assume(typeConverter != null);
+            if (!typeConverter.IsValid(input))
+            {
+                throw new InvalidOperationException(string.Format("The specified input is not of type '{0}'", typeof(T).Name));
+            }
+
+            return (T)typeConverter.ConvertFromString(input);
         }
 
         /// <summary>Encodes an amount of coins.</summary>
@@ -55,6 +75,8 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="ChatLink"/>.</returns>
         public ChatLink EncodeItem(int itemId, int quantity = 1, int? suffixItemId = null, int? secondarySuffixItemId = null, int? skinId = null)
         {
+            Contract.Requires(quantity >= 1);
+            Contract.Requires(quantity <= 255);
             return new ItemChatLink
                        {
                            ItemId = itemId, 

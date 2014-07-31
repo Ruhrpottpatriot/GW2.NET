@@ -8,10 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Builds
 {
-    using System;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2DotNET.Builds;
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.V1.Builds.Contracts;
@@ -26,6 +27,7 @@ namespace GW2DotNET.V1.Builds
         /// <param name="serviceClient">The service client.</param>
         public BuildService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -35,12 +37,15 @@ namespace GW2DotNET.V1.Builds
         public Build GetBuild()
         {
             var request = new BuildRequest();
-            var result = this.serviceClient.Send(request, new JsonSerializer<Build>());
+            var response = this.serviceClient.Send(request, new JsonSerializer<BuildContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
 
-            // Patch missing timestamp
-            result.Timestamp = DateTimeOffset.UtcNow;
-
-            return result;
+            var value = MapBuildContract(response.Content);
+            value.Timestamp = response.LastModified;
+            return value;
         }
 
         /// <summary>Gets the current build.</summary>
@@ -58,20 +63,31 @@ namespace GW2DotNET.V1.Builds
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
             var request = new BuildRequest();
-            var t1 = this.serviceClient.SendAsync(request, new JsonSerializer<Build>(), cancellationToken);
-            var t2 = t1.ContinueWith(
+            return this.serviceClient.SendAsync(request, new JsonSerializer<BuildContract>(), cancellationToken).ContinueWith(
                 task =>
                     {
-                        var result = task.Result;
-
-                        // Patch missing timestamp
-                        result.Timestamp = DateTimeOffset.UtcNow;
-
-                        return result;
+                        var response = task.Result;
+                        var value = MapBuildContract(response.Content);
+                        value.Timestamp = response.LastModified;
+                        return value;
                     }, 
                 cancellationToken);
+        }
 
-            return t2;
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Build MapBuildContract(BuildContract content)
+        {
+            Contract.Requires(content != null);
+            return new Build { BuildId = content.BuildId };
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

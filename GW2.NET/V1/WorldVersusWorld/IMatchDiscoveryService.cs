@@ -9,28 +9,30 @@
 namespace GW2DotNET.V1.WorldVersusWorld
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.WorldVersusWorld.Contracts;
+    using GW2DotNET.WorldVersusWorld;
 
     /// <summary>Provides the interface for the matchup discovery service.</summary>
+    [ContractClass(typeof(MatchDiscoveryServiceContract))]
     public interface IMatchDiscoveryService
     {
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        IEnumerable<Matchup> GetMatches();
+        IDictionary<string, Matchup> GetMatches();
 
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Matchup>> GetMatchesAsync();
+        Task<IDictionary<string, Matchup>> GetMatchesAsync();
 
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of currently running World versus World matches.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Matchup>> GetMatchesAsync(CancellationToken cancellationToken);
+        Task<IDictionary<string, Matchup>> GetMatchesAsync(CancellationToken cancellationToken);
     }
 }

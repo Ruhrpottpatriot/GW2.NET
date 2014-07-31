@@ -8,12 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Builds
 {
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Builds.Contracts;
+    using GW2DotNET.Builds;
 
     /// <summary>Provides the interface for the build service.</summary>
+    [ContractClass(typeof(BuildServiceContract))]
     public interface IBuildService
     {
         /// <summary>Gets the current game build.</summary>

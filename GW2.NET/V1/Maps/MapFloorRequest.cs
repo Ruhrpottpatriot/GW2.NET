@@ -12,10 +12,9 @@ namespace GW2DotNET.V1.Maps
     using System.Globalization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for details regarding a map floor, used to populate a world map.</summary>
-    public class MapFloorRequest : IFloorRequest, ILocalizable
+    public class MapFloorRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the continent identifier.</summary>
         public int? ContinentId { get; set; }
@@ -31,7 +30,7 @@ namespace GW2DotNET.V1.Maps
         {
             get
             {
-                return Services.MapFloor;
+                return "v1/map_floor.json";
             }
         }
 

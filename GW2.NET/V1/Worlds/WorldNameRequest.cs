@@ -12,7 +12,6 @@ namespace GW2DotNET.V1.Worlds
     using System.Globalization;
 
     using GW2DotNET.Common;
-    using GW2DotNET.V1.Common;
 
     /// <summary>Represents a request for a list of worlds and their localized name.</summary>
     public class WorldNameRequest : IRequest, ILocalizable
@@ -25,7 +24,7 @@ namespace GW2DotNET.V1.Worlds
         {
             get
             {
-                return Services.WorldNames;
+                return "v1/world_names.json";
             }
         }
 

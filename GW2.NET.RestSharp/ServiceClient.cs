@@ -9,6 +9,8 @@
 namespace GW2DotNET.RestSharp
 {
     using System;
+    using System.Diagnostics;
+    using System.Diagnostics.Contracts;
     using System.IO;
     using System.Threading;
     using System.Threading.Tasks;
@@ -21,6 +23,13 @@ namespace GW2DotNET.RestSharp
 
     using global::RestSharp;
 
+    class Program
+    {
+        static void Main()
+        {
+            var client = new ServiceClient(baseUri: null);
+        }
+    }
     /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
     {
@@ -31,8 +40,8 @@ namespace GW2DotNET.RestSharp
         /// <param name="baseUri">The base URI.</param>
         public ServiceClient(Uri baseUri)
         {
-            Preconditions.EnsureNotNull(paramName: "baseUri", value: baseUri);
-            Preconditions.Ensure(baseUri.IsAbsoluteUri, "baseUri", "Parameter '{0}' must be an absolute URI.");
+            Contract.Requires(baseUri != null);
+            Contract.Requires(baseUri.IsAbsoluteUri, "Parameter 'baseUri' must be an absolute URI.");
             this.restClient = new RestClient(baseUri.ToString());
         }
 
@@ -40,7 +49,7 @@ namespace GW2DotNET.RestSharp
         /// <param name="restClient">The <see cref="IRestClient"/>.</param>
         public ServiceClient(IRestClient restClient)
         {
-            Preconditions.EnsureNotNull(paramName: "restClient", value: restClient);
+            Contract.Requires(restClient != null);
             this.restClient = restClient;
         }
 
@@ -49,7 +58,7 @@ namespace GW2DotNET.RestSharp
         /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public TResult Send<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public IResponse<TResult> Send<TResult>(IRequest request, ISerializer<TResult> serializer)
         {
             var restRequest = new RestRequest(request.Resource);
 
@@ -61,7 +70,7 @@ namespace GW2DotNET.RestSharp
 
             // Handle the request
             var restResponse = GetRestResponse(this.restClient, restRequest);
-            return DeserializeResponse(serializer, restResponse);
+            return new Response<TResult>(restResponse, DeserializeResponse(serializer, restResponse));
         }
 
         /// <summary>Sends a request and returns the response.</summary>
@@ -69,7 +78,7 @@ namespace GW2DotNET.RestSharp
         /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<TResult> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer)
         {
             return this.SendAsync(request, serializer, CancellationToken.None);
         }
@@ -80,7 +89,7 @@ namespace GW2DotNET.RestSharp
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<TResult> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer, CancellationToken cancellationToken)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer, CancellationToken cancellationToken)
         {
             var restRequest = new RestRequest(request.Resource);
 
@@ -91,10 +100,13 @@ namespace GW2DotNET.RestSharp
             }
 
             // Handle the request
-            var t1 = GetRestResponseAsync(this.restClient, restRequest, cancellationToken);
-            var t2 = t1.ContinueWith(task => DeserializeResponse(serializer, task.Result), cancellationToken);
-
-            return t2;
+            return GetRestResponseAsync(this.restClient, restRequest, cancellationToken).ContinueWith<IResponse<TResult>>(
+                task =>
+                    {
+                        var restResponse = task.Result;
+                        return new Response<TResult>(restResponse, DeserializeResponse(serializer, restResponse));
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Infrastructure. Deserializes the response stream.</summary>
@@ -130,7 +142,7 @@ namespace GW2DotNET.RestSharp
 
             // Wrap protocol exceptions in a ServiceException, then throw
             var errorResult = new JsonSerializer<ErrorResult>().Deserialize(new MemoryStream(response.RawBytes));
-            throw new ServiceException(null, errorResult);
+            throw new ServiceException(errorResult.Text);
         }
 
         /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
@@ -159,7 +171,7 @@ namespace GW2DotNET.RestSharp
 
                         // Wrap protocol exceptions in a ServiceException, then throw
                         var errorResult = new JsonSerializer<ErrorResult>().Deserialize(new MemoryStream(response.RawBytes));
-                        throw new ServiceException(null, errorResult);
+                        throw new ServiceException(errorResult.Text);
                     }, 
                 cancellationToken);
         }

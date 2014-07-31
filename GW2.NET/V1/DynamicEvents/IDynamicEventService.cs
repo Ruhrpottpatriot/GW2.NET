@@ -6,7 +6,6 @@
 //   Provides the interface for the events service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.DynamicEvents
 {
     /// <summary>Provides the interface for the events service.</summary>

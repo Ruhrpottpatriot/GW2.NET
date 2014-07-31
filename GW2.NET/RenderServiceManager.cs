@@ -9,6 +9,7 @@
 namespace GW2DotNET
 {
     using System;
+    using System.Diagnostics.Contracts;
     using System.Drawing;
     using System.Threading;
     using System.Threading.Tasks;
@@ -26,12 +27,13 @@ namespace GW2DotNET
         /// <param name="renderService">The render service.</param>
         public RenderServiceManager(IRenderService renderService)
         {
+            Contract.Requires(renderService != null);
             this.renderService = renderService;
         }
 
         /// <summary>Initializes a new instance of the <see cref="RenderServiceManager"/> class.</summary>
         public RenderServiceManager()
-            : this(new ServiceClient(new Uri("https://render.guildwars2.com")))
+            : this(new ServiceClient(BaseUri))
         {
         }
 
@@ -39,7 +41,21 @@ namespace GW2DotNET
         /// <param name="serviceClient">The service client.</param>
         public RenderServiceManager(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.renderService = new RenderService(serviceClient);
+        }
+
+        /// <summary>Gets the base URI.</summary>
+        /// <remarks>This property exists because code contracts cannot be condensed into a single line.</remarks>
+        private static Uri BaseUri
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
+                var baseUri = new Uri("https://render.guildwars2.com", UriKind.Absolute);
+                Contract.Assume(baseUri.IsAbsoluteUri);
+                return baseUri;
+            }
         }
 
         /// <summary>Gets an image.</summary>
@@ -71,6 +87,13 @@ namespace GW2DotNET
         public Task<Image> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
             return this.renderService.GetImageAsync(file, imageFormat, cancellationToken);
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.renderService != null);
         }
     }
 }

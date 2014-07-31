@@ -9,89 +9,91 @@
 namespace GW2DotNET.V1.Maps
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.V1.Maps.Contracts;
+    using GW2DotNET.Maps;
 
     /// <summary>Provides the interface for the maps service.</summary>
+    [ContractClass(typeof(MapServiceContract))]
     public interface IMapService
     {
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Map GetMap(int mapId);
+        Map GetMap(int map);
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Map GetMap(int mapId, CultureInfo language);
+        Map GetMap(int map, CultureInfo language);
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<Map> GetMapAsync(int mapId);
+        Task<Map> GetMapAsync(int map);
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<Map> GetMapAsync(int mapId, CancellationToken cancellationToken);
+        Task<Map> GetMapAsync(int map, CancellationToken cancellationToken);
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<Map> GetMapAsync(int mapId, CultureInfo language);
+        Task<Map> GetMapAsync(int map, CultureInfo language);
 
         /// <summary>Gets a map and its localized details.</summary>
-        /// <param name="mapId">The map filter.</param>
+        /// <param name="map">The map identifier.</param>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<Map> GetMapAsync(int mapId, CultureInfo language, CancellationToken cancellationToken);
+        Task<Map> GetMapAsync(int map, CultureInfo language, CancellationToken cancellationToken);
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        IEnumerable<Map> GetMaps();
+        IDictionary<int, Map> GetMaps();
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        IEnumerable<Map> GetMaps(CultureInfo language);
+        IDictionary<int, Map> GetMaps(CultureInfo language);
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Map>> GetMapsAsync();
+        Task<IDictionary<int, Map>> GetMapsAsync();
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Map>> GetMapsAsync(CancellationToken cancellationToken);
+        Task<IDictionary<int, Map>> GetMapsAsync(CancellationToken cancellationToken);
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Map>> GetMapsAsync(CultureInfo language);
+        Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language);
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<IEnumerable<Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken);
+        Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken);
     }
 }

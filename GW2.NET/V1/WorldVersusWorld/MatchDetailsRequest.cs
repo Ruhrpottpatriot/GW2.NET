@@ -10,10 +10,10 @@ namespace GW2DotNET.V1.WorldVersusWorld
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.V1.Common;
+    using GW2DotNET.Common;
 
     /// <summary>Represents a request for details regarding the specified match, including the total score and further details for each map.</summary>
-    public class MatchDetailsRequest : IMatchRequest
+    public class MatchDetailsRequest : IRequest
     {
         /// <summary>Gets or sets the match identifier.</summary>
         public string MatchId { get; set; }
@@ -23,7 +23,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         {
             get
             {
-                return Services.MatchDetails;
+                return "v1/wvw/match_details.json";
             }
         }
 

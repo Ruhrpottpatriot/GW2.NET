@@ -140,21 +140,19 @@ continent_rect: array of 2x Integer[2]</body>
   <packagedElements>
     <packageHasNamedElement>
       <packageMoniker
-        Id="1e7a5975-ed5e-49e4-9f92-095e98c63145"
-        LastKnownName="Builds"
-        LastKnownLocation="Package_1253.uml" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <packageMoniker
-        Id="05326c16-40ac-4483-a38b-895a4ba2b9d0"
-        LastKnownName="Items"
-        LastKnownLocation="Package1_1253.uml" />
-    </packageHasNamedElement>
-    <packageHasNamedElement>
-      <packageMoniker
         Id="bf9e54ee-8644-4d4e-91a4-bbc7ab43fb46"
         LastKnownName="V1"
         LastKnownLocation="Package_2023.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="88b43c72-8ee0-4a2c-ab65-3af0b2af9588"
+        name="DateTime" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="e4c05360-6e8d-4243-9f20-385c011e7cd4"
+        name="DateTimeOffset" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType

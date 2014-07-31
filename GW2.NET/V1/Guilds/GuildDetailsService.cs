@@ -9,11 +9,15 @@
 namespace GW2DotNET.V1.Guilds
 {
     using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
+    using GW2DotNET.Guilds;
     using GW2DotNET.V1.Guilds.Contracts;
 
     /// <summary>Provides the default implementation of the guild details service.</summary>
@@ -26,6 +30,7 @@ namespace GW2DotNET.V1.Guilds
         /// <param name="serviceClient">The service client.</param>
         public GuildDetailsService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -36,7 +41,13 @@ namespace GW2DotNET.V1.Guilds
         public Guild GetGuildDetailsById(Guid guildId)
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
-            return this.serviceClient.Send(request, new JsonSerializer<Guild>());
+            var response = this.serviceClient.Send(request, new JsonSerializer<GuildContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            return MapGuildContracts(response.Content);
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -46,7 +57,14 @@ namespace GW2DotNET.V1.Guilds
         public Task<Guild> GetGuildDetailsByIdAsync(Guid guildId)
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<Guild>(), CancellationToken.None);
+            var cancellationToken = CancellationToken.None;
+            return this.serviceClient.SendAsync(request, new JsonSerializer<GuildContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapGuildContracts(response.Content);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -57,7 +75,13 @@ namespace GW2DotNET.V1.Guilds
         public Task<Guild> GetGuildDetailsByIdAsync(Guid guildId, CancellationToken cancellationToken)
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<Guild>(), cancellationToken);
+            return this.serviceClient.SendAsync(request, new JsonSerializer<GuildContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapGuildContracts(response.Content);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -67,7 +91,13 @@ namespace GW2DotNET.V1.Guilds
         public Guild GetGuildDetailsByName(string guildName)
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
-            return this.serviceClient.Send(request, new JsonSerializer<Guild>());
+            var response = this.serviceClient.Send(request, new JsonSerializer<GuildContract>());
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            return MapGuildContracts(response.Content);
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -77,7 +107,14 @@ namespace GW2DotNET.V1.Guilds
         public Task<Guild> GetGuildDetailsByNameAsync(string guildName)
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<Guild>(), CancellationToken.None);
+            var cancellationToken = CancellationToken.None;
+            return this.serviceClient.SendAsync(request, new JsonSerializer<GuildContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapGuildContracts(response.Content);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -88,7 +125,67 @@ namespace GW2DotNET.V1.Guilds
         public Task<Guild> GetGuildDetailsByNameAsync(string guildName, CancellationToken cancellationToken)
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<Guild>(), cancellationToken);
+            return this.serviceClient.SendAsync(request, new JsonSerializer<GuildContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return MapGuildContracts(response.Content);
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Emblem MapEmblemContract(EmblemContract content)
+        {
+            if (content == null)
+            {
+                return null;
+            }
+
+            return new Emblem
+                       {
+                           BackgroundId = content.BackgroundId, 
+                           ForegroundId = content.ForegroundId, 
+                           Flags = MapEmblemTransformationsContracts(content.Flags), 
+                           BackgroundColorId = content.BackgroundColorId, 
+                           ForegroundPrimaryColorId = content.ForegroundPrimaryColorId, 
+                           ForegroundSecondaryColorId = content.ForegroundSecondaryColorId
+                       };
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static EmblemTransformations MapEmblemTransformationsContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (EmblemTransformations)Enum.Parse(typeof(EmblemTransformations), content);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static EmblemTransformations MapEmblemTransformationsContracts(IEnumerable<string> content)
+        {
+            return content.Aggregate(EmblemTransformations.None, (current, flag) => current | MapEmblemTransformationsContract(flag));
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Guild MapGuildContracts(GuildContract content)
+        {
+            Contract.Requires(content != null);
+            return new Guild { GuildId = Guid.Parse(content.GuildId), Name = content.Name, Tag = content.Tag, Emblem = MapEmblemContract(content.Emblem) };
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }
