@@ -12,7 +12,7 @@ namespace GW2DotNET.V2.Common
     public interface ISubcollection
     {
         /// <summary>Gets or sets the number of values in this subset.</summary>
-        int SubsetCount { get; set; }
+        int PageCount { get; set; }
 
         /// <summary>Gets or sets the number of values in the entire collection.</summary>
         int TotalCount { get; set; }

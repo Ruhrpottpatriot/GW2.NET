@@ -131,14 +131,14 @@ namespace GW2DotNET.V2.Quaggans
                 return new Subdictionary<string, Quaggan>(0);
             }
 
-            // Get the number of return values
-            var count = response.GetResultCount();
+            // Get the number of values in this subset
+            var pageCount = response.GetResultCount();
 
-            // Get the total number of values
-            var total = response.GetResultTotal();
+            // Get the number of values in the collection
+            var totalCount = response.GetResultTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganContracts(response.Content, count, total);
+            return ConvertQuagganContracts(response.Content, pageCount, totalCount);
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
@@ -154,13 +154,13 @@ namespace GW2DotNET.V2.Quaggans
             }
 
             // Get the number of values in this subset
-            var count = response.GetResultCount();
+            var pageCount = response.GetResultCount();
 
             // Get the number of values in the collection
-            var total = response.GetResultTotal();
+            var totalCount = response.GetResultTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganContracts(response.Content, count, total);
+            return ConvertQuagganContracts(response.Content, pageCount, totalCount);
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
@@ -176,10 +176,10 @@ namespace GW2DotNET.V2.Quaggans
             }
 
             // Get the number of values in this subset
-            var count = response.GetResultCount();
+            var pageCount = response.GetResultCount();
 
             // Get the number of values in the collection
-            var total = response.GetResultTotal();
+            var totalCount = response.GetResultTotal();
 
             // Get the maximum number of values in this subset
             var pageSize = response.GetPageSize();
@@ -188,7 +188,7 @@ namespace GW2DotNET.V2.Quaggans
             var pageTotal = response.GetPageTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
+            return ConvertQuagganContracts(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
@@ -205,10 +205,10 @@ namespace GW2DotNET.V2.Quaggans
             }
 
             // Get the number of values in this subset
-            var count = response.GetResultCount();
+            var pageCount = response.GetResultCount();
 
             // Get the number of values in the collection
-            var total = response.GetResultTotal();
+            var totalCount = response.GetResultTotal();
 
             // Get the maximum number of values in this subset
             var pageSize = response.GetPageSize();
@@ -217,7 +217,7 @@ namespace GW2DotNET.V2.Quaggans
             var pageTotal = response.GetPageTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
+            return ConvertQuagganContracts(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
@@ -247,10 +247,10 @@ namespace GW2DotNET.V2.Quaggans
                         }
 
                         // Get the number of values in this subset
-                        var count = response.GetResultCount();
+                        var pageCount = response.GetResultCount();
 
                         // Get the number of values in the collection
-                        var total = response.GetResultTotal();
+                        var totalCount = response.GetResultTotal();
 
                         // Get the maximum number of values in this subset
                         var pageSize = response.GetPageSize();
@@ -259,7 +259,7 @@ namespace GW2DotNET.V2.Quaggans
                         var pageTotal = response.GetPageTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
+                        return ConvertQuagganContracts(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
                     }, 
                 cancellationToken);
         }
@@ -289,10 +289,10 @@ namespace GW2DotNET.V2.Quaggans
                         }
 
                         // Get the number of values in this subset
-                        var count = response.GetResultCount();
+                        var pageCount = response.GetResultCount();
 
                         // Get the number of values in the collection
-                        var total = response.GetResultTotal();
+                        var totalCount = response.GetResultTotal();
 
                         // Get the maximum number of values in this subset
                         var pageSize = response.GetPageSize();
@@ -301,7 +301,7 @@ namespace GW2DotNET.V2.Quaggans
                         var pageTotal = response.GetPageTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
+                        return ConvertQuagganContracts(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
                     }, 
                 cancellationToken);
         }
@@ -331,13 +331,13 @@ namespace GW2DotNET.V2.Quaggans
                         }
 
                         // Get the number of values in this subset
-                        var count = response.GetResultCount();
+                        var pageCount = response.GetResultCount();
 
                         // Get the number of values in the collection
-                        var total = response.GetResultTotal();
+                        var totalCount = response.GetResultTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganContracts(response.Content, count, total);
+                        return ConvertQuagganContracts(response.Content, pageCount, totalCount);
                     }, 
                 cancellationToken);
         }
@@ -364,14 +364,14 @@ namespace GW2DotNET.V2.Quaggans
                             return new Subdictionary<string, Quaggan>(0);
                         }
 
-                        // Get the number of return values
-                        var count = response.GetResultCount();
+                        // Get the number of values in this subset
+                        var pageCount = response.GetResultCount();
 
-                        // Get the total number of values
-                        var total = response.GetResultTotal();
+                        // Get the number of values in the collection
+                        var totalCount = response.GetResultTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganContracts(response.Content, count, total);
+                        return ConvertQuagganContracts(response.Content, pageCount, totalCount);
                     }, 
                 cancellationToken);
         }
@@ -405,14 +405,14 @@ namespace GW2DotNET.V2.Quaggans
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="subsetCount">The subset count.</param>
+        /// <param name="pageCount">The page count.</param>
         /// <param name="totalCount">The total count.</param>
         /// <returns>A collection of entities.</returns>
-        private static Subdictionary<string, Quaggan> ConvertQuagganContracts(IEnumerable<QuagganContract> content, int subsetCount, int totalCount)
+        private static Subdictionary<string, Quaggan> ConvertQuagganContracts(IEnumerable<QuagganContract> content, int pageCount, int totalCount)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);
-            var values = new Subdictionary<string, Quaggan>(subsetCount) { SubsetCount = subsetCount, TotalCount = totalCount };
+            var values = new Subdictionary<string, Quaggan>(pageCount) { PageCount = pageCount, TotalCount = totalCount };
             foreach (var value in content.Select(ConvertQuagganContract))
             {
                 values.Add(value.Id, value);
@@ -423,7 +423,7 @@ namespace GW2DotNET.V2.Quaggans
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="subsetCount">The subset count.</param>
+        /// <param name="pageCount">The page count.</param>
         /// <param name="totalCount">The total count.</param>
         /// <param name="page">The page.</param>
         /// <param name="pageSize">The page size.</param>
@@ -431,7 +431,7 @@ namespace GW2DotNET.V2.Quaggans
         /// <returns>A collection of entities.</returns>
         private static PaginatedCollection<Quaggan> ConvertQuagganContracts(
             IEnumerable<QuagganContract> content, 
-            int subsetCount, 
+            int pageCount, 
             int totalCount, 
             int page, 
             int pageSize, 
@@ -439,9 +439,9 @@ namespace GW2DotNET.V2.Quaggans
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);
-            var values = new PaginatedCollection<Quaggan>(subsetCount)
+            var values = new PaginatedCollection<Quaggan>(pageCount)
                              {
-                                 SubsetCount = subsetCount, 
+                                 PageCount = pageCount, 
                                  TotalCount = totalCount, 
                                  CurrentPage = page, 
                                  PageSize = pageSize, 

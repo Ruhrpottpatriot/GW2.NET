@@ -75,7 +75,7 @@ namespace GW2DotNET.V2.Common
         }
 
         /// <summary>Gets or sets the number of values in this subset.</summary>
-        public int SubsetCount { get; set; }
+        public int PageCount { get; set; }
 
         /// <summary>Gets or sets the number of values in the entire collection.</summary>
         public int TotalCount { get; set; }
