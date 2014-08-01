@@ -895,6 +895,7 @@
     <Compile Include="V2\Colors\BulkColorRequest.cs" />
     <Compile Include="V2\Colors\ColorRequest.cs" />
     <Compile Include="V2\Colors\PaginatedColorRequest.cs" />
+    <Compile Include="V2\Common\ResponseExtensions.cs" />
     <Compile Include="V2\Common\Subdictionary.cs" />
     <Compile Include="V2\Common\BulkRequest.cs" />
     <Compile Include="V2\Common\DetailsRequest.cs" />

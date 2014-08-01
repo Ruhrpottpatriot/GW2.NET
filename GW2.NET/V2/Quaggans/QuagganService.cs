@@ -132,10 +132,10 @@ namespace GW2DotNET.V2.Quaggans
             }
 
             // Get the number of return values
-            var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+            var count = response.GetResultCount();
 
             // Get the total number of values
-            var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+            var total = response.GetResultTotal();
 
             // Convert the return values to entities
             return ConvertQuagganContracts(response.Content, count, total);
@@ -154,10 +154,10 @@ namespace GW2DotNET.V2.Quaggans
             }
 
             // Get the number of values in this subset
-            var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+            var count = response.GetResultCount();
 
-            // Get the number of values in the entire collection
-            var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+            // Get the number of values in the collection
+            var total = response.GetResultTotal();
 
             // Convert the return values to entities
             return ConvertQuagganContracts(response.Content, count, total);
@@ -176,16 +176,16 @@ namespace GW2DotNET.V2.Quaggans
             }
 
             // Get the number of values in this subset
-            var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+            var count = response.GetResultCount();
 
-            // Get the number of values in the entire collection
-            var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+            // Get the number of values in the collection
+            var total = response.GetResultTotal();
 
             // Get the maximum number of values in this subset
-            var pageSize = int.Parse(response.ExtensionData["X-Page-Size"]);
+            var pageSize = response.GetPageSize();
 
-            // Get the number of subsets in the entire collection
-            var pageTotal = int.Parse(response.ExtensionData["X-Page-Total"]);
+            // Get the number of subsets in the collection
+            var pageTotal = response.GetPageTotal();
 
             // Convert the return values to entities
             return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
@@ -205,16 +205,16 @@ namespace GW2DotNET.V2.Quaggans
             }
 
             // Get the number of values in this subset
-            var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+            var count = response.GetResultCount();
 
-            // Get the number of values in the entire collection
-            var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+            // Get the number of values in the collection
+            var total = response.GetResultTotal();
 
             // Get the maximum number of values in this subset
-            var pageSize = int.Parse(response.ExtensionData["X-Page-Size"]);
+            var pageSize = response.GetPageSize();
 
-            // Get the number of subsets in the entire collection
-            var pageTotal = int.Parse(response.ExtensionData["X-Page-Total"]);
+            // Get the number of subsets in the collection
+            var pageTotal = response.GetPageTotal();
 
             // Convert the return values to entities
             return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
@@ -239,28 +239,28 @@ namespace GW2DotNET.V2.Quaggans
             var request = new QuagganPageRequest { Page = page, PageSize = size };
             return this.serviceClient.SendAsync(request, new JsonSerializer<IEnumerable<QuagganContract>>(), cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return new PaginatedCollection<Quaggan>(0);
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new PaginatedCollection<Quaggan>(0);
+                        }
 
-                    // Get the number of values in this subset
-                    var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+                        // Get the number of values in this subset
+                        var count = response.GetResultCount();
 
-                    // Get the number of values in the entire collection
-                    var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+                        // Get the number of values in the collection
+                        var total = response.GetResultTotal();
 
-                    // Get the maximum number of values in this subset
-                    var pageSize = int.Parse(response.ExtensionData["X-Page-Size"]);
+                        // Get the maximum number of values in this subset
+                        var pageSize = response.GetPageSize();
 
-                    // Get the number of subsets in the entire collection
-                    var pageTotal = int.Parse(response.ExtensionData["X-Page-Total"]);
+                        // Get the number of subsets in the collection
+                        var pageTotal = response.GetPageTotal();
 
-                    // Convert the return values to entities
-                    return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
-                },
+                        // Convert the return values to entities
+                        return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
+                    }, 
                 cancellationToken);
         }
 
@@ -289,16 +289,16 @@ namespace GW2DotNET.V2.Quaggans
                         }
 
                         // Get the number of values in this subset
-                        var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+                        var count = response.GetResultCount();
 
-                        // Get the number of values in the entire collection
-                        var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+                        // Get the number of values in the collection
+                        var total = response.GetResultTotal();
 
                         // Get the maximum number of values in this subset
-                        var pageSize = int.Parse(response.ExtensionData["X-Page-Size"]);
+                        var pageSize = response.GetPageSize();
 
-                        // Get the number of subsets in the entire collection
-                        var pageTotal = int.Parse(response.ExtensionData["X-Page-Total"]);
+                        // Get the number of subsets in the collection
+                        var pageTotal = response.GetPageTotal();
 
                         // Convert the return values to entities
                         return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
@@ -331,10 +331,10 @@ namespace GW2DotNET.V2.Quaggans
                         }
 
                         // Get the number of values in this subset
-                        var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+                        var count = response.GetResultCount();
 
-                        // Get the number of values in the entire collection
-                        var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+                        // Get the number of values in the collection
+                        var total = response.GetResultTotal();
 
                         // Convert the return values to entities
                         return ConvertQuagganContracts(response.Content, count, total);
@@ -365,10 +365,10 @@ namespace GW2DotNET.V2.Quaggans
                         }
 
                         // Get the number of return values
-                        var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+                        var count = response.GetResultCount();
 
                         // Get the total number of values
-                        var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+                        var total = response.GetResultTotal();
 
                         // Convert the return values to entities
                         return ConvertQuagganContracts(response.Content, count, total);
