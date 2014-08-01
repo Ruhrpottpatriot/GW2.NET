@@ -38,19 +38,38 @@ namespace GW2DotNET.V2.Quaggans
 
         /// <summary>Gets a collection of Quaggans</summary>
         /// <returns>A collection of Quaggans.</returns>
-        public BulkResultDictionary<string, Quaggan> GetQuaggans()
+        public Subdictionary<string, Quaggan> GetQuaggans()
         {
-            Contract.Ensures(Contract.Result<BulkResultDictionary<string, Quaggan>>() != null);
+            Contract.Ensures(Contract.Result<Subdictionary<string, Quaggan>>() != null);
             throw new System.NotImplementedException();
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
         /// <param name="identifiers">A collection of identifiers.</param>
         /// <returns>A collection of Quaggans.</returns>
-        public BulkResultDictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
+        public Subdictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
         {
             Contract.Requires(identifiers != null);
-            Contract.Ensures(Contract.Result<BulkResultDictionary<string, Quaggan>>() != null);
+            Contract.Ensures(Contract.Result<Subdictionary<string, Quaggan>>() != null);
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public PaginatedCollection<Quaggan> GetQuaggans(int page)
+        {
+            Contract.Ensures(Contract.Result<PaginatedCollection<Quaggan>>() != null);
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="size">The page size.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public PaginatedCollection<Quaggan> GetQuaggans(int page, int size)
+        {
+            Contract.Ensures(Contract.Result<PaginatedCollection<Quaggan>>() != null);
             throw new System.NotImplementedException();
         }
     }

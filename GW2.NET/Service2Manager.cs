@@ -81,7 +81,7 @@ namespace GW2DotNET
 
         /// <summary>Gets a collection of Quaggans</summary>
         /// <returns>A collection of Quaggans.</returns>
-        public BulkResultDictionary<string, Quaggan> GetQuaggans()
+        public Subdictionary<string, Quaggan> GetQuaggans()
         {
             return new QuagganService(this.serviceClient).GetQuaggans();
         }
@@ -89,9 +89,26 @@ namespace GW2DotNET
         /// <summary>Gets a collection of Quaggans.</summary>
         /// <param name="identifiers">A collection of identifiers.</param>
         /// <returns>A collection of Quaggans.</returns>
-        public BulkResultDictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
+        public Subdictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
         {
             return new QuagganService(this.serviceClient).GetQuaggans(identifiers);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public PaginatedCollection<Quaggan> GetQuaggans(int page)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggans(page);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="size">The page size.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public PaginatedCollection<Quaggan> GetQuaggans(int page, int size)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggans(page, size);
         }
     }
 }

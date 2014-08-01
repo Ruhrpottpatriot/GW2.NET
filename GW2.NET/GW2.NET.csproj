@@ -895,12 +895,15 @@
     <Compile Include="V2\Colors\BulkColorRequest.cs" />
     <Compile Include="V2\Colors\ColorRequest.cs" />
     <Compile Include="V2\Colors\PaginatedColorRequest.cs" />
-    <Compile Include="V2\Common\BulkResultDictionary.cs" />
+    <Compile Include="V2\Common\Subdictionary.cs" />
     <Compile Include="V2\Common\BulkRequest.cs" />
     <Compile Include="V2\Common\DetailsRequest.cs" />
     <Compile Include="V2\Common\IBulkRequest.cs" />
     <Compile Include="V2\Common\IDetailsRequest.cs" />
+    <Compile Include="V2\Common\IPaginatedCollection.cs" />
     <Compile Include="V2\Common\IPaginatedRequest.cs" />
+    <Compile Include="V2\Common\ISubcollection.cs" />
+    <Compile Include="V2\Common\PaginatedCollection.cs" />
     <Compile Include="V2\Common\PaginatedRequest.cs" />
     <Compile Include="V2\Quaggans.Contracts\QuagganContract.cs" />
     <Compile Include="V1\WorldVersusWorld\ObjectiveNameServiceContract.cs" />
@@ -908,6 +911,7 @@
     <Compile Include="V2\Quaggans\QuagganBulkRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganDetailsRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganDiscoveryRequest.cs" />
+    <Compile Include="V2\Quaggans\QuagganPageRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganService.cs" />
     <Compile Include="V2\Quaggans\QuagganServiceContract.cs" />
     <Compile Include="Worlds\World.cs" />

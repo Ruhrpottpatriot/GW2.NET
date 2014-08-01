@@ -64,13 +64,13 @@ namespace GW2DotNET.V2.Quaggans
 
         /// <summary>Gets a collection of Quaggans</summary>
         /// <returns>A collection of Quaggans.</returns>
-        public BulkResultDictionary<string, Quaggan> GetQuaggans()
+        public Subdictionary<string, Quaggan> GetQuaggans()
         {
             var request = new QuagganBulkRequest();
             var response = this.serviceClient.Send(request, new JsonSerializer<IEnumerable<QuagganContract>>());
             if (response.Content == null)
             {
-                return new BulkResultDictionary<string, Quaggan>(0);
+                return new Subdictionary<string, Quaggan>(0);
             }
 
             // Get the number of return values
@@ -86,23 +86,80 @@ namespace GW2DotNET.V2.Quaggans
         /// <summary>Gets a collection of Quaggans.</summary>
         /// <param name="identifiers">A collection of identifiers.</param>
         /// <returns>A collection of Quaggans.</returns>
-        public BulkResultDictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
+        public Subdictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
         {
             var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
             var response = this.serviceClient.Send(request, new JsonSerializer<IEnumerable<QuagganContract>>());
             if (response.Content == null)
             {
-                return new BulkResultDictionary<string, Quaggan>(0);
+                return new Subdictionary<string, Quaggan>(0);
             }
 
-            // Get the number of return values
+            // Get the number of values in this subset
             var count = int.Parse(response.ExtensionData["X-Result-Count"]);
 
-            // Get the total number of values
+            // Get the number of values in the entire collection
             var total = int.Parse(response.ExtensionData["X-Result-Total"]);
 
             // Convert the return values to entities
             return ConvertQuagganContracts(response.Content, count, total);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public PaginatedCollection<Quaggan> GetQuaggans(int page)
+        {
+            var request = new QuagganPageRequest { Page = page };
+            var response = this.serviceClient.Send(request, new JsonSerializer<IEnumerable<QuagganContract>>());
+            if (response.Content == null)
+            {
+                return new PaginatedCollection<Quaggan>(0);
+            }
+
+            // Get the number of values in this subset
+            var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+
+            // Get the number of values in the entire collection
+            var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+
+            // Get the maximum number of values in this subset
+            var pageSize = int.Parse(response.ExtensionData["X-Page-Size"]);
+
+            // Get the number of subsets in the entire collection
+            var pageTotal = int.Parse(response.ExtensionData["X-Page-Total"]);
+
+            // Convert the return values to entities
+            return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="size">The page size.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public PaginatedCollection<Quaggan> GetQuaggans(int page, int size)
+        {
+            var request = new QuagganPageRequest { Page = page, PageSize = size };
+            var response = this.serviceClient.Send(request, new JsonSerializer<IEnumerable<QuagganContract>>());
+            if (response.Content == null)
+            {
+                return new PaginatedCollection<Quaggan>(0);
+            }
+
+            // Get the number of values in this subset
+            var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+
+            // Get the number of values in the entire collection
+            var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+
+            // Get the maximum number of values in this subset
+            var pageSize = int.Parse(response.ExtensionData["X-Page-Size"]);
+
+            // Get the number of subsets in the entire collection
+            var pageTotal = int.Parse(response.ExtensionData["X-Page-Total"]);
+
+            // Convert the return values to entities
+            return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -134,19 +191,49 @@ namespace GW2DotNET.V2.Quaggans
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="count">The count.</param>
-        /// <param name="total">The total.</param>
+        /// <param name="subsetCount">The subset count.</param>
+        /// <param name="totalCount">The total count.</param>
         /// <returns>A collection of entities.</returns>
-        private static BulkResultDictionary<string, Quaggan> ConvertQuagganContracts(IEnumerable<QuagganContract> content, int count, int total)
+        private static Subdictionary<string, Quaggan> ConvertQuagganContracts(IEnumerable<QuagganContract> content, int subsetCount, int totalCount)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);
-            var values = new BulkResultDictionary<string, Quaggan>(count) { ResultTotal = total };
+            var values = new Subdictionary<string, Quaggan>(subsetCount) { SubsetCount = subsetCount, TotalCount = totalCount };
             foreach (var value in content.Select(ConvertQuagganContract))
             {
                 values.Add(value.Id, value);
             }
 
+            return values;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <param name="subsetCount">The subset count.</param>
+        /// <param name="totalCount">The total count.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">The page size.</param>
+        /// <param name="pageTotal">The page total.</param>
+        /// <returns>A collection of entities.</returns>
+        private static PaginatedCollection<Quaggan> ConvertQuagganContracts(
+            IEnumerable<QuagganContract> content, 
+            int subsetCount, 
+            int totalCount, 
+            int page, 
+            int pageSize, 
+            int pageTotal)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);
+            var values = new PaginatedCollection<Quaggan>(subsetCount)
+                             {
+                                 SubsetCount = subsetCount, 
+                                 TotalCount = totalCount, 
+                                 CurrentPage = page, 
+                                 PageSize = pageSize, 
+                                 PageTotal = pageTotal
+                             };
+            values.AddRange(content.Select(ConvertQuagganContract));
             return values;
         }
     }
