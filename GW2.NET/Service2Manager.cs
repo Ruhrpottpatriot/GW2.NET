@@ -72,11 +72,43 @@ namespace GW2DotNET
             return new QuagganService(this.serviceClient).GetQuaggan(identifier);
         }
 
+        /// <summary>Gets a Quaggan.</summary>
+        /// <param name="identifier">An identifier</param>
+        /// <returns>A Quaggan</returns>
+        public Task<Quaggan> GetQuagganAsync(string identifier)
+        {
+            return new QuagganService(this.serviceClient).GetQuagganAsync(identifier, CancellationToken.None);
+        }
+
+        /// <summary>Gets a Quaggan.</summary>
+        /// <param name="identifier">An identifier</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A Quaggan</returns>
+        public Task<Quaggan> GetQuagganAsync(string identifier, CancellationToken cancellationToken)
+        {
+            return new QuagganService(this.serviceClient).GetQuagganAsync(identifier, cancellationToken);
+        }
+
         /// <summary>Gets a collection of Quaggan identifiers.</summary>
         /// <returns>A collection of identifiers.</returns>
         public ICollection<string> GetQuagganIdentifiers()
         {
             return new QuagganService(this.serviceClient).GetQuagganIdentifiers();
+        }
+
+        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <returns>A collection of identifiers.</returns>
+        public Task<ICollection<string>> GetQuagganIdentifiersAsync()
+        {
+            return new QuagganService(this.serviceClient).GetQuagganIdentifiersAsync(CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of identifiers.</returns>
+        public Task<ICollection<string>> GetQuagganIdentifiersAsync(CancellationToken cancellationToken)
+        {
+            return new QuagganService(this.serviceClient).GetQuagganIdentifiersAsync(cancellationToken);
         }
 
         /// <summary>Gets a collection of Quaggans</summary>
@@ -87,11 +119,43 @@ namespace GW2DotNET
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync()
+        {
+            return new QuagganService(this.serviceClient).GetQuaggansAsync(CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(CancellationToken cancellationToken)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggansAsync(cancellationToken);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
         /// <param name="identifiers">A collection of identifiers.</param>
         /// <returns>A collection of Quaggans.</returns>
         public Subdictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
         {
             return new QuagganService(this.serviceClient).GetQuaggans(identifiers);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="identifiers">A collection of identifiers.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(IEnumerable<string> identifiers)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggansAsync(identifiers, CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="identifiers">A collection of identifiers.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(IEnumerable<string> identifiers, CancellationToken cancellationToken)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggansAsync(identifiers, cancellationToken);
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
@@ -104,11 +168,47 @@ namespace GW2DotNET
 
         /// <summary>Gets a collection of Quaggans.</summary>
         /// <param name="page">The page number.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggansAsync(page, CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, CancellationToken cancellationToken)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggansAsync(page, cancellationToken);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
         /// <param name="size">The page size.</param>
         /// <returns>A collection of Quaggans.</returns>
         public PaginatedCollection<Quaggan> GetQuaggans(int page, int size)
         {
             return new QuagganService(this.serviceClient).GetQuaggans(page, size);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="size">The page size.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, int size)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggansAsync(page, size, CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="size">The page size.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, int size, CancellationToken cancellationToken)
+        {
+            return new QuagganService(this.serviceClient).GetQuaggansAsync(page, size, cancellationToken);
         }
     }
 }

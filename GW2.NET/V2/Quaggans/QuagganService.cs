@@ -12,6 +12,8 @@ namespace GW2DotNET.V2.Quaggans
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
@@ -48,6 +50,35 @@ namespace GW2DotNET.V2.Quaggans
             return ConvertQuagganContract(response.Content);
         }
 
+        /// <summary>Gets a Quaggan.</summary>
+        /// <param name="identifier">An identifier</param>
+        /// <returns>A Quaggan</returns>
+        public Task<Quaggan> GetQuagganAsync(string identifier)
+        {
+            return this.GetQuagganAsync(identifier, CancellationToken.None);
+        }
+
+        /// <summary>Gets a Quaggan.</summary>
+        /// <param name="identifier">An identifier</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A Quaggan</returns>
+        public Task<Quaggan> GetQuagganAsync(string identifier, CancellationToken cancellationToken)
+        {
+            var request = new QuagganDetailsRequest { Identifier = identifier };
+            return this.serviceClient.SendAsync(request, new JsonSerializer<QuagganContract>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        return ConvertQuagganContract(response.Content);
+                    }, 
+                cancellationToken);
+        }
+
         /// <summary>Gets a collection of Quaggan identifiers.</summary>
         /// <returns>A collection of identifiers.</returns>
         public ICollection<string> GetQuagganIdentifiers()
@@ -60,6 +91,33 @@ namespace GW2DotNET.V2.Quaggans
             }
 
             return response.Content;
+        }
+
+        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <returns>A collection of identifiers.</returns>
+        public Task<ICollection<string>> GetQuagganIdentifiersAsync()
+        {
+            return this.GetQuagganIdentifiersAsync(CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <param name="cancellationToken">The cancellation Token.</param>
+        /// <returns>A collection of identifiers.</returns>
+        public Task<ICollection<string>> GetQuagganIdentifiersAsync(CancellationToken cancellationToken)
+        {
+            var request = new QuagganDiscoveryRequest();
+            return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<string>>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new List<string>(0);
+                        }
+
+                        return response.Content;
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a collection of Quaggans</summary>
@@ -160,6 +218,162 @@ namespace GW2DotNET.V2.Quaggans
 
             // Convert the return values to entities
             return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="size">The page size.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, int size)
+        {
+            return this.GetQuaggansAsync(page, size, CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="size">The page size.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, int size, CancellationToken cancellationToken)
+        {
+            var request = new QuagganPageRequest { Page = page, PageSize = size };
+            return this.serviceClient.SendAsync(request, new JsonSerializer<IEnumerable<QuagganContract>>(), cancellationToken).ContinueWith(
+                task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
+                    {
+                        return new PaginatedCollection<Quaggan>(0);
+                    }
+
+                    // Get the number of values in this subset
+                    var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+
+                    // Get the number of values in the entire collection
+                    var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+
+                    // Get the maximum number of values in this subset
+                    var pageSize = int.Parse(response.ExtensionData["X-Page-Size"]);
+
+                    // Get the number of subsets in the entire collection
+                    var pageTotal = int.Parse(response.ExtensionData["X-Page-Total"]);
+
+                    // Convert the return values to entities
+                    return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
+                },
+                cancellationToken);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page)
+        {
+            return this.GetQuaggansAsync(page, CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, CancellationToken cancellationToken)
+        {
+            var request = new QuagganPageRequest { Page = page };
+            return this.serviceClient.SendAsync(request, new JsonSerializer<IEnumerable<QuagganContract>>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new PaginatedCollection<Quaggan>(0);
+                        }
+
+                        // Get the number of values in this subset
+                        var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+
+                        // Get the number of values in the entire collection
+                        var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+
+                        // Get the maximum number of values in this subset
+                        var pageSize = int.Parse(response.ExtensionData["X-Page-Size"]);
+
+                        // Get the number of subsets in the entire collection
+                        var pageTotal = int.Parse(response.ExtensionData["X-Page-Total"]);
+
+                        // Convert the return values to entities
+                        return ConvertQuagganContracts(response.Content, count, total, page, pageSize, pageTotal);
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="identifiers">A collection of identifiers.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(IEnumerable<string> identifiers)
+        {
+            return this.GetQuaggansAsync(identifiers, CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="identifiers">A collection of identifiers.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(IEnumerable<string> identifiers, CancellationToken cancellationToken)
+        {
+            var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
+            return this.serviceClient.SendAsync(request, new JsonSerializer<IEnumerable<QuagganContract>>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new Subdictionary<string, Quaggan>(0);
+                        }
+
+                        // Get the number of values in this subset
+                        var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+
+                        // Get the number of values in the entire collection
+                        var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+
+                        // Convert the return values to entities
+                        return ConvertQuagganContracts(response.Content, count, total);
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync()
+        {
+            return this.GetQuaggansAsync(CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="cancellationToken">The cancellation.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(CancellationToken cancellationToken)
+        {
+            var request = new QuagganBulkRequest();
+            return this.serviceClient.SendAsync(request, new JsonSerializer<IEnumerable<QuagganContract>>(), cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new Subdictionary<string, Quaggan>(0);
+                        }
+
+                        // Get the number of return values
+                        var count = int.Parse(response.ExtensionData["X-Result-Count"]);
+
+                        // Get the total number of values
+                        var total = int.Parse(response.ExtensionData["X-Result-Total"]);
+
+                        // Convert the return values to entities
+                        return ConvertQuagganContracts(response.Content, count, total);
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
