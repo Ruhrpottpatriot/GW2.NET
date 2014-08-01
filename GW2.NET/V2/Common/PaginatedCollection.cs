@@ -10,8 +10,8 @@ namespace GW2DotNET.V2.Common
 {
     using System.Collections.Generic;
 
-    /// <summary>Represents a subcollection of values.</summary>
-    /// <typeparam name="T">The type of elements in the list.</typeparam>
+    /// <summary>Represents a subset of values.</summary>
+    /// <typeparam name="T">The type of elements in the subset.</typeparam>
     public sealed class PaginatedCollection<T> : List<T>, IPaginatedCollection
     {
         /// <summary>Initializes a new instance of the <see cref="PaginatedCollection{T}"/> class that is empty and has the default initial capacity.</summary>

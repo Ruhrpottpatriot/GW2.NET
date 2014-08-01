@@ -12,9 +12,9 @@ namespace GW2DotNET.V2.Common
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents a subcollection of keys and values.</summary>
-    /// <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
-    /// <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+    /// <summary>Represents a subset of keys and values.</summary>
+    /// <typeparam name="TKey">The type of the keys in the subset.</typeparam>
+    /// <typeparam name="TValue">The type of the values in the subset.</typeparam>
     public class Subdictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISubcollection
     {
         /// <summary>Initializes a new instance of the <see cref="Subdictionary{TKey,TValue}"/> class. 
