@@ -39,13 +39,13 @@ namespace GW2DotNET.V2.Common
         /// <summary>Gets or sets the maximum number of values in this subset.</summary>
         public int PageSize { get; set; }
 
-        /// <summary>Gets or sets the number of subsets in the entire collection.</summary>
+        /// <summary>Gets or sets the number of subsets in the collection.</summary>
         public int PageTotal { get; set; }
 
         /// <summary>Gets or sets the number of values in this subset.</summary>
         public int PageCount { get; set; }
 
-        /// <summary>Gets or sets the number of values in the entire collection.</summary>
+        /// <summary>Gets or sets the number of values in the collection.</summary>
         public int TotalCount { get; set; }
     }
 }
