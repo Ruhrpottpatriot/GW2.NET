@@ -48,7 +48,7 @@ namespace GW2DotNET.Common
             var formData = new UrlEncodedForm();
             foreach (var parameter in request.GetParameters())
             {
-                formData.Add(parameter);
+                formData[parameter.Key] = parameter.Value;
             }
 
             // Build the resource URI
@@ -84,7 +84,7 @@ namespace GW2DotNET.Common
             var formData = new UrlEncodedForm();
             foreach (var parameter in request.GetParameters())
             {
-                formData.Add(parameter);
+                formData[parameter.Key] = parameter.Value;
             }
 
             // Build the resource URI
