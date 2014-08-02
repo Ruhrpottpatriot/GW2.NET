@@ -282,6 +282,7 @@
     <Compile Include="Common\IRenderable.cs" />
     <Compile Include="Common\IResponse.cs" />
     <Compile Include="Common\RequestContracts.cs" />
+    <Compile Include="Common\ResponseContract.cs" />
     <Compile Include="Common\Serializers\DataContractSerializer.cs" />
     <Compile Include="Common\Serializers\SerializerContracts.cs" />
     <Compile Include="Common\Serializers\StringSerializer.cs" />

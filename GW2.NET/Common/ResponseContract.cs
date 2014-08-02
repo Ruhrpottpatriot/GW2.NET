@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IResponse.cs" company="GW2.NET Coding Team">
+// <copyright file="ResponseContract.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the interface for service responses.
+//   The response contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common
@@ -11,19 +11,23 @@ namespace GW2DotNET.Common
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
+    using System.Globalization;
 
-    /// <summary>Provides the interface for service responses.</summary>
+    /// <summary>The response contract.</summary>
     /// <typeparam name="T">The type of the response content.</typeparam>
-    [ContractClass(typeof(ResponseContract<>))]
-    public interface IResponse<T> : ILocalizable
+    [ContractClassFor(typeof(IResponse<>))]
+    internal abstract class ResponseContract<T> : IResponse<T>
     {
+        /// <summary>Gets or sets the locale.</summary>
+        public CultureInfo Culture { get; set; }
+
         /// <summary>Gets or sets the response content.</summary>
-        T Content { get; set; }
+        public T Content { get; set; }
 
         /// <summary>Gets or sets a collection of custom response headers.</summary>
-        IDictionary<string, string> ExtensionData { get; set;  }
+        public IDictionary<string, string> ExtensionData { get; set; }
 
         /// <summary>Gets or sets the <see cref="DateTime"/> at which the message originated..</summary>
-        DateTime LastModified { get; set; }
+        public DateTime LastModified { get; set; }
     }
 }

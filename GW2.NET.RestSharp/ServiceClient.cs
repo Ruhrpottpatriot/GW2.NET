@@ -200,7 +200,6 @@ namespace GW2DotNET.RestSharp
             }
 
             // Set the 'X'-tension headers
-            value.ExtensionData = new Dictionary<string, string>();
             foreach (var parameter in response.Headers.Where(parameter => parameter.Name.StartsWith("X-", StringComparison.Ordinal)))
             {
                 value.ExtensionData[parameter.Name] = (string)parameter.Value;

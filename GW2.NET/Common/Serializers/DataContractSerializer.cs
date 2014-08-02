@@ -6,9 +6,9 @@
 //   Provides methods for serializing data contracts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Common.Serializers
 {
+    using System.Diagnostics.Contracts;
     using System.IO;
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Json;
@@ -24,6 +24,7 @@ namespace GW2DotNET.Common.Serializers
         /// <param name="serializer">The serializer.</param>
         public DataContractSerializer(XmlObjectSerializer serializer)
         {
+            Contract.Requires(serializer != null);
             this.serializer = serializer;
         }
 
@@ -48,7 +49,13 @@ namespace GW2DotNET.Common.Serializers
         {
             using (stream)
             {
-                return (T)this.serializer.ReadObject(stream);
+                var value = this.serializer.ReadObject(stream);
+                if (value == null)
+                {
+                    return default(T);
+                }
+
+                return (T)value;
             }
         }
 
@@ -61,6 +68,13 @@ namespace GW2DotNET.Common.Serializers
             {
                 this.serializer.WriteObject(stream, value);
             }
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serializer != null);
         }
     }
 }

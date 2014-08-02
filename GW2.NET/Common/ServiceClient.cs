@@ -256,6 +256,7 @@ namespace GW2DotNET.Common
             Contract.Requires(response != null);
             Contract.Requires(serializer != null);
             Contract.Ensures(Contract.Result<IResponse<T>>() != null);
+            Contract.Ensures(Contract.Result<IResponse<T>>().ExtensionData != null);
 
             // Create a new generic response object
             var value = new Response<T>();
@@ -275,7 +276,6 @@ namespace GW2DotNET.Common
             }
 
             // Set the 'X'-tension headers
-            value.ExtensionData = new Dictionary<string, string>();
             foreach (var key in response.Headers.AllKeys.Where(key => key.StartsWith("X-", StringComparison.Ordinal)))
             {
                 value.ExtensionData[key] = response.Headers[key];

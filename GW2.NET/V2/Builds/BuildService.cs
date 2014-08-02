@@ -27,6 +27,7 @@ namespace GW2DotNET.V2.Builds
         /// <param name="serviceClient">The service client.</param>
         public BuildService(IServiceClient serviceClient)
         {
+            Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -94,6 +95,13 @@ namespace GW2DotNET.V2.Builds
 
             // Return the build object
             return value;
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

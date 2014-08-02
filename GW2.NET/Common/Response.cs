@@ -10,12 +10,20 @@ namespace GW2DotNET.Common
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
 
     /// <summary>Provides the default implementation of the <see cref="IResponse{T}"/> interface.</summary>
     /// <typeparam name="T">The type of the response content.</typeparam>
     public class Response<T> : IResponse<T>
     {
+        /// <summary>Initializes a new instance of the <see cref="Response{T}"/> class.</summary>
+        public Response()
+        {
+            Contract.Ensures(this.ExtensionData != null);
+            this.ExtensionData = new Dictionary<string, string>();
+        }
+
         /// <summary>Gets or sets the response content.</summary>
         public T Content { get; set; }
 
@@ -27,5 +35,12 @@ namespace GW2DotNET.Common
 
         /// <summary>Gets or sets the <see cref="DateTime"/> at which the message originated..</summary>
         public DateTime LastModified { get; set; }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.ExtensionData != null);
+        }
     }
 }

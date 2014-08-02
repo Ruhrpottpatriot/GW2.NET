@@ -415,6 +415,7 @@ namespace GW2DotNET.V2.Quaggans
             var values = new Subdictionary<string, Quaggan>(pageCount) { PageCount = pageCount, TotalCount = totalCount };
             foreach (var value in content.Select(ConvertQuagganContract))
             {
+                Contract.Assume(value != null);
                 values.Add(value.Id, value);
             }
 
@@ -438,7 +439,7 @@ namespace GW2DotNET.V2.Quaggans
             int pageTotal)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);
+            Contract.Ensures(Contract.Result<PaginatedCollection<Quaggan>>() != null);
             var values = new PaginatedCollection<Quaggan>(pageCount)
                              {
                                  PageCount = pageCount, 
@@ -449,6 +450,13 @@ namespace GW2DotNET.V2.Quaggans
                              };
             values.AddRange(content.Select(ConvertQuagganContract));
             return values;
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

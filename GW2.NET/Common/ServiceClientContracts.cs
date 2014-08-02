@@ -28,6 +28,7 @@ namespace GW2DotNET.Common
             Contract.Requires(request != null);
             Contract.Requires(serializer != null);
             Contract.Ensures(Contract.Result<IResponse<TResult>>() != null);
+            Contract.Ensures(Contract.Result<IResponse<TResult>>().ExtensionData != null);
             throw new System.NotImplementedException();
         }
 
@@ -41,6 +42,8 @@ namespace GW2DotNET.Common
             Contract.Requires(request != null);
             Contract.Requires(serializer != null);
             Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result != null);
+            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result.ExtensionData != null);
             throw new System.NotImplementedException();
         }
 
@@ -55,6 +58,8 @@ namespace GW2DotNET.Common
             Contract.Requires(request != null);
             Contract.Requires(serializer != null);
             Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result != null);
+            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result.ExtensionData != null);
             throw new System.NotImplementedException();
         }
     }

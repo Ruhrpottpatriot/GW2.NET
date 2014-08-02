@@ -9,6 +9,7 @@
 namespace GW2DotNET.V2.Common
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
 
     /// <summary>Represents a subset of values.</summary>
     /// <typeparam name="T">The type of elements in the subset.</typeparam>
@@ -31,6 +32,7 @@ namespace GW2DotNET.V2.Common
         public PaginatedCollection(int capacity)
             : base(capacity)
         {
+            Contract.Requires(capacity >= 0);
         }
 
         /// <summary>Gets or sets the 0-based index of this subset.</summary>

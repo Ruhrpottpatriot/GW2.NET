@@ -52,7 +52,7 @@ namespace GW2DotNET
 
         /// <summary>Initializes a new instance of the <see cref="Service2Manager"/> class.</summary>
         public Service2Manager()
-            : this(new ServiceClient(new Uri("https://api.guildwars2.com")))
+            : this(new ServiceClient(GetBaseUri()))
         {
         }
 
@@ -226,6 +226,17 @@ namespace GW2DotNET
         public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, int size, CancellationToken cancellationToken)
         {
             return this.quagganService.GetQuaggansAsync(page, size, cancellationToken);
+        }
+
+        /// <summary>Gets the base URI.</summary>
+        /// <returns>A <see cref="Uri"/>.</returns>
+        private static Uri GetBaseUri()
+        {
+            Contract.Ensures(Contract.Result<Uri>() != null);
+            Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
+            var baseUri = new Uri("https://api.guildwars2.com", UriKind.Absolute);
+            Contract.Assume(baseUri.IsAbsoluteUri);
+            return baseUri;
         }
 
         /// <summary>The invariant method for this class.</summary>
