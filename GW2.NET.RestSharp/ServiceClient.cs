@@ -17,7 +17,6 @@ namespace GW2DotNET.RestSharp
     using GW2DotNET.Common;
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Extensions;
 
     using global::RestSharp;
 
