@@ -9,8 +9,11 @@
 namespace GW2DotNET.RestSharp
 {
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
+    using System.Globalization;
     using System.IO;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -59,7 +62,7 @@ namespace GW2DotNET.RestSharp
 
             // Handle the request
             var restResponse = GetRestResponse(this.restClient, restRequest);
-            return new Response<TResult>(restResponse, DeserializeResponse(serializer, restResponse));
+            return PostProcess(restResponse, serializer);
         }
 
         /// <summary>Sends a request and returns the response.</summary>
@@ -93,7 +96,7 @@ namespace GW2DotNET.RestSharp
                 task =>
                     {
                         var restResponse = task.Result;
-                        return new Response<TResult>(restResponse, DeserializeResponse(serializer, restResponse));
+                        return PostProcess(restResponse, serializer);
                     }, 
                 cancellationToken);
         }
@@ -163,6 +166,48 @@ namespace GW2DotNET.RestSharp
                         throw new ServiceException(errorResult.Text);
                     }, 
                 cancellationToken);
+        }
+
+        /// <summary>Infrastructure. Post-processes a response object.</summary>
+        /// <param name="response">The raw response.</param>
+        /// <param name="serializer">The response content serializer.</param>
+        /// <typeparam name="T">The type of the response content.</typeparam>
+        /// <returns>A processed response object.</returns>
+        private static IResponse<T> PostProcess<T>(IRestResponse response, ISerializer<T> serializer)
+        {
+            Contract.Requires(response != null);
+            Contract.Requires(serializer != null);
+            Contract.Ensures(Contract.Result<IResponse<T>>() != null);
+
+            // Create a new generic response object
+            var value = new Response<T>();
+
+            // Set the deserialized response content
+            value.Content = DeserializeResponse(serializer, response);
+
+            // Set the 'Date' header
+            var date = response.Headers.SingleOrDefault(parameter => parameter.Name.Equals("Date", StringComparison.Ordinal));
+            if (date != null)
+            {
+                value.LastModified = DateTime.Parse((string)date.Value);
+            }
+
+            // Set the 'Content-Language' header
+            var culture = response.Headers.SingleOrDefault(parameter => parameter.Name.Equals("Content-Language", StringComparison.Ordinal));
+            if (culture != null)
+            {
+                value.Culture = CultureInfo.GetCultureInfo((string)culture.Value);
+            }
+
+            // Set the 'X'-tension headers
+            value.ExtensionData = new Dictionary<string, string>();
+            foreach (var parameter in response.Headers.Where(parameter => parameter.Name.StartsWith("X-", StringComparison.Ordinal)))
+            {
+                value.ExtensionData[parameter.Name] = (string)parameter.Value;
+            }
+
+            // Return the response object
+            return value;
         }
     }
 }

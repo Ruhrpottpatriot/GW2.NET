@@ -275,13 +275,11 @@ namespace GW2DotNET.Common
             }
 
             // Set the 'X'-tension headers
-            var extensionData = new Dictionary<string, string>();
-            foreach (var key in response.Headers.AllKeys.Where(key => key.StartsWith("X-", StringComparison.OrdinalIgnoreCase)))
+            value.ExtensionData = new Dictionary<string, string>();
+            foreach (var key in response.Headers.AllKeys.Where(key => key.StartsWith("X-", StringComparison.Ordinal)))
             {
-                extensionData[key] = response.Headers[key];
+                value.ExtensionData[key] = response.Headers[key];
             }
-
-            value.ExtensionData = extensionData;
 
             // Return the response object
             return value;

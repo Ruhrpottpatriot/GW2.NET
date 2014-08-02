@@ -14,7 +14,7 @@ namespace GW2DotNET.Common
 
     /// <summary>Provides the default implementation of the <see cref="IResponse{T}"/> interface.</summary>
     /// <typeparam name="T">The type of the response content.</typeparam>
-    internal class Response<T> : IResponse<T>
+    public class Response<T> : IResponse<T>
     {
         /// <summary>Gets or sets the response content.</summary>
         public T Content { get; set; }
