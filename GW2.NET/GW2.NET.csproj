@@ -286,6 +286,7 @@
     <Compile Include="Common\Serializers\SerializerContracts.cs" />
     <Compile Include="Common\Serializers\StringSerializer.cs" />
     <Compile Include="Common\ServiceClientContracts.cs" />
+    <Compile Include="Common\UrlEncodedForm.cs" />
     <Compile Include="Common\Vector2D.cs" />
     <Compile Include="Common\Rectangle.cs" />
     <Compile Include="Common\Size2D.cs" />
@@ -747,7 +748,6 @@
     <Compile Include="Skins\Weapons\UnknownWeaponSkin.cs" />
     <Compile Include="Skins\Weapons\WarHornSkin.cs" />
     <Compile Include="Skins\Weapons\WeaponSkin.cs" />
-    <Compile Include="Utilities\UrlEncodedForm.cs" />
     <Compile Include="V1\Builds.Contracts\BuildContract.cs" />
     <Compile Include="V1\Builds\BuildRequest.cs" />
     <Compile Include="V1\Builds\BuildService.cs" />
@@ -937,7 +937,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -20,7 +20,6 @@ namespace GW2DotNET.Common
 
     using GW2DotNET.Common.Contracts;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Utilities;
 
     /// <summary>Provides a default implementation for the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
