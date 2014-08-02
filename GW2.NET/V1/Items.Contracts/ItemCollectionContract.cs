@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Items.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Wraps a collection of item identifiers.</summary>
-    public sealed class ItemCollectionContract : ServiceContract
+    [DataContract]
+    public sealed class ItemCollectionContract
     {
         /// <summary>Gets or sets a collection of item identifiers.</summary>
         [DataMember(Name = "items", Order = 0)]

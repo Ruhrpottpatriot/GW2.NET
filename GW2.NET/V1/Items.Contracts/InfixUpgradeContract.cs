@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Items.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents item stats that are inherent to a specific item.</summary>
-    public sealed class InfixUpgradeContract : ServiceContract
+    [DataContract]
+    public sealed class InfixUpgradeContract
     {
         /// <summary>Gets or sets the item's attributes.</summary>
         [DataMember(Name = "attributes", Order = 1)]

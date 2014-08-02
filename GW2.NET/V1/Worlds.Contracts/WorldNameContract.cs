@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Worlds.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a world and its localized name.</summary>
-    public sealed class WorldNameContract : ServiceContract
+    [DataContract]
+    public sealed class WorldNameContract
     {
         /// <summary>Gets or sets the world identifier.</summary>
         [DataMember(Name = "id", Order = 0)]

@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Maps.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a continent.</summary>
-    public sealed class ContinentContract : ServiceContract
+    [DataContract]
+    public sealed class ContinentContract
     {
         /// <summary>Gets or sets the dimensions of the continent.</summary>
         [DataMember(Name = "continent_dims", Order = 1)]

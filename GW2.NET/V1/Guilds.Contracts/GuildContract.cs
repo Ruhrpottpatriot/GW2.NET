@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Guilds.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a guild and its details.</summary>
-    public sealed class GuildContract : ServiceContract
+    [DataContract]
+    public sealed class GuildContract
     {
         /// <summary>Gets or sets the guild's emblem.</summary>
         [DataMember(Name = "emblem", Order = 4)]

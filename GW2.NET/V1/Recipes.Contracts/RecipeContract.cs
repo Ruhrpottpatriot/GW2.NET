@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Recipes.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a crafting recipe.</summary>
-    public sealed class RecipeContract : ServiceContract
+    [DataContract]
+    public sealed class RecipeContract
     {
         /// <summary>Gets or sets the crafting disciplines that can learn the recipe.</summary>
         [DataMember(Name = "disciplines", Order = 6)]

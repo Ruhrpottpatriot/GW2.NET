@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Items.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents one of an item's infusion slots.</summary>
-    public sealed class InfusionSlotContract : ServiceContract
+    [DataContract]
+    public sealed class InfusionSlotContract
     {
         /// <summary>Gets or sets the infusion slot type(s).</summary>
         [DataMember(Name = "flags", Order = 0)]

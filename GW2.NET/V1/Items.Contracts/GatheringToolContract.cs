@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a gathering tool.</summary>
-    public sealed class GatheringToolContract : ServiceContract
+    [DataContract]
+    public sealed class GatheringToolContract
     {
         /// <summary>Gets or sets the gathering tool type.</summary>
         [DataMember(Name = "type", Order = 0)]

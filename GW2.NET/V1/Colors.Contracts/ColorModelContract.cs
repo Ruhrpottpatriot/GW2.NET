@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Colors.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a color's component information.</summary>
-    public sealed class ColorModelContract : ServiceContract
+    [DataContract]
+    public sealed class ColorModelContract
     {
         /// <summary>Gets or sets the brightness.</summary>
         [DataMember(Name = "brightness", Order = 0)]

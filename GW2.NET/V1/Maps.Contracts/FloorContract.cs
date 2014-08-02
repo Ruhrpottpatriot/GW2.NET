@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Maps.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a map floor, used to populate a world map. All coordinates are map coordinates.</summary>
-    public sealed class FloorContract : ServiceContract
+    [DataContract]
+    public sealed class FloorContract
     {
         /// <summary>Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available on the tile server.</summary>
         [DataMember(Name = "clamped_view", Order = 1)]

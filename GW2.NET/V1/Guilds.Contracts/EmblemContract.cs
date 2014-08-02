@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Guilds.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a guild's emblem.</summary>
-    public sealed class EmblemContract : ServiceContract
+    [DataContract]
+    public sealed class EmblemContract
     {
         /// <summary>Gets or sets the background color identifier.</summary>
         [DataMember(Name = "background_color_id", Order = 3)]

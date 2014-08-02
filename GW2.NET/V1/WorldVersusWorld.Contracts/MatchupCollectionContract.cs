@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.WorldVersusWorld.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Wraps a collection of matchups.</summary>
-    public class MatchupCollectionContract : ServiceContract
+    [DataContract]
+    public sealed class MatchupCollectionContract
     {
         /// <summary>Gets or sets a collection of matches.</summary>
         [DataMember(Name = "wvw_matches", Order = 0)]

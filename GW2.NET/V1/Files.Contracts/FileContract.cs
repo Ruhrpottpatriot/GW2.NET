@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Files.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents information about a file that can be retrieved from the render service.</summary>
-    public sealed class FileContract : ServiceContract
+    [DataContract]
+    public sealed class FileContract
     {
         /// <summary>Gets or sets the file identifier to be used with the render service.</summary>
         [DataMember(Name = "file_id")]

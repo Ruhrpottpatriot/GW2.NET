@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents an item buff.</summary>
-    public sealed class ItemBuffContract : ServiceContract
+    [DataContract]
+    public sealed class ItemBuffContract
     {
         /// <summary>Gets or sets the buff's description.</summary>
         [DataMember(Name = "description", Order = 0)]

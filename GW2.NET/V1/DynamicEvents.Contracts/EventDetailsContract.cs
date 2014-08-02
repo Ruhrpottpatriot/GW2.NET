@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a dynamic event and its localized details.</summary>
-    public sealed class EventDetailsContract : ServiceContract
+    [DataContract]
+    public sealed class EventDetailsContract
     {
         /// <summary>Gets or sets additional flags.</summary>
         [DataMember(Name = "flags", Order = 3)]

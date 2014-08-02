@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a bag.</summary>
-    public sealed class BagContract : ServiceContract
+    [DataContract]
+    public sealed class BagContract
     {
         /// <summary>Gets or sets a value indicating whether this is an invisible bag.</summary>
         [DataMember(Name = "no_sell_or_sort", Order = 0)]

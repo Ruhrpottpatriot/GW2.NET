@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Items.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents an upgrade component.</summary>
-    public sealed class UpgradeComponentContract : ServiceContract
+    [DataContract]
+    public sealed class UpgradeComponentContract
     {
         /// <summary>Gets or sets the upgrade component's bonuses.</summary>
         [DataMember(Name = "bonuses", Order = 3)]

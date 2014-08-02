@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Maps.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
-    public sealed class MapContract : ServiceContract
+    [DataContract]
+    public sealed class MapContract
     {
         /// <summary>Gets or sets the continent identifier of the continent that this map belongs to.</summary>
         [DataMember(Name = "continent_id", Order = 7)]

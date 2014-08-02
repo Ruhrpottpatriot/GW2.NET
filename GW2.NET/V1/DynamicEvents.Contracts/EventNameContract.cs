@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a dynamic event and its localized name.</summary>
-    public sealed class EventNameContract : ServiceContract
+    [DataContract]
+    public sealed class EventNameContract
     {
         /// <summary>Gets or sets the event identifier.</summary>
         [DataMember(Name = "id", Order = 0)]

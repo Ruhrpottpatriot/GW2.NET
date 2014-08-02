@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a gizmo.</summary>
-    public sealed class GizmoContract : ServiceContract
+    [DataContract]
+    public sealed class GizmoContract
     {
         /// <summary>Gets or sets the gizmo type.</summary>
         [DataMember(Name = "type", Order = 0)]

@@ -6,7 +6,6 @@
 //   The match discovery service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.WorldVersusWorld
 {
     using System.Collections.Generic;

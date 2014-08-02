@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Skins.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Wraps a collection of skin identifiers.</summary>
-    public sealed class SkinCollectionContract : ServiceContract
+    [DataContract]
+    public sealed class SkinCollectionContract
     {
         /// <summary>Gets or sets a collection of skin identifiers.</summary>
         [DataMember(Name = "skins", Order = 0)]

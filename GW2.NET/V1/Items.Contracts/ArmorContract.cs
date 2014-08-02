@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Items.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents an armor piece.</summary>
-    public sealed class ArmorContract : ServiceContract
+    [DataContract]
+    public sealed class ArmorContract
     {
         /// <summary>Gets or sets the armor's defense rating.</summary>
         [DataMember(Name = "defense", Order = 2)]

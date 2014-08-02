@@ -10,10 +10,8 @@ namespace GW2DotNET.V1.WorldVersusWorld.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents an objective and its localized name.</summary>
-    public sealed class ObjectiveNameContract : ServiceContract
+    public sealed class ObjectiveNameContract
     {
         /// <summary>Gets or sets the objective identifier.</summary>
         [DataMember(Name = "id", Order = 0)]

@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a container.</summary>
-    public sealed class ContainerContract : ServiceContract
+    [DataContract]
+    public sealed class ContainerContract
     {
         /// <summary>Gets or sets the container type.</summary>
         [DataMember(Name = "type", Order = 0)]

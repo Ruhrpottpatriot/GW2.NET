@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents the location of an event on the map.</summary>
-    public sealed class LocationContract : ServiceContract
+    [DataContract]
+    public sealed class LocationContract
     {
         /// <summary>Gets or sets the center coordinates.</summary>
         [DataMember(Name = "center", Order = 1)]

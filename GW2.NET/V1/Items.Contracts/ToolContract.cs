@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a tool.</summary>
-    public sealed class ToolContract : ServiceContract
+    [DataContract]
+    public sealed class ToolContract
     {
         /// <summary>Gets or sets the number of charges.</summary>
         [DataMember(Name = "charges", Order = 1)]

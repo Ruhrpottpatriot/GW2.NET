@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a consumable item.</summary>
-    public sealed class ConsumableContract : ServiceContract
+    [DataContract]
+    public sealed class ConsumableContract
     {
         /// <summary>Gets or sets the unlocked color identifier.</summary>
         [DataMember(Name = "color_id", Order = 5)]

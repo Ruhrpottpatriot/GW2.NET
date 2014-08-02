@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Colors
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Globalization;

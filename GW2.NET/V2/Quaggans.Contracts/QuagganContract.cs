@@ -11,10 +11,9 @@ namespace GW2DotNET.V2.Quaggans.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a Quaggan.</summary>
-    public class QuagganContract : ServiceContract
+    [DataContract]
+    public sealed class QuagganContract 
     {
         /// <summary>Gets or sets the Quaggan identifier.</summary>
         [DataMember(Name = "id", Order = 0)]

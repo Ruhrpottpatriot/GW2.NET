@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Colors.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a named color and its color component information for cloth, leather and metal materials.</summary>
-    public sealed class ColorContract : ServiceContract
+    [DataContract]
+    public sealed class ColorContract
     {
         /// <summary>Gets or sets the base RGB values.</summary>
         [DataMember(Name = "base_rgb", Order = 1)]

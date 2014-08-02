@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a map and its localized name.</summary>
-    public sealed class MapNameContract : ServiceContract
+    [DataContract]
+    public sealed class MapNameContract
     {
         /// <summary>Gets or sets the map identifier.</summary>
         [DataMember(Name = "id", Order = 0)]

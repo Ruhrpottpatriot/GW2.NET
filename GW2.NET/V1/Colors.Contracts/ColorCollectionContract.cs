@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Colors.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Wraps a collection of colors in the game.</summary>
-    public sealed class ColorCollectionContract : ServiceContract
+    [DataContract]
+    public sealed class ColorCollectionContract
     {
         /// <summary>Gets or sets a collection of colors in the game.</summary>
         [DataMember(Name = "colors", Order = 0)]

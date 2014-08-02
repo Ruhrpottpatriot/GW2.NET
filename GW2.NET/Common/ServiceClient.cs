@@ -18,7 +18,6 @@ namespace GW2DotNET.Common
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common.Contracts;
     using GW2DotNET.Common.Serializers;
 
     /// <summary>Provides a default implementation for the <see cref="IServiceClient" /> interface.</summary>

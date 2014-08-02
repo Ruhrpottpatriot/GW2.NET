@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Skins.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a weapon skin.</summary>
-    public sealed class WeaponSkinContract : ServiceContract
+    [DataContract]
+    public sealed class WeaponSkinContract
     {
         /// <summary>Gets or sets the weapon's damage type.</summary>
         [DataMember(Name = "damage_type", Order = 1)]

@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a Point of Interest (POI) location.</summary>
-    public sealed class PointOfInterestContract : ServiceContract
+    [DataContract]
+    public sealed class PointOfInterestContract
     {
         /// <summary>Gets or sets the coordinates of this Point of Interest.</summary>
         [DataMember(Name = "coord", Order = 4)]

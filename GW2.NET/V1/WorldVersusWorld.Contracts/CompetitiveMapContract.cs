@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.WorldVersusWorld.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a World versus World map.</summary>
-    public sealed class CompetitiveMapContract : ServiceContract
+    [DataContract]
+    public sealed class CompetitiveMapContract
     {
         /// <summary>Gets or sets the map's bonuses.</summary>
         [DataMember(Name = "bonuses", Order = 3)]

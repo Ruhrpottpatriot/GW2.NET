@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Maps.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Wraps a collection of continents.</summary>
-    public sealed class ContinentCollectionContract : ServiceContract
+    [DataContract]
+    public sealed class ContinentCollectionContract
     {
         /// <summary>Gets or sets a collection of continents.</summary>
         [DataMember(Name = "continents", Order = 0)]

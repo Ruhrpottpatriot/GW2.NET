@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.WorldVersusWorld.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a World versus World matchup.</summary>
-    public sealed class MatchupContract : ServiceContract
+    [DataContract]
+    public sealed class MatchupContract
     {
         /// <summary>Gets or sets the blue world identifier.</summary>
         [DataMember(Name = "blue_world_id", Order = 2)]

@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Items.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents an item attribute.</summary>
-    public sealed class ItemAttributeContract : ServiceContract
+    [DataContract]
+    public sealed class ItemAttributeContract
     {
         /// <summary>Gets or sets the attribute's type.</summary>
         [DataMember(Name = "attribute", Order = 0)]

@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Items.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a weapon.</summary>
-    public sealed class WeaponContract : ServiceContract
+    [DataContract]
+    public sealed class WeaponContract
     {
         /// <summary>Gets or sets the weapon's damage type.</summary>
         [DataMember(Name = "damage_type", Order = 1)]

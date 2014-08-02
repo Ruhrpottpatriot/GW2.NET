@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents an area within a map.</summary>
-    public sealed class SectorContract : ServiceContract
+    [DataContract]
+    public sealed class SectorContract
     {
         /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
         [DataMember(Name = "coord", Order = 3)]

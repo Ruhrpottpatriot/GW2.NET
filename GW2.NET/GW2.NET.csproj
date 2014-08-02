@@ -277,8 +277,7 @@
     <Compile Include="Colors\Color.cs" />
     <Compile Include="Colors\ColorModel.cs" />
     <Compile Include="Colors\ColorPalette.cs" />
-    <Compile Include="Common\Contracts\ErrorResult.cs" />
-    <Compile Include="Common\Contracts\ServiceContract.cs" />
+    <Compile Include="Common\ErrorResult.cs" />
     <Compile Include="Common\HttpStatusCodeExtensions.cs" />
     <Compile Include="Common\IRenderable.cs" />
     <Compile Include="Common\IResponse.cs" />

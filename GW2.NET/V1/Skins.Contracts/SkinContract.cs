@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Skins.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents an in-game item skin.</summary>
-    public sealed class SkinContract : ServiceContract
+    [DataContract]
+    public sealed class SkinContract
     {
         /// <summary>Gets or sets the armor skin details.</summary>
         [DataMember(Name = "armor", Order = 8)]

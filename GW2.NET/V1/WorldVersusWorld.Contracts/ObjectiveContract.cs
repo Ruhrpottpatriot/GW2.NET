@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.WorldVersusWorld.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents one of a World versus World map's objectives.</summary>
-    public sealed class ObjectiveContract : ServiceContract
+    [DataContract]
+    public sealed class ObjectiveContract
     {
         /// <summary>Gets or sets the objective identifier.</summary>
         [DataMember(Name = "id", Order = 0)]

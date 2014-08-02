@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.WorldVersusWorld.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a World versus World map bonus.</summary>
-    public sealed class MapBonusContract : ServiceContract
+    [DataContract]
+    public sealed class MapBonusContract
     {
         /// <summary>Gets or sets the team that holds the bonus.</summary>
         [DataMember(Name = "owner", Order = 1)]

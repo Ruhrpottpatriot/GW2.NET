@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Recipes.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Wraps a collection of recipe identifiers.</summary>
-    public sealed class RecipeCollectionContract : ServiceContract
+    [DataContract]
+    public sealed class RecipeCollectionContract
     {
         /// <summary>Gets or sets a collection of recipe identifiers.</summary>
         [DataMember(Name = "recipes", Order = 0)]

@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.DynamicEvents.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Wraps a collection of dynamic events.</summary>
-    public sealed class EventStateCollectionContract : ServiceContract
+    [DataContract]
+    public sealed class EventStateCollectionContract
     {
         /// <summary>Gets or sets a collection of events.</summary>
         [DataMember(Name = "events", Order = 0)]

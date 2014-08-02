@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Items.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a backpack.</summary>
-    public sealed class BackpackContract : ServiceContract
+    [DataContract]
+    public sealed class BackpackContract
     {
         /// <summary>Gets or sets the backpack's infixed upgrade.</summary>
         [DataMember(Name = "infix_upgrade", Order = 1)]

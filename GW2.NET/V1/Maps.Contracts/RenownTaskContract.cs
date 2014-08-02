@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Maps.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a renown heart location.</summary>
-    public sealed class RenownTaskContract : ServiceContract
+    [DataContract]
+    public sealed class RenownTaskContract
     {
         /// <summary>Gets or sets the task's coordinates.</summary>
         [DataMember(Name = "coord", Order = 3)]

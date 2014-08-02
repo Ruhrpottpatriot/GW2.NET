@@ -10,10 +10,9 @@ namespace GW2DotNET.V1.Skins.Contracts
 {
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents an armor skin.</summary>
-    public sealed class ArmorSkinContract : ServiceContract
+    [DataContract]
+    public sealed class ArmorSkinContract
     {
         /// <summary>Gets or sets the armor skin type.</summary>
         [DataMember(Name = "type", Order = 0)]

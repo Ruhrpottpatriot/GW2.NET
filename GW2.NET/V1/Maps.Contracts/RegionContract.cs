@@ -11,10 +11,9 @@ namespace GW2DotNET.V1.Maps.Contracts
     using System.Collections.Generic;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Common.Contracts;
-
     /// <summary>Represents a region on the map.</summary>
-    public sealed class RegionContract : ServiceContract
+    [DataContract]
+    public sealed class RegionContract
     {
         /// <summary>Gets or sets the coordinates of the region label.</summary>
         [DataMember(Name = "label_coord", Order = 1)]
