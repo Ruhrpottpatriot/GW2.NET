@@ -6,7 +6,7 @@
 //   Represents the size of a two-dimensional object.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2DotNET.Maps
 {
     /// <summary>Represents the size of a two-dimensional object.</summary>
     public struct Size2D

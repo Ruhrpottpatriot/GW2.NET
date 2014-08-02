@@ -287,9 +287,6 @@
     <Compile Include="Common\Serializers\StringSerializer.cs" />
     <Compile Include="Common\ServiceClientContracts.cs" />
     <Compile Include="Common\UrlEncodedForm.cs" />
-    <Compile Include="Common\Vector2D.cs" />
-    <Compile Include="Common\Rectangle.cs" />
-    <Compile Include="Common\Size2D.cs" />
     <Compile Include="Common\Serializers\ImageSerializer.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
@@ -301,8 +298,6 @@
     <Compile Include="Common\ServiceClient.cs" />
     <Compile Include="Common\ServiceException.cs" />
     <Compile Include="Common\Response.cs" />
-    <Compile Include="Common\Point3D.cs" />
-    <Compile Include="Common\Point2D.cs" />
     <Compile Include="DynamicEvents\DynamicEvent.cs" />
     <Compile Include="DynamicEvents\DynamicEventFlags.cs" />
     <Compile Include="DynamicEvents\DynamicEventRotation.cs" />
@@ -634,19 +629,24 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Maps\Continent.cs" />
+    <Compile Include="Maps\Point2D.cs" />
+    <Compile Include="Maps\Point3D.cs" />
     <Compile Include="Maps\PointsOfInterest\Dungeon.cs" />
     <Compile Include="Maps\Floor.cs" />
     <Compile Include="Maps\PointsOfInterest\Landmark.cs" />
     <Compile Include="Maps\Map.cs" />
     <Compile Include="Maps\PointsOfInterest\PointOfInterest.cs" />
+    <Compile Include="Maps\Rectangle.cs" />
     <Compile Include="Maps\Region.cs" />
     <Compile Include="Maps\RenownTask.cs" />
     <Compile Include="Maps\Sector.cs" />
+    <Compile Include="Maps\Size2D.cs" />
     <Compile Include="Maps\SkillChallenge.cs" />
     <Compile Include="Maps\Subregion.cs" />
     <Compile Include="Maps\PointsOfInterest\UnknownPointOfInterest.cs" />
     <Compile Include="Maps\PointsOfInterest\Vista.cs" />
     <Compile Include="Maps\PointsOfInterest\Waypoint.cs" />
+    <Compile Include="Maps\Vector2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipes\AmuletRecipe.cs" />
     <Compile Include="Recipes\AxeRecipe.cs" />

@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.DynamicEvents
 {
-    using GW2DotNET.Common;
+    using GW2DotNET.Maps;
 
     /// <summary>Provides the base class for event locations.</summary>
     public abstract class Location

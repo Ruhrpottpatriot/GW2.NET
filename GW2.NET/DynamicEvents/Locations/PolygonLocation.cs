@@ -10,7 +10,7 @@ namespace GW2DotNET.DynamicEvents
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.Common;
+    using GW2DotNET.Maps;
 
     /// <summary>Represents a polygonal location.</summary>
     public class PolygonLocation : Location
