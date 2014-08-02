@@ -1,0 +1,29 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="QuagganDetailsRequest.cs" company="GW2.NET Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// <summary>
+//   Represents a request for a Quaggan.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+namespace GW2DotNET.V2.Quaggans
+{
+    using GW2DotNET.V2.Common;
+
+    /// <summary>Represents a request for a Quaggan.</summary>
+    public class QuagganDetailsRequest : DetailsRequest
+    {
+        /// <summary>Gets or sets the resource identifier.</summary>
+        public override string Identifier { get; set; }
+
+        /// <summary>Gets the resource path.</summary>
+        public override string Resource
+        {
+            get
+            {
+                return "/v2/quaggans/" + this.Identifier;
+            }
+        }
+    }
+}
