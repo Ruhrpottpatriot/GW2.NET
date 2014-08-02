@@ -69,7 +69,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         public Task<Build> GetBuildAsync()
         {
-            return this.buildService.GetBuildAsync();
+            return this.buildService.GetBuildAsync(CancellationToken.None);
         }
 
         /// <summary>Gets the current build.</summary>
@@ -94,7 +94,7 @@ namespace GW2DotNET
         /// <returns>A Quaggan</returns>
         public Task<Quaggan> GetQuagganAsync(string identifier)
         {
-            return this.quagganService.GetQuagganAsync(identifier);
+            return this.quagganService.GetQuagganAsync(identifier, CancellationToken.None);
         }
 
         /// <summary>Gets a Quaggan.</summary>
@@ -117,7 +117,7 @@ namespace GW2DotNET
         /// <returns>A collection of identifiers.</returns>
         public Task<ICollection<string>> GetQuagganIdentifiersAsync()
         {
-            return this.quagganService.GetQuagganIdentifiersAsync();
+            return this.quagganService.GetQuagganIdentifiersAsync(CancellationToken.None);
         }
 
         /// <summary>Gets a collection of Quaggan identifiers.</summary>
@@ -164,7 +164,7 @@ namespace GW2DotNET
         /// <returns>A collection of Quaggans.</returns>
         public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync()
         {
-            return this.quagganService.GetQuaggansAsync();
+            return this.quagganService.GetQuaggansAsync(CancellationToken.None);
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
@@ -180,7 +180,7 @@ namespace GW2DotNET
         /// <returns>A collection of Quaggans.</returns>
         public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(IEnumerable<string> identifiers)
         {
-            return this.quagganService.GetQuaggansAsync(identifiers);
+            return this.quagganService.GetQuaggansAsync(identifiers, CancellationToken.None);
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
@@ -197,7 +197,7 @@ namespace GW2DotNET
         /// <returns>A collection of Quaggans.</returns>
         public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page)
         {
-            return this.quagganService.GetQuaggansAsync(page);
+            return this.quagganService.GetQuaggansAsync(page, CancellationToken.None);
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
@@ -215,7 +215,7 @@ namespace GW2DotNET
         /// <returns>A collection of Quaggans.</returns>
         public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, int size)
         {
-            return this.quagganService.GetQuaggansAsync(page, size);
+            return this.quagganService.GetQuaggansAsync(page, size, CancellationToken.None);
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
