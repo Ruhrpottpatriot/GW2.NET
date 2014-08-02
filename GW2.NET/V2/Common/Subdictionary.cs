@@ -15,7 +15,7 @@ namespace GW2DotNET.V2.Common
     /// <summary>Represents a subset of keys and values.</summary>
     /// <typeparam name="TKey">The type of the keys in the subset.</typeparam>
     /// <typeparam name="TValue">The type of the values in the subset.</typeparam>
-    public class Subdictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISubcollection
+    public sealed class Subdictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISubcollection
     {
         /// <summary>Initializes a new instance of the <see cref="Subdictionary{TKey,TValue}"/> class. 
         /// Initializes a new instance of the <see cref="Subdictionary{TKey,TValue}"/> class that is empty, has the default initial capacity, and uses the default equality comparer for the key type.</summary>
@@ -69,7 +69,7 @@ namespace GW2DotNET.V2.Common
         /// <summary>Initializes a new instance of the <see cref="Subdictionary{TKey,TValue}"/> class. Initializes a new instance of the <see cref="Subdictionary{TKey,TValue}"/> class with serialized data.</summary>
         /// <param name="info">A <see cref="SerializationInfo"/> object containing the information required to serialize the <see cref="Subdictionary{TKey,TValue}"/>.</param>
         /// <param name="context">A <see cref="StreamingContext"/> structure containing the source and destination of the serialized stream associated with the <see cref="Subdictionary{TKey,TValue}"/>.</param>
-        protected Subdictionary(SerializationInfo info, StreamingContext context)
+        private Subdictionary(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
