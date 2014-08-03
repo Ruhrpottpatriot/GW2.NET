@@ -11,6 +11,8 @@ namespace GW2DotNET.Entities.Items
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
+    using GW2DotNET.ChatLinks;
+
     /// <summary>Represents a stack of items.</summary>
     public class ItemStack
     {
@@ -37,6 +39,21 @@ namespace GW2DotNET.Entities.Items
 
         /// <summary>Gets or sets the item identifier.</summary>
         public virtual int ItemId { get; set; }
+
+        /// <summary>Gets an item chat link for this item.</summary>
+        /// <returns>The <see cref="ChatLink"/>.</returns>
+        public virtual ChatLink GetItemChatLink()
+        {
+            var item = this.Item;
+            if (item == null)
+            {
+                return new ItemChatLink { ItemId = this.ItemId, Quantity = this.Count };
+            }
+
+            var chatLink = (ItemChatLink)item.GetItemChatLink();
+            chatLink.Quantity = this.Count;
+            return chatLink;
+        }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
