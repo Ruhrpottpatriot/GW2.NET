@@ -28,20 +28,6 @@ namespace GW2DotNET.Common.Serializers
             this.serializer = serializer;
         }
 
-        /// <summary>Factory method. Creates a new instance of the <see cref="DataContractSerializer{T}"/> class and configures it for serializing JSON.</summary>
-        /// <returns>A new instance of the <see cref="DataContractSerializer{T}"/> class.</returns>
-        public static DataContractSerializer<T> ForJson()
-        {
-            return new DataContractSerializer<T>(new DataContractJsonSerializer(typeof(T)));
-        }
-
-        /// <summary>Factory method. Creates a new instance of the <see cref="DataContractSerializer{T}"/> class and configures it for serializing XML.</summary>
-        /// <returns>A new instance of the <see cref="DataContractSerializer{T}"/> class.</returns>
-        public static DataContractSerializer<T> ForXml()
-        {
-            return new DataContractSerializer<T>(new DataContractSerializer(typeof(T)));
-        }
-
         /// <summary>Converts the input stream to the specified type.</summary>
         /// <param name="stream">The input stream.</param>
         /// <returns>An instance of the specified type.</returns>

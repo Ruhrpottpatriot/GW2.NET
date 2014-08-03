@@ -33,7 +33,10 @@ namespace GW2DotNET.Common.Serializers
         /// <param name="stream">The output stream.</param>
         public void Serialize(Image value, Stream stream)
         {
-            value.Save(stream, ImageFormat.Png);
+            using (stream)
+            {
+                value.Save(stream, ImageFormat.Png);
+            }
         }
     }
 }

@@ -21,23 +21,10 @@ namespace GW2DotNET.Common.Serializers
         private readonly JsonSerializer jsonSerializer;
 
         /// <summary>Initializes a new instance of the <see cref="JsonSerializer{T}"/> class.</summary>
-        public JsonSerializer()
+        public JsonSerializer(JsonSerializer jsonSerializer)
         {
-            Contract.Ensures(this.jsonSerializer != null);
-            var serializer = JsonSerializer.CreateDefault();
-            Contract.Assume(serializer != null);
-            this.jsonSerializer = serializer;
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="JsonSerializer{T}"/> class.</summary>
-        /// <param name="settings">The settings to be applied to the <see cref="JsonSerializer"/>.</param>
-        public JsonSerializer(JsonSerializerSettings settings)
-        {
-            Contract.Requires(settings != null);
-            Contract.Ensures(this.jsonSerializer != null);
-            var serializer = JsonSerializer.CreateDefault(settings);
-            Contract.Assume(serializer != null);
-            this.jsonSerializer = serializer;
+            Contract.Requires(jsonSerializer != null);
+            this.jsonSerializer = jsonSerializer;
         }
 
         /// <summary>Converts the input stream to the specified type.</summary>
