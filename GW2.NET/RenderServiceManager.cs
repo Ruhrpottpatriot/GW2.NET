@@ -33,7 +33,7 @@ namespace GW2DotNET
 
         /// <summary>Initializes a new instance of the <see cref="RenderServiceManager"/> class.</summary>
         public RenderServiceManager()
-            : this(new ServiceClient(BaseUri))
+            : this(new ServiceClient(GetBaseUri()))
         {
         }
 
@@ -43,19 +43,6 @@ namespace GW2DotNET
         {
             Contract.Requires(serviceClient != null);
             this.renderService = new RenderService(serviceClient);
-        }
-
-        /// <summary>Gets the base URI.</summary>
-        /// <remarks>This property exists because code contracts cannot be condensed into a single line.</remarks>
-        private static Uri BaseUri
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
-                var baseUri = new Uri("https://render.guildwars2.com", UriKind.Absolute);
-                Contract.Assume(baseUri.IsAbsoluteUri);
-                return baseUri;
-            }
         }
 
         /// <summary>Gets an image.</summary>
@@ -87,6 +74,17 @@ namespace GW2DotNET
         public Task<Image> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
             return this.renderService.GetImageAsync(file, imageFormat, cancellationToken);
+        }
+
+        /// <summary>Gets the base URI.</summary>
+        /// <returns>A <see cref="Uri"/>.</returns>
+        private static Uri GetBaseUri()
+        {
+            Contract.Ensures(Contract.Result<Uri>() != null);
+            Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
+            var baseUri = new Uri("https://api.guildwars2.com", UriKind.Absolute);
+            Contract.Assume(baseUri.IsAbsoluteUri);
+            return baseUri;
         }
 
         /// <summary>The invariant method for this class.</summary>
