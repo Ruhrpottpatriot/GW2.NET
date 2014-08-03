@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Worlds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Worlds;
+    using GW2DotNET.Entities.Worlds;
 
     /// <summary>The world name service contract.</summary>
     [ContractClassFor(typeof(IWorldNameService))]

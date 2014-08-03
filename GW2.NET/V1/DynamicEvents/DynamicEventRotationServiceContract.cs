@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.DynamicEvents;
+    using GW2DotNET.Entities.DynamicEvents;
 
     /// <summary>The dynamic event rotation service contract.</summary>
     [ContractClassFor(typeof(IDynamicEventRotationService))]

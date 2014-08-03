@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Items
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Items;
+    using GW2DotNET.Entities.Items;
 
     /// <summary>Provides the interface for the item details service.</summary>
     [ContractClass(typeof(ItemDetailsServiceContract))]

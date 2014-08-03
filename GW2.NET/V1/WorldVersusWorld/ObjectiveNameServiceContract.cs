@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.WorldVersusWorld;
+    using GW2DotNET.Entities.WorldVersusWorld;
 
     /// <summary>The objective name service contract.</summary>
     [ContractClassFor(typeof(IObjectiveNameService))]

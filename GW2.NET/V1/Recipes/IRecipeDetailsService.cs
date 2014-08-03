@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Recipes
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Recipes;
+    using GW2DotNET.Entities.Recipes;
 
     /// <summary>Provides the interface for the recipe details service.</summary>
     [ContractClass(typeof(RecipeDetailsServiceContract))]

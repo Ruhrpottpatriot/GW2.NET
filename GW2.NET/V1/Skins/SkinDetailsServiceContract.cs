@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Skins
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Skins;
+    using GW2DotNET.Entities.Skins;
 
     /// <summary>The skin details service contract.</summary>
     [ContractClassFor(typeof(ISkinDetailsService))]

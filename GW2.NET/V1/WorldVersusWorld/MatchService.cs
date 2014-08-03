@@ -18,8 +18,8 @@ namespace GW2DotNET.V1.WorldVersusWorld
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
+    using GW2DotNET.Entities.WorldVersusWorld;
     using GW2DotNET.V1.WorldVersusWorld.Contracts;
-    using GW2DotNET.WorldVersusWorld;
 
     /// <summary>Provides the default implementation of the matches service.</summary>
     public class MatchService : IMatchService

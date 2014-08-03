@@ -12,7 +12,7 @@ namespace GW2DotNET.V1.Builds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Builds;
+    using GW2DotNET.Entities.Builds;
 
     /// <summary>The build service contract.</summary>
     [ContractClassFor(typeof(IBuildService))]

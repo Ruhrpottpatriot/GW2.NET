@@ -225,7 +225,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Builds\Build.cs">
+    <Compile Include="Entities\Builds\Build.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ChatLinks\ChatLink.cs" />
@@ -274,9 +274,9 @@
     <Compile Include="ChatLinks\PointOfInterestChatLink.cs" />
     <Compile Include="ChatLinks\RecipeChatLink.cs" />
     <Compile Include="ChatLinks\ItemChatLink.cs" />
-    <Compile Include="Colors\Color.cs" />
-    <Compile Include="Colors\ColorModel.cs" />
-    <Compile Include="Colors\ColorPalette.cs" />
+    <Compile Include="Entities\Colors\Color.cs" />
+    <Compile Include="Entities\Colors\ColorModel.cs" />
+    <Compile Include="Entities\Colors\ColorPalette.cs" />
     <Compile Include="Common\ErrorResult.cs" />
     <Compile Include="Common\HttpStatusCodeExtensions.cs" />
     <Compile Include="Common\IRenderable.cs" />
@@ -299,410 +299,410 @@
     <Compile Include="Common\ServiceClient.cs" />
     <Compile Include="Common\ServiceException.cs" />
     <Compile Include="Common\Response.cs" />
-    <Compile Include="DynamicEvents\DynamicEvent.cs" />
-    <Compile Include="DynamicEvents\DynamicEventFlags.cs" />
-    <Compile Include="DynamicEvents\DynamicEventRotation.cs" />
-    <Compile Include="DynamicEvents\DynamicEventState.cs" />
-    <Compile Include="DynamicEvents\EventState.cs" />
-    <Compile Include="DynamicEvents\Locations\CylinderLocation.cs" />
-    <Compile Include="DynamicEvents\Locations\Location.cs" />
-    <Compile Include="DynamicEvents\Locations\PolygonLocation.cs" />
-    <Compile Include="DynamicEvents\Locations\SphereLocation.cs" />
-    <Compile Include="DynamicEvents\Locations\UnknownLocation.cs" />
-    <Compile Include="Files\Asset.cs" />
-    <Compile Include="Guilds\Emblem.cs" />
-    <Compile Include="Guilds\EmblemTransformations.cs" />
-    <Compile Include="Guilds\Guild.cs" />
-    <Compile Include="Items\Armors\HelmAquatic.cs">
+    <Compile Include="Entities\DynamicEvents\DynamicEvent.cs" />
+    <Compile Include="Entities\DynamicEvents\DynamicEventFlags.cs" />
+    <Compile Include="Entities\DynamicEvents\DynamicEventRotation.cs" />
+    <Compile Include="Entities\DynamicEvents\DynamicEventState.cs" />
+    <Compile Include="Entities\DynamicEvents\EventState.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\CylinderLocation.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\Location.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\PolygonLocation.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\SphereLocation.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\UnknownLocation.cs" />
+    <Compile Include="Entities\Files\Asset.cs" />
+    <Compile Include="Entities\Guilds\Emblem.cs" />
+    <Compile Include="Entities\Guilds\EmblemTransformations.cs" />
+    <Compile Include="Entities\Guilds\Guild.cs" />
+    <Compile Include="Entities\Items\Armors\HelmAquatic.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Armors\Armor.cs">
+    <Compile Include="Entities\Items\Armors\Armor.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Armors\ArmorWeightClass.cs">
+    <Compile Include="Entities\Items\Armors\ArmorWeightClass.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Armors\Boots.cs">
+    <Compile Include="Entities\Items\Armors\Boots.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Armors\Coat.cs">
+    <Compile Include="Entities\Items\Armors\Coat.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Armors\Gloves.cs">
+    <Compile Include="Entities\Items\Armors\Gloves.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Armors\Helm.cs">
+    <Compile Include="Entities\Items\Armors\Helm.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Armors\Leggings.cs">
+    <Compile Include="Entities\Items\Armors\Leggings.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Armors\Shoulders.cs">
+    <Compile Include="Entities\Items\Armors\Shoulders.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Armors\UnknownArmor.cs">
+    <Compile Include="Entities\Items\Armors\UnknownArmor.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Backpacks\Backpack.cs">
+    <Compile Include="Entities\Items\Backpacks\Backpack.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Bags\Bag.cs">
+    <Compile Include="Entities\Items\Bags\Bag.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Common\InfusionSlot.cs">
+    <Compile Include="Entities\Items\Common\InfusionSlot.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Common\InfusionSlotFlags.cs">
+    <Compile Include="Entities\Items\Common\InfusionSlotFlags.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Common\ISkinnable.cs">
+    <Compile Include="Entities\Items\Common\ISkinnable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Common\ItemBuff.cs">
+    <Compile Include="Entities\Items\Common\ItemBuff.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Common\IUpgradable.cs">
+    <Compile Include="Entities\Items\Common\IUpgradable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Common\IUpgrade.cs">
+    <Compile Include="Entities\Items\Common\IUpgrade.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\AppearanceChanger.cs">
+    <Compile Include="Entities\Items\Consumables\AppearanceChanger.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\BagSlotUnlocker.cs">
+    <Compile Include="Entities\Items\Consumables\BagSlotUnlocker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\BankTabUnlocker.cs">
+    <Compile Include="Entities\Items\Consumables\BankTabUnlocker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\Alcohol.cs">
+    <Compile Include="Entities\Items\Consumables\Alcohol.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\CollectibleCapacityUnlocker.cs">
+    <Compile Include="Entities\Items\Consumables\CollectibleCapacityUnlocker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\Consumable.cs">
+    <Compile Include="Entities\Items\Consumables\Consumable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\ContentUnlocker.cs">
+    <Compile Include="Entities\Items\Consumables\ContentUnlocker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\ContractNpc.cs">
+    <Compile Include="Entities\Items\Consumables\ContractNpc.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\CraftingRecipeUnlocker.cs">
+    <Compile Include="Entities\Items\Consumables\CraftingRecipeUnlocker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\DyeUnlocker.cs">
+    <Compile Include="Entities\Items\Consumables\DyeUnlocker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\Food.cs">
+    <Compile Include="Entities\Items\Consumables\Food.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\GenericConsumable.cs">
+    <Compile Include="Entities\Items\Consumables\GenericConsumable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\HalloweenConsumable.cs">
+    <Compile Include="Entities\Items\Consumables\HalloweenConsumable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\ImmediateConsumable.cs">
+    <Compile Include="Entities\Items\Consumables\ImmediateConsumable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\Transmutation.cs">
+    <Compile Include="Entities\Items\Consumables\Transmutation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\UnknownConsumable.cs">
+    <Compile Include="Entities\Items\Consumables\UnknownConsumable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\UnknownUnlocker.cs">
+    <Compile Include="Entities\Items\Consumables\UnknownUnlocker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\Unlocker.cs">
+    <Compile Include="Entities\Items\Consumables\Unlocker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\UnTransmutation.cs">
+    <Compile Include="Entities\Items\Consumables\UnTransmutation.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\UpgradeRemoval.cs">
+    <Compile Include="Entities\Items\Consumables\UpgradeRemoval.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Consumables\Utility.cs">
+    <Compile Include="Entities\Items\Consumables\Utility.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Containers\Container.cs">
+    <Compile Include="Entities\Items\Containers\Container.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Containers\DefaultContainer.cs">
+    <Compile Include="Entities\Items\Containers\DefaultContainer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Containers\GiftBox.cs">
+    <Compile Include="Entities\Items\Containers\GiftBox.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Containers\OpenUIContainer.cs">
+    <Compile Include="Entities\Items\Containers\OpenUIContainer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Containers\UnknownContainer.cs">
+    <Compile Include="Entities\Items\Containers\UnknownContainer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\CraftingMaterials\CraftingMaterial.cs">
+    <Compile Include="Entities\Items\CraftingMaterials\CraftingMaterial.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\GameTypes.cs">
+    <Compile Include="Entities\Items\GameTypes.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\GatheringTools\ForagingTool.cs">
+    <Compile Include="Entities\Items\GatheringTools\ForagingTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\GatheringTools\GatheringTool.cs">
+    <Compile Include="Entities\Items\GatheringTools\GatheringTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\GatheringTools\LoggingTool.cs">
+    <Compile Include="Entities\Items\GatheringTools\LoggingTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\GatheringTools\MiningTool.cs">
+    <Compile Include="Entities\Items\GatheringTools\MiningTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\GatheringTools\UnknownGatheringTool.cs">
+    <Compile Include="Entities\Items\GatheringTools\UnknownGatheringTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Gizmos\ContainerKey.cs">
+    <Compile Include="Entities\Items\Gizmos\ContainerKey.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Gizmos\DefaultGizmo.cs">
+    <Compile Include="Entities\Items\Gizmos\DefaultGizmo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Gizmos\Gizmo.cs">
+    <Compile Include="Entities\Items\Gizmos\Gizmo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Gizmos\RentableContractNpc.cs">
+    <Compile Include="Entities\Items\Gizmos\RentableContractNpc.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Gizmos\UnknownGizmo.cs">
+    <Compile Include="Entities\Items\Gizmos\UnknownGizmo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Gizmos\UnlimitedConsumable.cs">
+    <Compile Include="Entities\Items\Gizmos\UnlimitedConsumable.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Item.cs">
+    <Compile Include="Entities\Items\Item.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\ItemFlags.cs">
+    <Compile Include="Entities\Items\ItemFlags.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\ItemRarity.cs">
+    <Compile Include="Entities\Items\ItemRarity.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\ItemRestrictions.cs">
+    <Compile Include="Entities\Items\ItemRestrictions.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\MiniPets\MiniPet.cs">
+    <Compile Include="Entities\Items\MiniPets\MiniPet.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Tools\SalvageTool.cs">
+    <Compile Include="Entities\Items\Tools\SalvageTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Tools\Tool.cs">
+    <Compile Include="Entities\Items\Tools\Tool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Tools\UnknownTool.cs">
+    <Compile Include="Entities\Items\Tools\UnknownTool.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\TraitGuides\TraitGuide.cs" />
-    <Compile Include="Items\Trinkets\Accessory.cs">
+    <Compile Include="Entities\Items\TraitGuides\TraitGuide.cs" />
+    <Compile Include="Entities\Items\Trinkets\Accessory.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Trinkets\Amulet.cs">
+    <Compile Include="Entities\Items\Trinkets\Amulet.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Trinkets\Ring.cs">
+    <Compile Include="Entities\Items\Trinkets\Ring.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Trinkets\Trinket.cs">
+    <Compile Include="Entities\Items\Trinkets\Trinket.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Trinkets\UnknownTrinket.cs">
+    <Compile Include="Entities\Items\Trinkets\UnknownTrinket.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Trophies\Trophy.cs">
+    <Compile Include="Entities\Items\Trophies\Trophy.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\UnknownItem.cs">
+    <Compile Include="Entities\Items\UnknownItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\UpgradeComponents\DefaultUpgradeComponent.cs">
+    <Compile Include="Entities\Items\UpgradeComponents\DefaultUpgradeComponent.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\UpgradeComponents\Gem.cs">
+    <Compile Include="Entities\Items\UpgradeComponents\Gem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\UpgradeComponents\Rune.cs">
+    <Compile Include="Entities\Items\UpgradeComponents\Rune.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\UpgradeComponents\Sigil.cs">
+    <Compile Include="Entities\Items\UpgradeComponents\Sigil.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\UpgradeComponents\UnknownUpgradeComponent.cs">
+    <Compile Include="Entities\Items\UpgradeComponents\UnknownUpgradeComponent.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\UpgradeComponents\UpgradeComponent.cs">
+    <Compile Include="Entities\Items\UpgradeComponents\UpgradeComponent.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\UpgradeComponents\UpgradeComponentFlags.cs">
+    <Compile Include="Entities\Items\UpgradeComponents\UpgradeComponentFlags.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Axe.cs">
+    <Compile Include="Entities\Items\Weapons\Axe.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Dagger.cs">
+    <Compile Include="Entities\Items\Weapons\Dagger.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Focus.cs">
+    <Compile Include="Entities\Items\Weapons\Focus.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\GreatSword.cs">
+    <Compile Include="Entities\Items\Weapons\GreatSword.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Hammer.cs">
+    <Compile Include="Entities\Items\Weapons\Hammer.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Harpoon.cs">
+    <Compile Include="Entities\Items\Weapons\Harpoon.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\LargeBundle.cs">
+    <Compile Include="Entities\Items\Weapons\LargeBundle.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\LongBow.cs">
+    <Compile Include="Entities\Items\Weapons\LongBow.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Mace.cs">
+    <Compile Include="Entities\Items\Weapons\Mace.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Pistol.cs">
+    <Compile Include="Entities\Items\Weapons\Pistol.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Rifle.cs">
+    <Compile Include="Entities\Items\Weapons\Rifle.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Scepter.cs">
+    <Compile Include="Entities\Items\Weapons\Scepter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Shield.cs">
+    <Compile Include="Entities\Items\Weapons\Shield.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\ShortBow.cs">
+    <Compile Include="Entities\Items\Weapons\ShortBow.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\SmallBundle.cs">
+    <Compile Include="Entities\Items\Weapons\SmallBundle.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\SpearGun.cs">
+    <Compile Include="Entities\Items\Weapons\SpearGun.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Staff.cs">
+    <Compile Include="Entities\Items\Weapons\Staff.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Sword.cs">
+    <Compile Include="Entities\Items\Weapons\Sword.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Torch.cs">
+    <Compile Include="Entities\Items\Weapons\Torch.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Toy.cs">
+    <Compile Include="Entities\Items\Weapons\Toy.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Trident.cs">
+    <Compile Include="Entities\Items\Weapons\Trident.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\TwoHandedToy.cs">
+    <Compile Include="Entities\Items\Weapons\TwoHandedToy.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\UnknownWeapon.cs">
+    <Compile Include="Entities\Items\Weapons\UnknownWeapon.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\WarHorn.cs">
+    <Compile Include="Entities\Items\Weapons\WarHorn.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\Weapon.cs">
+    <Compile Include="Entities\Items\Weapons\Weapon.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Items\Weapons\WeaponDamageType.cs">
+    <Compile Include="Entities\Items\Weapons\WeaponDamageType.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Maps\Continent.cs" />
-    <Compile Include="Maps\Point2D.cs" />
-    <Compile Include="Maps\Point3D.cs" />
-    <Compile Include="Maps\PointsOfInterest\Dungeon.cs" />
-    <Compile Include="Maps\Floor.cs" />
-    <Compile Include="Maps\PointsOfInterest\Landmark.cs" />
-    <Compile Include="Maps\Map.cs" />
-    <Compile Include="Maps\PointsOfInterest\PointOfInterest.cs" />
-    <Compile Include="Maps\Rectangle.cs" />
-    <Compile Include="Maps\Region.cs" />
-    <Compile Include="Maps\RenownTask.cs" />
-    <Compile Include="Maps\Sector.cs" />
-    <Compile Include="Maps\Size2D.cs" />
-    <Compile Include="Maps\SkillChallenge.cs" />
-    <Compile Include="Maps\Subregion.cs" />
-    <Compile Include="Maps\PointsOfInterest\UnknownPointOfInterest.cs" />
-    <Compile Include="Maps\PointsOfInterest\Vista.cs" />
-    <Compile Include="Maps\PointsOfInterest\Waypoint.cs" />
-    <Compile Include="Maps\Vector2D.cs" />
+    <Compile Include="Entities\Maps\Continent.cs" />
+    <Compile Include="Entities\Maps\Point2D.cs" />
+    <Compile Include="Entities\Maps\Point3D.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\Dungeon.cs" />
+    <Compile Include="Entities\Maps\Floor.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\Landmark.cs" />
+    <Compile Include="Entities\Maps\Map.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\PointOfInterest.cs" />
+    <Compile Include="Entities\Maps\Rectangle.cs" />
+    <Compile Include="Entities\Maps\Region.cs" />
+    <Compile Include="Entities\Maps\RenownTask.cs" />
+    <Compile Include="Entities\Maps\Sector.cs" />
+    <Compile Include="Entities\Maps\Size2D.cs" />
+    <Compile Include="Entities\Maps\SkillChallenge.cs" />
+    <Compile Include="Entities\Maps\Subregion.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\UnknownPointOfInterest.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\Vista.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\Waypoint.cs" />
+    <Compile Include="Entities\Maps\Vector2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Recipes\AmuletRecipe.cs" />
-    <Compile Include="Recipes\AxeRecipe.cs" />
-    <Compile Include="Recipes\BackpackRecipe.cs" />
-    <Compile Include="Recipes\BagRecipe.cs" />
-    <Compile Include="Recipes\BootsRecipe.cs" />
-    <Compile Include="Recipes\BulkRecipe.cs" />
-    <Compile Include="Recipes\CoatRecipe.cs" />
-    <Compile Include="Recipes\ComponentRecipe.cs" />
-    <Compile Include="Recipes\ConsumableRecipe.cs" />
-    <Compile Include="Recipes\CraftingDisciplines.cs" />
-    <Compile Include="Recipes\DaggerRecipe.cs" />
-    <Compile Include="Recipes\DessertRecipe.cs" />
-    <Compile Include="Recipes\DyeRecipe.cs" />
-    <Compile Include="Recipes\EarringRecipe.cs" />
-    <Compile Include="Recipes\FeastRecipe.cs" />
-    <Compile Include="Recipes\FocusRecipe.cs" />
-    <Compile Include="Recipes\GlovesRecipe.cs" />
-    <Compile Include="Recipes\GreatSwordRecipe.cs" />
-    <Compile Include="Recipes\HammerRecipe.cs" />
-    <Compile Include="Recipes\HarpoonRecipe.cs" />
-    <Compile Include="Recipes\HelmRecipe.cs" />
-    <Compile Include="Recipes\Ingredient.cs" />
-    <Compile Include="Recipes\IngredientCookingRecipe.cs" />
-    <Compile Include="Recipes\InscriptionRecipe.cs" />
-    <Compile Include="Recipes\InsigniaRecipe.cs" />
-    <Compile Include="Recipes\LeggingsRecipe.cs" />
-    <Compile Include="Recipes\LongBowRecipe.cs" />
-    <Compile Include="Recipes\MaceRecipe.cs" />
-    <Compile Include="Recipes\MealRecipe.cs" />
-    <Compile Include="Recipes\PistolRecipe.cs" />
-    <Compile Include="Recipes\PotionRecipe.cs" />
-    <Compile Include="Recipes\Recipe.cs" />
-    <Compile Include="Recipes\RecipeFlags.cs" />
-    <Compile Include="Recipes\RefinementEctoplasmRecipe.cs" />
-    <Compile Include="Recipes\RefinementObsidianRecipe.cs" />
-    <Compile Include="Recipes\RefinementRecipe.cs" />
-    <Compile Include="Recipes\RifleRecipe.cs" />
-    <Compile Include="Recipes\RingRecipe.cs" />
-    <Compile Include="Recipes\ScepterRecipe.cs" />
-    <Compile Include="Recipes\SeasoningRecipe.cs" />
-    <Compile Include="Recipes\ShieldRecipe.cs" />
-    <Compile Include="Recipes\ShortBowRecipe.cs" />
-    <Compile Include="Recipes\ShouldersRecipe.cs" />
-    <Compile Include="Recipes\SnackRecipe.cs" />
-    <Compile Include="Recipes\SoupRecipe.cs" />
-    <Compile Include="Recipes\SpearGunRecipe.cs" />
-    <Compile Include="Recipes\StaffRecipe.cs" />
-    <Compile Include="Recipes\SwordRecipe.cs" />
-    <Compile Include="Recipes\TorchRecipe.cs" />
-    <Compile Include="Recipes\TridentRecipe.cs" />
-    <Compile Include="Recipes\UnknownRecipe.cs" />
-    <Compile Include="Recipes\UpgradeComponentRecipe.cs" />
-    <Compile Include="Recipes\WarHornRecipe.cs" />
-    <Compile Include="Quaggans\Quaggan.cs" />
+    <Compile Include="Entities\Recipes\AmuletRecipe.cs" />
+    <Compile Include="Entities\Recipes\AxeRecipe.cs" />
+    <Compile Include="Entities\Recipes\BackpackRecipe.cs" />
+    <Compile Include="Entities\Recipes\BagRecipe.cs" />
+    <Compile Include="Entities\Recipes\BootsRecipe.cs" />
+    <Compile Include="Entities\Recipes\BulkRecipe.cs" />
+    <Compile Include="Entities\Recipes\CoatRecipe.cs" />
+    <Compile Include="Entities\Recipes\ComponentRecipe.cs" />
+    <Compile Include="Entities\Recipes\ConsumableRecipe.cs" />
+    <Compile Include="Entities\Recipes\CraftingDisciplines.cs" />
+    <Compile Include="Entities\Recipes\DaggerRecipe.cs" />
+    <Compile Include="Entities\Recipes\DessertRecipe.cs" />
+    <Compile Include="Entities\Recipes\DyeRecipe.cs" />
+    <Compile Include="Entities\Recipes\EarringRecipe.cs" />
+    <Compile Include="Entities\Recipes\FeastRecipe.cs" />
+    <Compile Include="Entities\Recipes\FocusRecipe.cs" />
+    <Compile Include="Entities\Recipes\GlovesRecipe.cs" />
+    <Compile Include="Entities\Recipes\GreatSwordRecipe.cs" />
+    <Compile Include="Entities\Recipes\HammerRecipe.cs" />
+    <Compile Include="Entities\Recipes\HarpoonRecipe.cs" />
+    <Compile Include="Entities\Recipes\HelmRecipe.cs" />
+    <Compile Include="Entities\Recipes\Ingredient.cs" />
+    <Compile Include="Entities\Recipes\IngredientCookingRecipe.cs" />
+    <Compile Include="Entities\Recipes\InscriptionRecipe.cs" />
+    <Compile Include="Entities\Recipes\InsigniaRecipe.cs" />
+    <Compile Include="Entities\Recipes\LeggingsRecipe.cs" />
+    <Compile Include="Entities\Recipes\LongBowRecipe.cs" />
+    <Compile Include="Entities\Recipes\MaceRecipe.cs" />
+    <Compile Include="Entities\Recipes\MealRecipe.cs" />
+    <Compile Include="Entities\Recipes\PistolRecipe.cs" />
+    <Compile Include="Entities\Recipes\PotionRecipe.cs" />
+    <Compile Include="Entities\Recipes\Recipe.cs" />
+    <Compile Include="Entities\Recipes\RecipeFlags.cs" />
+    <Compile Include="Entities\Recipes\RefinementEctoplasmRecipe.cs" />
+    <Compile Include="Entities\Recipes\RefinementObsidianRecipe.cs" />
+    <Compile Include="Entities\Recipes\RefinementRecipe.cs" />
+    <Compile Include="Entities\Recipes\RifleRecipe.cs" />
+    <Compile Include="Entities\Recipes\RingRecipe.cs" />
+    <Compile Include="Entities\Recipes\ScepterRecipe.cs" />
+    <Compile Include="Entities\Recipes\SeasoningRecipe.cs" />
+    <Compile Include="Entities\Recipes\ShieldRecipe.cs" />
+    <Compile Include="Entities\Recipes\ShortBowRecipe.cs" />
+    <Compile Include="Entities\Recipes\ShouldersRecipe.cs" />
+    <Compile Include="Entities\Recipes\SnackRecipe.cs" />
+    <Compile Include="Entities\Recipes\SoupRecipe.cs" />
+    <Compile Include="Entities\Recipes\SpearGunRecipe.cs" />
+    <Compile Include="Entities\Recipes\StaffRecipe.cs" />
+    <Compile Include="Entities\Recipes\SwordRecipe.cs" />
+    <Compile Include="Entities\Recipes\TorchRecipe.cs" />
+    <Compile Include="Entities\Recipes\TridentRecipe.cs" />
+    <Compile Include="Entities\Recipes\UnknownRecipe.cs" />
+    <Compile Include="Entities\Recipes\UpgradeComponentRecipe.cs" />
+    <Compile Include="Entities\Recipes\WarHornRecipe.cs" />
+    <Compile Include="Entities\Quaggans\Quaggan.cs" />
     <Compile Include="Rendering\IRenderRequest.cs" />
     <Compile Include="Rendering\IRenderService.cs" />
     <Compile Include="Rendering\RenderRequest.cs" />
@@ -711,44 +711,44 @@
     <Compile Include="RenderServiceManager.cs" />
     <Compile Include="Service2Manager.cs" />
     <Compile Include="ServiceManager.cs" />
-    <Compile Include="Skins\Armors\HelmAquaticSkin.cs" />
-    <Compile Include="Skins\Armors\ArmorSkin.cs" />
-    <Compile Include="Skins\Armors\BootsSkin.cs" />
-    <Compile Include="Skins\Armors\CoatSkin.cs" />
-    <Compile Include="Skins\Armors\GlovesSkin.cs" />
-    <Compile Include="Skins\Armors\HelmSkin.cs" />
-    <Compile Include="Skins\Armors\LeggingsSkin.cs" />
-    <Compile Include="Skins\Armors\ShouldersSkin.cs" />
-    <Compile Include="Skins\Armors\UnknownArmorSkin.cs" />
-    <Compile Include="Skins\Backpacks\BackpackSkin.cs" />
-    <Compile Include="Skins\Skin.cs" />
-    <Compile Include="Skins\SkinFlags.cs" />
-    <Compile Include="Skins\UnknownSkin.cs" />
-    <Compile Include="Skins\Weapons\AxeSkin.cs" />
-    <Compile Include="Skins\Weapons\DaggerSkin.cs" />
-    <Compile Include="Skins\Weapons\FocusSkin.cs" />
-    <Compile Include="Skins\Weapons\GreatSwordSkin.cs" />
-    <Compile Include="Skins\Weapons\HammerSkin.cs" />
-    <Compile Include="Skins\Weapons\HarpoonSkin.cs" />
-    <Compile Include="Skins\Weapons\LargeBundleSkin.cs" />
-    <Compile Include="Skins\Weapons\LongBowSkin.cs" />
-    <Compile Include="Skins\Weapons\MaceSkin.cs" />
-    <Compile Include="Skins\Weapons\PistolSkin.cs" />
-    <Compile Include="Skins\Weapons\RifleSkin.cs" />
-    <Compile Include="Skins\Weapons\ScepterSkin.cs" />
-    <Compile Include="Skins\Weapons\ShieldSkin.cs" />
-    <Compile Include="Skins\Weapons\ShortBowSkin.cs" />
-    <Compile Include="Skins\Weapons\SmallBundleSkin.cs" />
-    <Compile Include="Skins\Weapons\SpearGunSkin.cs" />
-    <Compile Include="Skins\Weapons\StaffSkin.cs" />
-    <Compile Include="Skins\Weapons\SwordSkin.cs" />
-    <Compile Include="Skins\Weapons\TorchSkin.cs" />
-    <Compile Include="Skins\Weapons\ToyWeaponSkin.cs" />
-    <Compile Include="Skins\Weapons\TridentSkin.cs" />
-    <Compile Include="Skins\Weapons\TwoHandedToyWeaponSkin.cs" />
-    <Compile Include="Skins\Weapons\UnknownWeaponSkin.cs" />
-    <Compile Include="Skins\Weapons\WarHornSkin.cs" />
-    <Compile Include="Skins\Weapons\WeaponSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\HelmAquaticSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\ArmorSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\BootsSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\CoatSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\GlovesSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\HelmSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\LeggingsSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\ShouldersSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\UnknownArmorSkin.cs" />
+    <Compile Include="Entities\Skins\Backpacks\BackpackSkin.cs" />
+    <Compile Include="Entities\Skins\Skin.cs" />
+    <Compile Include="Entities\Skins\SkinFlags.cs" />
+    <Compile Include="Entities\Skins\UnknownSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\AxeSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\DaggerSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\FocusSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\GreatSwordSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\HammerSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\HarpoonSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\LargeBundleSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\LongBowSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\MaceSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\PistolSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\RifleSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\ScepterSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\ShieldSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\ShortBowSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\SmallBundleSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\SpearGunSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\StaffSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\SwordSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\TorchSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\ToyWeaponSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\TridentSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\TwoHandedToyWeaponSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\UnknownWeaponSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\WarHornSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\WeaponSkin.cs" />
     <Compile Include="V1\Builds.Contracts\BuildContract.cs" />
     <Compile Include="V1\Builds\BuildRequest.cs" />
     <Compile Include="V1\Builds\BuildService.cs" />
@@ -914,21 +914,21 @@
     <Compile Include="V2\Quaggans\QuagganPageRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganService.cs" />
     <Compile Include="V2\Quaggans\QuagganServiceContract.cs" />
-    <Compile Include="Worlds\World.cs" />
-    <Compile Include="WorldVersusWorld\Maps\BlueBorderlands.cs" />
-    <Compile Include="WorldVersusWorld\Bonuses\Bloodlust.cs" />
-    <Compile Include="WorldVersusWorld\Bonuses\MapBonus.cs" />
-    <Compile Include="WorldVersusWorld\Bonuses\UnknownMapBonus.cs" />
-    <Compile Include="WorldVersusWorld\Maps\CompetitiveMap.cs" />
-    <Compile Include="WorldVersusWorld\Maps\EternalBattlegrounds.cs" />
-    <Compile Include="WorldVersusWorld\Maps\GreenBorderlands.cs" />
-    <Compile Include="WorldVersusWorld\Match.cs" />
-    <Compile Include="WorldVersusWorld\Matchup.cs" />
-    <Compile Include="WorldVersusWorld\ObjectiveName.cs" />
-    <Compile Include="WorldVersusWorld\Objectives\Objective.cs" />
-    <Compile Include="WorldVersusWorld\Maps\RedBorderlands.cs" />
-    <Compile Include="WorldVersusWorld\Scoreboard.cs" />
-    <Compile Include="WorldVersusWorld\TeamColor.cs" />
+    <Compile Include="Entities\Worlds\World.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\BlueBorderlands.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Bonuses\Bloodlust.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Bonuses\MapBonus.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Bonuses\UnknownMapBonus.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\CompetitiveMap.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\EternalBattlegrounds.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\GreenBorderlands.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Match.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Matchup.cs" />
+    <Compile Include="Entities\WorldVersusWorld\ObjectiveName.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Objectives\Objective.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\RedBorderlands.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Scoreboard.cs" />
+    <Compile Include="Entities\WorldVersusWorld\TeamColor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

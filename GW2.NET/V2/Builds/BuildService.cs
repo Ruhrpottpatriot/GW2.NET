@@ -12,9 +12,9 @@ namespace GW2DotNET.V2.Builds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Builds;
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
+    using GW2DotNET.Entities.Builds;
     using GW2DotNET.V2.Builds.Contracts;
 
     /// <summary>Provides the default implementation of the build service.</summary>

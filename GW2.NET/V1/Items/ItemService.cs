@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Items
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Items;
+    using GW2DotNET.Entities.Items;
     using GW2DotNET.V1.Items.Contracts;
 
     /// <summary>Provides the default implementation of the items service.</summary>

@@ -15,16 +15,18 @@ namespace GW2DotNET
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Builds;
-    using GW2DotNET.Colors;
     using GW2DotNET.Common;
-    using GW2DotNET.DynamicEvents;
-    using GW2DotNET.Files;
-    using GW2DotNET.Guilds;
-    using GW2DotNET.Items;
-    using GW2DotNET.Maps;
-    using GW2DotNET.Recipes;
-    using GW2DotNET.Skins;
+    using GW2DotNET.Entities.Builds;
+    using GW2DotNET.Entities.Colors;
+    using GW2DotNET.Entities.DynamicEvents;
+    using GW2DotNET.Entities.Files;
+    using GW2DotNET.Entities.Guilds;
+    using GW2DotNET.Entities.Items;
+    using GW2DotNET.Entities.Maps;
+    using GW2DotNET.Entities.Recipes;
+    using GW2DotNET.Entities.Skins;
+    using GW2DotNET.Entities.Worlds;
+    using GW2DotNET.Entities.WorldVersusWorld;
     using GW2DotNET.V1.Builds;
     using GW2DotNET.V1.Colors;
     using GW2DotNET.V1.DynamicEvents;
@@ -36,8 +38,6 @@ namespace GW2DotNET
     using GW2DotNET.V1.Skins;
     using GW2DotNET.V1.Worlds;
     using GW2DotNET.V1.WorldVersusWorld;
-    using GW2DotNET.Worlds;
-    using GW2DotNET.WorldVersusWorld;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 

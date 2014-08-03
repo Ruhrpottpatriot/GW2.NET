@@ -17,7 +17,7 @@ namespace GW2DotNET.V2.Quaggans
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Quaggans;
+    using GW2DotNET.Entities.Quaggans;
     using GW2DotNET.V2.Common;
     using GW2DotNET.V2.Quaggans.Contracts;
 

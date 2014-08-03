@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Recipes
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Recipes;
+    using GW2DotNET.Entities.Recipes;
     using GW2DotNET.V1.Recipes.Contracts;
 
     /// <summary>Provides the default implementation of the recipe service.</summary>

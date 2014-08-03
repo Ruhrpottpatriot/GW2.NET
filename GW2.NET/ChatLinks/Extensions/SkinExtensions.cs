@@ -10,7 +10,7 @@ namespace GW2DotNET.ChatLinks.Extensions
 {
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.Skins;
+    using GW2DotNET.Entities.Skins;
 
     /// <summary>Provides static extension methods for the <see cref="Skin" /> class.</summary>
     public static class SkinExtensions

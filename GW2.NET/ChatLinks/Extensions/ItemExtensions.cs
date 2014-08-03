@@ -10,7 +10,7 @@ namespace GW2DotNET.ChatLinks.Extensions
 {
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.Items;
+    using GW2DotNET.Entities.Items;
 
     /// <summary>Provides static extension methods for the <see cref="Item" /> class.</summary>
     public static class ItemExtensions

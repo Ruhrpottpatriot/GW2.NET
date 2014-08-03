@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Maps
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Maps;
+    using GW2DotNET.Entities.Maps;
 
     /// <summary>Provides the interface for the map floor service.</summary>
     [ContractClass(typeof(MapFloorServiceContract))]

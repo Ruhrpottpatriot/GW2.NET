@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Colors
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Colors;
+    using GW2DotNET.Entities.Colors;
 
     /// <summary>Provides the interface for the colors service.</summary>
     [ContractClass(typeof(ColorServiceContract))]

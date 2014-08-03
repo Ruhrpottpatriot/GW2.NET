@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Guilds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Guilds;
+    using GW2DotNET.Entities.Guilds;
 
     /// <summary>Provides the interface for the guild details service.</summary>
     [ContractClass(typeof(GuildDetailsServiceContract))]

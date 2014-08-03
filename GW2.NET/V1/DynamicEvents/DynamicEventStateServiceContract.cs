@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.DynamicEvents;
+    using GW2DotNET.Entities.DynamicEvents;
 
     /// <summary>The dynamic event state service contract.</summary>
     [ContractClassFor(typeof(IDynamicEventStateService))]

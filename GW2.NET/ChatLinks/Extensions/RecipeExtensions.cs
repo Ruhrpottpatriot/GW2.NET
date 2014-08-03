@@ -10,7 +10,7 @@ namespace GW2DotNET.ChatLinks.Extensions
 {
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.Recipes;
+    using GW2DotNET.Entities.Recipes;
 
     /// <summary>Provides static extension methods for the <see cref="Recipe" /> class.</summary>
     public static class RecipeExtensions

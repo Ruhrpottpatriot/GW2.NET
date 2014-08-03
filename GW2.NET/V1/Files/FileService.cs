@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Files
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Files;
+    using GW2DotNET.Entities.Files;
     using GW2DotNET.V1.Files.Contracts;
 
     /// <summary>Provides the default implementation of the files service.</summary>

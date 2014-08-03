@@ -14,7 +14,7 @@ namespace GW2DotNET.V2.Quaggans
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Quaggans;
+    using GW2DotNET.Entities.Quaggans;
     using GW2DotNET.V2.Common;
 
     /// <summary>The quaggan service contract.</summary>

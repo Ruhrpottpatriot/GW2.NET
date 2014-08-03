@@ -13,7 +13,7 @@ namespace GW2DotNET.V1.Files
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Files;
+    using GW2DotNET.Entities.Files;
 
     /// <summary>Provides the interface for the files service.</summary>
     [ContractClass(typeof(FileServiceContract))]

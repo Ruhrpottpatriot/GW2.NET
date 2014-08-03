@@ -14,9 +14,9 @@ namespace GW2DotNET
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Builds;
     using GW2DotNET.Common;
-    using GW2DotNET.Quaggans;
+    using GW2DotNET.Entities.Builds;
+    using GW2DotNET.Entities.Quaggans;
     using GW2DotNET.V2.Builds;
     using GW2DotNET.V2.Common;
     using GW2DotNET.V2.Quaggans;

@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Maps
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Maps;
+    using GW2DotNET.Entities.Maps;
 
     /// <summary>The map service contract.</summary>
     [ContractClassFor(typeof(IMapService))]
