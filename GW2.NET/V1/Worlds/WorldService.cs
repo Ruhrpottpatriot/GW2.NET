@@ -59,7 +59,7 @@ namespace GW2DotNET.V1.Worlds
             Contract.EndContractBlock();
 
             var request = new WorldNameRequest { Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<WorldNameContract>>());
+            var response = this.serviceClient.Send<ICollection<WorldNameContract>>(request);
             if (response.Content == null)
             {
                 return new List<World>(0);
@@ -113,7 +113,7 @@ namespace GW2DotNET.V1.Worlds
             Contract.EndContractBlock();
 
             var worldNamesRequest = new WorldNameRequest { Culture = language };
-            return this.serviceClient.SendAsync(worldNamesRequest, new JsonSerializer<ICollection<WorldNameContract>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<WorldNameContract>>(worldNamesRequest, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

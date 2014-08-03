@@ -15,6 +15,7 @@ namespace GW2DotNET
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.Builds;
     using GW2DotNET.Entities.Quaggans;
     using GW2DotNET.V2.Builds;
@@ -52,7 +53,7 @@ namespace GW2DotNET
 
         /// <summary>Initializes a new instance of the <see cref="Service2Manager"/> class.</summary>
         public Service2Manager()
-            : this(new ServiceClient(GetBaseUri()))
+            : this(GetDefaultServiceClient())
         {
         }
 
@@ -237,6 +238,16 @@ namespace GW2DotNET
             var baseUri = new Uri("https://api.guildwars2.com", UriKind.Absolute);
             Contract.Assume(baseUri.IsAbsoluteUri);
             return baseUri;
+        }
+
+        /// <summary>Infrastructure. Creates and configures an instance of the default service client.</summary>
+        /// <returns>The <see cref="IServiceClient"/>.</returns>
+        private static IServiceClient GetDefaultServiceClient()
+        {
+            Contract.Ensures(Contract.Result<IServiceClient>() != null);
+            var baseUri = GetBaseUri();
+            var serializerFactory = new JsonDataContractSerializerFactory();
+            return new ServiceClient(baseUri, serializerFactory, serializerFactory);
         }
 
         /// <summary>The invariant method for this class.</summary>

@@ -15,6 +15,7 @@ namespace GW2DotNET
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Rendering;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 render service.</summary>
@@ -33,7 +34,7 @@ namespace GW2DotNET
 
         /// <summary>Initializes a new instance of the <see cref="RenderServiceManager"/> class.</summary>
         public RenderServiceManager()
-            : this(new ServiceClient(GetBaseUri()))
+            : this(GetDefaultServiceClient())
         {
         }
 
@@ -85,6 +86,17 @@ namespace GW2DotNET
             var baseUri = new Uri("https://render.guildwars2.com", UriKind.Absolute);
             Contract.Assume(baseUri.IsAbsoluteUri);
             return baseUri;
+        }
+
+        /// <summary>Infrastructure. Creates and configures an instance of the default service client.</summary>
+        /// <returns>The <see cref="IServiceClient"/>.</returns>
+        private static IServiceClient GetDefaultServiceClient()
+        {
+            Contract.Ensures(Contract.Result<IServiceClient>() != null);
+            var baseUri = GetBaseUri();
+            var successSerializerFactory = new ImageSerializerFactory();
+            var errorSerializerFactory = new JsonDataContractSerializerFactory();
+            return new ServiceClient(baseUri, successSerializerFactory, errorSerializerFactory);
         }
 
         /// <summary>The invariant method for this class.</summary>

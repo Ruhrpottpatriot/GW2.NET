@@ -9,7 +9,6 @@
 namespace GW2DotNET.Common
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.IO.Compression;
@@ -26,22 +25,33 @@ namespace GW2DotNET.Common
         /// <summary>Infrastructure. Holds a reference to the base URI.</summary>
         private readonly Uri baseUri;
 
+        /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
+        private readonly ISerializerFactory errorSerializerFactory;
+
+        /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
+        private readonly ISerializerFactory successSerializerFactory;
+
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
         /// <param name="baseUri">The base URI.</param>
-        public ServiceClient(Uri baseUri)
+        /// <param name="successSerializerFactory">The serializer factory.</param>
+        /// <param name="errorSerializerFactory">The error Serializer Factory.</param>
+        public ServiceClient(Uri baseUri, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory)
         {
             Contract.Requires(baseUri != null);
             Contract.Requires(baseUri.IsAbsoluteUri);
+            Contract.Requires(successSerializerFactory != null);
+            Contract.Requires(errorSerializerFactory != null);
             Contract.Ensures(this.baseUri.IsAbsoluteUri);
             this.baseUri = baseUri;
+            this.successSerializerFactory = successSerializerFactory;
+            this.errorSerializerFactory = errorSerializerFactory;
         }
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public IResponse<TResult> Send<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public IResponse<TResult> Send<TResult>(IRequest request)
         {
             // Translate the request to form data
             var formData = new UrlEncodedForm();
@@ -57,27 +67,30 @@ namespace GW2DotNET.Common
             var httpWebRequest = CreateHttpWebRequest(uri);
             using (var response = GetHttpWebResponse(httpWebRequest))
             {
-                return PostProcess(response, serializer);
+                if (!response.StatusCode.IsSuccessStatusCode())
+                {
+                    OnError(response, this.errorSerializerFactory);
+                }
+
+                return OnSuccess<TResult>(response, this.successSerializerFactory);
             }
         }
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request)
         {
-            return this.SendAsync(request, serializer, CancellationToken.None);
+            return this.SendAsync<TResult>(request, CancellationToken.None);
         }
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer, CancellationToken cancellationToken)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
         {
             // Translate the request to form data
             var formData = new UrlEncodedForm();
@@ -96,7 +109,12 @@ namespace GW2DotNET.Common
                     {
                         using (var response = task.Result)
                         {
-                            return PostProcess(response, serializer);
+                            if (!response.StatusCode.IsSuccessStatusCode())
+                            {
+                                OnError(response, this.errorSerializerFactory);
+                            }
+
+                            return OnSuccess<TResult>(response, this.successSerializerFactory);
                         }
                     }, 
                 cancellationToken);
@@ -138,14 +156,14 @@ namespace GW2DotNET.Common
         }
 
         /// <summary>Infrastructure. Deserializes the response stream.</summary>
-        /// <param name="serializer">The serialization engine.</param>
         /// <param name="response">The response.</param>
+        /// <param name="serializerFactory">The serializer factory.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        private static TResult DeserializeResponse<TResult>(ISerializer<TResult> serializer, HttpWebResponse response)
+        private static TResult DeserializeResponse<TResult>(HttpWebResponse response, ISerializerFactory serializerFactory)
         {
-            Contract.Requires(serializer != null);
             Contract.Requires(response != null);
+            Contract.Requires(serializerFactory != null);
 
             // Get the response content
             var stream = response.GetResponseStream();
@@ -170,6 +188,9 @@ namespace GW2DotNET.Common
             }
 
             Contract.Assume(stream.CanRead);
+
+            // Create a serializer
+            var serializer = serializerFactory.GetSerializer<TResult>();
 
             // Deserialize the response content
             return serializer.Deserialize(stream);
@@ -203,12 +224,14 @@ namespace GW2DotNET.Common
                     throw;
                 }
 
-                // Wrap the exception in a ServiceException, then throw
-                using (var response = exception.Response)
-                {
-                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
-                    throw new ServiceException(errorResult.Text, exception);
-                }
+                // Get the response
+                var webResponse = exception.Response;
+
+                // Provide a hint to the static checker
+                Contract.Assume(webResponse != null);
+
+                // Return the response
+                return (HttpWebResponse)webResponse;
             }
         }
 
@@ -223,38 +246,61 @@ namespace GW2DotNET.Common
             return Task.Factory.FromAsync<WebResponse>(webRequest.BeginGetResponse, webRequest.EndGetResponse, null).ContinueWith(
                 task =>
                     {
-                        if (task.IsFaulted && task.Exception != null)
+                        // Handle protocol errors
+                        // TODO: should we wrap timeouts in a System.TimeoutException?
+                        if (task.IsFaulted)
                         {
-                            var exception = task.Exception.GetBaseException() as WebException;
+                            // Provide a hint to the static checker
+                            Contract.Assume(task.Exception != null);
 
-                            // Handle only protocol errors
+                            var exception = task.Exception.GetBaseException() as WebException;
                             if (exception != null && exception.Status == WebExceptionStatus.ProtocolError)
                             {
-                                // Wrap the exception in a ServiceException, then throw
-                                using (var response = exception.Response)
-                                {
-                                    var errorResult = new JsonSerializer<ErrorResult>().Deserialize(response.GetResponseStream());
-                                    throw new ServiceException(errorResult.Text, exception);
-                                }
+                                // Get the response
+                                var errorResponse = exception.Response;
+
+                                // Provide a hint to the static checker
+                                Contract.Assume(errorResponse != null);
+
+                                // Return the response
+                                return (HttpWebResponse)errorResponse;
                             }
                         }
 
+                        // Get the response
                         // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
-                        // TODO: should we wrap timeouts in a System.TimeoutException?
-                        return (HttpWebResponse)task.Result;
+                        var webResponse = task.Result;
+
+                        // Provide a hint to the static checker
+                        Contract.Assume(webResponse != null);
+
+                        // Return the response
+                        return (HttpWebResponse)webResponse;
                     }, 
                 cancellationToken);
         }
 
         /// <summary>Infrastructure. Post-processes a response object.</summary>
         /// <param name="response">The raw response.</param>
-        /// <param name="serializer">The response content serializer.</param>
+        /// <param name="serializerFactory">The response content serializer factory.</param>
+        private static void OnError(HttpWebResponse response, ISerializerFactory serializerFactory)
+        {
+            // Get the response content
+            var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory);
+
+            // Throw an exception
+            throw new ServiceException(errorResult.Text);
+        }
+
+        /// <summary>Infrastructure. Post-processes a response object.</summary>
+        /// <param name="response">The raw response.</param>
+        /// <param name="serializerFactory">The response content serializer factory.</param>
         /// <typeparam name="T">The type of the response content.</typeparam>
         /// <returns>A processed response object.</returns>
-        private static IResponse<T> PostProcess<T>(HttpWebResponse response, ISerializer<T> serializer)
+        private static IResponse<T> OnSuccess<T>(HttpWebResponse response, ISerializerFactory serializerFactory)
         {
             Contract.Requires(response != null);
-            Contract.Requires(serializer != null);
+            Contract.Requires(serializerFactory != null);
             Contract.Ensures(Contract.Result<IResponse<T>>() != null);
             Contract.Ensures(Contract.Result<IResponse<T>>().ExtensionData != null);
 
@@ -262,7 +308,7 @@ namespace GW2DotNET.Common
             var value = new Response<T>();
 
             // Set the deserialized response content
-            value.Content = DeserializeResponse(serializer, response);
+            value.Content = DeserializeResponse<T>(response, serializerFactory);
 
             // Set the 'Date' header
             value.LastModified = response.LastModified;

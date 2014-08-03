@@ -38,7 +38,7 @@ namespace GW2DotNET.Rendering
         public Image GetImage(IRenderable file, string imageFormat)
         {
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
-            return this.serviceClient.Send(request, new ImageSerializer()).Content;
+            return this.serviceClient.Send<Image>(request).Content;
         }
 
         /// <summary>Gets an image.</summary>
@@ -60,7 +60,7 @@ namespace GW2DotNET.Rendering
         public Task<Image> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
-            return this.serviceClient.SendAsync(request, new ImageSerializer(), cancellationToken).ContinueWith(task => task.Result.Content, cancellationToken);
+            return this.serviceClient.SendAsync<Image>(request, cancellationToken).ContinueWith(task => task.Result.Content, cancellationToken);
         }
 
         /// <summary>The invariant method for this class.</summary>

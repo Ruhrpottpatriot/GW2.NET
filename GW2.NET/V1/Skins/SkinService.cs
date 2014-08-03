@@ -62,7 +62,7 @@ namespace GW2DotNET.V1.Skins
             Contract.EndContractBlock();
 
             var request = new SkinDetailsRequest { SkinId = skin, Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<SkinContract>());
+            var response = this.serviceClient.Send<SkinContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -122,7 +122,7 @@ namespace GW2DotNET.V1.Skins
             Contract.EndContractBlock();
 
             var request = new SkinDetailsRequest { SkinId = skin, Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<SkinContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<SkinContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -139,7 +139,7 @@ namespace GW2DotNET.V1.Skins
         public ICollection<int> GetSkins()
         {
             var request = new SkinRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<SkinCollectionContract>());
+            var response = this.serviceClient.Send<SkinCollectionContract>(request);
             if (response.Content == null || response.Content.Skins == null)
             {
                 return new List<int>(0);
@@ -163,7 +163,7 @@ namespace GW2DotNET.V1.Skins
         public Task<ICollection<int>> GetSkinsAsync(CancellationToken cancellationToken)
         {
             var request = new SkinRequest();
-            return this.serviceClient.SendAsync(request, new JsonSerializer<SkinCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<SkinCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

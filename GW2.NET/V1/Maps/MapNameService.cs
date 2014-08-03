@@ -59,7 +59,7 @@ namespace GW2DotNET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapNameRequest { Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<MapNameContract>>());
+            var response = this.serviceClient.Send<ICollection<MapNameContract>>(request);
             if (response.Content == null)
             {
                 return new Dictionary<int, Map>(0);
@@ -113,7 +113,7 @@ namespace GW2DotNET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapNameRequest { Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<MapNameContract>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<MapNameContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

@@ -41,7 +41,7 @@ namespace GW2DotNET.V1.Guilds
         public Guild GetGuildDetailsById(Guid guildId)
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
-            var response = this.serviceClient.Send(request, new JsonSerializer<GuildContract>());
+            var response = this.serviceClient.Send<GuildContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -58,7 +58,7 @@ namespace GW2DotNET.V1.Guilds
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
             var cancellationToken = CancellationToken.None;
-            return this.serviceClient.SendAsync(request, new JsonSerializer<GuildContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<GuildContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -75,7 +75,7 @@ namespace GW2DotNET.V1.Guilds
         public Task<Guild> GetGuildDetailsByIdAsync(Guid guildId, CancellationToken cancellationToken)
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<GuildContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<GuildContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -91,7 +91,7 @@ namespace GW2DotNET.V1.Guilds
         public Guild GetGuildDetailsByName(string guildName)
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
-            var response = this.serviceClient.Send(request, new JsonSerializer<GuildContract>());
+            var response = this.serviceClient.Send<GuildContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -108,7 +108,7 @@ namespace GW2DotNET.V1.Guilds
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
             var cancellationToken = CancellationToken.None;
-            return this.serviceClient.SendAsync(request, new JsonSerializer<GuildContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<GuildContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -125,7 +125,7 @@ namespace GW2DotNET.V1.Guilds
         public Task<Guild> GetGuildDetailsByNameAsync(string guildName, CancellationToken cancellationToken)
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<GuildContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<GuildContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

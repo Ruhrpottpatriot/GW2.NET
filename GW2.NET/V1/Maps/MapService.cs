@@ -61,7 +61,7 @@ namespace GW2DotNET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapRequest { MapId = map, Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<MapCollectionContract>());
+            var response = this.serviceClient.Send<MapCollectionContract>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
                 return null;
@@ -119,7 +119,7 @@ namespace GW2DotNET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapRequest { MapId = map, Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<MapCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -152,7 +152,7 @@ namespace GW2DotNET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapRequest { Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<MapCollectionContract>());
+            var response = this.serviceClient.Send<MapCollectionContract>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
                 return new Dictionary<int, Map>(0);
@@ -206,7 +206,7 @@ namespace GW2DotNET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapRequest { Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<MapCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<MapCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

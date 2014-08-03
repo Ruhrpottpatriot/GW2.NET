@@ -62,7 +62,7 @@ namespace GW2DotNET.V1.Recipes
             Contract.EndContractBlock();
 
             var request = new RecipeDetailsRequest { RecipeId = recipe, Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<RecipeContract>());
+            var response = this.serviceClient.Send<RecipeContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -122,7 +122,7 @@ namespace GW2DotNET.V1.Recipes
             Contract.EndContractBlock();
 
             var request = new RecipeDetailsRequest { RecipeId = recipe, Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<RecipeContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<RecipeContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -140,7 +140,7 @@ namespace GW2DotNET.V1.Recipes
         {
             Contract.Ensures(Contract.Result<ICollection<int>>() != null);
             var request = new RecipeRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<RecipeCollectionContract>());
+            var response = this.serviceClient.Send<RecipeCollectionContract>(request);
             if (response.Content == null || response.Content.Recipes == null)
             {
                 return new int[0];
@@ -164,7 +164,7 @@ namespace GW2DotNET.V1.Recipes
         public Task<ICollection<int>> GetRecipesAsync(CancellationToken cancellationToken)
         {
             var request = new RecipeRequest();
-            return this.serviceClient.SendAsync(request, new JsonSerializer<RecipeCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<RecipeCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

@@ -45,7 +45,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public DynamicEventState GetDynamicEvent(Guid eventId, int worldId)
         {
             var request = new DynamicEventStateRequest { EventId = eventId, WorldId = worldId };
-            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return null;
@@ -73,12 +73,12 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<DynamicEventState> GetDynamicEventAsync(Guid eventId, int worldId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { EventId = eventId, WorldId = worldId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapEventStateContracts(response.Content).Values.SingleOrDefault();
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapEventStateContracts(response.Content).Values.SingleOrDefault();
+                },
                 cancellationToken);
         }
 
@@ -106,7 +106,7 @@ namespace GW2DotNET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventDetailsRequest { Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<EventDetailsCollectionContract>());
+            var response = this.serviceClient.Send<EventDetailsCollectionContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEvent>(0);
@@ -141,7 +141,7 @@ namespace GW2DotNET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            var response = this.serviceClient.Send(request, new JsonSerializer<EventDetailsCollectionContract>());
+            var response = this.serviceClient.Send<EventDetailsCollectionContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return null;
@@ -195,12 +195,12 @@ namespace GW2DotNET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventDetailsRequest { Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<EventDetailsCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventDetailsCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapEventDetailsCollectionContract(response.Content, language);
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapEventDetailsCollectionContract(response.Content, language);
+                },
                 cancellationToken);
         }
 
@@ -253,12 +253,12 @@ namespace GW2DotNET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<EventDetailsCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventDetailsCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapEventDetailsCollectionContract(response.Content, language).Values.SingleOrDefault();
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapEventDetailsCollectionContract(response.Content, language).Values.SingleOrDefault();
+                },
                 cancellationToken);
         }
 
@@ -286,7 +286,7 @@ namespace GW2DotNET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventNameRequest { Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<EventNameContract>>());
+            var response = this.serviceClient.Send<ICollection<EventNameContract>>(request);
             if (response.Content == null)
             {
                 return new Dictionary<Guid, DynamicEvent>(0);
@@ -340,12 +340,12 @@ namespace GW2DotNET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventNameRequest { Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<EventNameContract>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<EventNameContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapEventNameContracts(response.Content, language);
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapEventNameContracts(response.Content, language);
+                },
                 cancellationToken);
         }
 
@@ -364,15 +364,15 @@ namespace GW2DotNET.V1.DynamicEvents
                 var eventId = Guid.Parse(eventIdAttribute.Value);
                 var shifts = contract.Descendants("shift").Select(
                     element =>
+                    {
+                        var shift = DateTimeOffset.Parse(element.Value);
+                        if (shift < DateTime.UtcNow)
                         {
-                            var shift = DateTimeOffset.Parse(element.Value);
-                            if (shift < DateTime.UtcNow)
-                            {
-                                shift = shift.AddDays(1D);
-                            }
+                            shift = shift.AddDays(1D);
+                        }
 
-                            return shift;
-                        }).OrderBy(offset => offset.Ticks);
+                        return shift;
+                    }).OrderBy(offset => offset.Ticks);
 
                 values.Add(eventId, new DynamicEventRotation { EventId = eventId, Shifts = new List<DateTimeOffset>(shifts) });
             }
@@ -386,7 +386,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEvents()
         {
             var request = new DynamicEventStateRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -410,12 +410,12 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsAsync(CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest();
-            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapEventStateContracts(response.Content);
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapEventStateContracts(response.Content);
+                },
                 cancellationToken);
         }
 
@@ -426,7 +426,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEventsById(Guid eventId)
         {
             var request = new DynamicEventStateRequest { EventId = eventId };
-            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -443,12 +443,12 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { EventId = eventId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapEventStateContracts(response.Content);
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapEventStateContracts(response.Content);
+                },
                 cancellationToken);
         }
 
@@ -468,7 +468,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEventsByMap(int mapId)
         {
             var request = new DynamicEventStateRequest { MapId = mapId };
-            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -485,7 +485,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEventsByMap(int mapId, int worldId)
         {
             var request = new DynamicEventStateRequest { MapId = mapId, WorldId = worldId };
-            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -511,12 +511,12 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { MapId = mapId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapEventStateContracts(response.Content);
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapEventStateContracts(response.Content);
+                },
                 cancellationToken);
         }
 
@@ -539,12 +539,12 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { MapId = mapId, WorldId = worldId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapEventStateContracts(response.Content);
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapEventStateContracts(response.Content);
+                },
                 cancellationToken);
         }
 
@@ -555,7 +555,7 @@ namespace GW2DotNET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEventsByWorld(int worldId)
         {
             var request = new DynamicEventStateRequest { WorldId = worldId };
-            var response = this.serviceClient.Send(request, new JsonSerializer<EventStateCollectionContract>());
+            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -581,12 +581,12 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { WorldId = worldId };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<EventStateCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapEventStateContracts(response.Content);
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapEventStateContracts(response.Content);
+                },
                 cancellationToken);
         }
 

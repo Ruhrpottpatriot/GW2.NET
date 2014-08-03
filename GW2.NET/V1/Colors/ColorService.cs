@@ -59,7 +59,7 @@ namespace GW2DotNET.V1.Colors
             Contract.EndContractBlock();
 
             var request = new ColorRequest { Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<ColorCollectionContract>());
+            var response = this.serviceClient.Send<ColorCollectionContract>(request);
             if (response.Content == null || response.Content.Colors == null)
             {
                 return new Dictionary<int, ColorPalette>(0);
@@ -111,7 +111,7 @@ namespace GW2DotNET.V1.Colors
             Contract.EndContractBlock();
 
             var request = new ColorRequest { Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<ColorCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ColorCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

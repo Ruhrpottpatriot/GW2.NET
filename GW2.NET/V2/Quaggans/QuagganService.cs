@@ -41,7 +41,7 @@ namespace GW2DotNET.V2.Quaggans
         public Quaggan GetQuaggan(string identifier)
         {
             var request = new QuagganDetailsRequest { Identifier = identifier };
-            var response = this.serviceClient.Send(request, new JsonSerializer<QuagganContract>());
+            var response = this.serviceClient.Send<QuagganContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -65,7 +65,7 @@ namespace GW2DotNET.V2.Quaggans
         public Task<Quaggan> GetQuagganAsync(string identifier, CancellationToken cancellationToken)
         {
             var request = new QuagganDetailsRequest { Identifier = identifier };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<QuagganContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<QuagganContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -84,7 +84,7 @@ namespace GW2DotNET.V2.Quaggans
         public ICollection<string> GetQuagganIdentifiers()
         {
             var request = new QuagganDiscoveryRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<string>>());
+            var response = this.serviceClient.Send<ICollection<string>>(request);
             if (response.Content == null)
             {
                 return new List<string>(0);
@@ -106,7 +106,7 @@ namespace GW2DotNET.V2.Quaggans
         public Task<ICollection<string>> GetQuagganIdentifiersAsync(CancellationToken cancellationToken)
         {
             var request = new QuagganDiscoveryRequest();
-            return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<string>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -125,7 +125,7 @@ namespace GW2DotNET.V2.Quaggans
         public Subdictionary<string, Quaggan> GetQuaggans()
         {
             var request = new QuagganBulkRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<IEnumerable<QuagganContract>>());
+            var response = this.serviceClient.Send<IEnumerable<QuagganContract>>(request);
             if (response.Content == null)
             {
                 return new Subdictionary<string, Quaggan>(0);
@@ -147,7 +147,7 @@ namespace GW2DotNET.V2.Quaggans
         public Subdictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
         {
             var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
-            var response = this.serviceClient.Send(request, new JsonSerializer<IEnumerable<QuagganContract>>());
+            var response = this.serviceClient.Send<IEnumerable<QuagganContract>>(request);
             if (response.Content == null)
             {
                 return new Subdictionary<string, Quaggan>(0);
@@ -169,7 +169,7 @@ namespace GW2DotNET.V2.Quaggans
         public PaginatedCollection<Quaggan> GetQuaggans(int page)
         {
             var request = new QuagganPageRequest { Page = page };
-            var response = this.serviceClient.Send(request, new JsonSerializer<IEnumerable<QuagganContract>>());
+            var response = this.serviceClient.Send<IEnumerable<QuagganContract>>(request);
             if (response.Content == null)
             {
                 return new PaginatedCollection<Quaggan>(0);
@@ -198,7 +198,7 @@ namespace GW2DotNET.V2.Quaggans
         public PaginatedCollection<Quaggan> GetQuaggans(int page, int size)
         {
             var request = new QuagganPageRequest { Page = page, PageSize = size };
-            var response = this.serviceClient.Send(request, new JsonSerializer<IEnumerable<QuagganContract>>());
+            var response = this.serviceClient.Send<IEnumerable<QuagganContract>>(request);
             if (response.Content == null)
             {
                 return new PaginatedCollection<Quaggan>(0);
@@ -237,7 +237,7 @@ namespace GW2DotNET.V2.Quaggans
         public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, int size, CancellationToken cancellationToken)
         {
             var request = new QuagganPageRequest { Page = page, PageSize = size };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<IEnumerable<QuagganContract>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<IEnumerable<QuagganContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -279,7 +279,7 @@ namespace GW2DotNET.V2.Quaggans
         public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, CancellationToken cancellationToken)
         {
             var request = new QuagganPageRequest { Page = page };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<IEnumerable<QuagganContract>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<IEnumerable<QuagganContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -321,7 +321,7 @@ namespace GW2DotNET.V2.Quaggans
         public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(IEnumerable<string> identifiers, CancellationToken cancellationToken)
         {
             var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<IEnumerable<QuagganContract>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<IEnumerable<QuagganContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -355,7 +355,7 @@ namespace GW2DotNET.V2.Quaggans
         public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(CancellationToken cancellationToken)
         {
             var request = new QuagganBulkRequest();
-            return this.serviceClient.SendAsync(request, new JsonSerializer<IEnumerable<QuagganContract>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<IEnumerable<QuagganContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

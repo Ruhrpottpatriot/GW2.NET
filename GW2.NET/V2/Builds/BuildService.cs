@@ -37,7 +37,7 @@ namespace GW2DotNET.V2.Builds
         public Build GetBuild()
         {
             var request = new BuildRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<BuildContract>());
+            var response = this.serviceClient.Send<BuildContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -63,7 +63,7 @@ namespace GW2DotNET.V2.Builds
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
             var request = new BuildRequest();
-            return this.serviceClient.SendAsync(request, new JsonSerializer<BuildContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<BuildContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

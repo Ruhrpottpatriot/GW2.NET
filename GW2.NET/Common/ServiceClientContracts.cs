@@ -12,21 +12,17 @@ namespace GW2DotNET.Common
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common.Serializers;
-
     /// <summary>The service client contracts.</summary>
     [ContractClassFor(typeof(IServiceClient))]
     internal abstract class ServiceClientContracts : IServiceClient
     {
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public IResponse<TResult> Send<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public IResponse<TResult> Send<TResult>(IRequest request)
         {
             Contract.Requires(request != null);
-            Contract.Requires(serializer != null);
             Contract.Ensures(Contract.Result<IResponse<TResult>>() != null);
             Contract.Ensures(Contract.Result<IResponse<TResult>>().ExtensionData != null);
             throw new System.NotImplementedException();
@@ -34,13 +30,11 @@ namespace GW2DotNET.Common
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request)
         {
             Contract.Requires(request != null);
-            Contract.Requires(serializer != null);
             Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>() != null);
             Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result != null);
             Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result.ExtensionData != null);
@@ -49,14 +43,12 @@ namespace GW2DotNET.Common
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer, CancellationToken cancellationToken)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
         {
             Contract.Requires(request != null);
-            Contract.Requires(serializer != null);
             Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>() != null);
             Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result != null);
             Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result.ExtensionData != null);

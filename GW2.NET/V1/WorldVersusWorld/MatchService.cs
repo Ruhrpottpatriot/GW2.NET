@@ -42,7 +42,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         public Match GetMatchDetails(string match)
         {
             var request = new MatchDetailsRequest { MatchId = match };
-            var response = this.serviceClient.Send(request, new JsonSerializer<MatchContract>());
+            var response = this.serviceClient.Send<MatchContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -68,7 +68,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         public Task<Match> GetMatchDetailsAsync(string match, CancellationToken cancellationToken)
         {
             var request = new MatchDetailsRequest { MatchId = match };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<MatchContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<MatchContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -83,7 +83,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         public IDictionary<string, Matchup> GetMatches()
         {
             var request = new MatchRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<MatchupCollectionContract>());
+            var response = this.serviceClient.Send<MatchupCollectionContract>(request);
             if (response.Content == null || response.Content.Matchups == null)
             {
                 return new Dictionary<string, Matchup>(0);
@@ -106,7 +106,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
         public Task<IDictionary<string, Matchup>> GetMatchesAsync(CancellationToken cancellationToken)
         {
-            return this.serviceClient.SendAsync(new MatchRequest(), new JsonSerializer<MatchupCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<MatchupCollectionContract>(new MatchRequest(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -139,7 +139,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
             Contract.EndContractBlock();
 
             var request = new ObjectiveNameRequest { Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<ICollection<ObjectiveNameContract>>());
+            var response = this.serviceClient.Send<ICollection<ObjectiveNameContract>>(request);
             if (response.Content == null)
             {
                 return new Dictionary<int, ObjectiveName>(0);
@@ -193,7 +193,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
             Contract.EndContractBlock();
 
             var request = new ObjectiveNameRequest { Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<ICollection<ObjectiveNameContract>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<ObjectiveNameContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

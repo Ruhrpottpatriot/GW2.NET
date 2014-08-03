@@ -9,7 +9,6 @@
 namespace GW2DotNET.RestSharp
 {
     using System;
-    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.IO;
@@ -25,13 +24,23 @@ namespace GW2DotNET.RestSharp
     /// <summary>Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
     {
+        /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
+        private readonly ISerializerFactory errorSerializerFactory;
+
         /// <summary>Infrastructure. Holds a reference to the inner <see cref="IRestClient" />.</summary>
         private readonly IRestClient restClient;
 
+        /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
+        private readonly ISerializerFactory successSerializerFactory;
+
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
         /// <param name="baseUri">The base URI.</param>
-        public ServiceClient(Uri baseUri)
+        /// <param name="successSerializerFactory">The serializer factory.</param>
+        /// <param name="errorSerializerFactory">The error Serializer Factory.</param>
+        public ServiceClient(Uri baseUri, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory)
         {
+            this.successSerializerFactory = successSerializerFactory;
+            this.errorSerializerFactory = errorSerializerFactory;
             Contract.Requires(baseUri != null);
             Contract.Requires(baseUri.IsAbsoluteUri, "Parameter 'baseUri' must be an absolute URI.");
             this.restClient = new RestClient(baseUri.ToString());
@@ -39,18 +48,21 @@ namespace GW2DotNET.RestSharp
 
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
         /// <param name="restClient">The <see cref="IRestClient"/>.</param>
-        public ServiceClient(IRestClient restClient)
+        /// <param name="successSerializerFactory">The serializer factory.</param>
+        /// <param name="errorSerializerFactory">The error Serializer Factory.</param>
+        public ServiceClient(IRestClient restClient, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory)
         {
             Contract.Requires(restClient != null);
             this.restClient = restClient;
+            this.successSerializerFactory = successSerializerFactory;
+            this.errorSerializerFactory = errorSerializerFactory;
         }
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public IResponse<TResult> Send<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public IResponse<TResult> Send<TResult>(IRequest request)
         {
             var restRequest = new RestRequest(request.Resource);
 
@@ -62,26 +74,29 @@ namespace GW2DotNET.RestSharp
 
             // Handle the request
             var restResponse = GetRestResponse(this.restClient, restRequest);
-            return PostProcess(restResponse, serializer);
+            if (!restResponse.StatusCode.IsSuccessStatusCode())
+            {
+                OnError(restResponse, this.errorSerializerFactory);
+            }
+
+            return OnSuccess<TResult>(restResponse, this.successSerializerFactory);
         }
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request)
         {
-            return this.SendAsync(request, serializer, CancellationToken.None);
+            return this.SendAsync<TResult>(request, CancellationToken.None);
         }
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer, CancellationToken cancellationToken)
+        public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
         {
             var restRequest = new RestRequest(request.Resource);
 
@@ -96,20 +111,36 @@ namespace GW2DotNET.RestSharp
                 task =>
                     {
                         var restResponse = task.Result;
-                        return PostProcess(restResponse, serializer);
+                        if (!restResponse.StatusCode.IsSuccessStatusCode())
+                        {
+                            OnError(restResponse, this.errorSerializerFactory);
+                        }
+
+                        return OnSuccess<TResult>(restResponse, this.successSerializerFactory);
                     }, 
                 cancellationToken);
         }
 
         /// <summary>Infrastructure. Deserializes the response stream.</summary>
-        /// <param name="serializer">The serialization engine.</param>
         /// <param name="response">The response.</param>
+        /// <param name="serializerFactory">The serializer factory.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        private static TResult DeserializeResponse<TResult>(ISerializer<TResult> serializer, IRestResponse response)
+        private static TResult DeserializeResponse<TResult>(IRestResponse response, ISerializerFactory serializerFactory)
         {
+            Contract.Requires(response != null);
+            Contract.Requires(serializerFactory != null);
+
+            // Get the response content
+            var stream = new MemoryStream(response.RawBytes);
+
+            Contract.Assume(stream.CanRead);
+
+            // Create a serializer
+            var serializer = serializerFactory.GetSerializer<TResult>();
+
             // Deserialize the response content
-            return serializer.Deserialize(new MemoryStream(response.RawBytes));
+            return serializer.Deserialize(stream);
         }
 
         /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
@@ -119,22 +150,21 @@ namespace GW2DotNET.RestSharp
         /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
         private static IRestResponse GetRestResponse(IRestClient restClient, IRestRequest request)
         {
+            Contract.Requires(restClient != null);
+            Contract.Requires(request != null);
+            Contract.Ensures(Contract.Result<IRestResponse>() != null);
+
+            // Get the response
             var response = restClient.Execute(request);
 
-            if (response.StatusCode.IsSuccessStatusCode())
+            // Return the response
+            if (response.ResponseStatus == ResponseStatus.Completed)
             {
                 return response;
             }
 
-            // Simply rethrow in case of transport errors (e.g. timeout)
-            if (response.ResponseStatus == ResponseStatus.Error)
-            {
-                throw response.ErrorException;
-            }
-
-            // Wrap protocol exceptions in a ServiceException, then throw
-            var errorResult = new JsonSerializer<ErrorResult>().Deserialize(new MemoryStream(response.RawBytes));
-            throw new ServiceException(errorResult.Text);
+            // Rethrow transport errors
+            throw response.ErrorException;
         }
 
         /// <summary>Infrastructure. Sends a web request and gets the response.</summary>
@@ -148,42 +178,49 @@ namespace GW2DotNET.RestSharp
             return restClient.ExecuteTaskAsync(request, cancellationToken).ContinueWith(
                 task =>
                     {
+                        // Get the response
                         var response = task.Result;
 
-                        if (response.StatusCode.IsSuccessStatusCode())
+                        // Return the response
+                        if (response.ResponseStatus == ResponseStatus.Completed)
                         {
                             return response;
                         }
 
-                        // Simply rethrow in case of transport errors (e.g. timeout)
-                        if (response.ResponseStatus == ResponseStatus.Error)
-                        {
-                            throw response.ErrorException;
-                        }
-
-                        // Wrap protocol exceptions in a ServiceException, then throw
-                        var errorResult = new JsonSerializer<ErrorResult>().Deserialize(new MemoryStream(response.RawBytes));
-                        throw new ServiceException(errorResult.Text);
+                        // Rethrow transport errors
+                        throw response.ErrorException;
                     }, 
                 cancellationToken);
         }
 
         /// <summary>Infrastructure. Post-processes a response object.</summary>
         /// <param name="response">The raw response.</param>
-        /// <param name="serializer">The response content serializer.</param>
+        /// <param name="serializerFactory">The serializer factory.</param>
+        private static void OnError(IRestResponse response, ISerializerFactory serializerFactory)
+        {
+            // Get the response content
+            var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory);
+
+            // Throw an exception
+            throw new ServiceException(errorResult.Text);
+        }
+
+        /// <summary>Infrastructure. Post-processes a response object.</summary>
+        /// <param name="response">The raw response.</param>
+        /// <param name="serializerFactory">The serializer factory.</param>
         /// <typeparam name="T">The type of the response content.</typeparam>
         /// <returns>A processed response object.</returns>
-        private static IResponse<T> PostProcess<T>(IRestResponse response, ISerializer<T> serializer)
+        private static IResponse<T> OnSuccess<T>(IRestResponse response, ISerializerFactory serializerFactory)
         {
             Contract.Requires(response != null);
-            Contract.Requires(serializer != null);
+            Contract.Requires(serializerFactory != null);
             Contract.Ensures(Contract.Result<IResponse<T>>() != null);
 
             // Create a new generic response object
             var value = new Response<T>();
 
             // Set the deserialized response content
-            value.Content = DeserializeResponse(serializer, response);
+            value.Content = DeserializeResponse<T>(response, serializerFactory);
 
             // Set the 'Date' header
             var date = response.Headers.SingleOrDefault(parameter => parameter.Name.Equals("Date", StringComparison.Ordinal));

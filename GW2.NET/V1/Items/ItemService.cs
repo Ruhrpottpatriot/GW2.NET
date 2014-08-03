@@ -61,7 +61,7 @@ namespace GW2DotNET.V1.Items
             Contract.EndContractBlock();
 
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<ItemContract>());
+            var response = this.serviceClient.Send<ItemContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -121,7 +121,7 @@ namespace GW2DotNET.V1.Items
             Contract.EndContractBlock();
 
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<ItemContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ItemContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -144,7 +144,7 @@ namespace GW2DotNET.V1.Items
         {
             Contract.Ensures(Contract.Result<ICollection<int>>() != null);
             var request = new ItemRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<ItemCollectionContract>());
+            var response = this.serviceClient.Send<ItemCollectionContract>(request);
             if (response.Content == null || response.Content.Items == null)
             {
                 return new int[0];
@@ -168,7 +168,7 @@ namespace GW2DotNET.V1.Items
         public Task<ICollection<int>> GetItemsAsync(CancellationToken cancellationToken)
         {
             var request = new ItemRequest();
-            return this.serviceClient.SendAsync(request, new JsonSerializer<ItemCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ItemCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

@@ -39,7 +39,7 @@ namespace GW2DotNET.V1.Maps
         public IDictionary<int, Continent> GetContinents()
         {
             var request = new ContinentRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<ContinentCollectionContract>());
+            var response = this.serviceClient.Send<ContinentCollectionContract>(request);
             if (response.Content == null || response.Content.Continents == null)
             {
                 return new Dictionary<int, Continent>(0);
@@ -63,12 +63,12 @@ namespace GW2DotNET.V1.Maps
         public Task<IDictionary<int, Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {
             var request = new ContinentRequest();
-            return this.serviceClient.SendAsync(request, new JsonSerializer<ContinentCollectionContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ContinentCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                    {
-                        var response = task.Result;
-                        return MapContinentCollectionContract(response.Content);
-                    }, 
+                {
+                    var response = task.Result;
+                    return MapContinentCollectionContract(response.Content);
+                },
                 cancellationToken);
         }
 
@@ -101,11 +101,11 @@ namespace GW2DotNET.V1.Maps
             Contract.Requires(content.Value.ContinentDimensions.Length == 2);
             return new Continent
                        {
-                           ContinentId = int.Parse(content.Key), 
-                           Name = content.Value.Name, 
-                           ContinentDimensions = MapSize2DContract(content.Value.ContinentDimensions), 
-                           MinimumZoom = content.Value.MinimumZoom, 
-                           MaximumZoom = content.Value.MaximumZoom, 
+                           ContinentId = int.Parse(content.Key),
+                           Name = content.Value.Name,
+                           ContinentDimensions = MapSize2DContract(content.Value.ContinentDimensions),
+                           MinimumZoom = content.Value.MinimumZoom,
+                           MaximumZoom = content.Value.MaximumZoom,
                            FloorIds = content.Value.Floors
                        };
         }

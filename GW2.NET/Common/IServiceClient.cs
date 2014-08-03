@@ -12,32 +12,27 @@ namespace GW2DotNET.Common
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common.Serializers;
-
     /// <summary>Provides the interface for service clients.</summary>
     [ContractClass(typeof(ServiceClientContracts))]
     public interface IServiceClient
     {
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        IResponse<TResult> Send<TResult>(IRequest request, ISerializer<TResult> serializer);
+        IResponse<TResult> Send<TResult>(IRequest request);
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer);
+        Task<IResponse<TResult>> SendAsync<TResult>(IRequest request);
 
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
-        /// <param name="serializer">The serialization engine.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, ISerializer<TResult> serializer, CancellationToken cancellationToken);
+        Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken);
     }
 }

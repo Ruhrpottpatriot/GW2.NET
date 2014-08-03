@@ -39,7 +39,7 @@ namespace GW2DotNET.V1.Files
         public IDictionary<string, Asset> GetFiles()
         {
             var request = new FileRequest();
-            var response = this.serviceClient.Send(request, new JsonSerializer<IDictionary<string, FileContract>>());
+            var response = this.serviceClient.Send<IDictionary<string, FileContract>>(request);
             if (response.Content == null)
             {
                 return new Dictionary<string, Asset>(0);
@@ -63,7 +63,7 @@ namespace GW2DotNET.V1.Files
         public Task<IDictionary<string, Asset>> GetFilesAsync(CancellationToken cancellationToken)
         {
             var request = new FileRequest();
-            return this.serviceClient.SendAsync(request, new JsonSerializer<IDictionary<string, FileContract>>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<IDictionary<string, FileContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;

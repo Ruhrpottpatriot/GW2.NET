@@ -63,7 +63,7 @@ namespace GW2DotNET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapFloorRequest { ContinentId = continent, Floor = floor, Culture = language };
-            var response = this.serviceClient.Send(request, new JsonSerializer<FloorContract>());
+            var response = this.serviceClient.Send<FloorContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -125,7 +125,7 @@ namespace GW2DotNET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapFloorRequest { ContinentId = continent, Floor = floor, Culture = language };
-            return this.serviceClient.SendAsync(request, new JsonSerializer<FloorContract>(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<FloorContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
