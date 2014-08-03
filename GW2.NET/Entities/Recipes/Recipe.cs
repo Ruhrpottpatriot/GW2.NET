@@ -28,7 +28,7 @@ namespace GW2DotNET.Entities.Recipes
         public virtual RecipeFlags Flags { get; set; }
 
         /// <summary>Gets or sets a collection of the required ingredients.</summary>
-        public virtual ICollection<Ingredient> Ingredients { get; set; }
+        public virtual ICollection<ItemStack> Ingredients { get; set; }
 
         /// <summary>Gets or sets the language.</summary>
         public virtual string Language { get; set; }

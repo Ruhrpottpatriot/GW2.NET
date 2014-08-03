@@ -18,6 +18,7 @@ namespace GW2DotNET.V1.Recipes
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
+    using GW2DotNET.Entities.Items;
     using GW2DotNET.Entities.Recipes;
     using GW2DotNET.V1.Recipes.Contracts;
 
@@ -301,21 +302,21 @@ namespace GW2DotNET.V1.Recipes
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Ingredient MapIngredientContract(IngredientContract content)
+        private static ItemStack MapIngredientContract(IngredientContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.ItemId != null);
             Contract.Requires(content.Count != null);
-            return new Ingredient { ItemId = int.Parse(content.ItemId), Count = int.Parse(content.Count) };
+            return new ItemStack { ItemId = int.Parse(content.ItemId), Count = int.Parse(content.Count) };
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<Ingredient> MapIngredientContracts(ICollection<IngredientContract> content)
+        private static ICollection<ItemStack> MapIngredientContracts(ICollection<IngredientContract> content)
         {
             Contract.Requires(content != null);
-            var values = new List<Ingredient>(content.Count);
+            var values = new List<ItemStack>(content.Count);
             values.AddRange(content.Select(MapIngredientContract));
             return values;
         }

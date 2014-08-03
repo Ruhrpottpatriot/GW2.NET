@@ -11,6 +11,7 @@ namespace GW2DotNET.Entities.Items
     using System;
     using System.Globalization;
 
+    using GW2DotNET.ChatLinks;
     using GW2DotNET.Common;
 
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
@@ -119,6 +120,13 @@ namespace GW2DotNET.Entities.Items
         public override int GetHashCode()
         {
             return this.ItemId;
+        }
+
+        /// <summary>Gets an item chat link for this item.</summary>
+        /// <returns>The <see cref="ChatLink"/>.</returns>
+        public virtual ChatLink GetItemChatLink()
+        {
+            return new ItemChatLink { ItemId = this.ItemId };
         }
 
         /// <summary>Returns a string that represents the current object.</summary>
