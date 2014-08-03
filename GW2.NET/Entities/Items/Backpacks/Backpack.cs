@@ -9,7 +9,9 @@
 namespace GW2DotNET.Entities.Items
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
 
+    using GW2DotNET.ChatLinks;
     using GW2DotNET.Entities.Skins;
 
     /// <summary>Represents a backpack.</summary>
@@ -59,5 +61,19 @@ namespace GW2DotNET.Entities.Items
 
         /// <summary>Gets or sets the Vitality modifier.</summary>
         public virtual int Vitality { get; set; }
+
+        /// <summary>Gets an item chat link for this item.</summary>
+        /// <returns>The <see cref="ChatLink"/>.</returns>
+        public override ChatLink GetItemChatLink()
+        {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
+            return new ItemChatLink
+                       {
+                           ItemId = this.ItemId, 
+                           SuffixItemId = this.SuffixItemId, 
+                           SecondarySuffixItemId = this.SecondarySuffixItemId, 
+                           SkinId = this.DefaultSkinId
+                       };
+        }
     }
 }
