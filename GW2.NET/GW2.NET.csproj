@@ -260,7 +260,6 @@
     <Compile Include="ChatLinks\CoinChatLinkConverter.cs">
       <DependentUpon>CoinChatLink.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChatLinks\Extensions\SkinExtensions.cs" />
     <Compile Include="ChatLinks\OutfitChatLink.cs" />
     <Compile Include="ChatLinks\SkinChatLink.cs" />
     <Compile Include="ChatLinks\DialogChatLink.cs" />
