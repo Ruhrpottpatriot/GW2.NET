@@ -24,6 +24,7 @@ namespace GW2DotNET.Entities.Items
         {
             get
             {
+                Contract.Ensures(Contract.Result<int>() >= 1 && Contract.Result<int>() <= 255);
                 return this.count;
             }
 
@@ -44,6 +45,7 @@ namespace GW2DotNET.Entities.Items
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public virtual ChatLink GetItemChatLink()
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             var item = this.Item;
             if (item == null)
             {

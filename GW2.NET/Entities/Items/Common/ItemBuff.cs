@@ -26,6 +26,7 @@ namespace GW2DotNET.Entities.Items
         public virtual ChatLink GetSkillChatLink()
         {
             Contract.Requires(this.SkillId.HasValue);
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new SkillChatLink { SkillId = this.SkillId.GetValueOrDefault() };
         }
     }

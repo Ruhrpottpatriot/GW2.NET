@@ -10,6 +10,7 @@ namespace GW2DotNET.Entities.Recipes
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
 
     using GW2DotNET.ChatLinks;
@@ -114,6 +115,7 @@ namespace GW2DotNET.Entities.Recipes
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public virtual ChatLink GetRecipeChatLink()
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new RecipeChatLink { RecipeId = this.RecipeId };
         }
 

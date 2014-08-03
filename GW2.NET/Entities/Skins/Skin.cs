@@ -9,6 +9,7 @@
 namespace GW2DotNET.Entities.Skins
 {
     using System;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
 
     using GW2DotNET.ChatLinks;
@@ -112,6 +113,7 @@ namespace GW2DotNET.Entities.Skins
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public virtual ChatLink GetSkinChatLink()
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new SkinChatLink { SkinId = this.SkinId };
         }
 
