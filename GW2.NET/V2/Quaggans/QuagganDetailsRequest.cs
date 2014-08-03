@@ -6,7 +6,6 @@
 //   Represents a request for a Quaggan.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V2.Quaggans
 {
     using GW2DotNET.V2.Common;

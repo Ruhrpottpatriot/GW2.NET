@@ -13,7 +13,6 @@ namespace GW2DotNET.V1.Builds
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.Builds;
     using GW2DotNET.V1.Builds.Contracts;
 

@@ -18,7 +18,6 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Xml.Linq;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.DynamicEvents;
     using GW2DotNET.Entities.Maps;
     using GW2DotNET.V1.DynamicEvents.Contracts;
@@ -75,10 +74,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventStateRequest { EventId = eventId, WorldId = worldId };
             return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapEventStateContracts(response.Content).Values.SingleOrDefault();
-                },
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content).Values.SingleOrDefault();
+                    }, 
                 cancellationToken);
         }
 
@@ -197,10 +196,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventDetailsRequest { Culture = language };
             return this.serviceClient.SendAsync<EventDetailsCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapEventDetailsCollectionContract(response.Content, language);
-                },
+                    {
+                        var response = task.Result;
+                        return MapEventDetailsCollectionContract(response.Content, language);
+                    }, 
                 cancellationToken);
         }
 
@@ -255,10 +254,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
             return this.serviceClient.SendAsync<EventDetailsCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapEventDetailsCollectionContract(response.Content, language).Values.SingleOrDefault();
-                },
+                    {
+                        var response = task.Result;
+                        return MapEventDetailsCollectionContract(response.Content, language).Values.SingleOrDefault();
+                    }, 
                 cancellationToken);
         }
 
@@ -342,10 +341,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventNameRequest { Culture = language };
             return this.serviceClient.SendAsync<ICollection<EventNameContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapEventNameContracts(response.Content, language);
-                },
+                    {
+                        var response = task.Result;
+                        return MapEventNameContracts(response.Content, language);
+                    }, 
                 cancellationToken);
         }
 
@@ -364,15 +363,15 @@ namespace GW2DotNET.V1.DynamicEvents
                 var eventId = Guid.Parse(eventIdAttribute.Value);
                 var shifts = contract.Descendants("shift").Select(
                     element =>
-                    {
-                        var shift = DateTimeOffset.Parse(element.Value);
-                        if (shift < DateTime.UtcNow)
                         {
-                            shift = shift.AddDays(1D);
-                        }
+                            var shift = DateTimeOffset.Parse(element.Value);
+                            if (shift < DateTime.UtcNow)
+                            {
+                                shift = shift.AddDays(1D);
+                            }
 
-                        return shift;
-                    }).OrderBy(offset => offset.Ticks);
+                            return shift;
+                        }).OrderBy(offset => offset.Ticks);
 
                 values.Add(eventId, new DynamicEventRotation { EventId = eventId, Shifts = new List<DateTimeOffset>(shifts) });
             }
@@ -412,10 +411,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventStateRequest();
             return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapEventStateContracts(response.Content);
-                },
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
                 cancellationToken);
         }
 
@@ -445,10 +444,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventStateRequest { EventId = eventId };
             return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapEventStateContracts(response.Content);
-                },
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
                 cancellationToken);
         }
 
@@ -513,10 +512,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventStateRequest { MapId = mapId };
             return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapEventStateContracts(response.Content);
-                },
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
                 cancellationToken);
         }
 
@@ -541,10 +540,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventStateRequest { MapId = mapId, WorldId = worldId };
             return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapEventStateContracts(response.Content);
-                },
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
                 cancellationToken);
         }
 
@@ -583,10 +582,10 @@ namespace GW2DotNET.V1.DynamicEvents
             var request = new DynamicEventStateRequest { WorldId = worldId };
             return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapEventStateContracts(response.Content);
-                },
+                    {
+                        var response = task.Result;
+                        return MapEventStateContracts(response.Content);
+                    }, 
                 cancellationToken);
         }
 

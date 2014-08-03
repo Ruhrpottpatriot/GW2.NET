@@ -6,7 +6,6 @@
 //   Provides the base class for paginated resource details requests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V2.Common
 {
     using System.Collections.Generic;

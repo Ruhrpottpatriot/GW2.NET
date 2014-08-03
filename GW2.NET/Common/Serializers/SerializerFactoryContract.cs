@@ -6,7 +6,6 @@
 //   The serializer factory contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Common.Serializers
 {
     using System.Diagnostics.Contracts;

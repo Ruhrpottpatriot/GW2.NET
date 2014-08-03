@@ -54,6 +54,22 @@ namespace GW2DotNET.V2.Quaggans
         Subdictionary<string, Quaggan> GetQuaggans();
 
         /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="identifiers">A collection of identifiers.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        Subdictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers);
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        PaginatedCollection<Quaggan> GetQuaggans(int page);
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="size">The page size.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        PaginatedCollection<Quaggan> GetQuaggans(int page, int size);
+
+        /// <summary>Gets a collection of Quaggans.</summary>
         /// <returns>A collection of Quaggans.</returns>
         Task<Subdictionary<string, Quaggan>> GetQuaggansAsync();
 
@@ -61,11 +77,6 @@ namespace GW2DotNET.V2.Quaggans
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of Quaggans.</returns>
         Task<Subdictionary<string, Quaggan>> GetQuaggansAsync(CancellationToken cancellationToken);
-
-        /// <summary>Gets a collection of Quaggans.</summary>
-        /// <param name="identifiers">A collection of identifiers.</param>
-        /// <returns>A collection of Quaggans.</returns>
-        Subdictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers);
 
         /// <summary>Gets a collection of Quaggans.</summary>
         /// <param name="identifiers">A collection of identifiers.</param>
@@ -81,11 +92,6 @@ namespace GW2DotNET.V2.Quaggans
         /// <summary>Gets a collection of Quaggans.</summary>
         /// <param name="page">The page number.</param>
         /// <returns>A collection of Quaggans.</returns>
-        PaginatedCollection<Quaggan> GetQuaggans(int page);
-
-        /// <summary>Gets a collection of Quaggans.</summary>
-        /// <param name="page">The page number.</param>
-        /// <returns>A collection of Quaggans.</returns>
         Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page);
 
         /// <summary>Gets a collection of Quaggans.</summary>
@@ -93,12 +99,6 @@ namespace GW2DotNET.V2.Quaggans
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of Quaggans.</returns>
         Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page, CancellationToken cancellationToken);
-
-        /// <summary>Gets a collection of Quaggans.</summary>
-        /// <param name="page">The page number.</param>
-        /// <param name="size">The page size.</param>
-        /// <returns>A collection of Quaggans.</returns>
-        PaginatedCollection<Quaggan> GetQuaggans(int page, int size);
 
         /// <summary>Gets a collection of Quaggans.</summary>
         /// <param name="page">The page number.</param>

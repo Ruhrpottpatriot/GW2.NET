@@ -13,7 +13,7 @@ namespace GW2DotNET.V2.Builds.Contracts
     /// <summary>Represents the current build of the game.</summary>
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build" /> for more information.</remarks>
     [DataContract]
-    public sealed class BuildContract 
+    public sealed class BuildContract
     {
         /// <summary>Gets or sets the current build ID of the game.</summary>
         [DataMember(Name = "build_id", Order = 0)]

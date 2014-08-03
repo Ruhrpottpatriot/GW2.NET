@@ -16,7 +16,6 @@ namespace GW2DotNET.V1.Guilds
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.Guilds;
     using GW2DotNET.V1.Guilds.Contracts;
 

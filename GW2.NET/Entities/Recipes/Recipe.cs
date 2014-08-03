@@ -111,19 +111,19 @@ namespace GW2DotNET.Entities.Recipes
             return this.Equals((Recipe)obj);
         }
 
+        /// <summary>Serves as a hash function for a particular type.</summary>
+        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
+        public override int GetHashCode()
+        {
+            return this.RecipeId;
+        }
+
         /// <summary>Gets a recipe chat link for this item recipe.</summary>
         /// <returns>The <see cref="ChatLink"/>.</returns>
         public virtual ChatLink GetRecipeChatLink()
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new RecipeChatLink { RecipeId = this.RecipeId };
-        }
-
-        /// <summary>Serves as a hash function for a particular type.</summary>
-        /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
-        public override int GetHashCode()
-        {
-            return this.RecipeId;
         }
 
         /// <summary>Returns a string that represents the current object.</summary>

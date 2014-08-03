@@ -6,7 +6,6 @@
 //   The quaggan service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V2.Quaggans
 {
     using System.Collections.Generic;
@@ -87,6 +86,35 @@ namespace GW2DotNET.V2.Quaggans
         }
 
         /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="identifiers">A collection of identifiers.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public Subdictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
+        {
+            Contract.Requires(identifiers != null);
+            Contract.Ensures(Contract.Result<Subdictionary<string, Quaggan>>() != null);
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public PaginatedCollection<Quaggan> GetQuaggans(int page)
+        {
+            Contract.Ensures(Contract.Result<PaginatedCollection<Quaggan>>() != null);
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
+        /// <param name="page">The page number.</param>
+        /// <param name="size">The page size.</param>
+        /// <returns>A collection of Quaggans.</returns>
+        public PaginatedCollection<Quaggan> GetQuaggans(int page, int size)
+        {
+            Contract.Ensures(Contract.Result<PaginatedCollection<Quaggan>>() != null);
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>Gets a collection of Quaggans.</summary>
         /// <returns>A collection of Quaggans.</returns>
         public Task<Subdictionary<string, Quaggan>> GetQuaggansAsync()
         {
@@ -102,16 +130,6 @@ namespace GW2DotNET.V2.Quaggans
         {
             Contract.Ensures(Contract.Result<Task<Subdictionary<string, Quaggan>>>() != null);
             Contract.Ensures(Contract.Result<Task<Subdictionary<string, Quaggan>>>().Result != null);
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>Gets a collection of Quaggans.</summary>
-        /// <param name="identifiers">A collection of identifiers.</param>
-        /// <returns>A collection of Quaggans.</returns>
-        public Subdictionary<string, Quaggan> GetQuaggans(IEnumerable<string> identifiers)
-        {
-            Contract.Requires(identifiers != null);
-            Contract.Ensures(Contract.Result<Subdictionary<string, Quaggan>>() != null);
             throw new System.NotImplementedException();
         }
 
@@ -141,15 +159,6 @@ namespace GW2DotNET.V2.Quaggans
         /// <summary>Gets a collection of Quaggans.</summary>
         /// <param name="page">The page number.</param>
         /// <returns>A collection of Quaggans.</returns>
-        public PaginatedCollection<Quaggan> GetQuaggans(int page)
-        {
-            Contract.Ensures(Contract.Result<PaginatedCollection<Quaggan>>() != null);
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>Gets a collection of Quaggans.</summary>
-        /// <param name="page">The page number.</param>
-        /// <returns>A collection of Quaggans.</returns>
         public Task<PaginatedCollection<Quaggan>> GetQuaggansAsync(int page)
         {
             Contract.Ensures(Contract.Result<Task<PaginatedCollection<Quaggan>>>() != null);
@@ -165,16 +174,6 @@ namespace GW2DotNET.V2.Quaggans
         {
             Contract.Ensures(Contract.Result<Task<PaginatedCollection<Quaggan>>>() != null);
             Contract.Ensures(Contract.Result<Task<PaginatedCollection<Quaggan>>>().Result != null);
-            throw new System.NotImplementedException();
-        }
-
-        /// <summary>Gets a collection of Quaggans.</summary>
-        /// <param name="page">The page number.</param>
-        /// <param name="size">The page size.</param>
-        /// <returns>A collection of Quaggans.</returns>
-        public PaginatedCollection<Quaggan> GetQuaggans(int page, int size)
-        {
-            Contract.Ensures(Contract.Result<PaginatedCollection<Quaggan>>() != null);
             throw new System.NotImplementedException();
         }
 

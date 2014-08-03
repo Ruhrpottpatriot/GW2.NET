@@ -17,7 +17,6 @@ namespace GW2DotNET.V1.Worlds
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.Worlds;
     using GW2DotNET.V1.Worlds.Contracts;
 

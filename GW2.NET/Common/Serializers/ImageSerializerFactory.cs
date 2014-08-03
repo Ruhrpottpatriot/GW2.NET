@@ -6,7 +6,6 @@
 //   Provides factory methods for the image serialization engine.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Common.Serializers
 {
     using System;

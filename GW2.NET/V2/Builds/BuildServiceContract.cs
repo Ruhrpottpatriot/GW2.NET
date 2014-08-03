@@ -6,7 +6,6 @@
 //   The build service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V2.Builds
 {
     using System.Diagnostics.Contracts;

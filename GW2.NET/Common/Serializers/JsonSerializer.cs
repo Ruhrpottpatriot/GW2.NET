@@ -21,6 +21,7 @@ namespace GW2DotNET.Common.Serializers
         private readonly JsonSerializer jsonSerializer;
 
         /// <summary>Initializes a new instance of the <see cref="JsonSerializer{T}"/> class.</summary>
+        /// <param name="jsonSerializer">The json Serializer.</param>
         public JsonSerializer(JsonSerializer jsonSerializer)
         {
             Contract.Requires(jsonSerializer != null);

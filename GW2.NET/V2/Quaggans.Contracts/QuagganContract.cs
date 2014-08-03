@@ -6,14 +6,13 @@
 //   Represents a Quaggan.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V2.Quaggans.Contracts
 {
     using System.Runtime.Serialization;
 
     /// <summary>Represents a Quaggan.</summary>
     [DataContract]
-    public sealed class QuagganContract 
+    public sealed class QuagganContract
     {
         /// <summary>Gets or sets the Quaggan identifier.</summary>
         [DataMember(Name = "id", Order = 0)]

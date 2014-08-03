@@ -6,7 +6,6 @@
 //   Represents a request for a collection of Quaggan identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V2.Quaggans
 {
     using System.Collections.Generic;

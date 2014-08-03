@@ -17,7 +17,6 @@ namespace GW2DotNET.V1.Maps
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.Maps;
     using GW2DotNET.V1.Maps.Contracts;
 

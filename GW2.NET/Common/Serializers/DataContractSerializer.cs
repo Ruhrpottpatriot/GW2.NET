@@ -11,7 +11,6 @@ namespace GW2DotNET.Common.Serializers
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Runtime.Serialization;
-    using System.Runtime.Serialization.Json;
 
     /// <summary>Provides methods for serializing data contracts.</summary>
     /// <typeparam name="T">The type of the data contract.</typeparam>

@@ -21,7 +21,7 @@ namespace GW2DotNET.Common
         T Content { get; set; }
 
         /// <summary>Gets or sets a collection of custom response headers.</summary>
-        IDictionary<string, string> ExtensionData { get; set;  }
+        IDictionary<string, string> ExtensionData { get; set; }
 
         /// <summary>Gets or sets the <see cref="DateTime"/> at which the message originated..</summary>
         DateTime LastModified { get; set; }

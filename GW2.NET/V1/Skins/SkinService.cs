@@ -17,7 +17,6 @@ namespace GW2DotNET.V1.Skins
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.Items;
     using GW2DotNET.Entities.Skins;
     using GW2DotNET.V1.Skins.Contracts;

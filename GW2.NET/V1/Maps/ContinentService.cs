@@ -15,7 +15,6 @@ namespace GW2DotNET.V1.Maps
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.Maps;
     using GW2DotNET.V1.Maps.Contracts;
 
@@ -65,10 +64,10 @@ namespace GW2DotNET.V1.Maps
             var request = new ContinentRequest();
             return this.serviceClient.SendAsync<ContinentCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    return MapContinentCollectionContract(response.Content);
-                },
+                    {
+                        var response = task.Result;
+                        return MapContinentCollectionContract(response.Content);
+                    }, 
                 cancellationToken);
         }
 
@@ -101,11 +100,11 @@ namespace GW2DotNET.V1.Maps
             Contract.Requires(content.Value.ContinentDimensions.Length == 2);
             return new Continent
                        {
-                           ContinentId = int.Parse(content.Key),
-                           Name = content.Value.Name,
-                           ContinentDimensions = MapSize2DContract(content.Value.ContinentDimensions),
-                           MinimumZoom = content.Value.MinimumZoom,
-                           MaximumZoom = content.Value.MaximumZoom,
+                           ContinentId = int.Parse(content.Key), 
+                           Name = content.Value.Name, 
+                           ContinentDimensions = MapSize2DContract(content.Value.ContinentDimensions), 
+                           MinimumZoom = content.Value.MinimumZoom, 
+                           MaximumZoom = content.Value.MaximumZoom, 
                            FloorIds = content.Value.Floors
                        };
         }

@@ -17,7 +17,6 @@ namespace GW2DotNET.V1.Recipes
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.Items;
     using GW2DotNET.Entities.Recipes;
     using GW2DotNET.V1.Recipes.Contracts;

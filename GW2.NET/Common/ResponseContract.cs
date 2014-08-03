@@ -18,11 +18,11 @@ namespace GW2DotNET.Common
     [ContractClassFor(typeof(IResponse<>))]
     internal abstract class ResponseContract<T> : IResponse<T>
     {
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
-
         /// <summary>Gets or sets the response content.</summary>
         public T Content { get; set; }
+
+        /// <summary>Gets or sets the locale.</summary>
+        public CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets a collection of custom response headers.</summary>
         public IDictionary<string, string> ExtensionData { get; set; }

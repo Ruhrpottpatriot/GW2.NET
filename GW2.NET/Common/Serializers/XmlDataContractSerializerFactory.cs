@@ -6,7 +6,6 @@
 //   Provides factory methods for the XML data contract serialization engine.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Common.Serializers
 {
     using System.Runtime.Serialization;

@@ -17,7 +17,6 @@ namespace GW2DotNET.V1.Colors
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
     using GW2DotNET.Entities.Colors;
     using GW2DotNET.V1.Colors.Contracts;
 

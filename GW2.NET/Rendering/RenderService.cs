@@ -14,7 +14,6 @@ namespace GW2DotNET.Rendering
     using System.Threading.Tasks;
 
     using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
 
     /// <summary>Provides the default implementation of the render service.</summary>
     public class RenderService : IRenderService
