@@ -11,6 +11,8 @@ namespace GW2DotNET.Entities.Maps
     using System;
     using System.Globalization;
 
+    using GW2DotNET.ChatLinks;
+
     /// <summary>Represents a Point of Interest (POI) location.</summary>
     public class PointOfInterest : IEquatable<PointOfInterest>
     {
@@ -90,6 +92,13 @@ namespace GW2DotNET.Entities.Maps
         public override int GetHashCode()
         {
             return this.PointOfInterestId;
+        }
+
+        /// <summary>Gets a map chat link for this Point of Interest</summary>
+        /// <returns>The <see cref="ChatLink"/>.</returns>
+        public virtual ChatLink GetSkillChatLink()
+        {
+            return new PointOfInterestChatLink { PointOfInterestId = this.PointOfInterestId };
         }
 
         /// <summary>Returns a string that represents the current object.</summary>
