@@ -82,7 +82,7 @@ namespace GW2DotNET
         {
             Contract.Ensures(Contract.Result<Uri>() != null);
             Contract.Ensures(Contract.Result<Uri>().IsAbsoluteUri);
-            var baseUri = new Uri("https://api.guildwars2.com", UriKind.Absolute);
+            var baseUri = new Uri("https://render.guildwars2.com", UriKind.Absolute);
             Contract.Assume(baseUri.IsAbsoluteUri);
             return baseUri;
         }
