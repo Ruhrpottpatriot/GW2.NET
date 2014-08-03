@@ -23,7 +23,7 @@ namespace GW2DotNET.V2.Quaggans
     {
         /// <summary>Gets a Quaggan.</summary>
         /// <param name="identifier">An identifier</param>
-        /// <returns>A Quaggan</returns>
+        /// <returns>A Quaggan.</returns>
         public Quaggan GetQuaggan(string identifier)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(identifier));
@@ -32,7 +32,7 @@ namespace GW2DotNET.V2.Quaggans
 
         /// <summary>Gets a Quaggan.</summary>
         /// <param name="identifier">An identifier</param>
-        /// <returns>A Quaggan</returns>
+        /// <returns>A Quaggan.</returns>
         public Task<Quaggan> GetQuagganAsync(string identifier)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(identifier));
@@ -43,7 +43,7 @@ namespace GW2DotNET.V2.Quaggans
         /// <summary>Gets a Quaggan.</summary>
         /// <param name="identifier">An identifier</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A Quaggan</returns>
+        /// <returns>A Quaggan.</returns>
         public Task<Quaggan> GetQuagganAsync(string identifier, CancellationToken cancellationToken)
         {
             Contract.Requires(!string.IsNullOrWhiteSpace(identifier));
@@ -51,7 +51,7 @@ namespace GW2DotNET.V2.Quaggans
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <summary>Gets a collection of identifiers.</summary>
         /// <returns>A collection of identifiers.</returns>
         public ICollection<string> GetQuagganIdentifiers()
         {
@@ -59,7 +59,7 @@ namespace GW2DotNET.V2.Quaggans
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <summary>Gets a collection of identifiers.</summary>
         /// <returns>A collection of identifiers.</returns>
         public Task<ICollection<string>> GetQuagganIdentifiersAsync()
         {
@@ -68,7 +68,7 @@ namespace GW2DotNET.V2.Quaggans
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <summary>Gets a collection of identifiers.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of identifiers.</returns>
         public Task<ICollection<string>> GetQuagganIdentifiersAsync(CancellationToken cancellationToken)

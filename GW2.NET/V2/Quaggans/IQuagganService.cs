@@ -22,29 +22,29 @@ namespace GW2DotNET.V2.Quaggans
     {
         /// <summary>Gets a Quaggan.</summary>
         /// <param name="identifier">An identifier</param>
-        /// <returns>A Quaggan</returns>
+        /// <returns>A Quaggan.</returns>
         Quaggan GetQuaggan(string identifier);
 
         /// <summary>Gets a Quaggan.</summary>
         /// <param name="identifier">An identifier</param>
-        /// <returns>A Quaggan</returns>
+        /// <returns>A Quaggan.</returns>
         Task<Quaggan> GetQuagganAsync(string identifier);
 
         /// <summary>Gets a Quaggan.</summary>
         /// <param name="identifier">An identifier</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A Quaggan</returns>
+        /// <returns>A Quaggan.</returns>
         Task<Quaggan> GetQuagganAsync(string identifier, CancellationToken cancellationToken);
 
-        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <summary>Gets a collection of identifiers.</summary>
         /// <returns>A collection of identifiers.</returns>
         ICollection<string> GetQuagganIdentifiers();
 
-        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <summary>Gets a collection of identifiers.</summary>
         /// <returns>A collection of identifiers.</returns>
         Task<ICollection<string>> GetQuagganIdentifiersAsync();
 
-        /// <summary>Gets a collection of Quaggan identifiers.</summary>
+        /// <summary>Gets a collection of identifiers.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of identifiers.</returns>
         Task<ICollection<string>> GetQuagganIdentifiersAsync(CancellationToken cancellationToken);
