@@ -96,7 +96,7 @@ namespace GW2DotNET.Entities.Maps
 
         /// <summary>Gets a map chat link for this Point of Interest</summary>
         /// <returns>The <see cref="ChatLink"/>.</returns>
-        public virtual ChatLink GetSkillChatLink()
+        public virtual ChatLink GetMapChatLink()
         {
             return new PointOfInterestChatLink { PointOfInterestId = this.PointOfInterestId };
         }
