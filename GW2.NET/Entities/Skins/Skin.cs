@@ -11,6 +11,7 @@ namespace GW2DotNET.Entities.Skins
     using System;
     using System.Globalization;
 
+    using GW2DotNET.ChatLinks;
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Items;
 
@@ -105,6 +106,13 @@ namespace GW2DotNET.Entities.Skins
         public override int GetHashCode()
         {
             return this.SkinId;
+        }
+
+        /// <summary>Gets a skin chat link for this item skin.</summary>
+        /// <returns>The <see cref="ChatLink"/>.</returns>
+        public virtual ChatLink GetSkinChatLink()
+        {
+            return new SkinChatLink { SkinId = this.SkinId };
         }
 
         /// <summary>Returns a string that represents the current object.</summary>
