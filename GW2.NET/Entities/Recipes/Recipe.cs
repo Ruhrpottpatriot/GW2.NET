@@ -12,6 +12,7 @@ namespace GW2DotNET.Entities.Recipes
     using System.Collections.Generic;
     using System.Globalization;
 
+    using GW2DotNET.ChatLinks;
     using GW2DotNET.Entities.Items;
 
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
@@ -107,6 +108,13 @@ namespace GW2DotNET.Entities.Recipes
             }
 
             return this.Equals((Recipe)obj);
+        }
+
+        /// <summary>Gets a recipe chat link for this item recipe.</summary>
+        /// <returns>The <see cref="ChatLink"/>.</returns>
+        public virtual ChatLink GetRecipeChatLink()
+        {
+            return new RecipeChatLink { RecipeId = this.RecipeId };
         }
 
         /// <summary>Serves as a hash function for a particular type.</summary>

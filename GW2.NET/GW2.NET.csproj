@@ -266,7 +266,6 @@
     <Compile Include="ChatLinks\TraitChatLink.cs" />
     <Compile Include="ChatLinks\SkillChatLink.cs" />
     <Compile Include="ChatLinks\CoinChatLink.cs" />
-    <Compile Include="ChatLinks\Extensions\RecipeExtensions.cs" />
     <Compile Include="ChatLinks\Extensions\ItemExtensions.cs" />
     <Compile Include="ChatLinks\PointOfInterestChatLink.cs" />
     <Compile Include="ChatLinks\RecipeChatLink.cs" />
