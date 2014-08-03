@@ -22,6 +22,7 @@ namespace GW2DotNET.ChatLinks
         public ChatLink Decode(string input)
         {
             Contract.Requires(input != null);
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             var baseType = typeof(ChatLink);
             var chatLinkTypes = this.GetType().Assembly.GetTypes().Where(link => link.IsSubclassOf(baseType));
             var typeConverter = chatLinkTypes.Select(TypeDescriptor.GetConverter).FirstOrDefault(converter => converter.IsValid(input));
@@ -30,7 +31,9 @@ namespace GW2DotNET.ChatLinks
                 throw new NotSupportedException("The specified chat link is not supported.");
             }
 
-            return (ChatLink)typeConverter.ConvertFromString(input);
+            var chatLink = (ChatLink)typeConverter.ConvertFromString(input);
+            Contract.Assume(chatLink != null);
+            return chatLink;
         }
 
         /// <summary>Decodes chat links of the specified type.</summary>
@@ -40,6 +43,7 @@ namespace GW2DotNET.ChatLinks
         public T Decode<T>(string input) where T : ChatLink
         {
             Contract.Requires(input != null);
+            Contract.Ensures(Contract.Result<T>() != null);
             var typeConverter = TypeDescriptor.GetConverter(typeof(T));
             Contract.Assume(typeConverter != null);
             if (!typeConverter.IsValid(input))
@@ -47,7 +51,9 @@ namespace GW2DotNET.ChatLinks
                 throw new InvalidOperationException(string.Format("The specified input is not of type '{0}'", typeof(T).Name));
             }
 
-            return (T)typeConverter.ConvertFromString(input);
+            var chatLink = (T)typeConverter.ConvertFromString(input);
+            Contract.Assume(chatLink != null);
+            return chatLink;
         }
 
         /// <summary>Encodes an amount of coins.</summary>
@@ -55,6 +61,7 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="ChatLink"/>.</returns>
         public ChatLink EncodeCoins(int quantity)
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new CoinChatLink { Quantity = quantity };
         }
 
@@ -63,6 +70,7 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="ChatLink"/>.</returns>
         public ChatLink EncodeDialog(int dialogId)
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new DialogChatLink { DialogId = dialogId };
         }
 
@@ -77,6 +85,7 @@ namespace GW2DotNET.ChatLinks
         {
             Contract.Requires(quantity >= 1);
             Contract.Requires(quantity <= 255);
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new ItemChatLink
                        {
                            ItemId = itemId, 
@@ -92,6 +101,7 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="ChatLink"/>.</returns>
         public ChatLink EncodeOutfit(int outfitId)
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new OutfitChatLink { OutfitId = outfitId };
         }
 
@@ -100,6 +110,7 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="ChatLink"/>.</returns>
         public ChatLink EncodePointOfInterest(int pointOfInterestId)
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new PointOfInterestChatLink { PointOfInterestId = pointOfInterestId };
         }
 
@@ -108,6 +119,7 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="ChatLink"/>.</returns>
         public ChatLink EncodeRecipe(int recipeId)
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new RecipeChatLink { RecipeId = recipeId };
         }
 
@@ -116,6 +128,7 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="ChatLink"/>.</returns>
         public ChatLink EncodeSkill(int skillId)
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new SkillChatLink { SkillId = skillId };
         }
 
@@ -124,6 +137,7 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="ChatLink"/>.</returns>
         public ChatLink EncodeSkin(int skinId)
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new SkinChatLink { SkinId = skinId };
         }
 
@@ -132,6 +146,7 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A <see cref="ChatLink"/>.</returns>
         public ChatLink EncodeTrait(int traitId)
         {
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new TraitChatLink { TraitId = traitId };
         }
     }
