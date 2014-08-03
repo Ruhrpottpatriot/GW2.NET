@@ -8,6 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Entities.Items
 {
+    using System.Diagnostics.Contracts;
+
+    using GW2DotNET.ChatLinks;
+
     /// <summary>Represents an item buff.</summary>
     public class ItemBuff
     {
@@ -16,5 +20,13 @@ namespace GW2DotNET.Entities.Items
 
         /// <summary>Gets or sets the buff's skill identifier.</summary>
         public virtual int? SkillId { get; set; }
+
+        /// <summary>Gets a skill chat link for this item buff.</summary>
+        /// <returns>The <see cref="ChatLink"/>.</returns>
+        public virtual ChatLink GetSkillChatLink()
+        {
+            Contract.Requires(this.SkillId.HasValue);
+            return new SkillChatLink { SkillId = this.SkillId.GetValueOrDefault() };
+        }
     }
 }
