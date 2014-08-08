@@ -288,8 +288,11 @@ namespace GW2DotNET.Common
             // Get the response content
             var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory);
 
+            // Get the error description, or null if none was returned
+            var errorMessage = errorResult != null ? errorResult.Text : null;
+
             // Throw an exception
-            throw new ServiceException(errorResult.Text);
+            throw new ServiceException(errorMessage);
         }
 
         /// <summary>Infrastructure. Post-processes a response object.</summary>
@@ -336,6 +339,8 @@ namespace GW2DotNET.Common
         private void ObjectInvariant()
         {
             Contract.Invariant(this.baseUri != null);
+            Contract.Invariant(this.successSerializerFactory != null);
+            Contract.Invariant(this.errorSerializerFactory != null);
         }
     }
 }

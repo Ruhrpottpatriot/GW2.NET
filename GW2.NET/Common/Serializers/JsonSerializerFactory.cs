@@ -12,7 +12,7 @@ namespace GW2DotNET.Common.Serializers
 
     using Newtonsoft.Json;
 
-    /// <summary>Provides factory methods for the Json.NET serialization engine.</summary>
+    /// <summary>Provides factory methods for the JSON.NET serialization engine.</summary>
     public class JsonSerializerFactory : ISerializerFactory
     {
         /// <summary>Backing field.</summary>
@@ -27,7 +27,6 @@ namespace GW2DotNET.Common.Serializers
         /// <param name="jsonSerializerSettings">The settings to be applied to the <see cref="JsonSerializer"/>.</param>
         public JsonSerializerFactory(JsonSerializerSettings jsonSerializerSettings)
         {
-            Contract.Requires(jsonSerializerSettings != null);
             this.jsonSerializerSettings = jsonSerializerSettings;
         }
 
@@ -36,17 +35,13 @@ namespace GW2DotNET.Common.Serializers
         /// <returns>The <see cref="ISerializer{T}"/>.</returns>
         public ISerializer<T> GetSerializer<T>()
         {
-            var settings = this.jsonSerializerSettings;
-            JsonSerializer serializer;
-            if (settings != null)
-            {
-                serializer = JsonSerializer.CreateDefault(settings);
-            }
-            else
-            {
-                serializer = JsonSerializer.CreateDefault();
-            }
+            // Create a Json.NET serializer using a mix of default and explicit settings
+            JsonSerializer serializer = JsonSerializer.CreateDefault(this.jsonSerializerSettings);
 
+            // Provide a hint to the static checker
+            Contract.Assume(serializer != null);
+
+            // Return a serializer adapter for the newly created Json.NET serializer
             return new JsonSerializer<T>(serializer);
         }
     }
