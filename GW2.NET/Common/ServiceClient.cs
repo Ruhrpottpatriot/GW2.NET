@@ -285,6 +285,9 @@ namespace GW2DotNET.Common
         /// <param name="serializerFactory">The response content serializer factory.</param>
         private static void OnError(HttpWebResponse response, ISerializerFactory serializerFactory)
         {
+            Contract.Requires(response != null);
+            Contract.Requires(serializerFactory != null);
+
             // Get the response content
             var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory);
 

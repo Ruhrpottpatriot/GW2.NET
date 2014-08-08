@@ -438,6 +438,7 @@ namespace GW2DotNET.V2.Quaggans
             int pageTotal)
         {
             Contract.Requires(content != null);
+            Contract.Requires(pageCount >= 0);
             Contract.Ensures(Contract.Result<PaginatedCollection<Quaggan>>() != null);
             var values = new PaginatedCollection<Quaggan>(pageCount)
                              {

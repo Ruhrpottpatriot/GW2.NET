@@ -138,12 +138,12 @@
     <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
     <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
     <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
-    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
     <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
     <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
-    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
-    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
-    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestAssumptions>True</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestObjectInvariants>True</CodeContractsSuggestObjectInvariants>
     <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
     <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
     <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
@@ -896,7 +896,9 @@
     <Compile Include="V2\Builds\BuildService.cs" />
     <Compile Include="V2\Builds\BuildServiceContract.cs" />
     <Compile Include="V2\Builds\IBuildService.cs" />
+    <Compile Include="V2\Common\PaginatedCollectionContract.cs" />
     <Compile Include="V2\Common\ResponseExtensions.cs" />
+    <Compile Include="V2\Common\SubCollectionContract.cs" />
     <Compile Include="V2\Common\Subdictionary.cs" />
     <Compile Include="V2\Common\BulkRequest.cs" />
     <Compile Include="V2\Common\DetailsRequest.cs" />

@@ -93,7 +93,7 @@ namespace GW2DotNET.Entities.Quaggans
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            return this.Id;
+            return this.Id ?? base.ToString();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace GW2DotNET.Entities.Maps
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
 
     /// <summary>Represents a map and its details.</summary>
     public class Subregion : IEquatable<Subregion>
@@ -120,7 +121,13 @@ namespace GW2DotNET.Entities.Maps
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            return this.Name;
+            var name = this.Name;
+            if (name != null)
+            {
+                return name;
+            }
+
+            return this.MapId.ToString(NumberFormatInfo.InvariantInfo);
         }
     }
 }

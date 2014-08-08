@@ -419,6 +419,7 @@ namespace GW2DotNET.V1.Skins
         /// <returns>The bit flags.</returns>
         private static WeaponDamageType MapWeaponDamageTypeContract(string content)
         {
+            Contract.Requires(content != null);
             return (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content, true);
         }
 

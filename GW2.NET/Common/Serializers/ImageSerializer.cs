@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Common.Serializers
 {
+    using System.Diagnostics.Contracts;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.IO;
@@ -33,6 +34,7 @@ namespace GW2DotNET.Common.Serializers
         /// <param name="stream">The output stream.</param>
         public void Serialize(Image value, Stream stream)
         {
+            Contract.Assume(value != null);
             using (stream)
             {
                 value.Save(stream, ImageFormat.Png);

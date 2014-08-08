@@ -306,7 +306,28 @@ namespace GW2DotNET.V1.Recipes
             Contract.Requires(content != null);
             Contract.Requires(content.ItemId != null);
             Contract.Requires(content.Count != null);
-            return new ItemStack { ItemId = int.Parse(content.ItemId), Count = int.Parse(content.Count) };
+
+            // Create a new item stack object
+            var value = new ItemStack();
+
+            // Set the item identifier
+            if (content.ItemId != null)
+            {
+                value.ItemId = int.Parse(content.ItemId);
+            }
+
+            // Set the size of the stack
+            if (content.Count != null)
+            {
+                var count = int.Parse(content.Count);
+                if (count >= 1 && count <= 255)
+                {
+                    value.Count = count;
+                }
+            }
+
+            // Return the item stack object
+            return value;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>

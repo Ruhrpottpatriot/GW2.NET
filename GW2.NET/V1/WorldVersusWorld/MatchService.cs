@@ -109,6 +109,11 @@ namespace GW2DotNET.V1.WorldVersusWorld
                 task =>
                     {
                         var response = task.Result;
+                        if (response.Content == null || response.Content.Matchups == null)
+                        {
+                            return new Dictionary<string, Matchup>(0);
+                        }
+
                         return MapMatchupCollectionContract(response.Content);
                     }, 
                 cancellationToken);
@@ -196,6 +201,11 @@ namespace GW2DotNET.V1.WorldVersusWorld
                 task =>
                     {
                         var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new Dictionary<int, ObjectiveName>(0);
+                        }
+
                         return MapObjectiveNameContracts(response.Content, language);
                     }, 
                 cancellationToken);
@@ -296,7 +306,10 @@ namespace GW2DotNET.V1.WorldVersusWorld
             var value = (MapBonus)Activator.CreateInstance(GetMapBonusType(content.Type));
 
             // Set its status
-            value.Owner = MapTeamColorContract(content.Owner);
+            if (content.Owner != null)
+            {
+                value.Owner = MapTeamColorContract(content.Owner);
+            }
 
             // Return the bonus object
             return value;
@@ -357,6 +370,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         private static IDictionary<string, Matchup> MapMatchupCollectionContract(MatchupCollectionContract content)
         {
             Contract.Requires(content != null);
+            Contract.Requires(content.Matchups != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Matchup>>() != null);
 
             // Create a new collection of matchup objects

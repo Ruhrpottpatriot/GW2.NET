@@ -115,7 +115,7 @@ namespace GW2DotNET.Entities.WorldVersusWorld
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            return this.MatchId;
+            return this.MatchId ?? base.ToString();
         }
     }
 }

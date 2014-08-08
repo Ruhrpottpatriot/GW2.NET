@@ -62,6 +62,7 @@ namespace GW2DotNET.ChatLinks
         protected byte GetHeader(string input)
         {
             Contract.Requires(input != null);
+            Contract.Requires(IsValidChatLink(input));
             var bytes = this.GetBytes(input);
             if (bytes.Length == 0)
             {

@@ -9,6 +9,7 @@
 namespace GW2DotNET.ChatLinks
 {
     using System;
+    using System.Diagnostics.Contracts;
 
     /// <summary>Provides a type converter to convert string objects to and from its <see cref="PointOfInterestChatLink"/> representation.</summary>
     internal class PointOfInterestChatLinkConverter : ChatLinkConverter<PointOfInterestChatLink>
@@ -27,7 +28,20 @@ namespace GW2DotNET.ChatLinks
         /// <returns>A chat link.</returns>
         protected override PointOfInterestChatLink ConvertFromBytes(byte[] bytes)
         {
-            return new PointOfInterestChatLink { PointOfInterestId = BitConverter.ToInt32(bytes, 0) };
+            // Create a new chat link object
+            var value = new PointOfInterestChatLink();
+
+            // Create a buffer
+            var buffer = new byte[sizeof(int)];
+
+            // Copy up to the first 4 bytes to the buffer
+            Buffer.BlockCopy(bytes, 0, buffer, 0, Math.Min(bytes.Length, buffer.Length));
+
+            // Set the Point of Interest identifier
+            value.PointOfInterestId = BitConverter.ToInt32(buffer, 0);
+
+            // Return the chat link object
+            return value;
         }
 
         /// <summary>Converts the given chat link to a byte array.</summary>

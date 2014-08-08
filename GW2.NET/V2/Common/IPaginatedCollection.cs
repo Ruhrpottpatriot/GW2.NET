@@ -8,7 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V2.Common
 {
+    using System.Diagnostics.Contracts;
+
     /// <summary>Provides the interface for collections that are a subset of a larger collection, and whose maximum size is equal to that of other subsets in the same collection.</summary>
+    [ContractClass(typeof(PaginatedCollectionContract))]
     public interface IPaginatedCollection : ISubcollection
     {
         /// <summary>Gets or sets the 0-based index of this subset.</summary>

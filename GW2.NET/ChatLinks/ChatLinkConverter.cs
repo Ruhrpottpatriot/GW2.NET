@@ -80,11 +80,24 @@ namespace GW2DotNET.ChatLinks
         [Pure]
         public override sealed object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
         {
+            Contract.Assume(value != null);
+
+            // Convert the given value to a byte array
             var bytes = this.ConvertToBytes((T)value);
+
+            // Create a buffer
             var buffer = new byte[bytes.Length + 1];
+
+            // Set the chat link header byte
             Buffer.SetByte(buffer, 0, this.Header);
+
+            // Append the byte array
             Buffer.BlockCopy(bytes, 0, buffer, 1, bytes.Length);
+
+            // Convert the buffer to its base64 representation
             var base64 = Convert.ToBase64String(buffer);
+
+            // Convert the base64 representation to a chat link
             return string.Format(@"[&{0}]", base64);
         }
 
