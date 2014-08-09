@@ -41,6 +41,12 @@ namespace GW2DotNET.Common.Serializers
         /// <param name="stream">The output stream.</param>
         public void Serialize(byte[] value, Stream stream)
         {
+            // Ensure that there is data to serialize
+            if (value == null)
+            {
+                return;
+            }
+
             // Copy all data to the output stream
             using (stream)
             {
