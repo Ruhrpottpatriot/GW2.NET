@@ -18,7 +18,7 @@ namespace GW2DotNET.Common.Serializers
         /// <returns>The <see cref="ISerializer{T}"/>.</returns>
         public ISerializer<T> GetSerializer<T>()
         {
-            if (!typeof(byte[]).IsAssignableFrom(typeof(T)))
+            if (typeof(byte[]) != typeof(T))
             {
                 throw new NotSupportedException("The specified type is not supported by the binary serializer.");
             }
