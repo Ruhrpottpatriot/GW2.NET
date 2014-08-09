@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks
 {
-    using System.ComponentModel;
+    using GW2DotNET.Common;
 
     /// <summary>Represents a chat link that links to a dialog.</summary>
-    [TypeConverter(typeof(DialogChatLinkConverter))]
+    [Converter(typeof(DialogChatLinkConverter))]
     public class DialogChatLink : ChatLink
     {
         /// <summary>Gets or sets the dialog identifier.</summary>

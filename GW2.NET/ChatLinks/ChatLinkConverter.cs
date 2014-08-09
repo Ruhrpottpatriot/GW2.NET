@@ -3,128 +3,171 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides a type converter to convert string objects to and from chat link representations.
+//   Provides the base class for chat link converters.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks
 {
     using System;
-    using System.ComponentModel;
     using System.Diagnostics.Contracts;
-    using System.Globalization;
+    using System.Text.RegularExpressions;
 
-    /// <summary>Provides a type converter to convert string objects to and from chat link representations.</summary>
-    /// <typeparam name="T">The type of chat link.</typeparam>
-    [ContractClass(typeof(ChatLinkConverterContracts<>))]
-    internal abstract class ChatLinkConverter<T> : ChatLinkConverterBase
-        where T : ChatLink, new()
+    /// <summary>Provides the base class for chat link converters.</summary>
+    [ContractClass(typeof(ChatLinkConverterContracts))]
+    public abstract class ChatLinkConverter
     {
+        /// <summary>Infrastructure. The regular expression that is used to parse chat links.</summary>
+        private static readonly Regex Pattern = new Regex(@"^\[&(?<base64>(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)??)\]$");
+
         /// <summary>Gets the chat link header.</summary>
         protected abstract byte Header { get; }
 
-        /// <summary>Gets a value indicating whether this converter can convert an object in the given source type to a string using the specified context.</summary>
-        /// <returns>true if this converter can perform the conversion; otherwise, false.</returns>
-        /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
-        /// <param name="sourceType">A <see cref="T:System.Type"/> that represents the type you wish to convert from. </param>
-        public override sealed bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
-        {
-            return sourceType == typeof(string);
-        }
-
-        /// <summary>Returns whether this converter can convert the object to the specified type, using the specified context.</summary>
-        /// <returns>true if this converter can perform the conversion; otherwise, false.</returns>
-        /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
-        /// <param name="destinationType">A <see cref="T:System.Type"/> that represents the type you want to convert to. </param>
-        public override sealed bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
-        {
-            return destinationType == typeof(string);
-        }
-
-        /// <summary>Converts the specified value object to a <see cref="T:System.String"/> object.</summary>
-        /// <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
-        /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
-        /// <param name="culture">The <see cref="T:System.Globalization.CultureInfo"/> to use. </param>
-        /// <param name="value">The <see cref="T:System.Object"/> to convert. </param>
-        /// <exception cref="T:System.NotSupportedException">The conversion could not be performed. </exception>
+        /// <summary>Returns whether the given value is a valid chat link.</summary>
+        /// <returns>true if the specified value is a valid chat link; otherwise, false.</returns>
+        /// <param name="value">The <see cref="T:System.String"/> to test for validity. </param>
         [Pure]
-        public override sealed object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
+        public static bool IsChatLink(string value)
         {
-            var input = value as string;
-            if (input == null || !ChatLinkConverterBase.IsValidChatLink(input))
+            Contract.Requires(value != null);
+            return Pattern.Match(value).Success;
+        }
+
+        /// <summary>Returns whether this converter can convert the specified value.</summary>
+        /// <param name="value">The value.</param>
+        /// <returns>true if the specified value can be converted; otherwise, false.</returns>
+        [Pure]
+        public bool CanConvert(string value)
+        {
+            Contract.Ensures(Contract.Result<bool>() == false || IsChatLink(value));
+            if (value == null || !IsChatLink(value))
+            {
+                return false;
+            }
+
+            return this.GetHeader(value) == this.Header;
+        }
+
+        /// <summary>Decodes a chat link.</summary>
+        /// <param name="value">A <see cref="string"/>.</param>
+        /// <returns>A <see cref="ChatLink"/>.</returns>
+        [Pure]
+        public ChatLink Decode(string value)
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition failed: value != null");
+            }
+
+            Contract.EndContractBlock();
+
+            // Ensure that this converter can convert the specified value
+            if (!this.CanConvert(value))
             {
                 return null;
             }
 
-            var buffer = this.GetBytes(input);
+            // Convert the value to its binary representation
+            var bytes = this.GetBytes(value);
 
             // Return a blank instance if only the header byte was set
-            if (buffer.Length == 0)
+            if (bytes.Length == 0)
             {
-                return new T();
+                return (ChatLink)Activator.CreateInstance(this.GetType());
             }
 
-            // Return a decoded instance
-            var bytes = new byte[buffer.Length - 1];
-            Buffer.BlockCopy(buffer, 1, bytes, 0, buffer.Length - 1);
-            return this.ConvertFromBytes(bytes);
+            // Create a buffer
+            var buffer = new byte[bytes.Length - 1];
+
+            // Copy bytes to the buffer, except the header byte
+            Buffer.BlockCopy(bytes, 1, buffer, 0, bytes.Length - 1);
+
+            // Decode and return the chat link object
+            return this.ConvertFromBytes(buffer);
         }
 
-        /// <summary>Converts the given value object to the specified type, using the specified context and culture information.</summary>
-        /// <returns>An <see cref="T:System.Object"/> that represents the converted value.</returns>
-        /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
-        /// <param name="culture">A <see cref="T:System.Globalization.CultureInfo"/>. If null is passed, the current culture is assumed. </param>
-        /// <param name="value">The <see cref="T:System.Object"/> to convert. </param>
-        /// <param name="destinationType">The <see cref="T:System.Type"/> to convert the <paramref name="value"/> parameter to. </param>
-        /// <exception cref="T:System.ArgumentNullException">The <paramref name="destinationType"/> parameter is null. </exception>
-        /// <exception cref="T:System.NotSupportedException">The conversion cannot be performed. </exception>
+        /// <summary>Encodes a chat link.</summary>
+        /// <param name="value">A <see cref="ChatLink"/>.</param>
+        /// <returns>A <see cref="string"/>.</returns>
         [Pure]
-        public override sealed object ConvertTo(ITypeDescriptorContext context, CultureInfo culture, object value, Type destinationType)
+        public string Encode(ChatLink value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition failed: value != null");
+            }
 
-            // Convert the given value to a byte array
-            var bytes = this.ConvertToBytes((T)value);
+            Contract.EndContractBlock();
+
+            // Convert the value to its binary representation
+            var bytes = this.ConvertToBytes(value);
 
             // Create a buffer
             var buffer = new byte[bytes.Length + 1];
 
-            // Set the chat link header byte
+            // Set the header byte
             Buffer.SetByte(buffer, 0, this.Header);
 
-            // Append the byte array
+            // Copy bytes to the buffer
             Buffer.BlockCopy(bytes, 0, buffer, 1, bytes.Length);
 
             // Convert the buffer to its base64 representation
             var base64 = Convert.ToBase64String(buffer);
 
-            // Convert the base64 representation to a chat link
+            // Encode and return the chat link object
             return string.Format(@"[&{0}]", base64);
-        }
-
-        /// <summary>Returns whether the given value object is valid for this type and for the specified context.</summary>
-        /// <returns>true if the specified value is valid for this object; otherwise, false.</returns>
-        /// <param name="context">An <see cref="T:System.ComponentModel.ITypeDescriptorContext"/> that provides a format context. </param>
-        /// <param name="value">The <see cref="T:System.Object"/> to test for validity. </param>
-        [Pure]
-        public override bool IsValid(ITypeDescriptorContext context, object value)
-        {
-            var input = value as string;
-            if (input == null || !ChatLinkConverterBase.IsValidChatLink(input))
-            {
-                return false;
-            }
-
-            return this.GetHeader(input) == this.Header;
         }
 
         /// <summary>Converts the given byte array to the specified chat link type.</summary>
         /// <param name="bytes">The byte array.</param>
         /// <returns>A chat link.</returns>
-        protected abstract T ConvertFromBytes(byte[] bytes);
+        protected abstract ChatLink ConvertFromBytes(byte[] bytes);
 
         /// <summary>Converts the given chat link to a byte array.</summary>
         /// <param name="value">The chat link.</param>
         /// <returns>A byte array.</returns>
-        protected abstract byte[] ConvertToBytes(T value);
+        protected abstract byte[] ConvertToBytes(ChatLink value);
+
+        /// <summary>Gets a byte array for the specified chat link.</summary>
+        /// <param name="input">A chat link.</param>
+        /// <returns>A byte array.</returns>
+        [Pure]
+        private byte[] GetBytes(string input)
+        {
+            Contract.Requires(input != null);
+            Contract.Requires(IsChatLink(input));
+            Contract.Ensures(Contract.Result<byte[]>() != null);
+
+            // Search the input for a pattern
+            var match = Pattern.Match(input);
+
+            // Extract the encoded part of the input
+            var base64 = match.Groups["base64"];
+
+            // Return an empty byte array if the input is an empty chat code 
+            if (base64 == null)
+            {
+                return new byte[0];
+            }
+
+            // Return a byte array from the decoded input
+            return Convert.FromBase64String(base64.Value);
+        }
+
+        /// <summary>Gets the header byte for the specified chat link.</summary>
+        /// <param name="input">A chat link.</param>
+        /// <returns>The header byte.</returns>
+        [Pure]
+        private byte GetHeader(string input)
+        {
+            Contract.Requires(input != null);
+            Contract.Requires(IsChatLink(input));
+            var bytes = this.GetBytes(input);
+            if (bytes.Length == 0)
+            {
+                return 0;
+            }
+
+            return bytes[0];
+        }
     }
 }

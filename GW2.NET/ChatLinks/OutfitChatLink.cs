@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks
 {
-    using System.ComponentModel;
+    using GW2DotNET.Common;
 
     /// <summary>Represents a chat link that links to an outfit.</summary>
-    [TypeConverter(typeof(OutfitChatLinkConverter))]
+    [Converter(typeof(OutfitChatLinkConverter))]
     public class OutfitChatLink : ChatLink
     {
         /// <summary>Gets or sets the outfit identifier.</summary>

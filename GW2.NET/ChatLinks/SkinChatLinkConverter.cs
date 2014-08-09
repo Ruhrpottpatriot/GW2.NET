@@ -9,10 +9,12 @@
 namespace GW2DotNET.ChatLinks
 {
     using System;
-    using System.Diagnostics.Contracts;
+
+    using GW2DotNET.Common;
 
     /// <summary>Provides a type converter to convert string objects to and from its <see cref="SkinChatLink"/> representation.</summary>
-    internal class SkinChatLinkConverter : ChatLinkConverter<SkinChatLink>
+    [ConverterFor(typeof(SkinChatLink))]
+    internal class SkinChatLinkConverter : ChatLinkConverter
     {
         /// <summary>Gets the chat link header.</summary>
         protected override byte Header
@@ -26,7 +28,7 @@ namespace GW2DotNET.ChatLinks
         /// <summary>Converts the given byte array to the specified chat link type.</summary>
         /// <param name="bytes">The byte array.</param>
         /// <returns>A chat link.</returns>
-        protected override SkinChatLink ConvertFromBytes(byte[] bytes)
+        protected override ChatLink ConvertFromBytes(byte[] bytes)
         {
             // Create a new chat link object
             var value = new SkinChatLink();
@@ -47,9 +49,9 @@ namespace GW2DotNET.ChatLinks
         /// <summary>Converts the given chat link to a byte array.</summary>
         /// <param name="value">The chat link.</param>
         /// <returns>A byte array.</returns>
-        protected override byte[] ConvertToBytes(SkinChatLink value)
+        protected override byte[] ConvertToBytes(ChatLink value)
         {
-            return BitConverter.GetBytes(value.SkinId);
+            return BitConverter.GetBytes(((SkinChatLink)value).SkinId);
         }
     }
 }

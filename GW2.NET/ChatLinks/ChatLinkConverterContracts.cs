@@ -12,25 +12,23 @@ namespace GW2DotNET.ChatLinks
     using System.Diagnostics.Contracts;
 
     /// <summary>The chat link converter contracts.</summary>
-    /// <typeparam name="T">The type of chat link.</typeparam>
-    [ContractClassFor(typeof(ChatLinkConverter<>))]
-    internal abstract class ChatLinkConverterContracts<T> : ChatLinkConverter<T>
-        where T : ChatLink, new()
+    [ContractClassFor(typeof(ChatLinkConverter))]
+    internal abstract class ChatLinkConverterContracts : ChatLinkConverter
     {
         /// <summary>Converts the given byte array to the specified chat link type.</summary>
         /// <param name="bytes">The byte array.</param>
         /// <returns>A chat link.</returns>
-        protected override T ConvertFromBytes(byte[] bytes)
+        protected override ChatLink ConvertFromBytes(byte[] bytes)
         {
             Contract.Requires(bytes != null);
-            Contract.Ensures(Contract.Result<T>() != null);
+            Contract.Ensures(Contract.Result<ChatLink>() != null);
             throw new NotImplementedException();
         }
 
         /// <summary>Converts the given chat link to a byte array.</summary>
         /// <param name="value">The chat link.</param>
         /// <returns>A byte array.</returns>
-        protected override byte[] ConvertToBytes(T value)
+        protected override byte[] ConvertToBytes(ChatLink value)
         {
             Contract.Requires(value != null);
             Contract.Ensures(Contract.Result<byte[]>() != null);

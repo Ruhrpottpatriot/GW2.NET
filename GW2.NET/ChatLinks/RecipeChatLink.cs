@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks
 {
-    using System.ComponentModel;
+    using GW2DotNET.Common;
 
     /// <summary>Represents a chat link that links to a recipe.</summary>
-    [TypeConverter(typeof(RecipeChatLinkConverter))]
+    [Converter(typeof(RecipeChatLinkConverter))]
     public class RecipeChatLink : ChatLink
     {
         /// <summary>Gets or sets the recipe identifier.</summary>

@@ -224,6 +224,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\ConverterAttribute.cs" />
+    <Compile Include="Common\ConverterForAttribute.cs" />
     <Compile Include="Common\Serializers\BinarySerializerFactory.cs" />
     <Compile Include="Common\Serializers\ISerializerFactory.cs" />
     <Compile Include="Common\Serializers\JsonDataContractSerializerFactory.cs" />
@@ -236,7 +238,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ChatLinks\ChatLink.cs" />
-    <Compile Include="ChatLinks\ChatLinkConverterBase.cs" />
     <Compile Include="ChatLinks\ChatLinkConverterContracts.cs" />
     <Compile Include="ChatLinks\ChatLinkFactory.cs" />
     <Compile Include="ChatLinks\ChatLinkConverter.cs" />

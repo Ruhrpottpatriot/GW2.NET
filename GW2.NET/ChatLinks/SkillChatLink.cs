@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks
 {
-    using System.ComponentModel;
+    using GW2DotNET.Common;
 
     /// <summary>Represents a chat link that links to a skill.</summary>
-    [TypeConverter(typeof(SkillChatLinkConverter))]
+    [Converter(typeof(SkillChatLinkConverter))]
     public class SkillChatLink : ChatLink
     {
         /// <summary>Gets or sets the skill identifier.</summary>

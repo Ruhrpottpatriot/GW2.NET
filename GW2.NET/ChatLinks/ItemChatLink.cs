@@ -8,11 +8,12 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks
 {
-    using System.ComponentModel;
     using System.Diagnostics.Contracts;
 
+    using GW2DotNET.Common;
+
     /// <summary>Represents a chat link that links to an item.</summary>
-    [TypeConverter(typeof(ItemChatLinkConverter))]
+    [Converter(typeof(ItemChatLinkConverter))]
     public class ItemChatLink : ChatLink
     {
         /// <summary>Initializes a new instance of the <see cref="ItemChatLink"/> class.</summary>

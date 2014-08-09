@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks
 {
-    using System.ComponentModel;
+    using GW2DotNET.Common;
 
     /// <summary>Represents a chat link that links to a point of interest.</summary>
-    [TypeConverter(typeof(PointOfInterestChatLinkConverter))]
+    [Converter(typeof(PointOfInterestChatLinkConverter))]
     public class PointOfInterestChatLink : ChatLink
     {
         /// <summary>Gets or sets the point of interest identifier.</summary>

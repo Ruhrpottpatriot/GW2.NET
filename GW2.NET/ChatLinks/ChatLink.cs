@@ -8,8 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.ChatLinks
 {
-    using System.ComponentModel;
-    using System.Diagnostics.Contracts;
+    using System;
+    using System.Linq;
+
+    using GW2DotNET.Common;
 
     /// <summary>Provides the base class for chat links.</summary>
     public abstract class ChatLink
@@ -25,13 +27,20 @@ namespace GW2DotNET.ChatLinks
         /// </summary>
         public static ChatLinkFactory Factory { get; private set; }
 
-        /// <summary>Returns a <see cref="T:System.String" /> that represents the current <see cref="T:System.Object" />.</summary>
-        /// <returns>A <see cref="T:System.String" /> that represents the current <see cref="T:System.Object" />.</returns>
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            var typeConverter = TypeDescriptor.GetConverter(this);
-            Contract.Assume(typeConverter != null);
-            return typeConverter.ConvertToString(this) ?? "[&]";
+            var type = this.GetType();
+            var converterAttributes = type.GetCustomAttributes(typeof(ConverterAttribute), false).Cast<ConverterAttribute>();
+            var converterTypes = converterAttributes.Select(converterAttribute => converterAttribute.Type);
+            var converter = converterTypes.Select(Activator.CreateInstance).Cast<ChatLinkConverter>().SingleOrDefault();
+            if (converter == null)
+            {
+                return base.ToString();
+            }
+
+            return converter.Encode(this);
         }
     }
 }

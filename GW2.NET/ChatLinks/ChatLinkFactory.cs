@@ -9,9 +9,11 @@
 namespace GW2DotNET.ChatLinks
 {
     using System;
-    using System.ComponentModel;
+    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Linq;
+
+    using GW2DotNET.Common;
 
     /// <summary>Factory class. Provides factory methods for creating <see cref="ChatLink"/> instances.</summary>
     public class ChatLinkFactory
@@ -22,18 +24,20 @@ namespace GW2DotNET.ChatLinks
         public ChatLink Decode(string input)
         {
             Contract.Requires(input != null);
-            Contract.Ensures(Contract.Result<ChatLink>() != null);
-            var baseType = typeof(ChatLink);
-            var chatLinkTypes = this.GetType().Assembly.GetTypes().Where(link => link.IsSubclassOf(baseType));
-            var typeConverter = chatLinkTypes.Select(TypeDescriptor.GetConverter).FirstOrDefault(converter => converter.IsValid(input));
-            if (typeConverter == null)
+
+            // Find a converter that can convert the input
+            var type = typeof(ChatLink);
+            var types = type.Assembly.GetTypes();
+            var converterTypes = types.Where(t => t.IsSubclassOf(typeof(ChatLinkConverter)) && t.IsDefined(typeof(ConverterForAttribute), false));
+            var converter = converterTypes.Select(Activator.CreateInstance).Cast<ChatLinkConverter>().FirstOrDefault(c => c.CanConvert(input));
+
+            // Ensure that a converter exists
+            if (converter == null)
             {
-                throw new NotSupportedException("The specified chat link is not supported.");
+                return null;
             }
 
-            var chatLink = (ChatLink)typeConverter.ConvertFromString(input);
-            Contract.Assume(chatLink != null);
-            return chatLink;
+            return converter.Decode(input);
         }
 
         /// <summary>Decodes chat links of the specified type.</summary>
@@ -43,17 +47,22 @@ namespace GW2DotNET.ChatLinks
         public T Decode<T>(string input) where T : ChatLink
         {
             Contract.Requires(input != null);
-            Contract.Ensures(Contract.Result<T>() != null);
-            var typeConverter = TypeDescriptor.GetConverter(typeof(T));
-            Contract.Assume(typeConverter != null);
-            if (!typeConverter.IsValid(input))
+
+            // Find a converter that can convert the input
+            var type = typeof(T);
+            var types = type.Assembly.GetTypes();
+            var converterTypes = types.Where(t => t.IsSubclassOf(typeof(ChatLinkConverter)));
+            var converterType = converterTypes.FirstOrDefault(t => GetAttributes<ConverterForAttribute>(t).Any(converterFor => converterFor.Type == type));
+
+            // Ensure that a converter exists
+            if (converterType == null)
             {
-                throw new InvalidOperationException(string.Format("The specified input is not of type '{0}'", typeof(T).Name));
+                return null;
             }
 
-            var chatLink = (T)typeConverter.ConvertFromString(input);
-            Contract.Assume(chatLink != null);
-            return chatLink;
+            var converter = (ChatLinkConverter)Activator.CreateInstance(converterType);
+
+            return (T)converter.Decode(input);
         }
 
         /// <summary>Encodes an amount of coins.</summary>
@@ -148,6 +157,17 @@ namespace GW2DotNET.ChatLinks
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new TraitChatLink { TraitId = traitId };
+        }
+
+        /// <summary>Infrastructure.Returns a collection of custom attributes applied to the specified type.</summary>
+        /// <param name="type">The type.</param>
+        /// <typeparam name="TAttribute">The type of the attributes.</typeparam>
+        /// <returns>The attributes.</returns>
+        private static IEnumerable<TAttribute> GetAttributes<TAttribute>(Type type)
+        {
+            Contract.Requires(type != null);
+            Contract.Ensures(Contract.Result<IEnumerable<TAttribute>>() != null);
+            return type.GetCustomAttributes(typeof(TAttribute), false).Cast<TAttribute>();
         }
     }
 }

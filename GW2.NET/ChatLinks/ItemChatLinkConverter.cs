@@ -11,8 +11,11 @@ namespace GW2DotNET.ChatLinks
     using System;
     using System.Diagnostics.Contracts;
 
+    using GW2DotNET.Common;
+
     /// <summary>Provides a type converter to convert string objects to and from its <see cref="ItemChatLink"/> representation.</summary>
-    internal class ItemChatLinkConverter : ChatLinkConverter<ItemChatLink>
+    [ConverterFor(typeof(ItemChatLink))]
+    internal class ItemChatLinkConverter : ChatLinkConverter
     {
         /// <summary>Gets the chat link header.</summary>
         protected override byte Header
@@ -26,7 +29,7 @@ namespace GW2DotNET.ChatLinks
         /// <summary>Converts the given byte array to the specified chat link type.</summary>
         /// <param name="bytes">The byte array.</param>
         /// <returns>A chat link.</returns>
-        protected override ItemChatLink ConvertFromBytes(byte[] bytes)
+        protected override ChatLink ConvertFromBytes(byte[] bytes)
         {
             var chatLink = new ItemChatLink();
             var buffer = new byte[64];
@@ -100,34 +103,35 @@ namespace GW2DotNET.ChatLinks
         /// <summary>Converts the given chat link to a byte array.</summary>
         /// <param name="value">The chat link.</param>
         /// <returns>A byte array.</returns>
-        protected override byte[] ConvertToBytes(ItemChatLink value)
+        protected override byte[] ConvertToBytes(ChatLink value)
         {
+            var chatLink = (ItemChatLink)value;
             var buffer = new byte[64];
             const int Flags = 4;
             var index = 0;
 
             // Set a value that indicates the item quanitity
-            Buffer.SetByte(buffer, index, (byte)value.Quantity);
+            Buffer.SetByte(buffer, index, (byte)chatLink.Quantity);
             index += sizeof(byte);
 
             // Set a value that indicates the item identifier
-            Buffer.BlockCopy(BitConverter.GetBytes(value.ItemId), 0, buffer, index, 3);
+            Buffer.BlockCopy(BitConverter.GetBytes(chatLink.ItemId), 0, buffer, index, 3);
             index += sizeof(int);
 
             // Set the skin modifier
-            if (value.SkinId.HasValue && TrySetModifier(buffer, ref index, value.SkinId.Value))
+            if (chatLink.SkinId.HasValue && TrySetModifier(buffer, ref index, chatLink.SkinId.Value))
             {
                 SetFlag(ref buffer[Flags], 0x80);
             }
 
             // Set the upgrade modifier
-            if (value.SuffixItemId.HasValue && TrySetModifier(buffer, ref index, value.SuffixItemId.Value))
+            if (chatLink.SuffixItemId.HasValue && TrySetModifier(buffer, ref index, chatLink.SuffixItemId.Value))
             {
                 SetFlag(ref buffer[Flags], 0x40);
             }
 
             // Set the secondary upgrade modifier
-            if (value.SecondarySuffixItemId.HasValue && TrySetModifier(buffer, ref index, value.SecondarySuffixItemId.Value))
+            if (chatLink.SecondarySuffixItemId.HasValue && TrySetModifier(buffer, ref index, chatLink.SecondarySuffixItemId.Value))
             {
                 SetFlag(ref buffer[Flags], 0x20);
             }
