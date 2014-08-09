@@ -21,10 +21,10 @@ namespace GW2DotNET.Common.Serializers
             // Create a buffer (64KiB)
             var buffer = new byte[0xFFFF];
 
-            // Create a memory stream
+            // Copy all input data to memory
+            using (stream)
             using (var memoryStream = new MemoryStream())
             {
-                // Copy all input data to memory
                 int count;
                 while (0 < (count = stream.Read(buffer, 0, buffer.Length)))
                 {
