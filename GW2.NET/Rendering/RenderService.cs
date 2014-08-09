@@ -8,9 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Rendering
 {
-    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
-    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -39,7 +37,12 @@ namespace GW2DotNET.Rendering
         {
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
             var response = this.serviceClient.Send<byte[]>(request);
-            return response.Content.ToArray();
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            return response.Content;
         }
 
         /// <summary>Gets an image.</summary>
@@ -65,6 +68,11 @@ namespace GW2DotNET.Rendering
                 task =>
                     {
                         var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
                         return response.Content;
                     }, 
                 cancellationToken);
