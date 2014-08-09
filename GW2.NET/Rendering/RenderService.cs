@@ -8,8 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Rendering
 {
+    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
-    using System.Drawing;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -30,36 +31,43 @@ namespace GW2DotNET.Rendering
         }
 
         /// <summary>Gets an image.</summary>
-        /// <param name="file">The file.</param>
-        /// <param name="imageFormat">The image Format.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
+        /// <param name="file">The file identifier.</param>
+        /// <param name="imageFormat">The image file format.</param>
+        /// <returns>The binary representation of an image.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Image GetImage(IRenderable file, string imageFormat)
+        public byte[] GetImage(IRenderable file, string imageFormat)
         {
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
-            return this.serviceClient.Send<Image>(request).Content;
+            var response = this.serviceClient.Send<byte[]>(request);
+            return response.Content.ToArray();
         }
 
         /// <summary>Gets an image.</summary>
-        /// <param name="file">The file.</param>
+        /// <param name="file">The file identifier.</param>
         /// <param name="imageFormat">The image format.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
+        /// <returns>The binary representation of an image.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> GetImageAsync(IRenderable file, string imageFormat)
+        public Task<byte[]> GetImageAsync(IRenderable file, string imageFormat)
         {
             return this.GetImageAsync(file, imageFormat, CancellationToken.None);
         }
 
         /// <summary>Gets an image.</summary>
-        /// <param name="file">The file.</param>
+        /// <param name="file">The file identifier.</param>
         /// <param name="imageFormat">The image format.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Image"/>.</returns>
+        /// <returns>The binary representation of an image.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
-        public Task<Image> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
+        public Task<byte[]> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
             var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
-            return this.serviceClient.SendAsync<Image>(request, cancellationToken).ContinueWith(task => task.Result.Content, cancellationToken);
+            return this.serviceClient.SendAsync<byte[]>(request, cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        return response.Content;
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>The invariant method for this class.</summary>
