@@ -39,11 +39,13 @@ namespace GW2DotNET.RestSharp
         /// <param name="errorSerializerFactory">The error Serializer Factory.</param>
         public ServiceClient(Uri baseUri, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory)
         {
-            this.successSerializerFactory = successSerializerFactory;
-            this.errorSerializerFactory = errorSerializerFactory;
             Contract.Requires(baseUri != null);
             Contract.Requires(baseUri.IsAbsoluteUri, "Parameter 'baseUri' must be an absolute URI.");
+            Contract.Requires(successSerializerFactory != null);
+            Contract.Requires(errorSerializerFactory != null);
             this.restClient = new RestClient(baseUri.ToString());
+            this.successSerializerFactory = successSerializerFactory;
+            this.errorSerializerFactory = errorSerializerFactory;
         }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
@@ -53,6 +55,8 @@ namespace GW2DotNET.RestSharp
         public ServiceClient(IRestClient restClient, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory)
         {
             Contract.Requires(restClient != null);
+            Contract.Requires(successSerializerFactory != null);
+            Contract.Requires(errorSerializerFactory != null);
             this.restClient = restClient;
             this.successSerializerFactory = successSerializerFactory;
             this.errorSerializerFactory = errorSerializerFactory;
@@ -131,10 +135,14 @@ namespace GW2DotNET.RestSharp
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
 
+            // Ensure that there is response content
+            if (response.RawBytes == null)
+            {
+                return default(TResult);
+            }
+
             // Get the response content
             var stream = new MemoryStream(response.RawBytes);
-
-            Contract.Assume(stream.CanRead);
 
             // Create a serializer
             var serializer = serializerFactory.GetSerializer<TResult>();
@@ -157,6 +165,8 @@ namespace GW2DotNET.RestSharp
             // Get the response
             var response = restClient.Execute(request);
 
+            Contract.Assume(response != null);
+
             // Return the response
             if (response.ResponseStatus == ResponseStatus.Completed)
             {
@@ -175,7 +185,10 @@ namespace GW2DotNET.RestSharp
         /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
         private static Task<IRestResponse> GetRestResponseAsync(IRestClient restClient, IRestRequest request, CancellationToken cancellationToken)
         {
-            return restClient.ExecuteTaskAsync(request, cancellationToken).ContinueWith(
+            Contract.Requires(restClient != null);
+            var t1 = restClient.ExecuteTaskAsync(request, cancellationToken);
+            Contract.Assume(t1 != null);
+            return t1.ContinueWith(
                 task =>
                     {
                         // Get the response
@@ -198,11 +211,17 @@ namespace GW2DotNET.RestSharp
         /// <param name="serializerFactory">The serializer factory.</param>
         private static void OnError(IRestResponse response, ISerializerFactory serializerFactory)
         {
+            Contract.Requires(response != null);
+            Contract.Requires(serializerFactory != null);
+
             // Get the response content
             var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory);
 
+            // Get the error description, or null if none was returned
+            var errorMessage = errorResult != null ? errorResult.Text : null;
+
             // Throw an exception
-            throw new ServiceException(errorResult.Text);
+            throw new ServiceException(errorMessage);
         }
 
         /// <summary>Infrastructure. Post-processes a response object.</summary>
@@ -215,12 +234,15 @@ namespace GW2DotNET.RestSharp
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
             Contract.Ensures(Contract.Result<IResponse<T>>() != null);
+            Contract.Ensures(Contract.Result<IResponse<T>>().ExtensionData != null);
 
             // Create a new generic response object
             var value = new Response<T>();
 
             // Set the deserialized response content
             value.Content = DeserializeResponse<T>(response, serializerFactory);
+
+            Contract.Assume(response.Headers != null && Contract.ForAll(response.Headers, parameter => parameter != null));
 
             // Set the 'Date' header
             var date = response.Headers.SingleOrDefault(parameter => parameter.Name.Equals("Date", StringComparison.Ordinal));
@@ -231,7 +253,7 @@ namespace GW2DotNET.RestSharp
 
             // Set the 'Content-Language' header
             var culture = response.Headers.SingleOrDefault(parameter => parameter.Name.Equals("Content-Language", StringComparison.Ordinal));
-            if (culture != null)
+            if (culture != null && culture.Value != null)
             {
                 value.Culture = CultureInfo.GetCultureInfo((string)culture.Value);
             }
@@ -239,11 +261,21 @@ namespace GW2DotNET.RestSharp
             // Set the 'X'-tension headers
             foreach (var parameter in response.Headers.Where(parameter => parameter.Name.StartsWith("X-", StringComparison.Ordinal)))
             {
+                Contract.Assume(parameter != null);
                 value.ExtensionData[parameter.Name] = (string)parameter.Value;
             }
 
             // Return the response object
             return value;
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.restClient != null);
+            Contract.Invariant(this.successSerializerFactory != null);
+            Contract.Invariant(this.errorSerializerFactory != null);
         }
     }
 }
