@@ -48,6 +48,9 @@ namespace GW2DotNET.Entities.Items
         Unique = 1 << 9, 
 
         /// <summary>The 'Account Bind On Use' item flag.</summary>
-        AccountBindOnUse = 1 << 10
+        AccountBindOnUse = 1 << 10, 
+
+        /// <summary>The 'Monster Only' item flag.</summary>
+        MonsterOnly = 1 << 11
     }
 }
