@@ -16,7 +16,7 @@ namespace GW2DotNET.V1.Maps
 
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Maps;
-    using GW2DotNET.V1.Maps.Contracts;
+    using GW2DotNET.V1.Maps.Json;
 
     /// <summary>Provides the default implementation of the continents service.</summary>
     public class ContinentService : IContinentService

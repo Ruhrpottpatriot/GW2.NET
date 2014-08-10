@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Recipes
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Items;
     using GW2DotNET.Entities.Recipes;
-    using GW2DotNET.V1.Recipes.Contracts;
+    using GW2DotNET.V1.Recipes.Json;
 
     /// <summary>Provides the default implementation of the recipe service.</summary>
     public class RecipeService : IRecipeService

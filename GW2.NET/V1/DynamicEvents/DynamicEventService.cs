@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using GW2DotNET.Common;
     using GW2DotNET.Entities.DynamicEvents;
     using GW2DotNET.Entities.Maps;
-    using GW2DotNET.V1.DynamicEvents.Contracts;
+    using GW2DotNET.V1.DynamicEvents.Json;
 
     /// <summary>Provides the default implementation of the events service.</summary>
     public class DynamicEventService : IDynamicEventService

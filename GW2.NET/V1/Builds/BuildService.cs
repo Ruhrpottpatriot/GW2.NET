@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Builds
 
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Builds;
-    using GW2DotNET.V1.Builds.Contracts;
+    using GW2DotNET.V1.Builds.Json;
 
     /// <summary>Provides the default implementation of the build service.</summary>
     public class BuildService : IBuildService

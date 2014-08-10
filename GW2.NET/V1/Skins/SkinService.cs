@@ -19,7 +19,7 @@ namespace GW2DotNET.V1.Skins
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Items;
     using GW2DotNET.Entities.Skins;
-    using GW2DotNET.V1.Skins.Contracts;
+    using GW2DotNET.V1.Skins.Json;
 
     /// <summary>Provides the default implementation of the skins service.</summary>
     public class SkinService : ISkinService

@@ -18,7 +18,7 @@ namespace GW2DotNET.V2.Quaggans
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Quaggans;
     using GW2DotNET.V2.Common;
-    using GW2DotNET.V2.Quaggans.Contracts;
+    using GW2DotNET.V2.Quaggans.Json;
 
     /// <summary>Provides the default implementation of the Quaggan service.</summary>
     public class QuagganService : IQuagganService

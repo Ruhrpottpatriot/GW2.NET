@@ -18,7 +18,7 @@ namespace GW2DotNET.V1.Worlds
 
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Worlds;
-    using GW2DotNET.V1.Worlds.Contracts;
+    using GW2DotNET.V1.Worlds.Json;
 
     /// <summary>Provides the default implementation of the world service.</summary>
     public class WorldService : IWorldNameService

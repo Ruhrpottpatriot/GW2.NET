@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Guilds
 
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Guilds;
-    using GW2DotNET.V1.Guilds.Contracts;
+    using GW2DotNET.V1.Guilds.Json;
 
     /// <summary>Provides the default implementation of the guild details service.</summary>
     public class GuildDetailsService : IGuildDetailsService
