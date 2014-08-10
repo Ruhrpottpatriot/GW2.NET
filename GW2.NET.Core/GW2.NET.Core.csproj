@@ -244,6 +244,7 @@
     <Compile Include="Common\Serializers\SerializerFactoryContract.cs" />
     <Compile Include="Common\Serializers\StringSerializer.cs" />
     <Compile Include="Common\Serializers\StringSerializerFactory.cs" />
+    <Compile Include="Common\ServiceClient.cs" />
     <Compile Include="Common\ServiceClientContracts.cs" />
     <Compile Include="Common\ServiceException.cs" />
     <Compile Include="Common\UrlEncodedForm.cs" />

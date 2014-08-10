@@ -9,6 +9,7 @@
 namespace GW2DotNET.Common
 {
     using System;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.IO.Compression;
@@ -149,7 +150,7 @@ namespace GW2DotNET.Common
             Contract.Assume(request.Headers != null);
 
             // Set 'Accept-Encoding' to 'gzip'
-            request.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip");
+            request.Headers[HttpRequestHeader.AcceptEncoding] = "gzip";
 
             // Return the request object
             return request;
@@ -177,7 +178,7 @@ namespace GW2DotNET.Common
             Contract.Assume(response.Headers != null);
 
             // Ensure that we are operating on decompressed data
-            var contentEncoding = response.Headers[HttpResponseHeader.ContentEncoding];
+            var contentEncoding = response.Headers["Content-Encoding"];
             if (contentEncoding != null)
             {
                 var compressed = contentEncoding.Equals("gzip", StringComparison.OrdinalIgnoreCase);
@@ -204,34 +205,15 @@ namespace GW2DotNET.Common
         {
             Contract.Requires(webRequest != null);
             Contract.Ensures(Contract.Result<HttpWebResponse>() != null);
+
             try
             {
-                // Get the response
-                var webResponse = webRequest.GetResponse();
-
-                // Provide a hint to the static checker
-                Contract.Assume(webResponse != null);
-
-                // Return the response
-                return (HttpWebResponse)webResponse;
+                return GetHttpWebResponseAsync(webRequest, CancellationToken.None).Result;
             }
-            catch (WebException exception)
+            catch (AggregateException ex)
             {
-                // Simply rethrow in case of transport errors (e.g. timeout)
-                if (exception.Status != WebExceptionStatus.ProtocolError)
-                {
-                    // TODO: should we wrap timeouts in a System.TimeoutException?
-                    throw;
-                }
-
-                // Get the response
-                var webResponse = exception.Response;
-
-                // Provide a hint to the static checker
-                Contract.Assume(webResponse != null);
-
-                // Return the response
-                return (HttpWebResponse)webResponse;
+                var innerException = ex.GetBaseException();
+                throw new WebException(innerException.Message, innerException);
             }
         }
 
@@ -250,17 +232,11 @@ namespace GW2DotNET.Common
                     // TODO: should we wrap timeouts in a System.TimeoutException?
                     if (task.IsFaulted)
                     {
-                        // Provide a hint to the static checker
-                        Contract.Assume(task.Exception != null);
-
                         var exception = task.Exception.GetBaseException() as WebException;
-                        if (exception != null && exception.Status == WebExceptionStatus.ProtocolError)
+                        if (exception != null && exception.Response != null)
                         {
                             // Get the response
                             var errorResponse = exception.Response;
-
-                            // Provide a hint to the static checker
-                            Contract.Assume(errorResponse != null);
 
                             // Return the response
                             return (HttpWebResponse)errorResponse;
@@ -270,9 +246,6 @@ namespace GW2DotNET.Common
                     // Get the response
                     // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
                     var webResponse = task.Result;
-
-                    // Provide a hint to the static checker
-                    Contract.Assume(webResponse != null);
 
                     // Return the response
                     return (HttpWebResponse)webResponse;
@@ -327,7 +300,7 @@ namespace GW2DotNET.Common
             var contentLanguage = response.Headers["Content-Language"];
             if (contentLanguage != null)
             {
-                value.Culture = CultureInfo.GetCultureInfo(contentLanguage);
+                value.Culture = new CultureInfo(contentLanguage);
             }
 
             // Set the 'X'-tension headers

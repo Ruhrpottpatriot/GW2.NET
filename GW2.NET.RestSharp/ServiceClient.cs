@@ -111,7 +111,7 @@ namespace GW2DotNET.RestSharp
             }
 
             // Handle the request
-            return GetRestResponseAsync(this.restClient, restRequest, cancellationToken).ContinueWith<IResponse<TResult>>(
+            return GetRestResponseAsync(this.restClient, restRequest, cancellationToken).ContinueWith(
                 task =>
                     {
                         var restResponse = task.Result;
