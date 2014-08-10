@@ -1389,7 +1389,7 @@ namespace GW2DotNET
             Contract.Ensures(Contract.Result<IServiceClient>() != null);
             var baseUri = GetBaseUri();
             var successSerializerFactory = new JsonSerializerFactory();
-            var errorSerializerFactory = new JsonDataContractSerializerFactory();
+            var errorSerializerFactory = new DataContractJsonSerializerFactory();
             return new ServiceClient(baseUri, successSerializerFactory, errorSerializerFactory);
         }
 

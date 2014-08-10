@@ -227,13 +227,14 @@
     <Compile Include="Common\ConverterAttribute.cs" />
     <Compile Include="Common\ConverterForAttribute.cs" />
     <Compile Include="Common\Serializers\BinarySerializerFactory.cs" />
+    <Compile Include="Common\Serializers\DataContractJsonSerializer.cs" />
     <Compile Include="Common\Serializers\ISerializerFactory.cs" />
-    <Compile Include="Common\Serializers\JsonDataContractSerializerFactory.cs" />
+    <Compile Include="Common\Serializers\DataContractJsonSerializerFactory.cs" />
     <Compile Include="Common\Serializers\JsonSerializerFactory.cs" />
     <Compile Include="Common\Serializers\BinarySerializer.cs" />
     <Compile Include="Common\Serializers\SerializerFactoryContract.cs" />
     <Compile Include="Common\Serializers\StringSerializerFactory.cs" />
-    <Compile Include="Common\Serializers\XmlDataContractSerializerFactory.cs" />
+    <Compile Include="Common\Serializers\DataContractXmlSerializerFactory.cs" />
     <Compile Include="Entities\Builds\Build.cs">
       <SubType>Code</SubType>
     </Compile>
