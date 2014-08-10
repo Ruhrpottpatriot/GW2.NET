@@ -44,10 +44,7 @@ namespace GW2DotNET
     public class ServiceManager : IBuildService, 
                                   IColorService, 
                                   IContinentService, 
-                                  IDynamicEventStateService, 
-                                  IDynamicEventDetailsService, 
-                                  IDynamicEventNameService, 
-                                  IDynamicEventRotationService, 
+                                  IDynamicEventService,
                                   IFileService, 
                                   IGuildDetailsService, 
                                   IItemService, 
@@ -489,13 +486,6 @@ namespace GW2DotNET
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.dynamicEventService.GetDynamicEventNamesAsync(language, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their start times.</summary>
-        /// <returns>A collection of dynamic events and their start times.</returns>
-        public IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations()
-        {
-            return this.dynamicEventService.GetDynamicEventRotations();
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>

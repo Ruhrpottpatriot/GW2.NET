@@ -6,7 +6,7 @@
 //   The dynamic event rotation service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents
+namespace GW2DotNET.Local.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
@@ -18,8 +18,8 @@ namespace GW2DotNET.V1.DynamicEvents
     [ContractClassFor(typeof(IDynamicEventRotationService))]
     internal abstract class DynamicEventRotationServiceContract : IDynamicEventRotationService
     {
-        /// <summary>Gets a collection of dynamic events and their start times.</summary>
-        /// <returns>A collection of dynamic events and their start times.</returns>
+        /// <summary>Gets a collection of dynamic events and their rotating shifts</summary>
+        /// <returns>A collection of dynamic events and their rotating shifts.</returns>
         public IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations()
         {
             Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEventRotation>>() != null);

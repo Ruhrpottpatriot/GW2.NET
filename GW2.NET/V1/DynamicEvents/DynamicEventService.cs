@@ -348,37 +348,6 @@ namespace GW2DotNET.V1.DynamicEvents
                 cancellationToken);
         }
 
-        /// <summary>Gets a collection of dynamic events and their start times.</summary>
-        /// <returns>A collection of dynamic events and their start times.</returns>
-        public IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations()
-        {
-            var configuration = this.LoadConfiguration();
-            var rotationElements = configuration.Descendants("rotation").Where(element => element.Attributes("event_id").Any()).ToList();
-            var values = new Dictionary<Guid, DynamicEventRotation>(rotationElements.Count);
-            foreach (var contract in rotationElements)
-            {
-                Contract.Assume(contract != null);
-                var eventIdAttribute = contract.Attribute("event_id");
-                Contract.Assume(eventIdAttribute != null);
-                var eventId = Guid.Parse(eventIdAttribute.Value);
-                var shifts = contract.Descendants("shift").Select(
-                    element =>
-                        {
-                            var shift = DateTimeOffset.Parse(element.Value);
-                            if (shift < DateTime.UtcNow)
-                            {
-                                shift = shift.AddDays(1D);
-                            }
-
-                            return shift;
-                        }).OrderBy(offset => offset.Ticks);
-
-                values.Add(eventId, new DynamicEventRotation { EventId = eventId, Shifts = new List<DateTimeOffset>(shifts) });
-            }
-
-            return values;
-        }
-
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>
@@ -945,20 +914,6 @@ namespace GW2DotNET.V1.DynamicEvents
             Contract.Requires(content != null);
             Contract.Requires(content.Length == 2);
             return new Vector2D(content[0], content[1]);
-        }
-
-        /// <summary>Infrastructure. Loads the configuration.</summary>
-        /// <returns>The configuration.</returns>
-        private XDocument LoadConfiguration()
-        {
-            Contract.Ensures(Contract.Result<XDocument>() != null);
-            var type = this.GetType();
-            using (var stream = type.Assembly.GetManifestResourceStream(type.Namespace + ".Rotations.xml"))
-            {
-                var configuration = XDocument.Load(stream);
-                Contract.Assume(configuration != null);
-                return configuration;
-            }
         }
 
         /// <summary>The invariant method for this class.</summary>

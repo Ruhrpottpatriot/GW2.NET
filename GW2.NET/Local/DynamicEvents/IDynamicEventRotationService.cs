@@ -6,7 +6,7 @@
 //   Provides the interface for the event rotations service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents
+namespace GW2DotNET.Local.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
@@ -18,8 +18,8 @@ namespace GW2DotNET.V1.DynamicEvents
     [ContractClass(typeof(DynamicEventRotationServiceContract))]
     public interface IDynamicEventRotationService
     {
-        /// <summary>Gets a collection of dynamic events and their start times.</summary>
-        /// <returns>A collection of dynamic events and their start times.</returns>
+        /// <summary>Gets a collection of dynamic events and their rotating shifts</summary>
+        /// <returns>A collection of dynamic events and their rotating shifts.</returns>
         IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations();
     }
 }
