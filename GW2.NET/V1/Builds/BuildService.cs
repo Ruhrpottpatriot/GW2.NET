@@ -43,7 +43,7 @@ namespace GW2DotNET.V1.Builds
             }
 
             var value = MapBuildContract(response.Content);
-            value.Timestamp = response.LastModified;
+            value.Timestamp = response.Date;
             return value;
         }
 
@@ -67,7 +67,7 @@ namespace GW2DotNET.V1.Builds
                     {
                         var response = task.Result;
                         var value = MapBuildContract(response.Content);
-                        value.Timestamp = response.LastModified;
+                        value.Timestamp = response.Date;
                         return value;
                     }, 
                 cancellationToken);

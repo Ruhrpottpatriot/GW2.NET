@@ -23,7 +23,7 @@ namespace GW2DotNET.Common
         /// <summary>Gets or sets a collection of custom response headers.</summary>
         IDictionary<string, string> ExtensionData { get; set; }
 
-        /// <summary>Gets or sets the <see cref="DateTime"/> at which the message originated..</summary>
-        DateTime LastModified { get; set; }
+        /// <summary>Gets or sets the <see cref="DateTimeOffset"/> at which the message originated..</summary>
+        DateTimeOffset Date { get; set; }
     }
 }

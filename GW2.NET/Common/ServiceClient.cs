@@ -106,17 +106,17 @@ namespace GW2DotNET.Common
             var httpWebRequest = CreateHttpWebRequest(uri);
             return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
                 task =>
+                {
+                    using (var response = task.Result)
                     {
-                        using (var response = task.Result)
+                        if (!response.StatusCode.IsSuccessStatusCode())
                         {
-                            if (!response.StatusCode.IsSuccessStatusCode())
-                            {
-                                OnError(response, this.errorSerializerFactory);
-                            }
-
-                            return OnSuccess<TResult>(response, this.successSerializerFactory);
+                            OnError(response, this.errorSerializerFactory);
                         }
-                    }, 
+
+                        return OnSuccess<TResult>(response, this.successSerializerFactory);
+                    }
+                },
                 cancellationToken);
         }
 
@@ -245,38 +245,38 @@ namespace GW2DotNET.Common
             Contract.Requires(webRequest != null);
             return Task.Factory.FromAsync<WebResponse>(webRequest.BeginGetResponse, webRequest.EndGetResponse, null).ContinueWith(
                 task =>
+                {
+                    // Handle protocol errors
+                    // TODO: should we wrap timeouts in a System.TimeoutException?
+                    if (task.IsFaulted)
                     {
-                        // Handle protocol errors
-                        // TODO: should we wrap timeouts in a System.TimeoutException?
-                        if (task.IsFaulted)
-                        {
-                            // Provide a hint to the static checker
-                            Contract.Assume(task.Exception != null);
-
-                            var exception = task.Exception.GetBaseException() as WebException;
-                            if (exception != null && exception.Status == WebExceptionStatus.ProtocolError)
-                            {
-                                // Get the response
-                                var errorResponse = exception.Response;
-
-                                // Provide a hint to the static checker
-                                Contract.Assume(errorResponse != null);
-
-                                // Return the response
-                                return (HttpWebResponse)errorResponse;
-                            }
-                        }
-
-                        // Get the response
-                        // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
-                        var webResponse = task.Result;
-
                         // Provide a hint to the static checker
-                        Contract.Assume(webResponse != null);
+                        Contract.Assume(task.Exception != null);
 
-                        // Return the response
-                        return (HttpWebResponse)webResponse;
-                    }, 
+                        var exception = task.Exception.GetBaseException() as WebException;
+                        if (exception != null && exception.Status == WebExceptionStatus.ProtocolError)
+                        {
+                            // Get the response
+                            var errorResponse = exception.Response;
+
+                            // Provide a hint to the static checker
+                            Contract.Assume(errorResponse != null);
+
+                            // Return the response
+                            return (HttpWebResponse)errorResponse;
+                        }
+                    }
+
+                    // Get the response
+                    // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
+                    var webResponse = task.Result;
+
+                    // Provide a hint to the static checker
+                    Contract.Assume(webResponse != null);
+
+                    // Return the response
+                    return (HttpWebResponse)webResponse;
+                },
                 cancellationToken);
         }
 
@@ -317,7 +317,11 @@ namespace GW2DotNET.Common
             value.Content = DeserializeResponse<T>(response, serializerFactory);
 
             // Set the 'Date' header
-            value.LastModified = response.LastModified;
+            var date = response.Headers["Date"];
+            if (date != null)
+            {
+                value.Date = DateTimeOffset.Parse(date);
+            }
 
             // Set the 'Content-Language' header
             Contract.Assume(response.Headers != null);

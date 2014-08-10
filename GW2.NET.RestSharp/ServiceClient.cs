@@ -248,7 +248,7 @@ namespace GW2DotNET.RestSharp
             var date = response.Headers.SingleOrDefault(parameter => parameter.Name.Equals("Date", StringComparison.Ordinal));
             if (date != null)
             {
-                value.LastModified = DateTime.Parse((string)date.Value);
+                value.Date = DateTimeOffset.Parse((string)date.Value);
             }
 
             // Set the 'Content-Language' header
