@@ -40,7 +40,7 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Item GetItemDetails(int item)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetItemDetails(item, culture);
         }
@@ -77,7 +77,7 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int item)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetItemDetailsAsync(item, culture, CancellationToken.None);
         }
@@ -99,7 +99,7 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
         public Task<Item> GetItemDetailsAsync(int item, CancellationToken cancellationToken)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetItemDetailsAsync(item, culture, cancellationToken);
         }

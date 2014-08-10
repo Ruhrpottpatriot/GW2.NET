@@ -129,7 +129,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public IDictionary<int, ObjectiveName> GetObjectiveNames()
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetObjectiveNames(culture);
         }
@@ -169,7 +169,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync()
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetObjectiveNamesAsync(culture, CancellationToken.None);
         }
@@ -180,7 +180,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetObjectiveNamesAsync(culture, cancellationToken);
         }

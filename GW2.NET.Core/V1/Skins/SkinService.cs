@@ -42,7 +42,7 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Skin GetSkinDetails(int skin)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetSkinDetails(skin, culture);
         }
@@ -79,7 +79,7 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(int skin)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetSkinDetailsAsync(skin, culture, CancellationToken.None);
         }
@@ -101,7 +101,7 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
         public Task<Skin> GetSkinDetailsAsync(int skin, CancellationToken cancellationToken)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetSkinDetailsAsync(skin, culture, cancellationToken);
         }

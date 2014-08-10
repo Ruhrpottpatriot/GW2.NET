@@ -27,7 +27,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'DebugCC' ">
     <OutputPath>bin\CodeAnalysis\</OutputPath>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Benchmarks' ">
+  <PropertyGroup Condition=" '$(Configuration)' == 'Benchmark' ">
     <OutputPath>bin\Benchmarks\</OutputPath>
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />

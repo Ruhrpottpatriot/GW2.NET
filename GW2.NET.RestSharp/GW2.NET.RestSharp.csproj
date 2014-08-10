@@ -124,11 +124,13 @@
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>3</CodeContractsAnalysisWarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Benchmarks|AnyCPU'">
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Benchmark|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Benchmarks\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>bin\Release\GW2.NET.RestSharp.xml</DocumentationFile>
+    <DefineConstants>
+    </DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -179,16 +181,16 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceClient.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GW2.NET\GW2.NET.csproj">
-      <Project>{46c3a3d8-6627-4098-82ba-608f158a8ca5}</Project>
-      <Name>GW2.NET</Name>
+    <ProjectReference Include="..\GW2.NET.Core\GW2.NET.Core.csproj">
+      <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
+      <Name>GW2.NET.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

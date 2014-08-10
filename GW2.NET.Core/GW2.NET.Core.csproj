@@ -1,0 +1,686 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{05F3D999-0470-4123-8C80-AF4AC2385E7C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GW2DotNET</RootNamespace>
+    <AssemblyName>GW2.NET.Core</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile5</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\GW2.NET.Core.XML</DocumentationFile>
+    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>True</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Benchmark|AnyCPU'">
+    <OutputPath>bin\Benchmark\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsInferRequires>True</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
+    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption />
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>None</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>DoNotBuild</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugCC|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\DebugCC\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <CodeContractsEnableRuntimeChecking>True</CodeContractsEnableRuntimeChecking>
+    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
+    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
+    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
+    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
+    <CodeContractsRunCodeAnalysis>True</CodeContractsRunCodeAnalysis>
+    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
+    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
+    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
+    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
+    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
+    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
+    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
+    <CodeContractsInferRequires>False</CodeContractsInferRequires>
+    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
+    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
+    <CodeContractsSuggestAssumptions>True</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
+    <CodeContractsSuggestObjectInvariants>True</CodeContractsSuggestObjectInvariants>
+    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
+    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
+    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
+    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
+    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
+    <CodeContractsCustomRewriterAssembly />
+    <CodeContractsCustomRewriterClass />
+    <CodeContractsLibPaths />
+    <CodeContractsExtraRewriteOptions />
+    <CodeContractsExtraAnalysisOptions />
+    <CodeContractsSQLServerOption>.\SQLEXPRESS</CodeContractsSQLServerOption>
+    <CodeContractsBaseLineFile />
+    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
+    <CodeContractsFailBuildOnWarnings>True</CodeContractsFailBuildOnWarnings>
+    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
+    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
+    <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
+    <CodeContractsAnalysisWarningLevel>3</CodeContractsAnalysisWarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <EmbeddedResource Include="Local\DynamicEvents\Rotations.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ChatLinks\ChatLink.cs" />
+    <Compile Include="ChatLinks\ChatLinkConverter.cs" />
+    <Compile Include="ChatLinks\ChatLinkConverterContracts.cs" />
+    <Compile Include="ChatLinks\ChatLinkFactory.cs" />
+    <Compile Include="ChatLinks\CoinChatLink.cs" />
+    <Compile Include="ChatLinks\CoinChatLinkConverter.cs">
+      <DependentUpon>CoinChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\DialogChatLink.cs" />
+    <Compile Include="ChatLinks\DialogChatLinkConverter.cs">
+      <DependentUpon>DialogChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\ItemChatLink.cs" />
+    <Compile Include="ChatLinks\ItemChatLinkConverter.cs">
+      <DependentUpon>ItemChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\OutfitChatLink.cs" />
+    <Compile Include="ChatLinks\OutfitChatLinkConverter.cs">
+      <DependentUpon>OutfitChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\PointOfInterestChatLink.cs" />
+    <Compile Include="ChatLinks\PointOfInterestChatLinkConverter.cs">
+      <DependentUpon>PointOfInterestChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\RecipeChatLink.cs" />
+    <Compile Include="ChatLinks\RecipeChatLinkConverter.cs">
+      <DependentUpon>RecipeChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\SkillChatLink.cs" />
+    <Compile Include="ChatLinks\SkillChatLinkConverter.cs">
+      <DependentUpon>SkillChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\SkinChatLink.cs" />
+    <Compile Include="ChatLinks\SkinChatLinkConverter.cs">
+      <DependentUpon>SkinChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChatLinks\TraitChatLink.cs" />
+    <Compile Include="ChatLinks\TraitChatLinkConverter.cs">
+      <DependentUpon>TraitChatLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Common\ConverterAttribute.cs" />
+    <Compile Include="Common\ConverterForAttribute.cs" />
+    <Compile Include="Common\ErrorResult.cs" />
+    <Compile Include="Common\HttpStatusCodeExtensions.cs" />
+    <Compile Include="Common\ILocalizable.cs" />
+    <Compile Include="Common\IRenderable.cs" />
+    <Compile Include="Common\IRequest.cs" />
+    <Compile Include="Common\IResponse.cs" />
+    <Compile Include="Common\IServiceClient.cs" />
+    <Compile Include="Common\RequestContracts.cs" />
+    <Compile Include="Common\Response.cs" />
+    <Compile Include="Common\ResponseContract.cs" />
+    <Compile Include="Common\Serializers\BinarySerializer.cs" />
+    <Compile Include="Common\Serializers\BinarySerializerFactory.cs" />
+    <Compile Include="Common\Serializers\DataContractJsonSerializer.cs" />
+    <Compile Include="Common\Serializers\DataContractJsonSerializerFactory.cs" />
+    <Compile Include="Common\Serializers\DataContractSerializer.cs" />
+    <Compile Include="Common\Serializers\DataContractXmlSerializerFactory.cs" />
+    <Compile Include="Common\Serializers\ISerializer.cs" />
+    <Compile Include="Common\Serializers\ISerializerFactory.cs" />
+    <Compile Include="Common\Serializers\SerializerContracts.cs" />
+    <Compile Include="Common\Serializers\SerializerFactoryContract.cs" />
+    <Compile Include="Common\Serializers\StringSerializer.cs" />
+    <Compile Include="Common\Serializers\StringSerializerFactory.cs" />
+    <Compile Include="Common\ServiceClientContracts.cs" />
+    <Compile Include="Common\ServiceException.cs" />
+    <Compile Include="Common\UrlEncodedForm.cs" />
+    <Compile Include="Entities\Builds\Build.cs" />
+    <Compile Include="Entities\Colors\Color.cs" />
+    <Compile Include="Entities\Colors\ColorModel.cs" />
+    <Compile Include="Entities\Colors\ColorPalette.cs" />
+    <Compile Include="Entities\DynamicEvents\DynamicEvent.cs" />
+    <Compile Include="Entities\DynamicEvents\DynamicEventFlags.cs" />
+    <Compile Include="Entities\DynamicEvents\DynamicEventRotation.cs" />
+    <Compile Include="Entities\DynamicEvents\DynamicEventState.cs" />
+    <Compile Include="Entities\DynamicEvents\EventState.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\CylinderLocation.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\Location.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\PolygonLocation.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\SphereLocation.cs" />
+    <Compile Include="Entities\DynamicEvents\Locations\UnknownLocation.cs" />
+    <Compile Include="Entities\Files\Asset.cs" />
+    <Compile Include="Entities\Guilds\Emblem.cs" />
+    <Compile Include="Entities\Guilds\EmblemTransformations.cs" />
+    <Compile Include="Entities\Guilds\Guild.cs" />
+    <Compile Include="Entities\Items\Armors\Armor.cs" />
+    <Compile Include="Entities\Items\Armors\ArmorWeightClass.cs" />
+    <Compile Include="Entities\Items\Armors\Boots.cs" />
+    <Compile Include="Entities\Items\Armors\Coat.cs" />
+    <Compile Include="Entities\Items\Armors\Gloves.cs" />
+    <Compile Include="Entities\Items\Armors\Helm.cs" />
+    <Compile Include="Entities\Items\Armors\HelmAquatic.cs" />
+    <Compile Include="Entities\Items\Armors\Leggings.cs" />
+    <Compile Include="Entities\Items\Armors\Shoulders.cs" />
+    <Compile Include="Entities\Items\Armors\UnknownArmor.cs" />
+    <Compile Include="Entities\Items\Backpacks\Backpack.cs" />
+    <Compile Include="Entities\Items\Bags\Bag.cs" />
+    <Compile Include="Entities\Items\Common\InfusionSlot.cs" />
+    <Compile Include="Entities\Items\Common\InfusionSlotFlags.cs" />
+    <Compile Include="Entities\Items\Common\ISkinnable.cs" />
+    <Compile Include="Entities\Items\Common\ItemBuff.cs" />
+    <Compile Include="Entities\Items\Common\IUpgradable.cs" />
+    <Compile Include="Entities\Items\Common\IUpgrade.cs" />
+    <Compile Include="Entities\Items\Consumables\Alcohol.cs" />
+    <Compile Include="Entities\Items\Consumables\AppearanceChanger.cs" />
+    <Compile Include="Entities\Items\Consumables\BagSlotUnlocker.cs" />
+    <Compile Include="Entities\Items\Consumables\BankTabUnlocker.cs" />
+    <Compile Include="Entities\Items\Consumables\CollectibleCapacityUnlocker.cs" />
+    <Compile Include="Entities\Items\Consumables\Consumable.cs" />
+    <Compile Include="Entities\Items\Consumables\ContentUnlocker.cs" />
+    <Compile Include="Entities\Items\Consumables\ContractNpc.cs" />
+    <Compile Include="Entities\Items\Consumables\CraftingRecipeUnlocker.cs" />
+    <Compile Include="Entities\Items\Consumables\DyeUnlocker.cs" />
+    <Compile Include="Entities\Items\Consumables\Food.cs" />
+    <Compile Include="Entities\Items\Consumables\GenericConsumable.cs" />
+    <Compile Include="Entities\Items\Consumables\HalloweenConsumable.cs" />
+    <Compile Include="Entities\Items\Consumables\ImmediateConsumable.cs" />
+    <Compile Include="Entities\Items\Consumables\Transmutation.cs" />
+    <Compile Include="Entities\Items\Consumables\UnknownConsumable.cs" />
+    <Compile Include="Entities\Items\Consumables\UnknownUnlocker.cs" />
+    <Compile Include="Entities\Items\Consumables\Unlocker.cs" />
+    <Compile Include="Entities\Items\Consumables\UnTransmutation.cs" />
+    <Compile Include="Entities\Items\Consumables\UpgradeRemoval.cs" />
+    <Compile Include="Entities\Items\Consumables\Utility.cs" />
+    <Compile Include="Entities\Items\Containers\Container.cs" />
+    <Compile Include="Entities\Items\Containers\DefaultContainer.cs" />
+    <Compile Include="Entities\Items\Containers\GiftBox.cs" />
+    <Compile Include="Entities\Items\Containers\OpenUIContainer.cs" />
+    <Compile Include="Entities\Items\Containers\UnknownContainer.cs" />
+    <Compile Include="Entities\Items\CraftingMaterials\CraftingMaterial.cs" />
+    <Compile Include="Entities\Items\GameTypes.cs" />
+    <Compile Include="Entities\Items\GatheringTools\ForagingTool.cs" />
+    <Compile Include="Entities\Items\GatheringTools\GatheringTool.cs" />
+    <Compile Include="Entities\Items\GatheringTools\LoggingTool.cs" />
+    <Compile Include="Entities\Items\GatheringTools\MiningTool.cs" />
+    <Compile Include="Entities\Items\GatheringTools\UnknownGatheringTool.cs" />
+    <Compile Include="Entities\Items\Gizmos\ContainerKey.cs" />
+    <Compile Include="Entities\Items\Gizmos\DefaultGizmo.cs" />
+    <Compile Include="Entities\Items\Gizmos\Gizmo.cs" />
+    <Compile Include="Entities\Items\Gizmos\RentableContractNpc.cs" />
+    <Compile Include="Entities\Items\Gizmos\UnknownGizmo.cs" />
+    <Compile Include="Entities\Items\Gizmos\UnlimitedConsumable.cs" />
+    <Compile Include="Entities\Items\Item.cs" />
+    <Compile Include="Entities\Items\ItemFlags.cs" />
+    <Compile Include="Entities\Items\ItemRarity.cs" />
+    <Compile Include="Entities\Items\ItemRestrictions.cs" />
+    <Compile Include="Entities\Items\ItemStack.cs" />
+    <Compile Include="Entities\Items\MiniPets\MiniPet.cs" />
+    <Compile Include="Entities\Items\Tools\SalvageTool.cs" />
+    <Compile Include="Entities\Items\Tools\Tool.cs" />
+    <Compile Include="Entities\Items\Tools\UnknownTool.cs" />
+    <Compile Include="Entities\Items\TraitGuides\TraitGuide.cs" />
+    <Compile Include="Entities\Items\Trinkets\Accessory.cs" />
+    <Compile Include="Entities\Items\Trinkets\Amulet.cs" />
+    <Compile Include="Entities\Items\Trinkets\Ring.cs" />
+    <Compile Include="Entities\Items\Trinkets\Trinket.cs" />
+    <Compile Include="Entities\Items\Trinkets\UnknownTrinket.cs" />
+    <Compile Include="Entities\Items\Trophies\Trophy.cs" />
+    <Compile Include="Entities\Items\UnknownItem.cs" />
+    <Compile Include="Entities\Items\UpgradeComponents\DefaultUpgradeComponent.cs" />
+    <Compile Include="Entities\Items\UpgradeComponents\Gem.cs" />
+    <Compile Include="Entities\Items\UpgradeComponents\Rune.cs" />
+    <Compile Include="Entities\Items\UpgradeComponents\Sigil.cs" />
+    <Compile Include="Entities\Items\UpgradeComponents\UnknownUpgradeComponent.cs" />
+    <Compile Include="Entities\Items\UpgradeComponents\UpgradeComponent.cs" />
+    <Compile Include="Entities\Items\UpgradeComponents\UpgradeComponentFlags.cs" />
+    <Compile Include="Entities\Items\Weapons\Axe.cs" />
+    <Compile Include="Entities\Items\Weapons\Dagger.cs" />
+    <Compile Include="Entities\Items\Weapons\Focus.cs" />
+    <Compile Include="Entities\Items\Weapons\GreatSword.cs" />
+    <Compile Include="Entities\Items\Weapons\Hammer.cs" />
+    <Compile Include="Entities\Items\Weapons\Harpoon.cs" />
+    <Compile Include="Entities\Items\Weapons\LargeBundle.cs" />
+    <Compile Include="Entities\Items\Weapons\LongBow.cs" />
+    <Compile Include="Entities\Items\Weapons\Mace.cs" />
+    <Compile Include="Entities\Items\Weapons\Pistol.cs" />
+    <Compile Include="Entities\Items\Weapons\Rifle.cs" />
+    <Compile Include="Entities\Items\Weapons\Scepter.cs" />
+    <Compile Include="Entities\Items\Weapons\Shield.cs" />
+    <Compile Include="Entities\Items\Weapons\ShortBow.cs" />
+    <Compile Include="Entities\Items\Weapons\SmallBundle.cs" />
+    <Compile Include="Entities\Items\Weapons\SpearGun.cs" />
+    <Compile Include="Entities\Items\Weapons\Staff.cs" />
+    <Compile Include="Entities\Items\Weapons\Sword.cs" />
+    <Compile Include="Entities\Items\Weapons\Torch.cs" />
+    <Compile Include="Entities\Items\Weapons\Toy.cs" />
+    <Compile Include="Entities\Items\Weapons\Trident.cs" />
+    <Compile Include="Entities\Items\Weapons\TwoHandedToy.cs" />
+    <Compile Include="Entities\Items\Weapons\UnknownWeapon.cs" />
+    <Compile Include="Entities\Items\Weapons\WarHorn.cs" />
+    <Compile Include="Entities\Items\Weapons\Weapon.cs" />
+    <Compile Include="Entities\Items\Weapons\WeaponDamageType.cs" />
+    <Compile Include="Entities\Maps\Continent.cs" />
+    <Compile Include="Entities\Maps\Floor.cs" />
+    <Compile Include="Entities\Maps\Map.cs" />
+    <Compile Include="Entities\Maps\Point2D.cs" />
+    <Compile Include="Entities\Maps\Point3D.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\Dungeon.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\Landmark.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\PointOfInterest.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\UnknownPointOfInterest.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\Vista.cs" />
+    <Compile Include="Entities\Maps\PointsOfInterest\Waypoint.cs" />
+    <Compile Include="Entities\Maps\Rectangle.cs" />
+    <Compile Include="Entities\Maps\Region.cs" />
+    <Compile Include="Entities\Maps\RenownTask.cs" />
+    <Compile Include="Entities\Maps\Sector.cs" />
+    <Compile Include="Entities\Maps\Size2D.cs" />
+    <Compile Include="Entities\Maps\SkillChallenge.cs" />
+    <Compile Include="Entities\Maps\Subregion.cs" />
+    <Compile Include="Entities\Maps\Vector2D.cs" />
+    <Compile Include="Entities\Quaggans\Quaggan.cs" />
+    <Compile Include="Entities\Recipes\AmuletRecipe.cs" />
+    <Compile Include="Entities\Recipes\AxeRecipe.cs" />
+    <Compile Include="Entities\Recipes\BackpackRecipe.cs" />
+    <Compile Include="Entities\Recipes\BagRecipe.cs" />
+    <Compile Include="Entities\Recipes\BootsRecipe.cs" />
+    <Compile Include="Entities\Recipes\BulkRecipe.cs" />
+    <Compile Include="Entities\Recipes\CoatRecipe.cs" />
+    <Compile Include="Entities\Recipes\ComponentRecipe.cs" />
+    <Compile Include="Entities\Recipes\ConsumableRecipe.cs" />
+    <Compile Include="Entities\Recipes\CraftingDisciplines.cs" />
+    <Compile Include="Entities\Recipes\DaggerRecipe.cs" />
+    <Compile Include="Entities\Recipes\DessertRecipe.cs" />
+    <Compile Include="Entities\Recipes\DyeRecipe.cs" />
+    <Compile Include="Entities\Recipes\EarringRecipe.cs" />
+    <Compile Include="Entities\Recipes\FeastRecipe.cs" />
+    <Compile Include="Entities\Recipes\FocusRecipe.cs" />
+    <Compile Include="Entities\Recipes\GlovesRecipe.cs" />
+    <Compile Include="Entities\Recipes\GreatSwordRecipe.cs" />
+    <Compile Include="Entities\Recipes\HammerRecipe.cs" />
+    <Compile Include="Entities\Recipes\HarpoonRecipe.cs" />
+    <Compile Include="Entities\Recipes\HelmRecipe.cs" />
+    <Compile Include="Entities\Recipes\IngredientCookingRecipe.cs" />
+    <Compile Include="Entities\Recipes\InscriptionRecipe.cs" />
+    <Compile Include="Entities\Recipes\InsigniaRecipe.cs" />
+    <Compile Include="Entities\Recipes\LeggingsRecipe.cs" />
+    <Compile Include="Entities\Recipes\LongBowRecipe.cs" />
+    <Compile Include="Entities\Recipes\MaceRecipe.cs" />
+    <Compile Include="Entities\Recipes\MealRecipe.cs" />
+    <Compile Include="Entities\Recipes\PistolRecipe.cs" />
+    <Compile Include="Entities\Recipes\PotionRecipe.cs" />
+    <Compile Include="Entities\Recipes\Recipe.cs" />
+    <Compile Include="Entities\Recipes\RecipeFlags.cs" />
+    <Compile Include="Entities\Recipes\RefinementEctoplasmRecipe.cs" />
+    <Compile Include="Entities\Recipes\RefinementObsidianRecipe.cs" />
+    <Compile Include="Entities\Recipes\RefinementRecipe.cs" />
+    <Compile Include="Entities\Recipes\RifleRecipe.cs" />
+    <Compile Include="Entities\Recipes\RingRecipe.cs" />
+    <Compile Include="Entities\Recipes\ScepterRecipe.cs" />
+    <Compile Include="Entities\Recipes\SeasoningRecipe.cs" />
+    <Compile Include="Entities\Recipes\ShieldRecipe.cs" />
+    <Compile Include="Entities\Recipes\ShortBowRecipe.cs" />
+    <Compile Include="Entities\Recipes\ShouldersRecipe.cs" />
+    <Compile Include="Entities\Recipes\SnackRecipe.cs" />
+    <Compile Include="Entities\Recipes\SoupRecipe.cs" />
+    <Compile Include="Entities\Recipes\SpearGunRecipe.cs" />
+    <Compile Include="Entities\Recipes\StaffRecipe.cs" />
+    <Compile Include="Entities\Recipes\SwordRecipe.cs" />
+    <Compile Include="Entities\Recipes\TorchRecipe.cs" />
+    <Compile Include="Entities\Recipes\TridentRecipe.cs" />
+    <Compile Include="Entities\Recipes\UnknownRecipe.cs" />
+    <Compile Include="Entities\Recipes\UpgradeComponentRecipe.cs" />
+    <Compile Include="Entities\Recipes\WarHornRecipe.cs" />
+    <Compile Include="Entities\Skins\Armors\ArmorSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\BootsSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\CoatSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\GlovesSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\HelmAquaticSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\HelmSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\LeggingsSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\ShouldersSkin.cs" />
+    <Compile Include="Entities\Skins\Armors\UnknownArmorSkin.cs" />
+    <Compile Include="Entities\Skins\Backpacks\BackpackSkin.cs" />
+    <Compile Include="Entities\Skins\Skin.cs" />
+    <Compile Include="Entities\Skins\SkinFlags.cs" />
+    <Compile Include="Entities\Skins\UnknownSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\AxeSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\DaggerSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\FocusSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\GreatSwordSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\HammerSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\HarpoonSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\LargeBundleSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\LongBowSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\MaceSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\PistolSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\RifleSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\ScepterSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\ShieldSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\ShortBowSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\SmallBundleSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\SpearGunSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\StaffSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\SwordSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\TorchSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\ToyWeaponSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\TridentSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\TwoHandedToyWeaponSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\UnknownWeaponSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\WarHornSkin.cs" />
+    <Compile Include="Entities\Skins\Weapons\WeaponSkin.cs" />
+    <Compile Include="Entities\Worlds\World.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Bonuses\Bloodlust.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Bonuses\MapBonus.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Bonuses\UnknownMapBonus.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\BlueBorderlands.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\CompetitiveMap.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\EternalBattlegrounds.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\GreenBorderlands.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Maps\RedBorderlands.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Match.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Matchup.cs" />
+    <Compile Include="Entities\WorldVersusWorld\ObjectiveName.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Objectives\Objective.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Scoreboard.cs" />
+    <Compile Include="Entities\WorldVersusWorld\TeamColor.cs" />
+    <Compile Include="Local\DynamicEvents.Xml\RotationCollectionContract.cs" />
+    <Compile Include="Local\DynamicEvents.Xml\RotationContract.cs" />
+    <Compile Include="Local\DynamicEvents.Xml\ShiftCollectionContract.cs" />
+    <Compile Include="Local\DynamicEvents\DynamicEventRotationService.cs" />
+    <Compile Include="Local\DynamicEvents\DynamicEventRotationServiceContract.cs" />
+    <Compile Include="Local\DynamicEvents\IDynamicEventRotationService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rendering\IRenderRequest.cs" />
+    <Compile Include="Rendering\IRenderService.cs" />
+    <Compile Include="Rendering\RenderRequest.cs" />
+    <Compile Include="Rendering\RenderService.cs" />
+    <Compile Include="Rendering\RenderServiceContract.cs" />
+    <Compile Include="V1\Builds.Json\BuildContract.cs" />
+    <Compile Include="V1\Builds\BuildRequest.cs" />
+    <Compile Include="V1\Builds\BuildService.cs" />
+    <Compile Include="V1\Builds\BuildServiceContract.cs" />
+    <Compile Include="V1\Builds\IBuildService.cs" />
+    <Compile Include="V1\Colors.Json\ColorCollectionContract.cs" />
+    <Compile Include="V1\Colors.Json\ColorContract.cs" />
+    <Compile Include="V1\Colors.Json\ColorModelContract.cs" />
+    <Compile Include="V1\Colors\ColorRequest.cs" />
+    <Compile Include="V1\Colors\ColorService.cs" />
+    <Compile Include="V1\Colors\ColorServiceContract.cs" />
+    <Compile Include="V1\Colors\IColorService.cs" />
+    <Compile Include="V1\DynamicEvents.Json\EventDetailsCollectionContract.cs" />
+    <Compile Include="V1\DynamicEvents.Json\EventDetailsContract.cs" />
+    <Compile Include="V1\DynamicEvents.Json\EventNameContract.cs" />
+    <Compile Include="V1\DynamicEvents.Json\EventStateCollectionContract.cs" />
+    <Compile Include="V1\DynamicEvents.Json\EventStateContract.cs" />
+    <Compile Include="V1\DynamicEvents.Json\LocationContract.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventDetailsRequest.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventDetailsServiceContract.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventNameRequest.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventNameServiceContract.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventService.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventStateRequest.cs" />
+    <Compile Include="V1\DynamicEvents\DynamicEventStateServiceContract.cs" />
+    <Compile Include="V1\DynamicEvents\IDynamicEventDetailsService.cs" />
+    <Compile Include="V1\DynamicEvents\IDynamicEventNameService.cs" />
+    <Compile Include="V1\DynamicEvents\IDynamicEventService.cs" />
+    <Compile Include="V1\DynamicEvents\IDynamicEventStateService.cs" />
+    <Compile Include="V1\Files.Json\FileContract.cs" />
+    <Compile Include="V1\Files\FileRequest.cs" />
+    <Compile Include="V1\Files\FileService.cs" />
+    <Compile Include="V1\Files\FileServiceContract.cs" />
+    <Compile Include="V1\Files\IFileService.cs" />
+    <Compile Include="V1\Guilds.Json\EmblemContract.cs" />
+    <Compile Include="V1\Guilds.Json\GuildContract.cs" />
+    <Compile Include="V1\Guilds\GuildDetailsRequest.cs" />
+    <Compile Include="V1\Guilds\GuildDetailsService.cs" />
+    <Compile Include="V1\Guilds\GuildDetailsServiceContract.cs" />
+    <Compile Include="V1\Guilds\IGuildDetailsService.cs" />
+    <Compile Include="V1\Items.Json\ArmorContract.cs" />
+    <Compile Include="V1\Items.Json\BackpackContract.cs" />
+    <Compile Include="V1\Items.Json\BagContract.cs" />
+    <Compile Include="V1\Items.Json\ConsumableContract.cs" />
+    <Compile Include="V1\Items.Json\ContainerContract.cs" />
+    <Compile Include="V1\Items.Json\GatheringToolContract.cs" />
+    <Compile Include="V1\Items.Json\GizmoContract.cs" />
+    <Compile Include="V1\Items.Json\InfixUpgradeContract.cs" />
+    <Compile Include="V1\Items.Json\InfusionSlotContract.cs" />
+    <Compile Include="V1\Items.Json\ItemAttributeContract.cs" />
+    <Compile Include="V1\Items.Json\ItemBuffContract.cs" />
+    <Compile Include="V1\Items.Json\ItemCollectionContract.cs" />
+    <Compile Include="V1\Items.Json\ItemContract.cs" />
+    <Compile Include="V1\Items.Json\ToolContract.cs" />
+    <Compile Include="V1\Items.Json\TrinketContract.cs" />
+    <Compile Include="V1\Items.Json\UpgradeComponentContract.cs" />
+    <Compile Include="V1\Items.Json\WeaponContract.cs" />
+    <Compile Include="V1\Items\IItemDetailsService.cs" />
+    <Compile Include="V1\Items\IItemDiscoveryService.cs" />
+    <Compile Include="V1\Items\IItemService.cs" />
+    <Compile Include="V1\Items\ItemDetailsRequest.cs" />
+    <Compile Include="V1\Items\ItemDetailsServiceContract.cs" />
+    <Compile Include="V1\Items\ItemDiscoveryServiceContract.cs" />
+    <Compile Include="V1\Items\ItemRequest.cs" />
+    <Compile Include="V1\Items\ItemService.cs" />
+    <Compile Include="V1\Maps.Json\ContinentCollectionContract.cs" />
+    <Compile Include="V1\Maps.Json\ContinentContract.cs" />
+    <Compile Include="V1\Maps.Json\FloorContract.cs" />
+    <Compile Include="V1\Maps.Json\MapCollectionContract.cs" />
+    <Compile Include="V1\Maps.Json\MapContract.cs" />
+    <Compile Include="V1\Maps.Json\MapNameContract.cs" />
+    <Compile Include="V1\Maps.Json\PointOfInterestContract.cs" />
+    <Compile Include="V1\Maps.Json\RegionContract.cs" />
+    <Compile Include="V1\Maps.Json\RenownTaskContract.cs" />
+    <Compile Include="V1\Maps.Json\SectorContract.cs" />
+    <Compile Include="V1\Maps.Json\SkillChallengeContract.cs" />
+    <Compile Include="V1\Maps.Json\SubregionContract.cs" />
+    <Compile Include="V1\Maps\ContinentRequest.cs" />
+    <Compile Include="V1\Maps\ContinentService.cs" />
+    <Compile Include="V1\Maps\ContinentServiceContract.cs" />
+    <Compile Include="V1\Maps\IContinentService.cs" />
+    <Compile Include="V1\Maps\IMapFloorService.cs" />
+    <Compile Include="V1\Maps\IMapNameService.cs" />
+    <Compile Include="V1\Maps\IMapService.cs" />
+    <Compile Include="V1\Maps\MapFloorRequest.cs" />
+    <Compile Include="V1\Maps\MapFloorService.cs" />
+    <Compile Include="V1\Maps\MapFloorServiceContract.cs" />
+    <Compile Include="V1\Maps\MapNameRequest.cs" />
+    <Compile Include="V1\Maps\MapNameService.cs" />
+    <Compile Include="V1\Maps\MapNameServiceContract.cs" />
+    <Compile Include="V1\Maps\MapRequest.cs" />
+    <Compile Include="V1\Maps\MapService.cs" />
+    <Compile Include="V1\Maps\MapServiceContract.cs" />
+    <Compile Include="V1\Recipes.Json\IngredientContract.cs" />
+    <Compile Include="V1\Recipes.Json\RecipeCollectionContract.cs" />
+    <Compile Include="V1\Recipes.Json\RecipeContract.cs" />
+    <Compile Include="V1\Recipes\IRecipeDetailsService.cs" />
+    <Compile Include="V1\Recipes\IRecipeDiscoveryService.cs" />
+    <Compile Include="V1\Recipes\IRecipeService.cs" />
+    <Compile Include="V1\Recipes\RecipeDetailsRequest.cs" />
+    <Compile Include="V1\Recipes\RecipeDetailsServiceContract.cs" />
+    <Compile Include="V1\Recipes\RecipeDiscoveryServiceContract.cs" />
+    <Compile Include="V1\Recipes\RecipeRequest.cs" />
+    <Compile Include="V1\Recipes\RecipeService.cs" />
+    <Compile Include="V1\Skins.Json\ArmorSkinContract.cs" />
+    <Compile Include="V1\Skins.Json\SkinCollectionContract.cs" />
+    <Compile Include="V1\Skins.Json\SkinContract.cs" />
+    <Compile Include="V1\Skins.Json\WeaponSkinContract.cs" />
+    <Compile Include="V1\Skins\ISkinDetailsService.cs" />
+    <Compile Include="V1\Skins\ISkinDiscoveryService.cs" />
+    <Compile Include="V1\Skins\ISkinService.cs" />
+    <Compile Include="V1\Skins\SkinDetailsRequest.cs" />
+    <Compile Include="V1\Skins\SkinDetailsServiceContract.cs" />
+    <Compile Include="V1\Skins\SkinDiscoveryServiceContract.cs" />
+    <Compile Include="V1\Skins\SkinRequest.cs" />
+    <Compile Include="V1\Skins\SkinService.cs" />
+    <Compile Include="V1\Worlds.Json\WorldNameContract.cs" />
+    <Compile Include="V1\Worlds\IWorldNameService.cs" />
+    <Compile Include="V1\Worlds\WorldNameRequest.cs" />
+    <Compile Include="V1\Worlds\WorldNameServiceContract.cs" />
+    <Compile Include="V1\Worlds\WorldService.cs" />
+    <Compile Include="V1\WorldVersusWorld.Json\CompetitiveMapContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Json\MapBonusContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Json\MatchContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Json\MatchupCollectionContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Json\MatchupContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Json\ObjectiveContract.cs" />
+    <Compile Include="V1\WorldVersusWorld.Json\ObjectiveNameContract.cs" />
+    <Compile Include="V1\WorldVersusWorld\IMatchDetailsService.cs" />
+    <Compile Include="V1\WorldVersusWorld\IMatchDiscoveryService.cs" />
+    <Compile Include="V1\WorldVersusWorld\IMatchService.cs" />
+    <Compile Include="V1\WorldVersusWorld\IObjectiveNameService.cs" />
+    <Compile Include="V1\WorldVersusWorld\MatchDetailsRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\MatchDetailsServiceContract.cs" />
+    <Compile Include="V1\WorldVersusWorld\MatchDiscoveryServiceContract.cs" />
+    <Compile Include="V1\WorldVersusWorld\MatchRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\MatchService.cs" />
+    <Compile Include="V1\WorldVersusWorld\ObjectiveNameRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\ObjectiveNameServiceContract.cs" />
+    <Compile Include="V2\Builds.Json\BuildContract.cs" />
+    <Compile Include="V2\Builds\BuildRequest.cs" />
+    <Compile Include="V2\Builds\BuildService.cs" />
+    <Compile Include="V2\Builds\BuildServiceContract.cs" />
+    <Compile Include="V2\Builds\IBuildService.cs" />
+    <Compile Include="V2\Common\BulkRequest.cs" />
+    <Compile Include="V2\Common\DetailsRequest.cs" />
+    <Compile Include="V2\Common\IBulkRequest.cs" />
+    <Compile Include="V2\Common\IDetailsRequest.cs" />
+    <Compile Include="V2\Common\IPaginatedCollection.cs" />
+    <Compile Include="V2\Common\IPaginatedRequest.cs" />
+    <Compile Include="V2\Common\ISubcollection.cs" />
+    <Compile Include="V2\Common\PaginatedCollection.cs" />
+    <Compile Include="V2\Common\PaginatedCollectionContract.cs" />
+    <Compile Include="V2\Common\PaginatedRequest.cs" />
+    <Compile Include="V2\Common\ResponseExtensions.cs" />
+    <Compile Include="V2\Common\SubCollectionContract.cs" />
+    <Compile Include="V2\Common\Subdictionary.cs" />
+    <Compile Include="V2\Quaggans.Json\QuagganContract.cs" />
+    <Compile Include="V2\Quaggans\IQuagganService.cs" />
+    <Compile Include="V2\Quaggans\QuagganBulkRequest.cs" />
+    <Compile Include="V2\Quaggans\QuagganDetailsRequest.cs" />
+    <Compile Include="V2\Quaggans\QuagganDiscoveryRequest.cs" />
+    <Compile Include="V2\Quaggans\QuagganPageRequest.cs" />
+    <Compile Include="V2\Quaggans\QuagganService.cs" />
+    <Compile Include="V2\Quaggans\QuagganServiceContract.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

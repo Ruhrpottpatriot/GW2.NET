@@ -39,7 +39,7 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public ICollection<World> GetWorldNames()
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetWorldNames(culture);
         }
@@ -81,7 +81,7 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<ICollection<World>> GetWorldNamesAsync()
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetWorldNamesAsync(culture, CancellationToken.None);
         }
@@ -92,7 +92,7 @@ namespace GW2DotNET.V1.Worlds
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<ICollection<World>> GetWorldNamesAsync(CancellationToken cancellationToken)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetWorldNamesAsync(culture, cancellationToken);
         }

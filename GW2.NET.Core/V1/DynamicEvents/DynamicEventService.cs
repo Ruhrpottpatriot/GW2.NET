@@ -15,7 +15,6 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using System.Xml.Linq;
 
     using GW2DotNET.Common;
     using GW2DotNET.Entities.DynamicEvents;
@@ -91,7 +90,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public IDictionary<Guid, DynamicEvent> GetDynamicEventDetails()
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetDynamicEventDetails(culture);
         }
@@ -132,7 +131,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public DynamicEvent GetDynamicEventDetails(Guid eventId)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetDynamicEventDetails(eventId, culture);
         }
@@ -172,7 +171,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync()
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetDynamicEventDetailsAsync(culture, CancellationToken.None);
         }
@@ -183,7 +182,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync(CancellationToken cancellationToken)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetDynamicEventDetailsAsync(culture, cancellationToken);
         }
@@ -239,7 +238,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetDynamicEventDetailsAsync(eventId, culture, CancellationToken.None);
         }
@@ -251,7 +250,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_details">wiki</a> for more information.</remarks>
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken cancellationToken)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetDynamicEventDetailsAsync(eventId, culture, cancellationToken);
         }
@@ -307,7 +306,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public IDictionary<Guid, DynamicEvent> GetDynamicEventNames()
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetDynamicEventNames(culture);
         }
@@ -347,7 +346,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync()
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetDynamicEventNamesAsync(culture, CancellationToken.None);
         }
@@ -358,7 +357,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CancellationToken cancellationToken)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetDynamicEventNamesAsync(culture, cancellationToken);
         }

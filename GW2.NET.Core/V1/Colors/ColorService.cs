@@ -39,7 +39,7 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public IDictionary<int, ColorPalette> GetColors()
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetColors(culture);
         }
@@ -88,7 +88,7 @@ namespace GW2DotNET.V1.Colors
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CancellationToken cancellationToken)
         {
-            var culture = CultureInfo.GetCultureInfo("en");
+            var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
             return this.GetColorsAsync(culture, cancellationToken);
         }
