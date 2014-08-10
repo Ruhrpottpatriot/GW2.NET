@@ -59,12 +59,20 @@ namespace GW2DotNET.V1.Worlds
 
             var request = new WorldNameRequest { Culture = language };
             var response = this.serviceClient.Send<ICollection<WorldNameContract>>(request);
+
+            // Ensure that there is response content
             if (response.Content == null)
             {
                 return new List<World>(0);
             }
 
-            return MapWorldNameContracts(response.Content, language);
+            var values = ConvertWorldNameContractCollection(response.Content);
+            foreach (var value in values)
+            {
+                value.Language = language.TwoLetterISOLanguageName;
+            }
+
+            return values;
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
@@ -116,7 +124,20 @@ namespace GW2DotNET.V1.Worlds
                 task =>
                     {
                         var response = task.Result;
-                        return MapWorldNameContracts(response.Content, language);
+
+                        // Ensure that there is response content
+                        if (response.Content == null)
+                        {
+                            return new List<World>(0);
+                        }
+
+                        var values = ConvertWorldNameContractCollection(response.Content);
+                        foreach (var value in values)
+                        {
+                            value.Language = language.TwoLetterISOLanguageName;
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -124,23 +145,46 @@ namespace GW2DotNET.V1.Worlds
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static World MapWorldNameContract(WorldNameContract content)
+        private static World ConvertWorldNameContract(WorldNameContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Id != null);
-            return new World { WorldId = int.Parse(content.Id), Name = content.Name };
+            Contract.Ensures(Contract.Result<World>() != null);
+
+            // Create a new world object
+            var value = new World();
+
+            // Set the world identifier
+            if (content.Id != null)
+            {
+                value.WorldId = int.Parse(content.Id);
+            }
+
+            // Set the name of the world
+            if (content.Name != null)
+            {
+                value.Name = content.Name;
+            }
+
+            // Return the world object
+            return value;
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="culture">The culture.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<World> MapWorldNameContracts(ICollection<WorldNameContract> content, CultureInfo culture)
+        private static ICollection<World> ConvertWorldNameContractCollection(ICollection<WorldNameContract> content)
         {
             Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<ICollection<World>>() != null);
+
+            // Create a new collection of world objects
             var values = new List<World>(content.Count);
-            values.AddRange(content.Select(MapWorldNameContract));
-            values.ForEach(world => world.Language = culture.TwoLetterISOLanguageName);
+
+            // Set the world names
+            values.AddRange(content.Select(ConvertWorldNameContract));
+
+            // Return the collection
             return values;
         }
 
