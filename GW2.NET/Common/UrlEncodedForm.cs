@@ -12,7 +12,6 @@ namespace GW2DotNET.Common
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Linq;
-    using System.Runtime.Serialization;
 
     /// <summary>Represents a collection of form data that can be URL-encoded.</summary>
     public sealed class UrlEncodedForm : Dictionary<string, string>
@@ -64,14 +63,6 @@ namespace GW2DotNET.Common
         /// <exception cref="T:System.ArgumentException"><paramref name="dictionary"/> contains one or more duplicate keys.</exception>
         public UrlEncodedForm(IDictionary<string, string> dictionary, IEqualityComparer<string> comparer)
             : base(dictionary, comparer)
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="UrlEncodedForm"/> class with serialized data.</summary>
-        /// <param name="info">A <see cref="T:System.Runtime.Serialization.SerializationInfo"/> object containing the information required to serialize the <see cref="UrlEncodedForm"/>.</param>
-        /// <param name="context">A <see cref="T:System.Runtime.Serialization.StreamingContext"/> structure containing the source and destination of the serialized stream associated with the <see cref="UrlEncodedForm"/>.</param>
-        private UrlEncodedForm(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 

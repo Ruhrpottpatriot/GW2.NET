@@ -10,7 +10,6 @@ namespace GW2DotNET.V2.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
 
     /// <summary>Represents a subset of keys and values.</summary>
     /// <typeparam name="TKey">The type of the keys in the subset.</typeparam>
@@ -63,14 +62,6 @@ namespace GW2DotNET.V2.Common
         /// <exception cref="ArgumentException"><paramref name="dictionary"/> contains one or more duplicate keys.</exception>
         public Subdictionary(IDictionary<TKey, TValue> dictionary, IEqualityComparer<TKey> comparer)
             : base(dictionary, comparer)
-        {
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="Subdictionary{TKey,TValue}"/> class. Initializes a new instance of the <see cref="Subdictionary{TKey,TValue}"/> class with serialized data.</summary>
-        /// <param name="info">A <see cref="SerializationInfo"/> object containing the information required to serialize the <see cref="Subdictionary{TKey,TValue}"/>.</param>
-        /// <param name="context">A <see cref="StreamingContext"/> structure containing the source and destination of the serialized stream associated with the <see cref="Subdictionary{TKey,TValue}"/>.</param>
-        private Subdictionary(SerializationInfo info, StreamingContext context)
-            : base(info, context)
         {
         }
 
