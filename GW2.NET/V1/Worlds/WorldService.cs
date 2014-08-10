@@ -63,13 +63,14 @@ namespace GW2DotNET.V1.Worlds
             // Ensure that there is response content
             if (response.Content == null)
             {
-                return new List<World>(0);
+                return new World[0];
             }
 
             var values = ConvertWorldNameContractCollection(response.Content);
+            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
             foreach (var value in values)
             {
-                value.Language = language.TwoLetterISOLanguageName;
+                value.Language = twoLetterIsoLanguageName;
             }
 
             return values;
@@ -128,13 +129,14 @@ namespace GW2DotNET.V1.Worlds
                         // Ensure that there is response content
                         if (response.Content == null)
                         {
-                            return new List<World>(0);
+                            return new World[0];
                         }
 
                         var values = ConvertWorldNameContractCollection(response.Content);
+                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
                         foreach (var value in values)
                         {
-                            value.Language = language.TwoLetterISOLanguageName;
+                            value.Language = twoLetterIsoLanguageName;
                         }
 
                         return values;

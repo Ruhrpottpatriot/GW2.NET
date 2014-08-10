@@ -42,7 +42,7 @@ namespace GW2DotNET.V1.Builds
                 return null;
             }
 
-            var value = MapBuildContract(response.Content);
+            var value = ConvertBuildContract(response.Content);
             value.Timestamp = response.Date;
             return value;
         }
@@ -66,7 +66,12 @@ namespace GW2DotNET.V1.Builds
                 task =>
                     {
                         var response = task.Result;
-                        var value = MapBuildContract(response.Content);
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        var value = ConvertBuildContract(response.Content);
                         value.Timestamp = response.Date;
                         return value;
                     }, 
@@ -76,7 +81,7 @@ namespace GW2DotNET.V1.Builds
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Build MapBuildContract(BuildContract content)
+        private static Build ConvertBuildContract(BuildContract content)
         {
             Contract.Requires(content != null);
             return new Build { BuildId = content.BuildId };

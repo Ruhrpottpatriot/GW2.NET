@@ -44,7 +44,7 @@ namespace GW2DotNET.V1.Maps
                 return new Dictionary<int, Continent>(0);
             }
 
-            return MapContinentCollectionContract(response.Content);
+            return ConvertContinentCollectionContract(response.Content);
         }
 
         /// <summary>Gets a collection of continents and their details.</summary>
@@ -66,7 +66,12 @@ namespace GW2DotNET.V1.Maps
                 task =>
                     {
                         var response = task.Result;
-                        return MapContinentCollectionContract(response.Content);
+                        if (response.Content == null || response.Content.Continents == null)
+                        {
+                            return new Dictionary<int, Continent>(0);
+                        }
+
+                        return ConvertContinentCollectionContract(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -74,13 +79,13 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Continent> MapContinentCollectionContract(ContinentCollectionContract content)
+        private static IDictionary<int, Continent> ConvertContinentCollectionContract(ContinentCollectionContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Continents != null);
             Contract.Ensures(Contract.Result<IDictionary<int, Continent>>() != null);
             var values = new Dictionary<int, Continent>(content.Continents.Count);
-            foreach (var value in content.Continents.Select(MapContinentContract).Where(value => value != null))
+            foreach (var value in content.Continents.Select(ConvertContinentContract).Where(value => value != null))
             {
                 Contract.Assume(value != null);
                 values.Add(value.ContinentId, value);
@@ -92,7 +97,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Continent MapContinentContract(KeyValuePair<string, ContinentContract> content)
+        private static Continent ConvertContinentContract(KeyValuePair<string, ContinentContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);

@@ -67,8 +67,8 @@ namespace GW2DotNET.V1.Recipes
                 return null;
             }
 
-            var value = MapRecipeContracts(response.Content);
-            value.Language = language.TwoLetterISOLanguageName;
+            var value = ConvertRecipeContractCollection(response.Content);
+            value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
             return value;
         }
 
@@ -125,8 +125,13 @@ namespace GW2DotNET.V1.Recipes
                 task =>
                     {
                         var response = task.Result;
-                        var value = MapRecipeContracts(response.Content);
-                        value.Language = language.TwoLetterISOLanguageName;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        var value = ConvertRecipeContractCollection(response.Content);
+                        value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
                         return value;
                     }, 
                 cancellationToken);
@@ -167,6 +172,11 @@ namespace GW2DotNET.V1.Recipes
                 task =>
                     {
                         var response = task.Result;
+                        if (response.Content == null || response.Content.Recipes == null)
+                        {
+                            return new int[0];
+                        }
+
                         return response.Content.Recipes;
                     }, 
                 cancellationToken);
@@ -301,7 +311,7 @@ namespace GW2DotNET.V1.Recipes
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ItemStack MapIngredientContract(IngredientContract content)
+        private static ItemStack ConvertIngredientContract(IngredientContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.ItemId != null);
@@ -333,18 +343,18 @@ namespace GW2DotNET.V1.Recipes
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<ItemStack> MapIngredientContracts(ICollection<IngredientContract> content)
+        private static ICollection<ItemStack> ConvertIngredientContractCollection(ICollection<IngredientContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<ItemStack>(content.Count);
-            values.AddRange(content.Select(MapIngredientContract));
+            values.AddRange(content.Select(ConvertIngredientContract));
             return values;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Recipe MapRecipeContracts(RecipeContract content)
+        private static Recipe ConvertRecipeContractCollection(RecipeContract content)
         {
             Contract.Requires(content != null);
 
@@ -396,7 +406,7 @@ namespace GW2DotNET.V1.Recipes
             // Map ingredients
             if (content.Ingredients != null)
             {
-                value.Ingredients = MapIngredientContracts(content.Ingredients);
+                value.Ingredients = ConvertIngredientContractCollection(content.Ingredients);
             }
 
             return value;

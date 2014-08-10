@@ -324,7 +324,6 @@ namespace GW2DotNET.Common
             }
 
             // Set the 'Content-Language' header
-            Contract.Assume(response.Headers != null);
             var contentLanguage = response.Headers["Content-Language"];
             if (contentLanguage != null)
             {

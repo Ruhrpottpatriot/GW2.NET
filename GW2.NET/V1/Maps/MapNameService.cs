@@ -64,7 +64,14 @@ namespace GW2DotNET.V1.Maps
                 return new Dictionary<int, Map>(0);
             }
 
-            return MapMapNameContracts(response.Content, language);
+            var values = ConvertMapNameContractCollection(response.Content);
+            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            foreach (var value in values.Values)
+            {
+                value.Language = twoLetterIsoLanguageName;
+            }
+
+            return values;
         }
 
         /// <summary>Gets a collection of maps and their localized name.</summary>
@@ -116,7 +123,19 @@ namespace GW2DotNET.V1.Maps
                 task =>
                     {
                         var response = task.Result;
-                        return MapMapNameContracts(response.Content, language);
+                        if (response == null)
+                        {
+                            return new Dictionary<int, Map>(0);
+                        }
+
+                        var values = ConvertMapNameContractCollection(response.Content);
+                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        foreach (var value in values.Values)
+                        {
+                            value.Language = twoLetterIsoLanguageName;
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -124,7 +143,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Map MapMapNameContract(MapNameContract content)
+        private static Map ConvertMapNameContract(MapNameContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Map>() != null);
@@ -150,18 +169,15 @@ namespace GW2DotNET.V1.Maps
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="culture">The culture.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Map> MapMapNameContracts(ICollection<MapNameContract> content, CultureInfo culture)
+        private static IDictionary<int, Map> ConvertMapNameContractCollection(ICollection<MapNameContract> content)
         {
             Contract.Requires(content != null);
-            Contract.Requires(culture != null);
             Contract.Ensures(Contract.Result<IDictionary<int, Map>>() != null);
             var values = new Dictionary<int, Map>(content.Count);
-            foreach (var value in content.Select(MapMapNameContract))
+            foreach (var value in content.Select(ConvertMapNameContract))
             {
                 Contract.Assume(value != null);
-                value.Language = culture.TwoLetterISOLanguageName;
                 values.Add(value.MapId, value);
             }
 

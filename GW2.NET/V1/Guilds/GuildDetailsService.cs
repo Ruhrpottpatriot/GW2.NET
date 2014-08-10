@@ -46,7 +46,7 @@ namespace GW2DotNET.V1.Guilds
                 return null;
             }
 
-            return MapGuildContracts(response.Content);
+            return ConvertGuildContractCollection(response.Content);
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -61,7 +61,12 @@ namespace GW2DotNET.V1.Guilds
                 task =>
                     {
                         var response = task.Result;
-                        return MapGuildContracts(response.Content);
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        return ConvertGuildContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -78,7 +83,12 @@ namespace GW2DotNET.V1.Guilds
                 task =>
                     {
                         var response = task.Result;
-                        return MapGuildContracts(response.Content);
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        return ConvertGuildContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -96,7 +106,7 @@ namespace GW2DotNET.V1.Guilds
                 return null;
             }
 
-            return MapGuildContracts(response.Content);
+            return ConvertGuildContractCollection(response.Content);
         }
 
         /// <summary>Gets a guild and its details.</summary>
@@ -111,7 +121,12 @@ namespace GW2DotNET.V1.Guilds
                 task =>
                     {
                         var response = task.Result;
-                        return MapGuildContracts(response.Content);
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        return ConvertGuildContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -128,7 +143,12 @@ namespace GW2DotNET.V1.Guilds
                 task =>
                     {
                         var response = task.Result;
-                        return MapGuildContracts(response.Content);
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        return ConvertGuildContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -136,7 +156,7 @@ namespace GW2DotNET.V1.Guilds
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Emblem MapEmblemContract(EmblemContract content)
+        private static Emblem ConvertEmblemContract(EmblemContract content)
         {
             if (content == null)
             {
@@ -147,7 +167,7 @@ namespace GW2DotNET.V1.Guilds
                        {
                            BackgroundId = content.BackgroundId, 
                            ForegroundId = content.ForegroundId, 
-                           Flags = MapEmblemTransformationsContracts(content.Flags), 
+                           Flags = ConvertEmblemTransformationsContractCollection(content.Flags), 
                            BackgroundColorId = content.BackgroundColorId, 
                            ForegroundPrimaryColorId = content.ForegroundPrimaryColorId, 
                            ForegroundSecondaryColorId = content.ForegroundSecondaryColorId
@@ -157,7 +177,7 @@ namespace GW2DotNET.V1.Guilds
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static EmblemTransformations MapEmblemTransformationsContract(string content)
+        private static EmblemTransformations ConvertEmblemTransformationsContract(string content)
         {
             Contract.Requires(content != null);
             return (EmblemTransformations)Enum.Parse(typeof(EmblemTransformations), content);
@@ -166,18 +186,18 @@ namespace GW2DotNET.V1.Guilds
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static EmblemTransformations MapEmblemTransformationsContracts(IEnumerable<string> content)
+        private static EmblemTransformations ConvertEmblemTransformationsContractCollection(IEnumerable<string> content)
         {
-            return content.Aggregate(EmblemTransformations.None, (current, flag) => current | MapEmblemTransformationsContract(flag));
+            return content.Aggregate(EmblemTransformations.None, (current, flag) => current | ConvertEmblemTransformationsContract(flag));
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Guild MapGuildContracts(GuildContract content)
+        private static Guild ConvertGuildContractCollection(GuildContract content)
         {
             Contract.Requires(content != null);
-            return new Guild { GuildId = Guid.Parse(content.GuildId), Name = content.Name, Tag = content.Tag, Emblem = MapEmblemContract(content.Emblem) };
+            return new Guild { GuildId = Guid.Parse(content.GuildId), Name = content.Name, Tag = content.Tag, Emblem = ConvertEmblemContract(content.Emblem) };
         }
 
         /// <summary>The invariant method for this class.</summary>

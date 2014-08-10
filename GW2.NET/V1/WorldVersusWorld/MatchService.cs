@@ -47,7 +47,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
                 return null;
             }
 
-            return MapMatchContract(response.Content);
+            return ConvertMatchContract(response.Content);
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
@@ -71,7 +71,12 @@ namespace GW2DotNET.V1.WorldVersusWorld
                 task =>
                     {
                         var response = task.Result;
-                        return MapMatchContract(response.Content);
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        return ConvertMatchContract(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -88,7 +93,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
                 return new Dictionary<string, Matchup>(0);
             }
 
-            return MapMatchupCollectionContract(response.Content);
+            return ConvertMatchupCollectionContract(response.Content);
         }
 
         /// <summary>Gets a collection of currently running World versus World matches.</summary>
@@ -114,7 +119,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
                             return new Dictionary<string, Matchup>(0);
                         }
 
-                        return MapMatchupCollectionContract(response.Content);
+                        return ConvertMatchupCollectionContract(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -149,7 +154,14 @@ namespace GW2DotNET.V1.WorldVersusWorld
                 return new Dictionary<int, ObjectiveName>(0);
             }
 
-            return MapObjectiveNameContracts(response.Content, language);
+            var values = ConvertObjectiveNameContractCollection(response.Content);
+            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            foreach (var value in values.Values)
+            {
+                value.Language = twoLetterIsoLanguageName;
+            }
+
+            return values;
         }
 
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
@@ -206,7 +218,14 @@ namespace GW2DotNET.V1.WorldVersusWorld
                             return new Dictionary<int, ObjectiveName>(0);
                         }
 
-                        return MapObjectiveNameContracts(response.Content, language);
+                        var values = ConvertObjectiveNameContractCollection(response.Content);
+                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        foreach (var value in values.Values)
+                        {
+                            value.Language = twoLetterIsoLanguageName;
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -249,7 +268,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static CompetitiveMap MapCompetitiveMapContract(CompetitiveMapContract content)
+        private static CompetitiveMap ConvertCompetitiveMapContract(CompetitiveMapContract content)
         {
             Contract.Requires(content != null);
 
@@ -259,19 +278,19 @@ namespace GW2DotNET.V1.WorldVersusWorld
             // Set the scoreboard
             if (content.Scores != null && content.Scores.Length == 3)
             {
-                value.Scores = MapScoreboardContract(content.Scores);
+                value.Scores = ConvertScoreboardContract(content.Scores);
             }
 
             // Set the status of each objective
             if (content.Objectives != null)
             {
-                value.Objectives = MapObjectiveContracts(content.Objectives);
+                value.Objectives = ConvertObjectiveContractCollection(content.Objectives);
             }
 
             // Set the status of each map bonus
             if (content.Bonuses != null)
             {
-                value.Bonuses = MapMapBonusContracts(content.Bonuses);
+                value.Bonuses = ConvertMapBonusContractCollection(content.Bonuses);
             }
 
             // Return the map object
@@ -281,7 +300,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<CompetitiveMap> MapCompetitiveMapContracts(ICollection<CompetitiveMapContract> content)
+        private static ICollection<CompetitiveMap> ConvertCompetitiveMapContractCollection(ICollection<CompetitiveMapContract> content)
         {
             Contract.Requires(content != null);
 
@@ -289,7 +308,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
             var values = new List<CompetitiveMap>(content.Count);
 
             // Add each map and its status
-            values.AddRange(content.Select(MapCompetitiveMapContract));
+            values.AddRange(content.Select(ConvertCompetitiveMapContract));
 
             // Return the collection
             return values;
@@ -298,7 +317,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static MapBonus MapMapBonusContract(MapBonusContract content)
+        private static MapBonus ConvertMapBonusContract(MapBonusContract content)
         {
             Contract.Requires(content != null);
 
@@ -308,7 +327,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
             // Set its status
             if (content.Owner != null)
             {
-                value.Owner = MapTeamColorContract(content.Owner);
+                value.Owner = ConvertTeamColorContract(content.Owner);
             }
 
             // Return the bonus object
@@ -318,7 +337,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<MapBonus> MapMapBonusContracts(ICollection<MapBonusContract> content)
+        private static ICollection<MapBonus> ConvertMapBonusContractCollection(ICollection<MapBonusContract> content)
         {
             Contract.Requires(content != null);
 
@@ -326,7 +345,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
             var values = new List<MapBonus>(content.Count);
 
             // Add each bonus and its status
-            values.AddRange(content.Select(MapMapBonusContract));
+            values.AddRange(content.Select(ConvertMapBonusContract));
 
             // Return the collection
             return values;
@@ -335,7 +354,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Match MapMatchContract(MatchContract content)
+        private static Match ConvertMatchContract(MatchContract content)
         {
             Contract.Requires(content != null);
 
@@ -351,13 +370,13 @@ namespace GW2DotNET.V1.WorldVersusWorld
             // Set the scoreboard
             if (content.Scores != null && content.Scores.Length == 3)
             {
-                value.Scores = MapScoreboardContract(content.Scores);
+                value.Scores = ConvertScoreboardContract(content.Scores);
             }
 
             // Set a collection of maps and their status
             if (content.Maps != null)
             {
-                value.Maps = MapCompetitiveMapContracts(content.Maps);
+                value.Maps = ConvertCompetitiveMapContractCollection(content.Maps);
             }
 
             // Return the match object
@@ -367,7 +386,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<string, Matchup> MapMatchupCollectionContract(MatchupCollectionContract content)
+        private static IDictionary<string, Matchup> ConvertMatchupCollectionContract(MatchupCollectionContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Matchups != null);
@@ -377,7 +396,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
             var values = new Dictionary<string, Matchup>(content.Matchups.Count);
 
             // Add each matchup and its status
-            foreach (var value in content.Matchups.Select(MapMatchupContract))
+            foreach (var value in content.Matchups.Select(ConvertMatchupContract))
             {
                 Contract.Assume(value != null);
                 values.Add(value.MatchId, value);
@@ -390,7 +409,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Matchup MapMatchupContract(MatchupContract content)
+        private static Matchup ConvertMatchupContract(MatchupContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Matchup>() != null);
@@ -432,7 +451,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Objective MapObjectiveContract(ObjectiveContract content)
+        private static Objective ConvertObjectiveContract(ObjectiveContract content)
         {
             Contract.Requires(content != null);
 
@@ -445,7 +464,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
             // Set the status
             if (content.Owner != null)
             {
-                value.Owner = MapTeamColorContract(content.Owner);
+                value.Owner = ConvertTeamColorContract(content.Owner);
             }
 
             // Set the guild identifier of the guild that claimed the objective
@@ -461,7 +480,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<Objective> MapObjectiveContracts(ICollection<ObjectiveContract> content)
+        private static ICollection<Objective> ConvertObjectiveContractCollection(ICollection<ObjectiveContract> content)
         {
             Contract.Requires(content != null);
 
@@ -469,7 +488,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
             var values = new List<Objective>(content.Count);
 
             // Add each objective and its status
-            values.AddRange(content.Select(MapObjectiveContract));
+            values.AddRange(content.Select(ConvertObjectiveContract));
 
             // Return the collection
             return values;
@@ -478,7 +497,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ObjectiveName MapObjectiveNameContract(ObjectiveNameContract content)
+        private static ObjectiveName ConvertObjectiveNameContract(ObjectiveNameContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<ObjectiveName>() != null);
@@ -504,22 +523,19 @@ namespace GW2DotNET.V1.WorldVersusWorld
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="culture">The culture.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, ObjectiveName> MapObjectiveNameContracts(ICollection<ObjectiveNameContract> content, CultureInfo culture)
+        private static IDictionary<int, ObjectiveName> ConvertObjectiveNameContractCollection(ICollection<ObjectiveNameContract> content)
         {
             Contract.Requires(content != null);
-            Contract.Requires(culture != null);
             Contract.Ensures(Contract.Result<IDictionary<int, ObjectiveName>>() != null);
 
             // Create a new collection of objectives
             var values = new Dictionary<int, ObjectiveName>(content.Count);
 
             // Add each objective
-            foreach (var value in content.Select(MapObjectiveNameContract))
+            foreach (var value in content.Select(ConvertObjectiveNameContract))
             {
                 Contract.Assume(value != null);
-                value.Language = culture.TwoLetterISOLanguageName;
                 values.Add(value.ObjectiveId, value);
             }
 
@@ -530,7 +546,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Scoreboard MapScoreboardContract(int[] content)
+        private static Scoreboard ConvertScoreboardContract(int[] content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Length == 3);
@@ -540,7 +556,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static TeamColor MapTeamColorContract(string content)
+        private static TeamColor ConvertTeamColorContract(string content)
         {
             Contract.Requires(content != null);
             return (TeamColor)Enum.Parse(typeof(TeamColor), content, true);

@@ -64,7 +64,14 @@ namespace GW2DotNET.V1.Colors
                 return new Dictionary<int, ColorPalette>(0);
             }
 
-            return MapColorCollectionContract(response.Content, language);
+            var values = ConvertColorCollectionContract(response.Content);
+            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            foreach (var value in values.Values)
+            {
+                value.Language = twoLetterIsoLanguageName;
+            }
+
+            return values;
         }
 
         /// <summary>Gets a collection of colors and their localized details.</summary>
@@ -114,26 +121,35 @@ namespace GW2DotNET.V1.Colors
                 task =>
                     {
                         var response = task.Result;
-                        return MapColorCollectionContract(response.Content, language);
+                        if (response.Content == null)
+                        {
+                            return new Dictionary<int, ColorPalette>(0);
+                        }
+
+                        var values = ConvertColorCollectionContract(response.Content);
+                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        foreach (var value in values.Values)
+                        {
+                            value.Language = twoLetterIsoLanguageName;
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="culture">The culture.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, ColorPalette> MapColorCollectionContract(ColorCollectionContract content, CultureInfo culture)
+        private static IDictionary<int, ColorPalette> ConvertColorCollectionContract(ColorCollectionContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Colors != null);
-            Contract.Requires(culture != null);
             Contract.Ensures(Contract.Result<IDictionary<int, ColorPalette>>() != null);
             var values = new Dictionary<int, ColorPalette>(content.Colors.Count);
-            foreach (var value in content.Colors.Select(MapColorPaletteContract))
+            foreach (var value in content.Colors.Select(ConvertColorPaletteContract))
             {
                 Contract.Assume(value != null);
-                value.Language = culture.TwoLetterISOLanguageName;
                 values.Add(value.ColorId, value);
             }
 
@@ -143,7 +159,7 @@ namespace GW2DotNET.V1.Colors
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Color MapColorContract(int[] content)
+        private static Color ConvertColorContract(int[] content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Length == 3);
@@ -153,7 +169,7 @@ namespace GW2DotNET.V1.Colors
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ColorModel MapColorModelContract(ColorModelContract content)
+        private static ColorModel ConvertColorModelContract(ColorModelContract content)
         {
             Contract.Requires(content != null);
             var value = new ColorModel();
@@ -164,7 +180,7 @@ namespace GW2DotNET.V1.Colors
             value.Lightness = content.Lightness;
             if (content.Rgb != null && content.Rgb.Length == 3)
             {
-                value.Rgb = MapColorContract(content.Rgb);
+                value.Rgb = ConvertColorContract(content.Rgb);
             }
 
             return value;
@@ -173,7 +189,7 @@ namespace GW2DotNET.V1.Colors
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ColorPalette MapColorPaletteContract(KeyValuePair<string, ColorContract> content)
+        private static ColorPalette ConvertColorPaletteContract(KeyValuePair<string, ColorContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -194,25 +210,25 @@ namespace GW2DotNET.V1.Colors
             // Set the base RGB values
             if (content.Value.BaseRgb != null && content.Value.BaseRgb.Length == 3)
             {
-                value.BaseRgb = MapColorContract(content.Value.BaseRgb);
+                value.BaseRgb = ConvertColorContract(content.Value.BaseRgb);
             }
 
             // Set the color model for cloth
             if (content.Value.Cloth != null)
             {
-                value.Cloth = MapColorModelContract(content.Value.Cloth);
+                value.Cloth = ConvertColorModelContract(content.Value.Cloth);
             }
 
             // Set the color model for leather
             if (content.Value.Leather != null)
             {
-                value.Leather = MapColorModelContract(content.Value.Leather);
+                value.Leather = ConvertColorModelContract(content.Value.Leather);
             }
 
             // Set the color model for metal
             if (content.Value.Metal != null)
             {
-                value.Metal = MapColorModelContract(content.Value.Metal);
+                value.Metal = ConvertColorModelContract(content.Value.Metal);
             }
 
             // Return the color object

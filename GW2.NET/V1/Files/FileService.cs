@@ -44,7 +44,7 @@ namespace GW2DotNET.V1.Files
                 return new Dictionary<string, Asset>(0);
             }
 
-            return MapFileContracts(response.Content);
+            return ConvertFileContractCollection(response.Content);
         }
 
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>
@@ -66,7 +66,12 @@ namespace GW2DotNET.V1.Files
                 task =>
                     {
                         var response = task.Result;
-                        return MapFileContracts(response.Content);
+                        if (response.Content == null)
+                        {
+                            return new Dictionary<string, Asset>(0);
+                        }
+
+                        return ConvertFileContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -74,7 +79,7 @@ namespace GW2DotNET.V1.Files
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Asset MapFileContract(KeyValuePair<string, FileContract> content)
+        private static Asset ConvertFileContract(KeyValuePair<string, FileContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -99,13 +104,13 @@ namespace GW2DotNET.V1.Files
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<string, Asset> MapFileContracts(IDictionary<string, FileContract> content)
+        private static IDictionary<string, Asset> ConvertFileContractCollection(IDictionary<string, FileContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Asset>>() != null);
 
             var values = new Dictionary<string, Asset>(content.Count);
-            foreach (var value in content.Select(MapFileContract))
+            foreach (var value in content.Select(ConvertFileContract))
             {
                 Contract.Assume(value != null);
                 values.Add(value.FileName, value);

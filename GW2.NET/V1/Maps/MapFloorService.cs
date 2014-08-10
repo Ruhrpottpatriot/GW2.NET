@@ -68,7 +68,11 @@ namespace GW2DotNET.V1.Maps
                 return null;
             }
 
-            return MapFloorContract(continent, floor, language, response.Content);
+            var value = ConvertFloorContract(response.Content);
+            value.ContinentId = continent;
+            value.FloorId = floor;
+            value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+            return value;
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -128,7 +132,16 @@ namespace GW2DotNET.V1.Maps
                 task =>
                     {
                         var response = task.Result;
-                        return MapFloorContract(continent, floor, language, response.Content);
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        var value = ConvertFloorContract(response.Content);
+                        value.ContinentId = continent;
+                        value.FloorId = floor;
+                        value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        return value;
                     }, 
                 cancellationToken);
         }
@@ -155,33 +168,35 @@ namespace GW2DotNET.V1.Maps
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="continent">The continent.</param>
-        /// <param name="floor">The floor.</param>
-        /// <param name="culture">The culture.</param>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Floor MapFloorContract(int continent, int floor, CultureInfo culture, FloorContract content)
+        private static Floor ConvertFloorContract(FloorContract content)
         {
-            Contract.Requires(culture != null);
             Contract.Requires(content != null);
-            var value = new Floor { ContinentId = continent, FloorId = floor, Language = culture.TwoLetterISOLanguageName };
 
+            // Create a new floor object
+            var value = new Floor();
+
+            // Set the texture dimensions
             if (content.TextureDimensions != null && content.TextureDimensions.Length == 2)
             {
                 value.TextureDimensions = MapSize2DContract(content.TextureDimensions);
             }
 
+            // Set the clamped view dimensions
             if (content.ClampedView != null && content.ClampedView.Length == 2 && content.ClampedView[0] != null && content.ClampedView[0].Length == 2
                 && content.ClampedView[1] != null && content.ClampedView[1].Length == 2)
             {
-                value.ClampedView = MapRectangleContract(content.ClampedView);
+                value.ClampedView = ConvertRectangleContract(content.ClampedView);
             }
 
+            // Set the regions
             if (content.Regions != null)
             {
-                value.Regions = MapRegionContracts(content.Regions);
+                value.Regions = ConvertRegionContractCollection(content.Regions);
             }
 
+            // Return the floor object
             return value;
         }
 
@@ -198,7 +213,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static PointOfInterest MapPointOfInterestContract(PointOfInterestContract content)
+        private static PointOfInterest ConvertPointOfInterestContract(PointOfInterestContract content)
         {
             Contract.Requires(content != null);
             var value = (PointOfInterest)Activator.CreateInstance(GetPointOfInterestType(content));
@@ -216,18 +231,18 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<PointOfInterest> MapPointOfInterestContracts(ICollection<PointOfInterestContract> content)
+        private static ICollection<PointOfInterest> ConvertPointOfInterestContractCollection(ICollection<PointOfInterestContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<PointOfInterest>(content.Count);
-            values.AddRange(content.Select(MapPointOfInterestContract));
+            values.AddRange(content.Select(ConvertPointOfInterestContract));
             return values;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Rectangle MapRectangleContract(double[][] content)
+        private static Rectangle ConvertRectangleContract(double[][] content)
         {
             Contract.Requires(content != null && content.Length == 2);
             Contract.Requires(content[0] != null && content[0].Length == 2);
@@ -240,7 +255,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Region MapRegionContract(KeyValuePair<string, RegionContract> content)
+        private static Region ConvertRegionContract(KeyValuePair<string, RegionContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -267,7 +282,7 @@ namespace GW2DotNET.V1.Maps
             // Set the maps
             if (content.Value.Maps != null)
             {
-                value.Maps = MapSubregionContracts(content.Value.Maps);
+                value.Maps = ConvertSubregionContractCollection(content.Value.Maps);
             }
 
             // Return the region object
@@ -277,11 +292,11 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Region> MapRegionContracts(IDictionary<string, RegionContract> content)
+        private static IDictionary<int, Region> ConvertRegionContractCollection(IDictionary<string, RegionContract> content)
         {
             Contract.Requires(content != null);
             var values = new Dictionary<int, Region>(content.Count);
-            foreach (var value in content.Select(MapRegionContract))
+            foreach (var value in content.Select(ConvertRegionContract))
             {
                 Contract.Assume(value != null);
                 values.Add(value.RegionId, value);
@@ -293,7 +308,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static RenownTask MapRenownTaskContract(RenownTaskContract content)
+        private static RenownTask ConvertRenownTaskContract(RenownTaskContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
@@ -310,18 +325,18 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<RenownTask> MapRenownTaskContracts(ICollection<RenownTaskContract> content)
+        private static ICollection<RenownTask> ConvertRenownTaskContractCollection(ICollection<RenownTaskContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<RenownTask>(content.Count);
-            values.AddRange(content.Select(MapRenownTaskContract));
+            values.AddRange(content.Select(ConvertRenownTaskContract));
             return values;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Sector MapSectorContract(SectorContract content)
+        private static Sector ConvertSectorContract(SectorContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
@@ -332,11 +347,11 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<Sector> MapSectorContracts(ICollection<SectorContract> content)
+        private static ICollection<Sector> ConvertSectorContractCollection(ICollection<SectorContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<Sector>(content.Count);
-            values.AddRange(content.Select(MapSectorContract));
+            values.AddRange(content.Select(ConvertSectorContract));
             return values;
         }
 
@@ -353,7 +368,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static SkillChallenge MapSkillChallengeContract(SkillChallengeContract content)
+        private static SkillChallenge ConvertSkillChallengeContract(SkillChallengeContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
@@ -364,18 +379,18 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<SkillChallenge> MapSkillChallengeContracts(ICollection<SkillChallengeContract> content)
+        private static ICollection<SkillChallenge> ConvertSkillChallengeContractCollection(ICollection<SkillChallengeContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<SkillChallenge>(content.Count);
-            values.AddRange(content.Select(MapSkillChallengeContract));
+            values.AddRange(content.Select(ConvertSkillChallengeContract));
             return values;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Subregion MapSubregionContract(KeyValuePair<string, SubregionContract> content)
+        private static Subregion ConvertSubregionContract(KeyValuePair<string, SubregionContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -406,7 +421,7 @@ namespace GW2DotNET.V1.Maps
             if (content.Value.MapRectangle != null && content.Value.MapRectangle.Length == 2 && content.Value.MapRectangle[0] != null
                 && content.Value.MapRectangle[0].Length == 2 && content.Value.MapRectangle[1] != null && content.Value.MapRectangle[1].Length == 2)
             {
-                value.MapRectangle = MapRectangleContract(content.Value.MapRectangle);
+                value.MapRectangle = ConvertRectangleContract(content.Value.MapRectangle);
             }
 
             // Set the continent dimensions
@@ -414,31 +429,31 @@ namespace GW2DotNET.V1.Maps
                 && content.Value.ContinentRectangle[0].Length == 2 && content.Value.ContinentRectangle[1] != null
                 && content.Value.ContinentRectangle[1].Length == 2)
             {
-                value.ContinentRectangle = MapRectangleContract(content.Value.ContinentRectangle);
+                value.ContinentRectangle = ConvertRectangleContract(content.Value.ContinentRectangle);
             }
 
             // Set the points of interest
             if (content.Value.PointsOfInterest != null)
             {
-                value.PointsOfInterest = MapPointOfInterestContracts(content.Value.PointsOfInterest);
+                value.PointsOfInterest = ConvertPointOfInterestContractCollection(content.Value.PointsOfInterest);
             }
 
             // Set the renown tasks
             if (content.Value.Tasks != null)
             {
-                value.Tasks = MapRenownTaskContracts(content.Value.Tasks);
+                value.Tasks = ConvertRenownTaskContractCollection(content.Value.Tasks);
             }
 
             // Set the skill challenges
             if (content.Value.SkillChallenges != null)
             {
-                value.SkillChallenges = MapSkillChallengeContracts(content.Value.SkillChallenges);
+                value.SkillChallenges = ConvertSkillChallengeContractCollection(content.Value.SkillChallenges);
             }
 
             // Set the sectors
             if (content.Value.Sectors != null)
             {
-                value.Sectors = MapSectorContracts(content.Value.Sectors);
+                value.Sectors = ConvertSectorContractCollection(content.Value.Sectors);
             }
 
             // Return the map object
@@ -448,11 +463,11 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Subregion> MapSubregionContracts(IDictionary<string, SubregionContract> content)
+        private static IDictionary<int, Subregion> ConvertSubregionContractCollection(IDictionary<string, SubregionContract> content)
         {
             Contract.Requires(content != null);
             var values = new Dictionary<int, Subregion>(content.Count);
-            foreach (var value in content.Select(MapSubregionContract))
+            foreach (var value in content.Select(ConvertSubregionContract))
             {
                 Contract.Assume(value != null);
                 values.Add(value.MapId, value);

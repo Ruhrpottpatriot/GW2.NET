@@ -66,7 +66,13 @@ namespace GW2DotNET.V1.Maps
                 return null;
             }
 
-            return MapMapCollectionContract(response.Content, language).Values.SingleOrDefault();
+            var value = ConvertMapCollectionContract(response.Content).Values.SingleOrDefault();
+            if (value != null)
+            {
+                value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+            }
+
+            return value;
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -122,7 +128,18 @@ namespace GW2DotNET.V1.Maps
                 task =>
                     {
                         var response = task.Result;
-                        return MapMapCollectionContract(response.Content, language).Values.SingleOrDefault();
+                        if (response.Content == null || response.Content.Maps == null)
+                        {
+                            return null;
+                        }
+
+                        var value = ConvertMapCollectionContract(response.Content).Values.SingleOrDefault();
+                        if (value != null)
+                        {
+                            value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        }
+
+                        return value;
                     }, 
                 cancellationToken);
         }
@@ -157,7 +174,14 @@ namespace GW2DotNET.V1.Maps
                 return new Dictionary<int, Map>(0);
             }
 
-            return MapMapCollectionContract(response.Content, language);
+            var values = ConvertMapCollectionContract(response.Content);
+            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            foreach (var value in values.Values)
+            {
+                value.Language = twoLetterIsoLanguageName;
+            }
+
+            return values;
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -209,26 +233,35 @@ namespace GW2DotNET.V1.Maps
                 task =>
                     {
                         var response = task.Result;
-                        return MapMapCollectionContract(response.Content, language);
+                        if (response.Content == null || response.Content.Maps == null)
+                        {
+                            return new Dictionary<int, Map>(0);
+                        }
+
+                        var values = ConvertMapCollectionContract(response.Content);
+                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        foreach (var value in values.Values)
+                        {
+                            value.Language = twoLetterIsoLanguageName;
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="culture">The culture.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Map> MapMapCollectionContract(MapCollectionContract content, CultureInfo culture)
+        private static IDictionary<int, Map> ConvertMapCollectionContract(MapCollectionContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Maps != null);
-            Contract.Requires(culture != null);
             Contract.Ensures(Contract.Result<IDictionary<int, Map>>() != null);
             var values = new Dictionary<int, Map>(content.Maps.Count);
-            foreach (var value in content.Maps.Select(MapMapContract))
+            foreach (var value in content.Maps.Select(ConvertMapContract))
             {
                 Contract.Assume(value != null);
-                value.Language = culture.TwoLetterISOLanguageName;
                 values.Add(value.MapId, value);
             }
 
@@ -238,7 +271,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Map MapMapContract(KeyValuePair<string, MapContract> content)
+        private static Map ConvertMapContract(KeyValuePair<string, MapContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -296,7 +329,7 @@ namespace GW2DotNET.V1.Maps
             if (content.Value.MapRectangle != null && content.Value.MapRectangle.Length == 2 && content.Value.MapRectangle[0] != null
                 && content.Value.MapRectangle[0].Length == 2 && content.Value.MapRectangle[1] != null && content.Value.MapRectangle[1].Length == 2)
             {
-                value.MapRectangle = MapRectangleContract(content.Value.MapRectangle);
+                value.MapRectangle = ConvertRectangleContract(content.Value.MapRectangle);
             }
 
             // Set the dimensions of the continent
@@ -304,7 +337,7 @@ namespace GW2DotNET.V1.Maps
                 && content.Value.ContinentRectangle[0].Length == 2 && content.Value.ContinentRectangle[1] != null
                 && content.Value.ContinentRectangle[1].Length == 2)
             {
-                value.ContinentRectangle = MapRectangleContract(content.Value.ContinentRectangle);
+                value.ContinentRectangle = ConvertRectangleContract(content.Value.ContinentRectangle);
             }
 
             // Return the map object
@@ -314,7 +347,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Rectangle MapRectangleContract(double[][] content)
+        private static Rectangle ConvertRectangleContract(double[][] content)
         {
             Contract.Requires(content != null && content.Length == 2);
             Contract.Requires(content[0] != null && content[0].Length == 2);

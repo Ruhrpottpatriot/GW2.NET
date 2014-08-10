@@ -86,7 +86,7 @@ namespace GW2DotNET.V2.Quaggans
             var response = this.serviceClient.Send<ICollection<string>>(request);
             if (response.Content == null)
             {
-                return new List<string>(0);
+                return new string[0];
             }
 
             return response.Content;
@@ -111,7 +111,7 @@ namespace GW2DotNET.V2.Quaggans
                         var response = task.Result;
                         if (response.Content == null)
                         {
-                            return new List<string>(0);
+                            return new string[0];
                         }
 
                         return response.Content;

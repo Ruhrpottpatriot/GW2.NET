@@ -50,7 +50,7 @@ namespace GW2DotNET.V1.DynamicEvents
                 return null;
             }
 
-            return MapEventStateContracts(response.Content).Values.SingleOrDefault();
+            return ConvertEventStateContractCollection(response.Content).Values.SingleOrDefault();
         }
 
         /// <summary>Gets a dynamic event and its status.</summary>
@@ -76,7 +76,12 @@ namespace GW2DotNET.V1.DynamicEvents
                 task =>
                     {
                         var response = task.Result;
-                        return MapEventStateContracts(response.Content).Values.SingleOrDefault();
+                        if (response.Content == null || response.Content.Events == null)
+                        {
+                            return null;
+                        }
+
+                        return ConvertEventStateContractCollection(response.Content).Values.SingleOrDefault();
                     }, 
                 cancellationToken);
         }
@@ -111,7 +116,14 @@ namespace GW2DotNET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEvent>(0);
             }
 
-            return MapEventDetailsCollectionContract(response.Content, language);
+            var values = ConvertEventDetailsCollectionContract(response.Content);
+            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            foreach (var value in values.Values)
+            {
+                value.Language = twoLetterIsoLanguageName;
+            }
+
+            return values;
         }
 
         /// <summary>Gets a dynamic event and its localized details.</summary>
@@ -146,7 +158,13 @@ namespace GW2DotNET.V1.DynamicEvents
                 return null;
             }
 
-            return MapEventDetailsCollectionContract(response.Content, language).Values.SingleOrDefault();
+            var value = ConvertEventDetailsCollectionContract(response.Content).Values.SingleOrDefault();
+            if (value != null)
+            {
+                value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+            }
+
+            return value;
         }
 
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>
@@ -198,7 +216,19 @@ namespace GW2DotNET.V1.DynamicEvents
                 task =>
                     {
                         var response = task.Result;
-                        return MapEventDetailsCollectionContract(response.Content, language);
+                        if (response.Content == null || response.Content.Events == null)
+                        {
+                            return new Dictionary<Guid, DynamicEvent>(0);
+                        }
+
+                        var values = ConvertEventDetailsCollectionContract(response.Content);
+                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        foreach (var value in values.Values)
+                        {
+                            value.Language = twoLetterIsoLanguageName;
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -256,7 +286,18 @@ namespace GW2DotNET.V1.DynamicEvents
                 task =>
                     {
                         var response = task.Result;
-                        return MapEventDetailsCollectionContract(response.Content, language).Values.SingleOrDefault();
+                        if (response.Content == null || response.Content.Events == null)
+                        {
+                            return null;
+                        }
+
+                        var value = ConvertEventDetailsCollectionContract(response.Content).Values.SingleOrDefault();
+                        if (value != null)
+                        {
+                            value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        }
+
+                        return value;
                     }, 
                 cancellationToken);
         }
@@ -291,7 +332,14 @@ namespace GW2DotNET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEvent>(0);
             }
 
-            return MapEventNameContracts(response.Content, language);
+            var values = ConvertEventNameContracts(response.Content);
+            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            foreach (var value in values.Values)
+            {
+                value.Language = twoLetterIsoLanguageName;
+            }
+
+            return values;
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
@@ -343,7 +391,19 @@ namespace GW2DotNET.V1.DynamicEvents
                 task =>
                     {
                         var response = task.Result;
-                        return MapEventNameContracts(response.Content, language);
+                        if (response.Content == null)
+                        {
+                            return new Dictionary<Guid, DynamicEvent>(0);
+                        }
+
+                        var values = ConvertEventNameContracts(response.Content);
+                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        foreach (var value in values.Values)
+                        {
+                            value.Language = twoLetterIsoLanguageName;
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -360,7 +420,7 @@ namespace GW2DotNET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return MapEventStateContracts(response.Content);
+            return ConvertEventStateContractCollection(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -382,7 +442,12 @@ namespace GW2DotNET.V1.DynamicEvents
                 task =>
                     {
                         var response = task.Result;
-                        return MapEventStateContracts(response.Content);
+                        if (response.Content == null || response.Content.Events == null)
+                        {
+                            return new Dictionary<Guid, DynamicEventState>(0);
+                        }
+
+                        return ConvertEventStateContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -400,7 +465,7 @@ namespace GW2DotNET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return MapEventStateContracts(response.Content);
+            return ConvertEventStateContractCollection(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -415,7 +480,12 @@ namespace GW2DotNET.V1.DynamicEvents
                 task =>
                     {
                         var response = task.Result;
-                        return MapEventStateContracts(response.Content);
+                        if (response.Content == null || response.Content.Events == null)
+                        {
+                            return new Dictionary<Guid, DynamicEventState>(0);
+                        }
+
+                        return ConvertEventStateContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -442,7 +512,7 @@ namespace GW2DotNET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return MapEventStateContracts(response.Content);
+            return ConvertEventStateContractCollection(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -459,7 +529,7 @@ namespace GW2DotNET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return MapEventStateContracts(response.Content);
+            return ConvertEventStateContractCollection(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -483,7 +553,12 @@ namespace GW2DotNET.V1.DynamicEvents
                 task =>
                     {
                         var response = task.Result;
-                        return MapEventStateContracts(response.Content);
+                        if (response.Content == null || response.Content.Events == null)
+                        {
+                            return new Dictionary<Guid, DynamicEventState>(0);
+                        }
+
+                        return ConvertEventStateContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -511,7 +586,12 @@ namespace GW2DotNET.V1.DynamicEvents
                 task =>
                     {
                         var response = task.Result;
-                        return MapEventStateContracts(response.Content);
+                        if (response.Content == null || response.Content.Events == null)
+                        {
+                            return new Dictionary<Guid, DynamicEventState>(0);
+                        }
+
+                        return ConvertEventStateContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -529,7 +609,7 @@ namespace GW2DotNET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return MapEventStateContracts(response.Content);
+            return ConvertEventStateContractCollection(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -553,7 +633,12 @@ namespace GW2DotNET.V1.DynamicEvents
                 task =>
                     {
                         var response = task.Result;
-                        return MapEventStateContracts(response.Content);
+                        if (response.Content == null || response.Content.Events == null)
+                        {
+                            return new Dictionary<Guid, DynamicEventState>(0);
+                        }
+
+                        return ConvertEventStateContractCollection(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -571,7 +656,7 @@ namespace GW2DotNET.V1.DynamicEvents
             // Set the center coordinates
             if (content.Center != null && content.Center.Length == 3)
             {
-                value.Center = MapPoint3DContract(content.Center);
+                value.Center = ConvertPoint3DContract(content.Center);
             }
 
             // Set the cylinder's height
@@ -650,19 +735,16 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="culture">The culture.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<Guid, DynamicEvent> MapEventDetailsCollectionContract(EventDetailsCollectionContract content, CultureInfo culture)
+        private static IDictionary<Guid, DynamicEvent> ConvertEventDetailsCollectionContract(EventDetailsCollectionContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Events != null);
-            Contract.Requires(culture != null);
             Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEvent>>() != null);
             var values = new Dictionary<Guid, DynamicEvent>(content.Events.Count);
-            foreach (var value in content.Events.Select(MapEventDetailsContract))
+            foreach (var value in content.Events.Select(ConvertEventDetailsContract))
             {
                 Contract.Assume(value != null);
-                value.Language = culture.TwoLetterISOLanguageName;
                 values.Add(value.EventId, value);
             }
 
@@ -672,7 +754,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static DynamicEvent MapEventDetailsContract(KeyValuePair<string, EventDetailsContract> content)
+        private static DynamicEvent ConvertEventDetailsContract(KeyValuePair<string, EventDetailsContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -704,7 +786,7 @@ namespace GW2DotNET.V1.DynamicEvents
             // Set the location
             if (content.Value.Location != null)
             {
-                value.Location = MapLocationContract(content.Value.Location);
+                value.Location = ConvertLocationContract(content.Value.Location);
             }
 
             // Return the event object
@@ -714,7 +796,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static DynamicEvent MapEventNameContract(EventNameContract content)
+        private static DynamicEvent ConvertEventNameContract(EventNameContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<DynamicEvent>() != null);
@@ -740,18 +822,15 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <param name="culture">The culture.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<Guid, DynamicEvent> MapEventNameContracts(ICollection<EventNameContract> content, CultureInfo culture)
+        private static IDictionary<Guid, DynamicEvent> ConvertEventNameContracts(ICollection<EventNameContract> content)
         {
             Contract.Requires(content != null);
-            Contract.Requires(culture != null);
             Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEvent>>() != null);
             var values = new Dictionary<Guid, DynamicEvent>(content.Count);
-            foreach (var value in content.Select(MapEventNameContract))
+            foreach (var value in content.Select(ConvertEventNameContract))
             {
                 Contract.Assume(value != null);
-                value.Language = culture.TwoLetterISOLanguageName;
                 values.Add(value.EventId, value);
             }
 
@@ -770,7 +849,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<Guid, DynamicEventState> MapEventStateContracts(EventStateCollectionContract content)
+        private static IDictionary<Guid, DynamicEventState> ConvertEventStateContractCollection(EventStateCollectionContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Events != null);
@@ -788,7 +867,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Location MapLocationContract(LocationContract content)
+        private static Location ConvertLocationContract(LocationContract content)
         {
             Contract.Requires(content != null);
             switch (content.Type)
@@ -817,7 +896,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<Point2D> MapPoint2DContracts(double[][] content)
+        private static ICollection<Point2D> ConvertPoint2DContracts(double[][] content)
         {
             Contract.Requires(content != null);
             var values = new List<Point2D>(content.Length);
@@ -828,7 +907,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Point3D MapPoint3DContract(double[] content)
+        private static Point3D ConvertPoint3DContract(double[] content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Length == 3);
@@ -844,17 +923,17 @@ namespace GW2DotNET.V1.DynamicEvents
             var value = new PolygonLocation();
             if (content.Center != null && content.Center.Length == 3)
             {
-                value.Center = MapPoint3DContract(content.Center);
+                value.Center = ConvertPoint3DContract(content.Center);
             }
 
             if (content.ZRange != null && content.ZRange.Length == 2)
             {
-                value.ZRange = MapZRangeContract(content.ZRange);
+                value.ZRange = ConvertZRangeContract(content.ZRange);
             }
 
             if (content.Points != null)
             {
-                value.Points = MapPoint2DContracts(content.Points);
+                value.Points = ConvertPoint2DContracts(content.Points);
             }
 
             return value;
@@ -873,7 +952,7 @@ namespace GW2DotNET.V1.DynamicEvents
             // Set the center coordinates
             if (content.Center != null && content.Center.Length == 3)
             {
-                value.Center = MapPoint3DContract(content.Center);
+                value.Center = ConvertPoint3DContract(content.Center);
             }
 
             // Set the sphere's radius
@@ -899,7 +978,7 @@ namespace GW2DotNET.V1.DynamicEvents
             // Set the center coordinates
             if (content.Center != null && content.Center.Length == 3)
             {
-                value.Center = MapPoint3DContract(content.Center);
+                value.Center = ConvertPoint3DContract(content.Center);
             }
 
             // Return the location object
@@ -909,7 +988,7 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Vector2D MapZRangeContract(double[] content)
+        private static Vector2D ConvertZRangeContract(double[] content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Length == 2);
