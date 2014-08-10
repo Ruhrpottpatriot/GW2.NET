@@ -249,12 +249,6 @@
     <Folder Include="V1\Recipes" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GW2.NET\GW2.NET.csproj">
-      <Name>GW2.NET</Name>
-      <Project>{46c3a3d8-6627-4098-82ba-608f158a8ca5}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Validate Include="Layers.layerdiagram">
       <SubType>Content</SubType>
     </Validate>

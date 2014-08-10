@@ -86,12 +86,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GW2.NET\GW2.NET.csproj">
-      <Project>{46c3a3d8-6627-4098-82ba-608f158a8ca5}</Project>
-      <Name>GW2.NET</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
