@@ -37,7 +37,7 @@ namespace GW2DotNET.V1.Worlds
         /// <summary>Gets a collection of worlds and their localized name.</summary>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public ICollection<World> GetWorldNames()
+        public IDictionary<int, World> GetWorldNames()
         {
             var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
@@ -48,7 +48,7 @@ namespace GW2DotNET.V1.Worlds
         /// <param name="language">The language.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public ICollection<World> GetWorldNames(CultureInfo language)
+        public IDictionary<int, World> GetWorldNames(CultureInfo language)
         {
             if (language == null)
             {
@@ -63,12 +63,12 @@ namespace GW2DotNET.V1.Worlds
             // Ensure that there is response content
             if (response.Content == null)
             {
-                return new World[0];
+                return new Dictionary<int, World>(0);
             }
 
             var values = ConvertWorldNameContractCollection(response.Content);
             var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
-            foreach (var value in values)
+            foreach (var value in values.Values)
             {
                 value.Language = twoLetterIsoLanguageName;
             }
@@ -79,7 +79,7 @@ namespace GW2DotNET.V1.Worlds
         /// <summary>Gets a collection of worlds and their localized name.</summary>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync()
+        public Task<IDictionary<int, World>> GetWorldNamesAsync()
         {
             var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
@@ -90,7 +90,7 @@ namespace GW2DotNET.V1.Worlds
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<int, World>> GetWorldNamesAsync(CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
             Contract.Assume(culture != null);
@@ -101,7 +101,7 @@ namespace GW2DotNET.V1.Worlds
         /// <param name="language">The language.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language)
+        public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language)
         {
             return this.GetWorldNamesAsync(language, CancellationToken.None);
         }
@@ -111,7 +111,7 @@ namespace GW2DotNET.V1.Worlds
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             if (language == null)
             {
@@ -129,12 +129,12 @@ namespace GW2DotNET.V1.Worlds
                         // Ensure that there is response content
                         if (response.Content == null)
                         {
-                            return new World[0];
+                            return new Dictionary<int, World>(0);
                         }
 
                         var values = ConvertWorldNameContractCollection(response.Content);
                         var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
-                        foreach (var value in values)
+                        foreach (var value in values.Values)
                         {
                             value.Language = twoLetterIsoLanguageName;
                         }
@@ -175,16 +175,19 @@ namespace GW2DotNET.V1.Worlds
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<World> ConvertWorldNameContractCollection(ICollection<WorldNameContract> content)
+        private static IDictionary<int, World> ConvertWorldNameContractCollection(ICollection<WorldNameContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<ICollection<World>>() != null);
 
             // Create a new collection of world objects
-            var values = new List<World>(content.Count);
+            var values = new Dictionary<int, World>(content.Count);
 
             // Set the world names
-            values.AddRange(content.Select(ConvertWorldNameContract));
+            foreach (var value in content.Select(ConvertWorldNameContract))
+            {
+                values[value.WorldId] = value;
+            }
 
             // Return the collection
             return values;

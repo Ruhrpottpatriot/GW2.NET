@@ -23,9 +23,9 @@ namespace GW2DotNET.V1.Worlds
         /// <summary>Gets a collection of worlds and their localized name.</summary>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public ICollection<World> GetWorldNames()
+        public IDictionary<int, World> GetWorldNames()
         {
-            Contract.Ensures(Contract.Result<ICollection<World>>() != null);
+            Contract.Ensures(Contract.Result<IDictionary<int, World>>() != null);
             throw new System.NotImplementedException();
         }
 
@@ -33,20 +33,20 @@ namespace GW2DotNET.V1.Worlds
         /// <param name="language">The language.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public ICollection<World> GetWorldNames(CultureInfo language)
+        public IDictionary<int, World> GetWorldNames(CultureInfo language)
         {
             Contract.Requires(language != null);
-            Contract.Ensures(Contract.Result<ICollection<World>>() != null);
+            Contract.Ensures(Contract.Result<IDictionary<int, World>>() != null);
             throw new System.NotImplementedException();
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync()
+        public Task<IDictionary<int, World>> GetWorldNamesAsync()
         {
-            Contract.Ensures(Contract.Result<Task<ICollection<World>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<World>>>().Result != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, World>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, World>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
@@ -54,10 +54,10 @@ namespace GW2DotNET.V1.Worlds
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<int, World>> GetWorldNamesAsync(CancellationToken cancellationToken)
         {
-            Contract.Ensures(Contract.Result<Task<ICollection<World>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<World>>>().Result != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, World>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, World>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
@@ -65,11 +65,11 @@ namespace GW2DotNET.V1.Worlds
         /// <param name="language">The language.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language)
+        public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language)
         {
             Contract.Requires(language != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<World>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<World>>>().Result != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, World>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, World>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
@@ -78,11 +78,11 @@ namespace GW2DotNET.V1.Worlds
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             Contract.Requires(language != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<World>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<World>>>().Result != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, World>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, World>>>().Result != null);
             throw new System.NotImplementedException();
         }
     }

@@ -1321,7 +1321,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of worlds and their localized name.</summary>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public ICollection<World> GetWorldNames()
+        public IDictionary<int, World> GetWorldNames()
         {
             return this.worldNameService.GetWorldNames();
         }
@@ -1330,7 +1330,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public ICollection<World> GetWorldNames(CultureInfo language)
+        public IDictionary<int, World> GetWorldNames(CultureInfo language)
         {
             return this.worldNameService.GetWorldNames(language);
         }
@@ -1338,7 +1338,7 @@ namespace GW2DotNET
         /// <summary>Gets a collection of worlds and their localized name.</summary>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync()
+        public Task<IDictionary<int, World>> GetWorldNamesAsync()
         {
             return this.worldNameService.GetWorldNamesAsync();
         }
@@ -1347,7 +1347,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync(CancellationToken cancellationToken)
+        public Task<IDictionary<int, World>> GetWorldNamesAsync(CancellationToken cancellationToken)
         {
             return this.worldNameService.GetWorldNamesAsync(cancellationToken);
         }
@@ -1356,7 +1356,7 @@ namespace GW2DotNET
         /// <param name="language">The language.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language)
+        public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language)
         {
             return this.worldNameService.GetWorldNamesAsync(language);
         }
@@ -1366,7 +1366,7 @@ namespace GW2DotNET
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of worlds and their localized name.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<ICollection<World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
+        public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
             return this.worldNameService.GetWorldNamesAsync(language, cancellationToken);
         }
