@@ -26,7 +26,7 @@ namespace GW2DotNET.Local.DynamicEvents
         {
             // Load the event rotations configuration file from this assembly
             var type = this.GetType();
-            using (var stream = this.GetType().Assembly.GetManifestResourceStream(type.Namespace + ".Rotations.xml"))
+            using (var stream = type.Assembly.GetManifestResourceStream(type.Namespace + ".Rotations.xml"))
             {
                 // Ensure that there is content
                 if (stream == null)
