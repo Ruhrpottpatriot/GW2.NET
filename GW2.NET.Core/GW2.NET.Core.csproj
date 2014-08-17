@@ -589,9 +589,9 @@
     <Compile Include="V1\Maps.Json\SkillChallengeContract.cs" />
     <Compile Include="V1\Maps.Json\SubregionContract.cs" />
     <Compile Include="V1\Maps\ContinentRequest.cs" />
-    <Compile Include="V1\Maps\ContinentService.cs" />
-    <Compile Include="V1\Maps\ContinentServiceContract.cs" />
-    <Compile Include="V1\Maps\IContinentService.cs" />
+    <Compile Include="V1\Maps\ContinentDetailsService.cs" />
+    <Compile Include="V1\Maps\ContinentDetailsServiceContract.cs" />
+    <Compile Include="V1\Maps\IContinentDetailsService.cs" />
     <Compile Include="V1\Maps\IMapFloorService.cs" />
     <Compile Include="V1\Maps\IMapNameService.cs" />
     <Compile Include="V1\Maps\IMapDetailsService.cs" />

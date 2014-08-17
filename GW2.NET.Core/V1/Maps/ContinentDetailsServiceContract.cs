@@ -16,8 +16,8 @@ namespace GW2DotNET.V1.Maps
     using GW2DotNET.Entities.Maps;
 
     /// <summary>The continent service contract.</summary>
-    [ContractClassFor(typeof(IContinentService))]
-    internal abstract class ContinentServiceContract : IContinentService
+    [ContractClassFor(typeof(IContinentDetailsService))]
+    internal abstract class ContinentDetailsServiceContract : IContinentDetailsService
     {
         /// <summary>Gets a collection of continents and their details.</summary>
         /// <returns>A collection of continents.</returns>

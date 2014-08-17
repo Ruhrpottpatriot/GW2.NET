@@ -19,14 +19,14 @@ namespace GW2DotNET.V1.Maps
     using GW2DotNET.V1.Maps.Json;
 
     /// <summary>Provides the default implementation of the continents service.</summary>
-    public class ContinentService : IContinentService
+    public class ContinentDetailsService : IContinentDetailsService
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="ContinentService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ContinentDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ContinentService(IServiceClient serviceClient)
+        public ContinentDetailsService(IServiceClient serviceClient)
         {
             Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;

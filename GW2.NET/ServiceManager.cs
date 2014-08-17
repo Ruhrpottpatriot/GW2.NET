@@ -43,7 +43,7 @@ namespace GW2DotNET
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
                                   IColorService, 
-                                  IContinentService, 
+                                  IContinentDetailsService, 
                                   IDynamicEventService, 
                                   IFileService, 
                                   IGuildDetailsService, 
@@ -63,7 +63,7 @@ namespace GW2DotNET
         private readonly IColorService colorService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IContinentService continentService;
+        private readonly IContinentDetailsService continentDetailsService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IDynamicEventService dynamicEventService;
@@ -117,7 +117,7 @@ namespace GW2DotNET
 
             this.buildService = new BuildService(serviceClient);
             this.colorService = new ColorService(serviceClient);
-            this.continentService = new ContinentService(serviceClient);
+            this.continentDetailsService = new ContinentDetailsService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
             this.fileService = new FileService(serviceClient);
             this.guildDetailsService = new GuildService(serviceClient);
@@ -214,7 +214,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public IDictionary<int, Continent> GetContinents()
         {
-            return this.continentService.GetContinents();
+            return this.continentDetailsService.GetContinents();
         }
 
         /// <summary>Gets a collection of continents and their details.</summary>
@@ -222,7 +222,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Continent>> GetContinentsAsync()
         {
-            return this.continentService.GetContinentsAsync();
+            return this.continentDetailsService.GetContinentsAsync();
         }
 
         /// <summary>Gets a collection of continents and their details.</summary>
@@ -231,7 +231,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {
-            return this.continentService.GetContinentsAsync(cancellationToken);
+            return this.continentDetailsService.GetContinentsAsync(cancellationToken);
         }
 
         /// <summary>Gets a dynamic event and its status.</summary>
@@ -1344,7 +1344,7 @@ namespace GW2DotNET
         {
             Contract.Invariant(this.buildService != null);
             Contract.Invariant(this.colorService != null);
-            Contract.Invariant(this.continentService != null);
+            Contract.Invariant(this.continentDetailsService != null);
             Contract.Invariant(this.dynamicEventService != null);
             Contract.Invariant(this.fileService != null);
             Contract.Invariant(this.guildDetailsService != null);
