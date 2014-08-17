@@ -628,9 +628,9 @@
     <Compile Include="V1\Skins\Discovery\SkinDiscoveryRequest.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
     <Compile Include="V1\Worlds.Json\WorldNameContract.cs" />
-    <Compile Include="V1\Worlds\IWorldNameService.cs" />
-    <Compile Include="V1\Worlds\WorldNameRequest.cs" />
-    <Compile Include="V1\Worlds\WorldNameServiceContract.cs" />
+    <Compile Include="V1\Worlds\Names\IWorldNameService.cs" />
+    <Compile Include="V1\Worlds\Names\WorldNameRequest.cs" />
+    <Compile Include="V1\Worlds\Names\WorldNameServiceContract.cs" />
     <Compile Include="V1\Worlds\WorldService.cs" />
     <Compile Include="V1\WorldVersusWorld.Json\CompetitiveMapContract.cs" />
     <Compile Include="V1\WorldVersusWorld.Json\MapBonusContract.cs" />
