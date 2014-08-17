@@ -33,7 +33,13 @@ namespace GW2DotNET
         /// <param name="serviceClient">The service client.</param>
         public RenderServiceManager(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition failed: serviceClient != null");
+            }
+
+            Contract.EndContractBlock();
+
             this.renderService = new RenderService(serviceClient);
         }
 

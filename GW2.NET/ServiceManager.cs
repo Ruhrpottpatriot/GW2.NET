@@ -108,7 +108,13 @@ namespace GW2DotNET
         /// <param name="serviceClient">The service client.</param>
         public ServiceManager(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition failed: serviceClient != null");
+            }
+
+            Contract.EndContractBlock();
+
             this.buildService = new BuildService(serviceClient);
             this.colorService = new ColorService(serviceClient);
             this.continentService = new ContinentService(serviceClient);
