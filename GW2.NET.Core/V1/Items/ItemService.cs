@@ -181,6 +181,557 @@ namespace GW2DotNET.V1.Items
                 cancellationToken);
         }
 
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="item">The entity.</param>
+        /// <param name="content">The content.</param>
+        private static void ConvertArmorContract(Armor item, ArmorContract content)
+        {
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.WeightClass != null)
+            {
+                item.WeightClass = ConvertArmorWeightClassContract(content.WeightClass);
+            }
+
+            if (content.Defense != null)
+            {
+                item.Defense = int.Parse(content.Defense);
+            }
+
+            if (content.InfusionSlots != null)
+            {
+                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
+            }
+
+            if (content.InfixUpgrade != null)
+            {
+                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
+            }
+
+            if (!string.IsNullOrEmpty(content.SuffixItemId))
+            {
+                item.SuffixItemId = int.Parse(content.SuffixItemId);
+            }
+
+            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
+            {
+                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
+            }
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ArmorWeightClass ConvertArmorWeightClassContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ArmorWeightClass)Enum.Parse(typeof(ArmorWeightClass), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <param name="type">The content type.</param>
+        /// <returns>An entity.</returns>
+        private static int ConvertAttributeContract(IEnumerable<ItemAttributeContract> content, string type)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(type != null);
+            var attributes = content.Where(attribute => attribute.Attribute == type).ToList();
+            return attributes.Any() ? attributes.Sum(attribute => int.Parse(attribute.Modifier)) : 0;
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="item">The entity.</param>
+        /// <param name="content">The content.</param>
+        private static void ConvertBackpackContract(Backpack item, BackpackContract content)
+        {
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.InfusionSlots != null)
+            {
+                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
+            }
+
+            if (content.InfixUpgrade != null)
+            {
+                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
+            }
+
+            if (!string.IsNullOrEmpty(content.SuffixItemId))
+            {
+                item.SuffixItemId = int.Parse(content.SuffixItemId);
+            }
+
+            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
+            {
+                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
+            }
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="item">The entity.</param>
+        /// <param name="content">The content.</param>
+        private static void ConvertBagContract(Bag item, BagContract content)
+        {
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+
+            // Set the bag visibility flag
+            if (content.NoSellOrSort != null)
+            {
+                item.NoSellOrSort = content.NoSellOrSort == "1";
+            }
+
+            // Set the bag size
+            if (content.Size != null)
+            {
+                item.Size = int.Parse(content.Size);
+            }
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="item">The entity.</param>
+        /// <param name="content">The content.</param>
+        private static void ConvertConsumableContract(Consumable item, ConsumableContract content)
+        {
+            Contract.Requires(content != null);
+            TimeSpan? duration = null;
+            string description = null;
+
+            if (!string.IsNullOrEmpty(content.Duration))
+            {
+                duration = TimeSpan.FromMilliseconds(double.Parse(content.Duration));
+            }
+
+            if (!string.IsNullOrEmpty(content.Description))
+            {
+                description = content.Description;
+            }
+
+            var food = item as Food;
+            if (food != null)
+            {
+                food.Duration = duration;
+                food.Effect = description;
+            }
+
+            var generic = item as GenericConsumable;
+            if (generic != null)
+            {
+                generic.Duration = duration;
+                generic.Effect = description;
+            }
+
+            var immediate = item as ImmediateConsumable;
+            if (immediate != null)
+            {
+                immediate.Duration = duration;
+                immediate.Effect = description;
+            }
+
+            var utility = item as Utility;
+            if (utility != null)
+            {
+                utility.Duration = duration;
+                utility.Effect = description;
+            }
+
+            var dye = item as DyeUnlocker;
+            if (dye != null && content.ColorId != null)
+            {
+                dye.ColorId = int.Parse(content.ColorId);
+            }
+
+            var recipe = item as CraftingRecipeUnlocker;
+            if (recipe != null && content.RecipeId != null)
+            {
+                recipe.RecipeId = int.Parse(content.RecipeId);
+            }
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static GameTypes ConvertGameTypesContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (GameTypes)Enum.Parse(typeof(GameTypes), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static GameTypes ConvertGameTypesContractCollection(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(GameTypes.None, (flags, flag) => flags | ConvertGameTypesContract(flag));
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="item">The entity.</param>
+        /// <param name="content">The content.</param>
+        private static void ConvertInfixUpgradeContract(IUpgrade item, InfixUpgradeContract content)
+        {
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.Buff != null)
+            {
+                item.Buff = ConvertItemBuffContract(content.Buff);
+            }
+
+            if (content.Attributes != null)
+            {
+                item.ConditionDamage = ConvertAttributeContract(content.Attributes, "ConditionDamage");
+                item.Ferocity = ConvertAttributeContract(content.Attributes, "CritDamage");
+                item.Healing = ConvertAttributeContract(content.Attributes, "Healing");
+                item.Power = ConvertAttributeContract(content.Attributes, "Power");
+                item.Precision = ConvertAttributeContract(content.Attributes, "Precision");
+                item.Toughness = ConvertAttributeContract(content.Attributes, "Toughness");
+                item.Vitality = ConvertAttributeContract(content.Attributes, "Vitality");
+            }
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static InfusionSlot ConvertInfusionSlotContract(InfusionSlotContract content)
+        {
+            Contract.Requires(content != null);
+            return new InfusionSlot
+                       {
+                           Flags = MapInfusionSlotFlags(content.Flags), 
+                           ItemId = string.IsNullOrEmpty(content.ItemId) ? (int?)null : int.Parse(content.ItemId)
+                       };
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>A collection of entities.</returns>
+        private static ICollection<InfusionSlot> ConvertInfusionSlotContractCollection(ICollection<InfusionSlotContract> content)
+        {
+            Contract.Requires(content != null);
+            var values = new List<InfusionSlot>(content.Count);
+            values.AddRange(content.Select(ConvertInfusionSlotContract));
+            return values;
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static ItemBuff ConvertItemBuffContract(ItemBuffContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<ItemBuff>() != null);
+
+            // Create a new buff object
+            var value = new ItemBuff();
+
+            // Set the skill identifier
+            if (content.SkillId != null)
+            {
+                value.SkillId = int.Parse(content.SkillId);
+            }
+
+            // Set the description
+            if (content.Description != null)
+            {
+                value.Description = content.Description;
+            }
+
+            // Return the buff object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Item ConvertItemContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Item>() != null);
+
+            // Map type discriminators to .NET types
+            var value = (Item)Activator.CreateInstance(GetItemType(content));
+
+            // Map item identifier
+            if (content.ItemId != null)
+            {
+                value.ItemId = int.Parse(content.ItemId);
+            }
+
+            // Map item name
+            value.Name = content.Name;
+
+            // Map item description
+            value.Description = content.Description;
+
+            // Map item level
+            if (content.Level != null)
+            {
+                value.Level = int.Parse(content.Level);
+            }
+
+            // Map item rarity
+            if (content.Rarity != null)
+            {
+                value.Rarity = ConvertItemRarityContract(content.Rarity);
+            }
+
+            // Map vendor value
+            if (content.VendorValue != null)
+            {
+                value.VendorValue = int.Parse(content.VendorValue);
+            }
+
+            // Map icon file identifier
+            if (content.IconFileId != null)
+            {
+                value.FileId = int.Parse(content.IconFileId);
+            }
+
+            // Map icon file signature
+            if (content.IconFileSignature != null)
+            {
+                value.FileSignature = content.IconFileSignature;
+            }
+
+            // Map item game types
+            if (content.GameTypes != null)
+            {
+                value.GameTypes = ConvertGameTypesContractCollection(content.GameTypes);
+            }
+
+            // Map item flags
+            if (content.Flags != null)
+            {
+                value.Flags = ConvertItemFlagsContractCollection(content.Flags);
+            }
+
+            // Map item restrictions
+            if (content.Restrictions != null)
+            {
+                value.Restrictions = ConvertItemRestrictionsContractCollection(content.Restrictions);
+            }
+
+            // Map default skin if item is skinnable
+            if (!string.IsNullOrEmpty(content.DefaultSkin))
+            {
+                ((ISkinnable)value).DefaultSkinId = int.Parse(content.DefaultSkin);
+            }
+
+            // Map type-specific item contracts (maximum 1 contract per type)
+            if (content.Armor != null)
+            {
+                ConvertArmorContract((Armor)value, content.Armor);
+            }
+            else if (content.Backpack != null)
+            {
+                ConvertBackpackContract((Backpack)value, content.Backpack);
+            }
+            else if (content.Bag != null)
+            {
+                ConvertBagContract((Bag)value, content.Bag);
+            }
+            else if (content.Consumable != null)
+            {
+                ConvertConsumableContract((Consumable)value, content.Consumable);
+            }
+            else if (content.Tool != null)
+            {
+                ConvertToolContract((Tool)value, content.Tool);
+            }
+            else if (content.Trinket != null)
+            {
+                ConvertTrinketContract((Trinket)value, content.Trinket);
+            }
+            else if (content.UpgradeComponent != null)
+            {
+                ConvertUpgradeComponentContract((UpgradeComponent)value, content.UpgradeComponent);
+            }
+            else if (content.Weapon != null)
+            {
+                ConvertWeaponContract((Weapon)value, content.Weapon);
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemFlags ConvertItemFlagsContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ItemFlags)Enum.Parse(typeof(ItemFlags), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemFlags ConvertItemFlagsContractCollection(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(ItemFlags.None, (flags, flag) => flags | ConvertItemFlagsContract(flag));
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRarity ConvertItemRarityContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ItemRarity)Enum.Parse(typeof(ItemRarity), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRestrictions ConvertItemRestrictionsContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), content, true);
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static ItemRestrictions ConvertItemRestrictionsContractCollection(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags | ConvertItemRestrictionsContract(flag));
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="item">The entity.</param>
+        /// <param name="content">The content.</param>
+        private static void ConvertToolContract(Tool item, ToolContract content)
+        {
+            Contract.Requires(content != null);
+            var salvageTool = item as SalvageTool;
+            if (salvageTool != null && content.Charges != null)
+            {
+                salvageTool.Charges = int.Parse(content.Charges);
+            }
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="item">The entity.</param>
+        /// <param name="content">The content.</param>
+        private static void ConvertTrinketContract(Trinket item, TrinketContract content)
+        {
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.InfusionSlots != null)
+            {
+                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
+            }
+
+            if (content.InfixUpgrade != null)
+            {
+                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
+            }
+
+            if (!string.IsNullOrEmpty(content.SuffixItemId))
+            {
+                item.SuffixItemId = int.Parse(content.SuffixItemId);
+            }
+
+            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
+            {
+                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
+            }
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="item">The entity.</param>
+        /// <param name="content">The content.</param>
+        private static void ConvertUpgradeComponentContract(UpgradeComponent item, UpgradeComponentContract content)
+        {
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.Flags != null)
+            {
+                item.UpgradeComponentFlags = MapUpgradeComponentFlags(content.Flags);
+            }
+
+            if (content.InfusionUpgradeFlags != null)
+            {
+                item.InfusionUpgradeFlags = MapInfusionSlotFlags(content.InfusionUpgradeFlags);
+            }
+
+            if (content.Bonuses != null)
+            {
+                item.Bonuses = content.Bonuses;
+            }
+
+            if (content.InfixUpgrade != null)
+            {
+                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
+            }
+
+            if (content.Suffix != null)
+            {
+                item.Suffix = content.Suffix;
+            }
+        }
+
+        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <param name="item">The entity.</param>
+        /// <param name="content">The content.</param>
+        private static void ConvertWeaponContract(Weapon item, WeaponContract content)
+        {
+            Contract.Requires(item != null);
+            Contract.Requires(content != null);
+            if (content.DamageType != null)
+            {
+                item.DamageType = ConvertWeaponDamageTypeContract(content.DamageType);
+            }
+
+            if (content.MinimumPower != null)
+            {
+                item.MinimumPower = int.Parse(content.MinimumPower);
+            }
+
+            if (content.MaximumPower != null)
+            {
+                item.MaximumPower = int.Parse(content.MaximumPower);
+            }
+
+            if (content.Defense != null)
+            {
+                item.Defense = int.Parse(content.Defense);
+            }
+
+            if (content.InfusionSlots != null)
+            {
+                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
+            }
+
+            if (content.InfixUpgrade != null)
+            {
+                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
+            }
+
+            if (!string.IsNullOrEmpty(content.SuffixItemId))
+            {
+                item.SuffixItemId = int.Parse(content.SuffixItemId);
+            }
+
+            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
+            {
+                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
+            }
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static WeaponDamageType ConvertWeaponDamageTypeContract(string content)
+        {
+            Contract.Requires(content != null);
+            return (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content, true);
+        }
+
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
@@ -542,240 +1093,6 @@ namespace GW2DotNET.V1.Items
             return typeof(UnknownWeapon);
         }
 
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertArmorContract(Armor item, ArmorContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.WeightClass != null)
-            {
-                item.WeightClass = ConvertArmorWeightClassContract(content.WeightClass);
-            }
-
-            if (content.Defense != null)
-            {
-                item.Defense = int.Parse(content.Defense);
-            }
-
-            if (content.InfusionSlots != null)
-            {
-                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
-            }
-
-            if (content.InfixUpgrade != null)
-            {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
-            }
-
-            if (!string.IsNullOrEmpty(content.SuffixItemId))
-            {
-                item.SuffixItemId = int.Parse(content.SuffixItemId);
-            }
-
-            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
-            {
-                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
-            }
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ArmorWeightClass ConvertArmorWeightClassContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (ArmorWeightClass)Enum.Parse(typeof(ArmorWeightClass), content, true);
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <param name="type">The content type.</param>
-        /// <returns>An entity.</returns>
-        private static int ConvertAttributeContract(IEnumerable<ItemAttributeContract> content, string type)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(type != null);
-            var attributes = content.Where(attribute => attribute.Attribute == type).ToList();
-            return attributes.Any() ? attributes.Sum(attribute => int.Parse(attribute.Modifier)) : 0;
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertBackpackContract(Backpack item, BackpackContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.InfusionSlots != null)
-            {
-                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
-            }
-
-            if (content.InfixUpgrade != null)
-            {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
-            }
-
-            if (!string.IsNullOrEmpty(content.SuffixItemId))
-            {
-                item.SuffixItemId = int.Parse(content.SuffixItemId);
-            }
-
-            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
-            {
-                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
-            }
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertBagContract(Bag item, BagContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-
-            // Set the bag visibility flag
-            if (content.NoSellOrSort != null)
-            {
-                item.NoSellOrSort = content.NoSellOrSort == "1";
-            }
-
-            // Set the bag size
-            if (content.Size != null)
-            {
-                item.Size = int.Parse(content.Size);
-            }
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertConsumableContract(Consumable item, ConsumableContract content)
-        {
-            Contract.Requires(content != null);
-            TimeSpan? duration = null;
-            string description = null;
-
-            if (!string.IsNullOrEmpty(content.Duration))
-            {
-                duration = TimeSpan.FromMilliseconds(double.Parse(content.Duration));
-            }
-
-            if (!string.IsNullOrEmpty(content.Description))
-            {
-                description = content.Description;
-            }
-
-            var food = item as Food;
-            if (food != null)
-            {
-                food.Duration = duration;
-                food.Effect = description;
-            }
-
-            var generic = item as GenericConsumable;
-            if (generic != null)
-            {
-                generic.Duration = duration;
-                generic.Effect = description;
-            }
-
-            var immediate = item as ImmediateConsumable;
-            if (immediate != null)
-            {
-                immediate.Duration = duration;
-                immediate.Effect = description;
-            }
-
-            var utility = item as Utility;
-            if (utility != null)
-            {
-                utility.Duration = duration;
-                utility.Effect = description;
-            }
-
-            var dye = item as DyeUnlocker;
-            if (dye != null && content.ColorId != null)
-            {
-                dye.ColorId = int.Parse(content.ColorId);
-            }
-
-            var recipe = item as CraftingRecipeUnlocker;
-            if (recipe != null && content.RecipeId != null)
-            {
-                recipe.RecipeId = int.Parse(content.RecipeId);
-            }
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static GameTypes ConvertGameTypesContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (GameTypes)Enum.Parse(typeof(GameTypes), content, true);
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static GameTypes ConvertGameTypesContractCollection(IEnumerable<string> content)
-        {
-            Contract.Requires(content != null);
-            return content.Aggregate(GameTypes.None, (flags, flag) => flags | ConvertGameTypesContract(flag));
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertInfixUpgradeContract(IUpgrade item, InfixUpgradeContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.Buff != null)
-            {
-                item.Buff = ConvertItemBuffContract(content.Buff);
-            }
-
-            if (content.Attributes != null)
-            {
-                item.ConditionDamage = ConvertAttributeContract(content.Attributes, "ConditionDamage");
-                item.Ferocity = ConvertAttributeContract(content.Attributes, "CritDamage");
-                item.Healing = ConvertAttributeContract(content.Attributes, "Healing");
-                item.Power = ConvertAttributeContract(content.Attributes, "Power");
-                item.Precision = ConvertAttributeContract(content.Attributes, "Precision");
-                item.Toughness = ConvertAttributeContract(content.Attributes, "Toughness");
-                item.Vitality = ConvertAttributeContract(content.Attributes, "Vitality");
-            }
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static InfusionSlot ConvertInfusionSlotContract(InfusionSlotContract content)
-        {
-            Contract.Requires(content != null);
-            return new InfusionSlot
-                       {
-                           Flags = MapInfusionSlotFlags(content.Flags), 
-                           ItemId = string.IsNullOrEmpty(content.ItemId) ? (int?)null : int.Parse(content.ItemId)
-                       };
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>A collection of entities.</returns>
-        private static ICollection<InfusionSlot> ConvertInfusionSlotContractCollection(ICollection<InfusionSlotContract> content)
-        {
-            Contract.Requires(content != null);
-            var values = new List<InfusionSlot>(content.Count);
-            values.AddRange(content.Select(ConvertInfusionSlotContract));
-            return values;
-        }
-
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
@@ -791,266 +1108,6 @@ namespace GW2DotNET.V1.Items
         private static InfusionSlotFlags MapInfusionSlotFlags(IEnumerable<string> content)
         {
             return content.Aggregate(InfusionSlotFlags.None, (current, flag) => current | MapInfusionSlotFlag(flag));
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static ItemBuff ConvertItemBuffContract(ItemBuffContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<ItemBuff>() != null);
-
-            // Create a new buff object
-            var value = new ItemBuff();
-
-            // Set the skill identifier
-            if (content.SkillId != null)
-            {
-                value.SkillId = int.Parse(content.SkillId);
-            }
-
-            // Set the description
-            if (content.Description != null)
-            {
-                value.Description = content.Description;
-            }
-
-            // Return the buff object
-            return value;
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Item ConvertItemContract(ItemContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Item>() != null);
-
-            // Map type discriminators to .NET types
-            var value = (Item)Activator.CreateInstance(GetItemType(content));
-
-            // Map item identifier
-            if (content.ItemId != null)
-            {
-                value.ItemId = int.Parse(content.ItemId);
-            }
-
-            // Map item name
-            value.Name = content.Name;
-
-            // Map item description
-            value.Description = content.Description;
-
-            // Map item level
-            if (content.Level != null)
-            {
-                value.Level = int.Parse(content.Level);
-            }
-
-            // Map item rarity
-            if (content.Rarity != null)
-            {
-                value.Rarity = ConvertItemRarityContract(content.Rarity);
-            }
-
-            // Map vendor value
-            if (content.VendorValue != null)
-            {
-                value.VendorValue = int.Parse(content.VendorValue);
-            }
-
-            // Map icon file identifier
-            if (content.IconFileId != null)
-            {
-                value.FileId = int.Parse(content.IconFileId);
-            }
-
-            // Map icon file signature
-            if (content.IconFileSignature != null)
-            {
-                value.FileSignature = content.IconFileSignature;
-            }
-
-            // Map item game types
-            if (content.GameTypes != null)
-            {
-                value.GameTypes = ConvertGameTypesContractCollection(content.GameTypes);
-            }
-
-            // Map item flags
-            if (content.Flags != null)
-            {
-                value.Flags = ConvertItemFlagsContractCollection(content.Flags);
-            }
-
-            // Map item restrictions
-            if (content.Restrictions != null)
-            {
-                value.Restrictions = ConvertItemRestrictionsContractCollection(content.Restrictions);
-            }
-
-            // Map default skin if item is skinnable
-            if (!string.IsNullOrEmpty(content.DefaultSkin))
-            {
-                ((ISkinnable)value).DefaultSkinId = int.Parse(content.DefaultSkin);
-            }
-
-            // Map type-specific item contracts (maximum 1 contract per type)
-            if (content.Armor != null)
-            {
-                ConvertArmorContract((Armor)value, content.Armor);
-            }
-            else if (content.Backpack != null)
-            {
-                ConvertBackpackContract((Backpack)value, content.Backpack);
-            }
-            else if (content.Bag != null)
-            {
-                ConvertBagContract((Bag)value, content.Bag);
-            }
-            else if (content.Consumable != null)
-            {
-                ConvertConsumableContract((Consumable)value, content.Consumable);
-            }
-            else if (content.Tool != null)
-            {
-                ConvertToolContract((Tool)value, content.Tool);
-            }
-            else if (content.Trinket != null)
-            {
-                ConvertTrinketContract((Trinket)value, content.Trinket);
-            }
-            else if (content.UpgradeComponent != null)
-            {
-                ConvertUpgradeComponentContract((UpgradeComponent)value, content.UpgradeComponent);
-            }
-            else if (content.Weapon != null)
-            {
-                ConvertWeaponContract((Weapon)value, content.Weapon);
-            }
-
-            return value;
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemFlags ConvertItemFlagsContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (ItemFlags)Enum.Parse(typeof(ItemFlags), content, true);
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemFlags ConvertItemFlagsContractCollection(IEnumerable<string> content)
-        {
-            Contract.Requires(content != null);
-            return content.Aggregate(ItemFlags.None, (flags, flag) => flags | ConvertItemFlagsContract(flag));
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemRarity ConvertItemRarityContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (ItemRarity)Enum.Parse(typeof(ItemRarity), content, true);
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemRestrictions ConvertItemRestrictionsContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), content, true);
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemRestrictions ConvertItemRestrictionsContractCollection(IEnumerable<string> content)
-        {
-            Contract.Requires(content != null);
-            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags | ConvertItemRestrictionsContract(flag));
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertToolContract(Tool item, ToolContract content)
-        {
-            Contract.Requires(content != null);
-            var salvageTool = item as SalvageTool;
-            if (salvageTool != null && content.Charges != null)
-            {
-                salvageTool.Charges = int.Parse(content.Charges);
-            }
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertTrinketContract(Trinket item, TrinketContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.InfusionSlots != null)
-            {
-                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
-            }
-
-            if (content.InfixUpgrade != null)
-            {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
-            }
-
-            if (!string.IsNullOrEmpty(content.SuffixItemId))
-            {
-                item.SuffixItemId = int.Parse(content.SuffixItemId);
-            }
-
-            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
-            {
-                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
-            }
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertUpgradeComponentContract(UpgradeComponent item, UpgradeComponentContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.Flags != null)
-            {
-                item.UpgradeComponentFlags = MapUpgradeComponentFlags(content.Flags);
-            }
-
-            if (content.InfusionUpgradeFlags != null)
-            {
-                item.InfusionUpgradeFlags = MapInfusionSlotFlags(content.InfusionUpgradeFlags);
-            }
-
-            if (content.Bonuses != null)
-            {
-                item.Bonuses = content.Bonuses;
-            }
-
-            if (content.InfixUpgrade != null)
-            {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
-            }
-
-            if (content.Suffix != null)
-            {
-                item.Suffix = content.Suffix;
-            }
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
@@ -1069,63 +1126,6 @@ namespace GW2DotNET.V1.Items
         {
             Contract.Requires(content != null);
             return content.Aggregate(UpgradeComponentFlags.None, (current, flag) => current | MapUpgradeComponentFlag(flag));
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertWeaponContract(Weapon item, WeaponContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.DamageType != null)
-            {
-                item.DamageType = ConvertWeaponDamageTypeContract(content.DamageType);
-            }
-
-            if (content.MinimumPower != null)
-            {
-                item.MinimumPower = int.Parse(content.MinimumPower);
-            }
-
-            if (content.MaximumPower != null)
-            {
-                item.MaximumPower = int.Parse(content.MaximumPower);
-            }
-
-            if (content.Defense != null)
-            {
-                item.Defense = int.Parse(content.Defense);
-            }
-
-            if (content.InfusionSlots != null)
-            {
-                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
-            }
-
-            if (content.InfixUpgrade != null)
-            {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
-            }
-
-            if (!string.IsNullOrEmpty(content.SuffixItemId))
-            {
-                item.SuffixItemId = int.Parse(content.SuffixItemId);
-            }
-
-            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
-            {
-                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
-            }
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static WeaponDamageType ConvertWeaponDamageTypeContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content, true);
         }
 
         /// <summary>The invariant method for this class.</summary>
