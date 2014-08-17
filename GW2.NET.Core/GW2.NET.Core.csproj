@@ -613,7 +613,7 @@
     <Compile Include="V1\Recipes\Details\RecipeDetailsRequest.cs" />
     <Compile Include="V1\Recipes\Details\RecipeDetailsServiceContract.cs" />
     <Compile Include="V1\Recipes\Discovery\RecipeDiscoveryServiceContract.cs" />
-    <Compile Include="V1\Recipes\Discovery\RecipeRequest.cs" />
+    <Compile Include="V1\Recipes\Discovery\RecipeDiscoveryRequest.cs" />
     <Compile Include="V1\Recipes\RecipeService.cs" />
     <Compile Include="V1\Skins.Json\ArmorSkinContract.cs" />
     <Compile Include="V1\Skins.Json\SkinCollectionContract.cs" />

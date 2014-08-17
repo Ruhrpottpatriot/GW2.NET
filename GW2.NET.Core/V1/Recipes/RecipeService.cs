@@ -143,7 +143,7 @@ namespace GW2DotNET.V1.Recipes
         public ICollection<int> GetRecipes()
         {
             Contract.Ensures(Contract.Result<ICollection<int>>() != null);
-            var request = new RecipeRequest();
+            var request = new RecipeDiscoveryRequest();
             var response = this.serviceClient.Send<RecipeCollectionContract>(request);
             if (response.Content == null || response.Content.Recipes == null)
             {
@@ -167,7 +167,7 @@ namespace GW2DotNET.V1.Recipes
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
         public Task<ICollection<int>> GetRecipesAsync(CancellationToken cancellationToken)
         {
-            var request = new RecipeRequest();
+            var request = new RecipeDiscoveryRequest();
             return this.serviceClient.SendAsync<RecipeCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
