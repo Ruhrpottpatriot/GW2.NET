@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GuildDetailsService.cs" company="GW2.NET Coding Team">
+// <copyright file="GuildService.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the default implementation of the guild details service.
+//   Provides the default implementation of the guild service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Guilds
@@ -19,15 +19,15 @@ namespace GW2DotNET.V1.Guilds
     using GW2DotNET.Entities.Guilds;
     using GW2DotNET.V1.Guilds.Json;
 
-    /// <summary>Provides the default implementation of the guild details service.</summary>
-    public class GuildDetailsService : IGuildDetailsService
+    /// <summary>Provides the default implementation of the guild service.</summary>
+    public class GuildService : IGuildDetailsService
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="GuildDetailsService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="GuildService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public GuildDetailsService(IServiceClient serviceClient)
+        public GuildService(IServiceClient serviceClient)
         {
             Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;

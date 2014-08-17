@@ -120,7 +120,7 @@ namespace GW2DotNET
             this.continentService = new ContinentService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
             this.fileService = new FileService(serviceClient);
-            this.guildDetailsService = new GuildDetailsService(serviceClient);
+            this.guildDetailsService = new GuildService(serviceClient);
             this.itemService = new ItemService(serviceClient);
             this.mapFloorService = new MapFloorService(serviceClient);
             this.mapNameService = new MapNameService(serviceClient);

@@ -548,7 +548,7 @@
     <Compile Include="V1\Guilds.Json\EmblemContract.cs" />
     <Compile Include="V1\Guilds.Json\GuildContract.cs" />
     <Compile Include="V1\Guilds\GuildDetailsRequest.cs" />
-    <Compile Include="V1\Guilds\GuildDetailsService.cs" />
+    <Compile Include="V1\Guilds\GuildService.cs" />
     <Compile Include="V1\Guilds\GuildDetailsServiceContract.cs" />
     <Compile Include="V1\Guilds\IGuildDetailsService.cs" />
     <Compile Include="V1\Items.Json\ArmorContract.cs" />
