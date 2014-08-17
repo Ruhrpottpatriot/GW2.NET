@@ -230,41 +230,6 @@ namespace GW2DotNET.V1.WorldVersusWorld
                 cancellationToken);
         }
 
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="type">The type discriminator.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        /// <exception cref="NotSupportedException">The exception that is thrown when the specified type is not supported.</exception>
-        private static Type GetCompetitiveMapType(string type)
-        {
-            switch (type)
-            {
-                case "RedHome":
-                    return typeof(RedBorderlands);
-                case "GreenHome":
-                    return typeof(GreenBorderlands);
-                case "BlueHome":
-                    return typeof(BlueBorderlands);
-                case "Center":
-                    return typeof(EternalBattlegrounds);
-                default:
-                    throw new NotSupportedException(string.Format("Map type '{0}' is not supported.", type));
-            }
-        }
-
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="type">The type discriminator.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetMapBonusType(string type)
-        {
-            switch (type)
-            {
-                case "bloodlust":
-                    return typeof(Bloodlust);
-                default:
-                    return typeof(UnknownMapBonus);
-            }
-        }
-
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
@@ -560,6 +525,41 @@ namespace GW2DotNET.V1.WorldVersusWorld
         {
             Contract.Requires(content != null);
             return (TeamColor)Enum.Parse(typeof(TeamColor), content, true);
+        }
+
+        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
+        /// <param name="type">The type discriminator.</param>
+        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
+        /// <exception cref="NotSupportedException">The exception that is thrown when the specified type is not supported.</exception>
+        private static Type GetCompetitiveMapType(string type)
+        {
+            switch (type)
+            {
+                case "RedHome":
+                    return typeof(RedBorderlands);
+                case "GreenHome":
+                    return typeof(GreenBorderlands);
+                case "BlueHome":
+                    return typeof(BlueBorderlands);
+                case "Center":
+                    return typeof(EternalBattlegrounds);
+                default:
+                    throw new NotSupportedException(string.Format("Map type '{0}' is not supported.", type));
+            }
+        }
+
+        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
+        /// <param name="type">The type discriminator.</param>
+        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
+        private static Type GetMapBonusType(string type)
+        {
+            switch (type)
+            {
+                case "bloodlust":
+                    return typeof(Bloodlust);
+                default:
+                    return typeof(UnknownMapBonus);
+            }
         }
 
         /// <summary>The invariant method for this class.</summary>
