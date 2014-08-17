@@ -48,8 +48,8 @@ namespace GW2DotNET
                                   IGuildDetailsService, 
                                   IItemService, 
                                   IMapService, 
-                                  IRecipeService, 
-                                  IWorldNameService, 
+                                  IRecipeService,
+                                  IWorldService, 
                                   IMatchService, 
                                   ISkinService
     {
@@ -84,7 +84,7 @@ namespace GW2DotNET
         private readonly ISkinService skinService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IWorldNameService worldNameService;
+        private readonly IWorldService worldService;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
         public ServiceManager()
@@ -112,7 +112,7 @@ namespace GW2DotNET
             this.mapService = new MapService(serviceClient);
             this.matchService = new MatchService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
-            this.worldNameService = new WorldService(serviceClient);
+            this.worldService = new WorldService(serviceClient);
             this.skinService = new SkinService(serviceClient);
         }
 
@@ -1253,7 +1253,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public IDictionary<int, World> GetWorldNames()
         {
-            return this.worldNameService.GetWorldNames();
+            return this.worldService.GetWorldNames();
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
@@ -1262,7 +1262,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public IDictionary<int, World> GetWorldNames(CultureInfo language)
         {
-            return this.worldNameService.GetWorldNames(language);
+            return this.worldService.GetWorldNames(language);
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
@@ -1270,7 +1270,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, World>> GetWorldNamesAsync()
         {
-            return this.worldNameService.GetWorldNamesAsync();
+            return this.worldService.GetWorldNamesAsync();
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
@@ -1279,7 +1279,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, World>> GetWorldNamesAsync(CancellationToken cancellationToken)
         {
-            return this.worldNameService.GetWorldNamesAsync(cancellationToken);
+            return this.worldService.GetWorldNamesAsync(cancellationToken);
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
@@ -1288,7 +1288,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language)
         {
-            return this.worldNameService.GetWorldNamesAsync(language);
+            return this.worldService.GetWorldNamesAsync(language);
         }
 
         /// <summary>Gets a collection of worlds and their localized name.</summary>
@@ -1298,7 +1298,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.worldNameService.GetWorldNamesAsync(language, cancellationToken);
+            return this.worldService.GetWorldNamesAsync(language, cancellationToken);
         }
 
         /// <summary>Gets the base URI.</summary>
@@ -1336,7 +1336,7 @@ namespace GW2DotNET
             Contract.Invariant(this.mapService != null);
             Contract.Invariant(this.matchService != null);
             Contract.Invariant(this.recipeService != null);
-            Contract.Invariant(this.worldNameService != null);
+            Contract.Invariant(this.worldService != null);
             Contract.Invariant(this.skinService != null);
         }
     }

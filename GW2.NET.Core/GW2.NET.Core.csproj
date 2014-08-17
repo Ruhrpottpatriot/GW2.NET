@@ -628,6 +628,7 @@
     <Compile Include="V1\Skins\Discovery\SkinDiscoveryRequest.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
     <Compile Include="V1\Worlds.Json\WorldNameContract.cs" />
+    <Compile Include="V1\Worlds\IWorldService.cs" />
     <Compile Include="V1\Worlds\Names\IWorldNameService.cs" />
     <Compile Include="V1\Worlds\Names\WorldNameRequest.cs" />
     <Compile Include="V1\Worlds\Names\WorldNameServiceContract.cs" />
