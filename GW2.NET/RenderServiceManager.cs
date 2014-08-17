@@ -24,14 +24,6 @@ namespace GW2DotNET
         private readonly IRenderService renderService;
 
         /// <summary>Initializes a new instance of the <see cref="RenderServiceManager"/> class.</summary>
-        /// <param name="renderService">The render service.</param>
-        public RenderServiceManager(IRenderService renderService)
-        {
-            Contract.Requires(renderService != null);
-            this.renderService = renderService;
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="RenderServiceManager"/> class.</summary>
         public RenderServiceManager()
             : this(GetDefaultServiceClient())
         {

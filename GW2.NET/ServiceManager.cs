@@ -44,7 +44,7 @@ namespace GW2DotNET
     public class ServiceManager : IBuildService, 
                                   IColorService, 
                                   IContinentService, 
-                                  IDynamicEventService,
+                                  IDynamicEventService, 
                                   IFileService, 
                                   IGuildDetailsService, 
                                   IItemService, 
@@ -97,67 +97,6 @@ namespace GW2DotNET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IWorldNameService worldNameService;
-
-        /// <summary>Initializes a new instance of the <see cref="ServiceManager"/> class.</summary>
-        /// <param name="buildService">The build service.</param>
-        /// <param name="colorService">The color service.</param>
-        /// <param name="continentService">The continent service.</param>
-        /// <param name="dynamicEventService">The dynamic event service.</param>
-        /// <param name="fileService">The file service.</param>
-        /// <param name="guildDetailsService">The guild details service.</param>
-        /// <param name="itemService">The item service.</param>
-        /// <param name="mapFloorService">The map floor service.</param>
-        /// <param name="mapNameService">The map name service.</param>
-        /// <param name="mapService">The map service.</param>
-        /// <param name="matchService">The match service.</param>
-        /// <param name="recipeService">The recipe service.</param>
-        /// <param name="worldNameService">The world name service.</param>
-        /// <param name="skinService">The skin service.</param>
-        public ServiceManager(
-            IBuildService buildService, 
-            IColorService colorService, 
-            IContinentService continentService, 
-            IDynamicEventService dynamicEventService, 
-            IFileService fileService, 
-            IGuildDetailsService guildDetailsService, 
-            IItemService itemService, 
-            IMapFloorService mapFloorService, 
-            IMapNameService mapNameService, 
-            IMapService mapService, 
-            IMatchService matchService, 
-            IRecipeService recipeService, 
-            IWorldNameService worldNameService, 
-            ISkinService skinService)
-        {
-            Contract.Requires(buildService != null);
-            Contract.Requires(colorService != null);
-            Contract.Requires(continentService != null);
-            Contract.Requires(dynamicEventService != null);
-            Contract.Requires(fileService != null);
-            Contract.Requires(guildDetailsService != null);
-            Contract.Requires(itemService != null);
-            Contract.Requires(mapFloorService != null);
-            Contract.Requires(mapNameService != null);
-            Contract.Requires(mapService != null);
-            Contract.Requires(matchService != null);
-            Contract.Requires(recipeService != null);
-            Contract.Requires(worldNameService != null);
-            Contract.Requires(skinService != null);
-            this.buildService = buildService;
-            this.colorService = colorService;
-            this.continentService = continentService;
-            this.dynamicEventService = dynamicEventService;
-            this.fileService = fileService;
-            this.guildDetailsService = guildDetailsService;
-            this.itemService = itemService;
-            this.mapFloorService = mapFloorService;
-            this.mapNameService = mapNameService;
-            this.mapService = mapService;
-            this.matchService = matchService;
-            this.recipeService = recipeService;
-            this.worldNameService = worldNameService;
-            this.skinService = skinService;
-        }
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
         public ServiceManager()

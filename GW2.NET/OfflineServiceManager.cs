@@ -38,17 +38,6 @@ namespace GW2DotNET
             this.worldNameService = new OfflineWorldService(new JsonSerializerFactory());
         }
 
-        /// <summary>Initializes a new instance of the <see cref="OfflineServiceManager"/> class.</summary>
-        /// <param name="dynamicEventRotationService">The dynamic event rotation service.</param>
-        /// <param name="worldNameService">The world name service.</param>
-        public OfflineServiceManager(IDynamicEventRotationService dynamicEventRotationService, IWorldNameService worldNameService)
-        {
-            Contract.Requires(dynamicEventRotationService != null);
-            Contract.Requires(worldNameService != null);
-            this.dynamicEventRotationService = dynamicEventRotationService;
-            this.worldNameService = worldNameService;
-        }
-
         /// <summary>Gets a collection of dynamic events and their rotating shifts</summary>
         /// <returns>A collection of dynamic events and their rotating shifts.</returns>
         public IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations()

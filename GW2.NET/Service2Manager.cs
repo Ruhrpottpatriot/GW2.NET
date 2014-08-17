@@ -41,17 +41,6 @@ namespace GW2DotNET
         }
 
         /// <summary>Initializes a new instance of the <see cref="Service2Manager"/> class.</summary>
-        /// <param name="buildService">The build service.</param>
-        /// <param name="quagganService">The quaggan service.</param>
-        public Service2Manager(IBuildService buildService, IQuagganService quagganService)
-        {
-            Contract.Requires(buildService != null);
-            Contract.Requires(quagganService != null);
-            this.buildService = buildService;
-            this.quagganService = quagganService;
-        }
-
-        /// <summary>Initializes a new instance of the <see cref="Service2Manager"/> class.</summary>
         public Service2Manager()
             : this(GetDefaultServiceClient())
         {
