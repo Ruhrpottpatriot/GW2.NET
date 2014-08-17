@@ -574,7 +574,7 @@
     <Compile Include="V1\Items\Details\ItemDetailsRequest.cs" />
     <Compile Include="V1\Items\Details\ItemDetailsServiceContract.cs" />
     <Compile Include="V1\Items\Discovery\ItemDiscoveryServiceContract.cs" />
-    <Compile Include="V1\Items\Discovery\ItemRequest.cs" />
+    <Compile Include="V1\Items\Discovery\ItemDiscoveryRequest.cs" />
     <Compile Include="V1\Items\ItemService.cs" />
     <Compile Include="V1\Maps.Json\ContinentCollectionContract.cs" />
     <Compile Include="V1\Maps.Json\ContinentContract.cs" />

@@ -142,7 +142,7 @@ namespace GW2DotNET.V1.Items
         public ICollection<int> GetItems()
         {
             Contract.Ensures(Contract.Result<ICollection<int>>() != null);
-            var request = new ItemRequest();
+            var request = new ItemDiscoveryRequest();
             var response = this.serviceClient.Send<ItemCollectionContract>(request);
             if (response.Content == null || response.Content.Items == null)
             {
@@ -166,7 +166,7 @@ namespace GW2DotNET.V1.Items
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
         public Task<ICollection<int>> GetItemsAsync(CancellationToken cancellationToken)
         {
-            var request = new ItemRequest();
+            var request = new ItemDiscoveryRequest();
             return this.serviceClient.SendAsync<ItemCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
