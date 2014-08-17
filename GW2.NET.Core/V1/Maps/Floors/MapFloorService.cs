@@ -146,27 +146,6 @@ namespace GW2DotNET.V1.Maps
                 cancellationToken);
         }
 
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetPointOfInterestType(PointOfInterestContract content)
-        {
-            Contract.Requires(content != null);
-            switch (content.Type)
-            {
-                case "unlock":
-                    return typeof(Dungeon);
-                case "landmark":
-                    return typeof(Landmark);
-                case "vista":
-                    return typeof(Vista);
-                case "waypoint":
-                    return typeof(Waypoint);
-                default:
-                    return typeof(UnknownPointOfInterest);
-            }
-        }
-
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -198,16 +177,6 @@ namespace GW2DotNET.V1.Maps
 
             // Return the floor object
             return value;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Point2D MapPoint2DContract(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 2);
-            return new Point2D(content[0], content[1]);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -358,16 +327,6 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Size2D MapSize2DContract(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 2);
-            return new Size2D(content[0], content[1]);
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
         private static SkillChallenge ConvertSkillChallengeContract(SkillChallengeContract content)
         {
             Contract.Requires(content != null);
@@ -474,6 +433,47 @@ namespace GW2DotNET.V1.Maps
             }
 
             return values;
+        }
+
+        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
+        private static Type GetPointOfInterestType(PointOfInterestContract content)
+        {
+            Contract.Requires(content != null);
+            switch (content.Type)
+            {
+                case "unlock":
+                    return typeof(Dungeon);
+                case "landmark":
+                    return typeof(Landmark);
+                case "vista":
+                    return typeof(Vista);
+                case "waypoint":
+                    return typeof(Waypoint);
+                default:
+                    return typeof(UnknownPointOfInterest);
+            }
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Point2D MapPoint2DContract(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
+            return new Point2D(content[0], content[1]);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Size2D MapSize2DContract(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
+            return new Size2D(content[0], content[1]);
         }
 
         /// <summary>The invariant method for this class.</summary>

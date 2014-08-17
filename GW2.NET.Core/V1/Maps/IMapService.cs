@@ -6,7 +6,6 @@
 //   Provides the interface for the maps service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V1.Maps
 {
     /// <summary>Provides the interface for the maps service.</summary>

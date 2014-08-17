@@ -17,7 +17,7 @@ namespace GW2DotNET.V1.Maps.Json
     {
         /// <summary>Gets or sets the dimensions of the continent.</summary>
         [DataMember(Name = "continent_dims", Order = 1)]
-        public int[] ContinentDimensions { get; set; }
+        public double[] ContinentDimensions { get; set; }
 
         /// <summary>Gets or sets a collection of floors available for this continent.</summary>
         [DataMember(Name = "floors", Order = 4)]

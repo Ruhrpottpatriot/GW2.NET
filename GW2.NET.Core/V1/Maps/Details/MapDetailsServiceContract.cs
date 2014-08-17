@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IMapService.cs" company="GW2.NET Coding Team">
+// <copyright file="MapDetailsServiceContract.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the interface for the maps service.
+//   The map service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V1.Maps
@@ -16,42 +16,62 @@ namespace GW2DotNET.V1.Maps
 
     using GW2DotNET.Entities.Maps;
 
-    /// <summary>Provides the interface for the maps service.</summary>
-    [ContractClass(typeof(MapDetailsServiceContract))]
-    public interface IMapDetailsService
+    /// <summary>The map service contract.</summary>
+    [ContractClassFor(typeof(IMapDetailsService))]
+    internal abstract class MapDetailsServiceContract : IMapDetailsService
     {
         /// <summary>Gets a map and its localized details.</summary>
         /// <param name="map">The map identifier.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Map GetMap(int map);
+        public Map GetMap(int map)
+        {
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a map and its localized details.</summary>
         /// <param name="map">The map identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Map GetMap(int map, CultureInfo language);
+        public Map GetMap(int map, CultureInfo language)
+        {
+            Contract.Requires(language != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a map and its localized details.</summary>
         /// <param name="map">The map identifier.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<Map> GetMapAsync(int map);
+        public Task<Map> GetMapAsync(int map)
+        {
+            Contract.Ensures(Contract.Result<Task<Map>>() != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a map and its localized details.</summary>
         /// <param name="map">The map identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<Map> GetMapAsync(int map, CancellationToken cancellationToken);
+        public Task<Map> GetMapAsync(int map, CancellationToken cancellationToken)
+        {
+            Contract.Ensures(Contract.Result<Task<Map>>() != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a map and its localized details.</summary>
         /// <param name="map">The map identifier.</param>
         /// <param name="language">The language.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<Map> GetMapAsync(int map, CultureInfo language);
+        public Task<Map> GetMapAsync(int map, CultureInfo language)
+        {
+            Contract.Requires(language != null);
+            Contract.Ensures(Contract.Result<Task<Map>>() != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a map and its localized details.</summary>
         /// <param name="map">The map identifier.</param>
@@ -59,41 +79,77 @@ namespace GW2DotNET.V1.Maps
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A map and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<Map> GetMapAsync(int map, CultureInfo language, CancellationToken cancellationToken);
+        public Task<Map> GetMapAsync(int map, CultureInfo language, CancellationToken cancellationToken)
+        {
+            Contract.Requires(language != null);
+            Contract.Ensures(Contract.Result<Task<Map>>() != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        IDictionary<int, Map> GetMaps();
+        public IDictionary<int, Map> GetMaps()
+        {
+            Contract.Ensures(Contract.Result<IDictionary<int, Map>>() != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        IDictionary<int, Map> GetMaps(CultureInfo language);
+        public IDictionary<int, Map> GetMaps(CultureInfo language)
+        {
+            Contract.Requires(language != null);
+            Contract.Ensures(Contract.Result<IDictionary<int, Map>>() != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<IDictionary<int, Map>> GetMapsAsync();
+        public Task<IDictionary<int, Map>> GetMapsAsync()
+        {
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, Map>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, Map>>>().Result != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<IDictionary<int, Map>> GetMapsAsync(CancellationToken cancellationToken);
+        public Task<IDictionary<int, Map>> GetMapsAsync(CancellationToken cancellationToken)
+        {
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, Map>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, Map>>>().Result != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="language">The language.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language);
+        public Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language)
+        {
+            Contract.Requires(language != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, Map>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, Map>>>().Result != null);
+            throw new System.NotImplementedException();
+        }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
         /// <param name="language">The language.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A collection of maps and their localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
-        Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken);
+        public Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken)
+        {
+            Contract.Requires(language != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, Map>>>() != null);
+            Contract.Ensures(Contract.Result<Task<IDictionary<int, Map>>>().Result != null);
+            throw new System.NotImplementedException();
+        }
     }
 }

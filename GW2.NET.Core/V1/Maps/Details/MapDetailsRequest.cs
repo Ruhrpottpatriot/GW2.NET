@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapRequest.cs" company="GW2.NET Coding Team">
+// <copyright file="MapDetailsRequest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Maps
     using GW2DotNET.Common;
 
     /// <summary>Represents a request for details regarding maps in the game.</summary>
-    public class MapRequest : IRequest, ILocalizable
+    public class MapDetailsRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
