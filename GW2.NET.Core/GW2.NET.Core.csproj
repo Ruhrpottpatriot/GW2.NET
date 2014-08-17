@@ -547,10 +547,10 @@
     <Compile Include="V1\Files\IFileService.cs" />
     <Compile Include="V1\Guilds.Json\EmblemContract.cs" />
     <Compile Include="V1\Guilds.Json\GuildContract.cs" />
-    <Compile Include="V1\Guilds\GuildDetailsRequest.cs" />
+    <Compile Include="V1\Guilds\Details\GuildDetailsRequest.cs" />
     <Compile Include="V1\Guilds\GuildService.cs" />
-    <Compile Include="V1\Guilds\GuildDetailsServiceContract.cs" />
-    <Compile Include="V1\Guilds\IGuildDetailsService.cs" />
+    <Compile Include="V1\Guilds\Details\GuildDetailsServiceContract.cs" />
+    <Compile Include="V1\Guilds\Details\IGuildDetailsService.cs" />
     <Compile Include="V1\Items.Json\ArmorContract.cs" />
     <Compile Include="V1\Items.Json\BackpackContract.cs" />
     <Compile Include="V1\Items.Json\BagContract.cs" />
