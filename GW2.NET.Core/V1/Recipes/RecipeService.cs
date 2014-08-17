@@ -182,6 +182,110 @@ namespace GW2DotNET.V1.Recipes
                 cancellationToken);
         }
 
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static ItemStack ConvertIngredientContract(IngredientContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.ItemId != null);
+            Contract.Requires(content.Count != null);
+
+            // Create a new item stack object
+            var value = new ItemStack();
+
+            // Set the item identifier
+            if (content.ItemId != null)
+            {
+                value.ItemId = int.Parse(content.ItemId);
+            }
+
+            // Set the size of the stack
+            if (content.Count != null)
+            {
+                var count = int.Parse(content.Count);
+                if (count >= 1 && count <= 255)
+                {
+                    value.Count = count;
+                }
+            }
+
+            // Return the item stack object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>A collection of entities.</returns>
+        private static ICollection<ItemStack> ConvertIngredientContractCollection(ICollection<IngredientContract> content)
+        {
+            Contract.Requires(content != null);
+            var values = new List<ItemStack>(content.Count);
+            values.AddRange(content.Select(ConvertIngredientContract));
+            return values;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Recipe ConvertRecipeContractCollection(RecipeContract content)
+        {
+            Contract.Requires(content != null);
+
+            // Map type discriminators to .NET types
+            var value = (Recipe)Activator.CreateInstance(GetRecipeType(content));
+
+            // Map recipe identifier
+            if (content.RecipeId != null)
+            {
+                value.RecipeId = int.Parse(content.RecipeId);
+            }
+
+            // Map output item identifier
+            if (content.OutputItemId != null)
+            {
+                value.OutputItemId = int.Parse(content.OutputItemId);
+            }
+
+            // Map output item count
+            if (content.OutputItemCount != null)
+            {
+                value.OutputItemCount = int.Parse(content.OutputItemCount);
+            }
+
+            // Map minimum rating
+            if (content.MinimumRating != null)
+            {
+                value.MinimumRating = int.Parse(content.MinimumRating);
+            }
+
+            // Map time to craft
+            if (content.TimeToCraft != null)
+            {
+                value.TimeToCraft = TimeSpan.FromMilliseconds(double.Parse(content.TimeToCraft));
+            }
+
+            // Map crafting disciplines
+            if (content.CraftingDisciplines != null)
+            {
+                value.CraftingDisciplines = MapCraftingDisciplines(content.CraftingDisciplines);
+            }
+
+            // Map recipe flags
+            if (content.Flags != null)
+            {
+                value.Flags = MapRecipeFlags(content.Flags);
+            }
+
+            // Map ingredients
+            if (content.Ingredients != null)
+            {
+                value.Ingredients = ConvertIngredientContractCollection(content.Ingredients);
+            }
+
+            return value;
+        }
+
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
@@ -306,110 +410,6 @@ namespace GW2DotNET.V1.Recipes
         private static CraftingDisciplines MapCraftingDisciplines(IEnumerable<string> content)
         {
             return content.Aggregate(CraftingDisciplines.None, (flags, flag) => flags | MapCraftingDiscipline(flag));
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static ItemStack ConvertIngredientContract(IngredientContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.ItemId != null);
-            Contract.Requires(content.Count != null);
-
-            // Create a new item stack object
-            var value = new ItemStack();
-
-            // Set the item identifier
-            if (content.ItemId != null)
-            {
-                value.ItemId = int.Parse(content.ItemId);
-            }
-
-            // Set the size of the stack
-            if (content.Count != null)
-            {
-                var count = int.Parse(content.Count);
-                if (count >= 1 && count <= 255)
-                {
-                    value.Count = count;
-                }
-            }
-
-            // Return the item stack object
-            return value;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>A collection of entities.</returns>
-        private static ICollection<ItemStack> ConvertIngredientContractCollection(ICollection<IngredientContract> content)
-        {
-            Contract.Requires(content != null);
-            var values = new List<ItemStack>(content.Count);
-            values.AddRange(content.Select(ConvertIngredientContract));
-            return values;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Recipe ConvertRecipeContractCollection(RecipeContract content)
-        {
-            Contract.Requires(content != null);
-
-            // Map type discriminators to .NET types
-            var value = (Recipe)Activator.CreateInstance(GetRecipeType(content));
-
-            // Map recipe identifier
-            if (content.RecipeId != null)
-            {
-                value.RecipeId = int.Parse(content.RecipeId);
-            }
-
-            // Map output item identifier
-            if (content.OutputItemId != null)
-            {
-                value.OutputItemId = int.Parse(content.OutputItemId);
-            }
-
-            // Map output item count
-            if (content.OutputItemCount != null)
-            {
-                value.OutputItemCount = int.Parse(content.OutputItemCount);
-            }
-
-            // Map minimum rating
-            if (content.MinimumRating != null)
-            {
-                value.MinimumRating = int.Parse(content.MinimumRating);
-            }
-
-            // Map time to craft
-            if (content.TimeToCraft != null)
-            {
-                value.TimeToCraft = TimeSpan.FromMilliseconds(double.Parse(content.TimeToCraft));
-            }
-
-            // Map crafting disciplines
-            if (content.CraftingDisciplines != null)
-            {
-                value.CraftingDisciplines = MapCraftingDisciplines(content.CraftingDisciplines);
-            }
-
-            // Map recipe flags
-            if (content.Flags != null)
-            {
-                value.Flags = MapRecipeFlags(content.Flags);
-            }
-
-            // Map ingredients
-            if (content.Ingredients != null)
-            {
-                value.Ingredients = ConvertIngredientContractCollection(content.Ingredients);
-            }
-
-            return value;
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
