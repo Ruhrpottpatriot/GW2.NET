@@ -551,6 +551,7 @@
     <Compile Include="V1\Guilds\GuildService.cs" />
     <Compile Include="V1\Guilds\Details\GuildDetailsServiceContract.cs" />
     <Compile Include="V1\Guilds\Details\IGuildDetailsService.cs" />
+    <Compile Include="V1\Guilds\IGuildService.cs" />
     <Compile Include="V1\Items.Json\ArmorContract.cs" />
     <Compile Include="V1\Items.Json\BackpackContract.cs" />
     <Compile Include="V1\Items.Json\BagContract.cs" />

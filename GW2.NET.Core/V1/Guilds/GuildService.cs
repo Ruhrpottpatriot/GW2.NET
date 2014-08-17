@@ -20,7 +20,7 @@ namespace GW2DotNET.V1.Guilds
     using GW2DotNET.V1.Guilds.Json;
 
     /// <summary>Provides the default implementation of the guild service.</summary>
-    public class GuildService : IGuildDetailsService
+    public class GuildService : IGuildService
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
