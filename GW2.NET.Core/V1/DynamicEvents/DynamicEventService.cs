@@ -644,96 +644,6 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static CylinderLocation MapCylinderLocation(LocationContract content)
-        {
-            Contract.Requires(content != null);
-
-            // Create a new location object
-            var value = new CylinderLocation();
-
-            // Set the center coordinates
-            if (content.Center != null && content.Center.Length == 3)
-            {
-                value.Center = ConvertPoint3DContract(content.Center);
-            }
-
-            // Set the cylinder's height
-            value.Height = content.Height;
-
-            // Set the cylinder's radius
-            value.Radius = content.Radius;
-
-            // Set the cylinder's rotation
-            value.Rotation = content.Rotation;
-
-            // Return the location object
-            return value;
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static DynamicEventFlags MapDynamicEventFlags(IEnumerable<string> content)
-        {
-            Contract.Requires(content != null);
-            var flags = DynamicEventFlags.None;
-            foreach (var value in content)
-            {
-                switch (value)
-                {
-                    case "group_event":
-                        flags |= DynamicEventFlags.GroupEvent;
-                        break;
-                    case "map_wide":
-                        flags |= DynamicEventFlags.MapWide;
-                        break;
-                    default:
-
-                        // Attempt to parse a previously unknown value, ultimately resulting in an argument exception
-                        flags |= (DynamicEventFlags)Enum.Parse(typeof(DynamicEventFlags), value ?? string.Empty, true);
-                        break;
-                }
-            }
-
-            return flags;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static DynamicEventState MapDynamicEventState(EventStateContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<DynamicEventState>() != null);
-
-            // Create a new event state object
-            var value = new DynamicEventState();
-
-            // Set the event identifier
-            if (content.EventId != null)
-            {
-                value.EventId = Guid.Parse(content.EventId);
-            }
-
-            // Set the map identifier
-            value.MapId = content.MapId;
-
-            // Set the world identifier
-            value.WorldId = content.WorldId;
-
-            // Set the state of the event
-            if (content.State != null)
-            {
-                value.State = MapEventState(content.State);
-            }
-
-            // Return the event state object
-            return value;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
         private static IDictionary<Guid, DynamicEvent> ConvertEventDetailsCollectionContract(EventDetailsCollectionContract content)
         {
@@ -836,15 +746,6 @@ namespace GW2DotNET.V1.DynamicEvents
             return values;
         }
 
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static EventState MapEventState(string content)
-        {
-            Contract.Requires(content != null);
-            return (EventState)Enum.Parse(typeof(EventState), content);
-        }
-
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
@@ -884,16 +785,6 @@ namespace GW2DotNET.V1.DynamicEvents
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Point2D MapPoint2DContract(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 2);
-            return new Point2D(content[0], content[1]);
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
         private static ICollection<Point2D> ConvertPoint2DContracts(double[][] content)
         {
@@ -911,6 +802,125 @@ namespace GW2DotNET.V1.DynamicEvents
             Contract.Requires(content != null);
             Contract.Requires(content.Length == 3);
             return new Point3D(content[0], content[1], content[2]);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Vector2D ConvertZRangeContract(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
+            return new Vector2D(content[0], content[1]);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static CylinderLocation MapCylinderLocation(LocationContract content)
+        {
+            Contract.Requires(content != null);
+
+            // Create a new location object
+            var value = new CylinderLocation();
+
+            // Set the center coordinates
+            if (content.Center != null && content.Center.Length == 3)
+            {
+                value.Center = ConvertPoint3DContract(content.Center);
+            }
+
+            // Set the cylinder's height
+            value.Height = content.Height;
+
+            // Set the cylinder's radius
+            value.Radius = content.Radius;
+
+            // Set the cylinder's rotation
+            value.Rotation = content.Rotation;
+
+            // Return the location object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static DynamicEventFlags MapDynamicEventFlags(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            var flags = DynamicEventFlags.None;
+            foreach (var value in content)
+            {
+                switch (value)
+                {
+                    case "group_event":
+                        flags |= DynamicEventFlags.GroupEvent;
+                        break;
+                    case "map_wide":
+                        flags |= DynamicEventFlags.MapWide;
+                        break;
+                    default:
+
+                        // Attempt to parse a previously unknown value, ultimately resulting in an argument exception
+                        flags |= (DynamicEventFlags)Enum.Parse(typeof(DynamicEventFlags), value ?? string.Empty, true);
+                        break;
+                }
+            }
+
+            return flags;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static DynamicEventState MapDynamicEventState(EventStateContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<DynamicEventState>() != null);
+
+            // Create a new event state object
+            var value = new DynamicEventState();
+
+            // Set the event identifier
+            if (content.EventId != null)
+            {
+                value.EventId = Guid.Parse(content.EventId);
+            }
+
+            // Set the map identifier
+            value.MapId = content.MapId;
+
+            // Set the world identifier
+            value.WorldId = content.WorldId;
+
+            // Set the state of the event
+            if (content.State != null)
+            {
+                value.State = MapEventState(content.State);
+            }
+
+            // Return the event state object
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The bit flags.</returns>
+        private static EventState MapEventState(string content)
+        {
+            Contract.Requires(content != null);
+            return (EventState)Enum.Parse(typeof(EventState), content);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Point2D MapPoint2DContract(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
+            return new Point2D(content[0], content[1]);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -982,16 +992,6 @@ namespace GW2DotNET.V1.DynamicEvents
 
             // Return the location object
             return value;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Vector2D ConvertZRangeContract(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 2);
-            return new Vector2D(content[0], content[1]);
         }
 
         /// <summary>The invariant method for this class.</summary>
