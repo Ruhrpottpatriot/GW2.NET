@@ -48,7 +48,7 @@ namespace GW2DotNET
                                   IFileService, 
                                   IGuildDetailsService, 
                                   IItemService, 
-                                  IMapService, 
+                                  IMapDetailsService, 
                                   IMapFloorService, 
                                   IMapNameService, 
                                   IRecipeService, 
@@ -84,7 +84,7 @@ namespace GW2DotNET
         private readonly IMapNameService mapNameService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IMapService mapService;
+        private readonly IMapDetailsService mapDetailsService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IMatchService matchService;
@@ -124,7 +124,7 @@ namespace GW2DotNET
             this.itemService = new ItemService(serviceClient);
             this.mapFloorService = new MapFloorService(serviceClient);
             this.mapNameService = new MapNameService(serviceClient);
-            this.mapService = new MapService(serviceClient);
+            this.mapDetailsService = new MapDetailsService(serviceClient);
             this.matchService = new MatchService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
             this.worldNameService = new WorldService(serviceClient);
@@ -759,7 +759,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Map GetMap(int map)
         {
-            return this.mapService.GetMap(map);
+            return this.mapDetailsService.GetMap(map);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -769,7 +769,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Map GetMap(int map, CultureInfo language)
         {
-            return this.mapService.GetMap(map, language);
+            return this.mapDetailsService.GetMap(map, language);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -778,7 +778,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int map)
         {
-            return this.mapService.GetMapAsync(map);
+            return this.mapDetailsService.GetMapAsync(map);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -788,7 +788,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int map, CancellationToken cancellationToken)
         {
-            return this.mapService.GetMapAsync(map, cancellationToken);
+            return this.mapDetailsService.GetMapAsync(map, cancellationToken);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -798,7 +798,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int map, CultureInfo language)
         {
-            return this.mapService.GetMapAsync(map, language);
+            return this.mapDetailsService.GetMapAsync(map, language);
         }
 
         /// <summary>Gets a map and its localized details.</summary>
@@ -809,7 +809,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<Map> GetMapAsync(int map, CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.mapService.GetMapAsync(map, language, cancellationToken);
+            return this.mapDetailsService.GetMapAsync(map, language, cancellationToken);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -935,7 +935,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public IDictionary<int, Map> GetMaps()
         {
-            return this.mapService.GetMaps();
+            return this.mapDetailsService.GetMaps();
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -944,7 +944,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public IDictionary<int, Map> GetMaps(CultureInfo language)
         {
-            return this.mapService.GetMaps(language);
+            return this.mapDetailsService.GetMaps(language);
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -952,7 +952,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Map>> GetMapsAsync()
         {
-            return this.mapService.GetMapsAsync();
+            return this.mapDetailsService.GetMapsAsync();
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -961,7 +961,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Map>> GetMapsAsync(CancellationToken cancellationToken)
         {
-            return this.mapService.GetMapsAsync(cancellationToken);
+            return this.mapDetailsService.GetMapsAsync(cancellationToken);
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -970,7 +970,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language)
         {
-            return this.mapService.GetMapsAsync(language);
+            return this.mapDetailsService.GetMapsAsync(language);
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>
@@ -980,7 +980,7 @@ namespace GW2DotNET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/maps">wiki</a> for more information.</remarks>
         public Task<IDictionary<int, Map>> GetMapsAsync(CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.mapService.GetMapsAsync(language, cancellationToken);
+            return this.mapDetailsService.GetMapsAsync(language, cancellationToken);
         }
 
         /// <summary>Gets a World versus World match and its details.</summary>
@@ -1351,7 +1351,7 @@ namespace GW2DotNET
             Contract.Invariant(this.itemService != null);
             Contract.Invariant(this.mapFloorService != null);
             Contract.Invariant(this.mapNameService != null);
-            Contract.Invariant(this.mapService != null);
+            Contract.Invariant(this.mapDetailsService != null);
             Contract.Invariant(this.matchService != null);
             Contract.Invariant(this.recipeService != null);
             Contract.Invariant(this.worldNameService != null);

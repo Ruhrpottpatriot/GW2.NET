@@ -594,7 +594,7 @@
     <Compile Include="V1\Maps\IContinentService.cs" />
     <Compile Include="V1\Maps\IMapFloorService.cs" />
     <Compile Include="V1\Maps\IMapNameService.cs" />
-    <Compile Include="V1\Maps\IMapService.cs" />
+    <Compile Include="V1\Maps\IMapDetailsService.cs" />
     <Compile Include="V1\Maps\MapFloorRequest.cs" />
     <Compile Include="V1\Maps\MapFloorService.cs" />
     <Compile Include="V1\Maps\MapFloorServiceContract.cs" />
@@ -602,8 +602,8 @@
     <Compile Include="V1\Maps\MapNameService.cs" />
     <Compile Include="V1\Maps\MapNameServiceContract.cs" />
     <Compile Include="V1\Maps\MapRequest.cs" />
-    <Compile Include="V1\Maps\MapService.cs" />
-    <Compile Include="V1\Maps\MapServiceContract.cs" />
+    <Compile Include="V1\Maps\MapDetailsService.cs" />
+    <Compile Include="V1\Maps\MapDetailsServiceContract.cs" />
     <Compile Include="V1\Recipes.Json\IngredientContract.cs" />
     <Compile Include="V1\Recipes.Json\RecipeCollectionContract.cs" />
     <Compile Include="V1\Recipes.Json\RecipeContract.cs" />

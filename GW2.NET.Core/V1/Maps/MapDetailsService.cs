@@ -21,14 +21,14 @@ namespace GW2DotNET.V1.Maps
     using GW2DotNET.V1.Maps.Json;
 
     /// <summary>Provides the default implementation of the maps service.</summary>
-    public class MapService : IMapService
+    public class MapDetailsService : IMapDetailsService
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="MapService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MapDetailsService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public MapService(IServiceClient serviceClient)
+        public MapDetailsService(IServiceClient serviceClient)
         {
             Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
