@@ -648,7 +648,7 @@
     <Compile Include="V1\WorldVersusWorld\Details\MatchDetailsRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Details\MatchDetailsServiceContract.cs" />
     <Compile Include="V1\WorldVersusWorld\Discovery\MatchDiscoveryServiceContract.cs" />
-    <Compile Include="V1\WorldVersusWorld\Discovery\MatchRequest.cs" />
+    <Compile Include="V1\WorldVersusWorld\Discovery\MatchDiscoveryRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\MatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\Names\ObjectiveNameRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Names\ObjectiveNameServiceContract.cs" />

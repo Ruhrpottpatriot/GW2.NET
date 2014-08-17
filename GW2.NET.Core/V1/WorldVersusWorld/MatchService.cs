@@ -86,7 +86,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
         public IDictionary<string, Matchup> GetMatches()
         {
-            var request = new MatchRequest();
+            var request = new MatchDiscoveryRequest();
             var response = this.serviceClient.Send<MatchupCollectionContract>(request);
             if (response.Content == null || response.Content.Matchups == null)
             {
@@ -110,7 +110,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
         public Task<IDictionary<string, Matchup>> GetMatchesAsync(CancellationToken cancellationToken)
         {
-            return this.serviceClient.SendAsync<MatchupCollectionContract>(new MatchRequest(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<MatchupCollectionContract>(new MatchDiscoveryRequest(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
