@@ -619,13 +619,13 @@
     <Compile Include="V1\Skins.Json\SkinCollectionContract.cs" />
     <Compile Include="V1\Skins.Json\SkinContract.cs" />
     <Compile Include="V1\Skins.Json\WeaponSkinContract.cs" />
-    <Compile Include="V1\Skins\ISkinDetailsService.cs" />
-    <Compile Include="V1\Skins\ISkinDiscoveryService.cs" />
+    <Compile Include="V1\Skins\Details\ISkinDetailsService.cs" />
+    <Compile Include="V1\Skins\Discovery\ISkinDiscoveryService.cs" />
     <Compile Include="V1\Skins\ISkinService.cs" />
-    <Compile Include="V1\Skins\SkinDetailsRequest.cs" />
-    <Compile Include="V1\Skins\SkinDetailsServiceContract.cs" />
-    <Compile Include="V1\Skins\SkinDiscoveryServiceContract.cs" />
-    <Compile Include="V1\Skins\SkinRequest.cs" />
+    <Compile Include="V1\Skins\Details\SkinDetailsRequest.cs" />
+    <Compile Include="V1\Skins\Details\SkinDetailsServiceContract.cs" />
+    <Compile Include="V1\Skins\Discovery\SkinDiscoveryServiceContract.cs" />
+    <Compile Include="V1\Skins\Discovery\SkinRequest.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
     <Compile Include="V1\Worlds.Json\WorldNameContract.cs" />
     <Compile Include="V1\Worlds\IWorldNameService.cs" />
@@ -683,6 +683,7 @@
     <EmbeddedResource Include="Local\Worlds\es.json" />
     <EmbeddedResource Include="Local\Worlds\fr.json" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

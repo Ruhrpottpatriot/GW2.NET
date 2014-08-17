@@ -10,7 +10,6 @@ namespace GW2DotNET.V1.Skins
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
@@ -182,124 +181,6 @@ namespace GW2DotNET.V1.Skins
                 cancellationToken);
         }
 
-        /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetArmorSkinType(ArmorSkinContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
-            {
-                case "Boots":
-                    return typeof(BootsSkin);
-                case "Coat":
-                    return typeof(CoatSkin);
-                case "Helm":
-                    return typeof(HelmSkin);
-                case "Shoulders":
-                    return typeof(ShouldersSkin);
-                case "Gloves":
-                    return typeof(GlovesSkin);
-                case "Leggings":
-                    return typeof(LeggingsSkin);
-                case "HelmAquatic":
-                    return typeof(HelmAquaticSkin);
-            }
-
-            return typeof(UnknownArmorSkin);
-        }
-
-        /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetSkinType(SkinContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
-            {
-                case "Armor":
-                    if (content.Armor == null)
-                    {
-                        return typeof(UnknownArmorSkin);
-                    }
-
-                    return GetArmorSkinType(content.Armor);
-                case "Back":
-                    return typeof(BackpackSkin);
-                case "Weapon":
-                    if (content.Weapon == null)
-                    {
-                        return typeof(UnknownArmorSkin);
-                    }
-
-                    return GetWeaponSkinType(content.Weapon);
-            }
-
-            return typeof(UnknownWeaponSkin);
-        }
-
-        /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetWeaponSkinType(WeaponSkinContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
-            {
-                case "Axe":
-                    return typeof(AxeSkin);
-                case "Dagger":
-                    return typeof(DaggerSkin);
-                case "Focus":
-                    return typeof(FocusSkin);
-                case "Greatsword":
-                    return typeof(GreatSwordSkin);
-                case "Hammer":
-                    return typeof(HammerSkin);
-                case "Harpoon":
-                    return typeof(HarpoonSkin);
-                case "LongBow":
-                    return typeof(LongBowSkin);
-                case "Mace":
-                    return typeof(MaceSkin);
-                case "Pistol":
-                    return typeof(PistolSkin);
-                case "Rifle":
-                    return typeof(RifleSkin);
-                case "Scepter":
-                    return typeof(ScepterSkin);
-                case "Shield":
-                    return typeof(ShieldSkin);
-                case "ShortBow":
-                    return typeof(ShortBowSkin);
-                case "Speargun":
-                    return typeof(SpearGunSkin);
-                case "Sword":
-                    return typeof(SwordSkin);
-                case "Staff":
-                    return typeof(StaffSkin);
-                case "Torch":
-                    return typeof(TorchSkin);
-                case "Trident":
-                    return typeof(TridentSkin);
-                case "Warhorn":
-                    return typeof(WarHornSkin);
-                case "Toy":
-                    return typeof(ToyWeaponSkin);
-                case "TwoHandedToy":
-                    return typeof(TwoHandedToyWeaponSkin);
-                case "SmallBundle":
-                    return typeof(SmallBundleSkin);
-                case "LargeBundle":
-                    return typeof(LargeBundleSkin);
-            }
-
-            return typeof(UnknownWeaponSkin);
-        }
-
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="skin">The entity.</param>
         /// <param name="content">The content.</param>
@@ -447,6 +328,124 @@ namespace GW2DotNET.V1.Skins
             {
                 skin.DamageType = ConvertWeaponDamageTypeContract(content.DamageType);
             }
+        }
+
+        /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
+        private static Type GetArmorSkinType(ArmorSkinContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
+            switch (content.Type)
+            {
+                case "Boots":
+                    return typeof(BootsSkin);
+                case "Coat":
+                    return typeof(CoatSkin);
+                case "Helm":
+                    return typeof(HelmSkin);
+                case "Shoulders":
+                    return typeof(ShouldersSkin);
+                case "Gloves":
+                    return typeof(GlovesSkin);
+                case "Leggings":
+                    return typeof(LeggingsSkin);
+                case "HelmAquatic":
+                    return typeof(HelmAquaticSkin);
+            }
+
+            return typeof(UnknownArmorSkin);
+        }
+
+        /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
+        private static Type GetSkinType(SkinContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
+            switch (content.Type)
+            {
+                case "Armor":
+                    if (content.Armor == null)
+                    {
+                        return typeof(UnknownArmorSkin);
+                    }
+
+                    return GetArmorSkinType(content.Armor);
+                case "Back":
+                    return typeof(BackpackSkin);
+                case "Weapon":
+                    if (content.Weapon == null)
+                    {
+                        return typeof(UnknownArmorSkin);
+                    }
+
+                    return GetWeaponSkinType(content.Weapon);
+            }
+
+            return typeof(UnknownWeaponSkin);
+        }
+
+        /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
+        private static Type GetWeaponSkinType(WeaponSkinContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<Type>() != null);
+            switch (content.Type)
+            {
+                case "Axe":
+                    return typeof(AxeSkin);
+                case "Dagger":
+                    return typeof(DaggerSkin);
+                case "Focus":
+                    return typeof(FocusSkin);
+                case "Greatsword":
+                    return typeof(GreatSwordSkin);
+                case "Hammer":
+                    return typeof(HammerSkin);
+                case "Harpoon":
+                    return typeof(HarpoonSkin);
+                case "LongBow":
+                    return typeof(LongBowSkin);
+                case "Mace":
+                    return typeof(MaceSkin);
+                case "Pistol":
+                    return typeof(PistolSkin);
+                case "Rifle":
+                    return typeof(RifleSkin);
+                case "Scepter":
+                    return typeof(ScepterSkin);
+                case "Shield":
+                    return typeof(ShieldSkin);
+                case "ShortBow":
+                    return typeof(ShortBowSkin);
+                case "Speargun":
+                    return typeof(SpearGunSkin);
+                case "Sword":
+                    return typeof(SwordSkin);
+                case "Staff":
+                    return typeof(StaffSkin);
+                case "Torch":
+                    return typeof(TorchSkin);
+                case "Trident":
+                    return typeof(TridentSkin);
+                case "Warhorn":
+                    return typeof(WarHornSkin);
+                case "Toy":
+                    return typeof(ToyWeaponSkin);
+                case "TwoHandedToy":
+                    return typeof(TwoHandedToyWeaponSkin);
+                case "SmallBundle":
+                    return typeof(SmallBundleSkin);
+                case "LargeBundle":
+                    return typeof(LargeBundleSkin);
+            }
+
+            return typeof(UnknownWeaponSkin);
         }
 
         /// <summary>The invariant method for this class.</summary>
