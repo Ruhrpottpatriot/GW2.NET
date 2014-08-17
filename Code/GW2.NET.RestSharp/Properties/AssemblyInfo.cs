@@ -8,19 +8,21 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GW2.NET.RestSharp")]
-[assembly: AssemblyDescription("A RestSharp-specific service implementation for GW2.NET")]
+[assembly: AssemblyTitle("GW2.NET RestSharp Client Assembly")]
+[assembly: AssemblyDescription("RestSharp-based service client implementation for GW2.NET")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("GW2.NET Coding Team")]
-[assembly: AssemblyProduct("GW2.NET.RestSharp")]
+[assembly: AssemblyProduct("GW2.NET")]
 [assembly: AssemblyCopyright("Copyright ©  2013 - 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+[assembly: NeutralResourcesLanguage("en")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
