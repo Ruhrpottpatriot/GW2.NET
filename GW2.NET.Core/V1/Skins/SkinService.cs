@@ -142,7 +142,7 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
         public ICollection<int> GetSkins()
         {
-            var request = new SkinRequest();
+            var request = new SkinDiscoveryRequest();
             var response = this.serviceClient.Send<SkinCollectionContract>(request);
             if (response.Content == null || response.Content.Skins == null)
             {
@@ -166,7 +166,7 @@ namespace GW2DotNET.V1.Skins
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
         public Task<ICollection<int>> GetSkinsAsync(CancellationToken cancellationToken)
         {
-            var request = new SkinRequest();
+            var request = new SkinDiscoveryRequest();
             return this.serviceClient.SendAsync<SkinCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
