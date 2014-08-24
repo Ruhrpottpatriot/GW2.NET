@@ -774,9 +774,9 @@
       <shift>23:30:00+00:00</shift>
     </shifts>
   </rotation>
-  <!-- Stop the skritt from stealing Zephyrite crystals and returning them to their queen. -->
+  <!-- Race against the Inquest to collect crystal shards for the Zephyrites. -->
   <rotation>
-    <event_id>23555C7E-00B5-4648-A5DB-396BD1D5CC86</event_id>
+    <event_id>E388CDED-0545-4041-A843-AECCA72E91F3</event_id>
     <shifts>
       <shift>00:00:00+00:00</shift>
       <shift>00:15:00+00:00</shift>
