@@ -2304,6 +2304,36 @@
       <shift>23:55:00+00:00</shift>
     </shifts>
   </rotation>
+  <!-- Defeat the dust monster! -->
+  <rotation>
+    <event_id>6A5E433A-4DC2-4BF5-B723-711F9E194D61</event_id>
+    <shifts>
+      <shift>00:55:00+00:00</shift>
+      <shift>01:55:00+00:00</shift>
+      <shift>02:55:00+00:00</shift>
+      <shift>03:55:00+00:00</shift>
+      <shift>04:55:00+00:00</shift>
+      <shift>05:55:00+00:00</shift>
+      <shift>06:55:00+00:00</shift>
+      <shift>07:55:00+00:00</shift>
+      <shift>08:55:00+00:00</shift>
+      <shift>09:55:00+00:00</shift>
+      <shift>10:55:00+00:00</shift>
+      <shift>11:55:00+00:00</shift>
+      <shift>12:55:00+00:00</shift>
+      <shift>13:55:00+00:00</shift>
+      <shift>14:55:00+00:00</shift>
+      <shift>15:55:00+00:00</shift>
+      <shift>16:55:00+00:00</shift>
+      <shift>17:55:00+00:00</shift>
+      <shift>18:55:00+00:00</shift>
+      <shift>19:55:00+00:00</shift>
+      <shift>20:55:00+00:00</shift>
+      <shift>21:55:00+00:00</shift>
+      <shift>22:55:00+00:00</shift>
+      <shift>23:55:00+00:00</shift>
+    </shifts>
+  </rotation>
 </rotations>
 
 
