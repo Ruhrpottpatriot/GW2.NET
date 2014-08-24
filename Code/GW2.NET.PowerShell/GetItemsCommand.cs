@@ -10,6 +10,7 @@ namespace GW2DotNET.PS.Commands
 {
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Management.Automation;
     using System.Net;
 
@@ -54,11 +55,17 @@ namespace GW2DotNET.PS.Commands
 
         /// <summary>Writes a collection of item details for the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
-        private void WriteItemDetails(IEnumerable<int> identifiers)
+        private void WriteItemDetails(IList<int> identifiers)
         {
             var culture = this.Culture ?? CultureInfo.GetCultureInfo("en");
-            foreach (var id in identifiers)
+            var progressRecord = new ProgressRecord(0, "Retrieving item details.", string.Format("Item 1 of {0}", identifiers.Count)) { RecordType = ProgressRecordType.Processing };
+            for (int i = 0; i < identifiers.Count; i++)
             {
+                var id = identifiers[i];
+                progressRecord.CurrentOperation = string.Format("/v1/item_details.json?lang={1}&item_id={0}", id, culture.TwoLetterISOLanguageName);
+                progressRecord.StatusDescription = string.Format("Item {0} of {1}", i + 1, identifiers.Count);
+                progressRecord.PercentComplete = (int)(((double)i / (double)identifiers.Count) * 100D);
+                this.WriteProgress(progressRecord);
                 try
                 {
                     this.WriteObject(this.service.GetItemDetails(id, culture));
@@ -72,6 +79,8 @@ namespace GW2DotNET.PS.Commands
                     this.ThrowTerminatingError(new ErrorRecord(webException, "ConnectionError", ErrorCategory.ConnectionError, id));
                 }
             }
+            progressRecord.RecordType = ProgressRecordType.Completed;
+            this.WriteProgress(progressRecord);
         }
 
         /// <summary>Writes a collection of identifiers of discovered items.</summary>
