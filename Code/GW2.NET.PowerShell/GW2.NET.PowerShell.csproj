@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GetBuildCommand.cs" />
+    <Compile Include="GetItemsCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceCmdlet.cs" />
   </ItemGroup>
