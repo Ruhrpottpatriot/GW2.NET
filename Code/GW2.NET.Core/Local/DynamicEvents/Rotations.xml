@@ -1764,6 +1764,60 @@
       <shift>23:25:00+00:00</shift>
     </shifts>
   </rotation>
+  <!-- Clear out the Mordrem infesting the ley line hub. -->
+  <rotation>
+    <event_id>C59BF321-98AF-416A-831C-FAA61AB07BAE</event_id>
+    <shifts>
+      <shift>00:10:00+00:00</shift>
+      <shift>00:25:00+00:00</shift>
+      <shift>01:10:00+00:00</shift>
+      <shift>01:25:00+00:00</shift>
+      <shift>02:10:00+00:00</shift>
+      <shift>02:25:00+00:00</shift>
+      <shift>03:10:00+00:00</shift>
+      <shift>03:25:00+00:00</shift>
+      <shift>04:10:00+00:00</shift>
+      <shift>04:25:00+00:00</shift>
+      <shift>05:10:00+00:00</shift>
+      <shift>05:25:00+00:00</shift>
+      <shift>06:10:00+00:00</shift>
+      <shift>06:25:00+00:00</shift>
+      <shift>07:10:00+00:00</shift>
+      <shift>07:25:00+00:00</shift>
+      <shift>08:10:00+00:00</shift>
+      <shift>08:25:00+00:00</shift>
+      <shift>09:10:00+00:00</shift>
+      <shift>09:25:00+00:00</shift>
+      <shift>10:10:00+00:00</shift>
+      <shift>10:25:00+00:00</shift>
+      <shift>11:10:00+00:00</shift>
+      <shift>11:25:00+00:00</shift>
+      <shift>12:10:00+00:00</shift>
+      <shift>12:25:00+00:00</shift>
+      <shift>13:10:00+00:00</shift>
+      <shift>13:25:00+00:00</shift>
+      <shift>14:10:00+00:00</shift>
+      <shift>14:25:00+00:00</shift>
+      <shift>15:10:00+00:00</shift>
+      <shift>15:25:00+00:00</shift>
+      <shift>16:10:00+00:00</shift>
+      <shift>16:25:00+00:00</shift>
+      <shift>17:10:00+00:00</shift>
+      <shift>17:25:00+00:00</shift>
+      <shift>18:10:00+00:00</shift>
+      <shift>18:25:00+00:00</shift>
+      <shift>19:10:00+00:00</shift>
+      <shift>19:25:00+00:00</shift>
+      <shift>20:10:00+00:00</shift>
+      <shift>20:25:00+00:00</shift>
+      <shift>21:10:00+00:00</shift>
+      <shift>21:25:00+00:00</shift>
+      <shift>22:10:00+00:00</shift>
+      <shift>22:25:00+00:00</shift>
+      <shift>23:10:00+00:00</shift>
+      <shift>23:25:00+00:00</shift>
+    </shifts>
+  </rotation>
 </rotations>
 
 
