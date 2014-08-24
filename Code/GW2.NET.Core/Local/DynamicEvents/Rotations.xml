@@ -1476,6 +1476,84 @@
       <shift>23:35:00+00:00</shift>
     </shifts>
   </rotation>
+  <!-- Slay the colocal queen. -->
+  <rotation>
+    <event_id>611BE70A-9666-4039-A96B-2E3A12DD12E4</event_id>
+    <shifts>
+      <shift>00:05:00+00:00</shift>
+      <shift>00:20:00+00:00</shift>
+      <shift>00:35:00+00:00</shift>
+      <shift>01:05:00+00:00</shift>
+      <shift>01:20:00+00:00</shift>
+      <shift>01:35:00+00:00</shift>
+      <shift>02:05:00+00:00</shift>
+      <shift>02:20:00+00:00</shift>
+      <shift>02:35:00+00:00</shift>
+      <shift>03:05:00+00:00</shift>
+      <shift>03:20:00+00:00</shift>
+      <shift>03:35:00+00:00</shift>
+      <shift>04:05:00+00:00</shift>
+      <shift>04:20:00+00:00</shift>
+      <shift>04:35:00+00:00</shift>
+      <shift>05:05:00+00:00</shift>
+      <shift>05:20:00+00:00</shift>
+      <shift>05:35:00+00:00</shift>
+      <shift>06:05:00+00:00</shift>
+      <shift>06:20:00+00:00</shift>
+      <shift>06:35:00+00:00</shift>
+      <shift>07:05:00+00:00</shift>
+      <shift>07:20:00+00:00</shift>
+      <shift>07:35:00+00:00</shift>
+      <shift>08:05:00+00:00</shift>
+      <shift>08:20:00+00:00</shift>
+      <shift>08:35:00+00:00</shift>
+      <shift>09:05:00+00:00</shift>
+      <shift>09:20:00+00:00</shift>
+      <shift>09:35:00+00:00</shift>
+      <shift>10:05:00+00:00</shift>
+      <shift>10:20:00+00:00</shift>
+      <shift>10:35:00+00:00</shift>
+      <shift>11:05:00+00:00</shift>
+      <shift>11:20:00+00:00</shift>
+      <shift>11:35:00+00:00</shift>
+      <shift>12:05:00+00:00</shift>
+      <shift>12:20:00+00:00</shift>
+      <shift>12:35:00+00:00</shift>
+      <shift>13:05:00+00:00</shift>
+      <shift>13:20:00+00:00</shift>
+      <shift>13:35:00+00:00</shift>
+      <shift>14:05:00+00:00</shift>
+      <shift>14:20:00+00:00</shift>
+      <shift>14:35:00+00:00</shift>
+      <shift>15:05:00+00:00</shift>
+      <shift>15:20:00+00:00</shift>
+      <shift>15:35:00+00:00</shift>
+      <shift>16:05:00+00:00</shift>
+      <shift>16:20:00+00:00</shift>
+      <shift>16:35:00+00:00</shift>
+      <shift>17:05:00+00:00</shift>
+      <shift>17:20:00+00:00</shift>
+      <shift>17:35:00+00:00</shift>
+      <shift>18:05:00+00:00</shift>
+      <shift>18:20:00+00:00</shift>
+      <shift>18:35:00+00:00</shift>
+      <shift>19:05:00+00:00</shift>
+      <shift>19:20:00+00:00</shift>
+      <shift>19:35:00+00:00</shift>
+      <shift>20:05:00+00:00</shift>
+      <shift>20:20:00+00:00</shift>
+      <shift>20:35:00+00:00</shift>
+      <shift>21:05:00+00:00</shift>
+      <shift>21:20:00+00:00</shift>
+      <shift>21:35:00+00:00</shift>
+      <shift>22:05:00+00:00</shift>
+      <shift>22:20:00+00:00</shift>
+      <shift>22:35:00+00:00</shift>
+      <shift>23:05:00+00:00</shift>
+      <shift>23:20:00+00:00</shift>
+      <shift>23:35:00+00:00</shift>
+    </shifts>
+  </rotation>
 </rotations>
 
 
