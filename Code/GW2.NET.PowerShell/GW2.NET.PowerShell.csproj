@@ -43,7 +43,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetBuildCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceCmdlet.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GW2.NET.Core\GW2.NET.Core.csproj">
