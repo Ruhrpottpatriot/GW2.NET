@@ -16,7 +16,7 @@ namespace GW2DotNET.PS.Commands
     using GW2DotNET.Common.Serializers;
 
     /// <summary>Provides the base class for cmdlets that depend on a remote service.</summary>
-    public abstract class ServiceCmdlet : Cmdlet
+    public abstract class ServiceCmdlet : PSCmdlet
     {
         /// <summary>The cancellation token source.</summary>
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();

@@ -12,13 +12,20 @@ namespace GW2DotNET.PS.Commands
     using GW2DotNET.Common;
     using GW2DotNET.V1.DynamicEvents;
 
-    [Cmdlet(VerbsCommon.Get, "EventNames")]
+    [Cmdlet(VerbsCommon.Get, "EventNames", DefaultParameterSetName = "All")]
     public class GetEventNamesCommand : ServiceCmdlet
     {
         private IDynamicEventNameService service;
 
         [Parameter]
         public CultureInfo Culture { get; set; }
+
+
+        [Parameter(Position = 0, ParameterSetName = "ById")]
+        public Guid[] Id { get; set; }
+
+        [Parameter(Position = 0, ParameterSetName = "ByName")]
+        public string[] Name { get; set; }
 
         /// <summary>Provides a one-time, preprocessing functionality for the cmdlet.</summary>
         /// <param name="serviceClient">A service client.</param>
@@ -38,6 +45,16 @@ namespace GW2DotNET.PS.Commands
             {
                 // Get the event names from the service
                 var dynamicEventNames = this.service.GetDynamicEventNames(culture);
+
+                switch (ParameterSetName)
+                {
+                    case "ById":
+                        dynamicEventNames = dynamicEventNames.Where(pair => this.Id.Contains(pair.Key)).ToDictionary(pair => pair.Key, pair => pair.Value);
+                        break;
+                    case "ByName":
+                        dynamicEventNames = dynamicEventNames.Where(pair => this.Name.Contains(pair.Value.Name, StringComparer.Create(culture, true))).ToDictionary(pair => pair.Key, pair => pair.Value);
+                        break;
+                }
 
                 // Write the collection to the pipeline
                 this.WriteObject(dynamicEventNames);
