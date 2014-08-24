@@ -8,13 +8,14 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.PS.Commands
 {
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
-    using System.Linq;
     using System.Management.Automation;
     using System.Net;
 
     using GW2DotNET.Common;
+    using GW2DotNET.Entities.Builds;
     using GW2DotNET.V1.Items;
 
     /// <summary>Represents the Get-Item command.</summary>
@@ -23,6 +24,10 @@ namespace GW2DotNET.PS.Commands
     {
         /// <summary>The service.</summary>
         private IItemService service;
+
+        /// <summary>Gets or sets the build identifier.</summary>
+        [Parameter]
+        public Build Build { get; set; }
 
         /// <summary>Gets or sets the culture.</summary>
         [Parameter(Position = 1)]
@@ -57,28 +62,55 @@ namespace GW2DotNET.PS.Commands
         /// <param name="identifiers">The identifiers.</param>
         private void WriteItemDetails(IList<int> identifiers)
         {
+            // Configure the language (default: English)
             var culture = this.Culture ?? CultureInfo.GetCultureInfo("en");
-            var progressRecord = new ProgressRecord(0, "Retrieving item details.", string.Format("Item 1 of {0}", identifiers.Count)) { RecordType = ProgressRecordType.Processing };
-            for (int i = 0; i < identifiers.Count; i++)
+
+            // Configure the build number (default: 0)
+            var buildId = this.Build != null ? this.Build.BuildId : 0;
+
+            // Configure a progress object for the specified number of items
+            var progressRecord = new ProgressRecord(0, "Retrieving item details.", string.Format("Item 1 of {0}", identifiers.Count))
+                {
+                    RecordType = ProgressRecordType.Processing
+                };
+
+            // Process each identifier
+            for (var i = 0; i < identifiers.Count; i++)
             {
+                // Get the current identifier
                 var id = identifiers[i];
+
+                // Update the progress bar
                 progressRecord.CurrentOperation = string.Format("/v1/item_details.json?lang={1}&item_id={0}", id, culture.TwoLetterISOLanguageName);
                 progressRecord.StatusDescription = string.Format("Item {0} of {1}", i + 1, identifiers.Count);
                 progressRecord.PercentComplete = (int)(((double)i / (double)identifiers.Count) * 100D);
                 this.WriteProgress(progressRecord);
+
+                // Try to get item details for the current identifier
                 try
                 {
-                    this.WriteObject(this.service.GetItemDetails(id, culture));
+                    // Get the item details from the service
+                    var item = this.service.GetItemDetails(id, culture);
+
+                    // Configure a build that uniquely identifies the item revision
+                    item.BuildId = buildId;
+
+                    // Write the object to the pipeline
+                    this.WriteObject(item);
                 }
                 catch (ServiceException serviceException)
                 {
+                    // Write a non-fatal error that indicates a service error
                     this.WriteError(new ErrorRecord(serviceException, "ItemNotFound", ErrorCategory.ObjectNotFound, id));
                 }
                 catch (WebException webException)
                 {
+                    // Write a fatal error that indicates a connection error
                     this.ThrowTerminatingError(new ErrorRecord(webException, "ConnectionError", ErrorCategory.ConnectionError, id));
                 }
             }
+
+            // Update the progress bar
             progressRecord.RecordType = ProgressRecordType.Completed;
             this.WriteProgress(progressRecord);
         }
@@ -86,7 +118,25 @@ namespace GW2DotNET.PS.Commands
         /// <summary>Writes a collection of identifiers of discovered items.</summary>
         private void WriteItemsDiscovered()
         {
-            this.WriteObject(this.service.GetItems());
+            // Try to get discovered item identifiers
+            try
+            {
+                // Get the item identifiers from the service
+                var items = this.service.GetItems();
+
+                // Write the collection to the pipeline
+                this.WriteObject(items);
+            }
+            catch (ServiceException serviceException)
+            {
+                // Write a fatal error that indicates a service error
+                this.ThrowTerminatingError(new ErrorRecord(serviceException, "ServiceError", ErrorCategory.ResourceUnavailable, null));
+            }
+            catch (WebException webException)
+            {
+                // Write a fatal error that indicates a connection error
+                this.ThrowTerminatingError(new ErrorRecord(webException, "ConnectionError", ErrorCategory.ConnectionError, null));
+            }
         }
     }
 }
