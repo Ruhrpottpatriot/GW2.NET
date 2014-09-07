@@ -242,7 +242,8 @@ namespace GW2DotNET
             Contract.Ensures(Contract.Result<IServiceClient>() != null);
             var baseUri = GetBaseUri();
             var serializerFactory = new DataContractJsonSerializerFactory();
-            return new ServiceClient(baseUri, serializerFactory, serializerFactory);
+            var gzipInflator = new GzipInflator();
+            return new ServiceClient(baseUri, serializerFactory, serializerFactory, gzipInflator);
         }
 
         /// <summary>The invariant method for this class.</summary>

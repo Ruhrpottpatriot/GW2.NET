@@ -93,7 +93,8 @@ namespace GW2DotNET
             var baseUri = GetBaseUri();
             var successSerializerFactory = new BinarySerializerFactory();
             var errorSerializerFactory = new DataContractJsonSerializerFactory();
-            return new ServiceClient(baseUri, successSerializerFactory, errorSerializerFactory);
+            var gzipInflator = new GzipInflator();
+            return new ServiceClient(baseUri, successSerializerFactory, errorSerializerFactory, gzipInflator);
         }
 
         /// <summary>The invariant method for this class.</summary>

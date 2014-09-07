@@ -35,7 +35,8 @@ namespace GW2DotNET.PS.Commands
         {
             var baseUrl = new Uri("https://api.guildwars2.com", UriKind.Absolute);
             var serializerFactory = new DataContractJsonSerializerFactory();
-            var serviceClient = new ServiceClient(baseUrl, serializerFactory, serializerFactory);
+            var gzipInflator = new GzipInflator();
+            var serviceClient = new ServiceClient(baseUrl, serializerFactory, serializerFactory, gzipInflator);
             this.BeginProcessing(serviceClient);
             base.BeginProcessing();
         }

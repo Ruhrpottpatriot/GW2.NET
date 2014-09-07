@@ -12,6 +12,7 @@ namespace GW2DotNET.Common
     using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Globalization;
+    using System.IO;
     using System.IO.Compression;
     using System.Linq;
     using System.Net;
@@ -32,20 +33,25 @@ namespace GW2DotNET.Common
         /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
         private readonly ISerializerFactory successSerializerFactory;
 
+        private readonly IConverter<Stream, Stream> gzipInflator;
+
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
         /// <param name="baseUri">The base URI.</param>
         /// <param name="successSerializerFactory">The serializer factory.</param>
-        /// <param name="errorSerializerFactory">The error Serializer Factory.</param>
-        public ServiceClient(Uri baseUri, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory)
+        /// <param name="errorSerializerFactory">The error serializer Factory.</param>
+        /// <param name="gzipInflator">The GZIP inflator.</param>
+        public ServiceClient(Uri baseUri, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(baseUri != null);
             Contract.Requires(baseUri.IsAbsoluteUri);
             Contract.Requires(successSerializerFactory != null);
             Contract.Requires(errorSerializerFactory != null);
+            Contract.Requires(gzipInflator != null);
             Contract.Ensures(this.baseUri.IsAbsoluteUri);
             this.baseUri = baseUri;
             this.successSerializerFactory = successSerializerFactory;
             this.errorSerializerFactory = errorSerializerFactory;
+            this.gzipInflator = gzipInflator;
         }
 
         /// <summary>Sends a request and returns the response.</summary>
@@ -70,10 +76,10 @@ namespace GW2DotNET.Common
             {
                 if (!response.StatusCode.IsSuccessStatusCode())
                 {
-                    OnError(response, this.errorSerializerFactory);
+                    OnError(response, this.errorSerializerFactory, this.gzipInflator);
                 }
 
-                return OnSuccess<TResult>(response, this.successSerializerFactory);
+                return OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);
             }
         }
 
@@ -112,10 +118,10 @@ namespace GW2DotNET.Common
                     {
                         if (!response.StatusCode.IsSuccessStatusCode())
                         {
-                            OnError(response, this.errorSerializerFactory);
+                            OnError(response, this.errorSerializerFactory, this.gzipInflator);
                         }
 
-                        return OnSuccess<TResult>(response, this.successSerializerFactory);
+                        return OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);
                     }
                 },
                 cancellationToken);
@@ -159,9 +165,10 @@ namespace GW2DotNET.Common
         /// <summary>Infrastructure. Deserializes the response stream.</summary>
         /// <param name="response">The response.</param>
         /// <param name="serializerFactory">The serializer factory.</param>
+        /// <param name="gzipInflator">The GZIP inflator.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        private static TResult DeserializeResponse<TResult>(HttpWebResponse response, ISerializerFactory serializerFactory)
+        private static TResult DeserializeResponse<TResult>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
@@ -184,7 +191,7 @@ namespace GW2DotNET.Common
                 var compressed = contentEncoding.Equals("gzip", StringComparison.OrdinalIgnoreCase);
                 if (compressed)
                 {
-                    stream = new GZipStream(stream, CompressionMode.Decompress);
+                    stream = gzipInflator.Convert(stream);
                 }
             }
 
@@ -256,13 +263,14 @@ namespace GW2DotNET.Common
         /// <summary>Infrastructure. Post-processes a response object.</summary>
         /// <param name="response">The raw response.</param>
         /// <param name="serializerFactory">The response content serializer factory.</param>
-        private static void OnError(HttpWebResponse response, ISerializerFactory serializerFactory)
+        /// <param name="gzipInflator">The GZIP inflator.</param>
+        private static void OnError(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
 
             // Get the response content
-            var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory);
+            var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory, gzipInflator);
 
             // Get the error description, or null if none was returned
             var errorMessage = errorResult != null ? errorResult.Text : null;
@@ -274,9 +282,10 @@ namespace GW2DotNET.Common
         /// <summary>Infrastructure. Post-processes a response object.</summary>
         /// <param name="response">The raw response.</param>
         /// <param name="serializerFactory">The response content serializer factory.</param>
+        /// <param name="gzipInflator">The GZIP inflator.</param>
         /// <typeparam name="T">The type of the response content.</typeparam>
         /// <returns>A processed response object.</returns>
-        private static IResponse<T> OnSuccess<T>(HttpWebResponse response, ISerializerFactory serializerFactory)
+        private static IResponse<T> OnSuccess<T>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
@@ -287,7 +296,7 @@ namespace GW2DotNET.Common
             var value = new Response<T>();
 
             // Set the deserialized response content
-            value.Content = DeserializeResponse<T>(response, serializerFactory);
+            value.Content = DeserializeResponse<T>(response, serializerFactory, gzipInflator);
 
             // Set the 'Date' header
             var date = response.Headers["Date"];

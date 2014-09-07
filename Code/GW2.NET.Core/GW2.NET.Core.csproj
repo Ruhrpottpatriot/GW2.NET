@@ -223,7 +223,10 @@
     <Compile Include="Common\ConverterAttribute.cs" />
     <Compile Include="Common\ConverterForAttribute.cs" />
     <Compile Include="Common\ErrorResult.cs" />
+    <Compile Include="Common\GzipCompressor.cs" />
+    <Compile Include="Common\GzipInflator.cs" />
     <Compile Include="Common\HttpStatusCodeExtensions.cs" />
+    <Compile Include="Common\IConverter.cs" />
     <Compile Include="Common\ILocalizable.cs" />
     <Compile Include="Common\IRenderable.cs" />
     <Compile Include="Common\IRequest.cs" />
