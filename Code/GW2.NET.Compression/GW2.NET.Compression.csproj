@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}</ProjectGuid>
+    <ProjectGuid>{C3BE9D66-2330-4544-8B12-16898CCF20E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GW2DotNET</RootNamespace>
-    <AssemblyName>GW2.NET</AssemblyName>
+    <RootNamespace>GW2DotNET.Compression</RootNamespace>
+    <AssemblyName>GW2.NET.Compression</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -43,24 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OfflineServiceManager.cs" />
+    <Compile Include="GzipCompressor.cs" />
+    <Compile Include="GzipInflator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenderServiceManager.cs" />
-    <Compile Include="Service2Manager.cs" />
-    <Compile Include="ServiceManager.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GW2.NET.Compression\GW2.NET.Compression.csproj">
-      <Project>{c3be9d66-2330-4544-8b12-16898ccf20e0}</Project>
-      <Name>GW2.NET.Compression</Name>
-    </ProjectReference>
     <ProjectReference Include="..\GW2.NET.Core\GW2.NET.Core.csproj">
-      <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
+      <Project>{05F3D999-0470-4123-8C80-AF4AC2385E7C}</Project>
       <Name>GW2.NET.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\GW2.NET.Newtonsoft\GW2.NET.Newtonsoft.csproj">
-      <Project>{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}</Project>
-      <Name>GW2.NET.Newtonsoft</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

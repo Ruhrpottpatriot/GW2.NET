@@ -16,9 +16,9 @@ namespace GW2DotNET
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Compression;
     using GW2DotNET.Entities.Builds;
     using GW2DotNET.Entities.Quaggans;
+    using GW2DotNET.Pcl.Compression;
     using GW2DotNET.V2.Builds;
     using GW2DotNET.V2.Common;
     using GW2DotNET.V2.Quaggans;

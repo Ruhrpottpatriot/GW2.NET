@@ -14,6 +14,7 @@ namespace GW2DotNET.PS.Commands
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
+    using GW2DotNET.Pcl.Compression;
 
     /// <summary>Provides the base class for cmdlets that depend on a remote service.</summary>
     public abstract class ServiceCmdlet : PSCmdlet

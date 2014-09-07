@@ -9,11 +9,9 @@
 namespace GW2DotNET.Common
 {
     using System;
-    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.IO;
-    using System.IO.Compression;
     using System.Linq;
     using System.Net;
     using System.Threading;
@@ -33,6 +31,7 @@ namespace GW2DotNET.Common
         /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
         private readonly ISerializerFactory successSerializerFactory;
 
+        /// <summary>Infrastructure. Holds a reference to a GZIP inflator.</summary>
         private readonly IConverter<Stream, Stream> gzipInflator;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>

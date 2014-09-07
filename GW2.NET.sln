@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysis", "Analysis", "{20A2C3F6-72DD-4153-BF59-681C8C9CE278}"
 EndProject
@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.Core", "Code\GW2.NE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.Newtonsoft", "Code\GW2.NET.Newtonsoft\GW2.NET.Newtonsoft.csproj", "{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET", "Code\GW2.NET\GW2.NET.csproj", "{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.RestSharp", "Code\GW2.NET.RestSharp\GW2.NET.RestSharp.csproj", "{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.Tests", "Testing\GW2.NET.Tests\GW2.NET.Tests.csproj", "{D138871F-94ED-4BB0-999A-2ACD3732DF30}"
@@ -23,9 +21,17 @@ Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "GW2.NET.Diagrams", "Analysi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.PowerShell", "Code\GW2.NET.PowerShell\GW2.NET.PowerShell.csproj", "{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.Pcl.Compression", "Code\GW2.NET.Pcl.Compression\GW2.NET.Pcl.Compression.csproj", "{08D936E1-C097-4196-8128-C2493F8D7E47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.Compression", "Code\GW2.NET.Compression\GW2.NET.Compression.csproj", "{C3BE9D66-2330-4544-8B12-16898CCF20E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.Pcl", "Code\GW2.NET.Pcl\GW2.NET.Pcl.csproj", "{3DE05013-61E1-46F5-974B-27BD3427E194}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET", "Code\GW2.NET\GW2.NET.csproj", "{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 8
+		SccNumberOfProjects = 11
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -37,26 +43,38 @@ Global
 		SccProjectTopLevelParentUniqueName2 = GW2.NET.sln
 		SccProjectName2 = Code/GW2.NET.Newtonsoft
 		SccLocalPath2 = Code\\GW2.NET.Newtonsoft
-		SccProjectUniqueName3 = Code\\GW2.NET\\GW2.NET.csproj
+		SccProjectUniqueName3 = Code\\GW2.NET.RestSharp\\GW2.NET.RestSharp.csproj
 		SccProjectTopLevelParentUniqueName3 = GW2.NET.sln
-		SccProjectName3 = Code/GW2.NET
-		SccLocalPath3 = Code\\GW2.NET
-		SccProjectUniqueName4 = Code\\GW2.NET.RestSharp\\GW2.NET.RestSharp.csproj
+		SccProjectName3 = Code/GW2.NET.RestSharp
+		SccLocalPath3 = Code\\GW2.NET.RestSharp
+		SccProjectUniqueName4 = Testing\\GW2.NET.Tests\\GW2.NET.Tests.csproj
 		SccProjectTopLevelParentUniqueName4 = GW2.NET.sln
-		SccProjectName4 = Code/GW2.NET.RestSharp
-		SccLocalPath4 = Code\\GW2.NET.RestSharp
-		SccProjectUniqueName5 = Testing\\GW2.NET.Tests\\GW2.NET.Tests.csproj
+		SccProjectName4 = Testing/GW2.NET.Tests
+		SccLocalPath4 = Testing\\GW2.NET.Tests
+		SccProjectUniqueName5 = Analysis\\GW2.NET.Diagrams\\GW2.NET.Diagrams.modelproj
 		SccProjectTopLevelParentUniqueName5 = GW2.NET.sln
-		SccProjectName5 = Testing/GW2.NET.Tests
-		SccLocalPath5 = Testing\\GW2.NET.Tests
-		SccProjectUniqueName6 = Analysis\\GW2.NET.Diagrams\\GW2.NET.Diagrams.modelproj
+		SccProjectName5 = Analysis/GW2.NET.Diagrams
+		SccLocalPath5 = Analysis\\GW2.NET.Diagrams
+		SccProjectUniqueName6 = Code\\GW2.NET.PowerShell\\GW2.NET.PowerShell.csproj
 		SccProjectTopLevelParentUniqueName6 = GW2.NET.sln
-		SccProjectName6 = Analysis/GW2.NET.Diagrams
-		SccLocalPath6 = Analysis\\GW2.NET.Diagrams
-		SccProjectUniqueName7 = Code\\GW2.NET.PowerShell\\GW2.NET.PowerShell.csproj
+		SccProjectName6 = Code/GW2.NET.PowerShell
+		SccLocalPath6 = Code\\GW2.NET.PowerShell
+		SccProjectUniqueName7 = Code\\GW2.NET.Pcl.Compression\\GW2.NET.Pcl.Compression.csproj
 		SccProjectTopLevelParentUniqueName7 = GW2.NET.sln
-		SccProjectName7 = Code/GW2.NET.PowerShell
-		SccLocalPath7 = Code\\GW2.NET.PowerShell
+		SccProjectName7 = Code/GW2.NET.Pcl.Compression
+		SccLocalPath7 = Code\\GW2.NET.Pcl.Compression
+		SccProjectUniqueName8 = Code\\GW2.NET.Compression\\GW2.NET.Compression.csproj
+		SccProjectTopLevelParentUniqueName8 = GW2.NET.sln
+		SccProjectName8 = Code/GW2.NET.Compression
+		SccLocalPath8 = Code\\GW2.NET.Compression
+		SccProjectUniqueName9 = Code\\GW2.NET.Pcl\\GW2.NET.Pcl.csproj
+		SccProjectTopLevelParentUniqueName9 = GW2.NET.sln
+		SccProjectName9 = Code/GW2.NET.Pcl
+		SccLocalPath9 = Code\\GW2.NET.Pcl
+		SccProjectUniqueName10 = Code\\GW2.NET\\GW2.NET.csproj
+		SccProjectTopLevelParentUniqueName10 = GW2.NET.sln
+		SccProjectName10 = Code/GW2.NET
+		SccLocalPath10 = Code\\GW2.NET
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Benchmark|Any CPU = Benchmark|Any CPU
@@ -81,14 +99,6 @@ Global
 		{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
 		{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
-		{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
-		{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D}.DebugCC|Any CPU.ActiveCfg = DebugCC|Any CPU
-		{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
-		{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
 		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
 		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -121,6 +131,38 @@ Global
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DE05013-61E1-46F5-974B-27BD3427E194}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE05013-61E1-46F5-974B-27BD3427E194}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{3DE05013-61E1-46F5-974B-27BD3427E194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE05013-61E1-46F5-974B-27BD3427E194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE05013-61E1-46F5-974B-27BD3427E194}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE05013-61E1-46F5-974B-27BD3427E194}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{3DE05013-61E1-46F5-974B-27BD3427E194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE05013-61E1-46F5-974B-27BD3427E194}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,10 +170,13 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{05F3D999-0470-4123-8C80-AF4AC2385E7C} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{11BB8977-33FE-4789-BD5B-D977B0BF5ECF} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
-		{7F0CBAE3-AFB4-4698-BFE1-43D79338EA3D} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{D138871F-94ED-4BB0-999A-2ACD3732DF30} = {54B8834B-AC3C-40BA-8134-D2C20341CFC1}
 		{6F803776-2787-45CA-9BE4-10FCB832FF28} = {20A2C3F6-72DD-4153-BF59-681C8C9CE278}
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{08D936E1-C097-4196-8128-C2493F8D7E47} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{C3BE9D66-2330-4544-8B12-16898CCF20E0} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{3DE05013-61E1-46F5-974B-27BD3427E194} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 	EndGlobalSection
 EndGlobal

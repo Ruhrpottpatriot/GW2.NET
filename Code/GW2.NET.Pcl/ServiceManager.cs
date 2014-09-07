@@ -17,7 +17,6 @@ namespace GW2DotNET
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Compression;
     using GW2DotNET.Entities.Builds;
     using GW2DotNET.Entities.Colors;
     using GW2DotNET.Entities.DynamicEvents;
@@ -29,6 +28,7 @@ namespace GW2DotNET
     using GW2DotNET.Entities.Skins;
     using GW2DotNET.Entities.Worlds;
     using GW2DotNET.Entities.WorldVersusWorld;
+    using GW2DotNET.Pcl.Compression;
     using GW2DotNET.V1.Builds;
     using GW2DotNET.V1.Colors;
     using GW2DotNET.V1.DynamicEvents;

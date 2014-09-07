@@ -277,9 +277,5 @@
       <Name>GW2.NET.Core</Name>
       <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\Code\GW2.NET\GW2.NET.csproj">
-      <Name>GW2.NET</Name>
-      <Project>{7f0cbae3-afb4-4698-bfe1-43d79338ea3d}</Project>
-    </ProjectReference>
   </ItemGroup>
 </Project>
