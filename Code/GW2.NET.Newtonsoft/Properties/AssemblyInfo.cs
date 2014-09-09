@@ -15,7 +15,7 @@ using System.Resources;
 // associated with an assembly.
 [assembly: AssemblyTitle("GW2.NET Newtonsoft Serializer Assembly")]
 [assembly: AssemblyDescription("Json.NET-based serializer implementation for GW2.NET")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyConfiguration("portable-net4+netcore45+wpa81+MonoAndroid1+MonoTouch1")]
 [assembly: AssemblyCompany("GW2.NET Coding Team")]
 [assembly: AssemblyProduct("GW2.NET")]
 [assembly: AssemblyCopyright("Copyright ©  2013 - 2014")]

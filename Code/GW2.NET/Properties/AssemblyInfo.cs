@@ -15,7 +15,7 @@ using System.Resources;
 // associated with an assembly.
 [assembly: AssemblyTitle("GW2.NET")]
 [assembly: AssemblyDescription("A simple wrapper around the official GW2 API")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyConfiguration("net40")]
 [assembly: AssemblyCompany("GW2.NET Coding Team")]
 [assembly: AssemblyProduct("GW2.NET")]
 [assembly: AssemblyCopyright("Copyright ©  2013 - 2014")]
