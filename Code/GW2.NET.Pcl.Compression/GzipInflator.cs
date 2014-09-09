@@ -6,7 +6,7 @@
 //   Represents the GZIP inflator.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Pcl.Compression
+namespace GW2DotNET.Compression
 {
     using System.IO;
     using System.IO.Compression;

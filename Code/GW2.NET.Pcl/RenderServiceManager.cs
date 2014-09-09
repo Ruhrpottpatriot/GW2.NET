@@ -15,7 +15,7 @@ namespace GW2DotNET
 
     using GW2DotNET.Common;
     using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Pcl.Compression;
+    using GW2DotNET.Compression;
     using GW2DotNET.Rendering;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 render service.</summary>
