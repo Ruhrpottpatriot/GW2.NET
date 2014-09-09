@@ -178,7 +178,7 @@ namespace GW2DotNET.V1.Worlds
         private static IDictionary<int, World> ConvertWorldNameContractCollection(ICollection<WorldNameContract> content)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<ICollection<World>>() != null);
+            Contract.Ensures(Contract.Result<IDictionary<int, World>>() != null);
 
             // Create a new collection of world objects
             var values = new Dictionary<int, World>(content.Count);
