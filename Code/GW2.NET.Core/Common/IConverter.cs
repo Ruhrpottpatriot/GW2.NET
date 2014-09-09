@@ -14,9 +14,9 @@ namespace GW2DotNET.Common
     /// <typeparam name="TOutput">The type of the output.</typeparam>
     public interface IConverter<in TInput, out TOutput>
     {
-        /// <summary>Converts the given <see cref="TInput"/>.</summary>
+        /// <summary>Converts the given object of type <typeparamref name="TInput"/> to an object of type <typeparamref name="TOutput"/>.</summary>
         /// <param name="value">The value.</param>
-        /// <returns>The <see cref="TOutput"/>.</returns>
+        /// <returns>The converted value.</returns>
         TOutput Convert(TInput value);
     }
 }

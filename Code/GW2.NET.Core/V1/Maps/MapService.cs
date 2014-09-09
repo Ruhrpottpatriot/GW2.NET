@@ -26,7 +26,7 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="MapService"/> class. Initializes a new instance of the <see cref="ContinentDetailsService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="MapService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public MapService(IServiceClient serviceClient)
         {
