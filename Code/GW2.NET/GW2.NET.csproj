@@ -131,7 +131,7 @@
     <Compile Include="OfflineServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderServiceManager.cs" />
-    <Compile Include="Service2Manager.cs" />
+    <Compile Include="ServiceFactory.cs" />
     <Compile Include="ServiceManager.cs" />
   </ItemGroup>
   <ItemGroup>

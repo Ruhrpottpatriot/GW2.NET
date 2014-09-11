@@ -1,0 +1,371 @@
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ListingService.cs" company="GW2.NET Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// <summary>
+//   Provides access to the listing service.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace GW2DotNET.V2.Commerce
+{
+    using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using GW2DotNET.Common;
+    using GW2DotNET.Entities.Commerce;
+    using GW2DotNET.V2.Commerce.Json;
+    using GW2DotNET.V2.Common;
+
+    /// <summary>Provides access to the listing service.</summary>
+    /// <remarks>See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/listings">wiki</a></remarks>
+    public class ListingService : IRepository<int, Listing>
+    {
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
+
+        /// <summary>Initializes a new instance of the <see cref="ListingService"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
+        public ListingService(IServiceClient serviceClient)
+        {
+            Contract.Requires(serviceClient != null);
+            this.serviceClient = serviceClient;
+        }
+
+        /// <summary>Gets a collection of identifiers.</summary>
+        /// <returns>A collection of identifiers.</returns>
+        public ICollection<int> Discover()
+        {
+            var request = new ListingDiscoveryRequest();
+            var response = this.serviceClient.Send<ICollection<int>>(request);
+            if (response.Content == null)
+            {
+                return new List<int>(0);
+            }
+
+            return response.Content;
+        }
+
+        /// <summary>Gets a collection of identifiers.</summary>
+        /// <returns>A collection of identifiers.</returns>
+        public Task<ICollection<int>> DiscoverAsync()
+        {
+            return this.DiscoverAsync(CancellationToken.None);
+        }
+
+        /// <summary>Gets a collection of identifiers.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of identifiers.</returns>
+        public Task<ICollection<int>> DiscoverAsync(CancellationToken cancellationToken)
+        {
+            var request = new ListingDiscoveryRequest();
+            return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new List<int>(0);
+                        }
+
+                        return response.Content;
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Finds the <see cref="Listing"/> with the specified identifier.</summary>
+        /// <param name="identifier">The identifier.</param>
+        /// <returns>The <see cref="Listing"/> with the specified identifier.</returns>
+        public Listing Find(int identifier)
+        {
+            var request = new ListingDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
+            var response = this.serviceClient.Send<ListingContract>(request);
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            return ConvertListingContract(response.Content);
+        }
+
+        /// <summary>Finds every <see cref="Listing"/>.</summary>
+        /// <returns>A collection of every <see cref="Listing"/>.</returns>
+        public IDictionaryRange<int, Listing> FindAll()
+        {
+            var request = new ListingBulkRequest();
+            var response = this.serviceClient.Send<ICollection<ListingContract>>(request);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<int, Listing>(0);
+            }
+
+            return this.ConvertListingContractCollection(response.Content);
+        }
+
+        /// <summary>Finds every <see cref="Listing"/> with one of the specified identifiers.</summary>
+        /// <param name="identifiers">The identifiers.</param>
+        /// <returns>A collection every <see cref="Listing"/> with one of the specified identifiers.</returns>
+        public IDictionaryRange<int, Listing> FindAll(ICollection<int> identifiers)
+        {
+            var request = new ListingBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
+            var response = this.serviceClient.Send<ICollection<ListingContract>>(request);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<int, Listing>(0);
+            }
+
+            return this.ConvertListingContractCollection(response.Content);
+        }
+
+        /// <summary>Finds every <see cref="Listing"/>.</summary>
+        /// <returns>A collection of every <see cref="Listing"/>.</returns>
+        public Task<IDictionaryRange<int, Listing>> FindAllAsync()
+        {
+            return this.FindAllAsync(CancellationToken.None);
+        }
+
+        /// <summary>Finds every <see cref="Listing"/>.</summary>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection of every <see cref="Listing"/>.</returns>
+        public Task<IDictionaryRange<int, Listing>> FindAllAsync(CancellationToken cancellationToken)
+        {
+            var request = new ListingBulkRequest();
+            return this.serviceClient.SendAsync<ICollection<ListingContract>>(request, cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new DictionaryRange<int, Listing>(0);
+                        }
+
+                        return this.ConvertListingContractCollection(response.Content);
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Finds every <see cref="Listing"/> with one of the specified identifiers.</summary>
+        /// <param name="identifiers">The identifiers.</param>
+        /// <returns>A collection every <see cref="Listing"/> with one of the specified identifiers.</returns>
+        public Task<IDictionaryRange<int, Listing>> FindAllAsync(ICollection<int> identifiers)
+        {
+            return this.FindAllAsync(identifiers, CancellationToken.None);
+        }
+
+        /// <summary>Finds every <see cref="Listing"/> with one of the specified identifiers.</summary>
+        /// <param name="identifiers">The identifiers.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A collection every <see cref="Listing"/> with one of the specified identifiers.</returns>
+        public Task<IDictionaryRange<int, Listing>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        {
+            var request = new ListingBulkRequest() { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
+            return this.serviceClient.SendAsync<ICollection<ListingContract>>(request, cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new DictionaryRange<int, Listing>(0);
+                        }
+
+                        return this.ConvertListingContractCollection(response.Content);
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Finds the <see cref="Listing"/> with the specified identifier.</summary>
+        /// <param name="identifier">The identifier.</param>
+        /// <returns>The <see cref="Listing"/> with the specified identifier.</returns>
+        public Task<Listing> FindAsync(int identifier)
+        {
+            return this.FindAsync(identifier, CancellationToken.None);
+        }
+
+        /// <summary>Finds the <see cref="Listing"/> with the specified identifier.</summary>
+        /// <param name="identifier">The identifier.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The <see cref="Listing"/> with the specified identifier.</returns>
+        public Task<Listing> FindAsync(int identifier, CancellationToken cancellationToken)
+        {
+            var request = new ListingDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
+            return this.serviceClient.SendAsync<ListingContract>(request, cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        return ConvertListingContract(response.Content);
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Gets a page with the specified page number.</summary>
+        /// <param name="page">The page to get.</param>
+        /// <returns>The page.</returns>
+        public ICollectionPage<Listing> GetPage(int page)
+        {
+            var request = new ListingPageRequest { Page = page };
+            var response = this.serviceClient.Send<ICollection<ListingContract>>(request);
+            if (response == null)
+            {
+                return new CollectionPage<Listing>(0);
+            }
+
+            var values = this.ConvertListingContractCollectionPage(response.Content);
+            values.Page = page;
+            values.PageSize = response.GetPageSize();
+            values.PageCount = response.GetPageTotal();
+            return values;
+        }
+
+        /// <summary>Gets a page with the specified page number and maximum size.</summary>
+        /// <param name="page">The page to get.</param>
+        /// <param name="pageSize">The maximum number of page elements.</param>
+        /// <returns>The page.</returns>
+        public ICollectionPage<Listing> GetPage(int page, int pageSize)
+        {
+            var request = new ListingPageRequest { Page = page, PageSize = pageSize };
+            var response = this.serviceClient.Send<ICollection<ListingContract>>(request);
+            if (response == null)
+            {
+                return new CollectionPage<Listing>(0);
+            }
+
+            var values = this.ConvertListingContractCollectionPage(response.Content);
+            values.Page = page;
+            values.PageSize = response.GetPageSize();
+            values.PageCount = response.GetPageTotal();
+            return values;
+        }
+
+        /// <summary>Gets a page with the specified page number.</summary>
+        /// <param name="page">The page to get.</param>
+        /// <returns>The page.</returns>
+        public Task<ICollectionPage<Listing>> GetPageAsync(int page)
+        {
+            return this.GetPageAsync(page, CancellationToken.None);
+        }
+
+        /// <summary>Gets a page with the specified page number.</summary>
+        /// <param name="page">The page to get.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The page.</returns>
+        public Task<ICollectionPage<Listing>> GetPageAsync(int page, CancellationToken cancellationToken)
+        {
+            var request = new ListingPageRequest { Page = page };
+            return this.serviceClient.SendAsync<ICollection<ListingContract>>(request, cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response == null)
+                        {
+                            return new CollectionPage<Listing>(0);
+                        }
+
+                        var values = this.ConvertListingContractCollectionPage(response.Content);
+                        values.Page = page;
+                        values.PageSize = response.GetPageSize();
+                        values.PageCount = response.GetPageTotal();
+                        return values;
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Gets a page with the specified page number.</summary>
+        /// <param name="page">The page to get.</param>
+        /// <param name="pageSize">The maximum number of page elements.</param>
+        /// <returns>The page.</returns>
+        public Task<ICollectionPage<Listing>> GetPageAsync(int page, int pageSize)
+        {
+            return this.GetPageAsync(page, pageSize, CancellationToken.None);
+        }
+
+        /// <summary>Gets a page with the specified page number.</summary>
+        /// <param name="page">The page to get.</param>
+        /// <param name="pageSize">The maximum number of page elements.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>The page.</returns>
+        public Task<ICollectionPage<Listing>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken)
+        {
+            var request = new ListingPageRequest { Page = page, PageSize = pageSize };
+            return this.serviceClient.SendAsync<ICollection<ListingContract>>(request, cancellationToken).ContinueWith(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response == null)
+                        {
+                            return new CollectionPage<Listing>(0);
+                        }
+
+                        var values = this.ConvertListingContractCollectionPage(response.Content);
+                        values.Page = page;
+                        values.PageSize = response.GetPageSize();
+                        values.PageCount = response.GetPageTotal();
+                        return values;
+                    }, 
+                cancellationToken);
+        }
+
+        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The entity.</returns>
+        private static Listing ConvertListingContract(ListingContract content)
+        {
+            return new Listing
+                {
+                    ItemId = content.Id, 
+                    BuyOffers = ConvertOfferContractCollection(content.BuyOffers), 
+                    SellOffers = ConvertOfferContractCollection(content.SellOffers)
+                };
+        }
+
+        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The entity.</returns>
+        private static Offer ConvertOfferContract(OfferContract content)
+        {
+            return new Offer { Listings = content.Listings, UnitPrice = content.UnitPrice, Quantity = content.Quantity };
+        }
+
+        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The entity.</returns>
+        private static ICollection<Offer> ConvertOfferContractCollection(ICollection<OfferContract> content)
+        {
+            var values = new List<Offer>(content.Count);
+            values.AddRange(content.Select(ConvertOfferContract));
+            return values;
+        }
+
+        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The entity.</returns>
+        private IDictionaryRange<int, Listing> ConvertListingContractCollection(ICollection<ListingContract> content)
+        {
+            var values = new DictionaryRange<int, Listing>(content.Count);
+            foreach (var contract in content)
+            {
+                var value = ConvertListingContract(contract);
+                values.Add(value.ItemId, value);
+            }
+
+            return values;
+        }
+
+        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The entity.</returns>
+        private ICollectionPage<Listing> ConvertListingContractCollectionPage(ICollection<ListingContract> content)
+        {
+            var values = new CollectionPage<Listing>(content.Count);
+            values.AddRange(content.Select(ConvertListingContract));
+            return values;
+        }
+    }
+}

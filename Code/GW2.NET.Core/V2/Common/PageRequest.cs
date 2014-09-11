@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PaginatedRequest.cs" company="GW2.NET Coding Team">
+// <copyright file="PageRequest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -12,7 +12,7 @@ namespace GW2DotNET.V2.Common
     using System.Globalization;
 
     /// <summary>Provides the base class for paginated resource details requests.</summary>
-    public abstract class PaginatedRequest : IPaginatedRequest
+    public abstract class PageRequest : IPageRequest
     {
         /// <summary>Gets or sets the page number.</summary>
         public abstract int Page { get; set; }
