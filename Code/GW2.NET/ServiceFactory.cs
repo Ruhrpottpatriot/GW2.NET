@@ -48,6 +48,13 @@ namespace GW2DotNET
             return new ServiceFactory(GetDefaultServiceClient());
         }
 
+        /// <summary>Provides access to the gem exchange service.</summary>
+        /// <returns>The <see cref="IBroker{T, TQuote}"/>.</returns>
+        public IBroker<string, ExchangeQuote> GetExchangeService()
+        {
+            return new ExchangeService(this.serviceClient);
+        }
+
         /// <summary>Provides access to the Trading Post listing service.</summary>
         /// <returns>The <see cref="IRepository{TKey,TValue}"/>.</returns>
         public IRepository<int, Listing> GetListingService()
@@ -55,18 +62,18 @@ namespace GW2DotNET
             return new ListingService(this.serviceClient);
         }
 
+        /// <summary>Provides access to the Trading Post price service.</summary>
+        /// <returns>The <see cref="IRepository{TKey, TValue}"/>.</returns>
+        public IRepository<int, AggregateListing> GetPriceService()
+        {
+            return new PriceService(this.serviceClient);
+        }
+
         /// <summary>Provides access to the quaggan service.</summary>
         /// <returns>The <see cref="IRepository{TKey,TValue}"/>.</returns>
         public IRepository<string, Quaggan> GetQuagganService()
         {
             return new QuagganService(this.serviceClient);
-        }
-
-        /// <summary>Provides access to the gem exchange service.</summary>
-        /// <returns>The <see cref="IBroker{T, TQuote}"/>.</returns>
-        public IBroker<string, ExchangeQuote> GetExchangeService()
-        {
-            return new ExchangeService(this.serviceClient);
         }
 
         /// <summary>Gets the base URI.</summary>
