@@ -88,7 +88,9 @@ namespace GW2DotNET.V2.Commerce
                 return null;
             }
 
-            return ConvertAggregateListingDataContract(response.Content);
+            var value = ConvertAggregateListingDataContract(response.Content);
+            value.Timestamp = response.Date;
+            return value;
         }
 
         /// <summary>Finds every <see cref="AggregateListing"/>.</summary>
@@ -102,7 +104,13 @@ namespace GW2DotNET.V2.Commerce
                 return new DictionaryRange<int, AggregateListing>(0);
             }
 
-            return ConvertAggregateListingDataContractRange(response.Content);
+            var values = ConvertAggregateListingDataContractRange(response.Content);
+            foreach (var value in values.Values)
+            {
+                value.Timestamp = response.Date;
+            }
+
+            return values;
         }
 
         /// <summary>Finds every <see cref="AggregateListing"/> with one of the specified identifiers.</summary>
@@ -117,7 +125,13 @@ namespace GW2DotNET.V2.Commerce
                 return new DictionaryRange<int, AggregateListing>(0);
             }
 
-            return ConvertAggregateListingDataContractRange(response.Content);
+            var values = ConvertAggregateListingDataContractRange(response.Content);
+            foreach (var value in values.Values)
+            {
+                value.Timestamp = response.Date;
+            }
+
+            return values;
         }
 
         /// <summary>Finds every <see cref="AggregateListing"/>.</summary>
@@ -142,7 +156,13 @@ namespace GW2DotNET.V2.Commerce
                             return new DictionaryRange<int, AggregateListing>(0);
                         }
 
-                        return ConvertAggregateListingDataContractRange(response.Content);
+                        var values = ConvertAggregateListingDataContractRange(response.Content);
+                        foreach (var value in values.Values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -171,7 +191,13 @@ namespace GW2DotNET.V2.Commerce
                             return new DictionaryRange<int, AggregateListing>(0);
                         }
 
-                        return ConvertAggregateListingDataContractRange(response.Content);
+                        var values = ConvertAggregateListingDataContractRange(response.Content);
+                        foreach (var value in values.Values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -200,7 +226,9 @@ namespace GW2DotNET.V2.Commerce
                             return null;
                         }
 
-                        return ConvertAggregateListingDataContract(response.Content);
+                        var value = ConvertAggregateListingDataContract(response.Content);
+                        value.Timestamp = response.Date;
+                        return value;
                     }, 
                 cancellationToken);
         }
@@ -221,6 +249,11 @@ namespace GW2DotNET.V2.Commerce
             values.Page = page;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
+            foreach (var value in values)
+            {
+                value.Timestamp = response.Date;
+            }
+
             return values;
         }
 
@@ -241,6 +274,11 @@ namespace GW2DotNET.V2.Commerce
             values.Page = page;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
+            foreach (var value in values)
+            {
+                value.Timestamp = response.Date;
+            }
+
             return values;
         }
 
@@ -272,6 +310,11 @@ namespace GW2DotNET.V2.Commerce
                         values.Page = page;
                         values.PageSize = response.GetPageSize();
                         values.PageCount = response.GetPageTotal();
+                        foreach (var value in values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
+
                         return values;
                     }, 
                 cancellationToken);
@@ -307,6 +350,11 @@ namespace GW2DotNET.V2.Commerce
                         values.Page = page;
                         values.PageSize = response.GetPageSize();
                         values.PageCount = response.GetPageTotal();
+                        foreach (var value in values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
+
                         return values;
                     }, 
                 cancellationToken);
@@ -320,7 +368,7 @@ namespace GW2DotNET.V2.Commerce
             return new AggregateListing
                 {
                     ItemId = content.Id, 
-                    BuyOffers = ConvertAggregateOfferDataContract(content.BuyOffers),
+                    BuyOffers = ConvertAggregateOfferDataContract(content.BuyOffers), 
                     SellOffers = ConvertAggregateOfferDataContract(content.SellOffers)
                 };
         }
