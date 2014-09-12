@@ -62,6 +62,13 @@ namespace GW2DotNET
             return new QuagganService(this.serviceClient);
         }
 
+        /// <summary>Provides access to the gem exchange service.</summary>
+        /// <returns>The <see cref="IBroker{T, TQuote}"/>.</returns>
+        public IBroker<string, ExchangeQuote> GetExchangeService()
+        {
+            return new ExchangeService(this.serviceClient);
+        }
+
         /// <summary>Gets the base URI.</summary>
         /// <returns>A <see cref="Uri"/>.</returns>
         private static Uri GetBaseUri()

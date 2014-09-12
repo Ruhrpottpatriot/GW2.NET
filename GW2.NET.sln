@@ -32,9 +32,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net40", "net40", "{30BE9CC5-137B-41BF-B04E-5395BD6F03CF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1", "portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1", "{DCB61C47-D314-41BC-AB72-562478ADC29E}"
-	ProjectSection(SolutionItems) = preProject
-		Code\GW2.NET\ServiceFactory.cs = Code\GW2.NET\ServiceFactory.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "portable-net4+netcore45+wpa81+MonoAndroid1+MonoTouch1", "portable-net4+netcore45+wpa81+MonoAndroid1+MonoTouch1", "{BD2E3FCE-8D8A-4272-925A-AEB7DB9C4F3D}"
 EndProject
