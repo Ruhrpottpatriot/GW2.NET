@@ -20,49 +20,49 @@ namespace GW2DotNET.V2.Common
     [ContractClass(typeof(RepositoryContract<,>))]
     public interface IRepository<TKey, TValue> : IDiscoverable<TKey>, IPaginator<TValue>
     {
-        /// <summary>Finds the <see cref="TValue"/> with the specified identifier.</summary>
+        /// <summary>Finds the <typeparamref name="TValue"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="TValue"/> with the specified identifier.</returns>
+        /// <returns>The <typeparamref name="TValue"/> with the specified identifier.</returns>
         TValue Find(TKey identifier);
 
-        /// <summary>Finds every <see cref="TValue"/>.</summary>
-        /// <returns>A collection of every <see cref="TValue"/>.</returns>
+        /// <summary>Finds every <typeparamref name="TValue"/>.</summary>
+        /// <returns>A collection of every <typeparamref name="TValue"/>.</returns>
         IDictionaryRange<TKey, TValue> FindAll();
 
-        /// <summary>Finds every <see cref="TValue"/> with one of the specified identifiers.</summary>
+        /// <summary>Finds every <typeparamref name="TValue"/> with one of the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="TValue"/> with one of the specified identifiers.</returns>
+        /// <returns>A collection every <typeparamref name="TValue"/> with one of the specified identifiers.</returns>
         IDictionaryRange<TKey, TValue> FindAll(ICollection<TKey> identifiers);
 
-        /// <summary>Finds every <see cref="TValue"/>.</summary>
-        /// <returns>A collection of every <see cref="TValue"/>.</returns>
+        /// <summary>Finds every <typeparamref name="TValue"/>.</summary>
+        /// <returns>A collection of every <typeparamref name="TValue"/>.</returns>
         Task<IDictionaryRange<TKey, TValue>> FindAllAsync();
 
-        /// <summary>Finds every <see cref="TValue"/>.</summary>
+        /// <summary>Finds every <typeparamref name="TValue"/>.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="TValue"/>.</returns>
+        /// <returns>A collection of every <typeparamref name="TValue"/></returns>
         Task<IDictionaryRange<TKey, TValue>> FindAllAsync(CancellationToken cancellationToken);
 
-        /// <summary>Finds every <see cref="TValue"/> with one of the specified identifiers.</summary>
+        /// <summary>Finds every <typeparamref name="TValue"/> with one of the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="TValue"/> with one of the specified identifiers.</returns>
+        /// <returns>A collection every <typeparamref name="TValue"/> with one of the specified identifiers.</returns>
         Task<IDictionaryRange<TKey, TValue>> FindAllAsync(ICollection<TKey> identifiers);
 
-        /// <summary>Finds every <see cref="TValue"/> with one of the specified identifiers.</summary>
+        /// <summary>Finds every <typeparamref name="TValue"/> with one of the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="TValue"/> with one of the specified identifiers.</returns>
+        /// <returns>A collection every <typeparamref name="TValue"/> with one of the specified identifiers.</returns>
         Task<IDictionaryRange<TKey, TValue>> FindAllAsync(ICollection<TKey> identifiers, CancellationToken cancellationToken);
 
-        /// <summary>Finds the <see cref="TValue"/> with the specified identifier.</summary>
+        /// <summary>Finds the <typeparamref name="TValue"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="TValue"/> with the specified identifier.</returns>
+        /// <returns>The <typeparamref name="TValue"/> with the specified identifier.</returns>
         Task<TValue> FindAsync(TKey identifier);
 
-        /// <summary>Finds the <see cref="TValue"/> with the specified identifier.</summary>
+        /// <summary>Finds the <typeparamref name="TValue"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="TValue"/> with the specified identifier.</returns>
+        /// <returns>The <typeparamref name="TValue"/> with the specified identifier.</returns>
         Task<TValue> FindAsync(TKey identifier, CancellationToken cancellationToken);
     }
 }

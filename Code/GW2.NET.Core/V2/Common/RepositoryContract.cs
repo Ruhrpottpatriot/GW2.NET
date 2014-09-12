@@ -47,25 +47,25 @@ namespace GW2DotNET.V2.Common
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Finds the <see cref="TValue"/> with the specified identifier.</summary>
+        /// <summary>Finds the <typeparamref name="TValue"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="TValue"/> with the specified identifier.</returns>
+        /// <returns>The <typeparamref name="TValue"/> with the specified identifier.</returns>
         public TValue Find(TKey identifier)
         {
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Finds every <see cref="TValue"/>.</summary>
-        /// <returns>A collection of every <see cref="TValue"/>.</returns>
+        /// <summary>Finds every <typeparamref name="TValue"/>.</summary>
+        /// <returns>A collection of every <typeparamref name="TValue"/>.</returns>
         public IDictionaryRange<TKey, TValue> FindAll()
         {
             Contract.Ensures(Contract.Result<IDictionaryRange<TKey, TValue>>() != null);
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Finds every <see cref="TValue"/> with one of the specified identifiers.</summary>
+        /// <summary>Finds every <typeparamref name="TValue"/> with one of the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="TValue"/> with one of the specified identifiers.</returns>
+        /// <returns>A collection every <typeparamref name="TValue"/> with one of the specified identifiers.</returns>
         public IDictionaryRange<TKey, TValue> FindAll(ICollection<TKey> identifiers)
         {
             Contract.Requires(identifiers != null);
@@ -74,8 +74,8 @@ namespace GW2DotNET.V2.Common
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Finds every <see cref="TValue"/>.</summary>
-        /// <returns>A collection of every <see cref="TValue"/>.</returns>
+        /// <summary>Finds every <typeparamref name="TValue"/>.</summary>
+        /// <returns>A collection of every <typeparamref name="TValue"/>.</returns>
         public Task<IDictionaryRange<TKey, TValue>> FindAllAsync()
         {
             Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>() != null);
@@ -83,9 +83,9 @@ namespace GW2DotNET.V2.Common
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Finds every <see cref="TValue"/>.</summary>
+        /// <summary>Finds every <typeparamref name="TValue"/>.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="TValue"/>.</returns>
+        /// <returns>A collection of every <typeparamref name="TValue"/>.</returns>
         public Task<IDictionaryRange<TKey, TValue>> FindAllAsync(CancellationToken cancellationToken)
         {
             Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>() != null);
@@ -93,9 +93,9 @@ namespace GW2DotNET.V2.Common
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Finds every <see cref="TValue"/> with one of the specified identifiers.</summary>
+        /// <summary>Finds every <typeparamref name="TValue"/> with one of the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="TValue"/> with one of the specified identifiers.</returns>
+        /// <returns>A collection every <typeparamref name="TValue"/> with one of the specified identifiers.</returns>
         public Task<IDictionaryRange<TKey, TValue>> FindAllAsync(ICollection<TKey> identifiers)
         {
             Contract.Requires(identifiers != null);
@@ -105,10 +105,10 @@ namespace GW2DotNET.V2.Common
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Finds every <see cref="TValue"/> with one of the specified identifiers.</summary>
+        /// <summary>Finds every <typeparamref name="TValue"/> with one of the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="TValue"/> with one of the specified identifiers.</returns>
+        /// <returns>A collection every <typeparamref name="TValue"/> with one of the specified identifiers.</returns>
         public Task<IDictionaryRange<TKey, TValue>> FindAllAsync(ICollection<TKey> identifiers, CancellationToken cancellationToken)
         {
             Contract.Requires(identifiers != null);
@@ -118,19 +118,19 @@ namespace GW2DotNET.V2.Common
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Finds the <see cref="TValue"/> with the specified identifier.</summary>
+        /// <summary>Finds the <typeparamref name="TValue"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="TValue"/> with the specified identifier.</returns>
+        /// <returns>The <typeparamref name="TValue"/> with the specified identifier.</returns>
         public Task<TValue> FindAsync(TKey identifier)
         {
             Contract.Ensures(Contract.Result<Task>() != null);
             throw new System.NotImplementedException();
         }
 
-        /// <summary>Finds the <see cref="TValue"/> with the specified identifier.</summary>
+        /// <summary>Finds the <typeparamref name="TValue"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="TValue"/> with the specified identifier.</returns>
+        /// <returns>The <typeparamref name="TValue"/> with the specified identifier.</returns>
         public Task<TValue> FindAsync(TKey identifier, CancellationToken cancellationToken)
         {
             Contract.Ensures(Contract.Result<Task>() != null);
