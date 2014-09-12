@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ListingService.cs" company="GW2.NET Coding Team">
+// <copyright file="PriceService.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides access to the listing service.
+//   Provides access to the Trading Post price service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V2.Commerce
@@ -20,16 +20,16 @@ namespace GW2DotNET.V2.Commerce
     using GW2DotNET.V2.Commerce.Json;
     using GW2DotNET.V2.Common;
 
-    /// <summary>Provides access to the Trading Post listing service.</summary>
-    /// <remarks>See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/listings">wiki</a></remarks>
-    public class ListingService : IRepository<int, Listing>
+    /// <summary>Provides access to the Trading Post price service.</summary>
+    /// <remarks>See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/prices">wiki</a></remarks>
+    public class PriceService : IRepository<int, AggregateListing>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="ListingService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="PriceService"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ListingService(IServiceClient serviceClient)
+        public PriceService(IServiceClient serviceClient)
         {
             Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
@@ -39,7 +39,7 @@ namespace GW2DotNET.V2.Commerce
         /// <returns>A collection of identifiers.</returns>
         public ICollection<int> Discover()
         {
-            var request = new ListingDiscoveryRequest();
+            var request = new PriceDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
             if (response.Content == null)
             {
@@ -61,7 +61,7 @@ namespace GW2DotNET.V2.Commerce
         /// <returns>A collection of identifiers.</returns>
         public Task<ICollection<int>> DiscoverAsync(CancellationToken cancellationToken)
         {
-            var request = new ListingDiscoveryRequest();
+            var request = new PriceDiscoveryRequest();
             return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
@@ -76,122 +76,122 @@ namespace GW2DotNET.V2.Commerce
                 cancellationToken);
         }
 
-        /// <summary>Finds the <see cref="Listing"/> with the specified identifier.</summary>
+        /// <summary>Finds the <see cref="AggregateListing"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Listing"/> with the specified identifier.</returns>
-        public Listing Find(int identifier)
+        /// <returns>The <see cref="AggregateListing"/> with the specified identifier.</returns>
+        public AggregateListing Find(int identifier)
         {
-            var request = new ListingDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
-            var response = this.serviceClient.Send<ListingDataContract>(request);
+            var request = new PriceDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
+            var response = this.serviceClient.Send<AggregateListingDataContract>(request);
             if (response.Content == null)
             {
                 return null;
             }
 
-            return ConvertListingDataContract(response.Content);
+            return ConvertAggregateListingDataContract(response.Content);
         }
 
-        /// <summary>Finds every <see cref="Listing"/>.</summary>
-        /// <returns>A collection of every <see cref="Listing"/>.</returns>
-        public IDictionaryRange<int, Listing> FindAll()
+        /// <summary>Finds every <see cref="AggregateListing"/>.</summary>
+        /// <returns>A collection of every <see cref="AggregateListing"/>.</returns>
+        public IDictionaryRange<int, AggregateListing> FindAll()
         {
-            var request = new ListingBulkRequest();
-            var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
+            var request = new PriceBulkRequest();
+            var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
             if (response.Content == null)
             {
-                return new DictionaryRange<int, Listing>(0);
+                return new DictionaryRange<int, AggregateListing>(0);
             }
 
-            return ConvertListingDataContractRange(response.Content);
+            return ConvertAggregateListingDataContractRange(response.Content);
         }
 
-        /// <summary>Finds every <see cref="Listing"/> with one of the specified identifiers.</summary>
+        /// <summary>Finds every <see cref="AggregateListing"/> with one of the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Listing"/> with one of the specified identifiers.</returns>
-        public IDictionaryRange<int, Listing> FindAll(ICollection<int> identifiers)
+        /// <returns>A collection every <see cref="AggregateListing"/> with one of the specified identifiers.</returns>
+        public IDictionaryRange<int, AggregateListing> FindAll(ICollection<int> identifiers)
         {
-            var request = new ListingBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
-            var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
+            var request = new PriceBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
+            var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
             if (response.Content == null)
             {
-                return new DictionaryRange<int, Listing>(0);
+                return new DictionaryRange<int, AggregateListing>(0);
             }
 
-            return ConvertListingDataContractRange(response.Content);
+            return ConvertAggregateListingDataContractRange(response.Content);
         }
 
-        /// <summary>Finds every <see cref="Listing"/>.</summary>
-        /// <returns>A collection of every <see cref="Listing"/>.</returns>
-        public Task<IDictionaryRange<int, Listing>> FindAllAsync()
+        /// <summary>Finds every <see cref="AggregateListing"/>.</summary>
+        /// <returns>A collection of every <see cref="AggregateListing"/>.</returns>
+        public Task<IDictionaryRange<int, AggregateListing>> FindAllAsync()
         {
             return this.FindAllAsync(CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Listing"/>.</summary>
+        /// <summary>Finds every <see cref="AggregateListing"/>.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Listing"/>.</returns>
-        public Task<IDictionaryRange<int, Listing>> FindAllAsync(CancellationToken cancellationToken)
+        /// <returns>A collection of every <see cref="AggregateListing"/>.</returns>
+        public Task<IDictionaryRange<int, AggregateListing>> FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new ListingBulkRequest();
-            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
+            var request = new PriceBulkRequest();
+            return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
                         if (response.Content == null)
                         {
-                            return new DictionaryRange<int, Listing>(0);
+                            return new DictionaryRange<int, AggregateListing>(0);
                         }
 
-                        return ConvertListingDataContractRange(response.Content);
+                        return ConvertAggregateListingDataContractRange(response.Content);
                     }, 
                 cancellationToken);
         }
 
-        /// <summary>Finds every <see cref="Listing"/> with one of the specified identifiers.</summary>
+        /// <summary>Finds every <see cref="AggregateListing"/> with one of the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Listing"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Listing>> FindAllAsync(ICollection<int> identifiers)
+        /// <returns>A collection every <see cref="AggregateListing"/> with one of the specified identifiers.</returns>
+        public Task<IDictionaryRange<int, AggregateListing>> FindAllAsync(ICollection<int> identifiers)
         {
             return this.FindAllAsync(identifiers, CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Listing"/> with one of the specified identifiers.</summary>
+        /// <summary>Finds every <see cref="AggregateListing"/> with one of the specified identifiers.</summary>
         /// <param name="identifiers">The identifiers.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Listing"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Listing>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        /// <returns>A collection every <see cref="AggregateListing"/> with one of the specified identifiers.</returns>
+        public Task<IDictionaryRange<int, AggregateListing>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
-            var request = new ListingBulkRequest() { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
-            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
+            var request = new PriceBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
+            return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
                         if (response.Content == null)
                         {
-                            return new DictionaryRange<int, Listing>(0);
+                            return new DictionaryRange<int, AggregateListing>(0);
                         }
 
-                        return ConvertListingDataContractRange(response.Content);
+                        return ConvertAggregateListingDataContractRange(response.Content);
                     }, 
                 cancellationToken);
         }
 
-        /// <summary>Finds the <see cref="Listing"/> with the specified identifier.</summary>
+        /// <summary>Finds the <see cref="AggregateListing"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Listing"/> with the specified identifier.</returns>
-        public Task<Listing> FindAsync(int identifier)
+        /// <returns>The <see cref="AggregateListing"/> with the specified identifier.</returns>
+        public Task<AggregateListing> FindAsync(int identifier)
         {
             return this.FindAsync(identifier, CancellationToken.None);
         }
 
-        /// <summary>Finds the <see cref="Listing"/> with the specified identifier.</summary>
+        /// <summary>Finds the <see cref="AggregateListing"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Listing"/> with the specified identifier.</returns>
-        public Task<Listing> FindAsync(int identifier, CancellationToken cancellationToken)
+        /// <returns>The <see cref="AggregateListing"/> with the specified identifier.</returns>
+        public Task<AggregateListing> FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            var request = new ListingDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
-            return this.serviceClient.SendAsync<ListingDataContract>(request, cancellationToken).ContinueWith(
+            var request = new PriceDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
+            return this.serviceClient.SendAsync<AggregateListingDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -200,7 +200,7 @@ namespace GW2DotNET.V2.Commerce
                             return null;
                         }
 
-                        return ConvertListingDataContract(response.Content);
+                        return ConvertAggregateListingDataContract(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -208,16 +208,16 @@ namespace GW2DotNET.V2.Commerce
         /// <summary>Gets a page with the specified page number.</summary>
         /// <param name="page">The page to get.</param>
         /// <returns>The page.</returns>
-        public ICollectionPage<Listing> GetPage(int page)
+        public ICollectionPage<AggregateListing> GetPage(int page)
         {
-            var request = new ListingPageRequest { Page = page };
-            var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            if (response == null)
+            var request = new PricePageRequest { Page = page };
+            var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
+            if (response.Content == null)
             {
-                return new CollectionPage<Listing>(0);
+                return new CollectionPage<AggregateListing>(0);
             }
 
-            var values = ConvertListingDataContractPage(response.Content);
+            var values = ConvertAggregateListingDataContractPage(response.Content);
             values.Page = page;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
@@ -228,16 +228,16 @@ namespace GW2DotNET.V2.Commerce
         /// <param name="page">The page to get.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <returns>The page.</returns>
-        public ICollectionPage<Listing> GetPage(int page, int pageSize)
+        public ICollectionPage<AggregateListing> GetPage(int page, int pageSize)
         {
-            var request = new ListingPageRequest { Page = page, PageSize = pageSize };
-            var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            if (response == null)
+            var request = new PricePageRequest { Page = page, PageSize = pageSize };
+            var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
+            if (response.Content == null)
             {
-                return new CollectionPage<Listing>(0);
+                return new CollectionPage<AggregateListing>(0);
             }
 
-            var values = ConvertListingDataContractPage(response.Content);
+            var values = ConvertAggregateListingDataContractPage(response.Content);
             values.Page = page;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
@@ -247,7 +247,7 @@ namespace GW2DotNET.V2.Commerce
         /// <summary>Gets a page with the specified page number.</summary>
         /// <param name="page">The page to get.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Listing>> GetPageAsync(int page)
+        public Task<ICollectionPage<AggregateListing>> GetPageAsync(int page)
         {
             return this.GetPageAsync(page, CancellationToken.None);
         }
@@ -256,19 +256,19 @@ namespace GW2DotNET.V2.Commerce
         /// <param name="page">The page to get.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Listing>> GetPageAsync(int page, CancellationToken cancellationToken)
+        public Task<ICollectionPage<AggregateListing>> GetPageAsync(int page, CancellationToken cancellationToken)
         {
-            var request = new ListingPageRequest { Page = page };
-            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
+            var request = new PricePageRequest { Page = page };
+            return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
-                        if (response == null)
+                        if (response.Content == null)
                         {
-                            return new CollectionPage<Listing>(0);
+                            return new CollectionPage<AggregateListing>(0);
                         }
 
-                        var values = ConvertListingDataContractPage(response.Content);
+                        var values = ConvertAggregateListingDataContractPage(response.Content);
                         values.Page = page;
                         values.PageSize = response.GetPageSize();
                         values.PageCount = response.GetPageTotal();
@@ -281,7 +281,7 @@ namespace GW2DotNET.V2.Commerce
         /// <param name="page">The page to get.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Listing>> GetPageAsync(int page, int pageSize)
+        public Task<ICollectionPage<AggregateListing>> GetPageAsync(int page, int pageSize)
         {
             return this.GetPageAsync(page, pageSize, CancellationToken.None);
         }
@@ -291,19 +291,19 @@ namespace GW2DotNET.V2.Commerce
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Listing>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken)
+        public Task<ICollectionPage<AggregateListing>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken)
         {
-            var request = new ListingPageRequest { Page = page, PageSize = pageSize };
-            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
+            var request = new PricePageRequest { Page = page, PageSize = pageSize };
+            return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
-                        if (response == null)
+                        if (response.Content == null)
                         {
-                            return new CollectionPage<Listing>(0);
+                            return new CollectionPage<AggregateListing>(0);
                         }
 
-                        var values = ConvertListingDataContractPage(response.Content);
+                        var values = ConvertAggregateListingDataContractPage(response.Content);
                         values.Page = page;
                         values.PageSize = response.GetPageSize();
                         values.PageCount = response.GetPageTotal();
@@ -315,43 +315,34 @@ namespace GW2DotNET.V2.Commerce
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
-        private static Listing ConvertListingDataContract(ListingDataContract content)
+        private static AggregateListing ConvertAggregateListingDataContract(AggregateListingDataContract content)
         {
-            return new Listing
+            return new AggregateListing
                 {
                     ItemId = content.Id, 
-                    BuyOffers = ConvertOfferDataContractCollection(content.BuyOffers),
-                    SellOffers = ConvertOfferDataContractCollection(content.SellOffers)
+                    BuyOffers = ConvertAggregateOfferDataContractCollection(content.BuyOffers), 
+                    SellOffers = ConvertAggregateOfferDataContractCollection(content.SellOffers)
                 };
         }
 
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
-        private static Offer ConvertOfferDataContract(OfferDataContract content)
+        private static ICollectionPage<AggregateListing> ConvertAggregateListingDataContractPage(ICollection<AggregateListingDataContract> content)
         {
-            return new Offer { Listings = content.Listings, UnitPrice = content.UnitPrice, Quantity = content.Quantity };
-        }
-
-        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The entity.</returns>
-        private static ICollection<Offer> ConvertOfferDataContractCollection(ICollection<OfferDataContract> content)
-        {
-            var values = new List<Offer>(content.Count);
-            values.AddRange(content.Select(ConvertOfferDataContract));
+            var values = new CollectionPage<AggregateListing>(content.Count);
+            values.AddRange(content.Select(ConvertAggregateListingDataContract));
             return values;
         }
 
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
-        private static IDictionaryRange<int, Listing> ConvertListingDataContractRange(ICollection<ListingDataContract> content)
+        private static IDictionaryRange<int, AggregateListing> ConvertAggregateListingDataContractRange(ICollection<AggregateListingDataContract> content)
         {
-            var values = new DictionaryRange<int, Listing>(content.Count);
-            foreach (var contract in content)
+            var values = new DictionaryRange<int, AggregateListing>(content.Count);
+            foreach (var value in content.Select(ConvertAggregateListingDataContract))
             {
-                var value = ConvertListingDataContract(contract);
                 values.Add(value.ItemId, value);
             }
 
@@ -361,10 +352,18 @@ namespace GW2DotNET.V2.Commerce
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
-        private static ICollectionPage<Listing> ConvertListingDataContractPage(ICollection<ListingDataContract> content)
+        private static AggregateOffer ConvertAggregateOfferDataContract(AggregateOfferDataContract content)
         {
-            var values = new CollectionPage<Listing>(content.Count);
-            values.AddRange(content.Select(ConvertListingDataContract));
+            return new AggregateOffer { Quantity = content.Quantity, UnitPrice = content.UnitPrice };
+        }
+
+        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The entity.</returns>
+        private static ICollection<AggregateOffer> ConvertAggregateOfferDataContractCollection(ICollection<AggregateOfferDataContract> content)
+        {
+            var values = new List<AggregateOffer>(content.Count);
+            values.AddRange(content.Select(ConvertAggregateOfferDataContract));
             return values;
         }
     }

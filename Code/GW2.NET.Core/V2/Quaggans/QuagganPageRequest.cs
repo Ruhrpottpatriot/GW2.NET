@@ -13,12 +13,6 @@ namespace GW2DotNET.V2.Quaggans
     /// <summary>Represents a request for a collection of Quaggans.</summary>
     public class QuagganPageRequest : PageRequest
     {
-        /// <summary>Gets or sets the page number.</summary>
-        public override int Page { get; set; }
-
-        /// <summary>Gets or sets the number of entries per page.</summary>
-        public override int? PageSize { get; set; }
-
         /// <summary>Gets the resource path.</summary>
         public override string Resource
         {

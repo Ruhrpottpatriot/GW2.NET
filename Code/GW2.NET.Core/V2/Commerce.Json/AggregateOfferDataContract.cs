@@ -1,23 +1,19 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="OfferContract.cs" company="GW2.NET Coding Team">
+// <copyright file="AggregateOfferDataContract.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The offer contract.
+//   The aggregate offer data contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V2.Commerce.Json
 {
     using System.Runtime.Serialization;
 
-    /// <summary>The offer contract.</summary>
+    /// <summary>The aggregate offer data contract.</summary>
     [DataContract]
-    public sealed class OfferContract
+    public sealed class AggregateOfferDataContract
     {
-        /// <summary>Gets or sets the listings.</summary>
-        [DataMember(Name = "listings", Order = 0)]
-        public int Listings { get; set; }
-
         /// <summary>Gets or sets the quantity.</summary>
         [DataMember(Name = "quantity", Order = 2)]
         public int Quantity { get; set; }

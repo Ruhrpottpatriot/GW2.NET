@@ -14,12 +14,6 @@ namespace GW2DotNET.V2.Commerce
     /// <summary>Represents a page request.</summary>
     public class ListingPageRequest : PageRequest
     {
-        /// <summary>Gets or sets the page number.</summary>
-        public override int Page { get; set; }
-
-        /// <summary>Gets or sets the number of entries per page.</summary>
-        public override int? PageSize { get; set; }
-
         /// <summary>Gets the resource path.</summary>
         public override string Resource
         {

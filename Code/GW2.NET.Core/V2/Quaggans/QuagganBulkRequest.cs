@@ -8,16 +8,11 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V2.Quaggans
 {
-    using System.Collections.Generic;
-
     using GW2DotNET.V2.Common;
 
     /// <summary>Represents a request for a collection of Quaggans.</summary>
     public class QuagganBulkRequest : BulkRequest
     {
-        /// <summary>Gets or sets the identifiers.</summary>
-        public override ICollection<string> Identifiers { get; set; }
-
         /// <summary>Gets the resource path.</summary>
         public override string Resource
         {

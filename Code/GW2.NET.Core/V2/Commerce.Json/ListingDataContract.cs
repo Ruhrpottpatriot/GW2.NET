@@ -13,11 +13,11 @@ namespace GW2DotNET.V2.Commerce.Json
 
     /// <summary>The listing contract.</summary>
     [DataContract]
-    public sealed class ListingContract
+    public sealed class ListingDataContract
     {
         /// <summary>Gets or sets the buy offers.</summary>
         [DataMember(Name = "buys", Order = 1)]
-        public ICollection<OfferContract> BuyOffers { get; set; }
+        public ICollection<OfferDataContract> BuyOffers { get; set; }
 
         /// <summary>Gets or sets the id.</summary>
         [DataMember(Name = "id", Order = 0)]
@@ -25,6 +25,6 @@ namespace GW2DotNET.V2.Commerce.Json
 
         /// <summary>Gets or sets the sell offers.</summary>
         [DataMember(Name = "sells", Order = 2)]
-        public ICollection<OfferContract> SellOffers { get; set; }
+        public ICollection<OfferDataContract> SellOffers { get; set; }
     }
 }

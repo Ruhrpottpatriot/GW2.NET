@@ -15,10 +15,10 @@ namespace GW2DotNET.V2.Common
     public abstract class PageRequest : IPageRequest
     {
         /// <summary>Gets or sets the page number.</summary>
-        public abstract int Page { get; set; }
+        public virtual int Page { get; set; }
 
         /// <summary>Gets or sets the number of entries per page.</summary>
-        public abstract int? PageSize { get; set; }
+        public virtual int? PageSize { get; set; }
 
         /// <summary>Gets the resource path.</summary>
         public abstract string Resource { get; }
