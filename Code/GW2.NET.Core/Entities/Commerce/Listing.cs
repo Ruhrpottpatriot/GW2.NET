@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Entities.Commerce
 {
+    using System;
     using System.Collections.Generic;
     using System.Globalization;
 
@@ -27,6 +28,9 @@ namespace GW2DotNET.Entities.Commerce
 
         /// <summary>Gets or sets the sell offers.</summary>
         public ICollection<Offer> SellOffers { get; set; }
+
+        /// <summary>Gets or sets the timestamp.</summary>
+        public DateTimeOffset Timestamp { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
