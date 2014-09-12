@@ -3,10 +3,9 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a listing on the Trading Post.
+//   Represents buy or sell offer listing information.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.Entities.Commerce
 {
     using System.Collections.Generic;
@@ -14,7 +13,7 @@ namespace GW2DotNET.Entities.Commerce
 
     using GW2DotNET.Entities.Items;
 
-    /// <summary>Represents a listing on the Trading Post.</summary>
+    /// <summary>Represents buy or sell offer listing information.</summary>
     public class Listing
     {
         /// <summary>Gets or sets the buy offers.</summary>

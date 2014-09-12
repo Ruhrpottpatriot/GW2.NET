@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="AggregateListing.cs" company="GW2.NET Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// <summary>
+//   Represents aggregate buy or sell offer listing information.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.Entities.Commerce
 {
+    using System.Collections.Generic;
     using System.Globalization;
 
     using GW2DotNET.Entities.Items;
 
-    /// <summary>TODO The aggregate listing.</summary>
+    /// <summary>Represents aggregate buy or sell offer listing information.</summary>
     public class AggregateListing
     {
         /// <summary>Gets or sets the buy offers.</summary>

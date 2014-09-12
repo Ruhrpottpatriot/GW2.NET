@@ -1,25 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PriceDetailsRequest.cs" company="GW2.NET Coding Team">
+// <copyright file="ExchangeDiscoveryRequest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The price details request.
+//   The exchange discovery request.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V2.Commerce
 {
-    using GW2DotNET.V2.Common;
+    using GW2DotNET.Common;
 
-    /// <summary>The price details request.</summary>
-    public class PriceDetailsRequest : DetailsRequest
+    /// <summary>The exchange discovery request.</summary>
+    public class ExchangeDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource
         {
             get
             {
-                return "/v2/commerce/prices/" + this.Identifier;
+                return "/v2/commerce/exchange";
             }
         }
     }

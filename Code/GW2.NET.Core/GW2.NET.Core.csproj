@@ -255,6 +255,7 @@
     <Compile Include="Entities\Colors\ColorModel.cs" />
     <Compile Include="Entities\Colors\ColorPalette.cs" />
     <Compile Include="Entities\Commerce\AggregateListing.cs" />
+    <Compile Include="Entities\Commerce\ExchangeQuote.cs" />
     <Compile Include="Entities\Commerce\Listing.cs" />
     <Compile Include="Entities\Commerce\Offer.cs" />
     <Compile Include="Entities\Commerce\AggregateOffer.cs" />
@@ -664,9 +665,13 @@
     <Compile Include="V2\Builds\BuildServiceContract.cs" />
     <Compile Include="V2\Builds\IBuildService.cs" />
     <Compile Include="V2\Commerce.Json\AggregateListingDataContract.cs" />
+    <Compile Include="V2\Commerce.Json\ExchangeQuoteDataContract.cs" />
     <Compile Include="V2\Commerce.Json\ListingDataContract.cs" />
     <Compile Include="V2\Commerce.Json\AggregateOfferDataContract.cs" />
     <Compile Include="V2\Commerce.Json\OfferDataContract.cs" />
+    <Compile Include="V2\Commerce\ExchangeDiscoveryRequest.cs" />
+    <Compile Include="V2\Commerce\ExchangeDetailsRequest.cs" />
+    <Compile Include="V2\Commerce\ExchangeService.cs" />
     <Compile Include="V2\Commerce\ListingService.cs" />
     <Compile Include="V2\Commerce\ListingBulkRequest.cs" />
     <Compile Include="V2\Commerce\ListingDetailsRequest.cs" />
@@ -679,8 +684,10 @@
     <Compile Include="V2\Commerce\PriceService.cs" />
     <Compile Include="V2\Common\BulkRequest.cs" />
     <Compile Include="V2\Common\DetailsRequest.cs" />
+    <Compile Include="V2\Common\IBroker.cs" />
     <Compile Include="V2\Common\IBulkRequest.cs" />
     <Compile Include="V2\Common\IDetailsRequest.cs" />
+    <Compile Include="V2\Common\IDiscoverable.cs" />
     <Compile Include="V2\Common\IRepository.cs" />
     <Compile Include="V2\Common\IPageContext.cs" />
     <Compile Include="V2\Common\IPageRequest.cs" />

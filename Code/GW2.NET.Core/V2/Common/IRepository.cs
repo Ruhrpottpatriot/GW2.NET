@@ -18,21 +18,8 @@ namespace GW2DotNET.V2.Common
     /// <typeparam name="TKey">The type of the key values that uniquely identify the entities in the repository.</typeparam>
     /// <typeparam name="TValue">The type of the entities in the repository.</typeparam>
     [ContractClass(typeof(RepositoryContract<,>))]
-    public interface IRepository<TKey, TValue> : IPaginator<TValue>
+    public interface IRepository<TKey, TValue> : IDiscoverable<TKey>, IPaginator<TValue>
     {
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <returns>A collection of identifiers.</returns>
-        ICollection<TKey> Discover();
-
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <returns>A collection of identifiers.</returns>
-        Task<ICollection<TKey>> DiscoverAsync();
-
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of identifiers.</returns>
-        Task<ICollection<TKey>> DiscoverAsync(CancellationToken cancellationToken);
-
         /// <summary>Finds the <see cref="TValue"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
         /// <returns>The <see cref="TValue"/> with the specified identifier.</returns>
