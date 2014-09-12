@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V2.Commerce.Json
 {
-    using System.Collections.Generic;
     using System.Runtime.Serialization;
 
     /// <summary>The aggregate listing data contract.</summary>
@@ -17,7 +16,7 @@ namespace GW2DotNET.V2.Commerce.Json
     {
         /// <summary>Gets or sets the buy offers.</summary>
         [DataMember(Name = "buys", Order = 1)]
-        public ICollection<AggregateOfferDataContract> BuyOffers { get; set; }
+        public AggregateOfferDataContract BuyOffers { get; set; }
 
         /// <summary>Gets or sets the id.</summary>
         [DataMember(Name = "id", Order = 0)]
@@ -25,6 +24,6 @@ namespace GW2DotNET.V2.Commerce.Json
 
         /// <summary>Gets or sets the sell offers.</summary>
         [DataMember(Name = "sells", Order = 2)]
-        public ICollection<AggregateOfferDataContract> SellOffers { get; set; }
+        public AggregateOfferDataContract SellOffers { get; set; }
     }
 }

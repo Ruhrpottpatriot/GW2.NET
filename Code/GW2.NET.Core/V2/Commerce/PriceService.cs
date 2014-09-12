@@ -320,8 +320,8 @@ namespace GW2DotNET.V2.Commerce
             return new AggregateListing
                 {
                     ItemId = content.Id, 
-                    BuyOffers = ConvertAggregateOfferDataContractCollection(content.BuyOffers), 
-                    SellOffers = ConvertAggregateOfferDataContractCollection(content.SellOffers)
+                    BuyOffers = ConvertAggregateOfferDataContract(content.BuyOffers),
+                    SellOffers = ConvertAggregateOfferDataContract(content.SellOffers)
                 };
         }
 
@@ -355,16 +355,6 @@ namespace GW2DotNET.V2.Commerce
         private static AggregateOffer ConvertAggregateOfferDataContract(AggregateOfferDataContract content)
         {
             return new AggregateOffer { Quantity = content.Quantity, UnitPrice = content.UnitPrice };
-        }
-
-        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The entity.</returns>
-        private static ICollection<AggregateOffer> ConvertAggregateOfferDataContractCollection(ICollection<AggregateOfferDataContract> content)
-        {
-            var values = new List<AggregateOffer>(content.Count);
-            values.AddRange(content.Select(ConvertAggregateOfferDataContract));
-            return values;
         }
     }
 }
