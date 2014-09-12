@@ -17,7 +17,7 @@ namespace GW2DotNET.V2.Commerce
     public class ExchangeDetailsRequest : DetailsRequest
     {
         /// <summary>Gets or sets the quantity.</summary>
-        public int Quantity { get; set; }
+        public long? Quantity { get; set; }
 
         /// <summary>Gets the resource path.</summary>
         public override string Resource
@@ -32,7 +32,11 @@ namespace GW2DotNET.V2.Commerce
         /// <returns>A collection of parameters.</returns>
         public override IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
-            yield return new KeyValuePair<string, string>("quantity", this.Quantity.ToString(NumberFormatInfo.InvariantInfo));
+            var quantity = this.Quantity;
+            if (quantity.HasValue)
+            {
+                yield return new KeyValuePair<string, string>("quantity", quantity.Value.ToString(NumberFormatInfo.InvariantInfo));
+            }
         }
     }
 }

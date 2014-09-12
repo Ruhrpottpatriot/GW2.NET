@@ -16,23 +16,39 @@ namespace GW2DotNET.V2.Common
     /// <typeparam name="TQuote">The type of quote information.</typeparam>
     public interface IBroker<T, TQuote> : IDiscoverable<T>
     {
-        /// <summary>Gets a quote for the specified number of commodities.</summary>
+        /// <summary>Gets a quote for the commodity.</summary>
         /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <param name="quantity">The quantity.</param>
         /// <returns>A quote.</returns>
-        TQuote GetQuote(T identifier, int quantity);
+        TQuote GetQuote(T identifier);
 
         /// <summary>Gets a quote for the specified number of commodities.</summary>
         /// <param name="identifier">The identifier that identifies the commodity.</param>
         /// <param name="quantity">The quantity.</param>
         /// <returns>A quote.</returns>
-        Task<TQuote> GetQuoteAsync(T identifier, int quantity);
+        TQuote GetQuote(T identifier, long quantity);
+
+        /// <summary>Gets a quote for the commodity.</summary>
+        /// <param name="identifier">The identifier that identifies the commodity.</param>
+        /// <returns>A quote.</returns>
+        Task<TQuote> GetQuoteAsync(T identifier);
+
+        /// <summary>Gets a quote for the commodity.</summary>
+        /// <param name="identifier">The identifier that identifies the commodity.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A quote.</returns>
+        Task<TQuote> GetQuoteAsync(T identifier, CancellationToken cancellationToken);
+
+        /// <summary>Gets a quote for the specified number of commodities.</summary>
+        /// <param name="identifier">The identifier that identifies the commodity.</param>
+        /// <param name="quantity">The quantity.</param>
+        /// <returns>A quote.</returns>
+        Task<TQuote> GetQuoteAsync(T identifier, long quantity);
 
         /// <summary>Gets a quote for the specified number of commodities.</summary>
         /// <param name="identifier">The identifier that identifies the commodity.</param>
         /// <param name="quantity">The quantity.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A quote.</returns>
-        Task<TQuote> GetQuoteAsync(T identifier, int quantity, CancellationToken cancellationToken);
+        Task<TQuote> GetQuoteAsync(T identifier, long quantity, CancellationToken cancellationToken);
     }
 }

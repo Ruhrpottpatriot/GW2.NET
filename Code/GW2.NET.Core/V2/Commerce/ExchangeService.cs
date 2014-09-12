@@ -74,11 +74,29 @@ namespace GW2DotNET.V2.Commerce
                 cancellationToken);
         }
 
+        /// <summary>Gets a quote for the commodity.</summary>
+        /// <param name="identifier">The identifier that identifies the commodity.</param>
+        /// <returns>A quote.</returns>
+        public ExchangeQuote GetQuote(string identifier)
+        {
+            var request = new ExchangeDetailsRequest { Identifier = identifier };
+            var response = this.serviceClient.Send<ExchangeQuoteDataContract>(request);
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            var value = ConvertExchangeQuoteDataContract(response.Content);
+            value.Id = identifier.ToLowerInvariant();
+            value.Timestamp = response.Date;
+            return value;
+        }
+
         /// <summary>Gets a quote for the specified number of commodities.</summary>
         /// <param name="identifier">The identifier that identifies the commodity.</param>
         /// <param name="quantity">The quantity.</param>
         /// <returns>A quote.</returns>
-        public ExchangeQuote GetQuote(string identifier, int quantity)
+        public ExchangeQuote GetQuote(string identifier, long quantity)
         {
             var request = new ExchangeDetailsRequest() { Identifier = identifier, Quantity = quantity };
             var response = this.serviceClient.Send<ExchangeQuoteDataContract>(request);
@@ -87,14 +105,50 @@ namespace GW2DotNET.V2.Commerce
                 return null;
             }
 
-            return ConvertExchangeRateDataContract(response.Content);
+            var value = ConvertExchangeQuoteDataContract(response.Content);
+            value.Id = identifier.ToLowerInvariant();
+            value.Send = quantity;
+            value.Timestamp = response.Date;
+            return value;
+        }
+
+        /// <summary>Gets a quote for the commodity.</summary>
+        /// <param name="identifier">The identifier that identifies the commodity.</param>
+        /// <returns>A quote.</returns>
+        public Task<ExchangeQuote> GetQuoteAsync(string identifier)
+        {
+            return this.GetQuoteAsync(identifier, CancellationToken.None);
+        }
+
+        /// <summary>Gets a quote for the commodity.</summary>
+        /// <param name="identifier">The identifier that identifies the commodity.</param>
+        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <returns>A quote.</returns>
+        public Task<ExchangeQuote> GetQuoteAsync(string identifier, CancellationToken cancellationToken)
+        {
+            var request = new ExchangeDetailsRequest { Identifier = identifier };
+            return this.serviceClient.SendAsync<ExchangeQuoteDataContract>(request, cancellationToken).ContinueWith(
+                task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
+                    {
+                        return null;
+                    }
+
+                    var value = ConvertExchangeQuoteDataContract(response.Content);
+                    value.Id = identifier.ToLowerInvariant();
+                    value.Timestamp = response.Date;
+                    return value;
+                },
+                cancellationToken);
         }
 
         /// <summary>Gets a quote for the specified number of commodities.</summary>
         /// <param name="identifier">The identifier that identifies the commodity.</param>
         /// <param name="quantity">The quantity.</param>
         /// <returns>A quote.</returns>
-        public Task<ExchangeQuote> GetQuoteAsync(string identifier, int quantity)
+        public Task<ExchangeQuote> GetQuoteAsync(string identifier, long quantity)
         {
             return this.GetQuoteAsync(identifier, quantity, CancellationToken.None);
         }
@@ -104,7 +158,7 @@ namespace GW2DotNET.V2.Commerce
         /// <param name="quantity">The quantity.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>A quote.</returns>
-        public Task<ExchangeQuote> GetQuoteAsync(string identifier, int quantity, CancellationToken cancellationToken)
+        public Task<ExchangeQuote> GetQuoteAsync(string identifier, long quantity, CancellationToken cancellationToken)
         {
             var request = new ExchangeDetailsRequest { Identifier = identifier, Quantity = quantity };
             return this.serviceClient.SendAsync<ExchangeQuoteDataContract>(request, cancellationToken).ContinueWith(
@@ -116,7 +170,11 @@ namespace GW2DotNET.V2.Commerce
                             return null;
                         }
 
-                        return ConvertExchangeRateDataContract(response.Content);
+                        var value = ConvertExchangeQuoteDataContract(response.Content);
+                        value.Id = identifier.ToLowerInvariant();
+                        value.Send = quantity;
+                        value.Timestamp = response.Date;
+                        return value;
                     }, 
                 cancellationToken);
         }
@@ -124,9 +182,9 @@ namespace GW2DotNET.V2.Commerce
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
-        private static ExchangeQuote ConvertExchangeRateDataContract(ExchangeQuoteDataContract content)
+        private static ExchangeQuote ConvertExchangeQuoteDataContract(ExchangeQuoteDataContract content)
         {
-            return new ExchangeQuote { CoinsPerGem = content.CoinsPerGem, Quantity = content.Quantity };
+            return new ExchangeQuote { CoinsPerGem = content.CoinsPerGem, Receive = content.Quantity };
         }
     }
 }
