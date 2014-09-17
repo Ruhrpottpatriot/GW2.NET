@@ -35,6 +35,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "portable-net45+netcore45+wp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "portable-net4+netcore45+wpa81+MonoAndroid1+MonoTouch1", "portable-net4+netcore45+wpa81+MonoAndroid1+MonoTouch1", "{BD2E3FCE-8D8A-4272-925A-AEB7DB9C4F3D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{097EE8E8-ABC4-4033-B184-C9B708827ABE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\GW2.NET.nuspec = .nuget\GW2.NET.nuspec
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 11
