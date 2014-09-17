@@ -30,6 +30,9 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Benchmark' ">
     <OutputPath>bin\Benchmarks\</OutputPath>
   </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'NuGet' ">
+    <OutputPath>bin\NuGet\</OutputPath>
+  </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
     <Content Include="Entities\Builds\Builds.classdiagram">
