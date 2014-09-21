@@ -10,6 +10,7 @@ namespace GW2DotNET.V1.Items
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
@@ -30,7 +31,13 @@ namespace GW2DotNET.V1.Items
         /// <param name="serviceClient">The service client.</param>
         public ItemService(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition failed: serviceClient != null");
+            }
+
+            Contract.Ensures(this.serviceClient != null && object.ReferenceEquals(this.serviceClient, serviceClient));
+
             this.serviceClient = serviceClient;
         }
 
@@ -41,7 +48,6 @@ namespace GW2DotNET.V1.Items
         public Item GetItemDetails(int item)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetItemDetails(item, culture);
         }
 
@@ -54,7 +60,7 @@ namespace GW2DotNET.V1.Items
         {
             if (language == null)
             {
-                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+                throw new ArgumentNullException("language", "Precondition failed: language != null");
             }
 
             Contract.EndContractBlock();
@@ -66,7 +72,7 @@ namespace GW2DotNET.V1.Items
                 return null;
             }
 
-            var value = ConvertItemContract(response.Content);
+            var value = ConvertItemDataContract(response.Content);
             value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
             return value;
         }
@@ -78,7 +84,6 @@ namespace GW2DotNET.V1.Items
         public Task<Item> GetItemDetailsAsync(int item)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetItemDetailsAsync(item, culture, CancellationToken.None);
         }
 
@@ -100,7 +105,6 @@ namespace GW2DotNET.V1.Items
         public Task<Item> GetItemDetailsAsync(int item, CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetItemDetailsAsync(item, culture, cancellationToken);
         }
 
@@ -114,7 +118,7 @@ namespace GW2DotNET.V1.Items
         {
             if (language == null)
             {
-                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
+                throw new ArgumentNullException("language", "Precondition failed: language != null");
             }
 
             Contract.EndContractBlock();
@@ -129,7 +133,7 @@ namespace GW2DotNET.V1.Items
                             return null;
                         }
 
-                        var value = ConvertItemContract(response.Content);
+                        var value = ConvertItemDataContract(response.Content);
                         value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
                         return value;
                     }, 
@@ -181,58 +185,147 @@ namespace GW2DotNET.V1.Items
                 cancellationToken);
         }
 
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        private static void ConvertArmorContract(Armor item, ArmorContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.WeightClass != null)
-            {
-                item.WeightClass = ConvertArmorWeightClassContract(content.WeightClass);
-            }
-
-            if (content.Defense != null)
-            {
-                item.Defense = int.Parse(content.Defense);
-            }
-
-            if (content.InfusionSlots != null)
-            {
-                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
-            }
-
-            if (content.InfixUpgrade != null)
-            {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
-            }
-
-            if (!string.IsNullOrEmpty(content.SuffixItemId))
-            {
-                item.SuffixItemId = int.Parse(content.SuffixItemId);
-            }
-
-            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
-            {
-                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
-            }
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ArmorWeightClass ConvertArmorWeightClassContract(string content)
+        /// <returns>An entity.</returns>
+        private static Item ConvertArmorItemDataContract(ItemContract content)
         {
             Contract.Requires(content != null);
-            return (ArmorWeightClass)Enum.Parse(typeof(ArmorWeightClass), content, true);
+            if (content.Armor == null)
+            {
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new UnknownArmor();
+            }
+
+            Armor value;
+            switch (content.Armor.Type)
+            {
+                case "Boots":
+                    value = new Boots();
+                    break;
+                case "Coat":
+                    value = new Coat();
+                    break;
+                case "Helm":
+                    value = new Helm();
+                    break;
+                case "Shoulders":
+                    value = new Shoulders();
+                    break;
+                case "Gloves":
+                    value = new Gloves();
+                    break;
+                case "Leggings":
+                    value = new Leggings();
+                    break;
+                case "HelmAquatic":
+                    value = new HelmAquatic();
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownArmor();
+                    break;
+            }
+
+            int defaultSkinId;
+            if (!int.TryParse(content.DefaultSkin, out defaultSkinId))
+            {
+                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}", content.ItemId);
+            }
+
+            value.DefaultSkinId = defaultSkinId;
+
+            // Set the weight class
+            ArmorWeightClass weightClass;
+            if (!Enum.TryParse(content.Armor.WeightClass, true, out weightClass))
+            {
+                Debug.WriteLine("Unknown 'WeightClass' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.WeightClass = weightClass;
+            }
+
+            // Set the defense rating
+            int defense;
+            if (!int.TryParse(content.Armor.Defense, out defense))
+            {
+                Debug.WriteLine("Unknown 'Defense' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.Defense = defense;
+            }
+
+            // Set the infusion slots
+            if (content.Armor.InfusionSlots != null)
+            {
+                value.InfusionSlots = new List<InfusionSlot>(content.Armor.InfusionSlots.Count);
+
+                foreach (var infusionSlotContract in content.Armor.InfusionSlots)
+                {
+                    var infusionSlot = new InfusionSlot();
+
+                    // Set the infusion upgrade flags
+                    if (infusionSlotContract.Flags == null)
+                    {
+                        Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}", content.ItemId);
+                    }
+                    else
+                    {
+                        foreach (var flag in infusionSlotContract.Flags)
+                        {
+                            InfusionSlotFlags infusionSlotFlags;
+                            if (Enum.TryParse(flag, true, out infusionSlotFlags))
+                            {
+                                infusionSlot.Flags |= infusionSlotFlags;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}: {1}", content.ItemId, flag);
+                            }
+                        }
+                    }
+
+                    // Set the infusion item identifier
+                    int itemId;
+                    if (int.TryParse(infusionSlotContract.ItemId, out itemId))
+                    {
+                        infusionSlot.ItemId = itemId;
+                    }
+
+                    value.InfusionSlots.Add(infusionSlot);
+                }
+            }
+
+            // Set the infix upgrade
+            if (content.Armor.InfixUpgrade != null)
+            {
+                ConvertInfixUpgradeDataContract(value, content.Armor.InfixUpgrade);
+            }
+
+            // Set the suffix item identifier
+            int suffixItemId;
+            if (int.TryParse(content.Armor.SuffixItemId, out suffixItemId))
+            {
+                value.SuffixItemId = suffixItemId;
+            }
+
+            // Set the secondary suffix item identifier
+            int secondarySuffixItemId;
+            if (int.TryParse(content.Armor.SecondarySuffixItemId, out secondarySuffixItemId))
+            {
+                value.SecondarySuffixItemId = secondarySuffixItemId;
+            }
+
+            return value;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <param name="type">The content type.</param>
         /// <returns>An entity.</returns>
-        private static int ConvertAttributeContract(IEnumerable<ItemAttributeContract> content, string type)
+        private static int ConvertAttributeDataContract(IEnumerable<ItemAttributeContract> content, string type)
         {
             Contract.Requires(content != null);
             Contract.Requires(type != null);
@@ -240,185 +333,458 @@ namespace GW2DotNET.V1.Items
             return attributes.Any() ? attributes.Sum(attribute => int.Parse(attribute.Modifier)) : 0;
         }
 
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        private static void ConvertBackpackContract(Backpack item, BackpackContract content)
+        /// <returns>An entity.</returns>
+        private static Item ConvertBackpackItemDataContract(ItemContract content)
         {
-            Contract.Requires(item != null);
             Contract.Requires(content != null);
-            if (content.InfusionSlots != null)
+            if (content.Backpack == null)
             {
-                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new Backpack();
             }
 
-            if (content.InfixUpgrade != null)
+            var value = new Backpack();
+
+            int defaultSkinId;
+            if (!int.TryParse(content.DefaultSkin, out defaultSkinId))
             {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
+                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.DefaultSkinId = defaultSkinId;
             }
 
-            if (!string.IsNullOrEmpty(content.SuffixItemId))
+            // Set the infusion slots
+            if (content.Backpack.InfusionSlots != null)
             {
-                item.SuffixItemId = int.Parse(content.SuffixItemId);
+                value.InfusionSlots = new List<InfusionSlot>(content.Backpack.InfusionSlots.Count);
+
+                foreach (var infusionSlotContract in content.Backpack.InfusionSlots)
+                {
+                    var infusionSlot = new InfusionSlot();
+
+                    // Set the infusion upgrade flags
+                    if (infusionSlotContract.Flags == null)
+                    {
+                        Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}", content.ItemId);
+                    }
+                    else
+                    {
+                        foreach (var flag in infusionSlotContract.Flags)
+                        {
+                            InfusionSlotFlags infusionSlotFlags;
+                            if (Enum.TryParse(flag, true, out infusionSlotFlags))
+                            {
+                                infusionSlot.Flags |= infusionSlotFlags;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}: {1}", content.ItemId, flag);
+                            }
+                        }
+                    }
+
+                    // Set the infusion item identifier
+                    int itemId;
+                    if (int.TryParse(infusionSlotContract.ItemId, out itemId))
+                    {
+                        infusionSlot.ItemId = itemId;
+                    }
+
+                    value.InfusionSlots.Add(infusionSlot);
+                }
             }
 
-            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
+            // Set the infix upgrade
+            if (content.Backpack.InfixUpgrade != null)
             {
-                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
+                ConvertInfixUpgradeDataContract(value, content.Backpack.InfixUpgrade);
             }
+
+            // Set the suffix item identifier
+            int suffixItemId;
+            if (int.TryParse(content.Backpack.SuffixItemId, out suffixItemId))
+            {
+                value.SuffixItemId = suffixItemId;
+            }
+
+            // Set the secondary suffix item identifier
+            int secondarySuffixItemId;
+            if (int.TryParse(content.Backpack.SecondarySuffixItemId, out secondarySuffixItemId))
+            {
+                value.SecondarySuffixItemId = secondarySuffixItemId;
+            }
+
+            return value;
         }
 
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        private static void ConvertBagContract(Bag item, BagContract content)
+        /// <returns>An entity.</returns>
+        private static Item ConvertBagItemDataContract(ItemContract content)
         {
-            Contract.Requires(item != null);
             Contract.Requires(content != null);
 
-            // Set the bag visibility flag
-            if (content.NoSellOrSort != null)
+            if (content.Bag == null)
             {
-                item.NoSellOrSort = content.NoSellOrSort == "1";
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new Bag();
+            }
+
+            var value = new Bag();
+
+            // Set the bag visibility flag
+            int noSellOrSort;
+            if (!int.TryParse(content.Bag.NoSellOrSort, out noSellOrSort))
+            {
+                Debug.WriteLine("Unknown 'NoSellOrSort' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.NoSellOrSort = noSellOrSort == 1;
             }
 
             // Set the bag size
-            if (content.Size != null)
+            int size;
+            if (!int.TryParse(content.Bag.Size, out size))
             {
-                item.Size = int.Parse(content.Size);
+                Debug.WriteLine("Unknown 'Size' for item with ID {0}", content.ItemId);
             }
+            else
+            {
+                value.Size = size;
+            }
+
+            return value;
         }
 
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Item ConvertConsumableItemDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            if (content.Consumable == null)
+            {
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new UnknownConsumable();
+            }
+
+            Consumable value;
+            switch (content.Consumable.Type)
+            {
+                case "AppearanceChange":
+                    value = new AppearanceChanger();
+                    break;
+                case "Booze":
+                    value = new Alcohol();
+                    break;
+                case "ContractNpc":
+                    value = new ContractNpc();
+                    break;
+                case "Food":
+                    value = ConvertFoodConsumableItemDataContract(content);
+                    break;
+                case "Generic":
+                    value = ConvertGenericConsumableItemDataContract(content);
+                    break;
+                case "Halloween":
+                    value = new HalloweenConsumable();
+                    break;
+                case "Immediate":
+                    value = ConvertImmediateConsumableItemDataContract(content);
+                    break;
+                case "Transmutation":
+                    value = new Transmutation();
+                    break;
+                case "Unlock":
+                    value = ConvertUnlockConsumableItemDataContract(content);
+                    break;
+                case "UnTransmutation":
+                    value = new UnTransmutation();
+                    break;
+                case "UpgradeRemoval":
+                    value = new UpgradeRemoval();
+                    break;
+                case "Utility":
+                    value = ConvertUtilityConsumableItemDataContract(content);
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownConsumable();
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Item ConvertContainerItemDataDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            if (content.Container == null)
+            {
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new UnknownContainer();
+            }
+
+            Container value;
+            switch (content.Container.Type)
+            {
+                case "Default":
+                    value = new DefaultContainer();
+                    break;
+                case "GiftBox":
+                    value = new GiftBox();
+                    break;
+                case "OpenUI":
+                    value = new OpenUiContainer();
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownContainer();
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Consumable ConvertCraftingRecipeUnlockConsumableItemDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Consumable != null);
+
+            var value = new CraftingRecipeUnlocker();
+
+            int recipeId;
+            if (!int.TryParse(content.Consumable.RecipeId, out recipeId))
+            {
+                Debug.WriteLine("Unknown 'RecipeId' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.RecipeId = recipeId;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Consumable ConvertDyeUnlockConsumableItemDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Consumable != null);
+
+            var value = new DyeUnlocker();
+
+            int colorId;
+            if (!int.TryParse(content.Consumable.ColorId, out colorId))
+            {
+                Debug.WriteLine("Unknown 'ColorId' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.ColorId = colorId;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Consumable ConvertFoodConsumableItemDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Consumable != null);
+
+            var value = new Food();
+
+            // Set the duration
+            double duration;
+            if (double.TryParse(content.Consumable.Duration, out duration))
+            {
+                value.Duration = TimeSpan.FromMilliseconds(duration);
+            }
+
+            // Set the effect description
+            if (!string.IsNullOrEmpty(content.Consumable.Description))
+            {
+                value.Effect = content.Consumable.Description;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Item ConvertGatheringItemDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            if (content.GatheringTool == null)
+            {
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new UnknownGatheringTool();
+            }
+
+            GatheringTool value;
+            switch (content.GatheringTool.Type)
+            {
+                case "Foraging":
+                    value = new ForagingTool();
+                    break;
+                case "Logging":
+                    value = new LoggingTool();
+                    break;
+                case "Mining":
+                    value = new MiningTool();
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownGatheringTool();
+                    break;
+            }
+
+            int defaultSkinId;
+            if (!int.TryParse(content.DefaultSkin, out defaultSkinId))
+            {
+                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.DefaultSkinId = defaultSkinId;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Consumable ConvertGenericConsumableItemDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Consumable != null);
+
+            var value = new GenericConsumable();
+
+            // Set the duration
+            double duration;
+            if (double.TryParse(content.Consumable.Duration, out duration))
+            {
+                value.Duration = TimeSpan.FromMilliseconds(duration);
+            }
+
+            // Set the effect description
+            if (!string.IsNullOrEmpty(content.Consumable.Description))
+            {
+                value.Effect = content.Consumable.Description;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Item ConvertGizmoItemDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            if (content.Gizmo == null)
+            {
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new UnknownGizmo();
+            }
+
+            Gizmo value;
+            switch (content.Gizmo.Type)
+            {
+                case "Default":
+                    value = new DefaultGizmo();
+                    break;
+                case "ContainerKey":
+                    value = new ContainerKey();
+                    break;
+                case "RentableContractNpc":
+                    value = new RentableContractNpc();
+                    break;
+                case "UnlimitedConsumable":
+                    value = new UnlimitedConsumable();
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownGizmo();
+                    break;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Consumable ConvertImmediateConsumableItemDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Consumable != null);
+
+            var value = new ImmediateConsumable();
+
+            // Set the duration
+            double duration;
+            if (double.TryParse(content.Consumable.Duration, out duration))
+            {
+                value.Duration = TimeSpan.FromMilliseconds(duration);
+            }
+
+            // Set the effect description
+            if (!string.IsNullOrEmpty(content.Consumable.Description))
+            {
+                value.Effect = content.Consumable.Description;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="item">The entity.</param>
         /// <param name="content">The content.</param>
-        private static void ConvertConsumableContract(Consumable item, ConsumableContract content)
-        {
-            Contract.Requires(content != null);
-            TimeSpan? duration = null;
-            string description = null;
-
-            if (!string.IsNullOrEmpty(content.Duration))
-            {
-                duration = TimeSpan.FromMilliseconds(double.Parse(content.Duration));
-            }
-
-            if (!string.IsNullOrEmpty(content.Description))
-            {
-                description = content.Description;
-            }
-
-            var food = item as Food;
-            if (food != null)
-            {
-                food.Duration = duration;
-                food.Effect = description;
-            }
-
-            var generic = item as GenericConsumable;
-            if (generic != null)
-            {
-                generic.Duration = duration;
-                generic.Effect = description;
-            }
-
-            var immediate = item as ImmediateConsumable;
-            if (immediate != null)
-            {
-                immediate.Duration = duration;
-                immediate.Effect = description;
-            }
-
-            var utility = item as Utility;
-            if (utility != null)
-            {
-                utility.Duration = duration;
-                utility.Effect = description;
-            }
-
-            var dye = item as DyeUnlocker;
-            if (dye != null && content.ColorId != null)
-            {
-                dye.ColorId = int.Parse(content.ColorId);
-            }
-
-            var recipe = item as CraftingRecipeUnlocker;
-            if (recipe != null && content.RecipeId != null)
-            {
-                recipe.RecipeId = int.Parse(content.RecipeId);
-            }
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static GameTypes ConvertGameTypesContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (GameTypes)Enum.Parse(typeof(GameTypes), content, true);
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static GameTypes ConvertGameTypesContractCollection(IEnumerable<string> content)
-        {
-            Contract.Requires(content != null);
-            return content.Aggregate(GameTypes.None, (flags, flag) => flags | ConvertGameTypesContract(flag));
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertInfixUpgradeContract(IUpgrade item, InfixUpgradeContract content)
+        private static void ConvertInfixUpgradeDataContract(IUpgrade item, InfixUpgradeContract content)
         {
             Contract.Requires(item != null);
             Contract.Requires(content != null);
             if (content.Buff != null)
             {
-                item.Buff = ConvertItemBuffContract(content.Buff);
+                item.Buff = ConvertItemBuffDataContract(content.Buff);
             }
 
             if (content.Attributes != null)
             {
-                item.ConditionDamage = ConvertAttributeContract(content.Attributes, "ConditionDamage");
-                item.Ferocity = ConvertAttributeContract(content.Attributes, "CritDamage");
-                item.Healing = ConvertAttributeContract(content.Attributes, "Healing");
-                item.Power = ConvertAttributeContract(content.Attributes, "Power");
-                item.Precision = ConvertAttributeContract(content.Attributes, "Precision");
-                item.Toughness = ConvertAttributeContract(content.Attributes, "Toughness");
-                item.Vitality = ConvertAttributeContract(content.Attributes, "Vitality");
+                item.ConditionDamage = ConvertAttributeDataContract(content.Attributes, "ConditionDamage");
+                item.Ferocity = ConvertAttributeDataContract(content.Attributes, "CritDamage");
+                item.Healing = ConvertAttributeDataContract(content.Attributes, "Healing");
+                item.Power = ConvertAttributeDataContract(content.Attributes, "Power");
+                item.Precision = ConvertAttributeDataContract(content.Attributes, "Precision");
+                item.Toughness = ConvertAttributeDataContract(content.Attributes, "Toughness");
+                item.Vitality = ConvertAttributeDataContract(content.Attributes, "Vitality");
             }
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static InfusionSlot ConvertInfusionSlotContract(InfusionSlotContract content)
-        {
-            Contract.Requires(content != null);
-            return new InfusionSlot
-                       {
-                           Flags = MapInfusionSlotFlags(content.Flags), 
-                           ItemId = string.IsNullOrEmpty(content.ItemId) ? (int?)null : int.Parse(content.ItemId)
-                       };
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>A collection of entities.</returns>
-        private static ICollection<InfusionSlot> ConvertInfusionSlotContractCollection(ICollection<InfusionSlotContract> content)
-        {
-            Contract.Requires(content != null);
-            var values = new List<InfusionSlot>(content.Count);
-            values.AddRange(content.Select(ConvertInfusionSlotContract));
-            return values;
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static ItemBuff ConvertItemBuffContract(ItemBuffContract content)
+        private static ItemBuff ConvertItemBuffDataContract(ItemBuffContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<ItemBuff>() != null);
@@ -432,8 +798,8 @@ namespace GW2DotNET.V1.Items
                 value.SkillId = int.Parse(content.SkillId);
             }
 
-            // Set the description
-            if (content.Description != null)
+            // Set the buff description
+            if (!string.IsNullOrEmpty(content.Description))
             {
                 value.Description = content.Description;
             }
@@ -442,697 +808,730 @@ namespace GW2DotNET.V1.Items
             return value;
         }
 
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertItemContract(ItemContract content)
+        private static Item ConvertItemDataContract(ItemContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Item>() != null);
 
-            // Map type discriminators to .NET types
-            var value = (Item)Activator.CreateInstance(GetItemType(content));
+            Item value;
 
-            // Map item identifier
-            if (content.ItemId != null)
+            // Convert type discriminators to .NET types
+            switch (content.Type)
             {
-                value.ItemId = int.Parse(content.ItemId);
+                case "Armor":
+                    value = ConvertArmorItemDataContract(content);
+                    break;
+                case "Back":
+                    value = ConvertBackpackItemDataContract(content);
+                    break;
+                case "Bag":
+                    value = ConvertBagItemDataContract(content);
+                    break;
+                case "Consumable":
+                    value = ConvertConsumableItemDataContract(content);
+                    break;
+                case "Container":
+                    value = ConvertContainerItemDataDataContract(content);
+                    break;
+                case "CraftingMaterial":
+                    value = new CraftingMaterial();
+                    break;
+                case "Gathering":
+                    value = ConvertGatheringItemDataContract(content);
+                    break;
+                case "Gizmo":
+                    value = ConvertGizmoItemDataContract(content);
+                    break;
+                case "MiniPet":
+                    value = new MiniPet();
+                    break;
+                case "Tool":
+                    value = ConvertToolItemDataContract(content);
+                    break;
+                case "Trait":
+                    value = new TraitGuide();
+                    break;
+                case "Trinket":
+                    value = ConvertTrinketItemDataContract(content);
+                    break;
+                case "Trophy":
+                    value = new Trophy();
+                    break;
+                case "UpgradeComponent":
+                    value = ConvertUpgradeComponentItemDataContract(content);
+                    break;
+                case "Weapon":
+                    value = ConvertWeaponItemDataContract(content);
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownItem();
+                    break;
             }
 
-            // Map item name
-            value.Name = content.Name;
-
-            // Map item description
-            value.Description = content.Description;
-
-            // Map item level
-            if (content.Level != null)
+            // Set the item identifier
+            int itemId;
+            if (int.TryParse(content.ItemId, out itemId))
             {
-                value.Level = int.Parse(content.Level);
+                value.ItemId = itemId;
+            }
+            else
+            {
+                Debug.WriteLine("Unknown 'ItemId'");
             }
 
-            // Map item rarity
-            if (content.Rarity != null)
+            // Set the item name
+            if (content.Name != null)
             {
-                value.Rarity = ConvertItemRarityContract(content.Rarity);
+                value.Name = content.Name;
+            }
+            else
+            {
+                Debug.WriteLine("Unknown 'Name' for item with ID {0}", content.ItemId);
             }
 
-            // Map vendor value
-            if (content.VendorValue != null)
+            // Set the item description
+            if (!string.IsNullOrEmpty(content.Description))
             {
-                value.VendorValue = int.Parse(content.VendorValue);
+                value.Description = content.Description;
             }
 
-            // Map icon file identifier
-            if (content.IconFileId != null)
+            // Set the item level
+            int level;
+            if (int.TryParse(content.Level, out level))
             {
-                value.FileId = int.Parse(content.IconFileId);
+                value.Level = level;
+            }
+            else
+            {
+                Debug.WriteLine("Unknown 'Level' for item with ID {0}", content.ItemId);
             }
 
-            // Map icon file signature
+            // Set the item rarity
+            ItemRarity rarity;
+            if (Enum.TryParse(content.Rarity, true, out rarity))
+            {
+                value.Rarity = rarity;
+            }
+            else
+            {
+                Debug.WriteLine("Unknown 'Level' for item with ID {0}: {1}", content.ItemId, content.Rarity);
+            }
+
+
+            // Set the vendor value
+            int vendorValue;
+            if (int.TryParse(content.VendorValue, out vendorValue))
+            {
+                value.VendorValue = vendorValue;
+            }
+            else
+            {
+                Debug.WriteLine("Unknown 'VendorValue' for item with ID {0}: {1}", content.ItemId, content.VendorValue);
+            }
+
+            // Set the icon file identifier
+            int iconFileId;
+            if (int.TryParse(content.IconFileId, out iconFileId))
+            {
+                value.FileId = iconFileId;
+            }
+            else
+            {
+                Debug.WriteLine("Unknown 'FileId' for item with ID {0}: {1}", content.ItemId, content.IconFileId);
+            }
+
+            // Set the icon file signature
             if (content.IconFileSignature != null)
             {
                 value.FileSignature = content.IconFileSignature;
             }
-
-            // Map item game types
-            if (content.GameTypes != null)
+            else
             {
-                value.GameTypes = ConvertGameTypesContractCollection(content.GameTypes);
+                Debug.WriteLine("Unknown 'FileSignature' for item with ID {0}: {1}", content.ItemId, content.IconFileSignature);
             }
 
-            // Map item flags
-            if (content.Flags != null)
+            // Set the item game types
+            if (content.GameTypes == null)
             {
-                value.Flags = ConvertItemFlagsContractCollection(content.Flags);
+                Debug.WriteLine("Unknown 'GameTypes' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                foreach (var contract in content.GameTypes)
+                {
+                    GameTypes gameType;
+                    if (Enum.TryParse(contract, true, out gameType))
+                    {
+                        value.GameTypes |= gameType;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Unknown 'GameTypes' for item with ID {0}: {1}", content.ItemId, contract);
+                    }
+                }
             }
 
-            // Map item restrictions
-            if (content.Restrictions != null)
+            // Set the item flags
+            if (content.Flags == null)
             {
-                value.Restrictions = ConvertItemRestrictionsContractCollection(content.Restrictions);
+                Debug.WriteLine("Unknown 'Flags' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                foreach (var contract in content.Flags)
+                {
+                    ItemFlags flag;
+                    if (Enum.TryParse(contract, true, out flag))
+                    {
+                        value.Flags |= flag;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Unknown 'Flags' for item with ID {0}: {1}", content.ItemId, contract);
+                    }
+                }
             }
 
-            // Map default skin if item is skinnable
-            if (!string.IsNullOrEmpty(content.DefaultSkin))
+            // Set the item restrictions
+            if (content.Restrictions == null)
             {
-                ((ISkinnable)value).DefaultSkinId = int.Parse(content.DefaultSkin);
+                Debug.WriteLine("Unknown 'Restrictions' for item with ID {0}", content.ItemId);
             }
-
-            // Map type-specific item contracts (maximum 1 contract per type)
-            if (content.Armor != null)
+            else
             {
-                ConvertArmorContract((Armor)value, content.Armor);
-            }
-            else if (content.Backpack != null)
-            {
-                ConvertBackpackContract((Backpack)value, content.Backpack);
-            }
-            else if (content.Bag != null)
-            {
-                ConvertBagContract((Bag)value, content.Bag);
-            }
-            else if (content.Consumable != null)
-            {
-                ConvertConsumableContract((Consumable)value, content.Consumable);
-            }
-            else if (content.Tool != null)
-            {
-                ConvertToolContract((Tool)value, content.Tool);
-            }
-            else if (content.Trinket != null)
-            {
-                ConvertTrinketContract((Trinket)value, content.Trinket);
-            }
-            else if (content.UpgradeComponent != null)
-            {
-                ConvertUpgradeComponentContract((UpgradeComponent)value, content.UpgradeComponent);
-            }
-            else if (content.Weapon != null)
-            {
-                ConvertWeaponContract((Weapon)value, content.Weapon);
+                foreach (var contract in content.Restrictions)
+                {
+                    ItemRestrictions restriction;
+                    if (Enum.TryParse(contract, true, out restriction))
+                    {
+                        value.Restrictions |= restriction;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Unknown 'Restrictions' for item with ID {0}: {1}", content.ItemId, contract);
+                    }
+                }
             }
 
             return value;
         }
 
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemFlags ConvertItemFlagsContract(string content)
+        /// <returns>An entity.</returns>
+        private static Tool ConvertSalvageToolItemDataContract(ItemContract content)
         {
             Contract.Requires(content != null);
-            return (ItemFlags)Enum.Parse(typeof(ItemFlags), content, true);
+            Contract.Requires(content.Tool != null);
+
+            var value = new SalvageTool();
+
+            // Set the number of charges
+            int charges;
+            if (!int.TryParse(content.Tool.Charges, out charges))
+            {
+                Debug.WriteLine("Unknown 'Charges' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.Charges = charges;
+            }
+
+            return value;
         }
 
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemFlags ConvertItemFlagsContractCollection(IEnumerable<string> content)
+        /// <returns>An entity.</returns>
+        private static Item ConvertToolItemDataContract(ItemContract content)
         {
             Contract.Requires(content != null);
-            return content.Aggregate(ItemFlags.None, (flags, flag) => flags | ConvertItemFlagsContract(flag));
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemRarity ConvertItemRarityContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (ItemRarity)Enum.Parse(typeof(ItemRarity), content, true);
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemRestrictions ConvertItemRestrictionsContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (ItemRestrictions)Enum.Parse(typeof(ItemRestrictions), content, true);
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static ItemRestrictions ConvertItemRestrictionsContractCollection(IEnumerable<string> content)
-        {
-            Contract.Requires(content != null);
-            return content.Aggregate(ItemRestrictions.None, (flags, flag) => flags | ConvertItemRestrictionsContract(flag));
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertToolContract(Tool item, ToolContract content)
-        {
-            Contract.Requires(content != null);
-            var salvageTool = item as SalvageTool;
-            if (salvageTool != null && content.Charges != null)
+            if (content.Tool == null)
             {
-                salvageTool.Charges = int.Parse(content.Charges);
-            }
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertTrinketContract(Trinket item, TrinketContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.InfusionSlots != null)
-            {
-                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new UnknownTool();
             }
 
-            if (content.InfixUpgrade != null)
-            {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
-            }
-
-            if (!string.IsNullOrEmpty(content.SuffixItemId))
-            {
-                item.SuffixItemId = int.Parse(content.SuffixItemId);
-            }
-
-            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
-            {
-                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
-            }
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertUpgradeComponentContract(UpgradeComponent item, UpgradeComponentContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.Flags != null)
-            {
-                item.UpgradeComponentFlags = MapUpgradeComponentFlags(content.Flags);
-            }
-
-            if (content.InfusionUpgradeFlags != null)
-            {
-                item.InfusionUpgradeFlags = MapInfusionSlotFlags(content.InfusionUpgradeFlags);
-            }
-
-            if (content.Bonuses != null)
-            {
-                item.Bonuses = content.Bonuses;
-            }
-
-            if (content.InfixUpgrade != null)
-            {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
-            }
-
-            if (content.Suffix != null)
-            {
-                item.Suffix = content.Suffix;
-            }
-        }
-
-        /// <summary>Infrastructure. Maps contracts to entities.</summary>
-        /// <param name="item">The entity.</param>
-        /// <param name="content">The content.</param>
-        private static void ConvertWeaponContract(Weapon item, WeaponContract content)
-        {
-            Contract.Requires(item != null);
-            Contract.Requires(content != null);
-            if (content.DamageType != null)
-            {
-                item.DamageType = ConvertWeaponDamageTypeContract(content.DamageType);
-            }
-
-            if (content.MinimumPower != null)
-            {
-                item.MinimumPower = int.Parse(content.MinimumPower);
-            }
-
-            if (content.MaximumPower != null)
-            {
-                item.MaximumPower = int.Parse(content.MaximumPower);
-            }
-
-            if (content.Defense != null)
-            {
-                item.Defense = int.Parse(content.Defense);
-            }
-
-            if (content.InfusionSlots != null)
-            {
-                item.InfusionSlots = ConvertInfusionSlotContractCollection(content.InfusionSlots);
-            }
-
-            if (content.InfixUpgrade != null)
-            {
-                ConvertInfixUpgradeContract(item, content.InfixUpgrade);
-            }
-
-            if (!string.IsNullOrEmpty(content.SuffixItemId))
-            {
-                item.SuffixItemId = int.Parse(content.SuffixItemId);
-            }
-
-            if (!string.IsNullOrEmpty(content.SecondarySuffixItemId))
-            {
-                item.SecondarySuffixItemId = int.Parse(content.SecondarySuffixItemId);
-            }
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static WeaponDamageType ConvertWeaponDamageTypeContract(string content)
-        {
-            Contract.Requires(content != null);
-            return (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content, true);
-        }
-
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetArmorType(ArmorContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
-            {
-                case "Boots":
-                    return typeof(Boots);
-                case "Coat":
-                    return typeof(Coat);
-                case "Helm":
-                    return typeof(Helm);
-                case "Shoulders":
-                    return typeof(Shoulders);
-                case "Gloves":
-                    return typeof(Gloves);
-                case "Leggings":
-                    return typeof(Leggings);
-                case "HelmAquatic":
-                    return typeof(HelmAquatic);
-            }
-
-            return typeof(UnknownArmor);
-        }
-
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetConsumableType(ConsumableContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
-            {
-                case "AppearanceChange":
-                    return typeof(AppearanceChanger);
-                case "Booze":
-                    return typeof(Alcohol);
-                case "ContractNpc":
-                    return typeof(ContractNpc);
-                case "Food":
-                    return typeof(Food);
-                case "Generic":
-                    return typeof(GenericConsumable);
-                case "Halloween":
-                    return typeof(HalloweenConsumable);
-                case "Immediate":
-                    return typeof(ImmediateConsumable);
-                case "Transmutation":
-                    return typeof(Transmutation);
-                case "Unlock":
-                    return GetUnlockConsumableType(content);
-                case "UnTransmutation":
-                    return typeof(UnTransmutation);
-                case "UpgradeRemoval":
-                    return typeof(UpgradeRemoval);
-                case "Utility":
-                    return typeof(Utility);
-            }
-
-            return typeof(UnknownConsumable);
-        }
-
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetContainerType(ContainerContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
-            {
-                case "Default":
-                    return typeof(DefaultContainer);
-                case "GiftBox":
-                    return typeof(GiftBox);
-                case "OpenUI":
-                    return typeof(OpenUiContainer);
-            }
-
-            return typeof(UnknownContainer);
-        }
-
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetGatheringToolType(GatheringToolContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
-            {
-                case "Foraging":
-                    return typeof(ForagingTool);
-                case "Logging":
-                    return typeof(LoggingTool);
-                case "Mining":
-                    return typeof(MiningTool);
-            }
-
-            return typeof(UnknownGatheringTool);
-        }
-
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetGizmoType(GizmoContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
-            {
-                case "Default":
-                    return typeof(DefaultGizmo);
-                case "ContainerKey":
-                    return typeof(ContainerKey);
-                case "RentableContractNpc":
-                    return typeof(RentableContractNpc);
-                case "UnlimitedConsumable":
-                    return typeof(UnlimitedConsumable);
-            }
-
-            return typeof(UnknownGizmo);
-        }
-
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetItemType(ItemContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
-            {
-                case "Armor":
-                    if (content.Armor == null)
-                    {
-                        return typeof(UnknownArmor);
-                    }
-
-                    return GetArmorType(content.Armor);
-                case "Back":
-                    return typeof(Backpack);
-                case "Bag":
-                    return typeof(Bag);
-                case "Consumable":
-                    if (content.Consumable == null)
-                    {
-                        return typeof(UnknownConsumable);
-                    }
-
-                    return GetConsumableType(content.Consumable);
-                case "Container":
-                    if (content.Container == null)
-                    {
-                        return typeof(UnknownContainer);
-                    }
-
-                    return GetContainerType(content.Container);
-                case "CraftingMaterial":
-                    return typeof(CraftingMaterial);
-                case "Gathering":
-                    if (content.GatheringTool == null)
-                    {
-                        return typeof(UnknownGatheringTool);
-                    }
-
-                    return GetGatheringToolType(content.GatheringTool);
-                case "Gizmo":
-                    if (content.Gizmo == null)
-                    {
-                        return typeof(UnknownGizmo);
-                    }
-
-                    return GetGizmoType(content.Gizmo);
-                case "MiniPet":
-                    return typeof(MiniPet);
-                case "Tool":
-                    if (content.Tool == null)
-                    {
-                        return typeof(UnknownTool);
-                    }
-
-                    return GetToolType(content.Tool);
-                case "Trait":
-                    return typeof(TraitGuide);
-                case "Trinket":
-                    if (content.Trinket == null)
-                    {
-                        return typeof(UnknownTrinket);
-                    }
-
-                    return GetTrinketType(content.Trinket);
-                case "Trophy":
-                    return typeof(Trophy);
-                case "UpgradeComponent":
-                    if (content.UpgradeComponent == null)
-                    {
-                        return typeof(UnknownUpgradeComponent);
-                    }
-
-                    return GetUpgradeComponentType(content.UpgradeComponent);
-                case "Weapon":
-                    if (content.Weapon == null)
-                    {
-                        return typeof(UnknownWeapon);
-                    }
-
-                    return GetWeaponType(content.Weapon);
-            }
-
-            return typeof(UnknownItem);
-        }
-
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetToolType(ToolContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
+            Tool value;
+            switch (content.Tool.Type)
             {
                 case "Salvage":
-                    return typeof(SalvageTool);
+                    value = ConvertSalvageToolItemDataContract(content);
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownTool();
+                    break;
             }
 
-            return typeof(UnknownTool);
+            return value;
         }
 
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetTrinketType(TrinketContract content)
+        /// <returns>An entity.</returns>
+        private static Item ConvertTrinketItemDataContract(ItemContract content)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
+            if (content.Trinket == null)
+            {
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new UnknownTrinket();
+            }
+
+            Trinket value;
+            switch (content.Trinket.Type)
             {
                 case "Amulet":
-                    return typeof(Amulet);
+                    value = new Amulet();
+                    break;
                 case "Accessory":
-                    return typeof(Accessory);
+                    value = new Accessory();
+                    break;
                 case "Ring":
-                    return typeof(Ring);
+                    value = new Ring();
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownTrinket();
+                    break;
             }
 
-            return typeof(UnknownTrinket);
+            // Set the infusion slots
+            if (content.Trinket.InfusionSlots != null)
+            {
+                value.InfusionSlots = new List<InfusionSlot>(content.Trinket.InfusionSlots.Count);
+
+                foreach (var infusionSlotContract in content.Trinket.InfusionSlots)
+                {
+                    var infusionSlot = new InfusionSlot();
+
+                    // Set the infusion upgrade flags
+                    if (infusionSlotContract.Flags == null)
+                    {
+                        Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}", content.ItemId);
+                    }
+                    else
+                    {
+                        foreach (var flag in infusionSlotContract.Flags)
+                        {
+                            InfusionSlotFlags infusionSlotFlags;
+                            if (Enum.TryParse(flag, true, out infusionSlotFlags))
+                            {
+                                infusionSlot.Flags |= infusionSlotFlags;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}: {1}", content.ItemId, flag);
+                            }
+                        }
+                    }
+
+                    // Set the infusion item identifier
+                    int itemId;
+                    if (int.TryParse(infusionSlotContract.ItemId, out itemId))
+                    {
+                        infusionSlot.ItemId = itemId;
+                    }
+
+                    value.InfusionSlots.Add(infusionSlot);
+                }
+            }
+
+            // Set the infix upgrade
+            if (content.Trinket.InfixUpgrade != null)
+            {
+                ConvertInfixUpgradeDataContract(value, content.Trinket.InfixUpgrade);
+            }
+
+            // Set the suffix item identifier
+            int suffixItemId;
+            if (int.TryParse(content.Trinket.SuffixItemId, out suffixItemId))
+            {
+                value.SuffixItemId = suffixItemId;
+            }
+
+            // Set the secondary suffix item identifier
+            int secondarySuffixItemId;
+            if (int.TryParse(content.Trinket.SecondarySuffixItemId, out secondarySuffixItemId))
+            {
+                value.SecondarySuffixItemId = secondarySuffixItemId;
+            }
+
+            return value;
         }
 
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetUnlockConsumableType(ConsumableContract content)
+        /// <returns>An entity.</returns>
+        private static Consumable ConvertUnlockConsumableItemDataContract(ItemContract content)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.UnlockType)
+            Contract.Requires(content.Consumable != null);
+
+            Consumable value;
+            switch (content.Consumable.UnlockType)
             {
                 case "BagSlot":
-                    return typeof(BagSlotUnlocker);
+                    value = new BagSlotUnlocker();
+                    break;
                 case "BankTab":
-                    return typeof(BankTabUnlocker);
+                    value = new BankTabUnlocker();
+                    break;
                 case "CollectibleCapacity":
-                    return typeof(CollectibleCapacityUnlocker);
+                    value = new CollectibleCapacityUnlocker();
+                    break;
                 case "Content":
-                    return typeof(ContentUnlocker);
+                    value = new ContentUnlocker();
+                    break;
                 case "CraftingRecipe":
-                    return typeof(CraftingRecipeUnlocker);
+                    value = ConvertCraftingRecipeUnlockConsumableItemDataContract(content);
+                    break;
                 case "Dye":
-                    return typeof(DyeUnlocker);
+                    value = ConvertDyeUnlockConsumableItemDataContract(content);
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'unlock_type' for item with ID {0}", content.ItemId);
+                    value = new UnknownUnlocker();
+                    break;
             }
 
-            return typeof(UnknownUnlocker);
+            return value;
         }
 
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetUpgradeComponentType(UpgradeComponentContract content)
+        /// <returns>An entity.</returns>
+        private static Item ConvertUpgradeComponentItemDataContract(ItemContract content)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
+            if (content.UpgradeComponent == null)
+            {
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new UnknownUpgradeComponent();
+            }
+
+            UpgradeComponent value;
+            switch (content.UpgradeComponent.Type)
             {
                 case "Default":
-                    return typeof(DefaultUpgradeComponent);
+                    value = new DefaultUpgradeComponent();
+                    break;
                 case "Gem":
-                    return typeof(Gem);
+                    value = new Gem();
+                    break;
                 case "Sigil":
-                    return typeof(Sigil);
+                    value = new Sigil();
+                    break;
                 case "Rune":
-                    return typeof(Rune);
+                    value = new Rune();
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownUpgradeComponent();
+                    break;
             }
 
-            return typeof(UnknownUpgradeComponent);
+            // Set the upgrade flags
+            if (content.UpgradeComponent.Flags == null)
+            {
+                Debug.WriteLine("Unknown 'UpgradeComponentFlags' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                foreach (var flag in content.UpgradeComponent.Flags)
+                {
+                    UpgradeComponentFlags upgradeComponentFlags;
+                    if (Enum.TryParse(flag, true, out upgradeComponentFlags))
+                    {
+                        value.UpgradeComponentFlags |= upgradeComponentFlags;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Unknown 'UpgradeComponentFlags' for item with ID {0}: {1}", content.ItemId, flag);
+                    }
+                }
+            }
+
+            // Set the infusion upgrade flags
+            if (content.UpgradeComponent.Flags == null)
+            {
+                Debug.WriteLine("Unknown 'InfusionUpgradeFlags' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                foreach (var flag in content.UpgradeComponent.InfusionUpgradeFlags)
+                {
+                    InfusionSlotFlags infusionUpgradeFlags;
+                    if (Enum.TryParse(flag, true, out infusionUpgradeFlags))
+                    {
+                        value.InfusionUpgradeFlags |= infusionUpgradeFlags;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}: {1}", content.ItemId, flag);
+                    }
+                }
+            }
+
+            // Set the upgrade bonuses
+            if (content.UpgradeComponent.Bonuses != null)
+            {
+                value.Bonuses = content.UpgradeComponent.Bonuses;
+            }
+
+            // Set the infix upgrade
+            if (content.UpgradeComponent.InfixUpgrade != null)
+            {
+                ConvertInfixUpgradeDataContract(value, content.UpgradeComponent.InfixUpgrade);
+            }
+
+            // Set the localized suffix
+            if (!string.IsNullOrEmpty(content.UpgradeComponent.Suffix))
+            {
+                value.Suffix = content.UpgradeComponent.Suffix;
+            }
+
+            return value;
         }
 
-        /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
-        /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetWeaponType(WeaponContract content)
+        /// <returns>An entity.</returns>
+        private static Consumable ConvertUtilityConsumableItemDataContract(ItemContract content)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Type>() != null);
-            switch (content.Type)
+            Contract.Requires(content.Consumable != null);
+
+            var value = new Utility();
+
+            // Set the duration
+            double duration;
+            if (double.TryParse(content.Consumable.Duration, out duration))
+            {
+                value.Duration = TimeSpan.FromMilliseconds(duration);
+            }
+
+            // Set the effect description
+            if (!string.IsNullOrEmpty(content.Consumable.Description))
+            {
+                value.Effect = content.Consumable.Description;
+            }
+
+            return value;
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Weapon ConvertWeaponItemDataContract(ItemContract content)
+        {
+            Contract.Requires(content != null);
+            if (content.Weapon == null)
+            {
+                Debug.WriteLine("No details for item with ID {0}", content.ItemId);
+                return new UnknownWeapon();
+            }
+
+            Weapon value;
+            switch (content.Weapon.Type)
             {
                 case "Axe":
-                    return typeof(Axe);
+                    value = new Axe();
+                    break;
                 case "Dagger":
-                    return typeof(Dagger);
+                    value = new Dagger();
+                    break;
                 case "Focus":
-                    return typeof(Focus);
+                    value = new Focus();
+                    break;
                 case "Greatsword":
-                    return typeof(GreatSword);
+                    value = new GreatSword();
+                    break;
                 case "Hammer":
-                    return typeof(Hammer);
+                    value = new Hammer();
+                    break;
                 case "Harpoon":
-                    return typeof(Harpoon);
+                    value = new Harpoon();
+                    break;
                 case "LongBow":
-                    return typeof(LongBow);
+                    value = new LongBow();
+                    break;
                 case "Mace":
-                    return typeof(Mace);
+                    value = new Mace();
+                    break;
                 case "Pistol":
-                    return typeof(Pistol);
+                    value = new Pistol();
+                    break;
                 case "Rifle":
-                    return typeof(Rifle);
+                    value = new Rifle();
+                    break;
                 case "Scepter":
-                    return typeof(Scepter);
+                    value = new Scepter();
+                    break;
                 case "Shield":
-                    return typeof(Shield);
+                    value = new Shield();
+                    break;
                 case "ShortBow":
-                    return typeof(ShortBow);
+                    value = new ShortBow();
+                    break;
                 case "Speargun":
-                    return typeof(SpearGun);
+                    value = new SpearGun();
+                    break;
                 case "Sword":
-                    return typeof(Sword);
+                    value = new Sword();
+                    break;
                 case "Staff":
-                    return typeof(Staff);
+                    value = new Staff();
+                    break;
                 case "Torch":
-                    return typeof(Torch);
+                    value = new Torch();
+                    break;
                 case "Trident":
-                    return typeof(Trident);
+                    value = new Trident();
+                    break;
                 case "Warhorn":
-                    return typeof(WarHorn);
+                    value = new WarHorn();
+                    break;
                 case "Toy":
-                    return typeof(Toy);
+                    value = new Toy();
+                    break;
                 case "TwoHandedToy":
-                    return typeof(TwoHandedToy);
+                    value = new TwoHandedToy();
+                    break;
                 case "SmallBundle":
-                    return typeof(SmallBundle);
+                    value = new SmallBundle();
+                    break;
                 case "LargeBundle":
-                    return typeof(LargeBundle);
+                    value = new LargeBundle();
+                    break;
+                default:
+                    Debug.WriteLine("Unknown 'type' for item with ID {0}", content.ItemId);
+                    value = new UnknownWeapon();
+                    break;
             }
 
-            return typeof(UnknownWeapon);
-        }
+            // Set the default skin
+            int defaultSkinId;
+            if (!int.TryParse(content.DefaultSkin, out defaultSkinId))
+            {
+                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.DefaultSkinId = defaultSkinId;
+            }
 
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static InfusionSlotFlags MapInfusionSlotFlag(string content)
-        {
-            Contract.Requires(content != null);
-            return (InfusionSlotFlags)Enum.Parse(typeof(InfusionSlotFlags), content, true);
-        }
+            // Set the damage type
+            WeaponDamageType damageType;
+            if (!Enum.TryParse(content.Weapon.DamageType, true, out damageType))
+            {
+                Debug.WriteLine("Unknown 'DamageType' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.DamageType = damageType;
+            }
 
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static InfusionSlotFlags MapInfusionSlotFlags(IEnumerable<string> content)
-        {
-            return content.Aggregate(InfusionSlotFlags.None, (current, flag) => current | MapInfusionSlotFlag(flag));
-        }
+            // Set the minimum power rating
+            int minimumPower;
+            if (!int.TryParse(content.Weapon.MinimumPower, out minimumPower))
+            {
+                Debug.WriteLine("Unknown 'MinimumPower' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.MinimumPower = minimumPower;
+            }
 
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static UpgradeComponentFlags MapUpgradeComponentFlag(string content)
-        {
-            Contract.Requires(content != null);
-            return (UpgradeComponentFlags)Enum.Parse(typeof(UpgradeComponentFlags), content, true);
-        }
+            // Set the maximum power rating
+            int maximumPower;
+            if (!int.TryParse(content.Weapon.MaximumPower, out maximumPower))
+            {
+                Debug.WriteLine("Unknown 'MaximumPower' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.MaximumPower = maximumPower;
+            }
 
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static UpgradeComponentFlags MapUpgradeComponentFlags(IEnumerable<string> content)
-        {
-            Contract.Requires(content != null);
-            return content.Aggregate(UpgradeComponentFlags.None, (current, flag) => current | MapUpgradeComponentFlag(flag));
-        }
+            // Set the defense rating
+            int defense;
+            if (!int.TryParse(content.Weapon.Defense, out defense))
+            {
+                Debug.WriteLine("Unknown 'Defense' for item with ID {0}", content.ItemId);
+            }
+            else
+            {
+                value.Defense = defense;
+            }
 
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
+            // Set the infusion slots
+            if (content.Weapon.InfusionSlots != null)
+            {
+                value.InfusionSlots = new List<InfusionSlot>(content.Weapon.InfusionSlots.Count);
+
+                foreach (var infusionSlotContract in content.Weapon.InfusionSlots)
+                {
+                    var infusionSlot = new InfusionSlot();
+
+                    // Set the infusion upgrade flags
+                    if (infusionSlotContract.Flags == null)
+                    {
+                        Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}", content.ItemId);
+                    }
+                    else
+                    {
+                        foreach (var flag in infusionSlotContract.Flags)
+                        {
+                            InfusionSlotFlags infusionSlotFlags;
+                            if (Enum.TryParse(flag, true, out infusionSlotFlags))
+                            {
+                                infusionSlot.Flags |= infusionSlotFlags;
+                            }
+                            else
+                            {
+                                Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}: {1}", content.ItemId, flag);
+                            }
+                        }
+                    }
+
+                    // Set the infusion item identifier
+                    int itemId;
+                    if (int.TryParse(infusionSlotContract.ItemId, out itemId))
+                    {
+                        infusionSlot.ItemId = itemId;
+                    }
+
+                    value.InfusionSlots.Add(infusionSlot);
+                }
+            }
+
+            // Set the infix upgrade
+            if (content.Weapon.InfixUpgrade != null)
+            {
+                ConvertInfixUpgradeDataContract(value, content.Weapon.InfixUpgrade);
+            }
+
+            // Set the suffix item identifier
+            int suffixItemId;
+            if (int.TryParse(content.Weapon.SuffixItemId, out suffixItemId))
+            {
+                value.SuffixItemId = suffixItemId;
+            }
+
+            // Set the secondary suffix item identifier
+            int secondarySuffixItemId;
+            if (int.TryParse(content.Weapon.SecondarySuffixItemId, out secondarySuffixItemId))
+            {
+                value.SecondarySuffixItemId = secondarySuffixItemId;
+            }
+
+            return value;
         }
     }
 }
