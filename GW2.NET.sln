@@ -40,9 +40,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{097EE8
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{45A22909-25E3-4C6B-9C87-3F925BF7A17D}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GW.NET.Data", "Data\GW.NET.Data\GW.NET.Data.sqlproj", "{6D4BB059-82DE-44A3-9534-4CA61E022100}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 11
+		SccNumberOfProjects = 12
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -86,6 +90,10 @@ Global
 		SccProjectTopLevelParentUniqueName10 = GW2.NET.sln
 		SccProjectName10 = Code/GW2.NET
 		SccLocalPath10 = Code\\GW2.NET
+		SccProjectUniqueName11 = Data\\GW.NET.Data\\GW.NET.Data.sqlproj
+		SccProjectTopLevelParentUniqueName11 = GW2.NET.sln
+		SccProjectName11 = Data/GW.NET.Data
+		SccLocalPath11 = Data\\GW.NET.Data
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Benchmark|Any CPU = Benchmark|Any CPU
@@ -195,6 +203,21 @@ Global
 		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.NuGet|Any CPU.Build.0 = NuGet|Any CPU
 		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Benchmark|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Benchmark|Any CPU.Build.0 = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Benchmark|Any CPU.Deploy.0 = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.DebugCC|Any CPU.Deploy.0 = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.NuGet|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.NuGet|Any CPU.Build.0 = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.NuGet|Any CPU.Deploy.0 = Debug|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -213,5 +236,6 @@ Global
 		{30BE9CC5-137B-41BF-B04E-5395BD6F03CF} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{DCB61C47-D314-41BC-AB72-562478ADC29E} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{BD2E3FCE-8D8A-4272-925A-AEB7DB9C4F3D} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{6D4BB059-82DE-44A3-9534-4CA61E022100} = {45A22909-25E3-4C6B-9C87-3F925BF7A17D}
 	EndGlobalSection
 EndGlobal
