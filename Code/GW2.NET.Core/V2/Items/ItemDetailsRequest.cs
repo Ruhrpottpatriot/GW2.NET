@@ -34,6 +34,11 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection of parameters.</returns>
         public override IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
+            foreach (var parameter in base.GetParameters())
+            {
+                yield return parameter;
+            }
+
             var culture = this.Culture;
             if (culture != null)
             {
