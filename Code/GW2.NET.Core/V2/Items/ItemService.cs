@@ -12,6 +12,7 @@ namespace GW2DotNET.V2.Items
     using System;
     using System.Collections.Generic;
     using System.Globalization;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -84,6 +85,13 @@ namespace GW2DotNET.V2.Items
         /// <returns>The <see cref="Item"/> with the specified identifier.</returns>
         public Item Find(int identifier)
         {
+            var request = new ItemDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
+            var response = this.serviceClient.Send<object>(request);
+            if (response.Content == null)
+            {
+                return null;
+            }
+
             throw new NotImplementedException();
         }
 
@@ -91,6 +99,13 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection of every <see cref="Item"/>.</returns>
         public IDictionaryRange<int, Item> FindAll()
         {
+            var request = new ItemBulkRequest { Culture = this.Culture };
+            var response = this.serviceClient.Send<ICollection<object>>(request);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<int, Item>(0);
+            }
+
             throw new NotImplementedException();
         }
 
@@ -99,6 +114,18 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection every <see cref="Item"/> with one of the specified identifiers.</returns>
         public IDictionaryRange<int, Item> FindAll(ICollection<int> identifiers)
         {
+            var request = new ItemBulkRequest
+                {
+                    Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                    Culture = this.Culture
+                };
+
+            var response = this.serviceClient.Send<ICollection<object>>(request);
+            if (response.Content == null)
+            {
+                return new DictionaryRange<int, Item>(0);
+            }
+
             throw new NotImplementedException();
         }
 
@@ -106,7 +133,7 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection of every <see cref="Item"/>.</returns>
         public Task<IDictionaryRange<int, Item>> FindAllAsync()
         {
-            throw new NotImplementedException();
+            return this.FindAllAsync(CancellationToken.None);
         }
 
         /// <summary>Finds every <see cref="Item"/>.</summary>
@@ -114,7 +141,19 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection of every <see cref="Item"/></returns>
         public Task<IDictionaryRange<int, Item>> FindAllAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var request = new ItemBulkRequest { Culture = this.Culture };
+            return this.serviceClient.SendAsync<ICollection<object>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new DictionaryRange<int, Item>(0);
+                        }
+
+                        throw new NotImplementedException();
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Finds every <see cref="Item"/> with one of the specified identifiers.</summary>
@@ -122,7 +161,7 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection every <see cref="Item"/> with one of the specified identifiers.</returns>
         public Task<IDictionaryRange<int, Item>> FindAllAsync(ICollection<int> identifiers)
         {
-            throw new NotImplementedException();
+            return this.FindAllAsync(CancellationToken.None);
         }
 
         /// <summary>Finds every <see cref="Item"/> with one of the specified identifiers.</summary>
@@ -131,7 +170,24 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection every <see cref="Item"/> with one of the specified identifiers.</returns>
         public Task<IDictionaryRange<int, Item>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var request = new ItemBulkRequest
+                {
+                    Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                    Culture = this.Culture
+                };
+
+            return this.serviceClient.SendAsync<ICollection<object>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new DictionaryRange<int, Item>(0);
+                        }
+
+                        throw new NotImplementedException();
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Finds the <see cref="Item"/> with the specified identifier.</summary>
@@ -139,7 +195,7 @@ namespace GW2DotNET.V2.Items
         /// <returns>The <see cref="Item"/> with the specified identifier.</returns>
         public Task<Item> FindAsync(int identifier)
         {
-            throw new NotImplementedException();
+            return this.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <summary>Finds the <see cref="Item"/> with the specified identifier.</summary>
@@ -148,7 +204,19 @@ namespace GW2DotNET.V2.Items
         /// <returns>The <see cref="Item"/> with the specified identifier.</returns>
         public Task<Item> FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var request = new ItemDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
+            return this.serviceClient.SendAsync<object>(request, cancellationToken).ContinueWith<Item>(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
+
+                        throw new NotImplementedException();
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a page with the specified page number.</summary>
@@ -156,6 +224,13 @@ namespace GW2DotNET.V2.Items
         /// <returns>The page.</returns>
         public ICollectionPage<Item> GetPage(int page)
         {
+            var request = new ItemPageRequest { Page = page, Culture = this.Culture };
+            var response = this.serviceClient.Send<ICollection<object>>(request);
+            if (response.Content == null)
+            {
+                return new CollectionPage<Item>(0);
+            }
+
             throw new NotImplementedException();
         }
 
@@ -165,6 +240,13 @@ namespace GW2DotNET.V2.Items
         /// <returns>The page.</returns>
         public ICollectionPage<Item> GetPage(int page, int pageSize)
         {
+            var request = new ItemPageRequest { Page = page, PageSize = pageSize, Culture = this.Culture };
+            var response = this.serviceClient.Send<ICollection<object>>(request);
+            if (response.Content == null)
+            {
+                return new CollectionPage<Item>(0);
+            }
+
             throw new NotImplementedException();
         }
 
@@ -173,7 +255,7 @@ namespace GW2DotNET.V2.Items
         /// <returns>The page.</returns>
         public Task<ICollectionPage<Item>> GetPageAsync(int page)
         {
-            throw new NotImplementedException();
+            return this.GetPageAsync(page, CancellationToken.None);
         }
 
         /// <summary>Gets a page with the specified page number.</summary>
@@ -182,7 +264,19 @@ namespace GW2DotNET.V2.Items
         /// <returns>The page.</returns>
         public Task<ICollectionPage<Item>> GetPageAsync(int page, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var request = new ItemPageRequest { Page = page, Culture = this.Culture };
+            return this.serviceClient.SendAsync<ICollection<object>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new CollectionPage<Item>(0);
+                        }
+
+                        throw new NotImplementedException();
+                    }, 
+                cancellationToken);
         }
 
         /// <summary>Gets a page with the specified page number.</summary>
@@ -191,7 +285,7 @@ namespace GW2DotNET.V2.Items
         /// <returns>The page.</returns>
         public Task<ICollectionPage<Item>> GetPageAsync(int page, int pageSize)
         {
-            throw new NotImplementedException();
+            return this.GetPageAsync(page, pageSize, CancellationToken.None);
         }
 
         /// <summary>Gets a page with the specified page number.</summary>
@@ -201,7 +295,20 @@ namespace GW2DotNET.V2.Items
         /// <returns>The page.</returns>
         public Task<ICollectionPage<Item>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var request = new ItemPageRequest { Page = page, PageSize = pageSize, Culture = this.Culture };
+
+            return this.serviceClient.SendAsync<ICollection<object>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
+                task =>
+                    {
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new CollectionPage<Item>(0);
+                        }
+
+                        throw new NotImplementedException();
+                    }, 
+                cancellationToken);
         }
     }
 }
