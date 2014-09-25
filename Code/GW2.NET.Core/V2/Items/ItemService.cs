@@ -42,7 +42,7 @@ namespace GW2DotNET.V2.Items
             var response = this.serviceClient.Send<ICollection<int>>(request);
             if (response.Content == null)
             {
-                return null;
+                return new int[0];
             }
 
             return response.Content;
