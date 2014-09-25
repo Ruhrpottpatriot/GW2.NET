@@ -755,6 +755,11 @@
     <Compile Include="V2\Common\ResponseExtensions.cs" />
     <Compile Include="V2\Common\SubsetContextContract.cs" />
     <Compile Include="V2\Common\DictionaryRange.cs" />
+    <Compile Include="V2\Items\ItemBulkRequest.cs" />
+    <Compile Include="V2\Items\ItemDetailsRequest.cs" />
+    <Compile Include="V2\Items\ItemDiscoveryRequest.cs" />
+    <Compile Include="V2\Items\ItemPageRequest.cs" />
+    <Compile Include="V2\Items\ItemService.cs" />
     <Compile Include="V2\Quaggans.Json\QuagganContract.cs" />
     <Compile Include="V2\Quaggans\QuagganBulkRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganDetailsRequest.cs" />
@@ -768,7 +773,9 @@
     <EmbeddedResource Include="Local\Worlds\es.json" />
     <EmbeddedResource Include="Local\Worlds\fr.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="V2\Items.Json\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

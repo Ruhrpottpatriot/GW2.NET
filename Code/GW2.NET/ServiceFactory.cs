@@ -15,9 +15,11 @@ namespace GW2DotNET
     using GW2DotNET.Common.Serializers;
     using GW2DotNET.Compression;
     using GW2DotNET.Entities.Commerce;
+    using GW2DotNET.Entities.Items;
     using GW2DotNET.Entities.Quaggans;
     using GW2DotNET.V2.Commerce;
     using GW2DotNET.V2.Common;
+    using GW2DotNET.V2.Items;
     using GW2DotNET.V2.Quaggans;
 
     /// <summary>Provides access to the Guild Wars 2 service.</summary>
@@ -74,6 +76,13 @@ namespace GW2DotNET
         public IRepository<string, Quaggan> GetQuagganService()
         {
             return new QuagganService(this.serviceClient);
+        }
+
+        /// <summary>Provides access to the item service.</summary>
+        /// <returns>The <see cref="IRepository{TKey,TValue}"/>.</returns>
+        public IRepository<int, Item> GetItemService()
+        {
+            return new ItemService(this.serviceClient);
         }
 
         /// <summary>Gets the base URI.</summary>
