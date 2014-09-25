@@ -11,6 +11,7 @@ namespace GW2DotNET.V2.Items
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace GW2DotNET.V2.Items
     /// Provides access to the /v2/items service using the default implementation.
     /// This implementation does not retrieve associated entities. For example: item skins can be retrieved from the skins service, but this class does not ever touch the skins service.
     /// </summary>
-    public class ItemService : IRepository<int, Item>
+    public class ItemService : IRepository<int, Item>, ILocalizable
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
@@ -33,6 +34,9 @@ namespace GW2DotNET.V2.Items
         {
             this.serviceClient = serviceClient;
         }
+
+        /// <summary>Gets or sets the locale.</summary>
+        public CultureInfo Culture { get; set; }
 
         /// <summary>Gets the discovered identifiers.</summary>
         /// <returns>A collection of discovered identifiers.</returns>
