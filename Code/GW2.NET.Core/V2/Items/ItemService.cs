@@ -93,7 +93,9 @@ namespace GW2DotNET.V2.Items
                 return null;
             }
 
-            throw new NotImplementedException();
+            var value = ConvertItemDataContract(response.Content);
+            value.Language = response.Culture.TwoLetterISOLanguageName;
+            return value;
         }
 
         /// <summary>Finds every <see cref="Item"/>.</summary>
@@ -107,7 +109,20 @@ namespace GW2DotNET.V2.Items
                 return new DictionaryRange<int, Item>(0);
             }
 
-            throw new NotImplementedException();
+            var values = new DictionaryRange<int, Item>(response.Content.Count)
+                {
+                    SubtotalCount = response.GetResultCount(), 
+                    TotalCount = response.GetResultTotal()
+                };
+
+            var culture = response.Culture;
+            foreach (var value in response.Content.Select(ConvertItemDataContract))
+            {
+                value.Language = culture.TwoLetterISOLanguageName;
+                values.Add(value.ItemId, value);
+            }
+
+            return values;
         }
 
         /// <summary>Finds every <see cref="Item"/> with one of the specified identifiers.</summary>
@@ -127,7 +142,20 @@ namespace GW2DotNET.V2.Items
                 return new DictionaryRange<int, Item>(0);
             }
 
-            throw new NotImplementedException();
+            var values = new DictionaryRange<int, Item>(response.Content.Count)
+                {
+                    SubtotalCount = response.GetResultCount(), 
+                    TotalCount = response.GetResultTotal()
+                };
+
+            var culture = response.Culture;
+            foreach (var value in response.Content.Select(ConvertItemDataContract))
+            {
+                value.Language = culture.TwoLetterISOLanguageName;
+                values.Add(value.ItemId, value);
+            }
+
+            return values;
         }
 
         /// <summary>Finds every <see cref="Item"/>.</summary>
@@ -152,7 +180,20 @@ namespace GW2DotNET.V2.Items
                             return new DictionaryRange<int, Item>(0);
                         }
 
-                        throw new NotImplementedException();
+                        var values = new DictionaryRange<int, Item>(response.Content.Count)
+                            {
+                                SubtotalCount = response.GetResultCount(), 
+                                TotalCount = response.GetResultTotal()
+                            };
+
+                        var culture = response.Culture;
+                        foreach (var value in response.Content.Select(ConvertItemDataContract))
+                        {
+                            value.Language = culture.TwoLetterISOLanguageName;
+                            values.Add(value.ItemId, value);
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -186,7 +227,20 @@ namespace GW2DotNET.V2.Items
                             return new DictionaryRange<int, Item>(0);
                         }
 
-                        throw new NotImplementedException();
+                        var values = new DictionaryRange<int, Item>(response.Content.Count)
+                            {
+                                SubtotalCount = response.GetResultCount(), 
+                                TotalCount = response.GetResultTotal()
+                            };
+
+                        var culture = response.Culture;
+                        foreach (var value in response.Content.Select(ConvertItemDataContract))
+                        {
+                            value.Language = culture.TwoLetterISOLanguageName;
+                            values.Add(value.ItemId, value);
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -215,7 +269,9 @@ namespace GW2DotNET.V2.Items
                             return null;
                         }
 
-                        throw new NotImplementedException();
+                        var value = ConvertItemDataContract(response.Content);
+                        value.Language = response.Culture.TwoLetterISOLanguageName;
+                        return value;
                     }, 
                 cancellationToken);
         }
@@ -232,7 +288,23 @@ namespace GW2DotNET.V2.Items
                 return new CollectionPage<Item>(0);
             }
 
-            throw new NotImplementedException();
+            var values = new CollectionPage<Item>(response.Content.Count)
+                {
+                    Page = page, 
+                    PageSize = response.GetPageSize(), 
+                    PageCount = response.GetPageTotal(), 
+                    SubtotalCount = response.GetResultCount(), 
+                    TotalCount = response.GetResultTotal()
+                };
+
+            var culture = response.Culture;
+            foreach (var value in response.Content.Select(ConvertItemDataContract))
+            {
+                value.Language = culture.TwoLetterISOLanguageName;
+                values.Add(value);
+            }
+
+            return values;
         }
 
         /// <summary>Gets a page with the specified page number and maximum size.</summary>
@@ -248,7 +320,23 @@ namespace GW2DotNET.V2.Items
                 return new CollectionPage<Item>(0);
             }
 
-            throw new NotImplementedException();
+            var values = new CollectionPage<Item>(response.Content.Count)
+                {
+                    Page = page, 
+                    PageSize = response.GetPageSize(), 
+                    PageCount = response.GetPageTotal(), 
+                    SubtotalCount = response.GetResultCount(), 
+                    TotalCount = response.GetResultTotal()
+                };
+
+            var culture = response.Culture;
+            foreach (var value in response.Content.Select(ConvertItemDataContract))
+            {
+                value.Language = culture.TwoLetterISOLanguageName;
+                values.Add(value);
+            }
+
+            return values;
         }
 
         /// <summary>Gets a page with the specified page number.</summary>
@@ -275,7 +363,23 @@ namespace GW2DotNET.V2.Items
                             return new CollectionPage<Item>(0);
                         }
 
-                        throw new NotImplementedException();
+                        var values = new CollectionPage<Item>(response.Content.Count)
+                            {
+                                Page = page, 
+                                PageSize = response.GetPageSize(), 
+                                PageCount = response.GetPageTotal(), 
+                                SubtotalCount = response.GetResultCount(), 
+                                TotalCount = response.GetResultTotal()
+                            };
+
+                        var culture = response.Culture;
+                        foreach (var value in response.Content.Select(ConvertItemDataContract))
+                        {
+                            value.Language = culture.TwoLetterISOLanguageName;
+                            values.Add(value);
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
         }
@@ -307,9 +411,95 @@ namespace GW2DotNET.V2.Items
                             return new CollectionPage<Item>(0);
                         }
 
-                        throw new NotImplementedException();
+                        var values = new CollectionPage<Item>(response.Content.Count)
+                            {
+                                Page = page, 
+                                PageSize = response.GetPageSize(), 
+                                PageCount = response.GetPageTotal(), 
+                                SubtotalCount = response.GetResultCount(), 
+                                TotalCount = response.GetResultTotal()
+                            };
+
+                        var culture = response.Culture;
+                        foreach (var value in response.Content.Select(ConvertItemDataContract))
+                        {
+                            value.Language = culture.TwoLetterISOLanguageName;
+                            values.Add(value);
+                        }
+
+                        return values;
                     }, 
                 cancellationToken);
+        }
+
+        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
+        /// <param name="content">The data contract's contents.</param>
+        /// <returns>The entities.</returns>
+        private static Item ConvertItemDataContract(ItemDataContract content)
+        {
+            Item value;
+            switch (content.Type)
+            {
+                case "Armor":
+                    value = new UnknownArmor();
+                    break;
+                case "Back":
+                    value = new Backpack();
+                    break;
+                case "Bag":
+                    value = new Bag();
+                    break;
+                case "Consumable":
+                    value = new UnknownConsumable();
+                    break;
+                case "Container":
+                    value = new UnknownContainer();
+                    break;
+                case "CraftingMaterial":
+                    value = new CraftingMaterial();
+                    break;
+                case "Gathering":
+                    value = new UnknownGatheringTool();
+                    break;
+                case "Gizmo":
+                    value = new UnknownGizmo();
+                    break;
+                case "MiniPet":
+                    value = new MiniPet();
+                    break;
+                case "Tool":
+                    value = new UnknownTool();
+                    break;
+                case "Trait":
+                    value = new TraitGuide();
+                    break;
+                case "Trinket":
+                    value = new UnknownTrinket();
+                    break;
+                case "Trophy":
+                    value = new Trophy();
+                    break;
+                case "UpgradeComponent":
+                    value = new UnknownUpgradeComponent();
+                    break;
+                case "Weapon":
+                    value = new UnknownWeapon();
+                    break;
+                default:
+                    throw new NotImplementedException(content.Type);
+            }
+
+            value.ItemId = content.Id;
+
+            value.Name = content.Name;
+
+            value.Description = content.Description;
+
+            value.Level = content.Level;
+
+            value.VendorValue = content.VendorValue;
+
+            return value;
         }
     }
 }
