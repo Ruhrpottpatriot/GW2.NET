@@ -19,6 +19,7 @@ namespace GW2DotNET.V2.Items
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Items;
     using GW2DotNET.V2.Common;
+    using GW2DotNET.V2.Items.Json;
 
     /// <summary>
     /// Provides access to the /v2/items service using the default implementation.
@@ -86,7 +87,7 @@ namespace GW2DotNET.V2.Items
         public Item Find(int identifier)
         {
             var request = new ItemDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
-            var response = this.serviceClient.Send<object>(request);
+            var response = this.serviceClient.Send<ItemDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -100,7 +101,7 @@ namespace GW2DotNET.V2.Items
         public IDictionaryRange<int, Item> FindAll()
         {
             var request = new ItemBulkRequest { Culture = this.Culture };
-            var response = this.serviceClient.Send<ICollection<object>>(request);
+            var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             if (response.Content == null)
             {
                 return new DictionaryRange<int, Item>(0);
@@ -120,7 +121,7 @@ namespace GW2DotNET.V2.Items
                     Culture = this.Culture
                 };
 
-            var response = this.serviceClient.Send<ICollection<object>>(request);
+            var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             if (response.Content == null)
             {
                 return new DictionaryRange<int, Item>(0);
@@ -142,7 +143,7 @@ namespace GW2DotNET.V2.Items
         public Task<IDictionaryRange<int, Item>> FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new ItemBulkRequest { Culture = this.Culture };
-            return this.serviceClient.SendAsync<ICollection<object>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(
+            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(
                 task =>
                     {
                         var response = task.Result;
@@ -176,7 +177,7 @@ namespace GW2DotNET.V2.Items
                     Culture = this.Culture
                 };
 
-            return this.serviceClient.SendAsync<ICollection<object>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(
+            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(
                 task =>
                     {
                         var response = task.Result;
@@ -205,7 +206,7 @@ namespace GW2DotNET.V2.Items
         public Task<Item> FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new ItemDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
-            return this.serviceClient.SendAsync<object>(request, cancellationToken).ContinueWith<Item>(
+            return this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken).ContinueWith<Item>(
                 task =>
                     {
                         var response = task.Result;
@@ -225,7 +226,7 @@ namespace GW2DotNET.V2.Items
         public ICollectionPage<Item> GetPage(int page)
         {
             var request = new ItemPageRequest { Page = page, Culture = this.Culture };
-            var response = this.serviceClient.Send<ICollection<object>>(request);
+            var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             if (response.Content == null)
             {
                 return new CollectionPage<Item>(0);
@@ -241,7 +242,7 @@ namespace GW2DotNET.V2.Items
         public ICollectionPage<Item> GetPage(int page, int pageSize)
         {
             var request = new ItemPageRequest { Page = page, PageSize = pageSize, Culture = this.Culture };
-            var response = this.serviceClient.Send<ICollection<object>>(request);
+            var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             if (response.Content == null)
             {
                 return new CollectionPage<Item>(0);
@@ -265,7 +266,7 @@ namespace GW2DotNET.V2.Items
         public Task<ICollectionPage<Item>> GetPageAsync(int page, CancellationToken cancellationToken)
         {
             var request = new ItemPageRequest { Page = page, Culture = this.Culture };
-            return this.serviceClient.SendAsync<ICollection<object>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
+            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
                 task =>
                     {
                         var response = task.Result;
@@ -297,7 +298,7 @@ namespace GW2DotNET.V2.Items
         {
             var request = new ItemPageRequest { Page = page, PageSize = pageSize, Culture = this.Culture };
 
-            return this.serviceClient.SendAsync<ICollection<object>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
+            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
                 task =>
                     {
                         var response = task.Result;

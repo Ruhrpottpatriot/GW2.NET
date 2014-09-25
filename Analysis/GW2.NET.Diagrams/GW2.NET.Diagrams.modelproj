@@ -275,10 +275,4 @@
       <DependentUpon>Layers proper design.layerdiagram</DependentUpon>
     </Validate>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Code\GW2.NET.Core\GW2.NET.Core.csproj">
-      <Name>GW2.NET.Core</Name>
-      <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
-    </ProjectReference>
-  </ItemGroup>
 </Project>
