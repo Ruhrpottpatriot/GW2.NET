@@ -228,18 +228,20 @@ namespace GW2DotNET.V1.Items
             }
 
             int defaultSkinId;
-            if (!int.TryParse(content.DefaultSkin, out defaultSkinId))
+            if (int.TryParse(content.DefaultSkin, out defaultSkinId))
             {
-                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}", content.ItemId);
+                value.DefaultSkinId = defaultSkinId;
             }
-
-            value.DefaultSkinId = defaultSkinId;
+            else
+            {
+                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}: {1}", content.ItemId, content.DefaultSkin);
+            }
 
             // Set the weight class
             ArmorWeightClass weightClass;
             if (!Enum.TryParse(content.Armor.WeightClass, true, out weightClass))
             {
-                Debug.WriteLine("Unknown 'WeightClass' for item with ID {0}", content.ItemId);
+                Debug.WriteLine("Unknown 'WeightClass' for item with ID {0}: {1}", content.ItemId, content.Armor.WeightClass);
             }
             else
             {
@@ -250,7 +252,7 @@ namespace GW2DotNET.V1.Items
             int defense;
             if (!int.TryParse(content.Armor.Defense, out defense))
             {
-                Debug.WriteLine("Unknown 'Defense' for item with ID {0}", content.ItemId);
+                Debug.WriteLine("Unknown 'Defense' for item with ID {0}: {1}", content.ItemId, content.Armor.Defense);
             }
             else
             {
@@ -348,13 +350,13 @@ namespace GW2DotNET.V1.Items
             var value = new Backpack();
 
             int defaultSkinId;
-            if (!int.TryParse(content.DefaultSkin, out defaultSkinId))
+            if (int.TryParse(content.DefaultSkin, out defaultSkinId))
             {
-                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}", content.ItemId);
+                value.DefaultSkinId = defaultSkinId;
             }
             else
             {
-                value.DefaultSkinId = defaultSkinId;
+                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}: {1}", content.ItemId, content.DefaultSkin);
             }
 
             // Set the infusion slots
@@ -657,13 +659,13 @@ namespace GW2DotNET.V1.Items
             }
 
             int defaultSkinId;
-            if (!int.TryParse(content.DefaultSkin, out defaultSkinId))
+            if (int.TryParse(content.DefaultSkin, out defaultSkinId))
             {
-                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}", content.ItemId);
+                value.DefaultSkinId = defaultSkinId;
             }
             else
             {
-                value.DefaultSkinId = defaultSkinId;
+                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}: {1}", content.ItemId, content.DefaultSkin);
             }
 
             return value;
@@ -907,7 +909,7 @@ namespace GW2DotNET.V1.Items
             }
             else
             {
-                Debug.WriteLine("Unknown 'Level' for item with ID {0}", content.ItemId);
+                Debug.WriteLine("Unknown 'Level' for item with ID {0}: {1}", content.ItemId, content.Level);
             }
 
             // Set the item rarity
@@ -1417,57 +1419,57 @@ namespace GW2DotNET.V1.Items
 
             // Set the default skin
             int defaultSkinId;
-            if (!int.TryParse(content.DefaultSkin, out defaultSkinId))
+            if (int.TryParse(content.DefaultSkin, out defaultSkinId))
             {
-                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}", content.ItemId);
+                value.DefaultSkinId = defaultSkinId;
             }
             else
             {
-                value.DefaultSkinId = defaultSkinId;
+                Debug.WriteLine("Unknown 'DefaultSkin' for item with ID {0}: {1}", content.ItemId, content.DefaultSkin);
             }
 
             // Set the damage type
             WeaponDamageType damageType;
-            if (!Enum.TryParse(content.Weapon.DamageType, true, out damageType))
+            if (Enum.TryParse(content.Weapon.DamageType, true, out damageType))
             {
-                Debug.WriteLine("Unknown 'DamageType' for item with ID {0}", content.ItemId);
+                value.DamageType = damageType;
             }
             else
             {
-                value.DamageType = damageType;
+                Debug.WriteLine("Unknown 'DamageType' for item with ID {0}", content.ItemId);
             }
 
             // Set the minimum power rating
             int minimumPower;
-            if (!int.TryParse(content.Weapon.MinimumPower, out minimumPower))
+            if (int.TryParse(content.Weapon.MinimumPower, out minimumPower))
             {
-                Debug.WriteLine("Unknown 'MinimumPower' for item with ID {0}", content.ItemId);
+                value.MinimumPower = minimumPower;
             }
             else
             {
-                value.MinimumPower = minimumPower;
+                Debug.WriteLine("Unknown 'MinimumPower' for item with ID {0}", content.ItemId);
             }
 
             // Set the maximum power rating
             int maximumPower;
-            if (!int.TryParse(content.Weapon.MaximumPower, out maximumPower))
+            if (int.TryParse(content.Weapon.MaximumPower, out maximumPower))
             {
-                Debug.WriteLine("Unknown 'MaximumPower' for item with ID {0}", content.ItemId);
+                value.MaximumPower = maximumPower;
             }
             else
             {
-                value.MaximumPower = maximumPower;
+                Debug.WriteLine("Unknown 'MaximumPower' for item with ID {0}", content.ItemId);
             }
 
             // Set the defense rating
             int defense;
-            if (!int.TryParse(content.Weapon.Defense, out defense))
+            if (int.TryParse(content.Weapon.Defense, out defense))
             {
-                Debug.WriteLine("Unknown 'Defense' for item with ID {0}", content.ItemId);
+                value.Defense = defense;
             }
             else
             {
-                value.Defense = defense;
+                Debug.WriteLine("Unknown 'Defense' for item with ID {0}", content.ItemId);
             }
 
             // Set the infusion slots
@@ -1480,11 +1482,7 @@ namespace GW2DotNET.V1.Items
                     var infusionSlot = new InfusionSlot();
 
                     // Set the infusion upgrade flags
-                    if (infusionSlotContract.Flags == null)
-                    {
-                        Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}", content.ItemId);
-                    }
-                    else
+                    if (infusionSlotContract.Flags != null)
                     {
                         foreach (var flag in infusionSlotContract.Flags)
                         {
@@ -1498,6 +1496,10 @@ namespace GW2DotNET.V1.Items
                                 Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}: {1}", content.ItemId, flag);
                             }
                         }
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Unknown 'InfusionSlotFlags' for item with ID {0}", content.ItemId);
                     }
 
                     // Set the infusion item identifier
