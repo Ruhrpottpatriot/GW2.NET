@@ -918,7 +918,7 @@ namespace GW2DotNET.V1.Items
             }
             else
             {
-                Debug.WriteLine("Unknown 'Level' for item with ID {0}: {1}", content.ItemId, content.Rarity);
+                Debug.WriteLine("Unknown 'Rarity' for item with ID {0}: {1}", content.ItemId, content.Rarity);
             }
 
 
@@ -951,15 +951,11 @@ namespace GW2DotNET.V1.Items
             }
             else
             {
-                Debug.WriteLine("Unknown 'FileSignature' for item with ID {0}: {1}", content.ItemId, content.IconFileSignature);
+                Debug.WriteLine("Unknown 'FileSignature' for item with ID {0}", content.ItemId);
             }
 
             // Set the item game types
-            if (content.GameTypes == null)
-            {
-                Debug.WriteLine("Unknown 'GameTypes' for item with ID {0}", content.ItemId);
-            }
-            else
+            if (content.GameTypes != null)
             {
                 foreach (var contract in content.GameTypes)
                 {
@@ -974,13 +970,13 @@ namespace GW2DotNET.V1.Items
                     }
                 }
             }
+            else
+            {
+                Debug.WriteLine("Unknown 'GameTypes' for item with ID {0}", content.ItemId);
+            }
 
             // Set the item flags
-            if (content.Flags == null)
-            {
-                Debug.WriteLine("Unknown 'Flags' for item with ID {0}", content.ItemId);
-            }
-            else
+            if (content.Flags != null)
             {
                 foreach (var contract in content.Flags)
                 {
@@ -995,13 +991,13 @@ namespace GW2DotNET.V1.Items
                     }
                 }
             }
+            else
+            {
+                Debug.WriteLine("Unknown 'Flags' for item with ID {0}", content.ItemId);
+            }
 
             // Set the item restrictions
-            if (content.Restrictions == null)
-            {
-                Debug.WriteLine("Unknown 'Restrictions' for item with ID {0}", content.ItemId);
-            }
-            else
+            if (content.Restrictions != null)
             {
                 foreach (var contract in content.Restrictions)
                 {
@@ -1015,6 +1011,10 @@ namespace GW2DotNET.V1.Items
                         Debug.WriteLine("Unknown 'Restrictions' for item with ID {0}: {1}", content.ItemId, contract);
                     }
                 }
+            }
+            else
+            {
+                Debug.WriteLine("Unknown 'Restrictions' for item with ID {0}", content.ItemId);
             }
 
             return value;
