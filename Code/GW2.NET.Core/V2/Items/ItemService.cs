@@ -1169,6 +1169,27 @@ namespace GW2DotNET.V2.Items
                 Debug.WriteLine("Unknown 'Icon' for item with ID {0}", content.Id);
             }
 
+            // Set the item game types
+            if (content.GameTypes != null)
+            {
+                foreach (var contract in content.GameTypes)
+                {
+                    GameTypes gameType;
+                    if (Enum.TryParse(contract, true, out gameType))
+                    {
+                        value.GameTypes |= gameType;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Unknown 'GameTypes' for item with ID {0}: {1}", content.Id, contract);
+                    }
+                }
+            }
+            else
+            {
+                Debug.WriteLine("Unknown 'GameTypes' for item with ID {0}", content.Id);
+            }
+
             // Set the item flags
             if (content.Flags != null)
             {
