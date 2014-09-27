@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GW2.NET.RSharp</id>
-    <version>0.9.9.0</version>
+    <version>0.9.10.0</version>
     <title>GW2.NET RestSharp</title>
     <authors>GW2.NET Coding Team</authors>
     <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
@@ -10,7 +10,7 @@
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Contains a RestSharp-based IServiceClient implementation for GW2.NET.</description>
     <summary>This software is licensed under the GNU General Public License version 2 (GPLv2). For a complete version of the license follow the link.</summary>
-    <releaseNotes>Adding Code Contracts.</releaseNotes>
+    <releaseNotes>Updated for the latest GW2.NET release.</releaseNotes>
     <copyright>Copyright ©  2013 - 2014</copyright>
     <language>en, es, de, fr</language>
     <tags>GW2, GW2.NET, RestSharp</tags>
@@ -20,7 +20,7 @@
 
       <!-- Default dependency group. -->
       <group>
-	    <dependency id="GW2.NET" version="0.9.9.0" />
+	    <dependency id="GW2.NET" version="0.9.10.0" />
         <dependency id="RestSharp" version="104.4.0" />
       </group>
     </dependencies>
