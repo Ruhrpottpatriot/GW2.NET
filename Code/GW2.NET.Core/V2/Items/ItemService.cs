@@ -205,7 +205,7 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection every <see cref="Item"/> with one of the specified identifiers.</returns>
         public Task<IDictionaryRange<int, Item>> FindAllAsync(ICollection<int> identifiers)
         {
-            return this.FindAllAsync(CancellationToken.None);
+            return this.FindAllAsync(identifiers, CancellationToken.None);
         }
 
         /// <summary>Finds every <see cref="Item"/> with one of the specified identifiers.</summary>
