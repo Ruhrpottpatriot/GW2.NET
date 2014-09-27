@@ -36,8 +36,8 @@ namespace GW2DotNET.Entities.Items
         /// <summary>Gets or sets the item's icon signature for use with the render service.</summary>
         public virtual string IconFileSignature { get; set; }
 
-        /// <summary>Gets or sets the icon URL.</summary>
-        public virtual Uri IconUrl { get; set; }
+        /// <summary>Gets or sets the icon file URL.</summary>
+        public virtual Uri IconFileUrl { get; set; }
 
         /// <summary>Gets or sets the item's identifier.</summary>
         public virtual int ItemId { get; set; }
