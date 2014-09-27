@@ -1134,6 +1134,9 @@ namespace GW2DotNET.V2.Items
             Uri icon;
             if (Uri.TryCreate(content.Icon, UriKind.Absolute, out icon))
             {
+                // Set the icon file URL
+                value.IconUrl = icon;
+
                 // Split the path into segments
                 // Format: /file/{signature}/{identifier}.{extension}
                 var segments = icon.LocalPath.Split('.')[0].Split('/');
@@ -1142,7 +1145,7 @@ namespace GW2DotNET.V2.Items
                 var signature = segments[2];
                 if (signature != null)
                 {
-                    value.FileSignature = signature;
+                    value.IconFileSignature = signature;
                 }
                 else
                 {
@@ -1154,7 +1157,7 @@ namespace GW2DotNET.V2.Items
                 int iconFileId;
                 if (int.TryParse(identifier, out iconFileId))
                 {
-                    value.FileId = iconFileId;
+                    value.IconFileId = iconFileId;
                 }
                 else
                 {

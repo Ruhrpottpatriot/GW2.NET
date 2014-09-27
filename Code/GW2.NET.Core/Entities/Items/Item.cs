@@ -24,17 +24,20 @@ namespace GW2DotNET.Entities.Items
         /// <summary>Gets or sets the item's description.</summary>
         public virtual string Description { get; set; }
 
-        /// <summary>Gets or sets the item's icon identifier for use with the render service.</summary>
-        public virtual int FileId { get; set; }
-
-        /// <summary>Gets or sets the item's icon signature for use with the render service.</summary>
-        public virtual string FileSignature { get; set; }
-
         /// <summary>Gets or sets the item's additional flags.</summary>
         public virtual ItemFlags Flags { get; set; }
 
         /// <summary>Gets or sets the item's game types.</summary>
         public virtual GameTypes GameTypes { get; set; }
+
+        /// <summary>Gets or sets the item's icon identifier for use with the render service.</summary>
+        public virtual int IconFileId { get; set; }
+
+        /// <summary>Gets or sets the item's icon signature for use with the render service.</summary>
+        public virtual string IconFileSignature { get; set; }
+
+        /// <summary>Gets or sets the icon URL.</summary>
+        public virtual Uri IconUrl { get; set; }
 
         /// <summary>Gets or sets the item's identifier.</summary>
         public virtual int ItemId { get; set; }
@@ -56,6 +59,24 @@ namespace GW2DotNET.Entities.Items
 
         /// <summary>Gets or sets the item's vendor value.</summary>
         public virtual int VendorValue { get; set; }
+
+        /// <summary>Gets the file identifier.</summary>
+        int IRenderable.FileId
+        {
+            get
+            {
+                return this.IconFileId;
+            }
+        }
+
+        /// <summary>Gets the file signature.</summary>
+        string IRenderable.FileSignature
+        {
+            get
+            {
+                return this.IconFileSignature;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>

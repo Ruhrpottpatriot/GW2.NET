@@ -11,7 +11,7 @@ namespace GW2DotNET.Common
     /// <summary>Provides the interface for objects for which a graphical representation exists.</summary>
     public interface IRenderable
     {
-        /// <summary>Gets the file id.</summary>
+        /// <summary>Gets the file identifier.</summary>
         int FileId { get; }
 
         /// <summary>Gets the file signature.</summary>

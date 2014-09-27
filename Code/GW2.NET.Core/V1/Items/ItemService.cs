@@ -126,17 +126,17 @@ namespace GW2DotNET.V1.Items
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
             return this.serviceClient.SendAsync<ItemContract>(request, cancellationToken).ContinueWith(
                 task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return null;
-                        }
+                        return null;
+                    }
 
-                        var value = ConvertItemDataContract(response.Content);
-                        value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
-                        return value;
-                    }, 
+                    var value = ConvertItemDataContract(response.Content);
+                    value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                    return value;
+                },
                 cancellationToken);
         }
 
@@ -173,15 +173,15 @@ namespace GW2DotNET.V1.Items
             var request = new ItemDiscoveryRequest();
             return this.serviceClient.SendAsync<ItemCollectionContract>(request, cancellationToken).ContinueWith(
                 task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null || response.Content.Items == null)
                     {
-                        var response = task.Result;
-                        if (response.Content == null || response.Content.Items == null)
-                        {
-                            return new int[0];
-                        }
+                        return new int[0];
+                    }
 
-                        return response.Content.Items;
-                    }, 
+                    return response.Content.Items;
+                },
                 cancellationToken);
         }
 
@@ -939,7 +939,7 @@ namespace GW2DotNET.V1.Items
             int iconFileId;
             if (int.TryParse(content.IconFileId, out iconFileId))
             {
-                value.FileId = iconFileId;
+                value.IconFileId = iconFileId;
             }
             else
             {
@@ -949,12 +949,18 @@ namespace GW2DotNET.V1.Items
             // Set the icon file signature
             if (content.IconFileSignature != null)
             {
-                value.FileSignature = content.IconFileSignature;
+                value.IconFileSignature = content.IconFileSignature;
             }
             else
             {
                 Debug.WriteLine("Unknown 'FileSignature' for item with ID {0}", content.ItemId);
             }
+
+            // Set the icon file URL
+            const string IconUrlTemplate = @"https://render.guildwars2.com/file/{0}/{1}.{2}";
+            var icon = value as IRenderable;
+            var iconUrl = string.Format(IconUrlTemplate, icon.FileSignature, iconFileId, "png");
+            value.IconUrl = new Uri(iconUrl, UriKind.Absolute);
 
             // Set the item game types
             if (content.GameTypes != null)
