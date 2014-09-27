@@ -14,8 +14,8 @@ namespace GW2DotNET.Entities.Items
     [Flags]
     public enum InfusionSlotFlags
     {
-        /// <summary>Indicates no infusion slots.</summary>
-        None = 0, 
+        /// <summary>The 'Agony' infusion slot type.</summary>
+        Agony = 0, 
 
         /// <summary>The 'Defense' infusion slot type.</summary>
         Defense = 1 << 0, 
