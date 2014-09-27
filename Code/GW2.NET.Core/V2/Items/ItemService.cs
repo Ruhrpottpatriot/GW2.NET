@@ -1135,7 +1135,7 @@ namespace GW2DotNET.V2.Items
             if (Uri.TryCreate(content.Icon, UriKind.Absolute, out icon))
             {
                 // Set the icon file URL
-                value.IconUrl = icon;
+                value.IconFileUrl = icon;
 
                 // Split the path into segments
                 // Format: /file/{signature}/{identifier}.{extension}

@@ -960,7 +960,7 @@ namespace GW2DotNET.V1.Items
             const string IconUrlTemplate = @"https://render.guildwars2.com/file/{0}/{1}.{2}";
             var icon = value as IRenderable;
             var iconUrl = string.Format(IconUrlTemplate, icon.FileSignature, iconFileId, "png");
-            value.IconUrl = new Uri(iconUrl, UriKind.Absolute);
+            value.IconFileUrl = new Uri(iconUrl, UriKind.Absolute);
 
             // Set the item game types
             if (content.GameTypes != null)
