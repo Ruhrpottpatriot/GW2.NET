@@ -25,19 +25,19 @@ namespace GW2DotNET.V2.Common
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
             Contract.Ensures(Contract.Result<int>() >= 0);
-            var value = instance.ExtensionData["X-Page-Size"];
-            if (value == null)
+            string header;
+            if (!instance.ExtensionData.TryGetValue("X-Page-Size", out header))
             {
                 return 0;
             }
 
-            var n = int.Parse(value);
-            if (n < 0)
+            int value;
+            if (!int.TryParse(header, out value))
             {
                 return 0;
             }
 
-            return n;
+            return value;
         }
 
         /// <summary>Gets the number of subsets in a collection.</summary>
@@ -50,19 +50,19 @@ namespace GW2DotNET.V2.Common
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
             Contract.Ensures(Contract.Result<int>() >= 0);
-            var value = instance.ExtensionData["X-Page-Total"];
-            if (value == null)
+            string header;
+            if (!instance.ExtensionData.TryGetValue("X-Page-Total", out header))
             {
                 return 0;
             }
 
-            var n = int.Parse(value);
-            if (n < 0)
+            int value;
+            if (!int.TryParse(header, out value))
             {
                 return 0;
             }
 
-            return n;
+            return value;
         }
 
         /// <summary>Gets the number of values in a subset.</summary>
@@ -75,19 +75,19 @@ namespace GW2DotNET.V2.Common
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
             Contract.Ensures(Contract.Result<int>() >= 0);
-            var value = instance.ExtensionData["X-Result-Count"];
-            if (value == null)
+            string header;
+            if (!instance.ExtensionData.TryGetValue("X-Result-Count", out header))
             {
                 return 0;
             }
 
-            var n = int.Parse(value);
-            if (n < 0)
+            int value;
+            if (!int.TryParse(header, out value))
             {
                 return 0;
             }
 
-            return n;
+            return value;
         }
 
         /// <summary>Gets the number of values in a collection.</summary>
@@ -100,19 +100,19 @@ namespace GW2DotNET.V2.Common
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
             Contract.Ensures(Contract.Result<int>() >= 0);
-            var value = instance.ExtensionData["X-Result-Total"];
-            if (value == null)
+            string header;
+            if (!instance.ExtensionData.TryGetValue("X-Result-Total", out header))
             {
                 return 0;
             }
 
-            var n = int.Parse(value);
-            if (n < 0)
+            int value;
+            if (!int.TryParse(header, out value))
             {
                 return 0;
             }
 
-            return n;
+            return value;
         }
     }
 }
