@@ -91,7 +91,6 @@ namespace GW2DotNET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEvent> GetDynamicEventDetails()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetDynamicEventDetails(culture);
         }
 
@@ -132,7 +131,6 @@ namespace GW2DotNET.V1.DynamicEvents
         public DynamicEvent GetDynamicEventDetails(Guid eventId)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetDynamicEventDetails(eventId, culture);
         }
 
@@ -172,7 +170,6 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetDynamicEventDetailsAsync(culture, CancellationToken.None);
         }
 
@@ -183,7 +180,6 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventDetailsAsync(CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetDynamicEventDetailsAsync(culture, cancellationToken);
         }
 
@@ -239,7 +235,6 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetDynamicEventDetailsAsync(eventId, culture, CancellationToken.None);
         }
 
@@ -251,7 +246,6 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<DynamicEvent> GetDynamicEventDetailsAsync(Guid eventId, CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetDynamicEventDetailsAsync(eventId, culture, cancellationToken);
         }
 
@@ -307,7 +301,6 @@ namespace GW2DotNET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEvent> GetDynamicEventNames()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetDynamicEventNames(culture);
         }
 
@@ -347,7 +340,6 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetDynamicEventNamesAsync(culture, CancellationToken.None);
         }
 
@@ -358,7 +350,6 @@ namespace GW2DotNET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetDynamicEventNamesAsync(culture, cancellationToken);
         }
 

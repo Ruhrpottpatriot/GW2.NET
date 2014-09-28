@@ -42,7 +42,6 @@ namespace GW2DotNET.V1.Maps
         public Floor GetMapFloor(int continent, int floor)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapFloor(continent, floor, culture);
         }
 
@@ -83,7 +82,6 @@ namespace GW2DotNET.V1.Maps
         public Task<Floor> GetMapFloorAsync(int continent, int floor)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapFloorAsync(continent, floor, culture, CancellationToken.None);
         }
 
@@ -96,7 +94,6 @@ namespace GW2DotNET.V1.Maps
         public Task<Floor> GetMapFloorAsync(int continent, int floor, CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapFloorAsync(continent, floor, culture, cancellationToken);
         }
 

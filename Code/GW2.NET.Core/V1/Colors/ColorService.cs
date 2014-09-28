@@ -40,7 +40,6 @@ namespace GW2DotNET.V1.Colors
         public IDictionary<int, ColorPalette> GetColors()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetColors(culture);
         }
 
@@ -89,7 +88,6 @@ namespace GW2DotNET.V1.Colors
         public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetColorsAsync(culture, cancellationToken);
         }
 

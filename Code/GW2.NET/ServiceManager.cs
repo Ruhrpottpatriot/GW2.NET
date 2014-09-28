@@ -1082,7 +1082,6 @@ namespace GW2DotNET
         public Recipe GetRecipeDetails(int recipe)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetRecipeDetails(recipe, culture);
         }
 
@@ -1103,7 +1102,6 @@ namespace GW2DotNET
         public Task<Recipe> GetRecipeDetailsAsync(int recipe)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetRecipeDetailsAsync(recipe, culture, CancellationToken.None);
         }
 
@@ -1115,7 +1113,6 @@ namespace GW2DotNET
         public Task<Recipe> GetRecipeDetailsAsync(int recipe, CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetRecipeDetailsAsync(recipe, culture, cancellationToken);
         }
 

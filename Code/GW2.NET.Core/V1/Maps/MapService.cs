@@ -91,7 +91,6 @@ namespace GW2DotNET.V1.Maps
         public Map GetMap(int map)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMap(map, culture);
         }
 
@@ -132,7 +131,6 @@ namespace GW2DotNET.V1.Maps
         public Task<Map> GetMapAsync(int map)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapAsync(map, culture, CancellationToken.None);
         }
 
@@ -144,7 +142,6 @@ namespace GW2DotNET.V1.Maps
         public Task<Map> GetMapAsync(int map, CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapAsync(map, culture, cancellationToken);
         }
 
@@ -202,7 +199,6 @@ namespace GW2DotNET.V1.Maps
         public Floor GetMapFloor(int continent, int floor)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapFloor(continent, floor, culture);
         }
 
@@ -243,7 +239,6 @@ namespace GW2DotNET.V1.Maps
         public Task<Floor> GetMapFloorAsync(int continent, int floor)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapFloorAsync(continent, floor, culture, CancellationToken.None);
         }
 
@@ -256,7 +251,6 @@ namespace GW2DotNET.V1.Maps
         public Task<Floor> GetMapFloorAsync(int continent, int floor, CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapFloorAsync(continent, floor, culture, cancellationToken);
         }
 
@@ -312,7 +306,6 @@ namespace GW2DotNET.V1.Maps
         public IDictionary<int, Map> GetMapNames()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapNames(culture);
         }
 
@@ -352,7 +345,6 @@ namespace GW2DotNET.V1.Maps
         public Task<IDictionary<int, Map>> GetMapNamesAsync()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapNamesAsync(culture, CancellationToken.None);
         }
 
@@ -363,7 +355,6 @@ namespace GW2DotNET.V1.Maps
         public Task<IDictionary<int, Map>> GetMapNamesAsync(CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapNamesAsync(culture, cancellationToken);
         }
 
@@ -418,7 +409,6 @@ namespace GW2DotNET.V1.Maps
         public IDictionary<int, Map> GetMaps()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMaps(culture);
         }
 
@@ -458,7 +448,6 @@ namespace GW2DotNET.V1.Maps
         public Task<IDictionary<int, Map>> GetMapsAsync()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapsAsync(culture, CancellationToken.None);
         }
 
@@ -469,7 +458,6 @@ namespace GW2DotNET.V1.Maps
         public Task<IDictionary<int, Map>> GetMapsAsync(CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapsAsync(culture, cancellationToken);
         }
 

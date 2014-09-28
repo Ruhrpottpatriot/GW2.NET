@@ -42,7 +42,6 @@ namespace GW2DotNET.V1.Skins
         public Skin GetSkinDetails(int skin)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetSkinDetails(skin, culture);
         }
 
@@ -79,7 +78,6 @@ namespace GW2DotNET.V1.Skins
         public Task<Skin> GetSkinDetailsAsync(int skin)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetSkinDetailsAsync(skin, culture, CancellationToken.None);
         }
 
@@ -101,7 +99,6 @@ namespace GW2DotNET.V1.Skins
         public Task<Skin> GetSkinDetailsAsync(int skin, CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetSkinDetailsAsync(skin, culture, cancellationToken);
         }
 

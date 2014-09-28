@@ -40,7 +40,6 @@ namespace GW2DotNET.V1.Maps
         public IDictionary<int, Map> GetMapNames()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapNames(culture);
         }
 
@@ -80,7 +79,6 @@ namespace GW2DotNET.V1.Maps
         public Task<IDictionary<int, Map>> GetMapNamesAsync()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapNamesAsync(culture, CancellationToken.None);
         }
 
@@ -91,7 +89,6 @@ namespace GW2DotNET.V1.Maps
         public Task<IDictionary<int, Map>> GetMapNamesAsync(CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetMapNamesAsync(culture, cancellationToken);
         }
 

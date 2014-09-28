@@ -40,7 +40,6 @@ namespace GW2DotNET.V1.Worlds
         public IDictionary<int, World> GetWorldNames()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetWorldNames(culture);
         }
 
@@ -82,7 +81,6 @@ namespace GW2DotNET.V1.Worlds
         public Task<IDictionary<int, World>> GetWorldNamesAsync()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetWorldNamesAsync(culture, CancellationToken.None);
         }
 
@@ -93,7 +91,6 @@ namespace GW2DotNET.V1.Worlds
         public Task<IDictionary<int, World>> GetWorldNamesAsync(CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetWorldNamesAsync(culture, cancellationToken);
         }
 

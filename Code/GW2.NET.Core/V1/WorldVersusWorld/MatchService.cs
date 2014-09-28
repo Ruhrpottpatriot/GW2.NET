@@ -130,7 +130,6 @@ namespace GW2DotNET.V1.WorldVersusWorld
         public IDictionary<int, ObjectiveName> GetObjectiveNames()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetObjectiveNames(culture);
         }
 
@@ -170,7 +169,6 @@ namespace GW2DotNET.V1.WorldVersusWorld
         public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync()
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetObjectiveNamesAsync(culture, CancellationToken.None);
         }
 
@@ -181,7 +179,6 @@ namespace GW2DotNET.V1.WorldVersusWorld
         public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
         {
             var culture = new CultureInfo("en");
-            Contract.Assume(culture != null);
             return this.GetObjectiveNamesAsync(culture, cancellationToken);
         }
 
