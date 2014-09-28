@@ -9,8 +9,6 @@
 
 namespace GW2DotNET.V2.Commerce
 {
-    using System.Collections.Generic;
-
     using GW2DotNET.V2.Common;
 
     /// <summary>The price bulk request.</summary>
@@ -21,7 +19,7 @@ namespace GW2DotNET.V2.Commerce
         {
             get
             {
-                return "/v2/commerce/listings";
+                return "/v2/commerce/prices";
             }
         }
     }
