@@ -18,11 +18,21 @@ namespace GW2DotNET.V2.Commerce
 
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Commerce;
+    using GW2DotNET.Entities.Items;
     using GW2DotNET.V2.Commerce.Json;
     using GW2DotNET.V2.Common;
 
-    /// <summary>Provides access to the Trading Post price service.</summary>
-    /// <remarks>See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/prices">wiki</a></remarks>
+    /// <summary>Provides access to the Trading Post price service. See the class remarks for important limitations regarding the default implementation.</summary>
+    /// <remarks>
+    /// This implementation does not retrieve associated entities.
+    /// <list type="bullet">
+    ///     <item>
+    ///         <term><see cref="AggregateListing.Item"/>:</term>
+    ///         <description>Always <c>null</c>. Use the value of <see cref="AggregateListing.ItemId"/> to retrieve the <see cref="Item"/>.</description>
+    ///     </item>
+    /// </list>
+    /// See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/prices">wiki</a>
+    /// </remarks>
     public class PriceService : IRepository<int, AggregateListing>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
@@ -65,15 +75,15 @@ namespace GW2DotNET.V2.Commerce
             var request = new PriceDiscoveryRequest();
             return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(
                 task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new List<int>(0);
-                        }
+                        return new List<int>(0);
+                    }
 
-                        return response.Content;
-                    }, 
+                    return response.Content;
+                },
                 cancellationToken);
         }
 
@@ -154,23 +164,23 @@ namespace GW2DotNET.V2.Commerce
             var request = new PriceBulkRequest();
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new DictionaryRange<int, AggregateListing>(0);
-                        }
+                        return new DictionaryRange<int, AggregateListing>(0);
+                    }
 
-                        var values = ConvertAggregateListingDataContractRange(response.Content);
-                        values.SubtotalCount = response.GetResultCount();
-                        values.TotalCount = response.GetResultTotal();
-                        foreach (var value in values.Values)
-                        {
-                            value.Timestamp = response.Date;
-                        }
+                    var values = ConvertAggregateListingDataContractRange(response.Content);
+                    values.SubtotalCount = response.GetResultCount();
+                    values.TotalCount = response.GetResultTotal();
+                    foreach (var value in values.Values)
+                    {
+                        value.Timestamp = response.Date;
+                    }
 
-                        return values;
-                    }, 
+                    return values;
+                },
                 cancellationToken);
         }
 
@@ -191,23 +201,23 @@ namespace GW2DotNET.V2.Commerce
             var request = new PriceBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new DictionaryRange<int, AggregateListing>(0);
-                        }
+                        return new DictionaryRange<int, AggregateListing>(0);
+                    }
 
-                        var values = ConvertAggregateListingDataContractRange(response.Content);
-                        values.SubtotalCount = response.GetResultCount();
-                        values.TotalCount = response.GetResultTotal();
-                        foreach (var value in values.Values)
-                        {
-                            value.Timestamp = response.Date;
-                        }
+                    var values = ConvertAggregateListingDataContractRange(response.Content);
+                    values.SubtotalCount = response.GetResultCount();
+                    values.TotalCount = response.GetResultTotal();
+                    foreach (var value in values.Values)
+                    {
+                        value.Timestamp = response.Date;
+                    }
 
-                        return values;
-                    }, 
+                    return values;
+                },
                 cancellationToken);
         }
 
@@ -228,17 +238,17 @@ namespace GW2DotNET.V2.Commerce
             var request = new PriceDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
             return this.serviceClient.SendAsync<AggregateListingDataContract>(request, cancellationToken).ContinueWith(
                 task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return null;
-                        }
+                        return null;
+                    }
 
-                        var value = ConvertAggregateListingDataContract(response.Content);
-                        value.Timestamp = response.Date;
-                        return value;
-                    }, 
+                    var value = ConvertAggregateListingDataContract(response.Content);
+                    value.Timestamp = response.Date;
+                    return value;
+                },
                 cancellationToken);
         }
 
@@ -312,26 +322,26 @@ namespace GW2DotNET.V2.Commerce
             var request = new PricePageRequest { Page = page };
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new CollectionPage<AggregateListing>(0);
-                        }
+                        return new CollectionPage<AggregateListing>(0);
+                    }
 
-                        var values = ConvertAggregateListingDataContractPage(response.Content);
-                        values.Page = page;
-                        values.PageSize = response.GetPageSize();
-                        values.PageCount = response.GetPageTotal();
-                        values.SubtotalCount = response.GetResultCount();
-                        values.TotalCount = response.GetResultTotal();
-                        foreach (var value in values)
-                        {
-                            value.Timestamp = response.Date;
-                        }
+                    var values = ConvertAggregateListingDataContractPage(response.Content);
+                    values.Page = page;
+                    values.PageSize = response.GetPageSize();
+                    values.PageCount = response.GetPageTotal();
+                    values.SubtotalCount = response.GetResultCount();
+                    values.TotalCount = response.GetResultTotal();
+                    foreach (var value in values)
+                    {
+                        value.Timestamp = response.Date;
+                    }
 
-                        return values;
-                    }, 
+                    return values;
+                },
                 cancellationToken);
         }
 
@@ -354,26 +364,26 @@ namespace GW2DotNET.V2.Commerce
             var request = new PricePageRequest { Page = page, PageSize = pageSize };
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
+                {
+                    var response = task.Result;
+                    if (response.Content == null)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new CollectionPage<AggregateListing>(0);
-                        }
+                        return new CollectionPage<AggregateListing>(0);
+                    }
 
-                        var values = ConvertAggregateListingDataContractPage(response.Content);
-                        values.Page = page;
-                        values.PageSize = response.GetPageSize();
-                        values.PageCount = response.GetPageTotal();
-                        values.SubtotalCount = response.GetResultCount();
-                        values.TotalCount = response.GetResultTotal();
-                        foreach (var value in values)
-                        {
-                            value.Timestamp = response.Date;
-                        }
+                    var values = ConvertAggregateListingDataContractPage(response.Content);
+                    values.Page = page;
+                    values.PageSize = response.GetPageSize();
+                    values.PageCount = response.GetPageTotal();
+                    values.SubtotalCount = response.GetResultCount();
+                    values.TotalCount = response.GetResultTotal();
+                    foreach (var value in values)
+                    {
+                        value.Timestamp = response.Date;
+                    }
 
-                        return values;
-                    }, 
+                    return values;
+                },
                 cancellationToken);
         }
 

@@ -18,11 +18,21 @@ namespace GW2DotNET.V2.Commerce
 
     using GW2DotNET.Common;
     using GW2DotNET.Entities.Commerce;
+    using GW2DotNET.Entities.Items;
     using GW2DotNET.V2.Commerce.Json;
     using GW2DotNET.V2.Common;
 
-    /// <summary>Provides access to the Trading Post listing service.</summary>
-    /// <remarks>See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/listings">wiki</a></remarks>
+    /// <summary>Provides access to the /v2/commerce/listings service. See the class remarks for important limitations regarding the default implementation.</summary>
+    /// <remarks>
+    /// This implementation does not retrieve associated entities.
+    /// <list type="bullet">
+    ///     <item>
+    ///         <term><see cref="Listing.Item"/>:</term>
+    ///         <description>Always <c>null</c>. Use the value of <see cref="Listing.ItemId"/> to retrieve the <see cref="Item"/>.</description>
+    ///     </item>
+    /// </list>
+    /// See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/listings">wiki</a>
+    /// </remarks>
     public class ListingService : IRepository<int, Listing>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>

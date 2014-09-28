@@ -50,36 +50,36 @@ namespace GW2DotNET
             return new ServiceFactory(GetDefaultServiceClient());
         }
 
-        /// <summary>Provides access to the gem exchange service.</summary>
-        /// <returns>The <see cref="IBroker{T, TQuote}"/>.</returns>
+        /// <summary>Creates an instance of the <see cref="ExchangeService"/> class, which provides access to the /v2/commerce/exchange service.</summary>
+        /// <returns>A new instance of the <see cref="ExchangeService"/> class.</returns>
         public IBroker<string, ExchangeQuote> GetExchangeService()
         {
             return new ExchangeService(this.serviceClient);
         }
 
-        /// <summary>Provides access to the Trading Post listing service.</summary>
-        /// <returns>The <see cref="IRepository{TKey,TValue}"/>.</returns>
+        /// <summary>Creates an instance of the <see cref="ListingService"/> class, which provides access to the /v2/commerce/listings service.</summary>
+        /// <returns>A new instance of the <see cref="ListingService"/> class.</returns>
         public IRepository<int, Listing> GetListingService()
         {
             return new ListingService(this.serviceClient);
         }
 
-        /// <summary>Provides access to the Trading Post price service.</summary>
-        /// <returns>The <see cref="IRepository{TKey, TValue}"/>.</returns>
+        /// <summary>Creates an instance of the <see cref="PriceService"/> class, which provides access to the /v2/commerce/prices service.</summary>
+        /// <returns>A new instance of the <see cref="PriceService"/> class.</returns>
         public IRepository<int, AggregateListing> GetPriceService()
         {
             return new PriceService(this.serviceClient);
         }
 
-        /// <summary>Provides access to the quaggan service.</summary>
-        /// <returns>The <see cref="IRepository{TKey,TValue}"/>.</returns>
+        /// <summary>Creates an instance of the <see cref="QuagganService"/> class, which provides access to the /v2/quaggans service.</summary>
+        /// <returns>A new instance of the <see cref="QuagganService"/> class.</returns>
         public IRepository<string, Quaggan> GetQuagganService()
         {
             return new QuagganService(this.serviceClient);
         }
 
-        /// <summary>Provides access to the item service.</summary>
-        /// <returns>The <see cref="IRepository{TKey,TValue}"/>.</returns>
+        /// <summary>Creates an instance of the <see cref="ItemService"/> class, which provides access to the /v2/items service.</summary>
+        /// <returns>A new instance of the <see cref="ItemService"/> class.</returns>
         public IRepository<int, Item> GetItemService()
         {
             return new ItemService(this.serviceClient);

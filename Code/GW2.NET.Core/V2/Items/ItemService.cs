@@ -55,6 +55,7 @@ namespace GW2DotNET.V2.Items
     ///         <description>Always <c>null</c>. Use the value of <see cref="CraftingRecipeUnlocker.RecipeId"/> to retrieve the recipe.</description>
     ///     </item>
     /// </list>
+    /// See: <a href="http://wiki.guildwars2.com/wiki/API:2/items">wiki</a>
     /// </remarks>
     public class ItemService : IRepository<int, Item>, ILocalizable
     {
