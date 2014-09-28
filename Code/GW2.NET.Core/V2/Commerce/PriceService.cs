@@ -9,6 +9,7 @@
 namespace GW2DotNET.V2.Commerce
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
@@ -381,12 +382,28 @@ namespace GW2DotNET.V2.Commerce
         /// <returns>The entity.</returns>
         private static AggregateListing ConvertAggregateListingDataContract(AggregateListingDataContract content)
         {
-            return new AggregateListing
-                {
-                    ItemId = content.Id, 
-                    BuyOffers = ConvertAggregateOfferDataContract(content.BuyOffers), 
-                    SellOffers = ConvertAggregateOfferDataContract(content.SellOffers)
-                };
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<AggregateListing>() != null);
+            var value = new AggregateListing { ItemId = content.Id };
+            if (content.BuyOffers != null)
+            {
+                value.BuyOffers = ConvertAggregateOfferDataContract(content.BuyOffers);
+            }
+            else
+            {
+                Debug.WriteLine("Expected 'buys' for listing with ID {0}", content.Id);
+            }
+
+            if (content.SellOffers != null)
+            {
+                value.SellOffers = ConvertAggregateOfferDataContract(content.SellOffers);
+            }
+            else
+            {
+                Debug.WriteLine("Expected 'sells' for listing with ID {0}", content.Id);
+            }
+
+            return value;
         }
 
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
@@ -394,6 +411,8 @@ namespace GW2DotNET.V2.Commerce
         /// <returns>The entity.</returns>
         private static ICollectionPage<AggregateListing> ConvertAggregateListingDataContractPage(ICollection<AggregateListingDataContract> content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<ICollectionPage<AggregateListing>>() != null);
             var values = new CollectionPage<AggregateListing>(content.Count);
             values.AddRange(content.Select(ConvertAggregateListingDataContract));
             return values;
@@ -404,6 +423,8 @@ namespace GW2DotNET.V2.Commerce
         /// <returns>The entity.</returns>
         private static IDictionaryRange<int, AggregateListing> ConvertAggregateListingDataContractRange(ICollection<AggregateListingDataContract> content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<IDictionaryRange<int, AggregateListing>>() != null);
             var values = new DictionaryRange<int, AggregateListing>(content.Count);
             foreach (var value in content.Select(ConvertAggregateListingDataContract))
             {
@@ -418,6 +439,8 @@ namespace GW2DotNET.V2.Commerce
         /// <returns>The entity.</returns>
         private static AggregateOffer ConvertAggregateOfferDataContract(AggregateOfferDataContract content)
         {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<AggregateOffer>() != null);
             return new AggregateOffer { Quantity = content.Quantity, UnitPrice = content.UnitPrice };
         }
     }
