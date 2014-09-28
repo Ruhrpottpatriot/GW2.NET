@@ -12,7 +12,7 @@ namespace GW2DotNET.V2.Quaggans.Json
 
     /// <summary>Represents a Quaggan.</summary>
     [DataContract]
-    public sealed class QuagganContract
+    internal sealed class QuagganContract
     {
         /// <summary>Gets or sets the Quaggan identifier.</summary>
         [DataMember(Name = "id", Order = 0)]

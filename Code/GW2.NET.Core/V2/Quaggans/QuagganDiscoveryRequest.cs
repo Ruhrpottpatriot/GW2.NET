@@ -14,7 +14,7 @@ namespace GW2DotNET.V2.Quaggans
     using GW2DotNET.Common;
 
     /// <summary>Represents a request for a collection of Quaggan identifiers.</summary>
-    public class QuagganDiscoveryRequest : IRequest
+    internal sealed class QuagganDiscoveryRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

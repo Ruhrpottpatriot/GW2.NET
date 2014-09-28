@@ -11,7 +11,7 @@ namespace GW2DotNET.V2.Quaggans
     using GW2DotNET.V2.Common;
 
     /// <summary>Represents a request for a collection of Quaggans.</summary>
-    public class QuagganBulkRequest : BulkRequest
+    internal sealed class QuagganBulkRequest : BulkRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource
