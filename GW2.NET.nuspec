@@ -15,8 +15,10 @@
     </description>
     <summary>This software is licensed under the GNU General Public License version 2 (GPLv2). For a complete version of the license follow the link.</summary>
     <releaseNotes>
-		Fixing the implementation for /v2/commerce/prices bulk expansion
-		Implementing X-Result-Count and X-Result-Total for /v2/commerce services
+		* Fixing the implementation for /v2/commerce/prices bulk expansion
+		* Implementing support for X-Result-Count and X-Result-Total for commerce services
+		* Replacing "Language" properties of type "string" with "Locale" properties of type "CultureInfo"
+		* Improving IntelliSense tooltips for entities that have navigation properties
 	</releaseNotes>
     <copyright>Copyright ©  2013 - 2014</copyright>
     <language>en, es, de, fr</language>
