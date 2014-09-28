@@ -12,7 +12,7 @@ namespace GW2DotNET.V2.Commerce.Json
 
     /// <summary>The exchange quote data contract.</summary>
     [DataContract]
-    public class ExchangeQuoteDataContract
+    internal class ExchangeQuoteDataContract
     {
         /// <summary>Gets or sets the coins per gem.</summary>
         [DataMember(Order = 0, Name = "coins_per_gem")]

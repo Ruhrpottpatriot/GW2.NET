@@ -13,7 +13,7 @@ namespace GW2DotNET.V2.Commerce.Json
 
     /// <summary>The listing contract.</summary>
     [DataContract]
-    public sealed class ListingDataContract
+    internal sealed class ListingDataContract
     {
         /// <summary>Gets or sets the buy offers.</summary>
         [DataMember(Name = "buys", Order = 1)]

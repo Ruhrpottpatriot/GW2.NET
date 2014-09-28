@@ -12,7 +12,7 @@ namespace GW2DotNET.V2.Commerce.Json
 
     /// <summary>The aggregate offer data contract.</summary>
     [DataContract]
-    public sealed class AggregateOfferDataContract
+    internal sealed class AggregateOfferDataContract
     {
         /// <summary>Gets or sets the quantity.</summary>
         [DataMember(Name = "quantity", Order = 2)]
