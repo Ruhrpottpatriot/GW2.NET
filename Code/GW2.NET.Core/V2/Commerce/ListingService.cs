@@ -105,6 +105,8 @@ namespace GW2DotNET.V2.Commerce
             }
 
             var values = ConvertListingDataContractRange(response.Content);
+            values.SubtotalCount = response.GetResultCount();
+            values.TotalCount = response.GetResultTotal();
             foreach (var value in values.Values)
             {
                 value.Timestamp = response.Date;
@@ -126,6 +128,8 @@ namespace GW2DotNET.V2.Commerce
             }
 
             var values = ConvertListingDataContractRange(response.Content);
+            values.SubtotalCount = response.GetResultCount();
+            values.TotalCount = response.GetResultTotal();
             foreach (var value in values.Values)
             {
                 value.Timestamp = response.Date;
@@ -157,6 +161,8 @@ namespace GW2DotNET.V2.Commerce
                         }
 
                         var values = ConvertListingDataContractRange(response.Content);
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
                         foreach (var value in values.Values)
                         {
                             value.Timestamp = response.Date;
@@ -192,6 +198,8 @@ namespace GW2DotNET.V2.Commerce
                         }
 
                         var values = ConvertListingDataContractRange(response.Content);
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
                         foreach (var value in values.Values)
                         {
                             value.Timestamp = response.Date;
@@ -249,6 +257,8 @@ namespace GW2DotNET.V2.Commerce
             values.Page = page;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
+            values.SubtotalCount = response.GetResultCount();
+            values.TotalCount = response.GetResultTotal();
             foreach (var value in values)
             {
                 value.Timestamp = response.Date;
@@ -274,6 +284,8 @@ namespace GW2DotNET.V2.Commerce
             values.Page = page;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
+            values.SubtotalCount = response.GetResultCount();
+            values.TotalCount = response.GetResultTotal();
             foreach (var value in values)
             {
                 value.Timestamp = response.Date;
@@ -310,6 +322,8 @@ namespace GW2DotNET.V2.Commerce
                         values.Page = page;
                         values.PageSize = response.GetPageSize();
                         values.PageCount = response.GetPageTotal();
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
                         foreach (var value in values)
                         {
                             value.Timestamp = response.Date;
@@ -350,6 +364,8 @@ namespace GW2DotNET.V2.Commerce
                         values.Page = page;
                         values.PageSize = response.GetPageSize();
                         values.PageCount = response.GetPageTotal();
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
                         foreach (var value in values)
                         {
                             value.Timestamp = response.Date;
