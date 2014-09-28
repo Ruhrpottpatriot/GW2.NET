@@ -65,10 +65,10 @@ namespace GW2DotNET.V1.Maps
             }
 
             var values = ConvertMapNameContractCollection(response.Content);
-            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            var locale = response.Culture ?? language;
             foreach (var value in values.Values)
             {
-                value.Language = twoLetterIsoLanguageName;
+                value.Locale = locale;
             }
 
             return values;
@@ -129,10 +129,10 @@ namespace GW2DotNET.V1.Maps
                         }
 
                         var values = ConvertMapNameContractCollection(response.Content);
-                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        var locale = response.Culture ?? language;
                         foreach (var value in values.Values)
                         {
-                            value.Language = twoLetterIsoLanguageName;
+                            value.Locale = locale;
                         }
 
                         return values;

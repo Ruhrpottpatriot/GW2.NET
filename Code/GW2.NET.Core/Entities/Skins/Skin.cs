@@ -31,8 +31,8 @@ namespace GW2DotNET.Entities.Skins
         /// <summary>Gets or sets the skin's additional flags.</summary>
         public virtual SkinFlags Flags { get; set; }
 
-        /// <summary>Gets or sets the language.</summary>
-        public virtual string Language { get; set; }
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the name of the skin.</summary>
         public virtual string Name { get; set; }

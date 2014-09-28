@@ -31,8 +31,8 @@ namespace GW2DotNET.Entities.Recipes
         /// <summary>Gets or sets a collection of the required ingredients.</summary>
         public virtual ICollection<ItemStack> Ingredients { get; set; }
 
-        /// <summary>Gets or sets the language.</summary>
-        public virtual string Language { get; set; }
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the recipe's minimum rating.</summary>
         public virtual int MinimumRating { get; set; }

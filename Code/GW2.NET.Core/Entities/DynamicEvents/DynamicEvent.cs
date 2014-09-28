@@ -9,6 +9,7 @@
 namespace GW2DotNET.Entities.DynamicEvents
 {
     using System;
+    using System.Globalization;
 
     using GW2DotNET.Entities.Maps;
 
@@ -21,8 +22,8 @@ namespace GW2DotNET.Entities.DynamicEvents
         /// <summary>Gets or sets additional flags.</summary>
         public virtual DynamicEventFlags Flags { get; set; }
 
-        /// <summary>Gets or sets the language.</summary>
-        public virtual string Language { get; set; }
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the event level.</summary>
         public virtual int Level { get; set; }

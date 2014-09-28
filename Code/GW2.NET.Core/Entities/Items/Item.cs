@@ -42,8 +42,8 @@ namespace GW2DotNET.Entities.Items
         /// <summary>Gets or sets the item's identifier.</summary>
         public virtual int ItemId { get; set; }
 
-        /// <summary>Gets or sets the language.</summary>
-        public virtual string Language { get; set; }
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the item's level.</summary>
         public virtual int Level { get; set; }

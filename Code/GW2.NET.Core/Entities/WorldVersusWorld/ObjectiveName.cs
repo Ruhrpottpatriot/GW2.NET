@@ -14,8 +14,8 @@ namespace GW2DotNET.Entities.WorldVersusWorld
     /// <summary>Represents an objective and its localized name.</summary>
     public class ObjectiveName : IEquatable<ObjectiveName>
     {
-        /// <summary>Gets or sets the language.</summary>
-        public virtual string Language { get; set; }
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the name of the objective.</summary>
         public virtual string Name { get; set; }

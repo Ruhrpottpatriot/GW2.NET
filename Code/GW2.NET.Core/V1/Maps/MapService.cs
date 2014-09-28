@@ -119,7 +119,7 @@ namespace GW2DotNET.V1.Maps
             var value = ConvertMapCollectionContract(response.Content).Values.SingleOrDefault();
             if (value != null)
             {
-                value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                value.Locale = response.Culture ?? language;
             }
 
             return value;
@@ -186,7 +186,7 @@ namespace GW2DotNET.V1.Maps
                         var value = ConvertMapCollectionContract(response.Content).Values.SingleOrDefault();
                         if (value != null)
                         {
-                            value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                            value.Locale = response.Culture ?? language;
                         }
 
                         return value;
@@ -231,7 +231,7 @@ namespace GW2DotNET.V1.Maps
             var value = ConvertFloorContract(response.Content);
             value.ContinentId = continent;
             value.FloorId = floor;
-            value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+            value.Locale = response.Culture ?? language;
             return value;
         }
 
@@ -300,7 +300,7 @@ namespace GW2DotNET.V1.Maps
                         var value = ConvertFloorContract(response.Content);
                         value.ContinentId = continent;
                         value.FloorId = floor;
-                        value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        value.Locale = response.Culture ?? language;
                         return value;
                     }, 
                 cancellationToken);
@@ -337,10 +337,10 @@ namespace GW2DotNET.V1.Maps
             }
 
             var values = ConvertMapNameContractCollection(response.Content);
-            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            var locale = response.Culture ?? language;
             foreach (var value in values.Values)
             {
-                value.Language = twoLetterIsoLanguageName;
+                value.Locale = locale;
             }
 
             return values;
@@ -401,10 +401,10 @@ namespace GW2DotNET.V1.Maps
                         }
 
                         var values = ConvertMapNameContractCollection(response.Content);
-                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        var locale = response.Culture ?? language;
                         foreach (var value in values.Values)
                         {
-                            value.Language = twoLetterIsoLanguageName;
+                            value.Locale = locale;
                         }
 
                         return values;
@@ -443,10 +443,10 @@ namespace GW2DotNET.V1.Maps
             }
 
             var values = ConvertMapCollectionContract(response.Content);
-            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            var locale = response.Culture ?? language;
             foreach (var value in values.Values)
             {
-                value.Language = twoLetterIsoLanguageName;
+                value.Locale = locale;
             }
 
             return values;
@@ -507,10 +507,10 @@ namespace GW2DotNET.V1.Maps
                         }
 
                         var values = ConvertMapCollectionContract(response.Content);
-                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        var locale = response.Culture ?? language;
                         foreach (var value in values.Values)
                         {
-                            value.Language = twoLetterIsoLanguageName;
+                            value.Locale = locale;
                         }
 
                         return values;

@@ -116,10 +116,10 @@ namespace GW2DotNET.V1.DynamicEvents
             }
 
             var values = ConvertEventDetailsCollectionContract(response.Content);
-            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            var locale = response.Culture ?? language;
             foreach (var value in values.Values)
             {
-                value.Language = twoLetterIsoLanguageName;
+                value.Locale = locale;
             }
 
             return values;
@@ -160,7 +160,7 @@ namespace GW2DotNET.V1.DynamicEvents
             var value = ConvertEventDetailsCollectionContract(response.Content).Values.SingleOrDefault();
             if (value != null)
             {
-                value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                value.Locale = response.Culture ?? language;
             }
 
             return value;
@@ -221,10 +221,10 @@ namespace GW2DotNET.V1.DynamicEvents
                         }
 
                         var values = ConvertEventDetailsCollectionContract(response.Content);
-                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        var locale = response.Culture ?? language;
                         foreach (var value in values.Values)
                         {
-                            value.Language = twoLetterIsoLanguageName;
+                            value.Locale = locale;
                         }
 
                         return values;
@@ -293,7 +293,7 @@ namespace GW2DotNET.V1.DynamicEvents
                         var value = ConvertEventDetailsCollectionContract(response.Content).Values.SingleOrDefault();
                         if (value != null)
                         {
-                            value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                            value.Locale = response.Culture ?? language;
                         }
 
                         return value;
@@ -332,10 +332,10 @@ namespace GW2DotNET.V1.DynamicEvents
             }
 
             var values = ConvertEventNameContracts(response.Content);
-            var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+            var locale = response.Culture ?? language;
             foreach (var value in values.Values)
             {
-                value.Language = twoLetterIsoLanguageName;
+                value.Locale = locale;
             }
 
             return values;
@@ -396,10 +396,10 @@ namespace GW2DotNET.V1.DynamicEvents
                         }
 
                         var values = ConvertEventNameContracts(response.Content);
-                        var twoLetterIsoLanguageName = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        var locale = response.Culture ?? language;
                         foreach (var value in values.Values)
                         {
-                            value.Language = twoLetterIsoLanguageName;
+                            value.Locale = locale;
                         }
 
                         return values;

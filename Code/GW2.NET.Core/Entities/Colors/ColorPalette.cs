@@ -23,8 +23,8 @@ namespace GW2DotNET.Entities.Colors
         /// <summary>Gets or sets the color identifier.</summary>
         public virtual int ColorId { get; set; }
 
-        /// <summary>Gets or sets the language.</summary>
-        public virtual string Language { get; set; }
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the color model for leather armor.</summary>
         public virtual ColorModel Leather { get; set; }

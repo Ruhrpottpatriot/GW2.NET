@@ -27,8 +27,8 @@ namespace GW2DotNET.Entities.Maps
         /// <summary>Gets or sets the floor identifier.</summary>
         public virtual int FloorId { get; set; }
 
-        /// <summary>Gets or sets the language.</summary>
-        public virtual string Language { get; set; }
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the collection of regions.</summary>
         public virtual IDictionary<int, Region> Regions { get; set; }

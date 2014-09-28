@@ -14,8 +14,8 @@ namespace GW2DotNET.Entities.Worlds
     /// <summary>Represents a world and its localized name.</summary>
     public class World : IEquatable<World>
     {
-        /// <summary>Gets or sets the language.</summary>
-        public virtual string Language { get; set; }
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the name of the world.</summary>
         public virtual string Name { get; set; }

@@ -68,7 +68,7 @@ namespace GW2DotNET.V1.Skins
             }
 
             var value = ConvertSkinContract(response.Content);
-            value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+            value.Locale = response.Culture ?? language;
             return value;
         }
 
@@ -131,7 +131,7 @@ namespace GW2DotNET.V1.Skins
                         }
 
                         var value = ConvertSkinContract(response.Content);
-                        value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        value.Locale = response.Culture ?? language;
                         return value;
                     }, 
                 cancellationToken);

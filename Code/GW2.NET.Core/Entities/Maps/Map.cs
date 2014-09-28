@@ -33,8 +33,8 @@ namespace GW2DotNET.Entities.Maps
         /// <summary>Gets or sets a collection of floor identifiers.</summary>
         public virtual ICollection<int> Floors { get; set; }
 
-        /// <summary>Gets or sets the language.</summary>
-        public virtual string Language { get; set; }
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the map identifier.</summary>
         public virtual int MapId { get; set; }

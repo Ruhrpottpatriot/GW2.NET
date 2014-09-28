@@ -126,7 +126,7 @@ namespace GW2DotNET.V2.Items
             }
 
             var value = ConvertItemDataContract(response.Content);
-            value.Language = response.Culture.TwoLetterISOLanguageName;
+            value.Locale = response.Culture;
             return value;
         }
 
@@ -147,10 +147,10 @@ namespace GW2DotNET.V2.Items
                     TotalCount = response.GetResultTotal()
                 };
 
-            var culture = response.Culture;
+            var locale = response.Culture;
             foreach (var value in response.Content.Select(ConvertItemDataContract))
             {
-                value.Language = culture.TwoLetterISOLanguageName;
+                value.Locale = locale;
                 values.Add(value.ItemId, value);
             }
 
@@ -180,10 +180,10 @@ namespace GW2DotNET.V2.Items
                     TotalCount = response.GetResultTotal()
                 };
 
-            var culture = response.Culture;
+            var locale = response.Culture;
             foreach (var value in response.Content.Select(ConvertItemDataContract))
             {
-                value.Language = culture.TwoLetterISOLanguageName;
+                value.Locale = locale;
                 values.Add(value.ItemId, value);
             }
 
@@ -218,10 +218,10 @@ namespace GW2DotNET.V2.Items
                                 TotalCount = response.GetResultTotal()
                             };
 
-                        var culture = response.Culture;
+                        var locale = response.Culture;
                         foreach (var value in response.Content.Select(ConvertItemDataContract))
                         {
-                            value.Language = culture.TwoLetterISOLanguageName;
+                            value.Locale = locale;
                             values.Add(value.ItemId, value);
                         }
 
@@ -265,10 +265,10 @@ namespace GW2DotNET.V2.Items
                                 TotalCount = response.GetResultTotal()
                             };
 
-                        var culture = response.Culture;
+                        var locale = response.Culture;
                         foreach (var value in response.Content.Select(ConvertItemDataContract))
                         {
-                            value.Language = culture.TwoLetterISOLanguageName;
+                            value.Locale = locale;
                             values.Add(value.ItemId, value);
                         }
 
@@ -302,7 +302,7 @@ namespace GW2DotNET.V2.Items
                         }
 
                         var value = ConvertItemDataContract(response.Content);
-                        value.Language = response.Culture.TwoLetterISOLanguageName;
+                        value.Locale = response.Culture;
                         return value;
                     }, 
                 cancellationToken);
@@ -329,10 +329,10 @@ namespace GW2DotNET.V2.Items
                     TotalCount = response.GetResultTotal()
                 };
 
-            var culture = response.Culture;
+            var locale = response.Culture;
             foreach (var value in response.Content.Select(ConvertItemDataContract))
             {
-                value.Language = culture.TwoLetterISOLanguageName;
+                value.Locale = locale;
                 values.Add(value);
             }
 
@@ -361,10 +361,10 @@ namespace GW2DotNET.V2.Items
                     TotalCount = response.GetResultTotal()
                 };
 
-            var culture = response.Culture;
+            var locale = response.Culture;
             foreach (var value in response.Content.Select(ConvertItemDataContract))
             {
-                value.Language = culture.TwoLetterISOLanguageName;
+                value.Locale = locale;
                 values.Add(value);
             }
 
@@ -404,10 +404,10 @@ namespace GW2DotNET.V2.Items
                                 TotalCount = response.GetResultTotal()
                             };
 
-                        var culture = response.Culture;
+                        var locale = response.Culture;
                         foreach (var value in response.Content.Select(ConvertItemDataContract))
                         {
-                            value.Language = culture.TwoLetterISOLanguageName;
+                            value.Locale = locale;
                             values.Add(value);
                         }
 
@@ -452,10 +452,10 @@ namespace GW2DotNET.V2.Items
                                 TotalCount = response.GetResultTotal()
                             };
 
-                        var culture = response.Culture;
+                        var locale = response.Culture;
                         foreach (var value in response.Content.Select(ConvertItemDataContract))
                         {
-                            value.Language = culture.TwoLetterISOLanguageName;
+                            value.Locale = locale;
                             values.Add(value);
                         }
 

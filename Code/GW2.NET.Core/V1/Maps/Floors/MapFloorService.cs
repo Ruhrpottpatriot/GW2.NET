@@ -71,7 +71,7 @@ namespace GW2DotNET.V1.Maps
             var value = ConvertFloorContract(response.Content);
             value.ContinentId = continent;
             value.FloorId = floor;
-            value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+            value.Locale = response.Culture ?? language;
             return value;
         }
 
@@ -140,7 +140,7 @@ namespace GW2DotNET.V1.Maps
                         var value = ConvertFloorContract(response.Content);
                         value.ContinentId = continent;
                         value.FloorId = floor;
-                        value.Language = (response.Culture ?? language).TwoLetterISOLanguageName;
+                        value.Locale = response.Culture ?? language;
                         return value;
                     }, 
                 cancellationToken);
