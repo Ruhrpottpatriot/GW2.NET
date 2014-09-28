@@ -16,7 +16,7 @@ namespace GW2DotNET.Entities.WorldVersusWorld
     /// <summary>Represents one of a World versus World map's objectives.</summary>
     public class Objective : IEquatable<Objective>
     {
-        /// <summary>Gets or sets the name of the objective.</summary>
+        /// <summary>Gets or sets the name of the objective. This is a navigation property. Use the value of <see cref="ObjectiveId"/> to obtain a reference.</summary>
         public virtual ObjectiveName Name { get; set; }
 
         /// <summary>Gets or sets the objective identifier.</summary>
@@ -25,7 +25,7 @@ namespace GW2DotNET.Entities.WorldVersusWorld
         /// <summary>Gets or sets the current owner.</summary>
         public virtual TeamColor Owner { get; set; }
 
-        /// <summary>Gets or sets the guild currently claiming the objective.</summary>
+        /// <summary>Gets or sets the guild currently claiming the objective. This is a navigation property. Use the value of <see cref="OwnerGuildId"/> to obtain a reference.</summary>
         public virtual Guild OwnerGuild { get; set; }
 
         /// <summary>Gets or sets the identifier of the guild currently claiming the objective.</summary>

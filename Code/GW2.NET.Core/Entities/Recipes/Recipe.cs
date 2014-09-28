@@ -19,7 +19,7 @@ namespace GW2DotNET.Entities.Recipes
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
     public abstract class Recipe : IEquatable<Recipe>
     {
-        /// <summary>Gets or sets the recipe's build number.</summary>
+        /// <summary>Gets or sets the recipe's build number. Default: 0. Assign a build number for change tracking.</summary>
         public virtual int BuildId { get; set; }
 
         /// <summary>Gets or sets the crafting disciplines that can learn the recipe.</summary>
@@ -37,7 +37,7 @@ namespace GW2DotNET.Entities.Recipes
         /// <summary>Gets or sets the recipe's minimum rating.</summary>
         public virtual int MinimumRating { get; set; }
 
-        /// <summary>Gets or sets the output item.</summary>
+        /// <summary>Gets or sets the output item. This is a navigation property. Use the value of <see cref="OutputItemId"/> to obtain a reference.</summary>
         public virtual Item OutputItem { get; set; }
 
         /// <summary>Gets or sets the amount of items produced.</summary>

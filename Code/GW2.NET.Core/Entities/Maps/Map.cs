@@ -15,7 +15,7 @@ namespace GW2DotNET.Entities.Maps
     /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
     public class Map : IEquatable<Map>
     {
-        /// <summary>Gets or sets the continent that this map belongs to.</summary>
+        /// <summary>Gets or sets the continent that this map belongs to. This is a navigation property. Use the value of <see cref="ContinentId"/> to obtain a reference.</summary>
         public virtual Continent Continent { get; set; }
 
         /// <summary>Gets or sets the continent identifier of the continent that this map belongs to.</summary>
@@ -51,7 +51,7 @@ namespace GW2DotNET.Entities.Maps
         /// <summary>Gets or sets the minimum level of this map.</summary>
         public virtual int MinimumLevel { get; set; }
 
-        /// <summary>Gets or sets the region that this map belongs to.</summary>
+        /// <summary>Gets or sets the region that this map belongs to. This is a navigation property. Use the value of <see cref="RegionId"/> to obtain a reference.</summary>
         public virtual Region Region { get; set; }
 
         /// <summary>Gets or sets the region identifier of the region that this map belongs to.</summary>

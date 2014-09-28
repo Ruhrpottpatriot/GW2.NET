@@ -15,7 +15,7 @@ namespace GW2DotNET.Entities.WorldVersusWorld
     /// <summary>Represents a World versus World matchup.</summary>
     public class Matchup : IEquatable<Matchup>
     {
-        /// <summary>Gets or sets the blue world.</summary>
+        /// <summary>Gets or sets the blue world. This is a navigation property. Use the value of <see cref="BlueWorldId"/> to obtain a reference.</summary>
         public virtual World BlueWorld { get; set; }
 
         /// <summary>Gets or sets the blue world identifier.</summary>
@@ -24,7 +24,7 @@ namespace GW2DotNET.Entities.WorldVersusWorld
         /// <summary>Gets or sets the timestamp (UTC) of when the match ends.</summary>
         public virtual DateTimeOffset EndTime { get; set; }
 
-        /// <summary>Gets or sets the green world.</summary>
+        /// <summary>Gets or sets the green world. This is a navigation property. Use the value of <see cref="GreenWorldId"/> to obtain a reference.</summary>
         public virtual World GreenWorld { get; set; }
 
         /// <summary>Gets or sets the green world identifier.</summary>
@@ -33,7 +33,7 @@ namespace GW2DotNET.Entities.WorldVersusWorld
         /// <summary>Gets or sets the match identifier.</summary>
         public virtual string MatchId { get; set; }
 
-        /// <summary>Gets or sets the red world.</summary>
+        /// <summary>Gets or sets the red world. This is a navigation property. Use the value of <see cref="RedWorldId"/> to obtain a reference.</summary>
         public virtual World RedWorld { get; set; }
 
         /// <summary>Gets or sets the red world identifier.</summary>

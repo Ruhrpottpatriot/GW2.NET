@@ -24,7 +24,7 @@ namespace GW2DotNET.Entities.Maps
         /// <summary>Gets or sets a collection of floor identifiers.</summary>
         public virtual ICollection<int> FloorIds { get; set; }
 
-        /// <summary>Gets or sets a collection of floors.</summary>
+        /// <summary>Gets or sets a collection of floors. This is a navigation property. Use the value of <see cref="FloorIds"/> to obtain references.</summary>
         public virtual ICollection<Floor> Floors { get; set; }
 
         /// <summary>Gets or sets the maximum zoom level for use with the map tile service.</summary>

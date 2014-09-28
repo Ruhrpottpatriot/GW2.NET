@@ -19,7 +19,7 @@ namespace GW2DotNET.Entities.DynamicEvents
         /// <summary>Gets or sets the event identifier.</summary>
         public virtual Guid EventId { get; set; }
 
-        /// <summary>Gets or sets the map.</summary>
+        /// <summary>Gets or sets the map. This is a navigation property. Use the value of <see cref="MapId"/> to obtain a reference.</summary>
         public virtual Map Map { get; set; }
 
         /// <summary>Gets or sets the map identifier.</summary>
@@ -28,7 +28,7 @@ namespace GW2DotNET.Entities.DynamicEvents
         /// <summary>Gets or sets the current state of the event.</summary>
         public virtual EventState State { get; set; }
 
-        /// <summary>Gets or sets the world.</summary>
+        /// <summary>Gets or sets the world.  This is a navigation property. Use the value of <see cref="WorldId"/> to obtain a reference.</summary>
         public virtual World World { get; set; }
 
         /// <summary>Gets or sets the world identifier.</summary>

@@ -35,7 +35,7 @@ namespace GW2DotNET.Entities.Items
             }
         }
 
-        /// <summary>Gets or sets the item.</summary>
+        /// <summary>Gets or sets the item. This is a navigation property. Use the value of <see cref="ItemId"/> to obtain a reference.</summary>
         public virtual Item Item { get; set; }
 
         /// <summary>Gets or sets the item identifier.</summary>

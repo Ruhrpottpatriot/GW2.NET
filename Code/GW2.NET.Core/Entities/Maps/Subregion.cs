@@ -21,7 +21,7 @@ namespace GW2DotNET.Entities.Maps
         /// <summary>Gets or sets the default floor of this map.</summary>
         public virtual int DefaultFloor { get; set; }
 
-        /// <summary>Gets or sets the map.</summary>
+        /// <summary>Gets or sets the map. This is a navigation property. Use the value of <see cref="MapId"/> to obtain a reference.</summary>
         public virtual Map Map { get; set; }
 
         /// <summary>Gets or sets the map identifier.</summary>

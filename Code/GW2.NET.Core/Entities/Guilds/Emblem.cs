@@ -13,7 +13,7 @@ namespace GW2DotNET.Entities.Guilds
     /// <summary>Represents a guild's emblem.</summary>
     public class Emblem
     {
-        /// <summary>Gets or sets the background color.</summary>
+        /// <summary>Gets or sets the background color. This is a navigation property. Use the value of <see cref="BackgroundColorId"/> to obtain a reference.</summary>
         public virtual ColorPalette BackgroundColor { get; set; }
 
         /// <summary>Gets or sets the background color identifier.</summary>
@@ -28,13 +28,13 @@ namespace GW2DotNET.Entities.Guilds
         /// <summary>Gets or sets the foreground image identifier.</summary>
         public virtual int ForegroundId { get; set; }
 
-        /// <summary>Gets or sets the primary foreground color.</summary>
+        /// <summary>Gets or sets the primary foreground color. This is a navigation property. Use the value of <see cref="ForegroundPrimaryColorId"/> to obtain a reference.</summary>
         public virtual ColorPalette ForegroundPrimaryColor { get; set; }
 
         /// <summary>Gets or sets the primary foreground color identifier.</summary>
         public virtual int ForegroundPrimaryColorId { get; set; }
 
-        /// <summary>Gets or sets the secondary foreground color.</summary>
+        /// <summary>Gets or sets the secondary foreground color. This is a navigation property. Use the value of <see cref="ForegroundSecondaryColorId"/> to obtain a reference.</summary>
         public virtual ColorPalette ForegroundSecondaryColor { get; set; }
 
         /// <summary>Gets or sets the secondary foreground color identifier.</summary>

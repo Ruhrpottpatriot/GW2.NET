@@ -13,7 +13,7 @@ namespace GW2DotNET.Entities.Items
     /// <summary>Represents a dye.</summary>
     public class DyeUnlocker : Unlocker
     {
-        /// <summary>Gets or sets the color.</summary>
+        /// <summary>Gets or sets the color. This is a navigation property. Use the value of <see cref="ColorId"/> to obtain a reference.</summary>
         public virtual ColorPalette Color { get; set; }
 
         /// <summary>Gets or sets the color identifier.</summary>

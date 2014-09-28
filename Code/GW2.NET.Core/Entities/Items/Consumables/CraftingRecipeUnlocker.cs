@@ -13,7 +13,7 @@ namespace GW2DotNET.Entities.Items
     /// <summary>Represents a crafting recipe.</summary>
     public class CraftingRecipeUnlocker : Unlocker
     {
-        /// <summary>Gets or sets the recipe.</summary>
+        /// <summary>Gets or sets the recipe. This is a navigation property. Use the value of <see cref="RecipeId"/> to obtain a reference.</summary>
         public virtual Recipe Recipe { get; set; }
 
         /// <summary>Gets or sets the recipe identifier.</summary>

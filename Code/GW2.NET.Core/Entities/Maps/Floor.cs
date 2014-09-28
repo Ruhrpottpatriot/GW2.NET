@@ -18,7 +18,7 @@ namespace GW2DotNET.Entities.Maps
         /// <summary>Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available on the tile server.</summary>
         public virtual Rectangle? ClampedView { get; set; }
 
-        /// <summary>Gets or sets the continent.</summary>
+        /// <summary>Gets or sets the continent. This is a navigation property. Use the value of <see cref="ContinentId"/> to obtain a reference.</summary>
         public virtual Continent Continent { get; set; }
 
         /// <summary>Gets or sets the continent identifier.</summary>

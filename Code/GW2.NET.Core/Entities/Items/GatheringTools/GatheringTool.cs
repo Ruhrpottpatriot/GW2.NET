@@ -13,7 +13,7 @@ namespace GW2DotNET.Entities.Items
     /// <summary>Provides the base class for gathering tool types.</summary>
     public abstract class GatheringTool : Item, ISkinnable
     {
-        /// <summary>Gets or sets the default skin.</summary>
+        /// <summary>Gets or sets the default skin. This is a navigation property. Use the value of <see cref="DefaultSkinId"/> to obtain a reference.</summary>
         public virtual Skin DefaultSkin { get; set; }
 
         /// <summary>Gets or sets the default skin identifier.</summary>

@@ -13,7 +13,7 @@ namespace GW2DotNET.Entities.Items
     /// <summary>Provides the interface for items that have a visual appearance in the game.</summary>
     public interface ISkinnable
     {
-        /// <summary>Gets or sets the default skin.</summary>
+        /// <summary>Gets or sets the default skin. This is a navigation property. Use the value of <see cref="DefaultSkinId"/> to obtain a reference.</summary>
         Skin DefaultSkin { get; set; }
 
         /// <summary>Gets or sets the default skin identifier.</summary>

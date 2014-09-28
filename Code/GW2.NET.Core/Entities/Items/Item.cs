@@ -18,7 +18,7 @@ namespace GW2DotNET.Entities.Items
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
     public abstract class Item : IRenderable, IEquatable<Item>
     {
-        /// <summary>Gets or sets the item's build number.</summary>
+        /// <summary>Gets or sets the item's build number. Default: 0. Assign a build number for change tracking.</summary>
         public virtual int BuildId { get; set; }
 
         /// <summary>Gets or sets the item's description.</summary>

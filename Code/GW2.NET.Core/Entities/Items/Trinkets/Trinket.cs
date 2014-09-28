@@ -37,13 +37,13 @@ namespace GW2DotNET.Entities.Items
         /// <summary>Gets or sets the Precision modifier.</summary>
         public virtual int Precision { get; set; }
 
-        /// <summary>Gets or sets the item's secondary suffix item.</summary>
+        /// <summary>Gets or sets the item's secondary suffix item. This is a navigation property. Use the value of <see cref="SecondarySuffixItemId"/> to obtain a reference.</summary>
         public virtual Item SecondarySuffixItem { get; set; }
 
         /// <summary>Gets or sets the item's secondary suffix item identifier.</summary>
         public virtual int? SecondarySuffixItemId { get; set; }
 
-        /// <summary>Gets or sets the item's suffix item.</summary>
+        /// <summary>Gets or sets the item's suffix item. This is a navigation property. Use the value of <see cref="SuffixItemId"/> to obtain a reference.</summary>
         public virtual Item SuffixItem { get; set; }
 
         /// <summary>Gets or sets the item's suffix item identifier.</summary>

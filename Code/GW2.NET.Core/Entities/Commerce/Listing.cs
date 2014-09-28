@@ -20,7 +20,7 @@ namespace GW2DotNET.Entities.Commerce
         /// <summary>Gets or sets the buy offers.</summary>
         public ICollection<Offer> BuyOffers { get; set; }
 
-        /// <summary>Gets or sets the item.</summary>
+        /// <summary>Gets or sets the item. This is a navigation property. Use the value of <see cref="ItemId"/> to obtain a reference.</summary>
         public Item Item { get; set; }
 
         /// <summary>Gets or sets the item identifier.</summary>

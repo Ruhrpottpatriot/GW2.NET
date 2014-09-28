@@ -14,7 +14,7 @@ namespace GW2DotNET.Entities.DynamicEvents
     /// <summary>Represents a dynamic event and its rotation.</summary>
     public class DynamicEventRotation : IEquatable<DynamicEventRotation>
     {
-        /// <summary>Gets or sets the event.</summary>
+        /// <summary>Gets or sets the event. This is a navigation property. Use the value of <see cref="EventId"/> to obtain a reference.</summary>
         public virtual DynamicEvent Event { get; set; }
 
         /// <summary>Gets or sets the event identifier.</summary>
