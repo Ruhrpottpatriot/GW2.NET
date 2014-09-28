@@ -923,7 +923,6 @@ namespace GW2DotNET.V1.Items
                 Debug.WriteLine("Unknown 'Rarity' for item with ID {0}: {1}", content.ItemId, content.Rarity);
             }
 
-
             // Set the vendor value
             int vendorValue;
             if (int.TryParse(content.VendorValue, out vendorValue))
