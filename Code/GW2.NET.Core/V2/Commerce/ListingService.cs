@@ -462,7 +462,7 @@ namespace GW2DotNET.V2.Commerce
         private static ICollectionPage<Listing> ConvertListingDataContractPage(ICollection<ListingDataContract> content)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, Listing>>() != null);
+            Contract.Ensures(Contract.Result<ICollectionPage<Listing>>() != null);
             var values = new CollectionPage<Listing>(content.Count);
             values.AddRange(content.Select(ConvertListingDataContract));
             return values;

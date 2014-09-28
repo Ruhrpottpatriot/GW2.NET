@@ -6,7 +6,6 @@
 //   The code contract class for <see cref="IRepository{TKey,TEntity}" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2DotNET.V2.Common
 {
     using System.Collections.Generic;
@@ -20,32 +19,18 @@ namespace GW2DotNET.V2.Common
     [ContractClassFor(typeof(IRepository<,>))]
     internal abstract class RepositoryContract<TKey, TValue> : IRepository<TKey, TValue>
     {
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <returns>A collection of identifiers.</returns>
-        public ICollection<TKey> Discover()
-        {
-            Contract.Ensures(Contract.Result<ICollection<TKey>>() != null);
-            throw new System.NotImplementedException();
-        }
+        /// <summary>Gets the discovered identifiers.</summary>
+        /// <returns>A collection of discovered identifiers.</returns>
+        public abstract ICollection<TKey> Discover();
 
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <returns>A collection of identifiers.</returns>
-        public Task<ICollection<TKey>> DiscoverAsync()
-        {
-            Contract.Ensures(Contract.Result<Task<ICollection<TKey>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<TKey>>>().Result != null);
-            throw new System.NotImplementedException();
-        }
+        /// <summary>Gets the discovered identifiers.</summary>
+        /// <returns>A collection of discovered identifiers.</returns>
+        public abstract Task<ICollection<TKey>> DiscoverAsync();
 
-        /// <summary>Gets a collection of identifiers.</summary>
+        /// <summary>Gets the discovered identifiers.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of identifiers.</returns>
-        public Task<ICollection<TKey>> DiscoverAsync(CancellationToken cancellationToken)
-        {
-            Contract.Ensures(Contract.Result<Task<ICollection<TKey>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<TKey>>>().Result != null);
-            throw new System.NotImplementedException();
-        }
+        /// <returns>A collection of discovered identifiers.</returns>
+        public abstract Task<ICollection<TKey>> DiscoverAsync(CancellationToken cancellationToken);
 
         /// <summary>Finds the <typeparamref name="TValue"/> with the specified identifier.</summary>
         /// <param name="identifier">The identifier.</param>
