@@ -12,7 +12,7 @@ namespace GW2DotNET.V2.Commerce
     using GW2DotNET.V2.Common;
 
     /// <summary>Represents a bulk request.</summary>
-    public class ListingBulkRequest : BulkRequest
+    internal sealed class ListingBulkRequest : BulkRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

@@ -14,7 +14,7 @@ namespace GW2DotNET.V2.Commerce
     using GW2DotNET.V2.Common;
 
     /// <summary>The exchange details request.</summary>
-    public class ExchangeDetailsRequest : DetailsRequest
+    internal sealed class ExchangeDetailsRequest : DetailsRequest
     {
         /// <summary>Gets or sets the quantity.</summary>
         public long? Quantity { get; set; }

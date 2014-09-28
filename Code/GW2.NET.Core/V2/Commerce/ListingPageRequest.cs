@@ -12,7 +12,7 @@ namespace GW2DotNET.V2.Commerce
     using GW2DotNET.V2.Common;
 
     /// <summary>Represents a page request.</summary>
-    public class ListingPageRequest : PageRequest
+    internal sealed class ListingPageRequest : PageRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

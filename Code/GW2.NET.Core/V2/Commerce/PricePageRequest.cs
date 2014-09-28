@@ -11,7 +11,7 @@ namespace GW2DotNET.V2.Commerce
     using GW2DotNET.V2.Common;
 
     /// <summary>The price page request.</summary>
-    public class PricePageRequest : PageRequest
+    internal sealed class PricePageRequest : PageRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

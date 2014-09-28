@@ -12,7 +12,7 @@ namespace GW2DotNET.V2.Commerce
     using GW2DotNET.V2.Common;
 
     /// <summary>Represents a details request.</summary>
-    public class ListingDetailsRequest : DetailsRequest
+    internal sealed class ListingDetailsRequest : DetailsRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

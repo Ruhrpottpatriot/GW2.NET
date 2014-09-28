@@ -14,7 +14,7 @@ namespace GW2DotNET.V2.Commerce
     using GW2DotNET.Common;
 
     /// <summary>Represents a request.</summary>
-    public class ListingDiscoveryRequest : IRequest
+    internal sealed class ListingDiscoveryRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource
