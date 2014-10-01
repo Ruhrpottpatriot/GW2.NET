@@ -68,6 +68,7 @@ namespace GW2DotNET.Common
 
         /// <summary>Gets the query string.</summary>
         /// <returns>The query <see cref="string" />.</returns>
+        /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
         public string GetQueryString()
         {
             Contract.Ensures(Contract.Result<string>() != null);
@@ -76,6 +77,7 @@ namespace GW2DotNET.Common
 
         /// <summary>Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.</summary>
         /// <returns>A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.</returns>
+        /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
         public override string ToString()
         {
             return this.GetQueryString();
@@ -84,6 +86,7 @@ namespace GW2DotNET.Common
         /// <summary>Encodes a key value pair for safe transportation over HTTP.</summary>
         /// <param name="keyValuePair">The key value pair.</param>
         /// <returns>The encoded key value pair.</returns>
+        /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
         private static string EncodeNameValuePair(KeyValuePair<string, string> keyValuePair)
         {
             Contract.Requires(keyValuePair.Key != null);

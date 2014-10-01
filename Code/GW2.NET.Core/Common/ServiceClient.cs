@@ -56,6 +56,8 @@ namespace GW2DotNET.Common
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
+        /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
+        /// <exception cref="ServiceException">The service responded with an error code.</exception>
         /// <returns>An instance of the specified type.</returns>
         public IResponse<TResult> Send<TResult>(IRequest request)
         {
@@ -75,7 +77,15 @@ namespace GW2DotNET.Common
             {
                 if (!response.StatusCode.IsSuccessStatusCode())
                 {
-                    OnError(response, this.errorSerializerFactory, this.gzipInflator);
+                    if (response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
+                    {
+                        OnError(response, this.errorSerializerFactory, this.gzipInflator);
+                    }
+                    else
+                    {
+                        throw new ServiceException(response.StatusDescription);
+                    }
+
                 }
 
                 return OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);
@@ -95,6 +105,8 @@ namespace GW2DotNET.Common
         /// <param name="request">The service request.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
+        /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
+        /// <exception cref="ServiceException">The service responded with an error code.</exception>
         /// <returns>An instance of the specified type.</returns>
         public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
         {
@@ -117,7 +129,14 @@ namespace GW2DotNET.Common
                     {
                         if (!response.StatusCode.IsSuccessStatusCode())
                         {
-                            OnError(response, this.errorSerializerFactory, this.gzipInflator);
+                            if (response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
+                            {
+                                OnError(response, this.errorSerializerFactory, this.gzipInflator);
+                            }
+                            else
+                            {
+                                throw new ServiceException(response.StatusDescription);
+                            }
                         }
 
                         return OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);
@@ -131,6 +150,7 @@ namespace GW2DotNET.Common
         /// <param name="resource">The resource name.</param>
         /// <param name="formData">The form data.</param>
         /// <returns>The <see cref="Uri"/>.</returns>
+        /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
         private static Uri BuildUri(Uri baseUri, string resource, UrlEncodedForm formData)
         {
             Contract.Requires(baseUri != null);
