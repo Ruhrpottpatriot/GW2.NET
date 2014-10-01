@@ -162,6 +162,18 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection every <see cref="Item"/> with one of the specified identifiers.</returns>
         public IDictionaryRange<int, Item> FindAll(ICollection<int> identifiers)
         {
+            if (identifiers == null)
+            {
+                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
+            }
+
+            if (identifiers.Count == 0)
+            {
+                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new ItemBulkRequest
                 {
                     Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
@@ -244,6 +256,18 @@ namespace GW2DotNET.V2.Items
         /// <returns>A collection every <see cref="Item"/> with one of the specified identifiers.</returns>
         public Task<IDictionaryRange<int, Item>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
+            if (identifiers == null)
+            {
+                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
+            }
+
+            if (identifiers.Count == 0)
+            {
+                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new ItemBulkRequest
                 {
                     Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 

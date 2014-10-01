@@ -54,7 +54,7 @@ namespace GW2DotNET.V2.Common
         public IDictionaryRange<TKey, TValue> FindAll(ICollection<TKey> identifiers)
         {
             Contract.Requires(identifiers != null);
-            Contract.Requires(identifiers.Count <= 200);
+            Contract.Requires(identifiers.Count > 0);
             Contract.Ensures(Contract.Result<IDictionaryRange<TKey, TValue>>() != null);
             throw new System.NotImplementedException();
         }
@@ -84,7 +84,7 @@ namespace GW2DotNET.V2.Common
         public Task<IDictionaryRange<TKey, TValue>> FindAllAsync(ICollection<TKey> identifiers)
         {
             Contract.Requires(identifiers != null);
-            Contract.Requires(identifiers.Count <= 200);
+            Contract.Requires(identifiers.Count > 0);
             Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>() != null);
             Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>().Result != null);
             throw new System.NotImplementedException();
@@ -97,7 +97,7 @@ namespace GW2DotNET.V2.Common
         public Task<IDictionaryRange<TKey, TValue>> FindAllAsync(ICollection<TKey> identifiers, CancellationToken cancellationToken)
         {
             Contract.Requires(identifiers != null);
-            Contract.Requires(identifiers.Count <= 200);
+            Contract.Requires(identifiers.Count > 0);
             Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>() != null);
             Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>().Result != null);
             throw new System.NotImplementedException();

@@ -116,6 +116,18 @@ namespace GW2DotNET.V2.Quaggans
         /// <returns>A collection every <see cref="Quaggan"/> with one of the specified identifiers.</returns>
         public IDictionaryRange<string, Quaggan> FindAll(ICollection<string> identifiers)
         {
+            if (identifiers == null)
+            {
+                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
+            }
+
+            if (identifiers.Count == 0)
+            {
+                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
             var response = this.serviceClient.Send<IEnumerable<QuagganContract>>(request);
             if (response.Content == null)
@@ -181,6 +193,18 @@ namespace GW2DotNET.V2.Quaggans
         /// <returns>A collection every <see cref="Quaggan"/> with one of the specified identifiers.</returns>
         public Task<IDictionaryRange<string, Quaggan>> FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
         {
+            if (identifiers == null)
+            {
+                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
+            }
+
+            if (identifiers.Count == 0)
+            {
+                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
             return this.serviceClient.SendAsync<IEnumerable<QuagganContract>>(request, cancellationToken).ContinueWith(
                 task =>

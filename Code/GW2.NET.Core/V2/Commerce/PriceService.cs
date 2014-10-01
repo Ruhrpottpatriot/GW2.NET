@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V2.Commerce
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.Contracts;
@@ -131,6 +132,18 @@ namespace GW2DotNET.V2.Commerce
         /// <returns>A collection every <see cref="AggregateListing"/> with one of the specified identifiers.</returns>
         public IDictionaryRange<int, AggregateListing> FindAll(ICollection<int> identifiers)
         {
+            if (identifiers == null)
+            {
+                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
+            }
+
+            if (identifiers.Count == 0)
+            {
+                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new PriceBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
             if (response.Content == null)
@@ -198,6 +211,18 @@ namespace GW2DotNET.V2.Commerce
         /// <returns>A collection every <see cref="AggregateListing"/> with one of the specified identifiers.</returns>
         public Task<IDictionaryRange<int, AggregateListing>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
+            if (identifiers == null)
+            {
+                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
+            }
+
+            if (identifiers.Count == 0)
+            {
+                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
+            }
+
+            Contract.EndContractBlock();
+
             var request = new PriceBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
