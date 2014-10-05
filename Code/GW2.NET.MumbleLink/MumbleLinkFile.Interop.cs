@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GW2.NET.MumbleLink
+﻿namespace GW2DotNET.MumbleLink
 {
-    using System.Net;
+    using System;
     using System.Runtime.InteropServices;
 
     public partial class MumbleLinkFile
@@ -73,26 +68,26 @@ namespace GW2.NET.MumbleLink
             internal string sin_zero;
         }
 
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         internal struct InAddr
         {
             internal SUn S_un;
         }
 
-        [StructLayoutAttribute(LayoutKind.Explicit)]
+        [StructLayout(LayoutKind.Explicit)]
         internal struct SUn
         {
-            [FieldOffsetAttribute(0)]
+            [FieldOffset(0)]
             internal SUnB S_un_b;
 
-            [FieldOffsetAttribute(0)]
+            [FieldOffset(0)]
             internal SUnW S_un_w;
 
-            [FieldOffsetAttribute(0)]
+            [FieldOffset(0)]
             internal uint S_addr;
         }
 
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         internal struct SUnB
         {
             internal byte s_b1;
@@ -104,7 +99,7 @@ namespace GW2.NET.MumbleLink
             internal byte s_b4;
         }
 
-        [StructLayoutAttribute(LayoutKind.Sequential)]
+        [StructLayout(LayoutKind.Sequential)]
         internal struct SUnW
         {
             internal ushort s_w1;
@@ -112,12 +107,12 @@ namespace GW2.NET.MumbleLink
             internal ushort s_w2;
         }
 
-        [StructLayoutAttribute(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
+        [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct Sockaddr
         {
             internal ushort sa_family;
 
-            [MarshalAsAttribute(UnmanagedType.ByValTStr, SizeConst = 14)]
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 14)]
             internal string sa_data;
         }
     }

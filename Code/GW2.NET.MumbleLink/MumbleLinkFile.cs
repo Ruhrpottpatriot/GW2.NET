@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GW2.NET.MumbleLink
+﻿namespace GW2DotNET.MumbleLink
 {
+    using System;
     using System.IO;
     using System.IO.MemoryMappedFiles;
     using System.Net;
     using System.Runtime.InteropServices;
     using System.Runtime.Serialization.Json;
+    using System.Text;
 
     public partial class MumbleLinkFile : IDisposable
     {
@@ -39,7 +36,7 @@ namespace GW2.NET.MumbleLink
                     return null;
                 }
 
-                return ConvertAvatarDataContract(avatarDataContract);
+                return this.ConvertAvatarDataContract(avatarDataContract);
             }
         }
 

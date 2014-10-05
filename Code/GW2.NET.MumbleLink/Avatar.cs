@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GW2.NET.MumbleLink
+﻿namespace GW2DotNET.MumbleLink
 {
     public class Avatar
     {

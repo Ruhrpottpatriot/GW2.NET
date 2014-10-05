@@ -7,7 +7,7 @@
     <ProjectGuid>{190833B0-3E2E-4C89-9C29-BF577C02219B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GW2.NET.MumbleLink</RootNamespace>
+    <RootNamespace>GW2DotNET.MumbleLink</RootNamespace>
     <AssemblyName>GW2.NET.MumbleLink</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
