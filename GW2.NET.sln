@@ -44,9 +44,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{45A22909-2
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GW.NET.Data", "Data\GW.NET.Data\GW.NET.Data.sqlproj", "{6D4BB059-82DE-44A3-9534-4CA61E022100}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.MumbleLink", "GW2.NET.MumbleLink\GW2.NET.MumbleLink.csproj", "{190833B0-3E2E-4C89-9C29-BF577C02219B}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 12
+		SccNumberOfProjects = 13
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -94,6 +96,10 @@ Global
 		SccProjectTopLevelParentUniqueName11 = GW2.NET.sln
 		SccProjectName11 = Data/GW.NET.Data
 		SccLocalPath11 = Data\\GW.NET.Data
+		SccProjectUniqueName12 = GW2.NET.MumbleLink\\GW2.NET.MumbleLink.csproj
+		SccProjectTopLevelParentUniqueName12 = GW2.NET.sln
+		SccProjectName12 = GW2.NET.MumbleLink
+		SccLocalPath12 = GW2.NET.MumbleLink
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Benchmark|Any CPU = Benchmark|Any CPU
@@ -189,6 +195,14 @@ Global
 		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6D4BB059-82DE-44A3-9534-4CA61E022100}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{190833B0-3E2E-4C89-9C29-BF577C02219B}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{190833B0-3E2E-4C89-9C29-BF577C02219B}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -208,5 +222,6 @@ Global
 		{DCB61C47-D314-41BC-AB72-562478ADC29E} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{BD2E3FCE-8D8A-4272-925A-AEB7DB9C4F3D} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{6D4BB059-82DE-44A3-9534-4CA61E022100} = {45A22909-25E3-4C6B-9C87-3F925BF7A17D}
+		{190833B0-3E2E-4C89-9C29-BF577C02219B} = {30BE9CC5-137B-41BF-B04E-5395BD6F03CF}
 	EndGlobalSection
 EndGlobal
