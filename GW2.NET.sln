@@ -44,7 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{45A22909-2
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GW.NET.Data", "Data\GW.NET.Data\GW.NET.Data.sqlproj", "{6D4BB059-82DE-44A3-9534-4CA61E022100}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.MumbleLink", "GW2.NET.MumbleLink\GW2.NET.MumbleLink.csproj", "{190833B0-3E2E-4C89-9C29-BF577C02219B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.MumbleLink", "Code\GW2.NET.MumbleLink\GW2.NET.MumbleLink.csproj", "{190833B0-3E2E-4C89-9C29-BF577C02219B}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -96,10 +96,10 @@ Global
 		SccProjectTopLevelParentUniqueName11 = GW2.NET.sln
 		SccProjectName11 = Data/GW.NET.Data
 		SccLocalPath11 = Data\\GW.NET.Data
-		SccProjectUniqueName12 = GW2.NET.MumbleLink\\GW2.NET.MumbleLink.csproj
+		SccProjectUniqueName12 = Code\\GW2.NET.MumbleLink\\GW2.NET.MumbleLink.csproj
 		SccProjectTopLevelParentUniqueName12 = GW2.NET.sln
-		SccProjectName12 = GW2.NET.MumbleLink
-		SccLocalPath12 = GW2.NET.MumbleLink
+		SccProjectName12 = Code/GW2.NET.MumbleLink
+		SccLocalPath12 = Code\\GW2.NET.MumbleLink
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Benchmark|Any CPU = Benchmark|Any CPU

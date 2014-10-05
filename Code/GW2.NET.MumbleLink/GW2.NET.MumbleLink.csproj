@@ -53,7 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Code\GW2.NET.Core\GW2.NET.Core.csproj">
+    <ProjectReference Include="..\GW2.NET.Core\GW2.NET.Core.csproj">
       <Project>{05F3D999-0470-4123-8C80-AF4AC2385E7C}</Project>
       <Name>GW2.NET.Core</Name>
     </ProjectReference>
