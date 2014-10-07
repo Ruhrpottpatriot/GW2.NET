@@ -1,5 +1,6 @@
 ﻿namespace GW2DotNET.MumbleLink
 {
+    using GW2DotNET.Entities.Colors;
     using GW2DotNET.Entities.Maps;
     using GW2DotNET.Entities.Worlds;
 
@@ -18,6 +19,8 @@
         public World World { get; set; }
 
         public int TeamColorId { get; set; }
+
+        public ColorPalette TeamColor { get; set; }
 
         public bool Commander { get; set; }
     }
