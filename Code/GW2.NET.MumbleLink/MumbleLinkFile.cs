@@ -27,26 +27,44 @@
             var buffer = new byte[this.size];
             using (var stream = this.mumbleLink.CreateViewStream())
             {
+                // Copy the shared memory block to a local buffer
                 stream.Read(buffer, 0, buffer.Length);
-                var avatarDataContract = FromBytes(buffer);
 
-                // TODO: override Equals()
-                if (avatarDataContract.Equals(default(AvatarDataContract)))
+                // Copy the buffer to an unmanaged memory pointer
+                var ptr = Marshal.AllocHGlobal(buffer.Length);
+                Marshal.Copy(buffer, 0, ptr, buffer.Length);
+
+                // Copy the unmanaged memory to a managed struct
+                var avatarDataContract = (AvatarDataContract)Marshal.PtrToStructure(ptr, typeof(AvatarDataContract));
+
+                // Ensure that data is available and that it has a well known format
+                // MEMO: the context length for GW2 is always 48 of 256 bytes
+                if (avatarDataContract.context_len != 48)
                 {
                     return null;
                 }
 
-                return this.ConvertAvatarDataContract(avatarDataContract);
+                // Convert data contracts to managed data types
+                return ConvertAvatarDataContract(avatarDataContract);
             }
         }
 
-        private Avatar ConvertAvatarDataContract(AvatarDataContract dataContract)
+        private static Avatar ConvertAvatarDataContract(AvatarDataContract dataContract)
         {
+            // Copy the context data to an unmanaged memory pointer
+            var contextLength = (int)dataContract.context_len;
+            var ptr = Marshal.AllocHGlobal(contextLength);
+            Marshal.Copy(dataContract.context, 0, ptr, contextLength);
+
+            // Copy the unmanaged memory to a managed struct
+            var mumbleContext = (MumbleContext)Marshal.PtrToStructure(ptr, typeof(MumbleContext));
+
+            // Convert data contracts to managed data types
             return new Avatar
-                {
-                    Context = ConvertAvatarContextDataContract(dataContract.context),
-                    Identity = ConvertIdentityDataContract(dataContract.identity)
-                };
+            {
+                Context = ConvertAvatarContextDataContract(mumbleContext),
+                Identity = ConvertIdentityDataContract(dataContract.identity)
+            };
         }
 
         private static Identity ConvertIdentityDataContract(string identity)
@@ -95,18 +113,6 @@
                         serverAddress.sin_addr.S_un.S_un_b.s_b4
                     }),
                     serverAddress.sin_port);
-        }
-
-        internal static AvatarDataContract FromBytes(byte[] buffer)
-        {
-            return (AvatarDataContract)Marshal.PtrToStructure(ToUnmanaged(buffer), typeof(AvatarDataContract));
-        }
-
-        internal static IntPtr ToUnmanaged(byte[] bytes)
-        {
-            var ptr = Marshal.AllocHGlobal(bytes.Length);
-            Marshal.Copy(bytes, 0, ptr, bytes.Length);
-            return ptr;
         }
 
         /// <summary>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</summary>

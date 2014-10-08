@@ -8,8 +8,8 @@
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
         internal struct AvatarDataContract
         {
-            internal UInt32 uiVersion;
-            internal UInt32 uiTick;
+            internal uint uiVersion;
+            internal uint uiTick;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
             internal float[] fAvatarPosition;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
@@ -26,9 +26,9 @@
             internal float[] fCameraTop;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
             internal string identity;
-
-            internal UInt32 context_len;
-            internal MumbleContext context;
+            internal uint context_len;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 256)]
+            internal byte[] context;
             [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 2048)]
             internal string description;
         }

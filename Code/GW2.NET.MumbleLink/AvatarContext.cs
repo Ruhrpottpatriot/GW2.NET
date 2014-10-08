@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides contextual data for a player's avatar. If the <see cref="AvatarContext" /> of one player is equal to the <see cref="AvatarContext" /> of another player, then both players should be able to see or hear each other.
+//   Provides contextual data for a player's avatar. If the context of one player matches the context of another player, then the players should receive positional voice audio. Otherwise, voice audio should be played back non-positional .
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.MumbleLink
@@ -12,7 +12,7 @@ namespace GW2DotNET.MumbleLink
     using System.Diagnostics.CodeAnalysis;
     using System.Net;
 
-    /// <summary>Provides contextual data for a player's avatar. If the <see cref="AvatarContext"/> of one player is equal to the <see cref="AvatarContext"/> of another player, then both players should be able to see or hear each other.</summary>
+    /// <summary>Provides contextual data for a player's avatar. If the context of one player matches the context of another player, then the players should receive positional voice audio. Otherwise, voice audio should be played back non-positional .</summary>
     public class AvatarContext : IEquatable<AvatarContext>
     {
         /// <summary>Gets or sets the game client's build identifier.</summary>
