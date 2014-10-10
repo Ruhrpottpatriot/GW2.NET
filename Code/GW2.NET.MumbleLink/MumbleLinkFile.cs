@@ -27,14 +27,16 @@
             var buffer = new byte[this.size];
             using (var stream = this.mumbleLink.CreateViewStream())
             {
-                // Copy the shared memory block to a local buffer
+                // Copy the shared memory block to a local buffer in managed memory
                 stream.Read(buffer, 0, buffer.Length);
 
-                // Copy the buffer to an unmanaged memory pointer
-                var ptr = Marshal.AllocHGlobal(buffer.Length);
-                Marshal.Copy(buffer, 0, ptr, buffer.Length);
+                // Pin the managed memory so that the GC doesn't move it
+                var handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 
-                // Copy the unmanaged memory to a managed struct
+                // Get the address of the managed memory
+                var ptr = handle.AddrOfPinnedObject();
+
+                // Copy the managed memory to a managed struct
                 var avatarDataContract = (AvatarDataContract)Marshal.PtrToStructure(ptr, typeof(AvatarDataContract));
 
                 // Ensure that data is available and that it has a well known format
