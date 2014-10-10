@@ -237,6 +237,7 @@
     <Compile Include="Common\IRequest.cs" />
     <Compile Include="Common\IResponse.cs" />
     <Compile Include="Common\IServiceClient.cs" />
+    <Compile Include="Common\Profession.cs" />
     <Compile Include="Common\RequestContracts.cs" />
     <Compile Include="Common\Response.cs" />
     <Compile Include="Common\ResponseContract.cs" />

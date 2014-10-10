@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides contextual data for a player's avatar. If the context of one player matches the context of another player, then the players should receive positional voice audio. Otherwise, voice audio should be played back non-positional .
+//   Provides contextual data about a player's avatar. Check the <see cref="AvatarContext" /> of two different players for equality to determine if the players are in the same map instance.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.MumbleLink
@@ -12,8 +12,8 @@ namespace GW2DotNET.MumbleLink
     using System.Diagnostics.CodeAnalysis;
     using System.Net;
 
-    /// <summary>Provides contextual data for a player's avatar. If the context of one player matches the context of another player, then the players should receive positional voice audio. Otherwise, voice audio should be played back non-positional .</summary>
-    public class AvatarContext : IEquatable<AvatarContext>
+    /// <summary>Provides contextual data about a player's avatar. Check the <see cref="AvatarContext"/> of two different players for equality to determine if the players are in the same map instance.</summary>
+    public sealed class AvatarContext : IEquatable<AvatarContext>
     {
         /// <summary>Gets or sets the game client's build identifier.</summary>
         public int BuildId { get; set; }
@@ -21,10 +21,10 @@ namespace GW2DotNET.MumbleLink
         /// <summary>Gets or sets the instance identifier of the current instance.</summary>
         public int Instance { get; set; }
 
-        /// <summary>Gets or sets the map identifier of the map that the player is visiting.</summary>
+        /// <summary>Gets or sets the identifier of the current map.</summary>
         public int MapId { get; set; }
 
-        /// <summary>Gets or sets the type of map that is being visited.</summary>
+        /// <summary>Gets or sets the type of the current map.</summary>
         public int MapType { get; set; }
 
         /// <summary>Gets or sets the address of the server to which the game client is currently connected.</summary>
@@ -93,7 +93,7 @@ namespace GW2DotNET.MumbleLink
         {
             unchecked
             {
-                var hashCode = this.BuildId;
+                int hashCode = this.BuildId;
                 hashCode = (hashCode * 397) ^ this.Instance;
                 hashCode = (hashCode * 397) ^ this.MapId;
                 hashCode = (hashCode * 397) ^ this.MapType;
@@ -101,6 +101,19 @@ namespace GW2DotNET.MumbleLink
                 hashCode = (hashCode * 397) ^ this.ShardId;
                 return hashCode;
             }
+        }
+
+        /// <summary>Returns a string that represents the current object.</summary>
+        /// <returns>A string that represents the current object.</returns>
+        public override string ToString()
+        {
+            var serverAddress = this.ServerAddress;
+            if (serverAddress == null)
+            {
+                return base.ToString();
+            }
+
+            return serverAddress.ToString();
         }
     }
 }
