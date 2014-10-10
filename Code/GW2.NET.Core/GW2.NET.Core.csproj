@@ -389,8 +389,7 @@
     <Compile Include="Entities\Maps\Continent.cs" />
     <Compile Include="Entities\Maps\Floor.cs" />
     <Compile Include="Entities\Maps\Map.cs" />
-    <Compile Include="Entities\Maps\Point2D.cs" />
-    <Compile Include="Entities\Maps\Point3D.cs" />
+    <Compile Include="Entities\Maps\Vector3D.cs" />
     <Compile Include="Entities\Maps\PointsOfInterest\Dungeon.cs" />
     <Compile Include="Entities\Maps\PointsOfInterest\Landmark.cs" />
     <Compile Include="Entities\Maps\PointsOfInterest\PointOfInterest.cs" />

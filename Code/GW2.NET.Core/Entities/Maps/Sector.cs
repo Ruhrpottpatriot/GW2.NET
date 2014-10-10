@@ -15,7 +15,7 @@ namespace GW2DotNET.Entities.Maps
     public class Sector : IEquatable<Sector>
     {
         /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
-        public virtual Point2D Coordinates { get; set; }
+        public virtual Vector2D Coordinates { get; set; }
 
         /// <summary>Gets or sets the sector's level.</summary>
         public virtual int Level { get; set; }

@@ -18,7 +18,7 @@ namespace GW2DotNET.Entities.Maps
     public class PointOfInterest : IEquatable<PointOfInterest>
     {
         /// <summary>Gets or sets the coordinates of this Point of Interest.</summary>
-        public virtual Point2D Coordinates { get; set; }
+        public virtual Vector2D Coordinates { get; set; }
 
         /// <summary>Gets or sets the floor of this Point of Interest.</summary>
         public virtual int Floor { get; set; }

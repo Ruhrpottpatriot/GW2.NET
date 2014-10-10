@@ -16,7 +16,7 @@ namespace GW2DotNET.Entities.Maps
     public class Region : IEquatable<Region>
     {
         /// <summary>Gets or sets the coordinates of the region label.</summary>
-        public virtual Point2D LabelCoordinates { get; set; }
+        public virtual Vector2D LabelCoordinates { get; set; }
 
         /// <summary>Gets or sets a collection of maps and their details.</summary>
         public virtual IDictionary<int, Subregion> Maps { get; set; }

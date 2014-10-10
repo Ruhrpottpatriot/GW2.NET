@@ -14,7 +14,7 @@ namespace GW2DotNET.Entities.DynamicEvents
     public abstract class Location
     {
         /// <summary>Gets or sets the center coordinates.</summary>
-        public virtual Point3D Center { get; set; }
+        public virtual Vector3D Center { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>

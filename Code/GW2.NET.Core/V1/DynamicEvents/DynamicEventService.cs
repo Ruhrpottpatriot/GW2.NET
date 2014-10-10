@@ -777,22 +777,22 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<Point2D> ConvertPoint2DContracts(double[][] content)
+        private static ICollection<Vector2D> ConvertVector2DCollection(double[][] content)
         {
             Contract.Requires(content != null);
-            var values = new List<Point2D>(content.Length);
-            values.AddRange(content.Select(MapPoint2DContract));
+            var values = new List<Vector2D>(content.Length);
+            values.AddRange(content.Select(ConvertVector2D));
             return values;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Point3D ConvertPoint3DContract(double[] content)
+        private static Vector3D ConvertPoint3DContract(double[] content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Length == 3);
-            return new Point3D(content[0], content[1], content[2]);
+            return new Vector3D(content[0], content[1], content[2]);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -907,11 +907,11 @@ namespace GW2DotNET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Point2D MapPoint2DContract(double[] content)
+        private static Vector2D ConvertVector2D(double[] content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Length == 2);
-            return new Point2D(content[0], content[1]);
+            return new Vector2D(content[0], content[1]);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -933,7 +933,7 @@ namespace GW2DotNET.V1.DynamicEvents
 
             if (content.Points != null)
             {
-                value.Points = ConvertPoint2DContracts(content.Points);
+                value.Points = ConvertVector2DCollection(content.Points);
             }
 
             return value;

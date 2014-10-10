@@ -14,7 +14,7 @@ namespace GW2DotNET.Entities.Maps
         /// <summary>Initializes a new instance of the <see cref="Rectangle"/> struct.</summary>
         /// <param name="upperLeft">The coordinates of the upper-left corner.</param>
         /// <param name="lowerRight">The coordinates of the lower-right corner.</param>
-        public Rectangle(Point2D upperLeft, Point2D lowerRight)
+        public Rectangle(Vector2D upperLeft, Vector2D lowerRight)
             : this()
         {
             this.X = upperLeft.X;

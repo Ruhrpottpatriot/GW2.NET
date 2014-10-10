@@ -727,7 +727,7 @@ namespace GW2DotNET.V1.Maps
             value.Floor = content.Floor;
             if (content.Coordinates != null && content.Coordinates.Length == 2)
             {
-                value.Coordinates = MapPoint2DContract(content.Coordinates);
+                value.Coordinates = ConvertVector2D(content.Coordinates);
             }
 
             return value;
@@ -752,8 +752,8 @@ namespace GW2DotNET.V1.Maps
             Contract.Requires(content != null && content.Length == 2);
             Contract.Requires(content[0] != null && content[0].Length == 2);
             Contract.Requires(content[1] != null && content[1].Length == 2);
-            var nw = MapPoint2DContract(content[0]);
-            var se = MapPoint2DContract(content[1]);
+            var nw = ConvertVector2D(content[0]);
+            var se = ConvertVector2D(content[1]);
             return new Rectangle(nw, se);
         }
 
@@ -781,7 +781,7 @@ namespace GW2DotNET.V1.Maps
             // Set the position of the region label
             if (content.Value.LabelCoordinates != null && content.Value.LabelCoordinates.Length == 2)
             {
-                value.LabelCoordinates = MapPoint2DContract(content.Value.LabelCoordinates);
+                value.LabelCoordinates = ConvertVector2D(content.Value.LabelCoordinates);
             }
 
             // Set the maps
@@ -823,7 +823,7 @@ namespace GW2DotNET.V1.Maps
                            TaskId = content.TaskId, 
                            Objective = content.Objective, 
                            Level = content.Level, 
-                           Coordinates = MapPoint2DContract(content.Coordinates)
+                           Coordinates = ConvertVector2D(content.Coordinates)
                        };
         }
 
@@ -846,7 +846,7 @@ namespace GW2DotNET.V1.Maps
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
             Contract.Requires(content.Coordinates.Length == 2);
-            return new Sector { SectorId = content.SectorId, Name = content.Name, Level = content.Level, Coordinates = MapPoint2DContract(content.Coordinates) };
+            return new Sector { SectorId = content.SectorId, Name = content.Name, Level = content.Level, Coordinates = ConvertVector2D(content.Coordinates) };
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -868,7 +868,7 @@ namespace GW2DotNET.V1.Maps
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
             Contract.Requires(content.Coordinates.Length == 2);
-            return new SkillChallenge { Coordinates = MapPoint2DContract(content.Coordinates) };
+            return new SkillChallenge { Coordinates = ConvertVector2D(content.Coordinates) };
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -995,11 +995,11 @@ namespace GW2DotNET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Point2D MapPoint2DContract(double[] content)
+        private static Vector2D ConvertVector2D(double[] content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Length == 2);
-            return new Point2D(content[0], content[1]);
+            return new Vector2D(content[0], content[1]);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>

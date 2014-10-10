@@ -15,7 +15,7 @@ namespace GW2DotNET.Entities.Maps
     public class RenownTask : IEquatable<RenownTask>
     {
         /// <summary>Gets or sets the task's coordinates.</summary>
-        public virtual Point2D Coordinates { get; set; }
+        public virtual Vector2D Coordinates { get; set; }
 
         /// <summary>Gets or sets the level.</summary>
         public virtual int Level { get; set; }

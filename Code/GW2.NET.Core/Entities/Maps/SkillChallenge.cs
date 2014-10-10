@@ -14,7 +14,7 @@ namespace GW2DotNET.Entities.Maps
     public class SkillChallenge : IEquatable<SkillChallenge>
     {
         /// <summary>Gets or sets the skill challenge's coordinates.</summary>
-        public virtual Point2D Coordinates { get; set; }
+        public virtual Vector2D Coordinates { get; set; }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
