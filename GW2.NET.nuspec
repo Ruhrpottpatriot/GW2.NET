@@ -38,30 +38,30 @@
 
       <!-- Default references group. -->
       <group>
-        <reference file="GW2.NET.dll" />
-        <reference file="GW2.NET.Core.dll" />
+        <reference file="GW2NET.dll" />
+        <reference file="GW2NET.Core.dll" />
       </group>
     </references>
   </metadata>
   <files>
     <!-- net40 -->
-    <file target="lib\net40" src="Code\GW2.NET\bin\Release\**\*.dll" />
-    <file target="lib\net40" src="Code\GW2.NET\bin\Release\**\*.xml" />
-    <file target="lib\net40" src="Code\GW2.NET.Core\bin\Release\**\*.dll" />
-    <file target="lib\net40" src="Code\GW2.NET.Core\bin\Release\**\*.xml" />
-    <file target="lib\net40" src="Code\GW2.NET.Compression\bin\Release\**\*.dll" />
-    <file target="lib\net40" src="Code\GW2.NET.Compression\bin\Release\**\*.xml" />
-    <file target="lib\net40" src="Code\GW2.NET.Newtonsoft\bin\Release\**\*.dll" />
-    <file target="lib\net40" src="Code\GW2.NET.Newtonsoft\bin\Release\**\*.xml" />
+    <file target="lib\net40" src="Code\GW2NET\bin\Release\**\*.dll" />
+    <file target="lib\net40" src="Code\GW2NET\bin\Release\**\*.xml" />
+    <file target="lib\net40" src="Code\GW2NET.Core\bin\Release\**\*.dll" />
+    <file target="lib\net40" src="Code\GW2NET.Core\bin\Release\**\*.xml" />
+    <file target="lib\net40" src="Code\GW2NET.Compression\bin\Release\**\*.dll" />
+    <file target="lib\net40" src="Code\GW2NET.Compression\bin\Release\**\*.xml" />
+    <file target="lib\net40" src="Code\GW2NET.Newtonsoft\bin\Release\**\*.dll" />
+    <file target="lib\net40" src="Code\GW2NET.Newtonsoft\bin\Release\**\*.xml" />
 
     <!-- portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1 -->
-    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2.NET.Pcl\bin\Release\**\*.dll" />
-    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2.NET.Pcl\bin\Release\**\*.xml" />
-    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2.NET.Pcl.Compression\bin\Release\**\*.dll" />
-    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2.NET.Pcl.Compression\bin\Release\**\*.xml" />
-    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2.NET.Core\bin\Release\**\*.dll" />
-    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2.NET.Core\bin\Release\**\*.xml" />
-    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2.NET.Newtonsoft\bin\Release\**\*.dll" />
-    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2.NET.Newtonsoft\bin\Release\**\*.xml" />
+    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2NET.Pcl\bin\Release\**\*.dll" />
+    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2NET.Pcl\bin\Release\**\*.xml" />
+    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2NET.Pcl.Compression\bin\Release\**\*.dll" />
+    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2NET.Pcl.Compression\bin\Release\**\*.xml" />
+    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2NET.Core\bin\Release\**\*.dll" />
+    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2NET.Core\bin\Release\**\*.xml" />
+    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2NET.Newtonsoft\bin\Release\**\*.dll" />
+    <file target="lib\portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1" src="Code\GW2NET.Newtonsoft\bin\Release\**\*.xml" />
   </files>
 </package>

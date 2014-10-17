@@ -30,13 +30,13 @@
 
       <!-- Default references group. -->
       <group>
-        <reference file="GW2.NET.RestSharp.dll" />
+        <reference file="GW2NET.RestSharp.dll" />
       </group>
     </references>
   </metadata>
   <files>
     <!-- net40 -->
-    <file target="lib\net40" src="Code\GW2.NET.RestSharp\bin\Release\**\*.dll" />
-    <file target="lib\net40" src="Code\GW2.NET.RestSharp\bin\Release\**\*.xml" />
+    <file target="lib\net40" src="Code\GW2NET.RestSharp\bin\Release\**\*.dll" />
+    <file target="lib\net40" src="Code\GW2NET.RestSharp\bin\Release\**\*.xml" />
   </files>
 </package>
