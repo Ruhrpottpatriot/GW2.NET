@@ -6,9 +6,9 @@
 //   Represents a weapon skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
-    using GW2DotNET.Entities.Items;
+    using GW2NET.Entities.Items;
 
     /// <summary>Represents a weapon skin.</summary>
     public abstract class WeaponSkin : Skin

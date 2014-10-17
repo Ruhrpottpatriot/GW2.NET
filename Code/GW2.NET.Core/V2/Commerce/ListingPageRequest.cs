@@ -7,9 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V2.Commerce
+namespace GW2NET.V2.Commerce
 {
-    using GW2DotNET.V2.Common;
+    using GW2NET.V2.Common;
 
     /// <summary>Represents a page request.</summary>
     internal sealed class ListingPageRequest : PageRequest

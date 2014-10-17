@@ -6,7 +6,7 @@
 //   Enumerates the possible weapon damage types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Enumerates the possible weapon damage types.</summary>
     public enum WeaponDamageType

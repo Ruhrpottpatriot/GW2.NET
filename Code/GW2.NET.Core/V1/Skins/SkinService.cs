@@ -6,7 +6,7 @@
 //   Provides the default implementation of the skins service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins
+namespace GW2NET.V1.Skins
 {
     using System;
     using System.Collections.Generic;
@@ -16,10 +16,10 @@ namespace GW2DotNET.V1.Skins
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Items;
-    using GW2DotNET.Entities.Skins;
-    using GW2DotNET.V1.Skins.Json;
+    using GW2NET.Common;
+    using GW2NET.Entities.Items;
+    using GW2NET.Entities.Skins;
+    using GW2NET.V1.Skins.Json;
 
     /// <summary>Provides the default implementation of the skins service.</summary>
     public class SkinService : ISkinService

@@ -6,7 +6,7 @@
 //   Represents a continent.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     using System;
     using System.Collections.Generic;

@@ -6,7 +6,7 @@
 //   Provides the base class for World versus World map bonuses.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     /// <summary>Provides the base class for World versus World map bonuses.</summary>
     public abstract class MapBonus

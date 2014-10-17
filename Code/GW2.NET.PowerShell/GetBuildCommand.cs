@@ -6,13 +6,13 @@
 //   Represents the Get-Build command.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.PS.Commands
+namespace GW2NET.PS.Commands
 {
     using System.Management.Automation;
     using System.Net;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.V1.Builds;
+    using GW2NET.Common;
+    using GW2NET.V1.Builds;
 
     /// <summary>Represents the Get-Build command.</summary>
     [Cmdlet(VerbsCommon.Get, "Build")]

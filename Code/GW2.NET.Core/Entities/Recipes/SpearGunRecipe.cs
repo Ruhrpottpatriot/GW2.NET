@@ -6,7 +6,7 @@
 //   Represents a spear gun crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents a spear gun crafting recipe.</summary>
     public class SpearGunRecipe : Recipe

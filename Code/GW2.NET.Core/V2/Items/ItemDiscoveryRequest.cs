@@ -7,9 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V2.Items
+namespace GW2NET.V2.Items
 {
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for a collection of item identifiers.</summary>
     internal sealed class ItemDiscoveryRequest : DiscoveryRequest

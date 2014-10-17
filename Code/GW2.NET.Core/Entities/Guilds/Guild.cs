@@ -6,7 +6,7 @@
 //   Represents a guild and its details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Guilds
+namespace GW2NET.Entities.Guilds
 {
     using System;
 

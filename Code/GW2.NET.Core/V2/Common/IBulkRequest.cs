@@ -6,11 +6,11 @@
 //   Provides the interface for bulk resource details requests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Common
+namespace GW2NET.V2.Common
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Provides the interface for bulk resource details requests.</summary>
     public interface IBulkRequest : IRequest

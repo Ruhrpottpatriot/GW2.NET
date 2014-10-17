@@ -6,7 +6,7 @@
 //   Provides methods for serializing JSON objects.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common.Serializers
+namespace GW2NET.Common.Serializers
 {
     using System.Diagnostics.Contracts;
     using System.IO;

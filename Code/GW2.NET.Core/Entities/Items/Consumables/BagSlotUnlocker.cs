@@ -6,7 +6,7 @@
 //   Represents a bag slot unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a bag slot unlock item.</summary>
     public class BagSlotUnlocker : Unlocker

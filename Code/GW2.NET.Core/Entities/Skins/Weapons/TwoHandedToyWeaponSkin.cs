@@ -6,7 +6,7 @@
 //   Represents a two-handed toy skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a two-handed toy skin.</summary>
     public class TwoHandedToyWeaponSkin : WeaponSkin

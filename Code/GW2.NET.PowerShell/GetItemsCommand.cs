@@ -6,7 +6,7 @@
 //   Represents the Get-Item command.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.PS.Commands
+namespace GW2NET.PS.Commands
 {
     using System;
     using System.Collections.Generic;
@@ -14,9 +14,9 @@ namespace GW2DotNET.PS.Commands
     using System.Management.Automation;
     using System.Net;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Builds;
-    using GW2DotNET.V1.Items;
+    using GW2NET.Common;
+    using GW2NET.Entities.Builds;
+    using GW2NET.V1.Items;
 
     /// <summary>Represents the Get-Item command.</summary>
     [Cmdlet(VerbsCommon.Get, "Items")]

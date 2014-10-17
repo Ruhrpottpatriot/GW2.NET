@@ -6,13 +6,13 @@
 //   The dynamic event rotation service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Local.DynamicEvents
+namespace GW2NET.Local.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.Entities.DynamicEvents;
+    using GW2NET.Entities.DynamicEvents;
 
     /// <summary>The dynamic event rotation service contract.</summary>
     [ContractClassFor(typeof(IDynamicEventRotationService))]

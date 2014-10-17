@@ -6,7 +6,7 @@
 //   Represents a bag crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents a bag crafting recipe.</summary>
     public class BagRecipe : Recipe

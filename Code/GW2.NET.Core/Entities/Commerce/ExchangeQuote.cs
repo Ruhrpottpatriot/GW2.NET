@@ -6,7 +6,7 @@
 //   Represents the gems from/to gold exchange rate.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Commerce
+namespace GW2NET.Entities.Commerce
 {
     using System;
 

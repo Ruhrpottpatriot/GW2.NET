@@ -6,9 +6,9 @@
 //   Represents a chat link that links to a point of interest.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.ChatLinks
+namespace GW2NET.ChatLinks
 {
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a chat link that links to a point of interest.</summary>
     [Converter(typeof(PointOfInterestChatLinkConverter))]

@@ -6,7 +6,7 @@
 //   Provides the interface for the event state service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents
+namespace GW2NET.V1.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.DynamicEvents
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.DynamicEvents;
+    using GW2NET.Entities.DynamicEvents;
 
     /// <summary>Provides the interface for the event state service.</summary>
     [ContractClass(typeof(DynamicEventStateServiceContract))]

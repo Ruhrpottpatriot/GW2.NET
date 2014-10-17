@@ -6,13 +6,13 @@
 //   Represents a backpack.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.ChatLinks;
-    using GW2DotNET.Entities.Skins;
+    using GW2NET.ChatLinks;
+    using GW2NET.Entities.Skins;
 
     /// <summary>Represents a backpack.</summary>
     public class Backpack : Item, IUpgrade, IUpgradable, ISkinnable

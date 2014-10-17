@@ -6,21 +6,21 @@
 //   Provides access to the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET
+namespace GW2NET
 {
     using System;
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Compression;
-    using GW2DotNET.Entities.Commerce;
-    using GW2DotNET.Entities.Items;
-    using GW2DotNET.Entities.Quaggans;
-    using GW2DotNET.V2.Commerce;
-    using GW2DotNET.V2.Common;
-    using GW2DotNET.V2.Items;
-    using GW2DotNET.V2.Quaggans;
+    using GW2NET.Common;
+    using GW2NET.Common.Serializers;
+    using GW2NET.Compression;
+    using GW2NET.Entities.Commerce;
+    using GW2NET.Entities.Items;
+    using GW2NET.Entities.Quaggans;
+    using GW2NET.V2.Commerce;
+    using GW2NET.V2.Common;
+    using GW2NET.V2.Items;
+    using GW2NET.V2.Quaggans;
 
     /// <summary>Provides access to the Guild Wars 2 service.</summary>
     public class ServiceFactory

@@ -6,7 +6,7 @@
 //   Represents a dynamic event and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Json
+namespace GW2NET.V1.DynamicEvents.Json
 {
     using System.Runtime.Serialization;
 

@@ -6,7 +6,7 @@
 //   Represents an item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items.Json
+namespace GW2NET.V1.Items.Json
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

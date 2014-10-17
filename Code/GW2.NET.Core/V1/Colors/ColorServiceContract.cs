@@ -6,7 +6,7 @@
 //   The color service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Colors
+namespace GW2NET.V1.Colors
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Colors
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Colors;
+    using GW2NET.Entities.Colors;
 
     /// <summary>The color service contract.</summary>
     [ContractClassFor(typeof(IColorService))]

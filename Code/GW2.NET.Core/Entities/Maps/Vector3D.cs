@@ -6,7 +6,7 @@
 //   Represents a vector in three-dimensional space.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     /// <summary>Represents a vector in three-dimensional space.</summary>
     public struct Vector3D

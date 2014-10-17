@@ -6,7 +6,7 @@
 //   Represents a request for an in-game asset.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Rendering
+namespace GW2NET.Rendering
 {
     using System.Collections.Generic;
     using System.Linq;

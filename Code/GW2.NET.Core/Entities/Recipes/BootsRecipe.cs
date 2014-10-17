@@ -6,7 +6,7 @@
 //   Represents a foot protection crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents a foot protection crafting recipe.</summary>
     public class BootsRecipe : Recipe

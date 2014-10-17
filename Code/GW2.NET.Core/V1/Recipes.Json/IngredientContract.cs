@@ -6,7 +6,7 @@
 //   Represents a portion of crafting ingredients.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Recipes.Json
+namespace GW2NET.V1.Recipes.Json
 {
     using System.Runtime.Serialization;
 

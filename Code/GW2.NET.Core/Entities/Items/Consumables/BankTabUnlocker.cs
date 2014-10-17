@@ -6,7 +6,7 @@
 //   Represents a bank tab unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a bank tab unlock item.</summary>
     public class BankTabUnlocker : Unlocker

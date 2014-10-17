@@ -6,7 +6,7 @@
 //   Wraps a collection of dynamic events and their details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Json
+namespace GW2NET.V1.DynamicEvents.Json
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

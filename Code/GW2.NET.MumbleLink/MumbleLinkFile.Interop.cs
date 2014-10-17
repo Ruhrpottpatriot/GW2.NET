@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.MumbleLink
+namespace GW2NET.MumbleLink
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.InteropServices;

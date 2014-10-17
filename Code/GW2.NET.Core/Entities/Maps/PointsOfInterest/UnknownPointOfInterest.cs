@@ -6,7 +6,7 @@
 //   Represents an unknown point of interest.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     /// <summary>Represents an unknown point of interest.</summary>
     public class UnknownPointOfInterest : PointOfInterest

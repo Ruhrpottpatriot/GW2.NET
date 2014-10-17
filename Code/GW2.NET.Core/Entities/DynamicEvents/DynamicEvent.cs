@@ -6,12 +6,12 @@
 //   Represents a dynamic event and its localized details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
     using System;
     using System.Globalization;
 
-    using GW2DotNET.Entities.Maps;
+    using GW2NET.Entities.Maps;
 
     /// <summary>Represents a dynamic event and its localized details.</summary>
     public class DynamicEvent : IEquatable<DynamicEvent>

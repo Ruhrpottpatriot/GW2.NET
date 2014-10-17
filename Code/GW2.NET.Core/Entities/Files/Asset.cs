@@ -6,12 +6,12 @@
 //   Represents information about a file that can be retrieved from the render service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Files
+namespace GW2NET.Entities.Files
 {
     using System;
     using System.Globalization;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents information about a file that can be retrieved from the render service.</summary>
     public class Asset : IRenderable, IEquatable<Asset>

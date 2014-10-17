@@ -6,7 +6,7 @@
 //   Represents a rifle skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a rifle skin.</summary>
     public class RifleSkin : WeaponSkin

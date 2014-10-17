@@ -6,7 +6,7 @@
 //   Represents a map floor, used to populate a world map. All coordinates are map coordinates.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     using System.Collections.Generic;
     using System.Globalization;

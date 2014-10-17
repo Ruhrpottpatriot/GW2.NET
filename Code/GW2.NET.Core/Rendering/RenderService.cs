@@ -6,13 +6,13 @@
 //   Provides the default implementation of the render service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Rendering
+namespace GW2NET.Rendering
 {
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Provides the default implementation of the render service.</summary>
     public class RenderService : IRenderService

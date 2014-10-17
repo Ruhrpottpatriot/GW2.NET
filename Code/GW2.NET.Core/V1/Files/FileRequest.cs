@@ -6,12 +6,12 @@
 //   Represents a request for commonly requested in-game assets. The returned information can be used with the render service to retrieve assets.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Files
+namespace GW2NET.V1.Files
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for commonly requested in-game assets. The returned information can be used with the render service to retrieve assets.</summary>
     public class FileRequest : IRequest

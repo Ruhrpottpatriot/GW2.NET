@@ -6,7 +6,7 @@
 //   Represents a war horn skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a war horn skin.</summary>
     public class WarHornSkin : WeaponSkin

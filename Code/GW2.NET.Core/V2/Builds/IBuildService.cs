@@ -6,13 +6,13 @@
 //   Provides the interface for the build service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Builds
+namespace GW2NET.V2.Builds
 {
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Builds;
+    using GW2NET.Entities.Builds;
 
     /// <summary>Provides the interface for the build service.</summary>
     [ContractClass(typeof(BuildServiceContract))]

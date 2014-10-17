@@ -6,9 +6,9 @@
 //   Represents a player's avatar.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.MumbleLink
+namespace GW2NET.MumbleLink
 {
-    using GW2DotNET.Entities.Maps;
+    using GW2NET.Entities.Maps;
 
     /// <summary>Represents a player's avatar.</summary>
     public class Avatar

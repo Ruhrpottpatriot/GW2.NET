@@ -6,7 +6,7 @@
 //   Represents a world and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Worlds
+namespace GW2NET.Entities.Worlds
 {
     using System;
     using System.Globalization;

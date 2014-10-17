@@ -6,13 +6,13 @@
 //   Represents buy or sell offer listing information.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Commerce
+namespace GW2NET.Entities.Commerce
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Entities.Items;
+    using GW2NET.Entities.Items;
 
     /// <summary>Represents buy or sell offer listing information.</summary>
     public class Listing

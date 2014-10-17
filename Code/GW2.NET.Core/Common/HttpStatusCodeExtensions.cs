@@ -6,7 +6,7 @@
 //   Provides extension methods for the <see cref="System.Net.HttpStatusCode" /> type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System.Net;
 

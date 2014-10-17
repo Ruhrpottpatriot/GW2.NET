@@ -6,9 +6,9 @@
 //   Provides the interface for items that have a visual appearance in the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
-    using GW2DotNET.Entities.Skins;
+    using GW2NET.Entities.Skins;
 
     /// <summary>Provides the interface for items that have a visual appearance in the game.</summary>
     public interface ISkinnable

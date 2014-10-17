@@ -6,7 +6,7 @@
 //   Enumerates known dynamic event flags.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
     using System;
 

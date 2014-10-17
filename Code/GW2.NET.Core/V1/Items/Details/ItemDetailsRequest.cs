@@ -6,12 +6,12 @@
 //   Represents a request for details regarding a specific item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items
+namespace GW2NET.V1.Items
 {
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding a specific item.</summary>
     public class ItemDetailsRequest : IRequest, ILocalizable

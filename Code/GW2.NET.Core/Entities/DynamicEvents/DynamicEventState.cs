@@ -6,12 +6,12 @@
 //   Represents a dynamic event and its state.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
     using System;
 
-    using GW2DotNET.Entities.Maps;
-    using GW2DotNET.Entities.Worlds;
+    using GW2NET.Entities.Maps;
+    using GW2NET.Entities.Worlds;
 
     /// <summary>Represents a dynamic event and its state.</summary>
     public class DynamicEventState : IEquatable<DynamicEventState>

@@ -6,7 +6,7 @@
 //   Represents leg protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents leg protection.</summary>
     public class Leggings : Armor

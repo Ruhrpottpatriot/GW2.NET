@@ -6,7 +6,7 @@
 //   Provides the default implementation of the matches service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld
 {
     using System;
     using System.Collections.Generic;
@@ -16,9 +16,9 @@ namespace GW2DotNET.V1.WorldVersusWorld
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.WorldVersusWorld;
-    using GW2DotNET.V1.WorldVersusWorld.Json;
+    using GW2NET.Common;
+    using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.V1.WorldVersusWorld.Json;
 
     /// <summary>Provides the default implementation of the matches service.</summary>
     public class MatchService : IMatchService

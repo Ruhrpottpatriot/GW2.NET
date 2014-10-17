@@ -6,7 +6,7 @@
 //   Specifies that a class, method or delegate is a converter for a type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System;
 

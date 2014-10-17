@@ -6,7 +6,7 @@
 //   Represents a waypoint.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     /// <summary>Represents a waypoint.</summary>
     public class Waypoint : PointOfInterest

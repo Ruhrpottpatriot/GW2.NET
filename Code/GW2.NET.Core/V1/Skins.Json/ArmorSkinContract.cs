@@ -6,7 +6,7 @@
 //   Represents an armor skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins.Json
+namespace GW2NET.V1.Skins.Json
 {
     using System.Runtime.Serialization;
 

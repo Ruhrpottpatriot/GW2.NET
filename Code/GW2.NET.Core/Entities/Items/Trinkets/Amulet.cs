@@ -6,7 +6,7 @@
 //   Represents an amulet.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents an amulet.</summary>
     public class Amulet : Trinket

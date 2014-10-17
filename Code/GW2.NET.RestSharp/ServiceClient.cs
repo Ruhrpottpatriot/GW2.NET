@@ -6,7 +6,7 @@
 //   Provides a RestSharp-specific implementation of the <see cref="IServiceClient" /> interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.RestSharp
+namespace GW2NET.RestSharp
 {
     using System;
     using System.Diagnostics.Contracts;
@@ -16,8 +16,8 @@ namespace GW2DotNET.RestSharp
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
+    using GW2NET.Common;
+    using GW2NET.Common.Serializers;
 
     using global::RestSharp;
 

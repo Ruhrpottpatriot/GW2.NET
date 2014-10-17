@@ -6,13 +6,13 @@
 //   The build service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Builds
+namespace GW2NET.V1.Builds
 {
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Builds;
+    using GW2NET.Entities.Builds;
 
     /// <summary>The build service contract.</summary>
     [ContractClassFor(typeof(IBuildService))]

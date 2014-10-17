@@ -6,7 +6,7 @@
 //   Provides the interface for the world names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Worlds
+namespace GW2NET.V1.Worlds
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Worlds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Worlds;
+    using GW2NET.Entities.Worlds;
 
     /// <summary>Provides the interface for the world names service.</summary>
     [ContractClass(typeof(WorldNameServiceContract))]

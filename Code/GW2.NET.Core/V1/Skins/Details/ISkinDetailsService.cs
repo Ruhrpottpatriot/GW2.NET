@@ -6,14 +6,14 @@
 //   Provides the interface for the skin details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins
+namespace GW2NET.V1.Skins
 {
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Skins;
+    using GW2NET.Entities.Skins;
 
     /// <summary>Provides the interface for the skin details service.</summary>
     [ContractClass(typeof(SkinDetailsServiceContract))]

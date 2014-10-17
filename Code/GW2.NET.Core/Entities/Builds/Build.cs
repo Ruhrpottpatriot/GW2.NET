@@ -6,7 +6,7 @@
 //   Represents the current build of the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Builds
+namespace GW2NET.Entities.Builds
 {
     using System;
     using System.Globalization;

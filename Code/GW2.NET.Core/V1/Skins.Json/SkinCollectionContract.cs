@@ -6,7 +6,7 @@
 //   Wraps a collection of skin identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins.Json
+namespace GW2NET.V1.Skins.Json
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

@@ -6,7 +6,7 @@
 //   Represents a staff.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a staff.</summary>
     public class Staff : Weapon

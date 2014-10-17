@@ -6,7 +6,7 @@
 //   Enumerates the known additional item flags.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     using System;
 

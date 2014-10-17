@@ -6,7 +6,7 @@
 //   Represents a mace.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a mace.</summary>
     public class Mace : Weapon

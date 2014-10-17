@@ -6,7 +6,7 @@
 //   Represents one of an item's infusion slots.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents one of an item's infusion slots.</summary>
     public class InfusionSlot

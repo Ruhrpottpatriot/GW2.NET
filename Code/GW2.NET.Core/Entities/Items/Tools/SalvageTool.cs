@@ -6,7 +6,7 @@
 //   Represents a salvaging tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a salvaging tool.</summary>
     public class SalvageTool : Tool

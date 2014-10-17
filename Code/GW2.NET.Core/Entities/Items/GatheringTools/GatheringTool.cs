@@ -6,9 +6,9 @@
 //   Provides the base class for gathering tool types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
-    using GW2DotNET.Entities.Skins;
+    using GW2NET.Entities.Skins;
 
     /// <summary>Provides the base class for gathering tool types.</summary>
     public abstract class GatheringTool : Item, ISkinnable

@@ -6,7 +6,7 @@
 //   Provides methods for serializing binary data.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common.Serializers
+namespace GW2NET.Common.Serializers
 {
     using System.IO;
 

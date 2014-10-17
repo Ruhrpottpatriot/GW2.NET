@@ -6,7 +6,7 @@
 //   Represents a color's component information.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Colors.Json
+namespace GW2NET.V1.Colors.Json
 {
     using System.Runtime.Serialization;
 

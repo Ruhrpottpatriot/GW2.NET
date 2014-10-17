@@ -6,12 +6,12 @@
 //   Represents a request for details regarding a map floor, used to populate a world map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps
+namespace GW2NET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding a map floor, used to populate a world map.</summary>
     public class MapFloorRequest : IRequest, ILocalizable

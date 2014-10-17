@@ -6,14 +6,14 @@
 //   The render service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Rendering
+namespace GW2NET.Rendering
 {
     using System;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>The render service contract.</summary>
     [ContractClassFor(typeof(IRenderService))]

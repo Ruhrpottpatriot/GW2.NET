@@ -6,7 +6,7 @@
 //   Provides the default implementation of the guild service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Guilds
+namespace GW2NET.V1.Guilds
 {
     using System;
     using System.Collections.Generic;
@@ -15,9 +15,9 @@ namespace GW2DotNET.V1.Guilds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Guilds;
-    using GW2DotNET.V1.Guilds.Json;
+    using GW2NET.Common;
+    using GW2NET.Entities.Guilds;
+    using GW2NET.V1.Guilds.Json;
 
     /// <summary>Provides the default implementation of the guild service.</summary>
     public class GuildService : IGuildService

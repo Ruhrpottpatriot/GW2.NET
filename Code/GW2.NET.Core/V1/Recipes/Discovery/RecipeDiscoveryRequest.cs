@@ -6,12 +6,12 @@
 //   Represents a request for a list of all discovered recipes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Recipes
+namespace GW2NET.V1.Recipes
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for a list of all discovered recipes.</summary>
     public class RecipeDiscoveryRequest : IRequest

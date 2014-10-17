@@ -6,7 +6,7 @@
 //   Represents the location of an event on the map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents.Json
+namespace GW2NET.V1.DynamicEvents.Json
 {
     using System.Runtime.Serialization;
 

@@ -6,7 +6,7 @@
 //   Represents one of a World versus World map's objectives.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Json
+namespace GW2NET.V1.WorldVersusWorld.Json
 {
     using System.Runtime.Serialization;
 

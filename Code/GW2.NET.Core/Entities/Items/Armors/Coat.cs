@@ -6,7 +6,7 @@
 //   Represents chest protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents chest protection.</summary>
     public class Coat : Armor

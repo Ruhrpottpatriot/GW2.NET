@@ -6,14 +6,14 @@
 //   Provides the interface for the files service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Files
+namespace GW2NET.V1.Files
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Files;
+    using GW2NET.Entities.Files;
 
     /// <summary>Provides the interface for the files service.</summary>
     [ContractClass(typeof(FileServiceContract))]

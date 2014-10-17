@@ -6,12 +6,12 @@
 //   Represents a request for a list of skin identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins
+namespace GW2NET.V1.Skins
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for a list of skin identifiers.</summary>
     public class SkinDiscoveryRequest : IRequest

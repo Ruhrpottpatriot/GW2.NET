@@ -6,7 +6,7 @@
 //   Represents a hammer skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a hammer skin.</summary>
     public class HammerSkin : WeaponSkin

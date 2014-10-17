@@ -6,13 +6,13 @@
 //   Represents a request for static details about dynamic events.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents
+namespace GW2NET.V1.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for static details about dynamic events.</summary>
     public class DynamicEventDetailsRequest : IRequest, ILocalizable

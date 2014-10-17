@@ -6,7 +6,7 @@
 //   Represents a Quaggan.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Quaggans.Json
+namespace GW2NET.V2.Quaggans.Json
 {
     using System.Runtime.Serialization;
 

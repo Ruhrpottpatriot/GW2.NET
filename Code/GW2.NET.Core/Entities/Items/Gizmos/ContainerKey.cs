@@ -6,7 +6,7 @@
 //   Represents a key that opens a container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a key that opens a container.</summary>
     public class ContainerKey : Gizmo

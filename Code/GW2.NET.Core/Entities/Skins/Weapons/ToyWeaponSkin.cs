@@ -6,7 +6,7 @@
 //   Represents a toy skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a toy skin.</summary>
     public class ToyWeaponSkin : WeaponSkin

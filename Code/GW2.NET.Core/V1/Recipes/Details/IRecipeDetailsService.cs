@@ -6,14 +6,14 @@
 //   Provides the interface for the recipe details service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Recipes
+namespace GW2NET.V1.Recipes
 {
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Recipes;
+    using GW2NET.Entities.Recipes;
 
     /// <summary>Provides the interface for the recipe details service.</summary>
     [ContractClass(typeof(RecipeDetailsServiceContract))]

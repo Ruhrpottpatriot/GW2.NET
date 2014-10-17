@@ -6,7 +6,7 @@
 //   Provides the interface for the objective names service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.WorldVersusWorld
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.WorldVersusWorld;
+    using GW2NET.Entities.WorldVersusWorld;
 
     /// <summary>Provides the interface for the objective names service.</summary>
     [ContractClass(typeof(ObjectiveNameServiceContract))]

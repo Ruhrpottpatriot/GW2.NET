@@ -6,7 +6,7 @@
 //   Provides the interface for objects for which a graphical representation exists.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     /// <summary>Provides the interface for objects for which a graphical representation exists.</summary>
     public interface IRenderable

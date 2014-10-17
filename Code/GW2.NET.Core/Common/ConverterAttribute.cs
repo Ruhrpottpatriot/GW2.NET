@@ -6,7 +6,7 @@
 //   Specifies a converter for a type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System;
 

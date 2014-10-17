@@ -6,7 +6,7 @@
 //   Represents a head protection crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents a head protection crafting recipe.</summary>
     public class HelmRecipe : Recipe

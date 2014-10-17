@@ -6,13 +6,13 @@
 //   Represents a request for a list of events and their status that match the given filters (if any).
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.DynamicEvents
+namespace GW2NET.V1.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for a list of events and their status that match the given filters (if any).</summary>
     public class DynamicEventStateRequest : IRequest

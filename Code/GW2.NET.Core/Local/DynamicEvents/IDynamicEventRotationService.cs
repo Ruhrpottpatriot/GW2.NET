@@ -6,13 +6,13 @@
 //   Provides the interface for the event rotations service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Local.DynamicEvents
+namespace GW2NET.Local.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.Entities.DynamicEvents;
+    using GW2NET.Entities.DynamicEvents;
 
     /// <summary>Provides the interface for the event rotations service.</summary>
     [ContractClass(typeof(DynamicEventRotationServiceContract))]

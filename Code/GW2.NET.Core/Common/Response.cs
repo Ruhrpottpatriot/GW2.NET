@@ -6,7 +6,7 @@
 //   Provides the default implementation of the <see cref="IResponse{T}" /> interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;

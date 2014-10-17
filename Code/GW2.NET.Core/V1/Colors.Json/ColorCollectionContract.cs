@@ -6,7 +6,7 @@
 //   Wraps a collection of colors in the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Colors.Json
+namespace GW2NET.V1.Colors.Json
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

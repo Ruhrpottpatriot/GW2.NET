@@ -6,7 +6,7 @@
 //   Represents a rune upgrade component.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a rune upgrade component.</summary>
     public class Rune : UpgradeComponent

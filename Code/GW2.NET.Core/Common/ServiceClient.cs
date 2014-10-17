@@ -6,7 +6,7 @@
 //   Provides a default implementation for the <see cref="IServiceClient" /> interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System;
     using System.Diagnostics.Contracts;
@@ -17,7 +17,7 @@ namespace GW2DotNET.Common
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common.Serializers;
+    using GW2NET.Common.Serializers;
 
     /// <summary>Provides a default implementation for the <see cref="IServiceClient" /> interface.</summary>
     public class ServiceClient : IServiceClient
@@ -85,7 +85,6 @@ namespace GW2DotNET.Common
                     {
                         throw new ServiceException(response.StatusDescription);
                     }
-
                 }
 
                 return OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);

@@ -6,7 +6,7 @@
 //   Represents aquatic head protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents aquatic head protection.</summary>
     public class HelmAquatic : Armor

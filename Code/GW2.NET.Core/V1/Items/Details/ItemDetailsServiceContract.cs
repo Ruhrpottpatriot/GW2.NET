@@ -6,14 +6,14 @@
 //   The item details service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Items;
+    using GW2NET.Entities.Items;
 
     /// <summary>The item details service contract.</summary>
     [ContractClassFor(typeof(IItemDetailsService))]

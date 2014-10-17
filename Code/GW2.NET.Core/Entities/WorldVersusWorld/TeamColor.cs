@@ -6,7 +6,7 @@
 //   Enumerates known team colors.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     /// <summary>Enumerates known team colors.</summary>
     public enum TeamColor

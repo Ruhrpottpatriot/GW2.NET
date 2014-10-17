@@ -8,8 +8,8 @@
     <ProjectGuid>{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GW2DotNET.Common.Serializers</RootNamespace>
-    <AssemblyName>GW2.NET.Newtonsoft</AssemblyName>
+    <RootNamespace>GW2NET.Common.Serializers</RootNamespace>
+    <AssemblyName>GW2NET.Newtonsoft</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -75,7 +75,7 @@
     <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
     <CodeContractsReferenceAssembly>Build</CodeContractsReferenceAssembly>
     <CodeContractsAnalysisWarningLevel>0</CodeContractsAnalysisWarningLevel>
-    <DocumentationFile>bin\Release\GW2.NET.Newtonsoft.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\GW2NET.Newtonsoft.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'DebugCC|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>

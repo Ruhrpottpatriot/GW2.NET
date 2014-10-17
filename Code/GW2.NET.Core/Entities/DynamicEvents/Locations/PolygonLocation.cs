@@ -6,11 +6,11 @@
 //   Represents a polygonal location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.Entities.Maps;
+    using GW2NET.Entities.Maps;
 
     /// <summary>Represents a polygonal location.</summary>
     public class PolygonLocation : Location

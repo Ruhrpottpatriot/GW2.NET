@@ -6,9 +6,9 @@
 //   Provides the base class for event locations.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
-    using GW2DotNET.Entities.Maps;
+    using GW2NET.Entities.Maps;
 
     /// <summary>Provides the base class for event locations.</summary>
     public abstract class Location

@@ -6,12 +6,12 @@
 //   Provides extension methods for <see cref="IResponse{T}" /> types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Common
+namespace GW2NET.V2.Common
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Provides extension methods for <see cref="IResponse{T}" /> types.</summary>
     public static class ResponseExtensions

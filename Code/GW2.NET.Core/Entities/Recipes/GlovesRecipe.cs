@@ -6,7 +6,7 @@
 //   Represents an arm protection crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents an arm protection crafting recipe.</summary>
     public class GlovesRecipe : Recipe

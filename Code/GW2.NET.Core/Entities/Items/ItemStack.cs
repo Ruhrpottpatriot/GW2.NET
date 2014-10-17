@@ -6,12 +6,12 @@
 //   Represents a stack of items.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
-    using GW2DotNET.ChatLinks;
+    using GW2NET.ChatLinks;
 
     /// <summary>Represents a stack of items.</summary>
     public class ItemStack

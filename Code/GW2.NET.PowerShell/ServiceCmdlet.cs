@@ -6,15 +6,15 @@
 //   Provides the base class for cmdlets that depend on a remote service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.PS.Commands
+namespace GW2NET.PS.Commands
 {
     using System;
     using System.Management.Automation;
     using System.Threading;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Compression;
+    using GW2NET.Common;
+    using GW2NET.Common.Serializers;
+    using GW2NET.Compression;
 
     /// <summary>Provides the base class for cmdlets that depend on a remote service.</summary>
     public abstract class ServiceCmdlet : PSCmdlet

@@ -6,7 +6,7 @@
 //   The map service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps
+namespace GW2NET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Maps
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Maps;
+    using GW2NET.Entities.Maps;
 
     /// <summary>The map service contract.</summary>
     [ContractClassFor(typeof(IMapDetailsService))]

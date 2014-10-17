@@ -6,7 +6,7 @@
 //   Represents a cylindrical location of an event on the map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
     /// <summary>Represents a cylindrical location of an event on the map.</summary>
     public class CylinderLocation : Location

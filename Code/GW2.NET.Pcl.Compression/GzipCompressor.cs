@@ -6,12 +6,12 @@
 //   Represents the GZIP compressor.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Compression
+namespace GW2NET.Compression
 {
     using System.IO;
     using System.IO.Compression;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents the GZIP compressor.</summary>
     public class GzipCompressor : IConverter<Stream, Stream>

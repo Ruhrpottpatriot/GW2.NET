@@ -7,11 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V2.Commerce
+namespace GW2NET.V2.Commerce
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request.</summary>
     internal sealed class ListingDiscoveryRequest : IRequest

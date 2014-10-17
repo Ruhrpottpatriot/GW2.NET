@@ -6,7 +6,7 @@
 //   The service client contracts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System.Diagnostics.Contracts;
     using System.Threading;

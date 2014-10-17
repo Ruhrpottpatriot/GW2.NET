@@ -6,7 +6,7 @@
 //   Represents a collection of form data that can be URL-encoded.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;

@@ -6,7 +6,7 @@
 //   Represents the result that is returned when an error occurs.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System.Runtime.Serialization;
 

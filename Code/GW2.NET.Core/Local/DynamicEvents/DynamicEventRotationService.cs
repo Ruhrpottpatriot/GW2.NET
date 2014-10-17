@@ -6,7 +6,7 @@
 //   Provides the default implementation of the event rotations service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Local.DynamicEvents
+namespace GW2NET.Local.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
@@ -14,8 +14,8 @@ namespace GW2DotNET.Local.DynamicEvents
     using System.Linq;
     using System.Runtime.Serialization;
 
-    using GW2DotNET.Entities.DynamicEvents;
-    using GW2DotNET.Local.DynamicEvents.Xml;
+    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.Local.DynamicEvents.Xml;
 
     /// <summary>Provides the default implementation of the event rotations service.</summary>
     public class DynamicEventRotationService : IDynamicEventRotationService

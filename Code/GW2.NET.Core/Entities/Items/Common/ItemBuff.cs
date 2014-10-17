@@ -6,11 +6,11 @@
 //   Represents an item buff.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.ChatLinks;
+    using GW2NET.ChatLinks;
 
     /// <summary>Represents an item buff.</summary>
     public class ItemBuff

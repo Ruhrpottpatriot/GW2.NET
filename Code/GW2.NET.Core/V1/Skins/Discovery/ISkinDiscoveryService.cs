@@ -6,7 +6,7 @@
 //   Provides the interface for the skin discovery service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins
+namespace GW2NET.V1.Skins
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;

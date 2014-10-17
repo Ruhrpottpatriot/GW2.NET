@@ -6,14 +6,14 @@
 //   The match discovery service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.WorldVersusWorld;
+    using GW2NET.Entities.WorldVersusWorld;
 
     /// <summary>The match discovery service contract.</summary>
     [ContractClassFor(typeof(IMatchDiscoveryService))]

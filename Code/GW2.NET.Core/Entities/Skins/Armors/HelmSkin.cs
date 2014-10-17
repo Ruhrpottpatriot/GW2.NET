@@ -6,7 +6,7 @@
 //   Represents a head protection skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a head protection skin.</summary>
     public class HelmSkin : ArmorSkin

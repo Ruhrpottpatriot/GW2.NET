@@ -6,13 +6,13 @@
 //   Represents a Point of Interest (POI) location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     using System;
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
-    using GW2DotNET.ChatLinks;
+    using GW2NET.ChatLinks;
 
     /// <summary>Represents a Point of Interest (POI) location.</summary>
     public class PointOfInterest : IEquatable<PointOfInterest>

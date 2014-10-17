@@ -6,7 +6,7 @@
 //   Represents a pistol.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a pistol.</summary>
     public class Pistol : Weapon

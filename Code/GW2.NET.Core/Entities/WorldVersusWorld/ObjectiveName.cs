@@ -6,7 +6,7 @@
 //   Represents an objective and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     using System;
     using System.Globalization;

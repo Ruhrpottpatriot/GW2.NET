@@ -6,12 +6,12 @@
 //   Represents a request for details regarding a specific skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins
+namespace GW2NET.V1.Skins
 {
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding a specific skin.</summary>
     public class SkinDetailsRequest : IRequest, ILocalizable

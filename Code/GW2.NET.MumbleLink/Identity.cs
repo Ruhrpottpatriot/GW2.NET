@@ -6,12 +6,12 @@
 //   Provides contextual information about a player's avatar.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.MumbleLink
+namespace GW2NET.MumbleLink
 {
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Colors;
-    using GW2DotNET.Entities.Maps;
-    using GW2DotNET.Entities.Worlds;
+    using GW2NET.Common;
+    using GW2NET.Entities.Colors;
+    using GW2NET.Entities.Maps;
+    using GW2NET.Entities.Worlds;
 
     /// <summary>Provides contextual information about a player's avatar.</summary>
     public sealed class Identity

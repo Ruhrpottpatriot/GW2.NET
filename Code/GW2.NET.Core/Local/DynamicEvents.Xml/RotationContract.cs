@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.Local.DynamicEvents.Xml
+namespace GW2NET.Local.DynamicEvents.Xml
 {
     using System.Runtime.Serialization;
 

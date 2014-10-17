@@ -6,7 +6,7 @@
 //   Represents a long bow crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents a long bow crafting recipe.</summary>
     public class LongBowRecipe : Recipe

@@ -6,7 +6,7 @@
 //   Provides the interface for collections that are a subset of a larger collection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Common
+namespace GW2NET.V2.Common
 {
     using System.Diagnostics.Contracts;
 

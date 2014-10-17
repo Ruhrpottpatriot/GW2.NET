@@ -6,14 +6,14 @@
 //   Factory class. Provides factory methods for creating <see cref="ChatLink" /> instances.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.ChatLinks
+namespace GW2NET.ChatLinks
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Factory class. Provides factory methods for creating <see cref="ChatLink"/> instances.</summary>
     public class ChatLinkFactory

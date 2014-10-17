@@ -6,7 +6,7 @@
 //   Represents an unknown gizmo.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents an unknown gizmo.</summary>
     public class UnknownGizmo : Gizmo

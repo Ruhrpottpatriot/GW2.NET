@@ -6,7 +6,7 @@
 //   The Bloodlust bonus.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     /// <summary>The Bloodlust bonus.</summary>
     public class Bloodlust : MapBonus

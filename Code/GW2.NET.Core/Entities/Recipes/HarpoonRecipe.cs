@@ -6,7 +6,7 @@
 //   Represents a harpoon crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents a harpoon crafting recipe.</summary>
     public class HarpoonRecipe : Recipe

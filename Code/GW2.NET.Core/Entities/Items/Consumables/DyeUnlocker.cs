@@ -6,9 +6,9 @@
 //   Represents a dye.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
-    using GW2DotNET.Entities.Colors;
+    using GW2NET.Entities.Colors;
 
     /// <summary>Represents a dye.</summary>
     public class DyeUnlocker : Unlocker

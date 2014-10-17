@@ -6,7 +6,7 @@
 //   Enumerates known item restrictions.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     using System;
 

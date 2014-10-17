@@ -6,7 +6,7 @@
 //   Provides the interface for service clients.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System.Diagnostics.Contracts;
     using System.Threading;

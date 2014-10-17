@@ -6,7 +6,7 @@
 //   Enumerates the known additional skin flags.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     using System;
 

@@ -6,7 +6,7 @@
 //   Represents the red team's borderlands.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     /// <summary>Represents the red team's borderlands.</summary>
     public class RedBorderlands : CompetitiveMap

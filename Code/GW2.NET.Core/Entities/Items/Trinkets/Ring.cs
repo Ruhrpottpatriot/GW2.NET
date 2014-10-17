@@ -6,7 +6,7 @@
 //   Represents a ring.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a ring.</summary>
     public class Ring : Trinket

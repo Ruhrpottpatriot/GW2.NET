@@ -6,15 +6,15 @@
 //   Represents an in-game item skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     using System;
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
-    using GW2DotNET.ChatLinks;
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Items;
+    using GW2NET.ChatLinks;
+    using GW2NET.Common;
+    using GW2NET.Entities.Items;
 
     /// <summary>Represents an in-game item skin.</summary>
     public abstract class Skin : IEquatable<Skin>, IRenderable

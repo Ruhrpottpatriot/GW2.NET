@@ -6,17 +6,17 @@
 //   Provides the default implementation of the Guild Wars 2 render service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET
+namespace GW2NET
 {
     using System;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Compression;
-    using GW2DotNET.Rendering;
+    using GW2NET.Common;
+    using GW2NET.Common.Serializers;
+    using GW2NET.Compression;
+    using GW2NET.Rendering;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 render service.</summary>
     public class RenderServiceManager : IRenderService

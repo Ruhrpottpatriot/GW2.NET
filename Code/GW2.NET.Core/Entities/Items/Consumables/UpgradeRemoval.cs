@@ -6,7 +6,7 @@
 //   Represents an upgrade removal item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents an upgrade removal item.</summary>
     public class UpgradeRemoval : Consumable

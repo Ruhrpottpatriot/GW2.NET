@@ -6,7 +6,7 @@
 //   Provides the interface for locale-aware types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System.Globalization;
 

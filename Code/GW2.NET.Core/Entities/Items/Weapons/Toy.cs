@@ -6,7 +6,7 @@
 //   Represents a toy.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a toy.</summary>
     public class Toy : Weapon

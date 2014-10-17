@@ -6,7 +6,7 @@
 //   Wraps a collection of maps and their details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Json
+namespace GW2NET.V1.Maps.Json
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

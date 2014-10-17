@@ -6,7 +6,7 @@
 //   Represents a dynamic event and its rotation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
     using System;
     using System.Collections.Generic;

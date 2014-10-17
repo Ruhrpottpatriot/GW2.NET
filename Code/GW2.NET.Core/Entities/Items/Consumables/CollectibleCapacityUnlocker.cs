@@ -6,7 +6,7 @@
 //   Represents a collectible capacity unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a collectible capacity unlock item.</summary>
     public class CollectibleCapacityUnlocker : Unlocker

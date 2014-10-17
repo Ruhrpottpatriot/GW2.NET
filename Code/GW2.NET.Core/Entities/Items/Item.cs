@@ -6,14 +6,14 @@
 //   Provides the base class for types that represent an in-game item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     using System;
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
-    using GW2DotNET.ChatLinks;
-    using GW2DotNET.Common;
+    using GW2NET.ChatLinks;
+    using GW2NET.Common;
 
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
     public abstract class Item : IRenderable, IEquatable<Item>

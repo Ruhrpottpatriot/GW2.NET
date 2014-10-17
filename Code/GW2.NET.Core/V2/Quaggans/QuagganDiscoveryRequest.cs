@@ -6,12 +6,12 @@
 //   Represents a request for a collection of Quaggan identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Quaggans
+namespace GW2NET.V2.Quaggans
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for a collection of Quaggan identifiers.</summary>
     internal sealed class QuagganDiscoveryRequest : IRequest

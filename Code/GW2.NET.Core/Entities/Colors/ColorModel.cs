@@ -6,7 +6,7 @@
 //   Represents a color's component information.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Colors
+namespace GW2NET.Entities.Colors
 {
     /// <summary>Represents a color's component information.</summary>
     public class ColorModel

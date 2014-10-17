@@ -6,7 +6,7 @@
 //   an unknown bonus.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     /// <summary>an unknown bonus.</summary>
     public class UnknownMapBonus : MapBonus

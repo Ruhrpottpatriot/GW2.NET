@@ -6,14 +6,14 @@
 //   The map floor service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps
+namespace GW2NET.V1.Maps
 {
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Maps;
+    using GW2NET.Entities.Maps;
 
     /// <summary>The map floor service contract.</summary>
     [ContractClassFor(typeof(IMapFloorService))]

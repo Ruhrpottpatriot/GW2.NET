@@ -6,7 +6,7 @@
 //   Wraps a collection of matchups.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld.Json
+namespace GW2NET.V1.WorldVersusWorld.Json
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

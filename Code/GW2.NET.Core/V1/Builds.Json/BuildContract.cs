@@ -6,7 +6,7 @@
 //   Represents the current build of the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Builds.Json
+namespace GW2NET.V1.Builds.Json
 {
     using System.Runtime.Serialization;
 

@@ -6,7 +6,7 @@
 //   Represents an amulet crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents an amulet crafting recipe.</summary>
     public class AmuletRecipe : Recipe

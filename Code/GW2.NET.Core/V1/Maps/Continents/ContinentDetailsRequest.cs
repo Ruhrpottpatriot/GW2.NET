@@ -6,12 +6,12 @@
 //   Represents a request for static information about the continents.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps
+namespace GW2NET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for static information about the continents.</summary>
     public class ContinentDetailsRequest : IRequest

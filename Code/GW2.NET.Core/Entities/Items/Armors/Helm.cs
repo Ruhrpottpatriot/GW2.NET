@@ -6,7 +6,7 @@
 //   Represents head protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents head protection.</summary>
     public class Helm : Armor

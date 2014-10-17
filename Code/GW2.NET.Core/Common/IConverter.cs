@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     /// <summary>Provides the interface for classes that convert one type to another type.</summary>
     /// <typeparam name="TInput">The type of the input.</typeparam>

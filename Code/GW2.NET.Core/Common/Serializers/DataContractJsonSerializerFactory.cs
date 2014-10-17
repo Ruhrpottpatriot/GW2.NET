@@ -6,7 +6,7 @@
 //   Provides factory methods for the JSON data contract serialization engine.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common.Serializers
+namespace GW2NET.Common.Serializers
 {
     /// <summary>Provides factory methods for the JSON data contract serialization engine.</summary>
     public class DataContractJsonSerializerFactory : ISerializerFactory

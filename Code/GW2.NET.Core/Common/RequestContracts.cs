@@ -6,7 +6,7 @@
 //   The request contracts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;

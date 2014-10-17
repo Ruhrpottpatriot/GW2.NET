@@ -6,15 +6,15 @@
 //   Provides the default implementation of the build service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Builds
+namespace GW2NET.V1.Builds
 {
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Builds;
-    using GW2DotNET.V1.Builds.Json;
+    using GW2NET.Common;
+    using GW2NET.Entities.Builds;
+    using GW2NET.V1.Builds.Json;
 
     /// <summary>Provides the default implementation of the build service.</summary>
     public class BuildService : IBuildService

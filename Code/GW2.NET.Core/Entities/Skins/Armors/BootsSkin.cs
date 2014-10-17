@@ -6,7 +6,7 @@
 //   Represents a foot protection skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a foot protection skin.</summary>
     public class BootsSkin : ArmorSkin

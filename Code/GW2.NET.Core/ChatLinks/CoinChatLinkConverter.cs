@@ -6,11 +6,11 @@
 //   Provides a type converter to convert string objects to and from its <see cref="CoinChatLink" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.ChatLinks
+namespace GW2NET.ChatLinks
 {
     using System;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Provides a type converter to convert string objects to and from its <see cref="CoinChatLink"/> representation.</summary>
     [ConverterFor(typeof(CoinChatLink))]

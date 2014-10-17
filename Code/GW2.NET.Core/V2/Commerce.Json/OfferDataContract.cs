@@ -6,7 +6,7 @@
 //   The offer contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Commerce.Json
+namespace GW2NET.V2.Commerce.Json
 {
     using System.Runtime.Serialization;
 

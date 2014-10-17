@@ -6,7 +6,7 @@
 //   Represents a spherical location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
     /// <summary>Represents a spherical location.</summary>
     public class SphereLocation : Location

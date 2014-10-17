@@ -6,7 +6,7 @@
 //   Represents a Quaggan.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Quaggans
+namespace GW2NET.Entities.Quaggans
 {
     using System;
 

@@ -6,7 +6,7 @@
 //   Represents a world and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Worlds.Json
+namespace GW2NET.V1.Worlds.Json
 {
     using System.Runtime.Serialization;
 

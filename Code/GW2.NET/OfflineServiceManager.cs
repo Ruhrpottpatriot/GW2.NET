@@ -6,7 +6,7 @@
 //   Provides access to specialty services that do not require a connection to a remote service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET
+namespace GW2NET
 {
     using System;
     using System.Collections.Generic;
@@ -15,12 +15,12 @@ namespace GW2DotNET
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Entities.DynamicEvents;
-    using GW2DotNET.Entities.Worlds;
-    using GW2DotNET.Local.DynamicEvents;
-    using GW2DotNET.Local.Worlds;
-    using GW2DotNET.V1.Worlds;
+    using GW2NET.Common.Serializers;
+    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.Entities.Worlds;
+    using GW2NET.Local.DynamicEvents;
+    using GW2NET.Local.Worlds;
+    using GW2NET.V1.Worlds;
 
     /// <summary>Provides access to specialty services that do not require a connection to a remote service.</summary>
     public class OfflineServiceManager : IDynamicEventRotationService, IWorldNameService

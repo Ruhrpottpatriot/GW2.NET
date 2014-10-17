@@ -6,11 +6,11 @@
 //   Represents a World versus World matchup.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     using System;
 
-    using GW2DotNET.Entities.Worlds;
+    using GW2NET.Entities.Worlds;
 
     /// <summary>Represents a World versus World matchup.</summary>
     public class Matchup : IEquatable<Matchup>

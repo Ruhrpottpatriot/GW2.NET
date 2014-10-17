@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GW2DotNET.PS.Commands
+namespace GW2NET.PS.Commands
 {
     using System.Globalization;
     using System.Management.Automation;
     using System.Net;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.V1.DynamicEvents;
+    using GW2NET.Common;
+    using GW2NET.V1.DynamicEvents;
 
     [Cmdlet(VerbsCommon.Get, "EventNames", DefaultParameterSetName = "All")]
     public class GetEventNamesCommand : ServiceCmdlet

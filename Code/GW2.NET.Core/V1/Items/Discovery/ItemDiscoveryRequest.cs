@@ -6,12 +6,12 @@
 //   Represents a request for a list of all discovered items.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items
+namespace GW2NET.V1.Items
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for a list of all discovered items.</summary>
     public class ItemDiscoveryRequest : IRequest

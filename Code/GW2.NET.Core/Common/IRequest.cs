@@ -6,7 +6,7 @@
 //   Provides the interface for service requests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;

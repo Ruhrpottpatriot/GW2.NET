@@ -6,7 +6,7 @@
 //   Represents a World versus World scoreboard.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     /// <summary>Represents a World versus World scoreboard.</summary>
     public class Scoreboard

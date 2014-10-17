@@ -6,7 +6,7 @@
 //   Provides the default implementation of the files service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Files
+namespace GW2NET.V1.Files
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -14,9 +14,9 @@ namespace GW2DotNET.V1.Files
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Files;
-    using GW2DotNET.V1.Files.Json;
+    using GW2NET.Common;
+    using GW2NET.Entities.Files;
+    using GW2NET.V1.Files.Json;
 
     /// <summary>Provides the default implementation of the files service.</summary>
     public class FileService : IFileService

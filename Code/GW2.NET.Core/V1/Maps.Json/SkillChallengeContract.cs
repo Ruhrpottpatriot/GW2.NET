@@ -6,7 +6,7 @@
 //   Represents a skill challenge location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Json
+namespace GW2NET.V1.Maps.Json
 {
     using System.Runtime.Serialization;
 

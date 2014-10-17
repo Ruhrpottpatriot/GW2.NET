@@ -6,7 +6,7 @@
 //   Represents a transmutation item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a transmutation item.</summary>
     public class Transmutation : Consumable

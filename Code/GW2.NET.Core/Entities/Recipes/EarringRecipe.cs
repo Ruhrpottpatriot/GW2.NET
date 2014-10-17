@@ -6,7 +6,7 @@
 //   Represents an earring crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents an earring crafting recipe.</summary>
     public class EarringRecipe : Recipe

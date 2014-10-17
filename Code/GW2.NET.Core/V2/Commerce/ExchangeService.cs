@@ -6,17 +6,17 @@
 //   Provides access to the Trading Post exchange service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Commerce
+namespace GW2NET.V2.Commerce
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Commerce;
-    using GW2DotNET.V2.Commerce.Json;
-    using GW2DotNET.V2.Common;
+    using GW2NET.Common;
+    using GW2NET.Entities.Commerce;
+    using GW2NET.V2.Commerce.Json;
+    using GW2NET.V2.Common;
 
     /// <summary>Provides access to the /v2/commerce/exchange service.</summary>
     /// <remarks>See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/exchange">wiki</a></remarks>  

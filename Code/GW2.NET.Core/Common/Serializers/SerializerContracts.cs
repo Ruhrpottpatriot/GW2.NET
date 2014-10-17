@@ -6,7 +6,7 @@
 //   The serializer contracts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common.Serializers
+namespace GW2NET.Common.Serializers
 {
     using System.Diagnostics.Contracts;
     using System.IO;

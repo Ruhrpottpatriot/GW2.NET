@@ -6,7 +6,7 @@
 //   Represents a focus skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a focus skin.</summary>
     public class FocusSkin : WeaponSkin

@@ -6,9 +6,9 @@
 //   Represents a guild's emblem.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Guilds
+namespace GW2NET.Entities.Guilds
 {
-    using GW2DotNET.Entities.Colors;
+    using GW2NET.Entities.Colors;
 
     /// <summary>Represents a guild's emblem.</summary>
     public class Emblem

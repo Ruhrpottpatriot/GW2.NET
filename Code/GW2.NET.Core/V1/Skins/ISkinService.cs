@@ -6,7 +6,7 @@
 //   Provides the interface for the skin service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Skins
+namespace GW2NET.V1.Skins
 {
     /// <summary>Provides the interface for the skin service.</summary>
     public interface ISkinService : ISkinDiscoveryService, ISkinDetailsService

@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>GW.NET.Data</RootNamespace>
-    <AssemblyName>GW.NET.Data</AssemblyName>
+    <RootNamespace>GW2NET.Data</RootNamespace>
+    <AssemblyName>GW2NET.Data</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>

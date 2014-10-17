@@ -6,7 +6,7 @@
 //   Provides the interface for service responses.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;

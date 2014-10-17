@@ -6,7 +6,7 @@
 //   The world name service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Worlds
+namespace GW2NET.V1.Worlds
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -14,7 +14,7 @@ namespace GW2DotNET.V1.Worlds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Worlds;
+    using GW2NET.Entities.Worlds;
 
     /// <summary>The world name service contract.</summary>
     [ContractClassFor(typeof(IWorldNameService))]

@@ -6,7 +6,7 @@
 //   Wraps a collection of dynamic event rotations.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Local.DynamicEvents.Xml
+namespace GW2NET.Local.DynamicEvents.Xml
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;

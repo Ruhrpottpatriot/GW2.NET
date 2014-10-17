@@ -6,7 +6,7 @@
 //   Represents a map and its localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Json
+namespace GW2NET.V1.Maps.Json
 {
     using System.Runtime.Serialization;
 

@@ -6,12 +6,12 @@
 //   Represents a request for the current build ID of the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Builds
+namespace GW2NET.V2.Builds
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for the current build ID of the game.</summary>
     public class BuildRequest : IRequest

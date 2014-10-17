@@ -6,7 +6,7 @@
 //   Represents a war horn.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a war horn.</summary>
     public class WarHorn : Weapon

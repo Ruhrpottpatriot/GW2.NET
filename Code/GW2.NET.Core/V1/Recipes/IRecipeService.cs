@@ -6,7 +6,7 @@
 //   Provides the interface for the recipe service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Recipes
+namespace GW2NET.V1.Recipes
 {
     /// <summary>Provides the interface for the recipe service.</summary>
     public interface IRecipeService : IRecipeDiscoveryService, IRecipeDetailsService

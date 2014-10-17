@@ -6,14 +6,14 @@
 //   The recipe details service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Recipes
+namespace GW2NET.V1.Recipes
 {
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Entities.Recipes;
+    using GW2NET.Entities.Recipes;
 
     /// <summary>The recipe details service contract.</summary>
     [ContractClassFor(typeof(IRecipeDetailsService))]

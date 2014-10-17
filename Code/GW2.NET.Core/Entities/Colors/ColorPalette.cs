@@ -6,7 +6,7 @@
 //   Represents a named color and its color component information for cloth, leather and metal materials.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Colors
+namespace GW2NET.Entities.Colors
 {
     using System;
     using System.Globalization;

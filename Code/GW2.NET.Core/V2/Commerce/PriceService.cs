@@ -6,7 +6,7 @@
 //   Provides access to the Trading Post price service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Commerce
+namespace GW2NET.V2.Commerce
 {
     using System;
     using System.Collections.Generic;
@@ -17,11 +17,11 @@ namespace GW2DotNET.V2.Commerce
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Commerce;
-    using GW2DotNET.Entities.Items;
-    using GW2DotNET.V2.Commerce.Json;
-    using GW2DotNET.V2.Common;
+    using GW2NET.Common;
+    using GW2NET.Entities.Commerce;
+    using GW2NET.Entities.Items;
+    using GW2NET.V2.Commerce.Json;
+    using GW2NET.V2.Common;
 
     /// <summary>Provides access to the Trading Post price service. See the class remarks for important limitations regarding the default implementation.</summary>
     /// <remarks>

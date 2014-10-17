@@ -6,7 +6,7 @@
 //   Provides the interface for the maps service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps
+namespace GW2NET.V1.Maps
 {
     /// <summary>Provides the interface for the maps service.</summary>
     public interface IMapService : IMapNameService, IMapDetailsService, IMapFloorService, IContinentDetailsService

@@ -6,7 +6,7 @@
 //   Enumerates known dynamic event states.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
     /// <summary>Enumerates known dynamic event states.</summary>
     public enum EventState

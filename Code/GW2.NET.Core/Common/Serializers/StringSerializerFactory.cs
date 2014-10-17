@@ -6,7 +6,7 @@
 //   Provides factory methods for the string serialization engine.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common.Serializers
+namespace GW2NET.Common.Serializers
 {
     using System;
     using System.Diagnostics.Contracts;

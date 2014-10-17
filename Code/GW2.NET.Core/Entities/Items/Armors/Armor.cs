@@ -6,13 +6,13 @@
 //   Provides the base class for armor types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.ChatLinks;
-    using GW2DotNET.Entities.Skins;
+    using GW2NET.ChatLinks;
+    using GW2NET.Entities.Skins;
 
     /// <summary>Provides the base class for armor types.</summary>
     public abstract class Armor : Item, IUpgrade, IUpgradable, ISkinnable

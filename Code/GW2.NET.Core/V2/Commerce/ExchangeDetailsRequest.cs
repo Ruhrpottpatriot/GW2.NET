@@ -6,12 +6,12 @@
 //   The exchange details request.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Commerce
+namespace GW2NET.V2.Commerce
 {
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.V2.Common;
+    using GW2NET.V2.Common;
 
     /// <summary>The exchange details request.</summary>
     internal sealed class ExchangeDetailsRequest : DetailsRequest

@@ -6,7 +6,7 @@
 //   Represents an inscription crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents an inscription crafting recipe.</summary>
     public class InscriptionRecipe : Recipe

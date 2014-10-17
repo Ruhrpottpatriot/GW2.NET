@@ -6,7 +6,7 @@
 //   Represents an unlimited consumable gizmo.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents an unlimited consumable gizmo.</summary>
     public class UnlimitedConsumable : Gizmo

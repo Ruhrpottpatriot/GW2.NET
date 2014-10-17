@@ -6,7 +6,7 @@
 //   Represents a meal crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents a meal crafting recipe.</summary>
     public class MealRecipe : Recipe

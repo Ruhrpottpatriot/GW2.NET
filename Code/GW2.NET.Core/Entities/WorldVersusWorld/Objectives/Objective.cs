@@ -6,12 +6,12 @@
 //   Represents one of a World versus World map's objectives.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     using System;
     using System.Globalization;
 
-    using GW2DotNET.Entities.Guilds;
+    using GW2NET.Entities.Guilds;
 
     /// <summary>Represents one of a World versus World map's objectives.</summary>
     public class Objective : IEquatable<Objective>

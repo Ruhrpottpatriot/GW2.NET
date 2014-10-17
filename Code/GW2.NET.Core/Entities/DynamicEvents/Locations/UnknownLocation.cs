@@ -6,7 +6,7 @@
 //   Represents an unknown location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.DynamicEvents
+namespace GW2NET.Entities.DynamicEvents
 {
     /// <summary>Represents an unknown location.</summary>
     public class UnknownLocation : Location

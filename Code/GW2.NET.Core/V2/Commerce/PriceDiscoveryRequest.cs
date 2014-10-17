@@ -7,9 +7,9 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V2.Commerce
+namespace GW2NET.V2.Commerce
 {
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>The price discovery request.</summary>
     internal sealed class PriceDiscoveryRequest : DiscoveryRequest

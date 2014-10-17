@@ -6,7 +6,7 @@
 //   Represents a vista.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     /// <summary>Represents a vista.</summary>
     public class Vista : PointOfInterest

@@ -6,7 +6,7 @@
 //   The item discovery service contract.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Items
+namespace GW2NET.V1.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;

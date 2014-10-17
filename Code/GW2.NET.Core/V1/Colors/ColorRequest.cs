@@ -6,12 +6,12 @@
 //   Represents a request for information regarding colors in the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Colors
+namespace GW2NET.V1.Colors
 {
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for information regarding colors in the game.</summary>
     public class ColorRequest : IRequest, ILocalizable

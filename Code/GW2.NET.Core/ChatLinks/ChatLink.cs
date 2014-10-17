@@ -6,12 +6,12 @@
 //   Provides the base class for chat links.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.ChatLinks
+namespace GW2NET.ChatLinks
 {
     using System;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Provides the base class for chat links.</summary>
     public abstract class ChatLink

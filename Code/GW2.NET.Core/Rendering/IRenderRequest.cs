@@ -6,9 +6,9 @@
 //   Provides the interface for render service requests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Rendering
+namespace GW2NET.Rendering
 {
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Provides the interface for render service requests.</summary>
     public interface IRenderRequest : IRequest, IRenderable

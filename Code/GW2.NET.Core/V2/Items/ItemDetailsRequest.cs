@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V2.Items
+namespace GW2NET.V2.Items
 {
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.V2.Common;
+    using GW2NET.Common;
+    using GW2NET.V2.Common;
 
     /// <summary>Represents a request for an item and its localized details.</summary>
     internal sealed class ItemDetailsRequest : DetailsRequest, ILocalizable

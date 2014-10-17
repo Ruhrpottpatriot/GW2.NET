@@ -6,7 +6,7 @@
 //   Enumerates the known professions.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Common
+namespace GW2NET.Common
 {
     /// <summary>
     /// Enumerates the known professions.

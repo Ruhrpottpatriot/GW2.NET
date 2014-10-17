@@ -6,7 +6,7 @@
 //   Provides contextual data about a player's avatar. Check the <see cref="AvatarContext" /> of two different players for equality to determine if the players are in the same map instance.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.MumbleLink
+namespace GW2NET.MumbleLink
 {
     using System;
     using System.Diagnostics.CodeAnalysis;

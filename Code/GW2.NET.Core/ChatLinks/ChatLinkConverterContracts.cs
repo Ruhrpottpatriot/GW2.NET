@@ -6,7 +6,7 @@
 //   The chat link converter contracts.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.ChatLinks
+namespace GW2NET.ChatLinks
 {
     using System;
     using System.Diagnostics.Contracts;

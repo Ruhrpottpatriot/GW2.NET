@@ -6,7 +6,7 @@
 //   Enumerates known recipe flags.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     using System;
 

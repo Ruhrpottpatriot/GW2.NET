@@ -6,7 +6,7 @@
 //   Represents a dungeon entrance.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     /// <summary>Represents a dungeon entrance.</summary>
     public class Dungeon : PointOfInterest

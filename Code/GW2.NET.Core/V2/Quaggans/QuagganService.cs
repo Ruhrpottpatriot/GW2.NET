@@ -6,7 +6,7 @@
 //   Provides the default implementation of the Quaggan service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Quaggans
+namespace GW2NET.V2.Quaggans
 {
     using System;
     using System.Collections.Generic;
@@ -15,10 +15,10 @@ namespace GW2DotNET.V2.Quaggans
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Quaggans;
-    using GW2DotNET.V2.Common;
-    using GW2DotNET.V2.Quaggans.Json;
+    using GW2NET.Common;
+    using GW2NET.Entities.Quaggans;
+    using GW2NET.V2.Common;
+    using GW2NET.V2.Quaggans.Json;
 
     /// <summary>Provides the default implementation of the Quaggan service.</summary>
     public class QuagganService : IRepository<string, Quaggan>

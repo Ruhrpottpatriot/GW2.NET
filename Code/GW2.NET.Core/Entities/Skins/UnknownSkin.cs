@@ -6,7 +6,7 @@
 //   Represents an unknown skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     using System.Globalization;
 

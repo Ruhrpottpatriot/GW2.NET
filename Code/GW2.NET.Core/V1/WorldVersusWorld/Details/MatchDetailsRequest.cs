@@ -6,11 +6,11 @@
 //   Represents a request for details regarding the specified match, including the total score and further details for each map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld
 {
     using System.Collections.Generic;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding the specified match, including the total score and further details for each map.</summary>
     public class MatchDetailsRequest : IRequest

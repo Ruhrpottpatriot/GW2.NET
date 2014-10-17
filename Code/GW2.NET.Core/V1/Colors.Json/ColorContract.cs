@@ -6,7 +6,7 @@
 //   Represents a named color and its color component information for cloth, leather and metal materials.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Colors.Json
+namespace GW2NET.V1.Colors.Json
 {
     using System.Runtime.Serialization;
 

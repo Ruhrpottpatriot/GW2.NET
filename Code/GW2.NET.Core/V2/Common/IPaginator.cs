@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V2.Common
+namespace GW2NET.V2.Common
 {
     using System.Diagnostics.Contracts;
     using System.Threading;

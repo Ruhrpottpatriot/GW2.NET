@@ -6,7 +6,7 @@
 //   Provides the base class for chat link converters.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.ChatLinks
+namespace GW2NET.ChatLinks
 {
     using System;
     using System.Diagnostics.Contracts;

@@ -6,7 +6,7 @@
 //   Represents a potion crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents a potion crafting recipe.</summary>
     public class PotionRecipe : Recipe

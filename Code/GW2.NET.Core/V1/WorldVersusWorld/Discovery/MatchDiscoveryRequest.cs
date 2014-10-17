@@ -6,12 +6,12 @@
 //   Represents a request for a list of the currently running World versus World matches, with the participating worlds included in the result.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld
 {
     using System.Collections.Generic;
     using System.Linq;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for a list of the currently running World versus World matches, with the participating worlds included in the result.</summary>
     public class MatchDiscoveryRequest : IRequest

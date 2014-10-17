@@ -6,12 +6,12 @@
 //   Provides a type converter to convert string objects to and from its <see cref="ItemChatLink" /> representation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.ChatLinks
+namespace GW2NET.ChatLinks
 {
     using System;
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Provides a type converter to convert string objects to and from its <see cref="ItemChatLink"/> representation.</summary>
     [ConverterFor(typeof(ItemChatLink))]

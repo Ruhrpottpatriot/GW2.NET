@@ -6,7 +6,7 @@
 //   Represents a staff skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a staff skin.</summary>
     public class StaffSkin : WeaponSkin

@@ -6,7 +6,7 @@
 //   Represents an unknown unlock item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents an unknown unlock item.</summary>
     public class UnknownUnlocker : Unlocker

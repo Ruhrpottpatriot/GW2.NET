@@ -6,7 +6,7 @@
 //   Represents a long bow.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a long bow.</summary>
     public class LongBow : Weapon

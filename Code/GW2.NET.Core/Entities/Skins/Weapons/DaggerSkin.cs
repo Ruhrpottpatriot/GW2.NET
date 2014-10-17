@@ -6,7 +6,7 @@
 //   Represents a dagger skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a dagger skin.</summary>
     public class DaggerSkin : WeaponSkin

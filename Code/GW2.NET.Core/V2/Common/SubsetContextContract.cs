@@ -6,7 +6,7 @@
 //   The code contract class for <see cref="ISubsetContext" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Common
+namespace GW2NET.V2.Common
 {
     using System.Diagnostics.Contracts;
 

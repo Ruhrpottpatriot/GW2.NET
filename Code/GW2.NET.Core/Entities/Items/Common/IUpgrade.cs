@@ -6,7 +6,7 @@
 //   Provides the interface for items that provide a bonus when equipped.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Provides the interface for items that provide a bonus when equipped.</summary>
     public interface IUpgrade

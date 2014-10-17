@@ -6,11 +6,11 @@
 //   Represents a chat link that links to an item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.ChatLinks
+namespace GW2NET.ChatLinks
 {
     using System.Diagnostics.Contracts;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a chat link that links to an item.</summary>
     [Converter(typeof(ItemChatLinkConverter))]

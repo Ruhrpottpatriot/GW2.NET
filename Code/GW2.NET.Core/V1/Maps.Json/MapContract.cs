@@ -6,7 +6,7 @@
 //   Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Maps.Json
+namespace GW2NET.V1.Maps.Json
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

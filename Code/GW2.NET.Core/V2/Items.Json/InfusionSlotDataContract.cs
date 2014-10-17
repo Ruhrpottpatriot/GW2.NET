@@ -6,7 +6,7 @@
 //   Represents one of an item's infusion slots.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Items.Json
+namespace GW2NET.V2.Items.Json
 {
     using System.Collections.Generic;
     using System.Runtime.Serialization;

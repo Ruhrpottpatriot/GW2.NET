@@ -6,7 +6,7 @@
 //   Provides the default implementation of the Guild Wars 2 service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET
+namespace GW2NET
 {
     using System;
     using System.Collections.Generic;
@@ -15,31 +15,31 @@ namespace GW2DotNET
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Compression;
-    using GW2DotNET.Entities.Builds;
-    using GW2DotNET.Entities.Colors;
-    using GW2DotNET.Entities.DynamicEvents;
-    using GW2DotNET.Entities.Files;
-    using GW2DotNET.Entities.Guilds;
-    using GW2DotNET.Entities.Items;
-    using GW2DotNET.Entities.Maps;
-    using GW2DotNET.Entities.Recipes;
-    using GW2DotNET.Entities.Skins;
-    using GW2DotNET.Entities.Worlds;
-    using GW2DotNET.Entities.WorldVersusWorld;
-    using GW2DotNET.V1.Builds;
-    using GW2DotNET.V1.Colors;
-    using GW2DotNET.V1.DynamicEvents;
-    using GW2DotNET.V1.Files;
-    using GW2DotNET.V1.Guilds;
-    using GW2DotNET.V1.Items;
-    using GW2DotNET.V1.Maps;
-    using GW2DotNET.V1.Recipes;
-    using GW2DotNET.V1.Skins;
-    using GW2DotNET.V1.Worlds;
-    using GW2DotNET.V1.WorldVersusWorld;
+    using GW2NET.Common;
+    using GW2NET.Common.Serializers;
+    using GW2NET.Compression;
+    using GW2NET.Entities.Builds;
+    using GW2NET.Entities.Colors;
+    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.Entities.Files;
+    using GW2NET.Entities.Guilds;
+    using GW2NET.Entities.Items;
+    using GW2NET.Entities.Maps;
+    using GW2NET.Entities.Recipes;
+    using GW2NET.Entities.Skins;
+    using GW2NET.Entities.Worlds;
+    using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.V1.Builds;
+    using GW2NET.V1.Colors;
+    using GW2NET.V1.DynamicEvents;
+    using GW2NET.V1.Files;
+    using GW2NET.V1.Guilds;
+    using GW2NET.V1.Items;
+    using GW2NET.V1.Maps;
+    using GW2NET.V1.Recipes;
+    using GW2NET.V1.Skins;
+    using GW2NET.V1.Worlds;
+    using GW2NET.V1.WorldVersusWorld;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 

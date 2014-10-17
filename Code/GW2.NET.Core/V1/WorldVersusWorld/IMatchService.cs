@@ -6,7 +6,7 @@
 //   Provides the interface for the matches service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld
 {
     /// <summary>Provides the interface for the matches service.</summary>
     public interface IMatchService : IMatchDiscoveryService, IMatchDetailsService, IObjectiveNameService

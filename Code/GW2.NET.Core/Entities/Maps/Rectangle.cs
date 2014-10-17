@@ -6,7 +6,7 @@
 //   Represents a rectangle.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     /// <summary>Represents a rectangle.</summary>
     public struct Rectangle

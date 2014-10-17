@@ -6,7 +6,7 @@
 //   Represents a short bow skin.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Skins
+namespace GW2NET.Entities.Skins
 {
     /// <summary>Represents a short bow skin.</summary>
     public class ShortBowSkin : WeaponSkin

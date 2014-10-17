@@ -6,7 +6,7 @@
 //   Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Maps
+namespace GW2NET.Entities.Maps
 {
     using System;
     using System.Collections.Generic;

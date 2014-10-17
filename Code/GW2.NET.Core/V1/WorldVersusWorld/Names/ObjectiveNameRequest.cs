@@ -6,12 +6,12 @@
 //   Represents a request for a list of objectives and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld
 {
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for a list of objectives and their localized name.</summary>
     public class ObjectiveNameRequest : IRequest, ILocalizable

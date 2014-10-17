@@ -6,7 +6,7 @@
 //   Represents a buy or sell offer.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Commerce
+namespace GW2NET.Entities.Commerce
 {
     using System.Globalization;
 

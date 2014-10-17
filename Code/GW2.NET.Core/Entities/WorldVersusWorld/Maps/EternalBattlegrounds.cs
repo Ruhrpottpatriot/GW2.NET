@@ -6,7 +6,7 @@
 //   Represents the Eternal Battlegrounds.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.WorldVersusWorld
+namespace GW2NET.Entities.WorldVersusWorld
 {
     /// <summary>Represents the Eternal Battlegrounds.</summary>
     public class EternalBattlegrounds : CompetitiveMap

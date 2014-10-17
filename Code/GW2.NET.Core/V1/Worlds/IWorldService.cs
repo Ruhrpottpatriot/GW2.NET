@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V1.Worlds
+namespace GW2NET.V1.Worlds
 {
     /// <summary>Provides the interface for the world service.</summary>
     public interface IWorldService : IWorldNameService

@@ -6,7 +6,7 @@
 //   Provides an offline implementation of the world service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Local.Worlds
+namespace GW2NET.Local.Worlds
 {
     using System;
     using System.Collections.Generic;
@@ -16,10 +16,10 @@ namespace GW2DotNET.Local.Worlds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Common.Serializers;
-    using GW2DotNET.Entities.Worlds;
-    using GW2DotNET.V1.Worlds;
+    using GW2NET.Common;
+    using GW2NET.Common.Serializers;
+    using GW2NET.Entities.Worlds;
+    using GW2NET.V1.Worlds;
 
     /// <summary>Provides an offline implementation of the world service.</summary>
     public class OfflineWorldService : IWorldNameService

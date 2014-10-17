@@ -6,7 +6,7 @@
 //   Represents a soup crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     /// <summary>Represents a soup crafting recipe.</summary>
     public class SoupRecipe : Recipe

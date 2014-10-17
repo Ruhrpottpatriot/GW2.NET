@@ -6,12 +6,12 @@
 //   Represents a request for information regarding a specific recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Recipes
+namespace GW2NET.V1.Recipes
 {
     using System.Collections.Generic;
     using System.Globalization;
 
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a request for information regarding a specific recipe.</summary>
     public class RecipeDetailsRequest : IRequest, ILocalizable

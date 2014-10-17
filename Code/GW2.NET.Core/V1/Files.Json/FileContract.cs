@@ -6,7 +6,7 @@
 //   Represents information about a file that can be retrieved from the render service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Files.Json
+namespace GW2NET.V1.Files.Json
 {
     using System.Runtime.Serialization;
 

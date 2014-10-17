@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2DotNET.V1.Guilds
+namespace GW2NET.V1.Guilds
 {
     /// <summary>Provides the interface for the guild service.</summary>
     public interface IGuildService : IGuildDetailsService

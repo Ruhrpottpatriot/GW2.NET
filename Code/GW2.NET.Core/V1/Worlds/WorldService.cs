@@ -6,7 +6,7 @@
 //   Provides the default implementation of the world service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V1.Worlds
+namespace GW2NET.V1.Worlds
 {
     using System;
     using System.Collections.Generic;
@@ -16,9 +16,9 @@ namespace GW2DotNET.V1.Worlds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Worlds;
-    using GW2DotNET.V1.Worlds.Json;
+    using GW2NET.Common;
+    using GW2NET.Entities.Worlds;
+    using GW2NET.V1.Worlds.Json;
 
     /// <summary>Provides the default implementation of the world service.</summary>
     public class WorldService : IWorldService

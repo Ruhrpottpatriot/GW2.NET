@@ -6,9 +6,9 @@
 //   Represents a chat link that links to an outfit.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.ChatLinks
+namespace GW2NET.ChatLinks
 {
-    using GW2DotNET.Common;
+    using GW2NET.Common;
 
     /// <summary>Represents a chat link that links to an outfit.</summary>
     [Converter(typeof(OutfitChatLinkConverter))]

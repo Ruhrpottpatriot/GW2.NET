@@ -6,7 +6,7 @@
 //   Represents a mini pet.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Items
+namespace GW2NET.Entities.Items
 {
     /// <summary>Represents a mini pet.</summary>
     public class MiniPet : Item

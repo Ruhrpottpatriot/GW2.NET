@@ -6,15 +6,15 @@
 //   Provides the base class for types that represent a crafting recipe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Recipes
+namespace GW2NET.Entities.Recipes
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
-    using GW2DotNET.ChatLinks;
-    using GW2DotNET.Entities.Items;
+    using GW2NET.ChatLinks;
+    using GW2NET.Entities.Items;
 
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
     public abstract class Recipe : IEquatable<Recipe>

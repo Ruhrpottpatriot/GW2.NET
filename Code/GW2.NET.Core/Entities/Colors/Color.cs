@@ -6,7 +6,7 @@
 //   Represents an RGB color.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.Entities.Colors
+namespace GW2NET.Entities.Colors
 {
     /// <summary>Represents an RGB color.</summary>
     public struct Color

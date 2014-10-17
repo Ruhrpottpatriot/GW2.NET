@@ -6,7 +6,7 @@
 //   Provides an implementation of the Mumble Link protocol.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.MumbleLink
+namespace GW2NET.MumbleLink
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -17,8 +17,8 @@ namespace GW2DotNET.MumbleLink
     using System.Runtime.Serialization.Json;
     using System.Text;
 
-    using GW2DotNET.Common;
-    using GW2DotNET.Entities.Maps;
+    using GW2NET.Common;
+    using GW2NET.Entities.Maps;
 
     /// <summary>Provides an implementation of the Mumble Link protocol.</summary>
     /// <example>
@@ -141,7 +141,6 @@ namespace GW2DotNET.MumbleLink
 
             // Copy the unmanaged memory to a managed struct
             var mumbleContext = (MumbleContext)Marshal.PtrToStructure(ptr, typeof(MumbleContext));
-
 
             // Convert data contracts to managed data types
             // MEMO: for the first tick, only context data is available

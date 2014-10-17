@@ -6,9 +6,9 @@
 //   Represents a request for a collection of Quaggans.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2DotNET.V2.Quaggans
+namespace GW2NET.V2.Quaggans
 {
-    using GW2DotNET.V2.Common;
+    using GW2NET.V2.Common;
 
     /// <summary>Represents a request for a collection of Quaggans.</summary>
     internal sealed class QuagganBulkRequest : BulkRequest
