@@ -210,7 +210,7 @@ namespace GW2DotNET.MumbleLink
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private static Vector3D ConvertVector3D(float[] position)
         {
-            return new Vector3D { X = position[0], Y = position[2], Z = position[1] };
+            return new Vector3D { X = position[0], Y = position[1], Z = position[2] };
         }
     }
 }
