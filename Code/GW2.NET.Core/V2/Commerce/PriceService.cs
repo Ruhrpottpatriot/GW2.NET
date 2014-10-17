@@ -290,7 +290,7 @@ namespace GW2DotNET.V2.Commerce
             }
 
             var values = ConvertAggregateListingDataContractPage(response.Content);
-            values.Page = page;
+            values.PageIndex = page;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
             values.SubtotalCount = response.GetResultCount();
@@ -317,7 +317,7 @@ namespace GW2DotNET.V2.Commerce
             }
 
             var values = ConvertAggregateListingDataContractPage(response.Content);
-            values.Page = page;
+            values.PageIndex = page;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
             values.SubtotalCount = response.GetResultCount();
@@ -355,7 +355,7 @@ namespace GW2DotNET.V2.Commerce
                     }
 
                     var values = ConvertAggregateListingDataContractPage(response.Content);
-                    values.Page = page;
+                    values.PageIndex = page;
                     values.PageSize = response.GetPageSize();
                     values.PageCount = response.GetPageTotal();
                     values.SubtotalCount = response.GetResultCount();
@@ -397,7 +397,7 @@ namespace GW2DotNET.V2.Commerce
                     }
 
                     var values = ConvertAggregateListingDataContractPage(response.Content);
-                    values.Page = page;
+                    values.PageIndex = page;
                     values.PageSize = response.GetPageSize();
                     values.PageCount = response.GetPageTotal();
                     values.SubtotalCount = response.GetResultCount();

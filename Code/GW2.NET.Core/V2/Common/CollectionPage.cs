@@ -35,19 +35,31 @@ namespace GW2DotNET.V2.Common
             Contract.Requires(capacity >= 0);
         }
 
-        /// <summary>Gets or sets the 0-based index of this subset.</summary>
-        public int Page { get; set; }
-
-        /// <summary>Gets or sets the number of subsets in the collection.</summary>
-        public int PageCount { get; set; }
-
-        /// <summary>Gets or sets the maximum number of values in this subset.</summary>
-        public int PageSize { get; set; }
-
         /// <summary>Gets or sets the number of values in this subset.</summary>
         public int SubtotalCount { get; set; }
 
         /// <summary>Gets or sets the number of values in the collection.</summary>
         public int TotalCount { get; set; }
+
+        /// <summary>Gets or sets the page index of the first page.</summary>
+        public int FirstPageIndex { get; set; }
+
+        /// <summary>Gets or sets the page index of the last page.</summary>
+        public int LastPageIndex { get; set; }
+
+        /// <summary>Gets or sets the page index of the next page.</summary>
+        public int? NextPageIndex { get; set; }
+
+        /// <summary>Gets or sets the number of pages.</summary>
+        public int PageCount { get; set; }
+
+        /// <summary>Gets or sets the page index of the current page.</summary>
+        public int PageIndex { get; set; }
+
+        /// <summary>Gets or sets the maximum number of items per page.</summary>
+        public int PageSize { get; set; }
+
+        /// <summary>Gets or sets the page index of the previous page.</summary>
+        public int? PreviousPageIndex { get; set; }
     }
 }

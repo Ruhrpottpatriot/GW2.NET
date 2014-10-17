@@ -346,12 +346,26 @@ namespace GW2DotNET.V2.Items
 
             var values = new CollectionPage<Item>(response.Content.Count)
                 {
-                    Page = page, 
+                    PageIndex = page, 
                     PageSize = response.GetPageSize(), 
                     PageCount = response.GetPageTotal(), 
                     SubtotalCount = response.GetResultCount(), 
                     TotalCount = response.GetResultTotal()
                 };
+
+            if (values.PageCount > 0)
+            {
+                values.LastPageIndex = values.PageCount - 1;
+                if (values.PageIndex < values.LastPageIndex)
+                {
+                    values.NextPageIndex = values.PageIndex + 1;
+                }
+
+                if (values.PageIndex > values.FirstPageIndex)
+                {
+                    values.PreviousPageIndex = values.PageIndex - 1;
+                }
+            }
 
             var locale = response.Culture;
             foreach (var value in response.Content.Select(ConvertItemDataContract))
@@ -378,12 +392,26 @@ namespace GW2DotNET.V2.Items
 
             var values = new CollectionPage<Item>(response.Content.Count)
                 {
-                    Page = page, 
+                    PageIndex = page, 
                     PageSize = response.GetPageSize(), 
                     PageCount = response.GetPageTotal(), 
                     SubtotalCount = response.GetResultCount(), 
                     TotalCount = response.GetResultTotal()
                 };
+
+            if (values.PageCount > 0)
+            {
+                values.LastPageIndex = values.PageCount - 1;
+                if (values.PageIndex < values.LastPageIndex)
+                {
+                    values.NextPageIndex = values.PageIndex + 1;
+                }
+
+                if (values.PageIndex > values.FirstPageIndex)
+                {
+                    values.PreviousPageIndex = values.PageIndex - 1;
+                }
+            }
 
             var locale = response.Culture;
             foreach (var value in response.Content.Select(ConvertItemDataContract))
@@ -421,12 +449,26 @@ namespace GW2DotNET.V2.Items
 
                         var values = new CollectionPage<Item>(response.Content.Count)
                             {
-                                Page = page, 
+                                PageIndex = page, 
                                 PageSize = response.GetPageSize(), 
                                 PageCount = response.GetPageTotal(), 
                                 SubtotalCount = response.GetResultCount(), 
                                 TotalCount = response.GetResultTotal()
                             };
+
+                        if (values.PageCount > 0)
+                        {
+                            values.LastPageIndex = values.PageCount - 1;
+                            if (values.PageIndex < values.LastPageIndex)
+                            {
+                                values.NextPageIndex = values.PageIndex + 1;
+                            }
+
+                            if (values.PageIndex > values.FirstPageIndex)
+                            {
+                                values.PreviousPageIndex = values.PageIndex - 1;
+                            }
+                        }
 
                         var locale = response.Culture;
                         foreach (var value in response.Content.Select(ConvertItemDataContract))
@@ -469,12 +511,26 @@ namespace GW2DotNET.V2.Items
 
                         var values = new CollectionPage<Item>(response.Content.Count)
                             {
-                                Page = page, 
+                                PageIndex = page, 
                                 PageSize = response.GetPageSize(), 
                                 PageCount = response.GetPageTotal(), 
                                 SubtotalCount = response.GetResultCount(), 
                                 TotalCount = response.GetResultTotal()
                             };
+
+                        if (values.PageCount > 0)
+                        {
+                            values.LastPageIndex = values.PageCount - 1;
+                            if (values.PageIndex < values.LastPageIndex)
+                            {
+                                values.NextPageIndex = values.PageIndex + 1;
+                            }
+
+                            if (values.PageIndex > values.FirstPageIndex)
+                            {
+                                values.PreviousPageIndex = values.PageIndex - 1;
+                            }
+                        }
 
                         var locale = response.Culture;
                         foreach (var value in response.Content.Select(ConvertItemDataContract))

@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2DotNET.V2.Common
 {
+    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
     using GW2DotNET.Common;
@@ -20,7 +21,7 @@ namespace GW2DotNET.V2.Common
         /// <typeparam name="T">The response content type.</typeparam>
         /// <returns>The maximum number of values in a subset.</returns>
         [Pure]
-        public static int GetPageSize<T>(this IResponse<T> instance)
+        public static int GetPageSize<T>(this IResponse<ICollection<T>> instance)
         {
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
@@ -45,7 +46,7 @@ namespace GW2DotNET.V2.Common
         /// <typeparam name="T">The response content type.</typeparam>
         /// <returns>The number of subsets in a collection.</returns>
         [Pure]
-        public static int GetPageTotal<T>(this IResponse<T> instance)
+        public static int GetPageTotal<T>(this IResponse<ICollection<T>> instance)
         {
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
@@ -70,7 +71,7 @@ namespace GW2DotNET.V2.Common
         /// <typeparam name="T">The response content type.</typeparam>
         /// <returns>The number of values in a subset.</returns>
         [Pure]
-        public static int GetResultCount<T>(this IResponse<T> instance)
+        public static int GetResultCount<T>(this IResponse<ICollection<T>> instance)
         {
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
@@ -95,7 +96,7 @@ namespace GW2DotNET.V2.Common
         /// <typeparam name="T">The response content type.</typeparam>
         /// <returns>The number of values in a collection.</returns>
         [Pure]
-        public static int GetResultTotal<T>(this IResponse<T> instance)
+        public static int GetResultTotal<T>(this IResponse<ICollection<T>> instance)
         {
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
