@@ -6,7 +6,6 @@
 //   Provides the interface for repositories.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Common
 {
     using System.Collections.Generic;

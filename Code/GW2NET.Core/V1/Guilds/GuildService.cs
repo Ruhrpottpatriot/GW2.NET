@@ -40,7 +40,7 @@ namespace GW2NET.V1.Guilds
         public Guild GetGuildDetailsById(Guid guildId)
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
-            var response = this.serviceClient.Send<GuildContract>(request);
+            var response = this.serviceClient.Send<GuildDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -57,7 +57,7 @@ namespace GW2NET.V1.Guilds
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
             var cancellationToken = CancellationToken.None;
-            return this.serviceClient.SendAsync<GuildContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -79,7 +79,7 @@ namespace GW2NET.V1.Guilds
         public Task<Guild> GetGuildDetailsByIdAsync(Guid guildId, CancellationToken cancellationToken)
         {
             var request = new GuildDetailsRequest { GuildId = guildId };
-            return this.serviceClient.SendAsync<GuildContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -100,7 +100,7 @@ namespace GW2NET.V1.Guilds
         public Guild GetGuildDetailsByName(string guildName)
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
-            var response = this.serviceClient.Send<GuildContract>(request);
+            var response = this.serviceClient.Send<GuildDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -117,7 +117,7 @@ namespace GW2NET.V1.Guilds
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
             var cancellationToken = CancellationToken.None;
-            return this.serviceClient.SendAsync<GuildContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -139,7 +139,7 @@ namespace GW2NET.V1.Guilds
         public Task<Guild> GetGuildDetailsByNameAsync(string guildName, CancellationToken cancellationToken)
         {
             var request = new GuildDetailsRequest { GuildName = guildName };
-            return this.serviceClient.SendAsync<GuildContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -156,7 +156,7 @@ namespace GW2NET.V1.Guilds
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Emblem ConvertEmblemContract(EmblemContract content)
+        private static Emblem ConvertEmblemContract(EmblemDataContract content)
         {
             if (content == null)
             {
@@ -164,14 +164,14 @@ namespace GW2NET.V1.Guilds
             }
 
             return new Emblem
-                       {
-                           BackgroundId = content.BackgroundId, 
-                           ForegroundId = content.ForegroundId, 
-                           Flags = ConvertEmblemTransformationsContractCollection(content.Flags), 
-                           BackgroundColorId = content.BackgroundColorId, 
-                           ForegroundPrimaryColorId = content.ForegroundPrimaryColorId, 
-                           ForegroundSecondaryColorId = content.ForegroundSecondaryColorId
-                       };
+                {
+                    BackgroundId = content.BackgroundId, 
+                    ForegroundId = content.ForegroundId, 
+                    Flags = ConvertEmblemTransformationsContractCollection(content.Flags), 
+                    BackgroundColorId = content.BackgroundColorId, 
+                    ForegroundPrimaryColorId = content.ForegroundPrimaryColorId, 
+                    ForegroundSecondaryColorId = content.ForegroundSecondaryColorId
+                };
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
@@ -194,7 +194,7 @@ namespace GW2NET.V1.Guilds
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Guild ConvertGuildContractCollection(GuildContract content)
+        private static Guild ConvertGuildContractCollection(GuildDataContract content)
         {
             Contract.Requires(content != null);
             return new Guild { GuildId = Guid.Parse(content.GuildId), Name = content.Name, Tag = content.Tag, Emblem = ConvertEmblemContract(content.Emblem) };

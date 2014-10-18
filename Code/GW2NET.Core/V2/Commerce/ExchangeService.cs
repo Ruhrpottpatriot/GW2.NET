@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides access to the Trading Post exchange service.
+//   Provides access to the /v2/commerce/exchange service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce
@@ -129,18 +129,18 @@ namespace GW2NET.V2.Commerce
             var request = new ExchangeDetailsRequest { Identifier = identifier };
             return this.serviceClient.SendAsync<ExchangeQuoteDataContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return null;
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
 
-                    var value = ConvertExchangeQuoteDataContract(response.Content);
-                    value.Id = identifier.ToLowerInvariant();
-                    value.Timestamp = response.Date;
-                    return value;
-                },
+                        var value = ConvertExchangeQuoteDataContract(response.Content);
+                        value.Id = identifier.ToLowerInvariant();
+                        value.Timestamp = response.Date;
+                        return value;
+                    }, 
                 cancellationToken);
         }
 

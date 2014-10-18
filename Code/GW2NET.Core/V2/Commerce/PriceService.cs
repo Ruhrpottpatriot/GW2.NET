@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides access to the Trading Post price service.
+//   Provides access to the Trading Post price service. See the class remarks for important limitations regarding the default implementation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce
@@ -76,15 +76,15 @@ namespace GW2NET.V2.Commerce
             var request = new PriceDiscoveryRequest();
             return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return new List<int>(0);
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new List<int>(0);
+                        }
 
-                    return response.Content;
-                },
+                        return response.Content;
+                    }, 
                 cancellationToken);
         }
 
@@ -177,23 +177,23 @@ namespace GW2NET.V2.Commerce
             var request = new PriceBulkRequest();
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return new DictionaryRange<int, AggregateListing>(0);
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new DictionaryRange<int, AggregateListing>(0);
+                        }
 
-                    var values = ConvertAggregateListingDataContractRange(response.Content);
-                    values.SubtotalCount = response.GetResultCount();
-                    values.TotalCount = response.GetResultTotal();
-                    foreach (var value in values.Values)
-                    {
-                        value.Timestamp = response.Date;
-                    }
+                        var values = ConvertAggregateListingDataContractRange(response.Content);
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
+                        foreach (var value in values.Values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
 
-                    return values;
-                },
+                        return values;
+                    }, 
                 cancellationToken);
         }
 
@@ -226,23 +226,23 @@ namespace GW2NET.V2.Commerce
             var request = new PriceBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return new DictionaryRange<int, AggregateListing>(0);
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new DictionaryRange<int, AggregateListing>(0);
+                        }
 
-                    var values = ConvertAggregateListingDataContractRange(response.Content);
-                    values.SubtotalCount = response.GetResultCount();
-                    values.TotalCount = response.GetResultTotal();
-                    foreach (var value in values.Values)
-                    {
-                        value.Timestamp = response.Date;
-                    }
+                        var values = ConvertAggregateListingDataContractRange(response.Content);
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
+                        foreach (var value in values.Values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
 
-                    return values;
-                },
+                        return values;
+                    }, 
                 cancellationToken);
         }
 
@@ -263,17 +263,17 @@ namespace GW2NET.V2.Commerce
             var request = new PriceDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
             return this.serviceClient.SendAsync<AggregateListingDataContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return null;
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
 
-                    var value = ConvertAggregateListingDataContract(response.Content);
-                    value.Timestamp = response.Date;
-                    return value;
-                },
+                        var value = ConvertAggregateListingDataContract(response.Content);
+                        value.Timestamp = response.Date;
+                        return value;
+                    }, 
                 cancellationToken);
         }
 
@@ -347,26 +347,26 @@ namespace GW2NET.V2.Commerce
             var request = new PricePageRequest { Page = page };
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return new CollectionPage<AggregateListing>(0);
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new CollectionPage<AggregateListing>(0);
+                        }
 
-                    var values = ConvertAggregateListingDataContractPage(response.Content);
-                    values.PageIndex = page;
-                    values.PageSize = response.GetPageSize();
-                    values.PageCount = response.GetPageTotal();
-                    values.SubtotalCount = response.GetResultCount();
-                    values.TotalCount = response.GetResultTotal();
-                    foreach (var value in values)
-                    {
-                        value.Timestamp = response.Date;
-                    }
+                        var values = ConvertAggregateListingDataContractPage(response.Content);
+                        values.PageIndex = page;
+                        values.PageSize = response.GetPageSize();
+                        values.PageCount = response.GetPageTotal();
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
+                        foreach (var value in values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
 
-                    return values;
-                },
+                        return values;
+                    }, 
                 cancellationToken);
         }
 
@@ -389,26 +389,26 @@ namespace GW2NET.V2.Commerce
             var request = new PricePageRequest { Page = page, PageSize = pageSize };
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return new CollectionPage<AggregateListing>(0);
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new CollectionPage<AggregateListing>(0);
+                        }
 
-                    var values = ConvertAggregateListingDataContractPage(response.Content);
-                    values.PageIndex = page;
-                    values.PageSize = response.GetPageSize();
-                    values.PageCount = response.GetPageTotal();
-                    values.SubtotalCount = response.GetResultCount();
-                    values.TotalCount = response.GetResultTotal();
-                    foreach (var value in values)
-                    {
-                        value.Timestamp = response.Date;
-                    }
+                        var values = ConvertAggregateListingDataContractPage(response.Content);
+                        values.PageIndex = page;
+                        values.PageSize = response.GetPageSize();
+                        values.PageCount = response.GetPageTotal();
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
+                        foreach (var value in values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
 
-                    return values;
-                },
+                        return values;
+                    }, 
                 cancellationToken);
         }
 

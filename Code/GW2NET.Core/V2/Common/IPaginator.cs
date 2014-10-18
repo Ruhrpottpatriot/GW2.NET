@@ -3,10 +3,9 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the interface for paginators.
+//   Provides the interface for types that perform pagination.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Common
 {
     using System.Diagnostics.Contracts;

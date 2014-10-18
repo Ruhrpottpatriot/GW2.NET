@@ -57,7 +57,7 @@ namespace GW2NET.V1.Worlds
             Contract.EndContractBlock();
 
             var request = new WorldNameRequest { Culture = language };
-            var response = this.serviceClient.Send<ICollection<WorldNameContract>>(request);
+            var response = this.serviceClient.Send<ICollection<WorldNameDataContract>>(request);
 
             // Ensure that there is response content
             if (response.Content == null)
@@ -118,7 +118,7 @@ namespace GW2NET.V1.Worlds
             Contract.EndContractBlock();
 
             var worldNamesRequest = new WorldNameRequest { Culture = language };
-            return this.serviceClient.SendAsync<ICollection<WorldNameContract>>(worldNamesRequest, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<WorldNameDataContract>>(worldNamesRequest, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -144,7 +144,7 @@ namespace GW2NET.V1.Worlds
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static World ConvertWorldNameContract(WorldNameContract content)
+        private static World ConvertWorldNameContract(WorldNameDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Id != null);
@@ -172,7 +172,7 @@ namespace GW2NET.V1.Worlds
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, World> ConvertWorldNameContractCollection(ICollection<WorldNameContract> content)
+        private static IDictionary<int, World> ConvertWorldNameContractCollection(ICollection<WorldNameDataContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<int, World>>() != null);

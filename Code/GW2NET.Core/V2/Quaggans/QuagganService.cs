@@ -81,7 +81,7 @@ namespace GW2NET.V2.Quaggans
         public Quaggan Find(string identifier)
         {
             var request = new QuagganDetailsRequest { Identifier = identifier };
-            var response = this.serviceClient.Send<QuagganContract>(request);
+            var response = this.serviceClient.Send<QuagganDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -95,7 +95,7 @@ namespace GW2NET.V2.Quaggans
         public IDictionaryRange<string, Quaggan> FindAll()
         {
             var request = new QuagganBulkRequest();
-            var response = this.serviceClient.Send<ICollection<QuagganContract>>(request);
+            var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
             if (response.Content == null)
             {
                 return new DictionaryRange<string, Quaggan>(0);
@@ -129,7 +129,7 @@ namespace GW2NET.V2.Quaggans
             Contract.EndContractBlock();
 
             var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
-            var response = this.serviceClient.Send<ICollection<QuagganContract>>(request);
+            var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
             if (response.Content == null)
             {
                 return new DictionaryRange<string, Quaggan>(0);
@@ -158,7 +158,7 @@ namespace GW2NET.V2.Quaggans
         public Task<IDictionaryRange<string, Quaggan>> FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new QuagganBulkRequest();
-            return this.serviceClient.SendAsync<ICollection<QuagganContract>>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -206,7 +206,7 @@ namespace GW2NET.V2.Quaggans
             Contract.EndContractBlock();
 
             var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
-            return this.serviceClient.SendAsync<ICollection<QuagganContract>>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -242,7 +242,7 @@ namespace GW2NET.V2.Quaggans
         public Task<Quaggan> FindAsync(string identifier, CancellationToken cancellationToken)
         {
             var request = new QuagganDetailsRequest { Identifier = identifier };
-            return this.serviceClient.SendAsync<QuagganContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<QuagganDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -262,7 +262,7 @@ namespace GW2NET.V2.Quaggans
         public ICollectionPage<Quaggan> GetPage(int page)
         {
             var request = new QuagganPageRequest { Page = page };
-            var response = this.serviceClient.Send<ICollection<QuagganContract>>(request);
+            var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
             if (response.Content == null)
             {
                 return new CollectionPage<Quaggan>(0);
@@ -291,7 +291,7 @@ namespace GW2NET.V2.Quaggans
         public ICollectionPage<Quaggan> GetPage(int page, int pageSize)
         {
             var request = new QuagganPageRequest { Page = page, PageSize = pageSize };
-            var response = this.serviceClient.Send<ICollection<QuagganContract>>(request);
+            var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
             if (response.Content == null)
             {
                 return new CollectionPage<Quaggan>(0);
@@ -328,7 +328,7 @@ namespace GW2NET.V2.Quaggans
         public Task<ICollectionPage<Quaggan>> GetPageAsync(int page, CancellationToken cancellationToken)
         {
             var request = new QuagganPageRequest { Page = page };
-            return this.serviceClient.SendAsync<ICollection<QuagganContract>>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -372,7 +372,7 @@ namespace GW2NET.V2.Quaggans
         public Task<ICollectionPage<Quaggan>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken)
         {
             var request = new QuagganPageRequest { Page = page, PageSize = pageSize };
-            return this.serviceClient.SendAsync<ICollection<QuagganContract>>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -402,7 +402,7 @@ namespace GW2NET.V2.Quaggans
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Quaggan ConvertQuagganContract(QuagganContract content)
+        private static Quaggan ConvertQuagganContract(QuagganDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Quaggan>() != null);
@@ -431,7 +431,7 @@ namespace GW2NET.V2.Quaggans
         /// <param name="pageCount">The page count.</param>
         /// <param name="totalCount">The total count.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionaryRange<string, Quaggan> ConvertQuagganContracts(IEnumerable<QuagganContract> content, int pageCount, int totalCount)
+        private static IDictionaryRange<string, Quaggan> ConvertQuagganContracts(IEnumerable<QuagganDataContract> content, int pageCount, int totalCount)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);
@@ -454,7 +454,7 @@ namespace GW2NET.V2.Quaggans
         /// <param name="pageTotal">The page total.</param>
         /// <returns>A collection of entities.</returns>
         private static ICollectionPage<Quaggan> ConvertQuagganContracts(
-            ICollection<QuagganContract> content, 
+            ICollection<QuagganDataContract> content, 
             int pageCount, 
             int totalCount, 
             int page, 
@@ -468,8 +468,8 @@ namespace GW2NET.V2.Quaggans
                 {
                     PageIndex = page, 
                     PageSize = pageSize, 
-                    PageCount = pageTotal,
-                    SubtotalCount = pageCount,
+                    PageCount = pageTotal, 
+                    SubtotalCount = pageCount, 
                     TotalCount = totalCount
                 };
 

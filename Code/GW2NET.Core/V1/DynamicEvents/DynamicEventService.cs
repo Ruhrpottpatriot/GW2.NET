@@ -43,7 +43,7 @@ namespace GW2NET.V1.DynamicEvents
         public DynamicEventState GetDynamicEvent(Guid eventId, int worldId)
         {
             var request = new DynamicEventStateRequest { EventId = eventId, WorldId = worldId };
-            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
+            var response = this.serviceClient.Send<EventStateCollectionDataContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return null;
@@ -71,7 +71,7 @@ namespace GW2NET.V1.DynamicEvents
         public Task<DynamicEventState> GetDynamicEventAsync(Guid eventId, int worldId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { EventId = eventId, WorldId = worldId };
-            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -108,7 +108,7 @@ namespace GW2NET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventDetailsRequest { Culture = language };
-            var response = this.serviceClient.Send<EventDetailsCollectionContract>(request);
+            var response = this.serviceClient.Send<EventDetailsCollectionDataContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEvent>(0);
@@ -149,7 +149,7 @@ namespace GW2NET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            var response = this.serviceClient.Send<EventDetailsCollectionContract>(request);
+            var response = this.serviceClient.Send<EventDetailsCollectionDataContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return null;
@@ -207,7 +207,7 @@ namespace GW2NET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventDetailsRequest { Culture = language };
-            return this.serviceClient.SendAsync<EventDetailsCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventDetailsCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -275,7 +275,7 @@ namespace GW2NET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventDetailsRequest { Culture = language, EventId = eventId };
-            return this.serviceClient.SendAsync<EventDetailsCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventDetailsCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -318,7 +318,7 @@ namespace GW2NET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventNameRequest { Culture = language };
-            var response = this.serviceClient.Send<ICollection<EventNameContract>>(request);
+            var response = this.serviceClient.Send<ICollection<EventNameDataContract>>(request);
             if (response.Content == null)
             {
                 return new Dictionary<Guid, DynamicEvent>(0);
@@ -377,7 +377,7 @@ namespace GW2NET.V1.DynamicEvents
             Contract.EndContractBlock();
 
             var request = new DynamicEventNameRequest { Culture = language };
-            return this.serviceClient.SendAsync<ICollection<EventNameContract>>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<EventNameDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -404,7 +404,7 @@ namespace GW2NET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEvents()
         {
             var request = new DynamicEventStateRequest();
-            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
+            var response = this.serviceClient.Send<EventStateCollectionDataContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -428,7 +428,7 @@ namespace GW2NET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsAsync(CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest();
-            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -449,7 +449,7 @@ namespace GW2NET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEventsById(Guid eventId)
         {
             var request = new DynamicEventStateRequest { EventId = eventId };
-            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
+            var response = this.serviceClient.Send<EventStateCollectionDataContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -466,7 +466,7 @@ namespace GW2NET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByIdAsync(Guid eventId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { EventId = eventId };
-            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -496,7 +496,7 @@ namespace GW2NET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEventsByMap(int mapId)
         {
             var request = new DynamicEventStateRequest { MapId = mapId };
-            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
+            var response = this.serviceClient.Send<EventStateCollectionDataContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -513,7 +513,7 @@ namespace GW2NET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEventsByMap(int mapId, int worldId)
         {
             var request = new DynamicEventStateRequest { MapId = mapId, WorldId = worldId };
-            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
+            var response = this.serviceClient.Send<EventStateCollectionDataContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -539,7 +539,7 @@ namespace GW2NET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { MapId = mapId };
-            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -572,7 +572,7 @@ namespace GW2NET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByMapAsync(int mapId, int worldId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { MapId = mapId, WorldId = worldId };
-            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -593,7 +593,7 @@ namespace GW2NET.V1.DynamicEvents
         public IDictionary<Guid, DynamicEventState> GetDynamicEventsByWorld(int worldId)
         {
             var request = new DynamicEventStateRequest { WorldId = worldId };
-            var response = this.serviceClient.Send<EventStateCollectionContract>(request);
+            var response = this.serviceClient.Send<EventStateCollectionDataContract>(request);
             if (response.Content == null || response.Content.Events == null)
             {
                 return new Dictionary<Guid, DynamicEventState>(0);
@@ -619,7 +619,7 @@ namespace GW2NET.V1.DynamicEvents
         public Task<IDictionary<Guid, DynamicEventState>> GetDynamicEventsByWorldAsync(int worldId, CancellationToken cancellationToken)
         {
             var request = new DynamicEventStateRequest { WorldId = worldId };
-            return this.serviceClient.SendAsync<EventStateCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<EventStateCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -636,7 +636,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<Guid, DynamicEvent> ConvertEventDetailsCollectionContract(EventDetailsCollectionContract content)
+        private static IDictionary<Guid, DynamicEvent> ConvertEventDetailsCollectionContract(EventDetailsCollectionDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Events != null);
@@ -654,7 +654,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static DynamicEvent ConvertEventDetailsContract(KeyValuePair<string, EventDetailsContract> content)
+        private static DynamicEvent ConvertEventDetailsContract(KeyValuePair<string, EventDetailsDataContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -696,7 +696,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static DynamicEvent ConvertEventNameContract(EventNameContract content)
+        private static DynamicEvent ConvertEventNameContract(EventNameDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<DynamicEvent>() != null);
@@ -723,7 +723,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<Guid, DynamicEvent> ConvertEventNameContracts(ICollection<EventNameContract> content)
+        private static IDictionary<Guid, DynamicEvent> ConvertEventNameContracts(ICollection<EventNameDataContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEvent>>() != null);
@@ -740,7 +740,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<Guid, DynamicEventState> ConvertEventStateContractCollection(EventStateCollectionContract content)
+        private static IDictionary<Guid, DynamicEventState> ConvertEventStateContractCollection(EventStateCollectionDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Events != null);
@@ -758,7 +758,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Location ConvertLocationContract(LocationContract content)
+        private static Location ConvertLocationContract(LocationDataContract content)
         {
             Contract.Requires(content != null);
             switch (content.Type)
@@ -776,6 +776,26 @@ namespace GW2NET.V1.DynamicEvents
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Vector3D ConvertPoint3DContract(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 3);
+            return new Vector3D(content[0], content[1], content[2]);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Vector2D ConvertVector2D(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
+            return new Vector2D(content[0], content[1]);
+        }
+
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
         private static ICollection<Vector2D> ConvertVector2DCollection(double[][] content)
         {
@@ -783,16 +803,6 @@ namespace GW2NET.V1.DynamicEvents
             var values = new List<Vector2D>(content.Length);
             values.AddRange(content.Select(ConvertVector2D));
             return values;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Vector3D ConvertPoint3DContract(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 3);
-            return new Vector3D(content[0], content[1], content[2]);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -808,7 +818,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static CylinderLocation MapCylinderLocation(LocationContract content)
+        private static CylinderLocation MapCylinderLocation(LocationDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -865,7 +875,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static DynamicEventState MapDynamicEventState(EventStateContract content)
+        private static DynamicEventState MapDynamicEventState(EventStateDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<DynamicEventState>() != null);
@@ -907,17 +917,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Vector2D ConvertVector2D(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 2);
-            return new Vector2D(content[0], content[1]);
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static PolygonLocation MapPolygonLocation(LocationContract content)
+        private static PolygonLocation MapPolygonLocation(LocationDataContract content)
         {
             Contract.Requires(content != null);
             var value = new PolygonLocation();
@@ -942,7 +942,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static SphereLocation MapSphereLocation(LocationContract content)
+        private static SphereLocation MapSphereLocation(LocationDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -968,7 +968,7 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static UnknownLocation MapUnknownLocation(LocationContract content)
+        private static UnknownLocation MapUnknownLocation(LocationDataContract content)
         {
             Contract.Requires(content != null);
 

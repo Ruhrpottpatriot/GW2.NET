@@ -6,7 +6,6 @@
 //   Provides the interface for the world service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V1.Worlds
 {
     /// <summary>Provides the interface for the world service.</summary>

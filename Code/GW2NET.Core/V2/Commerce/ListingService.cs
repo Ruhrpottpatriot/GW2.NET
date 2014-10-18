@@ -3,13 +3,12 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides access to the listing service.
+//   Provides access to the /v2/commerce/listings service. See the class remarks for important limitations regarding the default implementation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce
 {
     using System;
-    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.Contracts;
@@ -77,15 +76,15 @@ namespace GW2NET.V2.Commerce
             var request = new ListingDiscoveryRequest();
             return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return new List<int>(0);
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new List<int>(0);
+                        }
 
-                    return response.Content;
-                },
+                        return response.Content;
+                    }, 
                 cancellationToken);
         }
 
@@ -178,23 +177,23 @@ namespace GW2NET.V2.Commerce
             var request = new ListingBulkRequest();
             return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return new DictionaryRange<int, Listing>(0);
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new DictionaryRange<int, Listing>(0);
+                        }
 
-                    var values = ConvertListingDataContractRange(response.Content);
-                    values.SubtotalCount = response.GetResultCount();
-                    values.TotalCount = response.GetResultTotal();
-                    foreach (var value in values.Values)
-                    {
-                        value.Timestamp = response.Date;
-                    }
+                        var values = ConvertListingDataContractRange(response.Content);
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
+                        foreach (var value in values.Values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
 
-                    return values;
-                },
+                        return values;
+                    }, 
                 cancellationToken);
         }
 
@@ -227,23 +226,23 @@ namespace GW2NET.V2.Commerce
             var request = new ListingBulkRequest() { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
             return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return new DictionaryRange<int, Listing>(0);
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return new DictionaryRange<int, Listing>(0);
+                        }
 
-                    var values = ConvertListingDataContractRange(response.Content);
-                    values.SubtotalCount = response.GetResultCount();
-                    values.TotalCount = response.GetResultTotal();
-                    foreach (var value in values.Values)
-                    {
-                        value.Timestamp = response.Date;
-                    }
+                        var values = ConvertListingDataContractRange(response.Content);
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
+                        foreach (var value in values.Values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
 
-                    return values;
-                },
+                        return values;
+                    }, 
                 cancellationToken);
         }
 
@@ -264,17 +263,17 @@ namespace GW2NET.V2.Commerce
             var request = new ListingDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
             return this.serviceClient.SendAsync<ListingDataContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return null;
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
 
-                    var value = ConvertListingDataContract(response.Content);
-                    value.Timestamp = response.Date;
-                    return value;
-                },
+                        var value = ConvertListingDataContract(response.Content);
+                        value.Timestamp = response.Date;
+                        return value;
+                    }, 
                 cancellationToken);
         }
 
@@ -376,40 +375,40 @@ namespace GW2NET.V2.Commerce
             var request = new ListingPageRequest { Page = page };
             return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response == null)
                     {
-                        return new CollectionPage<Listing>(0);
-                    }
-
-                    var values = ConvertListingDataContractPage(response.Content);
-                    values.PageIndex = page;
-                    values.PageSize = response.GetPageSize();
-                    values.PageCount = response.GetPageTotal();
-                    values.SubtotalCount = response.GetResultCount();
-                    values.TotalCount = response.GetResultTotal();
-                    if (values.PageCount > 0)
-                    {
-                        values.LastPageIndex = values.PageCount - 1;
-                        if (values.PageIndex < values.LastPageIndex)
+                        var response = task.Result;
+                        if (response == null)
                         {
-                            values.NextPageIndex = values.PageIndex + 1;
+                            return new CollectionPage<Listing>(0);
                         }
 
-                        if (values.PageIndex > values.FirstPageIndex)
+                        var values = ConvertListingDataContractPage(response.Content);
+                        values.PageIndex = page;
+                        values.PageSize = response.GetPageSize();
+                        values.PageCount = response.GetPageTotal();
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
+                        if (values.PageCount > 0)
                         {
-                            values.PreviousPageIndex = values.PageIndex - 1;
+                            values.LastPageIndex = values.PageCount - 1;
+                            if (values.PageIndex < values.LastPageIndex)
+                            {
+                                values.NextPageIndex = values.PageIndex + 1;
+                            }
+
+                            if (values.PageIndex > values.FirstPageIndex)
+                            {
+                                values.PreviousPageIndex = values.PageIndex - 1;
+                            }
                         }
-                    }
 
-                    foreach (var value in values)
-                    {
-                        value.Timestamp = response.Date;
-                    }
+                        foreach (var value in values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
 
-                    return values;
-                },
+                        return values;
+                    }, 
                 cancellationToken);
         }
 
@@ -432,40 +431,40 @@ namespace GW2NET.V2.Commerce
             var request = new ListingPageRequest { Page = page, PageSize = pageSize };
             return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response == null)
                     {
-                        return new CollectionPage<Listing>(0);
-                    }
-
-                    var values = ConvertListingDataContractPage(response.Content);
-                    values.PageIndex = page;
-                    values.PageSize = response.GetPageSize();
-                    values.PageCount = response.GetPageTotal();
-                    values.SubtotalCount = response.GetResultCount();
-                    values.TotalCount = response.GetResultTotal();
-                    if (values.PageCount > 0)
-                    {
-                        values.LastPageIndex = values.PageCount - 1;
-                        if (values.PageIndex < values.LastPageIndex)
+                        var response = task.Result;
+                        if (response == null)
                         {
-                            values.NextPageIndex = values.PageIndex + 1;
+                            return new CollectionPage<Listing>(0);
                         }
 
-                        if (values.PageIndex > values.FirstPageIndex)
+                        var values = ConvertListingDataContractPage(response.Content);
+                        values.PageIndex = page;
+                        values.PageSize = response.GetPageSize();
+                        values.PageCount = response.GetPageTotal();
+                        values.SubtotalCount = response.GetResultCount();
+                        values.TotalCount = response.GetResultTotal();
+                        if (values.PageCount > 0)
                         {
-                            values.PreviousPageIndex = values.PageIndex - 1;
+                            values.LastPageIndex = values.PageCount - 1;
+                            if (values.PageIndex < values.LastPageIndex)
+                            {
+                                values.NextPageIndex = values.PageIndex + 1;
+                            }
+
+                            if (values.PageIndex > values.FirstPageIndex)
+                            {
+                                values.PreviousPageIndex = values.PageIndex - 1;
+                            }
                         }
-                    }
 
-                    foreach (var value in values)
-                    {
-                        value.Timestamp = response.Date;
-                    }
+                        foreach (var value in values)
+                        {
+                            value.Timestamp = response.Date;
+                        }
 
-                    return values;
-                },
+                        return values;
+                    }, 
                 cancellationToken);
         }
 
@@ -502,22 +501,12 @@ namespace GW2NET.V2.Commerce
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
-        private static Offer ConvertOfferDataContract(OfferDataContract content)
+        private static ICollectionPage<Listing> ConvertListingDataContractPage(ICollection<ListingDataContract> content)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Offer>() != null);
-            return new Offer { Listings = content.Listings, UnitPrice = content.UnitPrice, Quantity = content.Quantity };
-        }
-
-        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The entity.</returns>
-        private static ICollection<Offer> ConvertOfferDataContractCollection(ICollection<OfferDataContract> content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<ICollection<Offer>>() != null);
-            var values = new List<Offer>(content.Count);
-            values.AddRange(content.Select(ConvertOfferDataContract));
+            Contract.Ensures(Contract.Result<ICollectionPage<Listing>>() != null);
+            var values = new CollectionPage<Listing>(content.Count);
+            values.AddRange(content.Select(ConvertListingDataContract));
             return values;
         }
 
@@ -541,12 +530,22 @@ namespace GW2NET.V2.Commerce
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
-        private static ICollectionPage<Listing> ConvertListingDataContractPage(ICollection<ListingDataContract> content)
+        private static Offer ConvertOfferDataContract(OfferDataContract content)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<Listing>>() != null);
-            var values = new CollectionPage<Listing>(content.Count);
-            values.AddRange(content.Select(ConvertListingDataContract));
+            Contract.Ensures(Contract.Result<Offer>() != null);
+            return new Offer { Listings = content.Listings, UnitPrice = content.UnitPrice, Quantity = content.Quantity };
+        }
+
+        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>The entity.</returns>
+        private static ICollection<Offer> ConvertOfferDataContractCollection(ICollection<OfferDataContract> content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<ICollection<Offer>>() != null);
+            var values = new List<Offer>(content.Count);
+            values.AddRange(content.Select(ConvertOfferDataContract));
             return values;
         }
     }

@@ -6,7 +6,6 @@
 //   Represents a request for an item and its localized details.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Items
 {
     using System.Collections.Generic;
@@ -18,6 +17,9 @@ namespace GW2NET.V2.Items
     /// <summary>Represents a request for an item and its localized details.</summary>
     internal sealed class ItemDetailsRequest : DetailsRequest, ILocalizable
     {
+        /// <summary>Gets or sets the locale.</summary>
+        public CultureInfo Culture { get; set; }
+
         /// <summary>Gets the resource path.</summary>
         public override string Resource
         {
@@ -26,9 +28,6 @@ namespace GW2NET.V2.Items
                 return "/v2/items/" + this.Identifier;
             }
         }
-
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
 
         /// <summary>Gets the request parameters.</summary>
         /// <returns>A collection of parameters.</returns>

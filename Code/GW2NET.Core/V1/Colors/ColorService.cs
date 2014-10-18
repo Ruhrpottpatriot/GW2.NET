@@ -57,7 +57,7 @@ namespace GW2NET.V1.Colors
             Contract.EndContractBlock();
 
             var request = new ColorRequest { Culture = language };
-            var response = this.serviceClient.Send<ColorCollectionContract>(request);
+            var response = this.serviceClient.Send<ColorCollectionDataContract>(request);
             if (response.Content == null || response.Content.Colors == null)
             {
                 return new Dictionary<int, ColorPalette>(0);
@@ -115,7 +115,7 @@ namespace GW2NET.V1.Colors
             Contract.EndContractBlock();
 
             var request = new ColorRequest { Culture = language };
-            return this.serviceClient.SendAsync<ColorCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ColorCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -139,7 +139,7 @@ namespace GW2NET.V1.Colors
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, ColorPalette> ConvertColorCollectionContract(ColorCollectionContract content)
+        private static IDictionary<int, ColorPalette> ConvertColorCollectionContract(ColorCollectionDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Colors != null);
@@ -167,7 +167,7 @@ namespace GW2NET.V1.Colors
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ColorModel ConvertColorModelContract(ColorModelContract content)
+        private static ColorModel ConvertColorModelContract(ColorModelDataContract content)
         {
             Contract.Requires(content != null);
             var value = new ColorModel();
@@ -187,7 +187,7 @@ namespace GW2NET.V1.Colors
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ColorPalette ConvertColorPaletteContract(KeyValuePair<string, ColorContract> content)
+        private static ColorPalette ConvertColorPaletteContract(KeyValuePair<string, ColorDataContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);

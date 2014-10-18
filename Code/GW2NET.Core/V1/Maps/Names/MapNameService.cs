@@ -57,7 +57,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapNameRequest { Culture = language };
-            var response = this.serviceClient.Send<ICollection<MapNameContract>>(request);
+            var response = this.serviceClient.Send<ICollection<MapNameDataContract>>(request);
             if (response.Content == null)
             {
                 return new Dictionary<int, Map>(0);
@@ -116,7 +116,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapNameRequest { Culture = language };
-            return this.serviceClient.SendAsync<ICollection<MapNameContract>>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<MapNameDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -140,7 +140,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Map ConvertMapNameContract(MapNameContract content)
+        private static Map ConvertMapNameContract(MapNameDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Map>() != null);
@@ -167,7 +167,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Map> ConvertMapNameContractCollection(ICollection<MapNameContract> content)
+        private static IDictionary<int, Map> ConvertMapNameContractCollection(ICollection<MapNameDataContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<int, Map>>() != null);

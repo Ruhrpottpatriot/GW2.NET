@@ -46,7 +46,7 @@ namespace GW2NET.V1.Maps
         public IDictionary<int, Continent> GetContinents()
         {
             var request = new ContinentDetailsRequest();
-            var response = this.serviceClient.Send<ContinentCollectionContract>(request);
+            var response = this.serviceClient.Send<ContinentCollectionDataContract>(request);
             if (response.Content == null || response.Content.Continents == null)
             {
                 return new Dictionary<int, Continent>(0);
@@ -70,7 +70,7 @@ namespace GW2NET.V1.Maps
         public Task<IDictionary<int, Continent>> GetContinentsAsync(CancellationToken cancellationToken)
         {
             var request = new ContinentDetailsRequest();
-            return this.serviceClient.SendAsync<ContinentCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -109,7 +109,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapDetailsRequest { MapId = map, Culture = language };
-            var response = this.serviceClient.Send<MapCollectionContract>(request);
+            var response = this.serviceClient.Send<MapCollectionDataContract>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
                 return null;
@@ -171,7 +171,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapDetailsRequest { MapId = map, Culture = language };
-            return this.serviceClient.SendAsync<MapCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -218,7 +218,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapFloorRequest { ContinentId = continent, Floor = floor, Culture = language };
-            var response = this.serviceClient.Send<FloorContract>(request);
+            var response = this.serviceClient.Send<FloorDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -282,7 +282,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapFloorRequest { ContinentId = continent, Floor = floor, Culture = language };
-            return this.serviceClient.SendAsync<FloorContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<FloorDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -323,7 +323,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapNameRequest { Culture = language };
-            var response = this.serviceClient.Send<ICollection<MapNameContract>>(request);
+            var response = this.serviceClient.Send<ICollection<MapNameDataContract>>(request);
             if (response.Content == null)
             {
                 return new Dictionary<int, Map>(0);
@@ -382,7 +382,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapNameRequest { Culture = language };
-            return this.serviceClient.SendAsync<ICollection<MapNameContract>>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<MapNameDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -426,7 +426,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapDetailsRequest { Culture = language };
-            var response = this.serviceClient.Send<MapCollectionContract>(request);
+            var response = this.serviceClient.Send<MapCollectionDataContract>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
                 return new Dictionary<int, Map>(0);
@@ -485,7 +485,7 @@ namespace GW2NET.V1.Maps
             Contract.EndContractBlock();
 
             var request = new MapDetailsRequest { Culture = language };
-            return this.serviceClient.SendAsync<MapCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -509,7 +509,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Continent> ConvertContinentCollectionContract(ContinentCollectionContract content)
+        private static IDictionary<int, Continent> ConvertContinentCollectionContract(ContinentCollectionDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Continents != null);
@@ -527,27 +527,27 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Continent ConvertContinentContract(KeyValuePair<string, ContinentContract> content)
+        private static Continent ConvertContinentContract(KeyValuePair<string, ContinentDataContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
             Contract.Requires(content.Value.ContinentDimensions != null);
             Contract.Requires(content.Value.ContinentDimensions.Length == 2);
             return new Continent
-                       {
-                           ContinentId = int.Parse(content.Key), 
-                           Name = content.Value.Name, 
-                           ContinentDimensions = MapSize2DContract(content.Value.ContinentDimensions), 
-                           MinimumZoom = content.Value.MinimumZoom, 
-                           MaximumZoom = content.Value.MaximumZoom, 
-                           FloorIds = content.Value.Floors
-                       };
+                {
+                    ContinentId = int.Parse(content.Key), 
+                    Name = content.Value.Name, 
+                    ContinentDimensions = MapSize2DContract(content.Value.ContinentDimensions), 
+                    MinimumZoom = content.Value.MinimumZoom, 
+                    MaximumZoom = content.Value.MaximumZoom, 
+                    FloorIds = content.Value.Floors
+                };
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Floor ConvertFloorContract(FloorContract content)
+        private static Floor ConvertFloorContract(FloorDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -580,7 +580,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Map> ConvertMapCollectionContract(MapCollectionContract content)
+        private static IDictionary<int, Map> ConvertMapCollectionContract(MapCollectionDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Maps != null);
@@ -598,7 +598,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Map ConvertMapContract(KeyValuePair<string, MapContract> content)
+        private static Map ConvertMapContract(KeyValuePair<string, MapDataContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -674,7 +674,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Map ConvertMapNameContract(MapNameContract content)
+        private static Map ConvertMapNameContract(MapNameDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Map>() != null);
@@ -701,7 +701,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Map> ConvertMapNameContractCollection(ICollection<MapNameContract> content)
+        private static IDictionary<int, Map> ConvertMapNameContractCollection(ICollection<MapNameDataContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<int, Map>>() != null);
@@ -718,7 +718,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static PointOfInterest ConvertPointOfInterestContract(PointOfInterestContract content)
+        private static PointOfInterest ConvertPointOfInterestContract(PointOfInterestDataContract content)
         {
             Contract.Requires(content != null);
             var value = (PointOfInterest)Activator.CreateInstance(GetPointOfInterestType(content));
@@ -736,7 +736,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<PointOfInterest> ConvertPointOfInterestContractCollection(ICollection<PointOfInterestContract> content)
+        private static ICollection<PointOfInterest> ConvertPointOfInterestContractCollection(ICollection<PointOfInterestDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<PointOfInterest>(content.Count);
@@ -760,7 +760,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Region ConvertRegionContract(KeyValuePair<string, RegionContract> content)
+        private static Region ConvertRegionContract(KeyValuePair<string, RegionDataContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -797,7 +797,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Region> ConvertRegionContractCollection(IDictionary<string, RegionContract> content)
+        private static IDictionary<int, Region> ConvertRegionContractCollection(IDictionary<string, RegionDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new Dictionary<int, Region>(content.Count);
@@ -813,24 +813,24 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static RenownTask ConvertRenownTaskContract(RenownTaskContract content)
+        private static RenownTask ConvertRenownTaskContract(RenownTaskDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
             Contract.Requires(content.Coordinates.Length == 2);
             return new RenownTask
-                       {
-                           TaskId = content.TaskId, 
-                           Objective = content.Objective, 
-                           Level = content.Level, 
-                           Coordinates = ConvertVector2D(content.Coordinates)
-                       };
+                {
+                    TaskId = content.TaskId, 
+                    Objective = content.Objective, 
+                    Level = content.Level, 
+                    Coordinates = ConvertVector2D(content.Coordinates)
+                };
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<RenownTask> ConvertRenownTaskContractCollection(ICollection<RenownTaskContract> content)
+        private static ICollection<RenownTask> ConvertRenownTaskContractCollection(ICollection<RenownTaskDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<RenownTask>(content.Count);
@@ -841,7 +841,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Sector ConvertSectorContract(SectorContract content)
+        private static Sector ConvertSectorContract(SectorDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
@@ -852,7 +852,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<Sector> ConvertSectorContractCollection(ICollection<SectorContract> content)
+        private static ICollection<Sector> ConvertSectorContractCollection(ICollection<SectorDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<Sector>(content.Count);
@@ -863,7 +863,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static SkillChallenge ConvertSkillChallengeContract(SkillChallengeContract content)
+        private static SkillChallenge ConvertSkillChallengeContract(SkillChallengeDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
@@ -874,7 +874,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<SkillChallenge> ConvertSkillChallengeContractCollection(ICollection<SkillChallengeContract> content)
+        private static ICollection<SkillChallenge> ConvertSkillChallengeContractCollection(ICollection<SkillChallengeDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<SkillChallenge>(content.Count);
@@ -885,7 +885,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Subregion ConvertSubregionContract(KeyValuePair<string, SubregionContract> content)
+        private static Subregion ConvertSubregionContract(KeyValuePair<string, SubregionDataContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -958,7 +958,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Subregion> ConvertSubregionContractCollection(IDictionary<string, SubregionContract> content)
+        private static IDictionary<int, Subregion> ConvertSubregionContractCollection(IDictionary<string, SubregionDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new Dictionary<int, Subregion>(content.Count);
@@ -971,10 +971,20 @@ namespace GW2NET.V1.Maps
             return values;
         }
 
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static Vector2D ConvertVector2D(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
+            return new Vector2D(content[0], content[1]);
+        }
+
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetPointOfInterestType(PointOfInterestContract content)
+        private static Type GetPointOfInterestType(PointOfInterestDataContract content)
         {
             Contract.Requires(content != null);
             switch (content.Type)
@@ -990,16 +1000,6 @@ namespace GW2NET.V1.Maps
                 default:
                     return typeof(UnknownPointOfInterest);
             }
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Vector2D ConvertVector2D(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 2);
-            return new Vector2D(content[0], content[1]);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>

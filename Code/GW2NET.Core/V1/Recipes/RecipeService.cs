@@ -60,7 +60,7 @@ namespace GW2NET.V1.Recipes
             Contract.EndContractBlock();
 
             var request = new RecipeDetailsRequest { RecipeId = recipe, Culture = language };
-            var response = this.serviceClient.Send<RecipeContract>(request);
+            var response = this.serviceClient.Send<RecipeDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -118,7 +118,7 @@ namespace GW2NET.V1.Recipes
             Contract.EndContractBlock();
 
             var request = new RecipeDetailsRequest { RecipeId = recipe, Culture = language };
-            return this.serviceClient.SendAsync<RecipeContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<RecipeDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -141,7 +141,7 @@ namespace GW2NET.V1.Recipes
         {
             Contract.Ensures(Contract.Result<ICollection<int>>() != null);
             var request = new RecipeDiscoveryRequest();
-            var response = this.serviceClient.Send<RecipeCollectionContract>(request);
+            var response = this.serviceClient.Send<RecipeCollectionDataContract>(request);
             if (response.Content == null || response.Content.Recipes == null)
             {
                 return new int[0];
@@ -165,7 +165,7 @@ namespace GW2NET.V1.Recipes
         public Task<ICollection<int>> GetRecipesAsync(CancellationToken cancellationToken)
         {
             var request = new RecipeDiscoveryRequest();
-            return this.serviceClient.SendAsync<RecipeCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<RecipeCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -182,7 +182,7 @@ namespace GW2NET.V1.Recipes
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ItemStack ConvertIngredientContract(IngredientContract content)
+        private static ItemStack ConvertIngredientContract(IngredientDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.ItemId != null);
@@ -214,7 +214,7 @@ namespace GW2NET.V1.Recipes
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<ItemStack> ConvertIngredientContractCollection(ICollection<IngredientContract> content)
+        private static ICollection<ItemStack> ConvertIngredientContractCollection(ICollection<IngredientDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<ItemStack>(content.Count);
@@ -225,7 +225,7 @@ namespace GW2NET.V1.Recipes
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Recipe ConvertRecipeContractCollection(RecipeContract content)
+        private static Recipe ConvertRecipeContractCollection(RecipeDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -286,7 +286,7 @@ namespace GW2NET.V1.Recipes
         /// <summary>Infrastructure. Maps type discriminators to .NET types.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetRecipeType(RecipeContract content)
+        private static Type GetRecipeType(RecipeDataContract content)
         {
             Contract.Requires(content != null);
             switch (content.Type)

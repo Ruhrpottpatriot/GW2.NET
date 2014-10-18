@@ -35,12 +35,6 @@ namespace GW2NET.V2.Common
             Contract.Requires(capacity >= 0);
         }
 
-        /// <summary>Gets or sets the number of values in this subset.</summary>
-        public int SubtotalCount { get; set; }
-
-        /// <summary>Gets or sets the number of values in the collection.</summary>
-        public int TotalCount { get; set; }
-
         /// <summary>Gets or sets the page index of the first page.</summary>
         public int FirstPageIndex { get; set; }
 
@@ -61,5 +55,11 @@ namespace GW2NET.V2.Common
 
         /// <summary>Gets or sets the page index of the previous page.</summary>
         public int? PreviousPageIndex { get; set; }
+
+        /// <summary>Gets or sets the number of values in this subset.</summary>
+        public int SubtotalCount { get; set; }
+
+        /// <summary>Gets or sets the number of values in the collection.</summary>
+        public int TotalCount { get; set; }
     }
 }

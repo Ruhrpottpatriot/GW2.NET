@@ -38,7 +38,7 @@ namespace GW2NET.V1.Files
         public IDictionary<string, Asset> GetFiles()
         {
             var request = new FileRequest();
-            var response = this.serviceClient.Send<IDictionary<string, FileContract>>(request);
+            var response = this.serviceClient.Send<IDictionary<string, FileDataContract>>(request);
             if (response.Content == null)
             {
                 return new Dictionary<string, Asset>(0);
@@ -62,7 +62,7 @@ namespace GW2NET.V1.Files
         public Task<IDictionary<string, Asset>> GetFilesAsync(CancellationToken cancellationToken)
         {
             var request = new FileRequest();
-            return this.serviceClient.SendAsync<IDictionary<string, FileContract>>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<IDictionary<string, FileDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -79,7 +79,7 @@ namespace GW2NET.V1.Files
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Asset ConvertFileContract(KeyValuePair<string, FileContract> content)
+        private static Asset ConvertFileContract(KeyValuePair<string, FileDataContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -104,7 +104,7 @@ namespace GW2NET.V1.Files
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<string, Asset> ConvertFileContractCollection(IDictionary<string, FileContract> content)
+        private static IDictionary<string, Asset> ConvertFileContractCollection(IDictionary<string, FileDataContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Asset>>() != null);

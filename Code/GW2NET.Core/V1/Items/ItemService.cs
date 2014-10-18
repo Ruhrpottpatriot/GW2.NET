@@ -66,7 +66,7 @@ namespace GW2NET.V1.Items
             Contract.EndContractBlock();
 
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
-            var response = this.serviceClient.Send<ItemContract>(request);
+            var response = this.serviceClient.Send<ItemDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -124,19 +124,19 @@ namespace GW2NET.V1.Items
             Contract.EndContractBlock();
 
             var request = new ItemDetailsRequest { ItemId = item, Culture = language };
-            return this.serviceClient.SendAsync<ItemContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null)
                     {
-                        return null;
-                    }
+                        var response = task.Result;
+                        if (response.Content == null)
+                        {
+                            return null;
+                        }
 
-                    var value = ConvertItemDataContract(response.Content);
-                    value.Locale = response.Culture ?? language;
-                    return value;
-                },
+                        var value = ConvertItemDataContract(response.Content);
+                        value.Locale = response.Culture ?? language;
+                        return value;
+                    }, 
                 cancellationToken);
         }
 
@@ -147,7 +147,7 @@ namespace GW2NET.V1.Items
         {
             Contract.Ensures(Contract.Result<ICollection<int>>() != null);
             var request = new ItemDiscoveryRequest();
-            var response = this.serviceClient.Send<ItemCollectionContract>(request);
+            var response = this.serviceClient.Send<ItemCollectionDataContract>(request);
             if (response.Content == null || response.Content.Items == null)
             {
                 return new int[0];
@@ -171,24 +171,24 @@ namespace GW2NET.V1.Items
         public Task<ICollection<int>> GetItemsAsync(CancellationToken cancellationToken)
         {
             var request = new ItemDiscoveryRequest();
-            return this.serviceClient.SendAsync<ItemCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ItemCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
-                {
-                    var response = task.Result;
-                    if (response.Content == null || response.Content.Items == null)
                     {
-                        return new int[0];
-                    }
+                        var response = task.Result;
+                        if (response.Content == null || response.Content.Items == null)
+                        {
+                            return new int[0];
+                        }
 
-                    return response.Content.Items;
-                },
+                        return response.Content.Items;
+                    }, 
                 cancellationToken);
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertArmorItemDataContract(ItemContract content)
+        private static Item ConvertArmorItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.Armor == null)
@@ -327,7 +327,7 @@ namespace GW2NET.V1.Items
         /// <param name="content">The content.</param>
         /// <param name="type">The content type.</param>
         /// <returns>An entity.</returns>
-        private static int ConvertAttributeDataContract(IEnumerable<ItemAttributeContract> content, string type)
+        private static int ConvertAttributeDataContract(IEnumerable<ItemAttributeDataContract> content, string type)
         {
             Contract.Requires(content != null);
             Contract.Requires(type != null);
@@ -338,7 +338,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertBackpackItemDataContract(ItemContract content)
+        private static Item ConvertBackpackItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.Backpack == null)
@@ -426,7 +426,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertBagItemDataContract(ItemContract content)
+        private static Item ConvertBagItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -466,7 +466,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertConsumableItemDataContract(ItemContract content)
+        private static Item ConvertConsumableItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.Consumable == null)
@@ -526,7 +526,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertContainerItemDataDataContract(ItemContract content)
+        private static Item ConvertContainerItemDataDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.Container == null)
@@ -559,7 +559,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Consumable ConvertCraftingRecipeUnlockConsumableItemDataContract(ItemContract content)
+        private static Consumable ConvertCraftingRecipeUnlockConsumableItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Consumable != null);
@@ -582,7 +582,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Consumable ConvertDyeUnlockConsumableItemDataContract(ItemContract content)
+        private static Consumable ConvertDyeUnlockConsumableItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Consumable != null);
@@ -605,7 +605,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Consumable ConvertFoodConsumableItemDataContract(ItemContract content)
+        private static Consumable ConvertFoodConsumableItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Consumable != null);
@@ -631,7 +631,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertGatheringItemDataContract(ItemContract content)
+        private static Item ConvertGatheringItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.GatheringTool == null)
@@ -674,7 +674,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Consumable ConvertGenericConsumableItemDataContract(ItemContract content)
+        private static Consumable ConvertGenericConsumableItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Consumable != null);
@@ -700,7 +700,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertGizmoItemDataContract(ItemContract content)
+        private static Item ConvertGizmoItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.Gizmo == null)
@@ -736,7 +736,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Consumable ConvertImmediateConsumableItemDataContract(ItemContract content)
+        private static Consumable ConvertImmediateConsumableItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Consumable != null);
@@ -762,7 +762,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="item">The entity.</param>
         /// <param name="content">The content.</param>
-        private static void ConvertInfixUpgradeDataContract(IUpgrade item, InfixUpgradeContract content)
+        private static void ConvertInfixUpgradeDataContract(IUpgrade item, InfixUpgradeDataContract content)
         {
             Contract.Requires(item != null);
             Contract.Requires(content != null);
@@ -786,7 +786,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ItemBuff ConvertItemBuffDataContract(ItemBuffContract content)
+        private static ItemBuff ConvertItemBuffDataContract(ItemBuffDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<ItemBuff>() != null);
@@ -813,7 +813,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertItemDataContract(ItemContract content)
+        private static Item ConvertItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Item>() != null);
@@ -1030,7 +1030,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Tool ConvertSalvageToolItemDataContract(ItemContract content)
+        private static Tool ConvertSalvageToolItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Tool != null);
@@ -1054,7 +1054,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertToolItemDataContract(ItemContract content)
+        private static Item ConvertToolItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.Tool == null)
@@ -1081,7 +1081,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertTrinketItemDataContract(ItemContract content)
+        private static Item ConvertTrinketItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.Trinket == null)
@@ -1175,7 +1175,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Consumable ConvertUnlockConsumableItemDataContract(ItemContract content)
+        private static Consumable ConvertUnlockConsumableItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Consumable != null);
@@ -1213,7 +1213,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Item ConvertUpgradeComponentItemDataContract(ItemContract content)
+        private static Item ConvertUpgradeComponentItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.UpgradeComponent == null)
@@ -1309,7 +1309,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Consumable ConvertUtilityConsumableItemDataContract(ItemContract content)
+        private static Consumable ConvertUtilityConsumableItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Consumable != null);
@@ -1335,7 +1335,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Weapon ConvertWeaponItemDataContract(ItemContract content)
+        private static Weapon ConvertWeaponItemDataContract(ItemDataContract content)
         {
             Contract.Requires(content != null);
             if (content.Weapon == null)

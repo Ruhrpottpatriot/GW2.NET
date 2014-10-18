@@ -36,7 +36,7 @@ namespace GW2NET.V1.Builds
         public Build GetBuild()
         {
             var request = new BuildRequest();
-            var response = this.serviceClient.Send<BuildContract>(request);
+            var response = this.serviceClient.Send<BuildDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -62,7 +62,7 @@ namespace GW2NET.V1.Builds
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
             var request = new BuildRequest();
-            return this.serviceClient.SendAsync<BuildContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<BuildDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -81,7 +81,7 @@ namespace GW2NET.V1.Builds
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Build ConvertBuildContract(BuildContract content)
+        private static Build ConvertBuildContract(BuildDataContract content)
         {
             Contract.Requires(content != null);
             return new Build { BuildId = content.BuildId };

@@ -6,7 +6,6 @@
 //   Provides the interface for the guild service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V1.Guilds
 {
     /// <summary>Provides the interface for the guild service.</summary>

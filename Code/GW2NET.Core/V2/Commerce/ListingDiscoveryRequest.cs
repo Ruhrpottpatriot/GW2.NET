@@ -6,7 +6,6 @@
 //   Represents a request.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Commerce
 {
     using System.Collections.Generic;

@@ -6,7 +6,6 @@
 //   Represents a request for a collection of item identifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Items
 {
     using GW2NET.Common;

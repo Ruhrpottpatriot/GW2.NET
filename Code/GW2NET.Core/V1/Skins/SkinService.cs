@@ -60,7 +60,7 @@ namespace GW2NET.V1.Skins
             Contract.EndContractBlock();
 
             var request = new SkinDetailsRequest { SkinId = skin, Culture = language };
-            var response = this.serviceClient.Send<SkinContract>(request);
+            var response = this.serviceClient.Send<SkinDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -118,7 +118,7 @@ namespace GW2NET.V1.Skins
             Contract.EndContractBlock();
 
             var request = new SkinDetailsRequest { SkinId = skin, Culture = language };
-            return this.serviceClient.SendAsync<SkinContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<SkinDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -140,7 +140,7 @@ namespace GW2NET.V1.Skins
         public ICollection<int> GetSkins()
         {
             var request = new SkinDiscoveryRequest();
-            var response = this.serviceClient.Send<SkinCollectionContract>(request);
+            var response = this.serviceClient.Send<SkinCollectionDataContract>(request);
             if (response.Content == null || response.Content.Skins == null)
             {
                 return new int[0];
@@ -164,7 +164,7 @@ namespace GW2NET.V1.Skins
         public Task<ICollection<int>> GetSkinsAsync(CancellationToken cancellationToken)
         {
             var request = new SkinDiscoveryRequest();
-            return this.serviceClient.SendAsync<SkinCollectionContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<SkinCollectionDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -181,7 +181,7 @@ namespace GW2NET.V1.Skins
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="skin">The entity.</param>
         /// <param name="content">The content.</param>
-        private static void ConvertArmorSkinContract(ArmorSkin skin, ArmorSkinContract content)
+        private static void ConvertArmorSkinContract(ArmorSkin skin, ArmorSkinDataContract content)
         {
             Contract.Requires(skin != null);
             Contract.Requires(content != null);
@@ -221,7 +221,7 @@ namespace GW2NET.V1.Skins
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Skin ConvertSkinContract(SkinContract content)
+        private static Skin ConvertSkinContract(SkinDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Skin>() != null);
@@ -315,7 +315,7 @@ namespace GW2NET.V1.Skins
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
         /// <param name="skin">The entity.</param>
         /// <param name="content">The content.</param>
-        private static void ConvertWeaponSkinContract(WeaponSkin skin, WeaponSkinContract content)
+        private static void ConvertWeaponSkinContract(WeaponSkin skin, WeaponSkinDataContract content)
         {
             Contract.Requires(skin != null);
             Contract.Requires(content != null);
@@ -330,7 +330,7 @@ namespace GW2NET.V1.Skins
         /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetArmorSkinType(ArmorSkinContract content)
+        private static Type GetArmorSkinType(ArmorSkinDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Type>() != null);
@@ -358,7 +358,7 @@ namespace GW2NET.V1.Skins
         /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetSkinType(SkinContract content)
+        private static Type GetSkinType(SkinDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Type>() != null);
@@ -388,7 +388,7 @@ namespace GW2NET.V1.Skins
         /// <summary>Infrastructure. Maps skin type discriminators to .NET types.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The corresponding <see cref="System.Type"/>.</returns>
-        private static Type GetWeaponSkinType(WeaponSkinContract content)
+        private static Type GetWeaponSkinType(WeaponSkinDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Type>() != null);

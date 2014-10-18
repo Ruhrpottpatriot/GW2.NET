@@ -41,7 +41,7 @@ namespace GW2NET.V1.WorldVersusWorld
         public Match GetMatchDetails(string match)
         {
             var request = new MatchDetailsRequest { MatchId = match };
-            var response = this.serviceClient.Send<MatchContract>(request);
+            var response = this.serviceClient.Send<MatchDataContract>(request);
             if (response.Content == null)
             {
                 return null;
@@ -67,7 +67,7 @@ namespace GW2NET.V1.WorldVersusWorld
         public Task<Match> GetMatchDetailsAsync(string match, CancellationToken cancellationToken)
         {
             var request = new MatchDetailsRequest { MatchId = match };
-            return this.serviceClient.SendAsync<MatchContract>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<MatchDataContract>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -87,7 +87,7 @@ namespace GW2NET.V1.WorldVersusWorld
         public IDictionary<string, Matchup> GetMatches()
         {
             var request = new MatchDiscoveryRequest();
-            var response = this.serviceClient.Send<MatchupCollectionContract>(request);
+            var response = this.serviceClient.Send<MatchupCollectionDataContract>(request);
             if (response.Content == null || response.Content.Matchups == null)
             {
                 return new Dictionary<string, Matchup>(0);
@@ -110,7 +110,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
         public Task<IDictionary<string, Matchup>> GetMatchesAsync(CancellationToken cancellationToken)
         {
-            return this.serviceClient.SendAsync<MatchupCollectionContract>(new MatchDiscoveryRequest(), cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<MatchupCollectionDataContract>(new MatchDiscoveryRequest(), cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -147,7 +147,7 @@ namespace GW2NET.V1.WorldVersusWorld
             Contract.EndContractBlock();
 
             var request = new ObjectiveNameRequest { Culture = language };
-            var response = this.serviceClient.Send<ICollection<ObjectiveNameContract>>(request);
+            var response = this.serviceClient.Send<ICollection<ObjectiveNameDataContract>>(request);
             if (response.Content == null)
             {
                 return new Dictionary<int, ObjectiveName>(0);
@@ -206,7 +206,7 @@ namespace GW2NET.V1.WorldVersusWorld
             Contract.EndContractBlock();
 
             var request = new ObjectiveNameRequest { Culture = language };
-            return this.serviceClient.SendAsync<ICollection<ObjectiveNameContract>>(request, cancellationToken).ContinueWith(
+            return this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
                         var response = task.Result;
@@ -230,7 +230,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static CompetitiveMap ConvertCompetitiveMapContract(CompetitiveMapContract content)
+        private static CompetitiveMap ConvertCompetitiveMapContract(CompetitiveMapDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -262,7 +262,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<CompetitiveMap> ConvertCompetitiveMapContractCollection(ICollection<CompetitiveMapContract> content)
+        private static ICollection<CompetitiveMap> ConvertCompetitiveMapContractCollection(ICollection<CompetitiveMapDataContract> content)
         {
             Contract.Requires(content != null);
 
@@ -279,7 +279,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static MapBonus ConvertMapBonusContract(MapBonusContract content)
+        private static MapBonus ConvertMapBonusContract(MapBonusDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -299,7 +299,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<MapBonus> ConvertMapBonusContractCollection(ICollection<MapBonusContract> content)
+        private static ICollection<MapBonus> ConvertMapBonusContractCollection(ICollection<MapBonusDataContract> content)
         {
             Contract.Requires(content != null);
 
@@ -316,7 +316,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Match ConvertMatchContract(MatchContract content)
+        private static Match ConvertMatchContract(MatchDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -348,7 +348,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<string, Matchup> ConvertMatchupCollectionContract(MatchupCollectionContract content)
+        private static IDictionary<string, Matchup> ConvertMatchupCollectionContract(MatchupCollectionDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Matchups != null);
@@ -371,7 +371,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Matchup ConvertMatchupContract(MatchupContract content)
+        private static Matchup ConvertMatchupContract(MatchupDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Matchup>() != null);
@@ -413,7 +413,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Objective ConvertObjectiveContract(ObjectiveContract content)
+        private static Objective ConvertObjectiveContract(ObjectiveDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -442,7 +442,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<Objective> ConvertObjectiveContractCollection(ICollection<ObjectiveContract> content)
+        private static ICollection<Objective> ConvertObjectiveContractCollection(ICollection<ObjectiveDataContract> content)
         {
             Contract.Requires(content != null);
 
@@ -459,7 +459,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ObjectiveName ConvertObjectiveNameContract(ObjectiveNameContract content)
+        private static ObjectiveName ConvertObjectiveNameContract(ObjectiveNameDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<ObjectiveName>() != null);
@@ -486,7 +486,7 @@ namespace GW2NET.V1.WorldVersusWorld
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, ObjectiveName> ConvertObjectiveNameContractCollection(ICollection<ObjectiveNameContract> content)
+        private static IDictionary<int, ObjectiveName> ConvertObjectiveNameContractCollection(ICollection<ObjectiveNameDataContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<int, ObjectiveName>>() != null);
