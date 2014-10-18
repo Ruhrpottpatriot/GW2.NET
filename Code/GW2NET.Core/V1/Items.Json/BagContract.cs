@@ -3,23 +3,22 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a bag.
+//   Defines the BagContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Items.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents a bag.</summary>
     [DataContract]
-    public sealed class BagContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class BagContract
     {
-        /// <summary>Gets or sets a value indicating whether this is an invisible bag.</summary>
         [DataMember(Name = "no_sell_or_sort", Order = 0)]
-        public string NoSellOrSort { get; set; }
+        internal string NoSellOrSort { get; set; }
 
-        /// <summary>Gets or sets the bag's capacity.</summary>
         [DataMember(Name = "size", Order = 1)]
-        public string Size { get; set; }
+        internal string Size { get; set; }
     }
 }

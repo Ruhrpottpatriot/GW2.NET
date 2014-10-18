@@ -3,23 +3,22 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents an item attribute.
+//   Defines the ItemAttributeContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Items.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents an item attribute.</summary>
     [DataContract]
-    public sealed class ItemAttributeContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class ItemAttributeContract
     {
-        /// <summary>Gets or sets the attribute's type.</summary>
         [DataMember(Name = "attribute", Order = 0)]
-        public string Attribute { get; set; }
+        internal string Attribute { get; set; }
 
-        /// <summary>Gets or sets the attribute's modifier.</summary>
         [DataMember(Name = "modifier", Order = 1)]
-        public string Modifier { get; set; }
+        internal string Modifier { get; set; }
     }
 }

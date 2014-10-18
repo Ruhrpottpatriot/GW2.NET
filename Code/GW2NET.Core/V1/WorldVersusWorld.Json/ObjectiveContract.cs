@@ -3,27 +3,25 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents one of a World versus World map's objectives.
+//   Defines the ObjectiveContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.WorldVersusWorld.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents one of a World versus World map's objectives.</summary>
     [DataContract]
-    public sealed class ObjectiveContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class ObjectiveContract
     {
-        /// <summary>Gets or sets the objective identifier.</summary>
         [DataMember(Name = "id", Order = 0)]
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
-        /// <summary>Gets or sets the current owner.</summary>
         [DataMember(Name = "owner", Order = 1)]
-        public string Owner { get; set; }
+        internal string Owner { get; set; }
 
-        /// <summary>Gets or sets the guild currently claiming the objective.</summary>
         [DataMember(Name = "owner_guild", Order = 2)]
-        public string OwnerGuild { get; set; }
+        internal string OwnerGuild { get; set; }
     }
 }

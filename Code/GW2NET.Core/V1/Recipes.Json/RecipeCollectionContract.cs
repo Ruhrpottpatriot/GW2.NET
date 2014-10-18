@@ -3,20 +3,20 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Wraps a collection of recipe identifiers.
+//   Defines the RecipeCollectionContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Recipes.Json
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Wraps a collection of recipe identifiers.</summary>
     [DataContract]
-    public sealed class RecipeCollectionContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class RecipeCollectionContract
     {
-        /// <summary>Gets or sets a collection of recipe identifiers.</summary>
         [DataMember(Name = "recipes", Order = 0)]
-        public ICollection<int> Recipes { get; set; }
+        internal ICollection<int> Recipes { get; set; }
     }
 }

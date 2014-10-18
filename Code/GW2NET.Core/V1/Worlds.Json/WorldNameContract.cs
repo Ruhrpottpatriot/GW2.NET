@@ -3,23 +3,22 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a world and its localized name.
+//   Defines the WorldNameContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Worlds.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents a world and its localized name.</summary>
     [DataContract]
-    public sealed class WorldNameContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class WorldNameContract
     {
-        /// <summary>Gets or sets the world identifier.</summary>
         [DataMember(Name = "id", Order = 0)]
-        public string Id { get; set; }
+        internal string Id { get; set; }
 
-        /// <summary>Gets or sets the name of the world.</summary>
         [DataMember(Name = "name", Order = 1)]
-        public string Name { get; set; }
+        internal string Name { get; set; }
     }
 }

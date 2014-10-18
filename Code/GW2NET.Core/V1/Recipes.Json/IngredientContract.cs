@@ -3,23 +3,22 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a portion of crafting ingredients.
+//   Defines the IngredientContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Recipes.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents a portion of crafting ingredients.</summary>
     [DataContract]
-    public sealed class IngredientContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class IngredientContract
     {
-        /// <summary>Gets or sets the number of ingredients.</summary>
         [DataMember(Name = "count", Order = 1)]
-        public string Count { get; set; }
+        internal string Count { get; set; }
 
-        /// <summary>Gets or sets the ingredient identifier.</summary>
         [DataMember(Name = "item_id", Order = 0)]
-        public string ItemId { get; set; }
+        internal string ItemId { get; set; }
     }
 }

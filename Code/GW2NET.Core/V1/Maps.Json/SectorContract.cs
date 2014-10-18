@@ -3,31 +3,28 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents an area within a map.
+//   Defines the SectorContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Maps.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents an area within a map.</summary>
     [DataContract]
-    public sealed class SectorContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class SectorContract
     {
-        /// <summary>Gets or sets the sector's coordinates, which is (usually) the center position.</summary>
         [DataMember(Name = "coord", Order = 3)]
-        public double[] Coordinates { get; set; }
+        internal double[] Coordinates { get; set; }
 
-        /// <summary>Gets or sets the sector's level.</summary>
         [DataMember(Name = "level", Order = 2)]
-        public int Level { get; set; }
+        internal int Level { get; set; }
 
-        /// <summary>Gets or sets the name of the sector.</summary>
         [DataMember(Name = "name", Order = 1)]
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
-        /// <summary>Gets or sets the sector identifier.</summary>
         [DataMember(Name = "sector_id", Order = 0)]
-        public int SectorId { get; set; }
+        internal int SectorId { get; set; }
     }
 }

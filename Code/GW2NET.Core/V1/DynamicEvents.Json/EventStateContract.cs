@@ -3,31 +3,28 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a dynamic event and its state.
+//   Defines the EventStateContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.DynamicEvents.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents a dynamic event and its state.</summary>
     [DataContract]
-    public sealed class EventStateContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class EventStateContract
     {
-        /// <summary>Gets or sets the event identifier.</summary>
         [DataMember(Name = "event_id", Order = 2)]
-        public string EventId { get; set; }
+        internal string EventId { get; set; }
 
-        /// <summary>Gets or sets the map identifier.</summary>
         [DataMember(Name = "map_id", Order = 1)]
-        public int MapId { get; set; }
+        internal int MapId { get; set; }
 
-        /// <summary>Gets or sets the current state of the event.</summary>
         [DataMember(Name = "state", Order = 3)]
-        public string State { get; set; }
+        internal string State { get; set; }
 
-        /// <summary>Gets or sets the world identifier.</summary>
         [DataMember(Name = "world_id", Order = 0)]
-        public int WorldId { get; set; }
+        internal int WorldId { get; set; }
     }
 }

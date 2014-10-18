@@ -3,35 +3,31 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a Point of Interest (POI) location.
+//   Defines the PointOfInterestContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Maps.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents a Point of Interest (POI) location.</summary>
     [DataContract]
-    public sealed class PointOfInterestContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class PointOfInterestContract
     {
-        /// <summary>Gets or sets the coordinates of this Point of Interest.</summary>
         [DataMember(Name = "coord", Order = 4)]
-        public double[] Coordinates { get; set; }
+        internal double[] Coordinates { get; set; }
 
-        /// <summary>Gets or sets the floor of this Point of Interest.</summary>
         [DataMember(Name = "floor", Order = 3)]
-        public int Floor { get; set; }
+        internal int Floor { get; set; }
 
-        /// <summary>Gets or sets the name of this Point of Interest.</summary>
         [DataMember(Name = "name", Order = 1)]
-        public string Name { get; set; }
+        internal string Name { get; set; }
 
-        /// <summary>Gets or sets the Point of Interest identifier.</summary>
         [DataMember(Name = "poi_id", Order = 0)]
-        public int PointOfInterestId { get; set; }
+        internal int PointOfInterestId { get; set; }
 
-        /// <summary>Gets or sets Point of Interest type.</summary>
         [DataMember(Name = "type", Order = 2)]
-        public string Type { get; set; }
+        internal string Type { get; set; }
     }
 }

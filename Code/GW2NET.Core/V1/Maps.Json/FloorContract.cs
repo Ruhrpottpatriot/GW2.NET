@@ -3,28 +3,26 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a map floor, used to populate a world map. All coordinates are map coordinates.
+//   Defines the FloorContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Maps.Json
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents a map floor, used to populate a world map. All coordinates are map coordinates.</summary>
     [DataContract]
-    public sealed class FloorContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class FloorContract
     {
-        /// <summary>Gets or sets a rectangle of downloadable textures. Every tile coordinate outside of this rectangle is not available on the tile server.</summary>
         [DataMember(Name = "clamped_view", Order = 1)]
-        public double[][] ClampedView { get; set; }
+        internal double[][] ClampedView { get; set; }
 
-        /// <summary>Gets or sets the collection of regions.</summary>
         [DataMember(Name = "regions", Order = 2)]
-        public IDictionary<string, RegionContract> Regions { get; set; }
+        internal IDictionary<string, RegionContract> Regions { get; set; }
 
-        /// <summary>Gets or sets the texture's dimensions.</summary>
         [DataMember(Name = "texture_dims", Order = 0)]
-        public double[] TextureDimensions { get; set; }
+        internal double[] TextureDimensions { get; set; }
     }
 }

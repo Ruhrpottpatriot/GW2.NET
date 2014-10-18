@@ -3,23 +3,22 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents an item buff.
+//   Defines the BuffDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents an item buff.</summary>
     [DataContract]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
     internal sealed class BuffDataContract
     {
-        /// <summary>Gets or sets the buff's description.</summary>
         [DataMember(Name = "description", Order = 1)]
-        public string Description { get; set; }
+        internal string Description { get; set; }
 
-        /// <summary>Gets or sets the buff's skill identifier.</summary>
         [DataMember(Name = "skill_id", Order = 0)]
-        public int? SkillId { get; set; }
+        internal int? SkillId { get; set; }
     }
 }

@@ -3,23 +3,22 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents one of an item's infusion slots.
+//   Defines the InfusionSlotDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items.Json
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents one of an item's infusion slots.</summary>
     [DataContract]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
     internal sealed class InfusionSlotDataContract
     {
-        /// <summary>Gets or sets the infusion slot type(s).</summary>
         [DataMember(Name = "flags", Order = 0)]
         internal ICollection<string> Flags { get; set; }
 
-        /// <summary>Gets or sets the infusion slot's item identifier.</summary>
         [DataMember(Name = "item_id", Order = 1)]
         internal int? ItemId { get; set; }
     }

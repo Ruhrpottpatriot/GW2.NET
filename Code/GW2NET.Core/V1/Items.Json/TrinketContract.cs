@@ -3,36 +3,32 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a trinket.
+//   Defines the TrinketContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Items.Json
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents a trinket.</summary>
     [DataContract]
-    public sealed class TrinketContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class TrinketContract
     {
-        /// <summary>Gets or sets the trinket's infixed upgrade.</summary>
         [DataMember(Name = "infix_upgrade", Order = 2)]
-        public InfixUpgradeContract InfixUpgrade { get; set; }
+        internal InfixUpgradeContract InfixUpgrade { get; set; }
 
-        /// <summary>Gets or sets the trinket's infusion slots.</summary>
         [DataMember(Name = "infusion_slots", Order = 1)]
-        public ICollection<InfusionSlotContract> InfusionSlots { get; set; }
+        internal ICollection<InfusionSlotContract> InfusionSlots { get; set; }
 
-        /// <summary>Gets or sets the trinket's secondary suffix item.</summary>
         [DataMember(Name = "secondary_suffix_item_id", Order = 4)]
-        public string SecondarySuffixItemId { get; set; }
+        internal string SecondarySuffixItemId { get; set; }
 
-        /// <summary>Gets or sets the trinket's suffix item.</summary>
         [DataMember(Name = "suffix_item_id", Order = 3)]
-        public string SuffixItemId { get; set; }
+        internal string SuffixItemId { get; set; }
 
-        /// <summary>Gets or sets the trinket type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public string Type { get; set; }
+        internal string Type { get; set; }
     }
 }

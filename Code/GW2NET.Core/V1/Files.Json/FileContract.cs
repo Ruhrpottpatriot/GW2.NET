@@ -3,23 +3,22 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents information about a file that can be retrieved from the render service.
+//   Defines the FileContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Files.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents information about a file that can be retrieved from the render service.</summary>
     [DataContract]
-    public sealed class FileContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class FileContract
     {
-        /// <summary>Gets or sets the file identifier to be used with the render service.</summary>
         [DataMember(Name = "file_id")]
-        public int FileId { get; set; }
+        internal int FileId { get; set; }
 
-        /// <summary>Gets or sets file signature to be used with the render service.</summary>
         [DataMember(Name = "signature")]
-        public string Signature { get; set; }
+        internal string Signature { get; set; }
     }
 }

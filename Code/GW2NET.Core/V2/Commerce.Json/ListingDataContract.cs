@@ -3,28 +3,26 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The listing contract.
+//   Defines the ListingDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Json
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>The listing contract.</summary>
     [DataContract]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
     internal sealed class ListingDataContract
     {
-        /// <summary>Gets or sets the buy offers.</summary>
         [DataMember(Name = "buys", Order = 1)]
-        public ICollection<OfferDataContract> BuyOffers { get; set; }
+        internal ICollection<OfferDataContract> BuyOffers { get; set; }
 
-        /// <summary>Gets or sets the id.</summary>
         [DataMember(Name = "id", Order = 0)]
-        public int Id { get; set; }
+        internal int Id { get; set; }
 
-        /// <summary>Gets or sets the sell offers.</summary>
         [DataMember(Name = "sells", Order = 2)]
-        public ICollection<OfferDataContract> SellOffers { get; set; }
+        internal ICollection<OfferDataContract> SellOffers { get; set; }
     }
 }

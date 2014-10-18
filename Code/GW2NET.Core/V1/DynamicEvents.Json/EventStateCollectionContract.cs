@@ -3,20 +3,20 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Wraps a collection of dynamic events.
+//   Defines the EventStateCollectionContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.DynamicEvents.Json
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Wraps a collection of dynamic events.</summary>
     [DataContract]
-    public sealed class EventStateCollectionContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class EventStateCollectionContract
     {
-        /// <summary>Gets or sets a collection of events.</summary>
         [DataMember(Name = "events", Order = 0)]
-        public ICollection<EventStateContract> Events { get; set; }
+        internal ICollection<EventStateContract> Events { get; set; }
     }
 }

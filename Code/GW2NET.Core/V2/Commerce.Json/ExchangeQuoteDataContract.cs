@@ -3,23 +3,22 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The exchange rate data contract.
+//   Defines the ExchangeQuoteDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>The exchange quote data contract.</summary>
     [DataContract]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
     internal class ExchangeQuoteDataContract
     {
-        /// <summary>Gets or sets the coins per gem.</summary>
         [DataMember(Order = 0, Name = "coins_per_gem")]
-        public int CoinsPerGem { get; set; }
+        internal int CoinsPerGem { get; set; }
 
-        /// <summary>Gets or sets the quantity.</summary>
         [DataMember(Order = 1, Name = "quantity")]
-        public long Quantity { get; set; }
+        internal long Quantity { get; set; }
     }
 }

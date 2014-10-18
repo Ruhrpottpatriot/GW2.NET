@@ -3,23 +3,22 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a tool.
+//   Defines the ToolContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Items.Json
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    /// <summary>Represents a tool.</summary>
     [DataContract]
-    public sealed class ToolContract
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    internal sealed class ToolContract
     {
-        /// <summary>Gets or sets the number of charges.</summary>
         [DataMember(Name = "charges", Order = 1)]
-        public string Charges { get; set; }
+        internal string Charges { get; set; }
 
-        /// <summary>Gets or sets the tool type.</summary>
         [DataMember(Name = "type", Order = 0)]
-        public string Type { get; set; }
+        internal string Type { get; set; }
     }
 }
