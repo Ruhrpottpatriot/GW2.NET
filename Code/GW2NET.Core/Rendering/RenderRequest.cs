@@ -36,7 +36,7 @@ namespace GW2NET.Rendering
         /// <returns>A collection of parameters.</returns>
         public IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
-            return Enumerable.Empty<KeyValuePair<string, string>>();
+            yield break;
         }
     }
 }

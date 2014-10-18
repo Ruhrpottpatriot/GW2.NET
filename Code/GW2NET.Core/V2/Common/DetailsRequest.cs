@@ -24,7 +24,7 @@ namespace GW2NET.V2.Common
         /// <returns>A collection of parameters.</returns>
         public virtual IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
-            return Enumerable.Empty<KeyValuePair<string, string>>();
+            yield break;
         }
     }
 }
