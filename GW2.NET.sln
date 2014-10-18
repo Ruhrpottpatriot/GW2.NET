@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{54B8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{EE1E597D-4EFF-427C-8DBD-D035605DA8A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.Tests", "Testing\GW2.NET.Tests\GW2.NET.Tests.csproj", "{D138871F-94ED-4BB0-999A-2ACD3732DF30}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Tests", "Testing\GW2.NET.Tests\GW2NET.Tests.csproj", "{D138871F-94ED-4BB0-999A-2ACD3732DF30}"
 EndProject
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "GW2.NET.Diagrams", "Analysis\GW2.NET.Diagrams\GW2.NET.Diagrams.modelproj", "{6F803776-2787-45CA-9BE4-10FCB832FF28}"
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "GW2NET.Diagrams", "Analysis\GW2.NET.Diagrams\GW2NET.Diagrams.modelproj", "{6F803776-2787-45CA-9BE4-10FCB832FF28}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net40", "net40", "{30BE9CC5-137B-41BF-B04E-5395BD6F03CF}"
 EndProject
@@ -26,7 +26,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{097EE8
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{45A22909-25E3-4C6B-9C87-3F925BF7A17D}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GW.NET.Data", "Data\GW.NET.Data\GW.NET.Data.sqlproj", "{6D4BB059-82DE-44A3-9534-4CA61E022100}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GW2NET.Data", "Data\GW.NET.Data\GW2NET.Data.sqlproj", "{6D4BB059-82DE-44A3-9534-4CA61E022100}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Core", "Code\GW2NET.Core\GW2NET.Core.csproj", "{05F3D999-0470-4123-8C80-AF4AC2385E7C}"
 EndProject
@@ -44,7 +44,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Pcl", "Code\GW2NET.P
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Pcl.Compression", "Code\GW2NET.Pcl.Compression\GW2NET.Pcl.Compression.csproj", "{08D936E1-C097-4196-8128-C2493F8D7E47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2.NET.PowerShell", "Code\GW2NET.PowerShell\GW2.NET.PowerShell.csproj", "{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.PowerShell", "Code\GW2NET.PowerShell\GW2NET.PowerShell.csproj", "{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -52,54 +52,54 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Testing\\GW2.NET.Tests\\GW2.NET.Tests.csproj
+		SccProjectUniqueName1 = Code\\GW2NET\\GW2NET.csproj
 		SccProjectTopLevelParentUniqueName1 = GW2.NET.sln
-		SccProjectName1 = Testing/GW2.NET.Tests
-		SccLocalPath1 = Testing\\GW2.NET.Tests
-		SccProjectUniqueName2 = Analysis\\GW2.NET.Diagrams\\GW2.NET.Diagrams.modelproj
+		SccProjectName1 = Code/GW2NET
+		SccLocalPath1 = Code\\GW2NET
+		SccProjectUniqueName2 = Code\\GW2NET.Compression\\GW2NET.Compression.csproj
 		SccProjectTopLevelParentUniqueName2 = GW2.NET.sln
-		SccProjectName2 = Analysis/GW2.NET.Diagrams
-		SccLocalPath2 = Analysis\\GW2.NET.Diagrams
-		SccProjectUniqueName3 = Data\\GW.NET.Data\\GW.NET.Data.sqlproj
+		SccProjectName2 = Code/GW2NET.Compression
+		SccLocalPath2 = Code\\GW2NET.Compression
+		SccProjectUniqueName3 = Code\\GW2NET.MumbleLink\\GW2NET.MumbleLink.csproj
 		SccProjectTopLevelParentUniqueName3 = GW2.NET.sln
-		SccProjectName3 = Data/GW.NET.Data
-		SccLocalPath3 = Data\\GW.NET.Data
-		SccProjectUniqueName4 = Code\\GW2NET.PowerShell\\GW2.NET.PowerShell.csproj
+		SccProjectName3 = Code/GW2NET.MumbleLink
+		SccLocalPath3 = Code\\GW2NET.MumbleLink
+		SccProjectUniqueName4 = Code\\GW2NET.RestSharp\\GW2NET.RestSharp.csproj
 		SccProjectTopLevelParentUniqueName4 = GW2.NET.sln
-		SccProjectName4 = Code/GW2NET.PowerShell
-		SccLocalPath4 = Code\\GW2NET.PowerShell
-		SccProjectUniqueName5 = Code\\GW2NET\\GW2NET.csproj
+		SccProjectName4 = Code/GW2NET.RestSharp
+		SccLocalPath4 = Code\\GW2NET.RestSharp
+		SccProjectUniqueName5 = Code\\GW2NET.Core\\GW2NET.Core.csproj
 		SccProjectTopLevelParentUniqueName5 = GW2.NET.sln
-		SccProjectName5 = Code/GW2NET
-		SccLocalPath5 = Code\\GW2NET
-		SccProjectUniqueName6 = Code\\GW2NET.Compression\\GW2NET.Compression.csproj
+		SccProjectName5 = Code/GW2NET.Core
+		SccLocalPath5 = Code\\GW2NET.Core
+		SccProjectUniqueName6 = Code\\GW2NET.Newtonsoft\\GW2NET.Newtonsoft.csproj
 		SccProjectTopLevelParentUniqueName6 = GW2.NET.sln
-		SccProjectName6 = Code/GW2NET.Compression
-		SccLocalPath6 = Code\\GW2NET.Compression
-		SccProjectUniqueName7 = Code\\GW2NET.MumbleLink\\GW2NET.MumbleLink.csproj
+		SccProjectName6 = Code/GW2NET.Newtonsoft
+		SccLocalPath6 = Code\\GW2NET.Newtonsoft
+		SccProjectUniqueName7 = Code\\GW2NET.Pcl\\GW2NET.Pcl.csproj
 		SccProjectTopLevelParentUniqueName7 = GW2.NET.sln
-		SccProjectName7 = Code/GW2NET.MumbleLink
-		SccLocalPath7 = Code\\GW2NET.MumbleLink
-		SccProjectUniqueName8 = Code\\GW2NET.RestSharp\\GW2NET.RestSharp.csproj
+		SccProjectName7 = Code/GW2NET.Pcl
+		SccLocalPath7 = Code\\GW2NET.Pcl
+		SccProjectUniqueName8 = Code\\GW2NET.Pcl.Compression\\GW2NET.Pcl.Compression.csproj
 		SccProjectTopLevelParentUniqueName8 = GW2.NET.sln
-		SccProjectName8 = Code/GW2NET.RestSharp
-		SccLocalPath8 = Code\\GW2NET.RestSharp
-		SccProjectUniqueName9 = Code\\GW2NET.Core\\GW2NET.Core.csproj
+		SccProjectName8 = Code/GW2NET.Pcl.Compression
+		SccLocalPath8 = Code\\GW2NET.Pcl.Compression
+		SccProjectUniqueName9 = Data\\GW.NET.Data\\GW2NET.Data.sqlproj
 		SccProjectTopLevelParentUniqueName9 = GW2.NET.sln
-		SccProjectName9 = Code/GW2NET.Core
-		SccLocalPath9 = Code\\GW2NET.Core
-		SccProjectUniqueName10 = Code\\GW2NET.Newtonsoft\\GW2NET.Newtonsoft.csproj
+		SccProjectName9 = Data/GW.NET.Data
+		SccLocalPath9 = Data\\GW.NET.Data
+		SccProjectUniqueName10 = Code\\GW2NET.PowerShell\\GW2NET.PowerShell.csproj
 		SccProjectTopLevelParentUniqueName10 = GW2.NET.sln
-		SccProjectName10 = Code/GW2NET.Newtonsoft
-		SccLocalPath10 = Code\\GW2NET.Newtonsoft
-		SccProjectUniqueName11 = Code\\GW2NET.Pcl\\GW2NET.Pcl.csproj
+		SccProjectName10 = Code/GW2NET.PowerShell
+		SccLocalPath10 = Code\\GW2NET.PowerShell
+		SccProjectUniqueName11 = Analysis\\GW2.NET.Diagrams\\GW2NET.Diagrams.modelproj
 		SccProjectTopLevelParentUniqueName11 = GW2.NET.sln
-		SccProjectName11 = Code/GW2NET.Pcl
-		SccLocalPath11 = Code\\GW2NET.Pcl
-		SccProjectUniqueName12 = Code\\GW2NET.Pcl.Compression\\GW2NET.Pcl.Compression.csproj
+		SccProjectName11 = Analysis/GW2.NET.Diagrams
+		SccLocalPath11 = Analysis\\GW2.NET.Diagrams
+		SccProjectUniqueName12 = Testing\\GW2.NET.Tests\\GW2NET.Tests.csproj
 		SccProjectTopLevelParentUniqueName12 = GW2.NET.sln
-		SccProjectName12 = Code/GW2NET.Pcl.Compression
-		SccLocalPath12 = Code\\GW2NET.Pcl.Compression
+		SccProjectName12 = Testing/GW2.NET.Tests
+		SccLocalPath12 = Testing\\GW2.NET.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Benchmark|Any CPU = Benchmark|Any CPU

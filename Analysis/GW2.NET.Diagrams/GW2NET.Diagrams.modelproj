@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6f803776-2787-45ca-9be4-10fcb832ff28}</ProjectGuid>
     <ArchitectureToolsVersion>2.0.0.0</ArchitectureToolsVersion>
-    <Name>GW2.NET.Diagrams</Name>
+    <Name>GW2NET.Diagrams</Name>
     <RootNamespace>ModelingProject1</RootNamespace>
     <SccProjectName>SAK</SccProjectName>
     <SccProvider>SAK</SccProvider>
