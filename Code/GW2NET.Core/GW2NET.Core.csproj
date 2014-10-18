@@ -702,6 +702,7 @@
     <Compile Include="V2\Common\PageRequest.cs" />
     <Compile Include="V2\Common\ContractClassForIPaginator.cs" />
     <Compile Include="V2\Common\ContractClassForIRepository.cs" />
+    <Compile Include="V2\Common\Paginator.cs" />
     <Compile Include="V2\Common\ResponseExtensions.cs" />
     <Compile Include="V2\Common\ContractClassForISubsetContext.cs" />
     <Compile Include="V2\Common\DictionaryRange.cs" />
