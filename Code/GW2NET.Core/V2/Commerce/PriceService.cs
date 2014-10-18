@@ -277,12 +277,12 @@ namespace GW2NET.V2.Commerce
                 cancellationToken);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <returns>The page.</returns>
-        public ICollectionPage<AggregateListing> GetPage(int page)
+        public ICollectionPage<AggregateListing> FindPage(int pageIndex)
         {
-            var request = new PricePageRequest { Page = page };
+            var request = new PricePageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
             if (response.Content == null)
             {
@@ -290,7 +290,7 @@ namespace GW2NET.V2.Commerce
             }
 
             var values = ConvertAggregateListingDataContractPage(response.Content);
-            values.PageIndex = page;
+            values.PageIndex = pageIndex;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
             values.SubtotalCount = response.GetResultCount();
@@ -303,13 +303,13 @@ namespace GW2NET.V2.Commerce
             return values;
         }
 
-        /// <summary>Gets a page with the specified page number and maximum size.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page number and maximum size.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <returns>The page.</returns>
-        public ICollectionPage<AggregateListing> GetPage(int page, int pageSize)
+        public ICollectionPage<AggregateListing> FindPage(int pageIndex, int pageSize)
         {
-            var request = new PricePageRequest { Page = page, PageSize = pageSize };
+            var request = new PricePageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
             if (response.Content == null)
             {
@@ -317,7 +317,7 @@ namespace GW2NET.V2.Commerce
             }
 
             var values = ConvertAggregateListingDataContractPage(response.Content);
-            values.PageIndex = page;
+            values.PageIndex = pageIndex;
             values.PageSize = response.GetPageSize();
             values.PageCount = response.GetPageTotal();
             values.SubtotalCount = response.GetResultCount();
@@ -330,21 +330,21 @@ namespace GW2NET.V2.Commerce
             return values;
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<AggregateListing>> GetPageAsync(int page)
+        public Task<ICollectionPage<AggregateListing>> FindPageAsync(int pageIndex)
         {
-            return this.GetPageAsync(page, CancellationToken.None);
+            return this.FindPageAsync(pageIndex, CancellationToken.None);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<AggregateListing>> GetPageAsync(int page, CancellationToken cancellationToken)
+        public Task<ICollectionPage<AggregateListing>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            var request = new PricePageRequest { Page = page };
+            var request = new PricePageRequest { Page = pageIndex };
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
@@ -355,7 +355,7 @@ namespace GW2NET.V2.Commerce
                         }
 
                         var values = ConvertAggregateListingDataContractPage(response.Content);
-                        values.PageIndex = page;
+                        values.PageIndex = pageIndex;
                         values.PageSize = response.GetPageSize();
                         values.PageCount = response.GetPageTotal();
                         values.SubtotalCount = response.GetResultCount();
@@ -370,23 +370,23 @@ namespace GW2NET.V2.Commerce
                 cancellationToken);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<AggregateListing>> GetPageAsync(int page, int pageSize)
+        public Task<ICollectionPage<AggregateListing>> FindPageAsync(int pageIndex, int pageSize)
         {
-            return this.GetPageAsync(page, pageSize, CancellationToken.None);
+            return this.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<AggregateListing>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken)
+        public Task<ICollectionPage<AggregateListing>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var request = new PricePageRequest { Page = page, PageSize = pageSize };
+            var request = new PricePageRequest { Page = pageIndex, PageSize = pageSize };
             return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
@@ -397,7 +397,7 @@ namespace GW2NET.V2.Commerce
                         }
 
                         var values = ConvertAggregateListingDataContractPage(response.Content);
-                        values.PageIndex = page;
+                        values.PageIndex = pageIndex;
                         values.PageSize = response.GetPageSize();
                         values.PageCount = response.GetPageTotal();
                         values.SubtotalCount = response.GetResultCount();

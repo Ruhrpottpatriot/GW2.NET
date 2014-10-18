@@ -88,16 +88,16 @@ namespace GW2NET.V2.Common
             throw new System.NotImplementedException();
         }
 
-        public abstract ICollectionPage<TValue> GetPage(int page);
+        public abstract ICollectionPage<TValue> FindPage(int pageIndex);
 
-        public abstract ICollectionPage<TValue> GetPage(int page, int pageSize);
+        public abstract ICollectionPage<TValue> FindPage(int pageIndex, int pageSize);
 
-        public abstract Task<ICollectionPage<TValue>> GetPageAsync(int page);
+        public abstract Task<ICollectionPage<TValue>> FindPageAsync(int pageIndex);
 
-        public abstract Task<ICollectionPage<TValue>> GetPageAsync(int page, CancellationToken cancellationToken);
+        public abstract Task<ICollectionPage<TValue>> FindPageAsync(int pageIndex, CancellationToken cancellationToken);
 
-        public abstract Task<ICollectionPage<TValue>> GetPageAsync(int page, int pageSize);
+        public abstract Task<ICollectionPage<TValue>> FindPageAsync(int pageIndex, int pageSize);
 
-        public abstract Task<ICollectionPage<TValue>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken);
+        public abstract Task<ICollectionPage<TValue>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken);
     }
 }

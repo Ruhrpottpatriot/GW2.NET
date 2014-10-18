@@ -258,12 +258,12 @@ namespace GW2NET.V2.Quaggans
                 cancellationToken);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <returns>The page.</returns>
-        public ICollectionPage<Quaggan> GetPage(int page)
+        public ICollectionPage<Quaggan> FindPage(int pageIndex)
         {
-            var request = new QuagganPageRequest { Page = page };
+            var request = new QuagganPageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
             if (response.Content == null)
             {
@@ -283,16 +283,16 @@ namespace GW2NET.V2.Quaggans
             var pageTotal = response.GetPageTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
+            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, pageSize, pageTotal);
         }
 
-        /// <summary>Gets a page with the specified page number and maximum size.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page number and maximum size.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <returns>The page.</returns>
-        public ICollectionPage<Quaggan> GetPage(int page, int pageSize)
+        public ICollectionPage<Quaggan> FindPage(int pageIndex, int pageSize)
         {
-            var request = new QuagganPageRequest { Page = page, PageSize = pageSize };
+            var request = new QuagganPageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
             if (response.Content == null)
             {
@@ -312,24 +312,24 @@ namespace GW2NET.V2.Quaggans
             var pageTotal = response.GetPageTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, page, size, pageTotal);
+            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, size, pageTotal);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Quaggan>> GetPageAsync(int page)
+        public Task<ICollectionPage<Quaggan>> FindPageAsync(int pageIndex)
         {
-            return this.GetPageAsync(page, CancellationToken.None);
+            return this.FindPageAsync(pageIndex, CancellationToken.None);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Quaggan>> GetPageAsync(int page, CancellationToken cancellationToken)
+        public Task<ICollectionPage<Quaggan>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            var request = new QuagganPageRequest { Page = page };
+            var request = new QuagganPageRequest { Page = pageIndex };
             return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
@@ -352,28 +352,28 @@ namespace GW2NET.V2.Quaggans
                         var pageTotal = response.GetPageTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
+                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, pageSize, pageTotal);
                     }, 
                 cancellationToken);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Quaggan>> GetPageAsync(int page, int pageSize)
+        public Task<ICollectionPage<Quaggan>> FindPageAsync(int pageIndex, int pageSize)
         {
-            return this.GetPageAsync(page, pageSize, CancellationToken.None);
+            return this.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Quaggan>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken)
+        public Task<ICollectionPage<Quaggan>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var request = new QuagganPageRequest { Page = page, PageSize = pageSize };
+            var request = new QuagganPageRequest { Page = pageIndex, PageSize = pageSize };
             return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
                 task =>
                     {
@@ -396,7 +396,7 @@ namespace GW2NET.V2.Quaggans
                         var pageTotal = response.GetPageTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, page, size, pageTotal);
+                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, size, pageTotal);
                     }, 
                 cancellationToken);
         }

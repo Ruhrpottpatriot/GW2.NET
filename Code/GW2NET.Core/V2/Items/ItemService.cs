@@ -332,12 +332,12 @@ namespace GW2NET.V2.Items
                 cancellationToken);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <returns>The page.</returns>
-        public ICollectionPage<Item> GetPage(int page)
+        public ICollectionPage<Item> FindPage(int pageIndex)
         {
-            var request = new ItemPageRequest { Page = page, Culture = this.Culture };
+            var request = new ItemPageRequest { Page = pageIndex, Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             if (response.Content == null)
             {
@@ -346,7 +346,7 @@ namespace GW2NET.V2.Items
 
             var values = new CollectionPage<Item>(response.Content.Count)
                 {
-                    PageIndex = page, 
+                    PageIndex = pageIndex, 
                     PageSize = response.GetPageSize(), 
                     PageCount = response.GetPageTotal(), 
                     SubtotalCount = response.GetResultCount(), 
@@ -377,13 +377,13 @@ namespace GW2NET.V2.Items
             return values;
         }
 
-        /// <summary>Gets a page with the specified page number and maximum size.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page number and maximum size.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <returns>The page.</returns>
-        public ICollectionPage<Item> GetPage(int page, int pageSize)
+        public ICollectionPage<Item> FindPage(int pageIndex, int pageSize)
         {
-            var request = new ItemPageRequest { Page = page, PageSize = pageSize, Culture = this.Culture };
+            var request = new ItemPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             if (response.Content == null)
             {
@@ -392,7 +392,7 @@ namespace GW2NET.V2.Items
 
             var values = new CollectionPage<Item>(response.Content.Count)
                 {
-                    PageIndex = page, 
+                    PageIndex = pageIndex, 
                     PageSize = response.GetPageSize(), 
                     PageCount = response.GetPageTotal(), 
                     SubtotalCount = response.GetResultCount(), 
@@ -423,21 +423,21 @@ namespace GW2NET.V2.Items
             return values;
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Item>> GetPageAsync(int page)
+        public Task<ICollectionPage<Item>> FindPageAsync(int pageIndex)
         {
-            return this.GetPageAsync(page, CancellationToken.None);
+            return this.FindPageAsync(pageIndex, CancellationToken.None);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Item>> GetPageAsync(int page, CancellationToken cancellationToken)
+        public Task<ICollectionPage<Item>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            var request = new ItemPageRequest { Page = page, Culture = this.Culture };
+            var request = new ItemPageRequest { Page = pageIndex, Culture = this.Culture };
             return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
                 task =>
                     {
@@ -449,7 +449,7 @@ namespace GW2NET.V2.Items
 
                         var values = new CollectionPage<Item>(response.Content.Count)
                             {
-                                PageIndex = page, 
+                                PageIndex = pageIndex, 
                                 PageSize = response.GetPageSize(), 
                                 PageCount = response.GetPageTotal(), 
                                 SubtotalCount = response.GetResultCount(), 
@@ -482,23 +482,23 @@ namespace GW2NET.V2.Items
                 cancellationToken);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Item>> GetPageAsync(int page, int pageSize)
+        public Task<ICollectionPage<Item>> FindPageAsync(int pageIndex, int pageSize)
         {
-            return this.GetPageAsync(page, pageSize, CancellationToken.None);
+            return this.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
-        /// <summary>Gets a page with the specified page number.</summary>
-        /// <param name="page">The page to get.</param>
+        /// <summary>Finds the page with the specified page index.</summary>
+        /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The page.</returns>
-        public Task<ICollectionPage<Item>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken)
+        public Task<ICollectionPage<Item>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var request = new ItemPageRequest { Page = page, PageSize = pageSize, Culture = this.Culture };
+            var request = new ItemPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
 
             return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
                 task =>
@@ -511,7 +511,7 @@ namespace GW2NET.V2.Items
 
                         var values = new CollectionPage<Item>(response.Content.Count)
                             {
-                                PageIndex = page, 
+                                PageIndex = pageIndex, 
                                 PageSize = response.GetPageSize(), 
                                 PageCount = response.GetPageTotal(), 
                                 SubtotalCount = response.GetResultCount(), 

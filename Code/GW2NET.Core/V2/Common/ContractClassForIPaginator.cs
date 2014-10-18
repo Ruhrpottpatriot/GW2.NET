@@ -18,49 +18,49 @@ namespace GW2NET.V2.Common
         Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIPaginator<T> : IPaginator<T>
     {
-        public ICollectionPage<T> GetPage(int page)
+        public ICollectionPage<T> FindPage(int pageIndex)
         {
-            Contract.Requires(page >= 0);
+            Contract.Requires(pageIndex >= 0);
             Contract.Ensures(Contract.Result<ICollectionPage<T>>() != null);
             throw new System.NotImplementedException();
         }
 
-        public ICollectionPage<T> GetPage(int page, int pageSize)
+        public ICollectionPage<T> FindPage(int pageIndex, int pageSize)
         {
-            Contract.Requires(page >= 0);
+            Contract.Requires(pageIndex >= 0);
             Contract.Requires(pageSize > 0);
             Contract.Ensures(Contract.Result<ICollectionPage<T>>() != null);
             throw new System.NotImplementedException();
         }
 
-        public Task<ICollectionPage<T>> GetPageAsync(int page)
+        public Task<ICollectionPage<T>> FindPageAsync(int pageIndex)
         {
-            Contract.Requires(page >= 0);
+            Contract.Requires(pageIndex >= 0);
             Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>() != null);
             Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
-        public Task<ICollectionPage<T>> GetPageAsync(int page, CancellationToken cancellationToken)
+        public Task<ICollectionPage<T>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            Contract.Requires(page >= 0);
+            Contract.Requires(pageIndex >= 0);
             Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>() != null);
             Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
-        public Task<ICollectionPage<T>> GetPageAsync(int page, int pageSize)
+        public Task<ICollectionPage<T>> FindPageAsync(int pageIndex, int pageSize)
         {
-            Contract.Requires(page >= 0);
+            Contract.Requires(pageIndex >= 0);
             Contract.Requires(pageSize > 0);
             Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>() != null);
             Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
-        public Task<ICollectionPage<T>> GetPageAsync(int page, int pageSize, CancellationToken cancellationToken)
+        public Task<ICollectionPage<T>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            Contract.Requires(page >= 0);
+            Contract.Requires(pageIndex >= 0);
             Contract.Requires(pageSize > 0);
             Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>() != null);
             Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>().Result != null);
