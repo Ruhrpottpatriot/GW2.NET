@@ -29,8 +29,6 @@ namespace GW2NET
             }
 
             Contract.Ensures(this.serviceClient != null);
-            Contract.Ensures(object.ReferenceEquals(this.serviceClient, serviceClient));
-
             this.serviceClient = serviceClient;
         }
 
@@ -39,8 +37,15 @@ namespace GW2NET
         {
             get
             {
+                Contract.Ensures(Contract.Result<IServiceClient>() != null);
                 return this.serviceClient;
             }
+        }
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

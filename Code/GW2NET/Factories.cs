@@ -5,6 +5,8 @@ using System.Text;
 
 namespace GW2NET
 {
+    using System.Diagnostics.Contracts;
+
     using GW2NET.Common;
 
     public static partial class GW2
@@ -16,6 +18,7 @@ namespace GW2NET
             public Factory1(IServiceClient serviceClient)
                 : base(serviceClient)
             {
+                Contract.Requires(serviceClient != null);
             }
 
             public partial class WvWFactory1 : ServiceFactory
@@ -25,6 +28,7 @@ namespace GW2NET
                 public WvWFactory1(IServiceClient serviceClient)
                     : base(serviceClient)
                 {
+                    Contract.Requires(serviceClient != null);
                 }
             }
         }
@@ -36,6 +40,7 @@ namespace GW2NET
             public Factory2(IServiceClient serviceClient)
                 : base(serviceClient)
             {
+                Contract.Requires(serviceClient != null);
             }
 
             public partial class CommerceFactory2 : ServiceFactory
@@ -45,6 +50,7 @@ namespace GW2NET
                 public CommerceFactory2(IServiceClient serviceClient)
                     : base(serviceClient)
                 {
+                    Contract.Requires(serviceClient != null);
                 }
             }
         }

@@ -206,9 +206,8 @@
       <Name>GW2NET.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj">
-      <Project>{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}</Project>
+      <Project>{11bb8977-33fe-4789-bd5b-d977b0bf5ecf}</Project>
       <Name>GW2NET.Newtonsoft</Name>
-      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
