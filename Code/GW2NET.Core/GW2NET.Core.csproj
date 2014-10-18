@@ -665,11 +665,6 @@
     <Compile Include="V1\WorldVersusWorld\MatchService.cs" />
     <Compile Include="V1\WorldVersusWorld\Names\ObjectiveNameRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Names\ContractClassForIObjectiveNameService.cs" />
-    <Compile Include="V2\Builds.Json\BuildContract.cs" />
-    <Compile Include="V2\Builds\BuildRequest.cs" />
-    <Compile Include="V2\Builds\BuildService.cs" />
-    <Compile Include="V2\Builds\BuildServiceContract.cs" />
-    <Compile Include="V2\Builds\IBuildService.cs" />
     <Compile Include="V2\Commerce.Json\AggregateListingDataContract.cs" />
     <Compile Include="V2\Commerce.Json\ExchangeQuoteDataContract.cs" />
     <Compile Include="V2\Commerce.Json\ListingDataContract.cs" />
