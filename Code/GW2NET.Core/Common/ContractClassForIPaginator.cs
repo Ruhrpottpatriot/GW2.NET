@@ -6,12 +6,14 @@
 //   Defines the ContractClassForIPaginator type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
+
+    using GW2NET.V2.Common;
 
     [ContractClassFor(typeof(IPaginator<>))]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 

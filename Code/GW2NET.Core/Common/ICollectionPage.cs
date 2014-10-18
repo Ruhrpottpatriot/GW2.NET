@@ -6,7 +6,7 @@
 //   Provides the interface for collections that represent a page.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Collections.Generic;
 

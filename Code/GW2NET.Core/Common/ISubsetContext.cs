@@ -6,7 +6,7 @@
 //   Provides contextual information for collections that are a subset of a larger collection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Diagnostics.Contracts;
 

@@ -6,7 +6,7 @@
 //   Provides the interface for agents that provide exchange services.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Threading;
     using System.Threading.Tasks;

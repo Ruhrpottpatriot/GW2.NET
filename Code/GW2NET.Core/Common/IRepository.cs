@@ -6,12 +6,14 @@
 //   Provides the interface for repositories.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
+
+    using GW2NET.V2.Common;
 
     /// <summary>Provides the interface for repositories.</summary>
     /// <typeparam name="TKey">The type of the key values that uniquely identify the entities in the repository.</typeparam>

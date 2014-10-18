@@ -6,7 +6,7 @@
 //   Defines the ContractClassForIPageContext type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;

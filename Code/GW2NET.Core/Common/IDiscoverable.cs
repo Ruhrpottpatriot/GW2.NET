@@ -6,7 +6,7 @@
 //   Provides the interface for data sources that are discoverable.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;

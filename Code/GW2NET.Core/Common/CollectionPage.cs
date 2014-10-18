@@ -6,10 +6,12 @@
 //   Represents a subset of values.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
+
+    using GW2NET.V2.Common;
 
     /// <summary>Represents a subset of values.</summary>
     /// <typeparam name="T">The type of elements in the subset.</typeparam>

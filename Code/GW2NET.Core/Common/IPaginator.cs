@@ -6,11 +6,13 @@
 //   Provides the interface for types that perform pagination.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
+
+    using GW2NET.V2.Common;
 
     /// <summary>Provides the interface for types that perform pagination.</summary>
     /// <typeparam name="T">The type of elements on the page.</typeparam>

@@ -6,7 +6,7 @@
 //   Provides the interface for <see cref="IDictionary{TKey,TValue}" /> types that represent a range.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Common
+namespace GW2NET.Common
 {
     using System.Collections.Generic;
 
