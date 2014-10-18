@@ -295,6 +295,20 @@ namespace GW2NET.V2.Commerce
             values.PageCount = response.GetPageTotal();
             values.SubtotalCount = response.GetResultCount();
             values.TotalCount = response.GetResultTotal();
+            if (values.PageCount > 0)
+            {
+                values.LastPageIndex = values.PageCount - 1;
+                if (values.PageIndex < values.LastPageIndex)
+                {
+                    values.NextPageIndex = values.PageIndex + 1;
+                }
+
+                if (values.PageIndex > values.FirstPageIndex)
+                {
+                    values.PreviousPageIndex = values.PageIndex - 1;
+                }
+            }
+
             foreach (var value in values)
             {
                 value.Timestamp = response.Date;
@@ -322,6 +336,20 @@ namespace GW2NET.V2.Commerce
             values.PageCount = response.GetPageTotal();
             values.SubtotalCount = response.GetResultCount();
             values.TotalCount = response.GetResultTotal();
+            if (values.PageCount > 0)
+            {
+                values.LastPageIndex = values.PageCount - 1;
+                if (values.PageIndex < values.LastPageIndex)
+                {
+                    values.NextPageIndex = values.PageIndex + 1;
+                }
+
+                if (values.PageIndex > values.FirstPageIndex)
+                {
+                    values.PreviousPageIndex = values.PageIndex - 1;
+                }
+            }
+
             foreach (var value in values)
             {
                 value.Timestamp = response.Date;
@@ -360,6 +388,20 @@ namespace GW2NET.V2.Commerce
                         values.PageCount = response.GetPageTotal();
                         values.SubtotalCount = response.GetResultCount();
                         values.TotalCount = response.GetResultTotal();
+                        if (values.PageCount > 0)
+                        {
+                            values.LastPageIndex = values.PageCount - 1;
+                            if (values.PageIndex < values.LastPageIndex)
+                            {
+                                values.NextPageIndex = values.PageIndex + 1;
+                            }
+
+                            if (values.PageIndex > values.FirstPageIndex)
+                            {
+                                values.PreviousPageIndex = values.PageIndex - 1;
+                            }
+                        }
+
                         foreach (var value in values)
                         {
                             value.Timestamp = response.Date;
@@ -402,6 +444,20 @@ namespace GW2NET.V2.Commerce
                         values.PageCount = response.GetPageTotal();
                         values.SubtotalCount = response.GetResultCount();
                         values.TotalCount = response.GetResultTotal();
+                        if (values.PageCount > 0)
+                        {
+                            values.LastPageIndex = values.PageCount - 1;
+                            if (values.PageIndex < values.LastPageIndex)
+                            {
+                                values.NextPageIndex = values.PageIndex + 1;
+                            }
+
+                            if (values.PageIndex > values.FirstPageIndex)
+                            {
+                                values.PreviousPageIndex = values.PageIndex - 1;
+                            }
+                        }
+
                         foreach (var value in values)
                         {
                             value.Timestamp = response.Date;
