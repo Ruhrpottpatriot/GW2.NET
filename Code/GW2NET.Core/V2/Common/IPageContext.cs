@@ -11,7 +11,7 @@ namespace GW2NET.V2.Common
     using System.Diagnostics.Contracts;
 
     /// <summary>Provides contextual information for paginated collections.</summary>
-    [ContractClass(typeof(PageContextContract))]
+    [ContractClass(typeof(ContractClassForIPageContext))]
     public interface IPageContext : ISubsetContext
     {
         /// <summary>Gets or sets the page index of the first page.</summary>

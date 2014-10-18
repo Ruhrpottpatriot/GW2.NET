@@ -12,7 +12,7 @@ namespace GW2NET.Common
     using System.Diagnostics.Contracts;
 
     /// <summary>Provides the interface for service requests.</summary>
-    [ContractClass(typeof(RequestContracts))]
+    [ContractClass(typeof(ContractClassForIRequest))]
     public interface IRequest
     {
         /// <summary>Gets the resource path.</summary>

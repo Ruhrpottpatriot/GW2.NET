@@ -14,7 +14,7 @@ namespace GW2NET.V1.Skins
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for the skin discovery service.</summary>
-    [ContractClass(typeof(SkinDiscoveryServiceContract))]
+    [ContractClass(typeof(ContractClassForISkinDiscoveryService))]
     public interface ISkinDiscoveryService
     {
         /// <summary>Gets a collection of skin identifiers.</summary>

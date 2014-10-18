@@ -16,7 +16,7 @@ namespace GW2NET.V2.Common
     /// <summary>Provides the interface for repositories.</summary>
     /// <typeparam name="TKey">The type of the key values that uniquely identify the entities in the repository.</typeparam>
     /// <typeparam name="TValue">The type of the entities in the repository.</typeparam>
-    [ContractClass(typeof(RepositoryContract<,>))]
+    [ContractClass(typeof(ContractClassForIRepository<,>))]
     public interface IRepository<TKey, TValue> : IDiscoverable<TKey>, IPaginator<TValue>
     {
         /// <summary>Finds the <typeparamref name="TValue"/> with the specified identifier.</summary>

@@ -14,7 +14,7 @@ namespace GW2NET.V2.Common
 
     /// <summary>Provides the interface for types that perform pagination.</summary>
     /// <typeparam name="T">The type of elements on the page.</typeparam>
-    [ContractClass(typeof(PaginatorContract<>))]
+    [ContractClass(typeof(ContractClassForIPaginator<>))]
     public interface IPaginator<T>
     {
         /// <summary>Gets a page with the specified page number.</summary>

@@ -13,7 +13,7 @@ namespace GW2NET.Common
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for service clients.</summary>
-    [ContractClass(typeof(ServiceClientContracts))]
+    [ContractClass(typeof(ContractClassForIServiceClient))]
     public interface IServiceClient
     {
         /// <summary>Sends a request and returns the response.</summary>

@@ -16,7 +16,7 @@ namespace GW2NET.V1.Maps
     using GW2NET.Entities.Maps;
 
     /// <summary>Provides the interface for the continents service.</summary>
-    [ContractClass(typeof(ContinentDetailsServiceContract))]
+    [ContractClass(typeof(ContractClassForIContinentDetailsService))]
     public interface IContinentDetailsService
     {
         /// <summary>Gets a collection of continents and their details.</summary>

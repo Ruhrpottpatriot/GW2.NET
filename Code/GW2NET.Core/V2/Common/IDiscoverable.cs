@@ -15,7 +15,7 @@ namespace GW2NET.V2.Common
 
     /// <summary>Provides the interface for data sources that are discoverable.</summary>
     /// <typeparam name="T">The type of the identifiers.</typeparam>
-    [ContractClass(typeof(DiscoverableCodeContract<>))]
+    [ContractClass(typeof(ContractClassForIDiscoverable<>))]
     public interface IDiscoverable<T>
     {
         /// <summary>Gets the discovered identifiers.</summary>

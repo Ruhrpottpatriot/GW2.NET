@@ -15,7 +15,7 @@ namespace GW2NET.V1.Builds
     using GW2NET.Entities.Builds;
 
     /// <summary>Provides the interface for the build service.</summary>
-    [ContractClass(typeof(BuildServiceContract))]
+    [ContractClass(typeof(ContractClassForIBuildService))]
     public interface IBuildService
     {
         /// <summary>Gets the current game build.</summary>

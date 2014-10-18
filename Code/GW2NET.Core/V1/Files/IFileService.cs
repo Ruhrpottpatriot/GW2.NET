@@ -16,7 +16,7 @@ namespace GW2NET.V1.Files
     using GW2NET.Entities.Files;
 
     /// <summary>Provides the interface for the files service.</summary>
-    [ContractClass(typeof(FileServiceContract))]
+    [ContractClass(typeof(ContractClassForIFileService))]
     public interface IFileService
     {
         /// <summary>Gets a collection of commonly requested in-game assets.</summary>

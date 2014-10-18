@@ -17,7 +17,7 @@ namespace GW2NET.V1.Worlds
     using GW2NET.Entities.Worlds;
 
     /// <summary>Provides the interface for the world names service.</summary>
-    [ContractClass(typeof(WorldNameServiceContract))]
+    [ContractClass(typeof(ContractClassForIWorldNameService))]
     public interface IWorldNameService
     {
         /// <summary>Gets a collection of worlds and their localized name.</summary>

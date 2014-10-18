@@ -16,7 +16,7 @@ namespace GW2NET.V1.Guilds
     using GW2NET.Entities.Guilds;
 
     /// <summary>Provides the interface for the guild details service.</summary>
-    [ContractClass(typeof(GuildDetailsServiceContract))]
+    [ContractClass(typeof(ContractClassForIGuildDetailsService))]
     public interface IGuildDetailsService
     {
         /// <summary>Gets a guild and its details.</summary>

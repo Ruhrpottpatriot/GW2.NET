@@ -17,7 +17,7 @@ namespace GW2NET.V1.Maps
     using GW2NET.Entities.Maps;
 
     /// <summary>Provides the interface for the map names service.</summary>
-    [ContractClass(typeof(MapNameServiceContract))]
+    [ContractClass(typeof(ContractClassForIMapNameService))]
     public interface IMapNameService
     {
         /// <summary>Gets a collection of maps and their localized name.</summary>

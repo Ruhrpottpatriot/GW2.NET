@@ -16,7 +16,7 @@ namespace GW2NET.V1.Skins
     using GW2NET.Entities.Skins;
 
     /// <summary>Provides the interface for the skin details service.</summary>
-    [ContractClass(typeof(SkinDetailsServiceContract))]
+    [ContractClass(typeof(ContractClassForISkinDetailsService))]
     public interface ISkinDetailsService
     {
         /// <summary>Gets a skin and its localized details.</summary>

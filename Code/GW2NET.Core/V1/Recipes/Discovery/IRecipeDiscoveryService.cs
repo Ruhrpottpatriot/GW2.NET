@@ -14,7 +14,7 @@ namespace GW2NET.V1.Recipes
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for the recipe discovery service.</summary>
-    [ContractClass(typeof(RecipeDiscoveryServiceContract))]
+    [ContractClass(typeof(ContractClassForIRecipeDiscoveryService))]
     public interface IRecipeDiscoveryService
     {
         /// <summary>Gets a collection of discovered recipes.</summary>

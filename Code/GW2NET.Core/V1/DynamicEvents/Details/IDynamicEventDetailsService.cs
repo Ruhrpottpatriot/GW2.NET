@@ -18,7 +18,7 @@ namespace GW2NET.V1.DynamicEvents
     using GW2NET.Entities.DynamicEvents;
 
     /// <summary>Provides the interface for the event details service.</summary>
-    [ContractClass(typeof(DynamicEventDetailsServiceContract))]
+    [ContractClass(typeof(ContractClassForIDynamicEventDetailsService))]
     public interface IDynamicEventDetailsService
     {
         /// <summary>Gets a collection of dynamic events and their localized details.</summary>

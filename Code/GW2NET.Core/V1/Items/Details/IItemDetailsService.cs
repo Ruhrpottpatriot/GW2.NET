@@ -16,7 +16,7 @@ namespace GW2NET.V1.Items
     using GW2NET.Entities.Items;
 
     /// <summary>Provides the interface for the item details service.</summary>
-    [ContractClass(typeof(ItemDetailsServiceContract))]
+    [ContractClass(typeof(ContractClassForIItemDetailsService))]
     public interface IItemDetailsService
     {
         /// <summary>Gets an item and its localized details.</summary>

@@ -15,7 +15,7 @@ namespace GW2NET.Rendering
     using GW2NET.Common;
 
     /// <summary>Provides the interface for the render service.</summary>
-    [ContractClass(typeof(RenderServiceContract))]
+    [ContractClass(typeof(ContractClassForIRenderService))]
     public interface IRenderService
     {
         /// <summary>Gets an image.</summary>

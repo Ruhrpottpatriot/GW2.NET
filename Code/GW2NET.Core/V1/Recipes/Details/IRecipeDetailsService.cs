@@ -16,7 +16,7 @@ namespace GW2NET.V1.Recipes
     using GW2NET.Entities.Recipes;
 
     /// <summary>Provides the interface for the recipe details service.</summary>
-    [ContractClass(typeof(RecipeDetailsServiceContract))]
+    [ContractClass(typeof(ContractClassForIRecipeDetailsService))]
     public interface IRecipeDetailsService
     {
         /// <summary>Gets a recipe and its localized details.</summary>

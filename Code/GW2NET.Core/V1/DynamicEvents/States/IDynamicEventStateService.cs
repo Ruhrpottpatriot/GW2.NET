@@ -17,7 +17,7 @@ namespace GW2NET.V1.DynamicEvents
     using GW2NET.Entities.DynamicEvents;
 
     /// <summary>Provides the interface for the event state service.</summary>
-    [ContractClass(typeof(DynamicEventStateServiceContract))]
+    [ContractClass(typeof(ContractClassForIDynamicEventStateService))]
     public interface IDynamicEventStateService
     {
         /// <summary>Gets a dynamic event and its status.</summary>

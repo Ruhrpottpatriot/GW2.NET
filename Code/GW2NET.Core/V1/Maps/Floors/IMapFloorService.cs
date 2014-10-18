@@ -16,7 +16,7 @@ namespace GW2NET.V1.Maps
     using GW2NET.Entities.Maps;
 
     /// <summary>Provides the interface for the map floor service.</summary>
-    [ContractClass(typeof(MapFloorServiceContract))]
+    [ContractClass(typeof(ContractClassForIMapFloorService))]
     public interface IMapFloorService
     {
         /// <summary>Gets a map floor and its localized details.</summary>

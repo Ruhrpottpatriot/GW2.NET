@@ -13,7 +13,7 @@ namespace GW2NET.Common.Serializers
 
     /// <summary>Provides the interface for serialization engines.</summary>
     /// <typeparam name="T">The serialization type.</typeparam>
-    [ContractClass(typeof(SerializerContracts<>))]
+    [ContractClass(typeof(ContractClassForISerializer<>))]
     public interface ISerializer<T>
     {
         /// <summary>Converts the input stream to the specified type.</summary>

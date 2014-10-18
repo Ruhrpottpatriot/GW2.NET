@@ -11,7 +11,7 @@ namespace GW2NET.V2.Common
     using System.Diagnostics.Contracts;
 
     /// <summary>Provides contextual information for collections that are a subset of a larger collection.</summary>
-    [ContractClass(typeof(SubsetContextContract))]
+    [ContractClass(typeof(ContractClassForISubsetContext))]
     public interface ISubsetContext
     {
         /// <summary>Gets or sets the number of values in this subset.</summary>

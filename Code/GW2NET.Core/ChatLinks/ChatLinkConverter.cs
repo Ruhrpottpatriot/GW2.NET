@@ -13,7 +13,7 @@ namespace GW2NET.ChatLinks
     using System.Text.RegularExpressions;
 
     /// <summary>Provides the base class for chat link converters.</summary>
-    [ContractClass(typeof(ChatLinkConverterContracts))]
+    [ContractClass(typeof(ContractClassForChatLinkConverter))]
     public abstract class ChatLinkConverter
     {
         /// <summary>Infrastructure. The regular expression that is used to parse chat links.</summary>

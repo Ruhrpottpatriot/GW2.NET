@@ -14,7 +14,7 @@ namespace GW2NET.V1.Items
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for the item discovery service.</summary>
-    [ContractClass(typeof(ItemDiscoveryServiceContract))]
+    [ContractClass(typeof(ContractClassForIItemDiscoveryService))]
     public interface IItemDiscoveryService
     {
         /// <summary>Gets a collection of item identifiers.</summary>

@@ -17,7 +17,7 @@ namespace GW2NET.V1.Colors
     using GW2NET.Entities.Colors;
 
     /// <summary>Provides the interface for the colors service.</summary>
-    [ContractClass(typeof(ColorServiceContract))]
+    [ContractClass(typeof(ContractClassForIColorService))]
     public interface IColorService
     {
         /// <summary>Gets a collection of colors and their localized details.</summary>

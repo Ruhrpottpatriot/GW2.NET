@@ -15,7 +15,7 @@ namespace GW2NET.V1.WorldVersusWorld
     using GW2NET.Entities.WorldVersusWorld;
 
     /// <summary>Provides the interface for the match details service.</summary>
-    [ContractClass(typeof(MatchDetailsServiceContract))]
+    [ContractClass(typeof(ContractClassForIMatchDetailsService))]
     public interface IMatchDetailsService
     {
         /// <summary>Gets a World versus World match and its details.</summary>

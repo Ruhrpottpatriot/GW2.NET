@@ -17,7 +17,7 @@ namespace GW2NET.V1.WorldVersusWorld
     using GW2NET.Entities.WorldVersusWorld;
 
     /// <summary>Provides the interface for the objective names service.</summary>
-    [ContractClass(typeof(ObjectiveNameServiceContract))]
+    [ContractClass(typeof(ContractClassForIObjectiveNameService))]
     public interface IObjectiveNameService
     {
         /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
