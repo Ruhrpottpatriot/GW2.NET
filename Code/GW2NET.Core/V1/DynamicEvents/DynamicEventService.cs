@@ -10,6 +10,7 @@ namespace GW2NET.V1.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
@@ -49,7 +50,7 @@ namespace GW2NET.V1.DynamicEvents
                 return null;
             }
 
-            return ConvertEventStateContractCollection(response.Content).Values.SingleOrDefault();
+            return ConvertEventStateCollectionDataContract(response.Content).Values.SingleOrDefault();
         }
 
         /// <summary>Gets a dynamic event and its status.</summary>
@@ -80,7 +81,7 @@ namespace GW2NET.V1.DynamicEvents
                             return null;
                         }
 
-                        return ConvertEventStateContractCollection(response.Content).Values.SingleOrDefault();
+                        return ConvertEventStateCollectionDataContract(response.Content).Values.SingleOrDefault();
                     }, 
                 cancellationToken);
         }
@@ -324,7 +325,7 @@ namespace GW2NET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEvent>(0);
             }
 
-            var values = ConvertEventNameContracts(response.Content);
+            var values = ConvertEventNameDataContractCollection(response.Content);
             var locale = response.Culture ?? language;
             foreach (var value in values.Values)
             {
@@ -386,7 +387,7 @@ namespace GW2NET.V1.DynamicEvents
                             return new Dictionary<Guid, DynamicEvent>(0);
                         }
 
-                        var values = ConvertEventNameContracts(response.Content);
+                        var values = ConvertEventNameDataContractCollection(response.Content);
                         var locale = response.Culture ?? language;
                         foreach (var value in values.Values)
                         {
@@ -410,7 +411,7 @@ namespace GW2NET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return ConvertEventStateContractCollection(response.Content);
+            return ConvertEventStateCollectionDataContract(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -437,7 +438,7 @@ namespace GW2NET.V1.DynamicEvents
                             return new Dictionary<Guid, DynamicEventState>(0);
                         }
 
-                        return ConvertEventStateContractCollection(response.Content);
+                        return ConvertEventStateCollectionDataContract(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -455,7 +456,7 @@ namespace GW2NET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return ConvertEventStateContractCollection(response.Content);
+            return ConvertEventStateCollectionDataContract(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -475,7 +476,7 @@ namespace GW2NET.V1.DynamicEvents
                             return new Dictionary<Guid, DynamicEventState>(0);
                         }
 
-                        return ConvertEventStateContractCollection(response.Content);
+                        return ConvertEventStateCollectionDataContract(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -502,7 +503,7 @@ namespace GW2NET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return ConvertEventStateContractCollection(response.Content);
+            return ConvertEventStateCollectionDataContract(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -519,7 +520,7 @@ namespace GW2NET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return ConvertEventStateContractCollection(response.Content);
+            return ConvertEventStateCollectionDataContract(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -548,7 +549,7 @@ namespace GW2NET.V1.DynamicEvents
                             return new Dictionary<Guid, DynamicEventState>(0);
                         }
 
-                        return ConvertEventStateContractCollection(response.Content);
+                        return ConvertEventStateCollectionDataContract(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -581,7 +582,7 @@ namespace GW2NET.V1.DynamicEvents
                             return new Dictionary<Guid, DynamicEventState>(0);
                         }
 
-                        return ConvertEventStateContractCollection(response.Content);
+                        return ConvertEventStateCollectionDataContract(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -599,7 +600,7 @@ namespace GW2NET.V1.DynamicEvents
                 return new Dictionary<Guid, DynamicEventState>(0);
             }
 
-            return ConvertEventStateContractCollection(response.Content);
+            return ConvertEventStateCollectionDataContract(response.Content);
         }
 
         /// <summary>Gets a collection of dynamic events and their status.</summary>
@@ -628,9 +629,62 @@ namespace GW2NET.V1.DynamicEvents
                             return new Dictionary<Guid, DynamicEventState>(0);
                         }
 
-                        return ConvertEventStateContractCollection(response.Content);
+                        return ConvertEventStateCollectionDataContract(response.Content);
                     }, 
                 cancellationToken);
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static CylinderLocation ConvertCylinderLocationDataContract(LocationDataContract content)
+        {
+            Contract.Requires(content != null);
+
+            // Create a new location object
+            var value = new CylinderLocation();
+
+            // Set the center coordinates
+            if (content.Center != null && content.Center.Length == 3)
+            {
+                value.Center = ConvertVector3D(content.Center);
+            }
+
+            // Set the cylinder's height
+            value.Height = content.Height;
+
+            // Set the cylinder's radius
+            value.Radius = content.Radius;
+
+            // Set the cylinder's rotation
+            value.Rotation = content.Rotation;
+
+            // Return the location object
+            return value;
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static DynamicEventFlags ConvertDynamicEventFlags(IEnumerable<string> content)
+        {
+            Contract.Requires(content != null);
+            var flags = DynamicEventFlags.None;
+            foreach (var value in content)
+            {
+                switch (value)
+                {
+                    case "group_event":
+                        flags |= DynamicEventFlags.GroupEvent;
+                        break;
+                    case "map_wide":
+                        flags |= DynamicEventFlags.MapWide;
+                        break;
+                    default:
+
+                        // Attempt to parse a previously unknown value, ultimately resulting in an argument exception
+                        flags |= (DynamicEventFlags)Enum.Parse(typeof(DynamicEventFlags), value ?? string.Empty, true);
+                        break;
+                }
+            }
+
+            return flags;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
@@ -680,13 +734,13 @@ namespace GW2NET.V1.DynamicEvents
             // Set additional flags
             if (content.Value.Flags != null)
             {
-                value.Flags = MapDynamicEventFlags(content.Value.Flags);
+                value.Flags = ConvertDynamicEventFlags(content.Value.Flags);
             }
 
             // Set the location
             if (content.Value.Location != null)
             {
-                value.Location = ConvertLocationContract(content.Value.Location);
+                value.Location = ConvertLocationDataContract(content.Value.Location);
             }
 
             // Return the event object
@@ -720,10 +774,8 @@ namespace GW2NET.V1.DynamicEvents
             return value;
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>A collection of entities.</returns>
-        private static IDictionary<Guid, DynamicEvent> ConvertEventNameContracts(ICollection<EventNameDataContract> content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static IDictionary<Guid, DynamicEvent> ConvertEventNameDataContractCollection(ICollection<EventNameDataContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEvent>>() != null);
@@ -737,16 +789,21 @@ namespace GW2NET.V1.DynamicEvents
             return values;
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>A collection of entities.</returns>
-        private static IDictionary<Guid, DynamicEventState> ConvertEventStateContractCollection(EventStateCollectionDataContract content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static EventState ConvertEventState(string content)
+        {
+            Contract.Requires(content != null);
+            return (EventState)Enum.Parse(typeof(EventState), content);
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static IDictionary<Guid, DynamicEventState> ConvertEventStateCollectionDataContract(EventStateCollectionDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Events != null);
             Contract.Ensures(Contract.Result<IDictionary<Guid, DynamicEventState>>() != null);
             var values = new Dictionary<Guid, DynamicEventState>(content.Events.Count);
-            foreach (var value in content.Events.Select(MapDynamicEventState))
+            foreach (var value in content.Events.Select(ConvertEventStateDataContract))
             {
                 Contract.Assume(value != null);
                 values.Add(value.EventId, value);
@@ -755,127 +812,8 @@ namespace GW2NET.V1.DynamicEvents
             return values;
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Location ConvertLocationContract(LocationDataContract content)
-        {
-            Contract.Requires(content != null);
-            switch (content.Type)
-            {
-                case "sphere":
-                    return MapSphereLocation(content);
-                case "cylinder":
-                    return MapCylinderLocation(content);
-                case "poly":
-                    return MapPolygonLocation(content);
-            }
-
-            return MapUnknownLocation(content);
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Vector3D ConvertPoint3DContract(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 3);
-            return new Vector3D(content[0], content[1], content[2]);
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Vector2D ConvertVector2D(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 2);
-            return new Vector2D(content[0], content[1]);
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>A collection of entities.</returns>
-        private static ICollection<Vector2D> ConvertVector2DCollection(double[][] content)
-        {
-            Contract.Requires(content != null);
-            var values = new List<Vector2D>(content.Length);
-            values.AddRange(content.Select(ConvertVector2D));
-            return values;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Vector2D ConvertZRangeContract(double[] content)
-        {
-            Contract.Requires(content != null);
-            Contract.Requires(content.Length == 2);
-            return new Vector2D(content[0], content[1]);
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static CylinderLocation MapCylinderLocation(LocationDataContract content)
-        {
-            Contract.Requires(content != null);
-
-            // Create a new location object
-            var value = new CylinderLocation();
-
-            // Set the center coordinates
-            if (content.Center != null && content.Center.Length == 3)
-            {
-                value.Center = ConvertPoint3DContract(content.Center);
-            }
-
-            // Set the cylinder's height
-            value.Height = content.Height;
-
-            // Set the cylinder's radius
-            value.Radius = content.Radius;
-
-            // Set the cylinder's rotation
-            value.Rotation = content.Rotation;
-
-            // Return the location object
-            return value;
-        }
-
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static DynamicEventFlags MapDynamicEventFlags(IEnumerable<string> content)
-        {
-            Contract.Requires(content != null);
-            var flags = DynamicEventFlags.None;
-            foreach (var value in content)
-            {
-                switch (value)
-                {
-                    case "group_event":
-                        flags |= DynamicEventFlags.GroupEvent;
-                        break;
-                    case "map_wide":
-                        flags |= DynamicEventFlags.MapWide;
-                        break;
-                    default:
-
-                        // Attempt to parse a previously unknown value, ultimately resulting in an argument exception
-                        flags |= (DynamicEventFlags)Enum.Parse(typeof(DynamicEventFlags), value ?? string.Empty, true);
-                        break;
-                }
-            }
-
-            return flags;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static DynamicEventState MapDynamicEventState(EventStateDataContract content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static DynamicEventState ConvertEventStateDataContract(EventStateDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<DynamicEventState>() != null);
@@ -898,37 +836,43 @@ namespace GW2NET.V1.DynamicEvents
             // Set the state of the event
             if (content.State != null)
             {
-                value.State = MapEventState(content.State);
+                value.State = ConvertEventState(content.State);
             }
 
             // Return the event state object
             return value;
         }
 
-        /// <summary>Infrastructure. Converts text to bit flags.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The bit flags.</returns>
-        private static EventState MapEventState(string content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static Location ConvertLocationDataContract(LocationDataContract content)
         {
             Contract.Requires(content != null);
-            return (EventState)Enum.Parse(typeof(EventState), content);
+            switch (content.Type)
+            {
+                case "sphere":
+                    return ConvertSphereLocationDataContract(content);
+                case "cylinder":
+                    return ConvertCylinderLocationDataContract(content);
+                case "poly":
+                    return ConvertPolygonLocationDataContract(content);
+            }
+
+            return ConvertUnknownLocationDataContract(content);
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static PolygonLocation MapPolygonLocation(LocationDataContract content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static PolygonLocation ConvertPolygonLocationDataContract(LocationDataContract content)
         {
             Contract.Requires(content != null);
             var value = new PolygonLocation();
             if (content.Center != null && content.Center.Length == 3)
             {
-                value.Center = ConvertPoint3DContract(content.Center);
+                value.Center = ConvertVector3D(content.Center);
             }
 
             if (content.ZRange != null && content.ZRange.Length == 2)
             {
-                value.ZRange = ConvertZRangeContract(content.ZRange);
+                value.ZRange = ConvertVector2D(content.ZRange);
             }
 
             if (content.Points != null)
@@ -939,10 +883,8 @@ namespace GW2NET.V1.DynamicEvents
             return value;
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static SphereLocation MapSphereLocation(LocationDataContract content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static SphereLocation ConvertSphereLocationDataContract(LocationDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -952,7 +894,7 @@ namespace GW2NET.V1.DynamicEvents
             // Set the center coordinates
             if (content.Center != null && content.Center.Length == 3)
             {
-                value.Center = ConvertPoint3DContract(content.Center);
+                value.Center = ConvertVector3D(content.Center);
             }
 
             // Set the sphere's radius
@@ -965,10 +907,8 @@ namespace GW2NET.V1.DynamicEvents
             return value;
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static UnknownLocation MapUnknownLocation(LocationDataContract content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static UnknownLocation ConvertUnknownLocationDataContract(LocationDataContract content)
         {
             Contract.Requires(content != null);
 
@@ -978,18 +918,36 @@ namespace GW2NET.V1.DynamicEvents
             // Set the center coordinates
             if (content.Center != null && content.Center.Length == 3)
             {
-                value.Center = ConvertPoint3DContract(content.Center);
+                value.Center = ConvertVector3D(content.Center);
             }
 
             // Return the location object
             return value;
         }
 
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static Vector2D ConvertVector2D(double[] content)
         {
-            Contract.Invariant(this.serviceClient != null);
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 2);
+            return new Vector2D(content[0], content[1]);
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static ICollection<Vector2D> ConvertVector2DCollection(double[][] content)
+        {
+            Contract.Requires(content != null);
+            var values = new List<Vector2D>(content.Length);
+            values.AddRange(content.Select(ConvertVector2D));
+            return values;
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static Vector3D ConvertVector3D(double[] content)
+        {
+            Contract.Requires(content != null);
+            Contract.Requires(content.Length == 3);
+            return new Vector3D(content[0], content[1], content[2]);
         }
     }
 }

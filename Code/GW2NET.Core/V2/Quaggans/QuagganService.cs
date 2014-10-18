@@ -10,6 +10,7 @@ namespace GW2NET.V2.Quaggans
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Linq;
     using System.Threading;
@@ -31,6 +32,7 @@ namespace GW2NET.V2.Quaggans
         public QuagganService(IServiceClient serviceClient)
         {
             Contract.Requires(serviceClient != null);
+            Contract.Ensures(this.serviceClient != null);
             this.serviceClient = serviceClient;
         }
 
@@ -87,7 +89,7 @@ namespace GW2NET.V2.Quaggans
                 return null;
             }
 
-            return ConvertQuagganContract(response.Content);
+            return ConvertQuagganDataContract(response.Content);
         }
 
         /// <summary>Finds every <see cref="Quaggan"/>.</summary>
@@ -108,7 +110,7 @@ namespace GW2NET.V2.Quaggans
             var totalCount = response.GetResultTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganContracts(response.Content, pageCount, totalCount);
+            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
         }
 
         /// <summary>Finds every <see cref="Quaggan"/> with one of the specified identifiers.</summary>
@@ -142,7 +144,7 @@ namespace GW2NET.V2.Quaggans
             var totalCount = response.GetResultTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganContracts(response.Content, pageCount, totalCount);
+            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
         }
 
         /// <summary>Finds every <see cref="Quaggan"/>.</summary>
@@ -174,7 +176,7 @@ namespace GW2NET.V2.Quaggans
                         var totalCount = response.GetResultTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganContracts(response.Content, pageCount, totalCount);
+                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
                     }, 
                 cancellationToken);
         }
@@ -222,7 +224,7 @@ namespace GW2NET.V2.Quaggans
                         var totalCount = response.GetResultTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganContracts(response.Content, pageCount, totalCount);
+                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
                     }, 
                 cancellationToken);
         }
@@ -251,7 +253,7 @@ namespace GW2NET.V2.Quaggans
                             return null;
                         }
 
-                        return ConvertQuagganContract(response.Content);
+                        return ConvertQuagganDataContract(response.Content);
                     }, 
                 cancellationToken);
         }
@@ -281,7 +283,7 @@ namespace GW2NET.V2.Quaggans
             var pageTotal = response.GetPageTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganContracts(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
+            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
         }
 
         /// <summary>Gets a page with the specified page number and maximum size.</summary>
@@ -310,7 +312,7 @@ namespace GW2NET.V2.Quaggans
             var pageTotal = response.GetPageTotal();
 
             // Convert the return values to entities
-            return ConvertQuagganContracts(response.Content, pageCount, totalCount, page, size, pageTotal);
+            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, page, size, pageTotal);
         }
 
         /// <summary>Gets a page with the specified page number.</summary>
@@ -350,7 +352,7 @@ namespace GW2NET.V2.Quaggans
                         var pageTotal = response.GetPageTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganContracts(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
+                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, page, pageSize, pageTotal);
                     }, 
                 cancellationToken);
         }
@@ -394,15 +396,13 @@ namespace GW2NET.V2.Quaggans
                         var pageTotal = response.GetPageTotal();
 
                         // Convert the return values to entities
-                        return ConvertQuagganContracts(response.Content, pageCount, totalCount, page, size, pageTotal);
+                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, page, size, pageTotal);
                     }, 
                 cancellationToken);
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static Quaggan ConvertQuagganContract(QuagganDataContract content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static Quaggan ConvertQuagganDataContract(QuagganDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Quaggan>() != null);
@@ -426,17 +426,13 @@ namespace GW2NET.V2.Quaggans
             return value;
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <param name="pageCount">The page count.</param>
-        /// <param name="totalCount">The total count.</param>
-        /// <returns>A collection of entities.</returns>
-        private static IDictionaryRange<string, Quaggan> ConvertQuagganContracts(IEnumerable<QuagganDataContract> content, int pageCount, int totalCount)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static IDictionaryRange<string, Quaggan> ConvertQuagganDataContractCollection(IEnumerable<QuagganDataContract> content, int subtotalCount, int totalCount)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);
-            var values = new DictionaryRange<string, Quaggan>(pageCount) { SubtotalCount = pageCount, TotalCount = totalCount };
-            foreach (var value in content.Select(ConvertQuagganContract))
+            var values = new DictionaryRange<string, Quaggan>(subtotalCount) { SubtotalCount = subtotalCount, TotalCount = totalCount };
+            foreach (var value in content.Select(ConvertQuagganDataContract))
             {
                 Contract.Assume(value != null);
                 values.Add(value.Id, value);
@@ -445,31 +441,24 @@ namespace GW2NET.V2.Quaggans
             return values;
         }
 
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <param name="pageCount">The page count.</param>
-        /// <param name="totalCount">The total count.</param>
-        /// <param name="page">The page.</param>
-        /// <param name="pageSize">The page size.</param>
-        /// <param name="pageTotal">The page total.</param>
-        /// <returns>A collection of entities.</returns>
-        private static ICollectionPage<Quaggan> ConvertQuagganContracts(
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private static ICollectionPage<Quaggan> ConvertQuagganDataContractCollection(
             ICollection<QuagganDataContract> content, 
-            int pageCount, 
+            int subtotalCount, 
             int totalCount, 
             int page, 
             int pageSize, 
             int pageTotal)
         {
             Contract.Requires(content != null);
-            Contract.Requires(pageCount >= 0);
+            Contract.Requires(subtotalCount >= 0);
             Contract.Ensures(Contract.Result<ICollectionPage<Quaggan>>() != null);
             var values = new CollectionPage<Quaggan>(content.Count)
                 {
                     PageIndex = page, 
                     PageSize = pageSize, 
                     PageCount = pageTotal, 
-                    SubtotalCount = pageCount, 
+                    SubtotalCount = subtotalCount, 
                     TotalCount = totalCount
                 };
 
@@ -487,15 +476,8 @@ namespace GW2NET.V2.Quaggans
                 }
             }
 
-            values.AddRange(content.Select(ConvertQuagganContract));
+            values.AddRange(content.Select(ConvertQuagganDataContract));
             return values;
-        }
-
-        /// <summary>The invariant method for this class.</summary>
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }
