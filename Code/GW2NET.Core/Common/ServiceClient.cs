@@ -250,32 +250,48 @@ namespace GW2NET.Common
         private static Task<HttpWebResponse> GetHttpWebResponseAsync(HttpWebRequest webRequest, CancellationToken cancellationToken)
         {
             Contract.Requires(webRequest != null);
-            return Task.Factory.FromAsync<WebResponse>(webRequest.BeginGetResponse, webRequest.EndGetResponse, null).ContinueWith(
-                task =>
-                {
-                    // Handle protocol errors
-                    // TODO: should we wrap timeouts in a System.TimeoutException?
-                    if (task.IsFaulted)
+            cancellationToken.Register(webRequest.Abort);
+            var tcs = new TaskCompletionSource<HttpWebResponse>();
+            try
+            {
+                webRequest.BeginGetResponse(
+                    ar =>
                     {
-                        var exception = task.Exception.GetBaseException() as WebException;
-                        if (exception != null && exception.Response != null)
+                        try
                         {
-                            // Get the response
-                            var errorResponse = exception.Response;
-
-                            // Return the response
-                            return (HttpWebResponse)errorResponse;
+                            tcs.SetResult((HttpWebResponse)webRequest.EndGetResponse(ar));
                         }
-                    }
+                        catch (WebException webException)
+                        {
+                            if (webException.Response != null)
+                            {
+                                tcs.SetResult((HttpWebResponse)webException.Response);
+                            }
+                            else
+                            {
+                                tcs.SetException(webException);
+                            }
+                        }
+                        catch (Exception exception)
+                        {
+                            tcs.SetException(exception);
+                        }
+                    },
+                    null);
+            }
+            catch (WebException webException)
+            {
+                if (webException.Status == WebExceptionStatus.RequestCanceled)
+                {
+                    tcs.SetCanceled();
+                }
+                else
+                {
+                    tcs.SetException(webException);
+                }
+            }
 
-                    // Get the response
-                    // unhandled transport errors (if any) are propagated back to the calling thread when accessing task.Result
-                    var webResponse = task.Result;
-
-                    // Return the response
-                    return (HttpWebResponse)webResponse;
-                },
-                cancellationToken);
+            return tcs.Task;
         }
 
         /// <summary>Infrastructure. Post-processes a response object.</summary>
