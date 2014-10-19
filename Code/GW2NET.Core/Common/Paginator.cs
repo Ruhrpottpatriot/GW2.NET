@@ -12,8 +12,6 @@ namespace GW2NET.Common
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2NET.V2.Common;
-
     /// <summary>Provides static extension methods for types that implement the <see cref="IPaginator{T}"/> interface.</summary>
     public static class Paginator
     {
@@ -23,14 +21,16 @@ namespace GW2NET.Common
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<ICollectionPage<T>> FindAllPages<T>(this IPaginator<T> instance)
         {
-            var page = instance.FindPage(0);
-            if (page != null)
+            ICollectionPage<T> page;
+            for (int pageIndex = 0, pageCount = int.MaxValue; pageIndex < pageCount; pageIndex++, pageCount = page.PageCount)
             {
-                yield return page;
-                for (var pageIndex = 1; pageIndex < page.PageCount; pageIndex++)
+                page = instance.FindPage(pageIndex);
+                if (page == null)
                 {
-                    yield return instance.FindPage(pageIndex);
+                    yield break;
                 }
+
+                yield return page;
             }
         }
 
@@ -41,84 +41,73 @@ namespace GW2NET.Common
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<ICollectionPage<T>> FindAllPages<T>(this IPaginator<T> instance, int pageSize)
         {
-            var page = instance.FindPage(0, pageSize);
-            if (page != null)
+            ICollectionPage<T> page;
+            for (int pageIndex = 0, pageCount = int.MaxValue; pageIndex < pageCount; pageIndex++, pageCount = page.PageCount)
             {
+                page = instance.FindPage(pageIndex, pageSize);
+                if (page == null)
+                {
+                    yield break;
+                }
+
                 yield return page;
-                for (var pageIndex = 1; pageIndex < page.PageCount; pageIndex++)
-                {
-                    yield return instance.FindPage(pageIndex, pageSize);
-                }
             }
         }
 
         /// <summary>Finds a collection of all pages.</summary>
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
+        /// <param name="pageCount">The number of pages to get.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
         /// <returns>A collection of pages.</returns>
-        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance)
+        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageCount)
         {
-            return FindAllPagesAsync(instance, CancellationToken.None);
+            return FindAllPagesAsync(instance, pageCount, CancellationToken.None);
         }
 
         /// <summary>Finds a collection of all pages.</summary>
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
+        /// <param name="pageCount">The number of pages to get.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
         /// <returns>A collection of pages.</returns>
-        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, CancellationToken cancellationToken)
+        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(
+            this IPaginator<T> instance, 
+            int pageCount, 
+            CancellationToken cancellationToken)
         {
-            var page = instance.FindPage(0);
-            if (page != null)
+            for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
-                var tcs = new TaskCompletionSource<ICollectionPage<T>>();
-                tcs.SetResult(page);
-                yield return tcs.Task;
-                for (var pageIndex = 1; pageIndex < page.PageCount; pageIndex++)
-                {
-                    if (cancellationToken.IsCancellationRequested)
-                    {
-                        yield break;
-                    }
-
-                    yield return instance.FindPageAsync(pageIndex, cancellationToken);
-                }
+                yield return instance.FindPageAsync(pageIndex, cancellationToken);
             }
         }
 
         /// <summary>Finds a collection of all pages.</summary>
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
+        /// <param name="pageCount">The number of pages to get.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
         /// <returns>A collection of pages.</returns>
-        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageSize)
+        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageSize, int pageCount)
         {
-            return FindAllPagesAsync(instance, pageSize, CancellationToken.None);
+            return FindAllPagesAsync(instance, pageSize, pageCount, CancellationToken.None);
         }
 
         /// <summary>Finds a collection of all pages.</summary>
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
+        /// <param name="pageCount">The number of pages to get.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
         /// <returns>A collection of pages.</returns>
-        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageSize, CancellationToken cancellationToken)
+        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(
+            this IPaginator<T> instance, 
+            int pageSize, 
+            int pageCount, 
+            CancellationToken cancellationToken)
         {
-            var page = instance.FindPage(0, pageSize);
-            if (page != null)
+            for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
-                var tcs = new TaskCompletionSource<ICollectionPage<T>>();
-                tcs.SetResult(page);
-                yield return tcs.Task;
-                for (var pageIndex = 1; pageIndex < page.PageCount; pageIndex++)
-                {
-                    if (cancellationToken.IsCancellationRequested)
-                    {
-                        yield break;
-                    }
-
-                    yield return instance.FindPageAsync(pageIndex, pageSize, cancellationToken);
-                }
+                yield return instance.FindPageAsync(pageIndex, pageSize, cancellationToken);
             }
         }
     }
