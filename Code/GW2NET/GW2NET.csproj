@@ -187,6 +187,9 @@
     <Compile Include="Factories.cs" />
     <Compile Include="FactoryLocal.cs" />
     <Compile Include="GW2.cs" />
+    <Compile Include="ItemFactory2.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="OfflineServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RenderServiceManager.cs" />

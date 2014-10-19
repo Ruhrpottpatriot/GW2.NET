@@ -6,21 +6,18 @@ using System.Text;
 namespace GW2NET
 {
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
     using GW2NET.Entities.Quaggans;
-    using GW2NET.V2.Common;
-    using GW2NET.V2.Items;
     using GW2NET.V2.Quaggans;
 
     public static partial class GW2
     {
         public partial class Factory2
         {
-            public IRepository<int, Item> Items
+            public ItemFactory2 Items
             {
                 get
                 {
-                    return new ItemService(this.ServiceClient);
+                    return new ItemFactory2(this.ServiceClient);
                 }
             }
 
