@@ -10,22 +10,23 @@ namespace GW2NET
     using GW2NET.Common;
     using GW2NET.Common.Serializers;
     using GW2NET.Compression;
+    using GW2NET.Factories;
 
     public static partial class GW2
     {
         static GW2()
         {
             var serviceClient = GetDefaultServiceClient();
-            V1 = new Factory1(serviceClient);
-            V2 = new Factory2(serviceClient);
-            Local = new FactoryLocal();
+            V1 = new FactoryForV1(serviceClient);
+            V2 = new FactoryForV2(serviceClient);
+            Local = new FactoryForLocal();
         }
 
-        public static Factory1 V1 { get; private set; }
+        public static FactoryForV1 V1 { get; private set; }
 
-        public static Factory2 V2 { get; private set; }
+        public static FactoryForV2 V2 { get; private set; }
 
-        public static FactoryLocal Local { get; private set; }
+        public static FactoryForLocal Local { get; private set; }
 
         /// <summary>Gets the base URI.</summary>
         /// <returns>A <see cref="Uri"/>.</returns>

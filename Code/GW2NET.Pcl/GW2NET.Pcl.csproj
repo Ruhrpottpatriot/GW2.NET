@@ -200,26 +200,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\GW2NET\CommerceFactory2.cs">
-      <Link>CommerceFactory2.cs</Link>
+    <Compile Include="..\GW2NET\Factories\FactoryBase.cs">
+      <Link>Factories\FactoryBase.cs</Link>
     </Compile>
-    <Compile Include="..\GW2NET\Factories.cs">
-      <Link>Factories.cs</Link>
+    <Compile Include="..\GW2NET\Factories\FactoryForLocal.cs">
+      <Link>Factories\FactoryForLocal.cs</Link>
     </Compile>
-    <Compile Include="..\GW2NET\Factory1.cs">
-      <Link>Factory1.cs</Link>
+    <Compile Include="..\GW2NET\Factories\FactoryForV1.cs">
+      <Link>Factories\FactoryForV1.cs</Link>
     </Compile>
-    <Compile Include="..\GW2NET\Factory2.cs">
-      <Link>Factory2.cs</Link>
+    <Compile Include="..\GW2NET\Factories\FactoryForV1WvW.cs">
+      <Link>Factories\FactoryForV1WvW.cs</Link>
     </Compile>
-    <Compile Include="..\GW2NET\FactoryLocal.cs">
-      <Link>FactoryLocal.cs</Link>
+    <Compile Include="..\GW2NET\Factories\FactoryForV2.cs">
+      <Link>Factories\FactoryForV2.cs</Link>
+    </Compile>
+    <Compile Include="..\GW2NET\Factories\FactoryForV2Commerce.cs">
+      <Link>Factories\FactoryForV2Commerce.cs</Link>
+    </Compile>
+    <Compile Include="..\GW2NET\Factories\FactoryForV2Items.cs">
+      <Link>Factories\FactoryForV2Items.cs</Link>
     </Compile>
     <Compile Include="..\GW2NET\GW2.cs">
       <Link>GW2.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\ItemFactory2.cs">
-      <Link>ItemFactory2.cs</Link>
     </Compile>
     <Compile Include="..\GW2NET\OfflineServiceManager.cs">
       <Link>OfflineServiceManager.cs</Link>
@@ -232,9 +235,6 @@
     </Compile>
     <Compile Include="..\GW2NET\ServiceManager.cs">
       <Link>ServiceManager.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\WvwFactory1.cs">
-      <Link>WvwFactory1.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

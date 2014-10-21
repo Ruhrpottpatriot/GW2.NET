@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace GW2NET
+﻿namespace GW2NET.Factories
 {
     using System.Diagnostics.Contracts;
     using System.Globalization;
@@ -11,15 +6,13 @@ namespace GW2NET
 
     using GW2NET.Common;
     using GW2NET.Entities.Items;
-    using GW2NET.Entities.Quaggans;
     using GW2NET.V2.Items;
-    using GW2NET.V2.Quaggans;
 
-    public class ItemFactory2 : ServiceFactory
+    public class FactoryForV2Items : FactoryBase
     {
-        /// <summary>Initializes a new instance of the <see cref="ServiceFactory"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ItemFactory2(IServiceClient serviceClient)
+        public FactoryForV2Items(IServiceClient serviceClient)
             : base(serviceClient)
         {
             Contract.Requires(serviceClient != null);
