@@ -257,6 +257,7 @@
     <Compile Include="Common\ContractClassForIRequest.cs" />
     <Compile Include="Common\Response.cs" />
     <Compile Include="Common\ContractClassForIResponse.cs" />
+    <Compile Include="Common\SerializationException.cs" />
     <Compile Include="Common\Serializers\BinarySerializer.cs" />
     <Compile Include="Common\Serializers\BinarySerializerFactory.cs" />
     <Compile Include="Common\Serializers\DataContractJsonSerializer.cs" />

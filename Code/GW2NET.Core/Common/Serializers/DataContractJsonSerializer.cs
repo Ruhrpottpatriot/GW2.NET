@@ -27,29 +27,45 @@ namespace GW2NET.Common.Serializers
 
         /// <summary>Converts the input stream to the specified type.</summary>
         /// <param name="stream">The input stream.</param>
+        /// <exception cref="SerializationException">A serialization error occurred.</exception>
         /// <returns>An instance of the specified type.</returns>
         public T Deserialize(Stream stream)
         {
             using (stream)
             {
-                var value = this.serializer.ReadObject(stream);
-                if (value == null)
+                try
                 {
-                    return default(T);
-                }
+                    var value = this.serializer.ReadObject(stream);
+                    if (value == null)
+                    {
+                        return default(T);
+                    }
 
-                return (T)value;
+                    return (T)value;
+                }
+                catch (System.Runtime.Serialization.SerializationException serializationException)
+                {
+                    throw new SerializationException("An error occurred while deserializing JSON data. See the inner exception for details.", serializationException);
+                }
             }
         }
 
         /// <summary>Converts the specified value to an output stream.</summary>
         /// <param name="value">An instance of the specified type.</param>
         /// <param name="stream">The output stream.</param>
+        /// <exception cref="SerializationException">A serialization error occurred.</exception>
         public void Serialize(T value, Stream stream)
         {
             using (stream)
             {
-                this.serializer.WriteObject(stream, value);
+                try
+                {
+                    this.serializer.WriteObject(stream, value);
+                }
+                catch (System.Runtime.Serialization.SerializationException serializationException)
+                {
+                    throw new SerializationException("An error occurred while serializing JSON data. See the inner exception for details.", serializationException);
+                }
             }
         }
 

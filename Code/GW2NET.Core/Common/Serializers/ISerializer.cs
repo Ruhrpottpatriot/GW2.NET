@@ -18,12 +18,14 @@ namespace GW2NET.Common.Serializers
     {
         /// <summary>Converts the input stream to the specified type.</summary>
         /// <param name="stream">The input stream.</param>
+        /// <exception cref="SerializationException">A serialization error occurred.</exception>
         /// <returns>An instance of the specified type.</returns>
         T Deserialize(Stream stream);
 
         /// <summary>Converts the specified value to an output stream.</summary>
         /// <param name="value">An instance of the specified type.</param>
         /// <param name="stream">The output stream.</param>
+        /// <exception cref="SerializationException">A serialization error occurred.</exception>
         void Serialize(T value, Stream stream);
     }
 }

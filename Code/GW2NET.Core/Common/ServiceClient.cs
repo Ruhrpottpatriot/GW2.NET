@@ -28,18 +28,22 @@ namespace GW2NET.Common
         /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
         private readonly ISerializerFactory errorSerializerFactory;
 
-        /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
-        private readonly ISerializerFactory successSerializerFactory;
-
         /// <summary>Infrastructure. Holds a reference to a GZIP inflator.</summary>
         private readonly IConverter<Stream, Stream> gzipInflator;
+
+        /// <summary>Infrastructure. Holds a reference to a serializer factory.</summary>
+        private readonly ISerializerFactory successSerializerFactory;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceClient"/> class.</summary>
         /// <param name="baseUri">The base URI.</param>
         /// <param name="successSerializerFactory">The serializer factory.</param>
         /// <param name="errorSerializerFactory">The error serializer Factory.</param>
         /// <param name="gzipInflator">The GZIP inflator.</param>
-        public ServiceClient(Uri baseUri, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory, IConverter<Stream, Stream> gzipInflator)
+        public ServiceClient(
+            Uri baseUri,
+            ISerializerFactory successSerializerFactory,
+            ISerializerFactory errorSerializerFactory,
+            IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(baseUri != null);
             Contract.Requires(baseUri.IsAbsoluteUri);
@@ -56,11 +60,12 @@ namespace GW2NET.Common
         /// <summary>Sends a request and returns the response.</summary>
         /// <param name="request">The service request.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
         /// <exception cref="ServiceException">The service responded with an error code.</exception>
         /// <returns>An instance of the specified type.</returns>
         public IResponse<TResult> Send<TResult>(IRequest request)
         {
+            Contract.Requires(request != null);
+
             // Translate the request to form data
             var formData = new UrlEncodedForm();
             foreach (var parameter in request.GetParameters())
@@ -69,25 +74,37 @@ namespace GW2NET.Common
             }
 
             // Build the resource URI
-            var uri = BuildUri(this.baseUri, request.Resource, formData);
+            Uri uri;
+            try
+            {
+                uri = BuildUri(this.baseUri, request.Resource, formData);
+            }
+            catch (FormatException formatException)
+            {
+                // Caught when the given parameters would result in an invalid URI
+                // Wrap the FormatException in a ServiceException
+                throw new ServiceException("An error occurred while formatting the request URI. See the inner exception for details.", formatException)
+                {
+                    Request = request
+                };
+            }
 
             // Handle the request
-            var httpWebRequest = CreateHttpWebRequest(uri);
-            using (var response = GetHttpWebResponse(httpWebRequest))
+            try
             {
-                if (!response.StatusCode.IsSuccessStatusCode())
+                var httpWebRequest = CreateHttpWebRequest(uri);
+                using (var response = GetHttpWebResponse(httpWebRequest))
                 {
-                    if (response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
-                    {
-                        OnError(response, this.errorSerializerFactory, this.gzipInflator);
-                    }
-                    else
-                    {
-                        throw new ServiceException(response.StatusDescription);
-                    }
+                    return this.OnResponse<TResult>(response);
                 }
+            }
+            catch (ServiceException serviceException)
+            {
+                // Set the cause of this ServiceException
+                serviceException.Request = request;
 
-                return OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);
+                // Rethrow
+                throw;
             }
         }
 
@@ -104,7 +121,6 @@ namespace GW2NET.Common
         /// <param name="request">The service request.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
-        /// <exception cref="FormatException">One or more query parameters violate the format for a valid URI as defined by RFC 2396.</exception>
         /// <exception cref="ServiceException">The service responded with an error code.</exception>
         /// <returns>An instance of the specified type.</returns>
         public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
@@ -117,7 +133,20 @@ namespace GW2NET.Common
             }
 
             // Build the resource URI
-            var uri = BuildUri(this.baseUri, request.Resource, formData);
+            Uri uri;
+            try
+            {
+                uri = BuildUri(this.baseUri, request.Resource, formData);
+            }
+            catch (FormatException formatException)
+            {
+                // Caught when the given parameters would result in an invalid URI
+                // Wrap the FormatException in a ServiceException
+                throw new ServiceException("An error occurred while formatting the request URI. See the inner exception for details.", formatException)
+                {
+                    Request = request
+                };
+            }
 
             // Handle the request
             var httpWebRequest = CreateHttpWebRequest(uri);
@@ -126,19 +155,18 @@ namespace GW2NET.Common
                 {
                     using (var response = task.Result)
                     {
-                        if (!response.StatusCode.IsSuccessStatusCode())
+                        try
                         {
-                            if (response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
-                            {
-                                OnError(response, this.errorSerializerFactory, this.gzipInflator);
-                            }
-                            else
-                            {
-                                throw new ServiceException(response.StatusDescription);
-                            }
+                            return this.OnResponse<TResult>(response);
                         }
+                        catch (ServiceException exception)
+                        {
+                            // Set the cause of this exception
+                            exception.Request = request;
 
-                        return OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);
+                            // Rethrow
+                            throw;
+                        }
                     }
                 },
                 cancellationToken);
@@ -186,7 +214,10 @@ namespace GW2NET.Common
         /// <param name="gzipInflator">The GZIP inflator.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        private static TResult DeserializeResponse<TResult>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
+        private static TResult DeserializeResponse<TResult>(
+            HttpWebResponse response,
+            ISerializerFactory serializerFactory,
+            IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
@@ -237,8 +268,7 @@ namespace GW2NET.Common
             }
             catch (AggregateException ex)
             {
-                var innerException = ex.GetBaseException();
-                throw new WebException(innerException.Message, innerException);
+                throw ex.GetBaseException();
             }
         }
 
@@ -246,7 +276,7 @@ namespace GW2NET.Common
         /// <param name="webRequest">The <see cref="HttpWebRequest"/>.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <returns>The <see cref="HttpWebResponse"/>.</returns>
-        /// <exception cref="ServiceException">The exception that is thrown when an API error occurs.</exception>
+        /// <exception cref="ServiceException">The request could not be fulfilled.</exception>
         private static Task<HttpWebResponse> GetHttpWebResponseAsync(HttpWebRequest webRequest, CancellationToken cancellationToken)
         {
             Contract.Requires(webRequest != null);
@@ -269,7 +299,7 @@ namespace GW2NET.Common
                             }
                             else
                             {
-                                tcs.SetException(webException);
+                                tcs.SetException(new ServiceException("An error occurred while sending the request. See the inner exception for details.", webException));
                             }
                         }
                         catch (Exception exception)
@@ -294,31 +324,43 @@ namespace GW2NET.Common
             return tcs.Task;
         }
 
-        /// <summary>Infrastructure. Post-processes a response object.</summary>
-        /// <param name="response">The raw response.</param>
-        /// <param name="serializerFactory">The response content serializer factory.</param>
-        /// <param name="gzipInflator">The GZIP inflator.</param>
+        /// <summary>Infrastructure. Throws an exception for error responses.</summary>
+        /// <param name="response">The error response.</param>
+        /// <param name="serializerFactory">The factory class that provides the serialization engine for the response.</param>
+        /// <param name="gzipInflator">The GZIP inflator that decompresses the response.</param>
+        /// <exception cref="ServiceException">The exception that represents the error.</exception>
         private static void OnError(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
+            Contract.Requires(gzipInflator != null);
 
-            // Get the response content
-            var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory, gzipInflator);
+            string message;
 
-            // Get the error description, or null if none was returned
-            var errorMessage = errorResult != null ? errorResult.Text : null;
+            // Get the most specific error description that is available
+            if (response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
+            {
+                // Get the response content
+                var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory, gzipInflator);
+
+                // Get the error description, or null if none was returned
+                message = errorResult != null ? errorResult.Text : null;
+            }
+            else
+            {
+                message = response.StatusDescription;
+            }
 
             // Throw an exception
-            throw new ServiceException(errorMessage);
+            throw new ServiceException(message);
         }
 
-        /// <summary>Infrastructure. Post-processes a response object.</summary>
-        /// <param name="response">The raw response.</param>
-        /// <param name="serializerFactory">The response content serializer factory.</param>
-        /// <param name="gzipInflator">The GZIP inflator.</param>
+        /// <summary>Infrastructure. Creates a response object for success responses.</summary>
+        /// <param name="response">The success response.</param>
+        /// <param name="serializerFactory">The factory class that provides the serialization engine for the response.</param>
+        /// <param name="gzipInflator">The GZIP inflator that decompresses the response.</param>
         /// <typeparam name="T">The type of the response content.</typeparam>
-        /// <returns>A processed response object.</returns>
+        /// <returns>The object that represents the response.</returns>
         private static IResponse<T> OnSuccess<T>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(response != null);
@@ -363,6 +405,28 @@ namespace GW2NET.Common
             Contract.Invariant(this.baseUri != null);
             Contract.Invariant(this.successSerializerFactory != null);
             Contract.Invariant(this.errorSerializerFactory != null);
+        }
+
+        /// <summary>Infrastructure. Handles a response.</summary>
+        /// <param name="response">The response to handle.</param>
+        /// <typeparam name="TResult">The type of the response content</typeparam>
+        /// <returns>The response as an instance of <see cref="IResponse{TResult}"/>.</returns>
+        /// <exception cref="ServiceException">The request could not be fulfilled.</exception>
+        private IResponse<TResult> OnResponse<TResult>(HttpWebResponse response)
+        {
+            try
+            {
+                if (!response.StatusCode.IsSuccessStatusCode())
+                {
+                    OnError(response, this.errorSerializerFactory, this.gzipInflator);
+                }
+
+                return OnSuccess<TResult>(response, this.successSerializerFactory, this.gzipInflator);
+            }
+            catch (SerializationException serializationException)
+            {
+                throw new ServiceException("An error occurred while deserializing response data. See the inner exception for details", serializationException);
+            }
         }
     }
 }

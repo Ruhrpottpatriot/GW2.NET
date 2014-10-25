@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Serializers
 {
+    using System;
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Text;
@@ -34,23 +35,39 @@ namespace GW2NET.Common.Serializers
 
         /// <summary>Converts the input stream to the specified type.</summary>
         /// <param name="stream">The input stream.</param>
+        /// <exception cref="SerializationException">A serialization error occurred.</exception>
         /// <returns>An instance of the specified type.</returns>
         public string Deserialize(Stream stream)
         {
             using (var streamReader = new StreamReader(stream, this.encoding))
             {
-                return streamReader.ReadToEnd();
+                try
+                {
+                    return streamReader.ReadToEnd();
+                }
+                catch (IOException exception)
+                {
+                    throw new SerializationException("An error occurred while deserializing character data. See the inner exception for details.", exception);
+                }
             }
         }
 
         /// <summary>Converts the specified value to an output stream.</summary>
         /// <param name="value">An instance of the specified type.</param>
         /// <param name="stream">The output stream.</param>
+        /// <exception cref="SerializationException">A serialization error occurred.</exception>
         public void Serialize(string value, Stream stream)
         {
             using (var streamWriter = new StreamWriter(stream, this.encoding))
             {
-                streamWriter.Write(value);
+                try
+                {
+                    streamWriter.Write(value);
+                }
+                catch (IOException exception)
+                {
+                    throw new SerializationException("An error occurred while serializing character data. See the inner exception for details.", exception);
+                }
             }
         }
 

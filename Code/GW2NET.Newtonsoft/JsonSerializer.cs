@@ -30,23 +30,47 @@ namespace GW2NET.Common.Serializers
 
         /// <summary>Converts the input stream to the specified type.</summary>
         /// <param name="stream">The input stream.</param>
+        /// <exception cref="SerializationException">A serialization error occurred.</exception>
         /// <returns>An instance of the specified type.</returns>
         public T Deserialize(Stream stream)
         {
             using (var jsonReader = new JsonTextReader(new StreamReader(stream)))
             {
-                return this.jsonSerializer.Deserialize<T>(jsonReader);
+                try
+                {
+                    return this.jsonSerializer.Deserialize<T>(jsonReader);
+                }
+                catch (JsonReaderException jsonReaderException)
+                {
+                    throw new SerializationException("An error occurred while reading JSON data. See the inner exception for details.", jsonReaderException);
+                }
+                catch (JsonSerializationException jsonSerializationException)
+                {
+                    throw new SerializationException("An error occurred while deserializing JSON data. See the inner exception for details.", jsonSerializationException);
+                }
             }
         }
 
         /// <summary>Converts the specified value to an output stream.</summary>
         /// <param name="value">An instance of the specified type.</param>
         /// <param name="stream">The output stream.</param>
+        /// <exception cref="SerializationException">A serialization error occurred.</exception>
         public void Serialize(T value, Stream stream)
         {
             using (var streamWriter = new StreamWriter(stream))
             {
-                this.jsonSerializer.Serialize(streamWriter, value, typeof(T));
+                try
+                {
+                    this.jsonSerializer.Serialize(streamWriter, value, typeof(T));
+                }
+                catch (JsonWriterException jsonWriterException)
+                {
+                    throw new SerializationException("An error occurred while writing JSON data. See the inner exception for details.", jsonWriterException);
+                }
+                catch (JsonSerializationException jsonSerializationException)
+                {
+                    throw new SerializationException("An error occurred while serializing JSON data. See the inner exception for details.", jsonSerializationException);
+                }
             }
         }
 

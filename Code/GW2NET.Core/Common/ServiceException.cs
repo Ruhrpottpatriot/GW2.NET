@@ -3,15 +3,14 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents an API error.
+//   The exception that is thrown when a request could not be fulfilled.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common
 {
     using System;
 
-    /// <summary>Represents an API error.</summary>
-    /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1" /> for more information regarding API errors.</remarks>
+    /// <summary>The exception that is thrown when a request could not be fulfilled.</summary>
     public sealed class ServiceException : Exception
     {
         /// <summary>
@@ -35,5 +34,8 @@ namespace GW2NET.Common
             : base(message, innerException)
         {
         }
+
+        /// <summary>Gets or sets the request that is the cause of this exception.</summary>
+        public IRequest Request { get; set; }
     }
 }
