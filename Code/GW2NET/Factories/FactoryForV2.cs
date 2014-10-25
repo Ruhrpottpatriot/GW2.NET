@@ -39,5 +39,13 @@
                 return new FactoryForV2Commerce(this.ServiceClient);
             }
         }
+
+        public FactoryForV2Worlds Worlds
+        {
+            get
+            {
+                return new FactoryForV2Worlds(this.ServiceClient);
+            }
+        }
     }
 }

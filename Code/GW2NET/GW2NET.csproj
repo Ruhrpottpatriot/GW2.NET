@@ -190,6 +190,7 @@
     <Compile Include="Factories\FactoryForV2Commerce.cs" />
     <Compile Include="Factories\FactoryForV2Items.cs" />
     <Compile Include="Factories\FactoryBase.cs" />
+    <Compile Include="Factories\FactoryForV2Worlds.cs" />
     <Compile Include="GW2.cs" />
     <Compile Include="OfflineServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

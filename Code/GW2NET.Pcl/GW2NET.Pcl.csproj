@@ -221,6 +221,9 @@
     <Compile Include="..\GW2NET\Factories\FactoryForV2Items.cs">
       <Link>Factories\FactoryForV2Items.cs</Link>
     </Compile>
+    <Compile Include="..\GW2NET\Factories\FactoryForV2Worlds.cs">
+      <Link>Factories\FactoryForV2Worlds.cs</Link>
+    </Compile>
     <Compile Include="..\GW2NET\GW2.cs">
       <Link>GW2.cs</Link>
     </Compile>

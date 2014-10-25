@@ -724,6 +724,12 @@
     <Compile Include="V2\Quaggans\QuagganDiscoveryRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganPageRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganService.cs" />
+    <Compile Include="V2\Worlds.Json\WorldDataContract.cs" />
+    <Compile Include="V2\Worlds\WorldBulkRequest.cs" />
+    <Compile Include="V2\Worlds\WorldDetailsRequest.cs" />
+    <Compile Include="V2\Worlds\WorldDiscoveryRequest.cs" />
+    <Compile Include="V2\Worlds\WorldPageRequest.cs" />
+    <Compile Include="V2\Worlds\WorldRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Local\Worlds\de.json" />
