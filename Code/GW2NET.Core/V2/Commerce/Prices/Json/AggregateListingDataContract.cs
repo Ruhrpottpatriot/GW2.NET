@@ -6,13 +6,14 @@
 //   Defines the AggregateListingDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Json
+namespace GW2NET.V2.Commerce.Prices.Json
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
+        Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/prices")]
     internal sealed class AggregateListingDataContract
     {
         [DataMember(Name = "buys", Order = 1)]

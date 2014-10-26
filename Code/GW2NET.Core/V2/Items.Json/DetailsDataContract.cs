@@ -15,7 +15,7 @@ namespace GW2NET.V2.Items.Json
     /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
     /// <content>Contains data contract properties for all items.</content>
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
         /// <summary>Gets or sets the type.</summary>
@@ -25,7 +25,7 @@ namespace GW2NET.V2.Items.Json
 
     /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
     /// <content>Contains data contract properties for upgradable items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
         [DataMember(Name = "defense", Order = 2)]
@@ -43,7 +43,7 @@ namespace GW2NET.V2.Items.Json
 
     /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
     /// <content>Contains data contract properties for upgrade items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
         [DataMember(Name = "infix_upgrade", Order = 4)]
@@ -52,7 +52,7 @@ namespace GW2NET.V2.Items.Json
 
     /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
     /// <content>Contains data contract properties for armor items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
         [DataMember(Name = "weight_class", Order = 1)]
@@ -61,7 +61,7 @@ namespace GW2NET.V2.Items.Json
 
     /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
     /// <content>Contains data contract properties for bag items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
         [DataMember(Name = "no_sell_or_sort", Order = 0)]
@@ -73,7 +73,7 @@ namespace GW2NET.V2.Items.Json
 
     /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
     /// <content>Contains data contract properties for consumable items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
         [DataMember(Name = "color_id", Order = 2)]
@@ -94,7 +94,7 @@ namespace GW2NET.V2.Items.Json
 
     /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
     /// <content>Contains data contract properties for tool items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
         [DataMember(Name = "charges", Order = 1)]
@@ -103,7 +103,7 @@ namespace GW2NET.V2.Items.Json
 
     /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
     /// <content>Contains data contract properties for upgrade component items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
         [DataMember(Name = "bonuses", Order = 3)]
@@ -121,7 +121,7 @@ namespace GW2NET.V2.Items.Json
 
     /// <summary>Defines the <see cref="DetailsDataContract"/> type.</summary>
     /// <content>Contains data contract properties for weapon items.</content>
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed partial class DetailsDataContract
     {
         [DataMember(Name = "damage_type", Order = 1)]

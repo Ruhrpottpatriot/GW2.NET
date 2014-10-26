@@ -3,17 +3,17 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The exchange details request.
+//   Represents a details request that targets the /v2/commerce/exchange interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce
+namespace GW2NET.V2.Commerce.Exchange
 {
     using System.Collections.Generic;
     using System.Globalization;
 
     using GW2NET.V2.Common;
 
-    /// <summary>The exchange details request.</summary>
+    /// <summary>Represents a details request that targets the /v2/commerce/exchange interface.</summary>
     internal sealed class ExchangeDetailsRequest : DetailsRequest
     {
         /// <summary>Gets or sets the quantity.</summary>

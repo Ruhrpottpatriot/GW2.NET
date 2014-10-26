@@ -1,24 +1,24 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ListingBulkRequest.cs" company="GW2.NET Coding Team">
+// <copyright file="PriceDiscoveryRequest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a bulk request.
+//   Represents a discovery request that targets the /v2/commerce/prices interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce
+namespace GW2NET.V2.Commerce.Prices
 {
-    using GW2NET.V2.Common;
+    using GW2NET.Common;
 
-    /// <summary>Represents a bulk request.</summary>
-    internal sealed class ListingBulkRequest : BulkRequest
+    /// <summary>Represents a discovery request that targets the /v2/commerce/prices interface.</summary>
+    internal sealed class PriceDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource
         {
             get
             {
-                return "/v2/commerce/listings";
+                return "/v2/commerce/prices";
             }
         }
     }

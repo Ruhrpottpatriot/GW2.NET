@@ -3,10 +3,10 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides access to the /v2/commerce/exchange service.
+//   Represents a broker that retrieves data from the /v2/commerce/exchange interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce
+namespace GW2NET.V2.Commerce.Exchange
 {
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
@@ -15,11 +15,9 @@ namespace GW2NET.V2.Commerce
 
     using GW2NET.Common;
     using GW2NET.Entities.Commerce;
-    using GW2NET.V2.Commerce.Json;
-    using GW2NET.V2.Common;
+    using GW2NET.V2.Commerce.Exchange.Json;
 
-    /// <summary>Provides access to the /v2/commerce/exchange service.</summary>
-    /// <remarks>See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/exchange">wiki</a></remarks>  
+    /// <summary>Represents a broker that retrieves data from the /v2/commerce/exchange interface.</summary>
     public class ExchangeService : IBroker<string, ExchangeQuote>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>

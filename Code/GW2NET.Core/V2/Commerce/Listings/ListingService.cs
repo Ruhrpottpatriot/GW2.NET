@@ -3,10 +3,10 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides access to the /v2/commerce/listings service. See the class remarks for important limitations regarding the default implementation.
+//   Represents a repository that retrieves data from the /v2/commerce/listings interface. See the remarks section for important limitations regarding this implementation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce
+namespace GW2NET.V2.Commerce.Listings
 {
     using System;
     using System.Collections.Generic;
@@ -20,10 +20,10 @@ namespace GW2NET.V2.Commerce
     using GW2NET.Common;
     using GW2NET.Entities.Commerce;
     using GW2NET.Entities.Items;
-    using GW2NET.V2.Commerce.Json;
+    using GW2NET.V2.Commerce.Listings.Json;
     using GW2NET.V2.Common;
 
-    /// <summary>Provides access to the /v2/commerce/listings service. See the class remarks for important limitations regarding the default implementation.</summary>
+    /// <summary>Represents a repository that retrieves data from the /v2/commerce/listings interface. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>
     /// This implementation does not retrieve associated entities.
     /// <list type="bullet">
@@ -32,7 +32,6 @@ namespace GW2NET.V2.Commerce
     ///         <description>Always <c>null</c>. Use the value of <see cref="Listing.ItemId"/> to retrieve the <see cref="Item"/>.</description>
     ///     </item>
     /// </list>
-    /// See: <a href="http://wiki.guildwars2.com/wiki/API:2/commerce/listings">wiki</a>
     /// </remarks>
     public class ListingService : IRepository<int, Listing>
     {

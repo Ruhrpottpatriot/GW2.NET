@@ -3,14 +3,14 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   The exchange discovery request.
+//   Represents a discovery request that targets the /v2/commerce/exchange interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce
+namespace GW2NET.V2.Commerce.Exchange
 {
     using GW2NET.Common;
 
-    /// <summary>The exchange discovery request.</summary>
+    /// <summary>Represents a discovery request that targets the /v2/commerce/exchange interface.</summary>
     internal sealed class ExchangeDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>

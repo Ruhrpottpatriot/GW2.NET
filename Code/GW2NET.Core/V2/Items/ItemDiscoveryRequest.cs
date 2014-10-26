@@ -10,7 +10,7 @@ namespace GW2NET.V2.Items
 {
     using GW2NET.Common;
 
-    /// <summary>Represents a request for a collection of item identifiers.</summary>
+    /// <summary>Represents a discovery request that targets the /v2/items interface.</summary>
     internal sealed class ItemDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>

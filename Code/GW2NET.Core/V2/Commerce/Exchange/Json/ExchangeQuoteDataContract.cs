@@ -6,13 +6,14 @@
 //   Defines the ExchangeQuoteDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Json
+namespace GW2NET.V2.Commerce.Exchange.Json
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
+        Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/exchange")]
     internal class ExchangeQuoteDataContract
     {
         [DataMember(Order = 0, Name = "coins_per_gem")]

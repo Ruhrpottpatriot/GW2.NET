@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the default implementation of the Quaggan service.
+//   Represents a repository that retrieves data from the /v2/quaggans interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Quaggans
@@ -21,7 +21,7 @@ namespace GW2NET.V2.Quaggans
     using GW2NET.V2.Common;
     using GW2NET.V2.Quaggans.Json;
 
-    /// <summary>Provides the default implementation of the Quaggan service.</summary>
+    /// <summary>Represents a repository that retrieves data from the /v2/quaggans interface.</summary>
     public class QuagganService : IRepository<string, Quaggan>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
@@ -427,7 +427,10 @@ namespace GW2NET.V2.Quaggans
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static IDictionaryRange<string, Quaggan> ConvertQuagganDataContractCollection(IEnumerable<QuagganDataContract> content, int subtotalCount, int totalCount)
+        private static IDictionaryRange<string, Quaggan> ConvertQuagganDataContractCollection(
+            IEnumerable<QuagganDataContract> content, 
+            int subtotalCount, 
+            int totalCount)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);

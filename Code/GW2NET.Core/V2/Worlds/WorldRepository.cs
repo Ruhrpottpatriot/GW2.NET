@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the default implementation of the world service.
+//   Represents a repository that retrieves data from the /v2/worlds interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Worlds
@@ -22,7 +22,7 @@ namespace GW2NET.V2.Worlds
     using GW2NET.V2.Common;
     using GW2NET.V2.Worlds.Json;
 
-    /// <summary>Provides the default implementation of the world service.</summary>
+    /// <summary>Represents a repository that retrieves data from the /v2/worlds interface.</summary>
     public class WorldRepository : IRepository<int, World>, ILocalizable
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>

@@ -9,7 +9,6 @@
 namespace GW2NET.V2.Common
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     /// <summary>Provides the base class for resource details requests.</summary>
     public abstract class DetailsRequest : IDetailsRequest

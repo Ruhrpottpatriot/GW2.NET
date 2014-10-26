@@ -3,16 +3,16 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a request.
+//   Represents a discovery request that targets the /v2/commerce/listings interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce
+namespace GW2NET.V2.Commerce.Listings
 {
     using System.Collections.Generic;
 
     using GW2NET.Common;
 
-    /// <summary>Represents a request.</summary>
+    /// <summary>Represents a discovery request that targets the /v2/commerce/listings interface.</summary>
     internal sealed class ListingDiscoveryRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>

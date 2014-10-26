@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides access to the /v2/items service. See the class remarks for important limitations regarding the default implementation.
+//   Provides access to the /v2/items service. See the remarks section for important limitations regarding this implementation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
@@ -22,7 +22,7 @@ namespace GW2NET.V2.Items
     using GW2NET.V2.Common;
     using GW2NET.V2.Items.Json;
 
-    /// <summary>Provides access to the /v2/items service. See the class remarks for important limitations regarding the default implementation.</summary>
+    /// <summary>Represents a repository that retrieves data from the /v2/items interface. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>
     /// This implementation does not retrieve associated entities.
     /// <list type="bullet">
@@ -55,7 +55,6 @@ namespace GW2NET.V2.Items
     ///         <description>Always <c>null</c>. Use the value of <see cref="CraftingRecipeUnlocker.RecipeId"/> to retrieve the recipe.</description>
     ///     </item>
     /// </list>
-    /// See: <a href="http://wiki.guildwars2.com/wiki/API:2/items">wiki</a>
     /// </remarks>
     public class ItemService : IRepository<int, Item>, ILocalizable
     {

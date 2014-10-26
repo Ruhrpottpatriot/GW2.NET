@@ -14,7 +14,7 @@ namespace GW2NET.V2.Items
     using GW2NET.Common;
     using GW2NET.V2.Common;
 
-    /// <summary>Represents a request for a collection of items and their localized details.</summary>
+    /// <summary>Represents a bulk request that targets the /v2/items interface.</summary>
     internal sealed class ItemBulkRequest : BulkRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>

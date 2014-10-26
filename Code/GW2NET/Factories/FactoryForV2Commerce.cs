@@ -5,6 +5,9 @@
     using GW2NET.Common;
     using GW2NET.Entities.Commerce;
     using GW2NET.V2.Commerce;
+    using GW2NET.V2.Commerce.Exchange;
+    using GW2NET.V2.Commerce.Listings;
+    using GW2NET.V2.Commerce.Prices;
 
     public class FactoryForV2Commerce : FactoryBase
     {

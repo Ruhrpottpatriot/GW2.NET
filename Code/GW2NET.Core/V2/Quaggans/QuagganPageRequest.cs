@@ -3,14 +3,14 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a request for a collection of Quaggans.
+//   Represents a page request that targets the /v2/quaggans interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Quaggans
 {
     using GW2NET.V2.Common;
 
-    /// <summary>Represents a request for a collection of Quaggans.</summary>
+    /// <summary>Represents a page request that targets the /v2/quaggans interface.</summary>
     internal sealed class QuagganPageRequest : PageRequest
     {
         /// <summary>Gets the resource path.</summary>
