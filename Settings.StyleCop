@@ -4,9 +4,11 @@
       <Value>Asura</Value>
       <Value>Charr</Value>
       <Value>Elementalist</Value>
+      <Value>json</Value>
       <Value>Quaggan</Value>
       <Value>Quaggans</Value>
       <Value>Sylvari</Value>
+      <Value>wvw</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Analyzers>

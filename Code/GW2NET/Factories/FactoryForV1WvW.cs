@@ -23,11 +23,11 @@
             }
         }
 
-        public IObjectiveNameService Objectives
+        public FactoryForV1WvWObjectives Objectives
         {
             get
             {
-                return new MatchService(this.ServiceClient);
+                return new FactoryForV1WvWObjectives(this.ServiceClient);
             }
         }
     }

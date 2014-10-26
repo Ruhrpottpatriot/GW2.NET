@@ -11,7 +11,6 @@ namespace GW2NET.V1.WorldVersusWorld
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
-    using System.Globalization;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -120,109 +119,6 @@ namespace GW2NET.V1.WorldVersusWorld
                         }
 
                         return ConvertMatchupCollectionContract(response.Content);
-                    }, 
-                cancellationToken);
-        }
-
-        /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
-        /// <returns>A collection of World versus World objectives and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public IDictionary<int, ObjectiveName> GetObjectiveNames()
-        {
-            var culture = new CultureInfo("en");
-            return this.GetObjectiveNames(culture);
-        }
-
-        /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of World versus World objectives and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public IDictionary<int, ObjectiveName> GetObjectiveNames(CultureInfo language)
-        {
-            if (language == null)
-            {
-                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
-            }
-
-            Contract.EndContractBlock();
-
-            var request = new ObjectiveNameRequest { Culture = language };
-            var response = this.serviceClient.Send<ICollection<ObjectiveNameDataContract>>(request);
-            if (response.Content == null)
-            {
-                return new Dictionary<int, ObjectiveName>(0);
-            }
-
-            var values = ConvertObjectiveNameContractCollection(response.Content);
-            var locale = response.Culture ?? language;
-            foreach (var value in values.Values)
-            {
-                value.Locale = locale;
-            }
-
-            return values;
-        }
-
-        /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
-        /// <returns>A collection of World versus World objectives and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync()
-        {
-            var culture = new CultureInfo("en");
-            return this.GetObjectiveNamesAsync(culture, CancellationToken.None);
-        }
-
-        /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of World versus World objectives and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync(CancellationToken cancellationToken)
-        {
-            var culture = new CultureInfo("en");
-            return this.GetObjectiveNamesAsync(culture, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of World versus World objectives and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language)
-        {
-            return this.GetObjectiveNamesAsync(language, CancellationToken.None);
-        }
-
-        /// <summary>Gets a collection of World versus World objectives and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of World versus World objectives and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, ObjectiveName>> GetObjectiveNamesAsync(CultureInfo language, CancellationToken cancellationToken)
-        {
-            if (language == null)
-            {
-                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
-            }
-
-            Contract.EndContractBlock();
-
-            var request = new ObjectiveNameRequest { Culture = language };
-            return this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new Dictionary<int, ObjectiveName>(0);
-                        }
-
-                        var values = ConvertObjectiveNameContractCollection(response.Content);
-                        var locale = response.Culture ?? language;
-                        foreach (var value in values.Values)
-                        {
-                            value.Locale = locale;
-                        }
-
-                        return values;
                     }, 
                 cancellationToken);
         }
@@ -451,55 +347,6 @@ namespace GW2NET.V1.WorldVersusWorld
 
             // Add each objective and its status
             values.AddRange(content.Select(ConvertObjectiveContract));
-
-            // Return the collection
-            return values;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>An entity.</returns>
-        private static ObjectiveName ConvertObjectiveNameContract(ObjectiveNameDataContract content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<ObjectiveName>() != null);
-
-            // Create a new objective object
-            var value = new ObjectiveName();
-
-            // Set the objective identifier
-            if (content.Id != null)
-            {
-                value.ObjectiveId = int.Parse(content.Id);
-            }
-
-            // Set the name of the objective
-            if (content.Name != null)
-            {
-                value.Name = content.Name;
-            }
-
-            // Return the objective object
-            return value;
-        }
-
-        /// <summary>Infrastructure. Converts contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, ObjectiveName> ConvertObjectiveNameContractCollection(ICollection<ObjectiveNameDataContract> content)
-        {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<IDictionary<int, ObjectiveName>>() != null);
-
-            // Create a new collection of objectives
-            var values = new Dictionary<int, ObjectiveName>(content.Count);
-
-            // Add each objective
-            foreach (var value in content.Select(ConvertObjectiveNameContract))
-            {
-                Contract.Assume(value != null);
-                values.Add(value.ObjectiveId, value);
-            }
 
             // Return the collection
             return values;

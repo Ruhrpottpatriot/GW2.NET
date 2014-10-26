@@ -6,7 +6,7 @@
 //   Represents a request for a list of objectives and their localized name.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld.Objectives
 {
     using System.Collections.Generic;
     using System.Globalization;

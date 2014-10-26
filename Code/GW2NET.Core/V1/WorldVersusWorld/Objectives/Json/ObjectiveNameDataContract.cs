@@ -6,13 +6,13 @@
 //   Defines the ObjectiveNameDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Json
+namespace GW2NET.V1.WorldVersusWorld.Objectives.Json
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names")]
+    [DataContract]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/objective_names")]
     internal sealed class ObjectiveNameDataContract
     {
         [DataMember(Name = "id", Order = 0)]

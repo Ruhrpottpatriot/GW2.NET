@@ -212,6 +212,9 @@
     <Compile Include="..\GW2NET\Factories\FactoryForV1WvW.cs">
       <Link>Factories\FactoryForV1WvW.cs</Link>
     </Compile>
+    <Compile Include="..\GW2NET\Factories\FactoryForV1WvWObjectives.cs">
+      <Link>Factories\FactoryForV1WvWObjectives.cs</Link>
+    </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryForV2.cs">
       <Link>Factories\FactoryForV2.cs</Link>
     </Compile>
