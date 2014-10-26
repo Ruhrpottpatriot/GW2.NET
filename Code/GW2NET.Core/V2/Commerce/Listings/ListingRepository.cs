@@ -529,7 +529,7 @@ namespace GW2NET.V2.Commerce.Listings
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
-        private static Offer ConvertOfferDataContract(OfferDataContract content)
+        private static Offer ConvertOfferDataContract(ListingOfferDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<Offer>() != null);
@@ -539,7 +539,7 @@ namespace GW2NET.V2.Commerce.Listings
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
-        private static ICollection<Offer> ConvertOfferDataContractCollection(ICollection<OfferDataContract> content)
+        private static ICollection<Offer> ConvertOfferDataContractCollection(ICollection<ListingOfferDataContract> content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<ICollection<Offer>>() != null);

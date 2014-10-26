@@ -686,7 +686,7 @@
     <Compile Include="V2\Commerce\Exchange\ExchangeBroker.cs" />
     <Compile Include="V2\Commerce\Exchange\Json\ExchangeQuoteDataContract.cs" />
     <Compile Include="V2\Commerce\Listings\Json\ListingDataContract.cs" />
-    <Compile Include="V2\Commerce\Listings\Json\OfferDataContract.cs" />
+    <Compile Include="V2\Commerce\Listings\Json\ListingOfferDataContract.cs" />
     <Compile Include="V2\Commerce\Listings\ListingBulkRequest.cs" />
     <Compile Include="V2\Commerce\Listings\ListingDetailsRequest.cs" />
     <Compile Include="V2\Commerce\Listings\ListingDiscoveryRequest.cs" />
