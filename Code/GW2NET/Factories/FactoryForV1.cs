@@ -3,6 +3,7 @@
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
+    using GW2NET.Entities.Maps;
     using GW2NET.V1.Builds;
     using GW2NET.V1.Colors;
     using GW2NET.V1.DynamicEvents;
@@ -97,6 +98,14 @@
             }
         }
 
+        public FactoryForV1MapNames MapNames
+        {
+            get
+            {
+                return new FactoryForV1MapNames(this.ServiceClient);
+            }
+        }
+
         public IMapDetailsService Maps
         {
             get
@@ -110,14 +119,6 @@
             get
             {
                 return new MapFloorService(this.ServiceClient);
-            }
-        }
-
-        public IMapNameService MapNames
-        {
-            get
-            {
-                return new MapService(this.ServiceClient);
             }
         }
 

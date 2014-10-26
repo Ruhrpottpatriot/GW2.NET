@@ -173,7 +173,6 @@ namespace GW2NET.Entities.Builds
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
-        /// <filterpriority>2</filterpriority>
         public override string ToString()
         {
             return this.BuildId.ToString(NumberFormatInfo.InvariantInfo);

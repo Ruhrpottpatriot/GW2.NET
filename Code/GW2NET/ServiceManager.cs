@@ -19,7 +19,6 @@ namespace GW2NET
     using GW2NET.Common.Serializers;
     using GW2NET.Compression;
     using GW2NET.Entities.Builds;
-    using GW2NET.Entities.Colors;
     using GW2NET.Entities.DynamicEvents;
     using GW2NET.Entities.Files;
     using GW2NET.Entities.Guilds;
@@ -29,7 +28,6 @@ namespace GW2NET
     using GW2NET.Entities.Skins;
     using GW2NET.Entities.Worlds;
     using GW2NET.V1.Builds;
-    using GW2NET.V1.Colors;
     using GW2NET.V1.DynamicEvents;
     using GW2NET.V1.Files;
     using GW2NET.V1.Floors;
@@ -777,59 +775,6 @@ namespace GW2NET
         public Task<Floor> GetMapFloorAsync(int continent, int floor, CultureInfo language, CancellationToken cancellationToken)
         {
             return this.mapFloorService.GetMapFloorAsync(continent, floor, language, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of maps and their localized name.</summary>
-        /// <returns>A collection of maps and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public IDictionary<int, Map> GetMapNames()
-        {
-            return this.mapService.GetMapNames();
-        }
-
-        /// <summary>Gets a collection of maps and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of maps and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public IDictionary<int, Map> GetMapNames(CultureInfo language)
-        {
-            return this.mapService.GetMapNames(language);
-        }
-
-        /// <summary>Gets a collection of maps and their localized name.</summary>
-        /// <returns>A collection of maps and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, Map>> GetMapNamesAsync()
-        {
-            return this.mapService.GetMapNamesAsync();
-        }
-
-        /// <summary>Gets a collection of maps and their localized name.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of maps and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, Map>> GetMapNamesAsync(CancellationToken cancellationToken)
-        {
-            return this.mapService.GetMapNamesAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a collection of maps and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of maps and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, Map>> GetMapNamesAsync(CultureInfo language)
-        {
-            return this.mapService.GetMapNamesAsync(language);
-        }
-
-        /// <summary>Gets a collection of maps and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of maps and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, Map>> GetMapNamesAsync(CultureInfo language, CancellationToken cancellationToken)
-        {
-            return this.mapService.GetMapNamesAsync(language, cancellationToken);
         }
 
         /// <summary>Gets a collection of maps and their localized details.</summary>

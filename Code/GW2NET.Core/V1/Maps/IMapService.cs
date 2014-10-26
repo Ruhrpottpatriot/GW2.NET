@@ -9,7 +9,7 @@
 namespace GW2NET.V1.Maps
 {
     /// <summary>Provides the interface for the maps service.</summary>
-    public interface IMapService : IMapNameService, IMapDetailsService
+    public interface IMapService : IMapDetailsService
     {
     }
 }
