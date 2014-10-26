@@ -9,7 +9,7 @@
 namespace GW2NET.Rendering
 {
     using System.Collections.Generic;
-    using System.Linq;
+    using System.Globalization;
 
     /// <summary>Represents a request for an in-game asset.</summary>
     public class RenderRequest : IRenderRequest
@@ -28,7 +28,7 @@ namespace GW2NET.Rendering
         {
             get
             {
-                return string.Format(@"file/{0}/{1}.{2}", this.FileSignature, this.FileId, this.ImageFormat);
+                return @"file/{0}/{1}.{2}";
             }
         }
 
@@ -43,7 +43,7 @@ namespace GW2NET.Rendering
         /// <returns>A collection of path segments.</returns>
         public IEnumerable<string> GetPathSegments()
         {
-            yield break;
+            return new List<string> { this.FileSignature, this.FileId.ToString(NumberFormatInfo.InvariantInfo), this.ImageFormat };
         }
     }
 }
