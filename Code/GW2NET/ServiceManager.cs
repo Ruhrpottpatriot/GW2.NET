@@ -42,7 +42,6 @@ namespace GW2NET
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
-                                  IColorService, 
                                   IDynamicEventService, 
                                   IFileService, 
                                   IGuildService, 
@@ -55,9 +54,6 @@ namespace GW2NET
     {
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IBuildService buildService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IColorService colorService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IDynamicEventService dynamicEventService;
@@ -104,7 +100,6 @@ namespace GW2NET
             Contract.EndContractBlock();
 
             this.buildService = new BuildService(serviceClient);
-            this.colorService = new ColorService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
             this.fileService = new FileService(serviceClient);
             this.guildService = new GuildService(serviceClient);
@@ -139,59 +134,6 @@ namespace GW2NET
         public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
         {
             return this.buildService.GetBuildAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a collection of colors and their localized details.</summary>
-        /// <returns>A collection of colors.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public IDictionary<int, ColorPalette> GetColors()
-        {
-            return this.colorService.GetColors();
-        }
-
-        /// <summary>Gets a collection of colors and their localized details.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of colors.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public IDictionary<int, ColorPalette> GetColors(CultureInfo language)
-        {
-            return this.colorService.GetColors(language);
-        }
-
-        /// <summary>Gets a collection of colors and their localized details.</summary>
-        /// <returns>A collection of colors.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, ColorPalette>> GetColorsAsync()
-        {
-            return this.colorService.GetColorsAsync();
-        }
-
-        /// <summary>Gets a collection of colors and their localized details.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of colors.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CancellationToken cancellationToken)
-        {
-            return this.colorService.GetColorsAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a collection of colors and their localized details.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of colors.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CultureInfo language)
-        {
-            return this.colorService.GetColorsAsync(language);
-        }
-
-        /// <summary>Gets a collection of colors and their localized details.</summary>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of colors.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/colors">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, ColorPalette>> GetColorsAsync(CultureInfo language, CancellationToken cancellationToken)
-        {
-            return this.colorService.GetColorsAsync(language, cancellationToken);
         }
 
         /// <summary>Gets a collection of continents and their details.</summary>
@@ -1220,7 +1162,6 @@ namespace GW2NET
         private void ObjectInvariant()
         {
             Contract.Invariant(this.buildService != null);
-            Contract.Invariant(this.colorService != null);
             Contract.Invariant(this.dynamicEventService != null);
             Contract.Invariant(this.fileService != null);
             Contract.Invariant(this.guildService != null);

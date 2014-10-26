@@ -185,6 +185,7 @@
   <ItemGroup>
     <Compile Include="Factories\FactoryForLocal.cs" />
     <Compile Include="Factories\FactoryForV1.cs" />
+    <Compile Include="Factories\FactoryForV1Colors.cs" />
     <Compile Include="Factories\FactoryForV1WvW.cs" />
     <Compile Include="Factories\FactoryForV1WvWObjectives.cs" />
     <Compile Include="Factories\FactoryForV2.cs" />

@@ -33,11 +33,11 @@
             }
         }
 
-        public IColorService Colors
+        public FactoryForV1Colors Colors
         {
             get
             {
-                return new ColorService(this.ServiceClient);
+                return new FactoryForV1Colors(this.ServiceClient);
             }
         }
 
