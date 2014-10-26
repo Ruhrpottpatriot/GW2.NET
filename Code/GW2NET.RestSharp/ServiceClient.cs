@@ -71,7 +71,7 @@ namespace GW2NET.RestSharp
         {
             try
             {
-                var resource = string.Format(request.Resource, request.GetPathSegments());
+                var resource = string.Format(request.Resource, request.GetPathSegments().Cast<object>().ToArray());
                 var restRequest = new RestRequest(resource);
 
                 // Translate the request to form data
@@ -126,7 +126,7 @@ namespace GW2NET.RestSharp
         /// <returns>An instance of the specified type.</returns>
         public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
         {
-            var resource = string.Format(request.Resource, request.GetPathSegments());
+            var resource = string.Format(request.Resource, request.GetPathSegments().Cast<object>().ToArray());
             var restRequest = new RestRequest(resource);
 
             // Translate the request to form data
