@@ -534,7 +534,6 @@
     <Compile Include="Local\DynamicEvents\DynamicEventRotationService.cs" />
     <Compile Include="Local\DynamicEvents\ContractClassForIDynamicEventRotationService.cs" />
     <Compile Include="Local\DynamicEvents\IDynamicEventRotationService.cs" />
-    <Compile Include="Local\Worlds\OfflineWorldService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rendering\IRenderRequest.cs" />
     <Compile Include="Rendering\IRenderService.cs" />
@@ -730,12 +729,6 @@
     <Compile Include="V2\Worlds\WorldDiscoveryRequest.cs" />
     <Compile Include="V2\Worlds\WorldPageRequest.cs" />
     <Compile Include="V2\Worlds\WorldRepository.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Local\Worlds\de.json" />
-    <EmbeddedResource Include="Local\Worlds\en.json" />
-    <EmbeddedResource Include="Local\Worlds\es.json" />
-    <EmbeddedResource Include="Local\Worlds\fr.json" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
