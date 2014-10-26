@@ -18,6 +18,7 @@ namespace GW2NET.V1.DynamicEvents
     using System.Threading.Tasks;
 
     using GW2NET.Common;
+    using GW2NET.Common.Drawing;
     using GW2NET.Entities.DynamicEvents;
     using GW2NET.Entities.Maps;
     using GW2NET.V1.DynamicEvents.Json;

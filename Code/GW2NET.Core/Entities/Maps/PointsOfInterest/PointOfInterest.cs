@@ -13,6 +13,7 @@ namespace GW2NET.Entities.Maps
     using System.Globalization;
 
     using GW2NET.ChatLinks;
+    using GW2NET.Common.Drawing;
 
     /// <summary>Represents a Point of Interest (POI) location.</summary>
     public class PointOfInterest : IEquatable<PointOfInterest>

@@ -6,15 +6,19 @@
 //   Represents a request for static information about the continents.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps
+namespace GW2NET.V1.Continents
 {
     using System.Collections.Generic;
+    using System.Globalization;
 
     using GW2NET.Common;
 
     /// <summary>Represents a request for static information about the continents.</summary>
-    internal sealed class ContinentDetailsRequest : IRequest
+    internal sealed class ContinentDetailsRequest : IRequest, ILocalizable
     {
+        /// <summary>Gets or sets the locale.</summary>
+        public CultureInfo Culture { get; set; }
+
         /// <summary>Gets the resource path.</summary>
         public string Resource
         {
@@ -28,7 +32,11 @@ namespace GW2NET.V1.Maps
         /// <returns>A collection of parameters.</returns>
         public IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
-            yield break;
+            var locale = this.Culture;
+            if (locale != null)
+            {
+                yield return new KeyValuePair<string, string>("lang", locale.TwoLetterISOLanguageName);
+            }
         }
 
         /// <summary>Gets additional path segments for the targeted resource.</summary>

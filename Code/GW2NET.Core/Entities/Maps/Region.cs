@@ -12,6 +12,8 @@ namespace GW2NET.Entities.Maps
     using System.Collections.Generic;
     using System.Globalization;
 
+    using GW2NET.Common.Drawing;
+
     /// <summary>Represents a region on the map.</summary>
     public class Region : IEquatable<Region>
     {

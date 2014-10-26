@@ -17,6 +17,7 @@ namespace GW2NET.V1.Floors
     using System.Threading.Tasks;
 
     using GW2NET.Common;
+    using GW2NET.Common.Drawing;
     using GW2NET.Entities.Maps;
     using GW2NET.V1.Floors.Json;
 

@@ -11,6 +11,8 @@ namespace GW2NET.Entities.Maps
     using System.Collections.Generic;
     using System.Globalization;
 
+    using GW2NET.Common.Drawing;
+
     /// <summary>Represents a map floor, used to populate a world map. All coordinates are map coordinates.</summary>
     /// <remarks>The returned data only contains static content. Dynamic content, such as vendors, is not currently available.</remarks>
     public class Floor

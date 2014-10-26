@@ -212,6 +212,9 @@
     <Compile Include="..\GW2NET\Factories\FactoryForV1Colors.cs">
       <Link>Factories\FactoryForV1Colors.cs</Link>
     </Compile>
+    <Compile Include="..\GW2NET\Factories\FactoryForV1Continents.cs">
+      <Link>Factories\FactoryForV1Continents.cs</Link>
+    </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryForV1WvW.cs">
       <Link>Factories\FactoryForV1WvW.cs</Link>
     </Compile>

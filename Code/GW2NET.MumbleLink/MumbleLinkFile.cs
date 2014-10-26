@@ -18,6 +18,7 @@ namespace GW2NET.MumbleLink
     using System.Text;
 
     using GW2NET.Common;
+    using GW2NET.Common.Drawing;
     using GW2NET.Entities.Maps;
 
     /// <summary>Provides an implementation of the Mumble Link protocol.</summary>

@@ -10,6 +10,8 @@ namespace GW2NET.Entities.Maps
 {
     using System;
 
+    using GW2NET.Common.Drawing;
+
     /// <summary>Represents a skill challenge location.</summary>
     public class SkillChallenge : IEquatable<SkillChallenge>
     {

@@ -12,6 +12,8 @@ namespace GW2NET.Entities.Maps
     using System.Collections.Generic;
     using System.Globalization;
 
+    using GW2NET.Common.Drawing;
+
     /// <summary>Represents a map and its details.</summary>
     public class Subregion : IEquatable<Subregion>
     {

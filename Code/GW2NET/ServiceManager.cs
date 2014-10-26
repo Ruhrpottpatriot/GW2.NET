@@ -136,31 +136,6 @@ namespace GW2NET
             return this.buildService.GetBuildAsync(cancellationToken);
         }
 
-        /// <summary>Gets a collection of continents and their details.</summary>
-        /// <returns>A collection of continents.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
-        public IDictionary<int, Continent> GetContinents()
-        {
-            return this.mapService.GetContinents();
-        }
-
-        /// <summary>Gets a collection of continents and their details.</summary>
-        /// <returns>A collection of continents.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, Continent>> GetContinentsAsync()
-        {
-            return this.mapService.GetContinentsAsync();
-        }
-
-        /// <summary>Gets a collection of continents and their details.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of continents.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/continents">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, Continent>> GetContinentsAsync(CancellationToken cancellationToken)
-        {
-            return this.mapService.GetContinentsAsync(cancellationToken);
-        }
-
         /// <summary>Gets a dynamic event and its status.</summary>
         /// <param name="eventId">The dynamic event filter.</param>
         /// <param name="worldId">The world filter.</param>

@@ -41,11 +41,11 @@
             }
         }
 
-        public IContinentDetailsService Continents
+        public FactoryForV1Continents Continents
         {
             get
             {
-                return new MapService(this.ServiceClient);
+                return new FactoryForV1Continents(this.ServiceClient);
             }
         }
 

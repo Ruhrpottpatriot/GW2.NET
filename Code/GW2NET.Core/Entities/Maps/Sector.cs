@@ -11,6 +11,8 @@ namespace GW2NET.Entities.Maps
     using System;
     using System.Globalization;
 
+    using GW2NET.Common.Drawing;
+
     /// <summary>Represents an area within a map.</summary>
     public class Sector : IEquatable<Sector>
     {

@@ -12,14 +12,20 @@ namespace GW2NET.Entities.Maps
     using System.Collections.Generic;
     using System.Globalization;
 
+    using GW2NET.Common;
+    using GW2NET.Common.Drawing;
+
     /// <summary>Represents a continent.</summary>
-    public class Continent : IEquatable<Continent>
+    public class Continent : IEquatable<Continent>, ILocalizable
     {
         /// <summary>Gets or sets the dimensions of the continent.</summary>
         public virtual Size2D ContinentDimensions { get; set; }
 
         /// <summary>Gets or sets the the continent identifier.</summary>
         public virtual int ContinentId { get; set; }
+
+        /// <summary>Gets or sets the locale.</summary>
+        public CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets a collection of floor identifiers.</summary>
         public virtual ICollection<int> FloorIds { get; set; }

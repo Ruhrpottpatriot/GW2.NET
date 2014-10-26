@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.MumbleLink
 {
+    using GW2NET.Common.Drawing;
     using GW2NET.Entities.Maps;
 
     /// <summary>Represents a player's avatar.</summary>

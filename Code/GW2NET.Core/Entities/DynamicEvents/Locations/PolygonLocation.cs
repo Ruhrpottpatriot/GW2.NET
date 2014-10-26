@@ -10,6 +10,7 @@ namespace GW2NET.Entities.DynamicEvents
 {
     using System.Collections.Generic;
 
+    using GW2NET.Common.Drawing;
     using GW2NET.Entities.Maps;
 
     /// <summary>Represents a polygonal location.</summary>
