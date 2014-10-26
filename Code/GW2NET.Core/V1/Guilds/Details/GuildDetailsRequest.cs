@@ -14,7 +14,7 @@ namespace GW2NET.V1.Guilds
     using GW2NET.Common;
 
     /// <summary>Represents a request for information regarding a specific guild.</summary>
-    public class GuildDetailsRequest : IRequest
+    internal sealed class GuildDetailsRequest : IRequest
     {
         /// <summary>Gets or sets the guild identifier.</summary>
         public Guid? GuildId { get; set; }

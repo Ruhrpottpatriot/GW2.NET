@@ -14,7 +14,7 @@ namespace GW2NET.V1.DynamicEvents
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of events and their localized name.</summary>
-    public class DynamicEventNameRequest : IRequest, ILocalizable
+    internal sealed class DynamicEventNameRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

@@ -14,7 +14,7 @@ namespace GW2NET.V1.Maps
     using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding maps in the game.</summary>
-    public class MapDetailsRequest : IRequest, ILocalizable
+    internal sealed class MapDetailsRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

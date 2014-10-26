@@ -9,12 +9,11 @@
 namespace GW2NET.V1.Skins
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of skin identifiers.</summary>
-    public class SkinDiscoveryRequest : IRequest
+    internal sealed class SkinDiscoveryRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

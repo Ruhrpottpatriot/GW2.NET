@@ -9,12 +9,11 @@
 namespace GW2NET.V1.Builds
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     using GW2NET.Common;
 
     /// <summary>Represents a request for the current build identifier of the game.</summary>
-    public class BuildRequest : IRequest
+    internal sealed class BuildRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

@@ -15,7 +15,7 @@ namespace GW2NET.V1.DynamicEvents
     using GW2NET.Common;
 
     /// <summary>Represents a request for a list of events and their status that match the given filters (if any).</summary>
-    public class DynamicEventStateRequest : IRequest
+    internal sealed class DynamicEventStateRequest : IRequest
     {
         /// <summary>Gets or sets the event identifier.</summary>
         public Guid? EventId { get; set; }

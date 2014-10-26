@@ -14,7 +14,7 @@ namespace GW2NET.V1.Maps
     using GW2NET.Common;
 
     /// <summary>Represents a request for static information about the continents.</summary>
-    public class ContinentDetailsRequest : IRequest
+    internal sealed class ContinentDetailsRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

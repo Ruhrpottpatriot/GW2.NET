@@ -12,7 +12,7 @@ namespace GW2NET.V2.Common
     using System.Globalization;
 
     /// <summary>Provides the base class for paginated resource details requests.</summary>
-    public abstract class PageRequest : IPageRequest
+    internal abstract class PageRequest : IPageRequest
     {
         /// <summary>Gets or sets the page number.</summary>
         public virtual int Page { get; set; }

@@ -14,7 +14,7 @@ namespace GW2NET.V1.Colors
     using GW2NET.Common;
 
     /// <summary>Represents a request for information regarding colors in the game.</summary>
-    public class ColorRequest : IRequest, ILocalizable
+    internal sealed class ColorRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

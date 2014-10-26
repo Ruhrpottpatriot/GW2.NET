@@ -9,12 +9,11 @@
 namespace GW2NET.V1.Files
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     using GW2NET.Common;
 
     /// <summary>Represents a request for commonly requested in-game assets. The returned information can be used with the render service to retrieve assets.</summary>
-    public class FileRequest : IRequest
+    internal sealed class FileRequest : IRequest
     {
         /// <summary>Gets the resource path.</summary>
         public string Resource

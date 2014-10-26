@@ -14,7 +14,7 @@ namespace GW2NET.V1.Maps
     using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding a map floor, used to populate a world map.</summary>
-    public class MapFloorRequest : IRequest, ILocalizable
+    internal sealed class MapFloorRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the continent identifier.</summary>
         public int? ContinentId { get; set; }

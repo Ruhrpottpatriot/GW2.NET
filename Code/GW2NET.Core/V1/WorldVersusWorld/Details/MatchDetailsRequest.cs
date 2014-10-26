@@ -13,7 +13,7 @@ namespace GW2NET.V1.WorldVersusWorld
     using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding the specified match, including the total score and further details for each map.</summary>
-    public class MatchDetailsRequest : IRequest
+    internal sealed class MatchDetailsRequest : IRequest
     {
         /// <summary>Gets or sets the match identifier.</summary>
         public string MatchId { get; set; }

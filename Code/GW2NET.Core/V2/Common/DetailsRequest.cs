@@ -11,7 +11,7 @@ namespace GW2NET.V2.Common
     using System.Collections.Generic;
 
     /// <summary>Provides the base class for resource details requests.</summary>
-    public abstract class DetailsRequest : IDetailsRequest
+    internal abstract class DetailsRequest : IDetailsRequest
     {
         /// <summary>Gets or sets the resource identifier.</summary>
         public virtual string Identifier { get; set; }

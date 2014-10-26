@@ -12,7 +12,7 @@ namespace GW2NET.V2.Common
     using System.Linq;
 
     /// <summary>Provides the base class for bulk resource details requests.</summary>
-    public abstract class BulkRequest : IBulkRequest
+    internal abstract class BulkRequest : IBulkRequest
     {
         /// <summary>Gets or sets the identifiers.</summary>
         public virtual ICollection<string> Identifiers { get; set; }
