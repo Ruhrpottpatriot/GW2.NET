@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PriceService.cs" company="GW2.NET Coding Team">
+// <copyright file="PriceRepository.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -33,14 +33,14 @@ namespace GW2NET.V2.Commerce.Prices
     ///     </item>
     /// </list>
     /// </remarks>
-    public class PriceService : IRepository<int, AggregateListing>
+    public class PriceRepository : IRepository<int, AggregateListing>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="PriceService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="PriceRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public PriceService(IServiceClient serviceClient)
+        public PriceRepository(IServiceClient serviceClient)
         {
             Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;

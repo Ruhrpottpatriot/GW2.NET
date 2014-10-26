@@ -23,7 +23,7 @@
         {
             get
             {
-                return new ItemService(this.ServiceClient) { Culture = new CultureInfo(language) };
+                return new ItemRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
             }
         }
 
@@ -31,7 +31,7 @@
         {
             get
             {
-                return new ItemService(this.ServiceClient);
+                return new ItemRepository(this.ServiceClient);
             }
         }
 

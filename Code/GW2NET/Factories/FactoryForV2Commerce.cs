@@ -23,7 +23,7 @@
         {
             get
             {
-                return new ListingService(this.ServiceClient);
+                return new ListingRepository(this.ServiceClient);
             }
         }
 
@@ -31,7 +31,7 @@
         {
             get
             {
-                return new PriceService(this.ServiceClient);
+                return new PriceRepository(this.ServiceClient);
             }
         }
 
@@ -39,7 +39,7 @@
         {
             get
             {
-                return new ExchangeService(this.ServiceClient);
+                return new ExchangeBroker(this.ServiceClient);
             }
         }
     }

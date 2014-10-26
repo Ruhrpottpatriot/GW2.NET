@@ -28,7 +28,7 @@
         {
             get
             {
-                return new QuagganService(this.ServiceClient);
+                return new QuagganRepository(this.ServiceClient);
             }
         }
 

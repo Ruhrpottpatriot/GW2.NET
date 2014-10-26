@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ItemService.cs" company="GW2.NET Coding Team">
+// <copyright file="ItemRepository.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -56,14 +56,14 @@ namespace GW2NET.V2.Items
     ///     </item>
     /// </list>
     /// </remarks>
-    public class ItemService : IRepository<int, Item>, ILocalizable
+    public class ItemRepository : IRepository<int, Item>, ILocalizable
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="ItemService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ItemRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ItemService(IServiceClient serviceClient)
+        public ItemRepository(IServiceClient serviceClient)
         {
             this.serviceClient = serviceClient;
         }

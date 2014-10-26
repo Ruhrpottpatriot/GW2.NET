@@ -684,7 +684,7 @@
     <Compile Include="V1\WorldVersusWorld\Names\ContractClassForIObjectiveNameService.cs" />
     <Compile Include="V2\Commerce\Exchange\ExchangeDetailsRequest.cs" />
     <Compile Include="V2\Commerce\Exchange\ExchangeDiscoveryRequest.cs" />
-    <Compile Include="V2\Commerce\Exchange\ExchangeService.cs" />
+    <Compile Include="V2\Commerce\Exchange\ExchangeBroker.cs" />
     <Compile Include="V2\Commerce\Exchange\Json\ExchangeQuoteDataContract.cs" />
     <Compile Include="V2\Commerce\Listings\Json\ListingDataContract.cs" />
     <Compile Include="V2\Commerce\Listings\Json\OfferDataContract.cs" />
@@ -692,14 +692,14 @@
     <Compile Include="V2\Commerce\Listings\ListingDetailsRequest.cs" />
     <Compile Include="V2\Commerce\Listings\ListingDiscoveryRequest.cs" />
     <Compile Include="V2\Commerce\Listings\ListingPageRequest.cs" />
-    <Compile Include="V2\Commerce\Listings\ListingService.cs" />
+    <Compile Include="V2\Commerce\Listings\ListingRepository.cs" />
     <Compile Include="V2\Commerce\Prices\Json\AggregateListingDataContract.cs" />
     <Compile Include="V2\Commerce\Prices\Json\AggregateOfferDataContract.cs" />
     <Compile Include="V2\Commerce\Prices\PriceBulkRequest.cs" />
     <Compile Include="V2\Commerce\Prices\PriceDetailsRequest.cs" />
     <Compile Include="V2\Commerce\Prices\PriceDiscoveryRequest.cs" />
     <Compile Include="V2\Commerce\Prices\PricePageRequest.cs" />
-    <Compile Include="V2\Commerce\Prices\PriceService.cs" />
+    <Compile Include="V2\Commerce\Prices\PriceRepository.cs" />
     <Compile Include="V2\Common\BulkRequest.cs" />
     <Compile Include="V2\Common\DetailsRequest.cs" />
     <Compile Include="V2\Common\IBulkRequest.cs" />
@@ -711,7 +711,7 @@
     <Compile Include="V2\Items\ItemDetailsRequest.cs" />
     <Compile Include="V2\Items\ItemDiscoveryRequest.cs" />
     <Compile Include="V2\Items\ItemPageRequest.cs" />
-    <Compile Include="V2\Items\ItemService.cs" />
+    <Compile Include="V2\Items\ItemRepository.cs" />
     <Compile Include="V2\Items\Json\AttributeDataContract.cs" />
     <Compile Include="V2\Items\Json\BuffDataContract.cs" />
     <Compile Include="V2\Items\Json\DetailsDataContract.cs" />
@@ -723,7 +723,7 @@
     <Compile Include="V2\Quaggans\QuagganDetailsRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganDiscoveryRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganPageRequest.cs" />
-    <Compile Include="V2\Quaggans\QuagganService.cs" />
+    <Compile Include="V2\Quaggans\QuagganRepository.cs" />
     <Compile Include="V2\Worlds\Json\WorldDataContract.cs" />
     <Compile Include="V2\Worlds\WorldBulkRequest.cs" />
     <Compile Include="V2\Worlds\WorldDetailsRequest.cs" />

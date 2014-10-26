@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ListingService.cs" company="GW2.NET Coding Team">
+// <copyright file="ListingRepository.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -33,14 +33,14 @@ namespace GW2NET.V2.Commerce.Listings
     ///     </item>
     /// </list>
     /// </remarks>
-    public class ListingService : IRepository<int, Listing>
+    public class ListingRepository : IRepository<int, Listing>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="ListingService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ListingRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ListingService(IServiceClient serviceClient)
+        public ListingRepository(IServiceClient serviceClient)
         {
             Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;

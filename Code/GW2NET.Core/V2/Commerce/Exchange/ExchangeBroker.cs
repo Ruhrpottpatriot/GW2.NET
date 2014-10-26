@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExchangeService.cs" company="GW2.NET Coding Team">
+// <copyright file="ExchangeBroker.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -18,14 +18,14 @@ namespace GW2NET.V2.Commerce.Exchange
     using GW2NET.V2.Commerce.Exchange.Json;
 
     /// <summary>Represents a broker that retrieves data from the /v2/commerce/exchange interface.</summary>
-    public class ExchangeService : IBroker<string, ExchangeQuote>
+    public class ExchangeBroker : IBroker<string, ExchangeQuote>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="ExchangeService"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ExchangeBroker"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ExchangeService(IServiceClient serviceClient)
+        public ExchangeBroker(IServiceClient serviceClient)
         {
             Contract.Requires(serviceClient != null);
             this.serviceClient = serviceClient;
