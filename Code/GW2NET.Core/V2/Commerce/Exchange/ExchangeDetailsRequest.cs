@@ -24,7 +24,7 @@ namespace GW2NET.V2.Commerce.Exchange
         {
             get
             {
-                return "/v2/commerce/exchange/" + this.Identifier;
+                return "/v2/commerce/exchange/{0}";
             }
         }
 
@@ -32,6 +32,11 @@ namespace GW2NET.V2.Commerce.Exchange
         /// <returns>A collection of parameters.</returns>
         public override IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
+            foreach (var parameter in base.GetParameters())
+            {
+                yield return parameter;
+            }
+
             var quantity = this.Quantity;
             if (quantity.HasValue)
             {

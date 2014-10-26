@@ -77,7 +77,8 @@ namespace GW2NET.Common
             Uri uri;
             try
             {
-                uri = BuildUri(this.baseUri, request.Resource, formData);
+                var resource = string.Format(request.Resource, request.GetPathSegments());
+                uri = BuildUri(this.baseUri, resource, formData);
             }
             catch (FormatException formatException)
             {
@@ -136,7 +137,8 @@ namespace GW2NET.Common
             Uri uri;
             try
             {
-                uri = BuildUri(this.baseUri, request.Resource, formData);
+                var resource = string.Format(request.Resource, request.GetPathSegments());
+                uri = BuildUri(this.baseUri, resource, formData);
             }
             catch (FormatException formatException)
             {

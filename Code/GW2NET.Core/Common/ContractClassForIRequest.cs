@@ -24,5 +24,13 @@ namespace GW2NET.Common
             Contract.Ensures(Contract.Result<IEnumerable<KeyValuePair<string, string>>>() != null);
             throw new System.NotImplementedException();
         }
+
+        /// <summary>Gets additional path segments for the targeted resource.</summary>
+        /// <returns>A collection of path segments.</returns>
+        public IEnumerable<string> GetPathSegments()
+        {
+            Contract.Ensures(Contract.Result<IEnumerable<string>>() != null);
+            throw new System.NotImplementedException();
+        }
     }
 }

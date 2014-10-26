@@ -57,5 +57,12 @@ namespace GW2NET.V1.DynamicEvents
                 yield return new KeyValuePair<string, string>("event_id", this.EventId.Value.ToString());
             }
         }
+
+        /// <summary>Gets additional path segments for the targeted resource.</summary>
+        /// <returns>A collection of path segments.</returns>
+        public IEnumerable<string> GetPathSegments()
+        {
+            yield break;
+        }
     }
 }

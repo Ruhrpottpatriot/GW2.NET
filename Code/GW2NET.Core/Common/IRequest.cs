@@ -21,5 +21,9 @@ namespace GW2NET.Common
         /// <summary>Gets the request parameters.</summary>
         /// <returns>A collection of parameters.</returns>
         IEnumerable<KeyValuePair<string, string>> GetParameters();
+
+        /// <summary>Gets additional path segments for the targeted resource.</summary>
+        /// <returns>A collection of path segments.</returns>
+        IEnumerable<string> GetPathSegments();
     }
 }

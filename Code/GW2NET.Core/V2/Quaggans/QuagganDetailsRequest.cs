@@ -21,7 +21,7 @@ namespace GW2NET.V2.Quaggans
         {
             get
             {
-                return "/v2/quaggans/" + this.Identifier;
+                return "/v2/quaggans/{0}";
             }
         }
     }

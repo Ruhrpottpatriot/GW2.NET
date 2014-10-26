@@ -18,7 +18,7 @@ namespace GW2NET.V2.Commerce.Prices
         {
             get
             {
-                return "/v2/commerce/prices/" + this.Identifier;
+                return "/v2/commerce/prices/{0}";
             }
         }
     }

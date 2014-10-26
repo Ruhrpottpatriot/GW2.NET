@@ -25,7 +25,7 @@ namespace GW2NET.V2.Worlds
         {
             get
             {
-                return "/v2/worlds/" + this.Identifier;
+                return "/v2/worlds/{0}";
             }
         }
 

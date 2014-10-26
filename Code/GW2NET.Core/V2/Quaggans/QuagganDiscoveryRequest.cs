@@ -8,27 +8,18 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Quaggans
 {
-    using System.Collections.Generic;
-
     using GW2NET.Common;
 
     /// <summary>Represents a discovery request that targets the /v2/quaggans interface.</summary>
-    internal sealed class QuagganDiscoveryRequest : IRequest
+    internal sealed class QuagganDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
-        public string Resource
+        public override string Resource
         {
             get
             {
                 return "/v2/quaggans";
             }
-        }
-
-        /// <summary>Gets the request parameters.</summary>
-        /// <returns>A collection of parameters.</returns>
-        public IEnumerable<KeyValuePair<string, string>> GetParameters()
-        {
-            yield break;
         }
     }
 }

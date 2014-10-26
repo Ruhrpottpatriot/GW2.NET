@@ -8,27 +8,18 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Listings
 {
-    using System.Collections.Generic;
-
     using GW2NET.Common;
 
     /// <summary>Represents a discovery request that targets the /v2/commerce/listings interface.</summary>
-    internal sealed class ListingDiscoveryRequest : IRequest
+    internal sealed class ListingDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
-        public string Resource
+        public override string Resource
         {
             get
             {
                 return "/v2/commerce/listings";
             }
-        }
-
-        /// <summary>Gets the request parameters.</summary>
-        /// <returns>A collection of parameters.</returns>
-        public IEnumerable<KeyValuePair<string, string>> GetParameters()
-        {
-            yield break;
         }
     }
 }

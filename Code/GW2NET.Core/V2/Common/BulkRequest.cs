@@ -35,5 +35,12 @@ namespace GW2NET.V2.Common
                 yield return new KeyValuePair<string, string>("ids", "all");
             }
         }
+
+        /// <summary>Gets additional path segments for the targeted resource.</summary>
+        /// <returns>A collection of path segments.</returns>
+        public virtual IEnumerable<string> GetPathSegments()
+        {
+            yield break;
+        }
     }
 }

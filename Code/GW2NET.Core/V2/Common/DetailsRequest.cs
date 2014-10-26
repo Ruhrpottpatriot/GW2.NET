@@ -25,5 +25,12 @@ namespace GW2NET.V2.Common
         {
             yield break;
         }
+
+        /// <summary>Gets additional path segments for the targeted resource.</summary>
+        /// <returns>A collection of path segments.</returns>
+        public virtual IEnumerable<string> GetPathSegments()
+        {
+            yield return this.Identifier;
+        }
     }
 }
