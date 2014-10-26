@@ -9,7 +9,6 @@
 namespace GW2NET.V1.Maps
 {
     using System.Collections.Generic;
-    using System.Linq;
 
     using GW2NET.Common;
 

@@ -18,6 +18,8 @@ namespace GW2NET.V1.Maps
 
     using GW2NET.Common;
     using GW2NET.Entities.Maps;
+    using GW2NET.V1.Continents.Json;
+    using GW2NET.V1.Floors.Json;
     using GW2NET.V1.Maps.Json;
 
     /// <summary>Provides the default implementation of the maps service.</summary>
