@@ -6,7 +6,7 @@
 //   Provides the interface for the map floor service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps
+namespace GW2NET.V1.Floors
 {
     using System.Diagnostics.Contracts;
     using System.Globalization;

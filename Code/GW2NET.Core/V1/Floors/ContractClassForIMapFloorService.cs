@@ -6,7 +6,7 @@
 //   Defines the ContractClassForIMapFloorService type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps
+namespace GW2NET.V1.Floors
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;

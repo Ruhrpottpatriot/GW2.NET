@@ -7,6 +7,7 @@
     using GW2NET.V1.Colors;
     using GW2NET.V1.DynamicEvents;
     using GW2NET.V1.Files;
+    using GW2NET.V1.Floors;
     using GW2NET.V1.Guilds;
     using GW2NET.V1.Items;
     using GW2NET.V1.Maps;
@@ -108,7 +109,7 @@
         {
             get
             {
-                return new MapService(this.ServiceClient);
+                return new MapFloorService(this.ServiceClient);
             }
         }
 

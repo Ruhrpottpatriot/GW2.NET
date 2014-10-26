@@ -6,7 +6,7 @@
 //   Provides the default implementation of the map floor service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps
+namespace GW2NET.V1.Floors
 {
     using System;
     using System.Collections.Generic;
@@ -169,7 +169,7 @@ namespace GW2NET.V1.Maps
             // Set the regions
             if (content.Regions != null)
             {
-                value.Regions = ConvertRegionContractCollection(content.Regions);
+                value.Regions = ConvertRegionDataContractCollection(content.Regions);
             }
 
             // Return the floor object
@@ -221,7 +221,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Region ConvertRegionContract(KeyValuePair<string, RegionDataContract> content)
+        private static Region ConvertRegionDataContract(KeyValuePair<string, RegionDataContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -248,7 +248,7 @@ namespace GW2NET.V1.Maps
             // Set the maps
             if (content.Value.Maps != null)
             {
-                value.Maps = ConvertSubregionContractCollection(content.Value.Maps);
+                value.Maps = ConvertSubregionDataContractCollection(content.Value.Maps);
             }
 
             // Return the region object
@@ -258,11 +258,11 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Region> ConvertRegionContractCollection(IDictionary<string, RegionDataContract> content)
+        private static IDictionary<int, Region> ConvertRegionDataContractCollection(IDictionary<string, RegionDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new Dictionary<int, Region>(content.Count);
-            foreach (var value in content.Select(ConvertRegionContract))
+            foreach (var value in content.Select(ConvertRegionDataContract))
             {
                 Contract.Assume(value != null);
                 values.Add(value.RegionId, value);
@@ -274,7 +274,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static RenownTask ConvertRenownTaskContract(RenownTaskDataContract content)
+        private static RenownTask ConvertRenownTaskDataContract(RenownTaskDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
@@ -291,18 +291,18 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<RenownTask> ConvertRenownTaskContractCollection(ICollection<RenownTaskDataContract> content)
+        private static ICollection<RenownTask> ConvertRenownTaskDataContractCollection(ICollection<RenownTaskDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<RenownTask>(content.Count);
-            values.AddRange(content.Select(ConvertRenownTaskContract));
+            values.AddRange(content.Select(ConvertRenownTaskDataContract));
             return values;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Sector ConvertSectorContract(SectorDataContract content)
+        private static Sector ConvertSectorDataContract(SectorDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
@@ -313,11 +313,11 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<Sector> ConvertSectorContractCollection(ICollection<SectorDataContract> content)
+        private static ICollection<Sector> ConvertSectorDataContractCollection(ICollection<SectorDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<Sector>(content.Count);
-            values.AddRange(content.Select(ConvertSectorContract));
+            values.AddRange(content.Select(ConvertSectorDataContract));
             return values;
         }
 
@@ -334,7 +334,7 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static SkillChallenge ConvertSkillChallengeContract(SkillChallengeDataContract content)
+        private static SkillChallenge ConvertSkillChallengeDataContract(SkillChallengeDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Requires(content.Coordinates != null);
@@ -345,18 +345,18 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static ICollection<SkillChallenge> ConvertSkillChallengeContractCollection(ICollection<SkillChallengeDataContract> content)
+        private static ICollection<SkillChallenge> ConvertSkillChallengeDataContractCollection(ICollection<SkillChallengeDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new List<SkillChallenge>(content.Count);
-            values.AddRange(content.Select(ConvertSkillChallengeContract));
+            values.AddRange(content.Select(ConvertSkillChallengeDataContract));
             return values;
         }
 
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static Subregion ConvertSubregionContract(KeyValuePair<string, SubregionDataContract> content)
+        private static Subregion ConvertSubregionDataContract(KeyValuePair<string, SubregionDataContract> content)
         {
             Contract.Requires(content.Key != null);
             Contract.Requires(content.Value != null);
@@ -407,19 +407,19 @@ namespace GW2NET.V1.Maps
             // Set the renown tasks
             if (content.Value.Tasks != null)
             {
-                value.Tasks = ConvertRenownTaskContractCollection(content.Value.Tasks);
+                value.Tasks = ConvertRenownTaskDataContractCollection(content.Value.Tasks);
             }
 
             // Set the skill challenges
             if (content.Value.SkillChallenges != null)
             {
-                value.SkillChallenges = ConvertSkillChallengeContractCollection(content.Value.SkillChallenges);
+                value.SkillChallenges = ConvertSkillChallengeDataContractCollection(content.Value.SkillChallenges);
             }
 
             // Set the sectors
             if (content.Value.Sectors != null)
             {
-                value.Sectors = ConvertSectorContractCollection(content.Value.Sectors);
+                value.Sectors = ConvertSectorDataContractCollection(content.Value.Sectors);
             }
 
             // Return the map object
@@ -429,11 +429,11 @@ namespace GW2NET.V1.Maps
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>A collection of entities.</returns>
-        private static IDictionary<int, Subregion> ConvertSubregionContractCollection(IDictionary<string, SubregionDataContract> content)
+        private static IDictionary<int, Subregion> ConvertSubregionDataContractCollection(IDictionary<string, SubregionDataContract> content)
         {
             Contract.Requires(content != null);
             var values = new Dictionary<int, Subregion>(content.Count);
-            foreach (var value in content.Select(ConvertSubregionContract))
+            foreach (var value in content.Select(ConvertSubregionDataContract))
             {
                 Contract.Assume(value != null);
                 values.Add(value.MapId, value);

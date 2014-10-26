@@ -33,6 +33,7 @@ namespace GW2NET
     using GW2NET.V1.Colors;
     using GW2NET.V1.DynamicEvents;
     using GW2NET.V1.Files;
+    using GW2NET.V1.Floors;
     using GW2NET.V1.Guilds;
     using GW2NET.V1.Items;
     using GW2NET.V1.Maps;
@@ -49,6 +50,7 @@ namespace GW2NET
                                   IGuildService, 
                                   IItemService, 
                                   IMapService, 
+                                  IMapFloorService,
                                   IRecipeService,
                                   IWorldService, 
                                   IMatchService, 
@@ -74,6 +76,9 @@ namespace GW2NET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IMapService mapService;
+
+        /// <summary>Infrastructure. Holds a reference to a service.</summary>
+        private readonly IMapFloorService mapFloorService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IMatchService matchService;
@@ -111,6 +116,7 @@ namespace GW2NET
             this.guildService = new GuildService(serviceClient);
             this.itemService = new ItemService(serviceClient);
             this.mapService = new MapService(serviceClient);
+            this.mapFloorService = new MapFloorService(serviceClient);
             this.matchService = new MatchService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
             this.worldService = new WorldService(serviceClient);
@@ -805,7 +811,7 @@ namespace GW2NET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Floor GetMapFloor(int continent, int floor)
         {
-            return this.mapService.GetMapFloor(continent, floor);
+            return this.mapFloorService.GetMapFloor(continent, floor);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -816,7 +822,7 @@ namespace GW2NET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Floor GetMapFloor(int continent, int floor, CultureInfo language)
         {
-            return this.mapService.GetMapFloor(continent, floor, language);
+            return this.mapFloorService.GetMapFloor(continent, floor, language);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -826,7 +832,7 @@ namespace GW2NET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continent, int floor)
         {
-            return this.mapService.GetMapFloorAsync(continent, floor);
+            return this.mapFloorService.GetMapFloorAsync(continent, floor);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -837,7 +843,7 @@ namespace GW2NET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continent, int floor, CancellationToken cancellationToken)
         {
-            return this.mapService.GetMapFloorAsync(continent, floor, cancellationToken);
+            return this.mapFloorService.GetMapFloorAsync(continent, floor, cancellationToken);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -848,7 +854,7 @@ namespace GW2NET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continent, int floor, CultureInfo language)
         {
-            return this.mapService.GetMapFloorAsync(continent, floor, language);
+            return this.mapFloorService.GetMapFloorAsync(continent, floor, language);
         }
 
         /// <summary>Gets a map floor and its localized details.</summary>
@@ -860,7 +866,7 @@ namespace GW2NET
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/map_floor">wiki</a> for more information.</remarks>
         public Task<Floor> GetMapFloorAsync(int continent, int floor, CultureInfo language, CancellationToken cancellationToken)
         {
-            return this.mapService.GetMapFloorAsync(continent, floor, language, cancellationToken);
+            return this.mapFloorService.GetMapFloorAsync(continent, floor, language, cancellationToken);
         }
 
         /// <summary>Gets a collection of maps and their localized name.</summary>

@@ -576,6 +576,8 @@
     <Compile Include="V1\Files\ContractClassForIFileService.cs" />
     <Compile Include="V1\Files\IFileService.cs" />
     <Compile Include="V1\Files\Json\FileDataContract.cs" />
+    <Compile Include="V1\Floors\ContractClassForIMapFloorService.cs" />
+    <Compile Include="V1\Floors\IMapFloorService.cs" />
     <Compile Include="V1\Floors\Json\FloorDataContract.cs" />
     <Compile Include="V1\Floors\Json\PointOfInterestDataContract.cs" />
     <Compile Include="V1\Floors\Json\RegionDataContract.cs" />
@@ -583,6 +585,8 @@
     <Compile Include="V1\Floors\Json\SectorDataContract.cs" />
     <Compile Include="V1\Floors\Json\SkillChallengeDataContract.cs" />
     <Compile Include="V1\Floors\Json\SubregionDataContract.cs" />
+    <Compile Include="V1\Floors\MapFloorRequest.cs" />
+    <Compile Include="V1\Floors\MapFloorService.cs" />
     <Compile Include="V1\Guilds\Details\GuildDetailsRequest.cs" />
     <Compile Include="V1\Guilds\GuildService.cs" />
     <Compile Include="V1\Guilds\Details\ContractClassForIGuildDetailsService.cs" />
@@ -618,16 +622,12 @@
     <Compile Include="V1\Maps\Continents\ContinentDetailsRequest.cs" />
     <Compile Include="V1\Maps\Continents\ContractClassForIContinentDetailsService.cs" />
     <Compile Include="V1\Maps\Continents\IContinentDetailsService.cs" />
-    <Compile Include="V1\Maps\Floors\IMapFloorService.cs" />
     <Compile Include="V1\Maps\Json\MapCollectionDataContract.cs" />
     <Compile Include="V1\Maps\Json\MapDataContract.cs" />
     <Compile Include="V1\Maps\Json\MapNameDataContract.cs" />
     <Compile Include="V1\Maps\Names\IMapNameService.cs" />
     <Compile Include="V1\Maps\Details\IMapDetailsService.cs" />
     <Compile Include="V1\Maps\IMapService.cs" />
-    <Compile Include="V1\Maps\Floors\MapFloorRequest.cs" />
-    <Compile Include="V1\Maps\Floors\MapFloorService.cs" />
-    <Compile Include="V1\Maps\Floors\ContractClassForIMapFloorService.cs" />
     <Compile Include="V1\Maps\Names\MapNameRequest.cs" />
     <Compile Include="V1\Maps\Names\MapNameService.cs" />
     <Compile Include="V1\Maps\Names\ContractClassForIMapNameService.cs" />
