@@ -18,12 +18,13 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld.Objectives.Json;
+    using GW2NET.V1.WorldVersusWorld.Objectives.Json.Converters;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/objective_names.json interface.</summary>
     public class ObjectiveRepository : IRepository<int, ObjectiveName>, ILocalizable
     {
-        /// <summary>Infrastructure. Holds a reference to a data contract converter.</summary>
-        private static readonly IConverter<ObjectiveNameDataContract, ObjectiveName> ObjectiveNameDataContractConverter = new ObjectiveNameDataContractConverter();
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<ObjectiveNameDataContract, ObjectiveName> converterForObjectiveName;
 
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
@@ -31,8 +32,17 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <summary>Initializes a new instance of the <see cref="ObjectiveRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ObjectiveRepository(IServiceClient serviceClient)
+            : this(serviceClient, new ConverterForObjectiveName())
+        {
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveRepository"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="converterForObjectiveName">The converter <see cref="ObjectiveName"/>.</param>
+        internal ObjectiveRepository(IServiceClient serviceClient, IConverter<ObjectiveNameDataContract, ObjectiveName> converterForObjectiveName)
         {
             this.serviceClient = serviceClient;
+            this.converterForObjectiveName = converterForObjectiveName;
         }
 
         /// <summary>Gets or sets the locale.</summary>
@@ -82,7 +92,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
 
             var values = new DictionaryRange<int, ObjectiveName>(response.Content.Count) { SubtotalCount = response.Content.Count, TotalCount = response.Content.Count };
 
-            foreach (var value in response.Content.Select(ObjectiveNameDataContractConverter.Convert))
+            foreach (var value in response.Content.Select(this.converterForObjectiveName.Convert))
             {
                 value.Locale = culture;
                 values.Add(value.ObjectiveId, value);
@@ -123,7 +133,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
 
                 var values = new DictionaryRange<int, ObjectiveName>(response.Content.Count) { SubtotalCount = response.Content.Count, TotalCount = response.Content.Count };
 
-                foreach (var value in response.Content.Select(ObjectiveNameDataContractConverter.Convert))
+                foreach (var value in response.Content.Select(this.converterForObjectiveName.Convert))
                 {
                     value.Locale = culture;
                     values.Add(value.ObjectiveId, value);

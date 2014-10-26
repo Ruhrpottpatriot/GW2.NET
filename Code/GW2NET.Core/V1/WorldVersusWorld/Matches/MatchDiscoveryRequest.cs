@@ -6,7 +6,7 @@
 //   Represents a request for a list of the currently running World versus World matches, with the participating worlds included in the result.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System.Collections.Generic;
 

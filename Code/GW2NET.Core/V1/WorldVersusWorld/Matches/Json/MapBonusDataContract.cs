@@ -6,7 +6,7 @@
 //   Defines the MapBonusDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Json
+namespace GW2NET.V1.WorldVersusWorld.Matches.Json
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

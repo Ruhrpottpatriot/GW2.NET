@@ -28,7 +28,6 @@ namespace GW2NET
     using GW2NET.Entities.Recipes;
     using GW2NET.Entities.Skins;
     using GW2NET.Entities.Worlds;
-    using GW2NET.Entities.WorldVersusWorld;
     using GW2NET.V1.Builds;
     using GW2NET.V1.Colors;
     using GW2NET.V1.DynamicEvents;
@@ -40,7 +39,6 @@ namespace GW2NET
     using GW2NET.V1.Recipes;
     using GW2NET.V1.Skins;
     using GW2NET.V1.Worlds;
-    using GW2NET.V1.WorldVersusWorld;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
@@ -53,7 +51,6 @@ namespace GW2NET
                                   IMapFloorService,
                                   IRecipeService,
                                   IWorldService, 
-                                  IMatchService, 
                                   ISkinService
     {
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
@@ -79,9 +76,6 @@ namespace GW2NET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IMapFloorService mapFloorService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IMatchService matchService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IRecipeService recipeService;
@@ -117,7 +111,6 @@ namespace GW2NET
             this.itemService = new ItemService(serviceClient);
             this.mapService = new MapService(serviceClient);
             this.mapFloorService = new MapFloorService(serviceClient);
-            this.matchService = new MatchService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
             this.worldService = new WorldService(serviceClient);
             this.skinService = new SkinService(serviceClient);
@@ -975,59 +968,6 @@ namespace GW2NET
             return this.mapService.GetMapsAsync(language, cancellationToken);
         }
 
-        /// <summary>Gets a World versus World match and its details.</summary>
-        /// <param name="match">The match identifier.</param>
-        /// <returns>A World versus World match and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Match GetMatchDetails(string match)
-        {
-            return this.matchService.GetMatchDetails(match);
-        }
-
-        /// <summary>Gets a World versus World match and its details.</summary>
-        /// <param name="match">The match identifier.</param>
-        /// <returns>A World versus World match and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<Match> GetMatchDetailsAsync(string match)
-        {
-            return this.matchService.GetMatchDetailsAsync(match);
-        }
-
-        /// <summary>Gets a World versus World match and its details.</summary>
-        /// <param name="match">The match identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A World versus World match and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/match_details">wiki</a> for more information.</remarks>
-        public Task<Match> GetMatchDetailsAsync(string match, CancellationToken cancellationToken)
-        {
-            return this.matchService.GetMatchDetailsAsync(match, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of currently running World versus World matches.</summary>
-        /// <returns>A collection of currently running World versus World matches.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public IDictionary<string, Matchup> GetMatches()
-        {
-            return this.matchService.GetMatches();
-        }
-
-        /// <summary>Gets a collection of currently running World versus World matches.</summary>
-        /// <returns>A collection of currently running World versus World matches.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public Task<IDictionary<string, Matchup>> GetMatchesAsync()
-        {
-            return this.matchService.GetMatchesAsync();
-        }
-
-        /// <summary>Gets a collection of currently running World versus World matches.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of currently running World versus World matches.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/wvw/matches">wiki</a> for more information.</remarks>
-        public Task<IDictionary<string, Matchup>> GetMatchesAsync(CancellationToken cancellationToken)
-        {
-            return this.matchService.GetMatchesAsync(cancellationToken);
-        }
-
         /// <summary>Gets a recipe and its localized details.</summary>
         /// <param name="recipe">The recipe identifier.</param>
         /// <returns>A recipe and its localized details.</returns>
@@ -1286,7 +1226,6 @@ namespace GW2NET
             Contract.Invariant(this.guildService != null);
             Contract.Invariant(this.itemService != null);
             Contract.Invariant(this.mapService != null);
-            Contract.Invariant(this.matchService != null);
             Contract.Invariant(this.recipeService != null);
             Contract.Invariant(this.worldService != null);
             Contract.Invariant(this.skinService != null);

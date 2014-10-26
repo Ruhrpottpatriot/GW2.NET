@@ -6,7 +6,7 @@
 //   Represents a request for details regarding the specified match, including the total score and further details for each map.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld
+namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System.Collections.Generic;
 

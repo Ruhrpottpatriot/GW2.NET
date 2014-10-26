@@ -3,7 +3,9 @@
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
+    using GW2NET.Entities.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld;
+    using GW2NET.V1.WorldVersusWorld.Matches;
 
     public class FactoryForV1WvW : FactoryBase
     {
@@ -15,11 +17,11 @@
             Contract.Requires(serviceClient != null);
         }
 
-        public IMatchService Matches
+        public IRepository<Matchup, Match> Matches
         {
             get
             {
-                return new MatchService(this.ServiceClient);
+                return new MatchRepository(this.ServiceClient);
             }
         }
 

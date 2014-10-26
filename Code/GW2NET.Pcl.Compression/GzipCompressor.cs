@@ -17,7 +17,7 @@ namespace GW2NET.Compression
     public class GzipCompressor : IConverter<Stream, Stream>
     {
         /// <summary>Compresses the given <see cref="Stream"/>.</summary>
-        /// <param name="value">The stream.</param>
+        /// <param name="value">The stream to compress.</param>
         /// <returns>The compressed <see cref="Stream"/>.</returns>
         public Stream Convert(Stream value)
         {
