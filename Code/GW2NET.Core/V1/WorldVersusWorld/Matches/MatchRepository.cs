@@ -22,22 +22,31 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/matches.json and /v1/wvw/match_details.json interfaces.</summary>
     public class MatchRepository : IRepository<Matchup, Match>
     {
-        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
-        private readonly IServiceClient serviceClient;
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<MatchDataContract, Match> converterForMatch;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<MatchupDataContract, Matchup> converterForMatchup;
 
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<MatchDataContract, Match> converterForMatch;
+        /// <summary>Infrastructure. Holds a reference to the service client.</summary>
+        private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="MatchRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public MatchRepository(IServiceClient serviceClient)
+            : this(serviceClient, new ConverterForMatchup(), new ConverterForMatch())
+        {
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="MatchRepository"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="converterForMatchup">The converter <see cref="Matchup"/>.</param>
+        /// <param name="converterForMatch">The converter <see cref="Match"/>.</param>
+        internal MatchRepository(IServiceClient serviceClient, IConverter<MatchupDataContract, Matchup> converterForMatchup, IConverter<MatchDataContract, Match> converterForMatch)
         {
             this.serviceClient = serviceClient;
-            this.converterForMatchup = new ConverterForMatchup();
-            this.converterForMatch = new ConverterForMatch();
+            this.converterForMatchup = converterForMatchup;
+            this.converterForMatch = converterForMatch;
         }
 
         /// <summary>Gets the discovered identifiers.</summary>
@@ -69,19 +78,18 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         public Task<ICollection<Matchup>> DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new MatchDiscoveryRequest();
-            return this.serviceClient.SendAsync<MatchupCollectionDataContract>(request, cancellationToken)
-                .ContinueWith<ICollection<Matchup>>(task =>
+            return this.serviceClient.SendAsync<MatchupCollectionDataContract>(request, cancellationToken).ContinueWith<ICollection<Matchup>>(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null || response.Content.Matchups == null)
                 {
-                    var response = task.Result;
-                    if (response.Content == null || response.Content.Matchups == null)
-                    {
-                        return new Matchup[0];
-                    }
+                    return new Matchup[0];
+                }
 
-                    var values = new List<Matchup>(response.Content.Matchups.Count);
-                    values.AddRange(response.Content.Matchups.Select(this.converterForMatchup.Convert));
-                    return values;
-                }, cancellationToken);
+                var values = new List<Matchup>(response.Content.Matchups.Count);
+                values.AddRange(response.Content.Matchups.Select(this.converterForMatchup.Convert));
+                return values;
+            }, cancellationToken);
         }
 
         /// <summary>Finds the <see cref="Match"/> with the specified identifier.</summary>
