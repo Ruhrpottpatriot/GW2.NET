@@ -82,7 +82,7 @@ namespace GW2NET.V1.Continents
         /// <returns>A collection of every <see cref="Continent"/>.</returns>
         public IDictionaryRange<int, Continent> FindAll()
         {
-            var request = new ContinentDetailsRequest { Culture = this.Culture };
+            var request = new ContinentRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ContinentCollectionDataContract>(request);
             if (response.Content == null || response.Content.Continents == null)
             {
@@ -119,7 +119,7 @@ namespace GW2NET.V1.Continents
         /// <returns>A collection of every <see cref="Continent"/></returns>
         public Task<IDictionaryRange<int, Continent>> FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new ContinentDetailsRequest { Culture = this.Culture };
+            var request = new ContinentRequest { Culture = this.Culture };
             return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(task =>
             {
                 var response = task.Result;

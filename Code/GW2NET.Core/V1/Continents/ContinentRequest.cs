@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ContinentDetailsRequest.cs" company="GW2.NET Coding Team">
+// <copyright file="ContinentRequest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -14,7 +14,7 @@ namespace GW2NET.V1.Continents
     using GW2NET.Common;
 
     /// <summary>Represents a request for static information about the continents.</summary>
-    internal sealed class ContinentDetailsRequest : IRequest, ILocalizable
+    internal sealed class ContinentRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }

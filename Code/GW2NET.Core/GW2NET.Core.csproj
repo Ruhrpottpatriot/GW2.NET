@@ -555,7 +555,7 @@
     <Compile Include="V1\Colors\Json\Converters\ConverterForColorPalette.cs" />
     <Compile Include="V1\Colors\Json\Converters\ConverterForColor.cs" />
     <Compile Include="V1\Colors\Json\Converters\ConverterForColorPaletteCollection.cs" />
-    <Compile Include="V1\Continents\ContinentDetailsRequest.cs" />
+    <Compile Include="V1\Continents\ContinentRequest.cs" />
     <Compile Include="V1\Continents\ContinentRepository.cs" />
     <Compile Include="V1\Continents\Json\ContinentCollectionDataContract.cs" />
     <Compile Include="V1\Continents\Json\ContinentDataContract.cs" />
