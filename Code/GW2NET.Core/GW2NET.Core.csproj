@@ -687,7 +687,7 @@
     <Compile Include="V1\WorldVersusWorld\Objectives\Json\Converters\ConverterForObjectiveName.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives\Json\ObjectiveNameDataContract.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveNameRequest.cs" />
-    <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveRepository.cs" />
+    <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveNameRepository.cs" />
     <Compile Include="V2\Commerce\Exchange\ExchangeDetailsRequest.cs" />
     <Compile Include="V2\Commerce\Exchange\ExchangeDiscoveryRequest.cs" />
     <Compile Include="V2\Commerce\Exchange\ExchangeBroker.cs" />

@@ -28,7 +28,7 @@ namespace GW2NET.Factories
         {
             get
             {
-                return new ObjectiveRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
+                return new ObjectiveNameRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
             }
         }
 
@@ -37,7 +37,7 @@ namespace GW2NET.Factories
         {
             get
             {
-                return new ObjectiveRepository(this.ServiceClient);
+                return new ObjectiveNameRepository(this.ServiceClient);
             }
         }
 

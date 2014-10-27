@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ObjectiveRepository.cs" company="GW2.NET Coding Team">
+// <copyright file="ObjectiveNameRepository.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -22,7 +22,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
     using GW2NET.V1.WorldVersusWorld.Objectives.Json.Converters;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/objective_names.json interface.</summary>
-    public class ObjectiveRepository : IRepository<int, ObjectiveName>, ILocalizable
+    public class ObjectiveNameRepository : IRepository<int, ObjectiveName>, ILocalizable
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ObjectiveNameDataContract, ObjectiveName> converterForObjectiveName;
@@ -30,17 +30,17 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="ObjectiveRepository"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveNameRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ObjectiveRepository(IServiceClient serviceClient)
+        public ObjectiveNameRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForObjectiveName())
         {
         }
 
-        /// <summary>Initializes a new instance of the <see cref="ObjectiveRepository"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="ObjectiveNameRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForObjectiveName">The converter <see cref="ObjectiveName"/>.</param>
-        internal ObjectiveRepository(IServiceClient serviceClient, IConverter<ObjectiveNameDataContract, ObjectiveName> converterForObjectiveName)
+        internal ObjectiveNameRepository(IServiceClient serviceClient, IConverter<ObjectiveNameDataContract, ObjectiveName> converterForObjectiveName)
         {
             this.serviceClient = serviceClient;
             this.converterForObjectiveName = converterForObjectiveName;
