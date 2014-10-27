@@ -218,6 +218,9 @@
     <Compile Include="..\GW2NET\Factories\FactoryForV1MapNames.cs">
       <Link>Factories\FactoryForV1MapNames.cs</Link>
     </Compile>
+    <Compile Include="..\GW2NET\Factories\FactoryForV1Maps.cs">
+      <Link>Factories\FactoryForV1Maps.cs</Link>
+    </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryForV1WvW.cs">
       <Link>Factories\FactoryForV1WvW.cs</Link>
     </Compile>

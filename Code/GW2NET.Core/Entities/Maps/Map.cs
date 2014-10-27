@@ -12,10 +12,11 @@ namespace GW2NET.Entities.Maps
     using System.Collections.Generic;
     using System.Globalization;
 
+    using GW2NET.Common;
     using GW2NET.Common.Drawing;
 
     /// <summary>Represents a map and its details, including details about floor and translation data on how to translate between world coordinates and map coordinates.</summary>
-    public class Map : IEquatable<Map>
+    public class Map : IEquatable<Map>, ILocalizable
     {
         /// <summary>Gets or sets the continent that this map belongs to. This is a navigation property. Use the value of <see cref="ContinentId"/> to obtain a reference.</summary>
         public virtual Continent Continent { get; set; }
@@ -29,14 +30,14 @@ namespace GW2NET.Entities.Maps
         /// <summary>Gets or sets the dimensions of the map within the continent coordinate system.</summary>
         public virtual Rectangle ContinentRectangle { get; set; }
 
+        /// <summary>Gets or sets the locale.</summary>
+        public CultureInfo Culture { get; set; }
+
         /// <summary>Gets or sets the default floor.</summary>
         public virtual int DefaultFloor { get; set; }
 
         /// <summary>Gets or sets a collection of floor identifiers.</summary>
         public virtual ICollection<int> Floors { get; set; }
-
-        /// <summary>Gets or sets the locale.</summary>
-        public virtual CultureInfo Locale { get; set; }
 
         /// <summary>Gets or sets the map identifier.</summary>
         public virtual int MapId { get; set; }

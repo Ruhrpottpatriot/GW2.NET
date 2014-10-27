@@ -106,11 +106,11 @@
             }
         }
 
-        public IMapDetailsService Maps
+        public FactoryForV1Maps Maps
         {
             get
             {
-                return new MapService(this.ServiceClient);
+                return new FactoryForV1Maps(this.ServiceClient);
             }
         }
 
