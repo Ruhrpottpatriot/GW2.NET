@@ -15,16 +15,16 @@ namespace GW2NET.Entities.Maps
     using GW2NET.Common;
 
     /// <summary>Represents a map and its localized name.</summary>
-    public class MapName : ILocalizable, IEquatable<MapName>
+    public class MapName : IEquatable<MapName>, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        public virtual CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets the map identifier.</summary>
-        public int MapId { get; set; }
+        public virtual int MapId { get; set; }
 
         /// <summary>Gets or sets the localized name of the map.</summary>
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Operators don't require an explanation.")]
         public static bool operator ==(MapName left, MapName right)

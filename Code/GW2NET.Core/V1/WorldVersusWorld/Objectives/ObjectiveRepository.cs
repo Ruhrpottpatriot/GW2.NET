@@ -10,6 +10,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -82,8 +83,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <returns>A collection of every <see cref="Objective"/>.</returns>
         public IDictionaryRange<int, ObjectiveName> FindAll()
         {
-            var culture = this.Culture;
-            var request = new ObjectiveNameRequest { Culture = culture };
+            var request = new ObjectiveNameRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<ObjectiveNameDataContract>>(request);
             if (response == null)
             {
@@ -94,7 +94,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
 
             foreach (var value in response.Content.Select(this.converterForObjectiveName.Convert))
             {
-                value.Locale = culture;
+                value.Culture = request.Culture;
                 values.Add(value.ObjectiveId, value);
             }
 
@@ -121,8 +121,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <returns>A collection of every <see cref="Objective"/></returns>
         public Task<IDictionaryRange<int, ObjectiveName>> FindAllAsync(CancellationToken cancellationToken)
         {
-            var culture = this.Culture;
-            var request = new ObjectiveNameRequest { Culture = culture };
+            var request = new ObjectiveNameRequest { Culture = this.Culture };
             return this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(task =>
             {
                 var response = task.Result;
@@ -135,7 +134,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
 
                 foreach (var value in response.Content.Select(this.converterForObjectiveName.Convert))
                 {
-                    value.Locale = culture;
+                    value.Culture = request.Culture;
                     values.Add(value.ObjectiveId, value);
                 }
 
@@ -228,6 +227,14 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         public Task<ICollectionPage<ObjectiveName>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
+            Contract.Invariant(this.converterForObjectiveName != null);
         }
     }
 }

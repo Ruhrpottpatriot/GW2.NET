@@ -25,7 +25,7 @@ namespace GW2NET.Entities.Maps
         public virtual int ContinentId { get; set; }
 
         /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        public virtual CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets a collection of floor identifiers.</summary>
         public virtual ICollection<int> FloorIds { get; set; }

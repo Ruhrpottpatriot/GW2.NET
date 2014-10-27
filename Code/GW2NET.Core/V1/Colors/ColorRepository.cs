@@ -86,8 +86,7 @@ namespace GW2NET.V1.Colors
         /// <returns>A collection of every <see cref="ColorPalette"/>.</returns>
         public IDictionaryRange<int, ColorPalette> FindAll()
         {
-            var locale = this.Culture;
-            var request = new ColorRequest { Culture = locale };
+            var request = new ColorRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ColorCollectionDataContract>(request);
             if (response.Content == null || response.Content.Colors == null)
             {
@@ -98,7 +97,7 @@ namespace GW2NET.V1.Colors
 
             foreach (var colorPalette in this.converterForColorPaletteCollection.Convert(response.Content))
             {
-                colorPalette.Locale = locale;
+                colorPalette.Culture = request.Culture;
                 colorPalettes.Add(colorPalette.ColorId, colorPalette);
             }
 
@@ -125,27 +124,25 @@ namespace GW2NET.V1.Colors
         /// <returns>A collection of every <see cref="ColorPalette"/></returns>
         public Task<IDictionaryRange<int, ColorPalette>> FindAllAsync(CancellationToken cancellationToken)
         {
-            var locale = this.Culture;
-            var request = new ColorRequest { Culture = locale };
-            return this.serviceClient.SendAsync<ColorCollectionDataContract>(request, cancellationToken)
-                .ContinueWith<IDictionaryRange<int, ColorPalette>>(task =>
+            var request = new ColorRequest { Culture = this.Culture };
+            return this.serviceClient.SendAsync<ColorCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ColorPalette>>(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null || response.Content.Colors == null)
                 {
-                    var response = task.Result;
-                    if (response.Content == null || response.Content.Colors == null)
-                    {
-                        return new DictionaryRange<int, ColorPalette>(0);
-                    }
+                    return new DictionaryRange<int, ColorPalette>(0);
+                }
 
-                    var colorPalettes = new DictionaryRange<int, ColorPalette>(response.Content.Colors.Count) { SubtotalCount = response.Content.Colors.Count, TotalCount = response.Content.Colors.Count };
+                var colorPalettes = new DictionaryRange<int, ColorPalette>(response.Content.Colors.Count) { SubtotalCount = response.Content.Colors.Count, TotalCount = response.Content.Colors.Count };
 
-                    foreach (var colorPalette in this.converterForColorPaletteCollection.Convert(response.Content))
-                    {
-                        colorPalette.Locale = locale;
-                        colorPalettes.Add(colorPalette.ColorId, colorPalette);
-                    }
+                foreach (var colorPalette in this.converterForColorPaletteCollection.Convert(response.Content))
+                {
+                    colorPalette.Culture = request.Culture;
+                    colorPalettes.Add(colorPalette.ColorId, colorPalette);
+                }
 
-                    return colorPalettes;
-                }, cancellationToken);
+                return colorPalettes;
+            }, cancellationToken);
         }
 
         /// <summary>Finds every <see cref="ColorPalette"/> with one of the specified identifiers.</summary>
@@ -233,6 +230,14 @@ namespace GW2NET.V1.Colors
         public Task<ICollectionPage<ColorPalette>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
+            Contract.Invariant(this.converterForColorPaletteCollection != null);
         }
     }
 }

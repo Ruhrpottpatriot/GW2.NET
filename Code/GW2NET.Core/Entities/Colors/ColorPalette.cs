@@ -11,8 +11,10 @@ namespace GW2NET.Entities.Colors
     using System;
     using System.Globalization;
 
+    using GW2NET.Common;
+
     /// <summary>Represents a named color and its color component information for cloth, leather and metal materials.</summary>
-    public class ColorPalette : IEquatable<ColorPalette>
+    public class ColorPalette : IEquatable<ColorPalette>, ILocalizable
     {
         /// <summary>Gets or sets the base RGB values.</summary>
         public virtual Color BaseRgb { get; set; }
@@ -24,7 +26,7 @@ namespace GW2NET.Entities.Colors
         public virtual int ColorId { get; set; }
 
         /// <summary>Gets or sets the locale.</summary>
-        public virtual CultureInfo Locale { get; set; }
+        public virtual CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets the color model for leather armor.</summary>
         public virtual ColorModel Leather { get; set; }

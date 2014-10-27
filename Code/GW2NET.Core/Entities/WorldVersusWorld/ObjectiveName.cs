@@ -11,11 +11,13 @@ namespace GW2NET.Entities.WorldVersusWorld
     using System;
     using System.Globalization;
 
+    using GW2NET.Common;
+
     /// <summary>Represents an objective and its localized name.</summary>
-    public class ObjectiveName : IEquatable<ObjectiveName>
+    public class ObjectiveName : IEquatable<ObjectiveName>, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
-        public virtual CultureInfo Locale { get; set; }
+        public virtual CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets the name of the objective.</summary>
         public virtual string Name { get; set; }
