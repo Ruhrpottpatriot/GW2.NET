@@ -90,9 +90,14 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
                 return new DictionaryRange<int, ObjectiveName>(0);
             }
 
-            var objectiveNames = new DictionaryRange<int, ObjectiveName>(response.Content.Count) { SubtotalCount = response.Content.Count, TotalCount = response.Content.Count };
+            var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
+            var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
+            {
+                SubtotalCount = values.Count,
+                TotalCount = values.Count
+            };
 
-            foreach (var objectiveName in response.Content.Select(this.converterForObjectiveName.Convert))
+            foreach (var objectiveName in values)
             {
                 objectiveName.Culture = request.Culture;
                 objectiveNames.Add(objectiveName.ObjectiveId, objectiveName);
@@ -130,15 +135,20 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
                     return new DictionaryRange<int, ObjectiveName>(0);
                 }
 
-                var values = new DictionaryRange<int, ObjectiveName>(response.Content.Count) { SubtotalCount = response.Content.Count, TotalCount = response.Content.Count };
-
-                foreach (var value in response.Content.Select(this.converterForObjectiveName.Convert))
+                var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
+                var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
                 {
-                    value.Culture = request.Culture;
-                    values.Add(value.ObjectiveId, value);
+                    SubtotalCount = values.Count,
+                    TotalCount = values.Count
+                };
+
+                foreach (var objectiveName in values)
+                {
+                    objectiveName.Culture = request.Culture;
+                    objectiveNames.Add(objectiveName.ObjectiveId, objectiveName);
                 }
 
-                return values;
+                return objectiveNames;
             }, cancellationToken);
         }
 

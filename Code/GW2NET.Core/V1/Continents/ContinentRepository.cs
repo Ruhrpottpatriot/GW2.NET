@@ -89,8 +89,14 @@ namespace GW2NET.V1.Continents
                 return new DictionaryRange<int, Continent>(0);
             }
 
-            var continents = new DictionaryRange<int, Continent>(response.Content.Continents.Count);
-            foreach (var continent in this.converterForContinentCollection.Convert(response.Content))
+            var values = this.converterForContinentCollection.Convert(response.Content);
+            var continents = new DictionaryRange<int, Continent>(values.Count)
+            {
+                SubtotalCount = values.Count,
+                TotalCount = values.Count
+            };
+
+            foreach (var continent in values)
             {
                 continent.Culture = request.Culture;
                 continents.Add(continent.ContinentId, continent);
@@ -128,8 +134,14 @@ namespace GW2NET.V1.Continents
                     return new DictionaryRange<int, Continent>(0);
                 }
 
-                var continents = new DictionaryRange<int, Continent>(response.Content.Continents.Count);
-                foreach (var continent in this.converterForContinentCollection.Convert(response.Content))
+                var values = this.converterForContinentCollection.Convert(response.Content);
+                var continents = new DictionaryRange<int, Continent>(values.Count)
+                {
+                    SubtotalCount = values.Count,
+                    TotalCount = values.Count
+                };
+
+                foreach (var continent in values)
                 {
                     continent.Culture = request.Culture;
                     continents.Add(continent.ContinentId, continent);

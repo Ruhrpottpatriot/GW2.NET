@@ -93,9 +93,14 @@ namespace GW2NET.V1.Colors
                 return new DictionaryRange<int, ColorPalette>(0);
             }
 
-            var colorPalettes = new DictionaryRange<int, ColorPalette>(response.Content.Colors.Count) { SubtotalCount = response.Content.Colors.Count, TotalCount = response.Content.Colors.Count };
+            var values = this.converterForColorPaletteCollection.Convert(response.Content);
+            var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
+            {
+                SubtotalCount = values.Count,
+                TotalCount = values.Count
+            };
 
-            foreach (var colorPalette in this.converterForColorPaletteCollection.Convert(response.Content))
+            foreach (var colorPalette in values)
             {
                 colorPalette.Culture = request.Culture;
                 colorPalettes.Add(colorPalette.ColorId, colorPalette);
@@ -133,9 +138,14 @@ namespace GW2NET.V1.Colors
                     return new DictionaryRange<int, ColorPalette>(0);
                 }
 
-                var colorPalettes = new DictionaryRange<int, ColorPalette>(response.Content.Colors.Count) { SubtotalCount = response.Content.Colors.Count, TotalCount = response.Content.Colors.Count };
+                var values = this.converterForColorPaletteCollection.Convert(response.Content);
+                var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
+                {
+                    SubtotalCount = values.Count,
+                    TotalCount = values.Count
+                };
 
-                foreach (var colorPalette in this.converterForColorPaletteCollection.Convert(response.Content))
+                foreach (var colorPalette in values)
                 {
                     colorPalette.Culture = request.Culture;
                     colorPalettes.Add(colorPalette.ColorId, colorPalette);

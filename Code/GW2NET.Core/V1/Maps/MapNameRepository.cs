@@ -90,8 +90,14 @@ namespace GW2NET.V1.Maps
                 return new DictionaryRange<int, MapName>(0);
             }
 
-            var mapNames = new DictionaryRange<int, MapName>(response.Content.Count);
-            foreach (var mapName in response.Content.Select(this.converterForMapName.Convert))
+            var values = response.Content.Select(this.converterForMapName.Convert).ToList();
+            var mapNames = new DictionaryRange<int, MapName>(values.Count)
+            {
+                SubtotalCount = values.Count,
+                TotalCount = values.Count
+            };
+
+            foreach (var mapName in values)
             {
                 mapName.Culture = request.Culture;
                 mapNames.Add(mapName.MapId, mapName);
@@ -129,8 +135,14 @@ namespace GW2NET.V1.Maps
                     return new DictionaryRange<int, MapName>(0);
                 }
 
-                var mapNames = new DictionaryRange<int, MapName>(response.Content.Count);
-                foreach (var mapName in response.Content.Select(this.converterForMapName.Convert))
+                var values = response.Content.Select(this.converterForMapName.Convert).ToList();
+                var mapNames = new DictionaryRange<int, MapName>(values.Count)
+                {
+                    SubtotalCount = values.Count,
+                    TotalCount = values.Count
+                };
+
+                foreach (var mapName in values)
                 {
                     mapName.Culture = request.Culture;
                     mapNames.Add(mapName.MapId, mapName);
