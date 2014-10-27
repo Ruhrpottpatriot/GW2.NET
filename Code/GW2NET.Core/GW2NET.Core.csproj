@@ -635,7 +635,7 @@
     <Compile Include="V1\Maps\Json\MapCollectionDataContract.cs" />
     <Compile Include="V1\Maps\Json\MapDataContract.cs" />
     <Compile Include="V1\Maps\Json\MapNameDataContract.cs" />
-    <Compile Include="V1\Maps\MapDetailsRequest.cs" />
+    <Compile Include="V1\Maps\MapRequest.cs" />
     <Compile Include="V1\Maps\MapNameRepository.cs" />
     <Compile Include="V1\Maps\MapNameRequest.cs" />
     <Compile Include="V1\Maps\MapRepository.cs" />

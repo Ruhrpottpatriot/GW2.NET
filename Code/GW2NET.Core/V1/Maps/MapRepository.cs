@@ -76,7 +76,7 @@ namespace GW2NET.V1.Maps
         /// <returns>The <see cref="Map"/> with the specified identifier.</returns>
         public Map Find(int identifier)
         {
-            var request = new MapDetailsRequest { MapId = identifier, Culture = this.Culture };
+            var request = new MapRequest { MapId = identifier, Culture = this.Culture };
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
@@ -96,7 +96,7 @@ namespace GW2NET.V1.Maps
         /// <returns>A collection of every <see cref="Map"/>.</returns>
         public IDictionaryRange<int, Map> FindAll()
         {
-            var request = new MapDetailsRequest { Culture = this.Culture };
+            var request = new MapRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
@@ -135,7 +135,7 @@ namespace GW2NET.V1.Maps
         /// <returns>A collection of every <see cref="Map"/></returns>
         public Task<IDictionaryRange<int, Map>> FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new MapDetailsRequest { Culture = this.Culture };
+            var request = new MapRequest { Culture = this.Culture };
             return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Map>>(task =>
             {
                 var response = task.Result;
@@ -188,7 +188,7 @@ namespace GW2NET.V1.Maps
         /// <returns>The <see cref="Map"/> with the specified identifier.</returns>
         public Task<Map> FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            var request = new MapDetailsRequest { MapId = identifier, Culture = this.Culture };
+            var request = new MapRequest { MapId = identifier, Culture = this.Culture };
             return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<Map>(task =>
             {
                 var response = task.Result;
