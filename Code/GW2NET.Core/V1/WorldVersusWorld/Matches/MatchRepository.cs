@@ -10,6 +10,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -234,6 +235,15 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         public Task<ICollectionPage<Match>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
+            Contract.Invariant(this.converterForMatchup != null);
+            Contract.Invariant(this.converterForMatch != null);
         }
     }
 }
