@@ -85,20 +85,20 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         {
             var request = new ObjectiveNameRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<ObjectiveNameDataContract>>(request);
-            if (response == null)
+            if (response.Content == null)
             {
                 return new DictionaryRange<int, ObjectiveName>(0);
             }
 
-            var values = new DictionaryRange<int, ObjectiveName>(response.Content.Count) { SubtotalCount = response.Content.Count, TotalCount = response.Content.Count };
+            var objectiveNames = new DictionaryRange<int, ObjectiveName>(response.Content.Count) { SubtotalCount = response.Content.Count, TotalCount = response.Content.Count };
 
-            foreach (var value in response.Content.Select(this.converterForObjectiveName.Convert))
+            foreach (var objectiveName in response.Content.Select(this.converterForObjectiveName.Convert))
             {
-                value.Culture = request.Culture;
-                values.Add(value.ObjectiveId, value);
+                objectiveName.Culture = request.Culture;
+                objectiveNames.Add(objectiveName.ObjectiveId, objectiveName);
             }
 
-            return values;
+            return objectiveNames;
         }
 
         /// <summary>Finds every <see cref="Objective"/> with one of the specified identifiers.</summary>
@@ -125,7 +125,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             return this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(task =>
             {
                 var response = task.Result;
-                if (response == null)
+                if (response.Content == null)
                 {
                     return new DictionaryRange<int, ObjectiveName>(0);
                 }

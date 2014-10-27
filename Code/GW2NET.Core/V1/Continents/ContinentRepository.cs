@@ -84,7 +84,7 @@ namespace GW2NET.V1.Continents
         {
             var request = new ContinentDetailsRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ContinentCollectionDataContract>(request);
-            if (response == null || response.Content.Continents == null)
+            if (response.Content == null || response.Content.Continents == null)
             {
                 return new DictionaryRange<int, Continent>(0);
             }
@@ -123,7 +123,7 @@ namespace GW2NET.V1.Continents
             return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(task =>
             {
                 var response = task.Result;
-                if (response == null || response.Content.Continents == null)
+                if (response.Content == null || response.Content.Continents == null)
                 {
                     return new DictionaryRange<int, Continent>(0);
                 }

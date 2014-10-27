@@ -84,7 +84,7 @@ namespace GW2NET.V1.Maps
         {
             var request = new MapNameRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<MapNameDataContract>>(request);
-            if (response == null)
+            if (response.Content == null)
             {
                 return new DictionaryRange<int, MapName>(0);
             }
@@ -123,7 +123,7 @@ namespace GW2NET.V1.Maps
             return this.serviceClient.SendAsync<ICollection<MapNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, MapName>>(task =>
             {
                 var response = task.Result;
-                if (response == null)
+                if (response.Content == null)
                 {
                     return new DictionaryRange<int, MapName>(0);
                 }

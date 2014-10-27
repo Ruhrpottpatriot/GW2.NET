@@ -46,7 +46,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         {
             var request = new MatchDiscoveryRequest();
             var response = this.serviceClient.Send<MatchupCollectionDataContract>(request);
-            if (response == null || response.Content.Matchups == null)
+            if (response.Content == null || response.Content.Matchups == null)
             {
                 return new Matchup[0];
             }
@@ -73,7 +73,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
                 .ContinueWith<ICollection<Matchup>>(task =>
                 {
                     var response = task.Result;
-                    if (response == null || response.Content.Matchups == null)
+                    if (response.Content == null || response.Content.Matchups == null)
                     {
                         return new Matchup[0];
                     }

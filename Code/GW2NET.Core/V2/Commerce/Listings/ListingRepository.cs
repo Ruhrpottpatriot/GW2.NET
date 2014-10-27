@@ -283,7 +283,7 @@ namespace GW2NET.V2.Commerce.Listings
         {
             var request = new ListingPageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            if (response == null)
+            if (response.Content == null)
             {
                 return new CollectionPage<Listing>(0);
             }
@@ -324,7 +324,7 @@ namespace GW2NET.V2.Commerce.Listings
         {
             var request = new ListingPageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            if (response == null)
+            if (response.Content == null)
             {
                 return new CollectionPage<Listing>(0);
             }
@@ -376,7 +376,7 @@ namespace GW2NET.V2.Commerce.Listings
                 task =>
                     {
                         var response = task.Result;
-                        if (response == null)
+                        if (response.Content == null)
                         {
                             return new CollectionPage<Listing>(0);
                         }
@@ -432,7 +432,7 @@ namespace GW2NET.V2.Commerce.Listings
                 task =>
                     {
                         var response = task.Result;
-                        if (response == null)
+                        if (response.Content == null)
                         {
                             return new CollectionPage<Listing>(0);
                         }
