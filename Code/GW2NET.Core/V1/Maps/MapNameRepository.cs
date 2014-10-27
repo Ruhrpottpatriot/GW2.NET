@@ -10,6 +10,7 @@ namespace GW2NET.V1.Maps
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -136,8 +137,7 @@ namespace GW2NET.V1.Maps
                 }
 
                 return mapNames;
-            },
-            cancellationToken);
+            }, cancellationToken);
         }
 
         /// <summary>Finds every <see cref="MapName"/> with one of the specified identifiers.</summary>
@@ -225,6 +225,14 @@ namespace GW2NET.V1.Maps
         public Task<ICollectionPage<MapName>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
+        }
+
+        /// <summary>The invariant method for this class.</summary>
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
+            Contract.Invariant(this.converterForMapName != null);
         }
     }
 }
