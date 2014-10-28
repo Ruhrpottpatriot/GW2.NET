@@ -254,6 +254,7 @@
     <Compile Include="Common\IRepository.cs" />
     <Compile Include="Common\IRequest.cs" />
     <Compile Include="Common\IResponse.cs" />
+    <Compile Include="Common\ISearchable.cs" />
     <Compile Include="Common\IServiceClient.cs" />
     <Compile Include="Common\ISubsetContext.cs" />
     <Compile Include="Common\Paginator.cs" />
@@ -595,11 +596,12 @@
     <Compile Include="V1\Floors\Json\SubregionDataContract.cs" />
     <Compile Include="V1\Floors\MapFloorRequest.cs" />
     <Compile Include="V1\Floors\MapFloorService.cs" />
-    <Compile Include="V1\Guilds\Details\GuildDetailsRequest.cs" />
-    <Compile Include="V1\Guilds\GuildService.cs" />
-    <Compile Include="V1\Guilds\Details\ContractClassForIGuildDetailsService.cs" />
-    <Compile Include="V1\Guilds\Details\IGuildDetailsService.cs" />
-    <Compile Include="V1\Guilds\IGuildService.cs" />
+    <Compile Include="V1\Guilds\GuildRequest.cs" />
+    <Compile Include="V1\Guilds\GuildRepository.cs" />
+    <Compile Include="V1\Guilds\Json\Converters\ConverterForEmblem.cs" />
+    <Compile Include="V1\Guilds\Json\Converters\ConverterForEmblemTransformation.cs" />
+    <Compile Include="V1\Guilds\Json\Converters\ConverterForEmblemTransformations.cs" />
+    <Compile Include="V1\Guilds\Json\Converters\ConverterForGuild.cs" />
     <Compile Include="V1\Guilds\Json\EmblemDataContract.cs" />
     <Compile Include="V1\Guilds\Json\GuildDataContract.cs" />
     <Compile Include="V1\Items\Details\IItemDetailsService.cs" />

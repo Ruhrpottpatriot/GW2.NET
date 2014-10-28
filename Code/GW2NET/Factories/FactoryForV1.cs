@@ -1,8 +1,10 @@
 ﻿namespace GW2NET.Factories
 {
+    using System;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
+    using GW2NET.Entities.Guilds;
     using GW2NET.Entities.Maps;
     using GW2NET.V1.Builds;
     using GW2NET.V1.Colors;
@@ -82,14 +84,13 @@
             }
         }
 
-        public IGuildDetailsService Guilds
+        public FactoryForV1Guilds Guilds
         {
             get
             {
-                return new GuildService(this.ServiceClient);
+                return new FactoryForV1Guilds(this.ServiceClient);
             }
         }
-
         public IItemService Items
         {
             get

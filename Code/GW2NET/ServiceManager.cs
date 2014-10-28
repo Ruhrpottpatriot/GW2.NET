@@ -31,7 +31,6 @@ namespace GW2NET
     using GW2NET.V1.DynamicEvents;
     using GW2NET.V1.Files;
     using GW2NET.V1.Floors;
-    using GW2NET.V1.Guilds;
     using GW2NET.V1.Items;
     using GW2NET.V1.Recipes;
     using GW2NET.V1.Skins;
@@ -41,7 +40,6 @@ namespace GW2NET
     public class ServiceManager : IBuildService, 
                                   IDynamicEventService, 
                                   IFileService, 
-                                  IGuildService, 
                                   IItemService, 
                                   IMapFloorService,
                                   IRecipeService,
@@ -56,9 +54,6 @@ namespace GW2NET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IFileService fileService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IGuildService guildService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IItemService itemService;
@@ -95,7 +90,6 @@ namespace GW2NET
             this.buildService = new BuildService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
             this.fileService = new FileService(serviceClient);
-            this.guildService = new GuildService(serviceClient);
             this.itemService = new ItemService(serviceClient);
             this.mapFloorService = new MapFloorService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
@@ -507,62 +501,6 @@ namespace GW2NET
             return this.fileService.GetFilesAsync(cancellationToken);
         }
 
-        /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildId">The guild identifier.</param>
-        /// <returns>A guild and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
-        public Guild GetGuildDetailsById(Guid guildId)
-        {
-            return this.guildService.GetGuildDetailsById(guildId);
-        }
-
-        /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildId">The guild identifier.</param>
-        /// <returns>A guild and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
-        public Task<Guild> GetGuildDetailsByIdAsync(Guid guildId)
-        {
-            return this.guildService.GetGuildDetailsByIdAsync(guildId);
-        }
-
-        /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildId">The guild identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A guild and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
-        public Task<Guild> GetGuildDetailsByIdAsync(Guid guildId, CancellationToken cancellationToken)
-        {
-            return this.guildService.GetGuildDetailsByIdAsync(guildId, cancellationToken);
-        }
-
-        /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildName">The name of the guild.</param>
-        /// <returns>A guild and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
-        public Guild GetGuildDetailsByName(string guildName)
-        {
-            return this.guildService.GetGuildDetailsByName(guildName);
-        }
-
-        /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildName">The name of the guild.</param>
-        /// <returns>A guild and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
-        public Task<Guild> GetGuildDetailsByNameAsync(string guildName)
-        {
-            return this.guildService.GetGuildDetailsByNameAsync(guildName);
-        }
-
-        /// <summary>Gets a guild and its details.</summary>
-        /// <param name="guildName">The name of the guild.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A guild and its details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/guild_details">wiki</a> for more information.</remarks>
-        public Task<Guild> GetGuildDetailsByNameAsync(string guildName, CancellationToken cancellationToken)
-        {
-            return this.guildService.GetGuildDetailsByNameAsync(guildName, cancellationToken);
-        }
-
         /// <summary>Gets an item and its localized details.</summary>
         /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
@@ -966,7 +904,6 @@ namespace GW2NET
             Contract.Invariant(this.buildService != null);
             Contract.Invariant(this.dynamicEventService != null);
             Contract.Invariant(this.fileService != null);
-            Contract.Invariant(this.guildService != null);
             Contract.Invariant(this.itemService != null);
             Contract.Invariant(this.recipeService != null);
             Contract.Invariant(this.worldService != null);

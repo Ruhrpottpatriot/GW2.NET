@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="GuildDetailsRequest.cs" company="GW2.NET Coding Team">
+// <copyright file="GuildRequest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -14,7 +14,7 @@ namespace GW2NET.V1.Guilds
     using GW2NET.Common;
 
     /// <summary>Represents a request for information regarding a specific guild.</summary>
-    internal sealed class GuildDetailsRequest : IRequest
+    internal sealed class GuildRequest : IRequest
     {
         /// <summary>Gets or sets the guild identifier.</summary>
         public Guid? GuildId { get; set; }
