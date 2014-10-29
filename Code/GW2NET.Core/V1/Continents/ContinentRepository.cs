@@ -10,6 +10,7 @@ namespace GW2NET.V1.Continents
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
@@ -48,39 +49,32 @@ namespace GW2NET.V1.Continents
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public ICollection<int> Discover()
+        /// <inheritdoc />
+        ICollection<int> IDiscoverable<int>.Discover()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync()
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Continent"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Continent"/> with the specified identifier.</returns>
-        public Continent Find(int identifier)
+        /// <inheritdoc />
+        Continent IRepository<int, Continent>.Find(int identifier)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Continent"/>.</summary>
-        /// <returns>A collection of every <see cref="Continent"/>.</returns>
-        public IDictionaryRange<int, Continent> FindAll()
+        /// <inheritdoc />
+        IDictionaryRange<int, Continent> IRepository<int, Continent>.FindAll()
         {
             var request = new ContinentRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ContinentCollectionDataContract>(request);
@@ -90,11 +84,7 @@ namespace GW2NET.V1.Continents
             }
 
             var values = this.converterForContinentCollection.Convert(response.Content);
-            var continents = new DictionaryRange<int, Continent>(values.Count)
-            {
-                SubtotalCount = values.Count,
-                TotalCount = values.Count
-            };
+            var continents = new DictionaryRange<int, Continent>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
 
             foreach (var continent in values)
             {
@@ -105,25 +95,20 @@ namespace GW2NET.V1.Continents
             return continents;
         }
 
-        /// <summary>Finds every <see cref="Continent"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Continent"/> with one of the specified identifiers.</returns>
-        public IDictionaryRange<int, Continent> FindAll(ICollection<int> identifiers)
+        /// <inheritdoc />
+        IDictionaryRange<int, Continent> IRepository<int, Continent>.FindAll(ICollection<int> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Continent"/>.</summary>
-        /// <returns>A collection of every <see cref="Continent"/>.</returns>
-        public Task<IDictionaryRange<int, Continent>> FindAllAsync()
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync()
         {
-            return this.FindAllAsync(CancellationToken.None);
+            return ((IRepository<int, Continent>)this).FindAllAsync(CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Continent"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Continent"/></returns>
-        public Task<IDictionaryRange<int, Continent>> FindAllAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new ContinentRequest { Culture = this.Culture };
             return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(task =>
@@ -135,11 +120,7 @@ namespace GW2NET.V1.Continents
                 }
 
                 var values = this.converterForContinentCollection.Convert(response.Content);
-                var continents = new DictionaryRange<int, Continent>(values.Count)
-                {
-                    SubtotalCount = values.Count,
-                    TotalCount = values.Count
-                };
+                var continents = new DictionaryRange<int, Continent>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
 
                 foreach (var continent in values)
                 {
@@ -151,89 +132,62 @@ namespace GW2NET.V1.Continents
             }, cancellationToken);
         }
 
-        /// <summary>Finds every <see cref="Continent"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Continent"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Continent>> FindAllAsync(ICollection<int> identifiers)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(ICollection<int> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Continent"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Continent"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Continent>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Continent"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Continent"/> with the specified identifier.</returns>
-        public Task<Continent> FindAsync(int identifier)
+        /// <inheritdoc />
+        Task<Continent> IRepository<int, Continent>.FindAsync(int identifier)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Continent"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Continent"/> with the specified identifier.</returns>
-        public Task<Continent> FindAsync(int identifier, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<Continent> IRepository<int, Continent>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Continent> FindPage(int pageIndex)
+        /// <inheritdoc />
+        ICollectionPage<Continent> IPaginator<Continent>.FindPage(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page number and maximum size.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Continent> FindPage(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        ICollectionPage<Continent> IPaginator<Continent>.FindPage(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Continent>> FindPageAsync(int pageIndex)
+        /// <inheritdoc />
+        Task<ICollectionPage<Continent>> IPaginator<Continent>.FindPageAsync(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Continent>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Continent>> IPaginator<Continent>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Continent>> FindPageAsync(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        Task<ICollectionPage<Continent>> IPaginator<Continent>.FindPageAsync(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Continent>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Continent>> IPaginator<Continent>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }

@@ -48,31 +48,25 @@ namespace GW2NET.V1.Guilds
             this.converterForGuild = converterForGuild;
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
+        /// <inheritdoc />
         ICollection<Guid> IDiscoverable<Guid>.Discover()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
+        /// <inheritdoc />
         Task<ICollection<Guid>> IDiscoverable<Guid>.DiscoverAsync()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered identifiers.</returns>
+        /// <inheritdoc />
         Task<ICollection<Guid>> IDiscoverable<Guid>.DiscoverAsync(CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Guild"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Guild"/> with the specified identifier.</returns>
+        /// <inheritdoc />
         Guild IRepository<Guid, Guild>.Find(Guid identifier)
         {
             var request = new GuildRequest { GuildId = identifier };
@@ -85,66 +79,50 @@ namespace GW2NET.V1.Guilds
             return this.converterForGuild.Convert(response.Content);
         }
 
-        /// <summary>Finds every <see cref="Guild"/>.</summary>
-        /// <returns>A collection of every <see cref="Guild"/>.</returns>
+        /// <inheritdoc />
         IDictionaryRange<Guid, Guild> IRepository<Guid, Guild>.FindAll()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Guild"/> with one of the specified identifiers.</returns>
+        /// <inheritdoc />
         IDictionaryRange<Guid, Guild> IRepository<Guid, Guild>.FindAll(ICollection<Guid> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/>.</summary>
-        /// <returns>A collection of every <see cref="Guild"/>.</returns>
+        /// <inheritdoc />
         Task<IDictionaryRange<Guid, Guild>> IRepository<Guid, Guild>.FindAllAsync()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Guild"/></returns>
+        /// <inheritdoc />
         Task<IDictionaryRange<Guid, Guild>> IRepository<Guid, Guild>.FindAllAsync(CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Guild"/> with one of the specified identifiers.</returns>
+        /// <inheritdoc />
         Task<IDictionaryRange<Guid, Guild>> IRepository<Guid, Guild>.FindAllAsync(ICollection<Guid> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Guild"/> with one of the specified identifiers.</returns>
+        /// <inheritdoc />
         Task<IDictionaryRange<Guid, Guild>> IRepository<Guid, Guild>.FindAllAsync(ICollection<Guid> identifiers, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Guild"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Guild"/> with the specified identifier.</returns>
+        /// <inheritdoc />
         Task<Guild> IRepository<Guid, Guild>.FindAsync(Guid identifier)
         {
             IRepository<Guid, Guild> self = this;
             return self.FindAsync(identifier, CancellationToken.None);
         }
 
-        /// <summary>Finds the <see cref="Guild"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Guild"/> with the specified identifier.</returns>
+        /// <inheritdoc />
         Task<Guild> IRepository<Guid, Guild>.FindAsync(Guid identifier, CancellationToken cancellationToken)
         {
             var request = new GuildRequest { GuildId = identifier };
@@ -160,84 +138,61 @@ namespace GW2NET.V1.Guilds
             }, cancellationToken);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
+        /// <inheritdoc />
         ICollectionPage<Guild> IPaginator<Guild>.FindPage(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page number and maximum size.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
+        /// <inheritdoc />
         ICollectionPage<Guild> IPaginator<Guild>.FindPage(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
+        /// <inheritdoc />
         Task<ICollectionPage<Guild>> IPaginator<Guild>.FindPageAsync(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
+        /// <inheritdoc />
         Task<ICollectionPage<Guild>> IPaginator<Guild>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
+        /// <inheritdoc />
         Task<ICollectionPage<Guild>> IPaginator<Guild>.FindPageAsync(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
+        /// <inheritdoc />
         Task<ICollectionPage<Guild>> IPaginator<Guild>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
+        /// <inheritdoc />
         ICollection<string> IDiscoverable<string>.Discover()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
+        /// <inheritdoc />
         Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered identifiers.</returns>
+        /// <inheritdoc />
         Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Guild"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Guild"/> with the specified identifier.</returns>
+        /// <inheritdoc />
         Guild IRepository<string, Guild>.Find(string identifier)
         {
             var request = new GuildRequest { GuildName = identifier };
@@ -250,66 +205,49 @@ namespace GW2NET.V1.Guilds
             return this.converterForGuild.Convert(response.Content);
         }
 
-        /// <summary>Finds every <see cref="Guild"/>.</summary>
-        /// <returns>A collection of every <see cref="Guild"/>.</returns>
+        /// <inheritdoc />
         IDictionaryRange<string, Guild> IRepository<string, Guild>.FindAll()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Guild"/> with one of the specified identifiers.</returns>
+        /// <inheritdoc />
         IDictionaryRange<string, Guild> IRepository<string, Guild>.FindAll(ICollection<string> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/>.</summary>
-        /// <returns>A collection of every <see cref="Guild"/></returns>
+        /// <inheritdoc />
         Task<IDictionaryRange<string, Guild>> IRepository<string, Guild>.FindAllAsync()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Guild"/></returns>
+        /// <inheritdoc />
         Task<IDictionaryRange<string, Guild>> IRepository<string, Guild>.FindAllAsync(CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Guild"/> with one of the specified identifiers.</returns>
+        /// <inheritdoc />
         Task<IDictionaryRange<string, Guild>> IRepository<string, Guild>.FindAllAsync(ICollection<string> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Guild"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Guild"/> with one of the specified identifiers.</returns>
+        /// <inheritdoc />
         Task<IDictionaryRange<string, Guild>> IRepository<string, Guild>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Guild"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Guild"/> with the specified identifier.</returns>
+        /// <inheritdoc />
         Task<Guild> IRepository<string, Guild>.FindAsync(string identifier)
         {
-            IRepository<string, Guild> self = this;
-            return self.FindAsync(identifier, CancellationToken.None);
+            return ((IRepository<string, Guild>)this).FindAsync(identifier, CancellationToken.None);
         }
-
-        /// <summary>Finds the <see cref="Guild"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Guild"/> with the specified identifier.</returns>
+        
+        /// <inheritdoc />
         Task<Guild> IRepository<string, Guild>.FindAsync(string identifier, CancellationToken cancellationToken)
         {
             var request = new GuildRequest { GuildName = identifier };

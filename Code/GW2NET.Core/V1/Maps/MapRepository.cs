@@ -49,32 +49,26 @@ namespace GW2NET.V1.Maps
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public ICollection<int> Discover()
+        /// <inheritdoc />
+        ICollection<int> IDiscoverable<int>.Discover()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync()
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Map"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Map"/> with the specified identifier.</returns>
-        public Map Find(int identifier)
+        /// <inheritdoc />
+        Map IRepository<int, Map>.Find(int identifier)
         {
             var request = new MapRequest { MapId = identifier, Culture = this.Culture };
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
@@ -92,9 +86,8 @@ namespace GW2NET.V1.Maps
             return map;
         }
 
-        /// <summary>Finds every <see cref="Map"/>.</summary>
-        /// <returns>A collection of every <see cref="Map"/>.</returns>
-        public IDictionaryRange<int, Map> FindAll()
+        /// <inheritdoc />
+        IDictionaryRange<int, Map> IRepository<int, Map>.FindAll()
         {
             var request = new MapRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
@@ -115,25 +108,20 @@ namespace GW2NET.V1.Maps
             return maps;
         }
 
-        /// <summary>Finds every <see cref="Map"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Map"/> with one of the specified identifiers.</returns>
-        public IDictionaryRange<int, Map> FindAll(ICollection<int> identifiers)
+        /// <inheritdoc />
+        IDictionaryRange<int, Map> IRepository<int, Map>.FindAll(ICollection<int> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Map"/>.</summary>
-        /// <returns>A collection of every <see cref="Map"/>.</returns>
-        public Task<IDictionaryRange<int, Map>> FindAllAsync()
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync()
         {
-            return this.FindAllAsync(CancellationToken.None);
+            return ((IRepository<int, Map>)this).FindAllAsync(CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Map"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Map"/></returns>
-        public Task<IDictionaryRange<int, Map>> FindAllAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new MapRequest { Culture = this.Culture };
             return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Map>>(task =>
@@ -157,36 +145,26 @@ namespace GW2NET.V1.Maps
             }, cancellationToken);
         }
 
-        /// <summary>Finds every <see cref="Map"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Map"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Map>> FindAllAsync(ICollection<int> identifiers)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(ICollection<int> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Map"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Map"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Map>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Map"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Map"/> with the specified identifier.</returns>
-        public Task<Map> FindAsync(int identifier)
+        /// <inheritdoc />
+        Task<Map> IRepository<int, Map>.FindAsync(int identifier)
         {
-            return this.FindAsync(identifier, CancellationToken.None);
+            return ((IRepository<int, Map>)this).FindAsync(identifier, CancellationToken.None);
         }
 
-        /// <summary>Finds the <see cref="Map"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Map"/> with the specified identifier.</returns>
-        public Task<Map> FindAsync(int identifier, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<Map> IRepository<int, Map>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new MapRequest { MapId = identifier, Culture = this.Culture };
             return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<Map>(task =>
@@ -207,55 +185,38 @@ namespace GW2NET.V1.Maps
             }, cancellationToken);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Map> FindPage(int pageIndex)
+        /// <inheritdoc />
+        ICollectionPage<Map> IPaginator<Map>.FindPage(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page number and maximum size.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Map> FindPage(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        ICollectionPage<Map> IPaginator<Map>.FindPage(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Map>> FindPageAsync(int pageIndex)
+        /// <inheritdoc />
+        Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Map>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Map>> FindPageAsync(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Map>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Map>> IPaginator<Map>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }

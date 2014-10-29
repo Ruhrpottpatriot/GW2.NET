@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides access to the /v2/items service. See the remarks section for important limitations regarding this implementation.
+//   Represents a repository that retrieves data from the /v2/items interface. See the remarks section for important limitations regarding this implementation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items
@@ -71,9 +71,8 @@ namespace GW2NET.V2.Items
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public ICollection<int> Discover()
+        /// <inheritdoc />
+        ICollection<int> IDiscoverable<int>.Discover()
         {
             var request = new ItemDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
@@ -85,37 +84,30 @@ namespace GW2NET.V2.Items
             return response.Content;
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync()
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
-            return this.DiscoverAsync(CancellationToken.None);
+            return ((IRepository<int, Item>)this).DiscoverAsync(CancellationToken.None);
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new ItemDiscoveryRequest();
-            return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new int[0];
-                        }
+            return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new int[0];
+                }
 
-                        return response.Content;
-                    }, 
-                cancellationToken);
+                return response.Content;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the <see cref="Item"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Item"/> with the specified identifier.</returns>
-        public Item Find(int identifier)
+        /// <inheritdoc />
+        Item IRepository<int, Item>.Find(int identifier)
         {
             var request = new ItemDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
             var response = this.serviceClient.Send<ItemDataContract>(request);
@@ -129,9 +121,8 @@ namespace GW2NET.V2.Items
             return value;
         }
 
-        /// <summary>Finds every <see cref="Item"/>.</summary>
-        /// <returns>A collection of every <see cref="Item"/>.</returns>
-        public IDictionaryRange<int, Item> FindAll()
+        /// <inheritdoc />
+        IDictionaryRange<int, Item> IRepository<int, Item>.FindAll()
         {
             var request = new ItemBulkRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -140,11 +131,7 @@ namespace GW2NET.V2.Items
                 return new DictionaryRange<int, Item>(0);
             }
 
-            var values = new DictionaryRange<int, Item>(response.Content.Count)
-                {
-                    SubtotalCount = response.GetResultCount(), 
-                    TotalCount = response.GetResultTotal()
-                };
+            var values = new DictionaryRange<int, Item>(response.Content.Count) { SubtotalCount = response.GetResultCount(), TotalCount = response.GetResultTotal() };
 
             var locale = response.Culture;
             foreach (var value in response.Content.Select(ConvertItemDataContract))
@@ -156,10 +143,8 @@ namespace GW2NET.V2.Items
             return values;
         }
 
-        /// <summary>Finds every <see cref="Item"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Item"/> with one of the specified identifiers.</returns>
-        public IDictionaryRange<int, Item> FindAll(ICollection<int> identifiers)
+        /// <inheritdoc />
+        IDictionaryRange<int, Item> IRepository<int, Item>.FindAll(ICollection<int> identifiers)
         {
             if (identifiers == null)
             {
@@ -173,11 +158,7 @@ namespace GW2NET.V2.Items
 
             Contract.EndContractBlock();
 
-            var request = new ItemBulkRequest
-                {
-                    Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
-                    Culture = this.Culture
-                };
+            var request = new ItemBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), Culture = this.Culture };
 
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             if (response.Content == null)
@@ -185,11 +166,7 @@ namespace GW2NET.V2.Items
                 return new DictionaryRange<int, Item>(0);
             }
 
-            var values = new DictionaryRange<int, Item>(response.Content.Count)
-                {
-                    SubtotalCount = response.GetResultCount(), 
-                    TotalCount = response.GetResultTotal()
-                };
+            var values = new DictionaryRange<int, Item>(response.Content.Count) { SubtotalCount = response.GetResultCount(), TotalCount = response.GetResultTotal() };
 
             var locale = response.Culture;
             foreach (var value in response.Content.Select(ConvertItemDataContract))
@@ -201,59 +178,45 @@ namespace GW2NET.V2.Items
             return values;
         }
 
-        /// <summary>Finds every <see cref="Item"/>.</summary>
-        /// <returns>A collection of every <see cref="Item"/>.</returns>
-        public Task<IDictionaryRange<int, Item>> FindAllAsync()
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync()
         {
-            return this.FindAllAsync(CancellationToken.None);
+            return ((IRepository<int, Item>)this).FindAllAsync(CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Item"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Item"/></returns>
-        public Task<IDictionaryRange<int, Item>> FindAllAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new ItemBulkRequest { Culture = this.Culture };
-            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new DictionaryRange<int, Item>(0);
-                        }
+            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new DictionaryRange<int, Item>(0);
+                }
 
-                        var values = new DictionaryRange<int, Item>(response.Content.Count)
-                            {
-                                SubtotalCount = response.GetResultCount(), 
-                                TotalCount = response.GetResultTotal()
-                            };
+                var values = new DictionaryRange<int, Item>(response.Content.Count) { SubtotalCount = response.GetResultCount(), TotalCount = response.GetResultTotal() };
 
-                        var locale = response.Culture;
-                        foreach (var value in response.Content.Select(ConvertItemDataContract))
-                        {
-                            value.Locale = locale;
-                            values.Add(value.ItemId, value);
-                        }
+                var locale = response.Culture;
+                foreach (var value in response.Content.Select(ConvertItemDataContract))
+                {
+                    value.Locale = locale;
+                    values.Add(value.ItemId, value);
+                }
 
-                        return values;
-                    }, 
-                cancellationToken);
+                return values;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds every <see cref="Item"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Item"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Item>> FindAllAsync(ICollection<int> identifiers)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync(ICollection<int> identifiers)
         {
-            return this.FindAllAsync(identifiers, CancellationToken.None);
+            return ((IRepository<int, Item>)this).FindAllAsync(identifiers, CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Item"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Item"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Item>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             if (identifiers == null)
             {
@@ -267,74 +230,55 @@ namespace GW2NET.V2.Items
 
             Contract.EndContractBlock();
 
-            var request = new ItemBulkRequest
+            var request = new ItemBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), Culture = this.Culture };
+
+            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
                 {
-                    Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
-                    Culture = this.Culture
-                };
+                    return new DictionaryRange<int, Item>(0);
+                }
 
-            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Item>>(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new DictionaryRange<int, Item>(0);
-                        }
+                var values = new DictionaryRange<int, Item>(response.Content.Count) { SubtotalCount = response.GetResultCount(), TotalCount = response.GetResultTotal() };
 
-                        var values = new DictionaryRange<int, Item>(response.Content.Count)
-                            {
-                                SubtotalCount = response.GetResultCount(), 
-                                TotalCount = response.GetResultTotal()
-                            };
+                var locale = response.Culture;
+                foreach (var value in response.Content.Select(ConvertItemDataContract))
+                {
+                    value.Locale = locale;
+                    values.Add(value.ItemId, value);
+                }
 
-                        var locale = response.Culture;
-                        foreach (var value in response.Content.Select(ConvertItemDataContract))
-                        {
-                            value.Locale = locale;
-                            values.Add(value.ItemId, value);
-                        }
-
-                        return values;
-                    }, 
-                cancellationToken);
+                return values;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the <see cref="Item"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Item"/> with the specified identifier.</returns>
-        public Task<Item> FindAsync(int identifier)
+        /// <inheritdoc />
+        Task<Item> IRepository<int, Item>.FindAsync(int identifier)
         {
-            return this.FindAsync(identifier, CancellationToken.None);
+            return ((IRepository<int, Item>)this).FindAsync(identifier, CancellationToken.None);
         }
 
-        /// <summary>Finds the <see cref="Item"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Item"/> with the specified identifier.</returns>
-        public Task<Item> FindAsync(int identifier, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<Item> IRepository<int, Item>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new ItemDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
-            return this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken).ContinueWith<Item>(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return null;
-                        }
+            return this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken).ContinueWith<Item>(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return null;
+                }
 
-                        var value = ConvertItemDataContract(response.Content);
-                        value.Locale = response.Culture;
-                        return value;
-                    }, 
-                cancellationToken);
+                var value = ConvertItemDataContract(response.Content);
+                value.Locale = response.Culture;
+                return value;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Item> FindPage(int pageIndex)
+        /// <inheritdoc />
+        ICollectionPage<Item> IPaginator<Item>.FindPage(int pageIndex)
         {
             var request = new ItemPageRequest { Page = pageIndex, Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -343,14 +287,7 @@ namespace GW2NET.V2.Items
                 return new CollectionPage<Item>(0);
             }
 
-            var values = new CollectionPage<Item>(response.Content.Count)
-                {
-                    PageIndex = pageIndex, 
-                    PageSize = response.GetPageSize(), 
-                    PageCount = response.GetPageTotal(), 
-                    SubtotalCount = response.GetResultCount(), 
-                    TotalCount = response.GetResultTotal()
-                };
+            var values = new CollectionPage<Item>(response.Content.Count) { PageIndex = pageIndex, PageSize = response.GetPageSize(), PageCount = response.GetPageTotal(), SubtotalCount = response.GetResultCount(), TotalCount = response.GetResultTotal() };
 
             if (values.PageCount > 0)
             {
@@ -376,11 +313,8 @@ namespace GW2NET.V2.Items
             return values;
         }
 
-        /// <summary>Finds the page with the specified page number and maximum size.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Item> FindPage(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        ICollectionPage<Item> IPaginator<Item>.FindPage(int pageIndex, int pageSize)
         {
             var request = new ItemPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -389,14 +323,7 @@ namespace GW2NET.V2.Items
                 return new CollectionPage<Item>(0);
             }
 
-            var values = new CollectionPage<Item>(response.Content.Count)
-                {
-                    PageIndex = pageIndex, 
-                    PageSize = response.GetPageSize(), 
-                    PageCount = response.GetPageTotal(), 
-                    SubtotalCount = response.GetResultCount(), 
-                    TotalCount = response.GetResultTotal()
-                };
+            var values = new CollectionPage<Item>(response.Content.Count) { PageIndex = pageIndex, PageSize = response.GetPageSize(), PageCount = response.GetPageTotal(), SubtotalCount = response.GetResultCount(), TotalCount = response.GetResultTotal() };
 
             if (values.PageCount > 0)
             {
@@ -422,127 +349,98 @@ namespace GW2NET.V2.Items
             return values;
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Item>> FindPageAsync(int pageIndex)
+        /// <inheritdoc />
+        Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex)
         {
-            return this.FindPageAsync(pageIndex, CancellationToken.None);
+            return ((IRepository<int, Item>)this).FindPageAsync(pageIndex, CancellationToken.None);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Item>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new ItemPageRequest { Page = pageIndex, Culture = this.Culture };
-            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
-                task =>
+            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new CollectionPage<Item>(0);
+                }
+
+                var values = new CollectionPage<Item>(response.Content.Count) { PageIndex = pageIndex, PageSize = response.GetPageSize(), PageCount = response.GetPageTotal(), SubtotalCount = response.GetResultCount(), TotalCount = response.GetResultTotal() };
+
+                if (values.PageCount > 0)
+                {
+                    values.LastPageIndex = values.PageCount - 1;
+                    if (values.PageIndex < values.LastPageIndex)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new CollectionPage<Item>(0);
-                        }
+                        values.NextPageIndex = values.PageIndex + 1;
+                    }
 
-                        var values = new CollectionPage<Item>(response.Content.Count)
-                            {
-                                PageIndex = pageIndex, 
-                                PageSize = response.GetPageSize(), 
-                                PageCount = response.GetPageTotal(), 
-                                SubtotalCount = response.GetResultCount(), 
-                                TotalCount = response.GetResultTotal()
-                            };
+                    if (values.PageIndex > values.FirstPageIndex)
+                    {
+                        values.PreviousPageIndex = values.PageIndex - 1;
+                    }
+                }
 
-                        if (values.PageCount > 0)
-                        {
-                            values.LastPageIndex = values.PageCount - 1;
-                            if (values.PageIndex < values.LastPageIndex)
-                            {
-                                values.NextPageIndex = values.PageIndex + 1;
-                            }
+                var locale = response.Culture;
+                foreach (var value in response.Content.Select(ConvertItemDataContract))
+                {
+                    value.Locale = locale;
+                    values.Add(value);
+                }
 
-                            if (values.PageIndex > values.FirstPageIndex)
-                            {
-                                values.PreviousPageIndex = values.PageIndex - 1;
-                            }
-                        }
-
-                        var locale = response.Culture;
-                        foreach (var value in response.Content.Select(ConvertItemDataContract))
-                        {
-                            value.Locale = locale;
-                            values.Add(value);
-                        }
-
-                        return values;
-                    }, 
-                cancellationToken);
+                return values;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Item>> FindPageAsync(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex, int pageSize)
         {
-            return this.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
+            return ((IRepository<int, Item>)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Item>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new ItemPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
 
-            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(
-                task =>
+            return this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<Item>>(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new CollectionPage<Item>(0);
+                }
+
+                var values = new CollectionPage<Item>(response.Content.Count) { PageIndex = pageIndex, PageSize = response.GetPageSize(), PageCount = response.GetPageTotal(), SubtotalCount = response.GetResultCount(), TotalCount = response.GetResultTotal() };
+
+                if (values.PageCount > 0)
+                {
+                    values.LastPageIndex = values.PageCount - 1;
+                    if (values.PageIndex < values.LastPageIndex)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new CollectionPage<Item>(0);
-                        }
+                        values.NextPageIndex = values.PageIndex + 1;
+                    }
 
-                        var values = new CollectionPage<Item>(response.Content.Count)
-                            {
-                                PageIndex = pageIndex, 
-                                PageSize = response.GetPageSize(), 
-                                PageCount = response.GetPageTotal(), 
-                                SubtotalCount = response.GetResultCount(), 
-                                TotalCount = response.GetResultTotal()
-                            };
+                    if (values.PageIndex > values.FirstPageIndex)
+                    {
+                        values.PreviousPageIndex = values.PageIndex - 1;
+                    }
+                }
 
-                        if (values.PageCount > 0)
-                        {
-                            values.LastPageIndex = values.PageCount - 1;
-                            if (values.PageIndex < values.LastPageIndex)
-                            {
-                                values.NextPageIndex = values.PageIndex + 1;
-                            }
+                var locale = response.Culture;
+                foreach (var value in response.Content.Select(ConvertItemDataContract))
+                {
+                    value.Locale = locale;
+                    values.Add(value);
+                }
 
-                            if (values.PageIndex > values.FirstPageIndex)
-                            {
-                                values.PreviousPageIndex = values.PageIndex - 1;
-                            }
-                        }
-
-                        var locale = response.Culture;
-                        foreach (var value in response.Content.Select(ConvertItemDataContract))
-                        {
-                            value.Locale = locale;
-                            values.Add(value);
-                        }
-
-                        return values;
-                    }, 
-                cancellationToken);
+                return values;
+            }, cancellationToken);
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -670,6 +568,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <param name="type">The content type.</param>
@@ -682,6 +581,7 @@ namespace GW2NET.V2.Items
             return attributes.Any() ? attributes.Sum(attribute => attribute.Modifier) : 0;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -762,6 +662,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -800,6 +701,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -860,6 +762,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -893,6 +796,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -915,6 +819,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -937,6 +842,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -962,6 +868,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1005,6 +912,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1030,6 +938,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1066,6 +975,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1091,6 +1001,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="item">The entity.</param>
         /// <param name="content">The content.</param>
@@ -1115,6 +1026,7 @@ namespace GW2NET.V2.Items
             }
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1139,6 +1051,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The data contract's contents.</param>
         /// <returns>The entities.</returns>
@@ -1344,6 +1257,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1367,6 +1281,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1394,6 +1309,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1480,6 +1396,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1518,6 +1435,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1614,6 +1532,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
@@ -1639,6 +1558,7 @@ namespace GW2NET.V2.Items
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>

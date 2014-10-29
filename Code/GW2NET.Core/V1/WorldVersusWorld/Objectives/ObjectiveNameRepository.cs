@@ -49,39 +49,32 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public ICollection<int> Discover()
+        /// <inheritdoc />
+        ICollection<int> IDiscoverable<int>.Discover()
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync()
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Objective"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Objective"/> with the specified identifier.</returns>
-        public ObjectiveName Find(int identifier)
+        /// <inheritdoc />
+        ObjectiveName IRepository<int, ObjectiveName>.Find(int identifier)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Objective"/>.</summary>
-        /// <returns>A collection of every <see cref="Objective"/>.</returns>
-        public IDictionaryRange<int, ObjectiveName> FindAll()
+        /// <inheritdoc />
+        IDictionaryRange<int, ObjectiveName> IRepository<int, ObjectiveName>.FindAll()
         {
             var request = new ObjectiveNameRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<ObjectiveNameDataContract>>(request);
@@ -91,11 +84,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             }
 
             var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
-            var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
-            {
-                SubtotalCount = values.Count,
-                TotalCount = values.Count
-            };
+            var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
 
             foreach (var objectiveName in values)
             {
@@ -106,25 +95,20 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             return objectiveNames;
         }
 
-        /// <summary>Finds every <see cref="Objective"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Objective"/> with one of the specified identifiers.</returns>
-        public IDictionaryRange<int, ObjectiveName> FindAll(ICollection<int> identifiers)
+        /// <inheritdoc />
+        IDictionaryRange<int, ObjectiveName> IRepository<int, ObjectiveName>.FindAll(ICollection<int> identifiers)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Objective"/>.</summary>
-        /// <returns>A collection of every <see cref="Objective"/>.</returns>
-        public Task<IDictionaryRange<int, ObjectiveName>> FindAllAsync()
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, ObjectiveName>> IRepository<int, ObjectiveName>.FindAllAsync()
         {
-            return this.FindAllAsync(CancellationToken.None);
+            return ((IRepository<int, ObjectiveName>)this).FindAllAsync(CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Objective"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Objective"/></returns>
-        public Task<IDictionaryRange<int, ObjectiveName>> FindAllAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, ObjectiveName>> IRepository<int, ObjectiveName>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new ObjectiveNameRequest { Culture = this.Culture };
             return this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(task =>
@@ -136,11 +120,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
                 }
 
                 var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
-                var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
-                {
-                    SubtotalCount = values.Count,
-                    TotalCount = values.Count
-                };
+                var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
 
                 foreach (var objectiveName in values)
                 {
@@ -152,91 +132,64 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             }, cancellationToken);
         }
 
-        /// <summary>Finds every <see cref="Objective"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Objective"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, ObjectiveName>> FindAllAsync(ICollection<int> identifiers)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, ObjectiveName>> IRepository<int, ObjectiveName>.FindAllAsync(ICollection<int> identifiers)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Objective"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Objective"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, ObjectiveName>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, ObjectiveName>> IRepository<int, ObjectiveName>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Objective"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Objective"/> with the specified identifier.</returns>
-        public Task<ObjectiveName> FindAsync(int identifier)
+        /// <inheritdoc />
+        Task<ObjectiveName> IRepository<int, ObjectiveName>.FindAsync(int identifier)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Objective"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Objective"/> with the specified identifier.</returns>
-        public Task<ObjectiveName> FindAsync(int identifier, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ObjectiveName> IRepository<int, ObjectiveName>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<ObjectiveName> FindPage(int pageIndex)
+        /// <inheritdoc />
+        ICollectionPage<ObjectiveName> IPaginator<ObjectiveName>.FindPage(int pageIndex)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page number and maximum size.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<ObjectiveName> FindPage(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        ICollectionPage<ObjectiveName> IPaginator<ObjectiveName>.FindPage(int pageIndex, int pageSize)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<ObjectiveName>> FindPageAsync(int pageIndex)
+        /// <inheritdoc />
+        Task<ICollectionPage<ObjectiveName>> IPaginator<ObjectiveName>.FindPageAsync(int pageIndex)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<ObjectiveName>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<ObjectiveName>> IPaginator<ObjectiveName>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<ObjectiveName>> FindPageAsync(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        Task<ICollectionPage<ObjectiveName>> IPaginator<ObjectiveName>.FindPageAsync(int pageIndex, int pageSize)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<ObjectiveName>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<ObjectiveName>> IPaginator<ObjectiveName>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            throw new NotSupportedException("This endpoint only supports the 'FindAll()' interface.");
+            throw new NotSupportedException();
         }
 
         /// <summary>The invariant method for this class.</summary>

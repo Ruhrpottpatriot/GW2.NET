@@ -46,9 +46,8 @@ namespace GW2NET.V2.Commerce.Listings
             this.serviceClient = serviceClient;
         }
 
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <returns>A collection of identifiers.</returns>
-        public ICollection<int> Discover()
+        /// <inheritdoc />
+        ICollection<int> IDiscoverable<int>.Discover()
         {
             var request = new ListingDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
@@ -60,37 +59,30 @@ namespace GW2NET.V2.Commerce.Listings
             return response.Content;
         }
 
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <returns>A collection of identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync()
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
-            return this.DiscoverAsync(CancellationToken.None);
+            return ((IRepository<int, Listing>)this).DiscoverAsync(CancellationToken.None);
         }
 
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new ListingDiscoveryRequest();
-            return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new List<int>(0);
-                        }
+            return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new List<int>(0);
+                }
 
-                        return response.Content;
-                    }, 
-                cancellationToken);
+                return response.Content;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the <see cref="Listing"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Listing"/> with the specified identifier.</returns>
-        public Listing Find(int identifier)
+        /// <inheritdoc />
+        Listing IRepository<int, Listing>.Find(int identifier)
         {
             var request = new ListingDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
             var response = this.serviceClient.Send<ListingDataContract>(request);
@@ -104,9 +96,8 @@ namespace GW2NET.V2.Commerce.Listings
             return value;
         }
 
-        /// <summary>Finds every <see cref="Listing"/>.</summary>
-        /// <returns>A collection of every <see cref="Listing"/>.</returns>
-        public IDictionaryRange<int, Listing> FindAll()
+        /// <inheritdoc />
+        IDictionaryRange<int, Listing> IRepository<int, Listing>.FindAll()
         {
             var request = new ListingBulkRequest();
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
@@ -126,10 +117,8 @@ namespace GW2NET.V2.Commerce.Listings
             return values;
         }
 
-        /// <summary>Finds every <see cref="Listing"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Listing"/> with one of the specified identifiers.</returns>
-        public IDictionaryRange<int, Listing> FindAll(ICollection<int> identifiers)
+        /// <inheritdoc />
+        IDictionaryRange<int, Listing> IRepository<int, Listing>.FindAll(ICollection<int> identifiers)
         {
             if (identifiers == null)
             {
@@ -161,54 +150,44 @@ namespace GW2NET.V2.Commerce.Listings
             return values;
         }
 
-        /// <summary>Finds every <see cref="Listing"/>.</summary>
-        /// <returns>A collection of every <see cref="Listing"/>.</returns>
-        public Task<IDictionaryRange<int, Listing>> FindAllAsync()
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Listing>> IRepository<int, Listing>.FindAllAsync()
         {
-            return this.FindAllAsync(CancellationToken.None);
+            return ((IRepository<int, Listing>)this).FindAllAsync(CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Listing"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Listing"/>.</returns>
-        public Task<IDictionaryRange<int, Listing>> FindAllAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Listing>> IRepository<int, Listing>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new ListingBulkRequest();
-            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new DictionaryRange<int, Listing>(0);
-                        }
+            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new DictionaryRange<int, Listing>(0);
+                }
 
-                        var values = ConvertListingDataContractRange(response.Content);
-                        values.SubtotalCount = response.GetResultCount();
-                        values.TotalCount = response.GetResultTotal();
-                        foreach (var value in values.Values)
-                        {
-                            value.Timestamp = response.Date;
-                        }
+                var values = ConvertListingDataContractRange(response.Content);
+                values.SubtotalCount = response.GetResultCount();
+                values.TotalCount = response.GetResultTotal();
+                foreach (var value in values.Values)
+                {
+                    value.Timestamp = response.Date;
+                }
 
-                        return values;
-                    }, 
-                cancellationToken);
+                return values;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds every <see cref="Listing"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Listing"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Listing>> FindAllAsync(ICollection<int> identifiers)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Listing>> IRepository<int, Listing>.FindAllAsync(ICollection<int> identifiers)
         {
-            return this.FindAllAsync(identifiers, CancellationToken.None);
+            return ((IRepository<int, Listing>)this).FindAllAsync(identifiers, CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Listing"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Listing"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, Listing>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, Listing>> IRepository<int, Listing>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             if (identifiers == null)
             {
@@ -223,63 +202,52 @@ namespace GW2NET.V2.Commerce.Listings
             Contract.EndContractBlock();
 
             var request = new ListingBulkRequest() { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
-            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new DictionaryRange<int, Listing>(0);
-                        }
+            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new DictionaryRange<int, Listing>(0);
+                }
 
-                        var values = ConvertListingDataContractRange(response.Content);
-                        values.SubtotalCount = response.GetResultCount();
-                        values.TotalCount = response.GetResultTotal();
-                        foreach (var value in values.Values)
-                        {
-                            value.Timestamp = response.Date;
-                        }
+                var values = ConvertListingDataContractRange(response.Content);
+                values.SubtotalCount = response.GetResultCount();
+                values.TotalCount = response.GetResultTotal();
+                foreach (var value in values.Values)
+                {
+                    value.Timestamp = response.Date;
+                }
 
-                        return values;
-                    }, 
-                cancellationToken);
+                return values;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the <see cref="Listing"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Listing"/> with the specified identifier.</returns>
-        public Task<Listing> FindAsync(int identifier)
+        /// <inheritdoc />
+        Task<Listing> IRepository<int, Listing>.FindAsync(int identifier)
         {
-            return this.FindAsync(identifier, CancellationToken.None);
+            return ((IRepository<int, Listing>)this).FindAsync(identifier, CancellationToken.None);
         }
 
-        /// <summary>Finds the <see cref="Listing"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Listing"/> with the specified identifier.</returns>
-        public Task<Listing> FindAsync(int identifier, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<Listing> IRepository<int, Listing>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new ListingDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
-            return this.serviceClient.SendAsync<ListingDataContract>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return null;
-                        }
+            return this.serviceClient.SendAsync<ListingDataContract>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return null;
+                }
 
-                        var value = ConvertListingDataContract(response.Content);
-                        value.Timestamp = response.Date;
-                        return value;
-                    }, 
-                cancellationToken);
+                var value = ConvertListingDataContract(response.Content);
+                value.Timestamp = response.Date;
+                return value;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Listing> FindPage(int pageIndex)
+        /// <inheritdoc />
+        ICollectionPage<Listing> IPaginator<Listing>.FindPage(int pageIndex)
         {
             var request = new ListingPageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
@@ -316,11 +284,8 @@ namespace GW2NET.V2.Commerce.Listings
             return values;
         }
 
-        /// <summary>Finds the page with the specified page number and maximum size.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Listing> FindPage(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        ICollectionPage<Listing> IPaginator<Listing>.FindPage(int pageIndex, int pageSize)
         {
             var request = new ListingPageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
@@ -357,116 +322,101 @@ namespace GW2NET.V2.Commerce.Listings
             return values;
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Listing>> FindPageAsync(int pageIndex)
+        /// <inheritdoc />
+        Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex)
         {
-            return this.FindPageAsync(pageIndex, CancellationToken.None);
+            return ((IRepository<int, Listing>)this).FindPageAsync(pageIndex, CancellationToken.None);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Listing>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new ListingPageRequest { Page = pageIndex };
-            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
-                task =>
+            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new CollectionPage<Listing>(0);
+                }
+
+                var values = ConvertListingDataContractPage(response.Content);
+                values.PageIndex = pageIndex;
+                values.PageSize = response.GetPageSize();
+                values.PageCount = response.GetPageTotal();
+                values.SubtotalCount = response.GetResultCount();
+                values.TotalCount = response.GetResultTotal();
+                if (values.PageCount > 0)
+                {
+                    values.LastPageIndex = values.PageCount - 1;
+                    if (values.PageIndex < values.LastPageIndex)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new CollectionPage<Listing>(0);
-                        }
+                        values.NextPageIndex = values.PageIndex + 1;
+                    }
 
-                        var values = ConvertListingDataContractPage(response.Content);
-                        values.PageIndex = pageIndex;
-                        values.PageSize = response.GetPageSize();
-                        values.PageCount = response.GetPageTotal();
-                        values.SubtotalCount = response.GetResultCount();
-                        values.TotalCount = response.GetResultTotal();
-                        if (values.PageCount > 0)
-                        {
-                            values.LastPageIndex = values.PageCount - 1;
-                            if (values.PageIndex < values.LastPageIndex)
-                            {
-                                values.NextPageIndex = values.PageIndex + 1;
-                            }
+                    if (values.PageIndex > values.FirstPageIndex)
+                    {
+                        values.PreviousPageIndex = values.PageIndex - 1;
+                    }
+                }
 
-                            if (values.PageIndex > values.FirstPageIndex)
-                            {
-                                values.PreviousPageIndex = values.PageIndex - 1;
-                            }
-                        }
+                foreach (var value in values)
+                {
+                    value.Timestamp = response.Date;
+                }
 
-                        foreach (var value in values)
-                        {
-                            value.Timestamp = response.Date;
-                        }
-
-                        return values;
-                    }, 
-                cancellationToken);
+                return values;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Listing>> FindPageAsync(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex, int pageSize)
         {
-            return this.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
+            return ((IRepository<int, Listing>)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Listing>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new ListingPageRequest { Page = pageIndex, PageSize = pageSize };
-            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(
-                task =>
+            return this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new CollectionPage<Listing>(0);
+                }
+
+                var values = ConvertListingDataContractPage(response.Content);
+                values.PageIndex = pageIndex;
+                values.PageSize = response.GetPageSize();
+                values.PageCount = response.GetPageTotal();
+                values.SubtotalCount = response.GetResultCount();
+                values.TotalCount = response.GetResultTotal();
+                if (values.PageCount > 0)
+                {
+                    values.LastPageIndex = values.PageCount - 1;
+                    if (values.PageIndex < values.LastPageIndex)
                     {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new CollectionPage<Listing>(0);
-                        }
+                        values.NextPageIndex = values.PageIndex + 1;
+                    }
 
-                        var values = ConvertListingDataContractPage(response.Content);
-                        values.PageIndex = pageIndex;
-                        values.PageSize = response.GetPageSize();
-                        values.PageCount = response.GetPageTotal();
-                        values.SubtotalCount = response.GetResultCount();
-                        values.TotalCount = response.GetResultTotal();
-                        if (values.PageCount > 0)
-                        {
-                            values.LastPageIndex = values.PageCount - 1;
-                            if (values.PageIndex < values.LastPageIndex)
-                            {
-                                values.NextPageIndex = values.PageIndex + 1;
-                            }
+                    if (values.PageIndex > values.FirstPageIndex)
+                    {
+                        values.PreviousPageIndex = values.PageIndex - 1;
+                    }
+                }
 
-                            if (values.PageIndex > values.FirstPageIndex)
-                            {
-                                values.PreviousPageIndex = values.PageIndex - 1;
-                            }
-                        }
+                foreach (var value in values)
+                {
+                    value.Timestamp = response.Date;
+                }
 
-                        foreach (var value in values)
-                        {
-                            value.Timestamp = response.Date;
-                        }
-
-                        return values;
-                    }, 
-                cancellationToken);
+                return values;
+            }, cancellationToken);
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
@@ -497,6 +447,7 @@ namespace GW2NET.V2.Commerce.Listings
             return value;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
@@ -509,6 +460,7 @@ namespace GW2NET.V2.Commerce.Listings
             return values;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
@@ -526,6 +478,7 @@ namespace GW2NET.V2.Commerce.Listings
             return values;
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>
@@ -536,6 +489,7 @@ namespace GW2NET.V2.Commerce.Listings
             return new Offer { Listings = content.Listings, UnitPrice = content.UnitPrice, Quantity = content.Quantity };
         }
 
+        // TODO: refactor to IConverter
         /// <summary>Infrastructure. Converts data contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The entity.</returns>

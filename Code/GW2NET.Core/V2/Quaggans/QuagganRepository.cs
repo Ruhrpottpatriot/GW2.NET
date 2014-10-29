@@ -36,9 +36,8 @@ namespace GW2NET.V2.Quaggans
             this.serviceClient = serviceClient;
         }
 
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <returns>A collection of identifiers.</returns>
-        public ICollection<string> Discover()
+        /// <inheritdoc />
+        ICollection<string> IDiscoverable<string>.Discover()
         {
             var request = new QuagganDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<string>>(request);
@@ -50,37 +49,30 @@ namespace GW2NET.V2.Quaggans
             return response.Content;
         }
 
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <returns>A collection of identifiers.</returns>
-        public Task<ICollection<string>> DiscoverAsync()
+        /// <inheritdoc />
+        Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync()
         {
-            return this.DiscoverAsync(CancellationToken.None);
+            return ((IRepository<string, Quaggan>)this).DiscoverAsync(CancellationToken.None);
         }
 
-        /// <summary>Gets a collection of identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of identifiers.</returns>
-        public Task<ICollection<string>> DiscoverAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new QuagganDiscoveryRequest();
-            return this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new string[0];
-                        }
+            return this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new string[0];
+                }
 
-                        return response.Content;
-                    }, 
-                cancellationToken);
+                return response.Content;
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the <see cref="Quaggan"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Quaggan"/> with the specified identifier.</returns>
-        public Quaggan Find(string identifier)
+        /// <inheritdoc />
+        Quaggan IRepository<string, Quaggan>.Find(string identifier)
         {
             var request = new QuagganDetailsRequest { Identifier = identifier };
             var response = this.serviceClient.Send<QuagganDataContract>(request);
@@ -92,9 +84,8 @@ namespace GW2NET.V2.Quaggans
             return ConvertQuagganDataContract(response.Content);
         }
 
-        /// <summary>Finds every <see cref="Quaggan"/>.</summary>
-        /// <returns>A collection of every <see cref="Quaggan"/>.</returns>
-        public IDictionaryRange<string, Quaggan> FindAll()
+        /// <inheritdoc />
+        IDictionaryRange<string, Quaggan> IRepository<string, Quaggan>.FindAll()
         {
             var request = new QuagganBulkRequest();
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
@@ -113,10 +104,8 @@ namespace GW2NET.V2.Quaggans
             return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
         }
 
-        /// <summary>Finds every <see cref="Quaggan"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Quaggan"/> with one of the specified identifiers.</returns>
-        public IDictionaryRange<string, Quaggan> FindAll(ICollection<string> identifiers)
+        /// <inheritdoc />
+        IDictionaryRange<string, Quaggan> IRepository<string, Quaggan>.FindAll(ICollection<string> identifiers)
         {
             if (identifiers == null)
             {
@@ -147,53 +136,43 @@ namespace GW2NET.V2.Quaggans
             return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
         }
 
-        /// <summary>Finds every <see cref="Quaggan"/>.</summary>
-        /// <returns>A collection of every <see cref="Quaggan"/>.</returns>
-        public Task<IDictionaryRange<string, Quaggan>> FindAllAsync()
+        /// <inheritdoc />
+        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync()
         {
-            return this.FindAllAsync(CancellationToken.None);
+            return ((IRepository<string, Quaggan>)this).FindAllAsync(CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Quaggan"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Quaggan"/>.</returns>
-        public Task<IDictionaryRange<string, Quaggan>> FindAllAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new QuagganBulkRequest();
-            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new DictionaryRange<string, Quaggan>(0);
-                        }
+            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new DictionaryRange<string, Quaggan>(0);
+                }
 
-                        // Get the number of values in this subset
-                        var pageCount = response.GetResultCount();
+                // Get the number of values in this subset
+                var pageCount = response.GetResultCount();
 
-                        // Get the number of values in the collection
-                        var totalCount = response.GetResultTotal();
+                // Get the number of values in the collection
+                var totalCount = response.GetResultTotal();
 
-                        // Convert the return values to entities
-                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
-                    }, 
-                cancellationToken);
+                // Convert the return values to entities
+                return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
+            }, cancellationToken);
         }
 
-        /// <summary>Finds every <see cref="Quaggan"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Quaggan"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<string, Quaggan>> FindAllAsync(ICollection<string> identifiers)
+        /// <inheritdoc />
+        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(ICollection<string> identifiers)
         {
-            return this.FindAllAsync(identifiers, CancellationToken.None);
+            return ((IRepository<string, Quaggan>)this).FindAllAsync(identifiers, CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="Quaggan"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Quaggan"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<string, Quaggan>> FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
         {
             if (identifiers == null)
             {
@@ -208,60 +187,49 @@ namespace GW2NET.V2.Quaggans
             Contract.EndContractBlock();
 
             var request = new QuagganBulkRequest { Identifiers = identifiers.ToList() };
-            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new DictionaryRange<string, Quaggan>(0);
-                        }
+            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new DictionaryRange<string, Quaggan>(0);
+                }
 
-                        // Get the number of values in this subset
-                        var pageCount = response.GetResultCount();
+                // Get the number of values in this subset
+                var pageCount = response.GetResultCount();
 
-                        // Get the number of values in the collection
-                        var totalCount = response.GetResultTotal();
+                // Get the number of values in the collection
+                var totalCount = response.GetResultTotal();
 
-                        // Convert the return values to entities
-                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
-                    }, 
-                cancellationToken);
+                // Convert the return values to entities
+                return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the <see cref="Quaggan"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Quaggan"/> with the specified identifier.</returns>
-        public Task<Quaggan> FindAsync(string identifier)
+        /// <inheritdoc />
+        Task<Quaggan> IRepository<string, Quaggan>.FindAsync(string identifier)
         {
-            return this.FindAsync(identifier, CancellationToken.None);
+            return ((IRepository<string, Quaggan>)this).FindAsync(identifier, CancellationToken.None);
         }
 
-        /// <summary>Finds the <see cref="Quaggan"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Quaggan"/> with the specified identifier.</returns>
-        public Task<Quaggan> FindAsync(string identifier, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<Quaggan> IRepository<string, Quaggan>.FindAsync(string identifier, CancellationToken cancellationToken)
         {
             var request = new QuagganDetailsRequest { Identifier = identifier };
-            return this.serviceClient.SendAsync<QuagganDataContract>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return null;
-                        }
+            return this.serviceClient.SendAsync<QuagganDataContract>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return null;
+                }
 
-                        return ConvertQuagganDataContract(response.Content);
-                    }, 
-                cancellationToken);
+                return ConvertQuagganDataContract(response.Content);
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Quaggan> FindPage(int pageIndex)
+        /// <inheritdoc />
+        ICollectionPage<Quaggan> IPaginator<Quaggan>.FindPage(int pageIndex)
         {
             var request = new QuagganPageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
@@ -286,11 +254,8 @@ namespace GW2NET.V2.Quaggans
             return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, pageSize, pageTotal);
         }
 
-        /// <summary>Finds the page with the specified page number and maximum size.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Quaggan> FindPage(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        ICollectionPage<Quaggan> IPaginator<Quaggan>.FindPage(int pageIndex, int pageSize)
         {
             var request = new QuagganPageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
@@ -315,92 +280,77 @@ namespace GW2NET.V2.Quaggans
             return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, size, pageTotal);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Quaggan>> FindPageAsync(int pageIndex)
+        /// <inheritdoc />
+        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex)
         {
-            return this.FindPageAsync(pageIndex, CancellationToken.None);
+            return ((IRepository<string, Quaggan>)this).FindPageAsync(pageIndex, CancellationToken.None);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Quaggan>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new QuagganPageRequest { Page = pageIndex };
-            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new CollectionPage<Quaggan>(0);
-                        }
+            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new CollectionPage<Quaggan>(0);
+                }
 
-                        // Get the number of values in this subset
-                        var pageCount = response.GetResultCount();
+                // Get the number of values in this subset
+                var pageCount = response.GetResultCount();
 
-                        // Get the number of values in the collection
-                        var totalCount = response.GetResultTotal();
+                // Get the number of values in the collection
+                var totalCount = response.GetResultTotal();
 
-                        // Get the maximum number of values in this subset
-                        var pageSize = response.GetPageSize();
+                // Get the maximum number of values in this subset
+                var pageSize = response.GetPageSize();
 
-                        // Get the number of subsets in the collection
-                        var pageTotal = response.GetPageTotal();
+                // Get the number of subsets in the collection
+                var pageTotal = response.GetPageTotal();
 
-                        // Convert the return values to entities
-                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, pageSize, pageTotal);
-                    }, 
-                cancellationToken);
+                // Convert the return values to entities
+                return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, pageSize, pageTotal);
+            }, cancellationToken);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Quaggan>> FindPageAsync(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, int pageSize)
         {
-            return this.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
+            return ((IRepository<string, Quaggan>)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Quaggan>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new QuagganPageRequest { Page = pageIndex, PageSize = pageSize };
-            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new CollectionPage<Quaggan>(0);
-                        }
+            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return new CollectionPage<Quaggan>(0);
+                }
 
-                        // Get the number of values in this subset
-                        var pageCount = response.GetResultCount();
+                // Get the number of values in this subset
+                var pageCount = response.GetResultCount();
 
-                        // Get the number of values in the collection
-                        var totalCount = response.GetResultTotal();
+                // Get the number of values in the collection
+                var totalCount = response.GetResultTotal();
 
-                        // Get the maximum number of values in this subset
-                        var size = response.GetPageSize();
+                // Get the maximum number of values in this subset
+                var size = response.GetPageSize();
 
-                        // Get the number of subsets in the collection
-                        var pageTotal = response.GetPageTotal();
+                // Get the number of subsets in the collection
+                var pageTotal = response.GetPageTotal();
 
-                        // Convert the return values to entities
-                        return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, size, pageTotal);
-                    }, 
-                cancellationToken);
+                // Convert the return values to entities
+                return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, size, pageTotal);
+            }, cancellationToken);
         }
 
+        // TODO: refactor to IConverter
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private static Quaggan ConvertQuagganDataContract(QuagganDataContract content)
         {
@@ -426,11 +376,9 @@ namespace GW2NET.V2.Quaggans
             return value;
         }
 
+        // TODO: refactor to IConverter
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static IDictionaryRange<string, Quaggan> ConvertQuagganDataContractCollection(
-            IEnumerable<QuagganDataContract> content, 
-            int subtotalCount, 
-            int totalCount)
+        private static IDictionaryRange<string, Quaggan> ConvertQuagganDataContractCollection(IEnumerable<QuagganDataContract> content, int subtotalCount, int totalCount)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);
@@ -444,26 +392,14 @@ namespace GW2NET.V2.Quaggans
             return values;
         }
 
+        // TODO: refactor to IConverter
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static ICollectionPage<Quaggan> ConvertQuagganDataContractCollection(
-            ICollection<QuagganDataContract> content, 
-            int subtotalCount, 
-            int totalCount, 
-            int page, 
-            int pageSize, 
-            int pageTotal)
+        private static ICollectionPage<Quaggan> ConvertQuagganDataContractCollection(ICollection<QuagganDataContract> content, int subtotalCount, int totalCount, int page, int pageSize, int pageTotal)
         {
             Contract.Requires(content != null);
             Contract.Requires(subtotalCount >= 0);
             Contract.Ensures(Contract.Result<ICollectionPage<Quaggan>>() != null);
-            var values = new CollectionPage<Quaggan>(content.Count)
-                {
-                    PageIndex = page, 
-                    PageSize = pageSize, 
-                    PageCount = pageTotal, 
-                    SubtotalCount = subtotalCount, 
-                    TotalCount = totalCount
-                };
+            var values = new CollectionPage<Quaggan>(content.Count) { PageIndex = page, PageSize = pageSize, PageCount = pageTotal, SubtotalCount = subtotalCount, TotalCount = totalCount };
 
             if (values.PageCount > 0)
             {

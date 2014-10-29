@@ -50,9 +50,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
             this.converterForMatch = converterForMatch;
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public ICollection<Matchup> Discover()
+        /// <inheritdoc />
+        ICollection<Matchup> IDiscoverable<Matchup>.Discover()
         {
             var request = new MatchDiscoveryRequest();
             var response = this.serviceClient.Send<MatchupCollectionDataContract>(request);
@@ -66,17 +65,14 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
             return values;
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<Matchup>> DiscoverAsync()
+        /// <inheritdoc />
+        Task<ICollection<Matchup>> IDiscoverable<Matchup>.DiscoverAsync()
         {
-            return this.DiscoverAsync(CancellationToken.None);
+            return ((IRepository<Matchup, Match>)this).DiscoverAsync(CancellationToken.None);
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<Matchup>> DiscoverAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollection<Matchup>> IDiscoverable<Matchup>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new MatchDiscoveryRequest();
             return this.serviceClient.SendAsync<MatchupCollectionDataContract>(request, cancellationToken).ContinueWith<ICollection<Matchup>>(task =>
@@ -93,10 +89,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
             }, cancellationToken);
         }
 
-        /// <summary>Finds the <see cref="Match"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Match"/> with the specified identifier.</returns>
-        public Match Find(Matchup identifier)
+        /// <inheritdoc />
+        Match IRepository<Matchup, Match>.Find(Matchup identifier)
         {
             string matchId = identifier != null ? identifier.MatchId : null;
             var request = new MatchDetailsRequest { MatchId = matchId };
@@ -109,66 +103,50 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
             return this.converterForMatch.Convert(response.Content);
         }
 
-        /// <summary>Finds every <see cref="Match"/>.</summary>
-        /// <returns>A collection of every <see cref="Match"/>.</returns>
-        public IDictionaryRange<Matchup, Match> FindAll()
+        /// <inheritdoc />
+        IDictionaryRange<Matchup, Match> IRepository<Matchup, Match>.FindAll()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Match"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Match"/> with one of the specified identifiers.</returns>
-        public IDictionaryRange<Matchup, Match> FindAll(ICollection<Matchup> identifiers)
+        /// <inheritdoc />
+        IDictionaryRange<Matchup, Match> IRepository<Matchup, Match>.FindAll(ICollection<Matchup> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Match"/>.</summary>
-        /// <returns>A collection of every <see cref="Match"/>.</returns>
-        public Task<IDictionaryRange<Matchup, Match>> FindAllAsync()
+        /// <inheritdoc />
+        Task<IDictionaryRange<Matchup, Match>> IRepository<Matchup, Match>.FindAllAsync()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Match"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="Match"/></returns>
-        public Task<IDictionaryRange<Matchup, Match>> FindAllAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<Matchup, Match>> IRepository<Matchup, Match>.FindAllAsync(CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Match"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="Match"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<Matchup, Match>> FindAllAsync(ICollection<Matchup> identifiers)
+        /// <inheritdoc />
+        Task<IDictionaryRange<Matchup, Match>> IRepository<Matchup, Match>.FindAllAsync(ICollection<Matchup> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="Match"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="Match"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<Matchup, Match>> FindAllAsync(ICollection<Matchup> identifiers, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<Matchup, Match>> IRepository<Matchup, Match>.FindAllAsync(ICollection<Matchup> identifiers, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="Match"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="Match"/> with the specified identifier.</returns>
-        public Task<Match> FindAsync(Matchup identifier)
+        /// <inheritdoc />
+        Task<Match> IRepository<Matchup, Match>.FindAsync(Matchup identifier)
         {
-            return this.FindAsync(identifier, CancellationToken.None);
+            return ((IRepository<Matchup, Match>)this).FindAsync(identifier, CancellationToken.None);
         }
 
-        /// <summary>Finds the <see cref="Match"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="Match"/> with the specified identifier.</returns>
-        public Task<Match> FindAsync(Matchup identifier, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<Match> IRepository<Matchup, Match>.FindAsync(Matchup identifier, CancellationToken cancellationToken)
         {
             string matchId = identifier != null ? identifier.MatchId : null;
             var request = new MatchDetailsRequest { MatchId = matchId };
@@ -184,55 +162,38 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
             }, cancellationToken);
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Match> FindPage(int pageIndex)
+        /// <inheritdoc />
+        ICollectionPage<Match> IPaginator<Match>.FindPage(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page number and maximum size.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<Match> FindPage(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        ICollectionPage<Match> IPaginator<Match>.FindPage(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Match>> FindPageAsync(int pageIndex)
+        /// <inheritdoc />
+        Task<ICollectionPage<Match>> IPaginator<Match>.FindPageAsync(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Match>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Match>> IPaginator<Match>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Match>> FindPageAsync(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        Task<ICollectionPage<Match>> IPaginator<Match>.FindPageAsync(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<Match>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<Match>> IPaginator<Match>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }

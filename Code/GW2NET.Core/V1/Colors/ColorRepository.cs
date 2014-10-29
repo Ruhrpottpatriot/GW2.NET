@@ -10,6 +10,7 @@ namespace GW2NET.V1.Colors
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
@@ -52,39 +53,32 @@ namespace GW2NET.V1.Colors
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public ICollection<int> Discover()
+        /// <inheritdoc />
+        ICollection<int> IDiscoverable<int>.Discover()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync()
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<int>> DiscoverAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="ColorPalette"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="ColorPalette"/> with the specified identifier.</returns>
-        public ColorPalette Find(int identifier)
+        /// <inheritdoc />
+        ColorPalette IRepository<int, ColorPalette>.Find(int identifier)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="ColorPalette"/>.</summary>
-        /// <returns>A collection of every <see cref="ColorPalette"/>.</returns>
-        public IDictionaryRange<int, ColorPalette> FindAll()
+        /// <inheritdoc />
+        IDictionaryRange<int, ColorPalette> IRepository<int, ColorPalette>.FindAll()
         {
             var request = new ColorRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ColorCollectionDataContract>(request);
@@ -94,11 +88,7 @@ namespace GW2NET.V1.Colors
             }
 
             var values = this.converterForColorPaletteCollection.Convert(response.Content);
-            var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
-            {
-                SubtotalCount = values.Count,
-                TotalCount = values.Count
-            };
+            var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
 
             foreach (var colorPalette in values)
             {
@@ -109,25 +99,20 @@ namespace GW2NET.V1.Colors
             return colorPalettes;
         }
 
-        /// <summary>Finds every <see cref="ColorPalette"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="ColorPalette"/> with one of the specified identifiers.</returns>
-        public IDictionaryRange<int, ColorPalette> FindAll(ICollection<int> identifiers)
+        /// <inheritdoc />
+        IDictionaryRange<int, ColorPalette> IRepository<int, ColorPalette>.FindAll(ICollection<int> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="ColorPalette"/>.</summary>
-        /// <returns>A collection of every <see cref="ColorPalette"/>.</returns>
-        public Task<IDictionaryRange<int, ColorPalette>> FindAllAsync()
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync()
         {
-            return this.FindAllAsync(CancellationToken.None);
+            return ((IRepository<int, ColorPalette>)this).FindAllAsync(CancellationToken.None);
         }
 
-        /// <summary>Finds every <see cref="ColorPalette"/>.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of every <see cref="ColorPalette"/></returns>
-        public Task<IDictionaryRange<int, ColorPalette>> FindAllAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new ColorRequest { Culture = this.Culture };
             return this.serviceClient.SendAsync<ColorCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ColorPalette>>(task =>
@@ -139,11 +124,7 @@ namespace GW2NET.V1.Colors
                 }
 
                 var values = this.converterForColorPaletteCollection.Convert(response.Content);
-                var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
-                {
-                    SubtotalCount = values.Count,
-                    TotalCount = values.Count
-                };
+                var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
 
                 foreach (var colorPalette in values)
                 {
@@ -155,89 +136,62 @@ namespace GW2NET.V1.Colors
             }, cancellationToken);
         }
 
-        /// <summary>Finds every <see cref="ColorPalette"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <returns>A collection every <see cref="ColorPalette"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, ColorPalette>> FindAllAsync(ICollection<int> identifiers)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync(ICollection<int> identifiers)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds every <see cref="ColorPalette"/> with one of the specified identifiers.</summary>
-        /// <param name="identifiers">The identifiers.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection every <see cref="ColorPalette"/> with one of the specified identifiers.</returns>
-        public Task<IDictionaryRange<int, ColorPalette>> FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="ColorPalette"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <returns>The <see cref="ColorPalette"/> with the specified identifier.</returns>
-        public Task<ColorPalette> FindAsync(int identifier)
+        /// <inheritdoc />
+        Task<ColorPalette> IRepository<int, ColorPalette>.FindAsync(int identifier)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the <see cref="ColorPalette"/> with the specified identifier.</summary>
-        /// <param name="identifier">The identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The <see cref="ColorPalette"/> with the specified identifier.</returns>
-        public Task<ColorPalette> FindAsync(int identifier, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ColorPalette> IRepository<int, ColorPalette>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<ColorPalette> FindPage(int pageIndex)
+        /// <inheritdoc />
+        ICollectionPage<ColorPalette> IPaginator<ColorPalette>.FindPage(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page number and maximum size.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public ICollectionPage<ColorPalette> FindPage(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        ICollectionPage<ColorPalette> IPaginator<ColorPalette>.FindPage(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<ColorPalette>> FindPageAsync(int pageIndex)
+        /// <inheritdoc />
+        Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<ColorPalette>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<ColorPalette>> FindPageAsync(int pageIndex, int pageSize)
+        /// <inheritdoc />
+        Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex, int pageSize)
         {
             throw new NotSupportedException();
         }
 
-        /// <summary>Finds the page with the specified page index.</summary>
-        /// <param name="pageIndex">The page index to find.</param>
-        /// <param name="pageSize">The maximum number of page elements.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The page.</returns>
-        public Task<ICollectionPage<ColorPalette>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<ICollectionPage<ColorPalette>> IPaginator<ColorPalette>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
         }
