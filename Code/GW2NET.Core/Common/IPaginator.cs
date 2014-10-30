@@ -45,6 +45,7 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <exception cref="NotSupportedException">The data source does not support pagination.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
+        /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>The page.</returns>
         Task<ICollectionPage<T>> FindPageAsync(int pageIndex, CancellationToken cancellationToken);
 
@@ -62,6 +63,7 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <exception cref="NotSupportedException">The data source does not support pagination.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
+        /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>The page.</returns>
         Task<ICollectionPage<T>> FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken);
     }

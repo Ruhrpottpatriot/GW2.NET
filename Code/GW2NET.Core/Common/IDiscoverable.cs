@@ -35,6 +35,7 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <exception cref="NotSupportedException">The data source does not support the discovery of object identifiers of type <typeparamref name="T"/>.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
+        /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>A collection of valid object identifiers.</returns>
         Task<ICollection<T>> DiscoverAsync(CancellationToken cancellationToken);
     }

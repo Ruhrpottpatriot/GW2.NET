@@ -50,6 +50,7 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <exception cref="NotSupportedException">The data source does not support finding all objects.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
+        /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>A collection of objects.</returns>
         Task<IDictionaryRange<TKey, TValue>> FindAllAsync(CancellationToken cancellationToken);
 
@@ -65,6 +66,7 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <exception cref="NotSupportedException">The data source does not support finding a range of objects.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
+        /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>A collection of objects with one of the specified identifiers.</returns>
         Task<IDictionaryRange<TKey, TValue>> FindAllAsync(ICollection<TKey> identifiers, CancellationToken cancellationToken);
 
@@ -80,6 +82,7 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <exception cref="NotSupportedException">The data source does not support finding individual objects.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
+        /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>The object with the specified identifier, or a null reference.</returns>
         Task<TValue> FindAsync(TKey identifier, CancellationToken cancellationToken);
     }
