@@ -234,6 +234,8 @@
     <Compile Include="Common\ContractClassForISubsetContext.cs" />
     <Compile Include="Common\ConverterAttribute.cs" />
     <Compile Include="Common\ConverterForAttribute.cs" />
+    <Compile Include="Common\Converters\ConverterAdapter.cs" />
+    <Compile Include="Common\Converters\ConverterForInt32.cs" />
     <Compile Include="Common\DictionaryRange.cs" />
     <Compile Include="Common\DiscoveryRequest.cs" />
     <Compile Include="Common\Drawing\Rectangle.cs" />
@@ -709,10 +711,15 @@
     <Compile Include="V2\Commerce\Prices\PricePageRequest.cs" />
     <Compile Include="V2\Commerce\Prices\PriceRepository.cs" />
     <Compile Include="V2\Common\BulkRequest.cs" />
+    <Compile Include="V2\Common\ConverterForCollectionPageResponse.cs" />
+    <Compile Include="V2\Common\ConverterForCollectionResponse.cs" />
+    <Compile Include="V2\Common\ConverterForDictionaryRangeResponse.cs" />
+    <Compile Include="V2\Common\ConverterForResponse.cs" />
     <Compile Include="V2\Common\DetailsRequest.cs" />
     <Compile Include="V2\Common\IBulkRequest.cs" />
     <Compile Include="V2\Common\IDetailsRequest.cs" />
     <Compile Include="V2\Common\IPageRequest.cs" />
+    <Compile Include="V2\Common\PageContextPatchUtility.cs" />
     <Compile Include="V2\Common\PageRequest.cs" />
     <Compile Include="V2\Common\ResponseExtensions.cs" />
     <Compile Include="V2\Items\ItemBulkRequest.cs" />
@@ -732,6 +739,7 @@
     <Compile Include="V2\Quaggans\QuagganDiscoveryRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganPageRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganRepository.cs" />
+    <Compile Include="V2\Worlds\Converters\ConverterForWorld.cs" />
     <Compile Include="V2\Worlds\Json\WorldDataContract.cs" />
     <Compile Include="V2\Worlds\WorldBulkRequest.cs" />
     <Compile Include="V2\Worlds\WorldDetailsRequest.cs" />
