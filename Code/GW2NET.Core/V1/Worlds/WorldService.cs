@@ -69,7 +69,7 @@ namespace GW2NET.V1.Worlds
             var locale = response.Culture ?? language;
             foreach (var value in values.Values)
             {
-                value.Locale = locale;
+                value.Culture = locale;
             }
 
             return values;
@@ -133,7 +133,7 @@ namespace GW2NET.V1.Worlds
                         var locale = response.Culture ?? language;
                         foreach (var value in values.Values)
                         {
-                            value.Locale = locale;
+                            value.Culture = locale;
                         }
 
                         return values;
