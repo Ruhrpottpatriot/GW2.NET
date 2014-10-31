@@ -20,6 +20,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV2Items>() != null);
                 return new FactoryForV2Items(this.ServiceClient);
             }
         }
@@ -28,6 +29,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<string, Quaggan>>() != null);
                 return new QuagganRepository(this.ServiceClient);
             }
         }
@@ -36,6 +38,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV2Commerce>() != null);
                 return new FactoryForV2Commerce(this.ServiceClient);
             }
         }
@@ -44,6 +47,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV2Worlds>() != null);
                 return new FactoryForV2Worlds(this.ServiceClient);
             }
         }

@@ -5,6 +5,8 @@ using System.Text;
 
 namespace GW2NET.Factories
 {
+    using System.Diagnostics.Contracts;
+
     using GW2NET.Common;
     using GW2NET.Entities.Guilds;
     using GW2NET.V1.Guilds;
@@ -16,12 +18,14 @@ namespace GW2NET.Factories
         public FactoryForV1Guilds(IServiceClient serviceClient)
             : base(serviceClient)
         {
+            Contract.Requires(serviceClient != null);
         }
 
         public IRepository<Guid, Guild> ById
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<Guid, Guild>>() != null);
                 return new GuildRepository(this.ServiceClient);
             }
         }
@@ -30,6 +34,7 @@ namespace GW2NET.Factories
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<string, Guild>>() != null);
                 return new GuildRepository(this.ServiceClient);
             }
         }

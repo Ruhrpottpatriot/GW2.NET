@@ -23,6 +23,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
                 return new ItemRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
             }
         }
@@ -31,6 +32,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
                 return new ItemRepository(this.ServiceClient);
             }
         }
@@ -39,6 +41,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
                 return this[CultureInfo.CurrentCulture.TwoLetterISOLanguageName];
             }
         }
@@ -47,6 +50,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
                 return this[CultureInfo.CurrentUICulture.TwoLetterISOLanguageName];
             }
         }

@@ -21,6 +21,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<Matchup, Match>>() != null);
                 return new MatchRepository(this.ServiceClient);
             }
         }
@@ -29,6 +30,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV1WvWObjectives>() != null);
                 return new FactoryForV1WvWObjectives(this.ServiceClient);
             }
         }

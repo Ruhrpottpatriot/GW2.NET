@@ -5,6 +5,7 @@ using System.Text;
 
 namespace GW2NET.Factories
 {
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Runtime.CompilerServices;
 
@@ -19,6 +20,7 @@ namespace GW2NET.Factories
         public FactoryForV1Colors(IServiceClient serviceClient)
             : base(serviceClient)
         {
+            Contract.Requires(serviceClient != null);
         }
 
         [IndexerName("Language")]
@@ -26,6 +28,7 @@ namespace GW2NET.Factories
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, ColorPalette>>() != null);
                 return new ColorRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
             }
         }
@@ -35,6 +38,7 @@ namespace GW2NET.Factories
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, ColorPalette>>() != null);
                 return new ColorRepository(this.ServiceClient);
             }
         }
@@ -43,6 +47,7 @@ namespace GW2NET.Factories
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, ColorPalette>>() != null);
                 return this[CultureInfo.CurrentCulture.TwoLetterISOLanguageName];
             }
         }
@@ -51,6 +56,7 @@ namespace GW2NET.Factories
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, ColorPalette>>() != null);
                 return this[CultureInfo.CurrentUICulture.TwoLetterISOLanguageName];
             }
         }

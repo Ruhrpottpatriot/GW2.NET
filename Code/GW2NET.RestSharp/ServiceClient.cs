@@ -329,6 +329,8 @@ namespace GW2NET.RestSharp
         /// <exception cref="ServiceException">The request could not be fulfilled.</exception>
         private IResponse<TResult> OnResponse<TResult>(IRestResponse restResponse)
         {
+            Contract.Requires(restResponse != null);
+            Contract.Ensures(Contract.Result<IResponse<TResult>>() != null);
             try
             {
                 if (!restResponse.StatusCode.IsSuccessStatusCode())

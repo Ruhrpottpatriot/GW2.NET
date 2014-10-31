@@ -32,5 +32,13 @@ namespace GW2NET.Common
             Contract.Ensures(Contract.Result<IEnumerable<string>>() != null);
             throw new System.NotImplementedException();
         }
+
+        [ContractInvariantMethod]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Required for code contracts.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(!string.IsNullOrEmpty(this.Resource));
+        }
+
     }
 }

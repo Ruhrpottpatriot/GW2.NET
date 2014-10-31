@@ -32,6 +32,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IBuildService>() != null);
                 return new BuildService(this.ServiceClient);
             }
         }
@@ -40,6 +41,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV1Colors>() != null);
                 return new FactoryForV1Colors(this.ServiceClient);
             }
         }
@@ -48,6 +50,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV1Continents>() != null);
                 return new FactoryForV1Continents(this.ServiceClient);
             }
         }
@@ -56,6 +59,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IDynamicEventDetailsService>() != null);
                 return new DynamicEventService(this.ServiceClient);
             }
         }
@@ -64,6 +68,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IDynamicEventStateService>() != null);
                 return new DynamicEventService(this.ServiceClient);
             }
         }
@@ -72,6 +77,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IDynamicEventStateService>() != null);
                 return new DynamicEventService(this.ServiceClient);
             }
         }
@@ -80,6 +86,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IFileService>() != null);
                 return new FileService(this.ServiceClient);
             }
         }
@@ -88,6 +95,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV1Guilds>() != null);
                 return new FactoryForV1Guilds(this.ServiceClient);
             }
         }
@@ -95,6 +103,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IItemService>() != null);
                 return new ItemService(this.ServiceClient);
             }
         }
@@ -103,6 +112,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV1MapNames>() != null);
                 return new FactoryForV1MapNames(this.ServiceClient);
             }
         }
@@ -111,6 +121,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV1Maps>() != null);
                 return new FactoryForV1Maps(this.ServiceClient);
             }
         }
@@ -119,6 +130,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IMapFloorService>() != null);
                 return new MapFloorService(this.ServiceClient);
             }
         }
@@ -127,6 +139,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRecipeService>() != null);
                 return new RecipeService(this.ServiceClient);
             }
         }
@@ -135,6 +148,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<ISkinService>() != null);
                 return new SkinService(this.ServiceClient);
             }
         }
@@ -143,6 +157,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IWorldService>() != null);
                 return new WorldService(this.ServiceClient);
             }
         }
@@ -151,6 +166,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<FactoryForV1WvW>() != null);
                 return new FactoryForV1WvW(this.ServiceClient);
             }
         }

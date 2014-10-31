@@ -5,14 +5,13 @@ using System.Text;
 
 namespace GW2NET.Factories
 {
+    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Runtime.CompilerServices;
 
     using GW2NET.Common;
     using GW2NET.Entities.Maps;
-    using GW2NET.Entities.WorldVersusWorld;
     using GW2NET.V1.Maps;
-    using GW2NET.V1.WorldVersusWorld.Objectives;
 
     public sealed class FactoryForV1MapNames : FactoryBase
     {
@@ -21,6 +20,7 @@ namespace GW2NET.Factories
         public FactoryForV1MapNames(IServiceClient serviceClient)
             : base(serviceClient)
         {
+            Contract.Requires(serviceClient != null);
         }
 
         [IndexerName("Language")]
@@ -28,6 +28,7 @@ namespace GW2NET.Factories
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, MapName>>() != null);
                 return new MapNameRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
             }
         }
@@ -37,6 +38,7 @@ namespace GW2NET.Factories
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, MapName>>() != null);
                 return new MapNameRepository(this.ServiceClient);
             }
         }
@@ -45,6 +47,7 @@ namespace GW2NET.Factories
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, MapName>>() != null);
                 return this[CultureInfo.CurrentCulture.TwoLetterISOLanguageName];
             }
         }
@@ -53,6 +56,7 @@ namespace GW2NET.Factories
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, MapName>>() != null);
                 return this[CultureInfo.CurrentUICulture.TwoLetterISOLanguageName];
             }
         }

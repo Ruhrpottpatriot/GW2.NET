@@ -23,6 +23,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, Listing>>() != null);
                 return new ListingRepository(this.ServiceClient);
             }
         }
@@ -31,6 +32,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IRepository<int, AggregateListing>>() != null);
                 return new PriceRepository(this.ServiceClient);
             }
         }
@@ -39,6 +41,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IBroker<string, ExchangeQuote>>() != null);
                 return new ExchangeBroker(this.ServiceClient);
             }
         }

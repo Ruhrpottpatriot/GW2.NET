@@ -1,5 +1,7 @@
 ﻿namespace GW2NET.Factories
 {
+    using System.Diagnostics.Contracts;
+
     using GW2NET.Local.DynamicEvents;
 
     public class FactoryForLocal
@@ -8,6 +10,7 @@
         {
             get
             {
+                Contract.Ensures(Contract.Result<IDynamicEventRotationService>() != null);
                 return new DynamicEventRotationService();
             }
         }
