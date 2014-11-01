@@ -10,6 +10,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Linq;
 
@@ -40,6 +41,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <param name="converterForMapBonus">The converter for <see cref="MapBonus"/>.</param>
         public ConverterForCompetitiveMap(IConverter<int[], Scoreboard> converterForScoreboard, IConverter<ObjectiveDataContract, Objective> converterForObjective, IConverter<MapBonusDataContract, MapBonus> converterForMapBonus)
         {
+            Contract.Requires(converterForScoreboard != null);
+            Contract.Requires(converterForObjective != null);
+            Contract.Requires(converterForMapBonus != null);
             this.converterForScoreboard = converterForScoreboard;
             this.converterForObjective = converterForObjective;
             this.converterForMapBonus = converterForMapBonus;
@@ -50,7 +54,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <returns>The converted value.</returns>
         public CompetitiveMap Convert(CompetitiveMapDataContract value)
         {
-            Contract.Requires(value != null);
+            Contract.Assume(value != null);
 
             // Create a new map object
             CompetitiveMap competitiveMap;
@@ -69,33 +73,46 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
                     competitiveMap = new EternalBattlegrounds();
                     break;
                 default:
+                    // TODO: add 'UnknownCompetitiveMap' class
                     throw new NotSupportedException(string.Format("Map type '{0}' is not supported.", value.Type));
             }
 
             // Set the scoreboard
-            if (value.Scores != null && value.Scores.Length == 3)
+            var scores = value.Scores;
+            if (scores != null && scores.Length == 3)
             {
-                competitiveMap.Scores = this.converterForScoreboard.Convert(value.Scores);
+                competitiveMap.Scores = this.converterForScoreboard.Convert(scores);
             }
 
             // Set the status of each objective
-            if (value.Objectives != null)
+            var objectiveDataContracts = value.Objectives;
+            if (objectiveDataContracts != null)
             {
-                var objectives = new List<Objective>(value.Objectives.Count);
-                objectives.AddRange(value.Objectives.Select(this.converterForObjective.Convert));
+                var objectives = new List<Objective>(objectiveDataContracts.Count);
+                objectives.AddRange(objectiveDataContracts.Select(this.converterForObjective.Convert));
                 competitiveMap.Objectives = objectives;
             }
 
             // Set the status of each map bonus
-            if (value.Bonuses != null)
+            var bonusDataContracts = value.Bonuses;
+            if (bonusDataContracts != null)
             {
-                var bonuses = new List<MapBonus>(value.Bonuses.Count);
-                bonuses.AddRange(value.Bonuses.Select(this.converterForMapBonus.Convert));
+                var bonuses = new List<MapBonus>(bonusDataContracts.Count);
+                bonuses.AddRange(bonusDataContracts.Select(this.converterForMapBonus.Convert).Where(mapBonus => mapBonus != null));
                 competitiveMap.Bonuses = bonuses;
             }
 
             // Return the map object
             return competitiveMap;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForMapBonus != null);
+            Contract.Invariant(this.converterForObjective != null);
+            Contract.Invariant(this.converterForScoreboard != null);
         }
     }
 }

@@ -21,8 +21,8 @@ namespace GW2NET.V1.Continents.Json.Converters
         /// <returns>The converted value.</returns>
         public Size2D Convert(double[] value)
         {
-            Contract.Requires(value != null);
-            Contract.Requires(value.Length == 2);
+            Contract.Assume(value != null);
+            Contract.Assume(value.Length == 2);
             return new Size2D(value[0], value[1]);
         }
     }

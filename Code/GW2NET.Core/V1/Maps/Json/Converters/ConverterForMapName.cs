@@ -21,11 +21,14 @@ namespace GW2NET.V1.Maps.Json.Converters
         /// <returns>The converted value.</returns>
         public MapName Convert(MapNameDataContract value)
         {
-            Contract.Requires(value != null);
-            Contract.Ensures(Contract.Result<MapName>() != null);
-            var mapName = new MapName();
-            mapName.MapId = int.Parse(value.Id);
-            mapName.Name = value.Name;
+            Contract.Assume(value != null);
+            var mapName = new MapName { Name = value.Name };
+            int id;
+            if (int.TryParse(value.Id, out id))
+            {
+                mapName.MapId = id;
+            }
+
             return mapName;
         }
     }

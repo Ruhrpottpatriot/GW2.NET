@@ -77,7 +77,13 @@ namespace GW2NET.V1.Maps
                 return null;
             }
 
-            var map = this.converterForMapCollection.Convert(response.Content).SingleOrDefault();
+            var values = this.converterForMapCollection.Convert(response.Content);
+            if (values == null)
+            {
+                return null;
+            }
+
+            var map = values.SingleOrDefault();
             if (map != null)
             {
                 map.Culture = request.Culture;
@@ -93,7 +99,7 @@ namespace GW2NET.V1.Maps
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
-                return null;
+                return new DictionaryRange<int, Map>(0);
             }
 
             var values = this.converterForMapCollection.Convert(response.Content);

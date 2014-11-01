@@ -9,6 +9,7 @@
 namespace GW2NET.V1.WorldVersusWorld.Objectives.Json.Converters
 {
     using System.Diagnostics;
+    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
@@ -21,13 +22,15 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives.Json.Converters
         /// <returns>The converted value.</returns>
         public ObjectiveName Convert(ObjectiveNameDataContract value)
         {
+            Contract.Assume(value != null);
+            var objectiveName = new ObjectiveName { Name = value.Name };
             int objectiveId;
-            if (!int.TryParse(value.Id, out objectiveId))
+            if (int.TryParse(value.Id, out objectiveId))
             {
-                Debug.WriteLine("Invalid value for objective ID: '{0}'", value.Id);
+                objectiveName.ObjectiveId = objectiveId;
             }
 
-            return new ObjectiveName { ObjectiveId = objectiveId, Name = value.Name };
+            return objectiveName;
         }
     }
 }

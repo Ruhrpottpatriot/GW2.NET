@@ -9,6 +9,8 @@
 namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
@@ -29,6 +31,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <param name="converterForTeamColor">The converter for <see cref="TeamColor"/>.</param>
         public ConverterForObjective(IConverter<string, TeamColor> converterForTeamColor)
         {
+            Contract.Requires(converterForTeamColor != null);
             this.converterForTeamColor = converterForTeamColor;
         }
 
@@ -37,26 +40,34 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <returns>The converted value.</returns>
         public Objective Convert(ObjectiveDataContract value)
         {
-            // Create a new objective object
-            var objective = new Objective();
+            Contract.Assume(value != null);
 
-            // Set the objective identifier
-            objective.ObjectiveId = value.Id;
+            // Create a new objective object
+            var objective = new Objective { ObjectiveId = value.Id };
 
             // Set the status
-            if (value.Owner != null)
+            var owner = value.Owner;
+            if (owner != null)
             {
-                objective.Owner = this.converterForTeamColor.Convert(value.Owner);
+                objective.Owner = this.converterForTeamColor.Convert(owner);
             }
 
             // Set the guild identifier of the guild that claimed the objective
-            if (value.OwnerGuild != null)
+            var ownerGuild = value.OwnerGuild;
+            if (ownerGuild != null)
             {
-                objective.OwnerGuildId = Guid.Parse(value.OwnerGuild);
+                objective.OwnerGuildId = Guid.Parse(ownerGuild);
             }
 
             // Return the objective object
             return objective;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForTeamColor != null);
         }
     }
 }

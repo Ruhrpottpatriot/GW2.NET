@@ -10,6 +10,8 @@ namespace GW2NET.V2.Common
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Diagnostics.Contracts;
     using System.Linq;
 
     using GW2NET.Common;
@@ -31,6 +33,8 @@ namespace GW2NET.V2.Common
         /// <param name="keySelector">The key selector expression.</param>
         internal ConverterForDictionaryRangeResponse(IConverter<TDataContract, TValue> converterForDataContract, Func<TValue, TKey> keySelector)
         {
+            Contract.Requires(converterForDataContract != null);
+            Contract.Requires(keySelector != null);
             this.converterForDataContract = converterForDataContract;
             this.keySelector = keySelector;
         }
@@ -38,6 +42,11 @@ namespace GW2NET.V2.Common
         /// <inheritdoc />
         IDictionaryRange<TKey, TValue> IConverter<IResponse<ICollection<TDataContract>>, IDictionaryRange<TKey, TValue>>.Convert(IResponse<ICollection<TDataContract>> value)
         {
+            if (value == null)
+            {
+                return new DictionaryRange<TKey, TValue>(0);
+            }
+
             var dataContracts = value.Content;
             if (dataContracts == null)
             {
@@ -57,6 +66,14 @@ namespace GW2NET.V2.Common
             }
 
             return range;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForDataContract != null);
+            Contract.Invariant(this.keySelector != null);
         }
     }
 }

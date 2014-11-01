@@ -6,12 +6,14 @@
 //   Provides the interface for classes that convert one type to another type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.Common
 {
+    using System.Diagnostics.Contracts;
+
     /// <summary>Provides the interface for classes that convert one type to another type.</summary>
     /// <typeparam name="TInput">The type of the input.</typeparam>
     /// <typeparam name="TOutput">The type of the output.</typeparam>
+    [ContractClass(typeof(ContractClassForIConverter<,>))]
     public interface IConverter<in TInput, out TOutput>
     {
         /// <summary>Converts the given object of type <typeparamref name="TInput"/> to an object of type <typeparamref name="TOutput"/>.</summary>

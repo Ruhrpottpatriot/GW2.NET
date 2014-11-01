@@ -21,8 +21,8 @@ namespace GW2NET.V1.Colors.Json.Converters
         /// <returns>The converted value.</returns>
         public Color Convert(int[] value)
         {
-            Contract.Requires(value != null);
-            Contract.Requires(value.Length == 3);
+            Contract.Assume(value != null);
+            Contract.Assume(value.Length == 3);
             return new Color(value[0], value[1], value[2]);
         }
     }

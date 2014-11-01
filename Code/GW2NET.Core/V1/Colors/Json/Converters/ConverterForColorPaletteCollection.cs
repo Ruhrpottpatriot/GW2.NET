@@ -10,6 +10,7 @@
 namespace GW2NET.V1.Colors.Json.Converters
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -31,6 +32,7 @@ namespace GW2NET.V1.Colors.Json.Converters
         /// <param name="converterForColorPalette">The converter for <see cref="ColorPalette"/>.</param>
         internal ConverterForColorPaletteCollection(IConverter<ColorDataContract, ColorPalette> converterForColorPalette)
         {
+            Contract.Requires(converterForColorPalette != null);
             this.converterForColorPalette = converterForColorPalette;
         }
 
@@ -39,16 +41,34 @@ namespace GW2NET.V1.Colors.Json.Converters
         /// <returns>The converted value.</returns>
         public ICollection<ColorPalette> Convert(ColorCollectionDataContract value)
         {
-            Contract.Requires(value != null && value.Colors != null);
+            Contract.Assume(value != null);
+            Contract.Assume(value.Colors != null);
             var colorPalettes = new List<ColorPalette>(value.Colors.Count);
             foreach (var dataContract in value.Colors)
             {
                 var colorPalette = this.converterForColorPalette.Convert(dataContract.Value);
-                colorPalette.ColorId = int.Parse(dataContract.Key);
+                if (colorPalette == null)
+                {
+                    continue;
+                }
+
+                int id;
+                if (int.TryParse(dataContract.Key, out id))
+                {
+                    colorPalette.ColorId = id;
+                }
+
                 colorPalettes.Add(colorPalette);
             }
 
             return colorPalettes;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForColorPalette != null);
         }
     }
 }

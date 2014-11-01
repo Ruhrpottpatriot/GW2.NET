@@ -13,11 +13,8 @@ namespace GW2NET.Common
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2NET.V2.Common;
-
     [ContractClassFor(typeof(IPaginator<>))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIPaginator<T> : IPaginator<T>
     {
         public ICollectionPage<T> FindPage(int pageIndex)

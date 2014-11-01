@@ -21,8 +21,8 @@ namespace GW2NET.V1.Maps.Json.Converters
         /// <returns>The converted value.</returns>
         public Vector2D Convert(double[] value)
         {
-            Contract.Requires(value != null);
-            Contract.Requires(value.Length == 2);
+            Contract.Assume(value != null);
+            Contract.Assume(value.Length == 2);
             return new Vector2D(value[0], value[1]);
         }
     }

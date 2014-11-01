@@ -117,7 +117,7 @@ namespace GW2NET.Entities.Colors
                 return name;
             }
 
-            return this.ColorId.ToString(NumberFormatInfo.InvariantInfo);
+            return this.ColorId.ToString(NumberFormatInfo.InvariantInfo) ?? base.ToString();
         }
     }
 }

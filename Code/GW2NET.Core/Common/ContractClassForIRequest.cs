@@ -17,7 +17,14 @@ namespace GW2NET.Common
         Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIRequest : IRequest
     {
-        public string Resource { get; private set; }
+        public string Resource
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<string>() != null);
+                throw new System.NotImplementedException();
+            }
+        }
 
         public IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
@@ -37,7 +44,7 @@ namespace GW2NET.Common
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic", Justification = "Required for code contracts.")]
         private void ObjectInvariant()
         {
-            Contract.Invariant(!string.IsNullOrEmpty(this.Resource));
+            Contract.Invariant(this.Resource != null);
         }
 
     }

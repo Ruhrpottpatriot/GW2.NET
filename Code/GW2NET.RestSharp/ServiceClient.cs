@@ -14,6 +14,7 @@ namespace GW2NET.RestSharp
     using System.IO;
     using System.Linq;
     using System.Net;
+    using System.Runtime.Remoting.Messaging;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -136,46 +137,49 @@ namespace GW2NET.RestSharp
             }
 
             // Handle the request
-            return this.restClient.ExecuteTaskAsync(restRequest, cancellationToken).ContinueWith(
-                task =>
+            var t = this.restClient.ExecuteTaskAsync(restRequest, cancellationToken);
+            Contract.Assume(t != null);
+            return t.ContinueWith(
+            task =>
+            {
+                if (task.IsFaulted && task.Exception != null)
+                {
+                    var exception = task.Exception.GetBaseException();
+                    if (exception is FormatException)
                     {
-                        if (task.IsFaulted && task.Exception != null)
-                        {
-                            var exception = task.Exception.GetBaseException();
-                            if (exception is FormatException)
+                        // Caught when the given parameters would result in an invalid URI
+                        // Wrap the FormatException in a ServiceException
+                        throw new ServiceException(
+                            "An error occurred while formatting the request URI. See the inner exception for details.",
+                            exception)
                             {
-                                // Caught when the given parameters would result in an invalid URI
-                                // Wrap the FormatException in a ServiceException
-                                throw new ServiceException(
-                                    "An error occurred while formatting the request URI. See the inner exception for details.", 
-                                    exception) {
-                                                  Request = request 
-                                               };
-                            }
+                                Request = request
+                            };
+                    }
 
-                            if (exception is WebException)
+                    if (exception is WebException)
+                    {
+                        throw new ServiceException("An error occurred while sending the request. See the inner exception for details.", exception)
                             {
-                                throw new ServiceException("An error occurred while sending the request. See the inner exception for details.", exception)
-                                    {
-                                        Request = request
-                                    };
-                            }
+                                Request = request
+                            };
+                    }
 
-                            var serviceException = exception as ServiceException;
-                            if (serviceException != null)
-                            {
-                                // Set the cause of this ServiceException
-                                serviceException.Request = request;
+                    var serviceException = exception as ServiceException;
+                    if (serviceException != null)
+                    {
+                        // Set the cause of this ServiceException
+                        serviceException.Request = request;
 
-                                // Rethrow
-                                throw serviceException;
-                            }
-                        }
+                        // Rethrow
+                        throw serviceException;
+                    }
+                }
 
-                        var restResponse = task.Result;
-                        return this.OnResponse<TResult>(restResponse);
-                    }, 
-                cancellationToken);
+                var restResponse = task.Result;
+                return this.OnResponse<TResult>(restResponse);
+            },
+            cancellationToken);
         }
 
         /// <summary>Infrastructure. Deserializes the response stream.</summary>
@@ -251,7 +255,7 @@ namespace GW2NET.RestSharp
             Contract.Requires(serializerFactory != null);
 
             string message;
-            if (response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
+            if (response.ContentType != null && response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
             {
                 // Get the response content
                 var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory);

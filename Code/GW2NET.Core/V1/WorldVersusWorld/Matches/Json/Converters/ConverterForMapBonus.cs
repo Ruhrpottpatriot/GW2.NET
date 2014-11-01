@@ -9,6 +9,7 @@
 namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -30,6 +31,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <param name="converterForTeamColor">The converter for <see cref="TeamColor"/>.</param>
         public ConverterForMapBonus(IConverter<string, TeamColor> converterForTeamColor)
         {
+            Contract.Requires(converterForTeamColor != null);
             this.converterForTeamColor = converterForTeamColor;
         }
 
@@ -38,7 +40,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <returns>The converted value.</returns>
         public MapBonus Convert(MapBonusDataContract value)
         {
-            Contract.Requires(value != null);
+            Contract.Assume(value != null);
+
             MapBonus mapBonus;
             if (string.Equals(value.Type, "bloodlust", StringComparison.OrdinalIgnoreCase))
             {
@@ -49,12 +52,20 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
                 mapBonus = new UnknownMapBonus();
             }
 
-            if (value.Owner != null)
+            var owner = value.Owner;
+            if (owner != null)
             {
-                mapBonus.Owner = this.converterForTeamColor.Convert(value.Owner);
+                mapBonus.Owner = this.converterForTeamColor.Convert(owner);
             }
 
             return mapBonus;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForTeamColor != null);
         }
     }
 }

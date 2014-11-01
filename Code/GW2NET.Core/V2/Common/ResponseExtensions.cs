@@ -25,7 +25,6 @@ namespace GW2NET.V2.Common
         {
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
-            Contract.Ensures(Contract.Result<int>() >= 0);
             string header;
             if (!instance.ExtensionData.TryGetValue("X-Page-Size", out header))
             {
@@ -50,7 +49,6 @@ namespace GW2NET.V2.Common
         {
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
-            Contract.Ensures(Contract.Result<int>() >= 0);
             string header;
             if (!instance.ExtensionData.TryGetValue("X-Page-Total", out header))
             {
@@ -75,7 +73,6 @@ namespace GW2NET.V2.Common
         {
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
-            Contract.Ensures(Contract.Result<int>() >= 0);
             string header;
             if (!instance.ExtensionData.TryGetValue("X-Result-Count", out header))
             {
@@ -100,7 +97,6 @@ namespace GW2NET.V2.Common
         {
             Contract.Requires(instance != null);
             Contract.Requires(instance.ExtensionData != null);
-            Contract.Ensures(Contract.Result<int>() >= 0);
             string header;
             if (!instance.ExtensionData.TryGetValue("X-Result-Total", out header))
             {

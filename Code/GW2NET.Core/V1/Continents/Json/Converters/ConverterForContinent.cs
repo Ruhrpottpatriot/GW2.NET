@@ -8,6 +8,9 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Continents.Json.Converters
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Diagnostics.Contracts;
+
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.Entities.Maps;
@@ -28,6 +31,7 @@ namespace GW2NET.V1.Continents.Json.Converters
         /// <param name="converterForSize2D">The converter for <see cref="Size2D"/>.</param>
         public ConverterForContinent(IConverter<double[], Size2D> converterForSize2D)
         {
+            Contract.Requires(converterForSize2D != null);
             this.converterForSize2D = converterForSize2D;
         }
 
@@ -36,17 +40,22 @@ namespace GW2NET.V1.Continents.Json.Converters
         /// <returns>The converted value.</returns>
         public Continent Convert(ContinentDataContract value)
         {
-            var continent = new Continent();
-            continent.Name = value.Name;
-            if (value.ContinentDimensions != null && value.ContinentDimensions.Length == 2)
+            Contract.Assume(value != null);
+            var continent = new Continent { Name = value.Name, MinimumZoom = value.MinimumZoom, MaximumZoom = value.MaximumZoom, FloorIds = value.Floors };
+            var dimensions = value.ContinentDimensions;
+            if (dimensions != null && dimensions.Length == 2)
             {
-                continent.ContinentDimensions = this.converterForSize2D.Convert(value.ContinentDimensions);
+                continent.ContinentDimensions = this.converterForSize2D.Convert(dimensions);
             }
 
-            continent.MinimumZoom = value.MinimumZoom;
-            continent.MaximumZoom = value.MaximumZoom;
-            continent.FloorIds = value.Floors;
             return continent;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForSize2D != null);
         }
     }
 }

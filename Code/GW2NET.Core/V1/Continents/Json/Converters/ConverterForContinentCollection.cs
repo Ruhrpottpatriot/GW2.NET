@@ -9,6 +9,7 @@
 namespace GW2NET.V1.Continents.Json.Converters
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -31,7 +32,6 @@ namespace GW2NET.V1.Continents.Json.Converters
         internal ConverterForContinentCollection(IConverter<ContinentDataContract, Continent> converterForContinent)
         {
             Contract.Requires(converterForContinent != null);
-            Contract.Ensures(this.converterForContinent != null);
             this.converterForContinent = converterForContinent;
         }
 
@@ -40,17 +40,34 @@ namespace GW2NET.V1.Continents.Json.Converters
         /// <returns>The converted value.</returns>
         public ICollection<Continent> Convert(ContinentCollectionDataContract value)
         {
-            Contract.Requires(value != null && value.Continents != null);
-            Contract.Ensures(Contract.Result<ICollection<Continent>>() != null);
+            Contract.Assume(value != null);
+            Contract.Assume(value.Continents != null);
             var continents = new List<Continent>(value.Continents.Count);
             foreach (var kvp in value.Continents)
             {
                 var continent = this.converterForContinent.Convert(kvp.Value);
-                continent.ContinentId = int.Parse(kvp.Key);
+                if (continent == null)
+                {
+                    continue;
+                }
+
+                int id;
+                if (int.TryParse(kvp.Key, out id))
+                {
+                    continent.ContinentId = id;
+                }
+
                 continents.Add(continent);
             }
 
             return continents;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForContinent != null);
         }
     }
 }

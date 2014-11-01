@@ -96,7 +96,7 @@ namespace GW2NET.ChatLinks
                 throw new ArgumentNullException("value", "Precondition failed: value != null");
             }
 
-            Contract.EndContractBlock();
+            Contract.Ensures(Contract.Result<string>() != null);
 
             // Convert the value to its binary representation
             var bytes = this.ConvertToBytes(value);

@@ -227,6 +227,7 @@
       <DependentUpon>TraitChatLink.cs</DependentUpon>
     </Compile>
     <Compile Include="Common\CollectionPage.cs" />
+    <Compile Include="Common\ContractClassForIConverter.cs" />
     <Compile Include="Common\ContractClassForIDiscoverable.cs" />
     <Compile Include="Common\ContractClassForIPageContext.cs" />
     <Compile Include="Common\ContractClassForIPaginator.cs" />
@@ -733,6 +734,7 @@
     <Compile Include="V2\Items\Json\InfixUpgradeDataContract.cs" />
     <Compile Include="V2\Items\Json\InfusionSlotDataContract.cs" />
     <Compile Include="V2\Items\Json\ItemDataContract.cs" />
+    <Compile Include="V2\Quaggans\Converters\ConverterForQuaggan.cs" />
     <Compile Include="V2\Quaggans\Json\QuagganDataContract.cs" />
     <Compile Include="V2\Quaggans\QuagganBulkRequest.cs" />
     <Compile Include="V2\Quaggans\QuagganDetailsRequest.cs" />

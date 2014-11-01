@@ -15,8 +15,7 @@ namespace GW2NET.Common
     using System.Threading.Tasks;
 
     [ContractClassFor(typeof(IDiscoverable<>))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIDiscoverable<T> : IDiscoverable<T>
     {
         public ICollection<T> Discover()

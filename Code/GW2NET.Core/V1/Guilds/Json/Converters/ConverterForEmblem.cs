@@ -9,6 +9,7 @@
 namespace GW2NET.V1.Guilds.Json.Converters
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -31,7 +32,6 @@ namespace GW2NET.V1.Guilds.Json.Converters
         internal ConverterForEmblem(IConverter<ICollection<string>, EmblemTransformations> converterForEmblemTransformations)
         {
             Contract.Requires(converterForEmblemTransformations != null);
-            Contract.Ensures(this.converterForEmblemTransformations != null);
             this.converterForEmblemTransformations = converterForEmblemTransformations;
         }
 
@@ -40,11 +40,26 @@ namespace GW2NET.V1.Guilds.Json.Converters
         /// <returns>The converted value.</returns>
         public Emblem Convert(EmblemDataContract value)
         {
-            return new Emblem { BackgroundId = value.BackgroundId, ForegroundId = value.ForegroundId, Flags = this.converterForEmblemTransformations.Convert(value.Flags), BackgroundColorId = value.BackgroundColorId, ForegroundPrimaryColorId = value.ForegroundPrimaryColorId, ForegroundSecondaryColorId = value.ForegroundSecondaryColorId };
+            Contract.Assume(value != null);
+            var emblem = new Emblem
+            {
+                BackgroundId = value.BackgroundId,
+                ForegroundId = value.ForegroundId, 
+                BackgroundColorId = value.BackgroundColorId,
+                ForegroundPrimaryColorId = value.ForegroundPrimaryColorId, 
+                ForegroundSecondaryColorId = value.ForegroundSecondaryColorId
+            };
+            var flags = value.Flags;
+            if (flags != null)
+            {
+                emblem.Flags = this.converterForEmblemTransformations.Convert(flags);
+            }
+
+            return emblem;
         }
 
-        /// <summary>The invariant method for this class.</summary>
         [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.converterForEmblemTransformations != null);

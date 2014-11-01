@@ -22,37 +22,21 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <returns>The converted value.</returns>
         public Matchup Convert(MatchupDataContract value)
         {
-            Contract.Requires(value != null);
-            Contract.Ensures(Contract.Result<Matchup>() != null);
+            Contract.Assume(value != null);
 
             // Create a new matchup object
-            var matchup = new Matchup();
+            var matchup = new Matchup { MatchId = value.MatchId, RedWorldId = value.RedWorldId, BlueWorldId = value.BlueWorldId, GreenWorldId = value.GreenWorldId };
 
-            // Set the match identifier
-            if (value.MatchId != null)
+            DateTimeOffset startTime;
+            if (DateTimeOffset.TryParse(value.StartTime, out startTime))
             {
-                matchup.MatchId = value.MatchId;
+                matchup.StartTime = startTime;
             }
 
-            // Set the red world identifier
-            matchup.RedWorldId = value.RedWorldId;
-
-            // Set the blue world identifier
-            matchup.BlueWorldId = value.BlueWorldId;
-
-            // Set the green world identifier
-            matchup.GreenWorldId = value.GreenWorldId;
-
-            // Set the start time
-            if (value.StartTime != null)
+            DateTimeOffset endTime;
+            if (DateTimeOffset.TryParse(value.EndTime, out endTime))
             {
-                matchup.StartTime = DateTimeOffset.Parse(value.StartTime);
-            }
-
-            // Set the end time
-            if (value.EndTime != null)
-            {
-                matchup.EndTime = DateTimeOffset.Parse(value.EndTime);
+                matchup.EndTime = endTime;
             }
 
             // Return the matchup object

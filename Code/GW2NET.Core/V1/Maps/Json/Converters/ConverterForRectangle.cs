@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Maps.Json.Converters
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -29,6 +30,7 @@ namespace GW2NET.V1.Maps.Json.Converters
         /// <param name="converterForVector2D">The converter for <see cref="Vector2D"/>.</param>
         internal ConverterForRectangle(IConverter<double[], Vector2D> converterForVector2D)
         {
+            Contract.Requires(converterForVector2D != null);
             this.converterForVector2D = converterForVector2D;
         }
 
@@ -37,15 +39,31 @@ namespace GW2NET.V1.Maps.Json.Converters
         /// <returns>The converted value.</returns>
         public Rectangle Convert(double[][] value)
         {
-            Contract.Requires(value != null);
-            Contract.Requires(value.Length == 2);
-            Contract.Requires(value[0] != null);
-            Contract.Requires(value[0].Length == 2);
-            Contract.Requires(value[1] != null);
-            Contract.Requires(value[1].Length == 2);
-            var nw = this.converterForVector2D.Convert(value[0]);
-            var se = this.converterForVector2D.Convert(value[1]);
+            Contract.Assume(value != null);
+            Contract.Assume(value.Length == 2);
+
+            var nw = default(Vector2D);
+            var values1 = value[0];
+            if (values1 != null && values1.Length == 2)
+            {
+                nw = this.converterForVector2D.Convert(values1);
+            }
+
+            var se = default(Vector2D);
+            var values2 = value[1];
+            if (values2 != null && values2.Length == 2)
+            {
+                se = this.converterForVector2D.Convert(values2);
+            }
+
             return new Rectangle(nw, se);
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForVector2D != null);
         }
     }
 }

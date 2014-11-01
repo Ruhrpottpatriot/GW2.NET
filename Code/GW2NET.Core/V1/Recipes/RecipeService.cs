@@ -192,19 +192,17 @@ namespace GW2NET.V1.Recipes
             var value = new ItemStack();
 
             // Set the item identifier
-            if (content.ItemId != null)
+            int itemId;
+            if (int.TryParse(content.ItemId, out itemId))
             {
-                value.ItemId = int.Parse(content.ItemId);
+                value.ItemId = itemId;
             }
 
             // Set the size of the stack
-            if (content.Count != null)
+            int count;
+            if (int.TryParse(content.Count, out count) && (count >= 1 && count <= 255))
             {
-                var count = int.Parse(content.Count);
-                if (count >= 1 && count <= 255)
-                {
-                    value.Count = count;
-                }
+                value.Count = count;
             }
 
             // Return the item stack object

@@ -154,9 +154,10 @@ namespace GW2NET.V1.Worlds
             var value = new World();
 
             // Set the world identifier
-            if (content.Id != null)
+            int id;
+            if (int.TryParse(content.Id, out id))
             {
-                value.WorldId = int.Parse(content.Id);
+                value.WorldId = id;
             }
 
             // Set the name of the world

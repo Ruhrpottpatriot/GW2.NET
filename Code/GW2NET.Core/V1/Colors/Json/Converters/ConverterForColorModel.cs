@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Colors.Json.Converters
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -30,7 +31,6 @@ namespace GW2NET.V1.Colors.Json.Converters
         internal ConverterForColorModel(IConverter<int[], Color> converterForColor)
         {
             Contract.Requires(converterForColor != null);
-            Contract.Ensures(this.converterForColor != null);
             this.converterForColor = converterForColor;
         }
 
@@ -39,19 +39,22 @@ namespace GW2NET.V1.Colors.Json.Converters
         /// <returns>The converted value.</returns>
         public ColorModel Convert(ColorModelDataContract value)
         {
-            Contract.Requires(value != null);
-            var colorModel = new ColorModel();
-            colorModel.Brightness = value.Brightness;
-            colorModel.Contrast = value.Contrast;
-            colorModel.Hue = value.Hue;
-            colorModel.Saturation = value.Saturation;
-            colorModel.Lightness = value.Lightness;
-            if (value.Rgb != null && value.Rgb.Length == 3)
+            Contract.Assume(value != null);
+            var colorModel = new ColorModel { Brightness = value.Brightness, Contrast = value.Contrast, Hue = value.Hue, Saturation = value.Saturation, Lightness = value.Lightness };
+            var rgb = value.Rgb;
+            if (rgb != null && rgb.Length == 3)
             {
-                colorModel.Rgb = this.converterForColor.Convert(value.Rgb);
+                colorModel.Rgb = this.converterForColor.Convert(rgb);
             }
 
             return colorModel;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForColor != null);
         }
     }
 }

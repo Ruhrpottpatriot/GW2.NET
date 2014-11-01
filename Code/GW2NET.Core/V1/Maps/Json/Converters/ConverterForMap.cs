@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Maps.Json.Converters
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -30,6 +31,7 @@ namespace GW2NET.V1.Maps.Json.Converters
         /// <param name="converterForRectangle">The converter for <see cref="Rectangle"/>.</param>
         public ConverterForMap(IConverter<double[][], Rectangle> converterForRectangle)
         {
+            Contract.Requires(converterForRectangle != null);
             this.converterForRectangle = converterForRectangle;
         }
 
@@ -38,50 +40,10 @@ namespace GW2NET.V1.Maps.Json.Converters
         /// <returns>The converted value.</returns>
         public Map Convert(MapDataContract value)
         {
-            Contract.Requires(value != null);
-            Contract.Ensures(Contract.Result<Map>() != null);
+            Contract.Assume(value != null);
 
             // Create a new map object
-            var map = new Map();
-
-            // Set the name of the map
-            if (value.MapName != null)
-            {
-                map.MapName = value.MapName;
-            }
-
-            // Set the minimum level
-            map.MinimumLevel = value.MinimumLevel;
-
-            // Set the maximum level
-            map.MaximumLevel = value.MaximumLevel;
-
-            // Set the default floor
-            map.DefaultFloor = value.DefaultFloor;
-
-            // Set the available floors
-            if (value.Floors != null)
-            {
-                map.Floors = value.Floors;
-            }
-
-            // Set the region identifier
-            map.RegionId = value.RegionId;
-
-            // Set the name of the region
-            if (value.RegionName != null)
-            {
-                map.RegionName = value.RegionName;
-            }
-
-            // Set the continent identifier
-            map.ContinentId = value.ContinentId;
-
-            // Set the name of the continent
-            if (value.ContinentName != null)
-            {
-                map.ContinentName = value.ContinentName;
-            }
+            var map = new Map { MapName = value.MapName, MinimumLevel = value.MinimumLevel, MaximumLevel = value.MaximumLevel, DefaultFloor = value.DefaultFloor, Floors = value.Floors, RegionId = value.RegionId, RegionName = value.RegionName, ContinentId = value.ContinentId, ContinentName = value.ContinentName };
 
             // Set the dimensions of the map
             var mapRectangle = value.MapRectangle;
@@ -115,6 +77,13 @@ namespace GW2NET.V1.Maps.Json.Converters
 
             // Return the map object
             return map;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForRectangle != null);
         }
     }
 }

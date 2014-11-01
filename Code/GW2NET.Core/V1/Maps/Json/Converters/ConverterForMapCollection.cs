@@ -9,6 +9,7 @@
 namespace GW2NET.V1.Maps.Json.Converters
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -30,6 +31,7 @@ namespace GW2NET.V1.Maps.Json.Converters
         /// <param name="converterForMap">The converter for <see cref="Map"/>.</param>
         public ConverterForMapCollection(IConverter<MapDataContract, Map> converterForMap)
         {
+            Contract.Requires(converterForMap != null);
             this.converterForMap = converterForMap;
         }
 
@@ -38,18 +40,39 @@ namespace GW2NET.V1.Maps.Json.Converters
         /// <returns>The converted value.</returns>
         public ICollection<Map> Convert(MapCollectionDataContract value)
         {
-            Contract.Requires(value != null);
-            Contract.Requires(value.Maps != null);
-            Contract.Ensures(Contract.Result<ICollection<Map>>() != null);
-            var maps = new List<Map>(value.Maps.Count);
-            foreach (var kvp in value.Maps)
+            Contract.Assume(value != null);
+            var dataContracts = value.Maps;
+            if (dataContracts == null)
+            {
+                return new List<Map>(0);
+            }
+
+            var maps = new List<Map>(dataContracts.Count);
+            foreach (var kvp in dataContracts)
             {
                 var map = this.converterForMap.Convert(kvp.Value);
-                map.MapId = int.Parse(kvp.Key);
+                if (map == null)
+                {
+                    continue;
+                }
+
+                int id;
+                if (int.TryParse(kvp.Key, out id))
+                {
+                    map.MapId = id;
+                }
+
                 maps.Add(map);
             }
 
             return maps;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForMap != null);
         }
     }
 }

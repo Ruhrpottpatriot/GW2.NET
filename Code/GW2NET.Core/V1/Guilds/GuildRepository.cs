@@ -33,6 +33,7 @@ namespace GW2NET.V1.Guilds
         public GuildRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForGuild())
         {
+            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="GuildRepository"/> class.</summary>

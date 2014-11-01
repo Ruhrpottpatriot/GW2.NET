@@ -9,6 +9,7 @@
 namespace GW2NET.Common
 {
     using System;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.IO;
@@ -46,11 +47,9 @@ namespace GW2NET.Common
             IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(baseUri != null);
-            Contract.Requires(baseUri.IsAbsoluteUri);
             Contract.Requires(successSerializerFactory != null);
             Contract.Requires(errorSerializerFactory != null);
             Contract.Requires(gzipInflator != null);
-            Contract.Ensures(this.baseUri.IsAbsoluteUri);
             this.baseUri = baseUri;
             this.successSerializerFactory = successSerializerFactory;
             this.errorSerializerFactory = errorSerializerFactory;
@@ -64,8 +63,6 @@ namespace GW2NET.Common
         /// <returns>An instance of the specified type.</returns>
         public IResponse<TResult> Send<TResult>(IRequest request)
         {
-            Contract.Requires(request != null);
-
             // Translate the request to form data
             var formData = new UrlEncodedForm();
             foreach (var parameter in request.GetParameters())
@@ -96,6 +93,7 @@ namespace GW2NET.Common
                 var httpWebRequest = CreateHttpWebRequest(uri);
                 using (var response = GetHttpWebResponse(httpWebRequest))
                 {
+                    Contract.Assume(response != null);
                     return this.OnResponse<TResult>(response);
                 }
             }
@@ -223,6 +221,7 @@ namespace GW2NET.Common
         {
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
+            Contract.Requires(gzipInflator != null);
 
             // Get the response content
             var stream = response.GetResponseStream();
@@ -242,7 +241,11 @@ namespace GW2NET.Common
                 var compressed = contentEncoding.Equals("gzip", StringComparison.OrdinalIgnoreCase);
                 if (compressed)
                 {
-                    stream = gzipInflator.Convert(stream);
+                    var uncompressed = gzipInflator.Convert(stream);
+                    if (uncompressed != null)
+                    {
+                        stream = uncompressed;
+                    }
                 }
             }
 
@@ -262,7 +265,6 @@ namespace GW2NET.Common
         private static HttpWebResponse GetHttpWebResponse(HttpWebRequest webRequest)
         {
             Contract.Requires(webRequest != null);
-            Contract.Ensures(Contract.Result<HttpWebResponse>() != null);
 
             try
             {
@@ -282,6 +284,7 @@ namespace GW2NET.Common
         private static Task<HttpWebResponse> GetHttpWebResponseAsync(HttpWebRequest webRequest, CancellationToken cancellationToken)
         {
             Contract.Requires(webRequest != null);
+            Contract.Ensures(Contract.Result<Task<HttpWebResponse>>() != null);
             cancellationToken.Register(webRequest.Abort);
             var tcs = new TaskCompletionSource<HttpWebResponse>();
             try
@@ -323,7 +326,9 @@ namespace GW2NET.Common
                 }
             }
 
-            return tcs.Task;
+            var task = tcs.Task;
+            Contract.Assume(task != null);
+            return task;
         }
 
         /// <summary>Infrastructure. Throws an exception for error responses.</summary>
@@ -339,8 +344,11 @@ namespace GW2NET.Common
 
             string message;
 
+
+            var contentType = response.ContentType;
+
             // Get the most specific error description that is available
-            if (response.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
+            if (contentType != null && contentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
             {
                 // Get the response content
                 var errorResult = DeserializeResponse<ErrorResult>(response, serializerFactory, gzipInflator);
@@ -367,6 +375,7 @@ namespace GW2NET.Common
         {
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
+            Contract.Requires(gzipInflator != null);
             Contract.Ensures(Contract.Result<IResponse<T>>() != null);
             Contract.Ensures(Contract.Result<IResponse<T>>().ExtensionData != null);
 
@@ -376,24 +385,37 @@ namespace GW2NET.Common
             // Set the deserialized response content
             value.Content = DeserializeResponse<T>(response, serializerFactory, gzipInflator);
 
+            var headers = response.Headers;
+            Contract.Assume(headers != null);
+
             // Set the 'Date' header
-            var date = response.Headers["Date"];
+            var date = headers["Date"];
             if (date != null)
             {
                 value.Date = DateTimeOffset.Parse(date);
             }
 
             // Set the 'Content-Language' header
-            var contentLanguage = response.Headers["Content-Language"];
+            var contentLanguage = headers["Content-Language"];
             if (contentLanguage != null)
             {
                 value.Culture = new CultureInfo(contentLanguage);
             }
 
             // Set the 'X'-tension headers
-            foreach (var key in response.Headers.AllKeys.Where(key => key.StartsWith("X-", StringComparison.Ordinal)))
+            var headerKeys = headers.AllKeys;
+            Contract.Assume(headerKeys != null);
+            foreach (var key in headerKeys)
             {
-                value.ExtensionData[key] = response.Headers[key];
+                if (key == null)
+                {
+                    continue;
+                }
+
+                if (key.StartsWith("X-", StringComparison.Ordinal))
+                {
+                    value.ExtensionData[key] = headers[key];
+                }
             }
 
             // Return the response object
@@ -405,6 +427,7 @@ namespace GW2NET.Common
         private void ObjectInvariant()
         {
             Contract.Invariant(this.baseUri != null);
+            Contract.Invariant(this.gzipInflator != null);
             Contract.Invariant(this.successSerializerFactory != null);
             Contract.Invariant(this.errorSerializerFactory != null);
         }
@@ -416,6 +439,8 @@ namespace GW2NET.Common
         /// <exception cref="ServiceException">The request could not be fulfilled.</exception>
         private IResponse<TResult> OnResponse<TResult>(HttpWebResponse response)
         {
+            Contract.Requires(response != null);
+            Contract.Ensures(Contract.Result<IResponse<TResult>>() != null);
             try
             {
                 if (!response.StatusCode.IsSuccessStatusCode())

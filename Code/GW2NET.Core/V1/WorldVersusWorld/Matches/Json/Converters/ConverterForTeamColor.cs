@@ -9,7 +9,6 @@
 namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
 {
     using System;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
@@ -22,7 +21,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <returns>The converted value.</returns>
         public TeamColor Convert(string value)
         {
-            Contract.Requires(value != null);
             TeamColor teamColor;
             if (!Enum.TryParse(value, true, out teamColor))
             {

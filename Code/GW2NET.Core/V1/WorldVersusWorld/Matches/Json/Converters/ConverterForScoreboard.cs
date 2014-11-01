@@ -21,8 +21,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <returns>The converted value.</returns>
         public Scoreboard Convert(int[] value)
         {
-            Contract.Requires(value != null);
-            Contract.Requires(value.Length == 3);
+            Contract.Assume(value != null);
+            Contract.Assume(value.Length == 3);
             return new Scoreboard { Red = value[0], Blue = value[1], Green = value[2] };
         }
     }

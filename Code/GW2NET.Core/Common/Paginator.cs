@@ -9,6 +9,7 @@
 namespace GW2NET.Common
 {
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -21,6 +22,8 @@ namespace GW2NET.Common
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<ICollectionPage<T>> FindAllPages<T>(this IPaginator<T> instance)
         {
+            Contract.Requires(instance != null);
+            Contract.Ensures(Contract.Result<IEnumerable<ICollectionPage<T>>>() != null);
             ICollectionPage<T> page;
             for (int pageIndex = 0, pageCount = int.MaxValue; pageIndex < pageCount; pageIndex++, pageCount = page.PageCount)
             {
@@ -41,6 +44,8 @@ namespace GW2NET.Common
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<ICollectionPage<T>> FindAllPages<T>(this IPaginator<T> instance, int pageSize)
         {
+            Contract.Requires(instance != null);
+            Contract.Ensures(Contract.Result<IEnumerable<ICollectionPage<T>>>() != null);
             ICollectionPage<T> page;
             for (int pageIndex = 0, pageCount = int.MaxValue; pageIndex < pageCount; pageIndex++, pageCount = page.PageCount)
             {
@@ -61,6 +66,8 @@ namespace GW2NET.Common
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageCount)
         {
+            Contract.Requires(instance != null);
+            Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);
             return FindAllPagesAsync(instance, pageCount, CancellationToken.None);
         }
 
@@ -75,6 +82,8 @@ namespace GW2NET.Common
             int pageCount, 
             CancellationToken cancellationToken)
         {
+            Contract.Requires(instance != null);
+            Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
                 yield return instance.FindPageAsync(pageIndex, cancellationToken);
@@ -89,6 +98,8 @@ namespace GW2NET.Common
         /// <returns>A collection of pages.</returns>
         public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageSize, int pageCount)
         {
+            Contract.Requires(instance != null);
+            Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);
             return FindAllPagesAsync(instance, pageSize, pageCount, CancellationToken.None);
         }
 
@@ -105,6 +116,8 @@ namespace GW2NET.Common
             int pageCount, 
             CancellationToken cancellationToken)
         {
+            Contract.Requires(instance != null);
+            Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
                 yield return instance.FindPageAsync(pageIndex, pageSize, cancellationToken);

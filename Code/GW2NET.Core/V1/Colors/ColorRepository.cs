@@ -35,6 +35,7 @@ namespace GW2NET.V1.Colors
         public ColorRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForColorPaletteCollection())
         {
+            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="ColorRepository"/> class.</summary>

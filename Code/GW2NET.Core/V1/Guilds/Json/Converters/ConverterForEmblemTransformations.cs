@@ -9,6 +9,7 @@
 namespace GW2NET.V1.Guilds.Json.Converters
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -31,7 +32,6 @@ namespace GW2NET.V1.Guilds.Json.Converters
         internal ConverterForEmblemTransformations(IConverter<string, EmblemTransformations> converterForEmblemTransformation)
         {
             Contract.Requires(converterForEmblemTransformation != null);
-            Contract.Ensures(this.converterForEmblemTransformation != null);
             this.converterForEmblemTransformation = converterForEmblemTransformation;
         }
 
@@ -40,6 +40,7 @@ namespace GW2NET.V1.Guilds.Json.Converters
         /// <returns>The converted value.</returns>
         public EmblemTransformations Convert(ICollection<string> value)
         {
+            Contract.Assume(value != null);
             var result = default(EmblemTransformations);
             foreach (var s in value)
             {
@@ -49,8 +50,8 @@ namespace GW2NET.V1.Guilds.Json.Converters
             return result;
         }
 
-        /// <summary>The invariant method for this class.</summary>
         [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.converterForEmblemTransformation != null);

@@ -9,6 +9,7 @@
 namespace GW2NET.V1.Guilds.Json.Converters
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -40,11 +41,30 @@ namespace GW2NET.V1.Guilds.Json.Converters
         /// <returns>The converted value.</returns>
         public Guild Convert(GuildDataContract value)
         {
-            return new Guild { GuildId = Guid.Parse(value.GuildId), Name = value.Name, Tag = value.Tag, Emblem = this.converterForEmblem.Convert(value.Emblem) };
+            Contract.Assume(value != null);
+            var guild = new Guild
+            {
+                Name = value.Name,
+                Tag = value.Tag,
+            };
+
+            Guid id;
+            if (Guid.TryParse(value.GuildId, out id))
+            {
+                guild.GuildId = id;
+            }
+
+            var emblem = value.Emblem;
+            if (emblem != null)
+            {
+                guild.Emblem = this.converterForEmblem.Convert(emblem);
+            }
+
+            return guild;
         }
 
-        /// <summary>The invariant method for this class.</summary>
         [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.converterForEmblem != null);

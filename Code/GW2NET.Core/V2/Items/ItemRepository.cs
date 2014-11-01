@@ -1164,10 +1164,9 @@ namespace GW2NET.V2.Items
                 var segments = icon.LocalPath.Split('.')[0].Split('/');
 
                 // Set the icon file signature
-                var signature = segments[2];
-                if (signature != null)
+                if (segments.Length >= 3 && segments[2] != null)
                 {
-                    value.IconFileSignature = signature;
+                    value.IconFileSignature = segments[2];
                 }
                 else
                 {
@@ -1175,15 +1174,14 @@ namespace GW2NET.V2.Items
                 }
 
                 // Set the icon file identifier
-                var identifier = segments[3];
                 int iconFileId;
-                if (int.TryParse(identifier, out iconFileId))
+                if (segments.Length >= 4 && int.TryParse(segments[3], out iconFileId))
                 {
                     value.IconFileId = iconFileId;
                 }
                 else
                 {
-                    Debug.WriteLine("Unknown 'FileId' for item with ID {0}: {1}", content.Id, identifier);
+                    Debug.WriteLine("Unknown 'FileId' for item with ID {0}", content.Id);
                 }
             }
             else

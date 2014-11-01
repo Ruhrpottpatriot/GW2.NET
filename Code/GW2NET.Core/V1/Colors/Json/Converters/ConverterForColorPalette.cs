@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Colors.Json.Converters
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -35,8 +36,6 @@ namespace GW2NET.V1.Colors.Json.Converters
         {
             Contract.Requires(converterForColor != null);
             Contract.Requires(converterForColorModel != null);
-            Contract.Ensures(this.converterForColor != null);
-            Contract.Ensures(this.converterForColorModel != null);
             this.converterForColor = converterForColor;
             this.converterForColorModel = converterForColorModel;
         }
@@ -46,23 +45,16 @@ namespace GW2NET.V1.Colors.Json.Converters
         /// <returns>The converted value.</returns>
         public ColorPalette Convert(ColorDataContract value)
         {
-            Contract.Requires(value != null);
-            Contract.Ensures(Contract.Result<ColorPalette>() != null);
+            Contract.Assume(value != null);
 
             // Create a new color object
-            var colorPalette = new ColorPalette();
-
-            // Set the name of the color
-            if (value.Name != null)
-            {
-                colorPalette.Name = value.Name;
-            }
+            var colorPalette = new ColorPalette { Name = value.Name };
 
             // Set the base RGB values
-            var baseRgb = value.BaseRgb;
-            if (baseRgb != null && baseRgb.Length == 3)
+            var rgb = value.BaseRgb;
+            if (rgb != null && rgb.Length == 3)
             {
-                colorPalette.BaseRgb = this.converterForColor.Convert(baseRgb);
+                colorPalette.BaseRgb = this.converterForColor.Convert(rgb);
             }
 
             // Set the color model for cloth
@@ -88,6 +80,14 @@ namespace GW2NET.V1.Colors.Json.Converters
 
             // Return the color object
             return colorPalette;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForColor != null);
+            Contract.Invariant(this.converterForColorModel != null);
         }
     }
 }

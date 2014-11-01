@@ -957,7 +957,7 @@ namespace GW2NET.V1.Items
 
             // Set the icon file URL
             const string IconUrlTemplate = @"https://render.guildwars2.com/file/{0}/{1}.{2}";
-            var icon = value as IRenderable;
+            var icon = (IRenderable)value;
             var iconUrl = string.Format(IconUrlTemplate, icon.FileSignature, iconFileId, "png");
             value.IconFileUrl = new Uri(iconUrl, UriKind.Absolute);
 

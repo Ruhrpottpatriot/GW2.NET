@@ -9,6 +9,7 @@
 namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Linq;
 
@@ -25,7 +26,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         private readonly IConverter<CompetitiveMapDataContract, CompetitiveMap> converterForCompetitiveMap;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForMatch"/> class.</summary>
-        public ConverterForMatch()
+        internal ConverterForMatch()
             : this(new ConverterForScoreboard(), new ConverterForCompetitiveMap())
         {
         }
@@ -33,8 +34,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <summary>Initializes a new instance of the <see cref="ConverterForMatch"/> class.</summary>
         /// <param name="converterForScoreboard">The scoreboard converter.</param>
         /// <param name="converterForCompetitiveMap">The competitive map data contract converter.</param>
-        public ConverterForMatch(IConverter<int[], Scoreboard> converterForScoreboard, IConverter<CompetitiveMapDataContract, CompetitiveMap> converterForCompetitiveMap)
+        internal ConverterForMatch(IConverter<int[], Scoreboard> converterForScoreboard, IConverter<CompetitiveMapDataContract, CompetitiveMap> converterForCompetitiveMap)
         {
+            Contract.Requires(converterForScoreboard != null);
+            Contract.Requires(converterForCompetitiveMap != null);
             this.converterForScoreboard = converterForScoreboard;
             this.converterForCompetitiveMap = converterForCompetitiveMap;
         }
@@ -44,33 +47,39 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         /// <returns>The converted value.</returns>
         public Match Convert(MatchDataContract value)
         {
-            Contract.Requires(value != null);
+            Contract.Assume(value != null);
 
             // Create a new match object
-            var match = new Match();
+            var match = new Match { MatchId = value.MatchId };
 
             // Set the match identfieier
-            if (value.MatchId != null)
-            {
-                match.MatchId = value.MatchId;
-            }
 
             // Set the scoreboard
-            if (value.Scores != null && value.Scores.Length == 3)
+            var scores = value.Scores;
+            if (scores != null && scores.Length == 3)
             {
-                match.Scores = this.converterForScoreboard.Convert(value.Scores);
+                match.Scores = this.converterForScoreboard.Convert(scores);
             }
 
             //// Set a collection of maps and their status
-            if (value.Maps != null)
+            var mapDataContracts = value.Maps;
+            if (mapDataContracts != null)
             {
-                var values = new List<CompetitiveMap>(value.Maps.Count);
-                values.AddRange(value.Maps.Select(this.converterForCompetitiveMap.Convert));
+                var values = new List<CompetitiveMap>(mapDataContracts.Count);
+                values.AddRange(mapDataContracts.Select(this.converterForCompetitiveMap.Convert).Where(o => o != null));
                 match.Maps = values;
             }
 
             // Return the match object
             return match;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForScoreboard != null);
+            Contract.Invariant(this.converterForCompetitiveMap != null);
         }
     }
 }

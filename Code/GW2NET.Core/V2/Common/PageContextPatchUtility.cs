@@ -10,6 +10,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Common
 {
+    using System.Diagnostics.Contracts;
+
     using GW2NET.Common;
 
     /// <summary>
@@ -25,6 +27,7 @@ namespace GW2NET.V2.Common
         /// <typeparam name="T">The type of values in the collection.</typeparam>
         internal static void Patch<T>(ICollectionPage<T> collection, int pageIndex)
         {
+            Contract.Requires(collection != null);
             collection.PageIndex = pageIndex;
             if (collection.PageCount > 0)
             {

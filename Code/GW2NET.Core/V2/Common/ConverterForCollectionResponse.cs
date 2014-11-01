@@ -9,6 +9,8 @@
 namespace GW2NET.V2.Common
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Diagnostics.Contracts;
     using System.Linq;
 
     using GW2NET.Common;
@@ -25,16 +27,22 @@ namespace GW2NET.V2.Common
         /// <param name="converterForDataContract">The converter for <typeparamref name="TDataContract"/>.</param>
         internal ConverterForCollectionResponse(IConverter<TDataContract, TValue> converterForDataContract)
         {
+            Contract.Requires(converterForDataContract != null);
             this.converterForDataContract = converterForDataContract;
         }
 
         /// <inheritdoc />
         ICollection<TValue> IConverter<IResponse<ICollection<TDataContract>>, ICollection<TValue>>.Convert(IResponse<ICollection<TDataContract>> value)
         {
+            if (value == null)
+            {
+                return null;
+            }
+
             var dataContracts = value.Content;
             if (dataContracts == null)
             {
-                return new List<TValue>(0);
+                return null;
             }
 
             var collection = new List<TValue>(dataContracts.Count);
@@ -47,6 +55,13 @@ namespace GW2NET.V2.Common
             }
 
             return collection;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForDataContract != null);
         }
     }
 }

@@ -10,6 +10,7 @@ namespace GW2NET.V2.Worlds
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
@@ -26,8 +27,6 @@ namespace GW2NET.V2.Worlds
     /// <summary>Represents a repository that retrieves data from the /v2/worlds interface.</summary>
     public class WorldRepository : IRepository<int, World>, ILocalizable
     {
-        #region Fields
-
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<WorldDataContract>>, IDictionaryRange<int, World>> converterForBulkResponse;
 
@@ -43,15 +42,12 @@ namespace GW2NET.V2.Worlds
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        #endregion
-
-        #region Constructors and Destructors
-
         /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public WorldRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForWorld())
         {
+            Contract.Requires(serviceClient != null);
         }
 
         /// <summary>Initializes a new instance of the <see cref="WorldRepository"/> class.</summary>
@@ -79,23 +75,16 @@ namespace GW2NET.V2.Worlds
             this.converterForPageResponse = new ConverterForCollectionPageResponse<WorldDataContract, World>(converterForWorld);
         }
 
-        #endregion
-
-        #region Public Properties
-
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
-
-        #endregion
-
-        #region Explicit Interface Methods
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
         {
             var request = new WorldDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            return this.converterForIdentifiersResponse.Convert(response);
+            var values = this.converterForIdentifiersResponse.Convert(response);
+            return values ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -108,9 +97,8 @@ namespace GW2NET.V2.Worlds
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new WorldDiscoveryRequest();
-            return
-                this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken)
-                    .ContinueWith(task => this.converterForIdentifiersResponse.Convert(task.Result), cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
+            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -126,19 +114,17 @@ namespace GW2NET.V2.Worlds
         {
             var request = new WorldBulkRequest { Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response);
+            var values = this.converterForBulkResponse.Convert(response);
+            return values ?? new DictionaryRange<int, World>(0);
         }
 
         /// <inheritdoc />
         IDictionaryRange<int, World> IRepository<int, World>.FindAll(ICollection<int> identifiers)
         {
-            var request = new WorldBulkRequest
-                          {
-                              Culture = this.Culture, 
-                              Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
-                          };
+            var request = new WorldBulkRequest { Culture = this.Culture, Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            return this.converterForBulkResponse.Convert(response);
+            var values = this.converterForBulkResponse.Convert(response);
+            return values ?? new DictionaryRange<int, World>(0);
         }
 
         /// <inheritdoc />
@@ -151,9 +137,8 @@ namespace GW2NET.V2.Worlds
         Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new WorldBulkRequest { Culture = this.Culture };
-            return
-                this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken)
-                    .ContinueWith<IDictionaryRange<int, World>>(task => this.converterForBulkResponse.Convert(task.Result), cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith<IDictionaryRange<int, World>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -165,14 +150,9 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
-            var request = new WorldBulkRequest
-                          {
-                              Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
-                              Culture = this.Culture
-                          };
-            return
-                this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken)
-                    .ContinueWith<IDictionaryRange<int, World>>(task => this.converterForBulkResponse.Convert(task.Result), cancellationToken);
+            var request = new WorldBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), Culture = this.Culture };
+            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith<IDictionaryRange<int, World>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -185,9 +165,8 @@ namespace GW2NET.V2.Worlds
         Task<World> IRepository<int, World>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new WorldDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
-            return
-                this.serviceClient.SendAsync<WorldDataContract>(request, cancellationToken)
-                    .ContinueWith(task => this.converterForResponse.Convert(task.Result), cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<WorldDataContract>(request, cancellationToken);
+            return responseTask.ContinueWith<World>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -195,11 +174,15 @@ namespace GW2NET.V2.Worlds
         {
             var request = new WorldPageRequest { Page = pageIndex, Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var worlds = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<World>(0);
+            }
 
-            PageContextPatchUtility.Patch(worlds, pageIndex);
+            PageContextPatchUtility.Patch(values, pageIndex);
 
-            return worlds;
+            return values;
         }
 
         /// <inheritdoc />
@@ -207,11 +190,15 @@ namespace GW2NET.V2.Worlds
         {
             var request = new WorldPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
-            var worlds = this.converterForPageResponse.Convert(response);
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<World>(0);
+            }
 
-            PageContextPatchUtility.Patch(worlds, pageIndex);
+            PageContextPatchUtility.Patch(values, pageIndex);
 
-            return worlds;
+            return values;
         }
 
         /// <inheritdoc />
@@ -224,17 +211,8 @@ namespace GW2NET.V2.Worlds
         Task<ICollectionPage<World>> IPaginator<World>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new WorldPageRequest { Page = pageIndex, Culture = this.Culture };
-            return this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<World>>(
-                task =>
-                {
-                    var response = task.Result;
-                    var worlds = this.converterForPageResponse.Convert(response);
-
-                    PageContextPatchUtility.Patch(worlds, pageIndex);
-
-                    return worlds;
-                }, 
-                cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
         /// <inheritdoc />
@@ -247,20 +225,66 @@ namespace GW2NET.V2.Worlds
         Task<ICollectionPage<World>> IPaginator<World>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new WorldPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
-
-            return this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<World>>(
-                task =>
-                {
-                    var response = task.Result;
-                    var worlds = this.converterForPageResponse.Convert(response);
-
-                    PageContextPatchUtility.Patch(worlds, pageIndex);
-
-                    return worlds;
-                }, 
-                cancellationToken);
+            return this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<World>>(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
-        #endregion
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task)
+        {
+            Contract.Requires(task != null);
+            var values = this.converterForBulkResponse.Convert(task.Result);
+            if (values == null)
+            {
+                return new DictionaryRange<int, World>(0);
+            }
+
+            return values;
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private ICollectionPage<World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task, int pageIndex)
+        {
+            Contract.Requires(task != null);
+            var values = this.converterForPageResponse.Convert(task.Result);
+            if (values == null)
+            {
+                return new CollectionPage<World>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
+        {
+            Contract.Requires(task != null);
+            var ids = this.converterForIdentifiersResponse.Convert(task.Result);
+            if (ids == null)
+            {
+                return new List<int>(0);
+            }
+
+            return ids;
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private World ConvertAsyncResponse(Task<IResponse<WorldDataContract>> task)
+        {
+            Contract.Requires(task != null);
+            return this.converterForResponse.Convert(task.Result);
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.converterForBulkResponse != null);
+            Contract.Invariant(this.converterForIdentifiersResponse != null);
+            Contract.Invariant(this.converterForPageResponse != null);
+            Contract.Invariant(this.converterForResponse != null);
+            Contract.Invariant(this.serviceClient != null);
+        }
     }
 }
