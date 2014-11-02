@@ -22,25 +22,18 @@ namespace GW2NET.Common
         {
             Contract.Requires(request != null);
             Contract.Ensures(Contract.Result<IResponse<TResult>>() != null);
-            Contract.Ensures(Contract.Result<IResponse<TResult>>().ExtensionData != null);
             throw new System.NotImplementedException();
         }
 
         public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request)
         {
             Contract.Requires(request != null);
-            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>() != null);
-            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result != null);
-            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result.ExtensionData != null);
             throw new System.NotImplementedException();
         }
 
         public Task<IResponse<TResult>> SendAsync<TResult>(IRequest request, CancellationToken cancellationToken)
         {
             Contract.Requires(request != null);
-            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>() != null);
-            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result != null);
-            Contract.Ensures(Contract.Result<Task<IResponse<TResult>>>().Result.ExtensionData != null);
             throw new System.NotImplementedException();
         }
     }
