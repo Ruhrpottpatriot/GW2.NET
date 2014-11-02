@@ -73,7 +73,7 @@ namespace GW2NET.V1.Items
             }
 
             var value = ConvertItemDataContract(response.Content);
-            value.Locale = response.Culture ?? language;
+            value.Culture = response.Culture ?? language;
             return value;
         }
 
@@ -134,7 +134,7 @@ namespace GW2NET.V1.Items
                     }
 
                     var value = ConvertItemDataContract(response.Content);
-                    value.Locale = response.Culture ?? language;
+                    value.Culture = response.Culture ?? language;
                     return value;
                 },
                 cancellationToken);
@@ -882,7 +882,7 @@ namespace GW2NET.V1.Items
                     value = ConvertGizmoItemDataContract(content);
                     break;
                 case "MiniPet":
-                    value = new MiniPet();
+                    value = new Miniature();
                     break;
                 case "Tool":
                     value = ConvertToolItemDataContract(content);

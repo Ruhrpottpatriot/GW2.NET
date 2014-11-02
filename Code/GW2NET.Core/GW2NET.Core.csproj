@@ -381,7 +381,7 @@
     <Compile Include="Entities\Items\ItemRarity.cs" />
     <Compile Include="Entities\Items\ItemRestrictions.cs" />
     <Compile Include="Entities\Items\ItemStack.cs" />
-    <Compile Include="Entities\Items\MiniPets\MiniPet.cs" />
+    <Compile Include="Entities\Items\MiniPets\Miniature.cs" />
     <Compile Include="Entities\Items\Tools\SalvageTool.cs" />
     <Compile Include="Entities\Items\Tools\Tool.cs" />
     <Compile Include="Entities\Items\Tools\UnknownTool.cs" />
@@ -752,6 +752,58 @@
     <Compile Include="V2\Common\PageContextPatchUtility.cs" />
     <Compile Include="V2\Common\PageRequest.cs" />
     <Compile Include="V2\Common\ResponseExtensions.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForAlcohol.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForAppearanceChanger.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForArmor.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForBackpack.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForBag.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForBagSlotUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForBankTabUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForCollectibleCapacityUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForCombatAttribute.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForCombatBuff.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForConsumable.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForContainer.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForContentUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForContractNpc.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForCraftingMaterial.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForCraftingRecipeUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForDyeUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForFood.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForGameType.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForGameTypeCollection.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForGatheringTools.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForGenericConsumable.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForGizmo.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForHalloweenConsumable.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForImmediateConsumable.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForInfixUpgrade.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForInfusionSlot.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForInfusionSlotFlag.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForInfusionSlotFlagCollection.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForItem.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForItemFlag.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForItemFlagCollection.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForItemRarity.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForItemRestriction.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForItemRestrictionCollection.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForMiniature.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForSalvageTool.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForTool.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForTraitGuide.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForTransmutation.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForTrinket.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForTrophy.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForUnTransmutation.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForUpgradeComponent.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForUpgradeComponentFlag.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForUpgradeComponentFlagCollection.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForUpgradeRemoval.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForUtility.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForWeapon.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForWeaponDamageType.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForArmorWeightClass.cs" />
     <Compile Include="V2\Items\ItemBulkRequest.cs" />
     <Compile Include="V2\Items\ItemDetailsRequest.cs" />
     <Compile Include="V2\Items\ItemDiscoveryRequest.cs" />
@@ -778,9 +830,7 @@
     <Compile Include="V2\Worlds\WorldPageRequest.cs" />
     <Compile Include="V2\Worlds\WorldRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="V2\Items\Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

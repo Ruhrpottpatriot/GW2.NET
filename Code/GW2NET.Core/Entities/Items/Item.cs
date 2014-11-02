@@ -9,6 +9,7 @@
 namespace GW2NET.Entities.Items
 {
     using System;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
@@ -16,10 +17,13 @@ namespace GW2NET.Entities.Items
     using GW2NET.Common;
 
     /// <summary>Provides the base class for types that represent an in-game item.</summary>
-    public abstract class Item : IRenderable, IEquatable<Item>
+    public abstract class Item : IRenderable, IEquatable<Item>, ILocalizable
     {
         /// <summary>Gets or sets the item's build number. Default: 0. Assign a build number for change tracking.</summary>
         public virtual int BuildId { get; set; }
+
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets the item's description.</summary>
         public virtual string Description { get; set; }
@@ -42,9 +46,6 @@ namespace GW2NET.Entities.Items
         /// <summary>Gets or sets the item's identifier.</summary>
         public virtual int ItemId { get; set; }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public virtual CultureInfo Locale { get; set; }
-
         /// <summary>Gets or sets the item's level.</summary>
         public virtual int Level { get; set; }
 
@@ -61,6 +62,7 @@ namespace GW2NET.Entities.Items
         public virtual int VendorValue { get; set; }
 
         /// <summary>Gets the file identifier.</summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         int IRenderable.FileId
         {
             get
@@ -70,6 +72,7 @@ namespace GW2NET.Entities.Items
         }
 
         /// <summary>Gets the file signature.</summary>
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         string IRenderable.FileSignature
         {
             get
