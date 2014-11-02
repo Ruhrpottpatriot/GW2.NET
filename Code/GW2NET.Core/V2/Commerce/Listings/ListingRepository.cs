@@ -166,7 +166,15 @@ namespace GW2NET.V2.Commerce.Listings
         {
             var request = new ListingPageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            return this.converterForPageResponse.Convert(response) ?? new CollectionPage<Listing>();
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<Listing>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
 
         /// <inheritdoc />
@@ -174,7 +182,15 @@ namespace GW2NET.V2.Commerce.Listings
         {
             var request = new ListingPageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
-            return this.converterForPageResponse.Convert(response) ?? new CollectionPage<Listing>();
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
+            {
+                return new CollectionPage<Listing>(0);
+            }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
+
+            return values;
         }
 
         /// <inheritdoc />
