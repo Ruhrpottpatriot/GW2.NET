@@ -35,16 +35,12 @@ namespace GW2NET.Common
         public Task<ICollectionPage<T>> FindPageAsync(int pageIndex)
         {
             Contract.Requires(pageIndex >= 0);
-            Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
         public Task<ICollectionPage<T>> FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             Contract.Requires(pageIndex >= 0);
-            Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
@@ -52,8 +48,6 @@ namespace GW2NET.Common
         {
             Contract.Requires(pageIndex >= 0);
             Contract.Requires(pageSize > 0);
-            Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
@@ -61,8 +55,6 @@ namespace GW2NET.Common
         {
             Contract.Requires(pageIndex >= 0);
             Contract.Requires(pageSize > 0);
-            Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollectionPage<T>>>().Result != null);
             throw new System.NotImplementedException();
         }
     }

@@ -15,8 +15,7 @@ namespace GW2NET.Common
     using System.Threading.Tasks;
 
     [ContractClassFor(typeof(IRepository<,>))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIRepository<TKey, TValue> : IRepository<TKey, TValue>
     {
         public abstract ICollection<TKey> Discover();
@@ -46,15 +45,11 @@ namespace GW2NET.Common
 
         public Task<IDictionaryRange<TKey, TValue>> FindAllAsync()
         {
-            Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>() != null);
-            Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
         public Task<IDictionaryRange<TKey, TValue>> FindAllAsync(CancellationToken cancellationToken)
         {
-            Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>() != null);
-            Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
@@ -62,8 +57,6 @@ namespace GW2NET.Common
         {
             Contract.Requires(identifiers != null);
             Contract.Requires(identifiers.Count > 0);
-            Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>() != null);
-            Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
@@ -71,20 +64,16 @@ namespace GW2NET.Common
         {
             Contract.Requires(identifiers != null);
             Contract.Requires(identifiers.Count > 0);
-            Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>() != null);
-            Contract.Ensures(Contract.Result<Task<IDictionaryRange<TKey, TValue>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
         public Task<TValue> FindAsync(TKey identifier)
         {
-            Contract.Ensures(Contract.Result<Task>() != null);
             throw new System.NotImplementedException();
         }
 
         public Task<TValue> FindAsync(TKey identifier, CancellationToken cancellationToken)
         {
-            Contract.Ensures(Contract.Result<Task>() != null);
             throw new System.NotImplementedException();
         }
 

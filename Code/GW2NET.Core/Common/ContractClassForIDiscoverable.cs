@@ -26,15 +26,11 @@ namespace GW2NET.Common
 
         public Task<ICollection<T>> DiscoverAsync()
         {
-            Contract.Ensures(Contract.Result<Task<ICollection<T>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<T>>>().Result != null);
             throw new System.NotImplementedException();
         }
 
         public Task<ICollection<T>> DiscoverAsync(CancellationToken cancellationToken)
         {
-            Contract.Ensures(Contract.Result<Task<ICollection<T>>>() != null);
-            Contract.Ensures(Contract.Result<Task<ICollection<T>>>().Result != null);
             throw new System.NotImplementedException();
         }
     }
