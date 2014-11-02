@@ -320,12 +320,23 @@
     <Compile Include="Entities\Items\Armors\UnknownArmor.cs" />
     <Compile Include="Entities\Items\Backpacks\Backpack.cs" />
     <Compile Include="Entities\Items\Bags\Bag.cs" />
+    <Compile Include="Entities\Items\Common\ConditionDamageModifier.cs" />
+    <Compile Include="Entities\Items\Common\ContractClassForIUpgrade.cs" />
+    <Compile Include="Entities\Items\Common\FerocityModifier.cs" />
+    <Compile Include="Entities\Items\Common\HealingModifier.cs" />
+    <Compile Include="Entities\Items\Common\InfixUpgrade.cs" />
     <Compile Include="Entities\Items\Common\InfusionSlot.cs" />
     <Compile Include="Entities\Items\Common\InfusionSlotFlags.cs" />
     <Compile Include="Entities\Items\Common\ISkinnable.cs" />
+    <Compile Include="Entities\Items\Common\CombatAttribute.cs" />
     <Compile Include="Entities\Items\Common\ItemBuff.cs" />
     <Compile Include="Entities\Items\Common\IUpgradable.cs" />
     <Compile Include="Entities\Items\Common\IUpgrade.cs" />
+    <Compile Include="Entities\Items\Common\PowerModifier.cs" />
+    <Compile Include="Entities\Items\Common\PrecisionModifier.cs" />
+    <Compile Include="Entities\Items\Common\ToughnessModifier.cs" />
+    <Compile Include="Entities\Items\Common\UnknownModifier.cs" />
+    <Compile Include="Entities\Items\Common\VitalityModifier.cs" />
     <Compile Include="Entities\Items\Consumables\Alcohol.cs" />
     <Compile Include="Entities\Items\Consumables\AppearanceChanger.cs" />
     <Compile Include="Entities\Items\Consumables\BagSlotUnlocker.cs" />
@@ -767,7 +778,9 @@
     <Compile Include="V2\Worlds\WorldPageRequest.cs" />
     <Compile Include="V2\Worlds\WorldRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="V2\Items\Converters\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

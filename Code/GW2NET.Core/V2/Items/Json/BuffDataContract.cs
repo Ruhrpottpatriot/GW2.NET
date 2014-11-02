@@ -15,10 +15,10 @@ namespace GW2NET.V2.Items.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed class BuffDataContract
     {
-        [DataMember(Name = "description", Order = 1)]
-        internal string Description { get; set; }
-
         [DataMember(Name = "skill_id", Order = 0)]
         internal int? SkillId { get; set; }
+
+        [DataMember(Name = "description", Order = 1)]
+        internal string Description { get; set; }
     }
 }

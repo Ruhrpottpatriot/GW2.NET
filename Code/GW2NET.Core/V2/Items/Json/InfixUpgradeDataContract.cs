@@ -16,10 +16,10 @@ namespace GW2NET.V2.Items.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed class InfixUpgradeDataContract
     {
-        [DataMember(Name = "attributes", Order = 1)]
-        internal ICollection<AttributeDataContract> Attributes { get; set; }
-
         [DataMember(Name = "buff", Order = 0)]
         internal BuffDataContract Buff { get; set; }
+
+        [DataMember(Name = "attributes", Order = 1)]
+        internal ICollection<AttributeDataContract> Attributes { get; set; }
     }
 }

@@ -9,6 +9,7 @@
 namespace GW2NET.Entities.Items
 {
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.ChatLinks;
@@ -17,11 +18,8 @@ namespace GW2NET.Entities.Items
     /// <summary>Provides the base class for armor types.</summary>
     public abstract class Armor : Item, IUpgrade, IUpgradable, ISkinnable
     {
-        /// <summary>Gets or sets the item's buff.</summary>
-        public virtual ItemBuff Buff { get; set; }
-
-        /// <summary>Gets or sets the Condition Damage modifier.</summary>
-        public virtual int ConditionDamage { get; set; }
+        /// <summary>Backing field for <see cref="InfixUpgrade"/>.</summary>
+        private InfixUpgrade infixUpgrade = new InfixUpgrade();
 
         /// <summary>Gets or sets the default skin. This is a navigation property. Use the value of <see cref="DefaultSkinId"/> to obtain a reference.</summary>
         public virtual Skin DefaultSkin { get; set; }
@@ -32,20 +30,22 @@ namespace GW2NET.Entities.Items
         /// <summary>Gets or sets the armor's defense stat.</summary>
         public virtual int Defense { get; set; }
 
-        /// <summary>Gets or sets the Ferocity modifier.</summary>
-        public virtual int Ferocity { get; set; }
+        /// <summary>Gets or sets the item's infixed combat upgrades.</summary>
+        public virtual InfixUpgrade InfixUpgrade
+        {
+            get
+            {
+                return this.infixUpgrade;
+            }
 
-        /// <summary>Gets or sets the Healing modifier.</summary>
-        public virtual int Healing { get; set; }
+            set
+            {
+                this.infixUpgrade = value;
+            }
+        }
 
         /// <summary>Gets or sets the item's infusion slots.</summary>
         public virtual ICollection<InfusionSlot> InfusionSlots { get; set; }
-
-        /// <summary>Gets or sets the Power modifier.</summary>
-        public virtual int Power { get; set; }
-
-        /// <summary>Gets or sets the Precision modifier.</summary>
-        public int Precision { get; set; }
 
         /// <summary>Gets or sets the item's secondary suffix item. This is a navigation property. Use the value of <see cref="SecondarySuffixItemId"/> to obtain a reference.</summary>
         public virtual Item SecondarySuffixItem { get; set; }
@@ -59,12 +59,6 @@ namespace GW2NET.Entities.Items
         /// <summary>Gets or sets the item's suffix item identifier.</summary>
         public virtual int? SuffixItemId { get; set; }
 
-        /// <summary>Gets or sets the Toughness modifier.</summary>
-        public virtual int Toughness { get; set; }
-
-        /// <summary>Gets or sets the Vitality modifier.</summary>
-        public virtual int Vitality { get; set; }
-
         /// <summary>Gets or sets the armor's weight class.</summary>
         public virtual ArmorWeightClass WeightClass { get; set; }
 
@@ -73,13 +67,14 @@ namespace GW2NET.Entities.Items
         public override ChatLink GetItemChatLink()
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new ItemChatLink
-                       {
-                           ItemId = this.ItemId, 
-                           SuffixItemId = this.SuffixItemId, 
-                           SecondarySuffixItemId = this.SecondarySuffixItemId, 
-                           SkinId = this.DefaultSkinId
-                       };
+            return new ItemChatLink { ItemId = this.ItemId, SuffixItemId = this.SuffixItemId, SecondarySuffixItemId = this.SecondarySuffixItemId, SkinId = this.DefaultSkinId };
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.infixUpgrade != null);
         }
     }
 }

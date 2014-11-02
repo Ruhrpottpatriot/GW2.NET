@@ -552,7 +552,7 @@ namespace GW2NET.V2.Items
             // Set the infix upgrade
             if (content.Details.InfixUpgrade != null)
             {
-                ConvertInfixUpgradeDataContract(value, content.Details.InfixUpgrade);
+               value.InfixUpgrade = ConvertInfixUpgradeDataContract(content.Details.InfixUpgrade);
             }
 
             // Set the suffix item identifier
@@ -646,7 +646,7 @@ namespace GW2NET.V2.Items
             // Set the infix upgrade
             if (content.Details.InfixUpgrade != null)
             {
-                ConvertInfixUpgradeDataContract(value, content.Details.InfixUpgrade);
+                value.InfixUpgrade = ConvertInfixUpgradeDataContract(content.Details.InfixUpgrade);
             }
 
             // Set the suffix item identifier
@@ -1005,24 +1005,54 @@ namespace GW2NET.V2.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="item">The entity.</param>
         /// <param name="content">The content.</param>
-        private static void ConvertInfixUpgradeDataContract(IUpgrade item, InfixUpgradeDataContract content)
+        private static InfixUpgrade ConvertInfixUpgradeDataContract(InfixUpgradeDataContract content)
         {
-            Contract.Requires(item != null);
             Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<InfixUpgrade>() != null);
+            var infixUpgrade = new InfixUpgrade();
             if (content.Buff != null)
             {
-                item.Buff = ConvertItemBuffDataContract(content.Buff);
+                infixUpgrade.Buff = ConvertItemBuffDataContract(content.Buff);
             }
 
             if (content.Attributes != null)
             {
-                item.ConditionDamage = ConvertAttributeDataContract(content.Attributes, "ConditionDamage");
-                item.Ferocity = ConvertAttributeDataContract(content.Attributes, "CritDamage");
-                item.Healing = ConvertAttributeDataContract(content.Attributes, "Healing");
-                item.Power = ConvertAttributeDataContract(content.Attributes, "Power");
-                item.Precision = ConvertAttributeDataContract(content.Attributes, "Precision");
-                item.Toughness = ConvertAttributeDataContract(content.Attributes, "Toughness");
-                item.Vitality = ConvertAttributeDataContract(content.Attributes, "Vitality");
+                infixUpgrade.Attributes = new List<CombatAttribute>(content.Attributes.Count);
+                foreach (var combatAttribute in content.Attributes.Select(ConvertAttributeDataContract))
+                {
+                    infixUpgrade.Attributes.Add(combatAttribute);
+                }
+            }
+
+            return infixUpgrade;
+        }
+
+        // TODO: refactor to IConverter
+        /// <summary>Infrastructure. Converts contracts to entities.</summary>
+        /// <param name="content">The content.</param>
+        /// <returns>An entity.</returns>
+        private static CombatAttribute ConvertAttributeDataContract(AttributeDataContract content)
+        {
+            Contract.Requires(content != null);
+            Contract.Ensures(Contract.Result<CombatAttribute>() != null);
+            switch (content.Attribute)
+            {
+                case "ConditionDamage":
+                    return new ConditionDamageModifier { Modifier = content.Modifier };
+                case "CritDamage":
+                    return new FerocityModifier { Modifier = content.Modifier };
+                case "Healing":
+                    return new HealingModifier { Modifier = content.Modifier };
+                case "Power":
+                    return new PowerModifier { Modifier = content.Modifier };
+                case "Precision":
+                    return new PrecisionModifier { Modifier = content.Modifier };
+                case "Toughness":
+                    return new ToughnessModifier { Modifier = content.Modifier };
+                case "Vitality":
+                    return new VitalityModifier { Modifier = content.Modifier };
+                default:
+                    return new UnknownModifier { Modifier = content.Modifier };
             }
         }
 
@@ -1378,7 +1408,7 @@ namespace GW2NET.V2.Items
             // Set the infix upgrade
             if (content.Details.InfixUpgrade != null)
             {
-                ConvertInfixUpgradeDataContract(value, content.Details.InfixUpgrade);
+                value.InfixUpgrade = ConvertInfixUpgradeDataContract(content.Details.InfixUpgrade);
             }
 
             // Set the suffix item identifier
@@ -1518,7 +1548,7 @@ namespace GW2NET.V2.Items
             // Set the infix upgrade
             if (content.Details.InfixUpgrade != null)
             {
-                ConvertInfixUpgradeDataContract(value, content.Details.InfixUpgrade);
+                value.InfixUpgrade = ConvertInfixUpgradeDataContract(content.Details.InfixUpgrade);
             }
 
             // Set the localized suffix
@@ -1739,7 +1769,7 @@ namespace GW2NET.V2.Items
             // Set the infix upgrade
             if (content.Details.InfixUpgrade != null)
             {
-                ConvertInfixUpgradeDataContract(value, content.Details.InfixUpgrade);
+                value.InfixUpgrade = ConvertInfixUpgradeDataContract(content.Details.InfixUpgrade);
             }
 
             // Set the suffix item identifier
