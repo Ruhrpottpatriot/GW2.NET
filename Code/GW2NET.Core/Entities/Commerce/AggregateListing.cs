@@ -11,10 +11,11 @@ namespace GW2NET.Entities.Commerce
     using System;
     using System.Globalization;
 
+    using GW2NET.Common;
     using GW2NET.Entities.Items;
 
     /// <summary>Represents aggregate buy or sell offer listing information.</summary>
-    public class AggregateListing
+    public class AggregateListing : ITimeSensitive
     {
         /// <summary>Gets or sets the buy offers.</summary>
         public AggregateOffer BuyOffers { get; set; }

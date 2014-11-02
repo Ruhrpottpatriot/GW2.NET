@@ -8,9 +8,8 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Prices
 {
-    using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
@@ -18,8 +17,10 @@ namespace GW2NET.V2.Commerce.Prices
     using System.Threading.Tasks;
 
     using GW2NET.Common;
+    using GW2NET.Common.Converters;
     using GW2NET.Entities.Commerce;
     using GW2NET.Entities.Items;
+    using GW2NET.V2.Commerce.Prices.Converters;
     using GW2NET.V2.Commerce.Prices.Json;
     using GW2NET.V2.Common;
 
@@ -35,15 +36,41 @@ namespace GW2NET.V2.Commerce.Prices
     /// </remarks>
     public class PriceRepository : IRepository<int, AggregateListing>
     {
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<IResponse<ICollection<AggregateListingDataContract>>, IDictionaryRange<int, AggregateListing>> converterForBulkResponse;
+
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<IResponse<ICollection<int>>, ICollection<int>> converterForIdentifiersResponse;
+
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<IResponse<ICollection<AggregateListingDataContract>>, ICollectionPage<AggregateListing>> converterForPageResponse;
+
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<IResponse<AggregateListingDataContract>, AggregateListing> converterForResponse;
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="PriceRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public PriceRepository(IServiceClient serviceClient)
+            : this(serviceClient, new ConverterForAggregateListing())
         {
             Contract.Requires(serviceClient != null);
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="PriceRepository"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="converterForAggregateListing">The converter for <see cref="AggregateListing"/>.</param>
+        internal PriceRepository(IServiceClient serviceClient, IConverter<AggregateListingDataContract, AggregateListing> converterForAggregateListing)
+        {
+            Contract.Requires(serviceClient != null);
+            Contract.Requires(converterForAggregateListing != null);
             this.serviceClient = serviceClient;
+            this.converterForIdentifiersResponse = new ConverterForCollectionResponse<int, int>(new ConverterAdapter<int>());
+            this.converterForResponse = new ConverterForResponse<AggregateListingDataContract, AggregateListing>(converterForAggregateListing);
+            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<AggregateListingDataContract, int, AggregateListing>(converterForAggregateListing, listing => listing.ItemId);
+            this.converterForPageResponse = new ConverterForCollectionPageResponse<AggregateListingDataContract, AggregateListing>(converterForAggregateListing);
         }
 
         /// <inheritdoc />
@@ -51,12 +78,7 @@ namespace GW2NET.V2.Commerce.Prices
         {
             var request = new PriceDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
-            if (response.Content == null)
-            {
-                return new List<int>(0);
-            }
-
-            return response.Content;
+            return this.converterForIdentifiersResponse.Convert(response) ?? new List<int>(0);
         }
 
         /// <inheritdoc />
@@ -69,16 +91,8 @@ namespace GW2NET.V2.Commerce.Prices
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new PriceDiscoveryRequest();
-            return this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new List<int>(0);
-                }
-
-                return response.Content;
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
+            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -86,14 +100,7 @@ namespace GW2NET.V2.Commerce.Prices
         {
             var request = new PriceDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
             var response = this.serviceClient.Send<AggregateListingDataContract>(request);
-            if (response.Content == null)
-            {
-                return null;
-            }
-
-            var value = ConvertAggregateListingDataContract(response.Content);
-            value.Timestamp = response.Date;
-            return value;
+            return this.converterForResponse.Convert(response);
         }
 
         /// <inheritdoc />
@@ -101,53 +108,15 @@ namespace GW2NET.V2.Commerce.Prices
         {
             var request = new PriceBulkRequest();
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
-            if (response.Content == null)
-            {
-                return new DictionaryRange<int, AggregateListing>(0);
-            }
-
-            var values = ConvertAggregateListingDataContractRange(response.Content);
-            values.SubtotalCount = response.GetResultCount();
-            values.TotalCount = response.GetResultTotal();
-            foreach (var value in values.Values)
-            {
-                value.Timestamp = response.Date;
-            }
-
-            return values;
+            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<int, AggregateListing>(0);
         }
 
         /// <inheritdoc />
         IDictionaryRange<int, AggregateListing> IRepository<int, AggregateListing>.FindAll(ICollection<int> identifiers)
         {
-            if (identifiers == null)
-            {
-                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
-            }
-
-            if (identifiers.Count == 0)
-            {
-                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
-            }
-
-            Contract.EndContractBlock();
-
             var request = new PriceBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
-            if (response.Content == null)
-            {
-                return new DictionaryRange<int, AggregateListing>(0);
-            }
-
-            var values = ConvertAggregateListingDataContractRange(response.Content);
-            values.SubtotalCount = response.GetResultCount();
-            values.TotalCount = response.GetResultTotal();
-            foreach (var value in values.Values)
-            {
-                value.Timestamp = response.Date;
-            }
-
-            return values;
+            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<int, AggregateListing>(0);
         }
 
         /// <inheritdoc />
@@ -160,24 +129,8 @@ namespace GW2NET.V2.Commerce.Prices
         Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new PriceBulkRequest();
-            return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new DictionaryRange<int, AggregateListing>(0);
-                }
-
-                var values = ConvertAggregateListingDataContractRange(response.Content);
-                values.SubtotalCount = response.GetResultCount();
-                values.TotalCount = response.GetResultTotal();
-                foreach (var value in values.Values)
-                {
-                    value.Timestamp = response.Date;
-                }
-
-                return values;
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith<IDictionaryRange<int, AggregateListing>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -189,37 +142,9 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
-            if (identifiers == null)
-            {
-                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
-            }
-
-            if (identifiers.Count == 0)
-            {
-                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
-            }
-
-            Contract.EndContractBlock();
-
             var request = new PriceBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
-            return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new DictionaryRange<int, AggregateListing>(0);
-                }
-
-                var values = ConvertAggregateListingDataContractRange(response.Content);
-                values.SubtotalCount = response.GetResultCount();
-                values.TotalCount = response.GetResultTotal();
-                foreach (var value in values.Values)
-                {
-                    value.Timestamp = response.Date;
-                }
-
-                return values;
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith<IDictionaryRange<int, AggregateListing>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -232,18 +157,8 @@ namespace GW2NET.V2.Commerce.Prices
         Task<AggregateListing> IRepository<int, AggregateListing>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
             var request = new PriceDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
-            return this.serviceClient.SendAsync<AggregateListingDataContract>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return null;
-                }
-
-                var value = ConvertAggregateListingDataContract(response.Content);
-                value.Timestamp = response.Date;
-                return value;
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<AggregateListingDataContract>(request, cancellationToken);
+            return responseTask.ContinueWith<AggregateListing>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -251,35 +166,13 @@ namespace GW2NET.V2.Commerce.Prices
         {
             var request = new PricePageRequest { Page = pageIndex };
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
-            if (response.Content == null)
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
             {
                 return new CollectionPage<AggregateListing>(0);
             }
 
-            var values = ConvertAggregateListingDataContractPage(response.Content);
-            values.PageIndex = pageIndex;
-            values.PageSize = response.GetPageSize();
-            values.PageCount = response.GetPageTotal();
-            values.SubtotalCount = response.GetResultCount();
-            values.TotalCount = response.GetResultTotal();
-            if (values.PageCount > 0)
-            {
-                values.LastPageIndex = values.PageCount - 1;
-                if (values.PageIndex < values.LastPageIndex)
-                {
-                    values.NextPageIndex = values.PageIndex + 1;
-                }
-
-                if (values.PageIndex > values.FirstPageIndex)
-                {
-                    values.PreviousPageIndex = values.PageIndex - 1;
-                }
-            }
-
-            foreach (var value in values)
-            {
-                value.Timestamp = response.Date;
-            }
+            PageContextPatchUtility.Patch(values, pageIndex);
 
             return values;
         }
@@ -289,35 +182,13 @@ namespace GW2NET.V2.Commerce.Prices
         {
             var request = new PricePageRequest { Page = pageIndex, PageSize = pageSize };
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
-            if (response.Content == null)
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
             {
                 return new CollectionPage<AggregateListing>(0);
             }
 
-            var values = ConvertAggregateListingDataContractPage(response.Content);
-            values.PageIndex = pageIndex;
-            values.PageSize = response.GetPageSize();
-            values.PageCount = response.GetPageTotal();
-            values.SubtotalCount = response.GetResultCount();
-            values.TotalCount = response.GetResultTotal();
-            if (values.PageCount > 0)
-            {
-                values.LastPageIndex = values.PageCount - 1;
-                if (values.PageIndex < values.LastPageIndex)
-                {
-                    values.NextPageIndex = values.PageIndex + 1;
-                }
-
-                if (values.PageIndex > values.FirstPageIndex)
-                {
-                    values.PreviousPageIndex = values.PageIndex - 1;
-                }
-            }
-
-            foreach (var value in values)
-            {
-                value.Timestamp = response.Date;
-            }
+            PageContextPatchUtility.Patch(values, pageIndex);
 
             return values;
         }
@@ -332,41 +203,8 @@ namespace GW2NET.V2.Commerce.Prices
         Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
             var request = new PricePageRequest { Page = pageIndex };
-            return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new CollectionPage<AggregateListing>(0);
-                }
-
-                var values = ConvertAggregateListingDataContractPage(response.Content);
-                values.PageIndex = pageIndex;
-                values.PageSize = response.GetPageSize();
-                values.PageCount = response.GetPageTotal();
-                values.SubtotalCount = response.GetResultCount();
-                values.TotalCount = response.GetResultTotal();
-                if (values.PageCount > 0)
-                {
-                    values.LastPageIndex = values.PageCount - 1;
-                    if (values.PageIndex < values.LastPageIndex)
-                    {
-                        values.NextPageIndex = values.PageIndex + 1;
-                    }
-
-                    if (values.PageIndex > values.FirstPageIndex)
-                    {
-                        values.PreviousPageIndex = values.PageIndex - 1;
-                    }
-                }
-
-                foreach (var value in values)
-                {
-                    value.Timestamp = response.Date;
-                }
-
-                return values;
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
         /// <inheritdoc />
@@ -379,112 +217,58 @@ namespace GW2NET.V2.Commerce.Prices
         Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             var request = new PricePageRequest { Page = pageIndex, PageSize = pageSize };
-            return this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new CollectionPage<AggregateListing>(0);
-                }
-
-                var values = ConvertAggregateListingDataContractPage(response.Content);
-                values.PageIndex = pageIndex;
-                values.PageSize = response.GetPageSize();
-                values.PageCount = response.GetPageTotal();
-                values.SubtotalCount = response.GetResultCount();
-                values.TotalCount = response.GetResultTotal();
-                if (values.PageCount > 0)
-                {
-                    values.LastPageIndex = values.PageCount - 1;
-                    if (values.PageIndex < values.LastPageIndex)
-                    {
-                        values.NextPageIndex = values.PageIndex + 1;
-                    }
-
-                    if (values.PageIndex > values.FirstPageIndex)
-                    {
-                        values.PreviousPageIndex = values.PageIndex - 1;
-                    }
-                }
-
-                foreach (var value in values)
-                {
-                    value.Timestamp = response.Date;
-                }
-
-                return values;
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
-        // TODO: refactor to IConverter
-        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The entity.</returns>
-        private static AggregateListing ConvertAggregateListingDataContract(AggregateListingDataContract content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<AggregateListing>() != null);
-            var value = new AggregateListing { ItemId = content.Id };
-            if (content.BuyOffers != null)
-            {
-                value.BuyOffers = ConvertAggregateOfferDataContract(content.BuyOffers);
-            }
-            else
-            {
-                Debug.WriteLine("Expected 'buys' for listing with ID {0}", content.Id);
-            }
-
-            if (content.SellOffers != null)
-            {
-                value.SellOffers = ConvertAggregateOfferDataContract(content.SellOffers);
-            }
-            else
-            {
-                Debug.WriteLine("Expected 'sells' for listing with ID {0}", content.Id);
-            }
-
-            return value;
+            Contract.Requires(task != null);
+            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            return this.converterForIdentifiersResponse.Convert(task.Result) ?? new List<int>(0);
         }
 
-        // TODO: refactor to IConverter
-        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The entity.</returns>
-        private static ICollectionPage<AggregateListing> ConvertAggregateListingDataContractPage(ICollection<AggregateListingDataContract> content)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private IDictionaryRange<int, AggregateListing> ConvertAsyncResponse(Task<IResponse<ICollection<AggregateListingDataContract>>> task)
         {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<AggregateListing>>() != null);
-            var values = new CollectionPage<AggregateListing>(content.Count);
-            values.AddRange(content.Select(ConvertAggregateListingDataContract));
-            return values;
-        }
-
-        // TODO: refactor to IConverter
-        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The entity.</returns>
-        private static IDictionaryRange<int, AggregateListing> ConvertAggregateListingDataContractRange(ICollection<AggregateListingDataContract> content)
-        {
-            Contract.Requires(content != null);
+            Contract.Requires(task != null);
             Contract.Ensures(Contract.Result<IDictionaryRange<int, AggregateListing>>() != null);
-            var values = new DictionaryRange<int, AggregateListing>(content.Count);
-            foreach (var value in content.Select(ConvertAggregateListingDataContract))
+            return this.converterForBulkResponse.Convert(task.Result) ?? new DictionaryRange<int, AggregateListing>(0);
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private AggregateListing ConvertAsyncResponse(Task<IResponse<AggregateListingDataContract>> task)
+        {
+            Contract.Requires(task != null);
+            return this.converterForResponse.Convert(task.Result);
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private ICollectionPage<AggregateListing> ConvertAsyncResponse(Task<IResponse<ICollection<AggregateListingDataContract>>> task, int pageIndex)
+        {
+            Contract.Requires(task != null);
+            Contract.Ensures(Contract.Result<ICollectionPage<AggregateListing>>() != null);
+            var values = this.converterForPageResponse.Convert(task.Result);
+            if (values == null)
             {
-                values.Add(value.ItemId, value);
+                return new CollectionPage<AggregateListing>(0);
             }
+
+            PageContextPatchUtility.Patch(values, pageIndex);
 
             return values;
         }
 
-        // TODO: refactor to IConverter
-        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The entity.</returns>
-        private static AggregateOffer ConvertAggregateOfferDataContract(AggregateOfferDataContract content)
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
         {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<AggregateOffer>() != null);
-            return new AggregateOffer { Quantity = content.Quantity, UnitPrice = content.UnitPrice };
+            Contract.Invariant(this.serviceClient != null);
+            Contract.Invariant(this.converterForBulkResponse != null);
+            Contract.Invariant(this.converterForIdentifiersResponse != null);
+            Contract.Invariant(this.converterForPageResponse != null);
+            Contract.Invariant(this.converterForResponse != null);
         }
     }
 }

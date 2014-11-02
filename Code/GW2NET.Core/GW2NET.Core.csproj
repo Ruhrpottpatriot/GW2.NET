@@ -720,6 +720,8 @@
     <Compile Include="V2\Commerce\Listings\ListingDiscoveryRequest.cs" />
     <Compile Include="V2\Commerce\Listings\ListingPageRequest.cs" />
     <Compile Include="V2\Commerce\Listings\ListingRepository.cs" />
+    <Compile Include="V2\Commerce\Prices\Converters\ConverterForAggregateListing.cs" />
+    <Compile Include="V2\Commerce\Prices\Converters\ConverterForAggregateOffer.cs" />
     <Compile Include="V2\Commerce\Prices\Json\AggregateListingDataContract.cs" />
     <Compile Include="V2\Commerce\Prices\Json\AggregateOfferDataContract.cs" />
     <Compile Include="V2\Commerce\Prices\PriceBulkRequest.cs" />
