@@ -1,5 +1,5 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="MapFloorRequest.cs" company="GW2.NET Coding Team">
+// <copyright file="FloorRequest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -14,7 +14,7 @@ namespace GW2NET.V1.Floors
     using GW2NET.Common;
 
     /// <summary>Represents a request for details regarding a map floor, used to populate a world map.</summary>
-    internal sealed class MapFloorRequest : IRequest, ILocalizable
+    internal sealed class FloorRequest : IRequest, ILocalizable
     {
         /// <summary>Gets or sets the continent identifier.</summary>
         public int? ContinentId { get; set; }

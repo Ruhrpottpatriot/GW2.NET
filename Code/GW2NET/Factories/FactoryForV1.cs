@@ -126,12 +126,12 @@
             }
         }
 
-        public IMapFloorService Floors
+        public FloorRepositoryFactory Floors
         {
             get
             {
-                Contract.Ensures(Contract.Result<IMapFloorService>() != null);
-                return new MapFloorService(this.ServiceClient);
+                Contract.Ensures(Contract.Result<FloorRepositoryFactory>() != null);
+                return new FloorRepositoryFactory(this.ServiceClient);
             }
         }
 
