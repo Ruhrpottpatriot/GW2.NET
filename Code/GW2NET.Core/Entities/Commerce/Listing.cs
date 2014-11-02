@@ -12,10 +12,11 @@ namespace GW2NET.Entities.Commerce
     using System.Collections.Generic;
     using System.Globalization;
 
+    using GW2NET.Common;
     using GW2NET.Entities.Items;
 
     /// <summary>Represents buy or sell offer listing information.</summary>
-    public class Listing
+    public class Listing : ITimeSensitive
     {
         /// <summary>Gets or sets the buy offers.</summary>
         public ICollection<Offer> BuyOffers { get; set; }

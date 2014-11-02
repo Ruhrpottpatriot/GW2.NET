@@ -232,6 +232,7 @@ namespace GW2NET.V2.Worlds
         private IDictionaryRange<int, World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task)
         {
             Contract.Requires(task != null);
+            Contract.Ensures(Contract.Result<IDictionaryRange<int, World>>() != null);
             var values = this.converterForBulkResponse.Convert(task.Result);
             if (values == null)
             {
@@ -245,6 +246,7 @@ namespace GW2NET.V2.Worlds
         private ICollectionPage<World> ConvertAsyncResponse(Task<IResponse<ICollection<WorldDataContract>>> task, int pageIndex)
         {
             Contract.Requires(task != null);
+            Contract.Ensures(Contract.Result<ICollectionPage<World>>() != null);
             var values = this.converterForPageResponse.Convert(task.Result);
             if (values == null)
             {
@@ -260,6 +262,7 @@ namespace GW2NET.V2.Worlds
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
             Contract.Requires(task != null);
+            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
             var ids = this.converterForIdentifiersResponse.Convert(task.Result);
             if (ids == null)
             {

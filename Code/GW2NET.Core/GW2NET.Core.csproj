@@ -262,6 +262,7 @@
     <Compile Include="Common\ISearchable.cs" />
     <Compile Include="Common\IServiceClient.cs" />
     <Compile Include="Common\ISubsetContext.cs" />
+    <Compile Include="Common\ITimeSensitive.cs" />
     <Compile Include="Common\Paginator.cs" />
     <Compile Include="Common\Profession.cs" />
     <Compile Include="Common\ContractClassForIRequest.cs" />
@@ -710,6 +711,8 @@
     <Compile Include="V2\Commerce\Exchange\ExchangeDiscoveryRequest.cs" />
     <Compile Include="V2\Commerce\Exchange\ExchangeBroker.cs" />
     <Compile Include="V2\Commerce\Exchange\Json\ExchangeQuoteDataContract.cs" />
+    <Compile Include="V2\Commerce\Listings\Converters\ConverterForListing.cs" />
+    <Compile Include="V2\Commerce\Listings\Converters\ConverterForOffer.cs" />
     <Compile Include="V2\Commerce\Listings\Json\ListingDataContract.cs" />
     <Compile Include="V2\Commerce\Listings\Json\ListingOfferDataContract.cs" />
     <Compile Include="V2\Commerce\Listings\ListingBulkRequest.cs" />

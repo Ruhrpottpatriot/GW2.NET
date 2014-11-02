@@ -65,6 +65,11 @@ namespace GW2NET.V2.Common
                 localizableItem.Culture = value.Culture;
             }
 
+            foreach (var timeSensitiveItem in range.Values.OfType<ITimeSensitive>())
+            {
+                timeSensitiveItem.Timestamp = value.Date;
+            }
+
             return range;
         }
 
