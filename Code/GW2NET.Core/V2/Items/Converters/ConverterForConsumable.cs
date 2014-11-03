@@ -20,7 +20,7 @@ namespace GW2NET.V2.Items.Converters
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Consumable"/>.</summary>
     internal sealed class ConverterForConsumable : IConverter<DetailsDataContract, Consumable>
     {
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        /// <summary>Infrastructure. Holds a reference to a collection of type converters.</summary>
         private readonly IDictionary<string, IConverter<DetailsDataContract, Consumable>> typeConverters;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForConsumable"/> class.</summary>

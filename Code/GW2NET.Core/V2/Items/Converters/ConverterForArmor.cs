@@ -6,7 +6,6 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Armor" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Items.Converters
 {
     using System.Collections.Generic;
@@ -30,17 +29,21 @@ namespace GW2NET.V2.Items.Converters
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection;
 
+        /// <summary>Infrastructure. Holds a reference to a collection of type converters.</summary>
+        private readonly IDictionary<string, IConverter<DetailsDataContract, Armor>> typeConverters;
+
         /// <summary>Initializes a new instance of the <see cref="ConverterForArmor"/> class.</summary>
         public ConverterForArmor()
-            : this(new ConverterForArmorWeightClass(), new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
+            : this(GetKnownTypeConverters(), new ConverterForArmorWeightClass(), new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForArmor"/> class.</summary>
+        /// <param name="typeConverters">The type Converters.</param>
         /// <param name="converterForArmorWeightClass">The converter for <see cref="ArmorWeightClass"/>.</param>
         /// <param name="converterForInfusionSlotCollection">The converter for <see cref="ICollection{InfusionSlot}"/>.</param>
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
-        public ConverterForArmor(IConverter<string, ArmorWeightClass> converterForArmorWeightClass, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
+        public ConverterForArmor(IDictionary<string, IConverter<DetailsDataContract, Armor>> typeConverters, IConverter<string, ArmorWeightClass> converterForArmorWeightClass, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
             Contract.Requires(converterForArmorWeightClass != null);
             Contract.Requires(converterForInfusionSlotCollection != null);
@@ -48,6 +51,7 @@ namespace GW2NET.V2.Items.Converters
             this.converterForArmorWeightClass = converterForArmorWeightClass;
             this.converterForInfusionSlotCollection = converterForInfusionSlotCollection;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
+            this.typeConverters = typeConverters;
         }
 
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Armor"/>.</summary>
@@ -56,35 +60,8 @@ namespace GW2NET.V2.Items.Converters
         public Armor Convert(DetailsDataContract value)
         {
             Contract.Assume(value != null);
-            Armor armor;
-            switch (value.Type)
-            {
-                case "Boots":
-                    armor = new Boots();
-                    break;
-                case "Coat":
-                    armor = new Coat();
-                    break;
-                case "Helm":
-                    armor = new Helm();
-                    break;
-                case "Shoulders":
-                    armor = new Shoulders();
-                    break;
-                case "Gloves":
-                    armor = new Gloves();
-                    break;
-                case "Leggings":
-                    armor = new Leggings();
-                    break;
-                case "HelmAquatic":
-                    armor = new HelmAquatic();
-                    break;
-                default:
-                    armor = new UnknownArmor();
-                    break;
-            }
-
+            IConverter<DetailsDataContract, Armor> converter;
+            var armor = this.typeConverters.TryGetValue(value.Type, out converter) ? converter.Convert(value) : new UnknownArmor();
             armor.WeightClass = this.converterForArmorWeightClass.Convert(value.WeightClass);
             armor.Defense = value.Defense.GetValueOrDefault();
             var infusionSlotDataContracts = value.InfusionSlots;
@@ -108,6 +85,13 @@ namespace GW2NET.V2.Items.Converters
             }
 
             return armor;
+        }
+
+        /// <summary>Infrastructure. Gets default type converters for all known types.</summary>
+        /// <returns>The type converters.</returns>
+        private static IDictionary<string, IConverter<DetailsDataContract, Armor>> GetKnownTypeConverters()
+        {
+            return new Dictionary<string, IConverter<DetailsDataContract, Armor>> { { "Boots", new ConverterForBoots() }, { "Coat", new ConverterForCoat() }, { "Helm", new ConverterForHelm() }, { "Shoulders", new ConverterForShoulders() }, { "Gloves", new ConverterForGloves() }, { "Leggings", new ConverterForLeggings() }, { "HelmAquatic", new ConverterForHelmAquatic() }, };
         }
 
         [ContractInvariantMethod]

@@ -759,6 +759,8 @@
     <Compile Include="V2\Items\Converters\ConverterForBag.cs" />
     <Compile Include="V2\Items\Converters\ConverterForBagSlotUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForBankTabUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForBoots.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForCoat.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCollectibleCapacityUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCombatAttribute.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCombatBuff.cs" />
@@ -775,7 +777,10 @@
     <Compile Include="V2\Items\Converters\ConverterForGatheringTools.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGenericConsumable.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGizmo.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForGloves.cs" />
     <Compile Include="V2\Items\Converters\ConverterForHalloweenConsumable.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForHelm.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForHelmAquatic.cs" />
     <Compile Include="V2\Items\Converters\ConverterForImmediateConsumable.cs" />
     <Compile Include="V2\Items\Converters\ConverterForInfixUpgrade.cs" />
     <Compile Include="V2\Items\Converters\ConverterForInfusionSlot.cs" />
@@ -787,8 +792,10 @@
     <Compile Include="V2\Items\Converters\ConverterForItemRarity.cs" />
     <Compile Include="V2\Items\Converters\ConverterForItemRestriction.cs" />
     <Compile Include="V2\Items\Converters\ConverterForItemRestrictionCollection.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForLeggings.cs" />
     <Compile Include="V2\Items\Converters\ConverterForMiniature.cs" />
     <Compile Include="V2\Items\Converters\ConverterForSalvageTool.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForShoulders.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTool.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTraitGuide.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTransmutation.cs" />
