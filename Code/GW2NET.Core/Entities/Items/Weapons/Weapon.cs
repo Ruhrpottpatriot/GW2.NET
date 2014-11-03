@@ -22,7 +22,7 @@ namespace GW2NET.Entities.Items
         private InfixUpgrade infixUpgrade = new InfixUpgrade();
 
         /// <summary>Gets or sets the weapon's damage type.</summary>
-        public virtual WeaponDamageType DamageType { get; set; }
+        public virtual DamageType DamageType { get; set; }
 
         /// <summary>Gets or sets the default skin. This is a navigation property. Use the value of <see cref="DefaultSkinId"/> to obtain a reference.</summary>
         public virtual Skin DefaultSkin { get; set; }

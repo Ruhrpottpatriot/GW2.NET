@@ -27,24 +27,24 @@ namespace GW2NET.V2.Items.Converters
         private readonly IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<string, WeaponDamageType> converterForWeaponDamageType;
+        private readonly IConverter<string, DamageType> converterForDamageType;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForWeapon"/> class.</summary>
         public ConverterForWeapon()
-            : this(new ConverterForWeaponDamageType(), new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
+            : this(new ConverterForDamageType(), new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForWeapon"/> class.</summary>
-        /// <param name="converterForWeaponDamageType">The converter for <see cref="WeaponDamageType"/>.</param>
+        /// <param name="converterForDamageType">The converter for <see cref="DamageType"/>.</param>
         /// <param name="converterForInfusionSlotCollection">The converter for <see cref="ICollection{InfusionSlot}"/>.</param>
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
-        public ConverterForWeapon(IConverter<string, WeaponDamageType> converterForWeaponDamageType, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
+        public ConverterForWeapon(IConverter<string, DamageType> converterForDamageType, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
-            Contract.Requires(converterForWeaponDamageType != null);
+            Contract.Requires(converterForDamageType != null);
             Contract.Requires(converterForInfixUpgrade != null);
             Contract.Requires(converterForInfusionSlotCollection != null);
-            this.converterForWeaponDamageType = converterForWeaponDamageType;
+            this.converterForDamageType = converterForDamageType;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
             this.converterForInfusionSlotCollection = converterForInfusionSlotCollection;
         }
@@ -132,7 +132,7 @@ namespace GW2NET.V2.Items.Converters
                     break;
             }
 
-            weapon.DamageType = this.converterForWeaponDamageType.Convert(value.DamageType);
+            weapon.DamageType = this.converterForDamageType.Convert(value.DamageType);
 
             weapon.MinimumPower = value.MinimumPower.GetValueOrDefault();
             weapon.MaximumPower = value.MaximumPower.GetValueOrDefault();
@@ -165,7 +165,7 @@ namespace GW2NET.V2.Items.Converters
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
         private void ObjectInvariant()
         {
-            Contract.Invariant(this.converterForWeaponDamageType != null);
+            Contract.Invariant(this.converterForDamageType != null);
             Contract.Invariant(this.converterForInfixUpgrade != null);
             Contract.Invariant(this.converterForInfusionSlotCollection != null);
         }

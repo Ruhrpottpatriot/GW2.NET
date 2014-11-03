@@ -1468,7 +1468,7 @@ namespace GW2NET.V1.Items
             }
 
             // Set the damage type
-            WeaponDamageType damageType;
+            DamageType damageType;
             if (Enum.TryParse(content.Weapon.DamageType, true, out damageType))
             {
                 value.DamageType = damageType;

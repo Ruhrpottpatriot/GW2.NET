@@ -425,7 +425,7 @@
     <Compile Include="Entities\Items\Weapons\UnknownWeapon.cs" />
     <Compile Include="Entities\Items\Weapons\WarHorn.cs" />
     <Compile Include="Entities\Items\Weapons\Weapon.cs" />
-    <Compile Include="Entities\Items\Weapons\WeaponDamageType.cs" />
+    <Compile Include="Entities\Items\Weapons\DamageType.cs" />
     <Compile Include="Entities\Maps\Continent.cs" />
     <Compile Include="Entities\Maps\Floor.cs" />
     <Compile Include="Entities\Maps\Map.cs" />
@@ -809,7 +809,7 @@
     <Compile Include="V2\Items\Converters\ConverterForUpgradeRemoval.cs" />
     <Compile Include="V2\Items\Converters\ConverterForUtility.cs" />
     <Compile Include="V2\Items\Converters\ConverterForWeapon.cs" />
-    <Compile Include="V2\Items\Converters\ConverterForWeaponDamageType.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForDamageType.cs" />
     <Compile Include="V2\Items\Converters\ConverterForWeightClass.cs" />
     <Compile Include="V2\Items\ItemBulkRequest.cs" />
     <Compile Include="V2\Items\ItemDetailsRequest.cs" />

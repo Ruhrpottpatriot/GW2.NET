@@ -306,10 +306,10 @@ namespace GW2NET.V1.Skins
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static WeaponDamageType ConvertWeaponDamageTypeContract(string content)
+        private static DamageType ConvertDamageTypeContract(string content)
         {
             Contract.Requires(content != null);
-            return (WeaponDamageType)Enum.Parse(typeof(WeaponDamageType), content, true);
+            return (DamageType)Enum.Parse(typeof(DamageType), content, true);
         }
 
         /// <summary>Infrastructure. Maps contracts to entities.</summary>
@@ -323,7 +323,7 @@ namespace GW2NET.V1.Skins
             // Set the damage type
             if (content.DamageType != null)
             {
-                skin.DamageType = ConvertWeaponDamageTypeContract(content.DamageType);
+                skin.DamageType = ConvertDamageTypeContract(content.DamageType);
             }
         }
 

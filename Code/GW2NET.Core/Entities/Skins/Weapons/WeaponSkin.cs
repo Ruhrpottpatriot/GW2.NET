@@ -14,6 +14,6 @@ namespace GW2NET.Entities.Skins
     public abstract class WeaponSkin : Skin
     {
         /// <summary>Gets or sets the weapon's damage type.</summary>
-        public virtual WeaponDamageType DamageType { get; set; }
+        public virtual DamageType DamageType { get; set; }
     }
 }

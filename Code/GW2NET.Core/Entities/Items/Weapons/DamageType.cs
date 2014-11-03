@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="WeaponDamageType.cs" company="GW2.NET Coding Team">
+// <copyright file="DamageType.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -9,7 +9,7 @@
 namespace GW2NET.Entities.Items
 {
     /// <summary>Enumerates the possible weapon damage types.</summary>
-    public enum WeaponDamageType
+    public enum DamageType
     {
         /// <summary>The 'Unknown' damage type.</summary>
         Unknown = 0, 
