@@ -381,7 +381,7 @@
     <Compile Include="Entities\Items\ItemRarity.cs" />
     <Compile Include="Entities\Items\ItemRestrictions.cs" />
     <Compile Include="Entities\Items\ItemStack.cs" />
-    <Compile Include="Entities\Items\MiniPets\Miniature.cs" />
+    <Compile Include="Entities\Items\Miniatures\Miniature.cs" />
     <Compile Include="Entities\Items\Tools\SalvageTool.cs" />
     <Compile Include="Entities\Items\Tools\Tool.cs" />
     <Compile Include="Entities\Items\Tools\UnknownTool.cs" />
