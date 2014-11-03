@@ -21,7 +21,7 @@ namespace GW2NET.V2.Items.Converters
     internal sealed class ConverterForArmor : IConverter<DetailsDataContract, Armor>
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<string, ArmorWeightClass> converterForArmorWeightClass;
+        private readonly IConverter<string, WeightClass> converterForWeightClass;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade;
@@ -34,21 +34,21 @@ namespace GW2NET.V2.Items.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForArmor"/> class.</summary>
         public ConverterForArmor()
-            : this(GetKnownTypeConverters(), new ConverterForArmorWeightClass(), new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
+            : this(GetKnownTypeConverters(), new ConverterForWeightClass(), new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForArmor"/> class.</summary>
         /// <param name="typeConverters">The type Converters.</param>
-        /// <param name="converterForArmorWeightClass">The converter for <see cref="ArmorWeightClass"/>.</param>
+        /// <param name="converterForWeightClass">The converter for <see cref="WeightClass"/>.</param>
         /// <param name="converterForInfusionSlotCollection">The converter for <see cref="ICollection{InfusionSlot}"/>.</param>
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
-        public ConverterForArmor(IDictionary<string, IConverter<DetailsDataContract, Armor>> typeConverters, IConverter<string, ArmorWeightClass> converterForArmorWeightClass, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
+        public ConverterForArmor(IDictionary<string, IConverter<DetailsDataContract, Armor>> typeConverters, IConverter<string, WeightClass> converterForWeightClass, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
-            Contract.Requires(converterForArmorWeightClass != null);
+            Contract.Requires(converterForWeightClass != null);
             Contract.Requires(converterForInfusionSlotCollection != null);
             Contract.Requires(converterForInfixUpgrade != null);
-            this.converterForArmorWeightClass = converterForArmorWeightClass;
+            this.converterForWeightClass = converterForWeightClass;
             this.converterForInfusionSlotCollection = converterForInfusionSlotCollection;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
             this.typeConverters = typeConverters;
@@ -62,7 +62,7 @@ namespace GW2NET.V2.Items.Converters
             Contract.Assume(value != null);
             IConverter<DetailsDataContract, Armor> converter;
             var armor = this.typeConverters.TryGetValue(value.Type, out converter) ? converter.Convert(value) : new UnknownArmor();
-            armor.WeightClass = this.converterForArmorWeightClass.Convert(value.WeightClass);
+            armor.WeightClass = this.converterForWeightClass.Convert(value.WeightClass);
             armor.Defense = value.Defense.GetValueOrDefault();
             var infusionSlotDataContracts = value.InfusionSlots;
             if (infusionSlotDataContracts != null)
@@ -98,7 +98,7 @@ namespace GW2NET.V2.Items.Converters
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
         private void ObjectInvariant()
         {
-            Contract.Invariant(this.converterForArmorWeightClass != null);
+            Contract.Invariant(this.converterForWeightClass != null);
             Contract.Invariant(this.converterForInfusionSlotCollection != null);
             Contract.Invariant(this.converterForInfixUpgrade != null);
         }

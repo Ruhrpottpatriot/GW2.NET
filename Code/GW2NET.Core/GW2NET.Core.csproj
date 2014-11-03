@@ -309,7 +309,7 @@
     <Compile Include="Entities\Guilds\EmblemTransformations.cs" />
     <Compile Include="Entities\Guilds\Guild.cs" />
     <Compile Include="Entities\Items\Armors\Armor.cs" />
-    <Compile Include="Entities\Items\Armors\ArmorWeightClass.cs" />
+    <Compile Include="Entities\Items\Armors\WeightClass.cs" />
     <Compile Include="Entities\Items\Armors\Boots.cs" />
     <Compile Include="Entities\Items\Armors\Coat.cs" />
     <Compile Include="Entities\Items\Armors\Gloves.cs" />
@@ -810,7 +810,7 @@
     <Compile Include="V2\Items\Converters\ConverterForUtility.cs" />
     <Compile Include="V2\Items\Converters\ConverterForWeapon.cs" />
     <Compile Include="V2\Items\Converters\ConverterForWeaponDamageType.cs" />
-    <Compile Include="V2\Items\Converters\ConverterForArmorWeightClass.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForWeightClass.cs" />
     <Compile Include="V2\Items\ItemBulkRequest.cs" />
     <Compile Include="V2\Items\ItemDetailsRequest.cs" />
     <Compile Include="V2\Items\ItemDiscoveryRequest.cs" />

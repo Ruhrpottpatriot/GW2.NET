@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ArmorWeightClass.cs" company="GW2.NET Coding Team">
+// <copyright file="WeightClass.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -9,7 +9,7 @@
 namespace GW2NET.Entities.Items
 {
     /// <summary>Enumerates the known armor weight classes.</summary>
-    public enum ArmorWeightClass
+    public enum WeightClass
     {
         /// <summary>The 'Unknown' weight class.</summary>
         Unknown = 0, 

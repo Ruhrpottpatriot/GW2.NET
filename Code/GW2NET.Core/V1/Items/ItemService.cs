@@ -238,7 +238,7 @@ namespace GW2NET.V1.Items
             }
 
             // Set the weight class
-            ArmorWeightClass weightClass;
+            WeightClass weightClass;
             if (!Enum.TryParse(content.Armor.WeightClass, true, out weightClass))
             {
                 Debug.WriteLine("Unknown 'WeightClass' for item with ID {0}: {1}", content.ItemId, content.Armor.WeightClass);

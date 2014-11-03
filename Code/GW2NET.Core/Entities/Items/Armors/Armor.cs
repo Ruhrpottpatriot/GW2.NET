@@ -60,7 +60,7 @@ namespace GW2NET.Entities.Items
         public virtual int? SuffixItemId { get; set; }
 
         /// <summary>Gets or sets the armor's weight class.</summary>
-        public virtual ArmorWeightClass WeightClass { get; set; }
+        public virtual WeightClass WeightClass { get; set; }
 
         /// <summary>Gets an item chat link for this item.</summary>
         /// <returns>The <see cref="ChatLink"/>.</returns>

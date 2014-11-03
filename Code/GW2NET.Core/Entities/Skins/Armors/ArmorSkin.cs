@@ -14,6 +14,6 @@ namespace GW2NET.Entities.Skins
     public abstract class ArmorSkin : Skin
     {
         /// <summary>Gets or sets the armor skin's weight class.</summary>
-        public virtual ArmorWeightClass WeightClass { get; set; }
+        public virtual WeightClass WeightClass { get; set; }
     }
 }

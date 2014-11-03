@@ -187,17 +187,17 @@ namespace GW2NET.V1.Skins
             Contract.Requires(content != null);
             if (content.WeightClass != null)
             {
-                skin.WeightClass = ConvertArmorWeightClassContract(content.WeightClass);
+                skin.WeightClass = ConvertWeightClassContract(content.WeightClass);
             }
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
         /// <param name="content">The content.</param>
         /// <returns>The bit flags.</returns>
-        private static ArmorWeightClass ConvertArmorWeightClassContract(string content)
+        private static WeightClass ConvertWeightClassContract(string content)
         {
             Contract.Requires(content != null);
-            return (ArmorWeightClass)Enum.Parse(typeof(ArmorWeightClass), content, true);
+            return (WeightClass)Enum.Parse(typeof(WeightClass), content, true);
         }
 
         /// <summary>Infrastructure. Converts text to bit flags.</summary>
