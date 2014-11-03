@@ -764,6 +764,7 @@
     <Compile Include="V2\Items\Converters\ConverterForCollectibleCapacityUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCombatAttribute.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCombatBuff.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForConditionDamageModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForConsumable.cs" />
     <Compile Include="V2\Items\Converters\ConverterForContainer.cs" />
     <Compile Include="V2\Items\Converters\ConverterForContentUnlocker.cs" />
@@ -771,6 +772,7 @@
     <Compile Include="V2\Items\Converters\ConverterForCraftingMaterial.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCraftingRecipeUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForDyeUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForFerocityModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForFood.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGameType.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGameTypeCollection.cs" />
@@ -779,6 +781,7 @@
     <Compile Include="V2\Items\Converters\ConverterForGizmo.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGloves.cs" />
     <Compile Include="V2\Items\Converters\ConverterForHalloweenConsumable.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForHealingModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForHelm.cs" />
     <Compile Include="V2\Items\Converters\ConverterForHelmAquatic.cs" />
     <Compile Include="V2\Items\Converters\ConverterForImmediateConsumable.cs" />
@@ -794,9 +797,12 @@
     <Compile Include="V2\Items\Converters\ConverterForItemRestrictionCollection.cs" />
     <Compile Include="V2\Items\Converters\ConverterForLeggings.cs" />
     <Compile Include="V2\Items\Converters\ConverterForMiniature.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForPowerModifier.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForPrecisionModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForSalvageTool.cs" />
     <Compile Include="V2\Items\Converters\ConverterForShoulders.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTool.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForToughnessModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTraitGuide.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTransmutation.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTrinket.cs" />
@@ -808,6 +814,7 @@
     <Compile Include="V2\Items\Converters\ConverterForUpgradeComponentFlagCollection.cs" />
     <Compile Include="V2\Items\Converters\ConverterForUpgradeRemoval.cs" />
     <Compile Include="V2\Items\Converters\ConverterForUtility.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForVitalityModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForWeapon.cs" />
     <Compile Include="V2\Items\Converters\ConverterForDamageType.cs" />
     <Compile Include="V2\Items\Converters\ConverterForWeightClass.cs" />
