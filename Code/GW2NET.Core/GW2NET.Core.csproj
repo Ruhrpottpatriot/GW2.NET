@@ -776,6 +776,7 @@
     <Compile Include="V2\Items\Converters\ConverterForCraftingRecipeUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForDefaultContainer.cs" />
     <Compile Include="V2\Items\Converters\ConverterForDefaultGizmo.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForDefaultUpgradeComponent.cs" />
     <Compile Include="V2\Items\Converters\ConverterForDyeUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForFerocityModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForFood.cs" />
@@ -783,6 +784,7 @@
     <Compile Include="V2\Items\Converters\ConverterForGameType.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGameTypeCollection.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGatheringTools.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForGem.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGenericConsumable.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGiftBox.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGizmo.cs" />
@@ -811,8 +813,10 @@
     <Compile Include="V2\Items\Converters\ConverterForPrecisionModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForRentableContractNpc.cs" />
     <Compile Include="V2\Items\Converters\ConverterForRing.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForRune.cs" />
     <Compile Include="V2\Items\Converters\ConverterForSalvageTool.cs" />
     <Compile Include="V2\Items\Converters\ConverterForShoulders.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForSigil.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTool.cs" />
     <Compile Include="V2\Items\Converters\ConverterForToughnessModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTraitGuide.cs" />
