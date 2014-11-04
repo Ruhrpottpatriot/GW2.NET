@@ -771,6 +771,7 @@
     <Compile Include="V2\Items\Converters\ConverterForContractNpc.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCraftingMaterial.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCraftingRecipeUnlocker.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForDefaultContainer.cs" />
     <Compile Include="V2\Items\Converters\ConverterForDyeUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForFerocityModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForFood.cs" />
@@ -778,6 +779,7 @@
     <Compile Include="V2\Items\Converters\ConverterForGameTypeCollection.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGatheringTools.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGenericConsumable.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForGiftBox.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGizmo.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGloves.cs" />
     <Compile Include="V2\Items\Converters\ConverterForHalloweenConsumable.cs" />
@@ -797,6 +799,7 @@
     <Compile Include="V2\Items\Converters\ConverterForItemRestrictionCollection.cs" />
     <Compile Include="V2\Items\Converters\ConverterForLeggings.cs" />
     <Compile Include="V2\Items\Converters\ConverterForMiniature.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForOpenUiContainer.cs" />
     <Compile Include="V2\Items\Converters\ConverterForPowerModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForPrecisionModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForSalvageTool.cs" />
