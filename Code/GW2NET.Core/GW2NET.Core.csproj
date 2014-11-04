@@ -767,11 +767,13 @@
     <Compile Include="V2\Items\Converters\ConverterForConditionDamageModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForConsumable.cs" />
     <Compile Include="V2\Items\Converters\ConverterForContainer.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForContainerKey.cs" />
     <Compile Include="V2\Items\Converters\ConverterForContentUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForContractNpc.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCraftingMaterial.cs" />
     <Compile Include="V2\Items\Converters\ConverterForCraftingRecipeUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForDefaultContainer.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForDefaultGizmo.cs" />
     <Compile Include="V2\Items\Converters\ConverterForDyeUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForFerocityModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForFood.cs" />
@@ -805,6 +807,7 @@
     <Compile Include="V2\Items\Converters\ConverterForOpenUiContainer.cs" />
     <Compile Include="V2\Items\Converters\ConverterForPowerModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForPrecisionModifier.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForRentableContractNpc.cs" />
     <Compile Include="V2\Items\Converters\ConverterForSalvageTool.cs" />
     <Compile Include="V2\Items\Converters\ConverterForShoulders.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTool.cs" />
@@ -813,6 +816,7 @@
     <Compile Include="V2\Items\Converters\ConverterForTransmutation.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTrinket.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTrophy.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForUnlimitedConsumable.cs" />
     <Compile Include="V2\Items\Converters\ConverterForUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForUnTransmutation.cs" />
     <Compile Include="V2\Items\Converters\ConverterForUpgradeComponent.cs" />
