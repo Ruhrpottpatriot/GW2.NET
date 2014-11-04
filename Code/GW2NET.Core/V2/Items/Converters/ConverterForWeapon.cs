@@ -21,13 +21,13 @@ namespace GW2NET.V2.Items.Converters
     internal sealed class ConverterForWeapon : IConverter<DetailsDataContract, Weapon>
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<string, DamageType> converterForDamageType;
+
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection;
-
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<string, DamageType> converterForDamageType;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForWeapon"/> class.</summary>
         public ConverterForWeapon()

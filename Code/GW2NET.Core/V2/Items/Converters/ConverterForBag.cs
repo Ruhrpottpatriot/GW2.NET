@@ -23,7 +23,11 @@ namespace GW2NET.V2.Items.Converters
         public Bag Convert(DetailsDataContract value)
         {
             Contract.Assume(value != null);
-            return new Bag { Size = value.Size.GetValueOrDefault(), NoSellOrSort = value.NoSellOrSort.GetValueOrDefault() };
+            return new Bag
+            {
+                Size = value.Size.GetValueOrDefault(), 
+                NoSellOrSort = value.NoSellOrSort.GetValueOrDefault()
+            };
         }
     }
 }

@@ -6,7 +6,6 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="UpgradeComponent" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Items.Converters
 {
     using System.Collections.Generic;

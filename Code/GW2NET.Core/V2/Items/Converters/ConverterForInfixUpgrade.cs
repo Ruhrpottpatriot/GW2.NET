@@ -6,7 +6,6 @@
 //   Converts objects of type <see cref="InfixUpgradeDataContract" /> to objects of type <see cref="InfixUpgrade" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Items.Converters
 {
     using System.Collections.Generic;

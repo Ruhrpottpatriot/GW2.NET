@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public FerocityModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);
-            return new FerocityModifier { Modifier = value.Modifier };
+            return new FerocityModifier
+            {
+                Modifier = value.Modifier
+            };
         }
     }
 }

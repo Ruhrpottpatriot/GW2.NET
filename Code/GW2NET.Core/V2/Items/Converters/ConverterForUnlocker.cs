@@ -57,11 +57,11 @@ namespace GW2NET.V2.Items.Converters
         {
             return new Dictionary<string, IConverter<DetailsDataContract, Unlocker>>
             {
-                { "BagSlot", new ConverterForBagSlotUnlocker() },
-                { "BankTab", new ConverterForBankTabUnlocker() },
-                { "CollectibleCapacity", new ConverterForCollectibleCapacityUnlocker() },
-                { "Content", new ConverterForContentUnlocker() },
-                { "CraftingRecipe", new ConverterForCraftingRecipeUnlocker() },
+                { "BagSlot", new ConverterForBagSlotUnlocker() }, 
+                { "BankTab", new ConverterForBankTabUnlocker() }, 
+                { "CollectibleCapacity", new ConverterForCollectibleCapacityUnlocker() }, 
+                { "Content", new ConverterForContentUnlocker() }, 
+                { "CraftingRecipe", new ConverterForCraftingRecipeUnlocker() }, 
                 { "Dye", new ConverterForDyeUnlocker() }
             };
         }

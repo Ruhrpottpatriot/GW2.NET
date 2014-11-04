@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public DyeUnlocker Convert(DetailsDataContract value)
         {
             Contract.Assume(value != null);
-            return new DyeUnlocker { ColorId = value.ColorId.GetValueOrDefault() };
+            return new DyeUnlocker
+            {
+                ColorId = value.ColorId.GetValueOrDefault()
+            };
         }
     }
 }

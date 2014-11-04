@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public VitalityModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);
-            return new VitalityModifier { Modifier = value.Modifier };
+            return new VitalityModifier
+            {
+                Modifier = value.Modifier
+            };
         }
     }
 }

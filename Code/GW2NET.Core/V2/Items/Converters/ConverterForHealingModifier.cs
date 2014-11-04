@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public HealingModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);
-            return new HealingModifier { Modifier = value.Modifier };
+            return new HealingModifier
+            {
+                Modifier = value.Modifier
+            };
         }
     }
 }

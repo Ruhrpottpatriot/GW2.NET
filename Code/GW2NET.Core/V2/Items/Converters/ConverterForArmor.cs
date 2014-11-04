@@ -21,13 +21,13 @@ namespace GW2NET.V2.Items.Converters
     internal sealed class ConverterForArmor : IConverter<DetailsDataContract, Armor>
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<string, WeightClass> converterForWeightClass;
-
-        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection;
+
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<string, WeightClass> converterForWeightClass;
 
         /// <summary>Infrastructure. Holds a reference to a collection of type converters.</summary>
         private readonly IDictionary<string, IConverter<DetailsDataContract, Armor>> typeConverters;
@@ -91,7 +91,16 @@ namespace GW2NET.V2.Items.Converters
         /// <returns>The type converters.</returns>
         private static IDictionary<string, IConverter<DetailsDataContract, Armor>> GetKnownTypeConverters()
         {
-            return new Dictionary<string, IConverter<DetailsDataContract, Armor>> { { "Boots", new ConverterForBoots() }, { "Coat", new ConverterForCoat() }, { "Helm", new ConverterForHelm() }, { "Shoulders", new ConverterForShoulders() }, { "Gloves", new ConverterForGloves() }, { "Leggings", new ConverterForLeggings() }, { "HelmAquatic", new ConverterForHelmAquatic() }, };
+            return new Dictionary<string, IConverter<DetailsDataContract, Armor>>
+            {
+                { "Boots", new ConverterForBoots() }, 
+                { "Coat", new ConverterForCoat() }, 
+                { "Helm", new ConverterForHelm() }, 
+                { "Shoulders", new ConverterForShoulders() }, 
+                { "Gloves", new ConverterForGloves() }, 
+                { "Leggings", new ConverterForLeggings() }, 
+                { "HelmAquatic", new ConverterForHelmAquatic() }, 
+            };
         }
 
         [ContractInvariantMethod]

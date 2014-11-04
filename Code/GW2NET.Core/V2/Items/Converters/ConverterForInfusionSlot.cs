@@ -42,7 +42,10 @@ namespace GW2NET.V2.Items.Converters
         public InfusionSlot Convert(InfusionSlotDataContract value)
         {
             Contract.Assume(value != null);
-            var infusionSlot = new InfusionSlot { ItemId = value.ItemId };
+            var infusionSlot = new InfusionSlot
+            {
+                ItemId = value.ItemId
+            };
             var flags = value.Flags;
             if (flags != null)
             {

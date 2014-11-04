@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public ConditionDamageModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);
-            return new ConditionDamageModifier { Modifier = value.Modifier };
+            return new ConditionDamageModifier
+            {
+                Modifier = value.Modifier
+            };
         }
     }
 }

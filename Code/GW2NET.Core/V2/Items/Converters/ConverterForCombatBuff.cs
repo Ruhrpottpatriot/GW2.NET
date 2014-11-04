@@ -23,7 +23,11 @@ namespace GW2NET.V2.Items.Converters
         public ItemBuff Convert(BuffDataContract value)
         {
             Contract.Assume(value != null);
-            return new ItemBuff { SkillId = value.SkillId, Description = value.Description };
+            return new ItemBuff
+            {
+                SkillId = value.SkillId, 
+                Description = value.Description
+            };
         }
     }
 }

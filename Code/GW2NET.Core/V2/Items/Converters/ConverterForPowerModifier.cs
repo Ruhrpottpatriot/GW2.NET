@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public PowerModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);
-            return new PowerModifier { Modifier = value.Modifier };
+            return new PowerModifier
+            {
+                Modifier = value.Modifier
+            };
         }
     }
 }

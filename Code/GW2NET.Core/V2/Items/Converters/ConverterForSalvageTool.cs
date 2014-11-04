@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public Tool Convert(DetailsDataContract value)
         {
             Contract.Assume(value != null);
-            return new SalvageTool { Charges = value.Charges.GetValueOrDefault() };
+            return new SalvageTool
+            {
+                Charges = value.Charges.GetValueOrDefault()
+            };
         }
     }
 }

@@ -145,7 +145,24 @@ namespace GW2NET.V2.Items.Converters
         /// <returns>The type converters.</returns>
         private static IDictionary<string, IConverter<DetailsDataContract, Item>> GetKnownTypeConverters()
         {
-            return new Dictionary<string, IConverter<DetailsDataContract, Item>> { { "Armor", new ConverterForArmor() }, { "Back", new ConverterForBackpack() }, { "Bag", new ConverterForBag() }, { "Consumable", new ConverterForConsumable() }, { "Container", new ConverterForContainer() }, { "CraftingMaterial", new ConverterForCraftingMaterial() }, { "Gathering", new ConverterForGatheringTool() }, { "Gizmo", new ConverterForGizmo() }, { "MiniPet", new ConverterForMiniature() }, { "Tool", new ConverterForTool() }, { "Trait", new ConverterForTraitGuide() }, { "Trinket", new ConverterForTrinket() }, { "Trophy", new ConverterForTrophy() }, { "UpgradeComponent", new ConverterForUpgradeComponent() }, { "Weapon", new ConverterForWeapon() }, };
+            return new Dictionary<string, IConverter<DetailsDataContract, Item>>
+            {
+                { "Armor", new ConverterForArmor() }, 
+                { "Back", new ConverterForBackpack() }, 
+                { "Bag", new ConverterForBag() }, 
+                { "Consumable", new ConverterForConsumable() }, 
+                { "Container", new ConverterForContainer() }, 
+                { "CraftingMaterial", new ConverterForCraftingMaterial() }, 
+                { "Gathering", new ConverterForGatheringTool() }, 
+                { "Gizmo", new ConverterForGizmo() }, 
+                { "MiniPet", new ConverterForMiniature() }, 
+                { "Tool", new ConverterForTool() }, 
+                { "Trait", new ConverterForTraitGuide() }, 
+                { "Trinket", new ConverterForTrinket() }, 
+                { "Trophy", new ConverterForTrophy() }, 
+                { "UpgradeComponent", new ConverterForUpgradeComponent() }, 
+                { "Weapon", new ConverterForWeapon() }, 
+            };
         }
 
         [ContractInvariantMethod]

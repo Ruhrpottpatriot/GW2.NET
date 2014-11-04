@@ -6,7 +6,6 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Consumable" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Items.Converters
 {
     using System.Collections.Generic;
@@ -56,7 +55,21 @@ namespace GW2NET.V2.Items.Converters
         /// <returns>The type converters.</returns>
         private static IDictionary<string, IConverter<DetailsDataContract, Consumable>> GetKnownTypeConverters()
         {
-            return new Dictionary<string, IConverter<DetailsDataContract, Consumable>> { { "AppearanceChange", new ConverterForAppearanceChanger() }, { "Booze", new ConverterForAlcohol() }, { "ContractNpc", new ConverterForContractNpc() }, { "Food", new ConverterForFood() }, { "Generic", new ConverterForGenericConsumable() }, { "Halloween", new ConverterForHalloweenConsumable() }, { "Immediate", new ConverterForImmediateConsumable() }, { "Transmutation", new ConverterForTransmutation() }, { "Unlock", new ConverterForUnlocker() }, { "UnTransmutation", new ConverterForUnTransmutation() }, { "UpgradeRemoval", new ConverterForUpgradeRemoval() }, { "Utility", new ConverterForUtility() }, };
+            return new Dictionary<string, IConverter<DetailsDataContract, Consumable>>
+            {
+                { "AppearanceChange", new ConverterForAppearanceChanger() }, 
+                { "Booze", new ConverterForAlcohol() }, 
+                { "ContractNpc", new ConverterForContractNpc() }, 
+                { "Food", new ConverterForFood() }, 
+                { "Generic", new ConverterForGenericConsumable() }, 
+                { "Halloween", new ConverterForHalloweenConsumable() }, 
+                { "Immediate", new ConverterForImmediateConsumable() }, 
+                { "Transmutation", new ConverterForTransmutation() }, 
+                { "Unlock", new ConverterForUnlocker() }, 
+                { "UnTransmutation", new ConverterForUnTransmutation() }, 
+                { "UpgradeRemoval", new ConverterForUpgradeRemoval() }, 
+                { "Utility", new ConverterForUtility() }, 
+            };
         }
 
         [ContractInvariantMethod]

@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public CraftingRecipeUnlocker Convert(DetailsDataContract value)
         {
             Contract.Assume(value != null);
-            return new CraftingRecipeUnlocker { RecipeId = value.RecipeId.GetValueOrDefault() };
+            return new CraftingRecipeUnlocker
+            {
+                RecipeId = value.RecipeId.GetValueOrDefault()
+            };
         }
     }
 }

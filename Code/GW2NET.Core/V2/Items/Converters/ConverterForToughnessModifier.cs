@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public ToughnessModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);
-            return new ToughnessModifier { Modifier = value.Modifier };
+            return new ToughnessModifier
+            {
+                Modifier = value.Modifier
+            };
         }
     }
 }

@@ -23,7 +23,10 @@ namespace GW2NET.V2.Items.Converters
         public PrecisionModifier Convert(AttributeDataContract value)
         {
             Contract.Assume(value != null);
-            return new PrecisionModifier { Modifier = value.Modifier };
+            return new PrecisionModifier
+            {
+                Modifier = value.Modifier
+            };
         }
     }
 }
