@@ -29,23 +29,29 @@ namespace GW2NET.V2.Items.Converters
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection;
 
+        /// <summary>Infrastructure. Holds a reference to a collection of type converters.</summary>
+        private readonly IDictionary<string, IConverter<DetailsDataContract, Weapon>> typeConverters;
+
         /// <summary>Initializes a new instance of the <see cref="ConverterForWeapon"/> class.</summary>
         public ConverterForWeapon()
-            : this(new ConverterForDamageType(), new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
+            : this(GetKnownTypeConverters(), new ConverterForDamageType(), new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForWeapon"/> class.</summary>
+        /// <param name="typeConverters">The type converters.</param>
         /// <param name="converterForDamageType">The converter for <see cref="DamageType"/>.</param>
         /// <param name="converterForInfusionSlotCollection">The converter for <see cref="ICollection{InfusionSlot}"/>.</param>
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
-        public ConverterForWeapon(IConverter<string, DamageType> converterForDamageType, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
+        public ConverterForWeapon(IDictionary<string, IConverter<DetailsDataContract, Weapon>> typeConverters, IConverter<string, DamageType> converterForDamageType, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
+            Contract.Requires(typeConverters != null);
             Contract.Requires(converterForDamageType != null);
             Contract.Requires(converterForInfixUpgrade != null);
             Contract.Requires(converterForInfusionSlotCollection != null);
             this.converterForDamageType = converterForDamageType;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
+            this.typeConverters = typeConverters;
             this.converterForInfusionSlotCollection = converterForInfusionSlotCollection;
         }
 
@@ -56,80 +62,14 @@ namespace GW2NET.V2.Items.Converters
         {
             Contract.Assume(value != null);
             Weapon weapon;
-            switch (value.Type)
+            IConverter<DetailsDataContract, Weapon> converter;
+            if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                case "Axe":
-                    weapon = new Axe();
-                    break;
-                case "Dagger":
-                    weapon = new Dagger();
-                    break;
-                case "Focus":
-                    weapon = new Focus();
-                    break;
-                case "Greatsword":
-                    weapon = new GreatSword();
-                    break;
-                case "Hammer":
-                    weapon = new Hammer();
-                    break;
-                case "Harpoon":
-                    weapon = new Harpoon();
-                    break;
-                case "LongBow":
-                    weapon = new LongBow();
-                    break;
-                case "Mace":
-                    weapon = new Mace();
-                    break;
-                case "Pistol":
-                    weapon = new Pistol();
-                    break;
-                case "Rifle":
-                    weapon = new Rifle();
-                    break;
-                case "Scepter":
-                    weapon = new Scepter();
-                    break;
-                case "Shield":
-                    weapon = new Shield();
-                    break;
-                case "ShortBow":
-                    weapon = new ShortBow();
-                    break;
-                case "Speargun":
-                    weapon = new SpearGun();
-                    break;
-                case "Sword":
-                    weapon = new Sword();
-                    break;
-                case "Staff":
-                    weapon = new Staff();
-                    break;
-                case "Torch":
-                    weapon = new Torch();
-                    break;
-                case "Trident":
-                    weapon = new Trident();
-                    break;
-                case "Warhorn":
-                    weapon = new WarHorn();
-                    break;
-                case "Toy":
-                    weapon = new Toy();
-                    break;
-                case "TwoHandedToy":
-                    weapon = new TwoHandedToy();
-                    break;
-                case "SmallBundle":
-                    weapon = new SmallBundle();
-                    break;
-                case "LargeBundle":
-                    weapon = new LargeBundle();
-                    break;
-                default:
-                    weapon = new UnknownWeapon();
-                    break;
+                weapon = converter.Convert(value);
+            }
+            else
+            {
+                weapon = new UnknownWeapon();
             }
 
             weapon.DamageType = this.converterForDamageType.Convert(value.DamageType);
@@ -159,6 +99,38 @@ namespace GW2NET.V2.Items.Converters
             }
 
             return weapon;
+        }
+
+        /// <summary>Infrastructure. Gets default type converters for all known types.</summary>
+        /// <returns>The type converters.</returns>
+        private static IDictionary<string, IConverter<DetailsDataContract, Weapon>> GetKnownTypeConverters()
+        {
+            return new Dictionary<string, IConverter<DetailsDataContract, Weapon>>
+            {
+                { "Axe", new ConverterForAxe() }, 
+                { "Dagger", new ConverterForDagger() }, 
+                { "Focus", new ConverterForFocus() }, 
+                { "Greatsword", new ConverterForGreatSword() }, 
+                { "Hammer", new ConverterForHammer() }, 
+                { "Harpoon", new ConverterForHarpoon() }, 
+                { "LongBow", new ConverterForLongBow() }, 
+                { "Mace", new ConverterForMace() }, 
+                { "Pistol", new ConverterForPistol() }, 
+                { "Rifle", new ConverterForRifle() }, 
+                { "Scepter", new ConverterForScepter() }, 
+                { "Shield", new ConverterForShield() }, 
+                { "ShortBow", new ConverterForShortBow() }, 
+                { "Speargun", new ConverterForSpearGun() }, 
+                { "Sword", new ConverterForSword() }, 
+                { "Staff", new ConverterForStaff() }, 
+                { "Torch", new ConverterForTorch() }, 
+                { "Trident", new ConverterForTrident() }, 
+                { "Warhorn", new ConverterForWarHorn() }, 
+                { "Toy", new ConverterForToy() }, 
+                { "TwoHandedToy", new ConverterForTwoHandedToy() }, 
+                { "SmallBundle", new ConverterForSmallBundle() }, 
+                { "LargeBundle", new ConverterForLargeBundle() }, 
+            };
         }
 
         [ContractInvariantMethod]

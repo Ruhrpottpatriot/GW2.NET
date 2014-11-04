@@ -1,9 +1,9 @@
 // --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ConverterForAccessory.cs" company="GW2.NET Coding Team">
+// <copyright file="ConverterForShield.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Accessory" />.
+//   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Shield" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Items.Converters
@@ -14,16 +14,16 @@ namespace GW2NET.V2.Items.Converters
     using GW2NET.Entities.Items;
     using GW2NET.V2.Items.Json;
 
-    /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Accessory"/>.</summary>
-    internal sealed class ConverterForAccessory : IConverter<DetailsDataContract, Accessory>
+    /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Shield"/>.</summary>
+    internal sealed class ConverterForShield : IConverter<DetailsDataContract, Shield>
     {
-        /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Accessory"/>.</summary>
+        /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Shield"/>.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns>The converted value.</returns>
-        public Accessory Convert(DetailsDataContract value)
+        public Shield Convert(DetailsDataContract value)
         {
             Contract.Assume(value != null);
-            return new Accessory();
+            return new Shield();
         }
     }
 }
