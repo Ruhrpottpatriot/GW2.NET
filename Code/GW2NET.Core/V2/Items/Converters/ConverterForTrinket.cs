@@ -26,21 +26,26 @@ namespace GW2NET.V2.Items.Converters
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection;
 
+        /// <summary>Infrastructure. Holds a reference to a collection of type converters.</summary>
+        private readonly IDictionary<string, IConverter<DetailsDataContract, Trinket>> typeConverters;
+
         /// <summary>Initializes a new instance of the <see cref="ConverterForTrinket"/> class.</summary>
         public ConverterForTrinket()
-            : this(new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
+            : this(GetKnownTypeConverters(), new ConverterForCollection<InfusionSlotDataContract, InfusionSlot>(new ConverterForInfusionSlot()), new ConverterForInfixUpgrade())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForTrinket"/> class.</summary>
+        /// <param name="typeConverters">The type converters.</param>
         /// <param name="converterForInfusionSlotCollection">The converter for <see cref="ICollection{InfusionSlot}"/>.</param>
         /// <param name="converterForInfixUpgrade">The converter for <see cref="InfixUpgrade"/>.</param>
-        public ConverterForTrinket(IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
+        public ConverterForTrinket(IDictionary<string, IConverter<DetailsDataContract, Trinket>> typeConverters, IConverter<ICollection<InfusionSlotDataContract>, ICollection<InfusionSlot>> converterForInfusionSlotCollection, IConverter<InfixUpgradeDataContract, InfixUpgrade> converterForInfixUpgrade)
         {
             Contract.Requires(converterForInfusionSlotCollection != null);
             Contract.Requires(converterForInfixUpgrade != null);
             this.converterForInfusionSlotCollection = converterForInfusionSlotCollection;
             this.converterForInfixUpgrade = converterForInfixUpgrade;
+            this.typeConverters = typeConverters;
         }
 
         /// <summary>Converts the given object of type <see cref="DetailsDataContract"/> to an object of type <see cref="Trinket"/>.</summary>
@@ -50,20 +55,14 @@ namespace GW2NET.V2.Items.Converters
         {
             Contract.Assume(value != null);
             Trinket trinket;
-            switch (value.Type)
+            IConverter<DetailsDataContract, Trinket> converter;
+            if (this.typeConverters.TryGetValue(value.Type, out converter))
             {
-                case "Amulet":
-                    trinket = new Amulet();
-                    break;
-                case "Accessory":
-                    trinket = new Accessory();
-                    break;
-                case "Ring":
-                    trinket = new Ring();
-                    break;
-                default:
-                    trinket = new UnknownTrinket();
-                    break;
+                trinket = converter.Convert(value);
+            }
+            else
+            {
+                trinket = new UnknownTrinket();
             }
 
             var infusionSlotDataContracts = value.InfusionSlots;
@@ -89,10 +88,23 @@ namespace GW2NET.V2.Items.Converters
             return trinket;
         }
 
+        /// <summary>Infrastructure. Gets default type converters for all known types.</summary>
+        /// <returns>The type converters.</returns>
+        private static IDictionary<string, IConverter<DetailsDataContract, Trinket>> GetKnownTypeConverters()
+        {
+            return new Dictionary<string, IConverter<DetailsDataContract, Trinket>>
+            {
+                { "Amulet", new ConverterForAmulet() }, 
+                { "Accessory", new ConverterForAccessory() }, 
+                { "Ring", new ConverterForRing() }, 
+            };
+        }
+
         [ContractInvariantMethod]
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
         private void ObjectInvariant()
         {
+            Contract.Invariant(this.typeConverters != null);
             Contract.Invariant(this.converterForInfusionSlotCollection != null);
             Contract.Invariant(this.converterForInfixUpgrade != null);
         }

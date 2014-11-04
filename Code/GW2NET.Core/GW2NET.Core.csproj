@@ -752,7 +752,9 @@
     <Compile Include="V2\Common\PageContextPatchUtility.cs" />
     <Compile Include="V2\Common\PageRequest.cs" />
     <Compile Include="V2\Common\ResponseExtensions.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForAccessory.cs" />
     <Compile Include="V2\Items\Converters\ConverterForAlcohol.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForAmulet.cs" />
     <Compile Include="V2\Items\Converters\ConverterForAppearanceChanger.cs" />
     <Compile Include="V2\Items\Converters\ConverterForArmor.cs" />
     <Compile Include="V2\Items\Converters\ConverterForBackpack.cs" />
@@ -808,6 +810,7 @@
     <Compile Include="V2\Items\Converters\ConverterForPowerModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForPrecisionModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForRentableContractNpc.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForRing.cs" />
     <Compile Include="V2\Items\Converters\ConverterForSalvageTool.cs" />
     <Compile Include="V2\Items\Converters\ConverterForShoulders.cs" />
     <Compile Include="V2\Items\Converters\ConverterForTool.cs" />
