@@ -24,10 +24,7 @@ namespace GW2NET.V2.Items.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForTool"/> class.</summary>
         internal ConverterForTool()
-            : this(new Dictionary<string, IConverter<DetailsDataContract, Tool>>
-            {
-                { "Salvage", new ConverterForSalvageTool() }
-            })
+            : this(GetKnownTypeConverters())
         {
         }
 
@@ -52,6 +49,16 @@ namespace GW2NET.V2.Items.Converters
             }
 
             return new UnknownTool();
+        }
+
+        /// <summary>Infrastructure. Gets default type converters for all known types.</summary>
+        /// <returns>The type converters.</returns>
+        private static Dictionary<string, IConverter<DetailsDataContract, Tool>> GetKnownTypeConverters()
+        {
+            return new Dictionary<string, IConverter<DetailsDataContract, Tool>>
+            {
+                { "Salvage", new ConverterForSalvageTool() }
+            };
         }
 
         [ContractInvariantMethod]
