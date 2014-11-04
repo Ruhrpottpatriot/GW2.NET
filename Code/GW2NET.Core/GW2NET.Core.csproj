@@ -775,6 +775,7 @@
     <Compile Include="V2\Items\Converters\ConverterForDyeUnlocker.cs" />
     <Compile Include="V2\Items\Converters\ConverterForFerocityModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForFood.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForForagingTool.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGameType.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGameTypeCollection.cs" />
     <Compile Include="V2\Items\Converters\ConverterForGatheringTools.cs" />
@@ -798,7 +799,9 @@
     <Compile Include="V2\Items\Converters\ConverterForItemRestriction.cs" />
     <Compile Include="V2\Items\Converters\ConverterForItemRestrictionCollection.cs" />
     <Compile Include="V2\Items\Converters\ConverterForLeggings.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForLoggingTool.cs" />
     <Compile Include="V2\Items\Converters\ConverterForMiniature.cs" />
+    <Compile Include="V2\Items\Converters\ConverterForMiningTool.cs" />
     <Compile Include="V2\Items\Converters\ConverterForOpenUiContainer.cs" />
     <Compile Include="V2\Items\Converters\ConverterForPowerModifier.cs" />
     <Compile Include="V2\Items\Converters\ConverterForPrecisionModifier.cs" />
