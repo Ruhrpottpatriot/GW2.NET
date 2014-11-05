@@ -37,12 +37,12 @@
             }
         }
 
-        public IBroker<string, ExchangeQuote> Exchange
+        public ExchangeBrokerFactory Exchange
         {
             get
             {
-                Contract.Ensures(Contract.Result<IBroker<string, ExchangeQuote>>() != null);
-                return new ExchangeBroker(this.ServiceClient);
+                Contract.Ensures(Contract.Result<ExchangeBrokerFactory>() != null);
+                return new ExchangeBrokerFactory(this.ServiceClient);
             }
         }
     }

@@ -8,181 +8,102 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Exchange
 {
-    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
     using GW2NET.Common;
     using GW2NET.Entities.Commerce;
+    using GW2NET.V2.Commerce.Exchange.Converters;
     using GW2NET.V2.Commerce.Exchange.Json;
+    using GW2NET.V2.Common;
 
     /// <summary>Represents a broker that retrieves data from the /v2/commerce/exchange interface.</summary>
-    public class ExchangeBroker : IBroker<string, ExchangeQuote>
+    public class ExchangeBroker : IBroker<GemQuotation>
     {
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<IResponse<GemQuotationDataContract>, GemQuotation> converterForResponse;
+
+        /// <summary>The identifier for the broker.</summary>
+        private readonly string identifier;
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
         /// <summary>Initializes a new instance of the <see cref="ExchangeBroker"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public ExchangeBroker(IServiceClient serviceClient)
+        /// <param name="identifier">The identifier for the broker (either 'gems' or 'coins').</param>
+        public ExchangeBroker(IServiceClient serviceClient, string identifier)
+            : this(serviceClient, identifier, new ConverterForGemQuotation())
         {
             Contract.Requires(serviceClient != null);
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="ExchangeBroker"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="identifier">The identifier for the broker (either 'gems' or 'coins').</param>
+        /// <param name="converterForGemQuotation">The converter <see cref="GemQuotation"/>.</param>
+        internal ExchangeBroker(IServiceClient serviceClient, string identifier, IConverter<GemQuotationDataContract, GemQuotation> converterForGemQuotation)
+        {
+            Contract.Requires(serviceClient != null);
+            Contract.Requires(converterForGemQuotation != null);
             this.serviceClient = serviceClient;
+            this.identifier = identifier;
+            this.converterForResponse = new ConverterForResponse<GemQuotationDataContract, GemQuotation>(converterForGemQuotation);
         }
 
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public ICollection<string> Discover()
+        /// <inheritdoc />
+        GemQuotation IBroker<GemQuotation>.GetQuotation(long quantity)
         {
-            var request = new ExchangeDiscoveryRequest();
-            var response = this.serviceClient.Send<ICollection<string>>(request);
-            if (response.Content == null)
+            var request = new ExchangeDetailsRequest()
             {
-                return new List<string>(0);
-            }
-
-            return response.Content;
-        }
-
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<string>> DiscoverAsync()
-        {
-            return this.DiscoverAsync(CancellationToken.None);
-        }
-
-        /// <summary>Gets the discovered identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered identifiers.</returns>
-        public Task<ICollection<string>> DiscoverAsync(CancellationToken cancellationToken)
-        {
-            var request = new ExchangeDiscoveryRequest();
-            return this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return new List<string>(0);
-                        }
-
-                        return response.Content;
-                    }, 
-                cancellationToken);
-        }
-
-        /// <summary>Gets a quote for the commodity.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <returns>A quote.</returns>
-        public ExchangeQuote GetQuote(string identifier)
-        {
-            var request = new ExchangeDetailsRequest { Identifier = identifier };
-            var response = this.serviceClient.Send<ExchangeQuoteDataContract>(request);
-            if (response.Content == null)
+                Identifier = this.identifier, 
+                Quantity = quantity
+            };
+            var response = this.serviceClient.Send<GemQuotationDataContract>(request);
+            var value = this.converterForResponse.Convert(response);
+            if (value == null)
             {
                 return null;
             }
 
-            var value = ConvertExchangeQuoteDataContract(response.Content);
-            value.Id = identifier.ToLowerInvariant();
-            value.Timestamp = response.Date;
-            return value;
-        }
-
-        /// <summary>Gets a quote for the specified number of commodities.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <param name="quantity">The quantity.</param>
-        /// <returns>A quote.</returns>
-        public ExchangeQuote GetQuote(string identifier, long quantity)
-        {
-            var request = new ExchangeDetailsRequest() { Identifier = identifier, Quantity = quantity };
-            var response = this.serviceClient.Send<ExchangeQuoteDataContract>(request);
-            if (response.Content == null)
-            {
-                return null;
-            }
-
-            var value = ConvertExchangeQuoteDataContract(response.Content);
-            value.Id = identifier.ToLowerInvariant();
+            value.Id = this.identifier;
             value.Send = quantity;
-            value.Timestamp = response.Date;
             return value;
         }
 
-        /// <summary>Gets a quote for the commodity.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <returns>A quote.</returns>
-        public Task<ExchangeQuote> GetQuoteAsync(string identifier)
+        /// <inheritdoc />
+        Task<GemQuotation> IBroker<GemQuotation>.GetQuotationAsync(long quantity)
         {
-            return this.GetQuoteAsync(identifier, CancellationToken.None);
+            return ((IBroker<GemQuotation>)this).GetQuotationAsync(quantity, CancellationToken.None);
         }
 
-        /// <summary>Gets a quote for the commodity.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A quote.</returns>
-        public Task<ExchangeQuote> GetQuoteAsync(string identifier, CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<GemQuotation> IBroker<GemQuotation>.GetQuotationAsync(long quantity, CancellationToken cancellationToken)
         {
-            var request = new ExchangeDetailsRequest { Identifier = identifier };
-            return this.serviceClient.SendAsync<ExchangeQuoteDataContract>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return null;
-                        }
-
-                        var value = ConvertExchangeQuoteDataContract(response.Content);
-                        value.Id = identifier.ToLowerInvariant();
-                        value.Timestamp = response.Date;
-                        return value;
-                    }, 
-                cancellationToken);
+            var request = new ExchangeDetailsRequest
+            {
+                Identifier = this.identifier, 
+                Quantity = quantity
+            };
+            var responseTask = this.serviceClient.SendAsync<GemQuotationDataContract>(request, cancellationToken);
+            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, quantity), cancellationToken);
         }
 
-        /// <summary>Gets a quote for the specified number of commodities.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <param name="quantity">The quantity.</param>
-        /// <returns>A quote.</returns>
-        public Task<ExchangeQuote> GetQuoteAsync(string identifier, long quantity)
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private GemQuotation ConvertAsyncResponse(Task<IResponse<GemQuotationDataContract>> task, long quantity)
         {
-            return this.GetQuoteAsync(identifier, quantity, CancellationToken.None);
-        }
+            Contract.Requires(task != null);
+            var value = this.converterForResponse.Convert(task.Result);
+            if (value == null)
+            {
+                return null;
+            }
 
-        /// <summary>Gets a quote for the specified number of commodities.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <param name="quantity">The quantity.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A quote.</returns>
-        public Task<ExchangeQuote> GetQuoteAsync(string identifier, long quantity, CancellationToken cancellationToken)
-        {
-            var request = new ExchangeDetailsRequest { Identifier = identifier, Quantity = quantity };
-            return this.serviceClient.SendAsync<ExchangeQuoteDataContract>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return null;
-                        }
-
-                        var value = ConvertExchangeQuoteDataContract(response.Content);
-                        value.Id = identifier.ToLowerInvariant();
-                        value.Send = quantity;
-                        value.Timestamp = response.Date;
-                        return value;
-                    }, 
-                cancellationToken);
-        }
-
-        /// <summary>Infrastructure. Converts data contracts to entities.</summary>
-        /// <param name="content">The content.</param>
-        /// <returns>The entity.</returns>
-        private static ExchangeQuote ConvertExchangeQuoteDataContract(ExchangeQuoteDataContract content)
-        {
-            return new ExchangeQuote { CoinsPerGem = content.CoinsPerGem, Receive = content.Quantity };
+            value.Id = this.identifier;
+            value.Send = quantity;
+            return value;
         }
     }
 }

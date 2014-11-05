@@ -12,43 +12,27 @@ namespace GW2NET.Common
     using System.Threading.Tasks;
 
     /// <summary>Provides the interface for agents that provide exchange services.</summary>
-    /// <typeparam name="T">The type of identifiers that identify commodities.</typeparam>
-    /// <typeparam name="TQuote">The type of quote information.</typeparam>
-    public interface IBroker<T, TQuote> : IDiscoverable<T>
+    /// <typeparam name="TQuotation">The type of quotation.</typeparam>
+    public interface IBroker<TQuotation>
     {
-        /// <summary>Gets a quote for the commodity.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <returns>A quote.</returns>
-        TQuote GetQuote(T identifier);
-
-        /// <summary>Gets a quote for the specified number of commodities.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
+        /// <summary>Gets a quotation for the specified number of commodities.</summary>
         /// <param name="quantity">The quantity.</param>
-        /// <returns>A quote.</returns>
-        TQuote GetQuote(T identifier, long quantity);
+        /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
+        /// <returns>A quotation.</returns>
+        TQuotation GetQuotation(long quantity);
 
-        /// <summary>Gets a quote for the commodity.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <returns>A quote.</returns>
-        Task<TQuote> GetQuoteAsync(T identifier);
-
-        /// <summary>Gets a quote for the commodity.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A quote.</returns>
-        Task<TQuote> GetQuoteAsync(T identifier, CancellationToken cancellationToken);
-
-        /// <summary>Gets a quote for the specified number of commodities.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
+        /// <summary>Gets a quotation for the specified number of commodities.</summary>
         /// <param name="quantity">The quantity.</param>
-        /// <returns>A quote.</returns>
-        Task<TQuote> GetQuoteAsync(T identifier, long quantity);
+        /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
+        /// <returns>A quotation.</returns>
+        Task<TQuotation> GetQuotationAsync(long quantity);
 
-        /// <summary>Gets a quote for the specified number of commodities.</summary>
-        /// <param name="identifier">The identifier that identifies the commodity.</param>
+        /// <summary>Gets a quotation for the specified number of commodities.</summary>
         /// <param name="quantity">The quantity.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A quote.</returns>
-        Task<TQuote> GetQuoteAsync(T identifier, long quantity, CancellationToken cancellationToken);
+        /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
+        /// <exception cref="TaskCanceledException">A task was canceled.</exception>
+        /// <returns>A quotation.</returns>
+        Task<TQuotation> GetQuotationAsync(long quantity, CancellationToken cancellationToken);
     }
 }

@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExchangeQuote.cs" company="GW2.NET Coding Team">
+// <copyright file="GemQuotation.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -10,8 +10,10 @@ namespace GW2NET.Entities.Commerce
 {
     using System;
 
+    using GW2NET.Common;
+
     /// <summary>Represents the gems from/to gold exchange rate.</summary>
-    public class ExchangeQuote
+    public class GemQuotation : ITimeSensitive
     {
         /// <summary>Gets or sets the coins per gem.</summary>
         public int CoinsPerGem { get; set; }

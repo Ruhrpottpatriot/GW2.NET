@@ -290,7 +290,7 @@
     <Compile Include="Entities\Colors\ColorModel.cs" />
     <Compile Include="Entities\Colors\ColorPalette.cs" />
     <Compile Include="Entities\Commerce\AggregateListing.cs" />
-    <Compile Include="Entities\Commerce\ExchangeQuote.cs" />
+    <Compile Include="Entities\Commerce\GemQuotation.cs" />
     <Compile Include="Entities\Commerce\Listing.cs" />
     <Compile Include="Entities\Commerce\Offer.cs" />
     <Compile Include="Entities\Commerce\AggregateOffer.cs" />
@@ -718,10 +718,12 @@
     <Compile Include="V1\WorldVersusWorld\Objectives\Json\ObjectiveNameDataContract.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveNameRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveNameRepository.cs" />
+    <Compile Include="V2\Commerce\Exchange\Converters\ConverterForGemQuotation.cs" />
+    <Compile Include="V2\Commerce\Exchange\ExchangeBrokerFactory.cs" />
     <Compile Include="V2\Commerce\Exchange\ExchangeDetailsRequest.cs" />
     <Compile Include="V2\Commerce\Exchange\ExchangeDiscoveryRequest.cs" />
     <Compile Include="V2\Commerce\Exchange\ExchangeBroker.cs" />
-    <Compile Include="V2\Commerce\Exchange\Json\ExchangeQuoteDataContract.cs" />
+    <Compile Include="V2\Commerce\Exchange\Json\GemQuotationDataContract.cs" />
     <Compile Include="V2\Commerce\Listings\Converters\ConverterForListing.cs" />
     <Compile Include="V2\Commerce\Listings\Converters\ConverterForOffer.cs" />
     <Compile Include="V2\Commerce\Listings\Json\ListingDataContract.cs" />
