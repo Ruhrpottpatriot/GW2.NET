@@ -24,6 +24,7 @@ namespace GW2NET.V2.Items.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForCombatAttribute"/> class.</summary>
         public ConverterForCombatAttribute()
+            : this(GetKnownTypeConverters())
         {
         }
 
