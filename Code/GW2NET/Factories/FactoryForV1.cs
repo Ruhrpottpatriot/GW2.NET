@@ -4,6 +4,7 @@
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
+    using GW2NET.Entities.Files;
     using GW2NET.Entities.Guilds;
     using GW2NET.Entities.Maps;
     using GW2NET.V1.Builds;
@@ -82,12 +83,12 @@
             }
         }
 
-        public IFileService Files
+        public IRepository<string, Asset> Files
         {
             get
             {
-                Contract.Ensures(Contract.Result<IFileService>() != null);
-                return new FileService(this.ServiceClient);
+                Contract.Ensures(Contract.Result<IRepository<string, Asset>>() != null);
+                return new FileRepository(this.ServiceClient);
             }
         }
 

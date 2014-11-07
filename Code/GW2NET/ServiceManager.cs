@@ -27,8 +27,6 @@ namespace GW2NET
     using GW2NET.Entities.Worlds;
     using GW2NET.V1.Builds;
     using GW2NET.V1.DynamicEvents;
-    using GW2NET.V1.Files;
-    using GW2NET.V1.Floors;
     using GW2NET.V1.Items;
     using GW2NET.V1.Recipes;
     using GW2NET.V1.Skins;
@@ -37,7 +35,6 @@ namespace GW2NET
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
                                   IDynamicEventService, 
-                                  IFileService, 
                                   IItemService, 
                                   IRecipeService,
                                   IWorldService, 
@@ -48,9 +45,6 @@ namespace GW2NET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IDynamicEventService dynamicEventService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IFileService fileService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IItemService itemService;
@@ -83,7 +77,6 @@ namespace GW2NET
 
             this.buildService = new BuildService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
-            this.fileService = new FileService(serviceClient);
             this.itemService = new ItemService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
             this.worldService = new WorldService(serviceClient);
@@ -469,31 +462,6 @@ namespace GW2NET
             return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId, cancellationToken);
         }
 
-        /// <summary>Gets a collection of commonly requested in-game assets.</summary>
-        /// <returns>A collection of commonly requested in-game assets.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
-        public IDictionary<string, Asset> GetFiles()
-        {
-            return this.fileService.GetFiles();
-        }
-
-        /// <summary>Gets a collection of commonly requested in-game assets.</summary>
-        /// <returns>A collection of commonly requested in-game assets.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
-        public Task<IDictionary<string, Asset>> GetFilesAsync()
-        {
-            return this.fileService.GetFilesAsync();
-        }
-
-        /// <summary>Gets a collection of commonly requested in-game assets.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of commonly requested in-game assets.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/files">wiki</a> for more information.</remarks>
-        public Task<IDictionary<string, Asset>> GetFilesAsync(CancellationToken cancellationToken)
-        {
-            return this.fileService.GetFilesAsync(cancellationToken);
-        }
-
         /// <summary>Gets an item and its localized details.</summary>
         /// <param name="item">The item identifier.</param>
         /// <returns>An item and its localized details.</returns>
@@ -831,7 +799,6 @@ namespace GW2NET
         {
             Contract.Invariant(this.buildService != null);
             Contract.Invariant(this.dynamicEventService != null);
-            Contract.Invariant(this.fileService != null);
             Contract.Invariant(this.itemService != null);
             Contract.Invariant(this.recipeService != null);
             Contract.Invariant(this.worldService != null);

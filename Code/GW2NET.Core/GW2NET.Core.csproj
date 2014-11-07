@@ -597,10 +597,9 @@
     <Compile Include="V1\DynamicEvents\Names\IDynamicEventNameService.cs" />
     <Compile Include="V1\DynamicEvents\IDynamicEventService.cs" />
     <Compile Include="V1\DynamicEvents\States\IDynamicEventStateService.cs" />
+    <Compile Include="V1\Files\Converters\ConverterForAsset.cs" />
+    <Compile Include="V1\Files\FileRepository.cs" />
     <Compile Include="V1\Files\FileRequest.cs" />
-    <Compile Include="V1\Files\FileService.cs" />
-    <Compile Include="V1\Files\ContractClassForIFileService.cs" />
-    <Compile Include="V1\Files\IFileService.cs" />
     <Compile Include="V1\Files\Json\FileDataContract.cs" />
     <Compile Include="V1\Floors\Converters\ConverterForFloor.cs" />
     <Compile Include="V1\Floors\Converters\ConverterForPointOfInterest.cs" />
