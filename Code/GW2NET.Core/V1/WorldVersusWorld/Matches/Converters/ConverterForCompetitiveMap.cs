@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="CompetitiveMapDataContract" /> to objects of type <see cref="CompetitiveMap" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System;
     using System.Collections.Generic;
@@ -16,6 +16,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
 
     /// <summary>Converts objects of type <see cref="CompetitiveMapDataContract"/> to objects of type <see cref="CompetitiveMap"/>.</summary>
     internal sealed class ConverterForCompetitiveMap : IConverter<CompetitiveMapDataContract, CompetitiveMap>
@@ -73,6 +74,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
                     competitiveMap = new EternalBattlegrounds();
                     break;
                 default:
+
                     // TODO: add 'UnknownCompetitiveMap' class
                     throw new NotSupportedException(string.Format("Map type '{0}' is not supported.", value.Type));
             }

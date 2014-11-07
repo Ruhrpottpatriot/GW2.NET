@@ -18,8 +18,8 @@ namespace GW2NET.V1.Maps
 
     using GW2NET.Common;
     using GW2NET.Entities.Maps;
+    using GW2NET.V1.Maps.Converters;
     using GW2NET.V1.Maps.Json;
-    using GW2NET.V1.Maps.Json.Converters;
 
     /// <summary>Represents a repository that retrieves data from the /v1/map_names.json interface.</summary>
     public class MapNameRepository : IRepository<int, MapName>, ILocalizable
@@ -76,7 +76,10 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         IDictionaryRange<int, MapName> IRepository<int, MapName>.FindAll()
         {
-            var request = new MapNameRequest { Culture = this.Culture };
+            var request = new MapNameRequest
+            {
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ICollection<MapNameDataContract>>(request);
             if (response.Content == null)
             {
@@ -84,7 +87,11 @@ namespace GW2NET.V1.Maps
             }
 
             var values = response.Content.Select(this.converterForMapName.Convert).ToList();
-            var mapNames = new DictionaryRange<int, MapName>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+            var mapNames = new DictionaryRange<int, MapName>(values.Count)
+            {
+                SubtotalCount = values.Count, 
+                TotalCount = values.Count
+            };
 
             foreach (var mapName in values)
             {
@@ -110,7 +117,10 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         Task<IDictionaryRange<int, MapName>> IRepository<int, MapName>.FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new MapNameRequest { Culture = this.Culture };
+            var request = new MapNameRequest
+            {
+                Culture = this.Culture
+            };
             return this.serviceClient.SendAsync<ICollection<MapNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, MapName>>(task =>
             {
                 var response = task.Result;
@@ -120,7 +130,11 @@ namespace GW2NET.V1.Maps
                 }
 
                 var values = response.Content.Select(this.converterForMapName.Convert).ToList();
-                var mapNames = new DictionaryRange<int, MapName>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+                var mapNames = new DictionaryRange<int, MapName>(values.Count)
+                {
+                    SubtotalCount = values.Count, 
+                    TotalCount = values.Count
+                };
 
                 foreach (var mapName in values)
                 {

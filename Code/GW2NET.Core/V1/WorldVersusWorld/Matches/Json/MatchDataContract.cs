@@ -13,12 +13,11 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json
     using System.Runtime.Serialization;
 
     using GW2NET.Common;
-    using GW2NET.V1.WorldVersusWorld.Matches.Json.Converters;
+    using GW2NET.V1.WorldVersusWorld.Matches.Converters;
 
     [DataContract]
     [Converter(typeof(ConverterForMatch))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented",
-        Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/match_details")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/match_details")]
     internal sealed class MatchDataContract
     {
         [DataMember(Name = "match_id", Order = 0)]

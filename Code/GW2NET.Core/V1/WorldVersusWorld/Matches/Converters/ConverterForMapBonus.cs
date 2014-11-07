@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="MapBonusDataContract" /> to objects of type <see cref="MapBonus" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -14,6 +14,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
 
     /// <summary>Converts objects of type <see cref="MapBonusDataContract"/> to objects of type <see cref="MapBonus"/>.</summary>
     internal sealed class ConverterForMapBonus : IConverter<MapBonusDataContract, MapBonus>

@@ -6,13 +6,14 @@
 //   Converts objects of type <see cref="MatchupDataContract" /> to objects of type <see cref="Matchup" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
 
     /// <summary>Converts objects of type <see cref="MatchupDataContract"/> to objects of type <see cref="Matchup"/>.</summary>
     internal sealed class ConverterForMatchup : IConverter<MatchupDataContract, Matchup>
@@ -25,7 +26,13 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
             Contract.Assume(value != null);
 
             // Create a new matchup object
-            var matchup = new Matchup { MatchId = value.MatchId, RedWorldId = value.RedWorldId, BlueWorldId = value.BlueWorldId, GreenWorldId = value.GreenWorldId };
+            var matchup = new Matchup
+            {
+                MatchId = value.MatchId, 
+                RedWorldId = value.RedWorldId, 
+                BlueWorldId = value.BlueWorldId, 
+                GreenWorldId = value.GreenWorldId
+            };
 
             DateTimeOffset startTime;
             if (DateTimeOffset.TryParse(value.StartTime, out startTime))

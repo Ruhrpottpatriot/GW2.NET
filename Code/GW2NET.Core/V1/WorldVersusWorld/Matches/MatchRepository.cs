@@ -17,8 +17,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.V1.WorldVersusWorld.Matches.Converters;
     using GW2NET.V1.WorldVersusWorld.Matches.Json;
-    using GW2NET.V1.WorldVersusWorld.Matches.Json.Converters;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/matches.json and /v1/wvw/match_details.json interfaces.</summary>
     public class MatchRepository : IRepository<Matchup, Match>
@@ -93,7 +93,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         Match IRepository<Matchup, Match>.Find(Matchup identifier)
         {
             string matchId = identifier != null ? identifier.MatchId : null;
-            var request = new MatchDetailsRequest { MatchId = matchId };
+            var request = new MatchDetailsRequest
+            {
+                MatchId = matchId
+            };
             var response = this.serviceClient.Send<MatchDataContract>(request);
             if (response.Content == null)
             {
@@ -149,7 +152,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         Task<Match> IRepository<Matchup, Match>.FindAsync(Matchup identifier, CancellationToken cancellationToken)
         {
             string matchId = identifier != null ? identifier.MatchId : null;
-            var request = new MatchDetailsRequest { MatchId = matchId };
+            var request = new MatchDetailsRequest
+            {
+                MatchId = matchId
+            };
             return this.serviceClient.SendAsync<MatchDataContract>(request, cancellationToken).ContinueWith(task =>
             {
                 var response = task.Result;

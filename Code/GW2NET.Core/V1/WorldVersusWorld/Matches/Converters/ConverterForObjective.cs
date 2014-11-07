@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="ObjectiveDataContract" /> to objects of type <see cref="Objective" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -14,6 +14,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
 
     /// <summary>Converts objects of type <see cref="ObjectiveDataContract"/> to objects of type <see cref="Objective"/>.</summary>
     internal sealed class ConverterForObjective : IConverter<ObjectiveDataContract, Objective>
@@ -43,7 +44,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
             Contract.Assume(value != null);
 
             // Create a new objective object
-            var objective = new Objective { ObjectiveId = value.Id };
+            var objective = new Objective
+            {
+                ObjectiveId = value.Id
+            };
 
             // Set the status
             var owner = value.Owner;

@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="MatchDataContract" /> to objects of type <see cref="Match" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -15,15 +15,16 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.V1.WorldVersusWorld.Matches.Json;
 
     /// <summary>Converts objects of type <see cref="MatchDataContract"/> to objects of type <see cref="Match"/>.</summary>
     internal sealed class ConverterForMatch : IConverter<MatchDataContract, Match>
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<int[], Scoreboard> converterForScoreboard;
+        private readonly IConverter<CompetitiveMapDataContract, CompetitiveMap> converterForCompetitiveMap;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
-        private readonly IConverter<CompetitiveMapDataContract, CompetitiveMap> converterForCompetitiveMap;
+        private readonly IConverter<int[], Scoreboard> converterForScoreboard;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForMatch"/> class.</summary>
         internal ConverterForMatch()
@@ -50,7 +51,10 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
             Contract.Assume(value != null);
 
             // Create a new match object
-            var match = new Match { MatchId = value.MatchId };
+            var match = new Match
+            {
+                MatchId = value.MatchId
+            };
 
             // Set the match identfieier
 

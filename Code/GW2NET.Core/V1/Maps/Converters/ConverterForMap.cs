@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="MapDataContract" /> to objects of type <see cref="Map" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps.Json.Converters
+namespace GW2NET.V1.Maps.Converters
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
@@ -14,6 +14,7 @@ namespace GW2NET.V1.Maps.Json.Converters
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.Entities.Maps;
+    using GW2NET.V1.Maps.Json;
 
     /// <summary>Converts objects of type <see cref="MapDataContract"/> to objects of type <see cref="Map"/>.</summary>
     internal sealed class ConverterForMap : IConverter<MapDataContract, Map>
@@ -43,7 +44,18 @@ namespace GW2NET.V1.Maps.Json.Converters
             Contract.Assume(value != null);
 
             // Create a new map object
-            var map = new Map { MapName = value.MapName, MinimumLevel = value.MinimumLevel, MaximumLevel = value.MaximumLevel, DefaultFloor = value.DefaultFloor, Floors = value.Floors, RegionId = value.RegionId, RegionName = value.RegionName, ContinentId = value.ContinentId, ContinentName = value.ContinentName };
+            var map = new Map
+            {
+                MapName = value.MapName, 
+                MinimumLevel = value.MinimumLevel, 
+                MaximumLevel = value.MaximumLevel, 
+                DefaultFloor = value.DefaultFloor, 
+                Floors = value.Floors, 
+                RegionId = value.RegionId, 
+                RegionName = value.RegionName, 
+                ContinentId = value.ContinentId, 
+                ContinentName = value.ContinentName
+            };
 
             // Set the dimensions of the map
             var mapRectangle = value.MapRectangle;

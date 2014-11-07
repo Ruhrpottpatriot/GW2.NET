@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="ContinentDataContract" /> to objects of type <see cref="Continent" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Continents.Json.Converters
+namespace GW2NET.V1.Continents.Converters
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
@@ -14,6 +14,7 @@ namespace GW2NET.V1.Continents.Json.Converters
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.Entities.Maps;
+    using GW2NET.V1.Continents.Json;
 
     /// <summary>Converts objects of type <see cref="ContinentDataContract"/> to objects of type <see cref="Continent"/>.</summary>
     internal sealed class ConverterForContinent : IConverter<ContinentDataContract, Continent>
@@ -41,7 +42,13 @@ namespace GW2NET.V1.Continents.Json.Converters
         public Continent Convert(ContinentDataContract value)
         {
             Contract.Assume(value != null);
-            var continent = new Continent { Name = value.Name, MinimumZoom = value.MinimumZoom, MaximumZoom = value.MaximumZoom, FloorIds = value.Floors };
+            var continent = new Continent
+            {
+                Name = value.Name, 
+                MinimumZoom = value.MinimumZoom, 
+                MaximumZoom = value.MaximumZoom, 
+                FloorIds = value.Floors
+            };
             var dimensions = value.ContinentDimensions;
             if (dimensions != null && dimensions.Length == 2)
             {

@@ -10,7 +10,6 @@ namespace GW2NET.V1.Colors
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
@@ -18,8 +17,8 @@ namespace GW2NET.V1.Colors
 
     using GW2NET.Common;
     using GW2NET.Entities.Colors;
+    using GW2NET.V1.Colors.Converters;
     using GW2NET.V1.Colors.Json;
-    using GW2NET.V1.Colors.Json.Converters;
 
     /// <summary>Represents a repository that retrieves data from the /v1/colors.json interface.</summary>
     public class ColorRepository : IRepository<int, ColorPalette>, ILocalizable
@@ -81,7 +80,10 @@ namespace GW2NET.V1.Colors
         /// <inheritdoc />
         IDictionaryRange<int, ColorPalette> IRepository<int, ColorPalette>.FindAll()
         {
-            var request = new ColorRequest { Culture = this.Culture };
+            var request = new ColorRequest
+            {
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ColorCollectionDataContract>(request);
             if (response.Content == null || response.Content.Colors == null)
             {
@@ -89,7 +91,11 @@ namespace GW2NET.V1.Colors
             }
 
             var values = this.converterForColorPaletteCollection.Convert(response.Content);
-            var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+            var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
+            {
+                SubtotalCount = values.Count, 
+                TotalCount = values.Count
+            };
 
             foreach (var colorPalette in values)
             {
@@ -115,7 +121,10 @@ namespace GW2NET.V1.Colors
         /// <inheritdoc />
         Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new ColorRequest { Culture = this.Culture };
+            var request = new ColorRequest
+            {
+                Culture = this.Culture
+            };
             return this.serviceClient.SendAsync<ColorCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ColorPalette>>(task =>
             {
                 var response = task.Result;
@@ -125,7 +134,11 @@ namespace GW2NET.V1.Colors
                 }
 
                 var values = this.converterForColorPaletteCollection.Convert(response.Content);
-                var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+                var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
+                {
+                    SubtotalCount = values.Count, 
+                    TotalCount = values.Count
+                };
 
                 foreach (var colorPalette in values)
                 {

@@ -13,8 +13,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/match_details")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/match_details")]
     internal sealed class CompetitiveMapDataContract
     {
         [DataMember(Name = "type", Order = 0)]

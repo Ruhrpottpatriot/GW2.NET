@@ -18,8 +18,8 @@ namespace GW2NET.V1.Maps
 
     using GW2NET.Common;
     using GW2NET.Entities.Maps;
+    using GW2NET.V1.Maps.Converters;
     using GW2NET.V1.Maps.Json;
-    using GW2NET.V1.Maps.Json.Converters;
 
     /// <summary>Represents a repository that retrieves data from the /v1/maps.json interface.</summary>
     public class MapRepository : IRepository<int, Map>, ILocalizable
@@ -70,7 +70,11 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         Map IRepository<int, Map>.Find(int identifier)
         {
-            var request = new MapRequest { MapId = identifier, Culture = this.Culture };
+            var request = new MapRequest
+            {
+                MapId = identifier, 
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
@@ -95,7 +99,10 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         IDictionaryRange<int, Map> IRepository<int, Map>.FindAll()
         {
-            var request = new MapRequest { Culture = this.Culture };
+            var request = new MapRequest
+            {
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
             if (response.Content == null || response.Content.Maps == null)
             {
@@ -103,7 +110,11 @@ namespace GW2NET.V1.Maps
             }
 
             var values = this.converterForMapCollection.Convert(response.Content);
-            var maps = new DictionaryRange<int, Map>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+            var maps = new DictionaryRange<int, Map>(values.Count)
+            {
+                SubtotalCount = values.Count, 
+                TotalCount = values.Count
+            };
 
             foreach (var map in values)
             {
@@ -129,7 +140,10 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new MapRequest { Culture = this.Culture };
+            var request = new MapRequest
+            {
+                Culture = this.Culture
+            };
             return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Map>>(task =>
             {
                 var response = task.Result;
@@ -139,7 +153,11 @@ namespace GW2NET.V1.Maps
                 }
 
                 var values = this.converterForMapCollection.Convert(response.Content);
-                var maps = new DictionaryRange<int, Map>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+                var maps = new DictionaryRange<int, Map>(values.Count)
+                {
+                    SubtotalCount = values.Count, 
+                    TotalCount = values.Count
+                };
 
                 foreach (var map in values)
                 {
@@ -172,7 +190,11 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         Task<Map> IRepository<int, Map>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            var request = new MapRequest { MapId = identifier, Culture = this.Culture };
+            var request = new MapRequest
+            {
+                MapId = identifier, 
+                Culture = this.Culture
+            };
             return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<Map>(task =>
             {
                 var response = task.Result;

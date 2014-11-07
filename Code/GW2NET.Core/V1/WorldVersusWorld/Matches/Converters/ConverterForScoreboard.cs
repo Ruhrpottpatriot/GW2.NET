@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:int[]" /> to objects of type <see cref="Scoreboard" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System.Diagnostics.Contracts;
 
@@ -23,7 +23,12 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
         {
             Contract.Assume(value != null);
             Contract.Assume(value.Length == 3);
-            return new Scoreboard { Red = value[0], Blue = value[1], Green = value[2] };
+            return new Scoreboard
+            {
+                Red = value[0], 
+                Blue = value[1], 
+                Green = value[2]
+            };
         }
     }
 }

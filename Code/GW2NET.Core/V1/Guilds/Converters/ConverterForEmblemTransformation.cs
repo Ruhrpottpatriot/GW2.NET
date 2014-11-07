@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="string" /> to objects of type <see cref="EmblemTransformations" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Guilds.Json.Converters
+namespace GW2NET.V1.Guilds.Converters
 {
     using System;
 

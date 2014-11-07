@@ -12,8 +12,7 @@ namespace GW2NET.V1.Maps.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/map_names")
-    ]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/map_names")]
     internal sealed class MapNameDataContract
     {
         [DataMember(Name = "id", Order = 0)]

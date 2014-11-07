@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="ContinentCollectionDataContract" /> to objects of type <see cref="ICollection{T}" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Continents.Json.Converters
+namespace GW2NET.V1.Continents.Converters
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,6 +14,7 @@ namespace GW2NET.V1.Continents.Json.Converters
 
     using GW2NET.Common;
     using GW2NET.Entities.Maps;
+    using GW2NET.V1.Continents.Json;
 
     /// <summary>Converts objects of type <see cref="ContinentCollectionDataContract"/> to objects of type <see cref="ICollection{T}"/>.</summary>
     internal sealed class ConverterForContinentCollection : IConverter<ContinentCollectionDataContract, ICollection<Continent>>

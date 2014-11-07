@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:int[]" /> to objects of type <see cref="Color" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Colors.Json.Converters
+namespace GW2NET.V1.Colors.Converters
 {
     using System.Diagnostics.Contracts;
 

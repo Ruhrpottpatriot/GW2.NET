@@ -6,13 +6,14 @@
 //   Converts objects of type <see cref="ColorModelDataContract" /> to objects of type <see cref="ColorModel" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Colors.Json.Converters
+namespace GW2NET.V1.Colors.Converters
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Entities.Colors;
+    using GW2NET.V1.Colors.Json;
 
     /// <summary>Converts objects of type <see cref="ColorModelDataContract"/> to objects of type <see cref="ColorModel"/>.</summary>
     internal sealed class ConverterForColorModel : IConverter<ColorModelDataContract, ColorModel>
@@ -40,7 +41,14 @@ namespace GW2NET.V1.Colors.Json.Converters
         public ColorModel Convert(ColorModelDataContract value)
         {
             Contract.Assume(value != null);
-            var colorModel = new ColorModel { Brightness = value.Brightness, Contrast = value.Contrast, Hue = value.Hue, Saturation = value.Saturation, Lightness = value.Lightness };
+            var colorModel = new ColorModel
+            {
+                Brightness = value.Brightness, 
+                Contrast = value.Contrast, 
+                Hue = value.Hue, 
+                Saturation = value.Saturation, 
+                Lightness = value.Lightness
+            };
             var rgb = value.Rgb;
             if (rgb != null && rgb.Length == 3)
             {

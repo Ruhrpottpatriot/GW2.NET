@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="string" /> to objects of type <see cref="TeamColor" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Json.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
 {
     using System;
 

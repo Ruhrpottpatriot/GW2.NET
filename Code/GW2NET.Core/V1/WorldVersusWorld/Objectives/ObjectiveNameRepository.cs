@@ -18,8 +18,8 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
 
     using GW2NET.Common;
     using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.V1.WorldVersusWorld.Objectives.Converters;
     using GW2NET.V1.WorldVersusWorld.Objectives.Json;
-    using GW2NET.V1.WorldVersusWorld.Objectives.Json.Converters;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/objective_names.json interface.</summary>
     public class ObjectiveNameRepository : IRepository<int, ObjectiveName>, ILocalizable
@@ -76,7 +76,10 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <inheritdoc />
         IDictionaryRange<int, ObjectiveName> IRepository<int, ObjectiveName>.FindAll()
         {
-            var request = new ObjectiveNameRequest { Culture = this.Culture };
+            var request = new ObjectiveNameRequest
+            {
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ICollection<ObjectiveNameDataContract>>(request);
             if (response.Content == null)
             {
@@ -84,7 +87,11 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             }
 
             var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
-            var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+            var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
+            {
+                SubtotalCount = values.Count, 
+                TotalCount = values.Count
+            };
 
             foreach (var objectiveName in values)
             {
@@ -110,7 +117,10 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <inheritdoc />
         Task<IDictionaryRange<int, ObjectiveName>> IRepository<int, ObjectiveName>.FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new ObjectiveNameRequest { Culture = this.Culture };
+            var request = new ObjectiveNameRequest
+            {
+                Culture = this.Culture
+            };
             return this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(task =>
             {
                 var response = task.Result;
@@ -120,7 +130,11 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
                 }
 
                 var values = response.Content.Select(this.converterForObjectiveName.Convert).ToList();
-                var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+                var objectiveNames = new DictionaryRange<int, ObjectiveName>(values.Count)
+                {
+                    SubtotalCount = values.Count, 
+                    TotalCount = values.Count
+                };
 
                 foreach (var objectiveName in values)
                 {

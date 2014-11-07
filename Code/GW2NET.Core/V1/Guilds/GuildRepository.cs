@@ -16,8 +16,8 @@ namespace GW2NET.V1.Guilds
 
     using GW2NET.Common;
     using GW2NET.Entities.Guilds;
+    using GW2NET.V1.Guilds.Converters;
     using GW2NET.V1.Guilds.Json;
-    using GW2NET.V1.Guilds.Json.Converters;
 
     /// <summary>Represents a repository that retrieves data from the /v1/guild_details.json interface.</summary>
     public class GuildRepository : IRepository<Guid, Guild>, IRepository<string, Guild>
@@ -70,7 +70,10 @@ namespace GW2NET.V1.Guilds
         /// <inheritdoc />
         Guild IRepository<Guid, Guild>.Find(Guid identifier)
         {
-            var request = new GuildRequest { GuildId = identifier };
+            var request = new GuildRequest
+            {
+                GuildId = identifier
+            };
             var response = this.serviceClient.Send<GuildDataContract>(request);
             if (response.Content == null)
             {
@@ -126,7 +129,10 @@ namespace GW2NET.V1.Guilds
         /// <inheritdoc />
         Task<Guild> IRepository<Guid, Guild>.FindAsync(Guid identifier, CancellationToken cancellationToken)
         {
-            var request = new GuildRequest { GuildId = identifier };
+            var request = new GuildRequest
+            {
+                GuildId = identifier
+            };
             return this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken).ContinueWith(task =>
             {
                 var response = task.Result;
@@ -196,7 +202,10 @@ namespace GW2NET.V1.Guilds
         /// <inheritdoc />
         Guild IRepository<string, Guild>.Find(string identifier)
         {
-            var request = new GuildRequest { GuildName = identifier };
+            var request = new GuildRequest
+            {
+                GuildName = identifier
+            };
             var response = this.serviceClient.Send<GuildDataContract>(request);
             if (response.Content == null)
             {
@@ -247,11 +256,14 @@ namespace GW2NET.V1.Guilds
         {
             return ((IRepository<string, Guild>)this).FindAsync(identifier, CancellationToken.None);
         }
-        
+
         /// <inheritdoc />
         Task<Guild> IRepository<string, Guild>.FindAsync(string identifier, CancellationToken cancellationToken)
         {
-            var request = new GuildRequest { GuildName = identifier };
+            var request = new GuildRequest
+            {
+                GuildName = identifier
+            };
             return this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken).ContinueWith(task =>
             {
                 var response = task.Result;

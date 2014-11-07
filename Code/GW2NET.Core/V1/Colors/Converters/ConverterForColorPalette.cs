@@ -6,13 +6,14 @@
 //   Converts objects of type <see cref="ColorDataContract" /> to objects of type <see cref="ColorPalette" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Colors.Json.Converters
+namespace GW2NET.V1.Colors.Converters
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Entities.Colors;
+    using GW2NET.V1.Colors.Json;
 
     /// <summary>Converts objects of type <see cref="ColorDataContract"/> to objects of type <see cref="ColorPalette"/>.</summary>
     internal sealed class ConverterForColorPalette : IConverter<ColorDataContract, ColorPalette>
@@ -48,7 +49,10 @@ namespace GW2NET.V1.Colors.Json.Converters
             Contract.Assume(value != null);
 
             // Create a new color object
-            var colorPalette = new ColorPalette { Name = value.Name };
+            var colorPalette = new ColorPalette
+            {
+                Name = value.Name
+            };
 
             // Set the base RGB values
             var rgb = value.BaseRgb;

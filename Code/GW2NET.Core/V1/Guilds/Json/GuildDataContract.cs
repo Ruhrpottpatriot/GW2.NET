@@ -12,8 +12,7 @@ namespace GW2NET.V1.Guilds.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:1/guild_details")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/guild_details")]
     internal sealed class GuildDataContract
     {
         [DataMember(Name = "guild_id", Order = 0)]

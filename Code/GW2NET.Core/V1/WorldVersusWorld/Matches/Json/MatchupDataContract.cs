@@ -12,8 +12,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/matches")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/matches")]
     internal sealed class MatchupDataContract
     {
         [DataMember(Name = "wvw_match_id", Order = 0)]

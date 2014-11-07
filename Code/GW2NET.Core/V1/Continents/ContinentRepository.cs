@@ -10,7 +10,6 @@ namespace GW2NET.V1.Continents
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Threading;
@@ -18,8 +17,8 @@ namespace GW2NET.V1.Continents
 
     using GW2NET.Common;
     using GW2NET.Entities.Maps;
+    using GW2NET.V1.Continents.Converters;
     using GW2NET.V1.Continents.Json;
-    using GW2NET.V1.Continents.Json.Converters;
 
     /// <summary>Represents a repository that retrieves data from the /v1/continents.json interface.</summary>
     public class ContinentRepository : IRepository<int, Continent>, ILocalizable
@@ -76,7 +75,10 @@ namespace GW2NET.V1.Continents
         /// <inheritdoc />
         IDictionaryRange<int, Continent> IRepository<int, Continent>.FindAll()
         {
-            var request = new ContinentRequest { Culture = this.Culture };
+            var request = new ContinentRequest
+            {
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ContinentCollectionDataContract>(request);
             if (response.Content == null || response.Content.Continents == null)
             {
@@ -84,7 +86,11 @@ namespace GW2NET.V1.Continents
             }
 
             var values = this.converterForContinentCollection.Convert(response.Content);
-            var continents = new DictionaryRange<int, Continent>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+            var continents = new DictionaryRange<int, Continent>(values.Count)
+            {
+                SubtotalCount = values.Count, 
+                TotalCount = values.Count
+            };
 
             foreach (var continent in values)
             {
@@ -110,7 +116,10 @@ namespace GW2NET.V1.Continents
         /// <inheritdoc />
         Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new ContinentRequest { Culture = this.Culture };
+            var request = new ContinentRequest
+            {
+                Culture = this.Culture
+            };
             return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(task =>
             {
                 var response = task.Result;
@@ -120,7 +129,11 @@ namespace GW2NET.V1.Continents
                 }
 
                 var values = this.converterForContinentCollection.Convert(response.Content);
-                var continents = new DictionaryRange<int, Continent>(values.Count) { SubtotalCount = values.Count, TotalCount = values.Count };
+                var continents = new DictionaryRange<int, Continent>(values.Count)
+                {
+                    SubtotalCount = values.Count, 
+                    TotalCount = values.Count
+                };
 
                 foreach (var continent in values)
                 {

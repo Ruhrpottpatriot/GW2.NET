@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="EmblemDataContract" /> to objects of type <see cref="Emblem" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Guilds.Json.Converters
+namespace GW2NET.V1.Guilds.Converters
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,6 +14,7 @@ namespace GW2NET.V1.Guilds.Json.Converters
 
     using GW2NET.Common;
     using GW2NET.Entities.Guilds;
+    using GW2NET.V1.Guilds.Json;
 
     /// <summary>Converts objects of type <see cref="EmblemDataContract"/> to objects of type <see cref="Emblem"/>.</summary>
     internal sealed class ConverterForEmblem : IConverter<EmblemDataContract, Emblem>
@@ -43,9 +44,9 @@ namespace GW2NET.V1.Guilds.Json.Converters
             Contract.Assume(value != null);
             var emblem = new Emblem
             {
-                BackgroundId = value.BackgroundId,
+                BackgroundId = value.BackgroundId, 
                 ForegroundId = value.ForegroundId, 
-                BackgroundColorId = value.BackgroundColorId,
+                BackgroundColorId = value.BackgroundColorId, 
                 ForegroundPrimaryColorId = value.ForegroundPrimaryColorId, 
                 ForegroundSecondaryColorId = value.ForegroundSecondaryColorId
             };

@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="GuildDataContract" /> to objects of type <see cref="Guild" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Guilds.Json.Converters
+namespace GW2NET.V1.Guilds.Converters
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
@@ -14,6 +14,7 @@ namespace GW2NET.V1.Guilds.Json.Converters
 
     using GW2NET.Common;
     using GW2NET.Entities.Guilds;
+    using GW2NET.V1.Guilds.Json;
 
     /// <summary>Converts objects of type <see cref="GuildDataContract"/> to objects of type <see cref="Guild"/>.</summary>
     internal sealed class ConverterForGuild : IConverter<GuildDataContract, Guild>
@@ -44,8 +45,8 @@ namespace GW2NET.V1.Guilds.Json.Converters
             Contract.Assume(value != null);
             var guild = new Guild
             {
-                Name = value.Name,
-                Tag = value.Tag,
+                Name = value.Name, 
+                Tag = value.Tag, 
             };
 
             Guid id;
