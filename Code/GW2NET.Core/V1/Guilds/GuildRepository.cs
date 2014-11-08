@@ -10,6 +10,7 @@ namespace GW2NET.V1.Guilds
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
@@ -133,16 +134,8 @@ namespace GW2NET.V1.Guilds
             {
                 GuildId = identifier
             };
-            return this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return null;
-                }
-
-                return this.converterForGuild.Convert(response.Content);
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken);
+            return responseTask.ContinueWith<Guild>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -264,20 +257,24 @@ namespace GW2NET.V1.Guilds
             {
                 GuildName = identifier
             };
-            return this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return null;
-                }
-
-                return this.converterForGuild.Convert(response.Content);
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken);
+            return responseTask.ContinueWith<Guild>(this.ConvertAsyncResponse, cancellationToken);
         }
 
-        /// <summary>The invariant method for this class.</summary>
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private Guild ConvertAsyncResponse(Task<IResponse<GuildDataContract>> task)
+        {
+            var response = task.Result;
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            return this.converterForGuild.Convert(response.Content);
+        }
+
         [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);
