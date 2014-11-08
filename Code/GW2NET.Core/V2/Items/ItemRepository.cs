@@ -77,13 +77,25 @@ namespace GW2NET.V2.Items
         /// <summary>Initializes a new instance of the <see cref="ItemRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public ItemRepository(IServiceClient serviceClient)
+            : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new ConverterForItem())
         {
+            Contract.Requires(serviceClient != null);
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="ItemRepository"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="converterForItemCollection">The converter for <see cref="T:ICollection{int}"/>.</param>
+        /// <param name="converterForItem">The converter for <see cref="Item"/>.</param>
+        internal ItemRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> converterForItemCollection, IConverter<ItemDataContract, Item> converterForItem)
+        {
+            Contract.Requires(serviceClient != null);
+            Contract.Requires(converterForItemCollection != null);
+            Contract.Requires(converterForItem != null);
             this.serviceClient = serviceClient;
-            this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<int>, ICollection<int>>(new ConverterAdapter<ICollection<int>>());
-            var converterForDataContract = new ConverterForItem();
-            this.converterForResponse = new ConverterForResponse<ItemDataContract, Item>(converterForDataContract);
-            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<ItemDataContract, int, Item>(converterForDataContract, item => item.ItemId);
-            this.converterForPageResponse = new ConverterForCollectionPageResponse<ItemDataContract, Item>(converterForDataContract);
+            this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<int>, ICollection<int>>(converterForItemCollection);
+            this.converterForResponse = new ConverterForResponse<ItemDataContract, Item>(converterForItem);
+            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<ItemDataContract, int, Item>(converterForItem, item => item.ItemId);
+            this.converterForPageResponse = new ConverterForCollectionPageResponse<ItemDataContract, Item>(converterForItem);
         }
 
         /// <summary>Gets or sets the locale.</summary>
@@ -116,7 +128,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = this.Culture
             };
             var response = this.serviceClient.Send<ItemDataContract>(request);
@@ -139,7 +151,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemBulkRequest
             {
-                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = this.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -174,7 +186,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemBulkRequest
             {
-                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
                 Culture = this.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
@@ -192,7 +204,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
                 Culture = this.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken);
@@ -204,7 +216,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 Culture = this.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -218,8 +230,8 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemPageRequest
             {
-                Page = pageIndex, 
-                PageSize = pageSize, 
+                Page = pageIndex,
+                PageSize = pageSize,
                 Culture = this.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -239,7 +251,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 Culture = this.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
@@ -257,8 +269,8 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemPageRequest
             {
-                Page = pageIndex, 
-                PageSize = pageSize, 
+                Page = pageIndex,
+                PageSize = pageSize,
                 Culture = this.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
