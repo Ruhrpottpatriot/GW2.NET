@@ -114,7 +114,11 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Item IRepository<int, Item>.Find(int identifier)
         {
-            var request = new ItemDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
+            var request = new ItemDetailsRequest
+            {
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ItemDataContract>(request);
             return this.converterForResponse.Convert(response);
         }
@@ -122,7 +126,10 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         IDictionaryRange<int, Item> IRepository<int, Item>.FindAll()
         {
-            var request = new ItemBulkRequest { Culture = this.Culture };
+            var request = new ItemBulkRequest
+            {
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             return this.converterForBulkResponse.Convert(response);
         }
@@ -130,7 +137,11 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         IDictionaryRange<int, Item> IRepository<int, Item>.FindAll(ICollection<int> identifiers)
         {
-            var request = new ItemBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), Culture = this.Culture };
+            var request = new ItemBulkRequest
+            {
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             return this.converterForBulkResponse.Convert(response);
         }
@@ -144,7 +155,10 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new ItemBulkRequest { Culture = this.Culture };
+            var request = new ItemBulkRequest
+            {
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Item>>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -158,7 +172,11 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
-            var request = new ItemBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), Culture = this.Culture };
+            var request = new ItemBulkRequest
+            {
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Item>>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -172,7 +190,11 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<Item> IRepository<int, Item>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            var request = new ItemDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
+            var request = new ItemDetailsRequest
+            {
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken);
             return responseTask.ContinueWith<Item>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -180,7 +202,11 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         ICollectionPage<Item> IPaginator<Item>.FindPage(int pageIndex)
         {
-            var request = new ItemPageRequest { Page = pageIndex, Culture = this.Culture };
+            var request = new ItemPageRequest
+            {
+                Page = pageIndex, 
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
             PageContextPatchUtility.Patch(values, pageIndex);
@@ -190,7 +216,12 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         ICollectionPage<Item> IPaginator<Item>.FindPage(int pageIndex, int pageSize)
         {
-            var request = new ItemPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
+            var request = new ItemPageRequest
+            {
+                Page = pageIndex, 
+                PageSize = pageSize, 
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
             PageContextPatchUtility.Patch(values, pageIndex);
@@ -206,7 +237,11 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            var request = new ItemPageRequest { Page = pageIndex, Culture = this.Culture };
+            var request = new ItemPageRequest
+            {
+                Page = pageIndex, 
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
@@ -220,7 +255,12 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var request = new ItemPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
+            var request = new ItemPageRequest
+            {
+                Page = pageIndex, 
+                PageSize = pageSize, 
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
@@ -274,6 +314,17 @@ namespace GW2NET.V2.Items
         {
             Contract.Requires(task != null);
             return this.converterForResponse.Convert(task.Result);
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
+            Contract.Invariant(this.converterForResponse != null);
+            Contract.Invariant(this.converterForIdentifiersResponse != null);
+            Contract.Invariant(this.converterForBulkResponse != null);
+            Contract.Invariant(this.converterForPageResponse != null);
         }
     }
 }
