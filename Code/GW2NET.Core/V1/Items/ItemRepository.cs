@@ -255,6 +255,8 @@ namespace GW2NET.V1.Items
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);
+            Contract.Invariant(this.converterForItemCollection != null);
+            Contract.Invariant(this.converterForItem != null);
         }
     }
 }
