@@ -28,32 +28,25 @@ namespace GW2NET.V2.Items
     /// This implementation does not retrieve associated entities.
     /// <list type="bullet">
     ///     <item>
-    ///         <term><see cref="Item.BuildId"/>:</term>
-    ///         <description>Always <c>0</c>. Retrieve the build number from the build service.</description>
+    ///         <description><see cref="Item"/>: <see cref="Item.BuildId"/> is always <c>0</c>. Retrieve the build number from the build service.</description>
     ///     </item>
     ///     <item>
-    ///         <term><see cref="ISkinnable.DefaultSkin"/> (applies to <see cref="Armor.DefaultSkin"/>, <see cref="Backpack.DefaultSkin"/>, <see cref="GatheringTool.DefaultSkin"/> and <see cref="Weapon.DefaultSkin"/>):</term>
-    ///         <description>Always <c>null</c>. Use the value of <see cref="ISkinnable.DefaultSkinId"/> to retrieve the skin.</description>
+    ///         <description><see cref="ISkinnable"/>: <see cref="ISkinnable.DefaultSkin"/> is always <c>null</c>. Use the value of <see cref="ISkinnable.DefaultSkinId"/> to retrieve the skin (applies to <see cref="Armor"/>, <see cref="Backpack"/>, <see cref="GatheringTool"/> and <see cref="Weapon"/>).</description>
     ///     </item>
     ///     <item>
-    ///         <term><see cref="IUpgradable.SuffixItem"/> (applies to <see cref="Armor.SuffixItem"/>, <see cref="Backpack.SuffixItem"/>, <see cref="Trinket.SuffixItem"/> and <see cref="Weapon.SuffixItem"/>):</term>
-    ///         <description>Always <c>null</c>. Use the value of <see cref="IUpgradable.SuffixItemId"/> to retrieve the suffix item.</description>
+    ///         <description><see cref="IUpgradable"/>: <see cref="IUpgradable.SuffixItem"/> is always <c>null</c>. Use the value of <see cref="IUpgradable.SuffixItemId"/> to retrieve the suffix item (applies to <see cref="Armor"/>, <see cref="Backpack"/>, <see cref="Trinket"/> and <see cref="Weapon"/>).</description>
     ///     </item>
     ///     <item>
-    ///         <term><see cref="IUpgradable.SecondarySuffixItem"/> (applies to <see cref="Armor.SecondarySuffixItem"/>, <see cref="Backpack.SecondarySuffixItem"/>, <see cref="Trinket.SecondarySuffixItem"/> and <see cref="Weapon.SecondarySuffixItem"/>):</term>
-    ///         <description>Always <c>null</c>. Use the value of <see cref="IUpgradable.SecondarySuffixItemId"/> to retrieve the secondary suffix item.</description>
+    ///         <description><see cref="IUpgradable"/>: <see cref="IUpgradable.SecondarySuffixItem"/> is always <c>null</c>. Use the value of <see cref="IUpgradable.SecondarySuffixItemId"/> to retrieve the secondary suffix item (applies to <see cref="Armor"/>, <see cref="Backpack"/>, <see cref="Trinket"/> and <see cref="Weapon"/>).</description>
     ///     </item>
     ///     <item>
-    ///         <term><see cref="InfusionSlot.Item"/>:</term>
-    ///         <description>Always <c>null</c>. Use the value of <see cref="InfusionSlot.ItemId"/> to retrieve the infusion item.</description>
+    ///         <description><see cref="InfusionSlot"/>: <see cref="InfusionSlot.Item"/> is always <c>null</c>. Use the value of <see cref="InfusionSlot.ItemId"/> to retrieve the infusion item.</description>
     ///     </item>
     ///     <item>
-    ///         <term><see cref="DyeUnlocker.Color"/>:</term>
-    ///         <description>Always <c>null</c>. Use the value of <see cref="DyeUnlocker.ColorId"/> to retrieve the color.</description>
+    ///         <description><see cref="DyeUnlocker"/>: <see cref="DyeUnlocker.Color"/> is always <c>null</c>. Use the value of <see cref="DyeUnlocker.ColorId"/> to retrieve the color.</description>
     ///     </item>
     ///     <item>
-    ///         <term><see cref="CraftingRecipeUnlocker.Recipe"/>:</term>
-    ///         <description>Always <c>null</c>. Use the value of <see cref="CraftingRecipeUnlocker.RecipeId"/> to retrieve the recipe.</description>
+    ///         <description><see cref="CraftingRecipeUnlocker"/>: <see cref="CraftingRecipeUnlocker.Recipe"/> is always <c>null</c>. Use the value of <see cref="CraftingRecipeUnlocker.RecipeId"/> to retrieve the recipe.</description>
     ///     </item>
     /// </list>
     /// </remarks>
