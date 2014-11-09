@@ -798,12 +798,11 @@
     <Compile Include="V1\Skins\Json\SkinDataContract.cs" />
     <Compile Include="V1\Skins\Json\WeaponSkinDataContract.cs" />
     <Compile Include="V1\Skins\SkinService.cs" />
-    <Compile Include="V1\Worlds\IWorldService.cs" />
-    <Compile Include="V1\Worlds\Json\WorldNameDataContract.cs" />
-    <Compile Include="V1\Worlds\Names\IWorldNameService.cs" />
-    <Compile Include="V1\Worlds\Names\WorldNameRequest.cs" />
-    <Compile Include="V1\Worlds\Names\ContractClassForIWorldNameService.cs" />
-    <Compile Include="V1\Worlds\WorldService.cs" />
+    <Compile Include="V1\Worlds\Converters\ConverterForWorld.cs" />
+    <Compile Include="V1\Worlds\Json\WorldDataContract.cs" />
+    <Compile Include="V1\Worlds\WorldNameRequest.cs" />
+    <Compile Include="V1\Worlds\WorldRepository.cs" />
+    <Compile Include="V1\Worlds\WorldRepositoryFactory.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\Json\CompetitiveMapDataContract.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\Converters\ConverterForCompetitiveMap.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\Converters\ConverterForMapBonus.cs" />

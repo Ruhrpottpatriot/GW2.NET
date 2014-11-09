@@ -20,18 +20,15 @@ namespace GW2NET
     using GW2NET.Compression;
     using GW2NET.Entities.Builds;
     using GW2NET.Entities.DynamicEvents;
-    using GW2NET.Entities.Recipes;
     using GW2NET.Entities.Skins;
     using GW2NET.Entities.Worlds;
     using GW2NET.V1.Builds;
     using GW2NET.V1.DynamicEvents;
     using GW2NET.V1.Skins;
-    using GW2NET.V1.Worlds;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
                                   IDynamicEventService, 
-                                  IWorldService, 
                                   ISkinService
     {
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
@@ -42,9 +39,6 @@ namespace GW2NET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly ISkinService skinService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IWorldService worldService;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
         public ServiceManager()
@@ -65,7 +59,6 @@ namespace GW2NET
 
             this.buildService = new BuildService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
-            this.worldService = new WorldService(serviceClient);
             this.skinService = new SkinService(serviceClient);
         }
 
@@ -532,59 +525,6 @@ namespace GW2NET
             return this.skinService.GetSkinsAsync(cancellationToken);
         }
 
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public IDictionary<int, World> GetWorldNames()
-        {
-            return this.worldService.GetWorldNames();
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public IDictionary<int, World> GetWorldNames(CultureInfo language)
-        {
-            return this.worldService.GetWorldNames(language);
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, World>> GetWorldNamesAsync()
-        {
-            return this.worldService.GetWorldNamesAsync();
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, World>> GetWorldNamesAsync(CancellationToken cancellationToken)
-        {
-            return this.worldService.GetWorldNamesAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language)
-        {
-            return this.worldService.GetWorldNamesAsync(language);
-        }
-
-        /// <summary>Gets a collection of worlds and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of worlds and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/world_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<int, World>> GetWorldNamesAsync(CultureInfo language, CancellationToken cancellationToken)
-        {
-            return this.worldService.GetWorldNamesAsync(language, cancellationToken);
-        }
-
         /// <summary>Gets the base URI.</summary>
         /// <returns>A <see cref="Uri"/>.</returns>
         private static Uri GetBaseUri()
@@ -614,7 +554,6 @@ namespace GW2NET
         {
             Contract.Invariant(this.buildService != null);
             Contract.Invariant(this.dynamicEventService != null);
-            Contract.Invariant(this.worldService != null);
             Contract.Invariant(this.skinService != null);
         }
     }

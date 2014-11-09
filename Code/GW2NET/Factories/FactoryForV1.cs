@@ -154,12 +154,12 @@
             }
         }
 
-        public IWorldService Worlds
+        public WorldRepositoryFactory Worlds
         {
             get
             {
-                Contract.Ensures(Contract.Result<IWorldService>() != null);
-                return new WorldService(this.ServiceClient);
+                Contract.Ensures(Contract.Result<WorldRepositoryFactory>() != null);
+                return new WorldRepositoryFactory(this.ServiceClient);
             }
         }
 
