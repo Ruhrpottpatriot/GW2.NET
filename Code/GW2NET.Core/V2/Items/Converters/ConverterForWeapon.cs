@@ -137,6 +137,7 @@ namespace GW2NET.V2.Items.Converters
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
         private void ObjectInvariant()
         {
+            Contract.Invariant(this.typeConverters != null);
             Contract.Invariant(this.converterForDamageType != null);
             Contract.Invariant(this.converterForInfixUpgrade != null);
             Contract.Invariant(this.converterForInfusionSlotCollection != null);
