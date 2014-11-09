@@ -254,9 +254,6 @@
     <Compile Include="..\GW2NET\ServiceFactory.cs">
       <Link>ServiceFactory.cs</Link>
     </Compile>
-    <Compile Include="..\GW2NET\ServiceManager.cs">
-      <Link>ServiceManager.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

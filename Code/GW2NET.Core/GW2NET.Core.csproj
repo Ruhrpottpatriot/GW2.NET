@@ -564,6 +564,7 @@
     <Compile Include="V1\Builds\BuildRequest.cs" />
     <Compile Include="V1\Builds\BuildService.cs" />
     <Compile Include="V1\Builds\ContractClassForIBuildService.cs" />
+    <Compile Include="V1\Builds\Converters\ConverterForBuild.cs" />
     <Compile Include="V1\Builds\IBuildService.cs" />
     <Compile Include="V1\Builds\Json\BuildDataContract.cs" />
     <Compile Include="V1\Colors\ColorRepository.cs" />
