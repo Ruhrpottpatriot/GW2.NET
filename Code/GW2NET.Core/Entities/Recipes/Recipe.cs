@@ -14,10 +14,11 @@ namespace GW2NET.Entities.Recipes
     using System.Globalization;
 
     using GW2NET.ChatLinks;
+    using GW2NET.Common;
     using GW2NET.Entities.Items;
 
     /// <summary>Provides the base class for types that represent a crafting recipe.</summary>
-    public abstract class Recipe : IEquatable<Recipe>
+    public abstract class Recipe : IEquatable<Recipe>, ILocalizable
     {
         /// <summary>Gets or sets the recipe's build number. Default: 0. Assign a build number for change tracking.</summary>
         public virtual int BuildId { get; set; }
@@ -32,7 +33,7 @@ namespace GW2NET.Entities.Recipes
         public virtual ICollection<ItemStack> Ingredients { get; set; }
 
         /// <summary>Gets or sets the locale.</summary>
-        public virtual CultureInfo Locale { get; set; }
+        public virtual CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets the recipe's minimum rating.</summary>
         public virtual int MinimumRating { get; set; }

@@ -20,22 +20,17 @@ namespace GW2NET
     using GW2NET.Compression;
     using GW2NET.Entities.Builds;
     using GW2NET.Entities.DynamicEvents;
-    using GW2NET.Entities.Files;
-    using GW2NET.Entities.Items;
     using GW2NET.Entities.Recipes;
     using GW2NET.Entities.Skins;
     using GW2NET.Entities.Worlds;
     using GW2NET.V1.Builds;
     using GW2NET.V1.DynamicEvents;
-    using GW2NET.V1.Items;
-    using GW2NET.V1.Recipes;
     using GW2NET.V1.Skins;
     using GW2NET.V1.Worlds;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
                                   IDynamicEventService, 
-                                  IRecipeService,
                                   IWorldService, 
                                   ISkinService
     {
@@ -44,9 +39,6 @@ namespace GW2NET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IDynamicEventService dynamicEventService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IRecipeService recipeService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly ISkinService skinService;
@@ -73,7 +65,6 @@ namespace GW2NET
 
             this.buildService = new BuildService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
-            this.recipeService = new RecipeService(serviceClient);
             this.worldService = new WorldService(serviceClient);
             this.skinService = new SkinService(serviceClient);
         }
@@ -456,94 +447,7 @@ namespace GW2NET
         {
             return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId, cancellationToken);
         }
-
-       /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipe">The recipe identifier.</param>
-        /// <returns>A recipe and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Recipe GetRecipeDetails(int recipe)
-        {
-            var culture = new CultureInfo("en");
-            return this.GetRecipeDetails(recipe, culture);
-        }
-
-        /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipe">The recipe identifier.</param>
-        /// <param name="language">The language.</param>
-        /// <returns>A recipe and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Recipe GetRecipeDetails(int recipe, CultureInfo language)
-        {
-            return this.recipeService.GetRecipeDetails(recipe, language);
-        }
-
-        /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipe">The recipe identifier.</param>
-        /// <returns>A recipe and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(int recipe)
-        {
-            var culture = new CultureInfo("en");
-            return this.GetRecipeDetailsAsync(recipe, culture, CancellationToken.None);
-        }
-
-        /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipe">The recipe identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A recipe and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(int recipe, CancellationToken cancellationToken)
-        {
-            var culture = new CultureInfo("en");
-            return this.GetRecipeDetailsAsync(recipe, culture, cancellationToken);
-        }
-
-        /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipe">The recipe identifier.</param>
-        /// <param name="language">The language.</param>
-        /// <returns>A recipe and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(int recipe, CultureInfo language)
-        {
-            return this.GetRecipeDetailsAsync(recipe, language, CancellationToken.None);
-        }
-
-        /// <summary>Gets a recipe and its localized details.</summary>
-        /// <param name="recipe">The recipe identifier.</param>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A recipe and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
-        public Task<Recipe> GetRecipeDetailsAsync(int recipe, CultureInfo language, CancellationToken cancellationToken)
-        {
-            return this.recipeService.GetRecipeDetailsAsync(recipe, language, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of discovered recipes.</summary>
-        /// <returns>A collection of discovered recipes.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public ICollection<int> GetRecipes()
-        {
-            return this.recipeService.GetRecipes();
-        }
-
-        /// <summary>Gets a collection of discovered recipes.</summary>
-        /// <returns>A collection of discovered recipes.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public Task<ICollection<int>> GetRecipesAsync()
-        {
-            return this.recipeService.GetRecipesAsync();
-        }
-
-        /// <summary>Gets a collection of discovered recipes.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of discovered recipes.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipes">wiki</a> for more information.</remarks>
-        public Task<ICollection<int>> GetRecipesAsync(CancellationToken cancellationToken)
-        {
-            return this.recipeService.GetRecipesAsync(cancellationToken);
-        }
-
+        
         /// <summary>Gets a skin and its localized details.</summary>
         /// <param name="skin">The skin identifier.</param>
         /// <returns>A skin and its localized details.</returns>
@@ -710,7 +614,6 @@ namespace GW2NET
         {
             Contract.Invariant(this.buildService != null);
             Contract.Invariant(this.dynamicEventService != null);
-            Contract.Invariant(this.recipeService != null);
             Contract.Invariant(this.worldService != null);
             Contract.Invariant(this.skinService != null);
         }

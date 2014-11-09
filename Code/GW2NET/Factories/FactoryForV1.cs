@@ -136,12 +136,12 @@
             }
         }
 
-        public IRecipeService Recipes
+        public RecipeRepositoryFactory Recipes
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRecipeService>() != null);
-                return new RecipeService(this.ServiceClient);
+                Contract.Ensures(Contract.Result<RecipeRepositoryFactory>() != null);
+                return new RecipeRepositoryFactory(this.ServiceClient);
             }
         }
 
