@@ -35,7 +35,6 @@ namespace GW2NET
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
                                   IDynamicEventService, 
-                                  IItemService, 
                                   IRecipeService,
                                   IWorldService, 
                                   ISkinService
@@ -45,9 +44,6 @@ namespace GW2NET
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IDynamicEventService dynamicEventService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly IItemService itemService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IRecipeService recipeService;
@@ -77,7 +73,6 @@ namespace GW2NET
 
             this.buildService = new BuildService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
-            this.itemService = new ItemService(serviceClient);
             this.recipeService = new RecipeService(serviceClient);
             this.worldService = new WorldService(serviceClient);
             this.skinService = new SkinService(serviceClient);
@@ -462,91 +457,7 @@ namespace GW2NET
             return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId, cancellationToken);
         }
 
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="item">The item identifier.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Item GetItemDetails(int item)
-        {
-            return this.itemService.GetItemDetails(item);
-        }
-
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="item">The item identifier.</param>
-        /// <param name="language">The language.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Item GetItemDetails(int item, CultureInfo language)
-        {
-            return this.itemService.GetItemDetails(item, language);
-        }
-
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="item">The item identifier.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int item)
-        {
-            return this.itemService.GetItemDetailsAsync(item);
-        }
-
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="item">The item identifier.</param>
-        /// <param name="language">The language.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int item, CultureInfo language)
-        {
-            return this.itemService.GetItemDetailsAsync(item, language);
-        }
-
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="item">The item identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int item, CancellationToken cancellationToken)
-        {
-            return this.itemService.GetItemDetailsAsync(item, cancellationToken);
-        }
-
-        /// <summary>Gets an item and its localized details.</summary>
-        /// <param name="item">The item identifier.</param>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>An item and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/item_details">wiki</a> for more information.</remarks>
-        public Task<Item> GetItemDetailsAsync(int item, CultureInfo language, CancellationToken cancellationToken)
-        {
-            return this.itemService.GetItemDetailsAsync(item, language, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of item identifiers.</summary>
-        /// <returns>A collection of item identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public ICollection<int> GetItems()
-        {
-            return this.itemService.GetItems();
-        }
-
-        /// <summary>Gets a collection of item identifiers.</summary>
-        /// <returns>A collection of item identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public Task<ICollection<int>> GetItemsAsync()
-        {
-            return this.itemService.GetItemsAsync();
-        }
-
-        /// <summary>Gets a collection of item identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of item identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/items">wiki</a> for more information.</remarks>
-        public Task<ICollection<int>> GetItemsAsync(CancellationToken cancellationToken)
-        {
-            return this.itemService.GetItemsAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a recipe and its localized details.</summary>
+       /// <summary>Gets a recipe and its localized details.</summary>
         /// <param name="recipe">The recipe identifier.</param>
         /// <returns>A recipe and its localized details.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/recipe_details">wiki</a> for more information.</remarks>
@@ -799,7 +710,6 @@ namespace GW2NET
         {
             Contract.Invariant(this.buildService != null);
             Contract.Invariant(this.dynamicEventService != null);
-            Contract.Invariant(this.itemService != null);
             Contract.Invariant(this.recipeService != null);
             Contract.Invariant(this.worldService != null);
             Contract.Invariant(this.skinService != null);

@@ -100,12 +100,12 @@
                 return new FactoryForV1Guilds(this.ServiceClient);
             }
         }
-        public IItemService Items
+        public ItemRepositoryFactory Items
         {
             get
             {
-                Contract.Ensures(Contract.Result<IItemService>() != null);
-                return new ItemService(this.ServiceClient);
+                Contract.Ensures(Contract.Result<ItemRepositoryFactory>() != null);
+                return new ItemRepositoryFactory(this.ServiceClient);
             }
         }
 
