@@ -16,14 +16,14 @@ namespace GW2NET.PS.Commands
 
     using GW2NET.Common;
     using GW2NET.Entities.Builds;
-    using GW2NET.V1.Items;
+    using GW2NET.Entities.Items;
+    using GW2NET.V2.Items;
 
     /// <summary>Represents the Get-Item command.</summary>
     [Cmdlet(VerbsCommon.Get, "Items")]
     public class GetItemsCommand : ServiceCmdlet
     {
-        /// <summary>The service.</summary>
-        private IItemService service;
+        private IServiceClient serviceClient;
 
         /// <summary>Gets or sets the build identifier.</summary>
         [Parameter]
@@ -41,7 +41,7 @@ namespace GW2NET.PS.Commands
         /// <param name="serviceClient">A service client.</param>
         protected override void BeginProcessing(IServiceClient serviceClient)
         {
-            this.service = new ItemService(serviceClient);
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Provides a record-by-record processing functionality for the cmdlet.</summary>
@@ -63,7 +63,7 @@ namespace GW2NET.PS.Commands
         private void WriteItemDetails(IList<int> identifiers)
         {
             // Configure the language (default: English)
-            var culture = this.Culture ?? CultureInfo.GetCultureInfo("en");
+            var culture = this.Culture;
 
             // Configure the build number (default: 0)
             var buildId = this.Build != null ? this.Build.BuildId : 0;
@@ -89,8 +89,13 @@ namespace GW2NET.PS.Commands
                 // Try to get item details for the current identifier
                 try
                 {
+                    IRepository<int, Item> repo = new ItemRepository(this.serviceClient)
+                    {
+                        Culture = this.Culture
+                    };
+
                     // Get the item details from the service
-                    var item = this.service.GetItemDetails(id, culture);
+                    var item = repo.Find(id);
 
                     // Configure a build that uniquely identifies the item revision
                     item.BuildId = buildId;
@@ -121,8 +126,10 @@ namespace GW2NET.PS.Commands
             // Try to get discovered item identifiers
             try
             {
+                IRepository<int, Item> itemRepository = new ItemRepository(this.serviceClient);
+
                 // Get the item identifiers from the service
-                var items = this.service.GetItems();
+                var items = itemRepository.Discover();
 
                 // Write the collection to the pipeline
                 this.WriteObject(items);
