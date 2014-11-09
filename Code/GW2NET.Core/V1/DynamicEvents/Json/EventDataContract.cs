@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EventDetailsDataContract.cs" company="GW2.NET Coding Team">
+// <copyright file="EventDataContract.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Defines the EventDetailsDataContract type.
+//   Defines the EventDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.DynamicEvents.Json
@@ -14,7 +14,7 @@ namespace GW2NET.V1.DynamicEvents.Json
     [DataContract]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
         Justification = "http://wiki.guildwars2.com/wiki/API:1/event_details")]
-    internal sealed class EventDetailsDataContract
+    internal sealed class EventDataContract
     {
         [DataMember(Name = "name", Order = 0)]
         internal string Name { get; set; }
