@@ -61,7 +61,7 @@ namespace GW2NET.Entities.Items
         /// <summary>Gets or sets the item's vendor value.</summary>
         public virtual int VendorValue { get; set; }
 
-        /// <summary>Gets the file identifier.</summary>
+        /// <inheritdoc />
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         int IRenderable.FileId
         {
@@ -71,7 +71,7 @@ namespace GW2NET.Entities.Items
             }
         }
 
-        /// <summary>Gets the file signature.</summary>
+        /// <inheritdoc />
         [DebuggerBrowsable(DebuggerBrowsableState.Never)]
         string IRenderable.FileSignature
         {

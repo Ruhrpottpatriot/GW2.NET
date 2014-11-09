@@ -145,12 +145,12 @@
             }
         }
 
-        public ISkinService Skins
+        public SkinRepositoryFactory Skins
         {
             get
             {
-                Contract.Ensures(Contract.Result<ISkinService>() != null);
-                return new SkinService(this.ServiceClient);
+                Contract.Ensures(Contract.Result<SkinRepositoryFactory>() != null);
+                return new SkinRepositoryFactory(this.ServiceClient);
             }
         }
 

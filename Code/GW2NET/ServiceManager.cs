@@ -20,25 +20,18 @@ namespace GW2NET
     using GW2NET.Compression;
     using GW2NET.Entities.Builds;
     using GW2NET.Entities.DynamicEvents;
-    using GW2NET.Entities.Skins;
-    using GW2NET.Entities.Worlds;
     using GW2NET.V1.Builds;
     using GW2NET.V1.DynamicEvents;
-    using GW2NET.V1.Skins;
 
     /// <summary>Provides the default implementation of the Guild Wars 2 service.</summary>
     public class ServiceManager : IBuildService, 
-                                  IDynamicEventService, 
-                                  ISkinService
+                                  IDynamicEventService
     {
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IBuildService buildService;
 
         /// <summary>Infrastructure. Holds a reference to a service.</summary>
         private readonly IDynamicEventService dynamicEventService;
-
-        /// <summary>Infrastructure. Holds a reference to a service.</summary>
-        private readonly ISkinService skinService;
 
         /// <summary>Initializes a new instance of the <see cref="ServiceManager" /> class.</summary>
         public ServiceManager()
@@ -59,7 +52,6 @@ namespace GW2NET
 
             this.buildService = new BuildService(serviceClient);
             this.dynamicEventService = new DynamicEventService(serviceClient);
-            this.skinService = new SkinService(serviceClient);
         }
 
         /// <summary>Gets the current game build.</summary>
@@ -441,90 +433,6 @@ namespace GW2NET
             return this.dynamicEventService.GetDynamicEventsByWorldAsync(worldId, cancellationToken);
         }
         
-        /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skin">The skin identifier.</param>
-        /// <returns>A skin and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Skin GetSkinDetails(int skin)
-        {
-            return this.skinService.GetSkinDetails(skin);
-        }
-
-        /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skin">The skin identifier.</param>
-        /// <param name="language">The language.</param>
-        /// <returns>A skin and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Skin GetSkinDetails(int skin, CultureInfo language)
-        {
-            return this.skinService.GetSkinDetails(skin, language);
-        }
-
-        /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skin">The skin identifier.</param>
-        /// <returns>A skin and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skin)
-        {
-            return this.skinService.GetSkinDetailsAsync(skin);
-        }
-
-        /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skin">The skin identifier.</param>
-        /// <param name="language">The language.</param>
-        /// <returns>A skin and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skin, CultureInfo language)
-        {
-            return this.skinService.GetSkinDetailsAsync(skin, language);
-        }
-
-        /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skin">The skin identifier.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A skin and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skin, CancellationToken cancellationToken)
-        {
-            return this.skinService.GetSkinDetailsAsync(skin, cancellationToken);
-        }
-
-        /// <summary>Gets a skin and its localized details.</summary>
-        /// <param name="skin">The skin identifier.</param>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A skin and its localized details.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skin_details">wiki</a> for more information.</remarks>
-        public Task<Skin> GetSkinDetailsAsync(int skin, CultureInfo language, CancellationToken cancellationToken)
-        {
-            return this.skinService.GetSkinDetailsAsync(skin, language, cancellationToken);
-        }
-
-        /// <summary>Gets a collection of skin identifiers.</summary>
-        /// <returns>A collection of skin identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public ICollection<int> GetSkins()
-        {
-            return this.skinService.GetSkins();
-        }
-
-        /// <summary>Gets a collection of skin identifiers.</summary>
-        /// <returns>A collection of skin identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<ICollection<int>> GetSkinsAsync()
-        {
-            return this.skinService.GetSkinsAsync();
-        }
-
-        /// <summary>Gets a collection of skin identifiers.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of skin identifiers.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/skins">wiki</a> for more information.</remarks>
-        public Task<ICollection<int>> GetSkinsAsync(CancellationToken cancellationToken)
-        {
-            return this.skinService.GetSkinsAsync(cancellationToken);
-        }
-
         /// <summary>Gets the base URI.</summary>
         /// <returns>A <see cref="Uri"/>.</returns>
         private static Uri GetBaseUri()
@@ -554,7 +462,6 @@ namespace GW2NET
         {
             Contract.Invariant(this.buildService != null);
             Contract.Invariant(this.dynamicEventService != null);
-            Contract.Invariant(this.skinService != null);
         }
     }
 }

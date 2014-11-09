@@ -9,6 +9,7 @@
 namespace GW2NET.Entities.Skins
 {
     using System;
+    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
@@ -17,22 +18,25 @@ namespace GW2NET.Entities.Skins
     using GW2NET.Entities.Items;
 
     /// <summary>Represents an in-game item skin.</summary>
-    public abstract class Skin : IEquatable<Skin>, IRenderable
+    public abstract class Skin : IEquatable<Skin>, IRenderable, ILocalizable
     {
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Culture { get; set; }
+
         /// <summary>Gets or sets the skin's description.</summary>
         public virtual string Description { get; set; }
-
-        /// <summary>Gets or sets the skin's icon identifier for use with the render service.</summary>
-        public virtual int FileId { get; set; }
-
-        /// <summary>Gets or sets the skin's icon signature for use with the render service.</summary>
-        public virtual string FileSignature { get; set; }
 
         /// <summary>Gets or sets the skin's additional flags.</summary>
         public virtual SkinFlags Flags { get; set; }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public virtual CultureInfo Locale { get; set; }
+        /// <summary>Gets or sets the skin's icon identifier for use with the render service.</summary>
+        public virtual int IconFileId { get; set; }
+
+        /// <summary>Gets or sets the skin's icon signature for use with the render service.</summary>
+        public virtual string IconFileSignature { get; set; }
+
+        /// <summary>Gets or sets the icon file URL.</summary>
+        public virtual Uri IconFileUrl { get; set; }
 
         /// <summary>Gets or sets the name of the skin.</summary>
         public virtual string Name { get; set; }
@@ -42,6 +46,26 @@ namespace GW2NET.Entities.Skins
 
         /// <summary>Gets or sets the skin identifier.</summary>
         public virtual int SkinId { get; set; }
+
+        /// <inheritdoc />
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        int IRenderable.FileId
+        {
+            get
+            {
+                return this.IconFileId;
+            }
+        }
+
+        /// <inheritdoc />
+        [DebuggerBrowsable(DebuggerBrowsableState.Never)]
+        string IRenderable.FileSignature
+        {
+            get
+            {
+                return this.IconFileSignature;
+            }
+        }
 
         /// <summary>Indicates whether an object is equal to another object of the same type.</summary>
         /// <param name="left">The object on the left side.</param>
@@ -114,7 +138,10 @@ namespace GW2NET.Entities.Skins
         public virtual ChatLink GetSkinChatLink()
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new SkinChatLink { SkinId = this.SkinId };
+            return new SkinChatLink
+            {
+                SkinId = this.SkinId
+            };
         }
 
         /// <summary>Returns a string that represents the current object.</summary>
