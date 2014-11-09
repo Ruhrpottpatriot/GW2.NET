@@ -41,7 +41,7 @@ namespace GW2NET.V1.Floors
             }
         }
 
-        /// <summary>Creates an instance for the default language.</summary>
+        /// <summary>Creates an instance for the given language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <param name="language">The two-letter language code.</param>
         /// <returns>A repository.</returns>
@@ -56,7 +56,7 @@ namespace GW2NET.V1.Floors
             }
         }
 
-        /// <summary>Creates an instance for the default language.</summary>
+        /// <summary>Creates an instance for the given language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
@@ -70,8 +70,6 @@ namespace GW2NET.V1.Floors
             }
         }
 
-        // ReSharper restore InconsistentNaming
-
         /// <summary>Creates an instance for the default language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
@@ -81,7 +79,7 @@ namespace GW2NET.V1.Floors
             return new FloorRepository(this.serviceClient, continentId);
         }
 
-        /// <summary>Creates an instance for the default language.</summary>
+        /// <summary>Creates an instance for the given language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
@@ -99,8 +97,6 @@ namespace GW2NET.V1.Floors
             Contract.Ensures(Contract.Result<IRepository<int, Floor>>() != null);
             return this.ForCulture(continentId, CultureInfo.CurrentCulture);
         }
-
-        // ReSharper disable InconsistentNaming
 
         /// <summary>Creates an instance for the current UI language.</summary>
         /// <param name="continentId">The continent identifier.</param>
