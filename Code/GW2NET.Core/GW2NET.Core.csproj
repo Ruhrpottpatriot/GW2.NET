@@ -605,10 +605,6 @@
     <Compile Include="V1\DynamicEvents\Json\EventStateCollectionDataContract.cs" />
     <Compile Include="V1\DynamicEvents\Json\EventStateDataContract.cs" />
     <Compile Include="V1\DynamicEvents\Json\LocationDataContract.cs" />
-    <Compile Include="V1\DynamicEvents\DynamicEventService.cs" />
-    <Compile Include="V1\DynamicEvents\States\DynamicEventStateRequest.cs" />
-    <Compile Include="V1\DynamicEvents\States\ContractClassForIDynamicEventStateService.cs" />
-    <Compile Include="V1\DynamicEvents\States\IDynamicEventStateService.cs" />
     <Compile Include="V1\Files\Converters\ConverterForAsset.cs" />
     <Compile Include="V1\Files\FileRepository.cs" />
     <Compile Include="V1\Files\FileRequest.cs" />

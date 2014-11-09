@@ -65,15 +65,6 @@
             }
         }
 
-        public IDynamicEventStateService EventStates
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<IDynamicEventStateService>() != null);
-                return new DynamicEventService(this.ServiceClient);
-            }
-        }
-
         public EventNameRepositoryFactory EventNames
         {
             get
