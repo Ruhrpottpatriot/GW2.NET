@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ItemBuff.cs" company="GW2.NET Coding Team">
+// <copyright file="CombatBuff.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents an item buff.
+//   Represents an item's combat buff.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Entities.Items
@@ -12,8 +12,8 @@ namespace GW2NET.Entities.Items
 
     using GW2NET.ChatLinks;
 
-    /// <summary>Represents an item buff.</summary>
-    public class ItemBuff
+    /// <summary>Represents an item's combat buff.</summary>
+    public class CombatBuff
     {
         /// <summary>Gets or sets the buff's description.</summary>
         public virtual string Description { get; set; }
@@ -27,7 +27,10 @@ namespace GW2NET.Entities.Items
         {
             Contract.Requires(this.SkillId.HasValue);
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new SkillChatLink { SkillId = this.SkillId.GetValueOrDefault() };
+            return new SkillChatLink
+            {
+                SkillId = this.SkillId.GetValueOrDefault()
+            };
         }
     }
 }

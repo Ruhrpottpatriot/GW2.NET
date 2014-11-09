@@ -775,7 +775,7 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static CombatAttribute ConvertAttributeDataContract(ItemAttributeDataContract content)
+        private static CombatAttribute ConvertAttributeDataContract(AttributeDataContract content)
         {
             Contract.Requires(content != null);
             Contract.Ensures(Contract.Result<CombatAttribute>() != null);
@@ -820,13 +820,13 @@ namespace GW2NET.V1.Items
         /// <summary>Infrastructure. Converts contracts to entities.</summary>
         /// <param name="content">The content.</param>
         /// <returns>An entity.</returns>
-        private static ItemBuff ConvertItemBuffDataContract(ItemBuffDataContract content)
+        private static CombatBuff ConvertItemBuffDataContract(CombatBuffDataContract content)
         {
             Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<ItemBuff>() != null);
+            Contract.Ensures(Contract.Result<CombatBuff>() != null);
 
             // Create a new buff object
-            var value = new ItemBuff();
+            var value = new CombatBuff();
 
             // Set the skill identifier
             if (content.SkillId != null)

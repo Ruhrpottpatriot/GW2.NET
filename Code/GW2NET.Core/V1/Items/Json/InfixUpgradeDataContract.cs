@@ -18,9 +18,9 @@ namespace GW2NET.V1.Items.Json
     internal sealed class InfixUpgradeDataContract
     {
         [DataMember(Name = "buff", Order = 0)]
-        internal ItemBuffDataContract Buff { get; set; }
+        internal CombatBuffDataContract Buff { get; set; }
 
         [DataMember(Name = "attributes", Order = 1)]
-        internal ICollection<ItemAttributeDataContract> Attributes { get; set; }
+        internal ICollection<AttributeDataContract> Attributes { get; set; }
     }
 }

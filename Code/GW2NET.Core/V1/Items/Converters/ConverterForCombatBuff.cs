@@ -3,31 +3,38 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="BuffDataContract" /> to objects of type <see cref="ItemBuff" />.
+//   Converts objects of type <see cref="BuffDataContract" /> to objects of type <see cref="CombatBuff" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V1.Items.Converters
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Entities.Items;
-    using GW2NET.V2.Items.Json;
+    using GW2NET.V1.Items.Json;
 
-    /// <summary>Converts objects of type <see cref="BuffDataContract"/> to objects of type <see cref="CombatBuff"/>.</summary>
-    internal sealed class ConverterForItemBuff : IConverter<BuffDataContract, CombatBuff>
+    /// <summary>Converts objects of type <see cref="CombatBuffDataContract"/> to objects of type <see cref="CombatBuff"/>.</summary>
+    internal sealed class ConverterForCombatBuff : IConverter<CombatBuffDataContract, CombatBuff>
     {
-        /// <summary>Converts the given object of type <see cref="BuffDataContract"/> to an object of type <see cref="CombatBuff"/>.</summary>
+        /// <summary>Converts the given object of type <see cref="CombatBuffDataContract"/> to an object of type <see cref="CombatBuff"/>.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns>The converted value.</returns>
-        public CombatBuff Convert(BuffDataContract value)
+        public CombatBuff Convert(CombatBuffDataContract value)
         {
             Contract.Assume(value != null);
-            return new CombatBuff
+            var itemBuff = new CombatBuff
             {
-                SkillId = value.SkillId, 
                 Description = value.Description
             };
+
+            int skillId;
+            if (int.TryParse(value.SkillId, out skillId))
+            {
+                itemBuff.SkillId = skillId;
+            }
+
+            return itemBuff;
         }
     }
 }

@@ -17,6 +17,6 @@ namespace GW2NET.Entities.Items
         public ICollection<CombatAttribute> Attributes { get; set; }
 
         /// <summary>Gets or sets the buff. This is used for Boon Duration, Condition Duration, or additional attribute bonuses for ascended trinkets or back items.</summary>
-        public ItemBuff Buff { get; set; }
+        public CombatBuff Buff { get; set; }
     }
 }
