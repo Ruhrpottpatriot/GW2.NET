@@ -225,59 +225,6 @@ namespace GW2NET
             return this.dynamicEventService.GetDynamicEventDetailsAsync(eventId, language, cancellationToken);
         }
 
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public IDictionary<Guid, DynamicEvent> GetDynamicEventNames()
-        {
-            return this.dynamicEventService.GetDynamicEventNames();
-        }
-
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public IDictionary<Guid, DynamicEvent> GetDynamicEventNames(CultureInfo language)
-        {
-            return this.dynamicEventService.GetDynamicEventNames(language);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync()
-        {
-            return this.dynamicEventService.GetDynamicEventNamesAsync();
-        }
-
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventNamesAsync(cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CultureInfo language)
-        {
-            return this.dynamicEventService.GetDynamicEventNamesAsync(language);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CultureInfo language, CancellationToken cancellationToken)
-        {
-            return this.dynamicEventService.GetDynamicEventNamesAsync(language, cancellationToken);
-        }
-
         /// <summary>Gets a collection of dynamic events and their status.</summary>
         /// <returns>A collection of dynamic events and their status.</returns>
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/events">wiki</a> for more information.</remarks>

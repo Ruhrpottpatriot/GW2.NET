@@ -10,12 +10,13 @@ namespace GW2NET.PS.Commands
     using System.Net;
 
     using GW2NET.Common;
+    using GW2NET.Entities.DynamicEvents;
     using GW2NET.V1.DynamicEvents;
 
     [Cmdlet(VerbsCommon.Get, "EventNames", DefaultParameterSetName = "All")]
     public class GetEventNamesCommand : ServiceCmdlet
     {
-        private IDynamicEventNameService service;
+        private IServiceClient serviceClient;
 
         [Parameter]
         public CultureInfo Culture { get; set; }
@@ -31,7 +32,7 @@ namespace GW2NET.PS.Commands
         /// <param name="serviceClient">A service client.</param>
         protected override void BeginProcessing(IServiceClient serviceClient)
         {
-            this.service = new DynamicEventService(serviceClient);
+            this.serviceClient = serviceClient;
         }
 
         /// <summary>Provides a record-by-record processing functionality for the cmdlet.</summary>
@@ -40,11 +41,13 @@ namespace GW2NET.PS.Commands
             // Configure the language (default: English)
             var culture = this.Culture ?? CultureInfo.GetCultureInfo("en");
 
+            IRepository<Guid, DynamicEventName> repo = new EventNameRepository(serviceClient) { Culture = this.Culture };
+
             // Try to get dynamic event names
             try
             {
                 // Get the event names from the service
-                var dynamicEventNames = this.service.GetDynamicEventNames(culture);
+                IDictionary<Guid, DynamicEventName> dynamicEventNames = repo.FindAll();
 
                 switch (ParameterSetName)
                 {

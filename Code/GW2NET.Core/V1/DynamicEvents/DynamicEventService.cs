@@ -20,7 +20,6 @@ namespace GW2NET.V1.DynamicEvents
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.Entities.DynamicEvents;
-    using GW2NET.Entities.Maps;
     using GW2NET.V1.DynamicEvents.Json;
 
     /// <summary>Provides the default implementation of the events service.</summary>
@@ -295,64 +294,6 @@ namespace GW2NET.V1.DynamicEvents
                         return value;
                     }, 
                 cancellationToken);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public IDictionary<Guid, DynamicEvent> GetDynamicEventNames()
-        {
-            var culture = new CultureInfo("en");
-            return this.GetDynamicEventNames(culture);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <param name="language">The language.</param>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public IDictionary<Guid, DynamicEvent> GetDynamicEventNames(CultureInfo language)
-        {
-            if (language == null)
-            {
-                throw new ArgumentNullException(paramName: "language", message: "Precondition failed: language != null");
-            }
-
-            Contract.EndContractBlock();
-
-            var request = new DynamicEventNameRequest { Culture = language };
-            var response = this.serviceClient.Send<ICollection<EventNameDataContract>>(request);
-            if (response.Content == null)
-            {
-                return new Dictionary<Guid, DynamicEvent>(0);
-            }
-
-            var values = ConvertEventNameDataContractCollection(response.Content);
-            var locale = response.Culture ?? language;
-            foreach (var value in values.Values)
-            {
-                value.Locale = locale;
-            }
-
-            return values;
-        }
-
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync()
-        {
-            var culture = new CultureInfo("en");
-            return this.GetDynamicEventNamesAsync(culture, CancellationToken.None);
-        }
-
-        /// <summary>Gets a collection of dynamic events and their localized name.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>A collection of dynamic events and their localized name.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/event_names">wiki</a> for more information.</remarks>
-        public Task<IDictionary<Guid, DynamicEvent>> GetDynamicEventNamesAsync(CancellationToken cancellationToken)
-        {
-            var culture = new CultureInfo("en");
-            return this.GetDynamicEventNamesAsync(culture, cancellationToken);
         }
 
         /// <summary>Gets a collection of dynamic events and their localized name.</summary>
