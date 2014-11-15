@@ -15,10 +15,14 @@ namespace GW2NET.V2.Recipes.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/recipes")]
     internal sealed class IngredientDataContract
     {
-        [DataMember(Order = 0, Name = "item_id")]
-        internal int ItemId { get; set; }
+        #region Properties
 
         [DataMember(Order = 1, Name = "count")]
         internal int Count { get; set; }
+
+        [DataMember(Order = 0, Name = "item_id")]
+        internal int ItemId { get; set; }
+
+        #endregion
     }
 }

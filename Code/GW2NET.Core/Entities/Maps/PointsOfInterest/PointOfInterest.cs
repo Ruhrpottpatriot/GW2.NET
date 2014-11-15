@@ -101,7 +101,10 @@ namespace GW2NET.Entities.Maps
         public virtual ChatLink GetMapChatLink()
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new PointOfInterestChatLink { PointOfInterestId = this.PointOfInterestId };
+            return new PointOfInterestChatLink
+            {
+                PointOfInterestId = this.PointOfInterestId
+            };
         }
 
         /// <summary>Returns a string that represents the current object.</summary>

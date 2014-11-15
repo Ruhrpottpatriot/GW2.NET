@@ -20,10 +20,10 @@ namespace GW2NET.Common
         /// <summary>Gets or sets the response content.</summary>
         T Content { get; set; }
 
-        /// <summary>Gets or sets a collection of custom response headers.</summary>
-        IDictionary<string, string> ExtensionData { get; set; }
-
         /// <summary>Gets or sets the <see cref="DateTimeOffset"/> at which the message originated..</summary>
         DateTimeOffset Date { get; set; }
+
+        /// <summary>Gets or sets a collection of custom response headers.</summary>
+        IDictionary<string, string> ExtensionData { get; set; }
     }
 }

@@ -12,8 +12,7 @@ namespace GW2NET.V1.Items.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:1/item_details")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/item_details")]
     internal sealed class BagDataContract
     {
         [DataMember(Name = "no_sell_or_sort", Order = 0)]

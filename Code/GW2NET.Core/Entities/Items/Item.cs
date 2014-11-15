@@ -152,7 +152,10 @@ namespace GW2NET.Entities.Items
         public virtual ChatLink GetItemChatLink()
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new ItemChatLink { ItemId = this.ItemId };
+            return new ItemChatLink
+            {
+                ItemId = this.ItemId
+            };
         }
 
         /// <summary>Returns a string that represents the current object.</summary>

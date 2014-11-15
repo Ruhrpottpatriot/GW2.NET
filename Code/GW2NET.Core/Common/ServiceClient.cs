@@ -9,7 +9,6 @@
 namespace GW2NET.Common
 {
     using System;
-    using System.Diagnostics;
     using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.IO;
@@ -40,11 +39,7 @@ namespace GW2NET.Common
         /// <param name="successSerializerFactory">The serializer factory.</param>
         /// <param name="errorSerializerFactory">The error serializer Factory.</param>
         /// <param name="gzipInflator">The GZIP inflator.</param>
-        public ServiceClient(
-            Uri baseUri,
-            ISerializerFactory successSerializerFactory,
-            ISerializerFactory errorSerializerFactory,
-            IConverter<Stream, Stream> gzipInflator)
+        public ServiceClient(Uri baseUri, ISerializerFactory successSerializerFactory, ISerializerFactory errorSerializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(baseUri != null);
             Contract.Requires(successSerializerFactory != null);
@@ -150,26 +145,24 @@ namespace GW2NET.Common
 
             // Handle the request
             var httpWebRequest = CreateHttpWebRequest(uri);
-            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
-                task =>
+            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(task =>
+            {
+                using (var response = task.Result)
                 {
-                    using (var response = task.Result)
+                    try
                     {
-                        try
-                        {
-                            return this.OnResponse<TResult>(response);
-                        }
-                        catch (ServiceException exception)
-                        {
-                            // Set the cause of this exception
-                            exception.Request = request;
-
-                            // Rethrow
-                            throw;
-                        }
+                        return this.OnResponse<TResult>(response);
                     }
-                },
-                cancellationToken);
+                    catch (ServiceException exception)
+                    {
+                        // Set the cause of this exception
+                        exception.Request = request;
+
+                        // Rethrow
+                        throw;
+                    }
+                }
+            }, cancellationToken);
         }
 
         /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="UriBuilder"/> class.</summary>
@@ -182,7 +175,11 @@ namespace GW2NET.Common
         {
             Contract.Requires(baseUri != null);
             Contract.Requires(formData != null);
-            var uriBuilder = new UriBuilder(baseUri) { Path = resource, Query = formData.GetQueryString() };
+            var uriBuilder = new UriBuilder(baseUri)
+            {
+                Path = resource, 
+                Query = formData.GetQueryString()
+            };
             return uriBuilder.Uri;
         }
 
@@ -214,10 +211,7 @@ namespace GW2NET.Common
         /// <param name="gzipInflator">The GZIP inflator.</param>
         /// <typeparam name="TResult">The type of the response content.</typeparam>
         /// <returns>An instance of the specified type.</returns>
-        private static TResult DeserializeResponse<TResult>(
-            HttpWebResponse response,
-            ISerializerFactory serializerFactory,
-            IConverter<Stream, Stream> gzipInflator)
+        private static TResult DeserializeResponse<TResult>(HttpWebResponse response, ISerializerFactory serializerFactory, IConverter<Stream, Stream> gzipInflator)
         {
             Contract.Requires(response != null);
             Contract.Requires(serializerFactory != null);
@@ -289,30 +283,28 @@ namespace GW2NET.Common
             var tcs = new TaskCompletionSource<HttpWebResponse>();
             try
             {
-                webRequest.BeginGetResponse(
-                    ar =>
+                webRequest.BeginGetResponse(ar =>
+                {
+                    try
                     {
-                        try
+                        tcs.SetResult((HttpWebResponse)webRequest.EndGetResponse(ar));
+                    }
+                    catch (WebException webException)
+                    {
+                        if (webException.Response != null)
                         {
-                            tcs.SetResult((HttpWebResponse)webRequest.EndGetResponse(ar));
+                            tcs.SetResult((HttpWebResponse)webException.Response);
                         }
-                        catch (WebException webException)
+                        else
                         {
-                            if (webException.Response != null)
-                            {
-                                tcs.SetResult((HttpWebResponse)webException.Response);
-                            }
-                            else
-                            {
-                                tcs.SetException(new ServiceException("An error occurred while sending the request. See the inner exception for details.", webException));
-                            }
+                            tcs.SetException(new ServiceException("An error occurred while sending the request. See the inner exception for details.", webException));
                         }
-                        catch (Exception exception)
-                        {
-                            tcs.SetException(exception);
-                        }
-                    },
-                    null);
+                    }
+                    catch (Exception exception)
+                    {
+                        tcs.SetException(exception);
+                    }
+                }, null);
             }
             catch (WebException webException)
             {
@@ -343,7 +335,6 @@ namespace GW2NET.Common
             Contract.Requires(gzipInflator != null);
 
             string message;
-
 
             var contentType = response.ContentType;
 

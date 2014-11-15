@@ -13,8 +13,7 @@ namespace GW2NET.V1.DynamicEvents.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:1/event_details")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/event_details")]
     internal sealed class EventCollectionDataContract
     {
         [DataMember(Name = "events", Order = 0)]

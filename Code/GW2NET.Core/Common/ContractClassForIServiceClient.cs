@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Defines the ServiceClientContracts type.
+//   Defines the ContractClassForIServiceClient type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common
@@ -14,8 +14,7 @@ namespace GW2NET.Common
     using System.Threading.Tasks;
 
     [ContractClassFor(typeof(IServiceClient))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIServiceClient : IServiceClient
     {
         public IResponse<TResult> Send<TResult>(IRequest request)

@@ -6,7 +6,6 @@
 //   Converts objects of type <see cref="T" /> to objects of type <see cref="T:int" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.Common.Converters
 {
     /// <summary>Converts objects of type <see cref="T"/> to objects of type <see cref="T:int"/>.</summary>

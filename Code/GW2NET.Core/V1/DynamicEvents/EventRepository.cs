@@ -305,7 +305,6 @@ namespace GW2NET.V1.DynamicEvents
             dynamicEvent.Culture = culture;
 
             return dynamicEvent;
-            
         }
     }
 }

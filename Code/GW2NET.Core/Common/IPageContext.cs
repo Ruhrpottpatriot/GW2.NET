@@ -10,8 +10,6 @@ namespace GW2NET.Common
 {
     using System.Diagnostics.Contracts;
 
-    using GW2NET.V2.Common;
-
     /// <summary>Provides contextual information for paginated collections.</summary>
     [ContractClass(typeof(ContractClassForIPageContext))]
     public interface IPageContext : ISubsetContext

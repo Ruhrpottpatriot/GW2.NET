@@ -53,7 +53,11 @@ namespace GW2NET.V2.Common
                 return new DictionaryRange<TKey, TValue>(0);
             }
 
-            var range = new DictionaryRange<TKey, TValue>(dataContracts.Count) { SubtotalCount = value.GetResultCount(), TotalCount = value.GetResultTotal() };
+            var range = new DictionaryRange<TKey, TValue>(dataContracts.Count)
+            {
+                SubtotalCount = value.GetResultCount(), 
+                TotalCount = value.GetResultTotal()
+            };
 
             foreach (var item in dataContracts.Select(this.converterForDataContract.Convert))
             {

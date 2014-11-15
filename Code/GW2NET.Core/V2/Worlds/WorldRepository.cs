@@ -104,7 +104,11 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         World IRepository<int, World>.Find(int identifier)
         {
-            var request = new WorldDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
+            var request = new WorldDetailsRequest
+            {
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<WorldDataContract>(request);
             return this.converterForResponse.Convert(response);
         }
@@ -112,7 +116,10 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         IDictionaryRange<int, World> IRepository<int, World>.FindAll()
         {
-            var request = new WorldBulkRequest { Culture = this.Culture };
+            var request = new WorldBulkRequest
+            {
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
             var values = this.converterForBulkResponse.Convert(response);
             return values ?? new DictionaryRange<int, World>(0);
@@ -121,7 +128,11 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         IDictionaryRange<int, World> IRepository<int, World>.FindAll(ICollection<int> identifiers)
         {
-            var request = new WorldBulkRequest { Culture = this.Culture, Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
+            var request = new WorldBulkRequest
+            {
+                Culture = this.Culture, 
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
+            };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
             var values = this.converterForBulkResponse.Convert(response);
             return values ?? new DictionaryRange<int, World>(0);
@@ -136,7 +147,10 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new WorldBulkRequest { Culture = this.Culture };
+            var request = new WorldBulkRequest
+            {
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, World>>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -150,7 +164,11 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
-            var request = new WorldBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), Culture = this.Culture };
+            var request = new WorldBulkRequest
+            {
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, World>>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -164,7 +182,11 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         Task<World> IRepository<int, World>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            var request = new WorldDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), Culture = this.Culture };
+            var request = new WorldDetailsRequest
+            {
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<WorldDataContract>(request, cancellationToken);
             return responseTask.ContinueWith<World>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -172,7 +194,11 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         ICollectionPage<World> IPaginator<World>.FindPage(int pageIndex)
         {
-            var request = new WorldPageRequest { Page = pageIndex, Culture = this.Culture };
+            var request = new WorldPageRequest
+            {
+                Page = pageIndex, 
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
             if (values == null)
@@ -188,7 +214,12 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         ICollectionPage<World> IPaginator<World>.FindPage(int pageIndex, int pageSize)
         {
-            var request = new WorldPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
+            var request = new WorldPageRequest
+            {
+                Page = pageIndex, 
+                PageSize = pageSize, 
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
             if (values == null)
@@ -210,7 +241,11 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         Task<ICollectionPage<World>> IPaginator<World>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            var request = new WorldPageRequest { Page = pageIndex, Culture = this.Culture };
+            var request = new WorldPageRequest
+            {
+                Page = pageIndex, 
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
@@ -224,7 +259,12 @@ namespace GW2NET.V2.Worlds
         /// <inheritdoc />
         Task<ICollectionPage<World>> IPaginator<World>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var request = new WorldPageRequest { Page = pageIndex, PageSize = pageSize, Culture = this.Culture };
+            var request = new WorldPageRequest
+            {
+                Page = pageIndex, 
+                PageSize = pageSize, 
+                Culture = this.Culture
+            };
             return this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken).ContinueWith<ICollectionPage<World>>(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 

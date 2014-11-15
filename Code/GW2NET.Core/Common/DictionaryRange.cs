@@ -10,7 +10,6 @@ namespace GW2NET.Common
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
 
     /// <summary>Represents a subset of keys and values.</summary>
     /// <typeparam name="TKey">The type of the keys in the subset.</typeparam>

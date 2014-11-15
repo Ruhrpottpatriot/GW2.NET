@@ -6,7 +6,6 @@
 //   Provides methods for creating repository objects.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V1.DynamicEvents
 {
     using System;

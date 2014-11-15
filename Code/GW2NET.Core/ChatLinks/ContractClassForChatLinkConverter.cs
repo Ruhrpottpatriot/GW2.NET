@@ -13,8 +13,7 @@ namespace GW2NET.ChatLinks
     using System.Diagnostics.Contracts;
 
     [ContractClassFor(typeof(ChatLinkConverter))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForChatLinkConverter : ChatLinkConverter
     {
         protected override ChatLink ConvertFromBytes(byte[] bytes)

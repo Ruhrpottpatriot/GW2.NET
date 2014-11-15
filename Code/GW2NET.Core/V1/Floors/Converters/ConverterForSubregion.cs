@@ -70,7 +70,13 @@ namespace GW2NET.V1.Floors.Converters
             Contract.Assume(value != null);
 
             // Create a new map object
-            var subRegion = new Subregion { Name = value.Name, MinimumLevel = value.MinimumLevel, MaximumLevel = value.MaximumLevel, DefaultFloor = value.DefaultFloor };
+            var subRegion = new Subregion
+            {
+                Name = value.Name, 
+                MinimumLevel = value.MinimumLevel, 
+                MaximumLevel = value.MaximumLevel, 
+                DefaultFloor = value.DefaultFloor
+            };
 
             var mapDimensions = value.MapRectangle;
             if (mapDimensions != null && mapDimensions.Length == 2)

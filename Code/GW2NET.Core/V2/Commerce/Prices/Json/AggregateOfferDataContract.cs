@@ -12,14 +12,17 @@ namespace GW2NET.V2.Commerce.Prices.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/prices")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/prices")]
     internal sealed class AggregateOfferDataContract
     {
+        #region Properties
+
         [DataMember(Name = "quantity", Order = 2)]
         internal int Quantity { get; set; }
 
         [DataMember(Name = "unit_price", Order = 1)]
         internal int UnitPrice { get; set; }
+
+        #endregion
     }
 }

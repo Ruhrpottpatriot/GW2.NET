@@ -12,14 +12,17 @@ namespace GW2NET.V2.Commerce.Exchange.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/exchange")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/exchange")]
     internal class GemQuotationDataContract
     {
+        #region Properties
+
         [DataMember(Order = 0, Name = "coins_per_gem")]
         internal int CoinsPerGem { get; set; }
 
         [DataMember(Order = 1, Name = "quantity")]
         internal long Quantity { get; set; }
+
+        #endregion
     }
 }

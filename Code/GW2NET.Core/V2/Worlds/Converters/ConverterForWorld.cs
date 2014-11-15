@@ -23,7 +23,11 @@ namespace GW2NET.V2.Worlds.Converters
         public World Convert(WorldDataContract value)
         {
             Contract.Assume(value != null);
-            return new World { WorldId = value.Id, Name = value.Name };
+            return new World
+            {
+                WorldId = value.Id, 
+                Name = value.Name
+            };
         }
     }
 }

@@ -6,7 +6,6 @@
 //   Represents aggregated buy or sell offer information.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.Entities.Commerce
 {
     using System.Globalization;

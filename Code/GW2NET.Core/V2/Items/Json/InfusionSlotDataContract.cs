@@ -16,10 +16,14 @@ namespace GW2NET.V2.Items.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed class InfusionSlotDataContract
     {
+        #region Properties
+
         [DataMember(Name = "flags", Order = 0)]
         internal ICollection<string> Flags { get; set; }
 
         [DataMember(Name = "item_id", Order = 1)]
         internal int? ItemId { get; set; }
+
+        #endregion
     }
 }

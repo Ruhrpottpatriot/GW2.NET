@@ -16,8 +16,7 @@ namespace GW2NET.Rendering
     using GW2NET.Common;
 
     [ContractClassFor(typeof(IRenderService))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIRenderService : IRenderService
     {
         public byte[] GetImage(IRenderable file, string imageFormat)

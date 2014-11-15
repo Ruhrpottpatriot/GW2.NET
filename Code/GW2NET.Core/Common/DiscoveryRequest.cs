@@ -6,7 +6,6 @@
 //   Provides the base class for discovery requests.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.Common
 {
     using System.Collections.Generic;

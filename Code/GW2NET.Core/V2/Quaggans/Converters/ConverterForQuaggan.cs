@@ -24,7 +24,11 @@ namespace GW2NET.V2.Quaggans.Converters
         public Quaggan Convert(QuagganDataContract value)
         {
             Contract.Assume(value != null);
-            return new Quaggan { Id = value.Id, Url = new Uri(value.Url, UriKind.Absolute) };
+            return new Quaggan
+            {
+                Id = value.Id, 
+                Url = new Uri(value.Url, UriKind.Absolute)
+            };
         }
     }
 }

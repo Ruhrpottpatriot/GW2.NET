@@ -6,7 +6,6 @@
 //   Represents a repository that retrieves data from the /v1/world_names.json interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V1.Worlds
 {
     using System;

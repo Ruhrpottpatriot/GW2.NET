@@ -49,7 +49,11 @@ namespace GW2NET.Entities.Items
             var item = this.Item;
             if (item == null)
             {
-                return new ItemChatLink { ItemId = this.ItemId, Quantity = this.Count };
+                return new ItemChatLink
+                {
+                    ItemId = this.ItemId, 
+                    Quantity = this.Count
+                };
             }
 
             var chatLink = (ItemChatLink)item.GetItemChatLink();

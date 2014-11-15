@@ -30,11 +30,11 @@ namespace GW2NET.Common
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
 
-        /// <summary>Gets or sets a collection of custom response headers.</summary>
-        public IDictionary<string, string> ExtensionData { get; set; }
-
         /// <summary>Gets or sets the <see cref="DateTimeOffset"/> at which the message originated..</summary>
         public DateTimeOffset Date { get; set; }
+
+        /// <summary>Gets or sets a collection of custom response headers.</summary>
+        public IDictionary<string, string> ExtensionData { get; set; }
 
         /// <summary>The invariant method for this class.</summary>
         [ContractInvariantMethod]

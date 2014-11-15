@@ -15,6 +15,8 @@ namespace GW2NET.V2.Commerce.Listings.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/listings")]
     internal sealed class ListingOfferDataContract
     {
+        #region Properties
+
         [DataMember(Name = "listings", Order = 0)]
         internal int Listings { get; set; }
 
@@ -23,5 +25,7 @@ namespace GW2NET.V2.Commerce.Listings.Json
 
         [DataMember(Name = "unit_price", Order = 1)]
         internal int UnitPrice { get; set; }
+
+        #endregion
     }
 }

@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Armor" />.
+//   Converts objects of type <see cref="ItemDataContract" /> to objects of type <see cref="Armor" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Items.Converters

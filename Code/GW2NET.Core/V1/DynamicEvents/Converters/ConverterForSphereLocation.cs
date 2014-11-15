@@ -25,7 +25,7 @@ namespace GW2NET.V1.DynamicEvents.Converters
             Contract.Assume(value != null);
             return new SphereLocation
             {
-                Radius = value.Radius,
+                Radius = value.Radius, 
                 Rotation = value.Rotation
             };
         }

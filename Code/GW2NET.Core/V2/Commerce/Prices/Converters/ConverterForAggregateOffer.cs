@@ -23,7 +23,11 @@ namespace GW2NET.V2.Commerce.Prices.Converters
         public AggregateOffer Convert(AggregateOfferDataContract value)
         {
             Contract.Assume(value != null);
-            return new AggregateOffer { Quantity = value.Quantity, UnitPrice = value.UnitPrice };
+            return new AggregateOffer
+            {
+                Quantity = value.Quantity, 
+                UnitPrice = value.UnitPrice
+            };
         }
     }
 }

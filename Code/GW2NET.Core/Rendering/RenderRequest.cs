@@ -43,7 +43,12 @@ namespace GW2NET.Rendering
         /// <returns>A collection of path segments.</returns>
         public IEnumerable<string> GetPathSegments()
         {
-            return new List<string> { this.FileSignature, this.FileId.ToString(NumberFormatInfo.InvariantInfo), this.ImageFormat };
+            return new List<string>
+            {
+                this.FileSignature, 
+                this.FileId.ToString(NumberFormatInfo.InvariantInfo), 
+                this.ImageFormat
+            };
         }
     }
 }

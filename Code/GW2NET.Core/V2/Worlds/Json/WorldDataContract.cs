@@ -6,7 +6,6 @@
 //   Defines the WorldDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Worlds.Json
 {
     using System.Diagnostics.CodeAnalysis;
@@ -16,10 +15,14 @@ namespace GW2NET.V2.Worlds.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/worlds")]
     internal sealed class WorldDataContract
     {
+        #region Public Properties
+
         [DataMember(Order = 0, Name = "id")]
         public int Id { get; set; }
 
         [DataMember(Order = 1, Name = "name")]
         public string Name { get; set; }
+
+        #endregion
     }
 }

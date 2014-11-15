@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common.Serializers
 {
-    using System;
     using System.Diagnostics.Contracts;
     using System.IO;
     using System.Text;

@@ -12,8 +12,7 @@ namespace GW2NET.Common
     using System.Diagnostics.Contracts;
 
     [ContractClassFor(typeof(IPageContext))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIPageContext : IPageContext
     {
         public int FirstPageIndex { get; set; }

@@ -86,7 +86,10 @@ namespace GW2NET.V1.Floors
         public IRepository<int, Floor> ForCulture(int continentId, CultureInfo culture)
         {
             Contract.Ensures(Contract.Result<IRepository<int, Floor>>() != null);
-            return new FloorRepository(this.serviceClient, continentId) { Culture = culture };
+            return new FloorRepository(this.serviceClient, continentId)
+            {
+                Culture = culture
+            };
         }
 
         /// <summary>Creates an instance for the current system language.</summary>

@@ -26,14 +26,14 @@ namespace GW2NET.Entities.Recipes
         /// <summary>Gets or sets the crafting disciplines that can learn the recipe.</summary>
         public virtual CraftingDisciplines CraftingDisciplines { get; set; }
 
+        /// <summary>Gets or sets the locale.</summary>
+        public virtual CultureInfo Culture { get; set; }
+
         /// <summary>Gets or sets the recipe's flags.</summary>
         public virtual RecipeFlags Flags { get; set; }
 
         /// <summary>Gets or sets a collection of the required ingredients.</summary>
         public virtual ICollection<ItemStack> Ingredients { get; set; }
-
-        /// <summary>Gets or sets the locale.</summary>
-        public virtual CultureInfo Culture { get; set; }
 
         /// <summary>Gets or sets the recipe's minimum rating.</summary>
         public virtual int MinimumRating { get; set; }
@@ -124,7 +124,10 @@ namespace GW2NET.Entities.Recipes
         public virtual ChatLink GetRecipeChatLink()
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new RecipeChatLink { RecipeId = this.RecipeId };
+            return new RecipeChatLink
+            {
+                RecipeId = this.RecipeId
+            };
         }
 
         /// <summary>Returns a string that represents the current object.</summary>

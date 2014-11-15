@@ -98,7 +98,10 @@ namespace GW2NET.V2.Commerce.Listings
         /// <inheritdoc />
         Listing IRepository<int, Listing>.Find(int identifier)
         {
-            var request = new ListingDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
+            var request = new ListingDetailsRequest
+            {
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo)
+            };
             var response = this.serviceClient.Send<ListingDataContract>(request);
             return this.converterForResponse.Convert(response);
         }
@@ -114,7 +117,10 @@ namespace GW2NET.V2.Commerce.Listings
         /// <inheritdoc />
         IDictionaryRange<int, Listing> IRepository<int, Listing>.FindAll(ICollection<int> identifiers)
         {
-            var request = new ListingBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
+            var request = new ListingBulkRequest
+            {
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
+            };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
             return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<int, Listing>(0);
         }
@@ -142,7 +148,10 @@ namespace GW2NET.V2.Commerce.Listings
         /// <inheritdoc />
         Task<IDictionaryRange<int, Listing>> IRepository<int, Listing>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
-            var request = new ListingBulkRequest { Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList() };
+            var request = new ListingBulkRequest
+            {
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Listing>>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -156,7 +165,10 @@ namespace GW2NET.V2.Commerce.Listings
         /// <inheritdoc />
         Task<Listing> IRepository<int, Listing>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            var request = new ListingDetailsRequest { Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo) };
+            var request = new ListingDetailsRequest
+            {
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo)
+            };
             var responseTask = this.serviceClient.SendAsync<ListingDataContract>(request, cancellationToken);
             return responseTask.ContinueWith<Listing>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -164,7 +176,10 @@ namespace GW2NET.V2.Commerce.Listings
         /// <inheritdoc />
         ICollectionPage<Listing> IPaginator<Listing>.FindPage(int pageIndex)
         {
-            var request = new ListingPageRequest { Page = pageIndex };
+            var request = new ListingPageRequest
+            {
+                Page = pageIndex
+            };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
             if (values == null)
@@ -180,7 +195,11 @@ namespace GW2NET.V2.Commerce.Listings
         /// <inheritdoc />
         ICollectionPage<Listing> IPaginator<Listing>.FindPage(int pageIndex, int pageSize)
         {
-            var request = new ListingPageRequest { Page = pageIndex, PageSize = pageSize };
+            var request = new ListingPageRequest
+            {
+                Page = pageIndex, 
+                PageSize = pageSize
+            };
             var response = this.serviceClient.Send<ICollection<ListingDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
             if (values == null)
@@ -202,7 +221,10 @@ namespace GW2NET.V2.Commerce.Listings
         /// <inheritdoc />
         Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            var request = new ListingPageRequest { Page = pageIndex };
+            var request = new ListingPageRequest
+            {
+                Page = pageIndex
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
@@ -216,7 +238,11 @@ namespace GW2NET.V2.Commerce.Listings
         /// <inheritdoc />
         Task<ICollectionPage<Listing>> IPaginator<Listing>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var request = new ListingPageRequest { Page = pageIndex, PageSize = pageSize };
+            var request = new ListingPageRequest
+            {
+                Page = pageIndex, 
+                PageSize = pageSize
+            };
             var responseTask = this.serviceClient.SendAsync<ICollection<ListingDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }

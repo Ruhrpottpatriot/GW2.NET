@@ -13,8 +13,7 @@ namespace GW2NET.V1.Recipes.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:1/recipe_details")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/recipe_details")]
     internal sealed class RecipeDataContract
     {
         [DataMember(Name = "recipe_id", Order = 0)]

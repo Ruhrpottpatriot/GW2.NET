@@ -13,8 +13,7 @@ namespace GW2NET.Common.Serializers
     using System.IO;
 
     [ContractClassFor(typeof(ISerializer<>))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForISerializer<T> : ISerializer<T>
     {
         public T Deserialize(Stream stream)

@@ -16,8 +16,7 @@ namespace GW2NET.Local.DynamicEvents
     using GW2NET.Entities.DynamicEvents;
 
     [ContractClassFor(typeof(IDynamicEventRotationService))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIDynamicEventRotationService : IDynamicEventRotationService
     {
         public IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations()

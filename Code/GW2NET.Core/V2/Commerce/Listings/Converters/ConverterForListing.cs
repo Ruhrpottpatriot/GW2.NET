@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Listings.Converters
 {
-    using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
@@ -45,7 +44,10 @@ namespace GW2NET.V2.Commerce.Listings.Converters
         public Listing Convert(ListingDataContract value)
         {
             Contract.Assume(value != null);
-            var listing = new Listing { ItemId = value.Id };
+            var listing = new Listing
+            {
+                ItemId = value.Id
+            };
 
             var buys = value.BuyOffers;
             if (buys != null)

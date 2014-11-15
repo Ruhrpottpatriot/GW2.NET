@@ -121,7 +121,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
                 Culture = this.Culture
             };
             var response = this.serviceClient.Send<ItemDataContract>(request);
@@ -144,7 +144,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemBulkRequest
             {
-                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
                 Culture = this.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -179,7 +179,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemBulkRequest
             {
-                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(),
+                Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
                 Culture = this.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
@@ -197,7 +197,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemDetailsRequest
             {
-                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo),
+                Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
                 Culture = this.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken);
@@ -209,7 +209,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemPageRequest
             {
-                Page = pageIndex,
+                Page = pageIndex, 
                 Culture = this.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -223,8 +223,8 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemPageRequest
             {
-                Page = pageIndex,
-                PageSize = pageSize,
+                Page = pageIndex, 
+                PageSize = pageSize, 
                 Culture = this.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
@@ -244,7 +244,7 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemPageRequest
             {
-                Page = pageIndex,
+                Page = pageIndex, 
                 Culture = this.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
@@ -262,8 +262,8 @@ namespace GW2NET.V2.Items
         {
             var request = new ItemPageRequest
             {
-                Page = pageIndex,
-                PageSize = pageSize,
+                Page = pageIndex, 
+                PageSize = pageSize, 
                 Culture = this.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);

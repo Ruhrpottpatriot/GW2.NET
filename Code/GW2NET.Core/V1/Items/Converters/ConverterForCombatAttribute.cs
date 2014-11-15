@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="CombatAttribute" />.
+//   Converts objects of type <see cref="Json.AttributeDataContract" /> to objects of type <see cref="CombatAttribute" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Items.Converters
@@ -15,10 +15,6 @@ namespace GW2NET.V1.Items.Converters
     using GW2NET.Common;
     using GW2NET.Entities.Items;
     using GW2NET.V1.Items.Json;
-    using GW2NET.V2.Items.Converters;
-    using GW2NET.V2.Items.Json;
-
-    using AttributeDataContract = GW2NET.V1.Items.Json.AttributeDataContract;
 
     /// <summary>Converts objects of type <see cref="Json.AttributeDataContract"/> to objects of type <see cref="CombatAttribute"/>.</summary>
     internal sealed class ConverterForCombatAttribute : IConverter<AttributeDataContract, CombatAttribute>

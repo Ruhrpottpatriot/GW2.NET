@@ -6,7 +6,6 @@
 //   Converts objects of type <see cref="SkinDataContract" /> to objects of type <see cref="ArmorSkin" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V1.Skins.Converters
 {
     using System.Collections.Generic;

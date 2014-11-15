@@ -12,8 +12,7 @@ namespace GW2NET.V1.Worlds.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:1/world_names")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/world_names")]
     internal sealed class WorldDataContract
     {
         [DataMember(Name = "id", Order = 0)]

@@ -77,10 +77,7 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
         /// <returns>A collection of pages.</returns>
-        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(
-            this IPaginator<T> instance, 
-            int pageCount, 
-            CancellationToken cancellationToken)
+        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageCount, CancellationToken cancellationToken)
         {
             Contract.Requires(instance != null);
             Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);
@@ -110,11 +107,7 @@ namespace GW2NET.Common
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
         /// <returns>A collection of pages.</returns>
-        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(
-            this IPaginator<T> instance, 
-            int pageSize, 
-            int pageCount, 
-            CancellationToken cancellationToken)
+        public static IEnumerable<Task<ICollectionPage<T>>> FindAllPagesAsync<T>(this IPaginator<T> instance, int pageSize, int pageCount, CancellationToken cancellationToken)
         {
             Contract.Requires(instance != null);
             Contract.Ensures(Contract.Result<IEnumerable<Task<ICollectionPage<T>>>>() != null);

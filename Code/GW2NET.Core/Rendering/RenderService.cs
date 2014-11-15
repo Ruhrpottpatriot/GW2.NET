@@ -35,7 +35,12 @@ namespace GW2NET.Rendering
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
         public byte[] GetImage(IRenderable file, string imageFormat)
         {
-            var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
+            var request = new RenderRequest
+            {
+                FileId = file.FileId, 
+                FileSignature = file.FileSignature, 
+                ImageFormat = imageFormat
+            };
             var response = this.serviceClient.Send<byte[]>(request);
             if (response.Content == null)
             {
@@ -63,19 +68,22 @@ namespace GW2NET.Rendering
         /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
         public Task<byte[]> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken)
         {
-            var request = new RenderRequest { FileId = file.FileId, FileSignature = file.FileSignature, ImageFormat = imageFormat };
-            return this.serviceClient.SendAsync<byte[]>(request, cancellationToken).ContinueWith(
-                task =>
-                    {
-                        var response = task.Result;
-                        if (response.Content == null)
-                        {
-                            return null;
-                        }
+            var request = new RenderRequest
+            {
+                FileId = file.FileId, 
+                FileSignature = file.FileSignature, 
+                ImageFormat = imageFormat
+            };
+            return this.serviceClient.SendAsync<byte[]>(request, cancellationToken).ContinueWith(task =>
+            {
+                var response = task.Result;
+                if (response.Content == null)
+                {
+                    return null;
+                }
 
-                        return response.Content;
-                    }, 
-                cancellationToken);
+                return response.Content;
+            }, cancellationToken);
         }
 
         /// <summary>The invariant method for this class.</summary>

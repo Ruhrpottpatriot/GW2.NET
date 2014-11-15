@@ -16,8 +16,7 @@ namespace GW2NET.V1.Builds
     using GW2NET.Entities.Builds;
 
     [ContractClassFor(typeof(IBuildService))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIBuildService : IBuildService
     {
         public Build GetBuild()

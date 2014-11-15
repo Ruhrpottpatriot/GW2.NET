@@ -143,20 +143,20 @@ namespace GW2NET.V1.Items.Converters
             return new Dictionary<string, IConverter<ItemDataContract, Item>>
             {
                 { "Armor", new ConverterForArmor() }, 
-                 { "Back", new ConverterForBackpack() }, 
-                 { "Bag", new ConverterForBag() }, 
-                 { "Consumable", new ConverterForConsumable() }, 
-                 { "Container", new ConverterForContainer() }, 
-                 { "CraftingMaterial", new ConverterForCraftingMaterial() }, 
-                 { "Gathering", new ConverterForGatheringTool() }, 
-                 { "Gizmo", new ConverterForGizmo() }, 
-                 { "MiniPet", new ConverterForMiniature() }, 
-                 { "Tool", new ConverterForTool() }, 
-                 { "Trait", new ConverterForTraitGuide() }, 
-                 { "Trinket", new ConverterForTrinket() }, 
-                 { "Trophy", new ConverterForTrophy() }, 
-                 { "UpgradeComponent", new ConverterForUpgradeComponent() }, 
-                 { "Weapon", new ConverterForWeapon() }
+                { "Back", new ConverterForBackpack() }, 
+                { "Bag", new ConverterForBag() }, 
+                { "Consumable", new ConverterForConsumable() }, 
+                { "Container", new ConverterForContainer() }, 
+                { "CraftingMaterial", new ConverterForCraftingMaterial() }, 
+                { "Gathering", new ConverterForGatheringTool() }, 
+                { "Gizmo", new ConverterForGizmo() }, 
+                { "MiniPet", new ConverterForMiniature() }, 
+                { "Tool", new ConverterForTool() }, 
+                { "Trait", new ConverterForTraitGuide() }, 
+                { "Trinket", new ConverterForTrinket() }, 
+                { "Trophy", new ConverterForTrophy() }, 
+                { "UpgradeComponent", new ConverterForUpgradeComponent() }, 
+                { "Weapon", new ConverterForWeapon() }
             };
         }
 

@@ -18,12 +18,6 @@ namespace GW2NET.Common
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIResponse<T> : IResponse<T>
     {
-        [ContractInvariantMethod]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(ExtensionData != null);
-        }
-
         public T Content { get; set; }
 
         public CultureInfo Culture { get; set; }
@@ -37,11 +31,18 @@ namespace GW2NET.Common
                 Contract.Ensures(Contract.Result<IDictionary<string, string>>() != null);
                 throw new NotImplementedException();
             }
+
             set
             {
                 Contract.Requires(value != null);
                 throw new NotImplementedException();
             }
+        }
+
+        [ContractInvariantMethod]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.ExtensionData != null);
         }
     }
 }

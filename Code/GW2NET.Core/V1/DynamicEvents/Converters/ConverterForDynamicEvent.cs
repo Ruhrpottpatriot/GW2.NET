@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ConverterForDynamicEvent.cs" company="GW2.NET Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// <summary>
+//   Converts objects of type <see cref="EventDataContract" /> to objects of type <see cref="DynamicEvent" />.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.DynamicEvents.Converters
 {
+    using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
@@ -46,8 +50,8 @@ namespace GW2NET.V1.DynamicEvents.Converters
             Contract.Assume(value != null);
             var dynamicEvent = new DynamicEvent
             {
-                Name = value.Name,
-                Level = value.Level,
+                Name = value.Name, 
+                Level = value.Level, 
                 MapId = value.MapId
             };
 

@@ -9,7 +9,6 @@
 namespace GW2NET.Entities.DynamicEvents
 {
     using GW2NET.Common.Drawing;
-    using GW2NET.Entities.Maps;
 
     /// <summary>Provides the base class for event locations.</summary>
     public abstract class Location

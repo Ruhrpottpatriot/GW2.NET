@@ -13,8 +13,7 @@ namespace GW2NET.Common
     using System.Diagnostics.Contracts;
 
     [ContractClassFor(typeof(IRequest))]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "Only used by the Code Contracts for .NET extension.")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
     internal abstract class ContractClassForIRequest : IRequest
     {
         public string Resource
@@ -46,6 +45,5 @@ namespace GW2NET.Common
         {
             Contract.Invariant(this.Resource != null);
         }
-
     }
 }

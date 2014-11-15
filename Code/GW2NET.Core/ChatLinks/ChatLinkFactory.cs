@@ -71,7 +71,10 @@ namespace GW2NET.ChatLinks
         public ChatLink EncodeCoins(int quantity)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new CoinChatLink { Quantity = quantity };
+            return new CoinChatLink
+            {
+                Quantity = quantity
+            };
         }
 
         /// <summary>Encodes a dialog.</summary>
@@ -80,7 +83,10 @@ namespace GW2NET.ChatLinks
         public ChatLink EncodeDialog(int dialogId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new DialogChatLink { DialogId = dialogId };
+            return new DialogChatLink
+            {
+                DialogId = dialogId
+            };
         }
 
         /// <summary>Encodes an item.</summary>
@@ -96,13 +102,13 @@ namespace GW2NET.ChatLinks
             Contract.Requires(quantity <= 255);
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new ItemChatLink
-                       {
-                           ItemId = itemId, 
-                           Quantity = quantity, 
-                           SuffixItemId = suffixItemId, 
-                           SecondarySuffixItemId = secondarySuffixItemId, 
-                           SkinId = skinId
-                       };
+            {
+                ItemId = itemId, 
+                Quantity = quantity, 
+                SuffixItemId = suffixItemId, 
+                SecondarySuffixItemId = secondarySuffixItemId, 
+                SkinId = skinId
+            };
         }
 
         /// <summary>Encodes an outfit.</summary>
@@ -111,7 +117,10 @@ namespace GW2NET.ChatLinks
         public ChatLink EncodeOutfit(int outfitId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new OutfitChatLink { OutfitId = outfitId };
+            return new OutfitChatLink
+            {
+                OutfitId = outfitId
+            };
         }
 
         /// <summary>Encodes a point of interest.</summary>
@@ -120,7 +129,10 @@ namespace GW2NET.ChatLinks
         public ChatLink EncodePointOfInterest(int pointOfInterestId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new PointOfInterestChatLink { PointOfInterestId = pointOfInterestId };
+            return new PointOfInterestChatLink
+            {
+                PointOfInterestId = pointOfInterestId
+            };
         }
 
         /// <summary>Encodes a recipe.</summary>
@@ -129,7 +141,10 @@ namespace GW2NET.ChatLinks
         public ChatLink EncodeRecipe(int recipeId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new RecipeChatLink { RecipeId = recipeId };
+            return new RecipeChatLink
+            {
+                RecipeId = recipeId
+            };
         }
 
         /// <summary>Encodes a skill.</summary>
@@ -138,7 +153,10 @@ namespace GW2NET.ChatLinks
         public ChatLink EncodeSkill(int skillId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new SkillChatLink { SkillId = skillId };
+            return new SkillChatLink
+            {
+                SkillId = skillId
+            };
         }
 
         /// <summary>Encodes a skin.</summary>
@@ -147,7 +165,10 @@ namespace GW2NET.ChatLinks
         public ChatLink EncodeSkin(int skinId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new SkinChatLink { SkinId = skinId };
+            return new SkinChatLink
+            {
+                SkinId = skinId
+            };
         }
 
         /// <summary>Encodes a trait.</summary>
@@ -156,7 +177,10 @@ namespace GW2NET.ChatLinks
         public ChatLink EncodeTrait(int traitId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new TraitChatLink { TraitId = traitId };
+            return new TraitChatLink
+            {
+                TraitId = traitId
+            };
         }
 
         /// <summary>Infrastructure.Returns a collection of custom attributes applied to the specified type.</summary>

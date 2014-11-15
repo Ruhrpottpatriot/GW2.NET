@@ -23,7 +23,12 @@ namespace GW2NET.V2.Commerce.Listings.Converters
         public Offer Convert(ListingOfferDataContract value)
         {
             Contract.Assume(value != null);
-            return new Offer { Listings = value.Listings, UnitPrice = value.UnitPrice, Quantity = value.Quantity };
+            return new Offer
+            {
+                Listings = value.Listings, 
+                UnitPrice = value.UnitPrice, 
+                Quantity = value.Quantity
+            };
         }
     }
 }

@@ -6,7 +6,6 @@
 //   Represents a repository that retrieves data from the /v1/items.json and /v1/item_details.json interfaces. See the remarks section for important limitations regarding this implementation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V1.Items
 {
     using System;

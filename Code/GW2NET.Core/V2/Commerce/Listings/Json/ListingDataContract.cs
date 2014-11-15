@@ -13,10 +13,11 @@ namespace GW2NET.V2.Commerce.Listings.Json
     using System.Runtime.Serialization;
 
     [DataContract]
-    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", 
-        Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/listings")]
+    [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/commerce/listings")]
     internal sealed class ListingDataContract
     {
+        #region Properties
+
         [DataMember(Name = "buys", Order = 1)]
         internal ICollection<ListingOfferDataContract> BuyOffers { get; set; }
 
@@ -25,5 +26,7 @@ namespace GW2NET.V2.Commerce.Listings.Json
 
         [DataMember(Name = "sells", Order = 2)]
         internal ICollection<ListingOfferDataContract> SellOffers { get; set; }
+
+        #endregion
     }
 }

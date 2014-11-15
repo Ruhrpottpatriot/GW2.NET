@@ -83,16 +83,14 @@ namespace GW2NET.ChatLinks
 
             int unknownModifier10;
             int unknownSecondaryModifier10;
-            if (HasFlag(flags, 0x10) && TryGetModifier(buffer, ref index, out unknownModifier10)
-                && TryGetModifier(buffer, ref index, out unknownSecondaryModifier10))
+            if (HasFlag(flags, 0x10) && TryGetModifier(buffer, ref index, out unknownModifier10) && TryGetModifier(buffer, ref index, out unknownSecondaryModifier10))
             {
                 // TODO: discover the meaning of flag 0x10
             }
 
             int unknownModifier8;
             int unknownSecondaryModifier8;
-            if (HasFlag(flags, 0x08) && TryGetModifier(buffer, ref index, out unknownModifier8)
-                && TryGetModifier(buffer, ref index, out unknownSecondaryModifier8))
+            if (HasFlag(flags, 0x08) && TryGetModifier(buffer, ref index, out unknownModifier8) && TryGetModifier(buffer, ref index, out unknownSecondaryModifier8))
             {
                 // TODO: discover the meaning of flag 0x08
             }

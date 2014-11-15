@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the base class for combat attribute.
+//   Provides the base class for combat attribute modifiers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Entities.Items

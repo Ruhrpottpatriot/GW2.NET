@@ -15,10 +15,14 @@ namespace GW2NET.V2.Items.Json
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:2/items")]
     internal sealed class AttributeDataContract
     {
+        #region Properties
+
         [DataMember(Name = "attribute", Order = 0)]
         internal string Attribute { get; set; }
 
         [DataMember(Name = "modifier", Order = 1)]
         internal int Modifier { get; set; }
+
+        #endregion
     }
 }

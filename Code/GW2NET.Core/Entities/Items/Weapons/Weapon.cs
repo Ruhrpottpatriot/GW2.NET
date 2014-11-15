@@ -73,7 +73,13 @@ namespace GW2NET.Entities.Items
         public override ChatLink GetItemChatLink()
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
-            return new ItemChatLink { ItemId = this.ItemId, SuffixItemId = this.SuffixItemId, SecondarySuffixItemId = this.SecondarySuffixItemId, SkinId = this.DefaultSkinId };
+            return new ItemChatLink
+            {
+                ItemId = this.ItemId, 
+                SuffixItemId = this.SuffixItemId, 
+                SecondarySuffixItemId = this.SecondarySuffixItemId, 
+                SkinId = this.DefaultSkinId
+            };
         }
 
         [ContractInvariantMethod]

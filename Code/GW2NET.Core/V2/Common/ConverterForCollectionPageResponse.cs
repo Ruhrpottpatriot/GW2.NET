@@ -45,7 +45,13 @@ namespace GW2NET.V2.Common
                 return new CollectionPage<TValue>(0);
             }
 
-            var page = new CollectionPage<TValue>(dataContracts.Count) { PageSize = value.GetPageSize(), PageCount = value.GetPageTotal(), SubtotalCount = value.GetResultCount(), TotalCount = value.GetResultTotal() };
+            var page = new CollectionPage<TValue>(dataContracts.Count)
+            {
+                PageSize = value.GetPageSize(), 
+                PageCount = value.GetPageTotal(), 
+                SubtotalCount = value.GetResultCount(), 
+                TotalCount = value.GetResultTotal()
+            };
 
             page.AddRange(dataContracts.Select(this.converterForDataContract.Convert));
 

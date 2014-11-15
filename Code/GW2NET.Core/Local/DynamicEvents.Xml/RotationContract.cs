@@ -6,7 +6,6 @@
 //   Represents a dynamic event rotation.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.Local.DynamicEvents.Xml
 {
     using System.Runtime.Serialization;

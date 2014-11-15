@@ -42,7 +42,10 @@ namespace GW2NET.V2.Commerce.Prices.Converters
         public AggregateListing Convert(AggregateListingDataContract value)
         {
             Contract.Assume(value != null);
-            var aggregateListing = new AggregateListing { ItemId = value.Id };
+            var aggregateListing = new AggregateListing
+            {
+                ItemId = value.Id
+            };
             var buys = value.BuyOffers;
             if (buys != null)
             {

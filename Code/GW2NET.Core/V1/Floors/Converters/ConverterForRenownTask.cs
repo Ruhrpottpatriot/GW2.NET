@@ -42,7 +42,12 @@ namespace GW2NET.V1.Floors.Converters
         public RenownTask Convert(RenownTaskDataContract value)
         {
             Contract.Assume(value != null);
-            var renownTask = new RenownTask { TaskId = value.TaskId, Objective = value.Objective, Level = value.Level, };
+            var renownTask = new RenownTask
+            {
+                TaskId = value.TaskId, 
+                Objective = value.Objective, 
+                Level = value.Level, 
+            };
 
             var coordinates = value.Coordinates;
             if (coordinates != null && coordinates.Length == 2)

@@ -6,7 +6,6 @@
 //   Represents a page request that targets the /v2/worlds interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GW2NET.V2.Worlds
 {
     using System.Collections.Generic;

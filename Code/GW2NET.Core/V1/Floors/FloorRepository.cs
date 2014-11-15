@@ -83,7 +83,12 @@ namespace GW2NET.V1.Floors
         /// <inheritdoc />
         Floor IRepository<int, Floor>.Find(int identifier)
         {
-            var request = new FloorRequest { ContinentId = this.continent, Floor = identifier, Culture = this.Culture };
+            var request = new FloorRequest
+            {
+                ContinentId = this.continent, 
+                Floor = identifier, 
+                Culture = this.Culture
+            };
             var response = this.serviceClient.Send<FloorDataContract>(request);
             if (response.Content == null)
             {
@@ -148,7 +153,12 @@ namespace GW2NET.V1.Floors
         /// <inheritdoc />
         Task<Floor> IRepository<int, Floor>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            var request = new FloorRequest { ContinentId = this.continent, Floor = identifier, Culture = this.Culture };
+            var request = new FloorRequest
+            {
+                ContinentId = this.continent, 
+                Floor = identifier, 
+                Culture = this.Culture
+            };
             var responseTask = this.serviceClient.SendAsync<FloorDataContract>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, this.continent, identifier, request.Culture), cancellationToken);
         }

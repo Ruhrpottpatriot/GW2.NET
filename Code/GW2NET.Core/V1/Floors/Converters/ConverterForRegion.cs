@@ -52,7 +52,10 @@ namespace GW2NET.V1.Floors.Converters
             Contract.Assume(value != null);
 
             // Create a new region object
-            var region = new Region { Name = value.Name };
+            var region = new Region
+            {
+                Name = value.Name
+            };
 
             // Set the position of the region label
             var labelCoordinates = value.LabelCoordinates;

@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="ItemAttributeDataContract" /> to objects of type <see cref="PrecisionModifier" />.
+//   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="PrecisionModifier" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Items.Converters
