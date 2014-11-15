@@ -5,6 +5,7 @@
     using GW2NET.Common;
     using GW2NET.Entities.Quaggans;
     using GW2NET.V2.Quaggans;
+    using GW2NET.V2.Recipes;
 
     public class FactoryForV2 : FactoryBase
     {
@@ -51,5 +52,15 @@
                 return new FactoryForV2Worlds(this.ServiceClient);
             }
         }
+
+        public RecipeRepositoryFactory Recipes
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<RecipeRepositoryFactory>() != null);
+                return new RecipeRepositoryFactory(this.ServiceClient);
+            }
+        }
+
     }
 }
