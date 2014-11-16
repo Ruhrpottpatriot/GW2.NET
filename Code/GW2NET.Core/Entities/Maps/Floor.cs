@@ -68,7 +68,7 @@ namespace GW2NET.Entities.Maps
                 return true;
             }
 
-            return this.FloorId == other.FloorId;
+            return this.ContinentId == other.ContinentId && this.FloorId == other.FloorId;
         }
 
         /// <summary>Determines whether the specified <see cref="T:System.Object"/> is equal to the current<see cref="T:System.Object"/>.</summary>
@@ -98,7 +98,10 @@ namespace GW2NET.Entities.Maps
         /// <returns>A hash code for the current <see cref="T:System.Object" />.</returns>
         public override int GetHashCode()
         {
-            return this.FloorId;
+            unchecked
+            {
+                return (this.ContinentId * 397) ^ this.FloorId;
+            }
         }
 
         /// <summary>Returns a string that represents the current object.</summary>
