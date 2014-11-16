@@ -4,9 +4,8 @@
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Files;
-    using GW2NET.Entities.Guilds;
-    using GW2NET.Entities.Maps;
+    using GW2NET.Files;
+    using GW2NET.Guilds;
     using GW2NET.V1.Builds;
     using GW2NET.V1.Colors;
     using GW2NET.V1.DynamicEvents;

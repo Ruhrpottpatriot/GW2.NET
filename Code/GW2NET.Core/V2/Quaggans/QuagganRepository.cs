@@ -17,7 +17,7 @@ namespace GW2NET.V2.Quaggans
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Quaggans;
+    using GW2NET.Quaggans;
     using GW2NET.V2.Common;
     using GW2NET.V2.Quaggans.Json;
 

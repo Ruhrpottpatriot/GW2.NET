@@ -5,7 +5,7 @@
     using System.Runtime.CompilerServices;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items;
     using GW2NET.V2.Items;
 
     public class FactoryForV2Items : FactoryBase

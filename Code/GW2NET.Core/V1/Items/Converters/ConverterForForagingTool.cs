@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items.GatheringTools;
     using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="GatheringToolDataContract"/> to objects of type <see cref="ForagingTool"/>.</summary>

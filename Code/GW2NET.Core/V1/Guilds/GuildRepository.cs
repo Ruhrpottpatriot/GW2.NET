@@ -16,7 +16,7 @@ namespace GW2NET.V1.Guilds
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Guilds;
+    using GW2NET.Guilds;
     using GW2NET.V1.Guilds.Converters;
     using GW2NET.V1.Guilds.Json;
 

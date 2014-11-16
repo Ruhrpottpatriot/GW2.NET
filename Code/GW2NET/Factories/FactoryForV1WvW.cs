@@ -3,9 +3,9 @@
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld.Matches;
+    using GW2NET.WorldVersusWorld;
 
     public class FactoryForV1WvW : FactoryBase
     {

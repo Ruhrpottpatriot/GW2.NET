@@ -10,7 +10,7 @@ namespace GW2NET.PS.Commands
     using System.Net;
 
     using GW2NET.Common;
-    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.DynamicEvents;
     using GW2NET.V1.DynamicEvents;
 
     [Cmdlet(VerbsCommon.Get, "EventNames", DefaultParameterSetName = "All")]

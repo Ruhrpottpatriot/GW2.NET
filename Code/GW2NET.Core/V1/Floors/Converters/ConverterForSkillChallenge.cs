@@ -13,7 +13,7 @@ namespace GW2NET.V1.Floors.Converters
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
-    using GW2NET.Entities.Maps;
+    using GW2NET.Maps;
     using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="SkillChallengeDataContract"/> to objects of type <see cref="SkillChallenge"/>.</summary>

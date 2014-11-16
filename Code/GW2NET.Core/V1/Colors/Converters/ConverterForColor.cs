@@ -10,8 +10,8 @@ namespace GW2NET.V1.Colors.Converters
 {
     using System.Diagnostics.Contracts;
 
+    using GW2NET.Colors;
     using GW2NET.Common;
-    using GW2NET.Entities.Colors;
 
     /// <summary>Converts objects of type <see cref="T:int[]"/> to objects of type <see cref="Color"/>.</summary>
     internal sealed class ConverterForColor : IConverter<int[], Color>

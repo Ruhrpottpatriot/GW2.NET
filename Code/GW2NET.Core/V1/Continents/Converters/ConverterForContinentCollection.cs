@@ -13,7 +13,7 @@ namespace GW2NET.V1.Continents.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Maps;
+    using GW2NET.Maps;
     using GW2NET.V1.Continents.Json;
 
     /// <summary>Converts objects of type <see cref="ContinentCollectionDataContract"/> to objects of type <see cref="ICollection{T}"/>.</summary>

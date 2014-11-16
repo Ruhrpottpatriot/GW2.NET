@@ -13,7 +13,7 @@ namespace GW2NET.V2.Items.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items.Common;
     using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="InfusionSlotDataContract"/> to objects of type <see cref="InfusionSlot"/>.</summary>

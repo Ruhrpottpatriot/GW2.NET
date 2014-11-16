@@ -12,7 +12,7 @@ namespace GW2NET.V2.Quaggans.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Quaggans;
+    using GW2NET.Quaggans;
     using GW2NET.V2.Quaggans.Json;
 
     /// <summary>Converts objects of type <see cref="QuagganDataContract"/> to objects of type <see cref="Quaggan"/>.</summary>

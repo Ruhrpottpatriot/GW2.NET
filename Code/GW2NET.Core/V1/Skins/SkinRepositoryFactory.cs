@@ -13,7 +13,7 @@ namespace GW2NET.V1.Skins
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Skins;
+    using GW2NET.Skins;
 
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class SkinRepositoryFactory

@@ -11,7 +11,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.WorldVersusWorld;
+    using GW2NET.WorldVersusWorld;
 
     /// <summary>Converts objects of type <see cref="T:int[]"/> to objects of type <see cref="Scoreboard"/>.</summary>
     internal sealed class ConverterForScoreboard : IConverter<int[], Scoreboard>

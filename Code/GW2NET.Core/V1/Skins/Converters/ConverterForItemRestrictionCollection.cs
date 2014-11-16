@@ -13,7 +13,7 @@ namespace GW2NET.V1.Skins.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="ItemRestrictions"/>.</summary>
     internal sealed class ConverterForItemRestrictionCollection : IConverter<ICollection<string>, ItemRestrictions>

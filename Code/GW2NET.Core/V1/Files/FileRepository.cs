@@ -16,7 +16,7 @@ namespace GW2NET.V1.Files
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Files;
+    using GW2NET.Files;
     using GW2NET.V1.Files.Converters;
     using GW2NET.V1.Files.Json;
 

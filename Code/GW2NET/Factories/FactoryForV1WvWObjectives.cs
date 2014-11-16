@@ -10,10 +10,9 @@ namespace GW2NET.Factories
     using System.Runtime.CompilerServices;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
-    using GW2NET.Entities.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld.Objectives;
     using GW2NET.V2.Items;
+    using GW2NET.WorldVersusWorld.Objectives;
 
     public sealed class FactoryForV1WvWObjectives : FactoryBase
     {

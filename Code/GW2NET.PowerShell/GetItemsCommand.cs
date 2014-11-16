@@ -14,9 +14,9 @@ namespace GW2NET.PS.Commands
     using System.Management.Automation;
     using System.Net;
 
+    using GW2NET.Builds;
     using GW2NET.Common;
-    using GW2NET.Entities.Builds;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items;
     using GW2NET.V2.Items;
 
     /// <summary>Represents the Get-Item command.</summary>

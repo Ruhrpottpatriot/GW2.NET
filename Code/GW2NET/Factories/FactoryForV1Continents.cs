@@ -10,7 +10,7 @@ namespace GW2NET.Factories
     using System.Runtime.CompilerServices;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Maps;
+    using GW2NET.Maps;
     using GW2NET.V1.Continents;
 
     public sealed class FactoryForV1Continents : FactoryBase

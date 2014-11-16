@@ -13,7 +13,8 @@ namespace GW2NET.V1.DynamicEvents.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.DynamicEvents;
+    using GW2NET.DynamicEvents.Locations;
     using GW2NET.V1.DynamicEvents.Json;
 
     /// <summary>Converts objects of type <see cref="EventDataContract"/> to objects of type <see cref="DynamicEvent"/>.</summary>

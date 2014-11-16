@@ -10,8 +10,8 @@ namespace GW2NET.V2.Commerce.Listings.Converters
 {
     using System.Diagnostics.Contracts;
 
+    using GW2NET.Commerce;
     using GW2NET.Common;
-    using GW2NET.Entities.Commerce;
     using GW2NET.V2.Commerce.Listings.Json;
 
     /// <summary>Converts objects of type <see cref="ListingOfferDataContract"/> to objects of type <see cref="Offer"/>.</summary>

@@ -10,8 +10,8 @@ namespace GW2NET.Factories
     using System.Runtime.CompilerServices;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Worlds;
     using GW2NET.V2.Worlds;
+    using GW2NET.Worlds;
 
     public sealed class FactoryForV2Worlds : FactoryBase
     {

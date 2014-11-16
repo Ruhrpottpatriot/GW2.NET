@@ -13,7 +13,7 @@ namespace GW2NET.Local.DynamicEvents
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
-    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.DynamicEvents;
 
     [ContractClassFor(typeof(IDynamicEventRotationService))]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]

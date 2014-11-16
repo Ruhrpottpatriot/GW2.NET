@@ -16,7 +16,7 @@ namespace GW2NET.V1.Continents
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Maps;
+    using GW2NET.Maps;
     using GW2NET.V1.Continents.Converters;
     using GW2NET.V1.Continents.Json;
 

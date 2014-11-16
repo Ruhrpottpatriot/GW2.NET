@@ -13,7 +13,7 @@ namespace GW2NET.V1.Items
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items;
 
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class ItemRepositoryFactory

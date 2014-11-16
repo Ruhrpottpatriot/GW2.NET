@@ -17,7 +17,7 @@ namespace GW2NET.V1.Recipes
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Recipes;
+    using GW2NET.Recipes;
     using GW2NET.V1.Recipes.Converters;
     using GW2NET.V1.Recipes.Json;
 

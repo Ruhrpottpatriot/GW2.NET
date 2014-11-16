@@ -14,8 +14,9 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     using System.Linq;
 
     using GW2NET.Common;
-    using GW2NET.Entities.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld.Matches.Json;
+    using GW2NET.WorldVersusWorld;
+    using GW2NET.WorldVersusWorld.Maps;
 
     /// <summary>Converts objects of type <see cref="MatchDataContract"/> to objects of type <see cref="Match"/>.</summary>
     internal sealed class ConverterForMatch : IConverter<MatchDataContract, Match>

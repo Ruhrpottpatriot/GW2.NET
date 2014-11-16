@@ -13,7 +13,7 @@ namespace GW2NET.V1.Recipes
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Recipes;
+    using GW2NET.Recipes;
 
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class RecipeRepositoryFactory

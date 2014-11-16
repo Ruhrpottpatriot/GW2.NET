@@ -13,7 +13,7 @@ namespace GW2NET.V1.DynamicEvents.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.DynamicEvents;
 
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="DynamicEventFlags"/>.</summary>
     internal sealed class ConverterForDynamicEventFlag : IConverter<string, DynamicEventFlags>

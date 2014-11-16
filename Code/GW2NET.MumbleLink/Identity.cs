@@ -8,10 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.MumbleLink
 {
+    using GW2NET.Colors;
     using GW2NET.Common;
-    using GW2NET.Entities.Colors;
-    using GW2NET.Entities.Maps;
-    using GW2NET.Entities.Worlds;
+    using GW2NET.Maps;
+    using GW2NET.Worlds;
 
     /// <summary>Provides contextual information about a player's avatar.</summary>
     public sealed class Identity

@@ -11,7 +11,7 @@ namespace GW2NET.V2.Items.Converters
     using System;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="ItemRestrictions"/>.</summary>
     internal sealed class ConverterForItemRestriction : IConverter<string, ItemRestrictions>

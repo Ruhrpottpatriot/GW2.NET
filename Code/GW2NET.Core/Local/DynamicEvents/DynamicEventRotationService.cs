@@ -14,7 +14,7 @@ namespace GW2NET.Local.DynamicEvents
     using System.Linq;
     using System.Runtime.Serialization;
 
-    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.DynamicEvents;
     using GW2NET.Local.DynamicEvents.Xml;
 
     /// <summary>Provides the default implementation of the event rotations service.</summary>

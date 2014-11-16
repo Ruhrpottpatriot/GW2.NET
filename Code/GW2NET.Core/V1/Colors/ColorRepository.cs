@@ -15,8 +15,8 @@ namespace GW2NET.V1.Colors
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2NET.Colors;
     using GW2NET.Common;
-    using GW2NET.Entities.Colors;
     using GW2NET.V1.Colors.Converters;
     using GW2NET.V1.Colors.Json;
 

@@ -18,7 +18,7 @@ namespace GW2NET.V1.DynamicEvents
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.DynamicEvents;
     using GW2NET.V1.DynamicEvents.Converters;
     using GW2NET.V1.DynamicEvents.Json;
 

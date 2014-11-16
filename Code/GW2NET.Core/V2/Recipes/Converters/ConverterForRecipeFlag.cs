@@ -12,7 +12,7 @@ namespace GW2NET.V2.Recipes.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Recipes;
+    using GW2NET.Recipes;
 
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="RecipeFlags"/>.</summary>
     internal sealed class ConverterForRecipeFlag : IConverter<string, RecipeFlags>

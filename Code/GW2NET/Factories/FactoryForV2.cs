@@ -3,7 +3,7 @@
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Quaggans;
+    using GW2NET.Quaggans;
     using GW2NET.V2.Quaggans;
     using GW2NET.V2.Recipes;
 

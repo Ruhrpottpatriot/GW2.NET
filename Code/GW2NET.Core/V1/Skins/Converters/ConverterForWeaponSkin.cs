@@ -14,8 +14,8 @@ namespace GW2NET.V1.Skins.Converters
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Entities.Items;
-    using GW2NET.Entities.Skins;
+    using GW2NET.Items.Weapons;
+    using GW2NET.Skins.Weapons;
     using GW2NET.V1.Skins.Json;
 
     /// <summary>Converts objects of type <see cref="SkinDataContract"/> to objects of type <see cref="WeaponSkin"/>.</summary>

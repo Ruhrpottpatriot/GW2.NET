@@ -11,7 +11,7 @@ namespace GW2NET.V1.Files.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Files;
+    using GW2NET.Files;
     using GW2NET.V1.Files.Json;
 
     /// <summary>Converts objects of type <see cref="FileDataContract"/> to objects of type <see cref="Asset"/>.</summary>

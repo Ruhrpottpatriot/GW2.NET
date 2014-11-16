@@ -13,7 +13,7 @@ namespace GW2NET.V1.Worlds
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Worlds;
+    using GW2NET.Worlds;
 
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class WorldRepositoryFactory

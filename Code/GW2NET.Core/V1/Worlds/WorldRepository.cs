@@ -18,9 +18,9 @@ namespace GW2NET.V1.Worlds
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Entities.Worlds;
     using GW2NET.V1.Worlds.Converters;
     using GW2NET.V1.Worlds.Json;
+    using GW2NET.Worlds;
 
     /// <summary>Represents a repository that retrieves data from the /v1/world_names.json interface.</summary>
     public class WorldRepository : IWorldRepository

@@ -13,7 +13,7 @@ namespace GW2NET.V2.Recipes.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Recipes;
+    using GW2NET.Recipes;
 
     /// <summary>Converts objects of type <see cref="T:ICollection{string}"/> to objects of type <see cref="CraftingDisciplines"/>.</summary>
     internal sealed class ConverterForCraftingDisciplineCollection : IConverter<ICollection<string>, CraftingDisciplines>

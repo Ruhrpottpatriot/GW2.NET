@@ -13,7 +13,7 @@ namespace GW2NET.V1.Builds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2NET.Entities.Builds;
+    using GW2NET.Builds;
 
     [ContractClassFor(typeof(IBuildService))]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]

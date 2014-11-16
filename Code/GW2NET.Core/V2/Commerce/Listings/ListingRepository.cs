@@ -16,10 +16,10 @@ namespace GW2NET.V2.Commerce.Listings
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2NET.Commerce;
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Entities.Commerce;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items;
     using GW2NET.V2.Commerce.Listings.Converters;
     using GW2NET.V2.Commerce.Listings.Json;
     using GW2NET.V2.Common;

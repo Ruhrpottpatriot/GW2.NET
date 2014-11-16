@@ -15,8 +15,8 @@ namespace GW2NET.V1.Recipes.Converters
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Entities.Items;
-    using GW2NET.Entities.Recipes;
+    using GW2NET.Items;
+    using GW2NET.Recipes;
     using GW2NET.V1.Recipes.Json;
 
     /// <summary>Converts objects of type <see cref="RecipeDataContract"/> to objects of type <see cref="Recipe"/>.</summary>

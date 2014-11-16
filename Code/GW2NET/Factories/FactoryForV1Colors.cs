@@ -9,8 +9,8 @@ namespace GW2NET.Factories
     using System.Globalization;
     using System.Runtime.CompilerServices;
 
+    using GW2NET.Colors;
     using GW2NET.Common;
-    using GW2NET.Entities.Colors;
     using GW2NET.V1.Colors;
 
     public sealed class FactoryForV1Colors : FactoryBase

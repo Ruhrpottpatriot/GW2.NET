@@ -13,8 +13,8 @@ namespace GW2NET.V2.Commerce.Exchange
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2NET.Commerce;
     using GW2NET.Common;
-    using GW2NET.Entities.Commerce;
     using GW2NET.V2.Commerce.Exchange.Converters;
     using GW2NET.V2.Commerce.Exchange.Json;
     using GW2NET.V2.Common;

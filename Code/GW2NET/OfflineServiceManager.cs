@@ -16,7 +16,7 @@ namespace GW2NET
     using System.Threading.Tasks;
 
     using GW2NET.Common.Serializers;
-    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.DynamicEvents;
     using GW2NET.Local.DynamicEvents;
 
     /// <summary>Provides access to specialty services that do not require a connection to a remote service.</summary>

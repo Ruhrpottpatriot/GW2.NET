@@ -12,7 +12,7 @@ namespace GW2NET.V1.Builds
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2NET.Entities.Builds;
+    using GW2NET.Builds;
 
     /// <summary>Provides the interface for the build service.</summary>
     [ContractClass(typeof(ContractClassForIBuildService))]

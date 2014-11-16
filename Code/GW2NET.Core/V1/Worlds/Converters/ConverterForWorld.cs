@@ -11,8 +11,8 @@ namespace GW2NET.V1.Worlds.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Worlds;
     using GW2NET.V1.Worlds.Json;
+    using GW2NET.Worlds;
 
     /// <summary>Converts objects of type <see cref="WorldDataContract"/> to objects of type <see cref="World"/>.</summary>
     internal sealed class ConverterForWorld : IConverter<WorldDataContract, World>

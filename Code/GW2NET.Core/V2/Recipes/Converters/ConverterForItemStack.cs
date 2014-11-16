@@ -11,7 +11,7 @@ namespace GW2NET.V2.Recipes.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items;
     using GW2NET.V2.Recipes.Json;
 
     /// <summary>Converts objects of type <see cref="IngredientDataContract"/> to objects of type <see cref="ItemStack"/>.</summary>

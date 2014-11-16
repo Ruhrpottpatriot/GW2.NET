@@ -12,7 +12,7 @@ namespace GW2NET.V1.Skins.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Skins;
+    using GW2NET.Skins;
 
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="SkinFlags"/>.</summary>
     internal sealed class ConverterForSkinFlag : IConverter<string, SkinFlags>

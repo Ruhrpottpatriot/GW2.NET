@@ -13,7 +13,7 @@ namespace GW2NET.V1.Maps.Converters
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
-    using GW2NET.Entities.Maps;
+    using GW2NET.Maps;
     using GW2NET.V1.Maps.Json;
 
     /// <summary>Converts objects of type <see cref="MapDataContract"/> to objects of type <see cref="Map"/>.</summary>

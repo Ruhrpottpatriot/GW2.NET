@@ -11,8 +11,8 @@ namespace GW2NET.V2.Commerce.Exchange
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
+    using GW2NET.Commerce;
     using GW2NET.Common;
-    using GW2NET.Entities.Commerce;
 
     /// <summary>Provides methods for creating broker objects.</summary>
     public sealed class ExchangeBrokerFactory

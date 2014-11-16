@@ -18,8 +18,8 @@ namespace GW2NET.V2.Recipes
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Entities.Items;
-    using GW2NET.Entities.Recipes;
+    using GW2NET.Items;
+    using GW2NET.Recipes;
     using GW2NET.V2.Common;
     using GW2NET.V2.Recipes.Converters;
     using GW2NET.V2.Recipes.Json;

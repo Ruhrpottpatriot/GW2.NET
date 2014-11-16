@@ -13,8 +13,8 @@ namespace GW2NET.V1.Builds
     using System.Threading;
     using System.Threading.Tasks;
 
+    using GW2NET.Builds;
     using GW2NET.Common;
-    using GW2NET.Entities.Builds;
     using GW2NET.V1.Builds.Converters;
     using GW2NET.V1.Builds.Json;
 

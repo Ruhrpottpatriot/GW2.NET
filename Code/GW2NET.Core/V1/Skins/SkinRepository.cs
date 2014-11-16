@@ -17,7 +17,7 @@ namespace GW2NET.V1.Skins
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Skins;
+    using GW2NET.Skins;
     using GW2NET.V1.Skins.Converters;
     using GW2NET.V1.Skins.Json;
 

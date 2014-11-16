@@ -14,7 +14,7 @@ namespace GW2NET.V1.DynamicEvents
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.Entities.DynamicEvents;
+    using GW2NET.DynamicEvents;
 
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class EventRepositoryFactory

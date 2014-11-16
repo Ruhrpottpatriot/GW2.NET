@@ -12,8 +12,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Entities.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld.Matches.Json;
+    using GW2NET.WorldVersusWorld;
 
     /// <summary>Converts objects of type <see cref="MatchupDataContract"/> to objects of type <see cref="Matchup"/>.</summary>
     internal sealed class ConverterForMatchup : IConverter<MatchupDataContract, Matchup>

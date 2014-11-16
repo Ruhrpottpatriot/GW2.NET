@@ -17,7 +17,14 @@ namespace GW2NET.V1.Items
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.Entities.Items;
+    using GW2NET.Items;
+    using GW2NET.Items.Armors;
+    using GW2NET.Items.Backpacks;
+    using GW2NET.Items.Common;
+    using GW2NET.Items.Consumables;
+    using GW2NET.Items.GatheringTools;
+    using GW2NET.Items.Trinkets;
+    using GW2NET.Items.Weapons;
     using GW2NET.V1.Items.Converters;
     using GW2NET.V1.Items.Json;
 
