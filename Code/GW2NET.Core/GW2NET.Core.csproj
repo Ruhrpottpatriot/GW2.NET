@@ -245,6 +245,7 @@
     <Compile Include="Common\ContractClassForIDiscoverable.cs" />
     <Compile Include="Common\ContractClassForIPageContext.cs" />
     <Compile Include="Common\ContractClassForIPaginator.cs" />
+    <Compile Include="Common\ContractClassForIRenderService.cs" />
     <Compile Include="Common\ContractClassForIRepository.cs" />
     <Compile Include="Common\ContractClassForISubsetContext.cs" />
     <Compile Include="Common\ConverterAttribute.cs" />
@@ -272,6 +273,7 @@
     <Compile Include="Common\IPageContext.cs" />
     <Compile Include="Common\IPaginator.cs" />
     <Compile Include="Common\IRenderable.cs" />
+    <Compile Include="Common\IRenderService.cs" />
     <Compile Include="Common\IRepository.cs" />
     <Compile Include="Common\IRequest.cs" />
     <Compile Include="Common\IResponse.cs" />
@@ -520,10 +522,8 @@
     <Compile Include="Recipes\UpgradeComponentRecipe.cs" />
     <Compile Include="Recipes\WarHornRecipe.cs" />
     <Compile Include="Rendering\IRenderRequest.cs" />
-    <Compile Include="Rendering\IRenderService.cs" />
     <Compile Include="Rendering\RenderRequest.cs" />
     <Compile Include="Rendering\RenderService.cs" />
-    <Compile Include="Rendering\ContractClassForIRenderService.cs" />
     <Compile Include="Skins\Armors\ArmorSkin.cs" />
     <Compile Include="Skins\Armors\BootsSkin.cs" />
     <Compile Include="Skins\Armors\CoatSkin.cs" />

@@ -6,38 +6,38 @@
 //   Provides the interface for the render service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Rendering
+namespace GW2NET.Common
 {
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
-    using GW2NET.Common;
-
     /// <summary>Provides the interface for the render service.</summary>
+    /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
     [ContractClass(typeof(ContractClassForIRenderService))]
     public interface IRenderService
     {
-        /// <summary>Gets an image.</summary>
+        /// <summary>Gets binary image data for the given file identifier and image format.</summary>
         /// <param name="file">The file identifier.</param>
         /// <param name="imageFormat">The image file format.</param>
-        /// <returns>The binary representation of an image.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
+        /// <exception cref="ServiceException">An error occurred while retrieving the image data.</exception>
+        /// <returns>The binary image data.</returns>
         byte[] GetImage(IRenderable file, string imageFormat);
 
-        /// <summary>Gets an image.</summary>
+        /// <summary>Gets binary image data for the given file identifier and image format.</summary>
         /// <param name="file">The file identifier.</param>
         /// <param name="imageFormat">The image format.</param>
-        /// <returns>The binary representation of an image.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
+        /// <exception cref="ServiceException">An error occurred while retrieving the image data.</exception>
+        /// <returns>The binary image data.</returns>
         Task<byte[]> GetImageAsync(IRenderable file, string imageFormat);
 
-        /// <summary>Gets an image.</summary>
+        /// <summary>Gets binary image data for the given file identifier and image format.</summary>
         /// <param name="file">The file identifier.</param>
         /// <param name="imageFormat">The image format.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The binary representation of an image.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:Render_service">wiki</a> for more information.</remarks>
+        /// <exception cref="ServiceException">An error occurred while retrieving the image data.</exception>
+        /// <exception cref="TaskCanceledException">A task was canceled.</exception>
+        /// <returns>The binary image data.</returns>
         Task<byte[]> GetImageAsync(IRenderable file, string imageFormat, CancellationToken cancellationToken);
     }
 }

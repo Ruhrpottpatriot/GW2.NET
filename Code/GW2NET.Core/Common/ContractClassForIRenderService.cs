@@ -6,14 +6,12 @@
 //   Defines the ContractClassForIRenderService type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Rendering
+namespace GW2NET.Common
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
-
-    using GW2NET.Common;
 
     [ContractClassFor(typeof(IRenderService))]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]

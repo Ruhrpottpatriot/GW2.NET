@@ -206,11 +206,14 @@
     <Compile Include="..\GW2NET\Factories\FactoryForLocal.cs">
       <Link>Factories\FactoryForLocal.cs</Link>
     </Compile>
+    <Compile Include="..\GW2NET\Factories\FactoryForRendering.cs">
+      <Link>Factories\FactoryForRendering.cs</Link>
+    </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryForV1.cs">
       <Link>Factories\FactoryForV1.cs</Link>
     </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryForV1WvW.cs">
-      <Link>FactoryForV1WvW.cs</Link>
+      <Link>Factories\FactoryForV1WvW.cs</Link>
     </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryForV2.cs">
       <Link>Factories\FactoryForV2.cs</Link>
@@ -220,12 +223,6 @@
     </Compile>
     <Compile Include="..\GW2NET\GW2.cs">
       <Link>GW2.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\RenderServiceManager.cs">
-      <Link>RenderServiceManager.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\ServiceFactory.cs">
-      <Link>ServiceFactory.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

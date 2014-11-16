@@ -21,7 +21,7 @@
 
     public class FactoryForV1 : FactoryBase
     {
-        /// <summary>Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FactoryForV1"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public FactoryForV1(IServiceClient serviceClient)
             : base(serviceClient)

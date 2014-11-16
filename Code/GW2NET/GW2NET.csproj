@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Factories\FactoryForLocal.cs" />
+    <Compile Include="Factories\FactoryForRendering.cs" />
     <Compile Include="Factories\FactoryForV1.cs" />
     <Compile Include="Factories\FactoryForV1WvW.cs" />
     <Compile Include="Factories\FactoryForV2.cs" />
@@ -191,7 +192,6 @@
     <Compile Include="Factories\FactoryBase.cs" />
     <Compile Include="GW2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RenderServiceManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GW2NET.Compression\GW2NET.Compression.csproj">
