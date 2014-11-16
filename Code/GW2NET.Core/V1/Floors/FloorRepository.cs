@@ -22,10 +22,10 @@ namespace GW2NET.V1.Floors
     using GW2NET.V1.Floors.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/map_floor.json interface.</summary>
-    public class FloorRepository : IRepository<int, Floor>, ILocalizable
+    public class FloorRepository : IFloorRepository
     {
         /// <summary>The continent identifier.</summary>
-        private readonly int continent;
+        private readonly int continentId;
 
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<FloorDataContract, Floor> converterForFloor;
@@ -40,27 +40,27 @@ namespace GW2NET.V1.Floors
 
         /// <summary>Initializes a new instance of the <see cref="FloorRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        /// <param name="continent">The continent identifier.</param>
-        public FloorRepository(IServiceClient serviceClient, int continent = 0)
-            : this(serviceClient, continent, new ConverterForFloor())
+        /// <param name="continentId">The continent identifier.</param>
+        public FloorRepository(IServiceClient serviceClient, int continentId = 0)
+            : this(serviceClient, continentId, new ConverterForFloor())
         {
         }
 
         /// <summary>Initializes a new instance of the <see cref="FloorRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        /// <param name="continent">The continent identifier.</param>
+        /// <param name="continentId">The continent identifier.</param>
         /// <param name="converterForFloor">The converter for <see cref="Floor"/>.</param>
-        internal FloorRepository(IServiceClient serviceClient, int continent, IConverter<FloorDataContract, Floor> converterForFloor)
+        internal FloorRepository(IServiceClient serviceClient, int continentId, IConverter<FloorDataContract, Floor> converterForFloor)
         {
             Contract.Requires(serviceClient != null);
             Contract.Requires(converterForFloor != null);
             this.serviceClient = serviceClient;
-            this.continent = continent;
+            this.continentId = continentId;
             this.converterForFloor = converterForFloor;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -83,11 +83,12 @@ namespace GW2NET.V1.Floors
         /// <inheritdoc />
         Floor IRepository<int, Floor>.Find(int identifier)
         {
+            IFloorRepository self = this;
             var request = new FloorRequest
             {
-                ContinentId = this.continent, 
-                Floor = identifier, 
-                Culture = this.Culture
+                ContinentId = self.ContinentId,
+                Floor = identifier,
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<FloorDataContract>(request);
             if (response.Content == null)
@@ -101,7 +102,7 @@ namespace GW2NET.V1.Floors
                 return null;
             }
 
-            floor.ContinentId = this.continent;
+            floor.ContinentId = this.continentId;
             floor.FloorId = identifier;
             floor.Culture = request.Culture;
 
@@ -147,20 +148,22 @@ namespace GW2NET.V1.Floors
         /// <inheritdoc />
         Task<Floor> IRepository<int, Floor>.FindAsync(int identifier)
         {
-            return ((IRepository<int, Floor>)this).FindAsync(identifier, CancellationToken.None);
+            IFloorRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<Floor> IRepository<int, Floor>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
+            IFloorRepository self = this;
             var request = new FloorRequest
             {
-                ContinentId = this.continent, 
-                Floor = identifier, 
-                Culture = this.Culture
+                ContinentId = self.ContinentId,
+                Floor = identifier,
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<FloorDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, this.continent, identifier, request.Culture), cancellationToken);
+            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, this.continentId, identifier, request.Culture), cancellationToken);
         }
 
         /// <inheritdoc />
@@ -227,6 +230,15 @@ namespace GW2NET.V1.Floors
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);
+        }
+
+        /// <inheritdoc />
+        int IFloorRepository.ContinentId
+        {
+            get
+            {
+                return this.continentId;
+            }
         }
     }
 }

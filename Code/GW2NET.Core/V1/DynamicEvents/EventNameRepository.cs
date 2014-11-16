@@ -23,7 +23,7 @@ namespace GW2NET.V1.DynamicEvents
     using GW2NET.V1.DynamicEvents.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/event_names.json interface.</summary>
-    public class EventNameRepository : IRepository<Guid, DynamicEventName>, ILocalizable
+    public class EventNameRepository : IEventNameRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<EventNameDataContract>, ICollection<DynamicEventName>> converterForDynamicEventNameCollection;
@@ -49,8 +49,8 @@ namespace GW2NET.V1.DynamicEvents
             this.converterForDynamicEventNameCollection = converterForDynamicEventNameCollection;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<Guid> IDiscoverable<Guid>.Discover()
@@ -79,9 +79,10 @@ namespace GW2NET.V1.DynamicEvents
         /// <inheritdoc />
         IDictionaryRange<Guid, DynamicEventName> IRepository<Guid, DynamicEventName>.FindAll()
         {
+            IEventNameRepository self = this;
             var request = new DynamicEventNameRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<EventNameDataContract>>(request);
             var eventNameDataContracts = response.Content;
@@ -114,15 +115,16 @@ namespace GW2NET.V1.DynamicEvents
         /// <inheritdoc />
         Task<IDictionaryRange<Guid, DynamicEventName>> IRepository<Guid, DynamicEventName>.FindAllAsync()
         {
-            return ((IRepository<Guid, DynamicEventName>)this).FindAllAsync(CancellationToken.None);
+            return ((IEventNameRepository)this).FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<Guid, DynamicEventName>> IRepository<Guid, DynamicEventName>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IEventNameRepository self = this;
             var request = new DynamicEventNameRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<EventNameDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);

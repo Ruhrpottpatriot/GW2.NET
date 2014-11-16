@@ -23,7 +23,7 @@ namespace GW2NET.V1.Worlds
     using GW2NET.V1.Worlds.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/world_names.json interface.</summary>
-    public class WorldRepository : IRepository<int, World>, ILocalizable
+    public class WorldRepository : IWorldRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ICollection<WorldDataContract>, ICollection<World>> converterForWorldCollection;
@@ -51,8 +51,8 @@ namespace GW2NET.V1.Worlds
             this.converterForWorldCollection = converterForWorldCollection;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -81,9 +81,10 @@ namespace GW2NET.V1.Worlds
         /// <inheritdoc />
         IDictionaryRange<int, World> IRepository<int, World>.FindAll()
         {
+            IWorldRepository self = this;
             var request = new WorldNameRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<WorldDataContract>>(request);
             var dataContracts = response.Content;
@@ -116,15 +117,17 @@ namespace GW2NET.V1.Worlds
         /// <inheritdoc />
         Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync()
         {
-            return ((IRepository<int, World>)this).FindAllAsync(CancellationToken.None);
+            IWorldRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, World>> IRepository<int, World>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IWorldRepository self = this;
             var request = new WorldNameRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<WorldDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);

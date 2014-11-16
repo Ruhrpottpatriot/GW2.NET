@@ -22,7 +22,7 @@ namespace GW2NET.V1.Maps
     using GW2NET.V1.Maps.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/map_names.json interface.</summary>
-    public class MapNameRepository : IRepository<int, MapName>, ILocalizable
+    public class MapNameRepository : IMapNameRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<MapNameDataContract, MapName> converterForMapName;
@@ -46,8 +46,8 @@ namespace GW2NET.V1.Maps
             this.converterForMapName = converterForMapName;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -76,9 +76,10 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         IDictionaryRange<int, MapName> IRepository<int, MapName>.FindAll()
         {
+            IMapNameRepository self = this;
             var request = new MapNameRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<MapNameDataContract>>(request);
             if (response.Content == null)
@@ -111,15 +112,17 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         Task<IDictionaryRange<int, MapName>> IRepository<int, MapName>.FindAllAsync()
         {
-            return ((IRepository<int, MapName>)this).FindAllAsync(CancellationToken.None);
+            IMapNameRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, MapName>> IRepository<int, MapName>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IMapNameRepository self = this;
             var request = new MapNameRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             return this.serviceClient.SendAsync<ICollection<MapNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, MapName>>(task =>
             {

@@ -32,11 +32,11 @@ namespace GW2NET.V1.Floors
         /// <summary>Creates an instance for the default language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Floor> this[int continentId]
+        public IFloorRepository this[int continentId]
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Floor>>() != null);
+                Contract.Ensures(Contract.Result<IFloorRepository>() != null);
                 return this.English(continentId);
             }
         }
@@ -45,13 +45,13 @@ namespace GW2NET.V1.Floors
         /// <param name="continentId">The continent identifier.</param>
         /// <param name="language">The two-letter language code.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Floor> this[int continentId, string language]
+        public IFloorRepository this[int continentId, string language]
         {
             get
             {
                 Contract.Requires(language != null);
                 Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IRepository<int, Floor>>() != null);
+                Contract.Ensures(Contract.Result<IFloorRepository>() != null);
                 return this.ForCulture(continentId, new CultureInfo(language));
             }
         }
@@ -60,12 +60,12 @@ namespace GW2NET.V1.Floors
         /// <param name="continentId">The continent identifier.</param>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Floor> this[int continentId, CultureInfo culture]
+        public IFloorRepository this[int continentId, CultureInfo culture]
         {
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IRepository<int, Floor>>() != null);
+                Contract.Ensures(Contract.Result<IFloorRepository>() != null);
                 return this.ForCulture(continentId, culture);
             }
         }
@@ -73,9 +73,9 @@ namespace GW2NET.V1.Floors
         /// <summary>Creates an instance for the default language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Floor> English(int continentId)
+        public IFloorRepository English(int continentId)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Floor>>() != null);
+            Contract.Ensures(Contract.Result<IFloorRepository>() != null);
             return new FloorRepository(this.serviceClient, continentId);
         }
 
@@ -83,30 +83,29 @@ namespace GW2NET.V1.Floors
         /// <param name="continentId">The continent identifier.</param>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Floor> ForCulture(int continentId, CultureInfo culture)
+        public IFloorRepository ForCulture(int continentId, CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Floor>>() != null);
-            return new FloorRepository(this.serviceClient, continentId)
-            {
-                Culture = culture
-            };
+            Contract.Ensures(Contract.Result<IFloorRepository>() != null);
+            IFloorRepository repository = new FloorRepository(this.serviceClient, continentId);
+            repository.Culture = culture;
+            return repository;
         }
 
         /// <summary>Creates an instance for the current system language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Floor> ForCurrentCulture(int continentId)
+        public IFloorRepository ForCurrentCulture(int continentId)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Floor>>() != null);
+            Contract.Ensures(Contract.Result<IFloorRepository>() != null);
             return this.ForCulture(continentId, CultureInfo.CurrentCulture);
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Floor> ForCurrentUICulture(int continentId)
+        public IFloorRepository ForCurrentUICulture(int continentId)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Floor>>() != null);
+            Contract.Ensures(Contract.Result<IFloorRepository>() != null);
             return this.ForCulture(continentId, CultureInfo.CurrentUICulture);
         }
 

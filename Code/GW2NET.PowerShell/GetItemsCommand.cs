@@ -89,10 +89,8 @@ namespace GW2NET.PS.Commands
                 // Try to get item details for the current identifier
                 try
                 {
-                    IRepository<int, Item> repo = new ItemRepository(this.serviceClient)
-                    {
-                        Culture = this.Culture
-                    };
+                    IItemRepository repo = new ItemRepository(this.serviceClient);
+                    repo.Culture = this.Culture;
 
                     // Get the item details from the service
                     var item = repo.Find(id);
@@ -126,7 +124,7 @@ namespace GW2NET.PS.Commands
             // Try to get discovered item identifiers
             try
             {
-                IRepository<int, Item> itemRepository = new ItemRepository(this.serviceClient);
+                IItemRepository itemRepository = new ItemRepository(this.serviceClient);
 
                 // Get the item identifiers from the service
                 var items = itemRepository.Discover();

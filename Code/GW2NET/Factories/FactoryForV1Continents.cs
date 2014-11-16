@@ -24,38 +24,40 @@ namespace GW2NET.Factories
         }
 
         [IndexerName("Language")]
-        public IRepository<int, Continent> this[string language]
+        public IContinentRepository this[string language]
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Continent>>() != null);
-                return new ContinentRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
+                Contract.Ensures(Contract.Result<IContinentRepository>() != null);
+                IContinentRepository repository = new ContinentRepository(this.ServiceClient);
+                repository.Culture = new CultureInfo(language);
+                return repository;
             }
         }
 
-        public IRepository<int, Continent> Default
+        public IContinentRepository Default
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Continent>>() != null);
+                Contract.Ensures(Contract.Result<IContinentRepository>() != null);
                 return new ContinentRepository(this.ServiceClient);
             }
         }
 
-        public IRepository<int, Continent> ForCurrentCulture
+        public IContinentRepository ForCurrentCulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Continent>>() != null);
+                Contract.Ensures(Contract.Result<IContinentRepository>() != null);
                 return this[CultureInfo.CurrentCulture.TwoLetterISOLanguageName];
             }
         }
 
-        public IRepository<int, Continent> ForCurrentUICulture
+        public IContinentRepository ForCurrentUICulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Continent>>() != null);
+                Contract.Ensures(Contract.Result<IContinentRepository>() != null);
                 return this[CultureInfo.CurrentUICulture.TwoLetterISOLanguageName];
             }
         }

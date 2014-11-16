@@ -24,39 +24,41 @@ namespace GW2NET.Factories
         }
 
         [IndexerName("Language")]
-        public IRepository<int, Map> this[string language]
+        public IMapRepository this[string language]
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Map>>() != null);
-                return new MapRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
+                Contract.Ensures(Contract.Result<IMapRepository>() != null);
+                IMapRepository repository = new MapRepository(this.ServiceClient);
+                repository.Culture = new CultureInfo(language);
+                return repository;
             }
         }
 
 
-        public IRepository<int, Map> Default
+        public IMapRepository Default
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Map>>() != null);
+                Contract.Ensures(Contract.Result<IMapRepository>() != null);
                 return new MapRepository(this.ServiceClient);
             }
         }
 
-        public IRepository<int, Map> ForCurrentCulture
+        public IMapRepository ForCurrentCulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Map>>() != null);
+                Contract.Ensures(Contract.Result<IMapRepository>() != null);
                 return this[CultureInfo.CurrentCulture.TwoLetterISOLanguageName];
             }
         }
 
-        public IRepository<int, Map> ForCurrentUICulture
+        public IMapRepository ForCurrentUICulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Map>>() != null);
+                Contract.Ensures(Contract.Result<IMapRepository>() != null);
                 return this[CultureInfo.CurrentUICulture.TwoLetterISOLanguageName];
             }
         }

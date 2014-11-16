@@ -31,7 +31,7 @@ namespace GW2NET.V2.Commerce.Exchange
         /// <summary>Creates an instance for the given currency.</summary>
         /// <param name="identifier">The identifier (either 'gems' or 'coins').</param>
         /// <returns>A broker.</returns>
-        public IBroker<GemQuotation> this[string identifier]
+        public IExchangeBroker this[string identifier]
         {
             get
             {
@@ -43,10 +43,10 @@ namespace GW2NET.V2.Commerce.Exchange
         /// <summary>Creates an instance for the given currency.</summary>
         /// <param name="identifier">The identifier (either 'gems' or 'coins').</param>
         /// <returns>A broker.</returns>
-        public IBroker<GemQuotation> ForCurrency(string identifier)
+        public IExchangeBroker ForCurrency(string identifier)
         {
             Contract.Requires(identifier != null);
-            Contract.Ensures(Contract.Result<IBroker<GemQuotation>>() != null);
+            Contract.Ensures(Contract.Result<IExchangeBroker>() != null);
             return new ExchangeBroker(this.serviceClient, identifier);
         }
 

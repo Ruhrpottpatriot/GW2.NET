@@ -19,38 +19,40 @@
         }
 
         [IndexerName("Language")]
-        public IRepository<int, Item> this[string language]
+        public IItemRepository this[string language]
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
-                return new ItemRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
+                Contract.Ensures(Contract.Result<IItemRepository>() != null);
+                IItemRepository repository = new ItemRepository(this.ServiceClient);
+                repository.Culture = new CultureInfo(language);
+                return repository;
             }
         }
 
-        public IRepository<int, Item> Default
+        public IItemRepository Default
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
+                Contract.Ensures(Contract.Result<IItemRepository>() != null);
                 return new ItemRepository(this.ServiceClient);
             }
         }
 
-        public IRepository<int, Item> ForCurrentCulture
+        public IItemRepository ForCurrentCulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
+                Contract.Ensures(Contract.Result<IItemRepository>() != null);
                 return this[CultureInfo.CurrentCulture.TwoLetterISOLanguageName];
             }
         }
 
-        public IRepository<int, Item> ForCurrentUICulture
+        public IItemRepository ForCurrentUICulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
+                Contract.Ensures(Contract.Result<IItemRepository>() != null);
                 return this[CultureInfo.CurrentUICulture.TwoLetterISOLanguageName];
             }
         }

@@ -33,13 +33,13 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="language">The two-letter language code.</param>
         /// <returns>A repository.</returns>
-        public IRepository<Guid, DynamicEventName> this[string language]
+        public IEventNameRepository this[string language]
         {
             get
             {
                 Contract.Requires(language != null);
                 Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IRepository<Guid, DynamicEventName>>() != null);
+                Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -47,50 +47,49 @@ namespace GW2NET.V1.DynamicEvents
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<Guid, DynamicEventName> this[CultureInfo culture]
+        public IEventNameRepository this[CultureInfo culture]
         {
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IRepository<Guid, DynamicEventName>>() != null);
+                Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
                 return this.ForCulture(culture);
             }
         }
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IRepository<Guid, DynamicEventName> English()
+        public IEventNameRepository English()
         {
-            Contract.Ensures(Contract.Result<IRepository<Guid, DynamicEventName>>() != null);
+            Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
             return new EventNameRepository(this.serviceClient);
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<Guid, DynamicEventName> ForCulture(CultureInfo culture)
+        public IEventNameRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IRepository<Guid, DynamicEventName>>() != null);
-            return new EventNameRepository(this.serviceClient)
-            {
-                Culture = culture
-            };
+            Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
+            IEventNameRepository repository = new EventNameRepository(this.serviceClient);
+            repository.Culture = culture;
+            return repository;
         }
 
         /// <summary>Creates an instance for the current system language.</summary>
         /// <returns>A repository.</returns>
-        public IRepository<Guid, DynamicEventName> ForCurrentCulture()
+        public IEventNameRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IRepository<Guid, DynamicEventName>>() != null);
+            Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IRepository<Guid, DynamicEventName> ForCurrentUICulture(int continentId)
+        public IEventNameRepository ForCurrentUICulture(int continentId)
         {
-            Contract.Ensures(Contract.Result<IRepository<Guid, DynamicEventName>>() != null);
+            Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
 

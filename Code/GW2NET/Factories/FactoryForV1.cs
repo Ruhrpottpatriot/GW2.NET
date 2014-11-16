@@ -74,21 +74,21 @@
             }
         }
 
-        public IRepository<string, Asset> Files
+        public IFileRepository Files
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<string, Asset>>() != null);
+                Contract.Ensures(Contract.Result<IFileRepository>() != null);
                 return new FileRepository(this.ServiceClient);
             }
         }
 
-        public FactoryForV1Guilds Guilds
+        public IGuildRepository Guilds
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV1Guilds>() != null);
-                return new FactoryForV1Guilds(this.ServiceClient);
+                Contract.Ensures(Contract.Result<IGuildRepository>() != null);
+                return new GuildRepository(this.ServiceClient);
             }
         }
         public ItemRepositoryFactory Items

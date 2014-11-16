@@ -32,13 +32,13 @@ namespace GW2NET.V1.Items
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="language">The two-letter language code.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Item> this[string language]
+        public IItemRepository this[string language]
         {
             get
             {
                 Contract.Requires(language != null);
                 Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
+                Contract.Ensures(Contract.Result<IItemRepository>() != null);
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -46,50 +46,49 @@ namespace GW2NET.V1.Items
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Item> this[CultureInfo culture]
+        public IItemRepository this[CultureInfo culture]
         {
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
+                Contract.Ensures(Contract.Result<IItemRepository>() != null);
                 return this.ForCulture(culture);
             }
         }
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IRepository<int, Item> English()
+        public IItemRepository English()
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
+            Contract.Ensures(Contract.Result<IItemRepository>() != null);
             return new ItemRepository(this.serviceClient);
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Item> ForCulture(CultureInfo culture)
+        public IItemRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
-            return new ItemRepository(this.serviceClient)
-            {
-                Culture = culture
-            };
+            Contract.Ensures(Contract.Result<IItemRepository>() != null);
+            IItemRepository repository = new ItemRepository(this.serviceClient);
+            repository.Culture = culture;
+            return repository;
         }
 
         /// <summary>Creates an instance for the current system language.</summary>
         /// <returns>A repository.</returns>
-        public IRepository<int, Item> ForCurrentCulture()
+        public IItemRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
+            Contract.Ensures(Contract.Result<IItemRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Item> ForCurrentUICulture(int continentId)
+        public IItemRepository ForCurrentUICulture(int continentId)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Item>>() != null);
+            Contract.Ensures(Contract.Result<IItemRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
 

@@ -20,7 +20,7 @@ namespace GW2NET.V2.Commerce.Exchange
     using GW2NET.V2.Common;
 
     /// <summary>Represents a broker that retrieves data from the /v2/commerce/exchange interface.</summary>
-    public class ExchangeBroker : IBroker<GemQuotation>
+    public class ExchangeBroker : IExchangeBroker
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<GemQuotationDataContract>, GemQuotation> converterForResponse;
@@ -76,7 +76,8 @@ namespace GW2NET.V2.Commerce.Exchange
         /// <inheritdoc />
         Task<GemQuotation> IBroker<GemQuotation>.GetQuotationAsync(long quantity)
         {
-            return ((IBroker<GemQuotation>)this).GetQuotationAsync(quantity, CancellationToken.None);
+            IExchangeBroker self = this;
+            return self.GetQuotationAsync(quantity, CancellationToken.None);
         }
 
         /// <inheritdoc />

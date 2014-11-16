@@ -21,7 +21,7 @@ namespace GW2NET.V1.Continents
     using GW2NET.V1.Continents.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/continents.json interface.</summary>
-    public class ContinentRepository : IRepository<int, Continent>, ILocalizable
+    public class ContinentRepository : IContinentRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ContinentCollectionDataContract, ICollection<Continent>> converterForContinentCollection;
@@ -45,8 +45,8 @@ namespace GW2NET.V1.Continents
             this.converterForContinentCollection = converterForContinentCollection;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -75,9 +75,10 @@ namespace GW2NET.V1.Continents
         /// <inheritdoc />
         IDictionaryRange<int, Continent> IRepository<int, Continent>.FindAll()
         {
+            IContinentRepository self = this;
             var request = new ContinentRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ContinentCollectionDataContract>(request);
             if (response.Content == null || response.Content.Continents == null)
@@ -110,15 +111,16 @@ namespace GW2NET.V1.Continents
         /// <inheritdoc />
         Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync()
         {
-            return ((IRepository<int, Continent>)this).FindAllAsync(CancellationToken.None);
+            return ((IContinentRepository)this).FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, Continent>> IRepository<int, Continent>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IContinentRepository self = this;
             var request = new ContinentRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(task =>
             {

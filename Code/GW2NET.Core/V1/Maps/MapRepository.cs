@@ -22,7 +22,7 @@ namespace GW2NET.V1.Maps
     using GW2NET.V1.Maps.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/maps.json interface.</summary>
-    public class MapRepository : IRepository<int, Map>, ILocalizable
+    public class MapRepository : IMapRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<MapCollectionDataContract, ICollection<Map>> converterForMapCollection;
@@ -46,8 +46,8 @@ namespace GW2NET.V1.Maps
             this.converterForMapCollection = converterForMapCollection;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -70,10 +70,11 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         Map IRepository<int, Map>.Find(int identifier)
         {
+            IMapRepository self = this;
             var request = new MapRequest
             {
                 MapId = identifier, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
             if (response.Content == null || response.Content.Maps == null)
@@ -99,9 +100,10 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         IDictionaryRange<int, Map> IRepository<int, Map>.FindAll()
         {
+            IMapRepository self = this;
             var request = new MapRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
             if (response.Content == null || response.Content.Maps == null)
@@ -134,15 +136,17 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync()
         {
-            return ((IRepository<int, Map>)this).FindAllAsync(CancellationToken.None);
+            IMapRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, Map>> IRepository<int, Map>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IMapRepository self = this;
             var request = new MapRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Map>>(task =>
             {
@@ -184,16 +188,18 @@ namespace GW2NET.V1.Maps
         /// <inheritdoc />
         Task<Map> IRepository<int, Map>.FindAsync(int identifier)
         {
-            return ((IRepository<int, Map>)this).FindAsync(identifier, CancellationToken.None);
+            IMapRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<Map> IRepository<int, Map>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
+            IMapRepository self = this;
             var request = new MapRequest
             {
                 MapId = identifier, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<Map>(task =>
             {

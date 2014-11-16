@@ -21,7 +21,7 @@ namespace GW2NET.V1.Files
     using GW2NET.V1.Files.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/files.json interface.</summary>
-    public class FileRepository : IRepository<string, Asset>
+    public class FileRepository : IFileRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<FileDataContract, Asset> converterForAsset;
@@ -112,7 +112,8 @@ namespace GW2NET.V1.Files
         /// <inheritdoc />
         Task<IDictionaryRange<string, Asset>> IRepository<string, Asset>.FindAllAsync()
         {
-            return ((IRepository<string, Asset>)this).FindAllAsync(CancellationToken.None);
+            IFileRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />

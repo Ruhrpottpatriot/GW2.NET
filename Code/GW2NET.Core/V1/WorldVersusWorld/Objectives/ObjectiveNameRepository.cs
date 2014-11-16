@@ -22,7 +22,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
     using GW2NET.V1.WorldVersusWorld.Objectives.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/objective_names.json interface.</summary>
-    public class ObjectiveNameRepository : IRepository<int, ObjectiveName>, ILocalizable
+    public class ObjectiveNameRepository : IObjectiveNameRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ObjectiveNameDataContract, ObjectiveName> converterForObjectiveName;
@@ -46,8 +46,8 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             this.converterForObjectiveName = converterForObjectiveName;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -76,9 +76,10 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <inheritdoc />
         IDictionaryRange<int, ObjectiveName> IRepository<int, ObjectiveName>.FindAll()
         {
+            IObjectiveNameRepository self = this;
             var request = new ObjectiveNameRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ObjectiveNameDataContract>>(request);
             if (response.Content == null)
@@ -111,15 +112,17 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <inheritdoc />
         Task<IDictionaryRange<int, ObjectiveName>> IRepository<int, ObjectiveName>.FindAllAsync()
         {
-            return ((IRepository<int, ObjectiveName>)this).FindAllAsync(CancellationToken.None);
+            IObjectiveNameRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, ObjectiveName>> IRepository<int, ObjectiveName>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IObjectiveNameRepository self = this;
             var request = new ObjectiveNameRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             return this.serviceClient.SendAsync<ICollection<ObjectiveNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ObjectiveName>>(task =>
             {

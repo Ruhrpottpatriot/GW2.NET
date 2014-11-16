@@ -17,11 +17,11 @@
             Contract.Requires(serviceClient != null);
         }
 
-        public IRepository<Matchup, Match> Matches
+        public IMatchRepository Matches
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<Matchup, Match>>() != null);
+                Contract.Ensures(Contract.Result<IMatchRepository>() != null);
                 return new MatchRepository(this.ServiceClient);
             }
         }

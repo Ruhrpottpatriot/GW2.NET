@@ -21,7 +21,7 @@ namespace GW2NET.V1.Colors
     using GW2NET.V1.Colors.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/colors.json interface.</summary>
-    public class ColorRepository : IRepository<int, ColorPalette>, ILocalizable
+    public class ColorRepository : IColorRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ColorCollectionDataContract, ICollection<ColorPalette>> converterForColorPaletteCollection;
@@ -50,8 +50,8 @@ namespace GW2NET.V1.Colors
             this.converterForColorPaletteCollection = converterForColorPaletteCollection;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -80,9 +80,10 @@ namespace GW2NET.V1.Colors
         /// <inheritdoc />
         IDictionaryRange<int, ColorPalette> IRepository<int, ColorPalette>.FindAll()
         {
+            IColorRepository self = this;
             var request = new ColorRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ColorCollectionDataContract>(request);
             if (response.Content == null || response.Content.Colors == null)
@@ -115,15 +116,16 @@ namespace GW2NET.V1.Colors
         /// <inheritdoc />
         Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync()
         {
-            return ((IRepository<int, ColorPalette>)this).FindAllAsync(CancellationToken.None);
+            return ((IColorRepository)this).FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, ColorPalette>> IRepository<int, ColorPalette>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IColorRepository self = this;
             var request = new ColorRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             return this.serviceClient.SendAsync<ColorCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ColorPalette>>(task =>
             {

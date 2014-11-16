@@ -32,13 +32,13 @@ namespace GW2NET.V2.Recipes
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="language">The two-letter language code.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Recipe> this[string language]
+        public IRecipeRepository this[string language]
         {
             get
             {
                 Contract.Requires(language != null);
                 Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IRepository<int, Recipe>>() != null);
+                Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -46,50 +46,49 @@ namespace GW2NET.V2.Recipes
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Recipe> this[CultureInfo culture]
+        public IRecipeRepository this[CultureInfo culture]
         {
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IRepository<int, Recipe>>() != null);
+                Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
                 return this.ForCulture(culture);
             }
         }
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IRepository<int, Recipe> English()
+        public IRecipeRepository English()
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Recipe>>() != null);
+            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             return new RecipeRepository(this.serviceClient);
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Recipe> ForCulture(CultureInfo culture)
+        public IRecipeRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Recipe>>() != null);
-            return new RecipeRepository(this.serviceClient)
-            {
-                Culture = culture
-            };
+            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
+            IRecipeRepository repository = new RecipeRepository(this.serviceClient);
+            repository.Culture = culture;
+            return repository;
         }
 
         /// <summary>Creates an instance for the current system language.</summary>
         /// <returns>A repository.</returns>
-        public IRepository<int, Recipe> ForCurrentCulture()
+        public IRecipeRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Recipe>>() != null);
+            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Recipe> ForCurrentUICulture(int continentId)
+        public IRecipeRepository ForCurrentUICulture(int continentId)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Recipe>>() != null);
+            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
 

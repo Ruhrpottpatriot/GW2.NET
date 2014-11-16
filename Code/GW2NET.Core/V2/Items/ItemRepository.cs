@@ -50,7 +50,7 @@ namespace GW2NET.V2.Items
     ///     </item>
     /// </list>
     /// </remarks>
-    public class ItemRepository : IRepository<int, Item>, ILocalizable
+    public class ItemRepository : IItemRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<ItemDataContract>>, IDictionaryRange<int, Item>> converterForBulkResponse;
@@ -91,8 +91,8 @@ namespace GW2NET.V2.Items
             this.converterForPageResponse = new ConverterForCollectionPageResponse<ItemDataContract, Item>(converterForItem);
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -105,7 +105,8 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
-            return ((IRepository<int, Item>)this).DiscoverAsync(CancellationToken.None);
+            IItemRepository self = this;
+            return self.DiscoverAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -119,10 +120,11 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Item IRepository<int, Item>.Find(int identifier)
         {
+            IItemRepository self = this;
             var request = new ItemDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ItemDataContract>(request);
             return this.converterForResponse.Convert(response);
@@ -131,9 +133,10 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         IDictionaryRange<int, Item> IRepository<int, Item>.FindAll()
         {
+            IItemRepository self = this;
             var request = new ItemBulkRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             return this.converterForBulkResponse.Convert(response);
@@ -142,10 +145,11 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         IDictionaryRange<int, Item> IRepository<int, Item>.FindAll(ICollection<int> identifiers)
         {
+            IItemRepository self = this;
             var request = new ItemBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             return this.converterForBulkResponse.Convert(response);
@@ -154,15 +158,17 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync()
         {
-            return ((IRepository<int, Item>)this).FindAllAsync(CancellationToken.None);
+            IItemRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IItemRepository self = this;
             var request = new ItemBulkRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Item>>(this.ConvertAsyncResponse, cancellationToken);
@@ -171,16 +177,18 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync(ICollection<int> identifiers)
         {
-            return ((IRepository<int, Item>)this).FindAllAsync(identifiers, CancellationToken.None);
+            IItemRepository self = this;
+            return self.FindAllAsync(identifiers, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, Item>> IRepository<int, Item>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
+            IItemRepository self = this;
             var request = new ItemBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Item>>(this.ConvertAsyncResponse, cancellationToken);
@@ -189,16 +197,18 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<Item> IRepository<int, Item>.FindAsync(int identifier)
         {
-            return ((IRepository<int, Item>)this).FindAsync(identifier, CancellationToken.None);
+            IItemRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<Item> IRepository<int, Item>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
+            IItemRepository self = this;
             var request = new ItemDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken);
             return responseTask.ContinueWith<Item>(this.ConvertAsyncResponse, cancellationToken);
@@ -207,10 +217,11 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         ICollectionPage<Item> IPaginator<Item>.FindPage(int pageIndex)
         {
+            IItemRepository self = this;
             var request = new ItemPageRequest
             {
                 Page = pageIndex, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
@@ -221,11 +232,12 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         ICollectionPage<Item> IPaginator<Item>.FindPage(int pageIndex, int pageSize)
         {
+            IItemRepository self = this;
             var request = new ItemPageRequest
             {
                 Page = pageIndex, 
                 PageSize = pageSize, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<ItemDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
@@ -236,16 +248,18 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex)
         {
-            return ((IRepository<int, Item>)this).FindPageAsync(pageIndex, CancellationToken.None);
+            IItemRepository self = this;
+            return self.FindPageAsync(pageIndex, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
+            IItemRepository self = this;
             var request = new ItemPageRequest
             {
                 Page = pageIndex, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
@@ -254,17 +268,19 @@ namespace GW2NET.V2.Items
         /// <inheritdoc />
         Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex, int pageSize)
         {
-            return ((IRepository<int, Item>)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
+            IItemRepository self = this;
+            return self.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<ICollectionPage<Item>> IPaginator<Item>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
+            IItemRepository self = this;
             var request = new ItemPageRequest
             {
                 Page = pageIndex, 
                 PageSize = pageSize, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<ItemDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);

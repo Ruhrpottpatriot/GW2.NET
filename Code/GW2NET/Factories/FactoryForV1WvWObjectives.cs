@@ -26,39 +26,41 @@ namespace GW2NET.Factories
         }
 
         [IndexerName("Language")]
-        public IRepository<int, ObjectiveName> this[string language]
+        public IObjectiveNameRepository this[string language]
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, ObjectiveName>>() != null);
-                return new ObjectiveNameRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
+                Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
+                IObjectiveNameRepository repository = new ObjectiveNameRepository(this.ServiceClient);
+                repository.Culture = new CultureInfo(language);
+                return repository;
             }
         }
 
 
-        public IRepository<int, ObjectiveName> Default
+        public IObjectiveNameRepository Default
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, ObjectiveName>>() != null);
+                Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
                 return new ObjectiveNameRepository(this.ServiceClient);
             }
         }
 
-        public IRepository<int, ObjectiveName> ForCurrentCulture
+        public IObjectiveNameRepository ForCurrentCulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, ObjectiveName>>() != null);
+                Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
                 return this[CultureInfo.CurrentCulture.TwoLetterISOLanguageName];
             }
         }
 
-        public IRepository<int, ObjectiveName> ForCurrentUICulture
+        public IObjectiveNameRepository ForCurrentUICulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, ObjectiveName>>() != null);
+                Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
                 return this[CultureInfo.CurrentUICulture.TwoLetterISOLanguageName];
             }
         }

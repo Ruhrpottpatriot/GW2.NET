@@ -21,7 +21,7 @@ namespace GW2NET.V1.Guilds
     using GW2NET.V1.Guilds.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/guild_details.json interface.</summary>
-    public class GuildRepository : IRepository<Guid, Guild>, IRepository<string, Guild>
+    public class GuildRepository : IGuildRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<GuildDataContract, Guild> converterForGuild;
@@ -123,7 +123,7 @@ namespace GW2NET.V1.Guilds
         /// <inheritdoc />
         Task<Guild> IRepository<Guid, Guild>.FindAsync(Guid identifier)
         {
-            IRepository<Guid, Guild> self = this;
+            IGuildRepository self = this;
             return self.FindAsync(identifier, CancellationToken.None);
         }
 
@@ -174,30 +174,13 @@ namespace GW2NET.V1.Guilds
             throw new NotSupportedException();
         }
 
-        /// <inheritdoc />
-        ICollection<string> IDiscoverable<string>.Discover()
-        {
-            throw new NotSupportedException();
-        }
 
         /// <inheritdoc />
-        Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync()
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <inheritdoc />
-        Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <inheritdoc />
-        Guild IRepository<string, Guild>.Find(string identifier)
+        Guild IGuildRepository.FindByName(string name)
         {
             var request = new GuildRequest
             {
-                GuildName = identifier
+                GuildName = name
             };
             var response = this.serviceClient.Send<GuildDataContract>(request);
             if (response.Content == null)
@@ -209,53 +192,18 @@ namespace GW2NET.V1.Guilds
         }
 
         /// <inheritdoc />
-        IDictionaryRange<string, Guild> IRepository<string, Guild>.FindAll()
+        Task<Guild> IGuildRepository.FindByNameAsync(string name)
         {
-            throw new NotSupportedException();
+            IGuildRepository self = this;
+            return self.FindByNameAsync(name, CancellationToken.None);
         }
 
         /// <inheritdoc />
-        IDictionaryRange<string, Guild> IRepository<string, Guild>.FindAll(ICollection<string> identifiers)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <inheritdoc />
-        Task<IDictionaryRange<string, Guild>> IRepository<string, Guild>.FindAllAsync()
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <inheritdoc />
-        Task<IDictionaryRange<string, Guild>> IRepository<string, Guild>.FindAllAsync(CancellationToken cancellationToken)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <inheritdoc />
-        Task<IDictionaryRange<string, Guild>> IRepository<string, Guild>.FindAllAsync(ICollection<string> identifiers)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <inheritdoc />
-        Task<IDictionaryRange<string, Guild>> IRepository<string, Guild>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
-        {
-            throw new NotSupportedException();
-        }
-
-        /// <inheritdoc />
-        Task<Guild> IRepository<string, Guild>.FindAsync(string identifier)
-        {
-            return ((IRepository<string, Guild>)this).FindAsync(identifier, CancellationToken.None);
-        }
-
-        /// <inheritdoc />
-        Task<Guild> IRepository<string, Guild>.FindAsync(string identifier, CancellationToken cancellationToken)
+        Task<Guild> IGuildRepository.FindByNameAsync(string name, CancellationToken cancellationToken)
         {
             var request = new GuildRequest
             {
-                GuildName = identifier
+                GuildName = name
             };
             var responseTask = this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken);
             return responseTask.ContinueWith<Guild>(this.ConvertAsyncResponse, cancellationToken);

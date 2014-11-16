@@ -32,13 +32,13 @@ namespace GW2NET.V1.Skins
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="language">The two-letter language code.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Skin> this[string language]
+        public ISkinRepository this[string language]
         {
             get
             {
                 Contract.Requires(language != null);
                 Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IRepository<int, Skin>>() != null);
+                Contract.Ensures(Contract.Result<ISkinRepository>() != null);
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -46,50 +46,49 @@ namespace GW2NET.V1.Skins
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Skin> this[CultureInfo culture]
+        public ISkinRepository this[CultureInfo culture]
         {
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IRepository<int, Skin>>() != null);
+                Contract.Ensures(Contract.Result<ISkinRepository>() != null);
                 return this.ForCulture(culture);
             }
         }
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IRepository<int, Skin> English()
+        public ISkinRepository English()
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Skin>>() != null);
+            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             return new SkinRepository(this.serviceClient);
         }
 
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Skin> ForCulture(CultureInfo culture)
+        public ISkinRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Skin>>() != null);
-            return new SkinRepository(this.serviceClient)
-            {
-                Culture = culture
-            };
+            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
+            ISkinRepository repository = new SkinRepository(this.serviceClient);
+            repository.Culture = culture;
+            return repository;
         }
 
         /// <summary>Creates an instance for the current system language.</summary>
         /// <returns>A repository.</returns>
-        public IRepository<int, Skin> ForCurrentCulture()
+        public ISkinRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Skin>>() != null);
+            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IRepository<int, Skin> ForCurrentUICulture(int continentId)
+        public ISkinRepository ForCurrentUICulture(int continentId)
         {
-            Contract.Ensures(Contract.Result<IRepository<int, Skin>>() != null);
+            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
 

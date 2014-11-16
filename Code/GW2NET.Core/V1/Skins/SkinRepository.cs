@@ -22,7 +22,7 @@ namespace GW2NET.V1.Skins
     using GW2NET.V1.Skins.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/skins.json and /v1/skin_details.json interfaces.</summary>
-    public sealed class SkinRepository : IRepository<int, Skin>, ILocalizable
+    public sealed class SkinRepository : ISkinRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<SkinDataContract, Skin> converterForSkin;
@@ -54,8 +54,8 @@ namespace GW2NET.V1.Skins
             this.serviceClient = serviceClient;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -73,7 +73,8 @@ namespace GW2NET.V1.Skins
         /// <inheritdoc />
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
-            return ((IRepository<int, Skin>)this).DiscoverAsync(CancellationToken.None);
+            ISkinRepository self = this;
+            return self.DiscoverAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -87,10 +88,11 @@ namespace GW2NET.V1.Skins
         /// <inheritdoc />
         Skin IRepository<int, Skin>.Find(int identifier)
         {
+            ISkinRepository self = this;
             var request = new SkinDetailsRequest
             {
                 SkinId = identifier, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<SkinDataContract>(request);
             if (response.Content == null)
@@ -148,16 +150,18 @@ namespace GW2NET.V1.Skins
         /// <inheritdoc />
         Task<Skin> IRepository<int, Skin>.FindAsync(int identifier)
         {
-            return ((IRepository<int, Skin>)this).FindAsync(identifier, CancellationToken.None);
+            ISkinRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<Skin> IRepository<int, Skin>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
+            ISkinRepository self = this;
             var request = new SkinDetailsRequest
             {
                 SkinId = identifier, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<SkinDataContract>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.OnAsyncResponse(task, request.Culture), cancellationToken);

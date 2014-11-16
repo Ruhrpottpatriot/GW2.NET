@@ -21,7 +21,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
     using GW2NET.V1.WorldVersusWorld.Matches.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/matches.json and /v1/wvw/match_details.json interfaces.</summary>
-    public class MatchRepository : IRepository<Matchup, Match>
+    public class MatchRepository : IMatchRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<MatchDataContract, Match> converterForMatch;
@@ -68,7 +68,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         /// <inheritdoc />
         Task<ICollection<Matchup>> IDiscoverable<Matchup>.DiscoverAsync()
         {
-            return ((IRepository<Matchup, Match>)this).DiscoverAsync(CancellationToken.None);
+            IMatchRepository self = this;
+            return self.DiscoverAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -145,7 +146,8 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
         /// <inheritdoc />
         Task<Match> IRepository<Matchup, Match>.FindAsync(Matchup identifier)
         {
-            return ((IRepository<Matchup, Match>)this).FindAsync(identifier, CancellationToken.None);
+            IMatchRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />

@@ -26,11 +26,11 @@
             }
         }
 
-        public IRepository<string, Quaggan> Quaggans
+        public IQuagganRepository Quaggans
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<string, Quaggan>>() != null);
+                Contract.Ensures(Contract.Result<IQuagganRepository>() != null);
                 return new QuagganRepository(this.ServiceClient);
             }
         }

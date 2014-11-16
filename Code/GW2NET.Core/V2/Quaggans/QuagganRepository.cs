@@ -22,7 +22,7 @@ namespace GW2NET.V2.Quaggans
     using GW2NET.V2.Quaggans.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/quaggans interface.</summary>
-    public class QuagganRepository : IRepository<string, Quaggan>
+    public class QuagganRepository : IQuagganRepository
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
@@ -52,7 +52,8 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync()
         {
-            return ((IRepository<string, Quaggan>)this).DiscoverAsync(CancellationToken.None);
+            IQuagganRepository self = this;
+            return self.DiscoverAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -145,7 +146,8 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync()
         {
-            return ((IRepository<string, Quaggan>)this).FindAllAsync(CancellationToken.None);
+            IQuagganRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -174,7 +176,8 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(ICollection<string> identifiers)
         {
-            return ((IRepository<string, Quaggan>)this).FindAllAsync(identifiers, CancellationToken.None);
+            IQuagganRepository self = this;
+            return self.FindAllAsync(identifiers, CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -218,7 +221,8 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         Task<Quaggan> IRepository<string, Quaggan>.FindAsync(string identifier)
         {
-            return ((IRepository<string, Quaggan>)this).FindAsync(identifier, CancellationToken.None);
+            IQuagganRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -302,7 +306,8 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex)
         {
-            return ((IRepository<string, Quaggan>)this).FindPageAsync(pageIndex, CancellationToken.None);
+            IQuagganRepository self = this;
+            return self.FindPageAsync(pageIndex, CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -340,7 +345,8 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         Task<ICollectionPage<Quaggan>> IPaginator<Quaggan>.FindPageAsync(int pageIndex, int pageSize)
         {
-            return ((IRepository<string, Quaggan>)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
+            IQuagganRepository self = this;
+            return self.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
         /// <inheritdoc />

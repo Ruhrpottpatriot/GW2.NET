@@ -34,7 +34,7 @@ namespace GW2NET.V2.Commerce.Prices
     ///     </item>
     /// </list>
     /// </remarks>
-    public class PriceRepository : IRepository<int, AggregateListing>
+    public class PriceRepository : IAggregateListingRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<AggregateListingDataContract>>, IDictionaryRange<int, AggregateListing>> converterForBulkResponse;
@@ -84,7 +84,8 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
-            return ((IRepository<int, AggregateListing>)this).DiscoverAsync(CancellationToken.None);
+            IAggregateListingRepository self = this;
+            return self.DiscoverAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -128,7 +129,8 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync()
         {
-            return ((IRepository<int, AggregateListing>)this).FindAllAsync(CancellationToken.None);
+            IAggregateListingRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -142,7 +144,8 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync(ICollection<int> identifiers)
         {
-            return ((IRepository<int, AggregateListing>)this).FindAllAsync(identifiers, CancellationToken.None);
+            IAggregateListingRepository self = this;
+            return self.FindAllAsync(identifiers, CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -159,7 +162,8 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<AggregateListing> IRepository<int, AggregateListing>.FindAsync(int identifier)
         {
-            return ((IRepository<int, AggregateListing>)this).FindAsync(identifier, CancellationToken.None);
+            IAggregateListingRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -215,7 +219,8 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex)
         {
-            return ((IRepository<int, AggregateListing>)this).FindPageAsync(pageIndex, CancellationToken.None);
+            IAggregateListingRepository self = this;
+            return self.FindPageAsync(pageIndex, CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -232,7 +237,8 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex, int pageSize)
         {
-            return ((IRepository<int, AggregateListing>)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
+            IAggregateListingRepository self = this;
+            return self.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
         /// <inheritdoc />

@@ -23,7 +23,7 @@ namespace GW2NET.V1.DynamicEvents
     using GW2NET.V1.DynamicEvents.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/event_details.json interface.</summary>
-    public class EventRepository : IRepository<Guid, DynamicEvent>, ILocalizable
+    public class EventRepository : IEventRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<EventCollectionDataContract, ICollection<DynamicEvent>> converterForDynamicEventCollection;
@@ -49,8 +49,8 @@ namespace GW2NET.V1.DynamicEvents
             this.converterForDynamicEventCollection = converterForDynamicEventCollection;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<Guid> IDiscoverable<Guid>.Discover()
@@ -73,10 +73,11 @@ namespace GW2NET.V1.DynamicEvents
         /// <inheritdoc />
         DynamicEvent IRepository<Guid, DynamicEvent>.Find(Guid identifier)
         {
+            IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
             {
                 EventId = identifier, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<EventCollectionDataContract>(request);
             var eventCollectionDataContract = response.Content;
@@ -111,9 +112,10 @@ namespace GW2NET.V1.DynamicEvents
         /// <inheritdoc />
         IDictionaryRange<Guid, DynamicEvent> IRepository<Guid, DynamicEvent>.FindAll()
         {
+            IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<EventCollectionDataContract>(request);
             var eventCollectionDataContract = response.Content;
@@ -157,15 +159,17 @@ namespace GW2NET.V1.DynamicEvents
         /// <inheritdoc />
         Task<IDictionaryRange<Guid, DynamicEvent>> IRepository<Guid, DynamicEvent>.FindAllAsync()
         {
-            return ((IRepository<Guid, DynamicEvent>)this).FindAllAsync(CancellationToken.None);
+            IEventRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<Guid, DynamicEvent>> IRepository<Guid, DynamicEvent>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<EventCollectionDataContract>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, request.Culture), cancellationToken);
@@ -186,16 +190,18 @@ namespace GW2NET.V1.DynamicEvents
         /// <inheritdoc />
         Task<DynamicEvent> IRepository<Guid, DynamicEvent>.FindAsync(Guid identifier)
         {
-            return ((IRepository<Guid, DynamicEvent>)this).FindAsync(identifier, CancellationToken.None);
+            IEventRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<DynamicEvent> IRepository<Guid, DynamicEvent>.FindAsync(Guid identifier, CancellationToken cancellationToken)
         {
+            IEventRepository self = this;
             var request = new DynamicEventDetailsRequest
             {
                 EventId = identifier, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<EventCollectionDataContract>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertsAsyncResponse(task, request.Culture), cancellationToken);

@@ -24,39 +24,41 @@ namespace GW2NET.Factories
         }
 
         [IndexerName("Language")]
-        public IRepository<int, ColorPalette> this[string language]
+        public IColorRepository this[string language]
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, ColorPalette>>() != null);
-                return new ColorRepository(this.ServiceClient) { Culture = new CultureInfo(language) };
+                Contract.Ensures(Contract.Result<IColorRepository>() != null);
+                IColorRepository repository = new ColorRepository(this.ServiceClient);
+                repository.Culture = new CultureInfo(language);
+                return repository;
             }
         }
 
 
-        public IRepository<int, ColorPalette> Default
+        public IColorRepository Default
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, ColorPalette>>() != null);
+                Contract.Ensures(Contract.Result<IColorRepository>() != null);
                 return new ColorRepository(this.ServiceClient);
             }
         }
 
-        public IRepository<int, ColorPalette> ForCurrentCulture
+        public IColorRepository ForCurrentCulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, ColorPalette>>() != null);
+                Contract.Ensures(Contract.Result<IColorRepository>() != null);
                 return this[CultureInfo.CurrentCulture.TwoLetterISOLanguageName];
             }
         }
 
-        public IRepository<int, ColorPalette> ForCurrentUICulture
+        public IColorRepository ForCurrentUICulture
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, ColorPalette>>() != null);
+                Contract.Ensures(Contract.Result<IColorRepository>() != null);
                 return this[CultureInfo.CurrentUICulture.TwoLetterISOLanguageName];
             }
         }

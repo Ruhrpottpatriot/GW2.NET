@@ -260,7 +260,6 @@
     <Compile Include="Common\IRepository.cs" />
     <Compile Include="Common\IRequest.cs" />
     <Compile Include="Common\IResponse.cs" />
-    <Compile Include="Common\ISearchable.cs" />
     <Compile Include="Common\IServiceClient.cs" />
     <Compile Include="Common\ISubsetContext.cs" />
     <Compile Include="Common\ITimeSensitive.cs" />
@@ -290,8 +289,12 @@
     <Compile Include="Entities\Colors\Color.cs" />
     <Compile Include="Entities\Colors\ColorModel.cs" />
     <Compile Include="Entities\Colors\ColorPalette.cs" />
+    <Compile Include="Entities\Colors\IColorRepository.cs" />
     <Compile Include="Entities\Commerce\AggregateListing.cs" />
     <Compile Include="Entities\Commerce\GemQuotation.cs" />
+    <Compile Include="Entities\Commerce\IAggregateListingRepository.cs" />
+    <Compile Include="Entities\Commerce\IExchangeBroker.cs" />
+    <Compile Include="Entities\Commerce\IListingRepository.cs" />
     <Compile Include="Entities\Commerce\Listing.cs" />
     <Compile Include="Entities\Commerce\Offer.cs" />
     <Compile Include="Entities\Commerce\AggregateOffer.cs" />
@@ -301,15 +304,19 @@
     <Compile Include="Entities\DynamicEvents\DynamicEventRotation.cs" />
     <Compile Include="Entities\DynamicEvents\DynamicEventState.cs" />
     <Compile Include="Entities\DynamicEvents\EventState.cs" />
+    <Compile Include="Entities\DynamicEvents\IEventNameRepository.cs" />
+    <Compile Include="Entities\DynamicEvents\IEventRepository.cs" />
     <Compile Include="Entities\DynamicEvents\Locations\CylinderLocation.cs" />
     <Compile Include="Entities\DynamicEvents\Locations\Location.cs" />
     <Compile Include="Entities\DynamicEvents\Locations\PolygonLocation.cs" />
     <Compile Include="Entities\DynamicEvents\Locations\SphereLocation.cs" />
     <Compile Include="Entities\DynamicEvents\Locations\UnknownLocation.cs" />
     <Compile Include="Entities\Files\Asset.cs" />
+    <Compile Include="Entities\Files\IFileRepository.cs" />
     <Compile Include="Entities\Guilds\Emblem.cs" />
     <Compile Include="Entities\Guilds\EmblemTransformations.cs" />
     <Compile Include="Entities\Guilds\Guild.cs" />
+    <Compile Include="Entities\Guilds\IGuildRepository.cs" />
     <Compile Include="Entities\Items\Armors\Armor.cs" />
     <Compile Include="Entities\Items\Armors\WeightClass.cs" />
     <Compile Include="Entities\Items\Armors\Boots.cs" />
@@ -378,6 +385,7 @@
     <Compile Include="Entities\Items\Gizmos\RentableContractNpc.cs" />
     <Compile Include="Entities\Items\Gizmos\UnknownGizmo.cs" />
     <Compile Include="Entities\Items\Gizmos\UnlimitedConsumable.cs" />
+    <Compile Include="Entities\Items\IItemRepository.cs" />
     <Compile Include="Entities\Items\Item.cs" />
     <Compile Include="Entities\Items\ItemFlags.cs" />
     <Compile Include="Entities\Items\ItemRarity.cs" />
@@ -430,6 +438,10 @@
     <Compile Include="Entities\Items\Weapons\DamageType.cs" />
     <Compile Include="Entities\Maps\Continent.cs" />
     <Compile Include="Entities\Maps\Floor.cs" />
+    <Compile Include="Entities\Maps\IContinentRepository.cs" />
+    <Compile Include="Entities\Maps\IFloorRepository.cs" />
+    <Compile Include="Entities\Maps\IMapNameRepository.cs" />
+    <Compile Include="Entities\Maps\IMapRepository.cs" />
     <Compile Include="Entities\Maps\Map.cs" />
     <Compile Include="Entities\Maps\MapName.cs" />
     <Compile Include="Entities\Maps\PointsOfInterest\Dungeon.cs" />
@@ -443,6 +455,7 @@
     <Compile Include="Entities\Maps\Sector.cs" />
     <Compile Include="Entities\Maps\SkillChallenge.cs" />
     <Compile Include="Entities\Maps\Subregion.cs" />
+    <Compile Include="Entities\Quaggans\IQuagganRepository.cs" />
     <Compile Include="Entities\Quaggans\Quaggan.cs" />
     <Compile Include="Entities\Recipes\AmuletRecipe.cs" />
     <Compile Include="Entities\Recipes\AxeRecipe.cs" />
@@ -468,6 +481,7 @@
     <Compile Include="Entities\Recipes\IngredientCookingRecipe.cs" />
     <Compile Include="Entities\Recipes\InscriptionRecipe.cs" />
     <Compile Include="Entities\Recipes\InsigniaRecipe.cs" />
+    <Compile Include="Entities\Recipes\IRecipeRepository.cs" />
     <Compile Include="Entities\Recipes\LeggingsRecipe.cs" />
     <Compile Include="Entities\Recipes\LongBowRecipe.cs" />
     <Compile Include="Entities\Recipes\MaceRecipe.cs" />
@@ -506,6 +520,7 @@
     <Compile Include="Entities\Skins\Armors\ShouldersSkin.cs" />
     <Compile Include="Entities\Skins\Armors\UnknownArmorSkin.cs" />
     <Compile Include="Entities\Skins\Backpacks\BackpackSkin.cs" />
+    <Compile Include="Entities\Skins\ISkinRepository.cs" />
     <Compile Include="Entities\Skins\Skin.cs" />
     <Compile Include="Entities\Skins\SkinFlags.cs" />
     <Compile Include="Entities\Skins\UnknownSkin.cs" />
@@ -534,10 +549,12 @@
     <Compile Include="Entities\Skins\Weapons\UnknownWeaponSkin.cs" />
     <Compile Include="Entities\Skins\Weapons\WarHornSkin.cs" />
     <Compile Include="Entities\Skins\Weapons\WeaponSkin.cs" />
+    <Compile Include="Entities\Worlds\IWorldRepository.cs" />
     <Compile Include="Entities\Worlds\World.cs" />
     <Compile Include="Entities\WorldVersusWorld\Bonuses\Bloodlust.cs" />
     <Compile Include="Entities\WorldVersusWorld\Bonuses\MapBonus.cs" />
     <Compile Include="Entities\WorldVersusWorld\Bonuses\UnknownMapBonus.cs" />
+    <Compile Include="Entities\WorldVersusWorld\IMatchRepository.cs" />
     <Compile Include="Entities\WorldVersusWorld\Maps\BlueBorderlands.cs" />
     <Compile Include="Entities\WorldVersusWorld\Maps\CompetitiveMap.cs" />
     <Compile Include="Entities\WorldVersusWorld\Maps\EternalBattlegrounds.cs" />
@@ -546,6 +563,7 @@
     <Compile Include="Entities\WorldVersusWorld\Match.cs" />
     <Compile Include="Entities\WorldVersusWorld\Matchup.cs" />
     <Compile Include="Entities\WorldVersusWorld\ObjectiveName.cs" />
+    <Compile Include="Entities\WorldVersusWorld\Objectives\IObjectiveNameRepository.cs" />
     <Compile Include="Entities\WorldVersusWorld\Objectives\Objective.cs" />
     <Compile Include="Entities\WorldVersusWorld\Scoreboard.cs" />
     <Compile Include="Entities\WorldVersusWorld\TeamColor.cs" />
@@ -1012,6 +1030,7 @@
     <Compile Include="V2\Recipes\Json\RecipeDataContract.cs" />
     <Compile Include="V2\Recipes\RecipeRepository.cs" />
     <Compile Include="V2\Recipes\RecipeRepositoryFactory.cs" />
+    <Compile Include="V2\Recipes\RecipeSearchRequest.cs" />
     <Compile Include="V2\Worlds\Converters\ConverterForWorld.cs" />
     <Compile Include="V2\Worlds\Json\WorldDataContract.cs" />
     <Compile Include="V2\Worlds\WorldBulkRequest.cs" />

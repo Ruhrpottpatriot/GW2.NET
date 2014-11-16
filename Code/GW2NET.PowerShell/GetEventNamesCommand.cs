@@ -41,7 +41,8 @@ namespace GW2NET.PS.Commands
             // Configure the language (default: English)
             var culture = this.Culture ?? CultureInfo.GetCultureInfo("en");
 
-            IRepository<Guid, DynamicEventName> repo = new EventNameRepository(serviceClient) { Culture = this.Culture };
+            IEventNameRepository repo = new EventNameRepository(this.serviceClient);
+            repo.Culture = this.Culture;
 
             // Try to get dynamic event names
             try

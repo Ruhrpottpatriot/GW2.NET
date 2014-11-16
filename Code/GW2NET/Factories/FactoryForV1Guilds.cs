@@ -29,14 +29,5 @@ namespace GW2NET.Factories
                 return new GuildRepository(this.ServiceClient);
             }
         }
-
-        public IRepository<string, Guild> ByName
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<IRepository<string, Guild>>() != null);
-                return new GuildRepository(this.ServiceClient);
-            }
-        }
     }
 }

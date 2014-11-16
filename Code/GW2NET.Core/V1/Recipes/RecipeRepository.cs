@@ -22,7 +22,7 @@ namespace GW2NET.V1.Recipes
     using GW2NET.V1.Recipes.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/recipes.json and /v1/recipe_details.json interfaces.</summary>
-    public class RecipeRepository : IRepository<int, Recipe>, ILocalizable
+    public class RecipeRepository : IRecipeRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<RecipeDataContract, Recipe> converterForRecipe;
@@ -55,8 +55,8 @@ namespace GW2NET.V1.Recipes
             this.converterForRecipe = converterForRecipe;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -74,7 +74,8 @@ namespace GW2NET.V1.Recipes
         /// <inheritdoc />
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
-            return ((IRepository<int, Recipe>)this).DiscoverAsync(CancellationToken.None);
+            IRecipeRepository self = this;
+            return self.DiscoverAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -86,12 +87,49 @@ namespace GW2NET.V1.Recipes
         }
 
         /// <inheritdoc />
+        ICollection<int> IRecipeRepository.DiscoverByInput(int identifier)
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <inheritdoc />
+        Task<ICollection<int>> IRecipeRepository.DiscoverByInputAsync(int identifier)
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <inheritdoc />
+        Task<ICollection<int>> IRecipeRepository.DiscoverByInputAsync(int identifier, CancellationToken cancellationToken)
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <inheritdoc />
+        ICollection<int> IRecipeRepository.DiscoverByOutput(int identifier)
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <inheritdoc />
+        Task<ICollection<int>> IRecipeRepository.DiscoverByOutputAsync(int identifier)
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <inheritdoc />
+        Task<ICollection<int>> IRecipeRepository.DiscoverByOutputAsync(int identifier, CancellationToken cancellationToken)
+        {
+            throw new NotSupportedException();
+        }
+
+        /// <inheritdoc />
         Recipe IRepository<int, Recipe>.Find(int identifier)
         {
+            IRecipeRepository self = this;
             var request = new RecipeDetailsRequest
             {
                 RecipeId = identifier, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<RecipeDataContract>(request);
             if (response.Content == null)
@@ -143,16 +181,18 @@ namespace GW2NET.V1.Recipes
         /// <inheritdoc />
         Task<Recipe> IRepository<int, Recipe>.FindAsync(int identifier)
         {
-            return ((IRepository<int, Recipe>)this).FindAsync(identifier, CancellationToken.None);
+            IRecipeRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<Recipe> IRepository<int, Recipe>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
+            IRecipeRepository self = this;
             var request = new RecipeDetailsRequest
             {
                 RecipeId = identifier, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<RecipeDataContract>(request, cancellationToken);
             return responseTask.ContinueWith(task =>

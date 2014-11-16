@@ -39,7 +39,7 @@ namespace GW2NET.V2.Recipes
     ///     </item>
     /// </list>
     /// </remarks>
-    public class RecipeRepository : IRepository<int, Recipe>, ILocalizable
+    public class RecipeRepository : IRecipeRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<RecipeDataContract>>, IDictionaryRange<int, Recipe>> converterForBulkResponse;
@@ -80,8 +80,8 @@ namespace GW2NET.V2.Recipes
             this.converterForPageResponse = new ConverterForCollectionPageResponse<RecipeDataContract, Recipe>(converterForRecipe);
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -94,7 +94,8 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
-            return ((IRepository<int, Recipe>)this).DiscoverAsync(CancellationToken.None);
+            IRecipeRepository self = this;
+            return self.DiscoverAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -106,12 +107,71 @@ namespace GW2NET.V2.Recipes
         }
 
         /// <inheritdoc />
+        ICollection<int> IRecipeRepository.DiscoverByInput(int identifier)
+        {
+            var request = new RecipeSearchRequest
+            {
+                Input = identifier
+            };
+            var response = this.serviceClient.Send<ICollection<int>>(request);
+            return this.converterForIdentifiersResponse.Convert(response);
+        }
+
+        /// <inheritdoc />
+        Task<ICollection<int>> IRecipeRepository.DiscoverByInputAsync(int identifier)
+        {
+            IRecipeRepository self = this;
+            return self.DiscoverByInputAsync(identifier, CancellationToken.None);
+        }
+
+        /// <inheritdoc />
+        Task<ICollection<int>> IRecipeRepository.DiscoverByInputAsync(int identifier, CancellationToken cancellationToken)
+        {
+            var request = new RecipeSearchRequest
+            {
+                Input = identifier
+            };
+            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
+            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+        }
+
+        /// <inheritdoc />
+        ICollection<int> IRecipeRepository.DiscoverByOutput(int identifier)
+        {
+            var request = new RecipeSearchRequest
+            {
+                Output = identifier
+            };
+            var response = this.serviceClient.Send<ICollection<int>>(request);
+            return this.converterForIdentifiersResponse.Convert(response);
+        }
+
+        /// <inheritdoc />
+        Task<ICollection<int>> IRecipeRepository.DiscoverByOutputAsync(int identifier)
+        {
+            IRecipeRepository self = this;
+            return self.DiscoverByOutputAsync(identifier, CancellationToken.None);
+        }
+
+        /// <inheritdoc />
+        Task<ICollection<int>> IRecipeRepository.DiscoverByOutputAsync(int identifier, CancellationToken cancellationToken)
+        {
+            var request = new RecipeSearchRequest
+            {
+                Output = identifier
+            };
+            var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
+            return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
+        }
+
+        /// <inheritdoc />
         Recipe IRepository<int, Recipe>.Find(int identifier)
         {
+            IRecipeRepository self = this;
             var request = new RecipeDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<RecipeDataContract>(request);
             return this.converterForResponse.Convert(response);
@@ -120,9 +180,10 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         IDictionaryRange<int, Recipe> IRepository<int, Recipe>.FindAll()
         {
+            IRecipeRepository self = this;
             var request = new RecipeBulkRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
             return this.converterForBulkResponse.Convert(response);
@@ -131,10 +192,11 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         IDictionaryRange<int, Recipe> IRepository<int, Recipe>.FindAll(ICollection<int> identifiers)
         {
+            IRecipeRepository self = this;
             var request = new RecipeBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
             return this.converterForBulkResponse.Convert(response);
@@ -143,15 +205,17 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         Task<IDictionaryRange<int, Recipe>> IRepository<int, Recipe>.FindAllAsync()
         {
-            return ((IRepository<int, Recipe>)this).FindAllAsync(CancellationToken.None);
+            IRecipeRepository self = this;
+            return self.FindAllAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, Recipe>> IRepository<int, Recipe>.FindAllAsync(CancellationToken cancellationToken)
         {
+            IRecipeRepository self = this;
             var request = new RecipeBulkRequest
             {
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Recipe>>(this.ConvertAsyncResponse, cancellationToken);
@@ -160,16 +224,18 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         Task<IDictionaryRange<int, Recipe>> IRepository<int, Recipe>.FindAllAsync(ICollection<int> identifiers)
         {
-            return ((IRepository<int, Recipe>)this).FindAllAsync(identifiers, CancellationToken.None);
+            IRecipeRepository self = this;
+            return self.FindAllAsync(identifiers, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<IDictionaryRange<int, Recipe>> IRepository<int, Recipe>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
+            IRecipeRepository self = this;
             var request = new RecipeBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList(), 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, Recipe>>(this.ConvertAsyncResponse, cancellationToken);
@@ -178,16 +244,18 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         Task<Recipe> IRepository<int, Recipe>.FindAsync(int identifier)
         {
-            return ((IRepository<int, Recipe>)this).FindAsync(identifier, CancellationToken.None);
+            IRecipeRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<Recipe> IRepository<int, Recipe>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
+            IRecipeRepository self = this;
             var request = new RecipeDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo), 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<RecipeDataContract>(request, cancellationToken);
             return responseTask.ContinueWith<Recipe>(this.ConvertAsyncResponse, cancellationToken);
@@ -196,10 +264,11 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         ICollectionPage<Recipe> IPaginator<Recipe>.FindPage(int pageIndex)
         {
+            IRecipeRepository self = this;
             var request = new RecipePageRequest
             {
                 Page = pageIndex, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
@@ -210,11 +279,12 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         ICollectionPage<Recipe> IPaginator<Recipe>.FindPage(int pageIndex, int pageSize)
         {
+            IRecipeRepository self = this;
             var request = new RecipePageRequest
             {
                 Page = pageIndex, 
                 PageSize = pageSize, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ICollection<RecipeDataContract>>(request);
             var values = this.converterForPageResponse.Convert(response);
@@ -225,16 +295,18 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         Task<ICollectionPage<Recipe>> IPaginator<Recipe>.FindPageAsync(int pageIndex)
         {
-            return ((IRepository<int, Recipe>)this).FindPageAsync(pageIndex, CancellationToken.None);
+            IRecipeRepository self = this;
+            return self.FindPageAsync(pageIndex, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<ICollectionPage<Recipe>> IPaginator<Recipe>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
+            IRecipeRepository self = this;
             var request = new RecipePageRequest
             {
                 Page = pageIndex, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
@@ -243,17 +315,19 @@ namespace GW2NET.V2.Recipes
         /// <inheritdoc />
         Task<ICollectionPage<Recipe>> IPaginator<Recipe>.FindPageAsync(int pageIndex, int pageSize)
         {
-            return ((IRepository<int, Recipe>)this).FindPageAsync(pageIndex, pageSize, CancellationToken.None);
+            IRecipeRepository self = this;
+            return self.FindPageAsync(pageIndex, pageSize, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<ICollectionPage<Recipe>> IPaginator<Recipe>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
+            IRecipeRepository self = this;
             var request = new RecipePageRequest
             {
                 Page = pageIndex, 
                 PageSize = pageSize, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ICollection<RecipeDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);

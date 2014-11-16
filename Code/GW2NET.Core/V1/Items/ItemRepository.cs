@@ -48,7 +48,7 @@ namespace GW2NET.V1.Items
     ///     </item>
     /// </list>
     /// </remarks>
-    public class ItemRepository : IRepository<int, Item>, ILocalizable
+    public class ItemRepository : IItemRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<ItemDataContract, Item> converterForItem;
@@ -81,8 +81,8 @@ namespace GW2NET.V1.Items
             this.converterForItem = converterForItem;
         }
 
-        /// <summary>Gets or sets the locale.</summary>
-        public CultureInfo Culture { get; set; }
+        /// <inheritdoc />
+        CultureInfo ILocalizable.Culture { get; set; }
 
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
@@ -100,7 +100,8 @@ namespace GW2NET.V1.Items
         /// <inheritdoc />
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync()
         {
-            return ((IRepository<int, Item>)this).DiscoverAsync(CancellationToken.None);
+            IItemRepository self = this;
+            return self.DiscoverAsync(CancellationToken.None);
         }
 
         /// <inheritdoc />
@@ -114,10 +115,11 @@ namespace GW2NET.V1.Items
         /// <inheritdoc />
         Item IRepository<int, Item>.Find(int identifier)
         {
+            IItemRepository self = this;
             var request = new ItemDetailsRequest
             {
                 ItemId = identifier, 
-                Culture = this.Culture
+                Culture = self.Culture
             };
             var response = this.serviceClient.Send<ItemDataContract>(request);
             if (response.Content == null)
@@ -169,16 +171,18 @@ namespace GW2NET.V1.Items
         /// <inheritdoc />
         Task<Item> IRepository<int, Item>.FindAsync(int identifier)
         {
-            return ((IRepository<int, Item>)this).FindAsync(identifier, CancellationToken.None);
+            IItemRepository self = this;
+            return self.FindAsync(identifier, CancellationToken.None);
         }
 
         /// <inheritdoc />
         Task<Item> IRepository<int, Item>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
+            IItemRepository self = this;
             var request = new ItemDetailsRequest
             {
-                ItemId = identifier, 
-                Culture = this.Culture
+                ItemId = identifier,
+                Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken);
             return responseTask.ContinueWith(task =>

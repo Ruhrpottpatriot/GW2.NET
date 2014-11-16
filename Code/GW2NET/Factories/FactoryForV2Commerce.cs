@@ -19,20 +19,20 @@
             Contract.Requires(serviceClient != null);
         }
 
-        public IRepository<int, Listing> Listings
+        public IListingRepository Listings
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, Listing>>() != null);
+                Contract.Ensures(Contract.Result<IListingRepository>() != null);
                 return new ListingRepository(this.ServiceClient);
             }
         }
 
-        public IRepository<int, AggregateListing> Prices
+        public IAggregateListingRepository Prices
         {
             get
             {
-                Contract.Ensures(Contract.Result<IRepository<int, AggregateListing>>() != null);
+                Contract.Ensures(Contract.Result<IAggregateListingRepository>() != null);
                 return new PriceRepository(this.ServiceClient);
             }
         }
