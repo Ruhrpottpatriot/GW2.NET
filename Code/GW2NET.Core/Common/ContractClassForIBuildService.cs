@@ -6,7 +6,7 @@
 //   Defines the ContractClassForIBuildService type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Builds
+namespace GW2NET.Common
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;

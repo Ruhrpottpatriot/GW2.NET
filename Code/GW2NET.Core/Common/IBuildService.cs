@@ -6,7 +6,7 @@
 //   Provides the interface for the build service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Builds
+namespace GW2NET.Common
 {
     using System.Diagnostics.Contracts;
     using System.Threading;
@@ -19,19 +19,20 @@ namespace GW2NET.V1.Builds
     public interface IBuildService
     {
         /// <summary>Gets the current game build.</summary>
+        /// <exception cref="ServiceException">An error occurred while retrieving the current game build.</exception>
         /// <returns>The current game build.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         Build GetBuild();
 
         /// <summary>Gets the current build.</summary>
+        /// <exception cref="ServiceException">An error occurred while retrieving the current game build.</exception>
         /// <returns>The current game build.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         Task<Build> GetBuildAsync();
 
         /// <summary>Gets the current build.</summary>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
+        /// <exception cref="ServiceException">An error occurred while retrieving the current game build.</exception>
+        /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>The current game build.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
         Task<Build> GetBuildAsync(CancellationToken cancellationToken);
     }
 }

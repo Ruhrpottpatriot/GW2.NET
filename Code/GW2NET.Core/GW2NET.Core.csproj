@@ -240,6 +240,7 @@
     <Compile Include="Commerce\Listing.cs" />
     <Compile Include="Commerce\Offer.cs" />
     <Compile Include="Common\CollectionPage.cs" />
+    <Compile Include="Common\ContractClassForIBuildService.cs" />
     <Compile Include="Common\ContractClassForIConverter.cs" />
     <Compile Include="Common\ContractClassForIDiscoverable.cs" />
     <Compile Include="Common\ContractClassForIPageContext.cs" />
@@ -262,6 +263,7 @@
     <Compile Include="Common\ErrorResult.cs" />
     <Compile Include="Common\HttpStatusCodeExtensions.cs" />
     <Compile Include="Common\IBroker.cs" />
+    <Compile Include="Common\IBuildService.cs" />
     <Compile Include="Common\ICollectionPage.cs" />
     <Compile Include="Common\IConverter.cs" />
     <Compile Include="Common\IDictionaryRange.cs" />
@@ -563,9 +565,7 @@
     <Compile Include="Skins\Weapons\WeaponSkin.cs" />
     <Compile Include="V1\Builds\BuildRequest.cs" />
     <Compile Include="V1\Builds\BuildService.cs" />
-    <Compile Include="V1\Builds\ContractClassForIBuildService.cs" />
     <Compile Include="V1\Builds\Converters\ConverterForBuild.cs" />
-    <Compile Include="V1\Builds\IBuildService.cs" />
     <Compile Include="V1\Builds\Json\BuildDataContract.cs" />
     <Compile Include="V1\Colors\ColorRepository.cs" />
     <Compile Include="V1\Colors\ColorRequest.cs" />

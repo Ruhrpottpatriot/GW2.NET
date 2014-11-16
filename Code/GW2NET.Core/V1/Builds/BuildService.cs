@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Provides the default implementation of the build service.
+//   Represents a service that retrieves data from the /v1/build.json interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Builds
@@ -18,7 +18,8 @@ namespace GW2NET.V1.Builds
     using GW2NET.V1.Builds.Converters;
     using GW2NET.V1.Builds.Json;
 
-    /// <summary>Provides the default implementation of the build service.</summary>
+    /// <summary>Represents a service that retrieves data from the /v1/build.json interface.</summary>
+    /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
     public class BuildService : IBuildService
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
@@ -46,10 +47,8 @@ namespace GW2NET.V1.Builds
             this.converterForBuild = converterForBuild;
         }
 
-        /// <summary>Gets the current game build.</summary>
-        /// <returns>The current game build.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
-        public Build GetBuild()
+        /// <inheritdoc />
+        Build IBuildService.GetBuild()
         {
             var request = new BuildRequest();
             var response = this.serviceClient.Send<BuildDataContract>(request);
@@ -69,19 +68,15 @@ namespace GW2NET.V1.Builds
             return value;
         }
 
-        /// <summary>Gets the current build.</summary>
-        /// <returns>The current game build.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
-        public Task<Build> GetBuildAsync()
+        /// <inheritdoc />
+        Task<Build> IBuildService.GetBuildAsync()
         {
-            return this.GetBuildAsync(CancellationToken.None);
+            IBuildService self = this;
+            return self.GetBuildAsync(CancellationToken.None);
         }
 
-        /// <summary>Gets the current build.</summary>
-        /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
-        /// <returns>The current game build.</returns>
-        /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
-        public Task<Build> GetBuildAsync(CancellationToken cancellationToken)
+        /// <inheritdoc />
+        Task<Build> IBuildService.GetBuildAsync(CancellationToken cancellationToken)
         {
             var request = new BuildRequest();
             var responseTask = this.serviceClient.SendAsync<BuildDataContract>(request, cancellationToken);
