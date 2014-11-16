@@ -12,7 +12,7 @@ namespace GW2NET
     using GW2NET.Compression;
     using GW2NET.Factories;
 
-    public static partial class GW2
+    public static class GW2
     {
         static GW2()
         {

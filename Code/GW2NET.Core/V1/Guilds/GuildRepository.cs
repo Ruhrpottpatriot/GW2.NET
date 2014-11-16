@@ -139,6 +139,40 @@ namespace GW2NET.V1.Guilds
         }
 
         /// <inheritdoc />
+        Guild IGuildRepository.FindByName(string name)
+        {
+            var request = new GuildRequest
+            {
+                GuildName = name
+            };
+            var response = this.serviceClient.Send<GuildDataContract>(request);
+            if (response.Content == null)
+            {
+                return null;
+            }
+
+            return this.converterForGuild.Convert(response.Content);
+        }
+
+        /// <inheritdoc />
+        Task<Guild> IGuildRepository.FindByNameAsync(string name)
+        {
+            IGuildRepository self = this;
+            return self.FindByNameAsync(name, CancellationToken.None);
+        }
+
+        /// <inheritdoc />
+        Task<Guild> IGuildRepository.FindByNameAsync(string name, CancellationToken cancellationToken)
+        {
+            var request = new GuildRequest
+            {
+                GuildName = name
+            };
+            var responseTask = this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken);
+            return responseTask.ContinueWith<Guild>(this.ConvertAsyncResponse, cancellationToken);
+        }
+
+        /// <inheritdoc />
         ICollectionPage<Guild> IPaginator<Guild>.FindPage(int pageIndex)
         {
             throw new NotSupportedException();
@@ -172,41 +206,6 @@ namespace GW2NET.V1.Guilds
         Task<ICollectionPage<Guild>> IPaginator<Guild>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
             throw new NotSupportedException();
-        }
-
-
-        /// <inheritdoc />
-        Guild IGuildRepository.FindByName(string name)
-        {
-            var request = new GuildRequest
-            {
-                GuildName = name
-            };
-            var response = this.serviceClient.Send<GuildDataContract>(request);
-            if (response.Content == null)
-            {
-                return null;
-            }
-
-            return this.converterForGuild.Convert(response.Content);
-        }
-
-        /// <inheritdoc />
-        Task<Guild> IGuildRepository.FindByNameAsync(string name)
-        {
-            IGuildRepository self = this;
-            return self.FindByNameAsync(name, CancellationToken.None);
-        }
-
-        /// <inheritdoc />
-        Task<Guild> IGuildRepository.FindByNameAsync(string name, CancellationToken cancellationToken)
-        {
-            var request = new GuildRequest
-            {
-                GuildName = name
-            };
-            var responseTask = this.serviceClient.SendAsync<GuildDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith<Guild>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]

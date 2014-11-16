@@ -3,8 +3,8 @@
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.V1.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld.Matches;
+    using GW2NET.V1.WorldVersusWorld.Objectives;
     using GW2NET.WorldVersusWorld;
 
     public class FactoryForV1WvW : FactoryBase
@@ -26,12 +26,12 @@
             }
         }
 
-        public FactoryForV1WvWObjectives Objectives
+        public ObjectiveNameRepositoryFactory Objectives
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV1WvWObjectives>() != null);
-                return new FactoryForV1WvWObjectives(this.ServiceClient);
+                Contract.Ensures(Contract.Result<ObjectiveNameRepositoryFactory>() != null);
+                return new ObjectiveNameRepositoryFactory(this.ServiceClient);
             }
         }
     }

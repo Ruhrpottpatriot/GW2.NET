@@ -11,11 +11,7 @@ namespace GW2NET
     using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
-    using System.Globalization;
-    using System.Threading;
-    using System.Threading.Tasks;
 
-    using GW2NET.Common.Serializers;
     using GW2NET.DynamicEvents;
     using GW2NET.Local.DynamicEvents;
 

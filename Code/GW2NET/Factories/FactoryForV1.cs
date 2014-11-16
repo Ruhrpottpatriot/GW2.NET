@@ -8,6 +8,7 @@
     using GW2NET.Guilds;
     using GW2NET.V1.Builds;
     using GW2NET.V1.Colors;
+    using GW2NET.V1.Continents;
     using GW2NET.V1.DynamicEvents;
     using GW2NET.V1.Files;
     using GW2NET.V1.Floors;
@@ -37,21 +38,21 @@
             }
         }
 
-        public FactoryForV1Colors Colors
+        public ColorRepositoryFactory Colors
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV1Colors>() != null);
-                return new FactoryForV1Colors(this.ServiceClient);
+                Contract.Ensures(Contract.Result<ColorRepositoryFactory>() != null);
+                return new ColorRepositoryFactory(this.ServiceClient);
             }
         }
 
-        public FactoryForV1Continents Continents
+        public ContinentRepositoryFactory Continents
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV1Continents>() != null);
-                return new FactoryForV1Continents(this.ServiceClient);
+                Contract.Ensures(Contract.Result<ContinentRepositoryFactory>() != null);
+                return new ContinentRepositoryFactory(this.ServiceClient);
             }
         }
 
@@ -99,21 +100,21 @@
             }
         }
 
-        public FactoryForV1MapNames MapNames
+        public MapNameRepositoryFactory MapNames
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV1MapNames>() != null);
-                return new FactoryForV1MapNames(this.ServiceClient);
+                Contract.Ensures(Contract.Result<MapNameRepositoryFactory>() != null);
+                return new MapNameRepositoryFactory(this.ServiceClient);
             }
         }
 
-        public FactoryForV1Maps Maps
+        public MapRepositoryFactory Maps
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV1Maps>() != null);
-                return new FactoryForV1Maps(this.ServiceClient);
+                Contract.Ensures(Contract.Result<MapRepositoryFactory>() != null);
+                return new MapRepositoryFactory(this.ServiceClient);
             }
         }
 

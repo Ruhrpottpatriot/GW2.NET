@@ -4,8 +4,10 @@
 
     using GW2NET.Common;
     using GW2NET.Quaggans;
+    using GW2NET.V2.Items;
     using GW2NET.V2.Quaggans;
     using GW2NET.V2.Recipes;
+    using GW2NET.V2.Worlds;
 
     public class FactoryForV2 : FactoryBase
     {
@@ -17,12 +19,12 @@
             Contract.Requires(serviceClient != null);
         }
 
-        public FactoryForV2Items Items
+        public ItemRepositoryFactory Items
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV2Items>() != null);
-                return new FactoryForV2Items(this.ServiceClient);
+                Contract.Ensures(Contract.Result<ItemRepositoryFactory>() != null);
+                return new ItemRepositoryFactory(this.ServiceClient);
             }
         }
 
@@ -44,12 +46,12 @@
             }
         }
 
-        public FactoryForV2Worlds Worlds
+        public WorldRepositoryFactory Worlds
         {
             get
             {
-                Contract.Ensures(Contract.Result<FactoryForV2Worlds>() != null);
-                return new FactoryForV2Worlds(this.ServiceClient);
+                Contract.Ensures(Contract.Result<WorldRepositoryFactory>() != null);
+                return new WorldRepositoryFactory(this.ServiceClient);
             }
         }
 

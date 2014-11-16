@@ -185,17 +185,10 @@
   <ItemGroup>
     <Compile Include="Factories\FactoryForLocal.cs" />
     <Compile Include="Factories\FactoryForV1.cs" />
-    <Compile Include="Factories\FactoryForV1Colors.cs" />
-    <Compile Include="Factories\FactoryForV1Continents.cs" />
-    <Compile Include="Factories\FactoryForV1MapNames.cs" />
-    <Compile Include="Factories\FactoryForV1Maps.cs" />
     <Compile Include="Factories\FactoryForV1WvW.cs" />
-    <Compile Include="Factories\FactoryForV1WvWObjectives.cs" />
     <Compile Include="Factories\FactoryForV2.cs" />
     <Compile Include="Factories\FactoryForV2Commerce.cs" />
-    <Compile Include="Factories\FactoryForV2Items.cs" />
     <Compile Include="Factories\FactoryBase.cs" />
-    <Compile Include="Factories\FactoryForV2Worlds.cs" />
     <Compile Include="GW2.cs" />
     <Compile Include="OfflineServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

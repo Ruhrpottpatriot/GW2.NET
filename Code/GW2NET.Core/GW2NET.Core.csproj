@@ -569,6 +569,7 @@
     <Compile Include="V1\Builds\Json\BuildDataContract.cs" />
     <Compile Include="V1\Colors\ColorRepository.cs" />
     <Compile Include="V1\Colors\ColorRequest.cs" />
+    <Compile Include="V1\Colors\ColorRepositoryFactory.cs" />
     <Compile Include="V1\Colors\Json\ColorCollectionDataContract.cs" />
     <Compile Include="V1\Colors\Json\ColorDataContract.cs" />
     <Compile Include="V1\Colors\Json\ColorModelDataContract.cs" />
@@ -576,6 +577,7 @@
     <Compile Include="V1\Colors\Converters\ConverterForColorPalette.cs" />
     <Compile Include="V1\Colors\Converters\ConverterForColor.cs" />
     <Compile Include="V1\Colors\Converters\ConverterForColorPaletteCollection.cs" />
+    <Compile Include="V1\Continents\ContinentRepositoryFactory.cs" />
     <Compile Include="V1\Continents\ContinentRequest.cs" />
     <Compile Include="V1\Continents\ContinentRepository.cs" />
     <Compile Include="V1\Continents\Json\ContinentCollectionDataContract.cs" />
@@ -768,6 +770,8 @@
     <Compile Include="V1\Items\Json\TrinketDataContract.cs" />
     <Compile Include="V1\Items\Json\UpgradeComponentDataContract.cs" />
     <Compile Include="V1\Items\Json\WeaponDataContract.cs" />
+    <Compile Include="V1\Maps\MapRepositoryFactory.cs" />
+    <Compile Include="V1\Maps\MapNameRepositoryFactory.cs" />
     <Compile Include="V1\Maps\Converters\ConverterForMap.cs" />
     <Compile Include="V1\Maps\Converters\ConverterForMapCollection.cs" />
     <Compile Include="V1\Maps\Converters\ConverterForMapName.cs" />
@@ -836,6 +840,7 @@
     <Compile Include="V1\WorldVersusWorld\Matches\MatchRepository.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives\Converters\ConverterForObjectiveName.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives\Json\ObjectiveNameDataContract.cs" />
+    <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveNameRepositoryFactory.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveNameRequest.cs" />
     <Compile Include="V1\WorldVersusWorld\Objectives\ObjectiveNameRepository.cs" />
     <Compile Include="V2\Commerce\Exchange\Converters\ConverterForGemQuotation.cs" />
@@ -991,6 +996,7 @@
     <Compile Include="V2\Items\Json\InfixUpgradeDataContract.cs" />
     <Compile Include="V2\Items\Json\InfusionSlotDataContract.cs" />
     <Compile Include="V2\Items\Json\ItemDataContract.cs" />
+    <Compile Include="V2\Items\ItemRepositoryFactory.cs" />
     <Compile Include="V2\Quaggans\Converters\ConverterForQuaggan.cs" />
     <Compile Include="V2\Quaggans\Json\QuagganDataContract.cs" />
     <Compile Include="V2\Quaggans\QuagganBulkRequest.cs" />
@@ -1014,6 +1020,7 @@
     <Compile Include="V2\Recipes\RecipeRepositoryFactory.cs" />
     <Compile Include="V2\Recipes\RecipeSearchRequest.cs" />
     <Compile Include="V2\Worlds\Converters\ConverterForWorld.cs" />
+    <Compile Include="V2\Worlds\WorldRepositoryFactory.cs" />
     <Compile Include="V2\Worlds\Json\WorldDataContract.cs" />
     <Compile Include="V2\Worlds\WorldBulkRequest.cs" />
     <Compile Include="V2\Worlds\WorldDetailsRequest.cs" />

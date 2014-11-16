@@ -209,35 +209,14 @@
     <Compile Include="..\GW2NET\Factories\FactoryForV1.cs">
       <Link>Factories\FactoryForV1.cs</Link>
     </Compile>
-    <Compile Include="..\GW2NET\Factories\FactoryForV1Colors.cs">
-      <Link>Factories\FactoryForV1Colors.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\Factories\FactoryForV1Continents.cs">
-      <Link>Factories\FactoryForV1Continents.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\Factories\FactoryForV1MapNames.cs">
-      <Link>Factories\FactoryForV1MapNames.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\Factories\FactoryForV1Maps.cs">
-      <Link>Factories\FactoryForV1Maps.cs</Link>
-    </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryForV1WvW.cs">
-      <Link>Factories\FactoryForV1WvW.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\Factories\FactoryForV1WvWObjectives.cs">
-      <Link>Factories\FactoryForV1WvWObjectives.cs</Link>
+      <Link>FactoryForV1WvW.cs</Link>
     </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryForV2.cs">
       <Link>Factories\FactoryForV2.cs</Link>
     </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryForV2Commerce.cs">
       <Link>Factories\FactoryForV2Commerce.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\Factories\FactoryForV2Items.cs">
-      <Link>Factories\FactoryForV2Items.cs</Link>
-    </Compile>
-    <Compile Include="..\GW2NET\Factories\FactoryForV2Worlds.cs">
-      <Link>Factories\FactoryForV2Worlds.cs</Link>
     </Compile>
     <Compile Include="..\GW2NET\GW2.cs">
       <Link>GW2.cs</Link>

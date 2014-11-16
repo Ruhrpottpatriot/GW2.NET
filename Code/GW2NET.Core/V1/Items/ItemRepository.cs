@@ -188,7 +188,7 @@ namespace GW2NET.V1.Items
             IItemRepository self = this;
             var request = new ItemDetailsRequest
             {
-                ItemId = identifier,
+                ItemId = identifier, 
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken);
