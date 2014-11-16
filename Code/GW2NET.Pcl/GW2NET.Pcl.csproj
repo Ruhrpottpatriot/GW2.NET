@@ -221,9 +221,6 @@
     <Compile Include="..\GW2NET\GW2.cs">
       <Link>GW2.cs</Link>
     </Compile>
-    <Compile Include="..\GW2NET\OfflineServiceManager.cs">
-      <Link>OfflineServiceManager.cs</Link>
-    </Compile>
     <Compile Include="..\GW2NET\RenderServiceManager.cs">
       <Link>RenderServiceManager.cs</Link>
     </Compile>
