@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GW2.NET</id>
-    <version>0.9.11.0</version>
+    <version>0.9.12.0</version>
     <title>GW2.NET</title>
     <authors>GW2.NET Coding Team</authors>
     <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
@@ -15,10 +15,13 @@
     </description>
     <summary>This software is licensed under the GNU General Public License version 2 (GPLv2). For a complete version of the license follow the link.</summary>
     <releaseNotes>
-		* Fixing the implementation for /v2/commerce/prices bulk expansion
-		* Implementing support for X-Result-Count and X-Result-Total for commerce services
-		* Replacing "Language" properties of type "string" with "Locale" properties of type "CultureInfo"
-		* Improving IntelliSense tooltips for entities that have navigation properties
+		* Implementing support for the MumbleLink protocol
+		* Implementing support for /v2/worlds
+		* Implementing support for /v2/recipes
+		* Implementing support for /v2/recipes/search
+		* Replacing /v1 service classes with repository classes
+		* Renaming namespaces and classes where appropriate
+		* Moving namespaces and classes where appropriate
 	</releaseNotes>
     <copyright>Copyright ©  2013 - 2014</copyright>
     <language>en, es, de, fr</language>

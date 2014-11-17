@@ -59,6 +59,7 @@
     <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">
       <Project>{05F3D999-0470-4123-8C80-AF4AC2385E7C}</Project>
       <Name>GW2NET.Core</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

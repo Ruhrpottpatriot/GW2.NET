@@ -200,14 +200,17 @@
     <ProjectReference Include="..\GW2NET.Compression\GW2NET.Compression.csproj">
       <Project>{c3be9d66-2330-4544-8b12-16898ccf20e0}</Project>
       <Name>GW2NET.Compression</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">
       <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
       <Name>GW2NET.Core</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj">
       <Project>{11bb8977-33fe-4789-bd5b-d977b0bf5ecf}</Project>
       <Name>GW2NET.Newtonsoft</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

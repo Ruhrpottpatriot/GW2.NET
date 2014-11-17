@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>GW2.NET.RSharp</id>
-    <version>0.9.11.0</version>
+    <version>0.9.12.0</version>
     <title>GW2.NET RestSharp</title>
     <authors>GW2.NET Coding Team</authors>
     <licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
@@ -20,7 +20,7 @@
 
       <!-- Default dependency group. -->
       <group>
-	    <dependency id="GW2.NET" version="0.9.11.0" />
+	    <dependency id="GW2.NET" version="0.9.12.0" />
         <dependency id="RestSharp" version="104.4.0" />
       </group>
     </dependencies>
