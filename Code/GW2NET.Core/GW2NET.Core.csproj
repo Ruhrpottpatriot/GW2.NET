@@ -186,6 +186,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Solution Items\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Builds\Build.cs" />
     <Compile Include="ChatLinks\ChatLink.cs" />
     <Compile Include="ChatLinks\ChatLinkConverter.cs" />

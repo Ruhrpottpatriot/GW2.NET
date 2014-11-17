@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysis", "Analysis", "{20A2C3F6-72DD-4153-BF59-681C8C9CE278}"
 EndProject
@@ -45,6 +45,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Pcl.Compression", "Code\GW2NET.Pcl.Compression\GW2NET.Pcl.Compression.csproj", "{08D936E1-C097-4196-8128-C2493F8D7E47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.PowerShell", "Code\GW2NET.PowerShell\GW2NET.PowerShell.csproj", "{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{82EC06F9-0DE8-498E-BA08-97EBB5B60BC7}"
+	ProjectSection(SolutionItems) = preProject
+		Solution Items\SharedAssemblyInfo.cs = Solution Items\SharedAssemblyInfo.cs
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution

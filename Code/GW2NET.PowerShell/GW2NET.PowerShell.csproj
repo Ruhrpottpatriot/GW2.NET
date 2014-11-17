@@ -101,6 +101,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Solution Items\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="GetBuildCommand.cs" />
     <Compile Include="GetEventNamesCommand.cs" />
     <Compile Include="GetItemsCommand.cs" />

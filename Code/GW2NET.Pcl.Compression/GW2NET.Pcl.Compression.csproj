@@ -193,6 +193,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Solution Items\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="GzipCompressor.cs" />
     <Compile Include="GzipInflator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

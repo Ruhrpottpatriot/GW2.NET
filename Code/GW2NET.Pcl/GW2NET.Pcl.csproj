@@ -200,6 +200,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\Solution Items\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="..\GW2NET\Factories\FactoryBase.cs">
       <Link>Factories\FactoryBase.cs</Link>
     </Compile>
