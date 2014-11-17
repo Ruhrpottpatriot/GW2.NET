@@ -254,7 +254,6 @@
     <Compile Include="Common\Converters\ConverterAdapter.cs" />
     <Compile Include="Common\Converters\ConverterForCollection.cs" />
     <Compile Include="Common\Converters\ConverterForDictionary.cs" />
-    <Compile Include="Common\Converters\ConverterForInt32.cs" />
     <Compile Include="Common\DictionaryRange.cs" />
     <Compile Include="Common\DiscoveryRequest.cs" />
     <Compile Include="Common\Drawing\Rectangle.cs" />
