@@ -19,8 +19,6 @@ namespace GW2NET.V1.DynamicEvents
 
     using GW2NET.Common;
     using GW2NET.DynamicEvents;
-    using GW2NET.V1.DynamicEvents.Converters;
-    using GW2NET.V1.DynamicEvents.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/event_details.json interface.</summary>
     public class EventRepository : IEventRepository

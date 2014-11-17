@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="TrinketDataContract" /> to objects of type <see cref="Amulet" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Trinkets;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="TrinketDataContract"/> to objects of type <see cref="Amulet"/>.</summary>
     internal sealed class ConverterForAmulet : IConverter<TrinketDataContract, Amulet>

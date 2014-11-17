@@ -6,7 +6,7 @@
 //   Defines the ColorCollectionDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Colors.Json
+namespace GW2NET.V1.Colors
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

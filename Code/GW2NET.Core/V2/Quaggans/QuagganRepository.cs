@@ -19,7 +19,6 @@ namespace GW2NET.V2.Quaggans
     using GW2NET.Common;
     using GW2NET.Quaggans;
     using GW2NET.V2.Common;
-    using GW2NET.V2.Quaggans.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v2/quaggans interface.</summary>
     public class QuagganRepository : IQuagganRepository

@@ -17,8 +17,6 @@ namespace GW2NET.V1.Files
 
     using GW2NET.Common;
     using GW2NET.Files;
-    using GW2NET.V1.Files.Converters;
-    using GW2NET.V1.Files.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/files.json interface.</summary>
     public class FileRepository : IFileRepository

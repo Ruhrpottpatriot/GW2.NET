@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="string" /> to objects of type <see cref="ItemRarity" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System;
 

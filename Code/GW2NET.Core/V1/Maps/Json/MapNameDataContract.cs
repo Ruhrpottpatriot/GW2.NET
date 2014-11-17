@@ -6,7 +6,7 @@
 //   Defines the MapNameDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps.Json
+namespace GW2NET.V1.Maps
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

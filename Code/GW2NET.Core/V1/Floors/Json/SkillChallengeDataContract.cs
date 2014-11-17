@@ -6,7 +6,7 @@
 //   Defines the SkillChallengeDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Floors.Json
+namespace GW2NET.V1.Floors
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="ToughnessModifier" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Common;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ToughnessModifier"/>.</summary>
     internal sealed class ConverterForToughnessModifier : IConverter<AttributeDataContract, ToughnessModifier>

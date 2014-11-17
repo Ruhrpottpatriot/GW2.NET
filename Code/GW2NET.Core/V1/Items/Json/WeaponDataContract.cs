@@ -6,7 +6,7 @@
 //   Defines the WeaponDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Json
+namespace GW2NET.V1.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

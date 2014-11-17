@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:double[][]" /> to objects of type <see cref="Rectangle" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Floors.Converters
+namespace GW2NET.V1.Floors
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
@@ -22,7 +22,7 @@ namespace GW2NET.V1.Floors.Converters
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForRectangle"/> class.</summary>
         internal ConverterForRectangle()
-            : this(new Maps.Converters.ConverterForVector2D())
+            : this(new Maps.ConverterForVector2D())
         {
         }
 

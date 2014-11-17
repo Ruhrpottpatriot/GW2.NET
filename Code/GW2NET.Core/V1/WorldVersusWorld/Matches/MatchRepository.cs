@@ -16,8 +16,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.V1.WorldVersusWorld.Matches.Converters;
-    using GW2NET.V1.WorldVersusWorld.Matches.Json;
     using GW2NET.WorldVersusWorld;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/matches.json and /v1/wvw/match_details.json interfaces.</summary>

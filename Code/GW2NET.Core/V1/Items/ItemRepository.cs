@@ -25,8 +25,6 @@ namespace GW2NET.V1.Items
     using GW2NET.Items.GatheringTools;
     using GW2NET.Items.Trinkets;
     using GW2NET.Items.Weapons;
-    using GW2NET.V1.Items.Converters;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/items.json and /v1/item_details.json interfaces. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>

@@ -6,7 +6,7 @@
 //   Defines the SkinDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Skins.Json
+namespace GW2NET.V1.Skins
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

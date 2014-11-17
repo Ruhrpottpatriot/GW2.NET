@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="MapNameDataContract" /> to objects of type <see cref="MapName" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps.Converters
+namespace GW2NET.V1.Maps
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V1.Maps.Json;
 
     /// <summary>Converts objects of type <see cref="MapNameDataContract"/> to objects of type <see cref="MapName"/>.</summary>
     internal sealed class ConverterForMapName : IConverter<MapNameDataContract, MapName>

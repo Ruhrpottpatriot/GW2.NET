@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:KeyValuePair{string, RegionDataContract}" /> to objects of type <see cref="T:KeyValuePair{int, Region}" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Floors.Converters
+namespace GW2NET.V1.Floors
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Floors.Converters
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="T:KeyValuePair{string, RegionDataContract}"/> to objects of type <see cref="T:KeyValuePair{int, Region}"/>.</summary>
     internal sealed class ConverterForRegionKeyValuePair : IConverter<KeyValuePair<string, RegionDataContract>, KeyValuePair<int, Region>>

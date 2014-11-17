@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="AggregateListingDataContract" /> to objects of type <see cref="AggregateListing" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Prices.Converters
+namespace GW2NET.V2.Commerce.Prices
 {
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V2.Commerce.Prices.Converters
 
     using GW2NET.Commerce;
     using GW2NET.Common;
-    using GW2NET.V2.Commerce.Prices.Json;
 
     /// <summary>Converts objects of type <see cref="AggregateListingDataContract"/> to objects of type <see cref="AggregateListing"/>.</summary>
     internal sealed class ConverterForAggregateListing : IConverter<AggregateListingDataContract, AggregateListing>

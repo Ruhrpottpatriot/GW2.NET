@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Consumable" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items.Consumables;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Consumable"/>.</summary>
     internal sealed class ConverterForConsumable : IConverter<DetailsDataContract, Consumable>

@@ -6,7 +6,7 @@
 //   Defines the QuagganDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Quaggans.Json
+namespace GW2NET.V2.Quaggans
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

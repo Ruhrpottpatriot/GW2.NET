@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:ICollection{string}" /> to objects of type <see cref="UpgradeComponentFlags" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

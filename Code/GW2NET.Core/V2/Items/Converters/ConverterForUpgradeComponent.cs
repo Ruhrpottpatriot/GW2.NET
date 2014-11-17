@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="UpgradeComponent" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -15,7 +15,6 @@ namespace GW2NET.V2.Items.Converters
     using GW2NET.Common;
     using GW2NET.Items.Common;
     using GW2NET.Items.UpgradeComponents;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="UpgradeComponent"/>.</summary>
     internal sealed class ConverterForUpgradeComponent : IConverter<DetailsDataContract, UpgradeComponent>

@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="MiningTool" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.GatheringTools;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="MiningTool"/>.</summary>
     internal sealed class ConverterForMiningTool : IConverter<DetailsDataContract, MiningTool>

@@ -6,7 +6,7 @@
 //   Defines the ListingDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Listings.Json
+namespace GW2NET.V2.Commerce.Listings
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

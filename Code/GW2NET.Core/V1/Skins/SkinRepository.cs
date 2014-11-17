@@ -18,8 +18,6 @@ namespace GW2NET.V1.Skins
 
     using GW2NET.Common;
     using GW2NET.Skins;
-    using GW2NET.V1.Skins.Converters;
-    using GW2NET.V1.Skins.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/skins.json and /v1/skin_details.json interfaces.</summary>
     public sealed class SkinRepository : ISkinRepository

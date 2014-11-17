@@ -6,7 +6,7 @@
 //   Defines the WorldDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Worlds.Json
+namespace GW2NET.V2.Worlds
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

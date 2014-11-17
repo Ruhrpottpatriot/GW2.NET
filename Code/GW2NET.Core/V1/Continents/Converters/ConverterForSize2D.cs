@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:double[]" /> to objects of type <see cref="Size2D" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Continents.Converters
+namespace GW2NET.V1.Continents
 {
     using System.Diagnostics.Contracts;
 

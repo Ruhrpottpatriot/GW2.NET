@@ -17,8 +17,6 @@ namespace GW2NET.V1.Colors
 
     using GW2NET.Colors;
     using GW2NET.Common;
-    using GW2NET.V1.Colors.Converters;
-    using GW2NET.V1.Colors.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/colors.json interface.</summary>
     public class ColorRepository : IColorRepository

@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="EmblemDataContract" /> to objects of type <see cref="Emblem" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Guilds.Converters
+namespace GW2NET.V1.Guilds
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Guilds.Converters
 
     using GW2NET.Common;
     using GW2NET.Guilds;
-    using GW2NET.V1.Guilds.Json;
 
     /// <summary>Converts objects of type <see cref="EmblemDataContract"/> to objects of type <see cref="Emblem"/>.</summary>
     internal sealed class ConverterForEmblem : IConverter<EmblemDataContract, Emblem>

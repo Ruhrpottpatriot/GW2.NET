@@ -6,7 +6,7 @@
 //   Defines the RecipeDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Recipes.Json
+namespace GW2NET.V2.Recipes
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

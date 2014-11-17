@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="ToolDataContract" /> to objects of type <see cref="Tool" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Tools;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="ToolDataContract"/> to objects of type <see cref="Tool"/>.</summary>
     internal sealed class ConverterForSalvageTool : IConverter<ToolDataContract, Tool>

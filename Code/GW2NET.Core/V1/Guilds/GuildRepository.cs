@@ -17,8 +17,6 @@ namespace GW2NET.V1.Guilds
 
     using GW2NET.Common;
     using GW2NET.Guilds;
-    using GW2NET.V1.Guilds.Converters;
-    using GW2NET.V1.Guilds.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/guild_details.json interface.</summary>
     public class GuildRepository : IGuildRepository

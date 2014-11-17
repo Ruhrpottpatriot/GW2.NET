@@ -20,8 +20,6 @@ namespace GW2NET.V2.Commerce.Prices
     using GW2NET.Common;
     using GW2NET.Common.Converters;
     using GW2NET.Items;
-    using GW2NET.V2.Commerce.Prices.Converters;
-    using GW2NET.V2.Commerce.Prices.Json;
     using GW2NET.V2.Common;
 
     /// <summary>Represents a repository that retrieves data from the /v2/commerce/prices interface. See the remarks section for important limitations regarding this implementation.</summary>

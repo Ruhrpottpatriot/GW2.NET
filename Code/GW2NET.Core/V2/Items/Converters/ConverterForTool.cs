@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Tool" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items.Tools;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Tool"/>.</summary>
     internal sealed class ConverterForTool : IConverter<DetailsDataContract, Tool>

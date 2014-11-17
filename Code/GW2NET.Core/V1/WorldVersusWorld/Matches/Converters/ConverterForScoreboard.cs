@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:int[]" /> to objects of type <see cref="Scoreboard" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System.Diagnostics.Contracts;
 

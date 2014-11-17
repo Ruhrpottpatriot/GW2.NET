@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="ContinentDataContract" /> to objects of type <see cref="Continent" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Continents.Converters
+namespace GW2NET.V1.Continents
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Continents.Converters
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.Maps;
-    using GW2NET.V1.Continents.Json;
 
     /// <summary>Converts objects of type <see cref="ContinentDataContract"/> to objects of type <see cref="Continent"/>.</summary>
     internal sealed class ConverterForContinent : IConverter<ContinentDataContract, Continent>

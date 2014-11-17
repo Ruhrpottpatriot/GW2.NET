@@ -17,8 +17,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
     using System.Threading.Tasks;
 
     using GW2NET.Common;
-    using GW2NET.V1.WorldVersusWorld.Objectives.Converters;
-    using GW2NET.V1.WorldVersusWorld.Objectives.Json;
     using GW2NET.WorldVersusWorld;
     using GW2NET.WorldVersusWorld.Objectives;
 

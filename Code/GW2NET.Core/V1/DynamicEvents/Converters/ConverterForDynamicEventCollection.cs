@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="EventCollectionDataContract" /> to objects of type <see cref="T:ICollection{DynamicEvent}" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.DynamicEvents.Converters
+namespace GW2NET.V1.DynamicEvents
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +15,6 @@ namespace GW2NET.V1.DynamicEvents.Converters
 
     using GW2NET.Common;
     using GW2NET.DynamicEvents;
-    using GW2NET.V1.DynamicEvents.Json;
 
     /// <summary>Converts objects of type <see cref="EventCollectionDataContract"/> to objects of type <see cref="T:ICollection{DynamicEvent}"/>.</summary>
     internal sealed class ConverterForDynamicEventCollection : IConverter<EventCollectionDataContract, ICollection<DynamicEvent>>

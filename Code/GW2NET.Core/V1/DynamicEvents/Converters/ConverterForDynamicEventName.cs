@@ -6,14 +6,13 @@
 //   Converts objects of type <see cref="EventNameDataContract" /> to objects of type <see cref="DynamicEventName" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.DynamicEvents.Converters
+namespace GW2NET.V1.DynamicEvents
 {
     using System;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.DynamicEvents;
-    using GW2NET.V1.DynamicEvents.Json;
 
     /// <summary>Converts objects of type <see cref="EventNameDataContract"/> to objects of type <see cref="DynamicEventName"/>.</summary>
     internal sealed class ConverterForDynamicEventName : IConverter<EventNameDataContract, DynamicEventName>

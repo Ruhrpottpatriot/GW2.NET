@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="Json.AttributeDataContract" /> to objects of type <see cref="CombatAttribute" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,9 +14,8 @@ namespace GW2NET.V1.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items.Common;
-    using GW2NET.V1.Items.Json;
 
-    /// <summary>Converts objects of type <see cref="Json.AttributeDataContract"/> to objects of type <see cref="CombatAttribute"/>.</summary>
+    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="CombatAttribute"/>.</summary>
     internal sealed class ConverterForCombatAttribute : IConverter<AttributeDataContract, CombatAttribute>
     {
         /// <summary>Infrastructure. Holds a reference to a collection of type converters.</summary>
@@ -36,7 +35,7 @@ namespace GW2NET.V1.Items.Converters
             this.typeConverters = typeConverters;
         }
 
-        /// <summary>Converts the given object of type <see cref="V2.Items.Json.AttributeDataContract"/> to an object of type <see cref="CombatAttribute"/>.</summary>
+        /// <summary>Converts the given object of type <see cref="V2.Items.AttributeDataContract"/> to an object of type <see cref="CombatAttribute"/>.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns>The converted value.</returns>
         public CombatAttribute Convert(AttributeDataContract value)

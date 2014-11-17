@@ -6,7 +6,7 @@
 //   Defines the EventStateDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.DynamicEvents.Json
+namespace GW2NET.V1.DynamicEvents
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

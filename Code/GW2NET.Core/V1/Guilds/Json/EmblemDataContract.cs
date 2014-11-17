@@ -6,7 +6,7 @@
 //   Defines the EmblemDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Guilds.Json
+namespace GW2NET.V1.Guilds
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

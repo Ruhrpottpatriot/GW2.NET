@@ -6,14 +6,13 @@
 //   Defines the MatchDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Json
+namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
     using GW2NET.Common;
-    using GW2NET.V1.WorldVersusWorld.Matches.Converters;
 
     [DataContract]
     [Converter(typeof(ConverterForMatch))]

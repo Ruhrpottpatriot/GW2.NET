@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:ICollection{string}" /> to objects of type <see cref="EmblemTransformations" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Guilds.Converters
+namespace GW2NET.V1.Guilds
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

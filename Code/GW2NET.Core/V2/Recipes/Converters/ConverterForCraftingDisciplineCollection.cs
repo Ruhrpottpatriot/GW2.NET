@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:ICollection{string}" /> to objects of type <see cref="CraftingDisciplines" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Recipes.Converters
+namespace GW2NET.V2.Recipes
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

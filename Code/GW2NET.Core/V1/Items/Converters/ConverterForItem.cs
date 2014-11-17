@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="ItemDataContract" /> to objects of type <see cref="Item" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +15,6 @@ namespace GW2NET.V1.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Item"/>.</summary>
     internal sealed class ConverterForItem : IConverter<ItemDataContract, Item>

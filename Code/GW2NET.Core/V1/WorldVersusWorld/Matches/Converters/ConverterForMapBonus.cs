@@ -6,14 +6,13 @@
 //   Converts objects of type <see cref="MapBonusDataContract" /> to objects of type <see cref="MapBonus" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.V1.WorldVersusWorld.Matches.Json;
     using GW2NET.WorldVersusWorld;
     using GW2NET.WorldVersusWorld.Bonuses;
 

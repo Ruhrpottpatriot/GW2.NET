@@ -6,15 +6,14 @@
 //   Converts objects of type <see cref="Json.AttributeDataContract" /> to objects of type <see cref="ConditionDamageModifier" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Common;
-    using GW2NET.V1.Items.Json;
 
-    /// <summary>Converts objects of type <see cref="Json.AttributeDataContract"/> to objects of type <see cref="ConditionDamageModifier"/>.</summary>
+    /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ConditionDamageModifier"/>.</summary>
     internal sealed class ConverterForConditionDamageModifier : IConverter<AttributeDataContract, ConditionDamageModifier>
     {
         /// <summary>Converts the given object of type <see cref="AttributeDataContract"/> to an object of type <see cref="ConditionDamageModifier"/>.</summary>

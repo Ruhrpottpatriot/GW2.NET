@@ -6,11 +6,10 @@
 //   Converts objects of type <see cref="ArmorDataContract" /> to objects of type <see cref="Shoulders" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using GW2NET.Common;
     using GW2NET.Items.Armors;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="ArmorDataContract"/> to objects of type <see cref="Shoulders"/>.</summary>
     internal sealed class ConverterForShoulders : IConverter<ArmorDataContract, Shoulders>

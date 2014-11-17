@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="LocationDataContract" /> to objects of type <see cref="SphereLocation" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.DynamicEvents.Converters
+namespace GW2NET.V1.DynamicEvents
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.DynamicEvents.Locations;
-    using GW2NET.V1.DynamicEvents.Json;
 
     /// <summary>Converts objects of type <see cref="LocationDataContract"/> to objects of type <see cref="SphereLocation"/>.</summary>
     internal sealed class ConverterForSphereLocation : IConverter<LocationDataContract, SphereLocation>

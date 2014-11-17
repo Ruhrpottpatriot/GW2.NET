@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="MapDataContract" /> to objects of type <see cref="Map" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps.Converters
+namespace GW2NET.V1.Maps
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Maps.Converters
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.Maps;
-    using GW2NET.V1.Maps.Json;
 
     /// <summary>Converts objects of type <see cref="MapDataContract"/> to objects of type <see cref="Map"/>.</summary>
     internal sealed class ConverterForMap : IConverter<MapDataContract, Map>

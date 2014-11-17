@@ -18,8 +18,6 @@ namespace GW2NET.V1.Floors
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V1.Floors.Converters;
-    using GW2NET.V1.Floors.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/map_floor.json interface.</summary>
     public class FloorRepository : IFloorRepository

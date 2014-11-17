@@ -6,11 +6,10 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Leggings" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using GW2NET.Common;
     using GW2NET.Items.Armors;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Leggings"/>.</summary>
     internal sealed class ConverterForLeggings : IConverter<DetailsDataContract, Leggings>

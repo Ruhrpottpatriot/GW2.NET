@@ -6,14 +6,13 @@
 //   Converts objects of type <see cref="ConsumableDataContract" /> to objects of type <see cref="GenericConsumable" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Consumables;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="GenericConsumable"/>.</summary>
     internal sealed class ConverterForGenericConsumable : IConverter<ConsumableDataContract, GenericConsumable>

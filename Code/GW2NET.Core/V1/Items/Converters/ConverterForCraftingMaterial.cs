@@ -6,11 +6,10 @@
 //   Converts objects of type <see cref="ItemDataContract" /> to objects of type <see cref="CraftingMaterial" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using GW2NET.Common;
     using GW2NET.Items.CraftingMaterials;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="CraftingMaterial"/>.</summary>
     internal sealed class ConverterForCraftingMaterial : IConverter<ItemDataContract, CraftingMaterial>

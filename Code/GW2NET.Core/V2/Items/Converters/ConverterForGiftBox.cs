@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="GiftBox" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Containers;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="GiftBox"/>.</summary>
     internal sealed class ConverterForGiftBox : IConverter<DetailsDataContract, GiftBox>

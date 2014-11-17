@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="PointOfInterestDataContract" /> to objects of type <see cref="PointOfInterest" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Floors.Converters
+namespace GW2NET.V1.Floors
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Floors.Converters
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.Maps.PointsOfInterest;
-    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="PointOfInterestDataContract"/> to objects of type <see cref="PointOfInterest"/>.</summary>
     internal sealed class ConverterForPointOfInterest : IConverter<PointOfInterestDataContract, PointOfInterest>

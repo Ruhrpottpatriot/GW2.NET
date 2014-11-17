@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="RegionDataContract" /> to objects of type <see cref="Region" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Floors.Converters
+namespace GW2NET.V1.Floors
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -16,7 +16,6 @@ namespace GW2NET.V1.Floors.Converters
     using GW2NET.Common.Converters;
     using GW2NET.Common.Drawing;
     using GW2NET.Maps;
-    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="RegionDataContract"/> to objects of type <see cref="Region"/>.</summary>
     internal sealed class ConverterForRegion : IConverter<RegionDataContract, Region>

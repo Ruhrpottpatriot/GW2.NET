@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="RecipeCollectionDataContract" /> to objects of type <see cref="T:ICollection{int}" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Recipes.Converters
+namespace GW2NET.V1.Recipes
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Recipes.Converters
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.V1.Recipes.Json;
 
     /// <summary>Converts objects of type <see cref="RecipeCollectionDataContract"/> to objects of type <see cref="T:ICollection{int}"/>.</summary>
     internal sealed class ConverterForRecipeCollection : IConverter<RecipeCollectionDataContract, ICollection<int>>

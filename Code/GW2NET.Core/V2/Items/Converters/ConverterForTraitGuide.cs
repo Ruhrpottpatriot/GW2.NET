@@ -6,11 +6,10 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="TraitGuide" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using GW2NET.Common;
     using GW2NET.Items.TraitGuides;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="TraitGuide"/>.</summary>
     internal sealed class ConverterForTraitGuide : IConverter<DetailsDataContract, TraitGuide>

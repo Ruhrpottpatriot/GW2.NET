@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="SkinDataContract" /> to objects of type <see cref="BackpackSkin" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Skins.Converters
+namespace GW2NET.V1.Skins
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Skins.Backpacks;
-    using GW2NET.V1.Skins.Json;
 
     /// <summary>Converts objects of type <see cref="SkinDataContract"/> to objects of type <see cref="BackpackSkin"/>.</summary>
     internal sealed class ConverterForBackpackSkin : IConverter<SkinDataContract, BackpackSkin>

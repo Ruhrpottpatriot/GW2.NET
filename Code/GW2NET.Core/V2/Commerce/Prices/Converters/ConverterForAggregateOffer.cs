@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="AggregateOfferDataContract" /> to objects of type <see cref="AggregateOffer" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Prices.Converters
+namespace GW2NET.V2.Commerce.Prices
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Commerce;
     using GW2NET.Common;
-    using GW2NET.V2.Commerce.Prices.Json;
 
     /// <summary>Converts objects of type <see cref="AggregateOfferDataContract"/> to objects of type <see cref="AggregateOffer"/>.</summary>
     internal sealed class ConverterForAggregateOffer : IConverter<AggregateOfferDataContract, AggregateOffer>

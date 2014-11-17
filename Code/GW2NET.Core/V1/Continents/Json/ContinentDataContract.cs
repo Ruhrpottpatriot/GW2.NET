@@ -6,7 +6,7 @@
 //   Defines the ContinentDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Continents.Json
+namespace GW2NET.V1.Continents
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

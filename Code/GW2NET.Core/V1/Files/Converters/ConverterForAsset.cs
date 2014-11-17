@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="FileDataContract" /> to objects of type <see cref="Asset" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Files.Converters
+namespace GW2NET.V1.Files
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Files;
-    using GW2NET.V1.Files.Json;
 
     /// <summary>Converts objects of type <see cref="FileDataContract"/> to objects of type <see cref="Asset"/>.</summary>
     internal sealed class ConverterForAsset : IConverter<FileDataContract, Asset>

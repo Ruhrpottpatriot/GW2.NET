@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="WeaponDataContract" /> to objects of type <see cref="Focus" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Weapons;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="Focus"/>.</summary>
     internal sealed class ConverterForFocus : IConverter<WeaponDataContract, Focus>

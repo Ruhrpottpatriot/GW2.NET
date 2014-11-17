@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:double[]" /> to objects of type <see cref="Vector3D" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.DynamicEvents.Converters
+namespace GW2NET.V1.DynamicEvents
 {
     using System.Diagnostics.Contracts;
 

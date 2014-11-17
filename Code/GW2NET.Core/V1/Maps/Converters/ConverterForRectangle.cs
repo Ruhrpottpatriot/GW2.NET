@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:double[][]" /> to objects of type <see cref="Rectangle" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps.Converters
+namespace GW2NET.V1.Maps
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;

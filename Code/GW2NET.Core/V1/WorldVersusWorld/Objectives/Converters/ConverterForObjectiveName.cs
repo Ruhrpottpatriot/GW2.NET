@@ -6,12 +6,11 @@
 //   Converts objects of type <see cref="ObjectiveNameDataContract" /> to objects of type <see cref="ObjectiveName" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Objectives.Converters
+namespace GW2NET.V1.WorldVersusWorld.Objectives
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.V1.WorldVersusWorld.Objectives.Json;
     using GW2NET.WorldVersusWorld;
 
     /// <summary>Converts objects of type <see cref="ObjectiveNameDataContract"/> to objects of type <see cref="ObjectiveName"/>.</summary>

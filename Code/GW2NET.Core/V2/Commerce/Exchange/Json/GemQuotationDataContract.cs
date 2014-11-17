@@ -6,7 +6,7 @@
 //   Defines the GemQuotationDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Exchange.Json
+namespace GW2NET.V2.Commerce.Exchange
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

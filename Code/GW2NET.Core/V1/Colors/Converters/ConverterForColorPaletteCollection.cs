@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="ColorCollectionDataContract" /> to objects of type <see cref="ICollection{T}" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Colors.Converters
+namespace GW2NET.V1.Colors
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Colors.Converters
 
     using GW2NET.Colors;
     using GW2NET.Common;
-    using GW2NET.V1.Colors.Json;
 
     /// <summary>Converts objects of type <see cref="ColorCollectionDataContract"/> to objects of type <see cref="ICollection{T}"/>.</summary>
     internal sealed class ConverterForColorPaletteCollection : IConverter<ColorCollectionDataContract, ICollection<ColorPalette>>

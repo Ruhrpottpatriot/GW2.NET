@@ -6,7 +6,7 @@
 //   Defines the EventCollectionDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.DynamicEvents.Json
+namespace GW2NET.V1.DynamicEvents
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

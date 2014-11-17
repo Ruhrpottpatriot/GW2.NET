@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="T:ICollection{string}" /> to objects of type <see cref="DynamicEventFlags" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.DynamicEvents.Converters
+namespace GW2NET.V1.DynamicEvents
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

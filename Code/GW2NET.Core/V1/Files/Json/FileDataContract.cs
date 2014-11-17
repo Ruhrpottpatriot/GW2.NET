@@ -6,7 +6,7 @@
 //   Defines the FileDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Files.Json
+namespace GW2NET.V1.Files
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

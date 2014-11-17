@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="ConsumableDataContract" /> to objects of type <see cref="UpgradeRemoval" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Consumables;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="ConsumableDataContract"/> to objects of type <see cref="UpgradeRemoval"/>.</summary>
     internal sealed class ConverterForUpgradeRemoval : IConverter<ConsumableDataContract, UpgradeRemoval>

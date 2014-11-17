@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="AttributeDataContract" /> to objects of type <see cref="CombatAttribute" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V2.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Items.Common;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="CombatAttribute"/>.</summary>
     internal sealed class ConverterForCombatAttribute : IConverter<AttributeDataContract, CombatAttribute>

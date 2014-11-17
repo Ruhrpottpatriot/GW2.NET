@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="LocationDataContract" /> to objects of type <see cref="Location" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.DynamicEvents.Converters
+namespace GW2NET.V1.DynamicEvents
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -15,7 +15,6 @@ namespace GW2NET.V1.DynamicEvents.Converters
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.DynamicEvents.Locations;
-    using GW2NET.V1.DynamicEvents.Json;
 
     /// <summary>Converts objects of type <see cref="LocationDataContract"/> to objects of type <see cref="Location"/>.</summary>
     internal sealed class ConverterForLocation : IConverter<LocationDataContract, Location>

@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="RenownTaskDataContract" /> to objects of type <see cref="RenownTask" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Floors.Converters
+namespace GW2NET.V1.Floors
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Floors.Converters
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
     using GW2NET.Maps;
-    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="RenownTaskDataContract"/> to objects of type <see cref="RenownTask"/>.</summary>
     internal sealed class ConverterForRenownTask : IConverter<RenownTaskDataContract, RenownTask>

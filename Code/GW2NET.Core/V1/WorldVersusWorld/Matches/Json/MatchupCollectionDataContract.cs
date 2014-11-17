@@ -6,7 +6,7 @@
 //   Defines the MatchupCollectionDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Json
+namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

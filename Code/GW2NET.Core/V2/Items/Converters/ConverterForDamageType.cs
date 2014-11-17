@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="string" /> to objects of type <see cref="DamageType" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System;
 

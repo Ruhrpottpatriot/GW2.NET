@@ -6,7 +6,7 @@
 //   Defines the ColorDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Colors.Json
+namespace GW2NET.V1.Colors
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

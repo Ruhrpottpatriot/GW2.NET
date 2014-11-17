@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="CompetitiveMapDataContract" /> to objects of type <see cref="CompetitiveMap" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
+namespace GW2NET.V1.WorldVersusWorld.Matches
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +15,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches.Converters
     using System.Linq;
 
     using GW2NET.Common;
-    using GW2NET.V1.WorldVersusWorld.Matches.Json;
     using GW2NET.WorldVersusWorld;
     using GW2NET.WorldVersusWorld.Bonuses;
     using GW2NET.WorldVersusWorld.Maps;

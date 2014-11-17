@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="string" /> to objects of type <see cref="CraftingDisciplines" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Recipes.Converters
+namespace GW2NET.V1.Recipes
 {
     using System;
     using System.Diagnostics.Contracts;

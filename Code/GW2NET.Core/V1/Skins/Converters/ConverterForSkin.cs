@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="SkinDataContract" /> to objects of type <see cref="Skin" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Skins.Converters
+namespace GW2NET.V1.Skins
 {
     using System;
     using System.Collections.Generic;
@@ -16,7 +16,6 @@ namespace GW2NET.V1.Skins.Converters
     using GW2NET.Common;
     using GW2NET.Items;
     using GW2NET.Skins;
-    using GW2NET.V1.Skins.Json;
 
     /// <summary>Converts objects of type <see cref="SkinDataContract"/> to objects of type <see cref="Skin"/>.</summary>
     internal sealed class ConverterForSkin : IConverter<SkinDataContract, Skin>

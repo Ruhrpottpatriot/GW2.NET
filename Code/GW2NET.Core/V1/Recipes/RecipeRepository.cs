@@ -18,8 +18,6 @@ namespace GW2NET.V1.Recipes
 
     using GW2NET.Common;
     using GW2NET.Recipes;
-    using GW2NET.V1.Recipes.Converters;
-    using GW2NET.V1.Recipes.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/recipes.json and /v1/recipe_details.json interfaces.</summary>
     public class RecipeRepository : IRecipeRepository

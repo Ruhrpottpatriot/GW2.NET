@@ -6,7 +6,7 @@
 //   Defines the AggregateListingDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Prices.Json
+namespace GW2NET.V2.Commerce.Prices
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

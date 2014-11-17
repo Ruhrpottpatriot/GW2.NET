@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="SubregionDataContract" /> to objects of type <see cref="Subregion" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Floors.Converters
+namespace GW2NET.V1.Floors
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -17,7 +17,6 @@ namespace GW2NET.V1.Floors.Converters
     using GW2NET.Common.Drawing;
     using GW2NET.Maps;
     using GW2NET.Maps.PointsOfInterest;
-    using GW2NET.V1.Floors.Json;
 
     /// <summary>Converts objects of type <see cref="SubregionDataContract"/> to objects of type <see cref="Subregion"/>.</summary>
     internal sealed class ConverterForSubregion : IConverter<SubregionDataContract, Subregion>

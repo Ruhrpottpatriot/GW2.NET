@@ -6,7 +6,7 @@
 //   Defines the ListingOfferDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Commerce.Listings.Json
+namespace GW2NET.V2.Commerce.Listings
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

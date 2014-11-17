@@ -6,14 +6,13 @@
 //   Converts objects of type <see cref="QuagganDataContract" /> to objects of type <see cref="Quaggan" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Quaggans.Converters
+namespace GW2NET.V2.Quaggans
 {
     using System;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Quaggans;
-    using GW2NET.V2.Quaggans.Json;
 
     /// <summary>Converts objects of type <see cref="QuagganDataContract"/> to objects of type <see cref="Quaggan"/>.</summary>
     internal sealed class ConverterForQuaggan : IConverter<QuagganDataContract, Quaggan>

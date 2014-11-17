@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="MapCollectionDataContract" /> to objects of type <see cref="ICollection{T}" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps.Converters
+namespace GW2NET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Maps.Converters
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V1.Maps.Json;
 
     /// <summary>Converts objects of type <see cref="MapCollectionDataContract"/> to objects of type <see cref="ICollection{T}"/>.</summary>
     internal sealed class ConverterForMapCollection : IConverter<MapCollectionDataContract, ICollection<Map>>

@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="BuffDataContract" /> to objects of type <see cref="CombatBuff" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Common;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="BuffDataContract"/> to objects of type <see cref="CombatBuff"/>.</summary>
     internal sealed class ConverterForItemBuff : IConverter<BuffDataContract, CombatBuff>

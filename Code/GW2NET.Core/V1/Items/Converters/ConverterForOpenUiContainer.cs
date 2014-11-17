@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="ContainerDataContract" /> to objects of type <see cref="OpenUiContainer" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Containers;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="ContainerDataContract"/> to objects of type <see cref="OpenUiContainer"/>.</summary>
     internal sealed class ConverterForOpenUiContainer : IConverter<ContainerDataContract, OpenUiContainer>

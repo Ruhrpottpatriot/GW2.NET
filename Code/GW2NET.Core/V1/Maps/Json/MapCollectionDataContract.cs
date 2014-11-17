@@ -6,7 +6,7 @@
 //   Defines the MapCollectionDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Maps.Json
+namespace GW2NET.V1.Maps
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

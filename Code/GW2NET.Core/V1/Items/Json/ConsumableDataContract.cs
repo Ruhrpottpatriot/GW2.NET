@@ -6,7 +6,7 @@
 //   Defines the ConsumableDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Json
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

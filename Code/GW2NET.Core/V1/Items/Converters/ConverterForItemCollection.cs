@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="ItemCollectionDataContract" /> to objects of type <see cref="T:ICollection{int}" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -14,7 +14,6 @@ namespace GW2NET.V1.Items.Converters
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="ItemCollectionDataContract"/> to objects of type <see cref="T:ICollection{int}"/>.</summary>
     internal sealed class ConverterForItemCollection : IConverter<ItemCollectionDataContract, ICollection<int>>

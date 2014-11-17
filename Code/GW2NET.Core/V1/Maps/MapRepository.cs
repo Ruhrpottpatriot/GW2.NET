@@ -18,8 +18,6 @@ namespace GW2NET.V1.Maps
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V1.Maps.Converters;
-    using GW2NET.V1.Maps.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/maps.json interface.</summary>
     public class MapRepository : IMapRepository

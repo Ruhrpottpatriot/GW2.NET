@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Bag" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Bags;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Bag"/>.</summary>
     internal sealed class ConverterForBag : IConverter<DetailsDataContract, Bag>

@@ -17,8 +17,6 @@ namespace GW2NET.V1.Continents
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V1.Continents.Converters;
-    using GW2NET.V1.Continents.Json;
 
     /// <summary>Represents a repository that retrieves data from the /v1/continents.json interface.</summary>
     public class ContinentRepository : IContinentRepository

@@ -6,7 +6,7 @@
 //   Defines the BuildDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Builds.Json
+namespace GW2NET.V1.Builds
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

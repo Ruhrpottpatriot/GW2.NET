@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="DetailsDataContract" /> to objects of type <see cref="Armor" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items.Converters
+namespace GW2NET.V2.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
@@ -16,7 +16,6 @@ namespace GW2NET.V2.Items.Converters
     using GW2NET.Common.Converters;
     using GW2NET.Items.Armors;
     using GW2NET.Items.Common;
-    using GW2NET.V2.Items.Json;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Armor"/>.</summary>
     internal sealed class ConverterForArmor : IConverter<DetailsDataContract, Armor>

@@ -6,7 +6,7 @@
 //   Defines the ObjectiveNameDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.WorldVersusWorld.Objectives.Json
+namespace GW2NET.V1.WorldVersusWorld.Objectives
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

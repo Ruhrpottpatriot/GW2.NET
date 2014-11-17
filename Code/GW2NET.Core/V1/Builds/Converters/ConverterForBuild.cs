@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="BuildDataContract" /> to objects of type <see cref="Build" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Builds.Converters
+namespace GW2NET.V1.Builds
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Builds;
     using GW2NET.Common;
-    using GW2NET.V1.Builds.Json;
 
     /// <summary>Converts objects of type <see cref="BuildDataContract"/> to objects of type <see cref="Build"/>.</summary>
     internal sealed class ConverterForBuild : IConverter<BuildDataContract, Build>

@@ -6,7 +6,7 @@
 //   Defines the IngredientDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Recipes.Json
+namespace GW2NET.V2.Recipes
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

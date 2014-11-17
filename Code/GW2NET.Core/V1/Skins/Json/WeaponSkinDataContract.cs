@@ -6,7 +6,7 @@
 //   Defines the WeaponSkinDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Skins.Json
+namespace GW2NET.V1.Skins
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;

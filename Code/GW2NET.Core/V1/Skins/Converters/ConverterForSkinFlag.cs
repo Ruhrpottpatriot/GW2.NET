@@ -6,7 +6,7 @@
 //   Converts objects of type <see cref="string" /> to objects of type <see cref="SkinFlags" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Skins.Converters
+namespace GW2NET.V1.Skins
 {
     using System;
     using System.Diagnostics.Contracts;

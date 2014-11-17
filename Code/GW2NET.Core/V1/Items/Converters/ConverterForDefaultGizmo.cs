@@ -6,13 +6,12 @@
 //   Converts objects of type <see cref="GizmoDataContract" /> to objects of type <see cref="DefaultGizmo" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Items.Converters
+namespace GW2NET.V1.Items
 {
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items.Gizmos;
-    using GW2NET.V1.Items.Json;
 
     /// <summary>Converts objects of type <see cref="GizmoDataContract"/> to objects of type <see cref="DefaultGizmo"/>.</summary>
     internal sealed class ConverterForDefaultGizmo : IConverter<GizmoDataContract, DefaultGizmo>

@@ -6,7 +6,7 @@
 //   Defines the RegionDataContract type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V1.Floors.Json
+namespace GW2NET.V1.Floors
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;

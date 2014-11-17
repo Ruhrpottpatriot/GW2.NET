@@ -15,8 +15,6 @@ namespace GW2NET.V1.Builds
 
     using GW2NET.Builds;
     using GW2NET.Common;
-    using GW2NET.V1.Builds.Converters;
-    using GW2NET.V1.Builds.Json;
 
     /// <summary>Represents a service that retrieves data from the /v1/build.json interface.</summary>
     /// <remarks>See <a href="http://wiki.guildwars2.com/wiki/API:1/build">wiki</a> for more information.</remarks>
