@@ -1,6 +1,13 @@
-﻿namespace GW2NET.Factories
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="FactoryForV1.cs" company="GW2.NET Coding Team">
+//   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
+// </copyright>
+// <summary>
+//   Provides access to version 1 of the public API.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+namespace GW2NET.Factories
 {
-    using System;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -19,6 +26,7 @@
     using GW2NET.V1.Skins;
     using GW2NET.V1.Worlds;
 
+    /// <summary>Provides access to version 1 of the public API.</summary>
     public class FactoryForV1 : FactoryBase
     {
         /// <summary>Initializes a new instance of the <see cref="FactoryForV1"/> class.</summary>
@@ -29,6 +37,7 @@
             Contract.Requires(serviceClient != null);
         }
 
+        /// <summary>Provides access to the builds data source.</summary>
         public IBuildService Build
         {
             get
@@ -38,6 +47,7 @@
             }
         }
 
+        /// <summary>Provides access to the colors data source.</summary>
         public ColorRepositoryFactory Colors
         {
             get
@@ -47,6 +57,7 @@
             }
         }
 
+        /// <summary>Provides access to the continents data source.</summary>
         public ContinentRepositoryFactory Continents
         {
             get
@@ -56,15 +67,7 @@
             }
         }
 
-        public EventRepositoryFactory Events
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<EventRepositoryFactory>() != null);
-                return new EventRepositoryFactory(this.ServiceClient);
-            }
-        }
-
+        /// <summary>Provides access to the event names data source.</summary>
         public EventNameRepositoryFactory EventNames
         {
             get
@@ -74,6 +77,17 @@
             }
         }
 
+        /// <summary>Provides access to the events data source.</summary>
+        public EventRepositoryFactory Events
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<EventRepositoryFactory>() != null);
+                return new EventRepositoryFactory(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Provides access to the files data source.</summary>
         public IFileRepository Files
         {
             get
@@ -83,41 +97,7 @@
             }
         }
 
-        public IGuildRepository Guilds
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<IGuildRepository>() != null);
-                return new GuildRepository(this.ServiceClient);
-            }
-        }
-        public ItemRepositoryFactory Items
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<ItemRepositoryFactory>() != null);
-                return new ItemRepositoryFactory(this.ServiceClient);
-            }
-        }
-
-        public MapNameRepositoryFactory MapNames
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<MapNameRepositoryFactory>() != null);
-                return new MapNameRepositoryFactory(this.ServiceClient);
-            }
-        }
-
-        public MapRepositoryFactory Maps
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<MapRepositoryFactory>() != null);
-                return new MapRepositoryFactory(this.ServiceClient);
-            }
-        }
-
+        /// <summary>Provides access to the floors data source.</summary>
         public FloorRepositoryFactory Floors
         {
             get
@@ -127,6 +107,47 @@
             }
         }
 
+        /// <summary>Provides access to the guilds data source.</summary>
+        public IGuildRepository Guilds
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<IGuildRepository>() != null);
+                return new GuildRepository(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Provides access to the items data source.</summary>
+        public ItemRepositoryFactory Items
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<ItemRepositoryFactory>() != null);
+                return new ItemRepositoryFactory(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Provides access to the map names data source.</summary>
+        public MapNameRepositoryFactory MapNames
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<MapNameRepositoryFactory>() != null);
+                return new MapNameRepositoryFactory(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Provides access to the maps data source.</summary>
+        public MapRepositoryFactory Maps
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<MapRepositoryFactory>() != null);
+                return new MapRepositoryFactory(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Provides access to the recipes data source.</summary>
         public RecipeRepositoryFactory Recipes
         {
             get
@@ -136,6 +157,7 @@
             }
         }
 
+        /// <summary>Provides access to the skins data source.</summary>
         public SkinRepositoryFactory Skins
         {
             get
@@ -145,6 +167,7 @@
             }
         }
 
+        /// <summary>Provides access to the worlds data source.</summary>
         public WorldRepositoryFactory Worlds
         {
             get
@@ -154,6 +177,7 @@
             }
         }
 
+        /// <summary>Provides access to WvW data sources.</summary>
         public FactoryForV1WvW WvW
         {
             get
