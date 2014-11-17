@@ -58,7 +58,7 @@ namespace GW2NET.V1.Maps
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IMapNameRepository English()
+        public IMapNameRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IMapNameRepository>() != null);
             return new MapNameRepository(this.serviceClient);

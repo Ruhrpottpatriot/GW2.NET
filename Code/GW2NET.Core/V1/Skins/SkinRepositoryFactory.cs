@@ -58,7 +58,7 @@ namespace GW2NET.V1.Skins
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public ISkinRepository English()
+        public ISkinRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             return new SkinRepository(this.serviceClient);

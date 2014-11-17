@@ -37,7 +37,7 @@ namespace GW2NET.V1.Floors
             get
             {
                 Contract.Ensures(Contract.Result<IFloorRepository>() != null);
-                return this.English(continentId);
+                return this.ForDefaultCulture(continentId);
             }
         }
 
@@ -73,7 +73,7 @@ namespace GW2NET.V1.Floors
         /// <summary>Creates an instance for the default language.</summary>
         /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IFloorRepository English(int continentId)
+        public IFloorRepository ForDefaultCulture(int continentId)
         {
             Contract.Ensures(Contract.Result<IFloorRepository>() != null);
             return new FloorRepository(this.serviceClient, continentId);

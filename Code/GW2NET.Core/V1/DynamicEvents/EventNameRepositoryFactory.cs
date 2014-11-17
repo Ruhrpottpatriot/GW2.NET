@@ -58,7 +58,7 @@ namespace GW2NET.V1.DynamicEvents
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IEventNameRepository English()
+        public IEventNameRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IEventNameRepository>() != null);
             return new EventNameRepository(this.serviceClient);

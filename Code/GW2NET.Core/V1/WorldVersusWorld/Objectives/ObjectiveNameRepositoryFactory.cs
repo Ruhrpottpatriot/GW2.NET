@@ -58,7 +58,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IObjectiveNameRepository English()
+        public IObjectiveNameRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
             return new ObjectiveNameRepository(this.serviceClient);

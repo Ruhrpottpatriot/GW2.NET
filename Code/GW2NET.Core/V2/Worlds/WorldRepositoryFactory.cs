@@ -58,7 +58,7 @@ namespace GW2NET.V2.Worlds
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IWorldRepository English()
+        public IWorldRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             return new WorldRepository(this.serviceClient);

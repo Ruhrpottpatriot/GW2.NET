@@ -58,7 +58,7 @@ namespace GW2NET.V1.Colors
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IColorRepository English()
+        public IColorRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IColorRepository>() != null);
             return new ColorRepository(this.serviceClient);

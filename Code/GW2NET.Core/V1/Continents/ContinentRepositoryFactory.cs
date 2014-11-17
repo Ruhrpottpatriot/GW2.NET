@@ -58,7 +58,7 @@ namespace GW2NET.V1.Continents
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IContinentRepository English()
+        public IContinentRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IContinentRepository>() != null);
             return new ContinentRepository(this.serviceClient);

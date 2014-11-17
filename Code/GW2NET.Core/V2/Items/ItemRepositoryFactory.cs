@@ -58,7 +58,7 @@ namespace GW2NET.V2.Items
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IItemRepository English()
+        public IItemRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IItemRepository>() != null);
             return new ItemRepository(this.serviceClient);

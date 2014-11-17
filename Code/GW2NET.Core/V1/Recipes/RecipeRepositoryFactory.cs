@@ -58,7 +58,7 @@ namespace GW2NET.V1.Recipes
 
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IRecipeRepository English()
+        public IRecipeRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             return new RecipeRepository(this.serviceClient);
