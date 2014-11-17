@@ -33,7 +33,7 @@
             get
             {
                 Contract.Ensures(Contract.Result<IAggregateListingRepository>() != null);
-                return new PriceRepository(this.ServiceClient);
+                return new AggregateListingRepository(this.ServiceClient);
             }
         }
 

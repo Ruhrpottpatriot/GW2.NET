@@ -1,17 +1,17 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PricePageRequest.cs" company="GW2.NET Coding Team">
+// <copyright file="AggregateListingDiscoveryRequest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a page request that targets the /v2/commerce/prices interface.
+//   Represents a discovery request that targets the /v2/commerce/prices interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Prices
 {
-    using GW2NET.V2.Common;
+    using GW2NET.Common;
 
-    /// <summary>Represents a page request that targets the /v2/commerce/prices interface.</summary>
-    internal sealed class PricePageRequest : PageRequest
+    /// <summary>Represents a discovery request that targets the /v2/commerce/prices interface.</summary>
+    internal sealed class AggregateListingDiscoveryRequest : DiscoveryRequest
     {
         /// <summary>Gets the resource path.</summary>
         public override string Resource

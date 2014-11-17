@@ -862,11 +862,11 @@
     <Compile Include="V2\Commerce\Prices\Converters\ConverterForAggregateOffer.cs" />
     <Compile Include="V2\Commerce\Prices\Json\AggregateListingDataContract.cs" />
     <Compile Include="V2\Commerce\Prices\Json\AggregateOfferDataContract.cs" />
-    <Compile Include="V2\Commerce\Prices\PriceBulkRequest.cs" />
-    <Compile Include="V2\Commerce\Prices\PriceDetailsRequest.cs" />
-    <Compile Include="V2\Commerce\Prices\PriceDiscoveryRequest.cs" />
-    <Compile Include="V2\Commerce\Prices\PricePageRequest.cs" />
-    <Compile Include="V2\Commerce\Prices\PriceRepository.cs" />
+    <Compile Include="V2\Commerce\Prices\AggregateListingBulkRequest.cs" />
+    <Compile Include="V2\Commerce\Prices\AggregateListingDetailsRequest.cs" />
+    <Compile Include="V2\Commerce\Prices\AggregateListingDiscoveryRequest.cs" />
+    <Compile Include="V2\Commerce\Prices\AggregateListingPageRequest.cs" />
+    <Compile Include="V2\Commerce\Prices\AggregateListingRepository.cs" />
     <Compile Include="V2\Common\BulkRequest.cs" />
     <Compile Include="V2\Common\ConverterForCollectionPageResponse.cs" />
     <Compile Include="V2\Common\ConverterForCollectionResponse.cs" />

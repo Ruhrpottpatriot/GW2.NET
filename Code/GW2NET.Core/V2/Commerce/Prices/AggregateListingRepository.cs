@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="PriceRepository.cs" company="GW2.NET Coding Team">
+// <copyright file="AggregateListingRepository.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
@@ -34,7 +34,7 @@ namespace GW2NET.V2.Commerce.Prices
     ///     </item>
     /// </list>
     /// </remarks>
-    public class PriceRepository : IAggregateListingRepository
+    public class AggregateListingRepository : IAggregateListingRepository
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<AggregateListingDataContract>>, IDictionaryRange<int, AggregateListing>> converterForBulkResponse;
@@ -51,18 +51,18 @@ namespace GW2NET.V2.Commerce.Prices
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
-        /// <summary>Initializes a new instance of the <see cref="PriceRepository"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="AggregateListingRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public PriceRepository(IServiceClient serviceClient)
+        public AggregateListingRepository(IServiceClient serviceClient)
             : this(serviceClient, new ConverterForAggregateListing())
         {
             Contract.Requires(serviceClient != null);
         }
 
-        /// <summary>Initializes a new instance of the <see cref="PriceRepository"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="AggregateListingRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForAggregateListing">The converter for <see cref="AggregateListing"/>.</param>
-        internal PriceRepository(IServiceClient serviceClient, IConverter<AggregateListingDataContract, AggregateListing> converterForAggregateListing)
+        internal AggregateListingRepository(IServiceClient serviceClient, IConverter<AggregateListingDataContract, AggregateListing> converterForAggregateListing)
         {
             Contract.Requires(serviceClient != null);
             Contract.Requires(converterForAggregateListing != null);
@@ -76,7 +76,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         ICollection<int> IDiscoverable<int>.Discover()
         {
-            var request = new PriceDiscoveryRequest();
+            var request = new AggregateListingDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<int>>(request);
             return this.converterForIdentifiersResponse.Convert(response) ?? new List<int>(0);
         }
@@ -91,7 +91,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<ICollection<int>> IDiscoverable<int>.DiscoverAsync(CancellationToken cancellationToken)
         {
-            var request = new PriceDiscoveryRequest();
+            var request = new AggregateListingDiscoveryRequest();
             var responseTask = this.serviceClient.SendAsync<ICollection<int>>(request, cancellationToken);
             return responseTask.ContinueWith<ICollection<int>>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -99,7 +99,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         AggregateListing IRepository<int, AggregateListing>.Find(int identifier)
         {
-            var request = new PriceDetailsRequest
+            var request = new AggregateListingDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo)
             };
@@ -110,7 +110,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         IDictionaryRange<int, AggregateListing> IRepository<int, AggregateListing>.FindAll()
         {
-            var request = new PriceBulkRequest();
+            var request = new AggregateListingBulkRequest();
             var response = this.serviceClient.Send<ICollection<AggregateListingDataContract>>(request);
             return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<int, AggregateListing>(0);
         }
@@ -118,7 +118,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         IDictionaryRange<int, AggregateListing> IRepository<int, AggregateListing>.FindAll(ICollection<int> identifiers)
         {
-            var request = new PriceBulkRequest
+            var request = new AggregateListingBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
@@ -136,7 +136,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync(CancellationToken cancellationToken)
         {
-            var request = new PriceBulkRequest();
+            var request = new AggregateListingBulkRequest();
             var responseTask = this.serviceClient.SendAsync<ICollection<AggregateListingDataContract>>(request, cancellationToken);
             return responseTask.ContinueWith<IDictionaryRange<int, AggregateListing>>(this.ConvertAsyncResponse, cancellationToken);
         }
@@ -151,7 +151,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<IDictionaryRange<int, AggregateListing>> IRepository<int, AggregateListing>.FindAllAsync(ICollection<int> identifiers, CancellationToken cancellationToken)
         {
-            var request = new PriceBulkRequest
+            var request = new AggregateListingBulkRequest
             {
                 Identifiers = identifiers.Select(i => i.ToString(NumberFormatInfo.InvariantInfo)).ToList()
             };
@@ -169,7 +169,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<AggregateListing> IRepository<int, AggregateListing>.FindAsync(int identifier, CancellationToken cancellationToken)
         {
-            var request = new PriceDetailsRequest
+            var request = new AggregateListingDetailsRequest
             {
                 Identifier = identifier.ToString(NumberFormatInfo.InvariantInfo)
             };
@@ -180,7 +180,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         ICollectionPage<AggregateListing> IPaginator<AggregateListing>.FindPage(int pageIndex)
         {
-            var request = new PricePageRequest
+            var request = new AggregateListingPageRequest
             {
                 Page = pageIndex
             };
@@ -199,7 +199,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         ICollectionPage<AggregateListing> IPaginator<AggregateListing>.FindPage(int pageIndex, int pageSize)
         {
-            var request = new PricePageRequest
+            var request = new AggregateListingPageRequest
             {
                 Page = pageIndex, 
                 PageSize = pageSize
@@ -226,7 +226,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex, CancellationToken cancellationToken)
         {
-            var request = new PricePageRequest
+            var request = new AggregateListingPageRequest
             {
                 Page = pageIndex
             };
@@ -244,7 +244,7 @@ namespace GW2NET.V2.Commerce.Prices
         /// <inheritdoc />
         Task<ICollectionPage<AggregateListing>> IPaginator<AggregateListing>.FindPageAsync(int pageIndex, int pageSize, CancellationToken cancellationToken)
         {
-            var request = new PricePageRequest
+            var request = new AggregateListingPageRequest
             {
                 Page = pageIndex, 
                 PageSize = pageSize
