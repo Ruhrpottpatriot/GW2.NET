@@ -6,7 +6,7 @@
 //   Represents a bag.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Bags
+namespace GW2NET.Items
 {
     /// <summary>Represents a bag.</summary>
     public class Bag : Item

@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.TraitGuides;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="TraitGuide"/>.</summary>
     internal sealed class ConverterForTraitGuide : IConverter<ItemDataContract, TraitGuide>

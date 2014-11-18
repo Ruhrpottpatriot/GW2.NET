@@ -6,7 +6,7 @@
 //   Represents an edible item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Consumables
+namespace GW2NET.Items
 {
     using System;
 

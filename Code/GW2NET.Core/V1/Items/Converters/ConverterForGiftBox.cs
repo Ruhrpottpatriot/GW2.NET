@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Containers;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="ContainerDataContract"/> to objects of type <see cref="GiftBox"/>.</summary>
     internal sealed class ConverterForGiftBox : IConverter<ContainerDataContract, GiftBox>

@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.UpgradeComponents;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="UpgradeComponentDataContract"/> to objects of type <see cref="Gem"/>.</summary>
     internal sealed class ConverterForGem : IConverter<UpgradeComponentDataContract, Gem>

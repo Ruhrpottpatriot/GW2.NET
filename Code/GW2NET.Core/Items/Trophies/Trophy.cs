@@ -6,7 +6,7 @@
 //   Represents a trophy.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Trophies
+namespace GW2NET.Items
 {
     /// <summary>Represents a trophy.</summary>
     public class Trophy : Item

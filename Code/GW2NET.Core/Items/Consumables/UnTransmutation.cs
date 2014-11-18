@@ -6,7 +6,7 @@
 //   Represents a un-transmutation item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Consumables
+namespace GW2NET.Items
 {
     /// <summary>Represents a un-transmutation item.</summary>
     public class UnTransmutation : Consumable

@@ -9,7 +9,7 @@
 namespace GW2NET.V2.Items
 {
     using GW2NET.Common;
-    using GW2NET.Items.Armors;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Helm"/>.</summary>
     internal sealed class ConverterForHelm : IConverter<DetailsDataContract, Helm>

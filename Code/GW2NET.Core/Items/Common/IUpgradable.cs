@@ -6,7 +6,7 @@
 //   Provides the interface for items that can be upgraded.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Common
+namespace GW2NET.Items
 {
     using System.Collections.Generic;
 

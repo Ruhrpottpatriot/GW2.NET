@@ -6,7 +6,7 @@
 //   Represents shoulder protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Armors
+namespace GW2NET.Items
 {
     /// <summary>Represents shoulder protection.</summary>
     public class Shoulders : Armor

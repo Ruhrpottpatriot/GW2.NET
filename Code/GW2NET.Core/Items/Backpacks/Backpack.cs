@@ -6,14 +6,13 @@
 //   Represents a backpack.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Backpacks
+namespace GW2NET.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.ChatLinks;
-    using GW2NET.Items.Common;
     using GW2NET.Skins;
 
     /// <summary>Represents a backpack.</summary>

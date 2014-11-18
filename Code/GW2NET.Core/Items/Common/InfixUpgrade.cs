@@ -6,7 +6,7 @@
 //   Represents an item's infixed combat upgrades.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Common
+namespace GW2NET.Items
 {
     using System.Collections.Generic;
 

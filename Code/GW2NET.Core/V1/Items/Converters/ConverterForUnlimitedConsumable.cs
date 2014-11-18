@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Gizmos;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="GizmoDataContract"/> to objects of type <see cref="UnlimitedConsumable"/>.</summary>
     internal sealed class ConverterForUnlimitedConsumable : IConverter<GizmoDataContract, UnlimitedConsumable>

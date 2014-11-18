@@ -6,7 +6,7 @@
 //   The Condition Damage modifier.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Common
+namespace GW2NET.Items
 {
     /// <summary>The Condition Damage modifier.</summary>
     public class ConditionDamageModifier : CombatAttribute

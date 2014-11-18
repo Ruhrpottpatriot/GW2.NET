@@ -11,7 +11,7 @@ namespace GW2NET.V2.Items
     using System;
 
     using GW2NET.Common;
-    using GW2NET.Items.Common;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="InfusionSlotFlags"/>.</summary>
     internal sealed class ConverterForInfusionSlotFlag : IConverter<string, InfusionSlotFlags>

@@ -6,7 +6,7 @@
 //   Represents a large bundle.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     /// <summary>Represents a large bundle.</summary>
     public class LargeBundle : Weapon

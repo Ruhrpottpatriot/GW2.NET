@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Common;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="CombatBuffDataContract"/> to objects of type <see cref="CombatBuff"/>.</summary>
     internal sealed class ConverterForCombatBuff : IConverter<CombatBuffDataContract, CombatBuff>

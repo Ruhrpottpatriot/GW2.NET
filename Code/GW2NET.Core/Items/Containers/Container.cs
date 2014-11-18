@@ -6,7 +6,7 @@
 //   Provides the base class for container types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Containers
+namespace GW2NET.Items
 {
     /// <summary>Provides the base class for container types.</summary>
     public abstract class Container : Item

@@ -11,7 +11,7 @@ namespace GW2NET.V2.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Common;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="AttributeDataContract"/> to objects of type <see cref="ConditionDamageModifier"/>.</summary>
     internal sealed class ConverterForConditionDamageModifier : IConverter<AttributeDataContract, ConditionDamageModifier>

@@ -6,7 +6,7 @@
 //   Enumerates the known armor weight classes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Armors
+namespace GW2NET.Items
 {
     /// <summary>Enumerates the known armor weight classes.</summary>
     public enum WeightClass

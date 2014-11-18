@@ -11,7 +11,7 @@ namespace GW2NET.V2.Items
     using System;
 
     using GW2NET.Common;
-    using GW2NET.Items.Armors;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="WeightClass"/>.</summary>
     internal sealed class ConverterForWeightClass : IConverter<string, WeightClass>

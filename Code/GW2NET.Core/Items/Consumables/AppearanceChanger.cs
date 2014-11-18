@@ -6,7 +6,7 @@
 //   Represents an appearance changing consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Consumables
+namespace GW2NET.Items
 {
     /// <summary>Represents an appearance changing consumable item.</summary>
     public class AppearanceChanger : Consumable

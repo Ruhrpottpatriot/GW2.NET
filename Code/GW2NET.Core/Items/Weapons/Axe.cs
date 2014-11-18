@@ -6,7 +6,7 @@
 //   Represents an axe.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     /// <summary>Represents an axe.</summary>
     public class Axe : Weapon

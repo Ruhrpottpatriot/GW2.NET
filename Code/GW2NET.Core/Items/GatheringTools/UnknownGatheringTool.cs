@@ -6,7 +6,7 @@
 //   Represents an unknown gathering tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.GatheringTools
+namespace GW2NET.Items
 {
     /// <summary>Represents an unknown gathering tool.</summary>
     public class UnknownGatheringTool : GatheringTool

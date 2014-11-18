@@ -6,7 +6,7 @@
 //   Represents an item's combat buff.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Common
+namespace GW2NET.Items
 {
     using System.Diagnostics.Contracts;
 

@@ -14,8 +14,7 @@ namespace GW2NET.V1.Items
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Items.Backpacks;
-    using GW2NET.Items.Common;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Backpack"/>.</summary>
     internal sealed class ConverterForBackpack : IConverter<ItemDataContract, Backpack>

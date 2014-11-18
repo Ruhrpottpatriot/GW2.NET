@@ -14,7 +14,7 @@ namespace GW2NET.V1.Skins
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Items.Armors;
+    using GW2NET.Items;
     using GW2NET.Skins.Armors;
 
     /// <summary>Converts objects of type <see cref="SkinDataContract"/> to objects of type <see cref="ArmorSkin"/>.</summary>

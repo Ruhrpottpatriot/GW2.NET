@@ -6,7 +6,7 @@
 //   Represents a focus.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     /// <summary>Represents a focus.</summary>
     public class Focus : Weapon

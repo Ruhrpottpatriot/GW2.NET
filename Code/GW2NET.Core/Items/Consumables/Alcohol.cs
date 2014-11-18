@@ -6,7 +6,7 @@
 //   Represents a drink.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Consumables
+namespace GW2NET.Items
 {
     /// <summary>Represents a drink.</summary>
     public class Alcohol : Consumable

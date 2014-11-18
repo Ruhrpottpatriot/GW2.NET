@@ -15,7 +15,6 @@ namespace GW2NET.V2.Items
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.Items.Common;
 
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Item"/>.</summary>
     internal sealed class ConverterForItem : IConverter<ItemDataContract, Item>

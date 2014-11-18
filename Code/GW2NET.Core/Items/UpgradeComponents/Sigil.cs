@@ -6,7 +6,7 @@
 //   Represents a sigil upgrade component.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.UpgradeComponents
+namespace GW2NET.Items
 {
     /// <summary>Represents a sigil upgrade component.</summary>
     public class Sigil : UpgradeComponent

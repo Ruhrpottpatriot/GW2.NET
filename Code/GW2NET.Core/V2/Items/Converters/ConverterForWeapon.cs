@@ -14,8 +14,7 @@ namespace GW2NET.V2.Items
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
-    using GW2NET.Items.Common;
-    using GW2NET.Items.Weapons;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Weapon"/>.</summary>
     internal sealed class ConverterForWeapon : IConverter<DetailsDataContract, Weapon>

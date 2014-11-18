@@ -6,7 +6,7 @@
 //   Represents a foraging tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.GatheringTools
+namespace GW2NET.Items
 {
     /// <summary>Represents a foraging tool.</summary>
     public class ForagingTool : GatheringTool

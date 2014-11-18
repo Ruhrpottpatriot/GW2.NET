@@ -6,7 +6,7 @@
 //   Represents a short bow.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     /// <summary>Represents a short bow.</summary>
     public class ShortBow : Weapon

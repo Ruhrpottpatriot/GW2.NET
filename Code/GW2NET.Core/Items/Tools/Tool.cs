@@ -6,7 +6,7 @@
 //   Provides the base class for tool types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Tools
+namespace GW2NET.Items
 {
     /// <summary>Provides the base class for tool types.</summary>
     public abstract class Tool : Item

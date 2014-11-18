@@ -6,7 +6,7 @@
 //   Represents arm protection.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Armors
+namespace GW2NET.Items
 {
     /// <summary>Represents arm protection.</summary>
     public class Gloves : Armor

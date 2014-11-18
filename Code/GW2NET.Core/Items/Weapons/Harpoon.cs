@@ -6,7 +6,7 @@
 //   Represents a harpoon.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     /// <summary>Represents a harpoon.</summary>
     public class Harpoon : Weapon

@@ -6,7 +6,7 @@
 //   Represents a torch.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     /// <summary>Represents a torch.</summary>
     public class Torch : Weapon

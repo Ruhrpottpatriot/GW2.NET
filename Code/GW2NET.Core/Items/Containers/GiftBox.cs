@@ -6,7 +6,7 @@
 //   Represents a gift box container.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Containers
+namespace GW2NET.Items
 {
     /// <summary>Represents a gift box container.</summary>
     public class GiftBox : Container

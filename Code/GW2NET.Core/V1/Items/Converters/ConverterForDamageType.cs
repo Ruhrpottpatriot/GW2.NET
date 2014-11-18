@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items
     using System;
 
     using GW2NET.Common;
-    using GW2NET.Items.Weapons;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="string"/> to objects of type <see cref="DamageType"/>.</summary>
     internal sealed class ConverterForDamageType : IConverter<string, DamageType>

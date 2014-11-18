@@ -8,7 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Skins.Weapons
 {
-    using GW2NET.Items.Weapons;
+    using GW2NET.Items;
 
     /// <summary>Represents a weapon skin.</summary>
     public abstract class WeaponSkin : Skin

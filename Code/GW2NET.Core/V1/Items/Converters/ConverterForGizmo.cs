@@ -13,7 +13,7 @@ namespace GW2NET.V1.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Gizmos;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Gizmo"/>.</summary>
     internal sealed class ConverterForGizmo : IConverter<ItemDataContract, Gizmo>

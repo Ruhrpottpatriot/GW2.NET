@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Bags;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="Bag"/>.</summary>
     internal sealed class ConverterForBag : IConverter<ItemDataContract, Bag>

@@ -6,7 +6,7 @@
 //   Provides the interface for items that have a visual appearance in the game.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Common
+namespace GW2NET.Items
 {
     using GW2NET.Skins;
 

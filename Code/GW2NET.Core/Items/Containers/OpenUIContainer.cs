@@ -6,7 +6,7 @@
 //   Represents a container that opens a user interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Containers
+namespace GW2NET.Items
 {
     /// <summary>Represents a container that opens a user interface.</summary>
     public class OpenUiContainer : Container

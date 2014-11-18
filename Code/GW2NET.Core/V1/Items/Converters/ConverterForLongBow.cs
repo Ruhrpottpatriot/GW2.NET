@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Weapons;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="WeaponDataContract"/> to objects of type <see cref="LongBow"/>.</summary>
     internal sealed class ConverterForLongBow : IConverter<WeaponDataContract, LongBow>

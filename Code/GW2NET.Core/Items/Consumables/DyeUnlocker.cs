@@ -6,7 +6,7 @@
 //   Represents a dye.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Consumables
+namespace GW2NET.Items
 {
     using GW2NET.Colors;
 

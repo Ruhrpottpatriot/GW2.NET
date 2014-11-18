@@ -9,7 +9,7 @@
 namespace GW2NET.V1.Items
 {
     using GW2NET.Common;
-    using GW2NET.Items.Armors;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="ArmorDataContract"/> to objects of type <see cref="HelmAquatic"/>.</summary>
     internal sealed class ConverterForHelmAquatic : IConverter<ArmorDataContract, HelmAquatic>

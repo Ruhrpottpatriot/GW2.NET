@@ -6,7 +6,7 @@
 //   Represents a logging tool.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.GatheringTools
+namespace GW2NET.Items
 {
     /// <summary>Represents a logging tool.</summary>
     public class LoggingTool : GatheringTool

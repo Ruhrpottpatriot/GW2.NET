@@ -6,7 +6,7 @@
 //   Represents a shield.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     /// <summary>Represents a shield.</summary>
     public class Shield : Weapon

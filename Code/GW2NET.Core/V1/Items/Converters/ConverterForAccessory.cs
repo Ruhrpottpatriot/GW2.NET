@@ -11,7 +11,7 @@ namespace GW2NET.V1.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Trinkets;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="TrinketDataContract"/> to objects of type <see cref="Accessory"/>.</summary>
     internal sealed class ConverterForAccessory : IConverter<TrinketDataContract, Accessory>

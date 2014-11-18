@@ -6,7 +6,7 @@
 //   Defines the ContractClassForIUpgrade type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Common
+namespace GW2NET.Items
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;

@@ -13,7 +13,7 @@ namespace GW2NET.V2.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Containers;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Container"/>.</summary>
     internal sealed class ConverterForContainer : IConverter<DetailsDataContract, Container>

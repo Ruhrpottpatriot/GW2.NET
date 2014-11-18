@@ -11,7 +11,7 @@ namespace GW2NET.V2.Items
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.Items.Weapons;
+    using GW2NET.Items;
 
     /// <summary>Converts objects of type <see cref="DetailsDataContract"/> to objects of type <see cref="Shield"/>.</summary>
     internal sealed class ConverterForShield : IConverter<DetailsDataContract, Shield>

@@ -6,7 +6,7 @@
 //   Represents a halloween consumable item.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Consumables
+namespace GW2NET.Items
 {
     /// <summary>Represents a halloween consumable item.</summary>
     public class HalloweenConsumable : Consumable

@@ -6,14 +6,13 @@
 //   Provides the base class for weapon types.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.ChatLinks;
-    using GW2NET.Items.Common;
     using GW2NET.Skins;
 
     /// <summary>Provides the base class for weapon types.</summary>

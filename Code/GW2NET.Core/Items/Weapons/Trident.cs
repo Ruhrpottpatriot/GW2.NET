@@ -6,7 +6,7 @@
 //   Represents a trident.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     /// <summary>Represents a trident.</summary>
     public class Trident : Weapon

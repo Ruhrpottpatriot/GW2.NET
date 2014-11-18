@@ -6,7 +6,7 @@
 //   Represents a dagger.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Items.Weapons
+namespace GW2NET.Items
 {
     /// <summary>Represents a dagger.</summary>
     public class Dagger : Weapon
