@@ -6,7 +6,7 @@
 //   Represents one of a World versus World map's objectives.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.WorldVersusWorld.Objectives
+namespace GW2NET.WorldVersusWorld
 {
     using System;
     using System.Globalization;

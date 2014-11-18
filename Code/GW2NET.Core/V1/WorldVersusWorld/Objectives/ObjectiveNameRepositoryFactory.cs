@@ -13,7 +13,7 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.WorldVersusWorld.Objectives;
+    using GW2NET.WorldVersusWorld;
 
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class ObjectiveNameRepositoryFactory

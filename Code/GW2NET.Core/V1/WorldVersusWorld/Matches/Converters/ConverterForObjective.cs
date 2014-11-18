@@ -14,7 +14,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
 
     using GW2NET.Common;
     using GW2NET.WorldVersusWorld;
-    using GW2NET.WorldVersusWorld.Objectives;
 
     /// <summary>Converts objects of type <see cref="ObjectiveDataContract"/> to objects of type <see cref="Objective"/>.</summary>
     internal sealed class ConverterForObjective : IConverter<ObjectiveDataContract, Objective>

@@ -18,7 +18,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
 
     using GW2NET.Common;
     using GW2NET.WorldVersusWorld;
-    using GW2NET.WorldVersusWorld.Objectives;
 
     /// <summary>Represents a repository that retrieves data from the /v1/wvw/objective_names.json interface.</summary>
     public class ObjectiveNameRepository : IObjectiveNameRepository

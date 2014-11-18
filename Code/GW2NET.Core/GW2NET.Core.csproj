@@ -1037,12 +1037,12 @@
     <Compile Include="WorldVersusWorld\EternalBattlegrounds.cs" />
     <Compile Include="WorldVersusWorld\GreenBorderlands.cs" />
     <Compile Include="WorldVersusWorld\IMatchRepository.cs" />
+    <Compile Include="WorldVersusWorld\IObjectiveNameRepository.cs" />
     <Compile Include="WorldVersusWorld\MapBonus.cs" />
     <Compile Include="WorldVersusWorld\Match.cs" />
     <Compile Include="WorldVersusWorld\Matchup.cs" />
+    <Compile Include="WorldVersusWorld\Objective.cs" />
     <Compile Include="WorldVersusWorld\ObjectiveName.cs" />
-    <Compile Include="WorldVersusWorld\Objectives\IObjectiveNameRepository.cs" />
-    <Compile Include="WorldVersusWorld\Objectives\Objective.cs" />
     <Compile Include="WorldVersusWorld\RedBorderlands.cs" />
     <Compile Include="WorldVersusWorld\Scoreboard.cs" />
     <Compile Include="WorldVersusWorld\TeamColor.cs" />

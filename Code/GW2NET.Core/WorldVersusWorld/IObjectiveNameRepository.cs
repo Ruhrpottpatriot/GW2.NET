@@ -6,7 +6,7 @@
 //   Provides the interface for repositories that provide localized objective names.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.WorldVersusWorld.Objectives
+namespace GW2NET.WorldVersusWorld
 {
     using GW2NET.Common;
 
