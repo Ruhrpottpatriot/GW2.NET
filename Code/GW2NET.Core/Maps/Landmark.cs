@@ -6,7 +6,7 @@
 //   Represents a landmark.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Maps.PointsOfInterest
+namespace GW2NET.Maps
 {
     /// <summary>Represents a landmark.</summary>
     public class Landmark : PointOfInterest

@@ -13,7 +13,6 @@ namespace GW2NET.Maps
     using System.Globalization;
 
     using GW2NET.Common.Drawing;
-    using GW2NET.Maps.PointsOfInterest;
 
     /// <summary>Represents a map and its details.</summary>
     public class Subregion : IEquatable<Subregion>

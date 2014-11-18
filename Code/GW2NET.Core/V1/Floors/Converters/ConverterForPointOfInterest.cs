@@ -13,7 +13,7 @@ namespace GW2NET.V1.Floors
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
-    using GW2NET.Maps.PointsOfInterest;
+    using GW2NET.Maps;
 
     /// <summary>Converts objects of type <see cref="PointOfInterestDataContract"/> to objects of type <see cref="PointOfInterest"/>.</summary>
     internal sealed class ConverterForPointOfInterest : IConverter<PointOfInterestDataContract, PointOfInterest>

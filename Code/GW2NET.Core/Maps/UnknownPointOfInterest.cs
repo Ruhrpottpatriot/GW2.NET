@@ -1,15 +1,15 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Waypoint.cs" company="GW2.NET Coding Team">
+// <copyright file="UnknownPointOfInterest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a waypoint.
+//   Represents an unknown point of interest.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.Maps.PointsOfInterest
+namespace GW2NET.Maps
 {
-    /// <summary>Represents a waypoint.</summary>
-    public class Waypoint : PointOfInterest
+    /// <summary>Represents an unknown point of interest.</summary>
+    public class UnknownPointOfInterest : PointOfInterest
     {
     }
 }
