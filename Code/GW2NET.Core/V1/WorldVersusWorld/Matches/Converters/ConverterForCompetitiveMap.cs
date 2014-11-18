@@ -17,7 +17,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
     using GW2NET.Common;
     using GW2NET.WorldVersusWorld;
     using GW2NET.WorldVersusWorld.Bonuses;
-    using GW2NET.WorldVersusWorld.Maps;
     using GW2NET.WorldVersusWorld.Objectives;
 
     /// <summary>Converts objects of type <see cref="CompetitiveMapDataContract"/> to objects of type <see cref="CompetitiveMap"/>.</summary>

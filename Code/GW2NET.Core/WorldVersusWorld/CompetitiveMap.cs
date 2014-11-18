@@ -6,7 +6,7 @@
 //   Provides the base class for World versus World maps.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.WorldVersusWorld.Maps
+namespace GW2NET.WorldVersusWorld
 {
     using System.Collections.Generic;
 

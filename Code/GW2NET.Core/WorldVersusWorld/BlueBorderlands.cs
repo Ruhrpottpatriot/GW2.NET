@@ -6,7 +6,7 @@
 //   Represents the blue team's borderlands.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.WorldVersusWorld.Maps
+namespace GW2NET.WorldVersusWorld
 {
     /// <summary>Represents the blue team's borderlands.</summary>
     public class BlueBorderlands : CompetitiveMap

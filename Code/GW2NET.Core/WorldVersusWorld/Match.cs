@@ -11,8 +11,6 @@ namespace GW2NET.WorldVersusWorld
     using System;
     using System.Collections.Generic;
 
-    using GW2NET.WorldVersusWorld.Maps;
-
     /// <summary>Represents a World versus World match.</summary>
     public class Match : IEquatable<Match>
     {
