@@ -10,7 +10,6 @@ namespace GW2NET.WorldVersusWorld
 {
     using System.Collections.Generic;
 
-    using GW2NET.WorldVersusWorld.Bonuses;
     using GW2NET.WorldVersusWorld.Objectives;
 
     /// <summary>Provides the base class for World versus World maps.</summary>

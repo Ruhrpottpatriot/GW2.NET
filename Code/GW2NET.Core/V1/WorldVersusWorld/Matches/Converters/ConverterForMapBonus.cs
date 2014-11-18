@@ -14,7 +14,6 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
 
     using GW2NET.Common;
     using GW2NET.WorldVersusWorld;
-    using GW2NET.WorldVersusWorld.Bonuses;
 
     /// <summary>Converts objects of type <see cref="MapBonusDataContract"/> to objects of type <see cref="MapBonus"/>.</summary>
     internal sealed class ConverterForMapBonus : IConverter<MapBonusDataContract, MapBonus>

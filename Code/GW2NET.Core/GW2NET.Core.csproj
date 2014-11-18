@@ -1031,14 +1031,13 @@
     <Compile Include="V2\Worlds\WorldRepository.cs" />
     <Compile Include="Worlds\IWorldRepository.cs" />
     <Compile Include="Worlds\World.cs" />
+    <Compile Include="WorldVersusWorld\Bloodlust.cs" />
     <Compile Include="WorldVersusWorld\BlueBorderlands.cs" />
-    <Compile Include="WorldVersusWorld\Bonuses\Bloodlust.cs" />
-    <Compile Include="WorldVersusWorld\Bonuses\MapBonus.cs" />
-    <Compile Include="WorldVersusWorld\Bonuses\UnknownMapBonus.cs" />
     <Compile Include="WorldVersusWorld\CompetitiveMap.cs" />
     <Compile Include="WorldVersusWorld\EternalBattlegrounds.cs" />
     <Compile Include="WorldVersusWorld\GreenBorderlands.cs" />
     <Compile Include="WorldVersusWorld\IMatchRepository.cs" />
+    <Compile Include="WorldVersusWorld\MapBonus.cs" />
     <Compile Include="WorldVersusWorld\Match.cs" />
     <Compile Include="WorldVersusWorld\Matchup.cs" />
     <Compile Include="WorldVersusWorld\ObjectiveName.cs" />
@@ -1047,6 +1046,7 @@
     <Compile Include="WorldVersusWorld\RedBorderlands.cs" />
     <Compile Include="WorldVersusWorld\Scoreboard.cs" />
     <Compile Include="WorldVersusWorld\TeamColor.cs" />
+    <Compile Include="WorldVersusWorld\UnknownMapBonus.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
