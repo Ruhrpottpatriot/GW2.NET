@@ -6,7 +6,7 @@
 //   Provides the base class for event locations.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.DynamicEvents.Locations
+namespace GW2NET.DynamicEvents
 {
     using GW2NET.Common.Drawing;
 

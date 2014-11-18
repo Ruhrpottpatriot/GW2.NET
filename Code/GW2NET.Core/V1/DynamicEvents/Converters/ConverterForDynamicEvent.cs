@@ -14,7 +14,6 @@ namespace GW2NET.V1.DynamicEvents
 
     using GW2NET.Common;
     using GW2NET.DynamicEvents;
-    using GW2NET.DynamicEvents.Locations;
 
     /// <summary>Converts objects of type <see cref="EventDataContract"/> to objects of type <see cref="DynamicEvent"/>.</summary>
     internal sealed class ConverterForDynamicEvent : IConverter<EventDataContract, DynamicEvent>

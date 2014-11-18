@@ -6,7 +6,7 @@
 //   Represents a polygonal location.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.DynamicEvents.Locations
+namespace GW2NET.DynamicEvents
 {
     using System.Collections.Generic;
 

@@ -12,7 +12,6 @@ namespace GW2NET.DynamicEvents
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.DynamicEvents.Locations;
     using GW2NET.Maps;
 
     /// <summary>Represents a dynamic event and its localized details.</summary>

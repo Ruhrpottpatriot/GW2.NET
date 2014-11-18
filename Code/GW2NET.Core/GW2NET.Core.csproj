@@ -304,6 +304,7 @@
     <Compile Include="Common\ContractClassForIServiceClient.cs" />
     <Compile Include="Common\ServiceException.cs" />
     <Compile Include="Common\UrlEncodedForm.cs" />
+    <Compile Include="DynamicEvents\CylinderLocation.cs" />
     <Compile Include="DynamicEvents\DynamicEvent.cs" />
     <Compile Include="DynamicEvents\DynamicEventFlags.cs" />
     <Compile Include="DynamicEvents\DynamicEventName.cs" />
@@ -312,11 +313,10 @@
     <Compile Include="DynamicEvents\EventState.cs" />
     <Compile Include="DynamicEvents\IEventNameRepository.cs" />
     <Compile Include="DynamicEvents\IEventRepository.cs" />
-    <Compile Include="DynamicEvents\Locations\CylinderLocation.cs" />
-    <Compile Include="DynamicEvents\Locations\Location.cs" />
-    <Compile Include="DynamicEvents\Locations\PolygonLocation.cs" />
-    <Compile Include="DynamicEvents\Locations\SphereLocation.cs" />
-    <Compile Include="DynamicEvents\Locations\UnknownLocation.cs" />
+    <Compile Include="DynamicEvents\Location.cs" />
+    <Compile Include="DynamicEvents\PolygonLocation.cs" />
+    <Compile Include="DynamicEvents\SphereLocation.cs" />
+    <Compile Include="DynamicEvents\UnknownLocation.cs" />
     <Compile Include="Files\Asset.cs" />
     <Compile Include="Files\IFileRepository.cs" />
     <Compile Include="Guilds\Emblem.cs" />

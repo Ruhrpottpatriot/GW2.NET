@@ -14,7 +14,7 @@ namespace GW2NET.V1.DynamicEvents
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
-    using GW2NET.DynamicEvents.Locations;
+    using GW2NET.DynamicEvents;
 
     /// <summary>Converts objects of type <see cref="LocationDataContract"/> to objects of type <see cref="PolygonLocation"/>.</summary>
     internal sealed class ConverterForPolygonLocation : IConverter<LocationDataContract, PolygonLocation>
