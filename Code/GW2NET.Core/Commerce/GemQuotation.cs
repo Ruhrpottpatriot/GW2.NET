@@ -10,6 +10,7 @@ namespace GW2NET.Commerce
 {
     using System;
 
+    using GW2NET.ChatLinks;
     using GW2NET.Common;
 
     /// <summary>Represents the gems from/to gold exchange rate.</summary>
@@ -29,5 +30,14 @@ namespace GW2NET.Commerce
 
         /// <summary>Gets or sets the timestamp.</summary>
         public DateTimeOffset Timestamp { get; set; }
+
+        /// <summary>Gets a coin chat link for the amount of coins per gem.</summary>
+        public CoinChatLink GetCoinsPerGemChatLink()
+        {
+            return new CoinChatLink
+            {
+                Quantity = CoinsPerGem
+            };
+        }
     }
 }
