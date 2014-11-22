@@ -12,10 +12,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
     using System.Diagnostics.CodeAnalysis;
     using System.Runtime.Serialization;
 
-    using GW2NET.Common;
-
     [DataContract]
-    [Converter(typeof(ConverterForMatch))]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "http://wiki.guildwars2.com/wiki/API:1/wvw/match_details")]
     internal sealed class MatchDataContract
     {

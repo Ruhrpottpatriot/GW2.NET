@@ -8,12 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System;
-    using System.Collections.Generic;
     using System.Diagnostics.Contracts;
-    using System.Linq;
-
-    using GW2NET.Common;
 
     /// <summary>Factory class. Provides factory methods for creating <see cref="ChatLink"/> instances.</summary>
     public class ChatLinkFactory
@@ -24,20 +19,11 @@ namespace GW2NET.ChatLinks
         public ChatLink Decode(string input)
         {
             Contract.Requires(input != null);
-
-            // Find a converter that can convert the input
-            var type = typeof(ChatLink);
-            var types = type.Assembly.GetTypes();
-            var converterTypes = types.Where(t => t.IsSubclassOf(typeof(ChatLinkConverter)) && t.IsDefined(typeof(ConverterForAttribute), false));
-            var converter = converterTypes.Select(Activator.CreateInstance).Cast<ChatLinkConverter>().FirstOrDefault(c => c.CanConvert(input));
-
-            // Ensure that a converter exists
-            if (converter == null)
-            {
-                return null;
-            }
-
-            return converter.Decode(input);
+            input = input.Trim('[', ']', '&');
+            var converterForBase64 = new ConverterForBase64();
+            var converterForChatLink = new ConverterForChatLink();
+            var bytes = converterForBase64.Convert(input);
+            return converterForChatLink.Convert(bytes);
         }
 
         /// <summary>Decodes chat links of the specified type.</summary>
@@ -47,22 +33,7 @@ namespace GW2NET.ChatLinks
         public T Decode<T>(string input) where T : ChatLink
         {
             Contract.Requires(input != null);
-
-            // Find a converter that can convert the input
-            var type = typeof(T);
-            var types = type.Assembly.GetTypes();
-            var converterTypes = types.Where(t => t.IsSubclassOf(typeof(ChatLinkConverter)));
-            var converterType = converterTypes.FirstOrDefault(t => GetAttributes<ConverterForAttribute>(t).Any(converterFor => converterFor.Type == type));
-
-            // Ensure that a converter exists
-            if (converterType == null)
-            {
-                return null;
-            }
-
-            var converter = (ChatLinkConverter)Activator.CreateInstance(converterType);
-
-            return (T)converter.Decode(input);
+            return this.Decode(input) as T;
         }
 
         /// <summary>Encodes an amount of coins.</summary>
@@ -103,10 +74,10 @@ namespace GW2NET.ChatLinks
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new ItemChatLink
             {
-                ItemId = itemId, 
-                Quantity = quantity, 
-                SuffixItemId = suffixItemId, 
-                SecondarySuffixItemId = secondarySuffixItemId, 
+                ItemId = itemId,
+                Quantity = quantity,
+                SuffixItemId = suffixItemId,
+                SecondarySuffixItemId = secondarySuffixItemId,
                 SkinId = skinId
             };
         }
@@ -181,17 +152,6 @@ namespace GW2NET.ChatLinks
             {
                 TraitId = traitId
             };
-        }
-
-        /// <summary>Infrastructure.Returns a collection of custom attributes applied to the specified type.</summary>
-        /// <param name="type">The type.</param>
-        /// <typeparam name="TAttribute">The type of the attributes.</typeparam>
-        /// <returns>The attributes.</returns>
-        private static IEnumerable<TAttribute> GetAttributes<TAttribute>(Type type)
-        {
-            Contract.Requires(type != null);
-            Contract.Ensures(Contract.Result<IEnumerable<TAttribute>>() != null);
-            return type.GetCustomAttributes(typeof(TAttribute), false).Cast<TAttribute>();
         }
     }
 }
