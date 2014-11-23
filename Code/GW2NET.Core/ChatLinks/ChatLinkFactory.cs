@@ -39,7 +39,7 @@ namespace GW2NET.ChatLinks
         /// <summary>Encodes an amount of coins.</summary>
         /// <param name="quantity">The quantity.</param>
         /// <returns>A <see cref="ChatLink"/>.</returns>
-        public ChatLink EncodeCoins(int quantity)
+        public CoinChatLink EncodeCoins(int quantity)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new CoinChatLink
@@ -51,7 +51,7 @@ namespace GW2NET.ChatLinks
         /// <summary>Encodes a dialog.</summary>
         /// <param name="dialogId">The dialog identifier.</param>
         /// <returns>A <see cref="ChatLink"/>.</returns>
-        public ChatLink EncodeDialog(int dialogId)
+        public DialogChatLink EncodeDialog(int dialogId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new DialogChatLink
@@ -67,7 +67,7 @@ namespace GW2NET.ChatLinks
         /// <param name="secondarySuffixItemId">The secondary suffix item identifier.</param>
         /// <param name="skinId">The skin identifier.</param>
         /// <returns>A <see cref="ChatLink"/>.</returns>
-        public ChatLink EncodeItem(int itemId, int quantity = 1, int? suffixItemId = null, int? secondarySuffixItemId = null, int? skinId = null)
+        public ItemChatLink EncodeItem(int itemId, int quantity = 1, int? suffixItemId = null, int? secondarySuffixItemId = null, int? skinId = null)
         {
             Contract.Requires(quantity >= 1);
             Contract.Requires(quantity <= 255);
@@ -85,7 +85,7 @@ namespace GW2NET.ChatLinks
         /// <summary>Encodes an outfit.</summary>
         /// <param name="outfitId">The outfit identifier.</param>
         /// <returns>A <see cref="ChatLink"/>.</returns>
-        public ChatLink EncodeOutfit(int outfitId)
+        public OutfitChatLink EncodeOutfit(int outfitId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new OutfitChatLink
@@ -97,7 +97,7 @@ namespace GW2NET.ChatLinks
         /// <summary>Encodes a point of interest.</summary>
         /// <param name="pointOfInterestId">The point of interest identifier.</param>
         /// <returns>A <see cref="ChatLink"/>.</returns>
-        public ChatLink EncodePointOfInterest(int pointOfInterestId)
+        public PointOfInterestChatLink EncodePointOfInterest(int pointOfInterestId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new PointOfInterestChatLink
@@ -109,7 +109,7 @@ namespace GW2NET.ChatLinks
         /// <summary>Encodes a recipe.</summary>
         /// <param name="recipeId">The recipe identifier.</param>
         /// <returns>A <see cref="ChatLink"/>.</returns>
-        public ChatLink EncodeRecipe(int recipeId)
+        public RecipeChatLink EncodeRecipe(int recipeId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new RecipeChatLink
@@ -121,7 +121,7 @@ namespace GW2NET.ChatLinks
         /// <summary>Encodes a skill.</summary>
         /// <param name="skillId">The skill identifier.</param>
         /// <returns>A <see cref="ChatLink"/>.</returns>
-        public ChatLink EncodeSkill(int skillId)
+        public SkillChatLink EncodeSkill(int skillId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new SkillChatLink
@@ -133,7 +133,7 @@ namespace GW2NET.ChatLinks
         /// <summary>Encodes a skin.</summary>
         /// <param name="skinId">The skin identifier.</param>
         /// <returns>A <see cref="ChatLink"/>.</returns>
-        public ChatLink EncodeSkin(int skinId)
+        public SkinChatLink EncodeSkin(int skinId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new SkinChatLink
@@ -145,7 +145,7 @@ namespace GW2NET.ChatLinks
         /// <summary>Encodes a trait.</summary>
         /// <param name="traitId">The trait identifier.</param>
         /// <returns>A <see cref="ChatLink"/>.</returns>
-        public ChatLink EncodeTrait(int traitId)
+        public TraitChatLink EncodeTrait(int traitId)
         {
             Contract.Ensures(Contract.Result<ChatLink>() != null);
             return new TraitChatLink
