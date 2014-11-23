@@ -191,7 +191,6 @@
     </Compile>
     <Compile Include="Builds\Build.cs" />
     <Compile Include="ChatLinks\ChatLink.cs" />
-    <Compile Include="ChatLinks\ChatLinkDataContract.cs" />
     <Compile Include="ChatLinks\ChatLinkFactory.cs" />
     <Compile Include="ChatLinks\CoinChatLink.cs" />
     <Compile Include="ChatLinks\ConverterForBase64.cs" />

@@ -27,7 +27,7 @@ namespace GW2NET.ChatLinks
             this.typeConverters = GetKnownTypeConverters();
         }
 
-        /// <summary>Converts the given object of type <see cref="ChatLinkDataContract"/> to an object of type <see cref="ChatLink"/>.</summary>
+        /// <summary>Converts the given object of type <see cref="T:byte[]"/> to an object of type <see cref="ChatLink"/>.</summary>
         /// <param name="value">The value to convert.</param>
         /// <returns>The converted value.</returns>
         public ChatLink Convert(byte[] value)
