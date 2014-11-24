@@ -23,6 +23,18 @@ namespace GW2NET.V2.Quaggans
     /// <summary>Represents a repository that retrieves data from the /v2/quaggans interface.</summary>
     public class QuagganRepository : IQuagganRepository
     {
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<IResponse<ICollection<QuagganDataContract>>, IDictionaryRange<string, Quaggan>> converterForBulkResponse;
+
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<IResponse<ICollection<string>>, ICollection<string>> converterForIdentifiersResponse;
+
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<IResponse<ICollection<QuagganDataContract>>, ICollectionPage<Quaggan>> converterForPageResponse;
+
+        /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
+        private readonly IConverter<IResponse<QuagganDataContract>, Quaggan> converterForResponse;
+
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
 
@@ -40,12 +52,7 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganDiscoveryRequest();
             var response = this.serviceClient.Send<ICollection<string>>(request);
-            if (response.Content == null)
-            {
-                return new string[0];
-            }
-
-            return response.Content;
+            return this.converterForIdentifiersResponse.Convert(response) ?? new List<string>(0);
         }
 
         /// <inheritdoc />
@@ -59,16 +66,8 @@ namespace GW2NET.V2.Quaggans
         Task<ICollection<string>> IDiscoverable<string>.DiscoverAsync(CancellationToken cancellationToken)
         {
             var request = new QuagganDiscoveryRequest();
-            return this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new string[0];
-                }
-
-                return response.Content;
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<string>>(request, cancellationToken);
+            return responseTask.ContinueWith<ICollection<string>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -79,12 +78,7 @@ namespace GW2NET.V2.Quaggans
                 Identifier = identifier
             };
             var response = this.serviceClient.Send<QuagganDataContract>(request);
-            if (response.Content == null)
-            {
-                return null;
-            }
-
-            return ConvertQuagganDataContract(response.Content);
+            return this.converterForResponse.Convert(response);
         }
 
         /// <inheritdoc />
@@ -92,54 +86,18 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganBulkRequest();
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            if (response.Content == null)
-            {
-                return new DictionaryRange<string, Quaggan>(0);
-            }
-
-            // Get the number of values in this subset
-            var pageCount = response.GetResultCount();
-
-            // Get the number of values in the collection
-            var totalCount = response.GetResultTotal();
-
-            // Convert the return values to entities
-            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
+            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
         /// <inheritdoc />
         IDictionaryRange<string, Quaggan> IRepository<string, Quaggan>.FindAll(ICollection<string> identifiers)
         {
-            if (identifiers == null)
-            {
-                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
-            }
-
-            if (identifiers.Count == 0)
-            {
-                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
-            }
-
-            Contract.EndContractBlock();
-
             var request = new QuagganBulkRequest
             {
                 Identifiers = identifiers.ToList()
             };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            if (response.Content == null)
-            {
-                return new DictionaryRange<string, Quaggan>(0);
-            }
-
-            // Get the number of values in this subset
-            var pageCount = response.GetResultCount();
-
-            // Get the number of values in the collection
-            var totalCount = response.GetResultTotal();
-
-            // Convert the return values to entities
-            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
+            return this.converterForBulkResponse.Convert(response) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
         /// <inheritdoc />
@@ -153,23 +111,8 @@ namespace GW2NET.V2.Quaggans
         Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(CancellationToken cancellationToken)
         {
             var request = new QuagganBulkRequest();
-            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new DictionaryRange<string, Quaggan>(0);
-                }
-
-                // Get the number of values in this subset
-                var pageCount = response.GetResultCount();
-
-                // Get the number of values in the collection
-                var totalCount = response.GetResultTotal();
-
-                // Convert the return values to entities
-                return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith<IDictionaryRange<string, Quaggan>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -182,39 +125,12 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         Task<IDictionaryRange<string, Quaggan>> IRepository<string, Quaggan>.FindAllAsync(ICollection<string> identifiers, CancellationToken cancellationToken)
         {
-            if (identifiers == null)
-            {
-                throw new ArgumentNullException("identifiers", "Precondition failed: identifiers != null");
-            }
-
-            if (identifiers.Count == 0)
-            {
-                throw new ArgumentOutOfRangeException("identifiers", "Precondition failed: identifiers.Count > 0");
-            }
-
-            Contract.EndContractBlock();
-
             var request = new QuagganBulkRequest
             {
                 Identifiers = identifiers.ToList()
             };
-            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new DictionaryRange<string, Quaggan>(0);
-                }
-
-                // Get the number of values in this subset
-                var pageCount = response.GetResultCount();
-
-                // Get the number of values in the collection
-                var totalCount = response.GetResultTotal();
-
-                // Convert the return values to entities
-                return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount);
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith<IDictionaryRange<string, Quaggan>>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -231,16 +147,8 @@ namespace GW2NET.V2.Quaggans
             {
                 Identifier = identifier
             };
-            return this.serviceClient.SendAsync<QuagganDataContract>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return null;
-                }
-
-                return ConvertQuagganDataContract(response.Content);
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<QuagganDataContract>(request, cancellationToken);
+            return responseTask.ContinueWith<Quaggan>(this.ConvertAsyncResponse, cancellationToken);
         }
 
         /// <inheritdoc />
@@ -251,25 +159,15 @@ namespace GW2NET.V2.Quaggans
                 Page = pageIndex
             };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            if (response.Content == null)
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
             {
                 return new CollectionPage<Quaggan>(0);
             }
 
-            // Get the number of values in this subset
-            var pageCount = response.GetResultCount();
+            PageContextPatchUtility.Patch(values, pageIndex);
 
-            // Get the number of values in the collection
-            var totalCount = response.GetResultTotal();
-
-            // Get the maximum number of values in this subset
-            var pageSize = response.GetPageSize();
-
-            // Get the number of subsets in the collection
-            var pageTotal = response.GetPageTotal();
-
-            // Convert the return values to entities
-            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, pageSize, pageTotal);
+            return values;
         }
 
         /// <inheritdoc />
@@ -277,29 +175,19 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 PageSize = pageSize
             };
             var response = this.serviceClient.Send<ICollection<QuagganDataContract>>(request);
-            if (response.Content == null)
+            var values = this.converterForPageResponse.Convert(response);
+            if (values == null)
             {
                 return new CollectionPage<Quaggan>(0);
             }
 
-            // Get the number of values in this subset
-            var pageCount = response.GetResultCount();
+            PageContextPatchUtility.Patch(values, pageIndex);
 
-            // Get the number of values in the collection
-            var totalCount = response.GetResultTotal();
-
-            // Get the maximum number of values in this subset
-            var size = response.GetPageSize();
-
-            // Get the number of subsets in the collection
-            var pageTotal = response.GetPageTotal();
-
-            // Convert the return values to entities
-            return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, size, pageTotal);
+            return values;
         }
 
         /// <inheritdoc />
@@ -316,29 +204,8 @@ namespace GW2NET.V2.Quaggans
             {
                 Page = pageIndex
             };
-            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new CollectionPage<Quaggan>(0);
-                }
-
-                // Get the number of values in this subset
-                var pageCount = response.GetResultCount();
-
-                // Get the number of values in the collection
-                var totalCount = response.GetResultTotal();
-
-                // Get the maximum number of values in this subset
-                var pageSize = response.GetPageSize();
-
-                // Get the number of subsets in the collection
-                var pageTotal = response.GetPageTotal();
-
-                // Convert the return values to entities
-                return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, pageSize, pageTotal);
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
         /// <inheritdoc />
@@ -353,112 +220,61 @@ namespace GW2NET.V2.Quaggans
         {
             var request = new QuagganPageRequest
             {
-                Page = pageIndex, 
+                Page = pageIndex,
                 PageSize = pageSize
             };
-            return this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
-                {
-                    return new CollectionPage<Quaggan>(0);
-                }
-
-                // Get the number of values in this subset
-                var pageCount = response.GetResultCount();
-
-                // Get the number of values in the collection
-                var totalCount = response.GetResultTotal();
-
-                // Get the maximum number of values in this subset
-                var size = response.GetPageSize();
-
-                // Get the number of subsets in the collection
-                var pageTotal = response.GetPageTotal();
-
-                // Convert the return values to entities
-                return ConvertQuagganDataContractCollection(response.Content, pageCount, totalCount, pageIndex, size, pageTotal);
-            }, cancellationToken);
+            var responseTask = this.serviceClient.SendAsync<ICollection<QuagganDataContract>>(request, cancellationToken);
+            return responseTask.ContinueWith(task => this.ConvertAsyncResponse(task, pageIndex), cancellationToken);
         }
 
-        // TODO: refactor to IConverter
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static Quaggan ConvertQuagganDataContract(QuagganDataContract content)
+        private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
         {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<Quaggan>() != null);
-
-            // Create a new Quaggan object
-            var value = new Quaggan();
-
-            // Set the Quaggan identifier
-            if (content.Id != null)
-            {
-                value.Id = content.Id;
-            }
-
-            // Set the resource location
-            if (content.Url != null)
-            {
-                value.Url = new Uri(content.Url, UriKind.Absolute);
-            }
-
-            // Return the Quaggan object
-            return value;
+            Contract.Requires(task != null);
+            Contract.Ensures(Contract.Result<ICollection<string>>() != null);
+            return this.converterForIdentifiersResponse.Convert(task.Result) ?? new List<string>(0);
         }
 
-        // TODO: refactor to IConverter
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static IDictionaryRange<string, Quaggan> ConvertQuagganDataContractCollection(IEnumerable<QuagganDataContract> content, int subtotalCount, int totalCount)
+        private IDictionaryRange<string, Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDataContract>>> task)
         {
-            Contract.Requires(content != null);
-            Contract.Ensures(Contract.Result<IDictionary<string, Quaggan>>() != null);
-            var values = new DictionaryRange<string, Quaggan>(subtotalCount)
-            {
-                SubtotalCount = subtotalCount, 
-                TotalCount = totalCount
-            };
-            foreach (var value in content.Select(ConvertQuagganDataContract))
-            {
-                Contract.Assume(value != null);
-                values.Add(value.Id, value);
-            }
-
-            return values;
+            Contract.Requires(task != null);
+            Contract.Ensures(Contract.Result<IDictionaryRange<int, Quaggan>>() != null);
+            return this.converterForBulkResponse.Convert(task.Result) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
-        // TODO: refactor to IConverter
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
-        private static ICollectionPage<Quaggan> ConvertQuagganDataContractCollection(ICollection<QuagganDataContract> content, int subtotalCount, int totalCount, int page, int pageSize, int pageTotal)
+        private Quaggan ConvertAsyncResponse(Task<IResponse<QuagganDataContract>> task)
         {
-            Contract.Requires(content != null);
-            Contract.Requires(subtotalCount >= 0);
+            Contract.Requires(task != null);
+            return this.converterForResponse.Convert(task.Result);
+        }
+
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
+        private ICollectionPage<Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDataContract>>> task, int pageIndex)
+        {
+            Contract.Requires(task != null);
             Contract.Ensures(Contract.Result<ICollectionPage<Quaggan>>() != null);
-            var values = new CollectionPage<Quaggan>(content.Count)
+            var values = this.converterForPageResponse.Convert(task.Result);
+            if (values == null)
             {
-                PageIndex = page, 
-                PageSize = pageSize, 
-                PageCount = pageTotal, 
-                SubtotalCount = subtotalCount, 
-                TotalCount = totalCount
-            };
-
-            if (values.PageCount > 0)
-            {
-                values.LastPageIndex = values.PageCount - 1;
-                if (values.PageIndex < values.LastPageIndex)
-                {
-                    values.NextPageIndex = values.PageIndex + 1;
-                }
-
-                if (values.PageIndex > values.FirstPageIndex)
-                {
-                    values.PreviousPageIndex = values.PageIndex - 1;
-                }
+                return new CollectionPage<Quaggan>(0);
             }
 
-            values.AddRange(content.Select(ConvertQuagganDataContract));
+            PageContextPatchUtility.Patch(values, pageIndex);
+
             return values;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
+            Contract.Invariant(this.converterForBulkResponse != null);
+            Contract.Invariant(this.converterForIdentifiersResponse != null);
+            Contract.Invariant(this.converterForPageResponse != null);
+            Contract.Invariant(this.converterForResponse != null);
         }
     }
 }
