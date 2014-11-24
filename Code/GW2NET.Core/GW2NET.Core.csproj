@@ -804,6 +804,10 @@
     <Compile Include="V1\Worlds\WorldNameRequest.cs" />
     <Compile Include="V1\Worlds\WorldRepository.cs" />
     <Compile Include="V1\Worlds\WorldRepositoryFactory.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\Converters\ConverterForBlueBorderlands.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\Converters\ConverterForEternalBattlegrounds.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\Converters\ConverterForGreenBorderlands.cs" />
+    <Compile Include="V1\WorldVersusWorld\Matches\Converters\ConverterForRedBorderlands.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\Json\CompetitiveMapDataContract.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\Converters\ConverterForCompetitiveMap.cs" />
     <Compile Include="V1\WorldVersusWorld\Matches\Converters\ConverterForMapBonus.cs" />
