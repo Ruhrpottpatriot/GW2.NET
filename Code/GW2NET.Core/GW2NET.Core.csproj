@@ -1026,6 +1026,7 @@
     <Compile Include="WorldVersusWorld\RedBorderlands.cs" />
     <Compile Include="WorldVersusWorld\Scoreboard.cs" />
     <Compile Include="WorldVersusWorld\TeamColor.cs" />
+    <Compile Include="WorldVersusWorld\UnknownCompetitiveMap.cs" />
     <Compile Include="WorldVersusWorld\UnknownMapBonus.cs" />
   </ItemGroup>
   <ItemGroup />

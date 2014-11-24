@@ -73,9 +73,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
                     competitiveMap = new EternalBattlegrounds();
                     break;
                 default:
-
-                    // TODO: add 'UnknownCompetitiveMap' class
-                    throw new NotSupportedException(string.Format("Map type '{0}' is not supported.", value.Type));
+                    competitiveMap = new UnknownCompetitiveMap();
             }
 
             // Set the scoreboard
