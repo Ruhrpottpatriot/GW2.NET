@@ -74,6 +74,7 @@ namespace GW2NET.V1.WorldVersusWorld.Matches
                     break;
                 default:
                     competitiveMap = new UnknownCompetitiveMap();
+                    break;
             }
 
             // Set the scoreboard
