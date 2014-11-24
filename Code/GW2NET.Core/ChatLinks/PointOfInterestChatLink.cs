@@ -8,13 +8,21 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using GW2NET.Common;
+    using System;
 
     /// <summary>Represents a chat link that links to a point of interest.</summary>
-    [Converter(typeof(PointOfInterestChatLinkConverter))]
     public class PointOfInterestChatLink : ChatLink
     {
         /// <summary>Gets or sets the point of interest identifier.</summary>
         public int PointOfInterestId { get; set; }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            var stream = new ConverterForPointOfInterestChatLink().Convert(this);
+            var buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, buffer.Length);
+            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+        }
     }
 }

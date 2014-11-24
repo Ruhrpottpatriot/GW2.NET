@@ -8,11 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using System;
-    using System.Linq;
-
-    using GW2NET.Common;
-
     /// <summary>Provides the base class for chat links.</summary>
     public abstract class ChatLink
     {
@@ -26,21 +21,5 @@ namespace GW2NET.ChatLinks
         /// Gets a reference to the factory class that provides chat link factory methods.
         /// </summary>
         public static ChatLinkFactory Factory { get; private set; }
-
-        /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>A string that represents the current object.</returns>
-        public override string ToString()
-        {
-            var type = this.GetType();
-            var converterAttributes = type.GetCustomAttributes(typeof(ConverterAttribute), false).Cast<ConverterAttribute>();
-            var converterTypes = converterAttributes.Select(converterAttribute => converterAttribute.Type);
-            var converter = converterTypes.Select(Activator.CreateInstance).Cast<ChatLinkConverter>().SingleOrDefault();
-            if (converter == null)
-            {
-                return base.ToString();
-            }
-
-            return converter.Encode(this);
-        }
     }
 }

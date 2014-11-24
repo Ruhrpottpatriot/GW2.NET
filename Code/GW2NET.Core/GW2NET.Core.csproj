@@ -191,45 +191,27 @@
     </Compile>
     <Compile Include="Builds\Build.cs" />
     <Compile Include="ChatLinks\ChatLink.cs" />
-    <Compile Include="ChatLinks\ChatLinkConverter.cs" />
-    <Compile Include="ChatLinks\ContractClassForChatLinkConverter.cs" />
     <Compile Include="ChatLinks\ChatLinkFactory.cs" />
     <Compile Include="ChatLinks\CoinChatLink.cs" />
-    <Compile Include="ChatLinks\CoinChatLinkConverter.cs">
-      <DependentUpon>CoinChatLink.cs</DependentUpon>
-    </Compile>
+    <Compile Include="ChatLinks\ConverterForBase64.cs" />
+    <Compile Include="ChatLinks\ConverterForChatLink.cs" />
+    <Compile Include="ChatLinks\ConverterForCoinChatLink.cs" />
+    <Compile Include="ChatLinks\ConverterForDialogChatLink.cs" />
+    <Compile Include="ChatLinks\ConverterForItemChatLink.cs" />
+    <Compile Include="ChatLinks\ConverterForOutfitChatLink.cs" />
+    <Compile Include="ChatLinks\ConverterForPointOfInterestChatLink.cs" />
+    <Compile Include="ChatLinks\ConverterForRecipeChatLink.cs" />
+    <Compile Include="ChatLinks\ConverterForSkillChatLink.cs" />
+    <Compile Include="ChatLinks\ConverterForSkinChatLink.cs" />
+    <Compile Include="ChatLinks\ConverterForTraitChatLink.cs" />
     <Compile Include="ChatLinks\DialogChatLink.cs" />
-    <Compile Include="ChatLinks\DialogChatLinkConverter.cs">
-      <DependentUpon>DialogChatLink.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChatLinks\ItemChatLink.cs" />
-    <Compile Include="ChatLinks\ItemChatLinkConverter.cs">
-      <DependentUpon>ItemChatLink.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChatLinks\OutfitChatLink.cs" />
-    <Compile Include="ChatLinks\OutfitChatLinkConverter.cs">
-      <DependentUpon>OutfitChatLink.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChatLinks\PointOfInterestChatLink.cs" />
-    <Compile Include="ChatLinks\PointOfInterestChatLinkConverter.cs">
-      <DependentUpon>PointOfInterestChatLink.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChatLinks\RecipeChatLink.cs" />
-    <Compile Include="ChatLinks\RecipeChatLinkConverter.cs">
-      <DependentUpon>RecipeChatLink.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChatLinks\SkillChatLink.cs" />
-    <Compile Include="ChatLinks\SkillChatLinkConverter.cs">
-      <DependentUpon>SkillChatLink.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChatLinks\SkinChatLink.cs" />
-    <Compile Include="ChatLinks\SkinChatLinkConverter.cs">
-      <DependentUpon>SkinChatLink.cs</DependentUpon>
-    </Compile>
     <Compile Include="ChatLinks\TraitChatLink.cs" />
-    <Compile Include="ChatLinks\TraitChatLinkConverter.cs">
-      <DependentUpon>TraitChatLink.cs</DependentUpon>
-    </Compile>
     <Compile Include="Colors\Color.cs" />
     <Compile Include="Colors\ColorModel.cs" />
     <Compile Include="Colors\ColorPalette.cs" />
@@ -251,8 +233,6 @@
     <Compile Include="Common\ContractClassForIRenderService.cs" />
     <Compile Include="Common\ContractClassForIRepository.cs" />
     <Compile Include="Common\ContractClassForISubsetContext.cs" />
-    <Compile Include="Common\ConverterAttribute.cs" />
-    <Compile Include="Common\ConverterForAttribute.cs" />
     <Compile Include="Common\Converters\ConverterForObject.cs" />
     <Compile Include="Common\Converters\ConverterAdapter.cs" />
     <Compile Include="Common\Converters\ConverterForCollection.cs" />

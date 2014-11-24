@@ -8,13 +8,21 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using GW2NET.Common;
+    using System;
 
     /// <summary>Represents a chat link that links to an amount of coins.</summary>
-    [Converter(typeof(CoinChatLinkConverter))]
     public class CoinChatLink : ChatLink
     {
         /// <summary>Gets or sets the quantity.</summary>
         public int Quantity { get; set; }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            var stream = new ConverterForCoinChatLink().Convert(this);
+            var buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, buffer.Length);
+            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+        }
     }
 }

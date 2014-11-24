@@ -8,12 +8,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
+    using System;
     using System.Diagnostics.Contracts;
 
-    using GW2NET.Common;
-
     /// <summary>Represents a chat link that links to an item.</summary>
-    [Converter(typeof(ItemChatLinkConverter))]
     public class ItemChatLink : ChatLink
     {
         /// <summary>Initializes a new instance of the <see cref="ItemChatLink"/> class.</summary>
@@ -36,6 +34,15 @@ namespace GW2NET.ChatLinks
 
         /// <summary>Gets or sets the upgrade identifier.</summary>
         public int? SuffixItemId { get; set; }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            var stream = new ConverterForItemChatLink().Convert(this);
+            var buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, buffer.Length);
+            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+        }
 
         /// <summary>The invariant method for this class.</summary>
         [ContractInvariantMethod]

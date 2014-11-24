@@ -8,13 +8,21 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.ChatLinks
 {
-    using GW2NET.Common;
+    using System;
 
     /// <summary>Represents a chat link that links to a trait.</summary>
-    [Converter(typeof(TraitChatLinkConverter))]
     public class TraitChatLink : ChatLink
     {
         /// <summary>Gets or sets the trait identifier.</summary>
         public int TraitId { get; set; }
+
+        /// <inheritdoc />
+        public override string ToString()
+        {
+            var stream = new ConverterForTraitChatLink().Convert(this);
+            var buffer = new byte[stream.Length];
+            stream.Read(buffer, 0, buffer.Length);
+            return string.Format("[&{0}]", Convert.ToBase64String(buffer));
+        }
     }
 }
