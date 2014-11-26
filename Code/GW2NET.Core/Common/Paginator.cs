@@ -43,7 +43,7 @@ namespace GW2NET.Common
         public static IEnumerable<Lazy<ICollectionPage<T>>> FindAllPages<T>(this IPaginator<T> instance, int pageSize, int pageCount)
         {
             Contract.Requires(instance != null);
-            Contract.Ensures(Contract.Result<IEnumerable<ICollectionPage<T>>>() != null);
+            Contract.Ensures(Contract.Result<IEnumerable<Lazy<ICollectionPage<T>>>>() != null);
             for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
                 var page = pageIndex;

@@ -239,7 +239,7 @@ namespace GW2NET.V2.Quaggans
         private IDictionaryRange<string, Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDataContract>>> task)
         {
             Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, Quaggan>>() != null);
+            Contract.Ensures(Contract.Result<IDictionaryRange<string, Quaggan>>() != null);
             return this.converterForBulkResponse.Convert(task.Result) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
