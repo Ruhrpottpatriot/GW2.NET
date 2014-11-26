@@ -6,6 +6,8 @@
 //   Provides static extension methods for types that implement the <see cref="IPaginator{T}" /> interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+using System;
+
 namespace GW2NET.Common
 {
     using System.Collections.Generic;
@@ -18,44 +20,34 @@ namespace GW2NET.Common
     {
         /// <summary>Finds a collection of all pages.</summary>
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
+        /// <param name="pageCount">The number of pages to get.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
         /// <returns>A collection of pages.</returns>
-        public static IEnumerable<ICollectionPage<T>> FindAllPages<T>(this IPaginator<T> instance)
+        public static IEnumerable<Lazy<ICollectionPage<T>>> FindAllPages<T>(this IPaginator<T> instance, int pageCount)
         {
             Contract.Requires(instance != null);
-            Contract.Ensures(Contract.Result<IEnumerable<ICollectionPage<T>>>() != null);
-            ICollectionPage<T> page;
-            for (int pageIndex = 0, pageCount = int.MaxValue; pageIndex < pageCount; pageIndex++, pageCount = page.PageCount)
+            Contract.Ensures(Contract.Result<IEnumerable<Lazy<ICollectionPage<T>>>>() != null);
+            for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
-                page = instance.FindPage(pageIndex);
-                if (page == null)
-                {
-                    yield break;
-                }
-
-                yield return page;
+                var page = pageIndex;
+                yield return new Lazy<ICollectionPage<T>>(() => instance.FindPage(page));
             }
         }
 
         /// <summary>Finds a collection of all pages.</summary>
         /// <param name="instance">The instance of <see cref="IPaginator{T}"/> that provides the pages.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
+        /// <param name="pageCount">The number of pages to get.</param>
         /// <typeparam name="T">The type of elements on the page.</typeparam>
         /// <returns>A collection of pages.</returns>
-        public static IEnumerable<ICollectionPage<T>> FindAllPages<T>(this IPaginator<T> instance, int pageSize)
+        public static IEnumerable<Lazy<ICollectionPage<T>>> FindAllPages<T>(this IPaginator<T> instance, int pageSize, int pageCount)
         {
             Contract.Requires(instance != null);
             Contract.Ensures(Contract.Result<IEnumerable<ICollectionPage<T>>>() != null);
-            ICollectionPage<T> page;
-            for (int pageIndex = 0, pageCount = int.MaxValue; pageIndex < pageCount; pageIndex++, pageCount = page.PageCount)
+            for (var pageIndex = 0; pageIndex < pageCount; pageIndex++)
             {
-                page = instance.FindPage(pageIndex, pageSize);
-                if (page == null)
-                {
-                    yield break;
-                }
-
-                yield return page;
+                var page = pageIndex;
+                yield return new Lazy<ICollectionPage<T>>(() => instance.FindPage(page, pageSize));
             }
         }
 

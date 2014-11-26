@@ -59,6 +59,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
@@ -78,9 +84,30 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PaginatorTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Code\GW2NET.Compression\GW2NET.Compression.csproj">
+      <Project>{c3be9d66-2330-4544-8b12-16898ccf20e0}</Project>
+      <Name>GW2NET.Compression</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Code\GW2NET.Core\GW2NET.Core.csproj">
+      <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
+      <Name>GW2NET.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Code\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj">
+      <Project>{11bb8977-33fe-4789-bd5b-d977b0bf5ecf}</Project>
+      <Name>GW2NET.Newtonsoft</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Code\GW2NET\GW2NET.csproj">
+      <Project>{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}</Project>
+      <Name>GW2NET</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
