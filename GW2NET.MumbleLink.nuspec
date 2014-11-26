@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+	<metadata>
+		<id>GW2.NET.MumbleLink</id>
+		<version>0.9.12.0</version>
+		<title>GW2.NET MumbleLink</title>
+		<authors>GW2.NET Coding Team</authors>
+		<licenseUrl>https://gw2dotnet.codeplex.com/license</licenseUrl>
+		<projectUrl>https://gw2dotnet.codeplex.com/</projectUrl>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
+		<description>MumbleLink Protocol hooks for GW2.NET</description>
+		<summary>This software is licensed under the GNU General Public License version 2 (GPLv2). For a complete version of the license follow the link.</summary>
+		<releaseNotes>
+		* Implementing support for the MumbleLink protocol
+		</releaseNotes>
+		<copyright>Copyright ©  2013 - 2014</copyright>
+		<language>en, es, de, fr</language>
+		<tags>GW2</tags>
+
+		<!-- Specify required NuGet packages here. -->
+		<dependencies>
+
+			<!-- Default dependency group. -->
+			<group>
+				<dependency id="GW2.NET" version="0.9.12.0" />
+			</group>
+		</dependencies>
+
+		<!-- Specify required references here. -->
+		<references>
+
+			<!-- Default references group. -->
+			<group>
+				<reference file="GW2NET.MumbleLink.dll" />
+			</group>
+		</references>
+	</metadata>
+	<files>
+		<!-- net40 -->
+		<file target="lib\net40" src="Code\GW2NET.MumbleLink\bin\Release\**\*.dll" />
+		<file target="lib\net40" src="Code\GW2NET.MumbleLink\bin\Release\**\*.xml" />
+	</files>
+</package>
