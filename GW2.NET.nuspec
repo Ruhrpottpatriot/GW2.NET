@@ -15,7 +15,6 @@
     </description>
     <summary>This software is licensed under the GNU General Public License version 2 (GPLv2). For a complete version of the license follow the link.</summary>
     <releaseNotes>
-		* Implementing support for the MumbleLink protocol
 		* Implementing support for /v2/worlds
 		* Implementing support for /v2/recipes
 		* Implementing support for /v2/recipes/search
