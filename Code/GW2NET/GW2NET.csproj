@@ -210,7 +210,7 @@
     <ProjectReference Include="..\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj">
       <Project>{11bb8977-33fe-4789-bd5b-d977b0bf5ecf}</Project>
       <Name>GW2NET.Newtonsoft</Name>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
