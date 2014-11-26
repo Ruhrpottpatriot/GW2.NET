@@ -17,7 +17,6 @@ namespace GW2NET.Common
     {
         TOutput IConverter<TInput, TOutput>.Convert(TInput value)
         {
-            // TODO: figure out how to define contracts for null references in converters that do not support null references, without breaking converters that DO support null references
             throw new System.NotImplementedException();
         }
     }
