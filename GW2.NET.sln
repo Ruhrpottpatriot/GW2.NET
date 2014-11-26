@@ -13,12 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Tests", "Testing\GW2
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "GW2NET.Diagrams", "Analysis\GW2.NET.Diagrams\GW2NET.Diagrams.modelproj", "{6F803776-2787-45CA-9BE4-10FCB832FF28}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net40", "net40", "{30BE9CC5-137B-41BF-B04E-5395BD6F03CF}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1", "portable-net45+netcore45+wpa81+MonoAndroid1+MonoTouch1", "{DCB61C47-D314-41BC-AB72-562478ADC29E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "portable-net4+netcore45+wpa81+MonoAndroid1+MonoTouch1", "portable-net4+netcore45+wpa81+MonoAndroid1+MonoTouch1", "{BD2E3FCE-8D8A-4272-925A-AEB7DB9C4F3D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{097EE8E8-ABC4-4033-B184-C9B708827ABE}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -32,74 +26,60 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Core", "Code\GW2NET.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Newtonsoft", "Code\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj", "{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET", "Code\GW2NET\GW2NET.csproj", "{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Compression", "Code\GW2NET.Compression\GW2NET.Compression.csproj", "{C3BE9D66-2330-4544-8B12-16898CCF20E0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.MumbleLink", "Code\GW2NET.MumbleLink\GW2NET.MumbleLink.csproj", "{190833B0-3E2E-4C89-9C29-BF577C02219B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.RestSharp", "Code\GW2NET.RestSharp\GW2NET.RestSharp.csproj", "{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Pcl", "Code\GW2NET.Pcl\GW2NET.Pcl.csproj", "{3DE05013-61E1-46F5-974B-27BD3427E194}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Pcl.Compression", "Code\GW2NET.Pcl.Compression\GW2NET.Pcl.Compression.csproj", "{08D936E1-C097-4196-8128-C2493F8D7E47}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.PowerShell", "Code\GW2NET.PowerShell\GW2NET.PowerShell.csproj", "{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "portable-net45+netcore45+wpa81", "portable-net45+netcore45+wpa81", "{E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET", "Code\GW2NET\GW2NET.csproj", "{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Compression", "Code\GW2NET.Compression\GW2NET.Compression.csproj", "{08D936E1-C097-4196-8128-C2493F8D7E47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net45", "net45", "{504B3117-41C4-4D9C-AF11-971119859D50}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 13
+		SccNumberOfProjects = 10
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Code\\GW2NET\\GW2NET.csproj
+		SccProjectUniqueName1 = Code\\GW2NET.MumbleLink\\GW2NET.MumbleLink.csproj
 		SccProjectTopLevelParentUniqueName1 = GW2.NET.sln
-		SccProjectName1 = Code/GW2NET
-		SccLocalPath1 = Code\\GW2NET
-		SccProjectUniqueName2 = Code\\GW2NET.Compression\\GW2NET.Compression.csproj
+		SccProjectName1 = Code/GW2NET.MumbleLink
+		SccLocalPath1 = Code\\GW2NET.MumbleLink
+		SccProjectUniqueName2 = Code\\GW2NET.Core\\GW2NET.Core.csproj
 		SccProjectTopLevelParentUniqueName2 = GW2.NET.sln
-		SccProjectName2 = Code/GW2NET.Compression
-		SccLocalPath2 = Code\\GW2NET.Compression
-		SccProjectUniqueName3 = Code\\GW2NET.MumbleLink\\GW2NET.MumbleLink.csproj
+		SccProjectName2 = Code/GW2NET.Core
+		SccLocalPath2 = Code\\GW2NET.Core
+		SccProjectUniqueName3 = Code\\GW2NET.Newtonsoft\\GW2NET.Newtonsoft.csproj
 		SccProjectTopLevelParentUniqueName3 = GW2.NET.sln
-		SccProjectName3 = Code/GW2NET.MumbleLink
-		SccLocalPath3 = Code\\GW2NET.MumbleLink
-		SccProjectUniqueName4 = Code\\GW2NET.RestSharp\\GW2NET.RestSharp.csproj
+		SccProjectName3 = Code/GW2NET.Newtonsoft
+		SccLocalPath3 = Code\\GW2NET.Newtonsoft
+		SccProjectUniqueName4 = Data\\GW.NET.Data\\GW2NET.Data.sqlproj
 		SccProjectTopLevelParentUniqueName4 = GW2.NET.sln
-		SccProjectName4 = Code/GW2NET.RestSharp
-		SccLocalPath4 = Code\\GW2NET.RestSharp
-		SccProjectUniqueName5 = Code\\GW2NET.Core\\GW2NET.Core.csproj
+		SccProjectName4 = Data/GW.NET.Data
+		SccLocalPath4 = Data\\GW.NET.Data
+		SccProjectUniqueName5 = Code\\GW2NET.PowerShell\\GW2NET.PowerShell.csproj
 		SccProjectTopLevelParentUniqueName5 = GW2.NET.sln
-		SccProjectName5 = Code/GW2NET.Core
-		SccLocalPath5 = Code\\GW2NET.Core
-		SccProjectUniqueName6 = Code\\GW2NET.Newtonsoft\\GW2NET.Newtonsoft.csproj
+		SccProjectName5 = Code/GW2NET.PowerShell
+		SccLocalPath5 = Code\\GW2NET.PowerShell
+		SccProjectUniqueName6 = Analysis\\GW2.NET.Diagrams\\GW2NET.Diagrams.modelproj
 		SccProjectTopLevelParentUniqueName6 = GW2.NET.sln
-		SccProjectName6 = Code/GW2NET.Newtonsoft
-		SccLocalPath6 = Code\\GW2NET.Newtonsoft
-		SccProjectUniqueName7 = Code\\GW2NET.Pcl\\GW2NET.Pcl.csproj
+		SccProjectName6 = Analysis/GW2.NET.Diagrams
+		SccLocalPath6 = Analysis\\GW2.NET.Diagrams
+		SccProjectUniqueName7 = Testing\\GW2.NET.Tests\\GW2NET.Tests.csproj
 		SccProjectTopLevelParentUniqueName7 = GW2.NET.sln
-		SccProjectName7 = Code/GW2NET.Pcl
-		SccLocalPath7 = Code\\GW2NET.Pcl
-		SccProjectUniqueName8 = Code\\GW2NET.Pcl.Compression\\GW2NET.Pcl.Compression.csproj
+		SccProjectName7 = Testing/GW2.NET.Tests
+		SccLocalPath7 = Testing\\GW2.NET.Tests
+		SccProjectUniqueName8 = Code\\GW2NET\\GW2NET.csproj
 		SccProjectTopLevelParentUniqueName8 = GW2.NET.sln
-		SccProjectName8 = Code/GW2NET.Pcl.Compression
-		SccLocalPath8 = Code\\GW2NET.Pcl.Compression
-		SccProjectUniqueName9 = Data\\GW.NET.Data\\GW2NET.Data.sqlproj
+		SccProjectName8 = Code/GW2NET
+		SccLocalPath8 = Code\\GW2NET
+		SccProjectUniqueName9 = Code\\GW2NET.Compression\\GW2NET.Compression.csproj
 		SccProjectTopLevelParentUniqueName9 = GW2.NET.sln
-		SccProjectName9 = Data/GW.NET.Data
-		SccLocalPath9 = Data\\GW.NET.Data
-		SccProjectUniqueName10 = Code\\GW2NET.PowerShell\\GW2NET.PowerShell.csproj
-		SccProjectTopLevelParentUniqueName10 = GW2.NET.sln
-		SccProjectName10 = Code/GW2NET.PowerShell
-		SccLocalPath10 = Code\\GW2NET.PowerShell
-		SccProjectUniqueName11 = Analysis\\GW2.NET.Diagrams\\GW2NET.Diagrams.modelproj
-		SccProjectTopLevelParentUniqueName11 = GW2.NET.sln
-		SccProjectName11 = Analysis/GW2.NET.Diagrams
-		SccLocalPath11 = Analysis\\GW2.NET.Diagrams
-		SccProjectUniqueName12 = Testing\\GW2.NET.Tests\\GW2NET.Tests.csproj
-		SccProjectTopLevelParentUniqueName12 = GW2.NET.sln
-		SccProjectName12 = Testing/GW2.NET.Tests
-		SccLocalPath12 = Testing\\GW2.NET.Tests
+		SccProjectName9 = Code/GW2NET.Compression
+		SccLocalPath9 = Code\\GW2NET.Compression
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Benchmark|Any CPU = Benchmark|Any CPU
@@ -147,22 +127,6 @@ Global
 		{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
 		{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
-		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
-		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.DebugCC|Any CPU.ActiveCfg = DebugCC|Any CPU
-		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
-		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
-		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
-		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.DebugCC|Any CPU.ActiveCfg = DebugCC|Any CPU
-		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
-		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C3BE9D66-2330-4544-8B12-16898CCF20E0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
 		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Benchmark|Any CPU.Build.0 = Release|Any CPU
 		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -171,30 +135,6 @@ Global
 		{190833B0-3E2E-4C89-9C29-BF577C02219B}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
 		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{190833B0-3E2E-4C89-9C29-BF577C02219B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
-		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
-		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.DebugCC|Any CPU.ActiveCfg = DebugCC|Any CPU
-		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
-		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DE05013-61E1-46F5-974B-27BD3427E194}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
-		{3DE05013-61E1-46F5-974B-27BD3427E194}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
-		{3DE05013-61E1-46F5-974B-27BD3427E194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DE05013-61E1-46F5-974B-27BD3427E194}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DE05013-61E1-46F5-974B-27BD3427E194}.DebugCC|Any CPU.ActiveCfg = DebugCC|Any CPU
-		{3DE05013-61E1-46F5-974B-27BD3427E194}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
-		{3DE05013-61E1-46F5-974B-27BD3427E194}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DE05013-61E1-46F5-974B-27BD3427E194}.Release|Any CPU.Build.0 = Release|Any CPU
-		{08D936E1-C097-4196-8128-C2493F8D7E47}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
-		{08D936E1-C097-4196-8128-C2493F8D7E47}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
-		{08D936E1-C097-4196-8128-C2493F8D7E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{08D936E1-C097-4196-8128-C2493F8D7E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{08D936E1-C097-4196-8128-C2493F8D7E47}.DebugCC|Any CPU.ActiveCfg = DebugCC|Any CPU
-		{08D936E1-C097-4196-8128-C2493F8D7E47}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
-		{08D936E1-C097-4196-8128-C2493F8D7E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{08D936E1-C097-4196-8128-C2493F8D7E47}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -203,6 +143,22 @@ Global
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Benchmark|Any CPU.ActiveCfg = Benchmark|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Benchmark|Any CPU.Build.0 = Benchmark|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.DebugCC|Any CPU.ActiveCfg = DebugCC|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.DebugCC|Any CPU.Build.0 = DebugCC|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08D936E1-C097-4196-8128-C2493F8D7E47}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -210,18 +166,14 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{D138871F-94ED-4BB0-999A-2ACD3732DF30} = {54B8834B-AC3C-40BA-8134-D2C20341CFC1}
 		{6F803776-2787-45CA-9BE4-10FCB832FF28} = {20A2C3F6-72DD-4153-BF59-681C8C9CE278}
-		{30BE9CC5-137B-41BF-B04E-5395BD6F03CF} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
-		{DCB61C47-D314-41BC-AB72-562478ADC29E} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
-		{BD2E3FCE-8D8A-4272-925A-AEB7DB9C4F3D} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 		{6D4BB059-82DE-44A3-9534-4CA61E022100} = {45A22909-25E3-4C6B-9C87-3F925BF7A17D}
-		{05F3D999-0470-4123-8C80-AF4AC2385E7C} = {BD2E3FCE-8D8A-4272-925A-AEB7DB9C4F3D}
-		{11BB8977-33FE-4789-BD5B-D977B0BF5ECF} = {BD2E3FCE-8D8A-4272-925A-AEB7DB9C4F3D}
-		{EAF8F000-F96C-46C3-94D3-73C6AFF62A5E} = {30BE9CC5-137B-41BF-B04E-5395BD6F03CF}
-		{C3BE9D66-2330-4544-8B12-16898CCF20E0} = {30BE9CC5-137B-41BF-B04E-5395BD6F03CF}
-		{190833B0-3E2E-4C89-9C29-BF577C02219B} = {30BE9CC5-137B-41BF-B04E-5395BD6F03CF}
-		{AA1DD2FF-3CA1-463D-AB37-BC5B41AFCD53} = {30BE9CC5-137B-41BF-B04E-5395BD6F03CF}
-		{3DE05013-61E1-46F5-974B-27BD3427E194} = {DCB61C47-D314-41BC-AB72-562478ADC29E}
-		{08D936E1-C097-4196-8128-C2493F8D7E47} = {DCB61C47-D314-41BC-AB72-562478ADC29E}
+		{05F3D999-0470-4123-8C80-AF4AC2385E7C} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
+		{11BB8977-33FE-4789-BD5B-D977B0BF5ECF} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
+		{190833B0-3E2E-4C89-9C29-BF577C02219B} = {504B3117-41C4-4D9C-AF11-971119859D50}
 		{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{E6DD4FF3-E75A-46B1-B120-87BCBDA131C9} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
+		{48C94F34-B6BD-4BDD-A0D5-36403A86FB78} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
+		{08D936E1-C097-4196-8128-C2493F8D7E47} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
+		{504B3117-41C4-4D9C-AF11-971119859D50} = {EE1E597D-4EFF-427C-8DBD-D035605DA8A2}
 	EndGlobalSection
 EndGlobal

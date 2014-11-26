@@ -194,11 +194,6 @@
       <Name>GW2NET.Newtonsoft</Name>
       <Private>False</Private>
     </ProjectReference>
-    <ProjectReference Include="..\GW2NET.Pcl.Compression\GW2NET.Pcl.Compression.csproj">
-      <Project>{08d936e1-c097-4196-8128-c2493f8d7e47}</Project>
-      <Name>GW2NET.Pcl.Compression</Name>
-      <Private>False</Private>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Solution Items\SharedAssemblyInfo.cs">

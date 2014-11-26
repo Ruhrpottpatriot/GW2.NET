@@ -111,15 +111,13 @@
     <Compile Include="ServiceCmdlet.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GW2NET.Compression\GW2NET.Compression.csproj">
+      <Project>{08d936e1-c097-4196-8128-c2493f8d7e47}</Project>
+      <Name>GW2NET.Compression</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">
       <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
       <Name>GW2NET.Core</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\GW2NET.Pcl.Compression\GW2NET.Pcl.Compression.csproj">
-      <Project>{08D936E1-C097-4196-8128-C2493F8D7E47}</Project>
-      <Name>GW2NET.Pcl.Compression</Name>
-      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

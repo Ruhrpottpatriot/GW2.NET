@@ -6,6 +6,9 @@
 //   Provides the default implementation of the event rotations service.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using System.Reflection;
+
 namespace GW2NET.Local.DynamicEvents
 {
     using System;
@@ -25,7 +28,7 @@ namespace GW2NET.Local.DynamicEvents
         public IDictionary<Guid, DynamicEventRotation> GetDynamicEventRotations()
         {
             // Load the event rotations configuration file from this assembly
-            var type = this.GetType();
+            var type = this.GetType().GetTypeInfo();
             using (var stream = type.Assembly.GetManifestResourceStream(type.Namespace + ".Rotations.xml"))
             {
                 // Ensure that there is content

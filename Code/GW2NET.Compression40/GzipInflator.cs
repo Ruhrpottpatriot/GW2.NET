@@ -16,7 +16,7 @@ namespace GW2NET.Compression
     /// <summary>Represents the GZIP inflator.</summary>
     public class GzipInflator : IConverter<Stream, Stream>
     {
-        /// <summary>Decompresses the given <see cref="Stream"/>.</summary>
+        /// <summary>decompresses the given <see cref="Stream"/>.</summary>
         /// <param name="value">The stream to decompress.</param>
         /// <returns>The decompressed <see cref="Stream"/>.</returns>
         public Stream Convert(Stream value)
