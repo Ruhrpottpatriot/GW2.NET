@@ -9,7 +9,7 @@
 namespace GW2NET.Items
 {
     /// <summary>The Precision modifier.</summary>
-    internal class PrecisionModifier : CombatAttribute
+    public class PrecisionModifier : CombatAttribute
     {
     }
 }

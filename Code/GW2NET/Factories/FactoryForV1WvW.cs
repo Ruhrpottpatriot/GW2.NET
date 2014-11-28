@@ -11,10 +11,9 @@ namespace GW2NET.Factories
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
+    using GW2NET.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld.Matches;
     using GW2NET.V1.WorldVersusWorld.Objectives;
-    using GW2NET.WorldVersusWorld;
-
     /// <summary>Provides access to WvW data sources.</summary>
     public class FactoryForV1WvW : FactoryBase
     {

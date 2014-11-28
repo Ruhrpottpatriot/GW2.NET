@@ -18,7 +18,7 @@ namespace GW2NET.Common.Converters
     /// <typeparam name="TValueInput">The type of values in the input dictionary.</typeparam>
     /// <typeparam name="TKeyOutput">The type of keys in the output dictionary.</typeparam>
     /// <typeparam name="TValueOutput">The type of values in the output dictionary.</typeparam>
-    internal sealed class ConverterForIDictionary<TKeyInput, TValueInput, TKeyOutput, TValueOutput> : IConverter<IDictionary<TKeyInput, TValueInput>, IDictionary<TKeyOutput, TValueOutput>>
+    public sealed class ConverterForIDictionary<TKeyInput, TValueInput, TKeyOutput, TValueOutput> : IConverter<IDictionary<TKeyInput, TValueInput>, IDictionary<TKeyOutput, TValueOutput>>
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<KeyValuePair<TKeyInput, TValueInput>, KeyValuePair<TKeyOutput, TValueOutput>> converterForKeyValuePair;

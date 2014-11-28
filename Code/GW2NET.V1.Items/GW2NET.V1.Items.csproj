@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D408E5B0-40F7-4262-8D8A-B30BB2DE1E93}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GW2NET.V1.Items</RootNamespace>
+    <AssemblyName>GW2NET.V1.Items</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\GW2NET.Core\GW2NET.Core.csproj">
+      <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
+      <Name>GW2NET.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converters\ConverterForAccessory.cs" />
+    <Compile Include="Converters\ConverterForAlcohol.cs" />
+    <Compile Include="Converters\ConverterForAmulet.cs" />
+    <Compile Include="Converters\ConverterForAppearanceChanger.cs" />
+    <Compile Include="Converters\ConverterForArmor.cs" />
+    <Compile Include="Converters\ConverterForAxe.cs" />
+    <Compile Include="Converters\ConverterForBackpack.cs" />
+    <Compile Include="Converters\ConverterForBag.cs" />
+    <Compile Include="Converters\ConverterForBagSlotUnlocker.cs" />
+    <Compile Include="Converters\ConverterForBankTabUnlocker.cs" />
+    <Compile Include="Converters\ConverterForBoots.cs" />
+    <Compile Include="Converters\ConverterForCoat.cs" />
+    <Compile Include="Converters\ConverterForCollectibleCapacityUnlocker.cs" />
+    <Compile Include="Converters\ConverterForCombatAttribute.cs" />
+    <Compile Include="Converters\ConverterForCombatBuff.cs" />
+    <Compile Include="Converters\ConverterForConditionDamageModifier.cs" />
+    <Compile Include="Converters\ConverterForConsumable.cs" />
+    <Compile Include="Converters\ConverterForContainer.cs" />
+    <Compile Include="Converters\ConverterForContainerKey.cs" />
+    <Compile Include="Converters\ConverterForContentUnlocker.cs" />
+    <Compile Include="Converters\ConverterForContractNpc.cs" />
+    <Compile Include="Converters\ConverterForCraftingMaterial.cs" />
+    <Compile Include="Converters\ConverterForCraftingRecipeUnlocker.cs" />
+    <Compile Include="Converters\ConverterForDagger.cs" />
+    <Compile Include="Converters\ConverterForDamageType.cs" />
+    <Compile Include="Converters\ConverterForDefaultContainer.cs" />
+    <Compile Include="Converters\ConverterForDefaultGizmo.cs" />
+    <Compile Include="Converters\ConverterForDefaultUpgradeComponent.cs" />
+    <Compile Include="Converters\ConverterForDyeUnlocker.cs" />
+    <Compile Include="Converters\ConverterForFerocityModifier.cs" />
+    <Compile Include="Converters\ConverterForFocus.cs" />
+    <Compile Include="Converters\ConverterForFood.cs" />
+    <Compile Include="Converters\ConverterForForagingTool.cs" />
+    <Compile Include="Converters\ConverterForGameType.cs" />
+    <Compile Include="Converters\ConverterForGameTypeCollection.cs" />
+    <Compile Include="Converters\ConverterForGatheringTool.cs" />
+    <Compile Include="Converters\ConverterForGem.cs" />
+    <Compile Include="Converters\ConverterForGenericConsumable.cs" />
+    <Compile Include="Converters\ConverterForGiftBox.cs" />
+    <Compile Include="Converters\ConverterForGizmo.cs" />
+    <Compile Include="Converters\ConverterForGloves.cs" />
+    <Compile Include="Converters\ConverterForGreatSword.cs" />
+    <Compile Include="Converters\ConverterForHalloweenConsumable.cs" />
+    <Compile Include="Converters\ConverterForHammer.cs" />
+    <Compile Include="Converters\ConverterForHarpoon.cs" />
+    <Compile Include="Converters\ConverterForHealingModifier.cs" />
+    <Compile Include="Converters\ConverterForHelm.cs" />
+    <Compile Include="Converters\ConverterForHelmAquatic.cs" />
+    <Compile Include="Converters\ConverterForImmediateConsumable.cs" />
+    <Compile Include="Converters\ConverterForInfixUpgrade.cs" />
+    <Compile Include="Converters\ConverterForInfusionSlot.cs" />
+    <Compile Include="Converters\ConverterForInfusionSlotFlag.cs" />
+    <Compile Include="Converters\ConverterForInfusionSlotFlagCollection.cs" />
+    <Compile Include="Converters\ConverterForItem.cs" />
+    <Compile Include="Converters\ConverterForItemCollection.cs" />
+    <Compile Include="Converters\ConverterForItemFlag.cs" />
+    <Compile Include="Converters\ConverterForItemFlagCollection.cs" />
+    <Compile Include="Converters\ConverterForItemRarity.cs" />
+    <Compile Include="Converters\ConverterForItemRestriction.cs" />
+    <Compile Include="Converters\ConverterForItemRestrictionCollection.cs" />
+    <Compile Include="Converters\ConverterForLargeBundle.cs" />
+    <Compile Include="Converters\ConverterForLeggings.cs" />
+    <Compile Include="Converters\ConverterForLoggingTool.cs" />
+    <Compile Include="Converters\ConverterForLongBow.cs" />
+    <Compile Include="Converters\ConverterForMace.cs" />
+    <Compile Include="Converters\ConverterForMiniature.cs" />
+    <Compile Include="Converters\ConverterForMiningTool.cs" />
+    <Compile Include="Converters\ConverterForOpenUiContainer.cs" />
+    <Compile Include="Converters\ConverterForPistol.cs" />
+    <Compile Include="Converters\ConverterForPowerModifier.cs" />
+    <Compile Include="Converters\ConverterForPrecisionModifier.cs" />
+    <Compile Include="Converters\ConverterForRentableContractNpc.cs" />
+    <Compile Include="Converters\ConverterForRifle.cs" />
+    <Compile Include="Converters\ConverterForRing.cs" />
+    <Compile Include="Converters\ConverterForRune.cs" />
+    <Compile Include="Converters\ConverterForSalvageTool.cs" />
+    <Compile Include="Converters\ConverterForScepter.cs" />
+    <Compile Include="Converters\ConverterForShield.cs" />
+    <Compile Include="Converters\ConverterForShortBow.cs" />
+    <Compile Include="Converters\ConverterForShoulders.cs" />
+    <Compile Include="Converters\ConverterForSigil.cs" />
+    <Compile Include="Converters\ConverterForSmallBundle.cs" />
+    <Compile Include="Converters\ConverterForSpearGun.cs" />
+    <Compile Include="Converters\ConverterForStaff.cs" />
+    <Compile Include="Converters\ConverterForSword.cs" />
+    <Compile Include="Converters\ConverterForTool.cs" />
+    <Compile Include="Converters\ConverterForTorch.cs" />
+    <Compile Include="Converters\ConverterForToughnessModifier.cs" />
+    <Compile Include="Converters\ConverterForToy.cs" />
+    <Compile Include="Converters\ConverterForTraitGuide.cs" />
+    <Compile Include="Converters\ConverterForTransmutation.cs" />
+    <Compile Include="Converters\ConverterForTrident.cs" />
+    <Compile Include="Converters\ConverterForTrinket.cs" />
+    <Compile Include="Converters\ConverterForTrophy.cs" />
+    <Compile Include="Converters\ConverterForTwoHandedToy.cs" />
+    <Compile Include="Converters\ConverterForUnlimitedConsumable.cs" />
+    <Compile Include="Converters\ConverterForUnlocker.cs" />
+    <Compile Include="Converters\ConverterForUnTransmutation.cs" />
+    <Compile Include="Converters\ConverterForUpgradeComponent.cs" />
+    <Compile Include="Converters\ConverterForUpgradeComponentFlag.cs" />
+    <Compile Include="Converters\ConverterForUpgradeComponentFlagCollection.cs" />
+    <Compile Include="Converters\ConverterForUpgradeRemoval.cs" />
+    <Compile Include="Converters\ConverterForUtility.cs" />
+    <Compile Include="Converters\ConverterForVitalityModifier.cs" />
+    <Compile Include="Converters\ConverterForWarHorn.cs" />
+    <Compile Include="Converters\ConverterForWeapon.cs" />
+    <Compile Include="Converters\ConverterForWeightClass.cs" />
+    <Compile Include="ItemDetailsRequest.cs" />
+    <Compile Include="ItemDiscoveryRequest.cs" />
+    <Compile Include="ItemRepository.cs" />
+    <Compile Include="ItemRepositoryFactory.cs" />
+    <Compile Include="Json\ArmorDataContract.cs" />
+    <Compile Include="Json\AttributeDataContract.cs" />
+    <Compile Include="Json\BackpackDataContract.cs" />
+    <Compile Include="Json\BagDataContract.cs" />
+    <Compile Include="Json\CombatBuffDataContract.cs" />
+    <Compile Include="Json\ConsumableDataContract.cs" />
+    <Compile Include="Json\ContainerDataContract.cs" />
+    <Compile Include="Json\GatheringToolDataContract.cs" />
+    <Compile Include="Json\GizmoDataContract.cs" />
+    <Compile Include="Json\InfixUpgradeDataContract.cs" />
+    <Compile Include="Json\InfusionSlotDataContract.cs" />
+    <Compile Include="Json\ItemCollectionDataContract.cs" />
+    <Compile Include="Json\ItemDataContract.cs" />
+    <Compile Include="Json\ToolDataContract.cs" />
+    <Compile Include="Json\TrinketDataContract.cs" />
+    <Compile Include="Json\UpgradeComponentDataContract.cs" />
+    <Compile Include="Json\WeaponDataContract.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

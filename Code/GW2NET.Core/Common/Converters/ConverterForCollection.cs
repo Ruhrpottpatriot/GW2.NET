@@ -16,14 +16,14 @@ namespace GW2NET.Common.Converters
     /// <summary>Converts objects of type <see cref="ICollection{T}"/> to objects of type <see cref="ICollection{T}"/>.</summary>
     /// <typeparam name="TInput">The type of the input.</typeparam>
     /// <typeparam name="TOutput">The type of the output.</typeparam>
-    internal sealed class ConverterForCollection<TInput, TOutput> : IConverter<ICollection<TInput>, ICollection<TOutput>>
+    public sealed class ConverterForCollection<TInput, TOutput> : IConverter<ICollection<TInput>, ICollection<TOutput>>
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<TInput, TOutput> converterForOutput;
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForCollection{TInput,TOutput}"/> class.</summary>
         /// <param name="converterForOutput">The converter for <typeparamref name="TOutput"/>.</param>
-        internal ConverterForCollection(IConverter<TInput, TOutput> converterForOutput)
+        public ConverterForCollection(IConverter<TInput, TOutput> converterForOutput)
         {
             Contract.Requires(converterForOutput != null);
             this.converterForOutput = converterForOutput;

@@ -119,6 +119,14 @@
       <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
       <Name>GW2NET.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Builds\GW2NET.V1.Builds.csproj">
+      <Project>{ca0da927-b8f4-4097-a7cd-a0014e0b233a}</Project>
+      <Name>GW2NET.V1.Builds</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Events\GW2NET.V1.Events.csproj">
+      <Project>{C7624CD0-F810-469F-B5CF-11715AFC41D2}</Project>
+      <Name>GW2NET.V1.Events</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -99,6 +99,62 @@
       <Name>GW2NET.Newtonsoft</Name>
       <Private>True</Private>
     </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Builds\GW2NET.V1.Builds.csproj">
+      <Project>{ca0da927-b8f4-4097-a7cd-a0014e0b233a}</Project>
+      <Name>GW2NET.V1.Builds</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Colors\GW2NET.V1.Colors.csproj">
+      <Project>{B6A516FF-684D-4E5D-9C9E-851718332A39}</Project>
+      <Name>GW2NET.V1.Colors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Continents\GW2NET.V1.Continents.csproj">
+      <Project>{489aaa0e-7ef9-4423-843a-fa3a11bee156}</Project>
+      <Name>GW2NET.V1.Continents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Events\GW2NET.V1.Events.csproj">
+      <Project>{c7624cd0-f810-469f-b5cf-11715afc41d2}</Project>
+      <Name>GW2NET.V1.Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Files\GW2NET.V1.Files.csproj">
+      <Project>{25e6a850-d86e-4f4d-b824-4ab8338a0af9}</Project>
+      <Name>GW2NET.V1.Files</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Floors\GW2NET.V1.Floors.csproj">
+      <Project>{a5ad09eb-690c-4adc-8af0-f0acfaae2f8f}</Project>
+      <Name>GW2NET.V1.Floors</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Guilds\GW2NET.V1.Guilds.csproj">
+      <Project>{48dbec9e-c97b-412e-ad3a-03658f76cdfc}</Project>
+      <Name>GW2NET.V1.Guilds</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Items\GW2NET.V1.Items.csproj">
+      <Project>{d408e5b0-40f7-4262-8d8a-b30bb2de1e93}</Project>
+      <Name>GW2NET.V1.Items</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Maps\GW2NET.V1.Maps.csproj">
+      <Project>{19481b9a-67f2-4bec-824e-731c7238d7e4}</Project>
+      <Name>GW2NET.V1.Maps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Recipes\GW2NET.V1.Recipes.csproj">
+      <Project>{b476c1ef-2fb8-4590-a5e3-cca93d079b21}</Project>
+      <Name>GW2NET.V1.Recipes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Skins\GW2NET.V1.Skins.csproj">
+      <Project>{0ac8e33c-64b8-496b-a202-924375af0d39}</Project>
+      <Name>GW2NET.V1.Skins</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.Worlds\GW2NET.V1.Worlds.csproj">
+      <Project>{f3e6f8e8-2767-4a99-bad4-20b7d0edcd96}</Project>
+      <Name>GW2NET.V1.Worlds</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.WorldVersusWorld.Matches\GW2NET.V1.WorldVersusWorld.Matches.csproj">
+      <Project>{d53ae2ca-1a84-4707-8099-b6003ffac46e}</Project>
+      <Name>GW2NET.V1.WorldVersusWorld.Matches</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V1.WorldVersusWorld.Objectives\GW2NET.V1.WorldVersusWorld.Objectives.csproj">
+      <Project>{926e82ec-49d0-43f2-8214-e06408619676}</Project>
+      <Name>GW2NET.V1.WorldVersusWorld.Objectives</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Solution Items\SharedAssemblyInfo.cs">

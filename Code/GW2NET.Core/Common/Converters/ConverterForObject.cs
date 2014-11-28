@@ -12,7 +12,7 @@ namespace GW2NET.Common.Converters
 
     /// <summary>Converts objects of type <see cref="T:object"/> to objects of type <see cref="T"/>.</summary>
     /// <typeparam name="T">The type to activate.</typeparam>
-    internal sealed class ConverterForObject<T> : IConverter<object, T>
+    public sealed class ConverterForObject<T> : IConverter<object, T>
         where T : new()
     {
         /// <inheritdoc />

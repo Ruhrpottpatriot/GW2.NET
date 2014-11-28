@@ -10,7 +10,7 @@ namespace GW2NET.Common.Converters
 {
     /// <summary>Represents an adapter for the <see cref="IConverter{TInput,TOutput}"/> interface that does not do any conversions.</summary>
     /// <typeparam name="T">The type of the value that needs to be adapted.</typeparam>
-    internal sealed class ConverterAdapter<T> : IConverter<T, T>
+    public sealed class ConverterAdapter<T> : IConverter<T, T>
     {
         /// <inheritdoc />
         T IConverter<T, T>.Convert(T value)

@@ -6,6 +6,9 @@
 //   Provides access to version 1 of the public API.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
+using GW2NET.V1.Events;
+
 namespace GW2NET.Factories
 {
     using System.Diagnostics.Contracts;
@@ -16,14 +19,13 @@ namespace GW2NET.Factories
     using GW2NET.V1.Builds;
     using GW2NET.V1.Colors;
     using GW2NET.V1.Continents;
-    using GW2NET.V1.DynamicEvents;
     using GW2NET.V1.Files;
     using GW2NET.V1.Floors;
     using GW2NET.V1.Guilds;
-    using GW2NET.V1.Items;
     using GW2NET.V1.Maps;
-    using GW2NET.V1.Recipes;
     using GW2NET.V1.Skins;
+    using GW2NET.V1.Items;
+    using GW2NET.V1.Recipes;
     using GW2NET.V1.Worlds;
 
     /// <summary>Provides access to version 1 of the public API.</summary>

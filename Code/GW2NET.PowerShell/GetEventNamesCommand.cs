@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using GW2NET.V1.Events;
 
 namespace GW2NET.PS.Commands
 {
@@ -11,7 +12,6 @@ namespace GW2NET.PS.Commands
 
     using GW2NET.Common;
     using GW2NET.DynamicEvents;
-    using GW2NET.V1.DynamicEvents;
 
     [Cmdlet(VerbsCommon.Get, "EventNames", DefaultParameterSetName = "All")]
     public class GetEventNamesCommand : ServiceCmdlet
