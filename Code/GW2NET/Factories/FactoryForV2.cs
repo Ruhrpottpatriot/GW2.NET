@@ -10,12 +10,12 @@ namespace GW2NET.Factories
 {
     using System.Diagnostics.Contracts;
 
+    using GW2NET.V2.Items;
+    using GW2NET.V2.Recipes;
+    using GW2NET.V2.Quaggans;
+    using GW2NET.V2.Worlds;
     using GW2NET.Common;
     using GW2NET.Quaggans;
-    using GW2NET.V2.Items;
-    using GW2NET.V2.Quaggans;
-    using GW2NET.V2.Recipes;
-    using GW2NET.V2.Worlds;
 
     /// <summary>Provides access to version 2 of the public API.</summary>
     public class FactoryForV2 : FactoryBase

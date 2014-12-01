@@ -127,6 +127,10 @@
       <Project>{C7624CD0-F810-469F-B5CF-11715AFC41D2}</Project>
       <Name>GW2NET.V1.Events</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Items\GW2NET.V2.Items.csproj">
+      <Project>{965994BE-F908-4D34-AF07-F8A6B527FFB7}</Project>
+      <Name>GW2NET.V2.Items</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

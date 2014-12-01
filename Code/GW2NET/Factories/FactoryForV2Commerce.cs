@@ -10,11 +10,12 @@ namespace GW2NET.Factories
 {
     using System.Diagnostics.Contracts;
 
-    using GW2NET.Commerce;
-    using GW2NET.Common;
     using GW2NET.V2.Commerce.Exchange;
     using GW2NET.V2.Commerce.Listings;
     using GW2NET.V2.Commerce.Prices;
+
+    using GW2NET.Commerce;
+    using GW2NET.Common;
 
     /// <summary>Provides access to commerce data sources.</summary>
     public class FactoryForV2Commerce : FactoryBase
