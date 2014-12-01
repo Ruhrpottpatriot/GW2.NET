@@ -43,8 +43,23 @@ namespace GW2NET.V2.Quaggans
         public QuagganRepository(IServiceClient serviceClient)
         {
             Contract.Requires(serviceClient != null);
-            Contract.Ensures(this.serviceClient != null);
             this.serviceClient = serviceClient;
+        }
+
+        /// <summary>Initializes a new instance of the <see cref="QuagganRepository"/> class.</summary>
+        /// <param name="serviceClient">The service client.</param>
+        /// <param name="converterForIdentifiers">The converter for <see cref="T:ICollection{string}"/>.</param>
+        /// <param name="converterForQuaggan">The converter for <see cref="Quaggan"/>.</param>
+        internal QuagganRepository(IServiceClient serviceClient, IConverter<ICollection<string>, ICollection<string>> converterForIdentifiers, IConverter<QuagganDataContract, Quaggan> converterForQuaggan)
+        {
+            Contract.Requires(serviceClient != null);
+            Contract.Requires(converterForIdentifiers != null);
+            Contract.Requires(converterForQuaggan != null);
+            this.serviceClient = serviceClient;
+            this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<string>, ICollection<string>>(converterForIdentifiers);
+            this.converterForResponse = new ConverterForResponse<QuagganDataContract, Quaggan>(converterForQuaggan);
+            this.converterForBulkResponse = new ConverterForDictionaryRangeResponse<QuagganDataContract, string, Quaggan>(converterForQuaggan, quaggan => quaggan.Id);
+            this.converterForPageResponse = new ConverterForCollectionPageResponse<QuagganDataContract, Quaggan>(converterForQuaggan);
         }
 
         /// <inheritdoc />
