@@ -90,11 +90,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Code\GW2NET.Core\GW2NET.Core.csproj">
+    <ProjectReference Include="..\..\src\GW2NET.Core\GW2NET.Core.csproj">
       <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
       <Name>GW2NET.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Code\GW2NET\GW2NET.csproj">
+    <ProjectReference Include="..\..\src\GW2NET\GW2NET.csproj">
       <Project>{48c94f34-b6bd-4bdd-a0d5-36403a86fb78}</Project>
       <Name>GW2NET</Name>
     </ProjectReference>

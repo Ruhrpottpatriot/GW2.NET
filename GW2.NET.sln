@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Analysis", "Analysis", "{20
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{54B8834B-AC3C-40BA-8134-D2C20341CFC1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Code", "Code", "{EE1E597D-4EFF-427C-8DBD-D035605DA8A2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EE1E597D-4EFF-427C-8DBD-D035605DA8A2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Tests", "Testing\GW2.NET.Tests\GW2NET.Tests.csproj", "{D138871F-94ED-4BB0-999A-2ACD3732DF30}"
 EndProject
@@ -22,63 +22,63 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{45A22909-2
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GW2NET.Data", "Data\GW.NET.Data\GW2NET.Data.sqlproj", "{6D4BB059-82DE-44A3-9534-4CA61E022100}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Core", "Code\GW2NET.Core\GW2NET.Core.csproj", "{05F3D999-0470-4123-8C80-AF4AC2385E7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Core", "src\GW2NET.Core\GW2NET.Core.csproj", "{05F3D999-0470-4123-8C80-AF4AC2385E7C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Newtonsoft", "Code\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj", "{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Newtonsoft", "src\GW2NET.Newtonsoft\GW2NET.Newtonsoft.csproj", "{11BB8977-33FE-4789-BD5B-D977B0BF5ECF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.MumbleLink", "Code\GW2NET.MumbleLink\GW2NET.MumbleLink.csproj", "{190833B0-3E2E-4C89-9C29-BF577C02219B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.MumbleLink", "src\GW2NET.MumbleLink\GW2NET.MumbleLink.csproj", "{190833B0-3E2E-4C89-9C29-BF577C02219B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.PowerShell", "Code\GW2NET.PowerShell\GW2NET.PowerShell.csproj", "{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.PowerShell", "src\GW2NET.PowerShell\GW2NET.PowerShell.csproj", "{A42D9EAF-EAD9-4D0E-925B-F4496BC638E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "portable-net45+netcore45+wpa81", "portable-net45+netcore45+wpa81", "{E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET", "Code\GW2NET\GW2NET.csproj", "{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET", "src\GW2NET\GW2NET.csproj", "{48C94F34-B6BD-4BDD-A0D5-36403A86FB78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Compression", "Code\GW2NET.Compression\GW2NET.Compression.csproj", "{08D936E1-C097-4196-8128-C2493F8D7E47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.Compression", "src\GW2NET.Compression\GW2NET.Compression.csproj", "{08D936E1-C097-4196-8128-C2493F8D7E47}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net45", "net45", "{504B3117-41C4-4D9C-AF11-971119859D50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Builds", "Code\GW2NET.V1.Builds\GW2NET.V1.Builds.csproj", "{CA0DA927-B8F4-4097-A7CD-A0014E0B233A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Builds", "src\GW2NET.V1.Builds\GW2NET.V1.Builds.csproj", "{CA0DA927-B8F4-4097-A7CD-A0014E0B233A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Colors", "Code\GW2NET.V1.Colors\GW2NET.V1.Colors.csproj", "{B6A516FF-684D-4E5D-9C9E-851718332A39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Colors", "src\GW2NET.V1.Colors\GW2NET.V1.Colors.csproj", "{B6A516FF-684D-4E5D-9C9E-851718332A39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Continents", "Code\GW2NET.V1.Continents\GW2NET.V1.Continents.csproj", "{489AAA0E-7EF9-4423-843A-FA3A11BEE156}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Continents", "src\GW2NET.V1.Continents\GW2NET.V1.Continents.csproj", "{489AAA0E-7EF9-4423-843A-FA3A11BEE156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Events", "Code\GW2NET.V1.Events\GW2NET.V1.Events.csproj", "{C7624CD0-F810-469F-B5CF-11715AFC41D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Events", "src\GW2NET.V1.Events\GW2NET.V1.Events.csproj", "{C7624CD0-F810-469F-B5CF-11715AFC41D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Floors", "Code\GW2NET.V1.Floors\GW2NET.V1.Floors.csproj", "{A5AD09EB-690C-4ADC-8AF0-F0ACFAAE2F8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Floors", "src\GW2NET.V1.Floors\GW2NET.V1.Floors.csproj", "{A5AD09EB-690C-4ADC-8AF0-F0ACFAAE2F8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Guilds", "Code\GW2NET.V1.Guilds\GW2NET.V1.Guilds.csproj", "{48DBEC9E-C97B-412E-AD3A-03658F76CDFC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Guilds", "src\GW2NET.V1.Guilds\GW2NET.V1.Guilds.csproj", "{48DBEC9E-C97B-412E-AD3A-03658F76CDFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Items", "Code\GW2NET.V1.Items\GW2NET.V1.Items.csproj", "{D408E5B0-40F7-4262-8D8A-B30BB2DE1E93}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Items", "src\GW2NET.V1.Items\GW2NET.V1.Items.csproj", "{D408E5B0-40F7-4262-8D8A-B30BB2DE1E93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Maps", "Code\GW2NET.V1.Maps\GW2NET.V1.Maps.csproj", "{19481B9A-67F2-4BEC-824E-731C7238D7E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Maps", "src\GW2NET.V1.Maps\GW2NET.V1.Maps.csproj", "{19481B9A-67F2-4BEC-824E-731C7238D7E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Recipes", "Code\GW2NET.V1.Recipes\GW2NET.V1.Recipes.csproj", "{B476C1EF-2FB8-4590-A5E3-CCA93D079B21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Recipes", "src\GW2NET.V1.Recipes\GW2NET.V1.Recipes.csproj", "{B476C1EF-2FB8-4590-A5E3-CCA93D079B21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Skins", "Code\GW2NET.V1.Skins\GW2NET.V1.Skins.csproj", "{0AC8E33C-64B8-496B-A202-924375AF0D39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Skins", "src\GW2NET.V1.Skins\GW2NET.V1.Skins.csproj", "{0AC8E33C-64B8-496B-A202-924375AF0D39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Worlds", "Code\GW2NET.V1.Worlds\GW2NET.V1.Worlds.csproj", "{F3E6F8E8-2767-4A99-BAD4-20B7D0EDCD96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Worlds", "src\GW2NET.V1.Worlds\GW2NET.V1.Worlds.csproj", "{F3E6F8E8-2767-4A99-BAD4-20B7D0EDCD96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.WorldVersusWorld.Matches", "Code\GW2NET.V1.WorldVersusWorld.Matches\GW2NET.V1.WorldVersusWorld.Matches.csproj", "{D53AE2CA-1A84-4707-8099-B6003FFAC46E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.WorldVersusWorld.Matches", "src\GW2NET.V1.WorldVersusWorld.Matches\GW2NET.V1.WorldVersusWorld.Matches.csproj", "{D53AE2CA-1A84-4707-8099-B6003FFAC46E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.WorldVersusWorld.Objectives", "Code\GW2NET.V1.WorldVersusWorld.Objectives\GW2NET.V1.WorldVersusWorld.Objectives.csproj", "{926E82EC-49D0-43F2-8214-E06408619676}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.WorldVersusWorld.Objectives", "src\GW2NET.V1.WorldVersusWorld.Objectives\GW2NET.V1.WorldVersusWorld.Objectives.csproj", "{926E82EC-49D0-43F2-8214-E06408619676}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Files", "Code\GW2NET.V1.Files\GW2NET.V1.Files.csproj", "{25E6A850-D86E-4F4D-B824-4AB8338A0AF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V1.Files", "src\GW2NET.V1.Files\GW2NET.V1.Files.csproj", "{25E6A850-D86E-4F4D-B824-4AB8338A0AF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Worlds", "Code\GW2NET.V2.Worlds\GW2NET.V2.Worlds.csproj", "{1D9EEE65-D035-4ACB-9F08-883A59331A6A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Worlds", "src\GW2NET.V2.Worlds\GW2NET.V2.Worlds.csproj", "{1D9EEE65-D035-4ACB-9F08-883A59331A6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Recipes", "Code\GW2NET.V2.Recipes\GW2NET.V2.Recipes.csproj", "{55897753-F4B5-48D1-8A01-20D54AFDE7DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Recipes", "src\GW2NET.V2.Recipes\GW2NET.V2.Recipes.csproj", "{55897753-F4B5-48D1-8A01-20D54AFDE7DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Items", "Code\GW2NET.V2.Items\GW2NET.V2.Items.csproj", "{965994BE-F908-4D34-AF07-F8A6B527FFB7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Items", "src\GW2NET.V2.Items\GW2NET.V2.Items.csproj", "{965994BE-F908-4D34-AF07-F8A6B527FFB7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Quaggans", "Code\GW2NET.V2.Quaggans\GW2NET.V2.Quaggans.csproj", "{1DE9B06C-24A1-497D-BFA9-65EB9E361C71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Quaggans", "src\GW2NET.V2.Quaggans\GW2NET.V2.Quaggans.csproj", "{1DE9B06C-24A1-497D-BFA9-65EB9E361C71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Exchange", "Code\GW2NET.V2.Commerce.Exchange\GW2NET.V2.Commerce.Exchange.csproj", "{40A8F55C-97BC-4652-A60E-9F4EA5D49FDA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Exchange", "src\GW2NET.V2.Commerce.Exchange\GW2NET.V2.Commerce.Exchange.csproj", "{40A8F55C-97BC-4652-A60E-9F4EA5D49FDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Listings", "Code\GW2NET.V2.Commerce.Listings\GW2NET.V2.Commerce.Listings.csproj", "{CA6D86A9-F12E-45D4-A878-57F2714A0A51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Listings", "src\GW2NET.V2.Commerce.Listings\GW2NET.V2.Commerce.Listings.csproj", "{CA6D86A9-F12E-45D4-A878-57F2714A0A51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Prices", "Code\GW2NET.V2.Commerce.Prices\GW2NET.V2.Commerce.Prices.csproj", "{0F72000C-A997-471F-A353-5988828A5255}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Prices", "src\GW2NET.V2.Commerce.Prices\GW2NET.V2.Commerce.Prices.csproj", "{0F72000C-A997-471F-A353-5988828A5255}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -86,26 +86,26 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Code\\GW2NET.MumbleLink\\GW2NET.MumbleLink.csproj
+		SccProjectUniqueName1 = src\\GW2NET.MumbleLink\\GW2NET.MumbleLink.csproj
 		SccProjectTopLevelParentUniqueName1 = GW2.NET.sln
-		SccProjectName1 = Code/GW2NET.MumbleLink
-		SccLocalPath1 = Code\\GW2NET.MumbleLink
-		SccProjectUniqueName2 = Code\\GW2NET.Core\\GW2NET.Core.csproj
+		SccProjectName1 = src/GW2NET.MumbleLink
+		SccLocalPath1 = src\\GW2NET.MumbleLink
+		SccProjectUniqueName2 = src\\GW2NET.Core\\GW2NET.Core.csproj
 		SccProjectTopLevelParentUniqueName2 = GW2.NET.sln
-		SccProjectName2 = Code/GW2NET.Core
-		SccLocalPath2 = Code\\GW2NET.Core
-		SccProjectUniqueName3 = Code\\GW2NET.Newtonsoft\\GW2NET.Newtonsoft.csproj
+		SccProjectName2 = src/GW2NET.Core
+		SccLocalPath2 = src\\GW2NET.Core
+		SccProjectUniqueName3 = src\\GW2NET.Newtonsoft\\GW2NET.Newtonsoft.csproj
 		SccProjectTopLevelParentUniqueName3 = GW2.NET.sln
-		SccProjectName3 = Code/GW2NET.Newtonsoft
-		SccLocalPath3 = Code\\GW2NET.Newtonsoft
+		SccProjectName3 = src/GW2NET.Newtonsoft
+		SccLocalPath3 = src\\GW2NET.Newtonsoft
 		SccProjectUniqueName4 = Data\\GW.NET.Data\\GW2NET.Data.sqlproj
 		SccProjectTopLevelParentUniqueName4 = GW2.NET.sln
 		SccProjectName4 = Data/GW.NET.Data
 		SccLocalPath4 = Data\\GW.NET.Data
-		SccProjectUniqueName5 = Code\\GW2NET.PowerShell\\GW2NET.PowerShell.csproj
+		SccProjectUniqueName5 = src\\GW2NET.PowerShell\\GW2NET.PowerShell.csproj
 		SccProjectTopLevelParentUniqueName5 = GW2.NET.sln
-		SccProjectName5 = Code/GW2NET.PowerShell
-		SccLocalPath5 = Code\\GW2NET.PowerShell
+		SccProjectName5 = src/GW2NET.PowerShell
+		SccLocalPath5 = src\\GW2NET.PowerShell
 		SccProjectUniqueName6 = Analysis\\GW2.NET.Diagrams\\GW2NET.Diagrams.modelproj
 		SccProjectTopLevelParentUniqueName6 = GW2.NET.sln
 		SccProjectName6 = Analysis/GW2.NET.Diagrams
@@ -114,98 +114,98 @@ Global
 		SccProjectTopLevelParentUniqueName7 = GW2.NET.sln
 		SccProjectName7 = Testing/GW2.NET.Tests
 		SccLocalPath7 = Testing\\GW2.NET.Tests
-		SccProjectUniqueName8 = Code\\GW2NET\\GW2NET.csproj
+		SccProjectUniqueName8 = src\\GW2NET\\GW2NET.csproj
 		SccProjectTopLevelParentUniqueName8 = GW2.NET.sln
-		SccProjectName8 = Code/GW2NET
-		SccLocalPath8 = Code\\GW2NET
-		SccProjectUniqueName9 = Code\\GW2NET.Compression\\GW2NET.Compression.csproj
+		SccProjectName8 = src/GW2NET
+		SccLocalPath8 = src\\GW2NET
+		SccProjectUniqueName9 = src\\GW2NET.Compression\\GW2NET.Compression.csproj
 		SccProjectTopLevelParentUniqueName9 = GW2.NET.sln
-		SccProjectName9 = Code/GW2NET.Compression
-		SccLocalPath9 = Code\\GW2NET.Compression
-		SccProjectUniqueName10 = Code\\GW2NET.V1.Builds\\GW2NET.V1.Builds.csproj
+		SccProjectName9 = src/GW2NET.Compression
+		SccLocalPath9 = src\\GW2NET.Compression
+		SccProjectUniqueName10 = src\\GW2NET.V1.Builds\\GW2NET.V1.Builds.csproj
 		SccProjectTopLevelParentUniqueName10 = GW2.NET.sln
-		SccProjectName10 = Code/GW2NET.V1.Builds
-		SccLocalPath10 = Code\\GW2NET.V1.Builds
-		SccProjectUniqueName11 = Code\\GW2NET.V1.Colors\\GW2NET.V1.Colors.csproj
+		SccProjectName10 = src/GW2NET.V1.Builds
+		SccLocalPath10 = src\\GW2NET.V1.Builds
+		SccProjectUniqueName11 = src\\GW2NET.V1.Colors\\GW2NET.V1.Colors.csproj
 		SccProjectTopLevelParentUniqueName11 = GW2.NET.sln
-		SccProjectName11 = Code/GW2NET.V1.Colors
-		SccLocalPath11 = Code\\GW2NET.V1.Colors
-		SccProjectUniqueName12 = Code\\GW2NET.V1.Continents\\GW2NET.V1.Continents.csproj
+		SccProjectName11 = src/GW2NET.V1.Colors
+		SccLocalPath11 = src\\GW2NET.V1.Colors
+		SccProjectUniqueName12 = src\\GW2NET.V1.Continents\\GW2NET.V1.Continents.csproj
 		SccProjectTopLevelParentUniqueName12 = GW2.NET.sln
-		SccProjectName12 = Code/GW2NET.V1.Continents
-		SccLocalPath12 = Code\\GW2NET.V1.Continents
-		SccProjectUniqueName13 = Code\\GW2NET.V1.Events\\GW2NET.V1.Events.csproj
+		SccProjectName12 = src/GW2NET.V1.Continents
+		SccLocalPath12 = src\\GW2NET.V1.Continents
+		SccProjectUniqueName13 = src\\GW2NET.V1.Events\\GW2NET.V1.Events.csproj
 		SccProjectTopLevelParentUniqueName13 = GW2.NET.sln
-		SccProjectName13 = Code/GW2NET.V1.Events
-		SccLocalPath13 = Code\\GW2NET.V1.Events
-		SccProjectUniqueName14 = Code\\GW2NET.V1.Floors\\GW2NET.V1.Floors.csproj
+		SccProjectName13 = src/GW2NET.V1.Events
+		SccLocalPath13 = src\\GW2NET.V1.Events
+		SccProjectUniqueName14 = src\\GW2NET.V1.Floors\\GW2NET.V1.Floors.csproj
 		SccProjectTopLevelParentUniqueName14 = GW2.NET.sln
-		SccProjectName14 = Code/GW2NET.V1.Floors
-		SccLocalPath14 = Code\\GW2NET.V1.Floors
-		SccProjectUniqueName15 = Code\\GW2NET.V1.Guilds\\GW2NET.V1.Guilds.csproj
+		SccProjectName14 = src/GW2NET.V1.Floors
+		SccLocalPath14 = src\\GW2NET.V1.Floors
+		SccProjectUniqueName15 = src\\GW2NET.V1.Guilds\\GW2NET.V1.Guilds.csproj
 		SccProjectTopLevelParentUniqueName15 = GW2.NET.sln
-		SccProjectName15 = Code/GW2NET.V1.Guilds
-		SccLocalPath15 = Code\\GW2NET.V1.Guilds
-		SccProjectUniqueName16 = Code\\GW2NET.V1.Items\\GW2NET.V1.Items.csproj
+		SccProjectName15 = src/GW2NET.V1.Guilds
+		SccLocalPath15 = src\\GW2NET.V1.Guilds
+		SccProjectUniqueName16 = src\\GW2NET.V1.Items\\GW2NET.V1.Items.csproj
 		SccProjectTopLevelParentUniqueName16 = GW2.NET.sln
-		SccProjectName16 = Code/GW2NET.V1.Items
-		SccLocalPath16 = Code\\GW2NET.V1.Items
-		SccProjectUniqueName17 = Code\\GW2NET.V1.Maps\\GW2NET.V1.Maps.csproj
+		SccProjectName16 = src/GW2NET.V1.Items
+		SccLocalPath16 = src\\GW2NET.V1.Items
+		SccProjectUniqueName17 = src\\GW2NET.V1.Maps\\GW2NET.V1.Maps.csproj
 		SccProjectTopLevelParentUniqueName17 = GW2.NET.sln
-		SccProjectName17 = Code/GW2NET.V1.Maps
-		SccLocalPath17 = Code\\GW2NET.V1.Maps
-		SccProjectUniqueName18 = Code\\GW2NET.V1.Recipes\\GW2NET.V1.Recipes.csproj
+		SccProjectName17 = src/GW2NET.V1.Maps
+		SccLocalPath17 = src\\GW2NET.V1.Maps
+		SccProjectUniqueName18 = src\\GW2NET.V1.Recipes\\GW2NET.V1.Recipes.csproj
 		SccProjectTopLevelParentUniqueName18 = GW2.NET.sln
-		SccProjectName18 = Code/GW2NET.V1.Recipes
-		SccLocalPath18 = Code\\GW2NET.V1.Recipes
-		SccProjectUniqueName19 = Code\\GW2NET.V1.Skins\\GW2NET.V1.Skins.csproj
+		SccProjectName18 = src/GW2NET.V1.Recipes
+		SccLocalPath18 = src\\GW2NET.V1.Recipes
+		SccProjectUniqueName19 = src\\GW2NET.V1.Skins\\GW2NET.V1.Skins.csproj
 		SccProjectTopLevelParentUniqueName19 = GW2.NET.sln
-		SccProjectName19 = Code/GW2NET.V1.Skins
-		SccLocalPath19 = Code\\GW2NET.V1.Skins
-		SccProjectUniqueName20 = Code\\GW2NET.V1.Worlds\\GW2NET.V1.Worlds.csproj
+		SccProjectName19 = src/GW2NET.V1.Skins
+		SccLocalPath19 = src\\GW2NET.V1.Skins
+		SccProjectUniqueName20 = src\\GW2NET.V1.Worlds\\GW2NET.V1.Worlds.csproj
 		SccProjectTopLevelParentUniqueName20 = GW2.NET.sln
-		SccProjectName20 = Code/GW2NET.V1.Worlds
-		SccLocalPath20 = Code\\GW2NET.V1.Worlds
-		SccProjectUniqueName21 = Code\\GW2NET.V1.WorldVersusWorld.Matches\\GW2NET.V1.WorldVersusWorld.Matches.csproj
+		SccProjectName20 = src/GW2NET.V1.Worlds
+		SccLocalPath20 = src\\GW2NET.V1.Worlds
+		SccProjectUniqueName21 = src\\GW2NET.V1.WorldVersusWorld.Matches\\GW2NET.V1.WorldVersusWorld.Matches.csproj
 		SccProjectTopLevelParentUniqueName21 = GW2.NET.sln
-		SccProjectName21 = Code/GW2NET.V1.WorldVersusWorld.Matches
-		SccLocalPath21 = Code\\GW2NET.V1.WorldVersusWorld.Matches
-		SccProjectUniqueName22 = Code\\GW2NET.V1.WorldVersusWorld.Objectives\\GW2NET.V1.WorldVersusWorld.Objectives.csproj
+		SccProjectName21 = src/GW2NET.V1.WorldVersusWorld.Matches
+		SccLocalPath21 = src\\GW2NET.V1.WorldVersusWorld.Matches
+		SccProjectUniqueName22 = src\\GW2NET.V1.WorldVersusWorld.Objectives\\GW2NET.V1.WorldVersusWorld.Objectives.csproj
 		SccProjectTopLevelParentUniqueName22 = GW2.NET.sln
-		SccProjectName22 = Code/GW2NET.V1.WorldVersusWorld.Objectives
-		SccLocalPath22 = Code\\GW2NET.V1.WorldVersusWorld.Objectives
-		SccProjectUniqueName23 = Code\\GW2NET.V1.Files\\GW2NET.V1.Files.csproj
+		SccProjectName22 = src/GW2NET.V1.WorldVersusWorld.Objectives
+		SccLocalPath22 = src\\GW2NET.V1.WorldVersusWorld.Objectives
+		SccProjectUniqueName23 = src\\GW2NET.V1.Files\\GW2NET.V1.Files.csproj
 		SccProjectTopLevelParentUniqueName23 = GW2.NET.sln
-		SccProjectName23 = Code/GW2NET.V1.Files
-		SccLocalPath23 = Code\\GW2NET.V1.Files
-		SccProjectUniqueName24 = Code\\GW2NET.V2.Worlds\\GW2NET.V2.Worlds.csproj
+		SccProjectName23 = src/GW2NET.V1.Files
+		SccLocalPath23 = src\\GW2NET.V1.Files
+		SccProjectUniqueName24 = src\\GW2NET.V2.Worlds\\GW2NET.V2.Worlds.csproj
 		SccProjectTopLevelParentUniqueName24 = GW2.NET.sln
-		SccProjectName24 = Code/GW2NET.V2.Worlds
-		SccLocalPath24 = Code\\GW2NET.V2.Worlds
-		SccProjectUniqueName25 = Code\\GW2NET.V2.Recipes\\GW2NET.V2.Recipes.csproj
+		SccProjectName24 = src/GW2NET.V2.Worlds
+		SccLocalPath24 = src\\GW2NET.V2.Worlds
+		SccProjectUniqueName25 = src\\GW2NET.V2.Recipes\\GW2NET.V2.Recipes.csproj
 		SccProjectTopLevelParentUniqueName25 = GW2.NET.sln
-		SccProjectName25 = Code/GW2NET.V2.Recipes
-		SccLocalPath25 = Code\\GW2NET.V2.Recipes
-		SccProjectUniqueName26 = Code\\GW2NET.V2.Items\\GW2NET.V2.Items.csproj
+		SccProjectName25 = src/GW2NET.V2.Recipes
+		SccLocalPath25 = src\\GW2NET.V2.Recipes
+		SccProjectUniqueName26 = src\\GW2NET.V2.Items\\GW2NET.V2.Items.csproj
 		SccProjectTopLevelParentUniqueName26 = GW2.NET.sln
-		SccProjectName26 = Code/GW2NET.V2.Items
-		SccLocalPath26 = Code\\GW2NET.V2.Items
-		SccProjectUniqueName27 = Code\\GW2NET.V2.Quaggans\\GW2NET.V2.Quaggans.csproj
+		SccProjectName26 = src/GW2NET.V2.Items
+		SccLocalPath26 = src\\GW2NET.V2.Items
+		SccProjectUniqueName27 = src\\GW2NET.V2.Quaggans\\GW2NET.V2.Quaggans.csproj
 		SccProjectTopLevelParentUniqueName27 = GW2.NET.sln
-		SccProjectName27 = Code/GW2NET.V2.Quaggans
-		SccLocalPath27 = Code\\GW2NET.V2.Quaggans
-		SccProjectUniqueName28 = Code\\GW2NET.V2.Commerce.Exchange\\GW2NET.V2.Commerce.Exchange.csproj
+		SccProjectName27 = src/GW2NET.V2.Quaggans
+		SccLocalPath27 = src\\GW2NET.V2.Quaggans
+		SccProjectUniqueName28 = src\\GW2NET.V2.Commerce.Exchange\\GW2NET.V2.Commerce.Exchange.csproj
 		SccProjectTopLevelParentUniqueName28 = GW2.NET.sln
-		SccProjectName28 = Code/GW2NET.V2.Commerce.Exchange
-		SccLocalPath28 = Code\\GW2NET.V2.Commerce.Exchange
-		SccProjectUniqueName29 = Code\\GW2NET.V2.Commerce.Listings\\GW2NET.V2.Commerce.Listings.csproj
+		SccProjectName28 = src/GW2NET.V2.Commerce.Exchange
+		SccLocalPath28 = src\\GW2NET.V2.Commerce.Exchange
+		SccProjectUniqueName29 = src\\GW2NET.V2.Commerce.Listings\\GW2NET.V2.Commerce.Listings.csproj
 		SccProjectTopLevelParentUniqueName29 = GW2.NET.sln
-		SccProjectName29 = Code/GW2NET.V2.Commerce.Listings
-		SccLocalPath29 = Code\\GW2NET.V2.Commerce.Listings
-		SccProjectUniqueName30 = Code\\GW2NET.V2.Commerce.Prices\\GW2NET.V2.Commerce.Prices.csproj
+		SccProjectName29 = src/GW2NET.V2.Commerce.Listings
+		SccLocalPath29 = src\\GW2NET.V2.Commerce.Listings
+		SccProjectUniqueName30 = src\\GW2NET.V2.Commerce.Prices\\GW2NET.V2.Commerce.Prices.csproj
 		SccProjectTopLevelParentUniqueName30 = GW2.NET.sln
-		SccProjectName30 = Code/GW2NET.V2.Commerce.Prices
-		SccLocalPath30 = Code\\GW2NET.V2.Commerce.Prices
+		SccProjectName30 = src/GW2NET.V2.Commerce.Prices
+		SccLocalPath30 = src\\GW2NET.V2.Commerce.Prices
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Benchmark|Any CPU = Benchmark|Any CPU
