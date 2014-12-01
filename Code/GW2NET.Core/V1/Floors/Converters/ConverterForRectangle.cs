@@ -22,7 +22,7 @@ namespace GW2NET.V1.Floors
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForRectangle"/> class.</summary>
         internal ConverterForRectangle()
-            : this(new Maps.ConverterForVector2D())
+            : this(new ConverterForVector2D())
         {
         }
 
