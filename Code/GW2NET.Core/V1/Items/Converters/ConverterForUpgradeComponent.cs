@@ -3,7 +3,7 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Converts objects of type <see cref="V2.Items.Json.ItemDataContract" /> to objects of type <see cref="UpgradeComponent" />.
+//   Converts objects of type <see cref="ItemDataContract" /> to objects of type <see cref="UpgradeComponent" />.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V1.Items
@@ -15,7 +15,7 @@ namespace GW2NET.V1.Items
     using GW2NET.Common;
     using GW2NET.Items;
 
-    /// <summary>Converts objects of type <see cref="V2.Items.ItemDataContract"/> to objects of type <see cref="UpgradeComponent"/>.</summary>
+    /// <summary>Converts objects of type <see cref="ItemDataContract"/> to objects of type <see cref="UpgradeComponent"/>.</summary>
     internal sealed class ConverterForUpgradeComponent : IConverter<ItemDataContract, UpgradeComponent>
     {
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
@@ -32,7 +32,7 @@ namespace GW2NET.V1.Items
 
         /// <summary>Initializes a new instance of the <see cref="ConverterForUpgradeComponent"/> class.</summary>
         public ConverterForUpgradeComponent()
-            : this(GetKnownTypeConverters(), new ConverterForUpgradeComponentFlagCollection(), new V2.Items.ConverterForInfusionSlotFlagCollection(), new ConverterForInfixUpgrade())
+            : this(GetKnownTypeConverters(), new ConverterForUpgradeComponentFlagCollection(), new ConverterForInfusionSlotFlagCollection(), new ConverterForInfixUpgrade())
         {
         }
 
