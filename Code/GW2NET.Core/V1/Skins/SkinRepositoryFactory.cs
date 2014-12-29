@@ -84,9 +84,8 @@ namespace GW2NET.V1.Skins
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public ISkinRepository ForCurrentUICulture(int continentId)
+        public ISkinRepository ForCurrentUICulture()
         {
             Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
