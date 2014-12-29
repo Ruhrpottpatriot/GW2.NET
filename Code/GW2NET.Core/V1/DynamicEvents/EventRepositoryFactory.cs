@@ -84,9 +84,8 @@ namespace GW2NET.V1.DynamicEvents
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IEventRepository ForCurrentUICulture(int continentId)
+        public IEventRepository ForCurrentUICulture()
         {
             Contract.Ensures(Contract.Result<IEventRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
