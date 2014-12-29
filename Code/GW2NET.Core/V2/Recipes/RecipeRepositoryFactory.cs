@@ -84,9 +84,8 @@ namespace GW2NET.V2.Recipes
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IRecipeRepository ForCurrentUICulture(int continentId)
+        public IRecipeRepository ForCurrentUICulture()
         {
             Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
