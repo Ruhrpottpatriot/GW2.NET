@@ -84,9 +84,8 @@ namespace GW2NET.V1.Colors
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IColorRepository ForCurrentUICulture(int continentId)
+        public IColorRepository ForCurrentUICulture()
         {
             Contract.Ensures(Contract.Result<IColorRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
