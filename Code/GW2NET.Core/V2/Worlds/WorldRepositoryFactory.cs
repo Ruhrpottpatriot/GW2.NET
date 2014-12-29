@@ -84,9 +84,8 @@ namespace GW2NET.V2.Worlds
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
-        public IWorldRepository ForCurrentUICulture(int continentId)
+        public IWorldRepository ForCurrentUICulture()
         {
             Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
