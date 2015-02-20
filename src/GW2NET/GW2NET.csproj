@@ -158,6 +158,10 @@
       <Project>{5f2c2514-10b0-4b5b-b227-edd406377396}</Project>
       <Name>GW2NET.V2.Build</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Colors\GW2NET.V2.Colors.csproj">
+      <Project>{d5fd21bd-9d1f-4129-b3dd-fcdc0afd0830}</Project>
+      <Name>GW2NET.V2.Colors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Commerce.Exchange\GW2NET.V2.Commerce.Exchange.csproj">
       <Project>{40a8f55c-97bc-4652-a60e-9f4ea5d49fda}</Project>
       <Name>GW2NET.V2.Commerce.Exchange</Name>
