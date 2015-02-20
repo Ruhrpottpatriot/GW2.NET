@@ -10,12 +10,14 @@ namespace GW2NET.Factories
 {
     using System.Diagnostics.Contracts;
 
-    using GW2NET.V2.Items;
-    using GW2NET.V2.Recipes;
-    using GW2NET.V2.Quaggans;
-    using GW2NET.V2.Worlds;
     using GW2NET.Common;
     using GW2NET.Quaggans;
+    using GW2NET.V2.Build;
+    using GW2NET.V2.Colors;
+    using GW2NET.V2.Items;
+    using GW2NET.V2.Quaggans;
+    using GW2NET.V2.Recipes;
+    using GW2NET.V2.Worlds;
 
     /// <summary>Provides access to version 2 of the public API.</summary>
     public class FactoryForV2 : FactoryBase
@@ -26,6 +28,26 @@ namespace GW2NET.Factories
             : base(serviceClient)
         {
             Contract.Requires(serviceClient != null);
+        }
+
+        /// <summary>Provides access to the colors data source.</summary>
+        public ColorRepositoryFactory Colors
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<ColorRepositoryFactory>() != null);
+                return new ColorRepositoryFactory(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Provides access to the v2 build service.</summary>
+        public IBuildService Build
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<IBuildService>() != null);
+                return new BuildService(this.ServiceClient);
+            }
         }
 
         /// <summary>Provides access to commerce data sources.</summary>

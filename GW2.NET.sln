@@ -80,9 +80,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Listings
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Commerce.Prices", "src\GW2NET.V2.Commerce.Prices\GW2NET.V2.Commerce.Prices.csproj", "{0F72000C-A997-471F-A353-5988828A5255}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Build", "src\GW2NET.V2.Build\GW2NET.V2.Build.csproj", "{5F2C2514-10B0-4B5B-B227-EDD406377396}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Colors", "src\GW2NET.V2.Colors\GW2NET.V2.Colors.csproj", "{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 31
+		SccNumberOfProjects = 33
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -206,6 +210,14 @@ Global
 		SccProjectTopLevelParentUniqueName30 = GW2.NET.sln
 		SccProjectName30 = src/GW2NET.V2.Commerce.Prices
 		SccLocalPath30 = src\\GW2NET.V2.Commerce.Prices
+		SccProjectUniqueName31 = src\\GW2NET.V2.Build\\GW2NET.V2.Build.csproj
+		SccProjectTopLevelParentUniqueName31 = GW2.NET.sln
+		SccProjectName31 = src/GW2NET.V2.Build
+		SccLocalPath31 = src\\GW2NET.V2.Build
+		SccProjectUniqueName32 = src\\GW2NET.V2.Colors\\GW2NET.V2.Colors.csproj
+		SccProjectTopLevelParentUniqueName32 = GW2.NET.sln
+		SccProjectName32 = src/GW2NET.V2.Colors
+		SccLocalPath32 = src\\GW2NET.V2.Colors
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Benchmark|Any CPU = Benchmark|Any CPU
@@ -453,6 +465,22 @@ Global
 		{0F72000C-A997-471F-A353-5988828A5255}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
 		{0F72000C-A997-471F-A353-5988828A5255}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F72000C-A997-471F-A353-5988828A5255}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F2C2514-10B0-4B5B-B227-EDD406377396}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{5F2C2514-10B0-4B5B-B227-EDD406377396}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{5F2C2514-10B0-4B5B-B227-EDD406377396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F2C2514-10B0-4B5B-B227-EDD406377396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F2C2514-10B0-4B5B-B227-EDD406377396}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F2C2514-10B0-4B5B-B227-EDD406377396}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{5F2C2514-10B0-4B5B-B227-EDD406377396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F2C2514-10B0-4B5B-B227-EDD406377396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -490,5 +518,7 @@ Global
 		{40A8F55C-97BC-4652-A60E-9F4EA5D49FDA} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
 		{CA6D86A9-F12E-45D4-A878-57F2714A0A51} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
 		{0F72000C-A997-471F-A353-5988828A5255} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
+		{5F2C2514-10B0-4B5B-B227-EDD406377396} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
+		{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
 	EndGlobalSection
 EndGlobal
