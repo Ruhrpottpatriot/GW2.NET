@@ -8,7 +8,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Quaggans
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
@@ -17,6 +16,7 @@ namespace GW2NET.V2.Quaggans
     using System.Threading.Tasks;
 
     using GW2NET.Common;
+    using GW2NET.Common.Converters;
     using GW2NET.Quaggans;
     using GW2NET.V2.Common;
 
@@ -41,9 +41,9 @@ namespace GW2NET.V2.Quaggans
         /// <summary>Initializes a new instance of the <see cref="QuagganRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public QuagganRepository(IServiceClient serviceClient)
+            : this(serviceClient, new ConverterAdapter<ICollection<string>>(), new ConverterForQuaggan())
         {
             Contract.Requires(serviceClient != null);
-            this.serviceClient = serviceClient;
         }
 
         /// <summary>Initializes a new instance of the <see cref="QuagganRepository"/> class.</summary>
