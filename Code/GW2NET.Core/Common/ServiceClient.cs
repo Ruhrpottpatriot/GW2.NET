@@ -383,7 +383,8 @@ namespace GW2NET.Common
             var date = headers["Date"];
             if (date != null)
             {
-                value.Date = DateTimeOffset.Parse(date);
+
+                value.Date = DateTimeOffset.Parse(date, DateTimeFormatInfo.InvariantInfo);
             }
 
             // Set the 'Content-Language' header
