@@ -11,8 +11,10 @@ namespace GW2NET.V2.Files
 {
     using GW2NET.Common;
 
+    /// <summary>Represents a page request that targets the /v2/files interface.</summary>
     public sealed class FilePageRequest : PageRequest
     {
+        /// <inheritdoc />
         public override string Resource
         {
             get

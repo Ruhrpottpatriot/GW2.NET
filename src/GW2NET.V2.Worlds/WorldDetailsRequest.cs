@@ -12,7 +12,6 @@ namespace GW2NET.V2.Worlds
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.Common;
 
     /// <summary>Represents a details request that targets the /v2/worlds interface.</summary>
     internal sealed class WorldDetailsRequest : DetailsRequest, ILocalizable

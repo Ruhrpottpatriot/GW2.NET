@@ -37,7 +37,7 @@ namespace GW2NET.V2.Files
         /// <summary>Infrastructure. Holds a reference to a type converter.</summary>
         private readonly IConverter<IResponse<ICollection<FileDataContract>>, IDictionaryRange<string, AssetV2>> bulkResponseConverter;
 
-        /// <summary>Initialises a new instance of the <see cref="FileRepositoryV2"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FileRepositoryV2"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         public FileRepositoryV2(IServiceClient serviceClient)
             : this(serviceClient, new FileDataContractConverter())
@@ -45,7 +45,7 @@ namespace GW2NET.V2.Files
             Contract.Requires(serviceClient != null);
         }
 
-        /// <summary>Initialises a new instance of the <see cref="FileRepositoryV2"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="FileRepositoryV2"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="contractToAssetConverter">The contract to asset converter.</param>
         internal FileRepositoryV2(IServiceClient serviceClient, IConverter<FileDataContract, AssetV2> contractToAssetConverter)

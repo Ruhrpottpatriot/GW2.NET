@@ -1,6 +1,7 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
     <CollectionProperty Name="RecognizedWords">
+      <Value>api</Value>
       <Value>Asura</Value>
       <Value>Charr</Value>
       <Value>Elementalist</Value>
