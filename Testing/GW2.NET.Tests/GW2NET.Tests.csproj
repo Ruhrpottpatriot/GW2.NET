@@ -95,6 +95,10 @@
       <Project>{05f3d999-0470-4123-8c80-af4ac2385e7c}</Project>
       <Name>GW2NET.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\GW2NET.V2.Colors\GW2NET.V2.Colors.csproj">
+      <Project>{D5FD21BD-9D1F-4129-B3DD-FCDC0AFD0830}</Project>
+      <Name>GW2NET.V2.Colors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\GW2NET\GW2NET.csproj">
       <Project>{48c94f34-b6bd-4bdd-a0d5-36403a86fb78}</Project>
       <Name>GW2NET</Name>

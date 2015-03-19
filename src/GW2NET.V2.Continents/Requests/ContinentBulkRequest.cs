@@ -1,20 +1,21 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ItemDetailsRequest.cs" company="GW2.NET Coding Team">
+// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="ContinentBulkRequest.cs" company="GW2.NET Coding Team">
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Represents a details request that targets the /v2/items interface.
+//   Defines the ContinentBulkRequest type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GW2NET.V2.Items
+
+namespace GW2NET.V2.Continents
 {
     using System.Collections.Generic;
     using System.Globalization;
 
     using GW2NET.Common;
 
-    /// <summary>Represents a details request that targets the /v2/items interface.</summary>
-    internal sealed class ItemDetailsRequest : DetailsRequest, ILocalizable
+    /// <summary>Represents a bulk request that targets the /v2/continents interface.</summary>
+    internal sealed class ContinentBulkRequest : BulkRequest, ILocalizable
     {
         /// <summary>Gets or sets the locale.</summary>
         public CultureInfo Culture { get; set; }
@@ -24,7 +25,7 @@ namespace GW2NET.V2.Items
         {
             get
             {
-                return "/v2/items/{0}";
+                return "/v2/continents";
             }
         }
 

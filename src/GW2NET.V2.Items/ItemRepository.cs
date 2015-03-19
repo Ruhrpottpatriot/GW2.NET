@@ -19,7 +19,6 @@ namespace GW2NET.V2.Items
     using GW2NET.Common;
     using GW2NET.Common.Converters;
     using GW2NET.Items;
-    using GW2NET.Common;
 
     /// <summary>Represents a repository that retrieves data from the /v2/items interface. See the remarks section for important limitations regarding this implementation.</summary>
     /// <remarks>
