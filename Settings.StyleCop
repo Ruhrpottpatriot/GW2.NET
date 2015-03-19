@@ -10,6 +10,7 @@
       <Value>Sylvari</Value>
       <Value>wvw</Value>
     </CollectionProperty>
+    <StringProperty Name="Culture">en-US</StringProperty>
   </GlobalSettings>
   <Analyzers>
     <Analyzer AnalyzerId="StyleCop.CSharp.DocumentationRules">

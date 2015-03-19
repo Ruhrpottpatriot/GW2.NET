@@ -8,10 +8,11 @@
 //   This class should eventually be replaced by a class that can parse Link headers.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System.Diagnostics.Contracts;
 
 namespace GW2NET.Common
 {
+    using System.Diagnostics.Contracts;
+
     /// <summary>
     /// The API embeds page context in HTTP Link headers, but we currently do not have a parser for that header.
     /// This class calculates the missing page context information for a given page index.
