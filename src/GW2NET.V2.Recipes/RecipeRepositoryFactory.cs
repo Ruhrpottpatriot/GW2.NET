@@ -14,9 +14,10 @@ namespace GW2NET.V2.Recipes
 
     using GW2NET.Common;
     using GW2NET.Recipes;
+    using GW2NET.V2.Worlds;
 
     /// <summary>Provides methods for creating repository objects.</summary>
-    public sealed class RecipeRepositoryFactory
+    public sealed class RecipeRepositoryFactory : RepositoryFactoryBase<IRecipeRepository>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
@@ -29,36 +30,9 @@ namespace GW2NET.V2.Recipes
             this.serviceClient = serviceClient;
         }
 
-        /// <summary>Creates an instance for the given language.</summary>
-        /// <param name="language">The two-letter language code.</param>
-        /// <returns>A repository.</returns>
-        public IRecipeRepository this[string language]
-        {
-            get
-            {
-                Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
-                return this.ForCulture(new CultureInfo(language));
-            }
-        }
-
-        /// <summary>Creates an instance for the given language.</summary>
-        /// <param name="culture">The culture.</param>
-        /// <returns>A repository.</returns>
-        public IRecipeRepository this[CultureInfo culture]
-        {
-            get
-            {
-                Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
-                return this.ForCulture(culture);
-            }
-        }
-
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IRecipeRepository ForDefaultCulture()
+        public override IRecipeRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             return new RecipeRepository(this.serviceClient);
@@ -67,33 +41,17 @@ namespace GW2NET.V2.Recipes
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IRecipeRepository ForCulture(CultureInfo culture)
+        public override IRecipeRepository ForCulture(CultureInfo culture)
         {
             Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             IRecipeRepository repository = new RecipeRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
         }
-
-        /// <summary>Creates an instance for the current system language.</summary>
-        /// <returns>A repository.</returns>
-        public IRecipeRepository ForCurrentCulture()
-        {
-            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
-            return this.ForCulture(CultureInfo.CurrentCulture);
-        }
-
-        /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
-        /// <returns>A repository.</returns>
-        public IRecipeRepository ForCurrentUICulture(int continentId)
-        {
-            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
-            return this.ForCulture(CultureInfo.CurrentUICulture);
-        }
-
+        
         [ContractInvariantMethod]
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);

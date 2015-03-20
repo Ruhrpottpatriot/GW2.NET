@@ -51,7 +51,7 @@ namespace GW2NET.V2.Items
 
         [ContractInvariantMethod]
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when code contracts are enabled.")]
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);

@@ -10,6 +10,7 @@
 namespace GW2NET.V2.Files
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
@@ -44,6 +45,14 @@ namespace GW2NET.V2.Files
         public override IFileRepositoryV2 ForCulture(CultureInfo culture)
         {
             throw new NotSupportedException("Different cultures are not supported by this endpoint.");
+        }
+        
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

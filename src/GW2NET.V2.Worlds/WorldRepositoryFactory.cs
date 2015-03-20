@@ -17,7 +17,7 @@ namespace GW2NET.V2.Worlds
     using GW2NET.Worlds;
 
     /// <summary>Provides methods for creating repository objects.</summary>
-    public sealed class WorldRepositoryFactory
+    public sealed class WorldRepositoryFactory : RepositoryFactoryBase<IWorldRepository>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
@@ -30,36 +30,9 @@ namespace GW2NET.V2.Worlds
             this.serviceClient = serviceClient;
         }
 
-        /// <summary>Creates an instance for the given language.</summary>
-        /// <param name="language">The two-letter language code.</param>
-        /// <returns>A repository.</returns>
-        public IWorldRepository this[string language]
-        {
-            get
-            {
-                Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IWorldRepository>() != null);
-                return this.ForCulture(new CultureInfo(language));
-            }
-        }
-
-        /// <summary>Creates an instance for the given language.</summary>
-        /// <param name="culture">The culture.</param>
-        /// <returns>A repository.</returns>
-        public IWorldRepository this[CultureInfo culture]
-        {
-            get
-            {
-                Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IWorldRepository>() != null);
-                return this.ForCulture(culture);
-            }
-        }
-
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IWorldRepository ForDefaultCulture()
+        public override IWorldRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             return new WorldRepository(this.serviceClient);
@@ -68,7 +41,7 @@ namespace GW2NET.V2.Worlds
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IWorldRepository ForCulture(CultureInfo culture)
+        public override IWorldRepository ForCulture(CultureInfo culture)
         {
             Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             IWorldRepository repository = new WorldRepository(this.serviceClient);
@@ -76,25 +49,9 @@ namespace GW2NET.V2.Worlds
             return repository;
         }
 
-        /// <summary>Creates an instance for the current system language.</summary>
-        /// <returns>A repository.</returns>
-        public IWorldRepository ForCurrentCulture()
-        {
-            Contract.Ensures(Contract.Result<IWorldRepository>() != null);
-            return this.ForCulture(CultureInfo.CurrentCulture);
-        }
-
-        /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
-        /// <returns>A repository.</returns>
-        public IWorldRepository ForCurrentUICulture(int continentId)
-        {
-            Contract.Ensures(Contract.Result<IWorldRepository>() != null);
-            return this.ForCulture(CultureInfo.CurrentUICulture);
-        }
-
         [ContractInvariantMethod]
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);

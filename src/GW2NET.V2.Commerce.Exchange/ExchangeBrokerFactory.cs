@@ -49,9 +49,10 @@ namespace GW2NET.V2.Commerce.Exchange
             Contract.Ensures(Contract.Result<IExchangeBroker>() != null);
             return new ExchangeBroker(this.serviceClient, identifier);
         }
-
+        
         [ContractInvariantMethod]
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);

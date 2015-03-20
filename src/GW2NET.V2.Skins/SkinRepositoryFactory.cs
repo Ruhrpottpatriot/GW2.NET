@@ -9,6 +9,7 @@
 
 namespace GW2NET.V2.Skins
 {
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
 
@@ -47,6 +48,14 @@ namespace GW2NET.V2.Skins
             ISkinRepository repository = new SkinRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
+        }
+
+        [ContractInvariantMethod]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
+        private void ObjectInvariant()
+        {
+            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

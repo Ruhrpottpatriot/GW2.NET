@@ -15,8 +15,10 @@ namespace GW2NET.V2.Colors
 
     using GW2NET.Colors;
     using GW2NET.Common;
+    using GW2NET.V2.Worlds;
 
-    public sealed class ColorRepositoryFactory
+    /// <summary>Provides methods and properties for creating a color repository.</summary>
+    public sealed class ColorRepositoryFactory : RepositoryFactoryBase<IColorRepository>
     {
         /// <summary>Infrastructure. Holds a reference to the service client.</summary>
         private readonly IServiceClient serviceClient;
@@ -29,36 +31,9 @@ namespace GW2NET.V2.Colors
             this.serviceClient = serviceClient;
         }
 
-        /// <summary>Creates an instance for the given language.</summary>
-        /// <param name="language">The two-letter language code.</param>
-        /// <returns>A repository.</returns>
-        public IColorRepository this[string language]
-        {
-            get
-            {
-                Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IColorRepository>() != null);
-                return this.ForCulture(new CultureInfo(language));
-            }
-        }
-
-        /// <summary>Creates an instance for the given language.</summary>
-        /// <param name="culture">The culture.</param>
-        /// <returns>A repository.</returns>
-        public IColorRepository this[CultureInfo culture]
-        {
-            get
-            {
-                Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IColorRepository>() != null);
-                return this.ForCulture(culture);
-            }
-        }
-
         /// <summary>Creates an instance for the default language.</summary>
         /// <returns>A repository.</returns>
-        public IColorRepository ForDefaultCulture()
+        public override IColorRepository ForDefaultCulture()
         {
             Contract.Ensures(Contract.Result<IColorRepository>() != null);
             return new ColorRepository(this.serviceClient);
@@ -67,7 +42,7 @@ namespace GW2NET.V2.Colors
         /// <summary>Creates an instance for the given language.</summary>
         /// <param name="culture">The culture.</param>
         /// <returns>A repository.</returns>
-        public IColorRepository ForCulture(CultureInfo culture)
+        public override IColorRepository ForCulture(CultureInfo culture)
         {
             Contract.Ensures(Contract.Result<IColorRepository>() != null);
             IColorRepository repository = new ColorRepository(this.serviceClient);
@@ -75,25 +50,9 @@ namespace GW2NET.V2.Colors
             return repository;
         }
 
-        /// <summary>Creates an instance for the current system language.</summary>
-        /// <returns>A repository.</returns>
-        public IColorRepository ForCurrentCulture()
-        {
-            Contract.Ensures(Contract.Result<IColorRepository>() != null);
-            return this.ForCulture(CultureInfo.CurrentCulture);
-        }
-
-        /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
-        /// <returns>A repository.</returns>
-        public IColorRepository ForCurrentUICulture(int continentId)
-        {
-            Contract.Ensures(Contract.Result<IColorRepository>() != null);
-            return this.ForCulture(CultureInfo.CurrentUICulture);
-        }
-
         [ContractInvariantMethod]
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);
