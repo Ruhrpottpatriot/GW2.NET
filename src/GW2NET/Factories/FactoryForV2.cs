@@ -6,6 +6,7 @@
 //   Provides access to version 2 of the public API.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace GW2NET.Factories
 {
     using System.Diagnostics.Contracts;
@@ -14,9 +15,13 @@ namespace GW2NET.Factories
     using GW2NET.Quaggans;
     using GW2NET.V2.Build;
     using GW2NET.V2.Colors;
+    using GW2NET.V2.Continents;
+    using GW2NET.V2.Files;
     using GW2NET.V2.Items;
+    using GW2NET.V2.Maps;
     using GW2NET.V2.Quaggans;
     using GW2NET.V2.Recipes;
+    using GW2NET.V2.Skins;
     using GW2NET.V2.Worlds;
 
     /// <summary>Provides access to version 2 of the public API.</summary>
@@ -30,17 +35,7 @@ namespace GW2NET.Factories
             Contract.Requires(serviceClient != null);
         }
 
-        /// <summary>Provides access to the colors data source.</summary>
-        public ColorRepositoryFactory Colors
-        {
-            get
-            {
-                Contract.Ensures(Contract.Result<ColorRepositoryFactory>() != null);
-                return new ColorRepositoryFactory(this.ServiceClient);
-            }
-        }
-
-        /// <summary>Provides access to the v2 build service.</summary>
+        /// <summary>Gets access to the v2 build service.</summary>
         public IBuildService Build
         {
             get
@@ -50,7 +45,17 @@ namespace GW2NET.Factories
             }
         }
 
-        /// <summary>Provides access to commerce data sources.</summary>
+        /// <summary>Gets access to the colors data source.</summary>
+        public ColorRepositoryFactory Colors
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<ColorRepositoryFactory>() != null);
+                return new ColorRepositoryFactory(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Gets access to commerce data sources.</summary>
         public FactoryForV2Commerce Commerce
         {
             get
@@ -60,7 +65,27 @@ namespace GW2NET.Factories
             }
         }
 
-        /// <summary>Provides access to the items data source.</summary>
+        /// <summary>Gets access to the continents data sources.</summary>
+        public ContinentRepositoryFactory Continents
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<ContinentRepositoryFactory>() != null);
+                return new ContinentRepositoryFactory(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Gets access to the files data sources.</summary>
+        public FileRepositoryFactoryV2 Files
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<FileRepositoryFactoryV2>() != null);
+                return new FileRepositoryFactoryV2(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Gets access to the items data source.</summary>
         public ItemRepositoryFactory Items
         {
             get
@@ -70,7 +95,17 @@ namespace GW2NET.Factories
             }
         }
 
-        /// <summary>Provides access to the Quaggans data source.</summary>
+        /// <summary>Gets access to the maps data source.</summary>
+        public MapsRepositoryFactory Maps
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<MapsRepositoryFactory>() != null);
+                return new MapsRepositoryFactory(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Gets access to the Quaggans data source.</summary>
         public IQuagganRepository Quaggans
         {
             get
@@ -80,7 +115,7 @@ namespace GW2NET.Factories
             }
         }
 
-        /// <summary>Provides access to the recipes data source.</summary>
+        /// <summary>Gets access to the recipe data source.</summary>
         public RecipeRepositoryFactory Recipes
         {
             get
@@ -90,7 +125,17 @@ namespace GW2NET.Factories
             }
         }
 
-        /// <summary>Provides access to the worlds data source.</summary>
+        /// <summary>Gets access to the skins data source.</summary>
+        public SkinRepositoryFactory Skins
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<SkinRepositoryFactory>() != null);
+                return new SkinRepositoryFactory(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Gets access to the worlds data source.</summary>
         public WorldRepositoryFactory Worlds
         {
             get

@@ -174,9 +174,21 @@
       <Project>{0f72000c-a997-471f-a353-5988828a5255}</Project>
       <Name>GW2NET.V2.Commerce.Prices</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Continents\GW2NET.V2.Continents.csproj">
+      <Project>{8991E557-F908-4FF4-9A3E-299869076887}</Project>
+      <Name>GW2NET.V2.Continents</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Files\GW2NET.V2.Files.csproj">
+      <Project>{7376BF02-3192-479B-82E8-EC0B15DA55C1}</Project>
+      <Name>GW2NET.V2.Files</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Items\GW2NET.V2.Items.csproj">
       <Project>{965994be-f908-4d34-af07-f8a6b527ffb7}</Project>
       <Name>GW2NET.V2.Items</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Maps\GW2NET.V2.Maps.csproj">
+      <Project>{E0048487-3E7F-4036-BC50-508AF4C321E2}</Project>
+      <Name>GW2NET.V2.Maps</Name>
     </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Quaggans\GW2NET.V2.Quaggans.csproj">
       <Project>{1de9b06c-24a1-497d-bfa9-65eb9e361c71}</Project>
@@ -185,6 +197,10 @@
     <ProjectReference Include="..\GW2NET.V2.Recipes\GW2NET.V2.Recipes.csproj">
       <Project>{55897753-f4b5-48d1-8a01-20d54afde7dd}</Project>
       <Name>GW2NET.V2.Recipes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Skins\GW2NET.V2.Skins.csproj">
+      <Project>{9937ADF8-CEB8-48F2-9E12-C259CD454C17}</Project>
+      <Name>GW2NET.V2.Skins</Name>
     </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Worlds\GW2NET.V2.Worlds.csproj">
       <Project>{1d9eee65-d035-4acb-9f08-883a59331a6a}</Project>
