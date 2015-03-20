@@ -92,7 +92,7 @@ namespace GW2NET.V1.Maps
             var values = response.Content.Select(this.converterForMapName.Convert).ToList();
             var mapNames = new DictionaryRange<int, MapName>(values.Count)
             {
-                SubtotalCount = values.Count, 
+                SubtotalCount = values.Count,
                 TotalCount = values.Count
             };
 
@@ -126,29 +126,31 @@ namespace GW2NET.V1.Maps
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ICollection<MapNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, MapName>>(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
+            return this.serviceClient.SendAsync<ICollection<MapNameDataContract>>(request, cancellationToken).ContinueWith<IDictionaryRange<int, MapName>>(
+                task =>
                 {
-                    return new DictionaryRange<int, MapName>(0);
-                }
+                    var response = task.Result;
+                    if (response.Content == null)
+                    {
+                        return new DictionaryRange<int, MapName>(0);
+                    }
 
-                var values = response.Content.Select(this.converterForMapName.Convert).ToList();
-                var mapNames = new DictionaryRange<int, MapName>(values.Count)
-                {
-                    SubtotalCount = values.Count, 
-                    TotalCount = values.Count
-                };
+                    var values = response.Content.Select(this.converterForMapName.Convert).ToList();
+                    var mapNames = new DictionaryRange<int, MapName>(values.Count)
+                    {
+                        SubtotalCount = values.Count,
+                        TotalCount = values.Count
+                    };
 
-                foreach (var mapName in values)
-                {
-                    mapName.Culture = request.Culture;
-                    mapNames.Add(mapName.MapId, mapName);
-                }
+                    foreach (var mapName in values)
+                    {
+                        mapName.Culture = request.Culture;
+                        mapNames.Add(mapName.MapId, mapName);
+                    }
 
-                return mapNames;
-            }, cancellationToken);
+                    return mapNames;
+                },
+            cancellationToken);
         }
 
         /// <inheritdoc />

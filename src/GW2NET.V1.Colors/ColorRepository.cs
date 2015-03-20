@@ -96,7 +96,7 @@ namespace GW2NET.V1.Colors
             var values = this.converterForColorPaletteCollection.Convert(response.Content);
             var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
             {
-                SubtotalCount = values.Count, 
+                SubtotalCount = values.Count,
                 TotalCount = values.Count
             };
 
@@ -129,29 +129,31 @@ namespace GW2NET.V1.Colors
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ColorCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ColorPalette>>(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null || response.Content.Colors == null)
+            return this.serviceClient.SendAsync<ColorCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, ColorPalette>>(
+                task =>
                 {
-                    return new DictionaryRange<int, ColorPalette>(0);
-                }
+                    var response = task.Result;
+                    if (response.Content == null || response.Content.Colors == null)
+                    {
+                        return new DictionaryRange<int, ColorPalette>(0);
+                    }
 
-                var values = this.converterForColorPaletteCollection.Convert(response.Content);
-                var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
-                {
-                    SubtotalCount = values.Count, 
-                    TotalCount = values.Count
-                };
+                    var values = this.converterForColorPaletteCollection.Convert(response.Content);
+                    var colorPalettes = new DictionaryRange<int, ColorPalette>(values.Count)
+                    {
+                        SubtotalCount = values.Count,
+                        TotalCount = values.Count
+                    };
 
-                foreach (var colorPalette in values)
-                {
-                    colorPalette.Culture = request.Culture;
-                    colorPalettes.Add(colorPalette.ColorId, colorPalette);
-                }
+                    foreach (var colorPalette in values)
+                    {
+                        colorPalette.Culture = request.Culture;
+                        colorPalettes.Add(colorPalette.ColorId, colorPalette);
+                    }
 
-                return colorPalettes;
-            }, cancellationToken);
+                    return colorPalettes;
+                },
+            cancellationToken);
         }
 
         /// <inheritdoc />

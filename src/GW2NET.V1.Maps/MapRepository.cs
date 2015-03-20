@@ -75,7 +75,7 @@ namespace GW2NET.V1.Maps
             IMapRepository self = this;
             var request = new MapRequest
             {
-                MapId = identifier, 
+                MapId = identifier,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<MapCollectionDataContract>(request);
@@ -116,7 +116,7 @@ namespace GW2NET.V1.Maps
             var values = this.converterForMapCollection.Convert(response.Content);
             var maps = new DictionaryRange<int, Map>(values.Count)
             {
-                SubtotalCount = values.Count, 
+                SubtotalCount = values.Count,
                 TotalCount = values.Count
             };
 
@@ -150,29 +150,31 @@ namespace GW2NET.V1.Maps
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Map>>(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null || response.Content.Maps == null)
+            return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Map>>(
+                task =>
                 {
-                    return null;
-                }
+                    var response = task.Result;
+                    if (response.Content == null || response.Content.Maps == null)
+                    {
+                        return null;
+                    }
 
-                var values = this.converterForMapCollection.Convert(response.Content);
-                var maps = new DictionaryRange<int, Map>(values.Count)
-                {
-                    SubtotalCount = values.Count, 
-                    TotalCount = values.Count
-                };
+                    var values = this.converterForMapCollection.Convert(response.Content);
+                    var maps = new DictionaryRange<int, Map>(values.Count)
+                    {
+                        SubtotalCount = values.Count,
+                        TotalCount = values.Count
+                    };
 
-                foreach (var map in values)
-                {
-                    map.Culture = request.Culture;
-                    maps.Add(map.MapId, map);
-                }
+                    foreach (var map in values)
+                    {
+                        map.Culture = request.Culture;
+                        maps.Add(map.MapId, map);
+                    }
 
-                return maps;
-            }, cancellationToken);
+                    return maps;
+                },
+            cancellationToken);
         }
 
         /// <inheritdoc />
@@ -200,25 +202,27 @@ namespace GW2NET.V1.Maps
             IMapRepository self = this;
             var request = new MapRequest
             {
-                MapId = identifier, 
+                MapId = identifier,
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<Map>(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null || response.Content.Maps == null)
+            return this.serviceClient.SendAsync<MapCollectionDataContract>(request, cancellationToken).ContinueWith<Map>(
+                task =>
                 {
-                    return null;
-                }
+                    var response = task.Result;
+                    if (response.Content == null || response.Content.Maps == null)
+                    {
+                        return null;
+                    }
 
-                var map = this.converterForMapCollection.Convert(response.Content).SingleOrDefault();
-                if (map != null)
-                {
-                    map.Culture = request.Culture;
-                }
+                    var map = this.converterForMapCollection.Convert(response.Content).SingleOrDefault();
+                    if (map != null)
+                    {
+                        map.Culture = request.Culture;
+                    }
 
-                return map;
-            }, cancellationToken);
+                    return map;
+                },
+            cancellationToken);
         }
 
         /// <inheritdoc />

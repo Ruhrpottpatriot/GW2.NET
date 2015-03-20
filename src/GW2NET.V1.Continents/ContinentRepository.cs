@@ -91,7 +91,7 @@ namespace GW2NET.V1.Continents
             var values = this.converterForContinentCollection.Convert(response.Content);
             var continents = new DictionaryRange<int, Continent>(values.Count)
             {
-                SubtotalCount = values.Count, 
+                SubtotalCount = values.Count,
                 TotalCount = values.Count
             };
 
@@ -124,29 +124,31 @@ namespace GW2NET.V1.Continents
             {
                 Culture = self.Culture
             };
-            return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null || response.Content.Continents == null)
+            return this.serviceClient.SendAsync<ContinentCollectionDataContract>(request, cancellationToken).ContinueWith<IDictionaryRange<int, Continent>>(
+                task =>
                 {
-                    return new DictionaryRange<int, Continent>(0);
-                }
+                    var response = task.Result;
+                    if (response.Content == null || response.Content.Continents == null)
+                    {
+                        return new DictionaryRange<int, Continent>(0);
+                    }
 
-                var values = this.converterForContinentCollection.Convert(response.Content);
-                var continents = new DictionaryRange<int, Continent>(values.Count)
-                {
-                    SubtotalCount = values.Count, 
-                    TotalCount = values.Count
-                };
+                    var values = this.converterForContinentCollection.Convert(response.Content);
+                    var continents = new DictionaryRange<int, Continent>(values.Count)
+                    {
+                        SubtotalCount = values.Count,
+                        TotalCount = values.Count
+                    };
 
-                foreach (var continent in values)
-                {
-                    continent.Culture = request.Culture;
-                    continents.Add(continent.ContinentId, continent);
-                }
+                    foreach (var continent in values)
+                    {
+                        continent.Culture = request.Culture;
+                        continents.Add(continent.ContinentId, continent);
+                    }
 
-                return continents;
-            }, cancellationToken);
+                    return continents;
+                },
+            cancellationToken);
         }
 
         /// <inheritdoc />

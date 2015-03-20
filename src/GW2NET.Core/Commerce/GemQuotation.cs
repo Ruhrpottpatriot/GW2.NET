@@ -36,7 +36,7 @@ namespace GW2NET.Commerce
         {
             return new CoinChatLink
             {
-                Quantity = CoinsPerGem
+                Quantity = this.CoinsPerGem
             };
         }
     }

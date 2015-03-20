@@ -6,10 +6,10 @@
 //   Provides static extension methods for types that implement the <see cref="IPaginator{T}" /> interface.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-using System;
 
 namespace GW2NET.Common
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
     using System.Threading;

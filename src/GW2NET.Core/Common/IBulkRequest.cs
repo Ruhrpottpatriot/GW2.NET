@@ -7,10 +7,10 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-
 namespace GW2NET.Common
 {
+    using System.Collections.Generic;
+
     /// <summary>Provides the interface for bulk resource details requests.</summary>
     public interface IBulkRequest : IRequest
     {

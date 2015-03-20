@@ -12,7 +12,6 @@ namespace GW2NET.V2.Items
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.Common;
 
     /// <summary>Represents a bulk request that targets the /v2/items interface.</summary>
     internal sealed class ItemBulkRequest : BulkRequest, ILocalizable

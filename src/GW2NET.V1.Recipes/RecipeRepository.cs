@@ -130,7 +130,7 @@ namespace GW2NET.V1.Recipes
             IRecipeRepository self = this;
             var request = new RecipeDetailsRequest
             {
-                RecipeId = identifier, 
+                RecipeId = identifier,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<RecipeDataContract>(request);
@@ -193,16 +193,18 @@ namespace GW2NET.V1.Recipes
             IRecipeRepository self = this;
             var request = new RecipeDetailsRequest
             {
-                RecipeId = identifier, 
+                RecipeId = identifier,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<RecipeDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith(task =>
-            {
-                var recipe = this.ConvertsAsyncResponse(task);
-                recipe.Culture = request.Culture;
-                return recipe;
-            }, cancellationToken);
+            return responseTask.ContinueWith(
+                task =>
+                {
+                    var recipe = this.ConvertsAsyncResponse(task);
+                    recipe.Culture = request.Culture;
+                    return recipe;
+                },
+            cancellationToken);
         }
 
         /// <inheritdoc />

@@ -15,7 +15,6 @@ namespace GW2NET.V2.Commerce.Exchange
 
     using GW2NET.Commerce;
     using GW2NET.Common;
-    using GW2NET.Common;
 
     /// <summary>Represents a broker that retrieves data from the /v2/commerce/exchange interface.</summary>
     public class ExchangeBroker : IExchangeBroker

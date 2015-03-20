@@ -12,7 +12,6 @@ namespace GW2NET.V2.Recipes
     using System.Globalization;
 
     using GW2NET.Common;
-    using GW2NET.Common;
 
     /// <summary>Represents a details request that targets the /v2/recipes interface.</summary>
     internal sealed class RecipeDetailsRequest : DetailsRequest, ILocalizable

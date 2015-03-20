@@ -7,13 +7,13 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using System.Linq;
-
 namespace GW2NET.Common
 {
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Diagnostics.Contracts;
+    using System.Linq;
+
     /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="ICollectionPage{T}"/>.</summary>
     /// <typeparam name="TDataContract">The type of data contracts in the response content.</typeparam>
     /// <typeparam name="TValue">The type of the converted values.</typeparam>
@@ -46,9 +46,9 @@ namespace GW2NET.Common
 
             var page = new CollectionPage<TValue>(dataContracts.Count)
             {
-                PageSize = value.GetPageSize(), 
-                PageCount = value.GetPageTotal(), 
-                SubtotalCount = value.GetResultCount(), 
+                PageSize = value.GetPageSize(),
+                PageCount = value.GetPageTotal(),
+                SubtotalCount = value.GetResultCount(),
                 TotalCount = value.GetResultTotal()
             };
 

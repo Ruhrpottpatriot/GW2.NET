@@ -145,24 +145,26 @@ namespace GW2NET.Common
 
             // Handle the request
             var httpWebRequest = CreateHttpWebRequest(uri);
-            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(task =>
-            {
-                using (var response = task.Result)
+            return GetHttpWebResponseAsync(httpWebRequest, cancellationToken).ContinueWith(
+                task =>
                 {
-                    try
+                    using (var response = task.Result)
                     {
-                        return this.OnResponse<TResult>(response);
-                    }
-                    catch (ServiceException exception)
-                    {
-                        // Set the cause of this exception
-                        exception.Request = request;
+                        try
+                        {
+                            return this.OnResponse<TResult>(response);
+                        }
+                        catch (ServiceException exception)
+                        {
+                            // Set the cause of this exception
+                            exception.Request = request;
 
-                        // Rethrow
-                        throw;
+                            // Rethrow
+                            throw;
+                        }
                     }
-                }
-            }, cancellationToken);
+                },
+            cancellationToken);
         }
 
         /// <summary>Infrastructure. Creates and configures a new instance of the <see cref="UriBuilder"/> class.</summary>
@@ -177,7 +179,7 @@ namespace GW2NET.Common
             Contract.Requires(formData != null);
             var uriBuilder = new UriBuilder(baseUri)
             {
-                Path = resource, 
+                Path = resource,
                 Query = formData.GetQueryString()
             };
             return uriBuilder.Uri;
@@ -283,28 +285,30 @@ namespace GW2NET.Common
             var tcs = new TaskCompletionSource<HttpWebResponse>();
             try
             {
-                webRequest.BeginGetResponse(ar =>
-                {
-                    try
+                webRequest.BeginGetResponse(
+                    ar =>
                     {
-                        tcs.SetResult((HttpWebResponse)webRequest.EndGetResponse(ar));
-                    }
-                    catch (WebException webException)
-                    {
-                        if (webException.Response != null)
+                        try
                         {
-                            tcs.SetResult((HttpWebResponse)webException.Response);
+                            tcs.SetResult((HttpWebResponse)webRequest.EndGetResponse(ar));
                         }
-                        else
+                        catch (WebException webException)
                         {
-                            tcs.SetException(new ServiceException("An error occurred while sending the request. See the inner exception for details.", webException));
+                            if (webException.Response != null)
+                            {
+                                tcs.SetResult((HttpWebResponse)webException.Response);
+                            }
+                            else
+                            {
+                                tcs.SetException(new ServiceException("An error occurred while sending the request. See the inner exception for details.", webException));
+                            }
                         }
-                    }
-                    catch (Exception exception)
-                    {
-                        tcs.SetException(exception);
-                    }
-                }, null);
+                        catch (Exception exception)
+                        {
+                            tcs.SetException(exception);
+                        }
+                    },
+                null);
             }
             catch (WebException webException)
             {

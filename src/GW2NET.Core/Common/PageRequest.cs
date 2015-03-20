@@ -7,11 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Globalization;
-
 namespace GW2NET.Common
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+
     /// <summary>Provides the base class for paginated resource details requests.</summary>
     public abstract class PageRequest : IPageRequest
     {

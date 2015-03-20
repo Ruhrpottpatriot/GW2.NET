@@ -7,14 +7,14 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-using System.Linq;
-
 namespace GW2NET.Common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Diagnostics.Contracts;
+    using System.Linq;
+
     /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="T:IDictionaryRange&lt;TKey, TValue&gt;"/>.</summary>
     /// <typeparam name="TDataContract">The type of data contracts in the response content.</typeparam>
     /// <typeparam name="TKey">The type of the key values.</typeparam>
@@ -54,7 +54,7 @@ namespace GW2NET.Common
 
             var range = new DictionaryRange<TKey, TValue>(dataContracts.Count)
             {
-                SubtotalCount = value.GetResultCount(), 
+                SubtotalCount = value.GetResultCount(),
                 TotalCount = value.GetResultTotal()
             };
 

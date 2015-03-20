@@ -34,8 +34,8 @@ namespace GW2NET.Rendering
         {
             var request = new RenderRequest
             {
-                FileId = file.FileId, 
-                FileSignature = file.FileSignature, 
+                FileId = file.FileId,
+                FileSignature = file.FileSignature,
                 ImageFormat = imageFormat
             };
             var response = this.serviceClient.Send<byte[]>(request);
@@ -58,20 +58,17 @@ namespace GW2NET.Rendering
         {
             var request = new RenderRequest
             {
-                FileId = file.FileId, 
-                FileSignature = file.FileSignature, 
+                FileId = file.FileId,
+                FileSignature = file.FileSignature,
                 ImageFormat = imageFormat
             };
-            return this.serviceClient.SendAsync<byte[]>(request, cancellationToken).ContinueWith(task =>
-            {
-                var response = task.Result;
-                if (response.Content == null)
+            return this.serviceClient.SendAsync<byte[]>(request, cancellationToken).ContinueWith(
+                task =>
                 {
-                    return null;
-                }
-
-                return response.Content;
-            }, cancellationToken);
+                    var response = task.Result;
+                    return response.Content;
+                },
+            cancellationToken);
         }
 
         [ContractInvariantMethod]

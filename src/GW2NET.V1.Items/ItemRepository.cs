@@ -120,7 +120,7 @@ namespace GW2NET.V1.Items
             IItemRepository self = this;
             var request = new ItemDetailsRequest
             {
-                ItemId = identifier, 
+                ItemId = identifier,
                 Culture = self.Culture
             };
             var response = this.serviceClient.Send<ItemDataContract>(request);
@@ -183,16 +183,18 @@ namespace GW2NET.V1.Items
             IItemRepository self = this;
             var request = new ItemDetailsRequest
             {
-                ItemId = identifier, 
+                ItemId = identifier,
                 Culture = self.Culture
             };
             var responseTask = this.serviceClient.SendAsync<ItemDataContract>(request, cancellationToken);
-            return responseTask.ContinueWith(task =>
-            {
-                var item = this.ConvertsAsyncResponse(task);
-                item.Culture = request.Culture;
-                return item;
-            }, cancellationToken);
+            return responseTask.ContinueWith(
+                task =>
+                {
+                    var item = this.ConvertsAsyncResponse(task);
+                    item.Culture = request.Culture;
+                    return item;
+                },
+            cancellationToken);
         }
 
         /// <inheritdoc />

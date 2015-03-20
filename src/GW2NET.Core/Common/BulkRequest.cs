@@ -7,11 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
-using System.Linq;
-
 namespace GW2NET.Common
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     /// <summary>Provides the base class for bulk resource details requests.</summary>
     public abstract class BulkRequest : IBulkRequest
     {

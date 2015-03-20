@@ -7,11 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Contracts;
-
+// ReSharper disable RedundantNameQualifier
 namespace GW2NET.Common
 {
+    using System.Diagnostics.CodeAnalysis;
+    using System.Diagnostics.Contracts;
+
     /// <summary>Converts objects of type <see cref="IResponse{T}"/> to objects of type <see cref="TValue"/>.</summary>
     /// <typeparam name="TDataContract">The type of data contracts in the response content.</typeparam>
     /// <typeparam name="TValue">The type of the converted value.</typeparam>
@@ -32,6 +33,7 @@ namespace GW2NET.Common
         TValue IConverter<IResponse<TDataContract>, TValue>.Convert(IResponse<TDataContract> value)
         {
             Contract.Assume(value != null);
+            // ReSharper disable once PossibleNullReferenceException
             var dataContract = value.Content;
             if (object.Equals(dataContract, default(TDataContract)))
             {
