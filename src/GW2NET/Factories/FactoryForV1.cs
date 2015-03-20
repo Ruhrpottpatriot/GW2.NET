@@ -11,6 +11,7 @@ using GW2NET.V1.Events;
 
 namespace GW2NET.Factories
 {
+    using System;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -40,6 +41,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the builds data source.</summary>
+        [Obsolete("A build endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public IBuildService Build
         {
             get
@@ -50,6 +52,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the colors data source.</summary>
+        [Obsolete("A colors endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public ColorRepositoryFactory Colors
         {
             get
@@ -60,6 +63,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the continents data source.</summary>
+        [Obsolete("A continents endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public ContinentRepositoryFactory Continents
         {
             get
@@ -70,6 +74,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the event names data source.</summary>
+        [Obsolete("Events are no longer supported by the api since megaserver transition.")]
         public EventNameRepositoryFactory EventNames
         {
             get
@@ -80,6 +85,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the events data source.</summary>
+        [Obsolete("Events are no longer supported by the api since megaserver transition.", true)]
         public EventRepositoryFactory Events
         {
             get
@@ -90,6 +96,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the files data source.</summary>
+        [Obsolete("A files endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public IFileRepository Files
         {
             get
@@ -100,7 +107,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the floors data source.</summary>
-        public FloorRepositoryFactory Floors
+       public FloorRepositoryFactory Floors
         {
             get
             {
@@ -120,6 +127,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the items data source.</summary>
+        [Obsolete("A items endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public ItemRepositoryFactory Items
         {
             get
@@ -130,6 +138,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the map names data source.</summary>
+        [Obsolete("A map names endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public MapNameRepositoryFactory MapNames
         {
             get
@@ -140,6 +149,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the maps data source.</summary>
+        [Obsolete("A maps endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public MapRepositoryFactory Maps
         {
             get
@@ -150,6 +160,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the recipes data source.</summary>
+        [Obsolete("A recipes endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public RecipeRepositoryFactory Recipes
         {
             get
@@ -160,6 +171,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the skins data source.</summary>
+        [Obsolete("A skins endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public SkinRepositoryFactory Skins
         {
             get
@@ -170,6 +182,7 @@ namespace GW2NET.Factories
         }
 
         /// <summary>Provides access to the worlds data source.</summary>
+        [Obsolete("A worlds endpoint based on version 2 of the api is available. Usage of that version is recommended.")]
         public WorldRepositoryFactory Worlds
         {
             get
