@@ -9,6 +9,7 @@
 namespace GW2NET.Factories
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -21,7 +22,7 @@ namespace GW2NET.Factories
 
         /// <summary>Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
-        public FactoryBase(IServiceClient serviceClient)
+        protected FactoryBase(IServiceClient serviceClient)
         {
             if (serviceClient == null)
             {
@@ -43,6 +44,8 @@ namespace GW2NET.Factories
         }
 
         [ContractInvariantMethod]
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the CodeContracts for .NET extension")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);

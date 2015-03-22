@@ -15,7 +15,6 @@ namespace GW2NET.V2.Skins
 
     using GW2NET.Common;
     using GW2NET.Skins;
-    using GW2NET.V2.Worlds;
 
     /// <summary>Provides methods and properties for creating a skin repository.</summary>
     public class SkinRepositoryFactory : RepositoryFactoryBase<ISkinRepository>

@@ -9,6 +9,7 @@
 namespace GW2NET
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
@@ -43,6 +44,8 @@ namespace GW2NET
         }
 
         [ContractInvariantMethod]
+        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
+        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the CodeContracts for .NET extension")]
         private void ObjectInvariant()
         {
             Contract.Invariant(this.serviceClient != null);

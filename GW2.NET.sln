@@ -92,9 +92,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Skins", "src\GW2N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Maps", "src\GW2NET.V2.Maps\GW2NET.V2.Maps.csproj", "{E0048487-3E7F-4036-BC50-508AF4C321E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GW2NET.V2.Floors", "src\GW2NET.V2.Floors\GW2NET.V2.Floors.csproj", "{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 37
+		SccNumberOfProjects = 38
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs35
 		SccLocalPath0 = .
@@ -242,6 +244,10 @@ Global
 		SccProjectTopLevelParentUniqueName36 = GW2.NET.sln
 		SccProjectName36 = src/GW2NET.V2.Maps
 		SccLocalPath36 = src\\GW2NET.V2.Maps
+		SccProjectUniqueName37 = src\\GW2NET.V2.Floors\\GW2NET.V2.Floors.csproj
+		SccProjectTopLevelParentUniqueName37 = GW2.NET.sln
+		SccProjectName37 = src/GW2NET.V2.Floors
+		SccLocalPath37 = src\\GW2NET.V2.Floors
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Benchmark|Any CPU = Benchmark|Any CPU
@@ -537,6 +543,14 @@ Global
 		{E0048487-3E7F-4036-BC50-508AF4C321E2}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
 		{E0048487-3E7F-4036-BC50-508AF4C321E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0048487-3E7F-4036-BC50-508AF4C321E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Benchmark|Any CPU.ActiveCfg = Release|Any CPU
+		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Benchmark|Any CPU.Build.0 = Release|Any CPU
+		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.DebugCC|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.DebugCC|Any CPU.Build.0 = Debug|Any CPU
+		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -580,5 +594,6 @@ Global
 		{8991E557-F908-4FF4-9A3E-299869076887} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
 		{9937ADF8-CEB8-48F2-9E12-C259CD454C17} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
 		{E0048487-3E7F-4036-BC50-508AF4C321E2} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
+		{FEBB38C8-9836-4218-A943-7E45FA6FA4CC} = {E6DD4FF3-E75A-46B1-B120-87BCBDA131C9}
 	EndGlobalSection
 EndGlobal

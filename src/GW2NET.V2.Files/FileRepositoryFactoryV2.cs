@@ -16,7 +16,6 @@ namespace GW2NET.V2.Files
 
     using GW2NET.Common;
     using GW2NET.Files;
-    using GW2NET.V2.Worlds;
 
     /// <summary>Provides methods for creating a file repository.</summary>
     public class FileRepositoryFactoryV2 : RepositoryFactoryBase<IFileRepositoryV2>

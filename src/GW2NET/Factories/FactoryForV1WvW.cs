@@ -11,10 +11,11 @@ namespace GW2NET.Factories
     using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
-    using GW2NET.WorldVersusWorld;
     using GW2NET.V1.WorldVersusWorld.Matches;
     using GW2NET.V1.WorldVersusWorld.Objectives;
-    /// <summary>Provides access to WvW data sources.</summary>
+    using GW2NET.WorldVersusWorld;
+
+    /// <summary>Provides access to world versus world data sources.</summary>
     public class FactoryForV1WvW : FactoryBase
     {
         /// <summary>Initializes a new instance of the <see cref="FactoryForV1WvW"/> class. Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
@@ -25,7 +26,7 @@ namespace GW2NET.Factories
             Contract.Requires(serviceClient != null);
         }
 
-        /// <summary>Provides access to the matches data source.</summary>
+        /// <summary>Gets access to the matches data source.</summary>
         public IMatchRepository Matches
         {
             get
@@ -35,7 +36,7 @@ namespace GW2NET.Factories
             }
         }
 
-        /// <summary>Provides access to the objective names data source.</summary>
+        /// <summary>Gets access to the objective names data source.</summary>
         public ObjectiveNameRepositoryFactory Objectives
         {
             get

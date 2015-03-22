@@ -15,7 +15,6 @@ namespace GW2NET.V2.Colors
 
     using GW2NET.Colors;
     using GW2NET.Common;
-    using GW2NET.V2.Worlds;
 
     /// <summary>Provides methods and properties for creating a color repository.</summary>
     public sealed class ColorRepositoryFactory : RepositoryFactoryBase<IColorRepository>

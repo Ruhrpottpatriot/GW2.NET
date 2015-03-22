@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GW2NET.V2.Worlds
+namespace GW2NET.Common
 {
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
@@ -62,10 +62,9 @@ namespace GW2NET.V2.Worlds
         }
 
         /// <summary>Creates an instance for the current UI language.</summary>
-        /// <param name="continentId">The continent identifier.</param>
         /// <returns>A repository.</returns>
         [SuppressMessage("ReSharper", "InconsistentNaming", Justification = "Consitent with the standard .NET naming.")]
-        public virtual TRepository ForCurrentUICulture(int continentId)
+        public virtual TRepository ForCurrentUICulture()
         {
             Contract.Ensures(Contract.Result<TRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);

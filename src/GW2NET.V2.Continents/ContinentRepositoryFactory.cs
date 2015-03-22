@@ -14,7 +14,6 @@ namespace GW2NET.V2.Continents
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V2.Worlds;
 
     /// <summary>Provides methods for creating a continent repository.</summary>
     public class ContinentRepositoryFactory : RepositoryFactoryBase<IContinentRepository>

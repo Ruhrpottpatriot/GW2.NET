@@ -15,7 +15,6 @@ namespace GW2NET.V2.Maps
 
     using GW2NET.Common;
     using GW2NET.Maps;
-    using GW2NET.V2.Worlds;
 
     /// <summary>Provides methods and properties fore creating a map repository.</summary>
     public class MapsRepositoryFactory : RepositoryFactoryBase<IMapRepository>

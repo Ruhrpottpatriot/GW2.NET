@@ -15,7 +15,7 @@ namespace GW2NET.Factories
     /// <summary>Provides access to specialty services that do not require a network connection.</summary>
     public class FactoryForLocal
     {
-        /// <summary>Provides access to event rotations data.</summary>
+        /// <summary>Gets access to event rotations data.</summary>
         public IDynamicEventRotationService EventRotations
         {
             get

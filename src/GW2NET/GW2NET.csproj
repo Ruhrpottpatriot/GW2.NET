@@ -182,6 +182,10 @@
       <Project>{7376BF02-3192-479B-82E8-EC0B15DA55C1}</Project>
       <Name>GW2NET.V2.Files</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GW2NET.V2.Floors\GW2NET.V2.Floors.csproj">
+      <Project>{FEBB38C8-9836-4218-A943-7E45FA6FA4CC}</Project>
+      <Name>GW2NET.V2.Floors</Name>
+    </ProjectReference>
     <ProjectReference Include="..\GW2NET.V2.Items\GW2NET.V2.Items.csproj">
       <Project>{965994be-f908-4d34-af07-f8a6b527ffb7}</Project>
       <Name>GW2NET.V2.Items</Name>
@@ -214,7 +218,9 @@
     <Compile Include="Factories\FactoryBase.cs" />
     <Compile Include="Factories\FactoryForLocal.cs" />
     <Compile Include="Factories\FactoryForRendering.cs" />
-    <Compile Include="Factories\FactoryForV1.cs" />
+    <Compile Include="Factories\FactoryForV1.cs">
+      <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
+    </Compile>
     <Compile Include="Factories\FactoryForV1WvW.cs" />
     <Compile Include="Factories\FactoryForV2.cs" />
     <Compile Include="Factories\FactoryForV2Commerce.cs" />

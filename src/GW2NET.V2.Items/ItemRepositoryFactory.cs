@@ -14,7 +14,6 @@ namespace GW2NET.V2.Items
 
     using GW2NET.Common;
     using GW2NET.Items;
-    using GW2NET.V2.Worlds;
 
     /// <summary>Provides methods for creating repository objects.</summary>
     public sealed class ItemRepositoryFactory : RepositoryFactoryBase<IItemRepository>

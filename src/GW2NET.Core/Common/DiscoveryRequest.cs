@@ -18,14 +18,14 @@ namespace GW2NET.Common
 
         /// <summary>Gets the request parameters.</summary>
         /// <returns>A collection of parameters.</returns>
-        public IEnumerable<KeyValuePair<string, string>> GetParameters()
+        public virtual IEnumerable<KeyValuePair<string, string>> GetParameters()
         {
             yield break;
         }
 
         /// <summary>Gets additional path segments for the targeted resource.</summary>
         /// <returns>A collection of path segments.</returns>
-        public IEnumerable<string> GetPathSegments()
+        public virtual IEnumerable<string> GetPathSegments()
         {
             yield break;
         }

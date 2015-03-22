@@ -17,6 +17,7 @@ namespace GW2NET.Factories
     using GW2NET.V2.Colors;
     using GW2NET.V2.Continents;
     using GW2NET.V2.Files;
+    using GW2NET.V2.Floors;
     using GW2NET.V2.Items;
     using GW2NET.V2.Maps;
     using GW2NET.V2.Quaggans;
@@ -82,6 +83,16 @@ namespace GW2NET.Factories
             {
                 Contract.Ensures(Contract.Result<FileRepositoryFactoryV2>() != null);
                 return new FileRepositoryFactoryV2(this.ServiceClient);
+            }
+        }
+
+        /// <summary>Gets access to the floors data source.</summary>
+        public FloorRepositoryFactory Floors
+        {
+            get
+            {
+                Contract.Ensures(Contract.Result<FloorRepositoryFactory>() != null);
+                return new FloorRepositoryFactory(this.ServiceClient);
             }
         }
 

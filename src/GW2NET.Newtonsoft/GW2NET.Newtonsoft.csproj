@@ -186,6 +186,7 @@
   <ItemGroup>
     <Compile Include="..\..\Solution Items\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
+      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="JsonSerializer.cs" />
     <Compile Include="JsonSerializerFactory.cs" />

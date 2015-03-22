@@ -24,7 +24,7 @@ namespace GW2NET.Factories
             Contract.Requires(serviceClient != null);
         }
 
-        /// <summary>Provides access to the rendering service.</summary>
+        /// <summary>Gets access to the rendering service.</summary>
         public IRenderService RenderService
         {
             get

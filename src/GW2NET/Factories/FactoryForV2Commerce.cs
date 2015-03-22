@@ -10,14 +10,13 @@ namespace GW2NET.Factories
 {
     using System.Diagnostics.Contracts;
 
+    using GW2NET.Commerce;
+    using GW2NET.Common;
     using GW2NET.V2.Commerce.Exchange;
     using GW2NET.V2.Commerce.Listings;
     using GW2NET.V2.Commerce.Prices;
 
-    using GW2NET.Commerce;
-    using GW2NET.Common;
-
-    /// <summary>Provides access to commerce data sources.</summary>
+    /// <summary>Provides access to commerce data sources based on the /v2/ api.</summary>
     public class FactoryForV2Commerce : FactoryBase
     {
         /// <summary>Initializes a new instance of the <see cref="FactoryForV2Commerce"/> class. Initializes a new instance of the <see cref="FactoryBase"/> class.</summary>
@@ -28,7 +27,7 @@ namespace GW2NET.Factories
             Contract.Requires(serviceClient != null);
         }
 
-        /// <summary>Provides access to the gem exchange data source.</summary>
+        /// <summary>Gets access to the gem exchange data source.</summary>
         public ExchangeBrokerFactory Exchange
         {
             get
@@ -38,7 +37,7 @@ namespace GW2NET.Factories
             }
         }
 
-        /// <summary>Provides access to the listings data source.</summary>
+        /// <summary>Gets access to the listings data source.</summary>
         public IListingRepository Listings
         {
             get
@@ -48,7 +47,7 @@ namespace GW2NET.Factories
             }
         }
 
-        /// <summary>Provides access to the aggregate listings data source.</summary>
+        /// <summary>Gets access to the aggregate listings data source.</summary>
         public IAggregateListingRepository Prices
         {
             get
