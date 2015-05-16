@@ -54,8 +54,9 @@
     <Compile Include="Requests\FileDiscoveryRequest.cs" />
     <Compile Include="Requests\FilePageRequest.cs" />
     <Compile Include="FileRepositoryV2.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup />

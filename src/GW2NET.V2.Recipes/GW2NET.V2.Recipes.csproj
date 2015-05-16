@@ -54,7 +54,6 @@
     <Compile Include="Converters\ConverterForRecipeFlagCollection.cs" />
     <Compile Include="Json\IngredientDataContract.cs" />
     <Compile Include="Json\RecipeDataContract.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecipeBulkRequest.cs" />
     <Compile Include="RecipeDetailsRequest.cs" />
     <Compile Include="RecipeDiscoveryRequest.cs" />
@@ -62,6 +61,10 @@
     <Compile Include="RecipeRepository.cs" />
     <Compile Include="RecipeRepositoryFactory.cs" />
     <Compile Include="RecipeSearchRequest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

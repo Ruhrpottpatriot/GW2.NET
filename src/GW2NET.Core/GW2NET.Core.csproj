@@ -47,9 +47,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\Solution Items\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
     <Compile Include="Builds\Build.cs" />
     <Compile Include="ChatLinks\ChatLink.cs" />
     <Compile Include="ChatLinks\ChatLinkFactory.cs" />
@@ -323,7 +320,6 @@
     <Compile Include="Maps\UnknownPointOfInterest.cs" />
     <Compile Include="Maps\Vista.cs" />
     <Compile Include="Maps\Waypoint.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quaggans\IQuagganRepository.cs" />
     <Compile Include="Quaggans\Quaggan.cs" />
     <Compile Include="Recipes\AmuletRecipe.cs" />
@@ -440,6 +436,10 @@
     <Compile Include="WorldVersusWorld\TeamColor.cs" />
     <Compile Include="WorldVersusWorld\UnknownCompetitiveMap.cs" />
     <Compile Include="WorldVersusWorld\UnknownMapBonus.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), SharedAssemblyInfo.cs))\SharedAssemblyInfo.cs">
+      <Link>Properties\SharedAssemblyInfo.cs</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
