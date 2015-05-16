@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>GW2NET.V2.Commerce.Listings</id>
-        <version>1.0.0</version>
+        <version>$version$</version>
         <title>GW2.NET</title>
         <authors>GW2.NET Coding Team</authors>
         <owners>GW2.NET Coding Team</owners>
