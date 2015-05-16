@@ -134,6 +134,7 @@
     <Compile Include="Common\Paginator.cs" />
     <Compile Include="Common\Profession.cs" />
     <Compile Include="Common\ContractClassForIRequest.cs" />
+    <Compile Include="Common\Race.cs" />
     <Compile Include="Common\RepositoryFactoryBase.cs" />
     <Compile Include="Common\Response.cs" />
     <Compile Include="Common\ContractClassForIResponse.cs" />

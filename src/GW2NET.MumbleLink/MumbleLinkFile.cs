@@ -183,10 +183,12 @@ namespace GW2NET.MumbleLink
                 {
                     Name = dataContract.Name,
                     Profession = (Profession)dataContract.Profession,
+                    Race = (Race)dataContract.Race,
                     MapId = dataContract.MapId,
                     WorldId = dataContract.WorldId,
                     TeamColorId = dataContract.TeamColorId,
-                    Commander = dataContract.Commander
+                    Commander = dataContract.Commander,
+                    FieldOfView = dataContract.FieldOfView
                 };
         }
 

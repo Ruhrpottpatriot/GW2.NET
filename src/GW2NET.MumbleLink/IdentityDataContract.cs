@@ -27,10 +27,16 @@ namespace GW2NET.MumbleLink
         [DataMember(Name = "profession", Order = 1)]
         internal int Profession { get; set; }
 
+        [DataMember(Name = "race", Order = 7)]
+        internal int Race { get; set; }
+
         [DataMember(Name = "team_color_id", Order = 4)]
         internal int TeamColorId { get; set; }
 
         [DataMember(Name = "world_id", Order = 3)]
         internal long WorldId { get; set; }
+
+        [DataMember(Name = "fov", Order = 6)]
+        internal double FieldOfView { get; set; }
     }
 }

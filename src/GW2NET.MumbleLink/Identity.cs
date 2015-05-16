@@ -31,6 +31,9 @@ namespace GW2NET.MumbleLink
         /// <summary>Gets or sets the avatar's profession.</summary>
         public Profession Profession { get; set; }
 
+        /// <summary>Gets or sets the avatar's race.</summary>
+        public Race Race { get; set; }
+
         /// <summary>Gets or sets the current team color. This is a navigation property. Use the value of <see cref="TeamColorId"/> to obtain a reference.</summary>
         public ColorPalette TeamColor { get; set; }
 
@@ -42,6 +45,9 @@ namespace GW2NET.MumbleLink
 
         /// <summary>Gets or sets the identifier of the current world.</summary>
         public long WorldId { get; set; }
+
+        /// <summary>Gets or sets the in-game camera field of view value.</summary>
+        public double FieldOfView { get; set; }
 
         /// <summary>Returns a string that represents the current object.</summary>
         /// <returns>A string that represents the current object.</returns>
