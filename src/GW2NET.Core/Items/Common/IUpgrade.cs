@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Items
 {
+    using System;
     using System.Diagnostics.Contracts;
 
     /// <summary>Provides the interface for items that provide combat bonuses while equipped.</summary>
@@ -15,6 +16,7 @@ namespace GW2NET.Items
     public interface IUpgrade
     {
         /// <summary>Gets or sets the item's infixed combat upgrades.</summary>
+        /// <exception cref="ArgumentNullException">The value is a null reference.</exception>
         InfixUpgrade InfixUpgrade { get; set; }
     }
 }
