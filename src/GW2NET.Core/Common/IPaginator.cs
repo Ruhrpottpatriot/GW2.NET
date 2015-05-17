@@ -21,6 +21,7 @@ namespace GW2NET.Common
         /// <summary>Finds the page with the specified page index.</summary>
         /// <param name="pageIndex">The page index to find.</param>
         /// <exception cref="NotSupportedException">The data source does not support pagination.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="pageIndex"/> is less than 0.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <returns>The page.</returns>
         ICollectionPage<T> FindPage(int pageIndex);
@@ -29,6 +30,7 @@ namespace GW2NET.Common
         /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <exception cref="NotSupportedException">The data source does not support pagination.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="pageIndex"/> is less than 0 or <paramref name="pageSize"/> is less than 0.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <returns>The page.</returns>
         ICollectionPage<T> FindPage(int pageIndex, int pageSize);
@@ -36,6 +38,7 @@ namespace GW2NET.Common
         /// <summary>Finds the page with the specified page index.</summary>
         /// <param name="pageIndex">The page index to find.</param>
         /// <exception cref="NotSupportedException">The data source does not support pagination.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="pageIndex"/> is less than 0.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <returns>The page.</returns>
         Task<ICollectionPage<T>> FindPageAsync(int pageIndex);
@@ -44,6 +47,7 @@ namespace GW2NET.Common
         /// <param name="pageIndex">The page index to find.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <exception cref="NotSupportedException">The data source does not support pagination.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="pageIndex"/> is less than 0.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>The page.</returns>
@@ -53,6 +57,7 @@ namespace GW2NET.Common
         /// <param name="pageIndex">The page index to find.</param>
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <exception cref="NotSupportedException">The data source does not support pagination.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="pageIndex"/> is less than 0 or <paramref name="pageSize"/> is less than 0.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <returns>The page.</returns>
         Task<ICollectionPage<T>> FindPageAsync(int pageIndex, int pageSize);
@@ -62,6 +67,7 @@ namespace GW2NET.Common
         /// <param name="pageSize">The maximum number of page elements.</param>
         /// <param name="cancellationToken">The <see cref="CancellationToken"/> that provides cancellation support.</param>
         /// <exception cref="NotSupportedException">The data source does not support pagination.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="pageIndex"/> is less than 0 or <paramref name="pageSize"/> is less than 0.</exception>
         /// <exception cref="ServiceException">An error occurred while retrieving data from the data source.</exception>
         /// <exception cref="TaskCanceledException">A task was canceled.</exception>
         /// <returns>The page.</returns>
