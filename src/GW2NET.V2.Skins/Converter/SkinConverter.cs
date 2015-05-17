@@ -11,8 +11,6 @@ namespace GW2NET.V2.Skins
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Items;
@@ -40,11 +38,24 @@ namespace GW2NET.V2.Skins
         /// <param name="knownTypeConverters">The known type converters.</param>
         /// <param name="itemRestrictionsConverter">The item restrictions converter.</param>
         /// <param name="skinFlagsConverter">The skin flags converter.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="knownTypeConverters"/> or <paramref name="itemRestrictionsConverter"/> or <paramref name="skinFlagsConverter"/> is a null reference.</exception>
         private SkinConverter(IDictionary<string, IConverter<DetailsDataContract, Skin>> knownTypeConverters, IConverter<ICollection<string>, ItemRestrictions> itemRestrictionsConverter, IConverter<ICollection<string>, SkinFlags> skinFlagsConverter)
         {
-            Contract.Requires(knownTypeConverters != null);
-            Contract.Requires(itemRestrictionsConverter != null);
-            Contract.Requires(skinFlagsConverter != null);
+            if (knownTypeConverters == null)
+            {
+                throw new ArgumentNullException("knownTypeConverters", "Precondition: knownTypeConverters != null");
+            }
+
+            if (itemRestrictionsConverter == null)
+            {
+                throw new ArgumentNullException("itemRestrictionsConverter", "Precondition: itemRestrictionsConverter != null");
+            }
+
+            if (skinFlagsConverter == null)
+            {
+                throw new ArgumentNullException("skinFlagsConverter", "Precondition: skinFlagsConverter != null");
+            }
+
             this.itemRestrictionsConverter = itemRestrictionsConverter;
             this.skinFlagsConverter = skinFlagsConverter;
             this.typeConverters = knownTypeConverters;
@@ -53,7 +64,10 @@ namespace GW2NET.V2.Skins
         /// <inheritdoc />
         public Skin Convert(SkinDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             IConverter<DetailsDataContract, Skin> converter;
 
@@ -94,16 +108,6 @@ namespace GW2NET.V2.Skins
                 { "Back", new BackpackConverter() }, 
                 { "Weapon", new WeaponConverter() }
             };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.itemRestrictionsConverter != null);
-            Contract.Invariant(this.skinFlagsConverter != null);
-            Contract.Invariant(this.typeConverters != null);
         }
     }
 }

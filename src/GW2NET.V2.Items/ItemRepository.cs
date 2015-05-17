@@ -9,6 +9,7 @@
 namespace GW2NET.V2.Items
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
@@ -286,8 +287,7 @@ namespace GW2NET.V2.Items
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<int, Item> ConvertAsyncResponse(Task<IResponse<ICollection<ItemDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, Item>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForBulkResponse.Convert(task.Result);
             if (values == null)
             {
@@ -300,8 +300,7 @@ namespace GW2NET.V2.Items
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<Item> ConvertAsyncResponse(Task<IResponse<ICollection<ItemDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<Item>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForPageResponse.Convert(task.Result);
             if (values == null)
             {
@@ -316,8 +315,7 @@ namespace GW2NET.V2.Items
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             var ids = this.converterForIdentifiersResponse.Convert(task.Result);
             if (ids == null)
             {
@@ -330,7 +328,7 @@ namespace GW2NET.V2.Items
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Item ConvertAsyncResponse(Task<IResponse<ItemDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForResponse.Convert(task.Result);
         }
 

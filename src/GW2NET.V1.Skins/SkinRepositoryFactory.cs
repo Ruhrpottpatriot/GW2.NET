@@ -37,8 +37,6 @@ namespace GW2NET.V1.Skins
             get
             {
                 Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<ISkinRepository>() != null);
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -51,7 +49,6 @@ namespace GW2NET.V1.Skins
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<ISkinRepository>() != null);
                 return this.ForCulture(culture);
             }
         }
@@ -60,7 +57,6 @@ namespace GW2NET.V1.Skins
         /// <returns>A repository.</returns>
         public ISkinRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             return new SkinRepository(this.serviceClient);
         }
 
@@ -69,7 +65,6 @@ namespace GW2NET.V1.Skins
         /// <returns>A repository.</returns>
         public ISkinRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             ISkinRepository repository = new SkinRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
@@ -79,7 +74,6 @@ namespace GW2NET.V1.Skins
         /// <returns>A repository.</returns>
         public ISkinRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
@@ -87,7 +81,6 @@ namespace GW2NET.V1.Skins
         /// <returns>A repository.</returns>
         public ISkinRepository ForCurrentUICulture()
         {
-            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
 

@@ -9,9 +9,8 @@
 
 namespace GW2NET.V2.Skins
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
@@ -38,8 +37,16 @@ namespace GW2NET.V2.Skins
         /// <param name="converterForWeightClass">The converter for <see cref="WeightClass"/>.</param>
         public ArmorConverter(IDictionary<string, IConverter<DetailsDataContract, ArmorSkin>> typeConverters, IConverter<string, WeightClass> converterForWeightClass)
         {
-            Contract.Requires(typeConverters != null);
-            Contract.Requires(converterForWeightClass != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
+            if (converterForWeightClass == null)
+            {
+                throw new ArgumentNullException("converterForWeightClass", "Precondition: converterForWeightClass != null");
+            }
+
             this.weightClassConverter = converterForWeightClass;
             this.typeConverters = typeConverters;
         }
@@ -47,7 +54,11 @@ namespace GW2NET.V2.Skins
         /// <inheritdoc />
         public ArmorSkin Convert(DetailsDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             IConverter<DetailsDataContract, ArmorSkin> converter;
 
             // ReSharper disable once PossibleNullReferenceException
@@ -73,7 +84,6 @@ namespace GW2NET.V2.Skins
         /// <returns>The type converters.</returns>
         private static IDictionary<string, IConverter<DetailsDataContract, ArmorSkin>> GetKnownTypeConverters()
         {
-            Contract.Ensures(Contract.Result<IDictionary<string, IConverter<DetailsDataContract, ArmorSkin>>>() != null);
             return new Dictionary<string, IConverter<DetailsDataContract, ArmorSkin>>
                        {
                            { "Boots", new ConverterForObject<BootsSkin>() }, 
@@ -84,15 +94,6 @@ namespace GW2NET.V2.Skins
                            { "Leggings", new ConverterForObject<LeggingsSkin>() }, 
                            { "HelmAquatic", new ConverterForObject<HelmAquaticSkin>() }, 
                        };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.weightClassConverter != null);
         }
     }
 }

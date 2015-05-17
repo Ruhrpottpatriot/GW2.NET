@@ -33,7 +33,6 @@ namespace GW2NET.V2.Items
         /// <returns>A repository.</returns>
         public override IItemRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IItemRepository>() != null);
             return new ItemRepository(this.serviceClient);
         }
 
@@ -42,7 +41,6 @@ namespace GW2NET.V2.Items
         /// <returns>A repository.</returns>
         public override IItemRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IItemRepository>() != null);
             IItemRepository repository = new ItemRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;

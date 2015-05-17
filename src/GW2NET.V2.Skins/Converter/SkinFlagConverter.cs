@@ -10,7 +10,6 @@
 namespace GW2NET.V2.Skins
 {
     using System;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Skins;
@@ -21,7 +20,11 @@ namespace GW2NET.V2.Skins
         /// <inheritdoc />
         public SkinFlags Convert(string value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             SkinFlags result;
             return Enum.TryParse(value, true, out result) ? result : default(SkinFlags);
         }

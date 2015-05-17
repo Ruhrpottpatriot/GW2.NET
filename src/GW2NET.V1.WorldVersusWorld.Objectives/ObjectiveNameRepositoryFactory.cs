@@ -37,8 +37,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             get
             {
                 Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -51,7 +49,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
                 return this.ForCulture(culture);
             }
         }
@@ -60,7 +57,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <returns>A repository.</returns>
         public IObjectiveNameRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
             return new ObjectiveNameRepository(this.serviceClient);
         }
 
@@ -69,7 +65,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <returns>A repository.</returns>
         public IObjectiveNameRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
             IObjectiveNameRepository repository = new ObjectiveNameRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
@@ -79,7 +74,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <returns>A repository.</returns>
         public IObjectiveNameRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
@@ -87,7 +81,6 @@ namespace GW2NET.V1.WorldVersusWorld.Objectives
         /// <returns>A repository.</returns>
         public IObjectiveNameRepository ForCurrentUICulture()
         {
-            Contract.Ensures(Contract.Result<IObjectiveNameRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
 

@@ -9,6 +9,7 @@
 namespace GW2NET.V2.Commerce.Listings
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
@@ -253,31 +254,28 @@ namespace GW2NET.V2.Commerce.Listings
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForIdentifiersResponse.Convert(task.Result) ?? new List<int>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<int, Listing> ConvertAsyncResponse(Task<IResponse<ICollection<ListingDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, Listing>>() != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForBulkResponse.Convert(task.Result) ?? new DictionaryRange<int, Listing>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Listing ConvertAsyncResponse(Task<IResponse<ListingDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForResponse.Convert(task.Result);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<Listing> ConvertAsyncResponse(Task<IResponse<ICollection<ListingDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<Listing>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForPageResponse.Convert(task.Result);
             if (values == null)
             {

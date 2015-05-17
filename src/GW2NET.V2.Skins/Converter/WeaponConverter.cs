@@ -9,9 +9,9 @@
 
 namespace GW2NET.V2.Skins
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
@@ -36,10 +36,19 @@ namespace GW2NET.V2.Skins
         /// <summary>Initializes a new instance of the <see cref="WeaponConverter"/> class.</summary>
         /// <param name="typeConverters">The type converters.</param>
         /// <param name="converterForDamageType">The converter for <see cref="DamageType"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="typeConverters"/> or <paramref name="converterForDamageType"/> is a null reference.</exception>
         public WeaponConverter(IDictionary<string, IConverter<DetailsDataContract, WeaponSkin>> typeConverters, IConverter<string, DamageType> converterForDamageType)
         {
-            Contract.Requires(typeConverters != null);
-            Contract.Requires(converterForDamageType != null);
+            if (typeConverters == null)
+            {
+                throw new ArgumentNullException("typeConverters", "Precondition: typeConverters != null");
+            }
+
+            if (converterForDamageType == null)
+            {
+                throw new ArgumentNullException("converterForDamageType", "Precondition: converterForDamageType != null");
+            }
+
             this.typeConverters = typeConverters;
             this.damageClassConverter = converterForDamageType;
         }
@@ -48,7 +57,11 @@ namespace GW2NET.V2.Skins
         [SuppressMessage("ReSharper", "PossibleNullReferenceException", Justification = "Contracts make sure taht 'value' is not null.")]
         public WeaponSkin Convert(DetailsDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             IConverter<DetailsDataContract, WeaponSkin> converter;
 
             var skin = this.typeConverters.TryGetValue(value.Type, out converter)
@@ -73,7 +86,6 @@ namespace GW2NET.V2.Skins
         /// <returns>The type converters.</returns>
         private static IDictionary<string, IConverter<DetailsDataContract, WeaponSkin>> GetKnownTypeConverters()
         {
-            Contract.Ensures(Contract.Result<IDictionary<string, IConverter<DetailsDataContract, WeaponSkin>>>() != null);
             return new Dictionary<string, IConverter<DetailsDataContract, WeaponSkin>>
                        {
                            { "Axe", new ConverterForObject<AxeSkin>() }, 
@@ -100,15 +112,6 @@ namespace GW2NET.V2.Skins
                            { "SmallBundle", new ConverterForObject<SmallBundleSkin>() }, 
                            { "LargeBundle", new ConverterForObject<LargeBundleSkin>() }
                        };
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.typeConverters != null);
-            Contract.Invariant(this.damageClassConverter != null);
         }
     }
 }

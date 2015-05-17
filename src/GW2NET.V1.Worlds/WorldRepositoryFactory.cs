@@ -37,8 +37,6 @@ namespace GW2NET.V1.Worlds
             get
             {
                 Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IWorldRepository>() != null);
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -51,7 +49,6 @@ namespace GW2NET.V1.Worlds
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IWorldRepository>() != null);
                 return this.ForCulture(culture);
             }
         }
@@ -60,7 +57,6 @@ namespace GW2NET.V1.Worlds
         /// <returns>A repository.</returns>
         public IWorldRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             return new WorldRepository(this.serviceClient);
         }
 
@@ -69,7 +65,6 @@ namespace GW2NET.V1.Worlds
         /// <returns>A repository.</returns>
         public IWorldRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             IWorldRepository repository = new WorldRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
@@ -79,7 +74,6 @@ namespace GW2NET.V1.Worlds
         /// <returns>A repository.</returns>
         public IWorldRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
@@ -87,7 +81,6 @@ namespace GW2NET.V1.Worlds
         /// <returns>A repository.</returns>
         public IWorldRepository ForCurrentUICulture()
         {
-            Contract.Ensures(Contract.Result<IWorldRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
 

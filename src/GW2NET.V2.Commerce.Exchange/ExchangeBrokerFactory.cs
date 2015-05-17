@@ -46,7 +46,6 @@ namespace GW2NET.V2.Commerce.Exchange
         public IExchangeBroker ForCurrency(string identifier)
         {
             Contract.Requires(identifier != null);
-            Contract.Ensures(Contract.Result<IExchangeBroker>() != null);
             return new ExchangeBroker(this.serviceClient, identifier);
         }
         

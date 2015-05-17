@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.V2.Commerce.Exchange
 {
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Threading;
@@ -92,7 +93,7 @@ namespace GW2NET.V2.Commerce.Exchange
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private GemQuotation ConvertAsyncResponse(Task<IResponse<GemQuotationDataContract>> task, long quantity)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             var value = this.converterForResponse.Convert(task.Result);
             if (value == null)
             {

@@ -37,8 +37,6 @@ namespace GW2NET.V1.Recipes
             get
             {
                 Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -51,7 +49,6 @@ namespace GW2NET.V1.Recipes
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
                 return this.ForCulture(culture);
             }
         }
@@ -60,7 +57,6 @@ namespace GW2NET.V1.Recipes
         /// <returns>A repository.</returns>
         public IRecipeRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             return new RecipeRepository(this.serviceClient);
         }
 
@@ -69,7 +65,6 @@ namespace GW2NET.V1.Recipes
         /// <returns>A repository.</returns>
         public IRecipeRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             IRecipeRepository repository = new RecipeRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
@@ -79,7 +74,6 @@ namespace GW2NET.V1.Recipes
         /// <returns>A repository.</returns>
         public IRecipeRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
@@ -87,7 +81,6 @@ namespace GW2NET.V1.Recipes
         /// <returns>A repository.</returns>
         public IRecipeRepository ForCurrentUICulture()
         {
-            Contract.Ensures(Contract.Result<IRecipeRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
 

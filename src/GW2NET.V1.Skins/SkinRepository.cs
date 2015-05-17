@@ -14,6 +14,7 @@ namespace GW2NET.V1.Skins
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
@@ -208,8 +209,7 @@ namespace GW2NET.V1.Skins
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<SkinCollectionDataContract>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             var response = task.Result;
             if (response.Content == null)
             {

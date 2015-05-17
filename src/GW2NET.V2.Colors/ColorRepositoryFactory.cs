@@ -34,7 +34,6 @@ namespace GW2NET.V2.Colors
         /// <returns>A repository.</returns>
         public override IColorRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IColorRepository>() != null);
             return new ColorRepository(this.serviceClient);
         }
 
@@ -43,7 +42,6 @@ namespace GW2NET.V2.Colors
         /// <returns>A repository.</returns>
         public override IColorRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IColorRepository>() != null);
             IColorRepository repository = new ColorRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;

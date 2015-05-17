@@ -80,7 +80,6 @@ namespace GW2NET.V1.Skins.Converters
         /// <returns>The type converters.</returns>
         private static IDictionary<string, IConverter<WeaponSkinDataContract, WeaponSkin>> GetKnownTypeConverters()
         {
-            Contract.Ensures(Contract.Result<IDictionary<string, IConverter<WeaponSkinDataContract, WeaponSkin>>>() != null);
             return new Dictionary<string, IConverter<WeaponSkinDataContract, WeaponSkin>>
             {
                 { "Axe", new ConverterForObject<AxeSkin>() }, 

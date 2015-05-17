@@ -3,14 +3,12 @@
 //   This product is licensed under the GNU General Public License version 2 (GPLv2) as defined on the following page: http://www.gnu.org/licenses/gpl-2.0.html
 // </copyright>
 // <summary>
-//   Defines the SkinREpositoryFactory type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace GW2NET.V2.Skins
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
     using System.Globalization;
 
     using GW2NET.Common;
@@ -24,9 +22,14 @@ namespace GW2NET.V2.Skins
 
         /// <summary>Initializes a new instance of the <see cref="SkinRepositoryFactory"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public SkinRepositoryFactory(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -34,7 +37,6 @@ namespace GW2NET.V2.Skins
         /// <returns>A repository.</returns>
         public override ISkinRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             return new SkinRepository(this.serviceClient);
         }
 
@@ -43,18 +45,9 @@ namespace GW2NET.V2.Skins
         /// <returns>A repository.</returns>
         public override ISkinRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<ISkinRepository>() != null);
             ISkinRepository repository = new SkinRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when COdeCOntracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
         }
     }
 }

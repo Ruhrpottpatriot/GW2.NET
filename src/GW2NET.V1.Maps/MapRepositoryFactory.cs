@@ -37,8 +37,6 @@ namespace GW2NET.V1.Maps
             get
             {
                 Contract.Requires(language != null);
-                Contract.Requires(language.Length == 2);
-                Contract.Ensures(Contract.Result<IMapRepository>() != null);
                 return this.ForCulture(new CultureInfo(language));
             }
         }
@@ -51,7 +49,6 @@ namespace GW2NET.V1.Maps
             get
             {
                 Contract.Requires(culture != null);
-                Contract.Ensures(Contract.Result<IMapRepository>() != null);
                 return this.ForCulture(culture);
             }
         }
@@ -60,7 +57,6 @@ namespace GW2NET.V1.Maps
         /// <returns>A repository.</returns>
         public IMapRepository ForDefaultCulture()
         {
-            Contract.Ensures(Contract.Result<IMapRepository>() != null);
             return new MapRepository(this.serviceClient);
         }
 
@@ -69,7 +65,6 @@ namespace GW2NET.V1.Maps
         /// <returns>A repository.</returns>
         public IMapRepository ForCulture(CultureInfo culture)
         {
-            Contract.Ensures(Contract.Result<IMapRepository>() != null);
             IMapRepository repository = new MapRepository(this.serviceClient);
             repository.Culture = culture;
             return repository;
@@ -79,7 +74,6 @@ namespace GW2NET.V1.Maps
         /// <returns>A repository.</returns>
         public IMapRepository ForCurrentCulture()
         {
-            Contract.Ensures(Contract.Result<IMapRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentCulture);
         }
 
@@ -87,7 +81,6 @@ namespace GW2NET.V1.Maps
         /// <returns>A repository.</returns>
         public IMapRepository ForCurrentUICulture()
         {
-            Contract.Ensures(Contract.Result<IMapRepository>() != null);
             return this.ForCulture(CultureInfo.CurrentUICulture);
         }
 

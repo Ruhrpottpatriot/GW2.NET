@@ -10,6 +10,7 @@
 namespace GW2NET.V2.Colors
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Contracts;
     using System.Globalization;
@@ -260,8 +261,7 @@ namespace GW2NET.V2.Colors
 
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             var ids = this.converterForIdentifiersResponse.Convert(task.Result);
             if (ids == null)
             {
@@ -273,8 +273,7 @@ namespace GW2NET.V2.Colors
 
         private IDictionaryRange<int, ColorPalette> ConvertAsyncResponse(Task<IResponse<ICollection<ColorPaletteDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, ColorPalette>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForBulkResponse.Convert(task.Result);
             if (values == null)
             {
@@ -286,14 +285,13 @@ namespace GW2NET.V2.Colors
 
         private ColorPalette ConvertAsyncResponse(Task<IResponse<ColorPaletteDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForResponse.Convert(task.Result);
         }
 
         private ICollectionPage<ColorPalette> ConvertAsyncResponse(Task<IResponse<ICollection<ColorPaletteDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<ColorPalette>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForPageResponse.Convert(task.Result);
             if (values == null)
             {

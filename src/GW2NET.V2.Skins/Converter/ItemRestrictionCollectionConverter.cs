@@ -9,9 +9,8 @@
 
 namespace GW2NET.V2.Skins
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Linq;
 
     using GW2NET.Common;
@@ -31,26 +30,26 @@ namespace GW2NET.V2.Skins
 
         /// <summary>Initializes a new instance of the <see cref="ItemRestrictionCollectionConverter"/> class.</summary>
         /// <param name="converterForItemRestriction">The converter for <see cref="ItemRestrictions"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForItemRestriction"/> is a null reference.</exception>
         internal ItemRestrictionCollectionConverter(IConverter<string, ItemRestrictions> converterForItemRestriction)
         {
-            Contract.Requires(converterForItemRestriction != null);
+            if (converterForItemRestriction == null)
+            {
+                throw new ArgumentNullException("converterForItemRestriction", "Precondition: converterForItemRestriction != null");
+            }
+
             this.itemRestrictionConverter = converterForItemRestriction;
         }
 
         /// <inheritdoc />
         public ItemRestrictions Convert(ICollection<string> value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             return value.Aggregate(default(ItemRestrictions), (current, s) => current | this.itemRestrictionConverter.Convert(s));
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.itemRestrictionConverter != null);
         }
     }
 }
