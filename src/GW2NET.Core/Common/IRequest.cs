@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 namespace GW2NET.Common
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics.Contracts;
 
@@ -16,6 +17,7 @@ namespace GW2NET.Common
     public interface IRequest
     {
         /// <summary>Gets the resource path.</summary>
+        /// <exception cref="ArgumentNullException">The value is a null reference.</exception>
         string Resource { get; }
 
         /// <summary>Gets the request parameters.</summary>
