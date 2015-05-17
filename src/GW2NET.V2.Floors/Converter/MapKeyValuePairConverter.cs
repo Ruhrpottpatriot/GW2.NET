@@ -9,9 +9,9 @@
 
 namespace GW2NET.V2.Floors
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System.Diagnostics;
 
     using GW2NET.Common;
     using GW2NET.Maps;
@@ -30,9 +30,14 @@ namespace GW2NET.V2.Floors
 
         /// <summary>Initializes a new instance of the <see cref="MapKeyValuePairConverter"/> class.</summary>
         /// <param name="converterForSubregion">The converter for <see cref="MapKeyValuePairConverter"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForSubregion"/> is a null reference.</exception>
         public MapKeyValuePairConverter(IConverter<MapDataContract, Subregion> converterForSubregion)
         {
-            Contract.Requires(converterForSubregion != null);
+            if (converterForSubregion == null)
+            {
+                throw new ArgumentNullException("converterForSubregion", "Precondition: converterForSubregion != null");
+            }
+
             this.converterForSubregion = converterForSubregion;
         }
 
@@ -43,8 +48,8 @@ namespace GW2NET.V2.Floors
         {
             var key = value.Key;
             var dataContract = value.Value;
-            Contract.Assume(key != null);
-            Contract.Assume(dataContract != null);
+            Debug.Assert(key != null, "key != null");
+            Debug.Assert(dataContract != null, "dataContract != null");
             int id;
             if (!int.TryParse(key, out id))
             {
@@ -54,14 +59,6 @@ namespace GW2NET.V2.Floors
             var subRegion = this.converterForSubregion.Convert(dataContract);
             subRegion.MapId = id;
             return new KeyValuePair<int, Subregion>(id, subRegion);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when DataContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForSubregion != null);
         }
     }
 }

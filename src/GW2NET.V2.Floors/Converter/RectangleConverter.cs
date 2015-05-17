@@ -9,8 +9,7 @@
 
 namespace GW2NET.V2.Floors
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
@@ -29,9 +28,14 @@ namespace GW2NET.V2.Floors
 
         /// <summary>Initializes a new instance of the <see cref="RectangleConverter"/> class.</summary>
         /// <param name="vector2DConverter">The converter for <see cref="RectangleConverter"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="vector2DConverter"/> is a null reference.</exception>
         internal RectangleConverter(IConverter<double[], Vector2D> vector2DConverter)
         {
-            Contract.Requires(vector2DConverter != null);
+            if (vector2DConverter == null)
+            {
+                throw new ArgumentNullException("vector2DConverter", "Precondition: vector2DConverter != null");
+            }
+
             this.vector2DConverter = vector2DConverter;
         }
 
@@ -40,9 +44,15 @@ namespace GW2NET.V2.Floors
         /// <returns>The converted value.</returns>
         public Rectangle Convert(double[][] value)
         {
-            Contract.Assume(value != null);
-            // ReSharper disable once PossibleNullReferenceException
-            Contract.Assume(value.Length == 2);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            if (value.Length != 2)
+            {
+                throw new ArgumentException("Precondition: value.Length == 2", "value");
+            }
 
             var northWest = default(Vector2D);
             var first = value[0];
@@ -59,14 +69,6 @@ namespace GW2NET.V2.Floors
             }
 
             return new Rectangle(northWest, southEast);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when DataContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.vector2DConverter != null);
         }
     }
 }

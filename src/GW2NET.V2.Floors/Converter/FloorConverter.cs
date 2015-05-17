@@ -9,9 +9,8 @@
 
 namespace GW2NET.V2.Floors
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
@@ -40,11 +39,24 @@ namespace GW2NET.V2.Floors
         /// <param name="converterForSize2D">The converter for <see cref="Size2D"/>.</param>
         /// <param name="converterForRectangle">The converter for <see cref="Rectangle"/>.</param>
         /// <param name="converterForRegionCollection">The converter for <see cref="T:IDictionary{int,Region}"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForSize2D"/> or <paramref name="converterForRectangle"/> or <paramref name="converterForRegionCollection"/> is a null reference.</exception>
         public FloorConverter(IConverter<double[], Size2D> converterForSize2D, IConverter<double[][], Rectangle> converterForRectangle, IConverter<IDictionary<string, RegionDataContract>, IDictionary<int, Region>> converterForRegionCollection)
         {
-            Contract.Requires(converterForSize2D != null);
-            Contract.Requires(converterForRectangle != null);
-            Contract.Requires(converterForRegionCollection != null);
+            if (converterForSize2D == null)
+            {
+                throw new ArgumentNullException("converterForSize2D", "Precondition: converterForSize2D != null");
+            }
+
+            if (converterForRectangle == null)
+            {
+                throw new ArgumentNullException("converterForRectangle", "Precondition: converterForRectangle != null");
+            }
+
+            if (converterForRegionCollection == null)
+            {
+                throw new ArgumentNullException("converterForRegionCollection", "Precondition: converterForRegionCollection != null");
+            }
+
             this.converterForSize2D = converterForSize2D;
             this.converterForRectangle = converterForRectangle;
             this.converterForRegionCollection = converterForRegionCollection;
@@ -55,13 +67,15 @@ namespace GW2NET.V2.Floors
         /// <returns>The converted value.</returns>
         public Floor Convert(FloorDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new floor object
             var floor = new Floor();
 
             // Set the texture dimensions
-            // ReSharper disable once PossibleNullReferenceException
             var textureDimensions = value.TextureDimensions;
             if (textureDimensions != null && textureDimensions.Length == 2)
             {
@@ -84,16 +98,6 @@ namespace GW2NET.V2.Floors
 
             // Return the floor object
             return floor;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when DataContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForRectangle != null);
-            Contract.Invariant(this.converterForRegionCollection != null);
-            Contract.Invariant(this.converterForSize2D != null);
         }
     }
 }

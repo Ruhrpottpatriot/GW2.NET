@@ -9,9 +9,8 @@
 
 namespace GW2NET.V2.Floors
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
@@ -36,10 +35,20 @@ namespace GW2NET.V2.Floors
         /// <summary>Initializes a new instance of the <see cref="RegionConverter"/> class.</summary>
         /// <param name="vector2DConverter">The converter for <see cref="Vector2D"/>.</param>
         /// <param name="mapKeyValuePairConverter">The converter for <see cref="T:KeyValuePair{int,Subregion}"/>.</param>
-        public RegionConverter(IConverter<double[], Vector2D> vector2DConverter, IConverter<IDictionary<string, MapDataContract>, IDictionary<int, Subregion>> mapKeyValuePairConverter)
+        /// <exception cref="ArgumentNullException">The value of <paramref name="vector2DConverter"/> or <paramref name="mapKeyValuePairConverter"/> is a null reference.</exception>
+        public RegionConverter(IConverter<double[], Vector2D> vector2DConverter
+            , IConverter<IDictionary<string, MapDataContract>, IDictionary<int, Subregion>> mapKeyValuePairConverter)
         {
-            Contract.Requires(vector2DConverter != null);
-            Contract.Requires(mapKeyValuePairConverter != null);
+            if (vector2DConverter == null)
+            {
+                throw new ArgumentNullException("vector2DConverter", "Precondition: vector2DConverter != null");
+            }
+
+            if (mapKeyValuePairConverter == null)
+            {
+                throw new ArgumentNullException("mapKeyValuePairConverter", "Precondition: mapKeyValuePairConverter != null");
+            }
+
             this.vector2DConverter = vector2DConverter;
             this.mapKeyValuePairConverter = mapKeyValuePairConverter;
         }
@@ -49,12 +58,14 @@ namespace GW2NET.V2.Floors
         /// <returns>The converted value.</returns>
         public Region Convert(RegionDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new region object
             var region = new Region
                              {
-                                 // ReSharper disable once PossibleNullReferenceException
                                  Name = value.Name
                              };
 
@@ -74,15 +85,6 @@ namespace GW2NET.V2.Floors
 
             // Return the region object
             return region;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when DataContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.vector2DConverter != null);
-            Contract.Invariant(this.mapKeyValuePairConverter != null);
         }
     }
 }

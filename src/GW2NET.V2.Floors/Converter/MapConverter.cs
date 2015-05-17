@@ -9,9 +9,8 @@
 
 namespace GW2NET.V2.Floors
 {
+    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Common.Converters;
@@ -48,13 +47,39 @@ namespace GW2NET.V2.Floors
         /// <param name="taskCollectionConverter">The converter for <see cref="ICollection{RenownTask}"/>.</param>
         /// <param name="skillChallengeCollectionConverter">The converter for <see cref="ICollection{SkillChallenge}"/>.</param>
         /// <param name="sectorCollectionConverter">The converter for <see cref="ICollection{Sector}"/>.</param>
-        internal MapConverter(IConverter<double[][], Rectangle> rectangleConverter, IConverter<ICollection<PointOfInterestDataContract>, ICollection<PointOfInterest>> converterForPointOfInterestCollection, IConverter<ICollection<TaskDataContract>, ICollection<RenownTask>> taskCollectionConverter, IConverter<ICollection<SkillChallengeDataContract>, ICollection<SkillChallenge>> skillChallengeCollectionConverter, IConverter<ICollection<SectorDataContract>, ICollection<Sector>> sectorCollectionConverter)
+        /// <exception cref="ArgumentNullException">The value of <paramref name="rectangleConverter"/> or <paramref name="converterForPointOfInterestCollection"/> or <paramref name="taskCollectionConverter"/> or <paramref name="skillChallengeCollectionConverter"/> or <paramref name="sectorCollectionConverter"/> is a null reference.</exception>
+        internal MapConverter(
+            IConverter<double[][], Rectangle> rectangleConverter
+            , IConverter<ICollection<PointOfInterestDataContract>, ICollection<PointOfInterest>> converterForPointOfInterestCollection
+            , IConverter<ICollection<TaskDataContract>, ICollection<RenownTask>> taskCollectionConverter
+            , IConverter<ICollection<SkillChallengeDataContract>, ICollection<SkillChallenge>> skillChallengeCollectionConverter
+            , IConverter<ICollection<SectorDataContract>, ICollection<Sector>> sectorCollectionConverter)
         {
-            Contract.Requires(rectangleConverter != null);
-            Contract.Requires(converterForPointOfInterestCollection != null);
-            Contract.Requires(taskCollectionConverter != null);
-            Contract.Requires(skillChallengeCollectionConverter != null);
-            Contract.Requires(sectorCollectionConverter != null);
+            if (rectangleConverter == null)
+            {
+                throw new ArgumentNullException("rectangleConverter", "Precondition: rectangleConverter != null");
+            }
+
+            if (converterForPointOfInterestCollection == null)
+            {
+                throw new ArgumentNullException("converterForPointOfInterestCollection", "Precondition: converterForPointOfInterestCollection != null");
+            }
+
+            if (taskCollectionConverter == null)
+            {
+                throw new ArgumentNullException("taskCollectionConverter", "Precondition: taskCollectionConverter != null");
+            }
+
+            if (skillChallengeCollectionConverter == null)
+            {
+                throw new ArgumentNullException("skillChallengeCollectionConverter", "Precondition: skillChallengeCollectionConverter != null");
+            }
+
+            if (sectorCollectionConverter == null)
+            {
+                throw new ArgumentNullException("sectorCollectionConverter", "Precondition: sectorCollectionConverter != null");
+            }
+
             this.rectangleConverter = rectangleConverter;
             this.converterForPointOfInterestCollection = converterForPointOfInterestCollection;
             this.taskCollectionConverter = taskCollectionConverter;
@@ -67,12 +92,14 @@ namespace GW2NET.V2.Floors
         /// <returns>The converted value.</returns>
         public Subregion Convert(MapDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             // Create a new map object
             var subRegion = new Subregion
                                 {
-                                    // ReSharper disable once PossibleNullReferenceException
                                     Name = value.Name,
                                     MinimumLevel = value.MinimumLevel,
                                     MaximumLevel = value.MaximumLevel,
@@ -117,18 +144,6 @@ namespace GW2NET.V2.Floors
 
             // Return the map object
             return subRegion;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when DataContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.rectangleConverter != null);
-            Contract.Invariant(this.converterForPointOfInterestCollection != null);
-            Contract.Invariant(this.taskCollectionConverter != null);
-            Contract.Invariant(this.skillChallengeCollectionConverter != null);
-            Contract.Invariant(this.sectorCollectionConverter != null);
         }
     }
 }

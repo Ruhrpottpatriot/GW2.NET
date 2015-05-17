@@ -9,7 +9,7 @@
 
 namespace GW2NET.V2.Floors
 {
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
@@ -17,14 +17,19 @@ namespace GW2NET.V2.Floors
     /// <summary>Converts objects of type <see cref="T:double[]"/> to objects of type <see cref="Size2D"/>.</summary>
     internal sealed class Size2DConverter : IConverter<double[], Size2D>
     {
-        /// <summary>Converts the given object of type <see cref="T:double[]"/> to an object of type <see cref="Size2D"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public Size2D Convert(double[] value)
         {
-            Contract.Assume(value != null);
-            // ReSharper disable once PossibleNullReferenceException
-            Contract.Assume(value.Length == 2);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
+            if (value.Length == 2)
+            {
+                throw new ArgumentException("Precondition: value == 2", "value");
+            }
+
             return new Size2D(value[0], value[1]);
         }
     }

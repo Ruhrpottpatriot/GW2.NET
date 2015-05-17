@@ -9,8 +9,7 @@
 
 namespace GW2NET.V2.Floors
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
@@ -30,9 +29,14 @@ namespace GW2NET.V2.Floors
 
         /// <summary>Initializes a new instance of the <see cref="SectorConverter"/> class.</summary>
         /// <param name="vector2DConverter">The converter for <see cref="Vector2D"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="vector2DConverter"/> is a null reference.</exception>
         public SectorConverter(IConverter<double[], Vector2D> vector2DConverter)
         {
-            Contract.Requires(vector2DConverter != null);
+            if (vector2DConverter == null)
+            {
+                throw new ArgumentNullException("vector2DConverter", "Precondition: vector2DConverter != null");
+            }
+
             this.vector2DConverter = vector2DConverter;
         }
 
@@ -41,10 +45,13 @@ namespace GW2NET.V2.Floors
         /// <returns>The converted value.</returns>
         public Sector Convert(SectorDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var sector = new Sector
             {
-                // ReSharper disable once PossibleNullReferenceException
                 SectorId = value.SectorId,
                 Name = value.Name,
                 Level = value.Level,
@@ -56,14 +63,6 @@ namespace GW2NET.V2.Floors
             }
 
             return sector;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when DataContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.vector2DConverter != null);
         }
     }
 }

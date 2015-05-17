@@ -9,8 +9,7 @@
 
 namespace GW2NET.V2.Floors
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
@@ -30,21 +29,27 @@ namespace GW2NET.V2.Floors
 
         /// <summary>Initializes a new instance of the <see cref="TaskConverter"/> class.</summary>
         /// <param name="vector2DConverter">The converter for <see cref="TaskConverter"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="vector2DConverter"/> is a null reference.</exception>
         internal TaskConverter(IConverter<double[], Vector2D> vector2DConverter)
         {
-            Contract.Requires(vector2DConverter != null);
+            if (vector2DConverter == null)
+            {
+                throw new ArgumentNullException("vector2DConverter", "Precondition: vector2DConverter != null");
+            }
+
             this.vector2DConverter = vector2DConverter;
         }
 
-        /// <summary>Converts the given object of type <see cref="TaskDataContract"/> to an object of type <see cref="RenownTask"/>.</summary>
-        /// <param name="value">The value to convert.</param>
-        /// <returns>The converted value.</returns>
+        /// <inheritdoc />
         public RenownTask Convert(TaskDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             var renownTask = new RenownTask
                                  {
-                                     // ReSharper disable once PossibleNullReferenceException
                                      TaskId = value.TaskId,
                                      Objective = value.Objective,
                                      Level = value.Level,
@@ -57,14 +62,6 @@ namespace GW2NET.V2.Floors
             }
 
             return renownTask;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when DataContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.vector2DConverter != null);
         }
     }
 }

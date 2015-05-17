@@ -9,8 +9,7 @@
 
 namespace GW2NET.V2.Floors
 {
-    using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
+    using System;
 
     using GW2NET.Common;
     using GW2NET.Common.Drawing;
@@ -30,9 +29,14 @@ namespace GW2NET.V2.Floors
 
         /// <summary>Initializes a new instance of the <see cref="PointOfInterestConverter"/> class.</summary>
         /// <param name="converterForVector2D">The converter for <see cref="PointOfInterestConverter"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="converterForVector2D"/> is a null reference.</exception>
         internal PointOfInterestConverter(IConverter<double[], Vector2D> converterForVector2D)
         {
-            Contract.Requires(converterForVector2D != null);
+            if (converterForVector2D == null)
+            {
+                throw new ArgumentNullException("converterForVector2D", "Precondition: converterForVector2D != null");
+            }
+
             this.converterForVector2D = converterForVector2D;
         }
 
@@ -41,10 +45,12 @@ namespace GW2NET.V2.Floors
         /// <returns>The converted value.</returns>
         public PointOfInterest Convert(PointOfInterestDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
 
             PointOfInterest pointOfInterest;
-            // ReSharper disable once PossibleNullReferenceException
             switch (value.Type)
             {
                 case "unlock":
@@ -74,14 +80,6 @@ namespace GW2NET.V2.Floors
             }
 
             return pointOfInterest;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when DataContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.converterForVector2D != null);
         }
     }
 }

@@ -9,9 +9,10 @@
 
 namespace GW2NET.V2.Floors
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Globalization;
     using System.Linq;
     using System.Threading;
@@ -45,22 +46,39 @@ namespace GW2NET.V2.Floors
         /// <summary>Initializes a new instance of the <see cref="FloorRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="continentId">The continent identifier.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> is a null reference.</exception>
         public FloorRepository(IServiceClient serviceClient, int continentId = 0)
-            : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new FloorConverter())
+            : this(serviceClient, new ConverterAdapter<ICollection<int>>(), new FloorConverter(), continentId)
         {
-            Contract.Requires(serviceClient != null);
-            this.continentId = continentId;
         }
 
         /// <summary>Initializes a new instance of the <see cref="FloorRepository"/> class.</summary>
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForFloorCollection">The converter for <see cref="T:ICollection{int}"/>.</param>
         /// <param name="converterForFloor">The converter for <see cref="Floor"/>.</param>
-        internal FloorRepository(IServiceClient serviceClient, IConverter<ICollection<int>, ICollection<int>> converterForFloorCollection, IConverter<FloorDataContract, Floor> converterForFloor)
+        /// <param name="continentId">The continent identifier.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForFloorCollection"/> or <paramref name="converterForFloor"/> is a null reference.</exception>
+        internal FloorRepository(IServiceClient serviceClient
+            , IConverter<ICollection<int>, ICollection<int>> converterForFloorCollection
+            , IConverter<FloorDataContract, Floor> converterForFloor
+            , int continentId)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForFloorCollection != null);
-            Contract.Requires(converterForFloor != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForFloorCollection == null)
+            {
+                throw new ArgumentNullException("converterForFloorCollection", "Precondition: converterForFloorCollection != null");
+            }
+
+            if (converterForFloor == null)
+            {
+                throw new ArgumentNullException("converterForFloor", "Precondition: converterForFloor != null");
+            }
+
+            this.continentId = continentId;
             this.serviceClient = serviceClient;
             this.identifiersConverter = new ConverterForResponse<ICollection<int>, ICollection<int>>(converterForFloorCollection);
             this.responseConverter = new ConverterForResponse<FloorDataContract, Floor>(converterForFloor);
@@ -269,8 +287,7 @@ namespace GW2NET.V2.Floors
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<int, Floor> ConvertAsyncResponse(Task<IResponse<ICollection<FloorDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<int, Floor>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.bulkConverter.Convert(task.Result);
             return values ?? new DictionaryRange<int, Floor>(0);
         }
@@ -278,8 +295,7 @@ namespace GW2NET.V2.Floors
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<Floor> ConvertAsyncResponse(Task<IResponse<ICollection<FloorDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<Floor>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.pageConverter.Convert(task.Result);
             if (values == null)
             {
@@ -294,8 +310,7 @@ namespace GW2NET.V2.Floors
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<int> ConvertAsyncResponse(Task<IResponse<ICollection<int>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<int>>() != null);
+            Debug.Assert(task != null, "task != null");
             var ids = this.identifiersConverter.Convert(task.Result);
             return ids ?? new List<int>(0);
         }
@@ -303,20 +318,8 @@ namespace GW2NET.V2.Floors
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Floor ConvertAsyncResponse(Task<IResponse<FloorDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.responseConverter.Convert(task.Result);
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        [SuppressMessage("ReSharper", "UnusedMember.Local", Justification = "Only used when CodeContracts are enabled.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.responseConverter != null);
-            Contract.Invariant(this.identifiersConverter != null);
-            Contract.Invariant(this.bulkConverter != null);
-            Contract.Invariant(this.pageConverter != null);
         }
     }
 }
