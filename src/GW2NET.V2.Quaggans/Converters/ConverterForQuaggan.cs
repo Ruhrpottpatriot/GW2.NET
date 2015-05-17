@@ -9,7 +9,6 @@
 namespace GW2NET.V2.Quaggans
 {
     using System;
-    using System.Diagnostics.Contracts;
 
     using GW2NET.Common;
     using GW2NET.Quaggans;
@@ -20,7 +19,11 @@ namespace GW2NET.V2.Quaggans
         /// <inheritdoc />
         public Quaggan Convert(QuagganDataContract value)
         {
-            Contract.Assume(value != null);
+            if (value == null)
+            {
+                throw new ArgumentNullException("value", "Precondition: value != null");
+            }
+
             return new Quaggan
             {
                 Id = value.Id, 

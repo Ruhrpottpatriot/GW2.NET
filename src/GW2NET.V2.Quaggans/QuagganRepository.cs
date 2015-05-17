@@ -10,8 +10,8 @@ namespace GW2NET.V2.Quaggans
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Diagnostics.Contracts;
     using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
@@ -41,7 +41,11 @@ namespace GW2NET.V2.Quaggans
         /// <param name="serviceClient">The service client.</param>
         public QuagganRepository(IServiceClient serviceClient)
         {
-            Contract.Requires(serviceClient != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
             this.serviceClient = serviceClient;
         }
 
@@ -49,11 +53,24 @@ namespace GW2NET.V2.Quaggans
         /// <param name="serviceClient">The service client.</param>
         /// <param name="converterForIdentifiers">The converter for <see cref="T:ICollection{string}"/>.</param>
         /// <param name="converterForQuaggan">The converter for <see cref="Quaggan"/>.</param>
+        /// <exception cref="ArgumentNullException">The value of <paramref name="serviceClient"/> or <paramref name="converterForIdentifiers"/> or <paramref name="converterForQuaggan"/> is a null reference.</exception>
         internal QuagganRepository(IServiceClient serviceClient, IConverter<ICollection<string>, ICollection<string>> converterForIdentifiers, IConverter<QuagganDataContract, Quaggan> converterForQuaggan)
         {
-            Contract.Requires(serviceClient != null);
-            Contract.Requires(converterForIdentifiers != null);
-            Contract.Requires(converterForQuaggan != null);
+            if (serviceClient == null)
+            {
+                throw new ArgumentNullException("serviceClient", "Precondition: serviceClient != null");
+            }
+
+            if (converterForIdentifiers == null)
+            {
+                throw new ArgumentNullException("converterForIdentifiers", "Precondition: converterForIdentifiers != null");
+            }
+
+            if (converterForQuaggan == null)
+            {
+                throw new ArgumentNullException("converterForQuaggan", "Precondition: converterForQuaggan != null");
+            }
+
             this.serviceClient = serviceClient;
             this.converterForIdentifiersResponse = new ConverterForResponse<ICollection<string>, ICollection<string>>(converterForIdentifiers);
             this.converterForResponse = new ConverterForResponse<QuagganDataContract, Quaggan>(converterForQuaggan);
@@ -244,31 +261,28 @@ namespace GW2NET.V2.Quaggans
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollection<string> ConvertAsyncResponse(Task<IResponse<ICollection<string>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollection<string>>() != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForIdentifiersResponse.Convert(task.Result) ?? new List<string>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private IDictionaryRange<string, Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDataContract>>> task)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<IDictionaryRange<string, Quaggan>>() != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForBulkResponse.Convert(task.Result) ?? new DictionaryRange<string, Quaggan>(0);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private Quaggan ConvertAsyncResponse(Task<IResponse<QuagganDataContract>> task)
         {
-            Contract.Requires(task != null);
+            Debug.Assert(task != null, "task != null");
             return this.converterForResponse.Convert(task.Result);
         }
 
         [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Not a public API.")]
         private ICollectionPage<Quaggan> ConvertAsyncResponse(Task<IResponse<ICollection<QuagganDataContract>>> task, int pageIndex)
         {
-            Contract.Requires(task != null);
-            Contract.Ensures(Contract.Result<ICollectionPage<Quaggan>>() != null);
+            Debug.Assert(task != null, "task != null");
             var values = this.converterForPageResponse.Convert(task.Result);
             if (values == null)
             {
@@ -278,17 +292,6 @@ namespace GW2NET.V2.Quaggans
             PageContextPatchUtility.Patch(values, pageIndex);
 
             return values;
-        }
-
-        [ContractInvariantMethod]
-        [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1600:ElementsMustBeDocumented", Justification = "Only used by the Code Contracts for .NET extension.")]
-        private void ObjectInvariant()
-        {
-            Contract.Invariant(this.serviceClient != null);
-            Contract.Invariant(this.converterForBulkResponse != null);
-            Contract.Invariant(this.converterForIdentifiersResponse != null);
-            Contract.Invariant(this.converterForPageResponse != null);
-            Contract.Invariant(this.converterForResponse != null);
         }
     }
 }
